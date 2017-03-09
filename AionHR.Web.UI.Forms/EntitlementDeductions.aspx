@@ -23,6 +23,8 @@
         <ext:Hidden ID="textLoadFailed" runat="server" Text="<%$ Resources:Common , LoadFailed %>" />
         <ext:Hidden ID="titleSavingError" runat="server" Text="<%$ Resources:Common , TitleSavingError %>" />
         <ext:Hidden ID="titleSavingErrorMessage" runat="server" Text="<%$ Resources:Common , TitleSavingErrorMessage %>" />
+        <ext:Hidden ID="EntitlementText" runat="server" Text="<%$ Resources:Entitlement %>" />
+        <ext:Hidden ID="DeductionText" runat="server" Text="<%$ Resources:Deduction %>" />
         
         <ext:Store
             ID="Store1"
@@ -119,7 +121,11 @@
 
                             </Renderer>
                                 </ext:Column>
-                            <ext:Column    CellCls="cellLink" ID="ColType" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldType%>" DataIndex="type" Flex="2" Hideable="false"/>
+                            <ext:Column    CellCls="cellLink" ID="ColType" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldType%>" DataIndex="type" Flex="2" Hideable="false">
+                                <Renderer Handler="return record.data['type']==1? #{EntitlementText}.value :#{DeductionText}.value;">
+
+                                </Renderer>
+                                </ext:Column>
                            
 
                             <ext:Column runat="server"

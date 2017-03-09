@@ -36,7 +36,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Newtonsoft.Json">
-      <HintPath>..\AionHR.Web.UI.Forms\bin\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\..\..\..\Desktop\dlls\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
