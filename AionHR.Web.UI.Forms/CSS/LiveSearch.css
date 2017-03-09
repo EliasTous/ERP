@@ -1,0 +1,20 @@
+﻿     .x-grid-row-over .x-grid-cell-inner {
+            font-weight: bold;
+        }
+
+
+        .x-yellow-highlight {
+            background-color: yellow;
+        }
+
+        .x-blue-highlight {
+            background-color: blue;
+        }
+
+        .x-blue-livesearch-match {
+            font-weight: bold;
+            background-color: blue;
+            color: white;
+        }
+
+  

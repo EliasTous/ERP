@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{F60BFEAF-3B3B-47C5-9DA0-AC8892DC9BE8}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>AionHR.Services</RootNamespace>
+    <AssemblyName>AionHR.Services</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Enumerations\CompanyStructureErrors.cs" />
+    <Compile Include="Enumerations\EmployeeErrors.cs" />
+    <Compile Include="Enumerations\MasterModulesErrors.cs" />
+    <Compile Include="Enumerations\SystemErrors.cs" />
+    <Compile Include="Implementations\BaseService.cs" />
+    <Compile Include="Implementations\CommonErrors.cs" />
+    <Compile Include="Implementations\CompanyStructureService.cs" />
+    <Compile Include="Implementations\EmployeeService.cs" />
+    <Compile Include="Implementations\LeaveManagementService.cs" />
+    <Compile Include="Implementations\MasterService.cs" />
+    <Compile Include="Implementations\TimeAttendanceService.cs" />
+    <Compile Include="Interfaces\IBaseService.cs" />
+    <Compile Include="Interfaces\ICompanyStructureService.cs" />
+    <Compile Include="Interfaces\IEmployeeService.cs" />
+    <Compile Include="Interfaces\ILeaveManagementService.cs" />
+    <Compile Include="Interfaces\ISystemService.cs" />
+    <Compile Include="Implementations\SystemService.cs" />
+    <Compile Include="Interfaces\IMasterService.cs" />
+    <Compile Include="Interfaces\ITimeAttendanceService.cs" />
+    <Compile Include="Messaging\Employees\EmployeesRequests.cs" />
+    <Compile Include="Messaging\LeaveManagement\LeaveManagementRequests.cs" />
+    <Compile Include="Messaging\ListReponse.cs" />
+    <Compile Include="Messaging\Master Service\MasterServiceRequests.cs" />
+    <Compile Include="Messaging\PostRequest.cs" />
+    <Compile Include="Messaging\PostResponse.cs" />
+    <Compile Include="Messaging\RecordResponse.cs" />
+    <Compile Include="Messaging\RequestBase.cs" />
+    <Compile Include="Messaging\StatusResponse.cs" />
+    <Compile Include="Messaging\System\AuthenticateRequest.cs" />
+    <Compile Include="Messaging\System\AuthenticateResponse.cs" />
+    <Compile Include="Messaging\ListRequest.cs" />
+    <Compile Include="Messaging\RecordRequest.cs" />
+    <Compile Include="Messaging\Response.cs" />
+    <Compile Include="Messaging\ResponseBase.cs" />
+    <Compile Include="Messaging\System\PasswordRecoveryRequest.cs" />
+    <Compile Include="Messaging\System\PasswordRecoveryResponse.cs" />
+    <Compile Include="Messaging\System\SystemDefaultRecordRequest.cs" />
+    <Compile Include="Messaging\TimeAttendance\TimeAttendanceRequests.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\AionHR.Infrastructure\AionHR.Infrastructure.csproj">
+      <Project>{9955b92f-f16c-49b9-99f3-4919d3327263}</Project>
+      <Name>AionHR.Infrastructure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AionHR.Model\AionHR.Model.csproj">
+      <Project>{ECB87836-818F-45F5-AB7F-F46CDE3C447F}</Project>
+      <Name>AionHR.Model</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

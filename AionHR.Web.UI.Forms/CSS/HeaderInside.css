@@ -1,0 +1,47 @@
+﻿.logoImage {
+    width: 90px;
+    float: left;
+}
+.title {
+    color:#fff;
+    float:left;
+    font-weight:bold;
+    font-size:13px;
+    margin-top:19px;
+}
+
+
+
+.buttons {
+    float: right;
+    margin-top: 17px;
+}
+.button {
+    float:left;
+    padding: 4px;
+    margin-right: 20px;
+    display: inline-block;
+    background: #5fa2dd;
+    color: #fff !important;
+    font-weight: bold;
+    font-size: 14px;
+    text-decoration: none;
+    text-align: center;
+    cursor: pointer;
+    -webkit-transition: all 0.2s ease-out;
+    -moz-transition: all 0.2s ease-out;
+    transition: all 0.2s ease-out;
+   border: 1px solid #7db9ee;
+}
+
+
+
+    .button:hover {
+        background-color: #6fb0e9;
+        color: #ffffff;
+    }
+
+    .button:active {
+        background-color: #6fb0e9;
+        color: #ffffff;
+    }

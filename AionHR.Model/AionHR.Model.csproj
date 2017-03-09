@@ -1,0 +1,120 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{ECB87836-818F-45F5-AB7F-F46CDE3C447F}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>AionHR.Model</RootNamespace>
+    <AssemblyName>AionHR.Model</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Company\Structure\Division.cs" />
+    <Compile Include="Company\Structure\ICompanyStructureRepository.cs" />
+    <Compile Include="Company\Structure\IDepartmentRepository.cs" />
+    <Compile Include="Employees\Profile\Employee.cs" />
+    <Compile Include="LeaveManagement\ILeaveManagementRepository.cs" />
+    <Compile Include="MasterModule\IAccountRepository.cs" />
+    <Compile Include="ModelBase.cs" />
+    <Compile Include="System\SystemDefault.cs" />
+    <Compile Include="TimeAttendance\ActiveDashboardModel.cs" />
+    <Compile Include="TimeAttendance\AttendanceBreak.cs" />
+    <Compile Include="TimeAttendance\AttendanceDay.cs" />
+    <Compile Include="TimeAttendance\AttendanceSchedule.cs" />
+    <Compile Include="TimeAttendance\AttendanceScheduleDay.cs" />
+    <Compile Include="TimeAttendance\BiometricDevice.cs" />
+    <Compile Include="TimeAttendance\Calendar.cs" />
+    <Compile Include="TimeAttendance\CalendarDay.cs" />
+    <Compile Include="TimeAttendance\CalendarPattern.cs" />
+    <Compile Include="TimeAttendance\CalendarYear.cs" />
+    <Compile Include="TimeAttendance\Check.cs" />
+    <Compile Include="TimeAttendance\DayType.cs" />
+    <Compile Include="TimeAttendance\Geofence.cs" />
+    <Compile Include="TimeAttendance\ITimeAttendanceRepository.cs" />
+    <Compile Include="TimeAttendance\Router.cs" />
+    <Compile Include="Company\Cases\Case.cs" />
+    <Compile Include="Company\Cases\CaseComment.cs" />
+    <Compile Include="Company\News\News.cs" />
+    <Compile Include="Company\Structure\Branch.cs" />
+    <Compile Include="Company\Structure\Department.cs" />
+    <Compile Include="Company\Structure\Position.cs" />
+    <Compile Include="Employees\Complient.cs" />
+    <Compile Include="LeaveManagement\Leave.cs" />
+    <Compile Include="LeaveManagement\LeaveType.cs" />
+    <Compile Include="LeaveManagement\VactationSchedule.cs" />
+    <Compile Include="Employees\Profile\AllowanceType.cs" />
+    <Compile Include="Employees\Profile\Badge.cs" />
+    <Compile Include="Employees\Profile\CertificateLevel.cs" />
+    <Compile Include="Employees\Profile\DocumentType.cs" />
+    <Compile Include="Employees\IEmployeeRepository.cs" />
+    <Compile Include="Employees\Profile\EmployeeAllowance.cs" />
+    <Compile Include="Employees\Profile\EmployeeDocument.cs" />
+    <Compile Include="Employees\Profile\EmployeeQuickView.cs" />
+    <Compile Include="Employees\Profile\EmployeeSalary.cs" />
+    <Compile Include="Employees\Profile\EmployeeSnapShot.cs" />
+    <Compile Include="Employees\Profile\EntitlementDeduction.cs" />
+    <Compile Include="Employees\Profile\SalaryChangeReason.cs" />
+    <Compile Include="Employees\Profile\SalaryDetail.cs" />
+    <Compile Include="Employees\Profile\Sponsor.cs" />
+    <Compile Include="Employees\Profile\TrainingType.cs" />
+    <Compile Include="MasterModule\Account.cs" />
+    <Compile Include="MasterModule\CrashLog.cs" />
+    <Compile Include="MasterModule\DbSetup.cs" />
+    <Compile Include="MasterModule\Dump.cs" />
+    <Compile Include="MasterModule\Registration.cs" />
+    <Compile Include="MediaGallery\MediaCategory.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="System\Attachement.cs" />
+    <Compile Include="System\Currency.cs" />
+    <Compile Include="System\ISystemRepository.cs" />
+    <Compile Include="System\Nationality.cs" />
+    <Compile Include="System\UserInfo.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\AionHR.Infrastructure\AionHR.Infrastructure.csproj">
+      <Project>{9955b92f-f16c-49b9-99f3-4919d3327263}</Project>
+      <Name>AionHR.Infrastructure</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
