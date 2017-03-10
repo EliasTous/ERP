@@ -193,7 +193,7 @@
                         AllowBlank="false" />
                 </Items>
             </ext:Panel>
-            <ext:Panel runat="server" Margin="20">
+            <ext:Panel runat="server" Margin="20" Visible="false">
                 <Items>
                     <ext:Image runat="server" ID="imgControl" Width="200" Height="200">
                         <Listeners>

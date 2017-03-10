@@ -69,7 +69,7 @@ namespace AionHR.Web.UI.Forms
                 HideShowColumns();
                 BuildTree();
 
-
+                X.Call("hideTabs");
             }
 
 

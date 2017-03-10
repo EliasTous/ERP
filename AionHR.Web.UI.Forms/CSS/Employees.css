@@ -48,3 +48,29 @@ border:none!important;
 html{
     border:none!important;
 }
+#tabbar-1020-strip{
+    display:none!important; 
+}
+.x-tab-bar-strip
+{
+    display:none!important; 
+}
+#tabPanel-body{
+    border:none!important;
+}
+#topPanel{
+    background-color:#157fcc!important;
+}
+#leftPanel_header
+{background-color:#157fcc!important;
+ 
+
+}
+#toolbar-1015
+{
+    background:none!important;
+}
+#leftPanel-body
+{
+    top:31px!important;
+}

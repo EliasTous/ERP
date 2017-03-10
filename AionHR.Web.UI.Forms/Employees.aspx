@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title></title>
     <link rel="stylesheet" type="text/css" href="CSS/Common.css" />
-    <link rel="stylesheet" type="text/css" href="CSS/Employees.css?id=8" />
+    <link rel="stylesheet" type="text/css" href="CSS/Employees.css?id=13" />
     <link rel="stylesheet" href="CSS/LiveSearch.css" />
     <script type="text/javascript" src="Scripts/jquery.min.js"></script>
     <script type="text/javascript" src="Scripts/Branches.js?id=0"></script>
@@ -249,8 +249,8 @@
                 <ext:Panel runat="server" Layout="BorderLayout" OnLoad="Unnamed_Load">
 
                     <Items>
-                        <ext:Panel ID="leftPanel" runat="server" Region="West" Layout="AutoLayout" Width="200" PaddingSpec="0 0 0 0" Padding="0"
-                            Header="true" Collapsible="true" StyleSpec="border-bottom:2px solid #2A92D4;"
+                        <ext:Panel ID="leftPanel" runat="server" Region="West" Layout="AutoLayout" Width="150" PaddingSpec="0 0 0 0" Padding="0"
+                            Header="true"   Collapsible="false" 
                             Title="<%$ Resources:Common , NavigationPane %>" CollapseToolText="<%$ Resources:Common , CollapsePanel %>" ExpandToolText="<%$ Resources:Common , ExpandPanel %>" Icon="ApplicationTileVertical" BodyBorder="0">
 
                             <Items>
@@ -274,14 +274,15 @@
                                         </ext:Toolbar>
                                     </TopBar>
                                     <Items>
-                                        <ext:Image ID="imageUrl" runat="server" ImageUrl="" Width="100" Height="100" />
+                                        <ext:Image ID="imageUrl" runat="server" ImageUrl="" Width="100" Height="100" Align="Middle" />
                                         <ext:FormPanel runat="server" ID="summaryForm">
                                             <Items>
-                                                <ext:TextField ReadOnly="true" ID="TextField2" AllowBlank="false" runat="server" FieldLabel="<%$ Resources:FieldMiddleName%>" Name="firstName" BlankText="<%$ Resources:Common, MandatoryField%>" />
-                                                <ext:TextField ReadOnly="true" ID="TextField1" AllowBlank="false" runat="server" FieldLabel="<%$ Resources:FieldMiddleName%>" Name="middleName" BlankText="<%$ Resources:Common, MandatoryField%>" />
-                                                <ext:TextField ReadOnly="true" ID="TextField3" AllowBlank="false" runat="server" FieldLabel="<%$ Resources:FieldMiddleName%>" Name="lastName" BlankText="<%$ Resources:Common, MandatoryField%>" />
-                                                <ext:TextField ReadOnly="true" ID="TextField4" AllowBlank="false" runat="server" FieldLabel="<%$ Resources:FieldMiddleName%>" Name="departmentName" BlankText="<%$ Resources:Common, MandatoryField%>" />
-                                                <ext:TextField ReadOnly="true" ID="TextField5" AllowBlank="false" runat="server" FieldLabel="<%$ Resources:FieldMiddleName%>" Name="branchName" BlankText="<%$ Resources:Common, MandatoryField%>" />
+                                                
+                                                <ext:TextField ReadOnly="true" ID="TextField2" AllowBlank="false" runat="server" Name="firstName" BlankText="<%$ Resources:Common, MandatoryField%>" />
+                                                <ext:TextField ReadOnly="true" ID="TextField1" AllowBlank="false" runat="server" Name="middleName" BlankText="<%$ Resources:Common, MandatoryField%>" />
+                                                <ext:TextField ReadOnly="true" ID="TextField3" AllowBlank="false" runat="server" Name="lastName" BlankText="<%$ Resources:Common, MandatoryField%>" />
+                                                <ext:TextField ReadOnly="true" ID="TextField4" AllowBlank="false" runat="server" Name="departmentName" BlankText="<%$ Resources:Common, MandatoryField%>" />
+                                                <ext:TextField ReadOnly="true" ID="TextField5" AllowBlank="false" runat="server" Name="branchName" BlankText="<%$ Resources:Common, MandatoryField%>" />
                                             </Items>
                                         </ext:FormPanel>
                                         <ext:Label runat="server" ID="employeeName" />
@@ -558,7 +559,7 @@
                                             AllowBlank="false" />
                                     </Items>
                                 </ext:Panel>
-                                <ext:Panel runat="server" Margin="20">
+                                <ext:Panel runat="server" Margin="20" Visible="false">
                                     <Items>
                                         <ext:Image runat="server" ID="imgControl" Width="200" Height="200">
                                             <Listeners>
