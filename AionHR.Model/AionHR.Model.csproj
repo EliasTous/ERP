@@ -44,6 +44,8 @@
     <Compile Include="Company\Structure\Division.cs" />
     <Compile Include="Company\Structure\ICompanyStructureRepository.cs" />
     <Compile Include="Company\Structure\IDepartmentRepository.cs" />
+    <Compile Include="Employees\Profile\AssetCategory.cs" />
+    <Compile Include="Employees\Profile\BonusType.cs" />
     <Compile Include="Employees\Profile\Employee.cs" />
     <Compile Include="LeaveManagement\ILeaveManagementRepository.cs" />
     <Compile Include="MasterModule\IAccountRepository.cs" />
