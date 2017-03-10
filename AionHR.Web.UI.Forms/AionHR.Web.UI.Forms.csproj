@@ -86,7 +86,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="AllowanceTypes.aspx" />
+    <Content Include="AssetCategories.aspx" />
     <Content Include="BiometricDevices.aspx" />
+    <Content Include="BonusTypes.aspx" />
     <Content Include="Branches.aspx" />
     <Content Include="CertificateLevels.aspx" />
     <Content Include="CSS\Dashboard.css" />
@@ -106,6 +108,7 @@
     <Content Include="Default.aspx" />
     <Content Include="Departments.aspx" />
     <Content Include="Divisions.aspx" />
+    <Content Include="DocumentTypes.aspx" />
     <Content Include="EmployeePages\EmployeeProfile.aspx" />
     <Content Include="EmployeeRoot.aspx" />
     <Content Include="Employees.aspx" />
@@ -137,8 +140,11 @@
     <Content Include="Nationalities.aspx" />
     <Content Include="packages.config" />
     <Content Include="Routers.aspx" />
+    <Content Include="SalaryChangeReasons.aspx" />
     <Content Include="Scripts\AllowanceTypes.js" />
+    <Content Include="Scripts\AssetCategories.js" />
     <Content Include="Scripts\AttendanceDayView.js" />
+    <Content Include="Scripts\BonusTypes.js" />
     <Content Include="Scripts\Calendars.js" />
     <Content Include="Scripts\Divisions.js" />
     <Content Include="Scripts\Employees.js" />
@@ -205,12 +211,26 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Sponsors.aspx.resx</DependentUpon>
     </Compile>
+    <Compile Include="AssetCategories.aspx.cs">
+      <DependentUpon>AssetCategories.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AssetCategories.aspx.designer.cs">
+      <DependentUpon>AssetCategories.aspx</DependentUpon>
+    </Compile>
     <Compile Include="BiometricDevices.aspx.cs">
       <DependentUpon>BiometricDevices.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="BiometricDevices.aspx.designer.cs">
       <DependentUpon>BiometricDevices.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="BonusTypes.aspx.cs">
+      <DependentUpon>BonusTypes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="BonusTypes.aspx.designer.cs">
+      <DependentUpon>BonusTypes.aspx</DependentUpon>
     </Compile>
     <Compile Include="BootStrapper.cs" />
     <Compile Include="Branches.aspx.cs">
@@ -268,6 +288,13 @@
     </Compile>
     <Compile Include="Divisions.aspx.designer.cs">
       <DependentUpon>Divisions.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DocumentTypes.aspx.cs">
+      <DependentUpon>DocumentTypes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DocumentTypes.aspx.designer.cs">
+      <DependentUpon>DocumentTypes.aspx</DependentUpon>
     </Compile>
     <Compile Include="EmployeePages\EmployeeProfile.aspx.cs">
       <DependentUpon>EmployeeProfile.aspx</DependentUpon>
@@ -370,6 +397,13 @@
     </Compile>
     <Compile Include="Routers.aspx.designer.cs">
       <DependentUpon>Routers.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SalaryChangeReasons.aspx.cs">
+      <DependentUpon>SalaryChangeReasons.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SalaryChangeReasons.aspx.designer.cs">
+      <DependentUpon>SalaryChangeReasons.aspx</DependentUpon>
     </Compile>
     <Compile Include="Schedules.aspx.cs">
       <DependentUpon>Schedules.aspx</DependentUpon>
@@ -564,6 +598,18 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="EmployeePages\App_LocalResources\EmployeeProfile.aspx.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_LocalResources\DocumentTypes.aspx.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_LocalResources\AssetCategories.aspx.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_LocalResources\BonusTypes.aspx.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_LocalResources\SalaryChangeReasons.aspx.resx" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
