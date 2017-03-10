@@ -274,8 +274,8 @@
                                     ID="periodsGrid"  
                                     runat="server"
                                     Width="600"
-                                    Height="400" Layout="FitLayout"
-                                    Frame="true" TitleCollapse="true"
+                                    Height="250" Layout="FitLayout"
+                                    Frame="true" TitleCollapse="true"  Scroll="Vertical"
                                     >
                                     <Store>
                                         <ext:Store ID="periodsStore" runat="server">

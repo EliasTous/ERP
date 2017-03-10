@@ -105,4 +105,61 @@ var checkExtension = function (file) {
     }
 }
 
+var onTreeItemClick = function (record, e) {
+
+    if (record.data) {
+        if (record.data.click != "1") {
+            // record[record.isExpanded() ? 'collapse' : 'expand']();
+            e.stopEvent();
+
+        } else {
+            openNewTab(record.data.idTab, record.data.url, record.data.title, record.data.css);
+        }
+    }
+
+
+};
+var openNewTab = function (id, url, title, iconCls) {
+
+    var tab = App.tabPanel.getComponent(id);
+    // if (id != 'dashboard') {
+    //alert(interval);
+    //  clearInterval(interval);
+    //alert('cleared');
+    // }
+    if (!tab) {
+        tab = App.tabPanel.add({
+            id: id,
+            title: title,
+            iconCls: iconCls,
+            closable: true,
+            loader: {
+                url: url,
+                renderer: "frame",
+                loadMask: {
+                    showMask: true,
+                    msg: App.lblLoading.getValue()
+                }
+            }
+        });
+    }
+    else {
+        App.tabPanel.closeTab(tab);
+        tab = App.tabPanel.add({
+            id: id,
+            title: title,
+            iconCls: iconCls,
+            closable: true,
+            loader: {
+                url: url,
+                renderer: "frame",
+                loadMask: {
+                    showMask: true,
+                    msg: App.lblLoading.getValue()
+                }
+            }
+        });
+    }
+    App.tabPanel.setActiveTab(tab);
+}
 

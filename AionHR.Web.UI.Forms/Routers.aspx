@@ -255,8 +255,8 @@
                                 <ext:TextField ID="recordId" runat="server"  Name="recordId"  Hidden="true"/>
                                 <ext:TextField ID="routerRef" runat="server" FieldLabel="<%$ Resources:FieldReference%>" Name="routerRef"   ReadOnly="true" AllowBlank="false"/>
                                 
-                                <ext:Checkbox runat="server" Name="isInactive" InputValue="true" ID="isInactiveCheck" DataIndex="isInactive" FieldLabel="<%$ Resources:FieldReference%>" />
-                                <ext:ComboBox runat="server" AllowBlank="false" ValueField="recordId" DisplayField="name" ID="branchId" Name="branchId" FieldLabel="<%$ Resources:FieldBranch%>" SimpleSubmit="true">
+                                <ext:Checkbox runat="server" Name="isInactive" InputValue="true" ID="isInactiveCheck" DataIndex="isInactive" FieldLabel="<%$ Resources:FieldIsInactive%>" />
+                                <ext:ComboBox runat="server" AllowBlank="false" ValueField="recordId" DisplayField="name" ID="branchId" Name="branchId" FieldLabel="<%$ Resources:FieldBranch%>" SimpleSubmit="true" QueryMode="Local"  ForceSelection="true" TypeAhead="true" MinChars="1" >
                                             <Store>
                                                 <ext:Store runat="server" ID="BranchStore">
                                                     <Model>

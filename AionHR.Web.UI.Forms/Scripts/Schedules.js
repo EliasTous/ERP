@@ -37,21 +37,21 @@ var attachRender = function () {
 //    }
 //});
 function addEmployee() {
-    
+
     var breaksGrid = App.breaksGrid,
         store = breaksGrid.getStore();
-    
+
     breaksGrid.editingPlugin.cancelEdit();
 
     store.getSorters().removeAll();
     breaksGrid.getView().headerCt.setSortState(); // To update columns sort UI
-    
+
     store.insert(0, {
         name: 'new break',
         start: '9:00',
         end: '10:00',
         isBenifit: false
-       
+
     });
 
     breaksGrid.editingPlugin.startEdit(0, 0);
@@ -68,8 +68,8 @@ function addBreak() {
 
     store.insert(0, {
         name: 'new break',
-        start:null,
-        end:null,
+        start: null,
+        end: null,
         isBenifit: false
 
     });
@@ -91,7 +91,7 @@ function removeBreak() {
     }
 }
 function removeEmployee() {
-    
+
     var breaksGrid = App.breaksGrid,
         sm = breaksGrid.getSelectionModel(),
         store = breaksGrid.getStore();
@@ -109,8 +109,8 @@ var cellClick = function (view, cell, columnIndex, record, row, rowIndex, e) {
 
     CheckSession();
 
-    
- 
+
+
     var t = e.getTarget(),
         columnId = this.columns[columnIndex].id; // Get column id
 
@@ -128,7 +128,7 @@ var cellClick = function (view, cell, columnIndex, record, row, rowIndex, e) {
         //the ajax call is allowed
         return true;
     }
-    if (columnId == "ColName" || columnId=="colDetails"|| columnId=="colDayName" )
+    if (columnId == "ColName" || columnId == "colDetails" || columnId == "colDayName")
         return true;
 
 
@@ -138,7 +138,7 @@ var cellClick = function (view, cell, columnIndex, record, row, rowIndex, e) {
 
 
 var getCellType = function (grid, rowIndex, cellIndex) {
-   
+
     var columnId = grid.columns[cellIndex].id; // Get column id
     return columnId;
 };
@@ -156,11 +156,9 @@ var enterKeyPressSearchHandler = function (el, event) {
         App.Store1.reload();
     }
 };
-function getDay(dow)
-{
-  
-    switch(dow)
-    {
+function getDay(dow) {
+
+    switch (dow) {
         case 1: return document.getElementById('MondayText').value;
         case 2: return document.getElementById('TuesdayText').value;
         case 3: return document.getElementById('WednesdayText').value;
@@ -169,4 +167,25 @@ function getDay(dow)
         case 6: return document.getElementById('SaturdayText').value;
         case 7: return document.getElementById('SundayText').value;
     }
+}
+function validateFrom(s) {
+    
+    d = s.split(':'); if (d[0] > 23) return false; if (d[1] > 59) return false; return true ;
+}
+
+function validateTo(curr,prev)
+
+{
+    if (!validateFrom(curr))
+        return false;
+    var currHours = curr.split(':')[0];
+    var currMins = curr.split(':')[1];
+    var prevHours = prev.split(':')[0];
+    var prevMins = prev.split(':')[1];
+
+    if (currHours < prevHours)
+        return false;
+    if (currHours == prevHours && currMins >= prevMins)
+        return false;
+    return true;
 }

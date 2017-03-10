@@ -303,12 +303,12 @@
                                 </ext:ComboBox>
                                 <ext:ComboBox runat="server" ID="parentId"
                                     DisplayField="name"
-                                    ValueField="recordId"
-                                    TypeAhead="false"
+                                    ValueField="recordId"  QueryMode="Local"  ForceSelection="true" TypeAhead="true" MinChars="1" 
+                                   
                                    FieldLabel ="<%$ Resources: FieldParentName%>"
                                     
                                    
-                                     ForceSelection="false" >
+                                     >
                                     <Store>
                                         <ext:Store runat="server" ID="Store2" AutoLoad="true">
                                             <Model>

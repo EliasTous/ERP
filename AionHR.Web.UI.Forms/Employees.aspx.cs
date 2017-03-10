@@ -66,7 +66,7 @@ namespace AionHR.Web.UI.Forms
                 SetExtLanguage();
                 HideShowButtons();
                 HideShowColumns();
-
+                BuildTree();
 
 
             }
@@ -124,6 +124,7 @@ namespace AionHR.Web.UI.Forms
             switch (type)
             {
                 case "ColName":
+
                     //Step 1 : get the object from the Web Service 
                     RecordRequest r = new RecordRequest();
                     r.RecordID = id.ToString();
@@ -168,6 +169,11 @@ namespace AionHR.Web.UI.Forms
 
                     //Here will show up a winow relatice to attachement depending on the case we are working on
                     break;
+                case "colEdit":
+                    
+                    Viewport1.ActiveIndex = 1;
+                    break;
+
                 default:
                     break;
             }
@@ -622,13 +628,19 @@ namespace AionHR.Web.UI.Forms
 
             }
             string paranthized = response.result.Value;
-            paranthized= paranthized.Replace('{', ' ');
-            paranthized= paranthized.Replace('}', ',');
+            paranthized = paranthized.Replace('{', ' ');
+            paranthized = paranthized.Replace('}', ',');
             paranthized = paranthized.Substring(0, paranthized.Length - 1);
             paranthized = paranthized.Replace(" ", string.Empty);
             return paranthized;
 
         }
-
+        public string BuildTree()
+        {
+            _systemService.SessionHelper.Set("ActiveModule", 1);
+            Ext.Net.NodeCollection nodes = null;
+            nodes = TreeBuilder.Instance.BuildEmployeeDetailsTree(employeesTree.Root);
+            return nodes.ToJson();
+        }
     }
 }

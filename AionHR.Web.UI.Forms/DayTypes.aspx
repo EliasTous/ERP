@@ -272,7 +272,7 @@
                                 <ext:Checkbox ID="isWorkingDay" runat="server" SubmitValue="true" InputValue="true" Name="isWorkingDay" FieldLabel="<%$ Resources:FieldIsWorkingDay%>" />
 
                                
-                                <ext:DropDownField
+                                <ext:DropDownField AllowBlank="false"
                                     ID="colorDay"
                                     runat="server"
                                     FieldLabel="<%$ Resources:FieldColor%>"

@@ -37,7 +37,27 @@ namespace AionHR.Web.UI.Forms.Utilities
             return nodes;
         }
 
+        public NodeCollection BuildEmployeeDetailsTree(NodeCollection nodes)
+        {
+            if (nodes == null)
+                nodes = new Ext.Net.NodeCollection();
 
+
+
+            Ext.Net.Node rootParent = BuildRootParentNode("rootParent", Resources.Common.EmployeeFiles, true);
+            Ext.Net.Node employees = BuildParentNode("rootParent_Employee", Resources.Common.Employee, true, rootParent);
+            Ext.Net.Node employeesLeaf = BuildLeafNode("rootParent_Employee_Leaf", Resources.Common.EmployeeLeaf, "Group", true, employees);
+            FillConfigItem(employeesLeaf, "same", "EmployeePages/EmployeeProfile.aspx", Resources.Common.EmployeeLeaf, "icon-Employees", "1");
+            Ext.Net.Node sponsors = BuildLeafNode("rootParent_Employee_Sponsors", Resources.Common.Sponsors, "Group", true, employees);
+             Ext.Net.Node EntitlementDeductions = BuildLeafNode("rootParent_Employee_EntitlementDeductions", Resources.Common.EntitlementDeduction, "Group", true, employees);
+            FillConfigItem(sponsors, "same", "Sponsors.aspx", Resources.Common.Sponsors, "icon-Employees", "1");
+            FillConfigItem(EntitlementDeductions, "same", "Sponsors.aspx", Resources.Common.EntitlementDeduction, "icon-Employees", "1");
+
+
+            nodes.Add(rootParent);
+            
+            return nodes;
+        }
         public NodeCollection BuildEmployeeFilesTree(NodeCollection nodes)
         {
             if (nodes == null)

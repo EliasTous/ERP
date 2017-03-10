@@ -256,7 +256,7 @@
                                 <ext:TextField ID="recordId" Hidden="true" runat="server" FieldLabel="<%$ Resources:FieldrecordId%>" Disabled="true" Name="recordId" />
                                 <ext:TextField ID="name" runat="server" FieldLabel="<%$ Resources:FieldName%>" Name="name" AllowBlank="false" BlankText="<%$ Resources:Common, MandatoryField%>" />
                                 <ext:TextField ID="reference" AllowBlank="false" runat="server" FieldLabel="<%$ Resources:FieldReference%>" Name="reference"  BlankText="<%$ Resources:Common, MandatoryField%>" />
-                                   <ext:ComboBox runat="server" ValueField="recordId" DisplayField="name" ID="divisionId" Name="divisionId" FieldLabel="<%$ Resources:FieldDivision%>"  SimpleSubmit="true">
+                                   <ext:ComboBox runat="server"  AllowBlank="false" ValueField="recordId" DisplayField="name" ID="divisionId" Name="divisionId" FieldLabel="<%$ Resources:FieldDivision%>"  SimpleSubmit="true" QueryMode="Local"  ForceSelection="true" TypeAhead="true" MinChars="1" >
                                             <Store>
                                                 <ext:Store runat="server" ID="DivisionStore">
                                                     <Model>

@@ -124,7 +124,7 @@
     <value>Edit Biometric Device</value>
   </data>
   <data name="FieldDivision" xml:space="preserve">
-    <value>Devision</value>
+    <value>Division</value>
   </data>
   <data name="FieldIsInactive" xml:space="preserve">
     <value>Is Inactive?</value>

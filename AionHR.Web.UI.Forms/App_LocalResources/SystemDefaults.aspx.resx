@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="BasicInfoTabEditWindowTitle" xml:space="preserve">
-    <value>Router Info</value>
+    <value>System Defaults</value>
   </data>
   <data name="DayMonthYear" xml:space="preserve">
     <value>Day - Month - Year</value>
@@ -127,7 +127,7 @@
     <value>Day- Year - Month</value>
   </data>
   <data name="EditWindowsTitle" xml:space="preserve">
-    <value>Edit Router</value>
+    <value>Edit System Defaults</value>
   </data>
   <data name="FieldBranch" xml:space="preserve">
     <value>Branch</value>

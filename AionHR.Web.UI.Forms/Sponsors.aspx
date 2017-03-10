@@ -269,7 +269,7 @@
                             <Items>
                                 <ext:TextField ID="recordId" Hidden="true" runat="server" FieldLabel="<%$ Resources:FieldrecordId%>" Disabled="true" Name="recordId" />
                                 <ext:TextField ID="name" runat="server" FieldLabel="<%$ Resources:FieldName%>" Name="name" AllowBlank="false" BlankText="<%$ Resources:Common, MandatoryField%>" />
-                                <ext:TextField ID="address" runat="server" FieldLabel="<%$ Resources:FieldAddress%>" Name="address" />
+                                <ext:TextField ID="address" runat="server" FieldLabel="<%$ Resources:FieldAddress%>" Name="address" AllowBlank="false" />
                                 <ext:TextField ID="city" runat="server" FieldLabel="<%$ Resources:FieldCity%>" Name="city" />
                                 <ext:TextField ID="mobile" runat="server" FieldLabel="<%$ Resources:FieldMobile%>" Name="mobile" >
                                     <Plugins>

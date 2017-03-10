@@ -261,7 +261,7 @@
                             <Items>
                                 <ext:TextField ID="recordId" runat="server"  Name="recordId"  Hidden="true"/>
                                 <ext:TextField ID="name" runat="server" FieldLabel="<%$ Resources:FieldName%>" Name="name"   AllowBlank="false"/>
-                                <ext:ComboBox ID="type" runat="server" FieldLabel="<%$ Resources:FieldType%>" Name="type" AllowBlank="false" >
+                                <ext:ComboBox ID="type" runat="server" FieldLabel="<%$ Resources:FieldType%>" QueryMode="Local"  ForceSelection="true" TypeAhead="true" MinChars="1"  Name="type" AllowBlank="false" >
                                     <Items>
                                         <ext:ListItem Text="<%$ Resources:Entitlement%>" Value="1"></ext:ListItem>
                                         <ext:ListItem Text="<%$ Resources:Deduction%>" Value="2"></ext:ListItem>

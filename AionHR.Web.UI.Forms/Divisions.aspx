@@ -280,7 +280,7 @@
                             <Items>
                                 <ext:TextField ID="recordId" Hidden="true" runat="server" FieldLabel="<%$ Resources:FieldrecordId%>" Disabled="true" Name="recordId" />
                                 <ext:TextField ID="name" runat="server" FieldLabel="<%$ Resources:FieldName%>" Name="name" AllowBlank="false" BlankText="<%$ Resources:Common, MandatoryField%>" />
-                               <ext:ComboBox runat="server" ID="timeZoneCombo"  AllowBlank="false" SimpleSubmit="true" IDMode="Static" Name="timeZone" FieldLabel="<%$ Resources:FieldTimeZone%>">
+                               <ext:ComboBox runat="server" ID="timeZoneCombo" QueryMode="Local"  ForceSelection="true" TypeAhead="true" MinChars="1"   AllowBlank="false" SimpleSubmit="true" IDMode="Static" Name="timeZone" FieldLabel="<%$ Resources:FieldTimeZone%>">
                                     <Items>
                                         <ext:ListItem Text="-12 UTC" Value="-12" />
                                         <ext:ListItem Text="-11 UTC" Value="-11" />

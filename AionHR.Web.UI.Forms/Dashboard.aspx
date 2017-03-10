@@ -32,7 +32,8 @@
         function RefreshAllGrids() {
             
             
-            if (window.parent.App.tabPanel.getActiveTab().id == "dashboard" || (window.parent.App.tabPanel.getActiveTab().id == "tabHome" && window.parent.App.commonTree.getTitle()=='Time Management')) {
+            if (window.
+                App.tabPanel.getActiveTab().id == "dashboard" || (window.parent.App.tabPanel.getActiveTab().id == "tabHome" && window.parent.App.commonTree.getTitle()=='Time Management')) {
                 
             
 

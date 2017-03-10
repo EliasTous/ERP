@@ -145,7 +145,7 @@
     <value>Reference</value>
   </data>
   <data name="FieldReferer" xml:space="preserve">
-    <value>Referer Name</value>
+    <value>Referrer Name</value>
   </data>
   <data name="FieldTimeZone" xml:space="preserve">
     <value>Time Zone</value>

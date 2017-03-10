@@ -105,6 +105,8 @@
     <Content Include="Default.aspx" />
     <Content Include="Departments.aspx" />
     <Content Include="Divisions.aspx" />
+    <Content Include="EmployeePages\EmployeeProfile.aspx" />
+    <Content Include="EmployeeRoot.aspx" />
     <Content Include="Employees.aspx" />
     <Content Include="EntitlementDeductions.aspx" />
     <Content Include="ForgotAccount.aspx" />
@@ -264,6 +266,20 @@
     </Compile>
     <Compile Include="Divisions.aspx.designer.cs">
       <DependentUpon>Divisions.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EmployeePages\EmployeeProfile.aspx.cs">
+      <DependentUpon>EmployeeProfile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EmployeePages\EmployeeProfile.aspx.designer.cs">
+      <DependentUpon>EmployeeProfile.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EmployeeRoot.aspx.cs">
+      <DependentUpon>EmployeeRoot.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EmployeeRoot.aspx.designer.cs">
+      <DependentUpon>EmployeeRoot.aspx</DependentUpon>
     </Compile>
     <Compile Include="Employees.aspx.cs">
       <DependentUpon>Employees.aspx</DependentUpon>
@@ -543,6 +559,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_LocalResources\EntitlementDeductions.aspx.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="EmployeePages\EmployeeProfile.aspx.resx" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

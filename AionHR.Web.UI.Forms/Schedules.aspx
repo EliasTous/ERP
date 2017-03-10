@@ -12,7 +12,7 @@
     <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
     <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
     <script type="text/javascript" src="Scripts/moment.js"></script>
-    <script type="text/javascript" src="Scripts/Schedules.js?id=0"></script>
+    <script type="text/javascript" src="Scripts/Schedules.js?id=2"></script>
     <script type="text/javascript" src="Scripts/common.js"></script>
 
 <script type="text/javascript" >
@@ -435,7 +435,7 @@
                             <Items>
                                 <ext:TextField ID="fieldScId" Hidden="true" runat="server" Disabled="true" DataIndex="scId" />
                                 <ext:TextField ID="fieldDow" Hidden="true" runat="server" Disabled="true" DataIndex="dow" />
-                                  <ext:ComboBox runat="server" AllowBlank="false" DisplayField="name" ValueField="recordId" Name="dayTypeId" ID="dayTypeId" FieldLabel="<%$ Resources:DayType %>" SubmitValue="true">
+                                  <ext:ComboBox runat="server" AllowBlank="false" DisplayField="name" ValueField="recordId" Name="dayTypeId" ID="dayTypeId" FieldLabel="<%$ Resources:DayType %>" SubmitValue="true" QueryMode="Local"  ForceSelection="true" TypeAhead="true" MinChars="1" >
                                    <Store>
                                        <ext:Store runat="server" ID="dayTypesStore" >
                                            <Model>
@@ -459,6 +459,7 @@
                                     <Plugins>
                                         <ext:InputMask Mask="99:99" />
                                     </Plugins>
+                                    
                                     </ext:TextField>
                                 <ext:TextField ID="lastOut" runat="server" FieldLabel="Last Out" DataIndex="lastOut" AllowBlank="false" BlankText="<%$ Resources:Common, MandatoryField%>" >
                                     <Plugins>
@@ -531,15 +532,13 @@
                                                 <Editor>
                                                     <%-- Vtype="numberrange"
                                                         EndNumberField="toField"--%>
-                                                    <ext:TextField runat="server" Note="~9.99" ID="fromField">
-                                                        <Plugins>
-                                                            <ext:InputMask runat="server" Mask="99:99" >
-                                                               
-                                                            </ext:InputMask>
-                                                            
-                                                        </Plugins>
-                                                     
-                                                        <RemoteValidation DirectFn="App.direct.CheckTime" />
+                                                    <ext:TextField runat="server" ID="fromField">
+                                                    
+                                                     <Plugins>
+                                                         <ext:InputMask Mask="99:99"></ext:InputMask>
+                                                     </Plugins>
+                                                        <Validator Handler="return validateFrom(this.getValue());"></Validator>
+                                                        
                                                     </ext:TextField>
                                                 </Editor>
                                                 <%--<Renderer Handler="if(isValidDate(record.data['start'])){var dt = new Date(record.data['start']); var dtString = moment(dt).format('HH:mm'); return dtString; } else return record.data['start']; ">--%>
@@ -563,8 +562,8 @@
                                                             </ext:InputMask>
                                                             
                                                         </Plugins>
-                                                     
-                                                        <RemoteValidation DirectFn="App.direct.CheckTime" />
+                                                      <Validator Handler ="return validateTo(this.getValue(),this.prev().getValue());" />
+                                                       
                                                         </ext:TextField>
                                                 </Editor>
                                                 <%--<Renderer Handler="if(isValidDate(record.data['end'])){var dt = new Date(record.data['end']); var dtString = moment(dt).format('HH:mm'); return dtString;} else return record.data['end']; "/>--%>

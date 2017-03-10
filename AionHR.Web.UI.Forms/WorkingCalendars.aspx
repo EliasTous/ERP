@@ -2119,7 +2119,7 @@
                             <Items>
                                 
                                 <ext:TextField ID="fieldCaId" Hidden="true" runat="server" Disabled="true" DataIndex="scId" />
-                                <ext:ComboBox runat="server" FieldLabel="<%$ Resources:Year %>" ID="year" Name="year" SubmitValue="true">
+                                <ext:ComboBox runat="server" FieldLabel="<%$ Resources:Year %>" ID="year" Name="year" SubmitValue="true" QueryMode="Local"  ForceSelection="true" TypeAhead="true" MinChars="1" >
                                     <Items>
                                         <ext:ListItem Text="2015" Value="2015" />
                                         <ext:ListItem Text="2016" Value="2016" />
