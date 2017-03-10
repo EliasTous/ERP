@@ -33,24 +33,41 @@ namespace AionHR.Repository.WebService.Repositories
             ChildGetAllLookup.Add(typeof(CertificateLevel), "qryCL");
             ChildGetAllLookup.Add(typeof(TrainingType), "qryTT");
             ChildGetAllLookup.Add(typeof(EntitlementDeduction), "qryED");
+            ChildGetAllLookup.Add(typeof(DocumentType), "qryDT");
+            ChildGetAllLookup.Add(typeof(SalaryChangeReason), "qrySC");
+            ChildGetAllLookup.Add(typeof(AssetCategory), "qryAC");
+            ChildGetAllLookup.Add(typeof(BonusType), "qryBT");
+
 
             ChildGetLookup.Add(typeof(Sponsor), "getSP");
             ChildGetLookup.Add(typeof(AllowanceType), "getAT");
             ChildGetLookup.Add(typeof(CertificateLevel), "getCL");
             ChildGetLookup.Add(typeof(TrainingType), "getTT");
             ChildGetLookup.Add(typeof(EntitlementDeduction), "getED");
+            ChildGetLookup.Add(typeof(DocumentType), "getDT");
+            ChildGetLookup.Add(typeof(SalaryChangeReason), "getSC");
+            ChildGetLookup.Add(typeof(AssetCategory), "getAC");
+            ChildGetLookup.Add(typeof(BonusType), "getBT");
 
             ChildAddOrUpdateLookup.Add(typeof(Sponsor), "setSP");
             ChildAddOrUpdateLookup.Add(typeof(AllowanceType), "setAT");
             ChildAddOrUpdateLookup.Add(typeof(CertificateLevel), "setCL");
             ChildAddOrUpdateLookup.Add(typeof(TrainingType), "setTT");
             ChildAddOrUpdateLookup.Add(typeof(EntitlementDeduction), "setED");
+            ChildAddOrUpdateLookup.Add(typeof(DocumentType), "setDT");
+            ChildAddOrUpdateLookup.Add(typeof(SalaryChangeReason), "setSC");
+            ChildAddOrUpdateLookup.Add(typeof(AssetCategory), "setAC");
+            ChildAddOrUpdateLookup.Add(typeof(BonusType), "setBT");
 
             ChildDeleteLookup.Add(typeof(Sponsor), "delSP");
             ChildDeleteLookup.Add(typeof(AllowanceType), "delAT");
             ChildDeleteLookup.Add(typeof(CertificateLevel), "delCL");
             ChildDeleteLookup.Add(typeof(TrainingType), "delTT");
             ChildDeleteLookup.Add(typeof(EntitlementDeduction), "delED");
+            ChildDeleteLookup.Add(typeof(DocumentType), "delDT");
+            ChildDeleteLookup.Add(typeof(SalaryChangeReason), "delSC");
+            ChildDeleteLookup.Add(typeof(AssetCategory), "delAC");
+            ChildDeleteLookup.Add(typeof(BonusType), "delBT");
         }
 
         public PostWebServiceResponse AddOrUpdateEmployeeWithImage(Employee emp, string imgName, byte[] imgDate,Dictionary<string,string> headers = null)

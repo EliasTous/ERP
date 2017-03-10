@@ -531,4 +531,16 @@
   <data name="EntitlementDeduction" xml:space="preserve">
     <value>Entitlement Deduction</value>
   </data>
+  <data name="AssetCategories" xml:space="preserve">
+    <value>Asset Categories</value>
+  </data>
+  <data name="BonusTypes" xml:space="preserve">
+    <value>Bonus Types</value>
+  </data>
+  <data name="DocumentTypes" xml:space="preserve">
+    <value>Document Types</value>
+  </data>
+  <data name="SalaryChangeReasons" xml:space="preserve">
+    <value>Salary Change Reasons</value>
+  </data>
 </root>

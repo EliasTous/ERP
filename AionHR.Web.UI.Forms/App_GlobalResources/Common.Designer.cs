@@ -142,6 +142,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Asset Categories.
+        /// </summary>
+        internal static string AssetCategories {
+            get {
+                return ResourceManager.GetString("AssetCategories", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Attach.
         /// </summary>
         internal static string Attach {
@@ -192,6 +201,15 @@ namespace Resources {
         internal static string BiometricDevices {
             get {
                 return ResourceManager.GetString("BiometricDevices", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bonus Types.
+        /// </summary>
+        internal static string BonusTypes {
+            get {
+                return ResourceManager.GetString("BonusTypes", resourceCulture);
             }
         }
         
@@ -498,6 +516,15 @@ namespace Resources {
         internal static string Divisions {
             get {
                 return ResourceManager.GetString("Divisions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Document Types.
+        /// </summary>
+        internal static string DocumentTypes {
+            get {
+                return ResourceManager.GetString("DocumentTypes", resourceCulture);
             }
         }
         
@@ -1074,6 +1101,15 @@ namespace Resources {
         internal static string Routers {
             get {
                 return ResourceManager.GetString("Routers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Salary Change Reasons.
+        /// </summary>
+        internal static string SalaryChangeReasons {
+            get {
+                return ResourceManager.GetString("SalaryChangeReasons", resourceCulture);
             }
         }
         
