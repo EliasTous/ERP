@@ -37,6 +37,92 @@ namespace AionHR.Web.UI.Forms.EmployeePages
         ICompanyStructureService _companyStructureService = ServiceLocator.Current.GetInstance<ICompanyStructureService>();
         ILeaveManagementService _leaveManagementService = ServiceLocator.Current.GetInstance<ILeaveManagementService>();
         ITimeAttendanceService _timeAttendanceService = ServiceLocator.Current.GetInstance<ITimeAttendanceService>();
+        protected void Page_Load(object sender, EventArgs e)
+        {
+
+
+
+            if (!X.IsAjaxRequest && !IsPostBack)
+            {
+                string employeeId = Request.QueryString["employeeId"];
+                LoadEmployee(employeeId);
+            }
+
+
+        }
+       
+        private void LoadEmployee(string id)
+        {
+            RecordRequest req = new RecordRequest();
+            req.RecordID = id;
+            RecordResponse<Employee> response = _employeeService.Get<Employee>(req);
+            BasicInfoTab.Reset();
+            picturePath.Clear();
+            if (!response.Success)
+            {
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, response.Summary).Show();
+                return;
+            }
+            //Step 2 : call setvalues with the retrieved object
+            this.BasicInfoTab.SetValues(response.result);
+            FillNameFields(response.result.name);
+            InitCombos();
+            SelectCombos(response.result);
+        }
+        private void FillNameFields(EmployeeName name)
+        {
+            X.Call("setNameFields", name.firstName, name.lastName, name.middleName);
+            firstName.Text = name.firstName;
+            lastName.Text = name.lastName;
+            middleName.Text = name.middleName;
+            familyName.Text = name.familyName;
+            
+        }
+
+        private void SelectCombos(Employee result)
+        {
+            branchId.Select(result.branchId);
+            departmentId.Select(result.departmentId);
+            positionId.Select(result.positionId);
+            nationalityId.Select(result.nationalityId);
+            sponsorId.Select(result.sponsorId);
+            vsId.Select(result.vsId);
+            caId.Select(result.caId);
+
+            if (result.gender == 1)
+                gender1.Checked = true;
+            else
+                gender0.Checked = true;
+            if (!string.IsNullOrEmpty(result.pictureUrl))
+                imgControl.ImageUrl = result.pictureUrl;
+
+        }
+        private void InitCombos()
+        {
+            FillBranch();
+
+
+            FillDepartment();
+
+
+            FillPosition();
+
+
+            FillNationality();
+
+
+            FillSponsor();
+
+
+            FillVacationSchedule();
+
+
+            FillWorkingCalendar();
+
+
+
+        }
 
         protected void SaveNewRecord(object sender, DirectEventArgs e)
         {
@@ -173,6 +259,58 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorUpdatingRecord).Show();
                 }
             }
+        }
+        private void FillNationality()
+        {
+            ListRequest nationalityRequest = new ListRequest();
+            ListResponse<Nationality> resp = _systemService.ChildGetAll<Nationality>(nationalityRequest);
+            NationalityStore.DataSource = resp.Items;
+            NationalityStore.DataBind();
+
+        }
+
+        private void FillPosition()
+        {
+            ListRequest positionsRequest = new ListRequest();
+            ListResponse<Model.Company.Structure.Position> resp = _companyStructureService.ChildGetAll<Model.Company.Structure.Position>(positionsRequest);
+            positionStore.DataSource = resp.Items;
+            positionStore.DataBind();
+        }
+        private void FillDepartment()
+        {
+            ListRequest departmentsRequest = new ListRequest();
+            ListResponse<Department> resp = _companyStructureService.ChildGetAll<Department>(departmentsRequest);
+            departmentStore.DataSource = resp.Items;
+            departmentStore.DataBind();
+        }
+        private void FillBranch()
+        {
+            ListRequest branchesRequest = new ListRequest();
+            ListResponse<Branch> resp = _companyStructureService.ChildGetAll<Branch>(branchesRequest);
+            BranchStore.DataSource = resp.Items;
+            BranchStore.DataBind();
+        }
+        private void FillSponsor()
+        {
+            ListRequest sponsorsRequest = new ListRequest();
+            ListResponse<Sponsor> resp = _employeeService.ChildGetAll<Sponsor>(sponsorsRequest);
+            SponsorStore.DataSource = resp.Items;
+            SponsorStore.DataBind();
+        }
+        private void FillVacationSchedule()
+        {
+            ListRequest vsRequest = new ListRequest();
+            ListResponse<VacationSchedule> resp = _leaveManagementService.ChildGetAll<VacationSchedule>(vsRequest);
+            VacationScheduleStore.DataSource = resp.Items;
+            VacationScheduleStore.DataBind();
+        }
+        private void FillWorkingCalendar()
+        {
+            ListRequest caRequest = new ListRequest();
+            ListResponse<WorkingCalendar> resp = _timeAttendanceService.ChildGetAll<WorkingCalendar>(caRequest);
+            CalendarStore.DataSource = resp.Items;
+            CalendarStore.DataBind();
+
         }
     }
 }

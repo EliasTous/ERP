@@ -58,6 +58,7 @@ namespace AionHR.Web.UI.Forms
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            
 
 
             if (!X.IsAjaxRequest && !IsPostBack)
@@ -142,7 +143,7 @@ namespace AionHR.Web.UI.Forms
                     FillNameFields(response.result.name);
                     InitCombos();
                     SelectCombos(response.result);
-
+                    
                     //timeZoneCombo.Select(response.result.timeZone.ToString());
                     this.EditRecordWindow.Title = Resources.Common.EditWindowsTitle;
                     this.EditRecordWindow.Show();
@@ -170,7 +171,20 @@ namespace AionHR.Web.UI.Forms
                     //Here will show up a winow relatice to attachement depending on the case we are working on
                     break;
                 case "colEdit":
-                    
+                    CurrentEmployee.Text = id.ToString();
+                    employeePanel.Loader.Url = "EmployeePages/EmployeeProfile.aspx?employeeId="+CurrentEmployee.Text;
+                    employeePanel.Loader.LoadContent();
+                    RecordRequest req = new RecordRequest();
+                    req.RecordID = id.ToString();
+                    RecordResponse<Employee> resp = _employeeService.Get<Employee>(req);
+                    Employee forSummary = resp.result;
+                    forSummary.firstName = forSummary.name.firstName;
+                    forSummary.middleName = forSummary.name.middleName;
+                    forSummary.lastName = forSummary.name.lastName;
+
+                    summaryForm.SetValues(resp.result);
+                    employeeName.Text = resp.result.name.firstName + resp.result.name.lastName;
+                    imageUrl.ImageUrl = resp.result.pictureUrl;
                     Viewport1.ActiveIndex = 1;
                     break;
 
@@ -637,10 +651,26 @@ namespace AionHR.Web.UI.Forms
         }
         public string BuildTree()
         {
-            _systemService.SessionHelper.Set("ActiveModule", 1);
-            Ext.Net.NodeCollection nodes = null;
-            nodes = TreeBuilder.Instance.BuildEmployeeDetailsTree(employeesTree.Root);
-            return nodes.ToJson();
+            return "";
+            //_systemService.SessionHelper.Set("ActiveModule", 1);
+            //Ext.Net.NodeCollection nodes = null;
+            //nodes = TreeBuilder.Instance.BuildEmployeeDetailsTree(employeesTree.Root);
+            //return nodes.ToJson();
         }
+        protected void Prev_Click(object sender, DirectEventArgs e)
+        {
+            int index = int.Parse(e.ExtraParams["index"]);
+
+            if ((index - 1) >= 0)
+            {
+                this.Viewport1.ActiveIndex = index - 1;
+            }
+
+
+        }
+
+        protected void Unnamed_Load(object sender, EventArgs e)
+        {
+         }
     }
 }

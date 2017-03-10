@@ -13,24 +13,6 @@ namespace AionHR.Web.UI.Forms.EmployeePages {
     public partial class EmployeeProfile {
         
         /// <summary>
-        /// EditRecordWindow control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Window EditRecordWindow;
-        
-        /// <summary>
-        /// panelRecordDetails control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.TabPanel panelRecordDetails;
-        
-        /// <summary>
         /// BasicInfoTab control.
         /// </summary>
         /// <remarks>

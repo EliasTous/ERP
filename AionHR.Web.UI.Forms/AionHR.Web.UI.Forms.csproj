@@ -92,6 +92,7 @@
     <Content Include="CSS\Dashboard.css" />
     <Content Include="CSS\Calendars.css" />
     <Content Include="CSS\Common.css" />
+    <Content Include="CSS\Employees.css" />
     <Content Include="CSS\HeaderAR.css" />
     <Content Include="CSS\HeaderInsideAR.css" />
     <Content Include="CSS\HeaderInside.css" />
@@ -144,6 +145,7 @@
     <Content Include="Scripts\EntitlementDeductions.js" />
     <Content Include="Scripts\moment.js" />
     <Content Include="Scripts\Dashboard.js" />
+    <Content Include="Scripts\EmployeeProfile.js" />
     <Content Include="Scripts\Sponsors.js" />
     <Content Include="Scripts\TrainingTypes.js" />
     <Content Include="Sponsors.aspx" />
@@ -561,7 +563,7 @@
     <Content Include="App_LocalResources\EntitlementDeductions.aspx.resx" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="EmployeePages\EmployeeProfile.aspx.resx" />
+    <Content Include="EmployeePages\App_LocalResources\EmployeeProfile.aspx.resx" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

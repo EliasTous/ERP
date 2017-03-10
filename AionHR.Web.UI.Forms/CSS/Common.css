@@ -15,7 +15,7 @@
     height: 90px;
     width: 100%;
     padding: 8px 10px 0px 10px;
-    background-color: #15b4f0!important; /*400C24*/
+    //background-color: #15b4f0!important; /*400C24*/
     float: left;
     color: #222222;
 }
@@ -28,7 +28,7 @@
     text-decoration:underline;
 }
 .x-panel{
-    border-color:#15b4f0!important;
+    //border-color:#15b4f0!important;
 }
 #panelRecordDetails  .x-box-inner{
     top:2px !important;

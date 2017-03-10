@@ -1,0 +1,50 @@
+﻿/*#employeesTabPanel-body{
+    margin-top:0px;
+    padding-top:0px;
+    top:0px!important;
+    bottom:-33px!important;
+}*/
+#tab-1030
+{
+background-color:#157fcc;
+color:white!important;
+}
+#tab-1031
+{
+background-color:#157fcc;
+color:white!important;
+border:none!important;
+}
+#tab-1032
+{
+background-color:#157fcc;
+color:white!important;
+border:none!important;
+}
+#tab-1033
+{
+background-color:#157fcc;
+color:white!important;
+border:none!important;
+}
+#tab-1034
+{
+background-color:#157fcc;
+color:white!important;
+border:none!important;
+}
+.x-tab-active{
+    color:white!important;
+    border:none!important;
+}
+.x-tab-inner{
+    color:white!important;
+    border:none!important;
+}
+.x-tab-icon-el
+{
+    display:none!important;
+}
+html{
+    border:none!important;
+}

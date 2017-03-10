@@ -105,7 +105,7 @@ var checkExtension = function (file) {
     }
 }
 
-var onTreeItemClick = function (record, e) {
+var onEmployeeTreeItemClick = function (record, e) {
 
     if (record.data) {
         if (record.data.click != "1") {
@@ -113,28 +113,35 @@ var onTreeItemClick = function (record, e) {
             e.stopEvent();
 
         } else {
-            openNewTab(record.data.idTab, record.data.url, record.data.title, record.data.css);
+            alert(record.data.url);
+            openNewTabEmployee(record.data.idTab, record.data.url, record.data.title, record.data.css);
         }
     }
 
 
 };
-var openNewTab = function (id, url, title, iconCls) {
-
-    var tab = App.tabPanel.getComponent(id);
+var openNewTabEmployee = function (id, url, title, iconCls) {
+    
+    
+    var tab = App.employeesTabPanel.getComponent(id);
     // if (id != 'dashboard') {
     //alert(interval);
     //  clearInterval(interval);
     //alert('cleared');
     // }
+    
+    
+
     if (!tab) {
-        tab = App.tabPanel.add({
+        
+        
+        tab = App.employeesTabPanel.add({
             id: id,
             title: title,
             iconCls: iconCls,
-            closable: true,
+            closable: false,
             loader: {
-                url: url,
+                url: url+"?employeeId="+document.getElementById("CurrentEmployee").value,
                 renderer: "frame",
                 loadMask: {
                     showMask: true,
@@ -142,14 +149,15 @@ var openNewTab = function (id, url, title, iconCls) {
                 }
             }
         });
+       
     }
     else {
-        App.tabPanel.closeTab(tab);
-        tab = App.tabPanel.add({
+        App.employeesTabPanel.closeTab(tab);
+        tab = App.employeesTabPanel.add({
             id: id,
             title: title,
             iconCls: iconCls,
-            closable: true,
+            closable: false,
             loader: {
                 url: url,
                 renderer: "frame",
@@ -160,6 +168,6 @@ var openNewTab = function (id, url, title, iconCls) {
             }
         });
     }
-    App.tabPanel.setActiveTab(tab);
+    App.employeesTabPanel.setActiveTab(tab);
 }
 
