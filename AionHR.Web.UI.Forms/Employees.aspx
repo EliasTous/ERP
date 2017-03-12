@@ -8,8 +8,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title></title>
-    <link rel="stylesheet" type="text/css" href="CSS/Common.css" />
-    <link rel="stylesheet" type="text/css" href="CSS/Employees.css?id=13" />
+ 
+    <link rel="stylesheet" type="text/css" href="CSS/Employees.css?id=6" />
     <link rel="stylesheet" href="CSS/LiveSearch.css" />
     <script type="text/javascript" src="Scripts/jquery.min.js"></script>
     <script type="text/javascript" src="Scripts/Branches.js?id=0"></script>
@@ -249,10 +249,10 @@
                 <ext:Panel runat="server" Layout="BorderLayout" OnLoad="Unnamed_Load">
 
                     <Items>
-                        <ext:Panel ID="leftPanel" runat="server" Region="West" Layout="AutoLayout" Width="150" PaddingSpec="0 0 0 0" Padding="0"
-                            Header="true"   Collapsible="false" 
-                            Title="<%$ Resources:Common , NavigationPane %>" CollapseToolText="<%$ Resources:Common , CollapsePanel %>" ExpandToolText="<%$ Resources:Common , ExpandPanel %>" Icon="ApplicationTileVertical" BodyBorder="0">
-
+                        <ext:Panel ID="leftPanel" runat="server" Region="West" Layout="AutoLayout" Width="150" PaddingSpec="0 0 0 0" Padding="0" TitleAlign="Center" 
+                            Header="true" Collapsible="false"  IconAlign="Left" titlePosition="2"
+                            Title="<%$ Resources:Common , NavigationPane %>" CollapseToolText="<%$ Resources:Common , CollapsePanel %>" ExpandToolText="<%$ Resources:Common , ExpandPanel %>" BodyBorder="0">
+                            
                             <Items>
                                 <ext:Panel runat="server">
                                     <TopBar>
@@ -277,7 +277,7 @@
                                         <ext:Image ID="imageUrl" runat="server" ImageUrl="" Width="100" Height="100" Align="Middle" />
                                         <ext:FormPanel runat="server" ID="summaryForm">
                                             <Items>
-                                                
+
                                                 <ext:TextField ReadOnly="true" ID="TextField2" AllowBlank="false" runat="server" Name="firstName" BlankText="<%$ Resources:Common, MandatoryField%>" />
                                                 <ext:TextField ReadOnly="true" ID="TextField1" AllowBlank="false" runat="server" Name="middleName" BlankText="<%$ Resources:Common, MandatoryField%>" />
                                                 <ext:TextField ReadOnly="true" ID="TextField3" AllowBlank="false" runat="server" Name="lastName" BlankText="<%$ Resources:Common, MandatoryField%>" />
@@ -311,14 +311,15 @@
                                     </Listeners>
 
                                 </ext:TreePanel>--%>
-
-
-
                             </Items>
+                            <Tools >
+                                <ext:Tool ID="Back" ToolTip="Back" runat="server" type="Prev"  StyleSpec="left:0px!important;" >                                   
+                                </ext:Tool>
+                            </Tools>
                         </ext:Panel>
                         <ext:TabPanel ID="employeesTabPanel" RemovePanelHeader="true" Header="true" runat="server" Region="Center" EnableTabScroll="true" MinTabWidth="100" BodyBorder="0" StyleSpec="border-bottom:2px solid #2A92D4;">
                             <Items>
-                                <ext:Panel ID="employeePanel"  Closable="false" Layout="FitLayout" runat="server" Title="<%$ Resources:Common , Home %>" Width="500" Height="500">
+                                <ext:Panel ID="employeePanel" Closable="false" Layout="FitLayout" runat="server" Title="<%$ Resources:Common , Home %>" Width="500" Height="500">
                                     <Loader ID="Loader1"
                                         runat="server"
                                         Url="EmployeePages/EmployeeProfile.aspx"
@@ -328,8 +329,8 @@
                                         <Listeners>
                                         </Listeners>
                                     </Loader>
-                                    </ext:Panel>
-                                    <ext:Panel ID="Panel1"  Closable="false" Layout="FitLayout" runat="server" Title="<%$ Resources:Common , Home %>"  Width="500" Height="500">
+                                </ext:Panel>
+                                <ext:Panel ID="Panel1" Closable="false" Layout="FitLayout" runat="server" Title="<%$ Resources:Common , Home %>" Width="500" Height="500">
                                     <Loader ID="Loader2"
                                         runat="server"
                                         Url="Sponsors.aspx"
@@ -339,8 +340,8 @@
                                         <Listeners>
                                         </Listeners>
                                     </Loader>
-                                        </ext:Panel>
-                                        <ext:Panel ID="Panel2"  Closable="false" Layout="FitLayout" runat="server" Title="<%$ Resources:Common , Home %>"  Width="500" Height="500">
+                                </ext:Panel>
+                                <ext:Panel ID="Panel2" Closable="false" Layout="FitLayout" runat="server" Title="<%$ Resources:Common , Home %>" Width="500" Height="500">
                                     <Loader ID="Loader3"
                                         runat="server"
                                         Url="EntitlementsDeductions.aspx"

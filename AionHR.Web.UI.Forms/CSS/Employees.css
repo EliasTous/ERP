@@ -4,73 +4,84 @@
     top:0px!important;
     bottom:-33px!important;
 }*/
-#tab-1030
-{
-background-color:#157fcc;
-color:white!important;
-}
-#tab-1031
-{
-background-color:#157fcc;
-color:white!important;
-border:none!important;
-}
-#tab-1032
-{
-background-color:#157fcc;
-color:white!important;
-border:none!important;
-}
-#tab-1033
-{
-background-color:#157fcc;
-color:white!important;
-border:none!important;
-}
-#tab-1034
-{
-background-color:#157fcc;
-color:white!important;
-border:none!important;
-}
-.x-tab-active{
-    color:white!important;
-    border:none!important;
-}
-.x-tab-inner{
-    color:white!important;
-    border:none!important;
-}
-.x-tab-icon-el
-{
-    display:none!important;
-}
-html{
-    border:none!important;
-}
-#tabbar-1020-strip{
-    display:none!important; 
-}
-.x-tab-bar-strip
-{
-    display:none!important; 
-}
-#tabPanel-body{
-    border:none!important;
-}
-#topPanel{
-    background-color:#157fcc!important;
-}
-#leftPanel_header
-{background-color:#157fcc!important;
- 
 
+
+
+#tabPanel-body {
+    border: none !important;
 }
-#toolbar-1015
-{
-    background:none!important;
+
+#topPanel {
+    background-color: #157fcc !important;
 }
-#leftPanel-body
-{
-    top:31px!important;
+
+#leftPanel_header {
+    background-color: #157fcc !important;
+}
+
+#leftPanel-body {
+    top: 31px !important;
+}
+
+
+
+/*Ajusted by Elie*/
+#employeesTabPanel .x-tab {
+    background-color: #157fcc;
+    color: white !important;
+    border: none !important;
+}
+
+#employeesTabPanel-body {
+    top:32px !important;
+        border-color: #fff !important;
+}
+#employeePanel-body {
+    border-color:#fff !important;
+}
+#employeesTabPanel .x-tab-active {
+    color: white !important;
+   
+}
+
+#employeesTabPanel .x-tab-inner {
+    color: white !important;
+    
+}
+
+
+#employeesTabPanel .x-tab-default-top.x-tab-focus {
+    box-shadow: none !important;
+   
+ 
+}
+
+#employeesTabPanel .x-tab-icon-el {
+    display: none !important;
+}
+
+#employeesTabPanel .x-tab-bar-strip {
+    display: none !important;
+}
+
+#employeesTabPanel .x-tab-active {
+
+    border-bottom: 2px solid orange !important;
+    top:0px !important;
+}
+
+#employeesTabPanel .x-tab-focus {
+    border-bottom: 2px solid orange !important;
+    top:0px !important;
+}
+
+#employeesTabPanel .x-tab-default-top {   
+    padding: 4px 12px 6px 12px;
+    top:1px !important;
+}
+
+
+#leftPanel .x-panel-header-default .x-tool-focus {
+    outline: 0px solid #fff !important; 
+    outline-offset: 1px;
 }
