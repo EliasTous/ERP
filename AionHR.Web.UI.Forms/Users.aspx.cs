@@ -293,6 +293,8 @@ namespace AionHR.Web.UI.Forms
 
             List<Employee> emps = new List<Employee>();
             RecordResponse<Employee> emp = _employeeService.Get<Employee>(req);
+            if(!emp.Success)
+                X.Msg.Alert(Resources.Common.Error, emp.Summary).Show();
             emps.Add(emp.result);
             return emps;
         }
@@ -312,6 +314,8 @@ namespace AionHR.Web.UI.Forms
 
 
             ListResponse<Employee> response = _employeeService.GetAll<Employee>(req);
+            if(!response.Success)
+                X.Msg.Alert(Resources.Common.Error, response.Summary).Show();
             return response.Items;
         }
 
@@ -417,7 +421,7 @@ namespace AionHR.Web.UI.Forms
             request.Filter = "";
             ListResponse<UserInfo> branches = _systemService.ChildGetAll<UserInfo>(request);
             if (!branches.Success)
-                return;
+                X.Msg.Alert(Resources.Common.Error, branches.Summary).Show();
             this.Store1.DataSource = branches.Items;
             e.Total = branches.count;
 

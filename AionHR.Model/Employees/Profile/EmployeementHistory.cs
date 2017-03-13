@@ -20,4 +20,9 @@ namespace AionHR.Model.Employees.Profile
 
         public string comment { get; set; }
     }
+    public partial class EmploymentStatus : ModelBase
+
+    {
+        public string name { get; set; }
+    }
 }

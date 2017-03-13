@@ -316,7 +316,10 @@ namespace AionHR.Web.UI.Forms
             request.Filter = "";
             ListResponse<Division> branches = _branchService.ChildGetAll<Division>(request);
             if (!branches.Success)
+            {
+                X.Msg.Alert(Resources.Common.Error, branches.Summary).Show();
                 return;
+            }
             this.Store1.DataSource = branches.Items;
             e.Total = branches.count;
 

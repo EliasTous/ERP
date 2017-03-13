@@ -457,7 +457,7 @@ namespace AionHR.Web.UI.Forms
             request.Filter = "";
             ListResponse<AttendanceSchedule> branches = _branchService.ChildGetAll<AttendanceSchedule>(request);
             if (!branches.Success)
-                return;
+                X.Msg.Alert(Resources.Common.Error, branches.Summary).Show();
             this.Store1.DataSource = branches.Items;
             e.Total = branches.count;
 

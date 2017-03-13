@@ -242,6 +242,11 @@ namespace AionHR.Web.UI.Forms
             ListRequest req = new ListRequest();
 
             ListResponse<Department> response = _branchService.ChildGetAll<Department>(req);
+            if(!response.Success)
+            {
+                X.Msg.Alert(Resources.Common.Error, response.Summary).Show();
+                return new List<Department>();
+            }
             data = response.Items;
             return new
             {
@@ -400,7 +405,10 @@ namespace AionHR.Web.UI.Forms
             request.Filter = searchTrigger.Text;
             ListResponse<Department> branches = _branchService.ChildGetAll<Department>(request);
             if (!branches.Success)
+            {
+                X.Msg.Alert(Resources.Common.Error, branches.Summary).Show();
                 return;
+            }
             this.Store1.DataSource = branches.Items;
             e.Total = branches.count;
 

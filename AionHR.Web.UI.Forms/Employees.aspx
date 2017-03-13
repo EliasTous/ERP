@@ -530,7 +530,9 @@
             </Buttons>
                                 </ext:FormPanel>
                                   <ext:Panel runat="server" Title="profile" ID="profilePanel" DefaultAnchor="100%"  >
-                                    <Loader runat="server" Url="EmployeePages/JobInformation.aspx" Mode="Frame" ID="profileLoader" >
+                                    <Loader runat="server" Url="EmployeePages/JobInformation.aspx" Mode="Frame" ID="profileLoader" TriggerEvent="show"
+                        ReloadOnEvent="true"
+                        DisableCaching="true" >
                                         <LoadMask ShowMask="true" />
                                     </Loader>
                                 </ext:Panel>

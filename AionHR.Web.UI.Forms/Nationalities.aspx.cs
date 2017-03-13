@@ -312,7 +312,7 @@ namespace AionHR.Web.UI.Forms
             request.Filter = "";
             ListResponse<Nationality> nationalities = _systemService.ChildGetAll<Nationality>(request);
             if (!nationalities.Success)
-                return;
+                X.Msg.Alert(Resources.Common.Error, nationalities.Summary).Show(); ;
             this.Store1.DataSource = nationalities.Items;
             e.Total = nationalities.Items.Count;
 

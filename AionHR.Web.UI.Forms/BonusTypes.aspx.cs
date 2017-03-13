@@ -321,7 +321,10 @@ namespace AionHR.Web.UI.Forms
             request.Filter = "";
             ListResponse<BonusType> routers = _employeeService.ChildGetAll<BonusType>(request);
             if (!routers.Success)
+            {
+                X.Msg.Alert(Resources.Common.Error, routers.Summary).Show();
                 return;
+            }
             this.Store1.DataSource = routers.Items;
             e.Total = routers.Items.Count; ;
 

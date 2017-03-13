@@ -56,7 +56,7 @@ namespace AionHR.Web.UI.Forms
                 SetExtLanguage();
                 HideShowButtons();
                 HideShowColumns();
-                
+
 
 
             }
@@ -100,7 +100,7 @@ namespace AionHR.Web.UI.Forms
 
             }
         }
-      
+
 
 
         protected void PoPuP(object sender, DirectEventArgs e)
@@ -171,7 +171,7 @@ namespace AionHR.Web.UI.Forms
                 n.recordId = index;
                 n.name = "";
                 n.reference = "";
-                
+
 
                 PostRequest<Currency> req = new PostRequest<Currency>();
                 req.entity = n;
@@ -314,7 +314,10 @@ namespace AionHR.Web.UI.Forms
             request.Filter = "";
             ListResponse<Currency> currencies = _systemService.ChildGetAll<Currency>(request);
             if (!currencies.Success)
+            {
+                X.Msg.Alert(Resources.Common.Error, currencies.Summary).Show();
                 return;
+            }
             this.Store1.DataSource = currencies.Items;
             e.Total = currencies.count;
 
@@ -451,6 +454,6 @@ namespace AionHR.Web.UI.Forms
 
         }
 
-       
+
     }
 }

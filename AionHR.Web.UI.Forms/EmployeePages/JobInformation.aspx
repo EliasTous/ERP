@@ -27,8 +27,9 @@
 
 
 
-        <ext:Viewport ID="Viewport1" runat="server" Layout="Fit">
+        <ext:Panel ID="Viewport1" runat="server" Layout="VBoxLayout">
             <Items>
+
                 <ext:GridPanel
                     ID="employeementHistoryGrid"
                     runat="server"
@@ -38,7 +39,7 @@
                     Layout="FitLayout"
                     Scroll="Vertical"
                     Border="false"
-                    Icon="User"
+                    Icon="User" DefaultAnchor="100%"  Width="650" Height="200"
                     ColumnLines="True" IDMode="Explicit" RenderXType="True">
                     <Store>
                         <ext:Store
@@ -216,10 +217,10 @@
                         <%--<ext:CheckboxSelectionModel ID="CheckboxSelectionModel1" runat="server" Mode="Multi" StopIDModeInheritance="true" />--%>
                     </SelectionModel>
                 </ext:GridPanel>
-                <ext:GridPanel
+                <ext:GridPanel Visible="True"
                     ID="JobInfoGrid"
                     runat="server"
-                    PaddingSpec="0 0 1 0"
+                    PaddingSpec="0 0 1 0"  Width="650"  Height="200"
                     Header="true"
                     Title="<%$ Resources: WindowTitle %>"
                     Layout="FitLayout"
@@ -404,7 +405,7 @@
                     </SelectionModel>
                 </ext:GridPanel>
             </Items>
-        </ext:Viewport>
+        </ext:Panel>
 
         <ext:Window
             ID="EditEHwindow"

@@ -322,7 +322,8 @@ namespace AionHR.Web.UI.Forms
             request.Filter = "";
             ListResponse<EntitlementDeduction> routers = _employeeService.ChildGetAll<EntitlementDeduction>(request);
             if (!routers.Success)
-                return;
+                X.Msg.Alert(Resources.Common.Error, routers.Summary).Show();
+
             this.Store1.DataSource = routers.Items;
             e.Total = routers.Items.Count; ;
 

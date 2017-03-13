@@ -304,6 +304,11 @@ namespace AionHR.Web.UI.Forms
             AttendnanceDayListRequest req = GetAttendanceDayRequest();
 
             ListResponse<AttendanceDay> daysResponse = _timeAttendanceService.ChildGetAll<AttendanceDay>(req);
+            if(!daysResponse.Success)
+            {
+                X.Msg.Alert(Resources.Common.Error, daysResponse.Summary).Show();
+                return;
+            }
             int total = daysResponse.Items.Sum(s => s.netOL);
             X.Call("setTotal", total);
             this.total.Text= total.ToString();
@@ -321,6 +326,8 @@ namespace AionHR.Web.UI.Forms
         {
             ListRequest departmentsRequest = new ListRequest();
             ListResponse<Department> resp = _companyStructureService.ChildGetAll<Department>(departmentsRequest);
+            if(!resp.Success)
+                X.Msg.Alert(Resources.Common.Error, resp.Summary).Show();
             departmentStore.DataSource = resp.Items;
             departmentStore.DataBind();
         }
@@ -328,6 +335,8 @@ namespace AionHR.Web.UI.Forms
         {
             ListRequest branchesRequest = new ListRequest();
             ListResponse<Branch> resp = _companyStructureService.ChildGetAll<Branch>(branchesRequest);
+            if(!resp.Success)
+                X.Msg.Alert(Resources.Common.Error, resp.Summary).Show();
             branchStore.DataSource = resp.Items;
             branchStore.DataBind();
         }
@@ -384,6 +393,8 @@ namespace AionHR.Web.UI.Forms
 
 
             ListResponse<Employee> response = _employeeService.GetAll<Employee>(req);
+            if(!response.Success)
+                X.Msg.Alert(Resources.Common.Error, response.Summary).Show();
             return response.Items;
         }
 

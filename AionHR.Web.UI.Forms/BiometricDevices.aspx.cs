@@ -320,7 +320,10 @@ namespace AionHR.Web.UI.Forms
             request.Filter = "";
             ListResponse<BiometricDevice> nationalities = _timeAttendanceService.ChildGetAll<BiometricDevice>(request);
             if (!nationalities.Success)
+            {
+                X.Msg.Alert(Resources.Common.ErrorSavingRecord, nationalities.Summary).Show();
                 return;
+            }
             this.Store1.DataSource = nationalities.Items;
             e.Total = nationalities.count;
 

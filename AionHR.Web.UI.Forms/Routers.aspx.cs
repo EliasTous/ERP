@@ -319,7 +319,7 @@ namespace AionHR.Web.UI.Forms
             request.Filter = "";
             ListResponse<Router> routers = _timeAttendanceService.ChildGetAll<Router>(request);
             if (!routers.Success)
-                return;
+                X.Msg.Alert(Resources.Common.Error, routers.Summary).Show();
             this.Store1.DataSource = routers.Items;
             e.Total = routers.count;
 

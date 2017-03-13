@@ -362,6 +362,7 @@ namespace AionHR.Web.UI.Forms
 
             List<Employee> data = GetEmployeesFiltered(prms.Query);
 
+            
             //  return new
             // {
             return data;
@@ -513,7 +514,7 @@ namespace AionHR.Web.UI.Forms
             request.Filter = "";
             ListResponse<WorkingCalendar> branches = _branchService.ChildGetAll<WorkingCalendar>(request);
             if (!branches.Success)
-                return;
+                X.Msg.Alert(Resources.Common.Error, branches.Summary).Show();
             this.Store1.DataSource = branches.Items;
             e.Total = branches.count;
 
@@ -822,12 +823,16 @@ namespace AionHR.Web.UI.Forms
         {
             ListRequest req = new ListRequest();
             ListResponse<AttendanceSchedule> schedules = _branchService.ChildGetAll<AttendanceSchedule>(req);
+            if(!schedules.Success)
+                X.Msg.Alert(Resources.Common.Error, schedules.Summary).Show();
             return schedules.Items;
         }
         private List<DayType> LoadDayTypes()
         {
             ListRequest req = new ListRequest();
             ListResponse<DayType> schedules = _branchService.ChildGetAll<DayType>(req);
+            if(!schedules.Success)
+                X.Msg.Alert(Resources.Common.Error, schedules.Summary).Show();
             colorsStore.DataSource = schedules.Items;
             colorsStore.DataBind();
             return schedules.Items;

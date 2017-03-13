@@ -377,6 +377,11 @@ namespace AionHR.Web.UI.Forms
             empRequest.StartAt = e.Start.ToString();
 
             ListResponse<Employee> emps = _employeeService.GetAll<Employee>(empRequest);
+            if(!emps.Success)
+            {
+                X.Msg.Alert(Resources.Common.Error, emps.Summary).Show();
+                return;
+            }
             e.Total = emps.count;
             if (emps.Items != null)
             {
@@ -389,6 +394,11 @@ namespace AionHR.Web.UI.Forms
         {
             ListRequest nationalityRequest = new ListRequest();
             ListResponse<Nationality> resp = _systemService.ChildGetAll<Nationality>(nationalityRequest);
+            if(!resp.Success)
+            {
+                X.Msg.Alert(Resources.Common.Error, resp.Summary).Show();
+                
+            }
             NationalityStore.DataSource = resp.Items;
             NationalityStore.DataBind();
 
@@ -398,6 +408,8 @@ namespace AionHR.Web.UI.Forms
         {
             ListRequest positionsRequest = new ListRequest();
             ListResponse<Model.Company.Structure.Position> resp = _companyStructureService.ChildGetAll<Model.Company.Structure.Position>(positionsRequest);
+            if(!resp.Success)
+                X.Msg.Alert(Resources.Common.Error, resp.Summary).Show();
             positionStore.DataSource = resp.Items;
             positionStore.DataBind();
         }
@@ -405,6 +417,8 @@ namespace AionHR.Web.UI.Forms
         {
             ListRequest departmentsRequest = new ListRequest();
             ListResponse<Department> resp = _companyStructureService.ChildGetAll<Department>(departmentsRequest);
+            if(!resp.Success)
+                X.Msg.Alert(Resources.Common.Error, resp.Summary).Show();
             departmentStore.DataSource = resp.Items;
             departmentStore.DataBind();
         }
@@ -412,6 +426,8 @@ namespace AionHR.Web.UI.Forms
         {
             ListRequest branchesRequest = new ListRequest();
             ListResponse<Branch> resp = _companyStructureService.ChildGetAll<Branch>(branchesRequest);
+            if (!resp.Success)
+                X.Msg.Alert(Resources.Common.Error, resp.Summary).Show();
             BranchStore.DataSource = resp.Items;
             BranchStore.DataBind();
         }
@@ -419,6 +435,8 @@ namespace AionHR.Web.UI.Forms
         {
             ListRequest sponsorsRequest = new ListRequest();
             ListResponse<Sponsor> resp = _employeeService.ChildGetAll<Sponsor>(sponsorsRequest);
+            if (!resp.Success)
+                X.Msg.Alert(Resources.Common.Error, resp.Summary).Show();
             SponsorStore.DataSource = resp.Items;
             SponsorStore.DataBind();
         }
@@ -426,6 +444,8 @@ namespace AionHR.Web.UI.Forms
         {
             ListRequest vsRequest = new ListRequest();
             ListResponse<VacationSchedule> resp = _leaveManagementService.ChildGetAll<VacationSchedule>(vsRequest);
+            if (!resp.Success)
+                X.Msg.Alert(Resources.Common.Error, resp.Summary).Show();
             VacationScheduleStore.DataSource = resp.Items;
             VacationScheduleStore.DataBind();
         }
@@ -433,6 +453,8 @@ namespace AionHR.Web.UI.Forms
         {
             ListRequest caRequest = new ListRequest();
             ListResponse<WorkingCalendar> resp = _timeAttendanceService.ChildGetAll<WorkingCalendar>(caRequest);
+            if (!resp.Success)
+                X.Msg.Alert(Resources.Common.Error, resp.Summary).Show();
             CalendarStore.DataSource = resp.Items;
             CalendarStore.DataBind();
 

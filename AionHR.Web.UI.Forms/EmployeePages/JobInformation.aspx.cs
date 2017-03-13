@@ -21,12 +21,14 @@ using AionHR.Model.Company.News;
 using AionHR.Services.Messaging;
 using AionHR.Model.Company.Structure;
 using AionHR.Model.System;
+using AionHR.Model.Employees.Profile;
 
 namespace AionHR.Web.UI.Forms.EmployeePages
 {
     public partial class JobInformation : System.Web.UI.Page
     {
         ISystemService _systemService = ServiceLocator.Current.GetInstance<ISystemService>();
+        IEmployeeService _employeeService = ServiceLocator.Current.GetInstance<IEmployeeService>();
         protected override void InitializeCulture()
         {
 
@@ -341,7 +343,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             ListRequest request = new ListRequest();
 
             request.Filter = "";
-            ListResponse<Currency> currencies = _systemService.ChildGetAll<Currency>(request);
+            ListResponse<EmployeementHistory> currencies = _employeeService.ChildGetAll<EmployeementHistory>(request);
             if (!currencies.Success)
                 return;
             this.employeementHistoryStore.DataSource = currencies.Items;
@@ -361,10 +363,13 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             //Fetching the corresponding list
 
             //in this test will take a list of News
-            ListRequest request = new ListRequest();
-
+            EmployeeListRequest request = new EmployeeListRequest();
+            request.BranchId = request.DepartmentId = "0";
+            request.SortBy = "firstName,lastName";
+            request.Size = "20";
+            request.StartAt = "1";
             request.Filter = "";
-            ListResponse<Currency> currencies = _systemService.ChildGetAll<Currency>(request);
+            ListResponse< JobInfo> currencies = _employeeService.ChildGetAll<JobInfo>(request);
             if (!currencies.Success)
                 return;
             this.JIStore.DataSource = currencies.Items;

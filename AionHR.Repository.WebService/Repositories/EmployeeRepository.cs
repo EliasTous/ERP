@@ -37,6 +37,8 @@ namespace AionHR.Repository.WebService.Repositories
             ChildGetAllLookup.Add(typeof(SalaryChangeReason), "qrySC");
             ChildGetAllLookup.Add(typeof(AssetCategory), "qryAC");
             ChildGetAllLookup.Add(typeof(BonusType), "qryBT");
+            ChildGetAllLookup.Add(typeof(EmployeementHistory), "qryEH");
+            ChildGetAllLookup.Add(typeof(JobInfo), "qryJI");
 
 
             ChildGetLookup.Add(typeof(Sponsor), "getSP");

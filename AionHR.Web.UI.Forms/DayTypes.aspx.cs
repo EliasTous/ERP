@@ -317,7 +317,10 @@ namespace AionHR.Web.UI.Forms
             request.Filter = "";
             ListResponse<DayType> dayTypes = _timeAttendanceService.ChildGetAll<DayType>(request);
             if (!dayTypes.Success)
+            {
+                X.Msg.Alert(Resources.Common.Error, dayTypes.Summary).Show();
                 return;
+            }
             this.Store1.DataSource = dayTypes.Items;
             e.Total = dayTypes.count;
 

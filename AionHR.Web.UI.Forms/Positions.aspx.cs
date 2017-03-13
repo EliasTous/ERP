@@ -48,7 +48,7 @@ namespace AionHR.Web.UI.Forms
             }
 
         }
-        
+
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -61,7 +61,7 @@ namespace AionHR.Web.UI.Forms
                 SetExtLanguage();
                 HideShowButtons();
                 HideShowColumns();
-                
+
 
             }
 
@@ -105,7 +105,7 @@ namespace AionHR.Web.UI.Forms
 
             }
         }
-    
+
 
 
         protected void PoPuP(object sender, DirectEventArgs e)
@@ -225,6 +225,8 @@ namespace AionHR.Web.UI.Forms
             ListRequest req = new ListRequest();
 
             ListResponse<Model.Company.Structure.Position> response = _branchService.ChildGetAll<Model.Company.Structure.Position>(req);
+            if (!response.Success)
+                X.Msg.Alert(Resources.Common.Error, response.Summary).Show();
             data = response.Items;
             return new
             {
@@ -249,11 +251,13 @@ namespace AionHR.Web.UI.Forms
 
             req.StartAt = "1";
             req.Size = "20";
-            req.Filter = prms.Query ;
+            req.Filter = prms.Query;
 
 
             req.Filter = prms.Query;
             ListResponse<Employee> response = _employeeService.GetAll<Employee>(req);
+            if(!response.Success)
+                X.Msg.Alert(Resources.Common.Error, response.Summary).Show();
             data = response.Items;
             return new
             {
@@ -466,7 +470,7 @@ namespace AionHR.Web.UI.Forms
 
                         ModelProxy record = this.Store1.GetById(index);
 
-                       
+
                         BasicInfoTab.UpdateRecord(record);
                         record.Set("referToPositionName", b.referToPositionName);
                         record.Commit();
@@ -505,6 +509,6 @@ namespace AionHR.Web.UI.Forms
 
         }
 
-       
+
     }
 }

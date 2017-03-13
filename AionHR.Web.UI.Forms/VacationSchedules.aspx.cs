@@ -391,7 +391,7 @@ namespace AionHR.Web.UI.Forms
             request.Filter = "";
             ListResponse<VacationSchedule> branches = _branchService.ChildGetAll<VacationSchedule>(request);
             if (!branches.Success)
-                return;
+                X.Msg.Alert(Resources.Common.Error, branches.Summary).Show();
             this.Store1.DataSource = branches.Items;
             e.Total = branches.count;
 
