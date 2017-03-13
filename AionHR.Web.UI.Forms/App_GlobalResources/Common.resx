@@ -543,4 +543,7 @@
   <data name="SalaryChangeReasons" xml:space="preserve">
     <value>Salary Change Reasons</value>
   </data>
+  <data name="LeaveRequests" xml:space="preserve">
+    <value>Leave Requests</value>
+  </data>
 </root>

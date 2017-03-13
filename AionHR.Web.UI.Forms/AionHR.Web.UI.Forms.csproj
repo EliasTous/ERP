@@ -138,6 +138,7 @@
     <Content Include="Images\Tools\edit.png" />
     <Content Include="Images\Tools\expand-all.gif" />
     <Content Include="Images\Tools\group.png" />
+    <Content Include="LeaveRequests.aspx" />
     <Content Include="LeaveTypes.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="Nationalities.aspx" />
@@ -153,6 +154,7 @@
     <Content Include="Scripts\Employees.js" />
     <Content Include="Scripts\EntitlementDeductions.js" />
     <Content Include="Scripts\JobInformation.js" />
+    <Content Include="Scripts\LeaveRequests.js" />
     <Content Include="Scripts\moment.js" />
     <Content Include="Scripts\Dashboard.js" />
     <Content Include="Scripts\EmployeeProfile.js" />
@@ -365,6 +367,13 @@
     </Compile>
     <Compile Include="ARLogin.aspx.designer.cs">
       <DependentUpon>ARLogin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LeaveRequests.aspx.cs">
+      <DependentUpon>LeaveRequests.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LeaveRequests.aspx.designer.cs">
+      <DependentUpon>LeaveRequests.aspx</DependentUpon>
     </Compile>
     <Compile Include="LeaveTypes.aspx.cs">
       <DependentUpon>LeaveTypes.aspx</DependentUpon>
@@ -624,6 +633,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="EmployeePages\App_LocalResources\JobInformation.aspx.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_LocalResources\LeaveRequests.aspx.resx" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
