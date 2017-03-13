@@ -50,6 +50,7 @@
     <Compile Include="Employees\Profile\EmployeementHistory.cs" />
     <Compile Include="Employees\Profile\JobInfo.cs" />
     <Compile Include="LeaveManagement\ILeaveManagementRepository.cs" />
+    <Compile Include="LeaveManagement\LeaveRequest.cs" />
     <Compile Include="MasterModule\IAccountRepository.cs" />
     <Compile Include="ModelBase.cs" />
     <Compile Include="System\SystemDefault.cs" />

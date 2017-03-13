@@ -43,3 +43,25 @@ public class VacationPeriodsListRequest:ListRequest
         }
     }
 }
+public class LeaveRequestListRequest:ListRequest
+{
+    public bool OpenRequests { get; set; }
+    public int BranchId { get; set; }
+    public int DepartmentId { get; set; }
+    public int EmployeeId { get; set; }
+
+    public override Dictionary<string, string> Parameters
+    {
+        get
+        {
+            parameters = base.Parameters;
+            parameters.Add("_openRequests", OpenRequests.ToString());
+            parameters.Add("_branchId", BranchId.ToString());
+            parameters.Add("_departmentId", DepartmentId.ToString());
+            parameters.Add("_employeeId", EmployeeId.ToString());
+
+
+            return parameters;
+        }
+    }
+}

@@ -772,6 +772,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Leave Requests.
+        /// </summary>
+        internal static string LeaveRequests {
+            get {
+                return ResourceManager.GetString("LeaveRequests", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to LeaveTypes.
         /// </summary>
         internal static string LeaveTypes {
