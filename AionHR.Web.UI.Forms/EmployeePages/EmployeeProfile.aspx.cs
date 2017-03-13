@@ -57,7 +57,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             req.RecordID = id;
             RecordResponse<Employee> response = _employeeService.Get<Employee>(req);
             BasicInfoTab.Reset();
-            picturePath.Clear();
+            //picturePath.Clear();
             if (!response.Success)
             {
                 X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
@@ -94,8 +94,8 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                 gender1.Checked = true;
             else
                 gender0.Checked = true;
-            if (!string.IsNullOrEmpty(result.pictureUrl))
-                imgControl.ImageUrl = result.pictureUrl;
+            //if (!string.IsNullOrEmpty(result.pictureUrl))
+            //    imgControl.ImageUrl = result.pictureUrl;
 
         }
         private void InitCombos()
@@ -154,20 +154,20 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     EmployeeAddOrUpdateRequest request = new EmployeeAddOrUpdateRequest();
 
                     byte[] fileData = null;
-                    if (picturePath.PostedFile != null && picturePath.PostedFile.ContentLength > 0)
-                    {
-                        using (var binaryReader = new BinaryReader(picturePath.PostedFile.InputStream))
-                        {
-                            fileData = binaryReader.ReadBytes(picturePath.PostedFile.ContentLength);
-                        }
-                        request.fileName = picturePath.PostedFile.FileName;
-                        request.imageData = fileData;
-                    }
-                    else
-                    {
-                        request.imageData = fileData;
+                    //if (picturePath.PostedFile != null && picturePath.PostedFile.ContentLength > 0)
+                    //{
+                    //    using (var binaryReader = new BinaryReader(picturePath.PostedFile.InputStream))
+                    //    {
+                    //        fileData = binaryReader.ReadBytes(picturePath.PostedFile.ContentLength);
+                    //    }
+                    //    request.fileName = picturePath.PostedFile.FileName;
+                    //    request.imageData = fileData;
+                    //}
+                    //else
+                    //{
+                    request.imageData = fileData;
                         request.fileName = "";
-                    }
+                    //}
                     request.empData = b;
 
 
@@ -211,25 +211,25 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     EmployeeAddOrUpdateRequest request = new EmployeeAddOrUpdateRequest();
 
                     byte[] fileData = null;
-                    if (picturePath.HasFile && picturePath.PostedFile.ContentLength > 0)
-                    {
-                        //using (var binaryReader = new BinaryReader(picturePath.PostedFile.InputStream))
-                        // {
-                        //    fileData = binaryReader.ReadBytes(picturePath.PostedFile.ContentLength);
-                        // }
-                        fileData = new byte[picturePath.PostedFile.ContentLength];
-                        fileData = picturePath.FileBytes;
-                        request.fileName = picturePath.PostedFile.FileName;
-                        request.imageData = fileData;
+                    //if (picturePath.HasFile && picturePath.PostedFile.ContentLength > 0)
+                    //{
+                    //    //using (var binaryReader = new BinaryReader(picturePath.PostedFile.InputStream))
+                    //    // {
+                    //    //    fileData = binaryReader.ReadBytes(picturePath.PostedFile.ContentLength);
+                    //    // }
+                    //    fileData = new byte[picturePath.PostedFile.ContentLength];
+                    //    fileData = picturePath.FileBytes;
+                    //    request.fileName = picturePath.PostedFile.FileName;
+                    //    request.imageData = fileData;
 
 
 
-                    }
-                    else
-                    {
+                    //}
+                    //else
+                    //{
                         request.imageData = fileData;
                         request.fileName = "";
-                    }
+                    //}
                     request.empData = b;
 
 

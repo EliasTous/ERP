@@ -85,3 +85,15 @@
     outline: 0px solid #fff !important; 
     outline-offset: 1px;
 }
+input[readonly]
+{
+    background:rgba(0,0,0,0)!important;
+    border:none!important;
+}
+#leftPanel{
+    text-align:center;
+}
+#basicInfoTab .x-toolbar
+{
+    width:600px!important;
+}

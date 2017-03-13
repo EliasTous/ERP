@@ -23,7 +23,7 @@
         runat="server"
         Title="<%$ Resources: BasicInfoTabEditWindowTitle %>"
         Icon="ApplicationSideList"
-         Header="false"
+         Header="false"  
         DefaultAnchor="100%"
         BodyPadding="5" Layout="TableLayout">
 
@@ -193,7 +193,7 @@
                         AllowBlank="false" />
                 </Items>
             </ext:Panel>
-            <ext:Panel runat="server" Margin="20" Visible="false">
+           <%-- <ext:Panel runat="server" Margin="20" Visible="false">
                 <Items>
                     <ext:Image runat="server" ID="imgControl" Width="200" Height="200">
                         <Listeners>
@@ -208,9 +208,10 @@
                     </ext:FileUploadField>
 
                 </Items>
-            </ext:Panel>
+            </ext:Panel>--%>
         </Items>
-        <Buttons>
+        <Buttons >
+            
             <ext:Button ID="SaveButton" runat="server" Text="<%$ Resources:Common, Save %>" Icon="Disk">
 
                 <Listeners>

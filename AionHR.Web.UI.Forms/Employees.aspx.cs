@@ -58,7 +58,7 @@ namespace AionHR.Web.UI.Forms
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+
 
 
             if (!X.IsAjaxRequest && !IsPostBack)
@@ -67,9 +67,9 @@ namespace AionHR.Web.UI.Forms
                 SetExtLanguage();
                 HideShowButtons();
                 HideShowColumns();
-                BuildTree();
+               
 
-                X.Call("hideTabs");
+
             }
 
 
@@ -127,23 +127,14 @@ namespace AionHR.Web.UI.Forms
                 case "ColName":
 
                     //Step 1 : get the object from the Web Service 
-                    RecordRequest r = new RecordRequest();
-                    r.RecordID = id.ToString();
-                    RecordResponse<Employee> response = _employeeService.Get<Employee>(r);
-                    BasicInfoTab.Reset();
-                    picturePath.Clear();
-                    if (!response.Success)
-                    {
-                        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                        X.Msg.Alert(Resources.Common.Error, response.Summary).Show();
-                        return;
-                    }
-                    //Step 2 : call setvalues with the retrieved object
-                    this.BasicInfoTab.SetValues(response.result);
-                    FillNameFields(response.result.name);
-                    InitCombos();
-                    SelectCombos(response.result);
-                    
+                    FillProfileInfo(id.ToString());
+                    CurrentEmployee.Text = id.ToString();
+                    FillLeftPanel();
+                    FixLoaderUrls(id.ToString());
+                    //employeePanel.Loader.Url = "EmployeePages/EmployeeProfile.aspx?employeeId="+CurrentEmployee.Text;
+                    //employeePanel.Loader.LoadContent();
+
+
                     //timeZoneCombo.Select(response.result.timeZone.ToString());
                     this.EditRecordWindow.Title = Resources.Common.EditWindowsTitle;
                     this.EditRecordWindow.Show();
@@ -171,21 +162,7 @@ namespace AionHR.Web.UI.Forms
                     //Here will show up a winow relatice to attachement depending on the case we are working on
                     break;
                 case "colEdit":
-                    CurrentEmployee.Text = id.ToString();
-                    employeePanel.Loader.Url = "EmployeePages/EmployeeProfile.aspx?employeeId="+CurrentEmployee.Text;
-                    employeePanel.Loader.LoadContent();
-                    RecordRequest req = new RecordRequest();
-                    req.RecordID = id.ToString();
-                    RecordResponse<Employee> resp = _employeeService.Get<Employee>(req);
-                    Employee forSummary = resp.result;
-                    forSummary.firstName = forSummary.name.firstName;
-                    forSummary.middleName = forSummary.name.middleName;
-                    forSummary.lastName = forSummary.name.lastName;
-
-                    summaryForm.SetValues(resp.result);
-                    employeeName.Text = resp.result.name.firstName + resp.result.name.lastName;
-                    imageUrl.ImageUrl = resp.result.pictureUrl;
-                    Viewport1.ActiveIndex = 1;
+                
                     break;
 
                 default:
@@ -193,6 +170,15 @@ namespace AionHR.Web.UI.Forms
             }
 
 
+        }
+
+        private void FixLoaderUrls(string v)
+        {
+            foreach (var item in panelRecordDetails.Items)
+            {
+                if (item.Loader != null)
+                    item.Loader.Url = item.Loader.Url + "?employeeId=" + v;
+            }
         }
 
         private void FillNameFields(EmployeeName name)
@@ -217,8 +203,8 @@ namespace AionHR.Web.UI.Forms
                 gender1.Checked = true;
             else
                 gender0.Checked = true;
-            if (!string.IsNullOrEmpty(result.pictureUrl))
-                imgControl.ImageUrl = result.pictureUrl;
+            //if (!string.IsNullOrEmpty(result.pictureUrl))
+            //    imgControl.ImageUrl = result.pictureUrl;
 
         }
         private void InitCombos()
@@ -364,8 +350,8 @@ namespace AionHR.Web.UI.Forms
 
             //Reset all values of the relative object
             BasicInfoTab.Reset();
-            picturePath.Clear();
-            imgControl.ImageUrl = "";
+            //picturePath.Clear();
+            //imgControl.ImageUrl = "";
             InitCombos();
             this.EditRecordWindow.Title = Resources.Common.AddNewRecord;
 
@@ -484,20 +470,20 @@ namespace AionHR.Web.UI.Forms
                     EmployeeAddOrUpdateRequest request = new EmployeeAddOrUpdateRequest();
 
                     byte[] fileData = null;
-                    if (picturePath.PostedFile != null && picturePath.PostedFile.ContentLength > 0)
-                    {
-                        using (var binaryReader = new BinaryReader(picturePath.PostedFile.InputStream))
-                        {
-                            fileData = binaryReader.ReadBytes(picturePath.PostedFile.ContentLength);
-                        }
-                        request.fileName = picturePath.PostedFile.FileName;
-                        request.imageData = fileData;
-                    }
-                    else
-                    {
-                        request.imageData = fileData;
-                        request.fileName = "";
-                    }
+                    //if (picturePath.PostedFile != null && picturePath.PostedFile.ContentLength > 0)
+                    //{
+                    //    using (var binaryReader = new BinaryReader(picturePath.PostedFile.InputStream))
+                    //    {
+                    //        fileData = binaryReader.ReadBytes(picturePath.PostedFile.ContentLength);
+                    //    }
+                    //    request.fileName = picturePath.PostedFile.FileName;
+                    //    request.imageData = fileData;
+                    //}
+                    //else
+                    //{
+                    request.imageData = fileData;
+                    request.fileName = "";
+                    //}
                     request.empData = b;
 
 
@@ -555,25 +541,25 @@ namespace AionHR.Web.UI.Forms
                     EmployeeAddOrUpdateRequest request = new EmployeeAddOrUpdateRequest();
 
                     byte[] fileData = null;
-                    if (picturePath.HasFile && picturePath.PostedFile.ContentLength > 0)
-                    {
-                        //using (var binaryReader = new BinaryReader(picturePath.PostedFile.InputStream))
-                        // {
-                        //    fileData = binaryReader.ReadBytes(picturePath.PostedFile.ContentLength);
-                        // }
-                        fileData = new byte[picturePath.PostedFile.ContentLength];
-                        fileData = picturePath.FileBytes;
-                        request.fileName = picturePath.PostedFile.FileName;
-                        request.imageData = fileData;
+                    //if (picturePath.HasFile && picturePath.PostedFile.ContentLength > 0)
+                    //{
+                    //    //using (var binaryReader = new BinaryReader(picturePath.PostedFile.InputStream))
+                    //    // {
+                    //    //    fileData = binaryReader.ReadBytes(picturePath.PostedFile.ContentLength);
+                    //    // }
+                    //    fileData = new byte[picturePath.PostedFile.ContentLength];
+                    //    fileData = picturePath.FileBytes;
+                    //    request.fileName = picturePath.PostedFile.FileName;
+                    //    request.imageData = fileData;
 
 
 
-                    }
-                    else
-                    {
-                        request.imageData = fileData;
-                        request.fileName = "";
-                    }
+                    //}
+                    //else
+                    //{
+                    request.imageData = fileData;
+                    request.fileName = "";
+                    //}
                     request.empData = b;
 
 
@@ -649,28 +635,54 @@ namespace AionHR.Web.UI.Forms
             return paranthized;
 
         }
-        public string BuildTree()
-        {
-            return "";
-            //_systemService.SessionHelper.Set("ActiveModule", 1);
-            //Ext.Net.NodeCollection nodes = null;
-            //nodes = TreeBuilder.Instance.BuildEmployeeDetailsTree(employeesTree.Root);
-            //return nodes.ToJson();
-        }
-        protected void Prev_Click(object sender, DirectEventArgs e)
-        {
-            int index = int.Parse(e.ExtraParams["index"]);
-
-            if ((index - 1) >= 0)
-            {
-                this.Viewport1.ActiveIndex = index - 1;
-            }
-
-
-        }
-
+      
+   
         protected void Unnamed_Load(object sender, EventArgs e)
         {
-         }
+        }
+        private void FillProfileInfo(string employeeId)
+        {
+            RecordRequest r = new RecordRequest();
+            r.RecordID = employeeId.ToString();
+            RecordResponse<Employee> response = _employeeService.Get<Employee>(r);
+            BasicInfoTab.Reset();
+            //picturePath.Clear();
+            if (!response.Success)
+            {
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, response.Summary).Show();
+                return;
+            }
+            //Step 2 : call setvalues with the retrieved object
+            this.BasicInfoTab.SetValues(response.result);
+            FillNameFields(response.result.name);
+            InitCombos();
+            SelectCombos(response.result);
+        }
+
+        private void FillLeftPanel()
+        {
+            RecordRequest r = new RecordRequest();
+            r.RecordID = CurrentEmployee.Text.ToString();
+            RecordResponse<Employee> response = _employeeService.Get<Employee>(r);
+
+            Employee forSummary = response.result;
+            forSummary.firstName = forSummary.name.firstName;
+            forSummary.middleName = forSummary.name.middleName;
+            forSummary.lastName = forSummary.name.lastName;
+            fullNameLbl.Html = forSummary.firstName + forSummary.lastName + "<br />";
+            departmentLbl.Html = forSummary.departmentName + "<br />";
+            branchLbl.Html = forSummary.branchName + "<br />";
+            positionLbl.Html = forSummary.positionName + "<br />";
+
+            //employeeName.Text = resp.result.name.firstName + resp.result.name.lastName;
+            imgControl.ImageUrl = response.result.pictureUrl;
+        }
+
+        protected void Unnamed_Event(object sender, DirectEventArgs e)
+        {
+            int x;
+
+        }
     }
 }

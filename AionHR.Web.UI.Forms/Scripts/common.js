@@ -30,9 +30,5 @@ function isValidDate(d) {
     }
 }
 
-var hideTabs = function () {
 
-    App.tabPanel.setHeader("false");
-
-}
 
