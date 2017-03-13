@@ -204,6 +204,9 @@
   <data name="FieldWorkingCalendar" xml:space="preserve">
     <value>Calendar</value>
   </data>
+  <data name="JobInformationTab" xml:space="preserve">
+    <value>Job Information</value>
+  </data>
   <data name="WindowTitle" xml:space="preserve">
     <value>Employees</value>
   </data>

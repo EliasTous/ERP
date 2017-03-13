@@ -256,7 +256,7 @@
                             <Items>
                                 <ext:TextField ID="recordId" Hidden="true" runat="server" FieldLabel="<%$ Resources:FieldrecordId%>" Disabled="true" Name="recordId" />
                                 <ext:TextField ID="name" runat="server" FieldLabel="<%$ Resources:FieldName%>" Name="name" AllowBlank="false" BlankText="<%$ Resources:Common, MandatoryField%>" />
-                                <ext:TextField ID="reference" runat="server" FieldLabel="<%$ Resources:FieldReference%>" Name="reference" AllowBlank="false" BlankText="<%$ Resources:Common, MandatoryField%>" />
+                                <ext:TextField ID="reference" runat="server" FieldLabel="<%$ Resources:FieldReference%>" Name="reference" AllowBlank="false" BlankText="<%$ Resources:Common, MandatoryField%>" MaxLength="3" />
                                
 
                             </Items>

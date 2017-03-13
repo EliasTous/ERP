@@ -64,7 +64,7 @@ namespace AionHR.Web.UI.Forms
                 Response.Redirect("~/Login.aspx");
             }
             else
-                lblError.Text = "Could not Reset Password";
+                lblError.Text = response.Summary;
 
 
         }

@@ -92,7 +92,7 @@
                                     </Listeners>
                                     <DirectEvents>
                                         <Click OnEvent="ADDNewRecord">
-                                            <EventMask ShowMask="true" CustomTarget="={#{GridPanel1}.body}" />
+                                            <EventMask ShowMask="true" CustomTarget="{#{App}}" />
                                         </Click>
                                     </DirectEvents>
                                 </ext:Button>
@@ -255,7 +255,7 @@
 
 
         <ext:Window
-            ID="EditRecordWindow"
+            ID="EditRecordWindow" AlwaysOnTop="true"
             runat="server"
             Icon="PageEdit"
             Title="<%$ Resources:EditWindowsTitle %>"
@@ -276,7 +276,7 @@
                                 <ext:Panel runat="server">
                                 
                                     <Items>
-                                        <ext:Panel runat="server">
+                                        <ext:Panel runat="server" Padding="10">
                                             <Content>
                                                 <center>
                                                     <ext:Image runat="server" ID="imgControl" Width="100" Height="100">
@@ -529,7 +529,7 @@
                 </ext:Button>
             </Buttons>
                                 </ext:FormPanel>
-                                  <ext:Panel runat="server" Title="profile" ID="profilePanel" DefaultAnchor="100%"  >
+                                  <ext:Panel runat="server" Title="<%$ Resources: JobInformationTab %>" ID="profilePanel" DefaultAnchor="100%"  >
                                     <Loader runat="server" Url="EmployeePages/JobInformation.aspx" Mode="Frame" ID="profileLoader" TriggerEvent="show"
                         ReloadOnEvent="true"
                         DisableCaching="true" >

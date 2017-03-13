@@ -40,3 +40,43 @@ public class EmployeeAddOrUpdateRequest
 
     public string fileName { get; set; }
 }
+
+public class EmployeementHistoryListRequest:ListRequest
+{
+    public string employeeId { get; set; }
+    public string DepartmentId { get; set; }
+    public string BranchId { get; set; }
+
+    public string positionId { get; set; }
+
+    public string divisionId { get; set; }
+
+    public string SortBy { get; set; }
+
+
+
+    /// <summary>
+    /// /// parameter list shipped with the web request
+    /// </summary>
+    public override Dictionary<string, string> Parameters
+    {
+
+        get
+        {
+            parameters = base.Parameters;
+
+            parameters.Add("_departmentId", DepartmentId);
+            parameters.Add("_branchId", BranchId);
+            parameters.Add("_positionId", positionId);
+            parameters.Add("_divisionId", divisionId);
+            parameters.Add("_employeeId", employeeId);
+            parameters.Add("_sortBy", SortBy);
+
+            return parameters;
+        }
+    }
+}
+public class JobInfoListRequest:EmployeementHistoryListRequest
+{
+
+}

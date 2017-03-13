@@ -441,7 +441,7 @@ namespace AionHR.Web.UI.Forms
                     if (!result.Success)
                     {
                         X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                        X.Msg.Alert(Resources.Common.Error, result.Message).Show();
+                        X.Msg.Alert(Resources.Common.Error, result.Summary).Show();
                         return;
                     }
 
@@ -498,7 +498,7 @@ namespace AionHR.Web.UI.Forms
                     if (!deleteDesponse.Success)//it maybe another check
                     {
                         X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                        X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorUpdatingRecord).Show();
+                        X.Msg.Alert(Resources.Common.Error, deleteDesponse.Summary).Show();
                         return;
                     }
                     List<VacationSchedulePeriod> periods = JsonConvert.DeserializeObject<List<VacationSchedulePeriod>>(pers);
@@ -510,7 +510,7 @@ namespace AionHR.Web.UI.Forms
                     if (!result.Success)//it maybe another check
                     {
                         X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                        X.Msg.Alert(Resources.Common.Error, result.Message).Show();
+                        X.Msg.Alert(Resources.Common.Error, result.Summary).Show();
                         return;
                     }
                     else

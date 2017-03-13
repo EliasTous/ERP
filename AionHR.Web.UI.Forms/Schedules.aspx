@@ -12,7 +12,7 @@
     <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
     <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
     <script type="text/javascript" src="Scripts/moment.js"></script>
-    <script type="text/javascript" src="Scripts/Schedules.js?id=2"></script>
+    <script type="text/javascript" src="Scripts/Schedules.js?id=3"></script>
     <script type="text/javascript" src="Scripts/common.js"></script>
 
 <script type="text/javascript" >
@@ -458,13 +458,15 @@
                                 <ext:TextField ID="firstIn" FieldLabel="First In" runat="server" DataIndex="firstIn"  AllowBlank="false" >
                                     <Plugins>
                                         <ext:InputMask Mask="99:99" />
+                                        
                                     </Plugins>
-                                    
+                                   <Validator Handler="return validateFrom(this.getValue());" />
                                     </ext:TextField>
                                 <ext:TextField ID="lastOut" runat="server" FieldLabel="Last Out" DataIndex="lastOut" AllowBlank="false" BlankText="<%$ Resources:Common, MandatoryField%>" >
                                     <Plugins>
                                         <ext:InputMask Mask="99:99" />
                                     </Plugins>
+                                    <Validator Handler="return validateTo(this.getValue(),this.prev().getValue());" />
                                     </ext:TextField>
                                 
                                 <ext:GridPanel

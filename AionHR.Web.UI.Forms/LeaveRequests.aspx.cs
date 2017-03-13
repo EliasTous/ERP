@@ -37,7 +37,7 @@ namespace AionHR.Web.UI.Forms
             List<Employee> data;
             ListRequest req = new ListRequest();
 
-            ListResponse<Employee> response = _employeeService.ChildGetAll<Employee>(req);
+            ListResponse<Employee> response = _employeeService.GetAll<Employee>(req);
             data = response.Items;
             return new
             {
@@ -155,6 +155,7 @@ namespace AionHR.Web.UI.Forms
                     RecordRequest r = new RecordRequest();
                     r.RecordID = id;
 
+                    
                     RecordResponse<LeaveRequest> response = _leaveManagementService.ChildGetRecord<LeaveRequest>(r);
                     if (!response.Success)
                     {

@@ -161,11 +161,6 @@
                             </Listeners>
                           
                         </ext:Button>
-                        <ext:Button ID="btnReset" runat="server" Text="<%$ Resources:Common , Reset %>">
-                            <Listeners>
-                                <Click Handler="#{panelLogin}.reset();" />
-                            </Listeners>
-                        </ext:Button>
                         <ext:Button ID="btnForgot" runat="server" Text="<%$ Resources:Common , ResetPassword %>">
                             <DirectEvents>
                                 <Click OnEvent="forgotpw_Event">

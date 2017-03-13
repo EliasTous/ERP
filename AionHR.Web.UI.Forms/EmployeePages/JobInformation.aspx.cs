@@ -60,7 +60,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                 HideShowColumns();
                 if(string.IsNullOrEmpty(Request.QueryString["employeeId"]))
                     X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorOperation).Show();
-
+                CurrentEmployee.Text = Request.QueryString["employeeId"];
 
             }
 
@@ -340,12 +340,22 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             //Fetching the corresponding list
 
             //in this test will take a list of News
-            ListRequest request = new ListRequest();
+           
+            EmployeementHistoryListRequest request = new EmployeementHistoryListRequest();
 
             request.Filter = "";
+            request.employeeId = CurrentEmployee.Text;
+            request.BranchId = "0";
+            request.DepartmentId = "0";
+            request.divisionId = "0";
+            request.positionId = "0";
+            request.Filter = "";
+            request.SortBy = "firstName,lastName";
+            request.Size = "50";
+            request.StartAt = "1";
             ListResponse<EmployeementHistory> currencies = _employeeService.ChildGetAll<EmployeementHistory>(request);
             if (!currencies.Success)
-                return;
+                X.Msg.Alert(Resources.Common.Error, currencies.Summary).Show();
             this.employeementHistoryStore.DataSource = currencies.Items;
             e.Total = currencies.count;
 
@@ -353,25 +363,20 @@ namespace AionHR.Web.UI.Forms.EmployeePages
         }
         protected void JIStore_RefreshData(object sender, StoreReadDataEventArgs e)
         {
-
-            //GEtting the filter from the page
-            string filter = string.Empty;
-            int totalCount = 1;
-
-
-
-            //Fetching the corresponding list
-
-            //in this test will take a list of News
-            EmployeeListRequest request = new EmployeeListRequest();
-            request.BranchId = request.DepartmentId = "0";
-            request.SortBy = "firstName,lastName";
-            request.Size = "20";
-            request.StartAt = "1";
+            JobInfoListRequest request = new JobInfoListRequest();
             request.Filter = "";
-            ListResponse< JobInfo> currencies = _employeeService.ChildGetAll<JobInfo>(request);
+            request.employeeId = CurrentEmployee.Text;
+            request.BranchId = "0";
+            request.DepartmentId = "0";
+            request.divisionId = "0";
+            request.positionId = "0";
+            request.Filter = "";
+            request.SortBy = "firstName,lastName";
+            request.Size = "50";
+            request.StartAt = "1";
+            ListResponse<JobInfo> currencies = _employeeService.ChildGetAll<JobInfo>(request);
             if (!currencies.Success)
-                return;
+                X.Msg.Alert(Resources.Common.Error, currencies.Summary).Show();
             this.JIStore.DataSource = currencies.Items;
             e.Total = currencies.count;
 

@@ -274,7 +274,7 @@
                                 <ext:ComboBox runat="server" ID="employeeId" QueryMode="Local"  ForceSelection="true" TypeAhead="true" MinChars="1" 
                                     DisplayField="name"
                                     ValueField="recordId"
-                                    TypeAhead="false"
+                                  
                                    
                                     FieldLabel ="<%$ Resources: FieldEmployeeName %>"
                                     
@@ -302,7 +302,7 @@
                                 <ext:ComboBox runat="server" ID="ltId" QueryMode="Local"  ForceSelection="true" TypeAhead="true" MinChars="1" 
                                     DisplayField="name"
                                     ValueField="recordId"
-                                    TypeAhead="false"
+                                
                                    
                                     FieldLabel ="<%$ Resources: FieldLtName %>"
                                     
@@ -328,7 +328,6 @@
                                
 
                                 <ext:ComboBox runat="server" ID="status" QueryMode="Local"  ForceSelection="true" TypeAhead="true" MinChars="1" 
-                                    TypeAhead="false"
                                     FieldLabel ="<%$ Resources: FieldEmployeeName %>"
                                     
                                     >

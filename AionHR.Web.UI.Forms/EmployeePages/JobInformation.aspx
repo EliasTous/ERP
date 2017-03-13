@@ -9,8 +9,8 @@
     <title></title>
     <link rel="stylesheet" type="text/css" href="CSS/Common.css" />
     <link rel="stylesheet" href="CSS/LiveSearch.css" />
-    <script type="text/javascript" src="../Scripts/JobInformation.js?id=0"></script>
-    <script type="text/javascript" src="Scripts/common.js"></script>
+    <script type="text/javascript" src="../Scripts/JobInformation.js?id=2"></script>
+    <script type="text/javascript" src="../Scripts/common.js"></script>
 
 
 </head>
@@ -22,7 +22,7 @@
         <ext:Hidden ID="textLoadFailed" runat="server" Text="<%$ Resources:Common , LoadFailed %>" />
         <ext:Hidden ID="titleSavingError" runat="server" Text="<%$ Resources:Common , TitleSavingError %>" />
         <ext:Hidden ID="titleSavingErrorMessage" runat="server" Text="<%$ Resources:Common , TitleSavingErrorMessage %>" />
-
+        <ext:Hidden ID="CurrentEmployee" runat="server"  />
 
 
 
@@ -35,7 +35,7 @@
                     runat="server"
                     PaddingSpec="0 0 1 0"
                     Header="true"
-                    Title="<%$ Resources: WindowTitle %>"
+                    Title="<%$ Resources: EHGridTitle %>"
                     Layout="FitLayout"
                     Scroll="Vertical"
                     Border="false"
@@ -62,7 +62,7 @@
 
                                         <ext:ModelField Name="recordId" />
                                         <ext:ModelField Name="statusName" />
-                                        <ext:ModelField Name="date" />
+                                        <ext:ModelField Name="date" ServerMapping="date.ToShortDateString()" />
 
                                     </Fields>
                                 </ext:Model>
@@ -171,29 +171,7 @@
                         </ext:Toolbar>
 
                     </DockedItems>
-                    <BottomBar>
-
-                        <ext:PagingToolbar ID="PagingToolbar1"
-                            runat="server"
-                            FirstText="<%$ Resources:Common , FirstText %>"
-                            NextText="<%$ Resources:Common , NextText %>"
-                            PrevText="<%$ Resources:Common , PrevText %>"
-                            LastText="<%$ Resources:Common , LastText %>"
-                            RefreshText="<%$ Resources:Common ,RefreshText  %>"
-                            BeforePageText="<%$ Resources:Common ,BeforePageText  %>"
-                            AfterPageText="<%$ Resources:Common , AfterPageText %>"
-                            DisplayInfo="true"
-                            DisplayMsg="<%$ Resources:Common , DisplayMsg %>"
-                            Border="true"
-                            EmptyMsg="<%$ Resources:Common , EmptyMsg %>">
-                            <Items>
-                            </Items>
-                            <Listeners>
-                                <BeforeRender Handler="this.items.removeAt(this.items.length - 2);" />
-                            </Listeners>
-                        </ext:PagingToolbar>
-
-                    </BottomBar>
+                
                     <Listeners>
                         <Render Handler="this.on('cellclick', cellClick);" />
                     </Listeners>
@@ -222,7 +200,7 @@
                     runat="server"
                     PaddingSpec="0 0 1 0"  Width="650"  Height="200"
                     Header="true"
-                    Title="<%$ Resources: WindowTitle %>"
+                    Title="<%$ Resources: JIGridTitle %>"
                     Layout="FitLayout"
                     Scroll="Vertical"
                     Border="false"
@@ -248,8 +226,13 @@
                                     <Fields>
 
                                         <ext:ModelField Name="recordId" />
-                                        <ext:ModelField Name="name" />
-                                        <ext:ModelField Name="reference" />
+                                        <ext:ModelField Name="date" />
+                                        <ext:ModelField Name="departmentName" />
+                                        <ext:ModelField Name="branchName" />
+                                        <ext:ModelField Name="positionName" />
+                                        <ext:ModelField Name="divisionName" />
+                                        
+                                        
 
                                     </Fields>
                                 </ext:Model>
@@ -267,8 +250,8 @@
                                         <Click Handler="CheckSession();" />
                                     </Listeners>
                                     <DirectEvents>
-                                        <Click OnEvent="ADDNewEH">
-                                            <EventMask ShowMask="true" CustomTarget="={#{employeementHistoryGrid}.body}" />
+                                        <Click OnEvent="ADDNewJI">
+                                            <EventMask ShowMask="true" CustomTarget="={#{JobInfoGrid}.body}" />
                                         </Click>
                                     </DirectEvents>
                                 </ext:Button>
@@ -281,7 +264,7 @@
                                     </Triggers>
                                     <Listeners>
                                         <KeyPress Fn="enterKeyPressSearchHandler" Buffer="100" />
-                                        <TriggerClick Handler="#{JIStore}.reload();" />
+                                        <TriggerClick Handler="#{JIGrid}.reload();" />
                                     </Listeners>
                                 </ext:TextField>
 
@@ -294,11 +277,12 @@
                         <Columns>
 
                             <ext:Column Visible="false" ID="Column1" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldrecordId %>" DataIndex="recordId" Hideable="false" Width="75" Align="Center" />
-                            <ext:Column Flex="1" ID="ColJIName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldReference %>" DataIndex="reference" Hideable="false" Width="75" Align="Center" />
-                            <ext:Column CellCls="cellLink" ID="Column3" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldName%>" DataIndex="name" Flex="2" Hideable="false">
-                                <Renderer Handler="return '<u>'+ record.data['name']+'</u>'">
-                                </Renderer>
-                            </ext:Column>
+                            <ext:Column Flex="1" ID="ColJIName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldJIDate %>" DataIndex="date" Hideable="false" Width="75" Align="Center" />
+                            <ext:Column Flex="1" ID="Column3" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldJIDepartment %>" DataIndex="departmentName" Hideable="false" Width="75" Align="Center" />
+                            <ext:Column Flex="1" ID="Column7" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldJIBranch%>" DataIndex="branchName" Hideable="false" Width="75" Align="Center" />
+                            <ext:Column Flex="1" ID="Column8" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldJIPosition%>" DataIndex="positionName" Hideable="false" Width="75" Align="Center" />
+                            <ext:Column Flex="1" ID="Column9" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldJIDivision%>" DataIndex="divisionName" Hideable="false" Width="75" Align="Center" />
+                          
 
 
 
@@ -358,29 +342,7 @@
                         </ext:Toolbar>
 
                     </DockedItems>
-                    <BottomBar>
-
-                        <ext:PagingToolbar ID="PagingToolbar2"
-                            runat="server"
-                            FirstText="<%$ Resources:Common , FirstText %>"
-                            NextText="<%$ Resources:Common , NextText %>"
-                            PrevText="<%$ Resources:Common , PrevText %>"
-                            LastText="<%$ Resources:Common , LastText %>"
-                            RefreshText="<%$ Resources:Common ,RefreshText  %>"
-                            BeforePageText="<%$ Resources:Common ,BeforePageText  %>"
-                            AfterPageText="<%$ Resources:Common , AfterPageText %>"
-                            DisplayInfo="true"
-                            DisplayMsg="<%$ Resources:Common , DisplayMsg %>"
-                            Border="true"
-                            EmptyMsg="<%$ Resources:Common , EmptyMsg %>">
-                            <Items>
-                            </Items>
-                            <Listeners>
-                                <BeforeRender Handler="this.items.removeAt(this.items.length - 2);" />
-                            </Listeners>
-                        </ext:PagingToolbar>
-
-                    </BottomBar>
+                    
                     <Listeners>
                         <Render Handler="this.on('cellclick', cellClick);" />
                     </Listeners>

@@ -79,7 +79,7 @@ namespace AionHR.Web.UI.Forms
             }
             else
             {
-                lblError.Text = (String)GetLocalResourceObject(response.Message);
+                lblError.Text = response.Summary;
                 return "error";//Error in authentication
 
             }
