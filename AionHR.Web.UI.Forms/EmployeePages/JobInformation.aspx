@@ -27,19 +27,19 @@
 
 
 
-        <ext:Panel ID="Viewport1" runat="server" Layout="VBoxLayout">
+        <ext:Panel ID="Viewport1" runat="server" Layout="AutoLayout" AutoUpdateLayout="true">
             <Items>
 
-                <ext:GridPanel
+                <ext:GridPanel AutoUpdateLayout="true"
                     ID="employeementHistoryGrid"
                     runat="server"
                     PaddingSpec="0 0 1 0"
                     Header="true"
                     Title="<%$ Resources: EHGridTitle %>"
-                    Layout="FitLayout"
+                    Layout="Fit"
                     Scroll="Vertical"
                     Border="false"
-                    Icon="User" DefaultAnchor="100%"  Width="650" Height="200"
+                    Icon="User" DefaultAnchor="100%"  
                     ColumnLines="True" IDMode="Explicit" RenderXType="True">
                     <Store>
                         <ext:Store
@@ -196,12 +196,12 @@
                     </SelectionModel>
                 </ext:GridPanel>
                 <ext:GridPanel Visible="True"
-                    ID="JobInfoGrid"
+                    ID="JobInfoGrid" AutoUpdateLayout="true"
                     runat="server"
-                    PaddingSpec="0 0 1 0"  Width="650"  Height="200"
+                    PaddingSpec="0 0 1 0"  
                     Header="true"
                     Title="<%$ Resources: JIGridTitle %>"
-                    Layout="FitLayout"
+                    Layout="Fit"
                     Scroll="Vertical"
                     Border="false"
                     Icon="User"

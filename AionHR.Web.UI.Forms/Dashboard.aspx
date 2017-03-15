@@ -16,20 +16,17 @@
     <script type="text/javascript" src="Scripts/common.js"></script>
 
     <script type="text/javascript">
-        function displayMissedPunchRecord(s)
-        {
+        function displayMissedPunchRecord(s) {
             var str = s.name;
-            
+
             str += '<br/>';
             str += s['date'] + ', Missed';
             var flag = false;
-            if (s.missedIn)
-            {
+            if (s.missedIn) {
                 str += document.getElementById("MissedIn").value;
                 flag = true;
             }
-            if(s.missedOut)
-            {
+            if (s.missedOut) {
                 if (flag)
                     str += ' and ';
                 str += document.getElementById("MissedOut").value;
@@ -42,7 +39,7 @@
 
             str += '<br/>';
             str += s.positionName + ', ' + s.branchName;
-           
+
             return str;
 
         }
@@ -72,8 +69,8 @@
         }
         function RefreshAllGrids() {
 
-            
-            
+
+
             if (window.
                 parent.App.tabPanel.getActiveTab().id == "dashboard" || (window.parent.App.tabPanel.getActiveTab().id == "tabHome" && window.parent.App.commonTree.getTitle() == 'Time Management')) {
 
@@ -310,11 +307,10 @@
                                         <Columns>
 
                                             <ext:Column Visible="false" ID="Column1" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldrecordId %>" DataIndex="recordId" Hideable="false" Width="75" Align="Center" />
-                                            <ext:Column Flex="2" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEmployee %>" DataIndex="name" Hideable="false" Width="75" Align="Center" >
+                                            <ext:Column Flex="2" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEmployee %>" DataIndex="name" Hideable="false" Width="75" Align="Center">
                                                 <Renderer Handler=" return displayAbsense(record.data);  ">
-                                                    
                                                 </Renderer>
-                                                </ext:Column>
+                                            </ext:Column>
 
 
 
@@ -385,10 +381,10 @@
                                     <ColumnModel ID="ColumnModel4" runat="server" SortAscText="<%$ Resources:Common , SortAscText %>" SortDescText="<%$ Resources:Common ,SortDescText  %>" SortClearText="<%$ Resources:Common ,SortClearText  %>" ColumnsText="<%$ Resources:Common ,ColumnsText  %>" EnableColumnHide="false" Sortable="false">
                                         <Columns>
                                             <ext:Column Visible="false" ID="Column3" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldrecordId %>" DataIndex="recordId" Hideable="false" Width="75" Align="Center" />
-                                            <ext:Column Flex="3" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEmployee %>" DataIndex="name" Hideable="false" Width="75" Align="Center" >
+                                            <ext:Column Flex="3" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEmployee %>" DataIndex="name" Hideable="false" Width="75" Align="Center">
                                                 <Renderer Handler=" return displayLeaves(record.data);" />
-                                                </ext:Column>
-                                            
+                                            </ext:Column>
+
 
 
 

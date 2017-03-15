@@ -275,11 +275,12 @@
             AutoShow="false"
             Modal="true"
             Hidden="true"
-             Layout="FitLayout">
+            Maximizable="true"
+             Maximized="true"
+             Layout="Fit">
 
             <Items>
-                
-                <ext:Panel runat="server" Layout="ColumnLayout">
+                    <ext:Panel runat="server" Layout="BorderLayout">
                     <Items>
                         <ext:Panel ID="leftPanel" runat="server" Region="West"  PaddingSpec="0 0 0 0" Padding="0" TitleAlign="Center"
                             Header="true" Collapsible="false" titlePosition="2"
@@ -291,7 +292,7 @@
                                     <Items>
                                         <ext:Panel runat="server" Padding="10">
                                             <Content>
-                                                <center>
+                                                <div style="text-align:left;">
                                                     <ext:Image runat="server" ID="imgControl" Width="100" Height="100">
                                             <Listeners>
                                                 <Click Handler="triggierImageClick(App.picturePath.fileInputEl.id); " />
@@ -306,7 +307,7 @@
                                                 <Change OnEvent="Unnamed_Event" />
                                             </DirectEvents>
                                         </ext:FileUploadField>
-                                                </center>
+                                                </div>
                                             </Content>
                                         </ext:Panel>
                                         <ext:Label ID="fullNameLbl" runat="server" />
@@ -325,9 +326,9 @@
                         </ext:Panel>
 
 
-                        <ext:Panel runat="server" Region="Center"  DefaultAnchor="100%"  Layout="FitLayout" > <Items>
+                        <ext:Panel runat="server" Region="Center"  DefaultAnchor="100%"  Layout="Fit" > <Items>
 
-                        <ext:TabPanel ID="panelRecordDetails" MinWidth="500" MinHeight="400" DefaultAnchor="100%"  runat="server" ActiveTabIndex="0" Border="false" DeferredRender="false" Region="Center">
+                        <ext:TabPanel ID="panelRecordDetails" Layout="Fit" MinWidth="500" MinHeight="400" DefaultAnchor="100%"  runat="server" ActiveTabIndex="0" Border="false" DeferredRender="false" Region="Center">
                             <Items>
                                 <ext:FormPanel DefaultButton="SaveButton"
                                     ID="BasicInfoTab"
@@ -596,7 +597,7 @@
                 </ext:Button>
             </Buttons>
                                 </ext:FormPanel>
-                                  <ext:Panel runat="server" Title="<%$ Resources: JobInformationTab %>" ID="profilePanel" DefaultAnchor="100%"  >
+                                  <ext:Panel runat="server" AutoUpdateLayout="true" Layout="Fit" Title="<%$ Resources: JobInformationTab %>" ID="profilePanel" DefaultAnchor="100%"  >
                                     <Loader runat="server" Url="EmployeePages/JobInformation.aspx" Mode="Frame" ID="profileLoader" TriggerEvent="show"
                         ReloadOnEvent="true"
                         DisableCaching="true" >
@@ -610,6 +611,7 @@
                     </Items>
                  
                 </ext:Panel>
+            
             </Items>
            
         </ext:Window>
