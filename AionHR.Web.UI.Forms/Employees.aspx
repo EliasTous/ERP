@@ -267,7 +267,7 @@
 
 
         <ext:Window
-            ID="EditRecordWindow" AlwaysOnTop="true"
+            ID="EditRecordWindow" 
             runat="server"
             Icon="PageEdit"
             Title="<%$ Resources:EditWindowsTitle %>"
@@ -547,7 +547,7 @@
                                                 <ext:TextField ID="birthPlace" runat="server" FieldLabel="<%$ Resources:FieldBirthPlace%>" Name="placeOfBirth" AllowBlank="true" />
 
 
-                                                <ext:Checkbox ID="isInactive" runat="server" FieldLabel="<%$ Resources: FieldIsInactive%>" Name="isInactive" InputValue="true" />
+                                                
                                                 <ext:DateField
                                                     runat="server"
                                                     Name="hireDate"
@@ -597,8 +597,8 @@
                 </ext:Button>
             </Buttons>
                                 </ext:FormPanel>
-                                  <ext:Panel runat="server" AutoUpdateLayout="true" Layout="Fit" Title="<%$ Resources: JobInformationTab %>" ID="profilePanel" DefaultAnchor="100%"  >
-                                    <Loader runat="server" Url="EmployeePages/JobInformation.aspx" Mode="Frame" ID="profileLoader" TriggerEvent="show"
+                                  <ext:Panel runat="server"  AutoUpdateLayout="true" Layout="Fit" Title="<%$ Resources: JobInformationTab %>" ID="profilePanel" DefaultAnchor="100%"  >
+                                    <Loader runat="server" Url="EmployeePages/JobInformation.aspx" Mode="Frame" ID="profileLoader" TriggerEvent="show" 
                         ReloadOnEvent="true"
                         DisableCaching="true" >
                                         <LoadMask ShowMask="true" />

@@ -16,8 +16,14 @@
     <script type="text/javascript" src="Scripts/common.js"></script>
 
     <script type="text/javascript">
+        function getStyle()
+        {
+            var dir = document.getElementById('rtl').value == 'True' ? 'right' : 'left';
+            var s = 'text-align:' + dir;
+            return s;
+        }
         function displayMissedPunchRecord(s) {
-            var str = s.name;
+            var str = "<div style="+getStyle()+">"+s.name;
 
             str += '<br/>';
             str += s['date'] + ', Missed';
@@ -31,11 +37,11 @@
                     str += ' and ';
                 str += document.getElementById("MissedOut").value;
             }
-            return str;
+            return str+"</div>";
 
         }
         function displayAbsense(s) {
-            var str = s.name;
+            var str = "<div style=" + getStyle() + ">" + s.name;
 
             str += '<br/>';
             str += s.positionName + ', ' + s.branchName;
@@ -44,7 +50,7 @@
 
         }
         function displayLeaves(s) {
-            var str = s.name;
+            var str = "<div style=" + getStyle() + ">" + s.name;
 
             str += '<br/>';
             str += s.destination + ', ' + s.endDate;
@@ -107,7 +113,7 @@
         <ext:Hidden ID="titleSavingErrorMessage" runat="server" Text="<%$ Resources:Common , TitleSavingErrorMessage %>" />
         <ext:Hidden ID="MissedIn" runat="server" Text="<%$ Resources: FieldMissedIn %>" />
         <ext:Hidden ID="MissedOut" runat="server" Text="<%$ Resources:FieldMissedOut %>" />
-
+        <ext:Hidden ID="rtl" runat="server"  />
 
 
 
@@ -195,7 +201,7 @@
                         <ext:Panel AutoScroll="true" Border="true" Split="true" Header="false" Resizable="true" ID="leftPanel" Region="East" MaxWidth="600" Layout="FitLayout" runat="server" Collapsible="true" CollapseMode="Mini" CollapseDirection="Left">
                             <Items>
                                 <ext:Label runat="server" Text="<%$ Resources: MissingPunchesGridTitle %>" StyleSpec="color:darkorange;font-weight:bold" />
-                                <ext:GridPanel MarginSpec="0 17 0 0"
+                                <ext:GridPanel MarginSpec="0 0 0 0"
                                     ID="missingPunchesGrid"
                                     runat="server" Height="200" MaxHeight="200"
                                     PaddingSpec="0 0 1 0"
@@ -204,7 +210,7 @@
                                     Layout="FitLayout"
                                     Scroll="Vertical"
                                     Border="false"
-                                    Icon="User"
+                                    Icon="User"   HideHeaders="true"
                                     ColumnLines="True" IDMode="Explicit" RenderXType="True">
                                     <Store>
                                         <ext:Store
@@ -268,9 +274,9 @@
                                     </SelectionModel>
                                 </ext:GridPanel>
                                 <ext:Label runat="server" Text="<%$ Resources: AbsenseGridTitle %>" StyleSpec="color:darkorange;font-weight:bold" />
-                                <ext:GridPanel MarginSpec="0 17 0 0"
+                                <ext:GridPanel MarginSpec="0 0 0 0"
                                     ID="absenseGrid"
-                                    runat="server"
+                                    runat="server" HideHeaders="true"
                                     PaddingSpec="0 0 1 0"
                                     Header="false"
                                     Title="<%$ Resources: AbsenseGridTitle %>"
@@ -335,8 +341,8 @@
                                     </SelectionModel>
                                 </ext:GridPanel>
                                 <ext:Label runat="server" Text="<%$ Resources: LeavesGridTitle %>" StyleSpec="color:darkorange;font-weight:bold" />
-                                <ext:GridPanel MarginSpec="0 17 0 0"
-                                    ID="leaveGrid"
+                                <ext:GridPanel MarginSpec="0 0 0 0"
+                                    ID="leaveGrid" HideHeaders="true"
                                     runat="server" Height="200" MaxHeight="200"
                                     PaddingSpec="0 0 1 0"
                                     Header="false"
@@ -367,8 +373,8 @@
                                                         <ext:ModelField Name="name" ServerMapping="employeeName.fullName" />
                                                         <ext:ModelField Name="destination" />
                                                         <ext:ModelField Name="ltName" />
-                                                        <ext:ModelField Name="startDate" />
-                                                        <ext:ModelField Name="endDate" />
+                                                        <ext:ModelField Name="startDate" ServerMapping="startDate.ToShortDateString()" />
+                                                        <ext:ModelField Name="endDate" ServerMapping="endDate.ToShortDateString()" />
 
                                                     </Fields>
                                                 </ext:Model>

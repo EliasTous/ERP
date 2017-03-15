@@ -137,7 +137,7 @@ namespace AionHR.Web.UI.Forms
             {
                 this.ResourceManager1.RTL = true;
                 this.Viewport1.RTL = true;
-
+                this.rtl.Text = rtl.ToString();
             }
         }
 

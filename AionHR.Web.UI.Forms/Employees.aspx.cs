@@ -37,6 +37,8 @@ namespace AionHR.Web.UI.Forms
         ICompanyStructureService _companyStructureService = ServiceLocator.Current.GetInstance<ICompanyStructureService>();
         ILeaveManagementService _leaveManagementService = ServiceLocator.Current.GetInstance<ILeaveManagementService>();
         ITimeAttendanceService _timeAttendanceService = ServiceLocator.Current.GetInstance<ITimeAttendanceService>();
+
+
         protected override void InitializeCulture()
         {
 
@@ -187,6 +189,7 @@ namespace AionHR.Web.UI.Forms
             lastName.Text = name.lastName;
             middleName.Text = name.middleName;
             familyName.Text = name.familyName;
+            reference.Text = name.reference;
         }
 
         private void SelectCombos(Employee result)
@@ -198,7 +201,7 @@ namespace AionHR.Web.UI.Forms
             //sponsorId.Select(result.sponsorId);
             vsId.Select(result.vsId);
             caId.Select(result.caId);
-
+            divisionId.Select(result.divisionId);
             if (result.gender == 1)
                 gender1.Checked = true;
             else
@@ -243,7 +246,12 @@ namespace AionHR.Web.UI.Forms
                 fullNameLbl.Text = "";
                 
             }
-
+            foreach (var item in panelRecordDetails.Items)
+            {
+                if (item.ID== "BasicInfoTab")
+                    continue;
+                item.Disabled = isAdd;
+            }
            
 
         }
@@ -368,7 +376,7 @@ namespace AionHR.Web.UI.Forms
             //picturePath.Clear();
             //imgControl.ImageUrl = "";
             InitCombos(true);
-           
+            CurrentEmployee.Text = "";
             this.EditRecordWindow.Title = Resources.Common.AddNewRecord;
 
             // timeZoneCombo.Select(_systemService.SessionHelper.GetTimeZone());
@@ -492,12 +500,12 @@ namespace AionHR.Web.UI.Forms
 
 
             //Getting the id to check if it is an Add or an edit as they are managed within the same form.
-            string id = e.ExtraParams["id"];
-
+            //string id = e.ExtraParams["id"];
+            string id = CurrentEmployee.Text;
             string obj = e.ExtraParams["values"];
             Employee b = JsonConvert.DeserializeObject<Employee>(obj);
             b.name = new EmployeeName() { firstName = firstName.Text, lastName = lastName.Text, familyName = familyName.Text, middleName = middleName.Text , reference=reference.Text };
-            b.isInactive = isInactive.Checked;
+           
             b.recordId = id;
             // Define the object to add or edit as null
             if (branchId.SelectedItem != null)
@@ -519,20 +527,23 @@ namespace AionHR.Web.UI.Forms
                     EmployeeAddOrUpdateRequest request = new EmployeeAddOrUpdateRequest();
 
                     byte[] fileData = null;
-                    //if (picturePath.PostedFile != null && picturePath.PostedFile.ContentLength > 0)
-                    //{
-                    //    using (var binaryReader = new BinaryReader(picturePath.PostedFile.InputStream))
-                    //    {
-                    //        fileData = binaryReader.ReadBytes(picturePath.PostedFile.ContentLength);
-                    //    }
-                    //    request.fileName = picturePath.PostedFile.FileName;
-                    //    request.imageData = fileData;
-                    //}
-                    //else
-                    //{
-                    request.imageData = fileData;
+                    if (picturePath.PostedFile != null && picturePath.PostedFile.ContentLength > 0)
+                    {
+                        //using (var binaryReader = new BinaryReader(picturePath.PostedFile.InputStream))
+                        //{
+                        //    fileData = binaryReader.ReadBytes(picturePath.PostedFile.ContentLength);
+                        //}
+                        fileData = new byte[picturePath.PostedFile.ContentLength];
+                        fileData = picturePath.FileBytes;
+                        request.fileName = picturePath.PostedFile.FileName;
+                        request.imageData = fileData;
+                        
+                    }
+                    else
+                    {
+                        request.imageData = fileData;
                     request.fileName = "";
-                    //}
+                    }
                     request.empData = b;
 
 
@@ -562,7 +573,10 @@ namespace AionHR.Web.UI.Forms
                             Html = Resources.Common.RecordSavingSucc
                         });
 
-                        this.EditRecordWindow.Close();
+                        CurrentEmployee.Text = b.recordId;
+                        FillLeftPanel();
+                        InitCombos(false);
+
                         RowSelectionModel sm = this.GridPanel1.GetSelectionModel() as RowSelectionModel;
                         sm.DeselectAll();
                         sm.Select(b.recordId.ToString());
@@ -590,25 +604,25 @@ namespace AionHR.Web.UI.Forms
                     EmployeeAddOrUpdateRequest request = new EmployeeAddOrUpdateRequest();
 
                     byte[] fileData = null;
-                    //if (picturePath.HasFile && picturePath.PostedFile.ContentLength > 0)
-                    //{
-                    //    //using (var binaryReader = new BinaryReader(picturePath.PostedFile.InputStream))
-                    //    // {
-                    //    //    fileData = binaryReader.ReadBytes(picturePath.PostedFile.ContentLength);
-                    //    // }
-                    //    fileData = new byte[picturePath.PostedFile.ContentLength];
-                    //    fileData = picturePath.FileBytes;
-                    //    request.fileName = picturePath.PostedFile.FileName;
-                    //    request.imageData = fileData;
+                    if (picturePath.HasFile && picturePath.PostedFile.ContentLength > 0)
+                    {
+                        //using (var binaryReader = new BinaryReader(picturePath.PostedFile.InputStream))
+                        // {
+                        //    fileData = binaryReader.ReadBytes(picturePath.PostedFile.ContentLength);
+                        // }
+                        fileData = new byte[picturePath.PostedFile.ContentLength];
+                        fileData = picturePath.FileBytes;
+                        request.fileName = picturePath.PostedFile.FileName;
+                        request.imageData = fileData;
 
 
 
-                    //}
-                    //else
-                    //{
-                    request.imageData = fileData;
-                    request.fileName = "";
-                    //}
+                    }
+                    else
+                    {
+                        request.imageData = fileData;
+                        request.fileName = "";
+                    }
                     request.empData = b;
 
 
