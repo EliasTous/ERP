@@ -49,7 +49,7 @@
                 </ext:Model>
             </Model>
             <Sorters>
-                <ext:DataSorter Property="recordId" Direction="ASC" />
+                <ext:DataSorter Property="routerRef" Direction="ASC" />
             </Sorters>
         </ext:Store>
 

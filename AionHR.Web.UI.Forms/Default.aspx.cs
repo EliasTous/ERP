@@ -60,13 +60,65 @@ namespace AionHR.Web.UI.Forms
             {
                 SetExtLanguage();
                 SetHeaderStyle();
-                
+
                 //Building the tree
-                _systemService.SessionHelper.Set("ActiveModule","-1");
+                _systemService.SessionHelper.Set("ActiveModule", "-1");
                 BuildTree(1);
                 commonTree.Title = Resources.Common.EmployeeFiles;
+               // TryRegister();
+            }
+        }
+
+        private void TryRegister()
+        {
+            Registration r = new Registration();
+            r.company = "sss";
+            r.email = "george.kalsssssash@softmachine.co";
+            r.languageId = 1;
+            r.name = "sss";
+            PostRequest<Registration> req = new PostRequest<Registration>();
+            req.entity = r;
+
+            PostResponse<Registration> response = null;
+            try
+            {
+                response = _masterService.AddRegistration(r);
+            }
+            catch { }
+
+
+
+
+            Account acc = new Account();
+            acc.registrationId = Convert.ToInt32(response.recordId);
+            acc.accountName = "sss";
+            acc.companyName = "sss";
+            acc.languageId = 1;
+            PostRequest<Account> accountRequest = new PostRequest<Account>();
+            PostResponse<Account> accountResponse = null;
+            try
+            {
+                accountResponse = _masterService.AddAccount(acc);
+
 
             }
+            catch { }
+            DbSetup s = new DbSetup();
+            s.accountId = Convert.ToInt32(accountResponse.recordId);
+            s.email = "george.kalsssssash@softmachine.co";
+            s.fullName = "georgessss kalash";
+
+            s.languageId = r.languageId;
+            s.password = "123";
+
+            PostRequest<DbSetup> dbRequest = new PostRequest<DbSetup>();
+
+            try
+            {
+                PostResponse<DbSetup> dbResponse = _masterService.CreateDB(s);
+            }
+            catch { }
+
         }
 
         private void SetHeaderStyle()
@@ -103,7 +155,7 @@ namespace AionHR.Web.UI.Forms
             if (activeModule != null && activeModule.ToString() == id.ToString())
             {
                 return "Stop";
-                
+
             }
             //setting session and continue
             _systemService.SessionHelper.Set("ActiveModule", id);

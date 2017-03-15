@@ -144,6 +144,9 @@
   <data name="Password" xml:space="preserve">
     <value>Password</value>
   </data>
+  <data name="RememberMe" xml:space="preserve">
+    <value>Remember Me</value>
+  </data>
   <data name="RequestError" xml:space="preserve">
     <value>Error in request, Try Again Later.</value>
   </data>

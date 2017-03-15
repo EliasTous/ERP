@@ -125,6 +125,7 @@
                             FieldLabel="<%$ Resources: Password %>"
                             EmptyText="<%$ Resources: EnterYourPassword %>"
                             InputType="Password" />
+                        <ext:Checkbox ID="rememberMeCheck" runat="server" FieldLabel="<%$ Resources: RememberMe %>" InputValue="True" />
                         <ext:FieldContainer runat="server" ID="lblErroContainer" FieldLabel="">
                             <Items>
                                 <ext:Label ID="lblError"
@@ -134,6 +135,7 @@
                                     Cls="error" />
                             </Items>
                         </ext:FieldContainer>
+                        
                     </Items>
                     <Buttons>
                         <ext:Button ID="btnLogin" runat="server" Text="<%$ Resources:  Login %>">

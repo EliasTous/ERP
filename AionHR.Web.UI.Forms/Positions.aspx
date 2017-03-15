@@ -43,7 +43,7 @@
 
                         <ext:ModelField Name="recordId" />
                         <ext:ModelField Name="name" />
-                        <ext:ModelField Name="reference" />
+                        <ext:ModelField Name="positionRef" />
                         <ext:ModelField Name="description" />
                         <ext:ModelField Name="referToPositionId" />
                         <ext:ModelField Name="referToPositionName" />
@@ -119,7 +119,7 @@
                         <Columns>
 
                             <ext:Column Visible="false" ID="ColrecordId" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldrecordId %>" DataIndex="recordId" Hideable="false" Width="75" Align="Center" />
-                            <ext:Column ID="ColReference" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldReference%>" DataIndex="reference" Flex="1" Hideable="false" />
+                            <ext:Column ID="ColReference" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldReference%>" DataIndex="positionRef" Flex="1" Hideable="false" />
                             <ext:Column CellCls="cellLink" ID="ColName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldName%>" DataIndex="name" Flex="2" Hideable="false">
                                 <Renderer Handler="return '<u>'+ record.data['name']+'</u>'">
                                 </Renderer>
@@ -262,7 +262,7 @@
                             <Items>
                                 <ext:TextField ID="recordId" Hidden="true" runat="server" FieldLabel="<%$ Resources:FieldrecordId%>" Disabled="true" DataIndex="recordId" />
                                 <ext:TextField ID="name" runat="server" FieldLabel="<%$ Resources:FieldName%>" DataIndex="name" AllowBlank="false" BlankText="<%$ Resources:Common, MandatoryField%>" />
-                                <ext:TextField ID="reference" runat="server" FieldLabel="<%$ Resources: FieldReference %>" DataIndex="reference" />
+                                <ext:TextField ID="positionRef" runat="server" FieldLabel="<%$ Resources: FieldReference %>" DataIndex="positionRef" />
                                 <ext:TextField ID="description" runat="server" FieldLabel="<%$ Resources: FieldDescription %>" DataIndex="description" AllowBlank="true" />
 
 

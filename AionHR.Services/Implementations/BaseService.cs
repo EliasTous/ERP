@@ -36,8 +36,10 @@ namespace AionHR.Services.Implementations
             else
             {
                 response.Success = webResponse.statusId == "1";
-                response.Summary = webResponse.Details;
 
+                
+
+                response.Summary = webResponse.Details;
             }
 
             return response;

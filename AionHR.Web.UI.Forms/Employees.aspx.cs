@@ -195,7 +195,7 @@ namespace AionHR.Web.UI.Forms
             departmentId.Select(result.departmentId);
             positionId.Select(result.positionId);
             nationalityId.Select(result.nationalityId);
-            sponsorId.Select(result.sponsorId);
+            //sponsorId.Select(result.sponsorId);
             vsId.Select(result.vsId);
             caId.Select(result.caId);
 
@@ -207,17 +207,23 @@ namespace AionHR.Web.UI.Forms
             //    imgControl.ImageUrl = result.pictureUrl;
 
         }
-        private void InitCombos()
+        private void InitCombos(bool isAdd)
         {
             FillBranch();
-
-
+            branchId.Enabled = isAdd;
+            branchId.ReadOnly = !isAdd;
+            
             FillDepartment();
 
-
+            departmentId.Enabled = isAdd;
+            departmentId.ReadOnly = !isAdd;
             FillPosition();
 
-
+            positionId.Enabled = isAdd;
+            positionId.ReadOnly = !isAdd;
+            FillDivision();
+            divisionId.Enabled = isAdd;
+            divisionId.ReadOnly = !isAdd;
             FillNationality();
 
 
@@ -225,11 +231,20 @@ namespace AionHR.Web.UI.Forms
 
 
             FillVacationSchedule();
-
-
+            panelRecordDetails.Enabled = !isAdd;
+            
             FillWorkingCalendar();
 
+            if (isAdd)
+            {
+                branchLbl.Text = "";
+                positionLbl.Text = "";
+                departmentLbl.Text = "";
+                fullNameLbl.Text = "";
+                
+            }
 
+           
 
         }
 
@@ -352,7 +367,8 @@ namespace AionHR.Web.UI.Forms
             BasicInfoTab.Reset();
             //picturePath.Clear();
             //imgControl.ImageUrl = "";
-            InitCombos();
+            InitCombos(true);
+           
             this.EditRecordWindow.Title = Resources.Common.AddNewRecord;
 
             // timeZoneCombo.Select(_systemService.SessionHelper.GetTimeZone());
@@ -431,14 +447,23 @@ namespace AionHR.Web.UI.Forms
             BranchStore.DataSource = resp.Items;
             BranchStore.DataBind();
         }
+        private void FillDivision()
+        {
+            ListRequest branchesRequest = new ListRequest();
+            ListResponse<Division> resp = _companyStructureService.ChildGetAll<Division>(branchesRequest);
+            if (!resp.Success)
+                X.Msg.Alert(Resources.Common.Error, resp.Summary).Show();
+            divisionStore.DataSource = resp.Items;
+            divisionStore.DataBind();
+        }
         private void FillSponsor()
         {
             ListRequest sponsorsRequest = new ListRequest();
             ListResponse<Sponsor> resp = _employeeService.ChildGetAll<Sponsor>(sponsorsRequest);
             if (!resp.Success)
                 X.Msg.Alert(Resources.Common.Error, resp.Summary).Show();
-            SponsorStore.DataSource = resp.Items;
-            SponsorStore.DataBind();
+            //SponsorStore.DataSource = resp.Items;
+            //SponsorStore.DataBind();
         }
         private void FillVacationSchedule()
         {
@@ -471,7 +496,7 @@ namespace AionHR.Web.UI.Forms
 
             string obj = e.ExtraParams["values"];
             Employee b = JsonConvert.DeserializeObject<Employee>(obj);
-            b.name = new EmployeeName() { firstName = firstName.Text, lastName = lastName.Text, familyName = familyName.Text, middleName = middleName.Text };
+            b.name = new EmployeeName() { firstName = firstName.Text, lastName = lastName.Text, familyName = familyName.Text, middleName = middleName.Text , reference=reference.Text };
             b.isInactive = isInactive.Checked;
             b.recordId = id;
             // Define the object to add or edit as null
@@ -481,6 +506,8 @@ namespace AionHR.Web.UI.Forms
                 b.departmentName = departmentId.SelectedItem.Text;
             if (positionId.SelectedItem != null)
                 b.positionName = positionId.SelectedItem.Text;
+            if (divisionId.SelectedItem != null)
+                b.divisionName = positionId.SelectedItem.Text;
             b.name.fullName = b.name.firstName + " " + b.name.middleName + " " + b.name.lastName + " ";
             if (string.IsNullOrEmpty(id))
             {
@@ -678,8 +705,10 @@ namespace AionHR.Web.UI.Forms
             //Step 2 : call setvalues with the retrieved object
             this.BasicInfoTab.SetValues(response.result);
             FillNameFields(response.result.name);
-            InitCombos();
+            InitCombos(false);
             SelectCombos(response.result);
+
+            
         }
 
         private void FillLeftPanel()

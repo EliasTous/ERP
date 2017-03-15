@@ -33,6 +33,10 @@ namespace AionHR.Model.Employees.Profile
         public string departmentName { get; set; }
         public string mainDept { get; set; }
         public int? branchId { get; set; }
+
+        public int? divisionId { get; set; }
+
+        public string divisionName { get; set; }
         public string branchName { get; set; }
         
         public DateTime? hireDate { get; set; }
@@ -65,5 +69,6 @@ namespace AionHR.Model.Employees.Profile
         public string middleName { get; set; }
         public string lastName { get; set; }
         public string familyName { get; set; }
+        public string reference { get; set; }
     }
 }

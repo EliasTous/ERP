@@ -150,6 +150,9 @@
   <data name="FieldDepartment" xml:space="preserve">
     <value>Department</value>
   </data>
+  <data name="FieldDivision" xml:space="preserve">
+    <value>Division</value>
+  </data>
   <data name="FieldEmployee" xml:space="preserve">
     <value>Employee</value>
   </data>

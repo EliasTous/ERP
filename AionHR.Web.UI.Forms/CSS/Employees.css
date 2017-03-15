@@ -97,3 +97,7 @@ input[readonly]
 {
     width:600px!important;
 }
+.x-toolbar-footer
+{
+    background-color:white;
+}

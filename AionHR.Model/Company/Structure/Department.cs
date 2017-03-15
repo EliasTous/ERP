@@ -10,7 +10,7 @@ namespace AionHR.Model.Company.Structure
 {
     public class Department :ModelBase, IEntity
     {
-        public string reference { get; set; }
+        public string departmentRef { get; set; }
         public string name { get; set; }
         public string parentName { get; set; }
         public int? parentId { get; set; }

@@ -229,6 +229,15 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Column ColBranchName;
         
         /// <summary>
+        /// Column1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Column Column1;
+        
+        /// <summary>
         /// ColHireDate control.
         /// </summary>
         /// <remarks>
@@ -535,22 +544,13 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Store NationalityStore;
         
         /// <summary>
-        /// positionId control.
+        /// addButton control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.ComboBox positionId;
-        
-        /// <summary>
-        /// positionStore control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Store positionStore;
+        protected global::Ext.Net.Button addButton;
         
         /// <summary>
         /// departmentId control.
@@ -571,6 +571,15 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Store departmentStore;
         
         /// <summary>
+        /// Button2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Button Button2;
+        
+        /// <summary>
         /// branchId control.
         /// </summary>
         /// <remarks>
@@ -589,22 +598,67 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Store BranchStore;
         
         /// <summary>
-        /// sponsorId control.
+        /// Button3 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.ComboBox sponsorId;
+        protected global::Ext.Net.Button Button3;
         
         /// <summary>
-        /// SponsorStore control.
+        /// divisionId control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Store SponsorStore;
+        protected global::Ext.Net.ComboBox divisionId;
+        
+        /// <summary>
+        /// divisionStore control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Store divisionStore;
+        
+        /// <summary>
+        /// Button7 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Button Button7;
+        
+        /// <summary>
+        /// positionId control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.ComboBox positionId;
+        
+        /// <summary>
+        /// positionStore control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Store positionStore;
+        
+        /// <summary>
+        /// Button1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Button Button1;
         
         /// <summary>
         /// vsId control.
@@ -625,6 +679,15 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Store VacationScheduleStore;
         
         /// <summary>
+        /// Button5 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Button Button5;
+        
+        /// <summary>
         /// caId control.
         /// </summary>
         /// <remarks>
@@ -641,6 +704,15 @@ namespace AionHR.Web.UI.Forms {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.Store CalendarStore;
+        
+        /// <summary>
+        /// Button6 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Button Button6;
         
         /// <summary>
         /// birthPlace control.

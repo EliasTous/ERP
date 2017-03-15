@@ -62,18 +62,18 @@ namespace AionHR.Web.UI.Forms
                 HideShowColumns();
 
 
-
+                ListRequest req = new ListRequest();
+                ListResponse<KeyValuePair<string, string>> defaults = _systemService.ChildGetAll<KeyValuePair<string, string>>(req);
+                if (!defaults.Success)
+                {
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    X.Msg.Alert(Resources.Common.Error, defaults.Summary).Show();
+                    return;
+                }
+                FillCombos();
+                FillDefaults(defaults.Items);
             }
-            ListRequest req = new ListRequest();
-            ListResponse<KeyValuePair<string, string>> defaults = _systemService.ChildGetAll<KeyValuePair<string, string>>(req);
-            if (!defaults.Success)
-            {
-                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, defaults.Summary).Show();
-                return;
-            }
-            FillCombos();
-            FillDefaults(defaults.Items);
+           
         }
 
         private void FillCombos()
@@ -90,10 +90,10 @@ namespace AionHR.Web.UI.Forms
                 countryIdCombo.Select(items.Where(s => s.Key == "countryId").First().Value);
                 dateFormatCombo.Select(items.Where(s => s.Key == "dateFormat").First().Value);
                 nameFormatCombo.Select(items.Where(s => s.Key == "nameFormat").First().Value);
-                timeZoneCombo.Select(items.Where(s => s.Key == "TimeZone").First().Value);
+                timeZoneCombo.Select(items.Where(s => s.Key == "timeZone").First().Value);
                 fdowCombo.Select(items.Where(s => s.Key == "fdow").First().Value);
                 logCheck.Checked = items.Where(s => s.Key == "transactionLog").First().Value == "on";
-                enableCameraCheck.Checked = items.Where(s => s.Key == "diableCamera").First().Value == "on";
+                enableCameraCheck.Checked = items.Where(s => s.Key == "enableCamera").First().Value == "on";
             }
             catch { }
         }
@@ -145,10 +145,10 @@ namespace AionHR.Web.UI.Forms
             submittedValues.Add(new KeyValuePair<string, string>("currencyId", values.currencyId.ToString()));
             submittedValues.Add(new KeyValuePair<string, string>("nameFormat", values.nameFormat.ToString()));
             submittedValues.Add(new KeyValuePair<string, string>("dateFormat", values.dateFormat.ToString()));
-            submittedValues.Add(new KeyValuePair<string, string>("TimeZone", values.TimeZone.ToString()));
+            submittedValues.Add(new KeyValuePair<string, string>("timeZone", values.timeZone.ToString()));
             submittedValues.Add(new KeyValuePair<string, string>("fdow", values.fdow.ToString()));
             submittedValues.Add(new KeyValuePair<string, string>("transactionLog", values.transactionLog == null?"off":"on"));
-            submittedValues.Add(new KeyValuePair<string, string>("diableCamera", values.diableCamera == null ? "off" : "on"));
+            submittedValues.Add(new KeyValuePair<string, string>("enableCamera", values.enableCamera == null ? "off" : "on"));
             KeyValuePair<string, string>[] valArr = submittedValues.ToArray();
             PostRequest<KeyValuePair<string, string>[]> req = new PostRequest<KeyValuePair<string, string>[]>();
             req.entity = valArr;
