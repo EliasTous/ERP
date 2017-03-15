@@ -40,7 +40,7 @@
         <ext:Hidden ID="timeZoneOffset" runat="server" EnableViewState="true" />
         <ext:Hidden ID="CurrentEmployee" runat="server" EnableViewState="true" />
         <ext:Hidden runat="server" ID="lblLoading" Text="<%$Resources:Common , Loading %>" />
-        <ext:Viewport runat="server" Layout="CardLayout" ActiveIndex="0" ID="Viewport1">
+        <ext:Viewport runat="server" Layout="BorderLayout"  ID="Viewport1">
             <Items>
                 <ext:GridPanel
                     ID="GridPanel1"
@@ -50,6 +50,7 @@
                     Title="<%$ Resources: WindowTitle %>"
                     Layout="FitLayout"
                     Scroll="Vertical"
+                    Region="Center"
                     Border="false"
                     Icon="User"
                     ColumnLines="True" IDMode="Explicit" RenderXType="True">
@@ -267,46 +268,47 @@
 
 
         <ext:Window
-            ID="EditRecordWindow" 
+            ID="EditRecordWindow"
             runat="server"
             Icon="PageEdit"
             Title="<%$ Resources:EditWindowsTitle %>"
             Width="781"
+            height="500"
             AutoShow="false"
             Modal="true"
             Hidden="true"
             Maximizable="true"
-             Maximized="true"
-             Layout="Fit">
+            
+            Maximized="true"
+            Layout="BorderLayout"  >
 
-            <Items>
-                    <ext:Panel runat="server" Layout="BorderLayout">
+       
                     <Items>
-                        <ext:Panel ID="leftPanel" runat="server" Region="West"  PaddingSpec="0 0 0 0" Padding="0" TitleAlign="Center"
+                        <ext:Panel ID="leftPanel" runat="server" Region="West" PaddingSpec="0 0 0 0" Padding="0" TitleAlign="Center"
                             Header="true" Collapsible="false" titlePosition="2"
                             Title="<%$ Resources:Common , NavigationPane %>" CollapseToolText="<%$ Resources:Common , CollapsePanel %>" ExpandToolText="<%$ Resources:Common , ExpandPanel %>" BodyBorder="0">
 
                             <Items>
                                 <ext:Panel runat="server">
-                                
+
                                     <Items>
                                         <ext:Panel runat="server" Padding="10">
                                             <Content>
-                                                <div style="text-align:left;">
+                                                <div style="text-align: left;">
                                                     <ext:Image runat="server" ID="imgControl" Width="100" Height="100">
-                                            <Listeners>
-                                                <Click Handler="triggierImageClick(App.picturePath.fileInputEl.id); " />
-                                            </Listeners>
-                                        </ext:Image>
-                                        <ext:FileUploadField ID="picturePath" runat="server" ButtonOnly="true" Hidden="true">
+                                                        <Listeners>
+                                                            <Click Handler="triggierImageClick(App.picturePath.fileInputEl.id); " />
+                                                        </Listeners>
+                                                    </ext:Image>
+                                                    <ext:FileUploadField ID="picturePath" runat="server" ButtonOnly="true" Hidden="true">
 
-                                            <Listeners>
-                                                <Change Handler="showImagePreview(App.picturePath.fileInputEl.id);" />
-                                            </Listeners>
-                                            <DirectEvents>
-                                                <Change OnEvent="Unnamed_Event" />
-                                            </DirectEvents>
-                                        </ext:FileUploadField>
+                                                        <Listeners>
+                                                            <Change Handler="showImagePreview(App.picturePath.fileInputEl.id);" />
+                                                        </Listeners>
+                                                        <DirectEvents>
+                                                            <Change OnEvent="Unnamed_Event" />
+                                                        </DirectEvents>
+                                                    </ext:FileUploadField>
                                                 </div>
                                             </Content>
                                         </ext:Panel>
@@ -322,13 +324,13 @@
                                 </ext:Panel>
 
                             </Items>
-                        
+
                         </ext:Panel>
 
 
-                        <ext:Panel runat="server" Region="Center"  DefaultAnchor="100%"  Layout="Fit" > <Items>
 
-                        <ext:TabPanel ID="panelRecordDetails" Layout="Fit" MinWidth="500" MinHeight="400" DefaultAnchor="100%"  runat="server" ActiveTabIndex="0" Border="false" DeferredRender="false" Region="Center">
+
+                        <ext:TabPanel ID="panelRecordDetails" Layout="FitLayout" DefaultAnchor="100%" runat="server" ActiveTabIndex="0" Border="false" DeferredRender="false" Region="Center">
                             <Items>
                                 <ext:FormPanel DefaultButton="SaveButton"
                                     ID="BasicInfoTab"
@@ -397,7 +399,7 @@
                                                         </ext:Store>
                                                     </Store>
                                                     <RightButtons>
-                                                        <ext:Button ID="addButton" runat="server" Icon="Add" Hidden="true"  >
+                                                        <ext:Button ID="addButton" runat="server" Icon="Add" Hidden="true">
                                                         </ext:Button>
                                                     </RightButtons>
                                                     <Listeners>
@@ -405,101 +407,103 @@
                                                         <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
                                                     </Listeners>
                                                 </ext:ComboBox>
-                                                <ext:FieldContainer runat="server" Border="true" ><Items>
-                                                  <ext:ComboBox Enabled="false"   runat="server" AllowBlank="false" ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" ID="departmentId" Name="departmentId" FieldLabel="<%$ Resources:FieldDepartment%>" SimpleSubmit="true">
-                                                    <Store>
-                                                        <ext:Store runat="server" ID="departmentStore">
-                                                            <Model>
-                                                                <ext:Model runat="server">
-                                                                    <Fields>
-                                                                        <ext:ModelField Name="recordId" />
-                                                                        <ext:ModelField Name="name" />
-                                                                    </Fields>
-                                                                </ext:Model>
-                                                            </Model>
-                                                        </ext:Store>
-                                                    </Store>
-                                                      <RightButtons>
-                                                        <ext:Button ID="Button2" runat="server" Icon="Add" Hidden="true"  >
-                                                        </ext:Button>
-                                                    </RightButtons>
-                                                    <Listeners>
-                                                        <FocusEnter Handler="this.rightButtons[0].setHidden(false);" />
-                                                        <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
-                                                    </Listeners>
-                                                </ext:ComboBox>
-                                                 <ext:ComboBox Enabled="false"  runat="server" AllowBlank="false" ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" ID="branchId" Name="branchId" FieldLabel="<%$ Resources:FieldBranch%>" SimpleSubmit="true">
-                                                    <Store>
-                                                        <ext:Store runat="server" ID="BranchStore">
-                                                            <Model>
-                                                                <ext:Model runat="server">
-                                                                    <Fields>
-                                                                        <ext:ModelField Name="recordId" />
-                                                                        <ext:ModelField Name="name" />
-                                                                    </Fields>
-                                                                </ext:Model>
-                                                            </Model>
-                                                        </ext:Store>
-                                                    </Store>
-                                                      <RightButtons>
-                                                        <ext:Button ID="Button3" runat="server" Icon="Add" Hidden="true"  >
-                                                        </ext:Button>
-                                                    </RightButtons>
-                                                    <Listeners>
-                                                        <FocusEnter Handler="this.rightButtons[0].setHidden(false);" />
-                                                        <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
-                                                    </Listeners>
-                                                </ext:ComboBox>
-                                               
-                                              
-                                               
-                                                <ext:ComboBox  Enabled="false" runat="server" AllowBlank="false" ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" ID="divisionId" Name="divisionId" FieldLabel="<%$ Resources:FieldDivision%>" SimpleSubmit="true">
-                                                    <Store>
-                                                        <ext:Store runat="server" ID="divisionStore">
-                                                            <Model>
-                                                                <ext:Model runat="server">
-                                                                    <Fields>
-                                                                        <ext:ModelField Name="recordId" />
-                                                                        <ext:ModelField Name="name" />
-                                                                    </Fields>
-                                                                </ext:Model>
-                                                            </Model>
-                                                        </ext:Store>
-                                                    </Store>
-                                                      <RightButtons>
-                                                        <ext:Button ID="Button7" runat="server" Icon="Add" Hidden="true"  >
-                                                        </ext:Button>
-                                                    </RightButtons>
-                                                    <Listeners>
-                                                        <FocusEnter Handler="this.rightButtons[0].setHidden(false);" />
-                                                        <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
-                                                    </Listeners>
-                                                </ext:ComboBox>
-                                                 <ext:ComboBox  Enabled="false" ValueField="recordId" AllowBlank="false" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" runat="server" ID="positionId" Name="positionId" FieldLabel="<%$ Resources:FieldPosition%>" SimpleSubmit="true">
-                                                    <Store>
-                                                        <ext:Store runat="server" ID="positionStore">
-                                                            <Model>
-                                                                <ext:Model runat="server">
-                                                                    <Fields>
-                                                                        <ext:ModelField Name="recordId" />
-                                                                        <ext:ModelField Name="name" />
-                                                                    </Fields>
-                                                                </ext:Model>
-                                                            </Model>
-                                                        </ext:Store>
-                                                    </Store>
-                                                      <RightButtons>
-                                                        <ext:Button ID="Button1" runat="server" Icon="Add" Hidden="true"  >
-                                                        </ext:Button>
-                                                    </RightButtons>
-                                                    <Listeners>
-                                                        <FocusEnter Handler="this.rightButtons[0].setHidden(false);" />
-                                                        <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
-                                                    </Listeners>
-                                                </ext:ComboBox>
-                                                    </Items></ext:FieldContainer>
-                                                
-                                                
+                                                <ext:FieldContainer runat="server" Border="true">
+                                                    <Items>
+                                                        <ext:ComboBox Enabled="false" runat="server" AllowBlank="false" ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" ID="departmentId" Name="departmentId" FieldLabel="<%$ Resources:FieldDepartment%>" SimpleSubmit="true">
+                                                            <Store>
+                                                                <ext:Store runat="server" ID="departmentStore">
+                                                                    <Model>
+                                                                        <ext:Model runat="server">
+                                                                            <Fields>
+                                                                                <ext:ModelField Name="recordId" />
+                                                                                <ext:ModelField Name="name" />
+                                                                            </Fields>
+                                                                        </ext:Model>
+                                                                    </Model>
+                                                                </ext:Store>
+                                                            </Store>
+                                                            <RightButtons>
+                                                                <ext:Button ID="Button2" runat="server" Icon="Add" Hidden="true">
+                                                                </ext:Button>
+                                                            </RightButtons>
+                                                            <Listeners>
+                                                                <FocusEnter Handler="this.rightButtons[0].setHidden(false);" />
+                                                                <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
+                                                            </Listeners>
+                                                        </ext:ComboBox>
+                                                        <ext:ComboBox Enabled="false" runat="server" AllowBlank="false" ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" ID="branchId" Name="branchId" FieldLabel="<%$ Resources:FieldBranch%>" SimpleSubmit="true">
+                                                            <Store>
+                                                                <ext:Store runat="server" ID="BranchStore">
+                                                                    <Model>
+                                                                        <ext:Model runat="server">
+                                                                            <Fields>
+                                                                                <ext:ModelField Name="recordId" />
+                                                                                <ext:ModelField Name="name" />
+                                                                            </Fields>
+                                                                        </ext:Model>
+                                                                    </Model>
+                                                                </ext:Store>
+                                                            </Store>
+                                                            <RightButtons>
+                                                                <ext:Button ID="Button3" runat="server" Icon="Add" Hidden="true">
+                                                                </ext:Button>
+                                                            </RightButtons>
+                                                            <Listeners>
+                                                                <FocusEnter Handler="this.rightButtons[0].setHidden(false);" />
+                                                                <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
+                                                            </Listeners>
+                                                        </ext:ComboBox>
+
+
+
+                                                        <ext:ComboBox Enabled="false" runat="server" AllowBlank="false" ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" ID="divisionId" Name="divisionId" FieldLabel="<%$ Resources:FieldDivision%>" SimpleSubmit="true">
+                                                            <Store>
+                                                                <ext:Store runat="server" ID="divisionStore">
+                                                                    <Model>
+                                                                        <ext:Model runat="server">
+                                                                            <Fields>
+                                                                                <ext:ModelField Name="recordId" />
+                                                                                <ext:ModelField Name="name" />
+                                                                            </Fields>
+                                                                        </ext:Model>
+                                                                    </Model>
+                                                                </ext:Store>
+                                                            </Store>
+                                                            <RightButtons>
+                                                                <ext:Button ID="Button7" runat="server" Icon="Add" Hidden="true">
+                                                                </ext:Button>
+                                                            </RightButtons>
+                                                            <Listeners>
+                                                                <FocusEnter Handler="this.rightButtons[0].setHidden(false);" />
+                                                                <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
+                                                            </Listeners>
+                                                        </ext:ComboBox>
+                                                        <ext:ComboBox Enabled="false" ValueField="recordId" AllowBlank="false" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" runat="server" ID="positionId" Name="positionId" FieldLabel="<%$ Resources:FieldPosition%>" SimpleSubmit="true">
+                                                            <Store>
+                                                                <ext:Store runat="server" ID="positionStore">
+                                                                    <Model>
+                                                                        <ext:Model runat="server">
+                                                                            <Fields>
+                                                                                <ext:ModelField Name="recordId" />
+                                                                                <ext:ModelField Name="name" />
+                                                                            </Fields>
+                                                                        </ext:Model>
+                                                                    </Model>
+                                                                </ext:Store>
+                                                            </Store>
+                                                            <RightButtons>
+                                                                <ext:Button ID="Button1" runat="server" Icon="Add" Hidden="true">
+                                                                </ext:Button>
+                                                            </RightButtons>
+                                                            <Listeners>
+                                                                <FocusEnter Handler="this.rightButtons[0].setHidden(false);" />
+                                                                <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
+                                                            </Listeners>
+                                                        </ext:ComboBox>
+                                                    </Items>
+                                                </ext:FieldContainer>
+
+
                                                 <ext:ComboBox runat="server" AllowBlank="false" ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" ID="vsId" Name="vsId" FieldLabel="<%$ Resources:FieldVacationSchedule%>" SimpleSubmit="true">
                                                     <Store>
                                                         <ext:Store runat="server" ID="VacationScheduleStore">
@@ -513,8 +517,8 @@
                                                             </Model>
                                                         </ext:Store>
                                                     </Store>
-                                                     <RightButtons>
-                                                        <ext:Button ID="Button5" runat="server" Icon="Add" Hidden="true"  >
+                                                    <RightButtons>
+                                                        <ext:Button ID="Button5" runat="server" Icon="Add" Hidden="true">
                                                         </ext:Button>
                                                     </RightButtons>
                                                     <Listeners>
@@ -535,8 +539,8 @@
                                                             </Model>
                                                         </ext:Store>
                                                     </Store>
-                                                     <RightButtons>
-                                                        <ext:Button ID="Button6" runat="server" Icon="Add" Hidden="true"  >
+                                                    <RightButtons>
+                                                        <ext:Button ID="Button6" runat="server" Icon="Add" Hidden="true">
                                                         </ext:Button>
                                                     </RightButtons>
                                                     <Listeners>
@@ -547,7 +551,7 @@
                                                 <ext:TextField ID="birthPlace" runat="server" FieldLabel="<%$ Resources:FieldBirthPlace%>" Name="placeOfBirth" AllowBlank="true" />
 
 
-                                                
+
                                                 <ext:DateField
                                                     runat="server"
                                                     Name="hireDate"
@@ -573,47 +577,43 @@
                                     </Items>
                                 </ext:Panel>--%>
                                     </Items>
-                                     <Buttons >
-                                         
-                <ext:Button ID="SaveButton" runat="server" Text="<%$ Resources:Common, Save %>" Icon="Disk">
+                                    <Buttons>
 
-                    <Listeners>
-                        <Click Handler="CheckSession(); if (!#{BasicInfoTab}.getForm().isValid()) {  return false;} " />
-                    </Listeners>
-                    <DirectEvents>
-                        <Click OnEvent="SaveNewRecord" Failure="Ext.MessageBox.alert('#{titleSavingError}.value', '#{titleSavingErrorMessage}.value');">
-                            <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="={#{EditRecordWindow}.body}" />
-                            <ExtraParams>
-                                <ext:Parameter Name="id" Value="#{recordId}.getValue()" Mode="Raw" />
-                                <ext:Parameter Name="values" Value="#{BasicInfoTab}.getForm().getValues(false, false, false, true)" Mode="Raw" Encode="true" />
-                            </ExtraParams>
-                        </Click>
-                    </DirectEvents>
-                </ext:Button>
-                <ext:Button ID="CancelButton" runat="server" Text="<%$ Resources:Common , Cancel %>" Icon="Cancel">
-                    <Listeners>
-                        <Click Handler="this.up('window').hide();" />
-                    </Listeners>
-                </ext:Button>
-            </Buttons>
+                                        <ext:Button ID="SaveButton" runat="server" Text="<%$ Resources:Common, Save %>" Icon="Disk">
+
+                                            <Listeners>
+                                                <Click Handler="CheckSession(); if (!#{BasicInfoTab}.getForm().isValid()) {  return false;} " />
+                                            </Listeners>
+                                            <DirectEvents>
+                                                <Click OnEvent="SaveNewRecord" Failure="Ext.MessageBox.alert('#{titleSavingError}.value', '#{titleSavingErrorMessage}.value');">
+                                                    <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="={#{EditRecordWindow}.body}" />
+                                                    <ExtraParams>
+                                                        <ext:Parameter Name="id" Value="#{recordId}.getValue()" Mode="Raw" />
+                                                        <ext:Parameter Name="values" Value="#{BasicInfoTab}.getForm().getValues(false, false, false, true)" Mode="Raw" Encode="true" />
+                                                    </ExtraParams>
+                                                </Click>
+                                            </DirectEvents>
+                                        </ext:Button>
+                                        <ext:Button ID="CancelButton" runat="server" Text="<%$ Resources:Common , Cancel %>" Icon="Cancel">
+                                            <Listeners>
+                                                <Click Handler="this.up('window').hide();" />
+                                            </Listeners>
+                                        </ext:Button>
+                                    </Buttons>
                                 </ext:FormPanel>
-                                  <ext:Panel runat="server"  AutoUpdateLayout="true" Layout="Fit" Title="<%$ Resources: JobInformationTab %>" ID="profilePanel" DefaultAnchor="100%"  >
-                                    <Loader runat="server" Url="EmployeePages/JobInformation.aspx" Mode="Frame" ID="profileLoader" TriggerEvent="show" 
-                        ReloadOnEvent="true"
-                        DisableCaching="true" >
+                                <ext:Panel runat="server"  Layout="FitLayout" Title="<%$ Resources: JobInformationTab %>" ID="profilePanel" DefaultAnchor="100%">
+                                    <Loader runat="server" Url="EmployeePages/JobInformation.aspx" Mode="Frame" ID="profileLoader" TriggerEvent="show"
+                                        ReloadOnEvent="true"
+                                        DisableCaching="true">
                                         <LoadMask ShowMask="true" />
                                     </Loader>
                                 </ext:Panel>
-                                
+
                             </Items>
                         </ext:TabPanel>
-                        </Items></ext:Panel>
+
                     </Items>
-                 
-                </ext:Panel>
-            
-            </Items>
-           
+          
         </ext:Window>
 
 

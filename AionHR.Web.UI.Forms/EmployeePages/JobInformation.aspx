@@ -22,24 +22,28 @@
         <ext:Hidden ID="textLoadFailed" runat="server" Text="<%$ Resources:Common , LoadFailed %>" />
         <ext:Hidden ID="titleSavingError" runat="server" Text="<%$ Resources:Common , TitleSavingError %>" />
         <ext:Hidden ID="titleSavingErrorMessage" runat="server" Text="<%$ Resources:Common , TitleSavingErrorMessage %>" />
-        <ext:Hidden ID="CurrentEmployee" runat="server"  />
+        <ext:Hidden ID="CurrentEmployee" runat="server" />
 
 
 
 
-        <ext:Panel ID="Viewport1" runat="server" Layout="AutoLayout" AutoUpdateLayout="true">
+        <ext:Viewport ID="Viewport11" runat="server" Layout="VBoxLayout">
+            <LayoutConfig>
+                <ext:VBoxLayoutConfig Align="Stretch" />
+            </LayoutConfig>
             <Items>
 
-                <ext:GridPanel AutoUpdateLayout="true"
+                <ext:GridPanel
                     ID="employeementHistoryGrid"
                     runat="server"
                     PaddingSpec="0 0 1 0"
                     Header="true"
                     Title="<%$ Resources: EHGridTitle %>"
-                    Layout="Fit"
+                    Layout="FitLayout"
+                    Flex="1"
                     Scroll="Vertical"
                     Border="false"
-                    Icon="User" DefaultAnchor="100%"  
+                    Icon="User" DefaultAnchor="100%"
                     ColumnLines="True" IDMode="Explicit" RenderXType="True">
                     <Store>
                         <ext:Store
@@ -171,7 +175,7 @@
                         </ext:Toolbar>
 
                     </DockedItems>
-                
+
                     <Listeners>
                         <Render Handler="this.on('cellclick', cellClick);" />
                     </Listeners>
@@ -196,12 +200,13 @@
                     </SelectionModel>
                 </ext:GridPanel>
                 <ext:GridPanel Visible="True"
-                    ID="JobInfoGrid" AutoUpdateLayout="true"
+                    ID="JobInfoGrid" 
                     runat="server"
-                    PaddingSpec="0 0 1 0"  
+                    PaddingSpec="0 0 1 0"
                     Header="true"
                     Title="<%$ Resources: JIGridTitle %>"
-                    Layout="Fit"
+                    Layout="FitLayout"
+                    Flex="1"
                     Scroll="Vertical"
                     Border="false"
                     Icon="User"
@@ -231,8 +236,8 @@
                                         <ext:ModelField Name="branchName" />
                                         <ext:ModelField Name="positionName" />
                                         <ext:ModelField Name="divisionName" />
-                                        
-                                        
+
+
 
                                     </Fields>
                                 </ext:Model>
@@ -282,7 +287,7 @@
                             <ext:Column Flex="1" ID="Column7" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldJIBranch%>" DataIndex="branchName" Hideable="false" Width="75" Align="Center" />
                             <ext:Column Flex="1" ID="Column8" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldJIPosition%>" DataIndex="positionName" Hideable="false" Width="75" Align="Center" />
                             <ext:Column Flex="1" ID="Column9" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldJIDivision%>" DataIndex="divisionName" Hideable="false" Width="75" Align="Center" />
-                          
+
 
 
 
@@ -342,7 +347,7 @@
                         </ext:Toolbar>
 
                     </DockedItems>
-                    
+
                     <Listeners>
                         <Render Handler="this.on('cellclick', cellClick);" />
                     </Listeners>
@@ -367,7 +372,7 @@
                     </SelectionModel>
                 </ext:GridPanel>
             </Items>
-        </ext:Panel>
+        </ext:Viewport>
 
         <ext:Window
             ID="EditEHwindow"

@@ -17,7 +17,9 @@
 </head>
 <body style="background: url(Images/bg.png) repeat;">
     <ext:ResourceManager runat="server" />
-
+         <ext:Viewport ID="Viewport11" runat="server" Layout="BorderLayout">
+           
+             <Items>
     <ext:FormPanel DefaultButton="SaveButton"
         ID="BasicInfoTab"
         runat="server"
@@ -25,7 +27,7 @@
         Icon="ApplicationSideList"
          Header="false"  
         DefaultAnchor="100%"
-        BodyPadding="5" Layout="TableLayout">
+        BodyPadding="5" Layout="TableLayout" Region="Center">
 
         <Items>
             <ext:Panel runat="server" Margin="20">
@@ -234,7 +236,8 @@
             </ext:Button>
         </Buttons>
     </ext:FormPanel>
-
+                 </Items>
+</ext:Viewport>
 
 </body>
 </html>
