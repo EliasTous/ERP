@@ -92,7 +92,7 @@
                     runat="server"
                     StoreID="Store1"
                     PaddingSpec="0 0 1 0"
-                    Header="true"
+                    Header="false"
                     Title="<%$ Resources: WindowTitle %>"
                     Layout="FitLayout"
                     Scroll="Vertical"
@@ -270,7 +270,7 @@
                     </SelectionModel>
                 </ext:GridPanel>
 
-                <ext:GridPanel runat="server" Title="<%$ Resources: WindowTitle %>" Header="true" ID="scheduleDays">
+                <ext:GridPanel runat="server" Title="<%$ Resources: WindowTitle %>" Header="false" ID="scheduleDays">
                     <DirectEvents>
                         <CellClick OnEvent="PoPuP">
                             <EventMask ShowMask="true" />
@@ -472,7 +472,7 @@
                                 <ext:GridPanel
                                     ID="periodsGrid"
                                     runat="server"
-                                    Width="600"
+                                    Width="600" Header="false"
                                     Height="400" Layout="FitLayout"
                                     Frame="true" TitleCollapse="true">
                                     <Store>

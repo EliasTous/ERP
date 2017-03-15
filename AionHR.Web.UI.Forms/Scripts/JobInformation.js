@@ -35,7 +35,7 @@ var cellClick = function (view, cell, columnIndex, record, row, rowIndex, e) {
         //the ajax call is allowed
         return true;
     }
-    if (columnId == "ColJIName"|| columnId=="ColEHName")
+    if (columnId == "ColJIName"|| columnId=="ColEHName"|| columnId=="ColSAName")
         return true;
 
 

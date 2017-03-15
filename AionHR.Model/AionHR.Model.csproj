@@ -47,7 +47,7 @@
     <Compile Include="Employees\Profile\AssetCategory.cs" />
     <Compile Include="Employees\Profile\BonusType.cs" />
     <Compile Include="Employees\Profile\Employee.cs" />
-    <Compile Include="Employees\Profile\EmployeementHistory.cs" />
+    <Compile Include="Employees\Profile\EmploymentHistory.cs" />
     <Compile Include="Employees\Profile\JobInfo.cs" />
     <Compile Include="LeaveManagement\ILeaveManagementRepository.cs" />
     <Compile Include="LeaveManagement\LeaveRequest.cs" />

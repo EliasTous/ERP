@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AionHR.Model.Employees.Profile
 {
-    public class EmployeementHistory :ModelBase
+    public class EmploymentHistory :ModelBase
     {
         public int employeeId { get; set; }
 
@@ -20,7 +20,7 @@ namespace AionHR.Model.Employees.Profile
 
         public string comment { get; set; }
     }
-    public partial class EmploymentStatus : ModelBase
+    public  class EmploymentStatus : ModelBase
 
     {
         public string name { get; set; }

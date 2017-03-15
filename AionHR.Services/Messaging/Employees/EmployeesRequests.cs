@@ -80,3 +80,28 @@ public class JobInfoListRequest:EmployeementHistoryListRequest
 {
 
 }
+
+public class EmployeeSalaryListRequest :ListRequest
+{
+    public string EmployeeId { get; set; }
+
+
+
+
+    /// <summary>
+    /// /// parameter list shipped with the web request
+    /// </summary>
+    public override Dictionary<string, string> Parameters
+    {
+
+        get
+        {
+            parameters = base.Parameters;
+
+            parameters.Add("_employeeId", EmployeeId);
+          
+
+            return parameters;
+        }
+    }
+}

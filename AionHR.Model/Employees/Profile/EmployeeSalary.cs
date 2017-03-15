@@ -11,12 +11,16 @@ namespace AionHR.Model.Employees.Profile
     {
         public int employeeId { get; set; }
         public int currencyId { get; set; }
+
+        public string currencyName { get; set; }
         public int scrId { get; set; }
+
+        public string scrName { get; set; }
         public DateTime effectiveDate { get; set; }
         public short salaryType { get; set; }
         public short paymentFrequency { get; set; }
         public short paymentMethod { get; set; }
-        public short isTaxable { get; set; }
+        public bool? isTaxable { get; set; }
         public string bankName { get; set; }
         public string accountNumber { get; set; }
         public string comments { get; set; }

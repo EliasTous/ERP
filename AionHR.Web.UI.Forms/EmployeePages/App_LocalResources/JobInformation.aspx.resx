@@ -174,4 +174,58 @@
   <data name="WindowTitle" xml:space="preserve">
     <value>Currencies</value>
   </data>
+  <data name="FieldBasicAmount" xml:space="preserve">
+    <value>BasicAmount</value>
+  </data>
+  <data name="FieldEffectiveDate" xml:space="preserve">
+    <value>EffectiveDate</value>
+  </data>
+  <data name="FieldFinalAmount" xml:space="preserve">
+    <value>FinalAmount</value>
+  </data>
+  <data name="FieldIsTaxable" xml:space="preserve">
+    <value>IsTaxable</value>
+  </data>
+  <data name="FieldPaymentFrequency" xml:space="preserve">
+    <value>PaymentFrequency</value>
+  </data>
+  <data name="FieldPaymentMethod" xml:space="preserve">
+    <value>PaymentMethod</value>
+  </data>
+  <data name="FieldSalaryType" xml:space="preserve">
+    <value>SalaryType</value>
+  </data>
+  <data name="FieldScrName" xml:space="preserve">
+    <value>ScrName</value>
+  </data>
+  <data name="EditSAWindowTitle" xml:space="preserve">
+    <value>Edit SA</value>
+  </data>
+  <data name="FieldAccountNumber" xml:space="preserve">
+    <value>FieldAccountNumber</value>
+  </data>
+  <data name="FieldBankName" xml:space="preserve">
+    <value>Bank</value>
+  </data>
+  <data name="FieldComments" xml:space="preserve">
+    <value>FieldComments</value>
+  </data>
+  <data name="FieldSACurrencyName" xml:space="preserve">
+    <value>Currency</value>
+  </data>
+  <data name="SalaryBank" xml:space="preserve">
+    <value>Bank</value>
+  </data>
+  <data name="SalaryCash" xml:space="preserve">
+    <value>Cash</value>
+  </data>
+  <data name="SalaryDaily" xml:space="preserve">
+    <value>Daily</value>
+  </data>
+  <data name="SalaryMonthly" xml:space="preserve">
+    <value>Monthly</value>
+  </data>
+  <data name="SalaryWeekly" xml:space="preserve">
+    <value>Weekly</value>
+  </data>
 </root>
