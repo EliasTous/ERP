@@ -7,9 +7,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title></title>
-    <link rel="stylesheet" type="text/css" href="CSS/Common.css" />
-    <link rel="stylesheet" href="CSS/LiveSearch.css" />
-    <script type="text/javascript" src="../Scripts/JobInformation.js?id=3"></script>
+    <link rel="stylesheet" type="text/css" href="../CSS/Common.css" />
+    <link rel="stylesheet" href="../CSS/LiveSearch.css" />
+    <script type="text/javascript" src="../Scripts/JobInformation.js?id=9"></script>
     <script type="text/javascript" src="../Scripts/common.js"></script>
 
 
@@ -23,12 +23,19 @@
         <ext:Hidden ID="titleSavingError" runat="server" Text="<%$ Resources:Common , TitleSavingError %>" />
         <ext:Hidden ID="titleSavingErrorMessage" runat="server" Text="<%$ Resources:Common , TitleSavingErrorMessage %>" />
         <ext:Hidden ID="CurrentEmployee" runat="server"  />
+        <ext:Hidden ID="PaymentTypeWeekly" runat="server" Text="<%$ Resources: PaymentTypeWeekly %>" />
+        <ext:Hidden ID="PaymentTypeMonthly" runat="server" Text="<%$ Resources: PaymentTypeMonthly %>" />
+        <ext:Hidden ID="PaymentTypeDaily" runat="server" Text="<%$ Resources: PaymentTypeDaily %>" />
+        <ext:Hidden ID="PaymentMethodCash" runat="server" Text="<%$ Resources: PaymentMethodCash %>" />
+        <ext:Hidden ID="PaymentMethodBank" runat="server" Text="<%$ Resources: PaymentMethodBank %>" />
+          <ext:Viewport ID="Viewport11" runat="server" Layout="VBoxLayout">
+            <LayoutConfig>
+                <ext:VBoxLayoutConfig Align="Stretch" />
+            </LayoutConfig>
+        
 
 
-
-
-        <ext:Panel ID="Viewport1" runat="server" Layout="AutoLayout" AutoUpdateLayout="true">
-            <Items>
+        <Items>
 
                 <ext:GridPanel AutoUpdateLayout="true"
                     ID="employeementHistoryGrid" Collapsible="true"
@@ -36,8 +43,8 @@
                     PaddingSpec="0 0 1 0"
                     Header="true"
                     Title="<%$ Resources: EHGridTitle %>"
-                    Layout="Fit"
-                    Scroll="Vertical"
+                    Layout="FitLayout"
+                    Scroll="Vertical" Flex="1"
                     Border="false" MaxHeight="200"
                     Icon="User" DefaultAnchor="100%"  
                     ColumnLines="True" IDMode="Explicit" RenderXType="True">
@@ -130,7 +137,7 @@
 
                             </ext:Column>
                             <ext:Column runat="server"
-                                ID="colEHDelete" Flex="1" Visible="true"
+                                ID="ColEHDelete" Flex="1" Visible="true"
                                 Text="<%$ Resources: Common , Delete %>"
                                 Width="60"
                                 Align="Center"
@@ -201,7 +208,7 @@
                     PaddingSpec="0 0 1 0"   MaxHeight="200"
                     Header="true"
                     Title="<%$ Resources: JIGridTitle %>"
-                    Layout="Fit"
+                    Layout="FitLayout" Flex="1"
                     Scroll="Vertical"
                     Border="false"
                     Icon="User"
@@ -301,7 +308,7 @@
 
                             </ext:Column>
                             <ext:Column runat="server"
-                                ID="Column5" Flex="1" Visible="true"
+                                ID="ColJIDelete" Flex="1" Visible="true"
                                 Text="<%$ Resources: Common , Delete %>"
                                 Width="60"
                                 Align="Center"
@@ -372,7 +379,8 @@
                     PaddingSpec="0 0 1 0"   MaxHeight="200"
                     Header="true"
                     Title="<%$ Resources: SAGridTitle %>"
-                    Layout="Fit"
+                    Layout="FitLayout"
+                    Flex="1"
                     Scroll="Vertical"
                     Border="false"
                     Icon="User"
@@ -464,13 +472,20 @@
                                 </Renderer>
                            
                                 </ext:Column>
-                            <ext:Column Flex="1" ID="Column13" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldSalaryType %>" DataIndex="salaryType" Hideable="false" Width="75" Align="Center" />
-                            <ext:Column Flex="1" ID="Column14" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldPaymentFrequency %>" DataIndex="paymentFrequency" Hideable="false" Width="75" Align="Center" />
-                            <ext:Column Flex="1" ID="Column15" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldPaymentMethod %>" DataIndex="paymentMethod" Hideable="false" Width="75" Align="Center" />
+                            <ext:Column Flex="1" ID="Column13" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldSalaryType %>" DataIndex="salaryType" Hideable="false" Width="75" Align="Center" >
+                                    <Renderer Handler="return getPaymentTypeString(record.data['salaryType'])" />
+                                </ext:Column>
+                           
+                            <ext:Column Flex="1" ID="Column14" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldPaymentFrequency %>" DataIndex="paymentFrequency" Hideable="false" Width="75" Align="Center" >
+                                <Renderer Handler="return getPaymentTypeString(record.data['paymentFrequency'])" />
+                                </ext:Column>
+                            <ext:Column Flex="1" ID="Column15" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldPaymentMethod %>" DataIndex="paymentMethod" Hideable="false" Width="75" Align="Center" >
+                                <Renderer Handler="return getPaymentMethodString(record.data['paymentMethod'])" />
+                                </ext:Column>
                             <ext:CheckColumn Flex="1" ID="Column19" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldIsTaxable %>" DataIndex="isTaxable" Hideable="false" Width="75" Align="Center" />
                           <ext:Column Flex="1" ID="Column20" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldBasicAmount %>" DataIndex="basicAmount" Hideable="false" Width="75" Align="Center" />
                             <ext:Column Flex="1" ID="Column21" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldFinalAmount %>" DataIndex="finalAmount" Hideable="false" Width="75" Align="Center" />
-                            <ext:Column Flex="1" ID="Column22" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldSACurrencyName %>" DataIndex="finalAmount" Hideable="false" Width="75" Align="Center" />
+                            <ext:Column Flex="1" ID="Column22" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldSACurrencyName %>" DataIndex="currencyName" Hideable="false" Width="75" Align="Center" />
 
 
 
@@ -489,7 +504,7 @@
 
                             </ext:Column>
                             <ext:Column runat="server"
-                                ID="Column17" Flex="1" Visible="true"
+                                ID="ColSADelete" Flex="1" Visible="true"
                                 Text="<%$ Resources: Common , Delete %>"
                                 Width="60"
                                 Align="Center"
@@ -555,7 +570,7 @@
                     </SelectionModel>
                 </ext:GridPanel>
             </Items>
-        </ext:Panel>
+       </ext:Viewport>
 
         <ext:Window
             ID="EditEHwindow"
@@ -580,7 +595,7 @@
                             DefaultAnchor="100%"
                             BodyPadding="5">
                             <Items>
-                                <ext:TextField runat="server" Name="recordId"  ID="EHID"/>
+                                <ext:TextField runat="server" Name="recordId"  ID="EHID" Hidden="true"  Disabled="true"/>
                                 <ext:ComboBox ValueField="recordId" AllowBlank="false" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" runat="server" ID="statusId" Name="statusId" FieldLabel="<%$ Resources:FieldEHStatus%>" SimpleSubmit="true">
                                     <Store>
                                         <ext:Store runat="server" ID="EHStatusStore">
@@ -595,7 +610,7 @@
                                         </ext:Store>
                                     </Store>
                                 </ext:ComboBox>
-                                <ext:DateField runat="server" Name="date" FieldLabel="<%$ Resources:FieldEHDate%>" />
+                                <ext:DateField runat="server" Name="date" FieldLabel="<%$ Resources:FieldEHDate%>" AllowBlank="false" />
                                 <ext:TextArea runat="server" Name="comment" FieldLabel="<%$ Resources:FieldEHComment%>" />
                             </Items>
 
@@ -778,8 +793,8 @@
             runat="server"
             Icon="PageEdit"
             Title="<%$ Resources:EditSAWindowTitle %>"
-            Width="450"
-            Height="330"
+            Width="650"
+            Height="300"
             AutoShow="false"
             Modal="true"
             Hidden="true"
@@ -793,10 +808,10 @@
                             runat="server"
                             Title="<%$ Resources: EditSAWindowTitle %>"
                             Icon="ApplicationSideList"
-                            DefaultAnchor="100%"
+                            DefaultAnchor="100%" Layout="ColumnLayout"
                             BodyPadding="5">
                             <Items>
-                                <ext:TextField ID="SAId" Hidden="true" runat="server" FieldLabel="<%$ Resources:FieldrecordId%>" Disabled="true" Name="recordId" />
+                                <ext:Panel runat="server" ><Items> <ext:TextField ID="SAId" Hidden="true" runat="server" FieldLabel="<%$ Resources:FieldrecordId%>" Disabled="true" Name="recordId" />
                                 
                            <ext:ComboBox    runat="server" AllowBlank="false" ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" ID="currencyId" Name="currencyId" FieldLabel="<%$ Resources:FieldSACurrencyName%>" SimpleSubmit="true">
                                                 <Store>
@@ -820,7 +835,7 @@
                                                     <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
                                                 </Listeners>
                                             </ext:ComboBox>
-                                 <ext:ComboBox    runat="server" AllowBlank="false" ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" ID="scrId" Name="scrId" FieldLabel="<%$ Resources:FieldSACurrencyName%>" SimpleSubmit="true">
+                                 <ext:ComboBox    runat="server" AllowBlank="false" ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" ID="scrId" Name="scrId" FieldLabel="<%$ Resources:FieldScrName%>" SimpleSubmit="true">
                                                 <Store>
                                                     <ext:Store runat="server" ID="scrStore">
                                                         <Model>
@@ -858,19 +873,23 @@
                                                         <ext:ListItem Text="<%$ Resources: SalaryMonthly%>" Value="2"></ext:ListItem>
                                                         </Items>
                                                 </ext:ComboBox>
-                                <ext:Checkbox ID="isTaxable" runat="server" FieldLabel="<%$ Resources: FieldIsTaxable%>" DataIndex="isTaxable" Name="isTaxable" InputValue="true" />
+                                    
                                  <ext:ComboBox ID="paymentMethod" runat="server" FieldLabel="<%$ Resources:FieldPaymentMethod%>" Name="paymentMethod" IDMode="Static" SubmitValue="true">
                                                     <Items>
                                                         <ext:ListItem Text="<%$ Resources: SalaryCash%>" Value="0"></ext:ListItem>
                                                         <ext:ListItem Text="<%$ Resources: SalaryBank%>" Value="1"></ext:ListItem>
                                                         </Items>
                                                 </ext:ComboBox>
-                                <ext:TextField ID="bankName"  runat="server" FieldLabel="<%$ Resources:FieldBankName%>"  Name="bankName" />
-                                 <ext:TextField ID="accountNumber"  runat="server" FieldLabel="<%$ Resources:FieldAccountNumber%>"  Name="accountNumber" />
-                                <ext:TextArea ID="comments"  runat="server" FieldLabel="<%$ Resources:FieldComments%>"  Name="comments" />
+                             </Items></ext:Panel>
+                                <ext:Panel runat="server" ><Items>        <ext:TextField ID="bankName"  runat="server" FieldLabel="<%$ Resources:FieldBankName%>"  Name="bankName" />
+                               
+                            <ext:TextField ID="accountNumber"  runat="server" FieldLabel="<%$ Resources:FieldAccountNumber%>"  Name="accountNumber" />
+                                <ext:TextField ID="comments"  runat="server" FieldLabel="<%$ Resources:FieldComments%>"  Name="comments" />
                                 <ext:TextField ID="basicAmount"  runat="server" FieldLabel="<%$ Resources:FieldBasicAmount%>"  Name="basicAmount" />
                                 <ext:TextField ID="finalAmount"  runat="server" FieldLabel="<%$ Resources:FieldFinalAmount%>"  Name="finalAmount" />
-                            </Items>
+                                    <ext:Checkbox ID="isTaxable" runat="server" FieldLabel="<%$ Resources: FieldIsTaxable%>" DataIndex="isTaxable" Name="isTaxable" InputValue="1" />
+                         </Items></ext:Panel>
+                                   </Items>
 
                         </ext:FormPanel>
 

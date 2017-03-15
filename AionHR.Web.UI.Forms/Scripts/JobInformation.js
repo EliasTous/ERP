@@ -27,7 +27,7 @@ var cellClick = function (view, cell, columnIndex, record, row, rowIndex, e) {
         return true;
     }
 
-    if (t.className == "imgDelete" && columnId == "colDelete") {
+    if (t.className == "imgDelete" && (columnId == "ColSADelete"|| columnId=="ColEHDelete"|| columnId=="ColJIDelete")) {
         //the ajax call is allowed
         return true;
     }
@@ -63,3 +63,29 @@ var enterKeyPressSearchHandler = function (el, event) {
         App.Store1.reload();
     }
 };
+
+function getPaymentTypeString(index)
+{
+    
+    switch(index)
+    {
+        case"0":
+        case 0: return document.getElementById("PaymentTypeDaily").value; break;
+            case"1":
+        case 1: return document.getElementById("PaymentTypeWeekly").value; break;
+            case"2":
+        case 2: return document.getElementById("PaymentTypeMonthly").value; break;
+        default: return index;
+    }
+}
+function getPaymentMethodString(index)
+{
+    switch (index) {
+        case"0":
+        case 0: return document.getElementById("PaymentMethodCash").value; break;
+            case"1":
+        case 1: return document.getElementById("PaymentMethodBank").value; break;
+       
+        default: return index;
+    }
+}

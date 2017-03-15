@@ -59,7 +59,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                 SetExtLanguage();
                 HideShowButtons();
                 HideShowColumns();
-                if(string.IsNullOrEmpty(Request.QueryString["employeeId"]))
+                if (string.IsNullOrEmpty(Request.QueryString["employeeId"]))
                     X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorOperation).Show();
                 CurrentEmployee.Text = Request.QueryString["employeeId"];
 
@@ -100,7 +100,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             if (rtl)
             {
                 this.ResourceManager1.RTL = true;
-                this.Viewport1.RTL = true;
+                this.Viewport11.RTL = true;
 
             }
         }
@@ -129,7 +129,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     //Step 2 : call setvalues with the retrieved object
                     this.EditEHForm.SetValues(response.result);
                     FillEHStatus();
-                    statusId.Select(response.result.statusId);
+                    statusId.Select(response.result.statusId.ToString());
 
                     this.EditEHwindow.Title = Resources.Common.EditWindowsTitle;
                     this.EditEHwindow.Show();
@@ -150,10 +150,10 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     FillBranch();
                     FillDivision();
                     FillPosition();
-                    departmentId.Select(response2.result.departmentId);
-                    branchId.Select(response2.result.branchId);
-                    positionId.Select(response2.result.positionId);
-                    divisionId.Select(response2.result.divisionId);
+                    departmentId.Select(response2.result.departmentId.ToString());
+                    branchId.Select(response2.result.branchId.ToString());
+                    positionId.Select(response2.result.positionId.ToString());
+                    divisionId.Select(response2.result.divisionId.ToString());
                     this.EditJobInfoWindow.Title = Resources.Common.EditWindowsTitle;
                     this.EditJobInfoWindow.Show();
                     break;
@@ -171,12 +171,12 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     this.EditSAForm.SetValues(response3.result);
                     FillCurrency();
                     FillScr();
-                    currencyId.Select(response3.result.currencyId);
-                    scrId.Select(response3.result.scrId);
+                    currencyId.Select(response3.result.currencyId.ToString());
+                    scrId.Select(response3.result.scrId.ToString());
                     this.EditSAWindow.Title = Resources.Common.EditWindowsTitle;
                     this.EditSAWindow.Show();
                     break;
-                case "colJIDelete":
+                case "ColJIDelete":
                     X.Msg.Confirm(Resources.Common.Confirmation, Resources.Common.DeleteOneRecord, new MessageBoxButtonsConfig
                     {
                         Yes = new MessageBoxButtonConfig
@@ -192,13 +192,13 @@ namespace AionHR.Web.UI.Forms.EmployeePages
 
                     }).Show();
                     break;
-                case "colSADelete":
+                case "ColSADelete":
                     X.Msg.Confirm(Resources.Common.Confirmation, Resources.Common.DeleteOneRecord, new MessageBoxButtonsConfig
                     {
                         Yes = new MessageBoxButtonConfig
                         {
                             //We are call a direct request metho for deleting a record
-                            Handler = String.Format("App.direct.DeleteSA{0})", id),
+                            Handler = String.Format("App.direct.DeleteSA({0})", id),
                             Text = Resources.Common.Yes
                         },
                         No = new MessageBoxButtonConfig
@@ -341,7 +341,6 @@ namespace AionHR.Web.UI.Forms.EmployeePages
         }
 
         [DirectMethod]
-
         public void DeleteSA(string index)
         {
             try
@@ -349,7 +348,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                 //Step 1 Code to delete the object from the database 
                 EmployeeSalary n = new EmployeeSalary();
                 n.recordId = index;
-                n.isTaxable = false;
+                n.isTaxable = 0;
                 n.finalAmount = 0;
                 n.employeeId = 0;
                 n.comments = "";
@@ -357,11 +356,11 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                 n.basicAmount = 0;
                 n.currencyId = 0;
                 n.effectiveDate = DateTime.Now;
-                n.paymentFrequency = n.paymentMethod =  n.salaryType = 0;
+                n.paymentFrequency = n.paymentMethod = n.salaryType = 0;
                 n.scrId = 0;
 
 
-                PostRequest <EmployeeSalary> req = new PostRequest<EmployeeSalary>();
+                PostRequest<EmployeeSalary> req = new PostRequest<EmployeeSalary>();
                 req.entity = n;
                 PostResponse<EmployeeSalary> res = _employeeService.ChildDelete<EmployeeSalary>(req);
                 if (!res.Success)
@@ -464,7 +463,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             //Fetching the corresponding list
 
             //in this test will take a list of News
-           
+
             EmployeementHistoryListRequest request = new EmployeementHistoryListRequest();
 
             request.Filter = "";
@@ -512,9 +511,9 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             EmployeeSalaryListRequest request = new EmployeeSalaryListRequest();
             request.Filter = "";
             request.EmployeeId = CurrentEmployee.Text;
-            
+
             request.Filter = "";
-            
+
             request.Size = "50";
             request.StartAt = "1";
             ListResponse<EmployeeSalary> currencies = _employeeService.ChildGetAll<EmployeeSalary>(request);
@@ -766,7 +765,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
 
             //Getting the id to check if it is an Add or an edit as they are managed within the same form.
             string id = e.ExtraParams["id"];
-            
+
             string obj = e.ExtraParams["values"];
             EmployeeSalary b = JsonConvert.DeserializeObject<EmployeeSalary>(obj);
             b.employeeId = Convert.ToInt32(CurrentEmployee.Text);
@@ -775,7 +774,8 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                 b.currencyName = currencyId.SelectedItem.Text;
             if (scrId.SelectedItem != null)
                 b.scrName = scrId.SelectedItem.Text;
-          
+            if (!b.isTaxable.HasValue)
+                b.isTaxable = 0;
             // Define the object to add or edit as null
 
             if (string.IsNullOrEmpty(id))
@@ -854,8 +854,11 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     {
 
 
-                        ModelProxy record = this.JIStore.GetById(index);
+                        ModelProxy record = this.SAStore.GetById(index);
                         EditSAForm.UpdateRecord(record);
+                        record.Set("currencyName", b.currencyName);
+                        record.Set("scrName", b.scrName);
+                        record.Set("effectiveDate", b.effectiveDate.ToShortDateString());
                         record.Commit();
                         Notification.Show(new NotificationConfig
                         {
@@ -939,7 +942,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
         private void FillCurrency()
         {
             ListRequest branchesRequest = new ListRequest();
-            ListResponse<Currency > resp = _systemService.ChildGetAll<Currency>(branchesRequest);
+            ListResponse<Currency> resp = _systemService.ChildGetAll<Currency>(branchesRequest);
             if (!resp.Success)
                 X.Msg.Alert(Resources.Common.Error, resp.Summary).Show();
             currencyStore.DataSource = resp.Items;

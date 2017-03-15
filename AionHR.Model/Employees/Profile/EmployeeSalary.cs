@@ -20,7 +20,9 @@ namespace AionHR.Model.Employees.Profile
         public short salaryType { get; set; }
         public short paymentFrequency { get; set; }
         public short paymentMethod { get; set; }
-        public bool? isTaxable { get; set; }
+        public short? isTaxable { get; set; }
+
+        
         public string bankName { get; set; }
         public string accountNumber { get; set; }
         public string comments { get; set; }

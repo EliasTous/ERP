@@ -76,6 +76,51 @@ namespace AionHR.Web.UI.Forms.EmployeePages {
         protected global::Ext.Net.Hidden CurrentEmployee;
         
         /// <summary>
+        /// PaymentTypeWeekly control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Hidden PaymentTypeWeekly;
+        
+        /// <summary>
+        /// PaymentTypeMonthly control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Hidden PaymentTypeMonthly;
+        
+        /// <summary>
+        /// PaymentTypeDaily control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Hidden PaymentTypeDaily;
+        
+        /// <summary>
+        /// PaymentMethodCash control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Hidden PaymentMethodCash;
+        
+        /// <summary>
+        /// PaymentMethodBank control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Hidden PaymentMethodBank;
+        
+        /// <summary>
         /// Viewport11 control.
         /// </summary>
         /// <remarks>
@@ -184,13 +229,13 @@ namespace AionHR.Web.UI.Forms.EmployeePages {
         protected global::Ext.Net.Column colEdit;
         
         /// <summary>
-        /// colEHDelete control.
+        /// ColEHDelete control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Column colEHDelete;
+        protected global::Ext.Net.Column ColEHDelete;
         
         /// <summary>
         /// colAttach control.
@@ -364,13 +409,13 @@ namespace AionHR.Web.UI.Forms.EmployeePages {
         protected global::Ext.Net.Column Column4;
         
         /// <summary>
-        /// Column5 control.
+        /// ColJIDelete control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Column Column5;
+        protected global::Ext.Net.Column ColJIDelete;
         
         /// <summary>
         /// Column6 control.
@@ -580,13 +625,13 @@ namespace AionHR.Web.UI.Forms.EmployeePages {
         protected global::Ext.Net.Column Column16;
         
         /// <summary>
-        /// Column17 control.
+        /// ColSADelete control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Column Column17;
+        protected global::Ext.Net.Column ColSADelete;
         
         /// <summary>
         /// Column18 control.
@@ -994,15 +1039,6 @@ namespace AionHR.Web.UI.Forms.EmployeePages {
         protected global::Ext.Net.ComboBox paymentFrequency;
         
         /// <summary>
-        /// isTaxable control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Checkbox isTaxable;
-        
-        /// <summary>
         /// paymentMethod control.
         /// </summary>
         /// <remarks>
@@ -1036,7 +1072,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.TextArea comments;
+        protected global::Ext.Net.TextField comments;
         
         /// <summary>
         /// basicAmount control.
@@ -1055,6 +1091,15 @@ namespace AionHR.Web.UI.Forms.EmployeePages {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.TextField finalAmount;
+        
+        /// <summary>
+        /// isTaxable control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Checkbox isTaxable;
         
         /// <summary>
         /// Button12 control.

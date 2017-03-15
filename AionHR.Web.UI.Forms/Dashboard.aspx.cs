@@ -255,39 +255,41 @@ namespace AionHR.Web.UI.Forms
         {
             ActiveAttendanceRequest req = new ActiveAttendanceRequest();
 
-            if (!string.IsNullOrEmpty(branchId.Text) && branchId.Value.ToString() != "0")
+            int intResult;
+            
+            if (!string.IsNullOrEmpty(branchId.Text) && branchId.Value.ToString() != "0" && int.TryParse(branchId.Value.ToString(),out intResult))
             {
-                req.BranchId = branchId.Value.ToString();
+                req.BranchId = intResult;
 
 
 
             }
             else
             {
-                req.BranchId = "0";
+                req.BranchId = 0;
 
             }
 
-            if (!string.IsNullOrEmpty(departmentId.Text) && departmentId.Value.ToString() != "0")
+            if (!string.IsNullOrEmpty(departmentId.Text) && departmentId.Value.ToString() != "0"&& int.TryParse(departmentId.Value.ToString(), out intResult))
             {
-                req.DepartmentId = departmentId.Value.ToString();
-
-
-            }
-            else
-            {
-                req.DepartmentId = "0";
-
-            }
-            if (!string.IsNullOrEmpty(ComboBox1.Text) && ComboBox1.Value.ToString() != "0")
-            {
-                req.PositionId = ComboBox1.Value.ToString();
+                req.DepartmentId = intResult;
 
 
             }
             else
             {
-                req.PositionId = "0";
+                req.DepartmentId = 0;
+
+            }
+            if (!string.IsNullOrEmpty(ComboBox1.Text) && ComboBox1.Value.ToString() != "0" && int.TryParse(ComboBox1.Value.ToString(), out intResult))
+            {
+                req.PositionId = intResult;
+
+
+            }
+            else
+            {
+                req.PositionId = 0;
 
             }
 

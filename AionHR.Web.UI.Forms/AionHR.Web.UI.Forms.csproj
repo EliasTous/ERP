@@ -150,6 +150,7 @@
     <Content Include="Scripts\AttendanceDayView.js" />
     <Content Include="Scripts\BonusTypes.js" />
     <Content Include="Scripts\Calendars.js" />
+    <Content Include="Scripts\LeaveTypes.js" />
     <Content Include="Scripts\Divisions.js" />
     <Content Include="Scripts\Employees.js" />
     <Content Include="Scripts\EntitlementDeductions.js" />

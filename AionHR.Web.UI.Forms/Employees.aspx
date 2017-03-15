@@ -309,13 +309,14 @@
                                                             <Change OnEvent="Unnamed_Event" />
                                                         </DirectEvents>
                                                     </ext:FileUploadField>
-                                                </div>
-                                            </Content>
-                                        </ext:Panel>
-                                        <ext:Label ID="fullNameLbl" runat="server" />
+                                                    <ext:Label ID="fullNameLbl" runat="server" />
                                         <ext:Label ID="departmentLbl" runat="server" />
                                         <ext:Label ID="branchLbl" runat="server" />
                                         <ext:Label ID="positionLbl" runat="server" />
+                                                </div>
+                                            </Content>
+                                        </ext:Panel>
+                                        
 
 
                                         <%--<ext:Label runat="server" ID="employeeName" />--%>

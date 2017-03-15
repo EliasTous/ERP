@@ -207,20 +207,20 @@ public class AttendnanceDayListRequest:ListRequest
 
 public class ActiveAttendanceRequest:ListRequest
 {
-    public string DepartmentId { get; set; }
+    public int DepartmentId { get; set; }
 
-    public string BranchId { get; set; }
+    public int BranchId { get; set; }
 
-    public string PositionId { get; set; }
+    public int PositionId { get; set; }
     
     public override Dictionary<string, string> Parameters
     {
         get
         {
             parameters = base.Parameters;
-            parameters.Add("_departmentId", DepartmentId);
-            parameters.Add("_branchId",BranchId);
-            parameters.Add("_positionId", PositionId);
+            parameters.Add("_departmentId", DepartmentId.ToString());
+            parameters.Add("_branchId",BranchId.ToString());
+            parameters.Add("_positionId", PositionId.ToString());
             return parameters;
         }
     }
