@@ -14,17 +14,9 @@
     <script type="text/javascript" src="Scripts/jquery.min.js"></script>
     <script type="text/javascript" src="Scripts/Branches.js?id=0"></script>
     <script type="text/javascript" src="Scripts/common.js?id=0"></script>
-    <script type="text/javascript" src="Scripts/Employees.js?id=4"></script>
+    <script type="text/javascript" src="Scripts/Employees.js?id=10"></script>
     <script type="text/javascript">
-        function dump(obj) {
-            var out = '';
-            for (var i in obj) {
-                out += i + ": " + obj[i] + "\n";
-
-
-            }
-            return out;
-        }
+       
     </script>
 
 </head>
@@ -141,6 +133,18 @@
 
                             <ext:Column Visible="false" ID="ColrecordId" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldrecordId %>" DataIndex="recordId" Hideable="false" Width="75" Align="Center" />
                             <ext:Column ID="ColReference" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldReference%>" DataIndex="reference" Flex="1" Hideable="false" />
+                            <ext:ComponentColumn runat="server" DataIndex="pictureUrl" >
+                                <Component>
+                                    <ext:Image runat="server" Height="50"  Width="50">
+                                       
+                                        
+                                    </ext:Image>
+                                 
+                             </Component>
+                                    <Listeners>
+                                             <Bind Handler="cmp.setImageUrl(record.get('pictureUrl'))" />
+                                        </Listeners>
+                            </ext:ComponentColumn>
                             <ext:Column ID="ColName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldFullName%>" DataIndex="name.fullName" Flex="3" Hideable="false">
                                 <Renderer Handler=" return '<u>'+ record.data['name'].fullName +'</u>'">
                                 </Renderer>

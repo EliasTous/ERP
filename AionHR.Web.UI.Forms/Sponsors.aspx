@@ -151,7 +151,7 @@
 
                             </ext:Column>
                             <ext:Column runat="server"
-                                ID="colDelete" Flex="1" Visible="false"
+                                ID="colDelete" Flex="1" Visible="true"
                                 Text="<%$ Resources: Common , Delete %>"
                                 Width="60"
                                 Align="Center"
@@ -273,12 +273,12 @@
                                 <ext:TextField ID="city" runat="server" FieldLabel="<%$ Resources:FieldCity%>" Name="city" />
                                 <ext:TextField ID="mobile" runat="server" FieldLabel="<%$ Resources:FieldMobile%>" Name="mobile" >
                                     <Plugins>
-                                        <ext:InputMask Mask="99999?99999" />
+                                        <ext:InputMask Mask="99999999" />
                                     </Plugins>
                                     </ext:TextField>
                                 <ext:TextField ID="phone" runat="server" FieldLabel="<%$ Resources:FieldPhone%>" Name="phone" >
                                      <Plugins>
-                                        <ext:InputMask Mask="99999?99999" />
+                                        <ext:InputMask Mask="99999999" />
                                     </Plugins>
                                     </ext:TextField>
                                 <ext:TextField Vtype="email" ID="email" runat="server" FieldLabel="<%$ Resources:FieldEmail%>" Name="email" />

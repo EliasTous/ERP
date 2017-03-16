@@ -274,7 +274,7 @@
                                     ID="periodsGrid"  
                                     runat="server"
                                     Width="600" Header="false"
-                                    Height="250" Layout="FitLayout"
+                                    Height="210" Layout="FitLayout"
                                     Frame="true" TitleCollapse="true"  Scroll="Vertical"
                                     >
                                     <Store>

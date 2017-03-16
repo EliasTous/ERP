@@ -415,7 +415,7 @@
             Icon="PageEdit"
             Title="<%$ Resources:DayBreaksForm %>"
             Width="450"
-            Height="330"
+            Height="370"
             AutoShow="false"
             Modal="true"
             Hidden="true"
@@ -471,9 +471,9 @@
                                 
                                 <ext:GridPanel
                                     ID="periodsGrid"
-                                    runat="server"
+                                    runat="server" Scroll="Vertical"
                                     Width="600" Header="false"
-                                    Height="400" Layout="FitLayout"
+                                    Height="170 " Layout="FitLayout"
                                     Frame="true" TitleCollapse="true">
                                     <Store>
                                         <ext:Store ID="periodsStore" runat="server">

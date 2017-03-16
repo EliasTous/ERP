@@ -89,3 +89,9 @@ function getPaymentMethodString(index)
         default: return index;
     }
 }
+function TogglePaymentMethod(index)
+{
+    App.accountNumber.setDisabled(index == 0);
+    App.bankName.setDisabled(index == 0);
+
+}

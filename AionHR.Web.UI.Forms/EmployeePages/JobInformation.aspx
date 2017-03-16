@@ -9,7 +9,7 @@
     <title></title>
     <link rel="stylesheet" type="text/css" href="../CSS/Common.css" />
     <link rel="stylesheet" href="../CSS/LiveSearch.css" />
-    <script type="text/javascript" src="../Scripts/JobInformation.js?id=9"></script>
+    <script type="text/javascript" src="../Scripts/JobInformation.js?id=10"></script>
     <script type="text/javascript" src="../Scripts/common.js"></script>
 
 
@@ -28,7 +28,7 @@
         <ext:Hidden ID="PaymentTypeDaily" runat="server" Text="<%$ Resources: PaymentTypeDaily %>" />
         <ext:Hidden ID="PaymentMethodCash" runat="server" Text="<%$ Resources: PaymentMethodCash %>" />
         <ext:Hidden ID="PaymentMethodBank" runat="server" Text="<%$ Resources: PaymentMethodBank %>" />
-          <ext:Viewport ID="Viewport11" runat="server" Layout="VBoxLayout">
+          <ext:Viewport ID="Viewport11" runat="server" Layout="VBoxLayout" Padding="10">
             <LayoutConfig>
                 <ext:VBoxLayoutConfig Align="Stretch" />
             </LayoutConfig>
@@ -45,7 +45,7 @@
                     Title="<%$ Resources: EHGridTitle %>"
                     Layout="FitLayout"
                     Scroll="Vertical" Flex="1"
-                    Border="false" MaxHeight="200"
+                    Border="false" 
                     Icon="User" DefaultAnchor="100%"  
                     ColumnLines="True" IDMode="Explicit" RenderXType="True">
                     <Store>
@@ -69,7 +69,7 @@
 
                                         <ext:ModelField Name="recordId" />
                                         <ext:ModelField Name="statusName" />
-                                        <ext:ModelField Name="date" ServerMapping="date.ToShortDateString()" />
+                                        <ext:ModelField Name="date" ServerMapping="date.ToShortDateString()"  />
 
                                     </Fields>
                                 </ext:Model>
@@ -114,11 +114,11 @@
                         <Columns>
 
                             <ext:Column Visible="false" ID="ColrecordId" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldrecordId %>" DataIndex="recordId" Hideable="false" Width="75" Align="Center" />
-                            <ext:Column CellCls="cellLink" ID="ColEHName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEHStatus%>" DataIndex="statusName" Flex="2" Hideable="false">
+                            <ext:Column CellCls="cellLink" ID="ColEHName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEHStatus%>" DataIndex="statusName" Flex="7" Hideable="false">
                                 <Renderer Handler="return '<u>'+ record.data['statusName']+'</u>'">
                                 </Renderer>
                             </ext:Column>
-                            <ext:Column CellCls="cellLink" ID="Column2" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEHDate%>" DataIndex="date" Flex="2" Hideable="false" />
+                            <ext:DateColumn Format="dd-MM-yyyy" CellCls="cellLink" ID="Column2" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEHDate%>" DataIndex="date" Flex="1" Hideable="false" />
 
 
 
@@ -205,7 +205,7 @@
                 <ext:GridPanel Visible="True"
                     ID="JobInfoGrid" AutoUpdateLayout="true" Collapsible="true"
                     runat="server"
-                    PaddingSpec="0 0 1 0"   MaxHeight="200"
+                    PaddingSpec="0 0 1 0"   
                     Header="true"
                     Title="<%$ Resources: JIGridTitle %>"
                     Layout="FitLayout" Flex="1"
@@ -284,11 +284,11 @@
                         <Columns>
 
                             <ext:Column Visible="false" ID="Column1" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldrecordId %>" DataIndex="recordId" Hideable="false" Width="75" Align="Center" />
-                            <ext:Column Flex="1" ID="ColJIName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldJIDate %>" DataIndex="date" Hideable="false" Width="75" Align="Center" />
-                            <ext:Column Flex="1" ID="Column3" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldJIDepartment %>" DataIndex="departmentName" Hideable="false" Width="75" Align="Center" />
-                            <ext:Column Flex="1" ID="Column7" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldJIBranch%>" DataIndex="branchName" Hideable="false" Width="75" Align="Center" />
-                            <ext:Column Flex="1" ID="Column8" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldJIPosition%>" DataIndex="positionName" Hideable="false" Width="75" Align="Center" />
-                            <ext:Column Flex="1" ID="Column9" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldJIDivision%>" DataIndex="divisionName" Hideable="false" Width="75" Align="Center" />
+                            <ext:DateColumn Format="dd-MM-yyyy" Flex="1" ID="ColJIName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldJIDate %>" DataIndex="date" Hideable="false" Width="75" Align="Center" />
+                            <ext:Column Flex="2" ID="Column3" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldJIDepartment %>" DataIndex="departmentName" Hideable="false" Align="Center" />
+                            <ext:Column Flex="2" ID="Column7" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldJIBranch%>" DataIndex="branchName" Hideable="false"  Align="Center" />
+                            <ext:Column Flex="2" ID="Column8" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldJIPosition%>" DataIndex="positionName" Hideable="false"  Align="Center" />
+                            <ext:Column Flex="2" ID="Column9" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldJIDivision%>" DataIndex="divisionName" Hideable="false" Align="Center" />
                           
 
 
@@ -376,7 +376,7 @@
                   <ext:GridPanel Visible="True"
                     ID="SalaryGrid" AutoUpdateLayout="true" Collapsible="true"
                     runat="server"
-                    PaddingSpec="0 0 1 0"   MaxHeight="200"
+                    PaddingSpec="0 0 1 0"   
                     Header="true"
                     Title="<%$ Resources: SAGridTitle %>"
                     Layout="FitLayout"
@@ -609,6 +609,14 @@
                                             </Model>
                                         </ext:Store>
                                     </Store>
+                                         <RightButtons>
+                                                    <ext:Button ID="Button10" runat="server" Icon="Add" Hidden="true"  >
+                                                    </ext:Button>
+                                                </RightButtons>
+                                                <Listeners>
+                                                    <FocusEnter Handler="this.rightButtons[0].setHidden(false);" />
+                                                    <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
+                                                </Listeners>
                                 </ext:ComboBox>
                                 <ext:DateField runat="server" Name="date" FieldLabel="<%$ Resources:FieldEHDate%>" AllowBlank="false" />
                                 <ext:TextArea runat="server" Name="comment" FieldLabel="<%$ Resources:FieldEHComment%>" />
@@ -879,6 +887,9 @@
                                                         <ext:ListItem Text="<%$ Resources: SalaryCash%>" Value="0"></ext:ListItem>
                                                         <ext:ListItem Text="<%$ Resources: SalaryBank%>" Value="1"></ext:ListItem>
                                                         </Items>
+                                     <Listeners>
+                                         <Select Handler="TogglePaymentMethod(this.value)" />
+                                     </Listeners>
                                                 </ext:ComboBox>
                              </Items></ext:Panel>
                                 <ext:Panel runat="server" ><Items>        <ext:TextField ID="bankName"  runat="server" FieldLabel="<%$ Resources:FieldBankName%>"  Name="bankName" />

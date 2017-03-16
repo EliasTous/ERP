@@ -617,6 +617,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
 
 
                         ModelProxy record = this.employeementHistoryStore.GetById(index);
+                        record.Set("date", b.date.ToShortDateString());
                         EditEHForm.UpdateRecord(record);
                         record.Commit();
                         Notification.Show(new NotificationConfig

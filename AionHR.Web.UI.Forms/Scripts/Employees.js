@@ -170,4 +170,22 @@ var openNewTabEmployee = function (id, url, title, iconCls) {
     }
     App.employeesTabPanel.setActiveTab(tab);
 }
+function dump(obj) {
+    var out = '';
+    for (var i in obj) {
+        out += i + ": " + obj[i] + "\n";
 
+
+    }
+    return out;
+}
+function FillLeftPanel(fullName,departmentName,branchName,positionName)
+{
+    //alert(fullName);
+    //alert(departmentName);
+    App.fullNameLbl.html = fullName;
+    //alert(App.fullNameLbl.html);
+    App.departmentLbl.html = departmentName;
+    App.branchLbl.html = branchName;
+    App.positionLbl.html = positionName;
+}

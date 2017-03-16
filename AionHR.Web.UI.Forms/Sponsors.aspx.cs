@@ -169,18 +169,37 @@ namespace AionHR.Web.UI.Forms
             try
             {
                 //Step 1 Code to delete the object from the database 
-
-                //Step 2 :  remove the object from the store
-                Store1.Remove(index);
-
-                //Step 3 : Showing a notification for the user 
-                Notification.Show(new NotificationConfig
+                Sponsor s = new Sponsor();
+                s.address = "";
+                s.city = "";
+                s.email = "";
+                s.fax = "";
+                s.mobile = "";
+                s.name = "";
+                s.phone = "";
+                s.recordId = index;
+                PostRequest<Sponsor> req = new PostRequest<Sponsor>();
+                req.entity = s;
+                PostResponse<Sponsor> r = _employeeService.ChildDelete<Sponsor>(req);
+                if (!r.Success)
                 {
-                    Title = Resources.Common.Notification,
-                    Icon = Icon.Information,
-                    Html = Resources.Common.RecordDeletedSucc
-                });
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    X.Msg.Alert(Resources.Common.Error, r.Summary).Show();
+                    return;
+                }
+                else
+                {
+                    //Step 2 :  remove the object from the store
+                    Store1.Remove(index);
 
+                    //Step 3 : Showing a notification for the user 
+                    Notification.Show(new NotificationConfig
+                    {
+                        Title = Resources.Common.Notification,
+                        Icon = Icon.Information,
+                        Html = Resources.Common.RecordDeletedSucc
+                    });
+                }
 
             }
             catch (Exception ex)

@@ -69,7 +69,7 @@ namespace AionHR.Web.UI.Forms
                 SetExtLanguage();
                 HideShowButtons();
                 HideShowColumns();
-               
+
 
 
             }
@@ -136,7 +136,7 @@ namespace AionHR.Web.UI.Forms
                     //employeePanel.Loader.Url = "EmployeePages/EmployeeProfile.aspx?employeeId="+CurrentEmployee.Text;
                     //employeePanel.Loader.LoadContent();
 
-
+                    panelRecordDetails.ActiveIndex = 0;
                     //timeZoneCombo.Select(response.result.timeZone.ToString());
                     this.EditRecordWindow.Title = Resources.Common.EditWindowsTitle;
                     this.EditRecordWindow.Show();
@@ -164,7 +164,7 @@ namespace AionHR.Web.UI.Forms
                     //Here will show up a winow relatice to attachement depending on the case we are working on
                     break;
                 case "colEdit":
-                
+
                     break;
 
                 default:
@@ -215,7 +215,7 @@ namespace AionHR.Web.UI.Forms
             FillBranch();
             branchId.Enabled = isAdd;
             branchId.ReadOnly = !isAdd;
-            
+
             FillDepartment();
 
             departmentId.Enabled = isAdd;
@@ -235,7 +235,7 @@ namespace AionHR.Web.UI.Forms
 
             FillVacationSchedule();
             panelRecordDetails.Enabled = !isAdd;
-            
+
             FillWorkingCalendar();
 
             if (isAdd)
@@ -244,15 +244,15 @@ namespace AionHR.Web.UI.Forms
                 positionLbl.Text = "";
                 departmentLbl.Text = "";
                 fullNameLbl.Text = "";
-                
+
             }
             foreach (var item in panelRecordDetails.Items)
             {
-                if (item.ID== "BasicInfoTab")
+                if (item.ID == "BasicInfoTab")
                     continue;
                 item.Disabled = isAdd;
             }
-           
+
 
         }
 
@@ -287,6 +287,7 @@ namespace AionHR.Web.UI.Forms
                 X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorDeletingRecord).Show();
 
             }
+
 
         }
 
@@ -373,6 +374,7 @@ namespace AionHR.Web.UI.Forms
 
             //Reset all values of the relative object
             BasicInfoTab.Reset();
+            panelRecordDetails.ActiveIndex = 0;
             //picturePath.Clear();
             //imgControl.ImageUrl = "";
             InitCombos(true);
@@ -401,7 +403,7 @@ namespace AionHR.Web.UI.Forms
             empRequest.StartAt = e.Start.ToString();
 
             ListResponse<Employee> emps = _employeeService.GetAll<Employee>(empRequest);
-            if(!emps.Success)
+            if (!emps.Success)
             {
                 X.Msg.Alert(Resources.Common.Error, emps.Summary).Show();
                 return;
@@ -418,10 +420,10 @@ namespace AionHR.Web.UI.Forms
         {
             ListRequest nationalityRequest = new ListRequest();
             ListResponse<Nationality> resp = _systemService.ChildGetAll<Nationality>(nationalityRequest);
-            if(!resp.Success)
+            if (!resp.Success)
             {
                 X.Msg.Alert(Resources.Common.Error, resp.Summary).Show();
-                
+
             }
             NationalityStore.DataSource = resp.Items;
             NationalityStore.DataBind();
@@ -432,7 +434,7 @@ namespace AionHR.Web.UI.Forms
         {
             ListRequest positionsRequest = new ListRequest();
             ListResponse<Model.Company.Structure.Position> resp = _companyStructureService.ChildGetAll<Model.Company.Structure.Position>(positionsRequest);
-            if(!resp.Success)
+            if (!resp.Success)
                 X.Msg.Alert(Resources.Common.Error, resp.Summary).Show();
             positionStore.DataSource = resp.Items;
             positionStore.DataBind();
@@ -441,7 +443,7 @@ namespace AionHR.Web.UI.Forms
         {
             ListRequest departmentsRequest = new ListRequest();
             ListResponse<Department> resp = _companyStructureService.ChildGetAll<Department>(departmentsRequest);
-            if(!resp.Success)
+            if (!resp.Success)
                 X.Msg.Alert(Resources.Common.Error, resp.Summary).Show();
             departmentStore.DataSource = resp.Items;
             departmentStore.DataBind();
@@ -497,15 +499,15 @@ namespace AionHR.Web.UI.Forms
 
         protected void SaveNewRecord(object sender, DirectEventArgs e)
         {
-
+            
 
             //Getting the id to check if it is an Add or an edit as they are managed within the same form.
             //string id = e.ExtraParams["id"];
             string id = CurrentEmployee.Text;
             string obj = e.ExtraParams["values"];
             Employee b = JsonConvert.DeserializeObject<Employee>(obj);
-            b.name = new EmployeeName() { firstName = firstName.Text, lastName = lastName.Text, familyName = familyName.Text, middleName = middleName.Text , reference=reference.Text };
-           
+            b.name = new EmployeeName() { firstName = firstName.Text, lastName = lastName.Text, familyName = familyName.Text, middleName = middleName.Text, reference = reference.Text };
+
             b.recordId = id;
             // Define the object to add or edit as null
             if (branchId.SelectedItem != null)
@@ -537,12 +539,12 @@ namespace AionHR.Web.UI.Forms
                         fileData = picturePath.FileBytes;
                         request.fileName = picturePath.PostedFile.FileName;
                         request.imageData = fileData;
-                        
+
                     }
                     else
                     {
                         request.imageData = fileData;
-                    request.fileName = "";
+                        request.fileName = "";
                     }
                     request.empData = b;
 
@@ -698,8 +700,8 @@ namespace AionHR.Web.UI.Forms
             return paranthized;
 
         }
-      
-   
+
+
         protected void Unnamed_Load(object sender, EventArgs e)
         {
         }
@@ -722,7 +724,7 @@ namespace AionHR.Web.UI.Forms
             InitCombos(false);
             SelectCombos(response.result);
 
-            
+
         }
 
         private void FillLeftPanel()
@@ -735,12 +737,18 @@ namespace AionHR.Web.UI.Forms
             forSummary.firstName = forSummary.name.firstName;
             forSummary.middleName = forSummary.name.middleName;
             forSummary.lastName = forSummary.name.lastName;
-            fullNameLbl.Html = forSummary.firstName + forSummary.lastName + "<br />";
-            departmentLbl.Html = forSummary.departmentName + "<br />";
-            branchLbl.Html = forSummary.branchName + "<br />";
-            positionLbl.Html = forSummary.positionName + "<br />";
-
-            //employeeName.Text = resp.result.name.firstName + resp.result.name.lastName;
+            forSummary.fullName = forSummary.name.fullName;
+            X.Call("FillLeftPanel",
+                 forSummary.fullName + "<br />",
+                forSummary.departmentName + "<br />",
+                forSummary.branchName + "<br />",
+                forSummary.positionName + "<br />"
+            );
+            //fullNameLbl.Text = forSummary.fullName + "<br />";
+            //departmentLbl.Html = forSummary.departmentName + "<br />";
+            //branchLbl.Html = forSummary.branchName + "<br />";
+            //positionLbl.Html = forSummary.positionName + "<br />";
+            ////employeeName.Text = resp.result.name.firstName + resp.result.name.lastName;
             imgControl.ImageUrl = response.result.pictureUrl;
         }
 
