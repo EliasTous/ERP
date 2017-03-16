@@ -183,9 +183,12 @@ function FillLeftPanel(fullName,departmentName,branchName,positionName)
 {
     //alert(fullName);
     //alert(departmentName);
-    App.fullNameLbl.html = fullName;
+
+    App.fullNameLbl.setText(fullName, false);
+
     //alert(App.fullNameLbl.html);
-    App.departmentLbl.html = departmentName;
-    App.branchLbl.html = branchName;
-    App.positionLbl.html = positionName;
+    App.departmentLbl.setText(departmentName,false);
+    App.branchLbl.setText(branchName,false);
+    App.positionLbl.setText(positionName, false);
+    
 }
