@@ -101,3 +101,9 @@ input[readonly]
 {
     background-color:white;
 }
+#alignedPanel{
+    text-align:center!important;
+}
+#img{
+    text-align:left!important;
+}

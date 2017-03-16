@@ -499,7 +499,7 @@ namespace AionHR.Web.UI.Forms
 
         protected void SaveNewRecord(object sender, DirectEventArgs e)
         {
-            
+
 
             //Getting the id to check if it is an Add or an edit as they are managed within the same form.
             //string id = e.ExtraParams["id"];
@@ -519,6 +519,9 @@ namespace AionHR.Web.UI.Forms
             if (divisionId.SelectedItem != null)
                 b.divisionName = positionId.SelectedItem.Text;
             b.name.fullName = b.name.firstName + " " + b.name.middleName + " " + b.name.lastName + " ";
+            b.birthDate = new DateTime(b.birthDate.Value.Year, b.birthDate.Value.Month, b.birthDate.Value.Day, 14, 0, 0);
+            b.hireDate = new DateTime(b.hireDate.Value.Year, b.hireDate.Value.Month, b.hireDate.Value.Day, 14, 0, 0);
+
             if (string.IsNullOrEmpty(id))
             {
 
@@ -567,7 +570,7 @@ namespace AionHR.Web.UI.Forms
                         //Add this record to the store 
                         this.Store1.Insert(0, b);
 
-                  
+
 
                         CurrentEmployee.Text = b.recordId;
                         FillLeftPanel();
@@ -577,7 +580,7 @@ namespace AionHR.Web.UI.Forms
                         sm.DeselectAll();
                         sm.Select(b.recordId.ToString());
 
-      //Display successful notification
+                        //Display successful notification
                         Notification.Show(new NotificationConfig
                         {
                             Title = Resources.Common.Notification,
@@ -744,7 +747,7 @@ namespace AionHR.Web.UI.Forms
               forSummary.branchName + "<br />",
                forSummary.positionName + "<br />"
             );
-            fullNameLbl.Text = forSummary.fullName + "<br />";
+            fullNameLbl.Html = forSummary.fullName + "<br />";
             departmentLbl.Html = forSummary.departmentName + "<br />";
             branchLbl.Html = forSummary.branchName + "<br />";
             positionLbl.Html = forSummary.positionName + "<br />";
@@ -752,10 +755,172 @@ namespace AionHR.Web.UI.Forms
             imgControl.ImageUrl = response.result.pictureUrl;
         }
 
-        protected void Unnamed_Event(object sender, DirectEventArgs e)
+        #region combobox dynamic insert
+
+        protected void addDepartment(object sender, DirectEventArgs e)
         {
-            int x;
+            Department dept = new Department();
+            dept.name = departmentId.Text;
+            dept.isSegmentHead = false;
+            PostRequest<Department> depReq = new PostRequest<Department>();
+            depReq.entity = dept;
+            PostResponse<Department> response = _companyStructureService.ChildAddOrUpdate<Department>(depReq);
+            if (response.Success)
+            {
+                dept.recordId = response.recordId;
+                departmentStore.Insert(0, dept);
+                departmentId.Select(0);
+            }
+            else
+            {
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, response.Summary).Show();
+                return;
+            }
 
         }
+        protected void addBranch(object sender, DirectEventArgs e)
+        {
+            Branch dept = new Branch();
+            dept.name = branchId.Text;
+            dept.isInactive = false;
+            PostRequest<Branch> depReq = new PostRequest<Branch>();
+            depReq.entity = dept;
+            PostResponse<Branch> response = _companyStructureService.ChildAddOrUpdate<Branch>(depReq);
+            if (response.Success)
+            {
+                dept.recordId = response.recordId;
+                BranchStore.Insert(0, dept);
+                branchId.Select(0);
+            }
+            else
+            {
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, response.Summary).Show();
+                return;
+            }
+
+        }
+
+        protected void addPosition(object sender, DirectEventArgs e)
+        {
+            Model.Company.Structure.Position dept = new Model.Company.Structure.Position();
+            dept.name = positionId.Text;
+
+            PostRequest<Model.Company.Structure.Position> depReq = new PostRequest<Model.Company.Structure.Position>();
+            depReq.entity = dept;
+            PostResponse<Model.Company.Structure.Position> response = _companyStructureService.ChildAddOrUpdate<Model.Company.Structure.Position>(depReq);
+            if (response.Success)
+            {
+                dept.recordId = response.recordId;
+                positionStore.Insert(0, dept);
+                positionId.Select(0);
+            }
+            else
+            {
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, response.Summary).Show();
+                return;
+            }
+
+        }
+
+        protected void addDivision(object sender, DirectEventArgs e)
+        {
+            Division dept = new Division();
+            dept.name = divisionId.Text;
+            dept.isInactive = false;
+            PostRequest<Division> depReq = new PostRequest<Division>();
+            depReq.entity = dept;
+
+            PostResponse<Division> response = _companyStructureService.ChildAddOrUpdate<Division>(depReq);
+            if (response.Success)
+            {
+                dept.recordId = response.recordId;
+                divisionStore.Insert(0, dept);
+                divisionId.Select(0);
+            }
+            else
+            {
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, response.Summary).Show();
+                return;
+            }
+
+        }
+
+        protected void addNationality(object sender, DirectEventArgs e)
+        {
+            Nationality obj = new Nationality();
+            obj.name = nationalityId.Text;
+            
+            PostRequest<Nationality> req = new PostRequest<Nationality>();
+            req.entity = obj;
+
+            PostResponse<Nationality> response = _systemService.ChildAddOrUpdate<Nationality>(req);
+            if (response.Success)
+            {
+                obj.recordId = response.recordId;
+                NationalityStore.Insert(0, obj);
+                nationalityId.Select(0);
+            }
+            else
+            {
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, response.Summary).Show();
+                return;
+            }
+
+        }
+
+        protected void addCalendar(object sender, DirectEventArgs e)
+        {
+            WorkingCalendar obj = new WorkingCalendar();
+            obj.name = caId.Text;
+            
+            PostRequest<WorkingCalendar> req = new PostRequest<WorkingCalendar>();
+            req.entity = obj;
+
+            PostResponse<WorkingCalendar> response = _timeAttendanceService.ChildAddOrUpdate<WorkingCalendar>(req);
+            if (response.Success)
+            {
+                obj.recordId = response.recordId;
+                CalendarStore.Insert(0, obj);
+                caId.Select(0);
+            }
+            else
+            {
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, response.Summary).Show();
+                return;
+            }
+
+        }
+
+        protected void addVS(object sender, DirectEventArgs e)
+        {
+            VacationSchedule obj = new VacationSchedule();
+            obj.name = vsId.Text;
+            
+            PostRequest<VacationSchedule> req = new PostRequest<VacationSchedule>();
+            req.entity = obj;
+
+            PostResponse<VacationSchedule> response = _leaveManagementService.ChildAddOrUpdate<VacationSchedule>(req);
+            if (response.Success)
+            {
+                obj.recordId = response.recordId;
+                VacationScheduleStore.Insert(0, obj);
+                vsId.Select(0);
+            }
+            else
+            {
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, response.Summary).Show();
+                return;
+            }
+
+        }
+
+        #endregion
     }
 }

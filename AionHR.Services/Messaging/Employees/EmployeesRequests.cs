@@ -105,3 +105,33 @@ public class EmployeeSalaryListRequest :ListRequest
         }
     }
 }
+public class EmployeeBonusListRequest:ListRequest
+{
+    public int EmployeeId { get; set; }
+
+    public int BonusTypeId { get; set; }
+
+    public int CurrencyId { get; set; }
+
+
+
+
+    /// <summary>
+    /// /// parameter list shipped with the web request
+    /// </summary>
+    public override Dictionary<string, string> Parameters
+    {
+
+        get
+        {
+            parameters = base.Parameters;
+
+            parameters.Add("_employeeId", EmployeeId.ToString());
+            parameters.Add("_btId", BonusTypeId.ToString());
+            parameters.Add("_currencyId", CurrencyId.ToString());
+
+
+            return parameters;
+        }
+    }
+}

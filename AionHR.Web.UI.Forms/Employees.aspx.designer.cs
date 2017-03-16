@@ -337,6 +337,15 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Panel leftPanel;
         
         /// <summary>
+        /// alignedPanel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Panel alignedPanel;
+        
+        /// <summary>
         /// imgControl control.
         /// </summary>
         /// <remarks>
@@ -353,6 +362,15 @@ namespace AionHR.Web.UI.Forms {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.FileUploadField picturePath;
+        
+        /// <summary>
+        /// img control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Panel img;
         
         /// <summary>
         /// fullNameLbl control.
@@ -544,13 +562,13 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Store NationalityStore;
         
         /// <summary>
-        /// addButton control.
+        /// Button7 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Button addButton;
+        protected global::Ext.Net.Button Button7;
         
         /// <summary>
         /// departmentId control.
@@ -625,13 +643,13 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Store divisionStore;
         
         /// <summary>
-        /// Button7 control.
+        /// Button4 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Button Button7;
+        protected global::Ext.Net.Button Button4;
         
         /// <summary>
         /// positionId control.
@@ -749,5 +767,14 @@ namespace AionHR.Web.UI.Forms {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.Panel profilePanel;
+        
+        /// <summary>
+        /// Panel1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Panel Panel1;
     }
 }
