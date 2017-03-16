@@ -14,7 +14,7 @@
     <script type="text/javascript" src="Scripts/jquery.min.js"></script>
     <script type="text/javascript" src="Scripts/Branches.js?id=0"></script>
     <script type="text/javascript" src="Scripts/common.js?id=0"></script>
-    <script type="text/javascript" src="Scripts/Employees.js?id=10"></script>
+    <script type="text/javascript" src="Scripts/Employees.js?id=15"></script>
     <script type="text/javascript">
        
     </script>
@@ -289,16 +289,14 @@
        
                     <Items>
                         <ext:Panel ID="leftPanel" runat="server" Region="West" PaddingSpec="0 0 0 0" Padding="0" TitleAlign="Center"
-                            Header="true" Collapsible="false" titlePosition="2"
+                            Header="true" Collapsible="false" titlePosition="2" BodyPadding="5" Width="150"
                             Title="<%$ Resources:Common , NavigationPane %>" CollapseToolText="<%$ Resources:Common , CollapsePanel %>" ExpandToolText="<%$ Resources:Common , ExpandPanel %>" BodyBorder="0">
 
                             <Items>
                                 <ext:Panel runat="server">
 
                                     <Items>
-                                        <ext:Panel runat="server" Padding="10">
-                                            <Content>
-                                                <div style="text-align: left;">
+                                        
                                                     <ext:Image runat="server" ID="imgControl" Width="100" Height="100">
                                                         <Listeners>
                                                             <Click Handler="triggierImageClick(App.picturePath.fileInputEl.id); " />
@@ -313,13 +311,11 @@
                                                             <Change OnEvent="Unnamed_Event" />
                                                         </DirectEvents>
                                                     </ext:FileUploadField>
-                                                    <ext:Label ID="fullNameLbl" runat="server" />
+                                                    <ext:Label ID="fullNameLbl" runat="server"  />
                                         <ext:Label ID="departmentLbl" runat="server" />
                                         <ext:Label ID="branchLbl" runat="server" />
                                         <ext:Label ID="positionLbl" runat="server" />
-                                                </div>
-                                            </Content>
-                                        </ext:Panel>
+                                              
                                         
 
 

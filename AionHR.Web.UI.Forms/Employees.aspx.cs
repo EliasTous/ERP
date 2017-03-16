@@ -567,13 +567,7 @@ namespace AionHR.Web.UI.Forms
                         //Add this record to the store 
                         this.Store1.Insert(0, b);
 
-                        //Display successful notification
-                        Notification.Show(new NotificationConfig
-                        {
-                            Title = Resources.Common.Notification,
-                            Icon = Icon.Information,
-                            Html = Resources.Common.RecordSavingSucc
-                        });
+                  
 
                         CurrentEmployee.Text = b.recordId;
                         FillLeftPanel();
@@ -583,7 +577,13 @@ namespace AionHR.Web.UI.Forms
                         sm.DeselectAll();
                         sm.Select(b.recordId.ToString());
 
-
+      //Display successful notification
+                        Notification.Show(new NotificationConfig
+                        {
+                            Title = Resources.Common.Notification,
+                            Icon = Icon.Information,
+                            Html = Resources.Common.RecordSavingSucc
+                        });
 
                     }
                 }
@@ -739,16 +739,16 @@ namespace AionHR.Web.UI.Forms
             forSummary.lastName = forSummary.name.lastName;
             forSummary.fullName = forSummary.name.fullName;
             X.Call("FillLeftPanel",
-                 forSummary.fullName + "<br />",
+                forSummary.fullName + "<br />",
                 forSummary.departmentName + "<br />",
-                forSummary.branchName + "<br />",
-                forSummary.positionName + "<br />"
+              forSummary.branchName + "<br />",
+               forSummary.positionName + "<br />"
             );
-            //fullNameLbl.Text = forSummary.fullName + "<br />";
-            //departmentLbl.Html = forSummary.departmentName + "<br />";
-            //branchLbl.Html = forSummary.branchName + "<br />";
-            //positionLbl.Html = forSummary.positionName + "<br />";
-            ////employeeName.Text = resp.result.name.firstName + resp.result.name.lastName;
+            fullNameLbl.Text = forSummary.fullName + "<br />";
+            departmentLbl.Html = forSummary.departmentName + "<br />";
+            branchLbl.Html = forSummary.branchName + "<br />";
+            positionLbl.Html = forSummary.positionName + "<br />";
+            //employeeName.Text = resp.result.name.firstName + resp.result.name.lastName;
             imgControl.ImageUrl = response.result.pictureUrl;
         }
 
