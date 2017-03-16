@@ -182,7 +182,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                         Yes = new MessageBoxButtonConfig
                         {
                             //We are call a direct request metho for deleting a record
-                            Handler = String.Format("App.direct.DeleteJI{0})", id),
+                            Handler = String.Format("App.direct.DeleteJI({0})", id),
                             Text = Resources.Common.Yes
                         },
                         No = new MessageBoxButtonConfig
@@ -539,7 +539,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             b.employeeId = Convert.ToInt32(CurrentEmployee.Text);
             b.recordId = id;
             // Define the object to add or edit as null
-
+            b.statusName = statusId.SelectedItem.Text;
             if (string.IsNullOrEmpty(id))
             {
 
@@ -609,7 +609,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     if (!r.Success)//it maybe another check
                     {
                         X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                        X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorUpdatingRecord).Show();
+                        X.Msg.Alert(Resources.Common.Error, r.Summary).Show();
                         return;
                     }
                     else
@@ -618,6 +618,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
 
                         ModelProxy record = this.employeementHistoryStore.GetById(index);
                         record.Set("date", b.date.ToShortDateString());
+                        record.Set("statusName", b.statusName);
                         EditEHForm.UpdateRecord(record);
                         record.Commit();
                         Notification.Show(new NotificationConfig
@@ -658,7 +659,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             if (positionId.SelectedItem != null)
                 b.positionName = positionId.SelectedItem.Text;
             if (divisionId.SelectedItem != null)
-                b.divisionName = positionId.SelectedItem.Text;
+                b.divisionName = divisionId.SelectedItem.Text;
             // Define the object to add or edit as null
 
             if (string.IsNullOrEmpty(id))
@@ -730,7 +731,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     if (!r.Success)//it maybe another check
                     {
                         X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                        X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorUpdatingRecord).Show();
+                        X.Msg.Alert(Resources.Common.Error, r.Summary).Show();
                         return;
                     }
                     else
@@ -739,6 +740,11 @@ namespace AionHR.Web.UI.Forms.EmployeePages
 
                         ModelProxy record = this.JIStore.GetById(index);
                         EditJobInfoTab.UpdateRecord(record);
+                        record.Set("departmentName", b.departmentName);
+                        record.Set("branchName", b.branchName);
+                        record.Set("positionName", b.positionName);
+                        record.Set("divisionName", b.divisionName);
+
                         record.Commit();
                         Notification.Show(new NotificationConfig
                         {
@@ -779,6 +785,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                 b.isTaxable = 0;
             // Define the object to add or edit as null
 
+            b.effectiveDate = b.effectiveDate.AddHours(-10);
             if (string.IsNullOrEmpty(id))
             {
 
@@ -848,7 +855,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     if (!r.Success)//it maybe another check
                     {
                         X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                        X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorUpdatingRecord).Show();
+                        X.Msg.Alert(Resources.Common.Error, r.Summary).Show();
                         return;
                     }
                     else

@@ -178,7 +178,7 @@
     <value>BasicAmount</value>
   </data>
   <data name="FieldEffectiveDate" xml:space="preserve">
-    <value>EffectiveDate</value>
+    <value>Date</value>
   </data>
   <data name="FieldFinalAmount" xml:space="preserve">
     <value>FinalAmount</value>
@@ -187,28 +187,28 @@
     <value>IsTaxable</value>
   </data>
   <data name="FieldPaymentFrequency" xml:space="preserve">
-    <value>PaymentFrequency</value>
+    <value>Payment Frequency</value>
   </data>
   <data name="FieldPaymentMethod" xml:space="preserve">
-    <value>PaymentMethod</value>
+    <value>Payment Method</value>
   </data>
   <data name="FieldSalaryType" xml:space="preserve">
     <value>SalaryType</value>
   </data>
   <data name="FieldScrName" xml:space="preserve">
-    <value>ScrName</value>
+    <value>Change Reason</value>
   </data>
   <data name="EditSAWindowTitle" xml:space="preserve">
     <value>Edit SA</value>
   </data>
   <data name="FieldAccountNumber" xml:space="preserve">
-    <value>FieldAccountNumber</value>
+    <value>Account Number</value>
   </data>
   <data name="FieldBankName" xml:space="preserve">
     <value>Bank</value>
   </data>
   <data name="FieldComments" xml:space="preserve">
-    <value>FieldComments</value>
+    <value>Comments</value>
   </data>
   <data name="FieldSACurrencyName" xml:space="preserve">
     <value>Currency</value>

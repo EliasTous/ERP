@@ -7,10 +7,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title></title>
-    <link rel="stylesheet" type="text/css" href="../CSS/Common.css" />
+    <link rel="stylesheet" type="text/css" href="../CSS/Common.css?id=0" />
     <link rel="stylesheet" href="../CSS/LiveSearch.css" />
     <script type="text/javascript" src="../Scripts/JobInformation.js?id=10"></script>
-    <script type="text/javascript" src="../Scripts/common.js"></script>
+    <script type="text/javascript" src="../Scripts/common.js?id=0"></script>
 
 
 </head>
@@ -466,27 +466,28 @@
                         <Columns>
 
                             <ext:Column Visible="false" ID="recID" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldrecordId %>" DataIndex="recordId" Hideable="false" Width="75" Align="Center" />
-                            <ext:Column Flex="1" ID="cc" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldScrName %>" DataIndex="scrName" Hideable="false" Width="75" Align="Center" />
-                            <ext:Column Flex="1" ID="ColSAName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEffectiveDate %>" DataIndex="effectiveDate" Hideable="false" Width="75" Align="Center" >
+                             <ext:Column Flex="3" ID="ColSAName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEffectiveDate %>" DataIndex="effectiveDate" Hideable="false" Width="75" Align="Center" >
                                      <Renderer Handler="return '<u>'+ record.data['effectiveDate']+'</u>'">
                                 </Renderer>
                            
                                 </ext:Column>
-                            <ext:Column Flex="1" ID="Column13" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldSalaryType %>" DataIndex="salaryType" Hideable="false" Width="75" Align="Center" >
+                            <ext:Column Flex="3" ID="cc" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldScrName %>" DataIndex="scrName" Hideable="false" Width="75" Align="Center" />
+                           
+                            <ext:Column Visible="false" Flex="2" ID="Column13" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldSalaryType %>" DataIndex="salaryType" Hideable="false" Width="75" Align="Center" >
                                     <Renderer Handler="return getPaymentTypeString(record.data['salaryType'])" />
                                 </ext:Column>
                            
-                            <ext:Column Flex="1" ID="Column14" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldPaymentFrequency %>" DataIndex="paymentFrequency" Hideable="false" Width="75" Align="Center" >
+                            <ext:Column Visible="false" Flex="2" ID="Column14" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldPaymentFrequency %>" DataIndex="paymentFrequency" Hideable="false" Width="75" Align="Center" >
                                 <Renderer Handler="return getPaymentTypeString(record.data['paymentFrequency'])" />
                                 </ext:Column>
-                            <ext:Column Flex="1" ID="Column15" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldPaymentMethod %>" DataIndex="paymentMethod" Hideable="false" Width="75" Align="Center" >
+                            <ext:Column Flex="3" ID="Column15" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldPaymentMethod %>" DataIndex="paymentMethod" Hideable="false" Width="75" Align="Center" >
                                 <Renderer Handler="return getPaymentMethodString(record.data['paymentMethod'])" />
                                 </ext:Column>
-                            <ext:CheckColumn Flex="1" ID="Column19" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldIsTaxable %>" DataIndex="isTaxable" Hideable="false" Width="75" Align="Center" />
-                          <ext:Column Flex="1" ID="Column20" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldBasicAmount %>" DataIndex="basicAmount" Hideable="false" Width="75" Align="Center" />
-                            <ext:Column Flex="1" ID="Column21" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldFinalAmount %>" DataIndex="finalAmount" Hideable="false" Width="75" Align="Center" />
-                            <ext:Column Flex="1" ID="Column22" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldSACurrencyName %>" DataIndex="currencyName" Hideable="false" Width="75" Align="Center" />
-
+                         
+                          <ext:Column Flex="3" ID="Column20" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldBasicAmount %>" DataIndex="basicAmount" Hideable="false" Width="75" Align="Center" />
+                            <ext:Column Flex="3" ID="Column21" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldFinalAmount %>" DataIndex="finalAmount" Hideable="false" Width="75" Align="Center" />
+                            <ext:Column Flex="3" ID="Column22" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldSACurrencyName %>" DataIndex="currencyName" Hideable="false" Width="75" Align="Center" />
+                               <ext:CheckColumn Flex="2" ID="Column19" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldIsTaxable %>" DataIndex="isTaxable" Hideable="false" Width="75" Align="Center" />
 
 
                             <ext:Column runat="server"
@@ -504,7 +505,7 @@
 
                             </ext:Column>
                             <ext:Column runat="server"
-                                ID="ColSADelete" Flex="1" Visible="true"
+                                ID="ColSADelete" Flex="2" Visible="true"
                                 Text="<%$ Resources: Common , Delete %>"
                                 Width="60"
                                 Align="Center"
@@ -822,6 +823,7 @@
                                 <ext:Panel runat="server" ><Items> <ext:TextField ID="SAId" Hidden="true" runat="server" FieldLabel="<%$ Resources:FieldrecordId%>" Disabled="true" Name="recordId" />
                                 
                            <ext:ComboBox    runat="server" AllowBlank="false" ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" ID="currencyId" Name="currencyId" FieldLabel="<%$ Resources:FieldSACurrencyName%>" SimpleSubmit="true">
+                               
                                                 <Store>
                                                     <ext:Store runat="server" ID="currencyStore">
                                                         <Model>

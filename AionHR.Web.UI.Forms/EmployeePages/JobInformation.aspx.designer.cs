@@ -535,15 +535,6 @@ namespace AionHR.Web.UI.Forms.EmployeePages {
         protected global::Ext.Net.Column recID;
         
         /// <summary>
-        /// cc control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Column cc;
-        
-        /// <summary>
         /// ColSAName control.
         /// </summary>
         /// <remarks>
@@ -551,6 +542,15 @@ namespace AionHR.Web.UI.Forms.EmployeePages {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.Column ColSAName;
+        
+        /// <summary>
+        /// cc control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Column cc;
         
         /// <summary>
         /// Column13 control.
@@ -580,15 +580,6 @@ namespace AionHR.Web.UI.Forms.EmployeePages {
         protected global::Ext.Net.Column Column15;
         
         /// <summary>
-        /// Column19 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.CheckColumn Column19;
-        
-        /// <summary>
         /// Column20 control.
         /// </summary>
         /// <remarks>
@@ -614,6 +605,15 @@ namespace AionHR.Web.UI.Forms.EmployeePages {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.Column Column22;
+        
+        /// <summary>
+        /// Column19 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.CheckColumn Column19;
         
         /// <summary>
         /// Column16 control.
