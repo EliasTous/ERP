@@ -700,7 +700,21 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             BTStore.DataBind();
         }
 
+        [DirectMethod]
+        public object SaveEntitlementDeduction(bool isPhantom, JsonObject values)
+        {
+            if (!isPhantom)
+            {
+                return new { valid = true };
+            }
 
+            if (!values.ContainsKey("salary") || Convert.ToInt32(values["salary"]) < 1000)
+            {
+                return new { valid = false, msg = "Salary must be >=1000 for new employee" };
+            }
+
+            return new { valid = true };
+        }
         #region Combo Dynamic Add
         protected void addBOCurrency(object sender, DirectEventArgs e)
         {
@@ -796,7 +810,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
 
         }
         #endregion
-
+        
 
     }
 }

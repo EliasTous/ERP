@@ -95,3 +95,35 @@ function TogglePaymentMethod(index)
     App.bankName.setDisabled(index == 0);
 
 }
+
+function addEmployee() {
+    var entitlementsDeductionsGrid = App.entitlementsDeductionsGrid,
+        store = entitlementsDeductionsGrid.getStore();
+
+    entitlementsDeductionsGrid.editingPlugin.cancelEdit();
+
+    store.getSorters().removeAll();
+    entitlementsDeductionsGrid.getView().headerCt.setSortState(); // To update columns sort UI
+
+    store.insert(0, {
+        from: '0',
+        to: '1',
+        days: 2
+
+    });
+
+    entitlementsDeductionsGrid.editingPlugin.startEdit(0, 0);
+}
+
+function removeEmployee() {
+    var entitlementsDeductionsGrid = App.entitlementsDeductionsGrid,
+        sm = entitlementsDeductionsGrid.getSelectionModel(),
+        store = entitlementsDeductionsGrid.getStore();
+
+    entitlementsDeductionsGrid.editingPlugin.cancelEdit();
+    store.remove(sm.getSelection());
+
+    if (store.getCount() > 0) {
+        sm.select(0);
+    }
+}

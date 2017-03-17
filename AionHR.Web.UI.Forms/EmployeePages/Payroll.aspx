@@ -556,6 +556,132 @@
 
                     </Items>
                 </ext:TabPanel>
+                <ext:FormPanel
+                            ID="deductionsEntitlementsForm"
+                            runat="server"
+                            Title="<%$ Resources: DeductionsEntitlements %>"
+                            Icon="ApplicationSideList"
+                            DefaultAnchor="100%" 
+                            BodyPadding="5">
+                            <Items>
+                                <ext:GridPanel
+                                    ID="entitlementsDeductionsGrid"  
+                                    runat="server"
+                                    Width="600" Header="false"
+                                    Height="210" Layout="FitLayout"
+                                    Frame="true" TitleCollapse="true"  Scroll="Vertical"
+                                    >
+                                    <Store>
+                                        <ext:Store ID="entitlementDeductionStore" runat="server">
+                                           <Model>
+                                                <ext:Model runat="server" Name="Employee">
+                                                    <Fields>
+                                                        <ext:ModelField Name="from"  />
+                                                        <ext:ModelField Name="to"/>
+                                                        <ext:ModelField Name="days" />
+                                                       
+                                                    </Fields>
+                                                </ext:Model>
+                                            </Model>
+                                        </ext:Store>
+                                    </Store>
+                                    <Plugins>
+                                        <ext:RowEditing runat="server" ClicksToMoveEditor="1" AutoCancel="false"  SaveHandler="SaveEntitlementDeduction">
+                                            <Listeners>
+                                                <BeforeEdit Handler="CheckSession()" />
+                                            </Listeners>
+                                        </ext:RowEditing>
+                                    </Plugins>
+                                    <TopBar>
+                                        <ext:Toolbar runat="server">
+                                            <Items>
+                                                <ext:Button runat="server" Text="Add Period" Icon="UserAdd">
+                                                    <Listeners>
+                                                        <Click Fn="addEmployee" />
+                                                    </Listeners>
+                                                </ext:Button>
+                                                <ext:Button
+                                                    ID="btnRemoveEmployee"
+                                                    runat="server"
+                                                    Text="Remove Period"
+                                                    Icon="UserDelete"
+                                                    Disabled="true">
+                                                    <Listeners>
+                                                        <Click Fn="removeEmployee" />
+                                                    </Listeners>
+                                                </ext:Button>
+                                            </Items>
+                                        </ext:Toolbar>
+                                    </TopBar>
+                                    <ColumnModel>
+                                        <Columns>
+                                            <ext:RowNumbererColumn runat="server" Width="25" />
+                                            <ext:NumberColumn
+                                                runat="server"
+                                                Text="From Months"
+                                                DataIndex="from"
+                                                
+                                                Align="Center">
+                                                <Editor>
+                                                     <%-- Vtype="numberrange"
+                                                        EndNumberField="toField"--%>
+                                                    <ext:NumberField
+                                                        runat="server"
+                                                         ID="fromField"
+                                                        AllowBlank="false"
+                                                       
+                                                        MinValue="0"
+                                                        MaxValue="1000" />
+                                                </Editor>
+                                            </ext:NumberColumn>
+                                            <ext:NumberColumn
+                                                runat="server"
+                                                Text="To Months"
+                                                DataIndex="to"
+                                                
+                                                Align="Center">
+                                                <Editor>
+                                                       <%--   StartNumberField="fromField"
+                                                         Vtype="numberrange"--%>
+                                                    <ext:NumberField
+                                                        runat="server"
+                                                        ID="toField"
+                                                        AllowBlank="false"
+                                                        MinValue="0"
+                                                  
+                                                        MaxValue="1000" >
+                                                       
+                                                        </ext:NumberField>
+
+                                                </Editor>
+                                                
+                                            </ext:NumberColumn>
+                                            
+                                            
+                                            <ext:NumberColumn
+                                                runat="server"
+                                                Text="Vacation Days"
+                                                DataIndex="days"
+                                                
+                                                Align="Center">
+                                                <Editor>
+                                                    <ext:NumberField
+                                                        runat="server"
+                                                        AllowBlank="false"
+                                                        MinValue="0"
+                                                        MaxValue="150" />
+                                                </Editor>
+                                            </ext:NumberColumn>
+                                            
+                                        </Columns>
+                                    </ColumnModel>
+                                    <Listeners>
+                                        <SelectionChange Handler="App.btnRemoveEmployee.setDisabled(!selected.length);" />
+                                    </Listeners>
+                                </ext:GridPanel>
+                            </Items>
+
+                        </ext:FormPanel>
             </Items>
             <Buttons>
                 <ext:Button ID="Button12" runat="server" Text="<%$ Resources:Common, Save %>" Icon="Disk">

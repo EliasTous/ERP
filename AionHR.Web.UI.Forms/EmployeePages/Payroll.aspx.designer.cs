@@ -697,6 +697,60 @@ namespace AionHR.Web.UI.Forms.EmployeePages {
         protected global::Ext.Net.Checkbox isTaxable;
         
         /// <summary>
+        /// deductionsEntitlementsForm control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.FormPanel deductionsEntitlementsForm;
+        
+        /// <summary>
+        /// entitlementsDeductionsGrid control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.GridPanel entitlementsDeductionsGrid;
+        
+        /// <summary>
+        /// entitlementDeductionStore control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Store entitlementDeductionStore;
+        
+        /// <summary>
+        /// btnRemoveEmployee control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Button btnRemoveEmployee;
+        
+        /// <summary>
+        /// fromField control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.NumberField fromField;
+        
+        /// <summary>
+        /// toField control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.NumberField toField;
+        
+        /// <summary>
         /// Button12 control.
         /// </summary>
         /// <remarks>

@@ -222,4 +222,7 @@
   <data name="WindowTitle" xml:space="preserve">
     <value>Currencies</value>
   </data>
+  <data name="DeductionsEntitlements" xml:space="preserve">
+    <value>DeductionsEntitlements</value>
+  </data>
 </root>
