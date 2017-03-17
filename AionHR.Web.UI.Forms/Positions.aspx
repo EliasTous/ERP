@@ -270,7 +270,6 @@
                                 <ext:ComboBox runat="server" ID="referToPositionId" QueryMode="Local"  ForceSelection="true" TypeAhead="true" MinChars="1" 
                                     DisplayField="name"
                                     ValueField="recordId"
-                                    TypeAhead="false"
                                    
                                     FieldLabel ="<%$ Resources: FieldReferer %>"
                                     
