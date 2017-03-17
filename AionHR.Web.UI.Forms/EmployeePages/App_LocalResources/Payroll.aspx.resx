@@ -222,7 +222,25 @@
   <data name="WindowTitle" xml:space="preserve">
     <value>Currencies</value>
   </data>
+  <data name="Deductions" xml:space="preserve">
+    <value>Deductions</value>
+  </data>
   <data name="DeductionsEntitlements" xml:space="preserve">
     <value>DeductionsEntitlements</value>
+  </data>
+  <data name="Entitlements" xml:space="preserve">
+    <value>Entitlements</value>
+  </data>
+  <data name="FieldEntitlementDeduction" xml:space="preserve">
+    <value>DeductionsEntitlements</value>
+  </data>
+  <data name="FieldFixedAmount" xml:space="preserve">
+    <value>Fixed amount</value>
+  </data>
+  <data name="FieldIncludeInTotal" xml:space="preserve">
+    <value>Include In total</value>
+  </data>
+  <data name="FieldPCT" xml:space="preserve">
+    <value>percentage</value>
   </data>
 </root>

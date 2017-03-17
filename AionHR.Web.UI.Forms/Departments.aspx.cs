@@ -242,7 +242,7 @@ namespace AionHR.Web.UI.Forms
             ListRequest req = new ListRequest();
 
             ListResponse<Department> response = _branchService.ChildGetAll<Department>(req);
-            if(!response.Success)
+            if (!response.Success)
             {
                 X.Msg.Alert(Resources.Common.Error, response.Summary).Show();
                 return new List<Department>();
@@ -263,6 +263,8 @@ namespace AionHR.Web.UI.Forms
 
 
             List<Employee> data = GetEmployeesFiltered(prms.Query);
+            if (data == null)
+                data = new List<Employee>();
             data.ForEach(s => { s.fullName = s.name.fullName; });
             //  return new
             // {
@@ -427,7 +429,7 @@ namespace AionHR.Web.UI.Forms
 
             string obj = e.ExtraParams["values"];
             Department b = JsonConvert.DeserializeObject<Department>(obj);
-            
+
             b.recordId = id;
             b.supervisorName = new EmployeeName();
             // Define the object to add or edit as null

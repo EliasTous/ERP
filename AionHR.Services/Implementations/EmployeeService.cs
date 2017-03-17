@@ -34,6 +34,18 @@ namespace AionHR.Services.Implementations
              
         }
 
+        public PostResponse<SalaryDetail> DeleteSalaryDetails(int SalaryId)
+        {
+            PostResponse<SalaryDetail> response;
+            var headers = SessionHelper.GetAuthorizationHeadersForUser();
+
+            SalaryDetail breaks = new SalaryDetail() { salaryId = SalaryId, comments="", edId=0, edName="", includeInTotal=false, fixedAmount=0, pct=0 , seqNo = 0 };
+            var webResponse = GetRepository().ChildDelete<SalaryDetail>(breaks, headers);
+            response = CreateServiceResponse<PostResponse<SalaryDetail>>(webResponse);
+
+            return response;
+        }
+
         protected override dynamic GetRepository()
         {
             return _employeeRepository;

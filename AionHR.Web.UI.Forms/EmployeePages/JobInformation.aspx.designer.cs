@@ -355,13 +355,13 @@ namespace AionHR.Web.UI.Forms.EmployeePages {
         protected global::Ext.Net.Column Column1;
         
         /// <summary>
-        /// ColJIName control.
+        /// ColDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.DateColumn ColJIName;
+        protected global::Ext.Net.DateColumn ColDate;
         
         /// <summary>
         /// Column3 control.
@@ -400,13 +400,13 @@ namespace AionHR.Web.UI.Forms.EmployeePages {
         protected global::Ext.Net.Column Column9;
         
         /// <summary>
-        /// Column4 control.
+        /// ColJIName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Column Column4;
+        protected global::Ext.Net.Column ColJIName;
         
         /// <summary>
         /// ColJIDelete control.

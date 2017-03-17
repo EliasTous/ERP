@@ -76,6 +76,15 @@ namespace AionHR.Web.UI.Forms.EmployeePages {
         protected global::Ext.Net.Hidden CurrentEmployee;
         
         /// <summary>
+        /// CurrentSalary control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Hidden CurrentSalary;
+        
+        /// <summary>
         /// PaymentTypeWeekly control.
         /// </summary>
         /// <remarks>
@@ -119,6 +128,15 @@ namespace AionHR.Web.UI.Forms.EmployeePages {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.Hidden PaymentMethodBank;
+        
+        /// <summary>
+        /// CurrentDetail control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Hidden CurrentDetail;
         
         /// <summary>
         /// Viewport11 control.
@@ -217,7 +235,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Column cc;
+        protected global::Ext.Net.DateColumn cc;
         
         /// <summary>
         /// Column13 control.
@@ -424,16 +442,16 @@ namespace AionHR.Web.UI.Forms.EmployeePages {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.DateColumn ColBOName;
+        protected global::Ext.Net.Column ColBOName;
         
         /// <summary>
-        /// Column3 control.
+        /// ccc control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Column Column3;
+        protected global::Ext.Net.DateColumn ccc;
         
         /// <summary>
         /// Column9 control.
@@ -697,31 +715,31 @@ namespace AionHR.Web.UI.Forms.EmployeePages {
         protected global::Ext.Net.Checkbox isTaxable;
         
         /// <summary>
-        /// deductionsEntitlementsForm control.
+        /// entitlementsForm control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.FormPanel deductionsEntitlementsForm;
+        protected global::Ext.Net.FormPanel entitlementsForm;
         
         /// <summary>
-        /// entitlementsDeductionsGrid control.
+        /// entitlementsGrid control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.GridPanel entitlementsDeductionsGrid;
+        protected global::Ext.Net.GridPanel entitlementsGrid;
         
         /// <summary>
-        /// entitlementDeductionStore control.
+        /// entitlementsStore control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Store entitlementDeductionStore;
+        protected global::Ext.Net.Store entitlementsStore;
         
         /// <summary>
         /// btnRemoveEmployee control.
@@ -733,22 +751,94 @@ namespace AionHR.Web.UI.Forms.EmployeePages {
         protected global::Ext.Net.Button btnRemoveEmployee;
         
         /// <summary>
-        /// fromField control.
+        /// edId control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.NumberField fromField;
+        protected global::Ext.Net.ComboBox edId;
         
         /// <summary>
-        /// toField control.
+        /// edStore control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.NumberField toField;
+        protected global::Ext.Net.Store edStore;
+        
+        /// <summary>
+        /// includeInTotal control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Checkbox includeInTotal;
+        
+        /// <summary>
+        /// DeductionForm control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.FormPanel DeductionForm;
+        
+        /// <summary>
+        /// deductionGrid control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.GridPanel deductionGrid;
+        
+        /// <summary>
+        /// deductionStore control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Store deductionStore;
+        
+        /// <summary>
+        /// btnRemoveDeduction control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Button btnRemoveDeduction;
+        
+        /// <summary>
+        /// deductionedId control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.ComboBox deductionedId;
+        
+        /// <summary>
+        /// deductionEdStore control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Store deductionEdStore;
+        
+        /// <summary>
+        /// Checkbox1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Checkbox Checkbox1;
         
         /// <summary>
         /// Button12 control.

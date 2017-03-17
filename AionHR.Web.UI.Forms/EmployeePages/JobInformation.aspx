@@ -284,7 +284,9 @@
                         <Columns>
 
                             <ext:Column Visible="false" ID="Column1" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldrecordId %>" DataIndex="recordId" Hideable="false" Width="75" Align="Center" />
-                            <ext:DateColumn Format="dd-MM-yyyy" Flex="1" ID="ColJIName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldJIDate %>" DataIndex="date" Hideable="false" Width="75" Align="Center" />
+                            <ext:DateColumn Format="dd-MM-yyyy" Flex="2" ID="ColDate" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldJIDate %>" DataIndex="date" Hideable="false" Width="75" Align="Center" >
+                             
+                                </ext:DateColumn>
                             <ext:Column Flex="2" ID="Column3" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldJIDepartment %>" DataIndex="departmentName" Hideable="false" Align="Center" />
                             <ext:Column Flex="2" ID="Column7" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldJIBranch%>" DataIndex="branchName" Hideable="false"  Align="Center" />
                             <ext:Column Flex="2" ID="Column8" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldJIPosition%>" DataIndex="positionName" Hideable="false"  Align="Center" />
@@ -294,7 +296,7 @@
 
 
                             <ext:Column runat="server"
-                                ID="Column4" Visible="false"
+                                ID="ColJIName" Visible="true"
                                 Text="<%$ Resources:Common, Edit %>"
                                 Width="60"
                                 Hideable="false"

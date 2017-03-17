@@ -90,7 +90,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
         /// </summary>
         private void HideShowColumns()
         {
-           // this.colAttach.Visible = false;
+            // this.colAttach.Visible = false;
         }
 
 
@@ -115,7 +115,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             string type = e.ExtraParams["type"];
             switch (type)
             {
-                
+
                 case "ColSAName":
                     RecordRequest r3 = new RecordRequest();
                     r3.RecordID = id.ToString();
@@ -130,12 +130,17 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     this.EditSAForm.SetValues(response3.result);
                     FillCurrency();
                     FillScr();
+                    CurrentSalary.Text = r3.RecordID;
                     currencyId.Select(response3.result.currencyId.ToString());
                     scrId.Select(response3.result.scrId.ToString());
+                    FillEntitlements();
+                    FillDeductions();
                     this.EditSAWindow.Title = Resources.Common.EditWindowsTitle;
                     this.EditSAWindow.Show();
+                    
+                    TabPanel2.ActiveIndex = 0;
                     break;
-             
+
                 case "ColSADelete":
                     X.Msg.Confirm(Resources.Common.Confirmation, Resources.Common.DeleteOneRecord, new MessageBoxButtonsConfig
                     {
@@ -180,15 +185,15 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     }
                     //Step 2 : call setvalues with the retrieved object
                     this.BOForm.SetValues(response1.result);
-                    FillCurrency();
+                    FillCurrencyBO();
                     FillBT();
                     CurrencyCombo.Select(response1.result.currencyId.ToString());
                     btId.Select(response1.result.btId.ToString());
                     this.EditBOWindow.Title = Resources.Common.EditWindowsTitle;
                     this.EditBOWindow.Show();
                     break;
-             
-      
+
+
                 case "colAttach":
 
                     //Here will show up a winow relatice to attachement depending on the case we are working on
@@ -274,7 +279,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                 n.currencyId = 0;
                 n.date = DateTime.Now;
                 n.employeeId = 0;
-                
+
 
 
                 PostRequest<Bonus> req = new PostRequest<Bonus>();
@@ -338,6 +343,9 @@ namespace AionHR.Web.UI.Forms.EmployeePages
 
             //Reset all values of the relative object
             EditSAForm.Reset();
+            entitlementsStore.DataSource = new List<SalaryDetail>();
+            entitlementsStore.DataBind();
+            TabPanel2.ActiveIndex = 0;
             this.EditSAWindow.Title = Resources.Common.AddNewRecord;
             FillCurrency();
             FillScr();
@@ -412,6 +420,10 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             string id = e.ExtraParams["id"];
 
             string obj = e.ExtraParams["values"];
+            string ents = e.ExtraParams["entitlements"];
+            string deds = e.ExtraParams["deductions"];
+            List<SalaryDetail> entitlements = null;
+            List<SalaryDetail> deductions = null;
             EmployeeSalary b = JsonConvert.DeserializeObject<EmployeeSalary>(obj);
             b.employeeId = Convert.ToInt32(CurrentEmployee.Text);
             b.recordId = id;
@@ -424,7 +436,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                 b.isTaxable = 0;
             // Define the object to add or edit as null
 
-           
+
             if (string.IsNullOrEmpty(id))
             {
 
@@ -435,9 +447,6 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     PostRequest<EmployeeSalary> request = new PostRequest<EmployeeSalary>();
                     request.entity = b;
                     PostResponse<EmployeeSalary> r = _employeeService.ChildAddOrUpdate<EmployeeSalary>(request);
-                    b.recordId = r.recordId;
-
-                    //check if the insert failed
                     if (!r.Success)//it maybe be another condition
                     {
                         //Show an error saving...
@@ -445,6 +454,27 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                         X.Msg.Alert(Resources.Common.Error, r.Summary).Show();
                         return;
                     }
+                    b.recordId = r.recordId;
+                    entitlements = JsonConvert.DeserializeObject<List<SalaryDetail>>(ents);
+                    deductions = JsonConvert.DeserializeObject<List<SalaryDetail>>(deds);
+                    PostResponse<SalaryDetail[]> result = AddSalaryEntitlements(b.recordId, entitlements);
+
+
+                    if (!result.Success)
+                    {
+                        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                        X.Msg.Alert(Resources.Common.Error, result.Summary).Show();
+                        return;
+                    }
+                     result = AddSalaryDeductions(b.recordId, deductions);
+                    if (!result.Success)
+                    {
+                        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                        X.Msg.Alert(Resources.Common.Error, result.Summary).Show();
+                        return;
+                    }
+                    //check if the insert failed
+                   
                     else
                     {
 
@@ -487,14 +517,29 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     PostRequest<EmployeeSalary> request = new PostRequest<EmployeeSalary>();
                     request.entity = b;
                     PostResponse<EmployeeSalary> r = _employeeService.ChildAddOrUpdate<EmployeeSalary>(request);                      //Step 1 Selecting the object or building up the object for update purpose
-
-                    //Step 2 : saving to store
-
-                    //Step 3 :  Check if request fails
-                    if (!r.Success)//it maybe another check
+                    var deleteDesponse = _employeeService.DeleteSalaryDetails(Convert.ToInt32(b.recordId));
+                    if (!deleteDesponse.Success)//it maybe another check
                     {
                         X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                        X.Msg.Alert(Resources.Common.Error, r.Summary).Show();
+                        X.Msg.Alert(Resources.Common.Error, deleteDesponse.Summary).Show();
+                        return;
+                    }
+                    entitlements = JsonConvert.DeserializeObject<List<SalaryDetail>>(ents);
+                    deductions = JsonConvert.DeserializeObject<List<SalaryDetail>>(deds);
+                    PostResponse<SalaryDetail[]> result = AddSalaryEntitlements(b.recordId, entitlements);
+
+
+                    if (!result.Success)
+                    {
+                        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                        X.Msg.Alert(Resources.Common.Error, result.Summary).Show();
+                        return;
+                    }
+                    result = AddSalaryDeductions(b.recordId, deductions);
+                    if (!result.Success)
+                    {
+                        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                        X.Msg.Alert(Resources.Common.Error, result.Summary).Show();
                         return;
                     }
                     else
@@ -540,13 +585,13 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             b.recordId = id;
             b.date = new DateTime(b.date.Year, b.date.Month, b.date.Day, 14, 0, 0);
             if (CurrencyCombo.SelectedItem != null)
-                b.currencyName = CurrencyCombo.SelectedItem.Text;
+                b.currencyName = CurrencyCombo.Text;
             if (btId.SelectedItem != null)
                 b.btName = btId.SelectedItem.Text;
-         
+
             // Define the object to add or edit as null
 
-            
+
             if (string.IsNullOrEmpty(id))
             {
 
@@ -700,20 +745,30 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             BTStore.DataBind();
         }
 
-        [DirectMethod]
-        public object SaveEntitlementDeduction(bool isPhantom, JsonObject values)
+      
+        private void FillEntitlements()
         {
-            if (!isPhantom)
-            {
-                return new { valid = true };
-            }
+            SalaryDetailsListRequest req = new SalaryDetailsListRequest();
+            req.SalaryID = Convert.ToInt32(CurrentSalary.Text);
+            req.Type = 1;
+            ListResponse<SalaryDetail> details = _employeeService.ChildGetAll<SalaryDetail>(req);
+            entitlementsStore.DataSource = details.Items;
+            entitlementsStore.DataBind();
 
-            if (!values.ContainsKey("salary") || Convert.ToInt32(values["salary"]) < 1000)
-            {
-                return new { valid = false, msg = "Salary must be >=1000 for new employee" };
-            }
+            
 
-            return new { valid = true };
+        }
+        private void FillDeductions()
+        {
+            SalaryDetailsListRequest req = new SalaryDetailsListRequest();
+            req.SalaryID = Convert.ToInt32(CurrentSalary.Text);
+            req.Type = 2;
+            ListResponse<SalaryDetail> details = _employeeService.ChildGetAll<SalaryDetail>(req);
+            deductionStore.DataSource = details.Items;
+            deductionStore.DataBind();
+
+            
+
         }
         #region Combo Dynamic Add
         protected void addBOCurrency(object sender, DirectEventArgs e)
@@ -766,7 +821,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
         {
             BonusType obj = new BonusType();
             obj.name = btId.Text;
-            
+
             PostRequest<BonusType> req = new PostRequest<BonusType>();
             req.entity = obj;
             PostResponse<BonusType> response = _employeeService.ChildAddOrUpdate<BonusType>(req);
@@ -790,7 +845,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
         {
             SalaryChangeReason obj = new SalaryChangeReason();
             obj.name = scrId.Text;
-            
+
             PostRequest<SalaryChangeReason> req = new PostRequest<SalaryChangeReason>();
             req.entity = obj;
             PostResponse<SalaryChangeReason> response = _employeeService.ChildAddOrUpdate<SalaryChangeReason>(req);
@@ -809,8 +864,60 @@ namespace AionHR.Web.UI.Forms.EmployeePages
 
 
         }
-        #endregion
-        
 
+        #endregion
+
+        private PostResponse<SalaryDetail[]> AddSalaryEntitlements(string salaryIdString, List<SalaryDetail> details)
+        {
+            short i = 1;
+            int salaryId = Convert.ToInt32(salaryIdString);
+            foreach (var detail in details)
+            {
+                
+                detail.seqNo = i++;
+                detail.salaryId = salaryId;
+                if (!detail.includeInTotal.HasValue)
+                    detail.includeInTotal = false;
+                detail.type = 1;
+
+            }
+            PostRequest<SalaryDetail[]> periodRequest = new PostRequest<SalaryDetail[]>();
+            periodRequest.entity = details.ToArray();
+            PostResponse<SalaryDetail[]> response = _employeeService.ChildAddOrUpdate<SalaryDetail[]>(periodRequest);
+            return response;
+        }
+        private PostResponse<SalaryDetail[]> AddSalaryDeductions(string salaryIdString, List<SalaryDetail> details)
+        {
+            short i = 1;
+            int salaryId = Convert.ToInt32(salaryIdString);
+            foreach (var detail in details)
+            {
+
+                detail.seqNo = i++;
+                detail.salaryId = salaryId;
+                if (!detail.includeInTotal.HasValue)
+                    detail.includeInTotal = false;
+
+                detail.type = 2;
+
+            }
+            PostRequest<SalaryDetail[]> periodRequest = new PostRequest<SalaryDetail[]>();
+            periodRequest.entity = details.ToArray();
+            PostResponse<SalaryDetail[]> response = _employeeService.ChildAddOrUpdate<SalaryDetail[]>(periodRequest);
+            return response;
+        }
+
+        protected void edStore_ReadData(object sender, StoreReadDataEventArgs e)
+        {
+            ListRequest req = new ListRequest();
+            ListResponse<EntitlementDeduction> eds = _employeeService.ChildGetAll<EntitlementDeduction>(req);
+            var data = eds.Items;
+
+            (sender as Store).DataSource = eds.Items;
+            (sender as Store).DataBind();
+            
+        }
+
+       
     }
 }

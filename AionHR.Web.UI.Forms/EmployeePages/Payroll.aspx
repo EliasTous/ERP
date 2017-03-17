@@ -9,7 +9,7 @@
     <title></title>
     <link rel="stylesheet" type="text/css" href="../CSS/Common.css?id=1" />
     <link rel="stylesheet" href="../CSS/LiveSearch.css" />
-    <script type="text/javascript" src="../Scripts/Payroll.js?id=11"></script>
+    <script type="text/javascript" src="../Scripts/Payroll.js?id=18"></script>
     <script type="text/javascript" src="../Scripts/common.js?id=0"></script>
 
 
@@ -23,11 +23,13 @@
         <ext:Hidden ID="titleSavingError" runat="server" Text="<%$ Resources:Common , TitleSavingError %>" />
         <ext:Hidden ID="titleSavingErrorMessage" runat="server" Text="<%$ Resources:Common , TitleSavingErrorMessage %>" />
         <ext:Hidden ID="CurrentEmployee" runat="server" />
+        <ext:Hidden ID="CurrentSalary" runat="server" />
         <ext:Hidden ID="PaymentTypeWeekly" runat="server" Text="<%$ Resources: PaymentTypeWeekly %>" />
         <ext:Hidden ID="PaymentTypeMonthly" runat="server" Text="<%$ Resources: PaymentTypeMonthly %>" />
         <ext:Hidden ID="PaymentTypeDaily" runat="server" Text="<%$ Resources: PaymentTypeDaily %>" />
         <ext:Hidden ID="PaymentMethodCash" runat="server" Text="<%$ Resources: PaymentMethodCash %>" />
         <ext:Hidden ID="PaymentMethodBank" runat="server" Text="<%$ Resources: PaymentMethodBank %>" />
+         <ext:Hidden ID="CurrentDetail" runat="server" Text="" />
         <ext:Viewport ID="Viewport11" runat="server" Layout="VBoxLayout" Padding="10">
             <LayoutConfig>
                 <ext:VBoxLayoutConfig Align="Stretch" />
@@ -131,12 +133,15 @@
                         <Columns>
 
                             <ext:Column Visible="false" ID="recID" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldrecordId %>" DataIndex="recordId" Hideable="false" Width="75" Align="Center" />
-                            <ext:Column Flex="3" ID="ColSAName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEffectiveDate %>" DataIndex="effectiveDate" Hideable="false" Width="75" Align="Center">
-                                <Renderer Handler="return '<u>'+ record.data['effectiveDate']+'</u>'">
-                                </Renderer>
+                            <ext:Column Flex="3" ID="ColSAName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldScrName %>" DataIndex="scrName" Hideable="false" Width="75" Align="Center" >
+                                <Renderer Handler="return '<u>' + record.data['scrName']+'</u>';" />
+                                </ext:Column>
+                            <ext:DateColumn Format="dd-MM-yyyy" Flex="3" ID="cc" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEffectiveDate %>" DataIndex="effectiveDate" Hideable="false" Width="75" Align="Center">
+                                
+                                
 
-                            </ext:Column>
-                            <ext:Column Flex="3" ID="cc" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldScrName %>" DataIndex="scrName" Hideable="false" Width="75" Align="Center" />
+                            </ext:DateColumn>
+                            
 
                             <ext:Column Visible="false" Flex="2" ID="Column13" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldSalaryType %>" DataIndex="salaryType" Hideable="false" Width="75" Align="Center">
                                 <Renderer Handler="return getPaymentTypeString(record.data['salaryType'])" />
@@ -273,7 +278,7 @@
                                         <ext:ModelField Name="currencyName" />
                                         <ext:ModelField Name="btId" />
                                         <ext:ModelField Name="btName" />
-                                        <ext:ModelField Name="date" ServerMapping="effectiveDate.ToShortDateString()" />
+                                        <ext:ModelField Name="date" ServerMapping="date.ToShortDateString()" />
                                         <ext:ModelField Name="comment" />
                                         <ext:ModelField Name="amount" />
 
@@ -323,12 +328,15 @@
                         <Columns>
 
                             <ext:Column Visible="false" ID="Column1" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldrecordId %>" DataIndex="recordId" Hideable="false" Width="75" Align="Center" />
-                            <ext:DateColumn Flex="3" Format="dd-MM-yyyy" ID="ColBOName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDate %>" DataIndex="date" Hideable="false" Width="75" Align="Center">
-                                <Renderer Handler="return '<u>'+ record.data['date']+'</u>'">
-                                </Renderer>
+                            <ext:Column Flex="3" ID="ColBOName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldBTName %>" DataIndex="btName" Hideable="false" Width="75" Align="Center" >
+                                <Renderer Handler="return '<u>' + record.data['btName']+'</u>';" />
+                                </ext:Column>
+                            <ext:DateColumn Flex="3" Format="dd-MM-yyyy" ID="ccc" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDate %>" DataIndex="date" Hideable="false" Width="75" Align="Center">
+
+                       
 
                             </ext:DateColumn>
-                            <ext:Column Flex="3" ID="Column3" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldBTName %>" DataIndex="btName" Hideable="false" Width="75" Align="Center" />
+                            
 
                             <ext:Column Flex="3" ID="Column9" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldSACurrencyName %>" DataIndex="currencyName" Hideable="false" Width="75" Align="Center" />
 
@@ -553,32 +561,33 @@
                             </Items>
 
                         </ext:FormPanel>
-
-                    </Items>
-                </ext:TabPanel>
-                <ext:FormPanel
-                            ID="deductionsEntitlementsForm"
+                          <ext:FormPanel
+                            ID="entitlementsForm"
                             runat="server"
-                            Title="<%$ Resources: DeductionsEntitlements %>"
+                            Title="<%$ Resources: Entitlements %>"
                             Icon="ApplicationSideList"
                             DefaultAnchor="100%" 
                             BodyPadding="5">
                             <Items>
                                 <ext:GridPanel
-                                    ID="entitlementsDeductionsGrid"  
+                                    ID="entitlementsGrid"  
                                     runat="server"
                                     Width="600" Header="false"
                                     Height="210" Layout="FitLayout"
                                     Frame="true" TitleCollapse="true"  Scroll="Vertical"
                                     >
                                     <Store>
-                                        <ext:Store ID="entitlementDeductionStore" runat="server">
+                                        <ext:Store ID="entitlementsStore" runat="server">
                                            <Model>
-                                                <ext:Model runat="server" Name="Employee">
+                                                <ext:Model runat="server" >
                                                     <Fields>
-                                                        <ext:ModelField Name="from"  />
-                                                        <ext:ModelField Name="to"/>
-                                                        <ext:ModelField Name="days" />
+                                                        <ext:ModelField Name="seqNo"  />
+                                                        <ext:ModelField Name="edId"  />
+                                                        <ext:ModelField Name="edName"/>
+                                                        <ext:ModelField Name="includeInTotal" />
+                                                        <ext:ModelField Name="comments" />
+                                                        <ext:ModelField Name="pct" />
+                                                        <ext:ModelField Name="fixedAmount" />
                                                        
                                                     </Fields>
                                                 </ext:Model>
@@ -586,28 +595,26 @@
                                         </ext:Store>
                                     </Store>
                                     <Plugins>
-                                        <ext:RowEditing runat="server" ClicksToMoveEditor="1" AutoCancel="false"  SaveHandler="SaveEntitlementDeduction">
-                                            <Listeners>
-                                                <BeforeEdit Handler="CheckSession()" />
-                                            </Listeners>
+                                        <ext:RowEditing runat="server" ClicksToMoveEditor="1" AutoCancel="false"   >
+                                          
                                         </ext:RowEditing>
                                     </Plugins>
                                     <TopBar>
                                         <ext:Toolbar runat="server">
                                             <Items>
-                                                <ext:Button runat="server" Text="Add Period" Icon="UserAdd">
+                                                <ext:Button runat="server" Text="Add Detail" Icon="MoneyAdd">
                                                     <Listeners>
-                                                        <Click Fn="addEmployee" />
+                                                        <Click Fn="addEntitlement" />
                                                     </Listeners>
                                                 </ext:Button>
                                                 <ext:Button
                                                     ID="btnRemoveEmployee"
                                                     runat="server"
-                                                    Text="Remove Period"
-                                                    Icon="UserDelete"
+                                                    Text="Remove Detail"
+                                                    Icon="MoneyDelete"
                                                     Disabled="true">
                                                     <Listeners>
-                                                        <Click Fn="removeEmployee" />
+                                                        <Click Fn="removeEntitlement" />
                                                     </Listeners>
                                                 </ext:Button>
                                             </Items>
@@ -615,53 +622,67 @@
                                     </TopBar>
                                     <ColumnModel>
                                         <Columns>
-                                            <ext:RowNumbererColumn runat="server" Width="25" />
-                                            <ext:NumberColumn
+                                            <ext:RowNumbererColumn  runat="server" Width="25" />
+                                            <ext:Column
                                                 runat="server"
-                                                Text="From Months"
-                                                DataIndex="from"
+                                               
+                                                DataIndex="seqNo"
                                                 
                                                 Align="Center">
+                                                <Editor>
+                                                    <ext:NumberField runat="server" DataIndex="seqNo" Enabled="false" ReadOnly="true" />
+                                                    </Editor>
+                                                </ext:Column>
+                                            <ext:NumberColumn
+                                                runat="server"
+                                                Text="<%$ Resources:FieldEntitlementDeduction%>"
+                                                DataIndex="edId"
+                                                
+                                                Align="Center">
+                                                <Renderer Handler=" return record.data['edName'];" />
                                                 <Editor>
                                                      <%-- Vtype="numberrange"
                                                         EndNumberField="toField"--%>
-                                                    <ext:NumberField
-                                                        runat="server"
-                                                         ID="fromField"
-                                                        AllowBlank="false"
-                                                       
-                                                        MinValue="0"
-                                                        MaxValue="1000" />
-                                                </Editor>
-                                            </ext:NumberColumn>
-                                            <ext:NumberColumn
-                                                runat="server"
-                                                Text="To Months"
-                                                DataIndex="to"
-                                                
-                                                Align="Center">
-                                                <Editor>
-                                                       <%--   StartNumberField="fromField"
-                                                         Vtype="numberrange"--%>
-                                                    <ext:NumberField
-                                                        runat="server"
-                                                        ID="toField"
-                                                        AllowBlank="false"
-                                                        MinValue="0"
-                                                  
-                                                        MaxValue="1000" >
-                                                       
-                                                        </ext:NumberField>
+                                                    <ext:ComboBox runat="server" AllowBlank="false" ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" ID="edId" Name="edId" SimpleSubmit="true">
 
+                                            <Store>
+                                                <ext:Store runat="server" ID="edStore" OnReadData="edStore_ReadData" >
+                                                    <Model>
+                                                        <ext:Model runat="server">
+                                                            <Fields>
+                                                                <ext:ModelField Name="recordId" />
+                                                                <ext:ModelField Name="name" />
+                                                            </Fields>
+                                                        </ext:Model>
+                                                    </Model>
+                                                   
+                                                </ext:Store>
+                                                
+                                            </Store>
+                                            
+                                       <Listeners>
+                                           <AfterRender Handler="#{edStore}.reload();" />
+                                       </Listeners>
+                                        </ext:ComboBox>
+                                                </Editor>
+                                            </ext:NumberColumn>
+                                            <ext:CheckColumn
+                                                runat="server"
+                                                Text="<%$ Resources:FieldIncludeInTotal%>"
+                                                DataIndex="includeInTotal"
+                                                
+                                                Align="Center">
+                                                <Editor>
+                                                     <ext:Checkbox ID="includeInTotal" runat="server"  DataIndex="includeInTotal" Name="includeInTotal" InputValue="true" />
                                                 </Editor>
                                                 
-                                            </ext:NumberColumn>
+                                            </ext:CheckColumn>
                                             
                                             
                                             <ext:NumberColumn
                                                 runat="server"
-                                                Text="Vacation Days"
-                                                DataIndex="days"
+                                                Text="<%$ Resources:FieldPCT%>"
+                                                DataIndex="pct"
                                                 
                                                 Align="Center">
                                                 <Editor>
@@ -669,10 +690,36 @@
                                                         runat="server"
                                                         AllowBlank="false"
                                                         MinValue="0"
-                                                        MaxValue="150" />
+                                                        MaxValue="100" />
                                                 </Editor>
                                             </ext:NumberColumn>
-                                            
+
+                                              <ext:NumberColumn
+                                                runat="server"
+                                                Text="<%$ Resources:FieldFixedAmount%>"
+                                                DataIndex="fixedAmount"
+                                                
+                                                Align="Center">
+                                                <Editor>
+                                                    <ext:NumberField
+                                                        runat="server"
+                                                        AllowBlank="false"
+                                                        />
+                                                </Editor>
+                                            </ext:NumberColumn>
+                                             <ext:Column
+                                                runat="server"
+                                                Text="<%$ Resources:FieldComment%>"
+                                                DataIndex="comments"
+                                                
+                                                Align="Center">
+                                                <Editor>
+                                                    <ext:TextField
+                                                        runat="server"
+                                                        AllowBlank="false"
+                                                        />
+                                                </Editor>
+                                            </ext:Column>
                                         </Columns>
                                     </ColumnModel>
                                     <Listeners>
@@ -682,6 +729,177 @@
                             </Items>
 
                         </ext:FormPanel>
+                               <ext:FormPanel
+                            ID="DeductionForm"
+                            runat="server"
+                            Title="<%$ Resources: Deductions %>"
+                            Icon="ApplicationSideList"
+                            DefaultAnchor="100%" 
+                            BodyPadding="5">
+                            <Items>
+                                <ext:GridPanel
+                                    ID="deductionGrid"  
+                                    runat="server"
+                                    Width="600" Header="false"
+                                    Height="210" Layout="FitLayout"
+                                    Frame="true" TitleCollapse="true"  Scroll="Vertical"
+                                    >
+                                    <Store>
+                                        <ext:Store ID="deductionStore" runat="server">
+                                           <Model>
+                                                <ext:Model runat="server" >
+                                                    <Fields>
+                                                        <ext:ModelField Name="seqNo"  />
+                                                        <ext:ModelField Name="edId"  />
+                                                        <ext:ModelField Name="edName"/>
+                                                        <ext:ModelField Name="includeInTotal" />
+                                                        <ext:ModelField Name="comments" />
+                                                        <ext:ModelField Name="pct" />
+                                                        <ext:ModelField Name="fixedAmount" />
+                                                       
+                                                    </Fields>
+                                                </ext:Model>
+                                            </Model>
+                                        </ext:Store>
+                                    </Store>
+                                    <Plugins>
+                                        <ext:RowEditing runat="server" ClicksToMoveEditor="1" AutoCancel="false"   >
+                                          
+                                        </ext:RowEditing>
+                                    </Plugins>
+                                    <TopBar>
+                                        <ext:Toolbar runat="server">
+                                            <Items>
+                                                <ext:Button runat="server" Text="Add Detail" Icon="MoneyAdd">
+                                                    <Listeners>
+                                                        <Click Fn="addDeduction" />
+                                                    </Listeners>
+                                                </ext:Button>
+                                                <ext:Button
+                                                    ID="btnRemoveDeduction"
+                                                    runat="server"
+                                                    Text="Remove Detail"
+                                                    Icon="MoneyDelete"
+                                                    Disabled="true">
+                                                    <Listeners>
+                                                        <Click Fn="removeDeduction" />
+                                                    </Listeners>
+                                                </ext:Button>
+                                            </Items>
+                                        </ext:Toolbar>
+                                    </TopBar>
+                                    <ColumnModel>
+                                        <Columns>
+                                            <ext:RowNumbererColumn  runat="server" Width="25" />
+                                            <ext:Column
+                                                runat="server"
+                                               
+                                                DataIndex="seqNo"
+                                                
+                                                Align="Center">
+                                                <Editor>
+                                                    <ext:NumberField runat="server" DataIndex="seqNo" Enabled="false" ReadOnly="true" />
+                                                    </Editor>
+                                                </ext:Column>
+                                            <ext:NumberColumn
+                                                runat="server"
+                                                Text="<%$ Resources:FieldEntitlementDeduction%>"
+                                                DataIndex="edId"
+                                                
+                                                Align="Center">
+                                                <Renderer Handler=" return record.data['edName'];" />
+                                                <Editor>
+                                                     <%-- Vtype="numberrange"
+                                                        EndNumberField="toField"--%>
+                                                    <ext:ComboBox runat="server" AllowBlank="false" ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" ID="deductionedId" Name="edId" SimpleSubmit="true">
+
+                                            <Store>
+                                                <ext:Store runat="server" ID="deductionEdStore" OnReadData="edStore_ReadData" >
+                                                    <Model>
+                                                        <ext:Model runat="server">
+                                                            <Fields>
+                                                                <ext:ModelField Name="recordId" />
+                                                                <ext:ModelField Name="name" />
+                                                            </Fields>
+                                                        </ext:Model>
+                                                    </Model>
+                                                   
+                                                </ext:Store>
+                                                
+                                            </Store>
+                                            
+                                       <Listeners>
+                                           <AfterRender Handler="#{deductionEdStore}.reload();" />
+                                       </Listeners>
+                                        </ext:ComboBox>
+                                                </Editor>
+                                            </ext:NumberColumn>
+                                            <ext:CheckColumn
+                                                runat="server"
+                                                Text="<%$ Resources:FieldIncludeInTotal%>"
+                                                DataIndex="includeInTotal"
+                                                
+                                                Align="Center">
+                                                <Editor>
+                                                     <ext:Checkbox ID="Checkbox1" runat="server"  DataIndex="includeInTotal" Name="includeInTotal" InputValue="true" />
+                                                </Editor>
+                                                
+                                            </ext:CheckColumn>
+                                            
+                                            
+                                            <ext:NumberColumn
+                                                runat="server"
+                                                Text="<%$ Resources:FieldPCT%>"
+                                                DataIndex="pct"
+                                                
+                                                Align="Center">
+                                                <Editor>
+                                                    <ext:NumberField
+                                                        runat="server"
+                                                        AllowBlank="false"
+                                                        MinValue="0"
+                                                        MaxValue="100" />
+                                                </Editor>
+                                            </ext:NumberColumn>
+
+                                              <ext:NumberColumn
+                                                runat="server"
+                                                Text="<%$ Resources:FieldFixedAmount%>"
+                                                DataIndex="fixedAmount"
+                                                
+                                                Align="Center">
+                                                <Editor>
+                                                    <ext:NumberField
+                                                        runat="server"
+                                                        AllowBlank="false"
+                                                        />
+                                                </Editor>
+                                            </ext:NumberColumn>
+                                             <ext:Column
+                                                runat="server"
+                                                Text="<%$ Resources:FieldComment%>"
+                                                DataIndex="comments"
+                                                
+                                                Align="Center">
+                                                <Editor>
+                                                    <ext:TextField
+                                                        runat="server" Name="comments" DataIndex="comments"
+                                                        AllowBlank="false"
+                                                        />
+                                                </Editor>
+                                            </ext:Column>
+                                        </Columns>
+                                    </ColumnModel>
+                                    <Listeners>
+                                        <SelectionChange Handler="App.btnRemoveDeduction.setDisabled(!selected.length);" />
+                                    </Listeners>
+                                </ext:GridPanel>
+                            </Items>
+
+                        </ext:FormPanel>
+                    </Items>
+                </ext:TabPanel>
+              
             </Items>
             <Buttons>
                 <ext:Button ID="Button12" runat="server" Text="<%$ Resources:Common, Save %>" Icon="Disk">
@@ -695,6 +913,8 @@
                             <ExtraParams>
                                 <ext:Parameter Name="id" Value="#{SAId}.getValue()" Mode="Raw" />
                                 <ext:Parameter Name="values" Value="#{EditSAForm}.getForm().getValues(false, false, false, true)" Mode="Raw" Encode="true" />
+                                <ext:Parameter Name="entitlements" Value="Ext.encode(#{entitlementsGrid}.getRowsValues({selectedOnly : false}))" Mode="Raw"  />
+                                <ext:Parameter Name="deductions" Value="Ext.encode(#{deductionGrid}.getRowsValues({selectedOnly : false}))" Mode="Raw"  />
                             </ExtraParams>
                         </Click>
                     </DirectEvents>

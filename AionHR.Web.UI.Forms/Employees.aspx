@@ -66,6 +66,7 @@
                                     <Fields>
 
                                         <ext:ModelField Name="recordId" />
+                                        <ext:ModelField Name="pictureUrl" />
                                         <ext:ModelField Name="name" IsComplex="true" />
                                         <ext:ModelField Name="reference" />
                                         <ext:ModelField Name="departmentName" />
@@ -135,12 +136,12 @@
                             <ext:Column ID="ColReference" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldReference%>" DataIndex="reference" Flex="1" Hideable="false" />
                             <ext:ComponentColumn runat="server" DataIndex="pictureUrl">
                                 <Component>
-                                    <ext:Image runat="server" Height="50" Width="50">
+                                    <ext:Image runat="server" Height="100" Width="50">
                                     </ext:Image>
 
                                 </Component>
                                 <Listeners>
-                                    <Bind Handler="cmp.setImageUrl(record.get('pictureUrl'))" />
+                                    <Bind Handler="alert(record.get('pictureUrl')); cmp.setImageUrl(record.get('pictureUrl'))" />
                                 </Listeners>
                             </ext:ComponentColumn>
                             <ext:Column ID="ColName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldFullName%>" DataIndex="name.fullName" Flex="3" Hideable="false">

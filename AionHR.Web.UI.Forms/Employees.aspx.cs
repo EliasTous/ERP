@@ -564,9 +564,16 @@ namespace AionHR.Web.UI.Forms
                         X.Msg.Alert(Resources.Common.Error, r.Summary).Show();
                         return;
                     }
+                    
                     else
                     {
-
+                        RecordRequest req = new RecordRequest();
+                        req.RecordID = b.recordId.ToString();
+                        RecordResponse<Employee> response = _employeeService.Get<Employee>(req);
+                        if(response.Success)
+                        {
+                            b.pictureUrl = response.result.pictureUrl;
+                        }
                         //Add this record to the store 
                         this.Store1.Insert(0, b);
 
@@ -646,7 +653,13 @@ namespace AionHR.Web.UI.Forms
                     else
                     {
 
-
+                        RecordRequest req = new RecordRequest();
+                        req.RecordID = b.recordId.ToString();
+                        RecordResponse<Employee> response = _employeeService.Get<Employee>(req);
+                        if (response.Success)
+                        {
+                            b.pictureUrl = response.result.pictureUrl;
+                        }
                         ModelProxy record = this.Store1.GetById(index);
                         //BasicInfoTab.UpdateRecord(record);
                         record.Set("branchName", b.branchName);

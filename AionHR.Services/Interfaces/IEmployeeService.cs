@@ -12,5 +12,7 @@ namespace AionHR.Services.Interfaces
     public interface IEmployeeService:IBaseService
     {
         PostResponse<Employee> AddOrUpdateEmployeeWithPhoto(EmployeeAddOrUpdateRequest req);
+
+        PostResponse<SalaryDetail> DeleteSalaryDetails(int SalaryId);
     }
 }

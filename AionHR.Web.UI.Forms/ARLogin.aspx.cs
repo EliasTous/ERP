@@ -72,6 +72,17 @@ namespace AionHR.Web.UI.Forms
         [DirectMethod]
         public string Authenticate(string accountName, string userName, string password)
         {
+            GetAccountRequest GetACrequest = new GetAccountRequest();
+            GetACrequest.Account = tbAccountName.Text;
+
+            Response<Account> getACResponse = _masterService.GetAccount(GetACrequest);
+            if (!getACResponse.Success)
+            {
+                lblError.Text = getACResponse.Summary;
+                return "error";//Error in authentication
+            }
+
+            _systemService.SessionHelper.Set("AccountId", getACResponse.result.accountId);
             AuthenticateRequest request = new AuthenticateRequest();
 
             request.UserName = tbUsername.Text;

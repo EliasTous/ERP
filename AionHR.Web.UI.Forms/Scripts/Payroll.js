@@ -96,14 +96,14 @@ function TogglePaymentMethod(index)
 
 }
 
-function addEmployee() {
-    var entitlementsDeductionsGrid = App.entitlementsDeductionsGrid,
-        store = entitlementsDeductionsGrid.getStore();
+function addEntitlement() {
+    var entitlementsGrid = App.entitlementsGrid,
+        store = entitlementsGrid.getStore();
 
-    entitlementsDeductionsGrid.editingPlugin.cancelEdit();
+    entitlementsGrid.editingPlugin.cancelEdit();
 
     store.getSorters().removeAll();
-    entitlementsDeductionsGrid.getView().headerCt.setSortState(); // To update columns sort UI
+    entitlementsGrid.getView().headerCt.setSortState(); // To update columns sort UI
 
     store.insert(0, {
         from: '0',
@@ -112,18 +112,64 @@ function addEmployee() {
 
     });
 
-    entitlementsDeductionsGrid.editingPlugin.startEdit(0, 0);
+    entitlementsGrid.editingPlugin.startEdit(0, 0);
 }
+function addDeduction() {
+    var deductionGrid = App.deductionGrid,
+        store = deductionGrid.getStore();
 
-function removeEmployee() {
-    var entitlementsDeductionsGrid = App.entitlementsDeductionsGrid,
-        sm = entitlementsDeductionsGrid.getSelectionModel(),
-        store = entitlementsDeductionsGrid.getStore();
+    deductionGrid.editingPlugin.cancelEdit();
 
-    entitlementsDeductionsGrid.editingPlugin.cancelEdit();
+    store.getSorters().removeAll();
+    deductionGrid.getView().headerCt.setSortState(); // To update columns sort UI
+
+    store.insert(0, {
+        from: '0',
+        to: '1',
+        days: 2
+
+    });
+
+    deductionGrid.editingPlugin.startEdit(0, 0);
+}
+function dump(obj) {
+    var out = '';
+    for (var i in obj) {
+        out += i + ": " + obj[i] + "\n";
+
+
+    }
+    return out;
+}
+function removeEntitlement() {
+   
+    var entitlementsGrid = App.entitlementsGrid,
+        sm = entitlementsGrid.getSelectionModel(),
+        store = entitlementsGrid.getStore();
+    
+   
+    
+    entitlementsGrid.editingPlugin.cancelEdit();
     store.remove(sm.getSelection());
 
     if (store.getCount() > 0) {
         sm.select(0);
     }
 }
+
+function removeDeduction() {
+
+    var deductionGrid = App.deductionGrid,
+        sm = deductionGrid.getSelectionModel(),
+        store = deductionGrid.getStore();
+
+
+
+    deductionGrid.editingPlugin.cancelEdit();
+    store.remove(sm.getSelection());
+
+    if (store.getCount() > 0) {
+        sm.select(0);
+    }
+}
+

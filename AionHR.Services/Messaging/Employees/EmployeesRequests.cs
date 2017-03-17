@@ -135,3 +135,33 @@ public class EmployeeBonusListRequest:ListRequest
         }
     }
 }
+public class SalaryDetailsListRequest : ListRequest
+{
+    public int SalaryID { get; set; }
+
+    public int Type { get; set; }
+
+
+
+
+
+
+    /// <summary>
+    /// /// parameter list shipped with the web request
+    /// </summary>
+    public override Dictionary<string, string> Parameters
+    {
+
+        get
+        {
+            parameters = base.Parameters;
+
+            parameters.Add("_salaryId", SalaryID.ToString());
+            parameters.Add("_type", Type.ToString());
+            
+
+
+            return parameters;
+        }
+    }
+}
