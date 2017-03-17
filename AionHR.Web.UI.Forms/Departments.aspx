@@ -43,7 +43,7 @@
 
                         <ext:ModelField Name="recordId" />
                         <ext:ModelField Name="name" />
-                        <ext:ModelField Name="reference" />
+                        <ext:ModelField Name="departmentRef" />
                         <ext:ModelField Name="supervisorId" />
                         <ext:ModelField Name="svFullName"  ServerMapping="supervisorName.fullName"/>
                         
@@ -73,7 +73,7 @@
                     runat="server"
                     StoreID="Store1"
                     PaddingSpec="0 0 1 0"
-                    Header="true"
+                    Header="false"
                     Title="<%$ Resources: WindowTitle %>"
                     Layout="FitLayout"
                     Scroll="Vertical"
@@ -126,7 +126,7 @@
                         <Columns>
 
                             <ext:Column Visible="false" ID="ColrecordId" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldrecordId %>" DataIndex="recordId" Hideable="false" Width="75" Align="Center" />
-                            <ext:Column ID="ColReference" MenuDisabled="true"  Sortable="true" runat="server" Text="<%$ Resources: FieldReference%>" DataIndex="reference" Flex="1" Hideable="false" />
+                            <ext:Column ID="ColReference" MenuDisabled="true"  Sortable="true" runat="server" Text="<%$ Resources: FieldReference%>" DataIndex="departmentRef" Flex="1" Hideable="false" />
                             <ext:Column CellCls="cellLink" Sortable="true" ID="ColName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldName%>" DataIndex="name" Flex="2" Hideable="false">
                                 <Renderer Handler="return '<u>'+ record.data['name']+'</u>'">
                                 </Renderer>
@@ -271,7 +271,7 @@
                             <Items>
                                 <ext:TextField ID="recordId" Hidden="true" runat="server" FieldLabel="<%$ Resources:FieldrecordId%>" Disabled="true" DataIndex="recordId" />
                                 <ext:TextField ID="name" runat="server" FieldLabel="<%$ Resources:FieldName%>" DataIndex="name" AllowBlank="false" BlankText="<%$ Resources:Common, MandatoryField%>" />
-                                <ext:TextField ID="reference" runat="server" FieldLabel="<%$ Resources: FieldReference %>" DataIndex="reference"  />
+                                <ext:TextField ID="departmentRef" runat="server" FieldLabel="<%$ Resources: FieldReference %>" DataIndex="departmentRef"  />
 
 
                                 <ext:Checkbox ID="isSegmentHeadCheck" runat="server" FieldLabel="<%$ Resources: FieldIsSegmentedHead%>" DataIndex="isSegmentHead" Name="isSegmentHead" InputValue="true" />

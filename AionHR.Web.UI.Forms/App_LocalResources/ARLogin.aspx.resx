@@ -144,6 +144,9 @@
   <data name="Password" xml:space="preserve">
     <value>كلمه السر</value>
   </data>
+  <data name="RememberMe" xml:space="preserve">
+    <value>تذكر معلومات الدخول</value>
+  </data>
   <data name="RequestError" xml:space="preserve">
     <value>خطأ في الطلب، حاول مرة أخرى ...</value>
   </data>

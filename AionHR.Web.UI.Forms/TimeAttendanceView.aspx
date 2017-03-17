@@ -96,7 +96,8 @@
                     runat="server"
                     StoreID="Store1"
                     PaddingSpec="0 0 1 0"
-                    Header="true"
+                    Header="false"
+
                     Title="<%$ Resources: WindowTitle %>"
                     Layout="FitLayout"
                     Scroll="Vertical"
@@ -112,7 +113,7 @@
                                 <ext:Parameter Name="labelWidth" Value="70" Mode="Raw" />
                             </Defaults>
                             <Items>
-                                <ext:ComboBox runat="server" ValueField="recordId" DisplayField="name" ID="branchId" Name="branchId" FieldLabel="<%$ Resources:FieldBranch%>">
+                                <ext:ComboBox runat="server" ValueField="recordId" DisplayField="name" ID="branchId" Name="branchId" FieldLabel="<%$ Resources:FieldBranch%>" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" >
                                     <Store>
                                         <ext:Store runat="server" ID="branchStore">
                                             <Model>
@@ -132,8 +133,8 @@
                                         <ext:ListItem Text="-----All-----" Value="0" />
                                     </Items>
                                 </ext:ComboBox>
-
-                                <ext:ComboBox runat="server" ValueField="recordId" DisplayField="name" ID="departmentId" Name="departmentId" FieldLabel="<%$ Resources:FieldDepartment%>">
+                                 
+                                <ext:ComboBox runat="server" ValueField="recordId" DisplayField="name" ID="departmentId" Name="departmentId" FieldLabel="<%$ Resources:FieldDepartment%>" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" >
                                     <Store>
                                         <ext:Store runat="server" ID="departmentStore">
                                             <Model>
@@ -153,6 +154,26 @@
                                         <ext:ListItem Text="-----All-----" Value="0" />
                                     </Items>
 
+                                </ext:ComboBox>
+                                 <ext:ComboBox runat="server" ValueField="recordId" DisplayField="name" ID="divisionId" Name="divisionId" FieldLabel="<%$ Resources:FieldDivision%>" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" >
+                                    <Store>
+                                        <ext:Store runat="server" ID="divisionStore">
+                                            <Model>
+                                                <ext:Model runat="server">
+                                                    <Fields>
+                                                        <ext:ModelField Name="recordId" />
+                                                        <ext:ModelField Name="name" />
+                                                    </Fields>
+                                                </ext:Model>
+                                            </Model>
+                                        </ext:Store>
+                                    </Store>
+                                    <Listeners>
+                                        <Select Handler="#{Store1}.reload()" />
+                                    </Listeners>
+                                    <Items>
+                                        <ext:ListItem Text="-----All-----" Value="0" />
+                                    </Items>
                                 </ext:ComboBox>
                                 <ext:ComboBox runat="server" ID="employeeId"
                                     DisplayField="fullName"

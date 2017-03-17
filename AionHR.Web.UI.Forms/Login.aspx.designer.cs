@@ -130,6 +130,15 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.TextField tbPassword;
         
         /// <summary>
+        /// rememberMeCheck control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Checkbox rememberMeCheck;
+        
+        /// <summary>
         /// lblErroContainer control.
         /// </summary>
         /// <remarks>
@@ -155,15 +164,6 @@ namespace AionHR.Web.UI.Forms {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.Button btnLogin;
-        
-        /// <summary>
-        /// btnReset control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Button btnReset;
         
         /// <summary>
         /// btnForgot control.

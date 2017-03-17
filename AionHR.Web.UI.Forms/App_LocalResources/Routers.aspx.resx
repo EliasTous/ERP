@@ -123,6 +123,9 @@
   <data name="EditWindowsTitle" xml:space="preserve">
     <value>Edit Router</value>
   </data>
+  <data name="ErrorInvalidMacAddress" xml:space="preserve">
+    <value>Router MAC address must be 12 characters</value>
+  </data>
   <data name="FieldBranch" xml:space="preserve">
     <value>Branch</value>
   </data>

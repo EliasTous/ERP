@@ -79,7 +79,7 @@
                     runat="server"
                     StoreID="Store1"
                     PaddingSpec="0 0 1 0"
-                    Header="true"
+                    Header="false"
                     Title="<%$ Resources: WindowTitle %>"
                     Layout="FitLayout"
                     Scroll="Vertical"
@@ -252,7 +252,7 @@
                     </SelectionModel>
                 </ext:GridPanel>
 
-                <ext:GridPanel runat="server"  Title="<%$ Resources: CalendarYearsTitle %>" Header="true" ID="calendarYears">
+                <ext:GridPanel runat="server"   Title="<%$ Resources: CalendarYearsTitle %>" Header="false" ID="calendarYears">
                       <View>
                         <ext:GridView ID="GridView2" runat="server" />
                     </View>

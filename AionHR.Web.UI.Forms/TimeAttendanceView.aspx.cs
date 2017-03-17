@@ -341,6 +341,15 @@ namespace AionHR.Web.UI.Forms
             branchStore.DataBind();
         }
 
+        private void FillDivision()
+        {
+            ListRequest branchesRequest = new ListRequest();
+            ListResponse<Division> resp = _companyStructureService.ChildGetAll<Division>(branchesRequest);
+            if (!resp.Success)
+                X.Msg.Alert(Resources.Common.Error, resp.Summary).Show();
+            divisionStore.DataSource = resp.Items;
+            divisionStore.DataBind();
+        }
 
 
 

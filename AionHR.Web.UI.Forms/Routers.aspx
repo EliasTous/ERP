@@ -49,7 +49,7 @@
                 </ext:Model>
             </Model>
             <Sorters>
-                <ext:DataSorter Property="recordId" Direction="ASC" />
+                <ext:DataSorter Property="routerRef" Direction="ASC" />
             </Sorters>
         </ext:Store>
 
@@ -62,7 +62,7 @@
                     runat="server"
                     StoreID="Store1" 
                     PaddingSpec="0 0 1 0"
-                    Header="true" 
+                    Header="false" 
                     Title="<%$ Resources: WindowTitle %>"
                     Layout="FitLayout"
                     Scroll="Vertical"
@@ -253,8 +253,8 @@
                             BodyPadding="5">
                             <Items>
                                 <ext:TextField ID="recordId" runat="server"  Name="recordId"  Hidden="true"/>
-                                <ext:TextField ID="routerRef" runat="server" FieldLabel="<%$ Resources:FieldReference%>" Name="routerRef"   ReadOnly="true" AllowBlank="false"/>
-                                
+                                <ext:TextField MaxLength="12" MinLength="12" ID="routerRef" runat="server" FieldLabel="<%$ Resources:FieldReference%>" Name="routerRef"   ReadOnly="true" AllowBlank="false" MinLengthText="<%$ Resources:ErrorInvalidMacAddress%>" MaxLengthText="<%$ Resources:ErrorInvalidMacAddress%>"/>
+                                 
                                 <ext:Checkbox runat="server" Name="isInactive" InputValue="true" ID="isInactiveCheck" DataIndex="isInactive" FieldLabel="<%$ Resources:FieldIsInactive%>" />
                                 <ext:ComboBox runat="server" AllowBlank="false" ValueField="recordId" DisplayField="name" ID="branchId" Name="branchId" FieldLabel="<%$ Resources:FieldBranch%>" SimpleSubmit="true" QueryMode="Local"  ForceSelection="true" TypeAhead="true" MinChars="1" >
                                             <Store>

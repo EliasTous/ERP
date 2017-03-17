@@ -138,6 +138,9 @@
   <data name="FieldDepartment" xml:space="preserve">
     <value>Department</value>
   </data>
+  <data name="FieldDivision" xml:space="preserve">
+    <value>Division</value>
+  </data>
   <data name="FieldFamilyName" xml:space="preserve">
     <value>Family Name</value>
   </data>
@@ -203,6 +206,12 @@
   </data>
   <data name="FieldWorkingCalendar" xml:space="preserve">
     <value>Calendar</value>
+  </data>
+  <data name="JobInformationTab" xml:space="preserve">
+    <value>Job Information</value>
+  </data>
+  <data name="PayrollTab" xml:space="preserve">
+    <value>Payroll</value>
   </data>
   <data name="WindowTitle" xml:space="preserve">
     <value>Employees</value>

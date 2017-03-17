@@ -9,7 +9,7 @@
     <title></title>
     <link rel="stylesheet" type="text/css" href="CSS/Common.css" />
     <link rel="stylesheet" href="CSS/LiveSearch.css" />
-    <script type="text/javascript" src="Scripts/LeaveTypes.js" ></script>
+    <script type="text/javascript" src="Scripts/LeaveTypes.js?id=1" ></script>
     <script type="text/javascript" src="Scripts/common.js" ></script>
    
  
@@ -63,7 +63,7 @@
                     runat="server"
                     StoreID="Store1" 
                     PaddingSpec="0 0 1 0"
-                    Header="true" 
+                    Header="false" 
                     Title="<%$ Resources: WindowTitle %>"
                     Layout="FitLayout"
                     Scroll="Vertical"

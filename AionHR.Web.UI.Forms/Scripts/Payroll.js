@@ -27,7 +27,7 @@ var cellClick = function (view, cell, columnIndex, record, row, rowIndex, e) {
         return true;
     }
 
-    if (t.className == "imgDelete" && (columnId == "ColSADelete"|| columnId=="ColEHDelete"|| columnId=="ColJIDelete")) {
+    if (t.className == "imgDelete" && (columnId == "ColSADelete"|| columnId=="ColBODelete")) {
         //the ajax call is allowed
         return true;
     }
@@ -35,7 +35,7 @@ var cellClick = function (view, cell, columnIndex, record, row, rowIndex, e) {
         //the ajax call is allowed
         return true;
     }
-    if (columnId == "ColJIName"|| columnId=="ColEHName"|| columnId=="ColSAName")
+    if ( columnId=="ColBOName"|| columnId=="ColSAName")
         return true;
 
 

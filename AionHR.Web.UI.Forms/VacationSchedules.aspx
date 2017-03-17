@@ -9,7 +9,7 @@
     <title></title>
     <link rel="stylesheet" type="text/css" href="CSS/Common.css" />
     <link rel="stylesheet" href="CSS/LiveSearch.css" />
-    <script type="text/javascript" src="Scripts/VacationSchedules.js?id=0"></script>
+    <script type="text/javascript" src="Scripts/VacationSchedules.js?id=1"></script>
     <script type="text/javascript" src="Scripts/common.js"></script>
 
 
@@ -66,7 +66,7 @@
                     runat="server"
                     StoreID="Store1"
                     PaddingSpec="0 0 1 0"
-                    Header="true"
+                    Header="false"
                     Title="<%$ Resources: WindowTitle %>"
                     Layout="FitLayout"
                     Scroll="Vertical"
@@ -273,8 +273,8 @@
                                 <ext:GridPanel
                                     ID="periodsGrid"  
                                     runat="server"
-                                    Width="600"
-                                    Height="250" Layout="FitLayout"
+                                    Width="600" Header="false"
+                                    Height="210" Layout="FitLayout"
                                     Frame="true" TitleCollapse="true"  Scroll="Vertical"
                                     >
                                     <Store>
@@ -333,7 +333,7 @@
                                                         AllowBlank="false"
                                                        
                                                         MinValue="0"
-                                                        MaxValue="150" />
+                                                        MaxValue="1000" />
                                                 </Editor>
                                             </ext:NumberColumn>
                                             <ext:NumberColumn
@@ -351,7 +351,10 @@
                                                         AllowBlank="false"
                                                         MinValue="0"
                                                   
-                                                        MaxValue="150" />
+                                                        MaxValue="1000" >
+                                                       
+                                                        </ext:NumberField>
+
                                                 </Editor>
                                                 
                                             </ext:NumberColumn>

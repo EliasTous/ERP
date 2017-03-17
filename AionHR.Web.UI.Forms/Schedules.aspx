@@ -12,7 +12,7 @@
     <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
     <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
     <script type="text/javascript" src="Scripts/moment.js"></script>
-    <script type="text/javascript" src="Scripts/Schedules.js?id=2"></script>
+    <script type="text/javascript" src="Scripts/Schedules.js?id=3"></script>
     <script type="text/javascript" src="Scripts/common.js"></script>
 
 <script type="text/javascript" >
@@ -92,7 +92,7 @@
                     runat="server"
                     StoreID="Store1"
                     PaddingSpec="0 0 1 0"
-                    Header="true"
+                    Header="false"
                     Title="<%$ Resources: WindowTitle %>"
                     Layout="FitLayout"
                     Scroll="Vertical"
@@ -270,7 +270,7 @@
                     </SelectionModel>
                 </ext:GridPanel>
 
-                <ext:GridPanel runat="server" Title="<%$ Resources: WindowTitle %>" Header="true" ID="scheduleDays">
+                <ext:GridPanel runat="server" Title="<%$ Resources: WindowTitle %>" Header="false" ID="scheduleDays">
                     <DirectEvents>
                         <CellClick OnEvent="PoPuP">
                             <EventMask ShowMask="true" />
@@ -415,7 +415,7 @@
             Icon="PageEdit"
             Title="<%$ Resources:DayBreaksForm %>"
             Width="450"
-            Height="330"
+            Height="370"
             AutoShow="false"
             Modal="true"
             Hidden="true"
@@ -435,7 +435,7 @@
                             <Items>
                                 <ext:TextField ID="fieldScId" Hidden="true" runat="server" Disabled="true" DataIndex="scId" />
                                 <ext:TextField ID="fieldDow" Hidden="true" runat="server" Disabled="true" DataIndex="dow" />
-                                  <ext:ComboBox runat="server" AllowBlank="false" DisplayField="name" ValueField="recordId" Name="dayTypeId" ID="dayTypeId" FieldLabel="<%$ Resources:DayType %>" SubmitValue="true" QueryMode="Local"  ForceSelection="true" TypeAhead="true" MinChars="1" >
+                                  <ext:ComboBox  runat="server" AllowBlank="false" DisplayField="name" ValueField="recordId" Name="dayTypeId" ID="dayTypeId" FieldLabel="<%$ Resources:DayType %>" SubmitValue="true" QueryMode="Local"  ForceSelection="true" TypeAhead="true" MinChars="1" >
                                    <Store>
                                        <ext:Store runat="server" ID="dayTypesStore" >
                                            <Model>
@@ -458,20 +458,22 @@
                                 <ext:TextField ID="firstIn" FieldLabel="First In" runat="server" DataIndex="firstIn"  AllowBlank="false" >
                                     <Plugins>
                                         <ext:InputMask Mask="99:99" />
+                                        
                                     </Plugins>
-                                    
+                                   <Validator Handler="return validateFrom(this.getValue());" />
                                     </ext:TextField>
                                 <ext:TextField ID="lastOut" runat="server" FieldLabel="Last Out" DataIndex="lastOut" AllowBlank="false" BlankText="<%$ Resources:Common, MandatoryField%>" >
                                     <Plugins>
                                         <ext:InputMask Mask="99:99" />
                                     </Plugins>
+                                    <Validator Handler="return validateTo(this.getValue(),this.prev().getValue());" />
                                     </ext:TextField>
                                 
                                 <ext:GridPanel
                                     ID="periodsGrid"
-                                    runat="server"
-                                    Width="600"
-                                    Height="400" Layout="FitLayout"
+                                    runat="server" Scroll="Vertical"
+                                    Width="600" Header="false"
+                                    Height="170 " Layout="FitLayout"
                                     Frame="true" TitleCollapse="true">
                                     <Store>
                                         <ext:Store ID="periodsStore" runat="server">

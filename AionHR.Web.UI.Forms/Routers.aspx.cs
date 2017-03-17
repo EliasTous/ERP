@@ -141,7 +141,7 @@ namespace AionHR.Web.UI.Forms
                         Yes = new MessageBoxButtonConfig
                         {
                             //We are call a direct request metho for deleting a record
-                            Handler = String.Format("App.direct.DeleteRecord({0})", id),
+                            Handler = String.Format("App.direct.DeleteRecord('{0}')", id),
                             Text = Resources.Common.Yes
                         },
                         No = new MessageBoxButtonConfig

@@ -145,11 +145,7 @@
                                 </Click>
                             </DirectEvents>
                         </ext:Button>
-                        <ext:Button ID="btnReset" runat="server" Text="reset">
-                            <Listeners>
-                                <Click Handler="#{panelLogin}.reset();" />
-                            </Listeners>
-                        </ext:Button>
+                   
                         
                     </Buttons>
                 </ext:FormPanel>

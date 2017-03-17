@@ -71,7 +71,7 @@
                     runat="server"
                     StoreID="Store1" 
                     PaddingSpec="0 0 1 0"
-                    Header="true" 
+                    Header="false" 
                     Title="<%$ Resources: WindowTitle %>"
                     Layout="FitLayout"
                     Scroll="Vertical"
@@ -274,6 +274,7 @@
                                 <ext:ComboBox runat="server" ID="employeeId" QueryMode="Local"  ForceSelection="true" TypeAhead="true" MinChars="1" 
                                     DisplayField="name"
                                     ValueField="recordId"
+                                  
                                    
                                     FieldLabel ="<%$ Resources: FieldEmployeeName %>"
                                     
@@ -301,6 +302,7 @@
                                 <ext:ComboBox runat="server" ID="ltId" QueryMode="Local"  ForceSelection="true" TypeAhead="true" MinChars="1" 
                                     DisplayField="name"
                                     ValueField="recordId"
+                                
                                    
                                     FieldLabel ="<%$ Resources: FieldLtName %>"
                                     
@@ -326,7 +328,7 @@
                                
 
                                 <ext:ComboBox runat="server" ID="status" QueryMode="Local"  ForceSelection="true" TypeAhead="true" MinChars="1" 
-                                    FieldLabel ="<%$ Resources: FieldStatus %>"
+                                    FieldLabel ="<%$ Resources: FieldEmployeeName %>"
                                     
                                     >
                                     <Items>

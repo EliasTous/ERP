@@ -46,6 +46,7 @@ namespace AionHR.Repository.WebService.Repositories
             ChildDeleteLookup.Add(typeof(AttendanceBreak), "delSB");
             ChildDeleteLookup.Add(typeof(VacationSchedule), "delVS");
             ChildDeleteLookup.Add(typeof(LeaveRequest), "delLR");
+            ChildDeleteLookup.Add(typeof(LeaveType), "delLT");
         }
     }
 }

@@ -113,6 +113,7 @@
     <Content Include="DocumentTypes.aspx" />
     <Content Include="EmployeePages\EmployeeProfile.aspx" />
     <Content Include="EmployeePages\JobInformation.aspx" />
+    <Content Include="EmployeePages\Payroll.aspx" />
     <Content Include="EmployeeRoot.aspx" />
     <Content Include="Employees.aspx" />
     <Content Include="EntitlementDeductions.aspx" />
@@ -150,6 +151,8 @@
     <Content Include="Scripts\AttendanceDayView.js" />
     <Content Include="Scripts\BonusTypes.js" />
     <Content Include="Scripts\Calendars.js" />
+    <Content Include="Scripts\Payroll.js" />
+    <Content Include="Scripts\LeaveTypes.js" />
     <Content Include="Scripts\Divisions.js" />
     <Content Include="Scripts\Employees.js" />
     <Content Include="Scripts\EntitlementDeductions.js" />
@@ -315,6 +318,13 @@
     </Compile>
     <Compile Include="EmployeePages\JobInformation.aspx.designer.cs">
       <DependentUpon>JobInformation.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EmployeePages\Payroll.aspx.cs">
+      <DependentUpon>Payroll.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EmployeePages\Payroll.aspx.designer.cs">
+      <DependentUpon>Payroll.aspx</DependentUpon>
     </Compile>
     <Compile Include="EmployeeRoot.aspx.cs">
       <DependentUpon>EmployeeRoot.aspx</DependentUpon>
@@ -636,6 +646,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_LocalResources\LeaveRequests.aspx.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="EmployeePages\App_LocalResources\Payroll.aspx.resx" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

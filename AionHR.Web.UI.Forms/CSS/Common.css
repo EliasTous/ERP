@@ -20,10 +20,10 @@
     color: #222222;
 }
 .linkClass{cursor:pointer; text-decoration:underline;}
-.x-header{
+/*.x-header{
     background-color: #15b4f0; /*400C24*/
     border-color:#15b4f0!important;
-}
+}*/
 .cellLink{
     text-decoration:underline;
 }

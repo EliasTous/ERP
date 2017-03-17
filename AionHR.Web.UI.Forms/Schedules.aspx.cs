@@ -829,7 +829,8 @@ namespace AionHR.Web.UI.Forms
         protected void Unnamed_Event(object sender, DirectEventArgs e)
         {
             string selectedDayTypeId = dayTypeId.Value.ToString();
-
+            if (string.IsNullOrEmpty(selectedDayTypeId)|| GetDayType(selectedDayTypeId)==null)
+                return;
             if (GetDayType(selectedDayTypeId).isWorkingDay)
                 SetDayFormEnabled(true);
             else

@@ -7,10 +7,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title></title>
-    <link rel="stylesheet" type="text/css" href="CSS/Common.css" />
-    <link rel="stylesheet" href="CSS/LiveSearch.css" />
-    <script type="text/javascript" src="../Scripts/JobInformation.js?id=0"></script>
-    <script type="text/javascript" src="Scripts/common.js"></script>
+    <link rel="stylesheet" type="text/css" href="../CSS/Common.css?id=1" />
+    <link rel="stylesheet" href="../CSS/LiveSearch.css" />
+    <script type="text/javascript" src="../Scripts/JobInformation.js?id=10"></script>
+    <script type="text/javascript" src="../Scripts/common.js?id=0"></script>
 
 
 </head>
@@ -22,24 +22,31 @@
         <ext:Hidden ID="textLoadFailed" runat="server" Text="<%$ Resources:Common , LoadFailed %>" />
         <ext:Hidden ID="titleSavingError" runat="server" Text="<%$ Resources:Common , TitleSavingError %>" />
         <ext:Hidden ID="titleSavingErrorMessage" runat="server" Text="<%$ Resources:Common , TitleSavingErrorMessage %>" />
+        <ext:Hidden ID="CurrentEmployee" runat="server"  />
+        <ext:Hidden ID="PaymentTypeWeekly" runat="server" Text="<%$ Resources: PaymentTypeWeekly %>" />
+        <ext:Hidden ID="PaymentTypeMonthly" runat="server" Text="<%$ Resources: PaymentTypeMonthly %>" />
+        <ext:Hidden ID="PaymentTypeDaily" runat="server" Text="<%$ Resources: PaymentTypeDaily %>" />
+        <ext:Hidden ID="PaymentMethodCash" runat="server" Text="<%$ Resources: PaymentMethodCash %>" />
+        <ext:Hidden ID="PaymentMethodBank" runat="server" Text="<%$ Resources: PaymentMethodBank %>" />
+          <ext:Viewport ID="Viewport11" runat="server" Layout="VBoxLayout" Padding="10">
+            <LayoutConfig>
+                <ext:VBoxLayoutConfig Align="Stretch" />
+            </LayoutConfig>
+        
 
 
+        <Items>
 
-
-
-        <ext:Panel ID="Viewport1" runat="server" Layout="VBoxLayout">
-            <Items>
-
-                <ext:GridPanel
-                    ID="employeementHistoryGrid"
+                <ext:GridPanel AutoUpdateLayout="true"
+                    ID="employeementHistoryGrid" Collapsible="true"
                     runat="server"
                     PaddingSpec="0 0 1 0"
                     Header="true"
-                    Title="<%$ Resources: WindowTitle %>"
+                    Title="<%$ Resources: EHGridTitle %>"
                     Layout="FitLayout"
-                    Scroll="Vertical"
-                    Border="false"
-                    Icon="User" DefaultAnchor="100%"  Width="650" Height="200"
+                    Scroll="Vertical" Flex="1"
+                    Border="false" 
+                    Icon="User" DefaultAnchor="100%"  
                     ColumnLines="True" IDMode="Explicit" RenderXType="True">
                     <Store>
                         <ext:Store
@@ -62,7 +69,7 @@
 
                                         <ext:ModelField Name="recordId" />
                                         <ext:ModelField Name="statusName" />
-                                        <ext:ModelField Name="date" />
+                                        <ext:ModelField Name="date" ServerMapping="date.ToShortDateString()"  />
 
                                     </Fields>
                                 </ext:Model>
@@ -107,11 +114,11 @@
                         <Columns>
 
                             <ext:Column Visible="false" ID="ColrecordId" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldrecordId %>" DataIndex="recordId" Hideable="false" Width="75" Align="Center" />
-                            <ext:Column CellCls="cellLink" ID="ColEHName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEHStatus%>" DataIndex="statusName" Flex="2" Hideable="false">
+                            <ext:Column CellCls="cellLink" ID="ColEHName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEHStatus%>" DataIndex="statusName" Flex="7" Hideable="false">
                                 <Renderer Handler="return '<u>'+ record.data['statusName']+'</u>'">
                                 </Renderer>
                             </ext:Column>
-                            <ext:Column CellCls="cellLink" ID="Column2" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEHDate%>" DataIndex="date" Flex="2" Hideable="false" />
+                            <ext:DateColumn Format="dd-MM-yyyy" CellCls="cellLink" ID="Column2" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEHDate%>" DataIndex="date" Flex="1" Hideable="false" />
 
 
 
@@ -130,7 +137,7 @@
 
                             </ext:Column>
                             <ext:Column runat="server"
-                                ID="colEHDelete" Flex="1" Visible="true"
+                                ID="ColEHDelete" Flex="1" Visible="true"
                                 Text="<%$ Resources: Common , Delete %>"
                                 Width="60"
                                 Align="Center"
@@ -171,29 +178,7 @@
                         </ext:Toolbar>
 
                     </DockedItems>
-                    <BottomBar>
-
-                        <ext:PagingToolbar ID="PagingToolbar1"
-                            runat="server"
-                            FirstText="<%$ Resources:Common , FirstText %>"
-                            NextText="<%$ Resources:Common , NextText %>"
-                            PrevText="<%$ Resources:Common , PrevText %>"
-                            LastText="<%$ Resources:Common , LastText %>"
-                            RefreshText="<%$ Resources:Common ,RefreshText  %>"
-                            BeforePageText="<%$ Resources:Common ,BeforePageText  %>"
-                            AfterPageText="<%$ Resources:Common , AfterPageText %>"
-                            DisplayInfo="true"
-                            DisplayMsg="<%$ Resources:Common , DisplayMsg %>"
-                            Border="true"
-                            EmptyMsg="<%$ Resources:Common , EmptyMsg %>">
-                            <Items>
-                            </Items>
-                            <Listeners>
-                                <BeforeRender Handler="this.items.removeAt(this.items.length - 2);" />
-                            </Listeners>
-                        </ext:PagingToolbar>
-
-                    </BottomBar>
+                
                     <Listeners>
                         <Render Handler="this.on('cellclick', cellClick);" />
                     </Listeners>
@@ -218,12 +203,12 @@
                     </SelectionModel>
                 </ext:GridPanel>
                 <ext:GridPanel Visible="True"
-                    ID="JobInfoGrid"
+                    ID="JobInfoGrid" AutoUpdateLayout="true" Collapsible="true"
                     runat="server"
-                    PaddingSpec="0 0 1 0"  Width="650"  Height="200"
+                    PaddingSpec="0 0 1 0"   
                     Header="true"
-                    Title="<%$ Resources: WindowTitle %>"
-                    Layout="FitLayout"
+                    Title="<%$ Resources: JIGridTitle %>"
+                    Layout="FitLayout" Flex="1"
                     Scroll="Vertical"
                     Border="false"
                     Icon="User"
@@ -248,8 +233,13 @@
                                     <Fields>
 
                                         <ext:ModelField Name="recordId" />
-                                        <ext:ModelField Name="name" />
-                                        <ext:ModelField Name="reference" />
+                                        <ext:ModelField Name="date" />
+                                        <ext:ModelField Name="departmentName" />
+                                        <ext:ModelField Name="branchName" />
+                                        <ext:ModelField Name="positionName" />
+                                        <ext:ModelField Name="divisionName" />
+                                        
+                                        
 
                                     </Fields>
                                 </ext:Model>
@@ -267,8 +257,8 @@
                                         <Click Handler="CheckSession();" />
                                     </Listeners>
                                     <DirectEvents>
-                                        <Click OnEvent="ADDNewEH">
-                                            <EventMask ShowMask="true" CustomTarget="={#{employeementHistoryGrid}.body}" />
+                                        <Click OnEvent="ADDNewJI">
+                                            <EventMask ShowMask="true" CustomTarget="={#{JobInfoGrid}.body}" />
                                         </Click>
                                     </DirectEvents>
                                 </ext:Button>
@@ -281,7 +271,7 @@
                                     </Triggers>
                                     <Listeners>
                                         <KeyPress Fn="enterKeyPressSearchHandler" Buffer="100" />
-                                        <TriggerClick Handler="#{JIStore}.reload();" />
+                                        <TriggerClick Handler="#{JIGrid}.reload();" />
                                     </Listeners>
                                 </ext:TextField>
 
@@ -294,11 +284,12 @@
                         <Columns>
 
                             <ext:Column Visible="false" ID="Column1" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldrecordId %>" DataIndex="recordId" Hideable="false" Width="75" Align="Center" />
-                            <ext:Column Flex="1" ID="ColJIName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldReference %>" DataIndex="reference" Hideable="false" Width="75" Align="Center" />
-                            <ext:Column CellCls="cellLink" ID="Column3" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldName%>" DataIndex="name" Flex="2" Hideable="false">
-                                <Renderer Handler="return '<u>'+ record.data['name']+'</u>'">
-                                </Renderer>
-                            </ext:Column>
+                            <ext:DateColumn Format="dd-MM-yyyy" Flex="1" ID="ColJIName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldJIDate %>" DataIndex="date" Hideable="false" Width="75" Align="Center" />
+                            <ext:Column Flex="2" ID="Column3" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldJIDepartment %>" DataIndex="departmentName" Hideable="false" Align="Center" />
+                            <ext:Column Flex="2" ID="Column7" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldJIBranch%>" DataIndex="branchName" Hideable="false"  Align="Center" />
+                            <ext:Column Flex="2" ID="Column8" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldJIPosition%>" DataIndex="positionName" Hideable="false"  Align="Center" />
+                            <ext:Column Flex="2" ID="Column9" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldJIDivision%>" DataIndex="divisionName" Hideable="false" Align="Center" />
+                          
 
 
 
@@ -317,7 +308,7 @@
 
                             </ext:Column>
                             <ext:Column runat="server"
-                                ID="Column5" Flex="1" Visible="true"
+                                ID="ColJIDelete" Flex="1" Visible="true"
                                 Text="<%$ Resources: Common , Delete %>"
                                 Width="60"
                                 Align="Center"
@@ -329,7 +320,7 @@
                                 <Renderer Fn="deleteRender" />
 
                             </ext:Column>
-                            <ext:Column runat="server"
+                            <ext:Column runat="server" Visible="false"
                                 ID="Column6"
                                 Text="<%$ Resources:Common, Attach %>"
                                 Hideable="false"
@@ -358,29 +349,7 @@
                         </ext:Toolbar>
 
                     </DockedItems>
-                    <BottomBar>
-
-                        <ext:PagingToolbar ID="PagingToolbar2"
-                            runat="server"
-                            FirstText="<%$ Resources:Common , FirstText %>"
-                            NextText="<%$ Resources:Common , NextText %>"
-                            PrevText="<%$ Resources:Common , PrevText %>"
-                            LastText="<%$ Resources:Common , LastText %>"
-                            RefreshText="<%$ Resources:Common ,RefreshText  %>"
-                            BeforePageText="<%$ Resources:Common ,BeforePageText  %>"
-                            AfterPageText="<%$ Resources:Common , AfterPageText %>"
-                            DisplayInfo="true"
-                            DisplayMsg="<%$ Resources:Common , DisplayMsg %>"
-                            Border="true"
-                            EmptyMsg="<%$ Resources:Common , EmptyMsg %>">
-                            <Items>
-                            </Items>
-                            <Listeners>
-                                <BeforeRender Handler="this.items.removeAt(this.items.length - 2);" />
-                            </Listeners>
-                        </ext:PagingToolbar>
-
-                    </BottomBar>
+                    
                     <Listeners>
                         <Render Handler="this.on('cellclick', cellClick);" />
                     </Listeners>
@@ -404,8 +373,9 @@
                         <%--<ext:CheckboxSelectionModel ID="CheckboxSelectionModel1" runat="server" Mode="Multi" StopIDModeInheritance="true" />--%>
                     </SelectionModel>
                 </ext:GridPanel>
+             
             </Items>
-        </ext:Panel>
+       </ext:Viewport>
 
         <ext:Window
             ID="EditEHwindow"
@@ -430,6 +400,7 @@
                             DefaultAnchor="100%"
                             BodyPadding="5">
                             <Items>
+                                <ext:TextField runat="server" Name="recordId"  ID="EHID" Hidden="true"  Disabled="true"/>
                                 <ext:ComboBox ValueField="recordId" AllowBlank="false" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" runat="server" ID="statusId" Name="statusId" FieldLabel="<%$ Resources:FieldEHStatus%>" SimpleSubmit="true">
                                     <Store>
                                         <ext:Store runat="server" ID="EHStatusStore">
@@ -443,8 +414,28 @@
                                             </Model>
                                         </ext:Store>
                                     </Store>
+                                          <RightButtons>
+                                                        <ext:Button ID="Button6" runat="server" Icon="Add" Hidden="true">
+                                                            <Listeners>
+                                                                <Click Handler="CheckSession();  " />
+                                                            </Listeners>
+                                                            <DirectEvents>
+
+                                                                <Click OnEvent="addStatus">
+                                                                    <ExtraParams>
+                                                                        
+                                                                        
+                                                                    </ExtraParams>
+                                                                </Click>
+                                                            </DirectEvents>
+                                                        </ext:Button>
+                                                    </RightButtons>
+                                                <Listeners>
+                                                    <FocusEnter Handler="this.rightButtons[0].setHidden(false);" />
+                                                    <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
+                                                </Listeners>
                                 </ext:ComboBox>
-                                <ext:DateField runat="server" Name="date" FieldLabel="<%$ Resources:FieldEHDate%>" />
+                                <ext:DateField runat="server" Name="date" FieldLabel="<%$ Resources:FieldEHDate%>" AllowBlank="false" />
                                 <ext:TextArea runat="server" Name="comment" FieldLabel="<%$ Resources:FieldEHComment%>" />
                             </Items>
 
@@ -463,7 +454,7 @@
                         <Click OnEvent="SaveEH" Failure="Ext.MessageBox.alert('#{titleSavingError}.value', '#{titleSavingErrorMessage}.value');">
                             <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="={#{EditJobInfoWindow}.body}" />
                             <ExtraParams>
-                                <ext:Parameter Name="id" Value="#{recordId}.getValue()" Mode="Raw" />
+                                <ext:Parameter Name="id" Value="#{EHID}.getValue()" Mode="Raw" />
                                 <ext:Parameter Name="values" Value="#{EditEHForm}.getForm().getValues(false, false, false, true)" Mode="Raw" Encode="true" />
                             </ExtraParams>
                         </Click>
@@ -500,10 +491,132 @@
                             DefaultAnchor="100%"
                             BodyPadding="5">
                             <Items>
-                                <ext:TextField ID="recordId" Hidden="true" runat="server" FieldLabel="<%$ Resources:FieldrecordId%>" Disabled="true" Name="recordId" />
-                                <ext:TextField ID="name" runat="server" FieldLabel="<%$ Resources:FieldName%>" Name="name" AllowBlank="false" BlankText="<%$ Resources:Common, MandatoryField%>" />
-                                <ext:TextField ID="reference" runat="server" FieldLabel="<%$ Resources:FieldReference%>" Name="reference" AllowBlank="false" BlankText="<%$ Resources:Common, MandatoryField%>" />
+                                <ext:TextField ID="JIID" Hidden="true" runat="server" FieldLabel="<%$ Resources:FieldrecordId%>" Disabled="true" Name="recordId" />
+                                <ext:DateField runat="server" ID="date" Name="date" FieldLabel="<%$ Resources:FieldJIDate%>" />
+                           <ext:ComboBox    runat="server" AllowBlank="false" ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" ID="departmentId" Name="departmentId" FieldLabel="<%$ Resources:FieldJIDepartment%>" SimpleSubmit="true">
+                                                <Store>
+                                                    <ext:Store runat="server" ID="departmentStore">
+                                                        <Model>
+                                                            <ext:Model runat="server">
+                                                                <Fields>
+                                                                    <ext:ModelField Name="recordId" />
+                                                                    <ext:ModelField Name="name" />
+                                                                </Fields>
+                                                            </ext:Model>
+                                                        </Model>
+                                                    </ext:Store>
+                                                </Store>
+                                                  <RightButtons>
+                                                        <ext:Button ID="Button2" runat="server" Icon="Add" Hidden="true">
+                                                            <Listeners>
+                                                                <Click Handler="CheckSession();  " />
+                                                            </Listeners>
+                                                            <DirectEvents>
 
+                                                                <Click OnEvent="addDepartment">
+                                                                   
+                                                                </Click>
+                                                            </DirectEvents>
+                                                        </ext:Button>
+                                                    </RightButtons>
+                                                <Listeners>
+                                                    <FocusEnter Handler="this.rightButtons[0].setHidden(false);" />
+                                                    <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
+                                                </Listeners>
+                                            </ext:ComboBox>
+                           <ext:ComboBox  runat="server" AllowBlank="false" ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" ID="branchId" Name="branchId" FieldLabel="<%$ Resources:FieldJIBranch%>" SimpleSubmit="true">
+                                                <Store>
+                                                    <ext:Store runat="server" ID="BranchStore">
+                                                        <Model>
+                                                            <ext:Model runat="server">
+                                                                <Fields>
+                                                                    <ext:ModelField Name="recordId" />
+                                                                    <ext:ModelField Name="name" />
+                                                                </Fields>
+                                                            </ext:Model>
+                                                        </Model>
+                                                    </ext:Store>
+                                                </Store>
+                                                    <RightButtons>
+                                                        <ext:Button ID="Button4" runat="server" Icon="Add" Hidden="true">
+                                                            <Listeners>
+                                                                <Click Handler="CheckSession();  " />
+                                                            </Listeners>
+                                                            <DirectEvents>
+
+                                                                <Click OnEvent="addBranch">
+                                                                    
+                                                                </Click>
+                                                            </DirectEvents>
+                                                        </ext:Button>
+                                                    </RightButtons>
+                                                <Listeners>
+                                                    <FocusEnter Handler="this.rightButtons[0].setHidden(false);" />
+                                                    <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
+                                                </Listeners>
+                                            </ext:ComboBox>
+                                  <ext:ComboBox   runat="server" AllowBlank="false" ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" ID="divisionId" Name="divisionId" FieldLabel="<%$ Resources:FieldJIDivision%>" SimpleSubmit="true">
+                                                <Store>
+                                                    <ext:Store runat="server" ID="divisionStore">
+                                                        <Model>
+                                                            <ext:Model runat="server">
+                                                                <Fields>
+                                                                    <ext:ModelField Name="recordId" />
+                                                                    <ext:ModelField Name="name" />
+                                                                </Fields>
+                                                            </ext:Model>
+                                                        </Model>
+                                                    </ext:Store>
+                                                </Store>
+                                                   <RightButtons>
+                                                        <ext:Button ID="Button7" runat="server" Icon="Add" Hidden="true">
+                                                            <Listeners>
+                                                                <Click Handler="CheckSession();  " />
+                                                            </Listeners>
+                                                            <DirectEvents>
+
+                                                                <Click OnEvent="addDivision">
+                                                                   
+                                                                </Click>
+                                                            </DirectEvents>
+                                                        </ext:Button>
+                                                    </RightButtons>
+                                                <Listeners>
+                                                    <FocusEnter Handler="this.rightButtons[0].setHidden(false);" />
+                                                    <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
+                                                </Listeners>
+                                            </ext:ComboBox>
+                        <ext:ComboBox   ValueField="recordId" AllowBlank="false" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" runat="server" ID="positionId" Name="positionId" FieldLabel="<%$ Resources:FieldJIPosition%>" SimpleSubmit="true">
+                                                <Store>
+                                                    <ext:Store runat="server" ID="positionStore">
+                                                        <Model>
+                                                            <ext:Model runat="server">
+                                                                <Fields>
+                                                                    <ext:ModelField Name="recordId" />
+                                                                    <ext:ModelField Name="name" />
+                                                                </Fields>
+                                                            </ext:Model>
+                                                        </Model>
+                                                    </ext:Store>
+                                                </Store>
+                                                 <RightButtons>
+                                                        <ext:Button ID="Button5" runat="server" Icon="Add" Hidden="true">
+                                                            <Listeners>
+                                                                <Click Handler="CheckSession();  " />
+                                                            </Listeners>
+                                                            <DirectEvents>
+
+                                                                <Click OnEvent="addPosition">
+                                                                   
+                                                                </Click>
+                                                            </DirectEvents>
+                                                        </ext:Button>
+                                                    </RightButtons>
+                                                <Listeners>
+                                                    <FocusEnter Handler="this.rightButtons[0].setHidden(false);" />
+                                                    <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
+                                                </Listeners>
+                                            </ext:ComboBox>
 
                             </Items>
 
@@ -522,7 +635,7 @@
                         <Click OnEvent="SaveJI" Failure="Ext.MessageBox.alert('#{titleSavingError}.value', '#{titleSavingErrorMessage}.value');">
                             <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="={#{EditJobInfoWindow}.body}" />
                             <ExtraParams>
-                                <ext:Parameter Name="id" Value="#{recordId}.getValue()" Mode="Raw" />
+                                <ext:Parameter Name="id" Value="#{JIID}.getValue()" Mode="Raw" />
                                 <ext:Parameter Name="values" Value="#{EditJobInfoTab}.getForm().getValues(false, false, false, true)" Mode="Raw" Encode="true" />
                             </ExtraParams>
                         </Click>
@@ -536,7 +649,7 @@
             </Buttons>
         </ext:Window>
 
-
+          
 
     </form>
 </body>

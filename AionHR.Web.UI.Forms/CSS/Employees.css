@@ -97,3 +97,13 @@ input[readonly]
 {
     width:600px!important;
 }
+.x-toolbar-footer
+{
+    background-color:white;
+}
+#alignedPanel{
+    text-align:center!important;
+}
+#img{
+    text-align:left!important;
+}

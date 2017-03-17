@@ -319,13 +319,13 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.TextField name;
         
         /// <summary>
-        /// reference control.
+        /// positionRef control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.TextField reference;
+        protected global::Ext.Net.TextField positionRef;
         
         /// <summary>
         /// description control.

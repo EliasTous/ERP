@@ -193,7 +193,7 @@ namespace AionHR.Web.UI.Forms
                 Department n = new Department();
                 n.recordId = index;
                 n.name = "";
-                n.reference = "";
+                n.departmentRef = "";
 
 
                 PostRequest<Department> req = new PostRequest<Department>();

@@ -113,7 +113,7 @@
                                     </ext:ComboBox>
 
                                 
-                                <ext:ComboBox QueryMode="Local"  ForceSelection="true" TypeAhead="true" MinChars="1"  FieldLabel="<%$ Resources: FieldTimeZone %>" Name="TimeZone" runat="server"  ID="timeZoneCombo">
+                                <ext:ComboBox QueryMode="Local"  ForceSelection="true" TypeAhead="true" MinChars="1"  FieldLabel="<%$ Resources: FieldTimeZone %>" Name="timeZone" runat="server"  ID="timeZoneCombo">
                                      <Items>
                                         <ext:ListItem Text="-12 UTC" Value="-12" />
                                         <ext:ListItem Text="-11 UTC" Value="-11" />
@@ -143,7 +143,7 @@
                                     </Items>
                                     </ext:ComboBox>
                                 <ext:Checkbox FieldLabel="<%$ Resources: FieldLog %>" runat="server"  ID="logCheck" Name="transactionLog" InputValue="True"/>
-                                <ext:Checkbox FieldLabel="<%$ Resources: FieldEnableCamera %>" runat="server" InputValue="True" Name="diableCamera"  ID="enableCameraCheck"/>
+                                <ext:Checkbox FieldLabel="<%$ Resources: FieldEnableCamera %>" runat="server" InputValue="True" Name="enableCamera"  ID="enableCameraCheck"/>
                             </Items>
 
                         </ext:FormPanel>

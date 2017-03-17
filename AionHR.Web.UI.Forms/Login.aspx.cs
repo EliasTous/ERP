@@ -51,6 +51,18 @@ namespace AionHR.Web.UI.Forms
                 tbAccountName.Text = Request.QueryString["account"];
                 DirectCheckField(tbAccountName.Text);
             }
+            if (!IsPostBack && Request.Cookies["accountName"] != null)
+            {
+                tbAccountName.Text = Request.Cookies["accountName"].Value;
+                DirectCheckField(tbAccountName.Text);
+            }
+            if (!IsPostBack && Request.Cookies["email"] != null)
+            {
+                tbUsername.Text = Request.Cookies["email"].Value;
+                tbPassword.Text = Request.Cookies["password"].Value;
+                rememberMeCheck.Checked = true;
+            }
+
             if (!X.IsAjaxRequest)
             {
                 ResourceManager1.RegisterIcon(Icon.Tick);
@@ -59,16 +71,38 @@ namespace AionHR.Web.UI.Forms
         }
 
         [DirectMethod]
-        public string Authenticate(string accountName ,string userName, string password)
+        public string Authenticate(string accountName, string userName, string password)
         {
             AuthenticateRequest request = new AuthenticateRequest();
-            
+
             request.UserName = tbUsername.Text;
             request.Password = tbPassword.Text;
             AuthenticateResponse response = _systemService.Authenticate(request);
             if (response.Success)
             {
                 //Redirecting..
+                Response.Cookies.Add(new HttpCookie("accountName", accountName));
+                if (rememberMeCheck.Checked)
+                {
+                    Response.Cookies.Add(new HttpCookie("email") { Value = userName, Expires = DateTime.Now.AddDays(30), });
+                    Response.Cookies.Add(new HttpCookie("password") { Value = password, Expires = DateTime.Now.AddDays(30), });
+
+                }
+                else
+                {
+                    HttpCookie currentUserCookie = HttpContext.Current.Request.Cookies["email"];
+                    if (currentUserCookie == null)
+                        return "1";
+                    HttpContext.Current.Response.Cookies.Remove("email");
+                    currentUserCookie.Expires = DateTime.Now.AddDays(-10);
+                    currentUserCookie.Value = null;
+                    HttpContext.Current.Response.SetCookie(currentUserCookie);
+                    HttpCookie passwordCookie = HttpContext.Current.Request.Cookies["password"];
+                    HttpContext.Current.Response.Cookies.Remove("password");
+                    passwordCookie.Expires = DateTime.Now.AddDays(-10);
+                    passwordCookie.Value = null;
+                    HttpContext.Current.Response.SetCookie(passwordCookie);
+                }
                 if (response.User.languageId == 3)
                     _systemService.SessionHelper.SetLanguage("ar");
                 else
@@ -79,14 +113,14 @@ namespace AionHR.Web.UI.Forms
             }
             else
             {
-                lblError.Text = (String)GetLocalResourceObject(response.Message);
+                lblError.Text = response.Summary;
                 return "error";//Error in authentication
 
             }
         }
 
 
-        
+
 
         [DirectMethod]
         public object DirectCheckField(string value)
@@ -139,7 +173,7 @@ namespace AionHR.Web.UI.Forms
 
         }
 
-       
+
         protected void forgotpw_Event(object sender, EventArgs e)
         {
             Response.Redirect("~/ForgotPassword.aspx");

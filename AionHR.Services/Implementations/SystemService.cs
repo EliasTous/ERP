@@ -48,6 +48,7 @@ namespace AionHR.Services.Implementations
             
             
             RecordWebServiceResponse<UserInfo> userRecord = childRepo.Authenticate(headers, request.Parameters);
+            response =CreateServiceResponse<AuthenticateResponse>(userRecord);
             if (userRecord == null)
             {
                 response.Success = false;

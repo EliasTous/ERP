@@ -37,6 +37,8 @@ namespace AionHR.Web.UI.Forms
         ICompanyStructureService _companyStructureService = ServiceLocator.Current.GetInstance<ICompanyStructureService>();
         ILeaveManagementService _leaveManagementService = ServiceLocator.Current.GetInstance<ILeaveManagementService>();
         ITimeAttendanceService _timeAttendanceService = ServiceLocator.Current.GetInstance<ITimeAttendanceService>();
+
+
         protected override void InitializeCulture()
         {
 
@@ -67,7 +69,7 @@ namespace AionHR.Web.UI.Forms
                 SetExtLanguage();
                 HideShowButtons();
                 HideShowColumns();
-               
+
 
 
             }
@@ -134,7 +136,7 @@ namespace AionHR.Web.UI.Forms
                     //employeePanel.Loader.Url = "EmployeePages/EmployeeProfile.aspx?employeeId="+CurrentEmployee.Text;
                     //employeePanel.Loader.LoadContent();
 
-
+                    panelRecordDetails.ActiveIndex = 0;
                     //timeZoneCombo.Select(response.result.timeZone.ToString());
                     this.EditRecordWindow.Title = Resources.Common.EditWindowsTitle;
                     this.EditRecordWindow.Show();
@@ -162,7 +164,7 @@ namespace AionHR.Web.UI.Forms
                     //Here will show up a winow relatice to attachement depending on the case we are working on
                     break;
                 case "colEdit":
-                
+
                     break;
 
                 default:
@@ -187,6 +189,7 @@ namespace AionHR.Web.UI.Forms
             lastName.Text = name.lastName;
             middleName.Text = name.middleName;
             familyName.Text = name.familyName;
+            reference.Text = name.reference;
         }
 
         private void SelectCombos(Employee result)
@@ -195,10 +198,10 @@ namespace AionHR.Web.UI.Forms
             departmentId.Select(result.departmentId);
             positionId.Select(result.positionId);
             nationalityId.Select(result.nationalityId);
-            sponsorId.Select(result.sponsorId);
+            //sponsorId.Select(result.sponsorId);
             vsId.Select(result.vsId);
             caId.Select(result.caId);
-
+            divisionId.Select(result.divisionId);
             if (result.gender == 1)
                 gender1.Checked = true;
             else
@@ -207,17 +210,23 @@ namespace AionHR.Web.UI.Forms
             //    imgControl.ImageUrl = result.pictureUrl;
 
         }
-        private void InitCombos()
+        private void InitCombos(bool isAdd)
         {
             FillBranch();
-
+            branchId.Enabled = isAdd;
+            branchId.ReadOnly = !isAdd;
 
             FillDepartment();
 
-
+            departmentId.Enabled = isAdd;
+            departmentId.ReadOnly = !isAdd;
             FillPosition();
 
-
+            positionId.Enabled = isAdd;
+            positionId.ReadOnly = !isAdd;
+            FillDivision();
+            divisionId.Enabled = isAdd;
+            divisionId.ReadOnly = !isAdd;
             FillNationality();
 
 
@@ -225,10 +234,24 @@ namespace AionHR.Web.UI.Forms
 
 
             FillVacationSchedule();
-
+            panelRecordDetails.Enabled = !isAdd;
 
             FillWorkingCalendar();
 
+            if (isAdd)
+            {
+                branchLbl.Text = "";
+                positionLbl.Text = "";
+                departmentLbl.Text = "";
+                fullNameLbl.Text = "";
+
+            }
+            foreach (var item in panelRecordDetails.Items)
+            {
+                if (item.ID == "BasicInfoTab")
+                    continue;
+                item.Disabled = isAdd;
+            }
 
 
         }
@@ -264,6 +287,7 @@ namespace AionHR.Web.UI.Forms
                 X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorDeletingRecord).Show();
 
             }
+
 
         }
 
@@ -350,9 +374,11 @@ namespace AionHR.Web.UI.Forms
 
             //Reset all values of the relative object
             BasicInfoTab.Reset();
+            panelRecordDetails.ActiveIndex = 0;
             //picturePath.Clear();
             //imgControl.ImageUrl = "";
-            InitCombos();
+            InitCombos(true);
+            CurrentEmployee.Text = "";
             this.EditRecordWindow.Title = Resources.Common.AddNewRecord;
 
             // timeZoneCombo.Select(_systemService.SessionHelper.GetTimeZone());
@@ -377,7 +403,7 @@ namespace AionHR.Web.UI.Forms
             empRequest.StartAt = e.Start.ToString();
 
             ListResponse<Employee> emps = _employeeService.GetAll<Employee>(empRequest);
-            if(!emps.Success)
+            if (!emps.Success)
             {
                 X.Msg.Alert(Resources.Common.Error, emps.Summary).Show();
                 return;
@@ -394,10 +420,10 @@ namespace AionHR.Web.UI.Forms
         {
             ListRequest nationalityRequest = new ListRequest();
             ListResponse<Nationality> resp = _systemService.ChildGetAll<Nationality>(nationalityRequest);
-            if(!resp.Success)
+            if (!resp.Success)
             {
                 X.Msg.Alert(Resources.Common.Error, resp.Summary).Show();
-                
+
             }
             NationalityStore.DataSource = resp.Items;
             NationalityStore.DataBind();
@@ -408,7 +434,7 @@ namespace AionHR.Web.UI.Forms
         {
             ListRequest positionsRequest = new ListRequest();
             ListResponse<Model.Company.Structure.Position> resp = _companyStructureService.ChildGetAll<Model.Company.Structure.Position>(positionsRequest);
-            if(!resp.Success)
+            if (!resp.Success)
                 X.Msg.Alert(Resources.Common.Error, resp.Summary).Show();
             positionStore.DataSource = resp.Items;
             positionStore.DataBind();
@@ -417,7 +443,7 @@ namespace AionHR.Web.UI.Forms
         {
             ListRequest departmentsRequest = new ListRequest();
             ListResponse<Department> resp = _companyStructureService.ChildGetAll<Department>(departmentsRequest);
-            if(!resp.Success)
+            if (!resp.Success)
                 X.Msg.Alert(Resources.Common.Error, resp.Summary).Show();
             departmentStore.DataSource = resp.Items;
             departmentStore.DataBind();
@@ -431,14 +457,23 @@ namespace AionHR.Web.UI.Forms
             BranchStore.DataSource = resp.Items;
             BranchStore.DataBind();
         }
+        private void FillDivision()
+        {
+            ListRequest branchesRequest = new ListRequest();
+            ListResponse<Division> resp = _companyStructureService.ChildGetAll<Division>(branchesRequest);
+            if (!resp.Success)
+                X.Msg.Alert(Resources.Common.Error, resp.Summary).Show();
+            divisionStore.DataSource = resp.Items;
+            divisionStore.DataBind();
+        }
         private void FillSponsor()
         {
             ListRequest sponsorsRequest = new ListRequest();
             ListResponse<Sponsor> resp = _employeeService.ChildGetAll<Sponsor>(sponsorsRequest);
             if (!resp.Success)
                 X.Msg.Alert(Resources.Common.Error, resp.Summary).Show();
-            SponsorStore.DataSource = resp.Items;
-            SponsorStore.DataBind();
+            //SponsorStore.DataSource = resp.Items;
+            //SponsorStore.DataBind();
         }
         private void FillVacationSchedule()
         {
@@ -467,12 +502,12 @@ namespace AionHR.Web.UI.Forms
 
 
             //Getting the id to check if it is an Add or an edit as they are managed within the same form.
-            string id = e.ExtraParams["id"];
-
+            //string id = e.ExtraParams["id"];
+            string id = CurrentEmployee.Text;
             string obj = e.ExtraParams["values"];
             Employee b = JsonConvert.DeserializeObject<Employee>(obj);
-            b.name = new EmployeeName() { firstName = firstName.Text, lastName = lastName.Text, familyName = familyName.Text, middleName = middleName.Text };
-            b.isInactive = isInactive.Checked;
+            b.name = new EmployeeName() { firstName = firstName.Text, lastName = lastName.Text, familyName = familyName.Text, middleName = middleName.Text, reference = reference.Text };
+
             b.recordId = id;
             // Define the object to add or edit as null
             if (branchId.SelectedItem != null)
@@ -481,7 +516,12 @@ namespace AionHR.Web.UI.Forms
                 b.departmentName = departmentId.SelectedItem.Text;
             if (positionId.SelectedItem != null)
                 b.positionName = positionId.SelectedItem.Text;
+            if (divisionId.SelectedItem != null)
+                b.divisionName = positionId.SelectedItem.Text;
             b.name.fullName = b.name.firstName + " " + b.name.middleName + " " + b.name.lastName + " ";
+            b.birthDate = new DateTime(b.birthDate.Value.Year, b.birthDate.Value.Month, b.birthDate.Value.Day, 14, 0, 0);
+            b.hireDate = new DateTime(b.hireDate.Value.Year, b.hireDate.Value.Month, b.hireDate.Value.Day, 14, 0, 0);
+
             if (string.IsNullOrEmpty(id))
             {
 
@@ -492,20 +532,23 @@ namespace AionHR.Web.UI.Forms
                     EmployeeAddOrUpdateRequest request = new EmployeeAddOrUpdateRequest();
 
                     byte[] fileData = null;
-                    //if (picturePath.PostedFile != null && picturePath.PostedFile.ContentLength > 0)
-                    //{
-                    //    using (var binaryReader = new BinaryReader(picturePath.PostedFile.InputStream))
-                    //    {
-                    //        fileData = binaryReader.ReadBytes(picturePath.PostedFile.ContentLength);
-                    //    }
-                    //    request.fileName = picturePath.PostedFile.FileName;
-                    //    request.imageData = fileData;
-                    //}
-                    //else
-                    //{
-                    request.imageData = fileData;
-                    request.fileName = "";
-                    //}
+                    if (picturePath.PostedFile != null && picturePath.PostedFile.ContentLength > 0)
+                    {
+                        //using (var binaryReader = new BinaryReader(picturePath.PostedFile.InputStream))
+                        //{
+                        //    fileData = binaryReader.ReadBytes(picturePath.PostedFile.ContentLength);
+                        //}
+                        fileData = new byte[picturePath.PostedFile.ContentLength];
+                        fileData = picturePath.FileBytes;
+                        request.fileName = picturePath.PostedFile.FileName;
+                        request.imageData = fileData;
+
+                    }
+                    else
+                    {
+                        request.imageData = fileData;
+                        request.fileName = "";
+                    }
                     request.empData = b;
 
 
@@ -527,6 +570,16 @@ namespace AionHR.Web.UI.Forms
                         //Add this record to the store 
                         this.Store1.Insert(0, b);
 
+
+
+                        CurrentEmployee.Text = b.recordId;
+                        FillLeftPanel();
+                        InitCombos(false);
+
+                        RowSelectionModel sm = this.GridPanel1.GetSelectionModel() as RowSelectionModel;
+                        sm.DeselectAll();
+                        sm.Select(b.recordId.ToString());
+
                         //Display successful notification
                         Notification.Show(new NotificationConfig
                         {
@@ -534,13 +587,6 @@ namespace AionHR.Web.UI.Forms
                             Icon = Icon.Information,
                             Html = Resources.Common.RecordSavingSucc
                         });
-
-                        this.EditRecordWindow.Close();
-                        RowSelectionModel sm = this.GridPanel1.GetSelectionModel() as RowSelectionModel;
-                        sm.DeselectAll();
-                        sm.Select(b.recordId.ToString());
-
-
 
                     }
                 }
@@ -563,25 +609,25 @@ namespace AionHR.Web.UI.Forms
                     EmployeeAddOrUpdateRequest request = new EmployeeAddOrUpdateRequest();
 
                     byte[] fileData = null;
-                    //if (picturePath.HasFile && picturePath.PostedFile.ContentLength > 0)
-                    //{
-                    //    //using (var binaryReader = new BinaryReader(picturePath.PostedFile.InputStream))
-                    //    // {
-                    //    //    fileData = binaryReader.ReadBytes(picturePath.PostedFile.ContentLength);
-                    //    // }
-                    //    fileData = new byte[picturePath.PostedFile.ContentLength];
-                    //    fileData = picturePath.FileBytes;
-                    //    request.fileName = picturePath.PostedFile.FileName;
-                    //    request.imageData = fileData;
+                    if (picturePath.HasFile && picturePath.PostedFile.ContentLength > 0)
+                    {
+                        //using (var binaryReader = new BinaryReader(picturePath.PostedFile.InputStream))
+                        // {
+                        //    fileData = binaryReader.ReadBytes(picturePath.PostedFile.ContentLength);
+                        // }
+                        fileData = new byte[picturePath.PostedFile.ContentLength];
+                        fileData = picturePath.FileBytes;
+                        request.fileName = picturePath.PostedFile.FileName;
+                        request.imageData = fileData;
 
 
 
-                    //}
-                    //else
-                    //{
-                    request.imageData = fileData;
-                    request.fileName = "";
-                    //}
+                    }
+                    else
+                    {
+                        request.imageData = fileData;
+                        request.fileName = "";
+                    }
                     request.empData = b;
 
 
@@ -657,8 +703,8 @@ namespace AionHR.Web.UI.Forms
             return paranthized;
 
         }
-      
-   
+
+
         protected void Unnamed_Load(object sender, EventArgs e)
         {
         }
@@ -678,8 +724,10 @@ namespace AionHR.Web.UI.Forms
             //Step 2 : call setvalues with the retrieved object
             this.BasicInfoTab.SetValues(response.result);
             FillNameFields(response.result.name);
-            InitCombos();
+            InitCombos(false);
             SelectCombos(response.result);
+
+
         }
 
         private void FillLeftPanel()
@@ -692,19 +740,187 @@ namespace AionHR.Web.UI.Forms
             forSummary.firstName = forSummary.name.firstName;
             forSummary.middleName = forSummary.name.middleName;
             forSummary.lastName = forSummary.name.lastName;
-            fullNameLbl.Html = forSummary.firstName + forSummary.lastName + "<br />";
+            forSummary.fullName = forSummary.name.fullName;
+            X.Call("FillLeftPanel",
+                forSummary.fullName + "<br />",
+                forSummary.departmentName + "<br />",
+              forSummary.branchName + "<br />",
+               forSummary.positionName + "<br />"
+            );
+            fullNameLbl.Html = forSummary.fullName + "<br />";
             departmentLbl.Html = forSummary.departmentName + "<br />";
             branchLbl.Html = forSummary.branchName + "<br />";
             positionLbl.Html = forSummary.positionName + "<br />";
-
             //employeeName.Text = resp.result.name.firstName + resp.result.name.lastName;
             imgControl.ImageUrl = response.result.pictureUrl;
         }
 
-        protected void Unnamed_Event(object sender, DirectEventArgs e)
+        #region combobox dynamic insert
+
+        protected void addDepartment(object sender, DirectEventArgs e)
         {
-            int x;
+            Department dept = new Department();
+            dept.name = departmentId.Text;
+            dept.isSegmentHead = false;
+            PostRequest<Department> depReq = new PostRequest<Department>();
+            depReq.entity = dept;
+            PostResponse<Department> response = _companyStructureService.ChildAddOrUpdate<Department>(depReq);
+            if (response.Success)
+            {
+                dept.recordId = response.recordId;
+                departmentStore.Insert(0, dept);
+                departmentId.Select(0);
+            }
+            else
+            {
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, response.Summary).Show();
+                return;
+            }
 
         }
+        protected void addBranch(object sender, DirectEventArgs e)
+        {
+            Branch dept = new Branch();
+            dept.name = branchId.Text;
+            dept.isInactive = false;
+            PostRequest<Branch> depReq = new PostRequest<Branch>();
+            depReq.entity = dept;
+            PostResponse<Branch> response = _companyStructureService.ChildAddOrUpdate<Branch>(depReq);
+            if (response.Success)
+            {
+                dept.recordId = response.recordId;
+                BranchStore.Insert(0, dept);
+                branchId.Select(0);
+            }
+            else
+            {
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, response.Summary).Show();
+                return;
+            }
+
+        }
+
+        protected void addPosition(object sender, DirectEventArgs e)
+        {
+            Model.Company.Structure.Position dept = new Model.Company.Structure.Position();
+            dept.name = positionId.Text;
+
+            PostRequest<Model.Company.Structure.Position> depReq = new PostRequest<Model.Company.Structure.Position>();
+            depReq.entity = dept;
+            PostResponse<Model.Company.Structure.Position> response = _companyStructureService.ChildAddOrUpdate<Model.Company.Structure.Position>(depReq);
+            if (response.Success)
+            {
+                dept.recordId = response.recordId;
+                positionStore.Insert(0, dept);
+                positionId.Select(0);
+            }
+            else
+            {
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, response.Summary).Show();
+                return;
+            }
+
+        }
+
+        protected void addDivision(object sender, DirectEventArgs e)
+        {
+            Division dept = new Division();
+            dept.name = divisionId.Text;
+            dept.isInactive = false;
+            PostRequest<Division> depReq = new PostRequest<Division>();
+            depReq.entity = dept;
+
+            PostResponse<Division> response = _companyStructureService.ChildAddOrUpdate<Division>(depReq);
+            if (response.Success)
+            {
+                dept.recordId = response.recordId;
+                divisionStore.Insert(0, dept);
+                divisionId.Select(0);
+            }
+            else
+            {
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, response.Summary).Show();
+                return;
+            }
+
+        }
+
+        protected void addNationality(object sender, DirectEventArgs e)
+        {
+            Nationality obj = new Nationality();
+            obj.name = nationalityId.Text;
+            
+            PostRequest<Nationality> req = new PostRequest<Nationality>();
+            req.entity = obj;
+
+            PostResponse<Nationality> response = _systemService.ChildAddOrUpdate<Nationality>(req);
+            if (response.Success)
+            {
+                obj.recordId = response.recordId;
+                NationalityStore.Insert(0, obj);
+                nationalityId.Select(0);
+            }
+            else
+            {
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, response.Summary).Show();
+                return;
+            }
+
+        }
+
+        protected void addCalendar(object sender, DirectEventArgs e)
+        {
+            WorkingCalendar obj = new WorkingCalendar();
+            obj.name = caId.Text;
+            
+            PostRequest<WorkingCalendar> req = new PostRequest<WorkingCalendar>();
+            req.entity = obj;
+
+            PostResponse<WorkingCalendar> response = _timeAttendanceService.ChildAddOrUpdate<WorkingCalendar>(req);
+            if (response.Success)
+            {
+                obj.recordId = response.recordId;
+                CalendarStore.Insert(0, obj);
+                caId.Select(0);
+            }
+            else
+            {
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, response.Summary).Show();
+                return;
+            }
+
+        }
+
+        protected void addVS(object sender, DirectEventArgs e)
+        {
+            VacationSchedule obj = new VacationSchedule();
+            obj.name = vsId.Text;
+            
+            PostRequest<VacationSchedule> req = new PostRequest<VacationSchedule>();
+            req.entity = obj;
+
+            PostResponse<VacationSchedule> response = _leaveManagementService.ChildAddOrUpdate<VacationSchedule>(req);
+            if (response.Success)
+            {
+                obj.recordId = response.recordId;
+                VacationScheduleStore.Insert(0, obj);
+                vsId.Select(0);
+            }
+            else
+            {
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, response.Summary).Show();
+                return;
+            }
+
+        }
+
+        #endregion
     }
 }

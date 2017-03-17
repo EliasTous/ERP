@@ -129,6 +129,9 @@
   <data name="EditJobInfoWindowsTitle" xml:space="preserve">
     <value>Edit JI</value>
   </data>
+  <data name="EHGridTitle" xml:space="preserve">
+    <value>Employment History</value>
+  </data>
   <data name="FieldEHComment" xml:space="preserve">
     <value>Comment</value>
   </data>
@@ -137,6 +140,21 @@
   </data>
   <data name="FieldEHStatus" xml:space="preserve">
     <value>Status</value>
+  </data>
+  <data name="FieldJIBranch" xml:space="preserve">
+    <value>Branch</value>
+  </data>
+  <data name="FieldJIDate" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="FieldJIDepartment" xml:space="preserve">
+    <value>Department</value>
+  </data>
+  <data name="FieldJIDivision" xml:space="preserve">
+    <value>Division</value>
+  </data>
+  <data name="FieldJIPosition" xml:space="preserve">
+    <value>Position</value>
   </data>
   <data name="FieldName" xml:space="preserve">
     <value>Name</value>
@@ -147,7 +165,82 @@
   <data name="FieldReference" xml:space="preserve">
     <value>Reference</value>
   </data>
+  <data name="JIGridTitle" xml:space="preserve">
+    <value>Job Info</value>
+  </data>
+  <data name="SAGridTitle" xml:space="preserve">
+    <value>Salary </value>
+  </data>
   <data name="WindowTitle" xml:space="preserve">
     <value>Currencies</value>
+  </data>
+  <data name="FieldBasicAmount" xml:space="preserve">
+    <value>BasicAmount</value>
+  </data>
+  <data name="FieldEffectiveDate" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="FieldFinalAmount" xml:space="preserve">
+    <value>FinalAmount</value>
+  </data>
+  <data name="FieldIsTaxable" xml:space="preserve">
+    <value>IsTaxable</value>
+  </data>
+  <data name="FieldPaymentFrequency" xml:space="preserve">
+    <value>Payment Frequency</value>
+  </data>
+  <data name="FieldPaymentMethod" xml:space="preserve">
+    <value>Payment Method</value>
+  </data>
+  <data name="FieldSalaryType" xml:space="preserve">
+    <value>SalaryType</value>
+  </data>
+  <data name="FieldScrName" xml:space="preserve">
+    <value>Change Reason</value>
+  </data>
+  <data name="EditSAWindowTitle" xml:space="preserve">
+    <value>Edit SA</value>
+  </data>
+  <data name="FieldAccountNumber" xml:space="preserve">
+    <value>Account Number</value>
+  </data>
+  <data name="FieldBankName" xml:space="preserve">
+    <value>Bank</value>
+  </data>
+  <data name="FieldComments" xml:space="preserve">
+    <value>Comments</value>
+  </data>
+  <data name="FieldSACurrencyName" xml:space="preserve">
+    <value>Currency</value>
+  </data>
+  <data name="SalaryBank" xml:space="preserve">
+    <value>Bank</value>
+  </data>
+  <data name="SalaryCash" xml:space="preserve">
+    <value>Cash</value>
+  </data>
+  <data name="SalaryDaily" xml:space="preserve">
+    <value>Daily</value>
+  </data>
+  <data name="SalaryMonthly" xml:space="preserve">
+    <value>Monthly</value>
+  </data>
+  <data name="SalaryWeekly" xml:space="preserve">
+    <value>Weekly</value>
+  </data>
+  <data name="PaymentTypeDaily" xml:space="preserve">
+    <value>Daily</value>
+  </data>
+  <data name="PaymentTypeMonthly" xml:space="preserve">
+    <value>Monthly</value>
+  </data>
+  <data name="PaymentTypeWeekly" xml:space="preserve">
+    <value>Weekly</value>
+  </data>
+  <data name="PaymentMethodBank" xml:space="preserve">
+    <value>Bank</value>
+  </data>
+  <data name="PaymentMethodCash" xml:space="preserve">
+    <value>Cash</value>
   </data>
 </root>
