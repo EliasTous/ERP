@@ -125,18 +125,18 @@
                     <ColumnModel ID="ColumnModel1" runat="server" SortAscText="<%$ Resources:Common , SortAscText %>" SortDescText="<%$ Resources:Common ,SortDescText  %>" SortClearText="<%$ Resources:Common ,SortClearText  %>" ColumnsText="<%$ Resources:Common ,ColumnsText  %>" EnableColumnHide="false" Sortable="false" >
                         <Columns>
                             <ext:Column ID="ColRecordId" Visible="false" DataIndex="recordId" runat="server" />
-                            <ext:Column ID="ColName"  DataIndex="employeeName.fullName" Text="<%$ Resources: FieldEmployeeName%>" runat="server" >
+                            <ext:Column ID="ColName"  DataIndex="employeeName.fullName" Text="<%$ Resources: FieldEmployeeName%>" runat="server" Flex="6">
                                 <Renderer Handler=" return '<u>'+ record.data['employeeName'].fullName+'</u>'"/>
                                 </ext:Column>
-                            <ext:DateColumn Format="dd-MM-yyyy" ID="Column1"  DataIndex="startDate" Text="<%$ Resources: FieldStartDate%>" runat="server" />
-                            <ext:DateColumn Format="dd-MM-yyyy" ID="Column2"  DataIndex="endDate" Text="<%$ Resources: FieldEndDate%>" runat="server" />
-                            <ext:Column ID="Column3"  DataIndex="status" Text="<%$ Resources: FieldStatus%>" runat="server" >
+                            <ext:DateColumn Format="dd-MM-yyyy" ID="Column1"  DataIndex="startDate" Text="<%$ Resources: FieldStartDate%>" runat="server" Flex="2" />
+                            <ext:DateColumn Format="dd-MM-yyyy" ID="Column2"  DataIndex="endDate" Text="<%$ Resources: FieldEndDate%>" runat="server" Flex="2"/>
+                            <ext:Column ID="Column3"  DataIndex="status" Text="<%$ Resources: FieldStatus%>" runat="server" Flex="2">
                                 <Renderer Handler="return GetStatusName(record.data['status']);" />
                                 </ext:Column>
                             
-                            <ext:Column ID="Column5"  DataIndex="ltName" Text="<%$ Resources: FieldLtName%>" runat="server" />
+                            <ext:Column ID="Column5"  DataIndex="ltName" Text="<%$ Resources: FieldLtName%>" runat="server" Flex="2"/>
                              
-                            <ext:CheckColumn runat="server" Flex="1" Text="<%$ Resources: FieldIsPaid %>"  DataIndex="isPaid" ></ext:CheckColumn>
+                            <ext:CheckColumn runat="server" Flex="1" Text="<%$ Resources: FieldIsPaid %>"  DataIndex="isPaid"></ext:CheckColumn>
                            
 
                             <ext:Column runat="server"
