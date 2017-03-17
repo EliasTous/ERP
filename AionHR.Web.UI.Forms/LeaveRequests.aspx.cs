@@ -25,6 +25,7 @@ using AionHR.Model.Attendance;
 using AionHR.Model.Employees.Leaves;
 using AionHR.Model.Employees.Profile;
 using AionHR.Model.LeaveManagement;
+using AionHR.Services.Messaging.System;
 
 namespace AionHR.Web.UI.Forms
 {
@@ -34,31 +35,64 @@ namespace AionHR.Web.UI.Forms
         public object FillEmployee(string action, Dictionary<string, object> extraParams)
         {
             StoreRequestParameters prms = new StoreRequestParameters(extraParams);
-            List<Employee> data;
-            ListRequest req = new ListRequest();
+            List<Employee> data = GetEmployeesFiltered(prms.Query);
+            data.ForEach(s => { s.fullName = s.name.fullName; });
+            //  return new
+            // {
+            return data;
+        }
+
+        private List<Employee> GetEmployeesFiltered(string query)
+        {
+
+            EmployeeListRequest req = new EmployeeListRequest();
+            req.DepartmentId = "0";
+            req.BranchId = "0";
+            req.IncludeIsInactive = false;
+            req.SortBy = GetNameFormat();
+
+            req.StartAt = "1";
+            req.Size = "20";
+            req.Filter = query;
 
             ListResponse<Employee> response = _employeeService.GetAll<Employee>(req);
-            data = response.Items;
-            return new
-            {
-                data
-            };
+            return response.Items;
         }
 
 
-        [DirectMethod]
-        public object FillLeaveType(string action, Dictionary<string, object> extraParams)
+        private string GetNameFormat()
         {
-            StoreRequestParameters prms = new StoreRequestParameters(extraParams);
-            List<LeaveRequest> data;
+            SystemDefaultRecordRequest req = new SystemDefaultRecordRequest();
+            req.Key = "nameFormat";
+            RecordResponse<KeyValuePair<string, string>> response = _systemService.ChildGetRecord<KeyValuePair<string, string>>(req);
+            if (!response.Success)
+            {
+
+            }
+            string paranthized = response.result.Value;
+            paranthized = paranthized.Replace('{', ' ');
+            paranthized = paranthized.Replace('}', ',');
+            paranthized = paranthized.Substring(0, paranthized.Length - 1);
+            paranthized = paranthized.Replace(" ", string.Empty);
+            return paranthized;
+
+        }
+
+       
+        public void FillLeaveType()
+        {
+            
             ListRequest req = new ListRequest();
 
-            ListResponse<LeaveRequest> response = _leaveManagementService.ChildGetAll<LeaveRequest>(req);
-            data = response.Items;
-            return new
+            ListResponse<LeaveType> response = _leaveManagementService.ChildGetAll<LeaveType>(req);
+            if(!response.Success)
             {
-                data
-            };
+                X.Msg.Alert(Resources.Common.Error, response.Summary).Show();
+                return;
+            }
+            ltStore.DataSource = response.Items;
+            ltStore.DataBind();
+
         }
 
         ISystemService _systemService = ServiceLocator.Current.GetInstance<ISystemService>();
@@ -147,7 +181,7 @@ namespace AionHR.Web.UI.Forms
 
             string id = e.ExtraParams["id"];
             string type = e.ExtraParams["type"];
-
+            
             switch (type)
             {
                 case "ColName":
@@ -166,8 +200,22 @@ namespace AionHR.Web.UI.Forms
                     //Step 2 : call setvalues with the retrieved object
                     this.BasicInfoTab.SetValues(response.result);
 
-                    
+                    FillLeaveType();
+                    ltId.Select(response.result.ltId.ToString());
+                    if (response.result.employeeId!=0)
+                    {
 
+                        employeeId.GetStore().Add(new object[]
+                           {
+                                new
+                                {
+                                    recordId = response.result.employeeId,
+                                    fullName =response.result.employeeName.fullName
+                                }
+                           });
+                        employeeId.SetValue(response.result.employeeId);
+
+                    }
 
                     this.EditRecordWindow.Title = Resources.Common.EditWindowsTitle;
                     this.EditRecordWindow.Show();
@@ -340,7 +388,7 @@ namespace AionHR.Web.UI.Forms
             //Reset all values of the relative object
             BasicInfoTab.Reset();
 
-
+            FillLeaveType();
             this.EditRecordWindow.Title = Resources.Common.AddNewRecord;
 
 
@@ -364,6 +412,9 @@ namespace AionHR.Web.UI.Forms
             request.BranchId = 0;
             request.DepartmentId = 0;
             request.OpenRequests = false;
+            request.Size = "50";
+            request.StartAt = "1";
+            request.SortBy = "firstName";
 
             request.Filter = "";
             ListResponse<LeaveRequest> routers = _leaveManagementService.ChildGetAll<LeaveRequest>(request);
@@ -390,7 +441,15 @@ namespace AionHR.Web.UI.Forms
 
             string id = e.ExtraParams["id"];
             // Define the object to add or edit as null
+            if (!b.isPaid.HasValue)
+                b.isPaid = false;
+            b.employeeName = new EmployeeName();
+            if (employeeId.SelectedItem != null)
 
+                b.employeeName.fullName = employeeId.SelectedItem.Text;
+            if (ltId.SelectedItem != null)
+
+                b.ltName = ltId.SelectedItem.Text;
             if (string.IsNullOrEmpty(id))
             {
 
@@ -470,6 +529,8 @@ namespace AionHR.Web.UI.Forms
 
                         ModelProxy record = this.Store1.GetById(id);
                         BasicInfoTab.UpdateRecord(record);
+                        record.Set("employeeName", b.employeeName.fullName);
+                        record.Set("ltName", b.ltName);
                         record.Commit();
                         Notification.Show(new NotificationConfig
                         {

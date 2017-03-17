@@ -10,7 +10,7 @@
     <title></title>
     <link rel="stylesheet" type="text/css" href="CSS/Common.css" />
     <link rel="stylesheet" href="CSS/LiveSearch.css" />
-    <script type="text/javascript" src="Scripts/LeaveRequests.js" ></script>
+    <script type="text/javascript" src="Scripts/LeaveRequests.js?id=1" ></script>
     <script type="text/javascript" src="Scripts/common.js" ></script>
    
  
@@ -23,6 +23,9 @@
         <ext:Hidden ID="textLoadFailed" runat="server" Text="<%$ Resources:Common , LoadFailed %>" />
         <ext:Hidden ID="titleSavingError" runat="server" Text="<%$ Resources:Common , TitleSavingError %>" />
         <ext:Hidden ID="titleSavingErrorMessage" runat="server" Text="<%$ Resources:Common , TitleSavingErrorMessage %>" />
+        <ext:Hidden ID="StatusPending" runat="server" Text="<%$ Resources:FieldPending %>" />
+        <ext:Hidden ID="StatusApproved" runat="server" Text="<%$ Resources: FieldApproved %>" />
+        <ext:Hidden ID="StatusRefused" runat="server" Text="<%$ Resources: FieldRefused %>" />
         
         <ext:Store
             ID="Store1"
@@ -52,7 +55,7 @@
                         <ext:ModelField Name="destination" />
                         <ext:ModelField Name="justification" />
                         <ext:ModelField Name="ltName" />
-                        <ext:ModelField Name="employeeName" />
+                        <ext:ModelField Name="employeeName" IsComplex="true" />
                       
                     </Fields>
                 </ext:Model>
@@ -122,10 +125,15 @@
                     <ColumnModel ID="ColumnModel1" runat="server" SortAscText="<%$ Resources:Common , SortAscText %>" SortDescText="<%$ Resources:Common ,SortDescText  %>" SortClearText="<%$ Resources:Common ,SortClearText  %>" ColumnsText="<%$ Resources:Common ,ColumnsText  %>" EnableColumnHide="false" Sortable="false" >
                         <Columns>
                             <ext:Column ID="ColRecordId" Visible="false" DataIndex="recordId" runat="server" />
-                            <ext:Column ID="Column1"  DataIndex="startDate" Text="<%$ Resources: FieldStartDate%>" runat="server" />
-                            <ext:Column ID="Column2"  DataIndex="endDate" Text="<%$ Resources: FieldEndDate%>" runat="server" />
-                            <ext:Column ID="Column3"  DataIndex="status" Text="<%$ Resources: FieldStatus%>" runat="server" />
-                            <ext:Column ID="Column4"  DataIndex="employeeName" Text="<%$ Resources: FieldEmployeeName%>" runat="server" />
+                            <ext:Column ID="ColName"  DataIndex="employeeName.fullName" Text="<%$ Resources: FieldEmployeeName%>" runat="server" >
+                                <Renderer Handler=" return '<u>'+ record.data['employeeName'].fullName+'</u>'"/>
+                                </ext:Column>
+                            <ext:DateColumn Format="dd-MM-yyyy" ID="Column1"  DataIndex="startDate" Text="<%$ Resources: FieldStartDate%>" runat="server" />
+                            <ext:DateColumn Format="dd-MM-yyyy" ID="Column2"  DataIndex="endDate" Text="<%$ Resources: FieldEndDate%>" runat="server" />
+                            <ext:Column ID="Column3"  DataIndex="status" Text="<%$ Resources: FieldStatus%>" runat="server" >
+                                <Renderer Handler="return GetStatusName(record.data['status']);" />
+                                </ext:Column>
+                            
                             <ext:Column ID="Column5"  DataIndex="ltName" Text="<%$ Resources: FieldLtName%>" runat="server" />
                              
                             <ext:CheckColumn runat="server" Flex="1" Text="<%$ Resources: FieldIsPaid %>"  DataIndex="isPaid" ></ext:CheckColumn>
@@ -245,7 +253,7 @@
             Icon="PageEdit"
             Title="<%$ Resources:EditWindowsTitle %>"
             Width="450"
-            Height="330"
+            Height="500"
             AutoShow="false"
             Modal="true"
             Hidden="true"
@@ -263,29 +271,29 @@
                             BodyPadding="5">
                             <Items>
                                 <ext:TextField ID="recordId" runat="server"  Name="recordId"  Hidden="true"/>
-                                <ext:DateField ID="startDate" runat="server" FieldLabel="<%$ Resources:FieldStartDate%>" Name="name"   AllowBlank="false"/>
-                                <ext:DateField ID="endDate" runat="server" FieldLabel="<%$ Resources:FieldEndDate%>" Name="name"   AllowBlank="false"/>
+                                <ext:DateField ID="startDate" runat="server" FieldLabel="<%$ Resources:FieldStartDate%>" Name="startDate"   AllowBlank="false"/>
+                                <ext:DateField ID="endDate" runat="server" FieldLabel="<%$ Resources:FieldEndDate%>" Name="endDate"   AllowBlank="false"/>
                                 <ext:TextArea ID="justification" runat="server" FieldLabel="<%$ Resources:FieldJustification%>" Name="justification"  />
                                 <ext:TextField ID="destination" runat="server" FieldLabel="<%$ Resources:FieldDestination%>" Name="destination"  />
 
                                 
                                 <ext:Checkbox runat="server" Name="isPaid" InputValue="true" ID="isPaid" DataIndex="isPaid" FieldLabel="<%$ Resources:FieldIsPaid%>" />
                                 
-                                <ext:ComboBox runat="server" ID="employeeId" QueryMode="Local"  ForceSelection="true" TypeAhead="true" MinChars="1" 
-                                    DisplayField="name"
+                                  <ext:ComboBox runat="server" ID="employeeId"
+                                    DisplayField="fullName"
                                     ValueField="recordId"
-                                  
-                                   
-                                    FieldLabel ="<%$ Resources: FieldEmployeeName %>"
-                                    
-                                    >
+                                    TypeAhead="false"
+                                   FieldLabel ="<%$ Resources: FieldEmployeeName%>"
+                                    HideTrigger="true"  SubmitValue="true"
+                                    MinChars="3"
+                                    TriggerAction="Query" ForceSelection="false" >
                                     <Store>
-                                        <ext:Store runat="server" ID="employeeStore" AutoLoad="true">
+                                        <ext:Store runat="server" ID="employeeStore" AutoLoad="false">
                                             <Model>
                                                 <ext:Model runat="server">
                                                     <Fields>
                                                         <ext:ModelField Name="recordId" />
-                                                        <ext:ModelField Name="name" />
+                                                        <ext:ModelField Name="fullName"  />
                                                     </Fields>
                                                 </ext:Model>
                                             </Model>
@@ -308,7 +316,7 @@
                                     
                                     >
                                     <Store>
-                                        <ext:Store runat="server" ID="ltStore" AutoLoad="true">
+                                        <ext:Store runat="server" ID="ltStore" >
                                             <Model>
                                                 <ext:Model runat="server">
                                                     <Fields>
@@ -317,9 +325,7 @@
                                                     </Fields>
                                                 </ext:Model>
                                             </Model>
-                                            <Proxy>
-                                                <ext:PageProxy DirectFn="App.direct.FillLeaveType"></ext:PageProxy>
-                                            </Proxy>
+                                      
 
                                         </ext:Store>
 
@@ -328,12 +334,13 @@
                                
 
                                 <ext:ComboBox runat="server" ID="status" QueryMode="Local"  ForceSelection="true" TypeAhead="true" MinChars="1" 
-                                    FieldLabel ="<%$ Resources: FieldEmployeeName %>"
+                                    FieldLabel ="<%$ Resources: FieldStatus %>"
                                     
                                     >
                                     <Items>
-                                        <ext:ListItem Text="<%$ Resources: FieldApproved %>" Value="1" />
+                                        
                                         <ext:ListItem Text="<%$ Resources: FieldPending %>" Value="0" />
+                                        <ext:ListItem Text="<%$ Resources: FieldApproved %>" Value="1" />
                                         <ext:ListItem Text="<%$ Resources: FieldRefused %>" Value="2" />
                                     </Items>
                                 </ext:ComboBox>
