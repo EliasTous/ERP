@@ -173,3 +173,14 @@ function removeDeduction() {
     }
 }
 
+var nameRenderer = function (value) {
+   
+    var r = App.edStore.getById(value);
+
+    if (Ext.isEmpty(r)) {
+        return "";
+    }
+
+    return r.data.name;
+};
+

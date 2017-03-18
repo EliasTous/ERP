@@ -244,6 +244,7 @@ namespace AionHR.Web.UI.Forms
                 positionLbl.Text = "";
                 departmentLbl.Text = "";
                 fullNameLbl.Text = "";
+                imgControl.ImageUrl = "";
 
             }
             foreach (var item in panelRecordDetails.Items)
@@ -667,7 +668,9 @@ namespace AionHR.Web.UI.Forms
                         record.Set("positionName", b.positionName);
                         record.Set("name", b.name);
                         record.Set("reference", b.reference);
+                        record.Set("pictureUrl", b.pictureUrl);
                         record.Set("hireDate", b.hireDate.Value.ToShortDateString());
+
                         record.Commit();
                         Notification.Show(new NotificationConfig
                         {

@@ -62,6 +62,9 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                 if (string.IsNullOrEmpty(Request.QueryString["employeeId"]))
                     X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorOperation).Show();
                 CurrentEmployee.Text = Request.QueryString["employeeId"];
+                LoadedStore();
+
+
 
             }
 
@@ -137,7 +140,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     FillDeductions();
                     this.EditSAWindow.Title = Resources.Common.EditWindowsTitle;
                     this.EditSAWindow.Show();
-                    
+
                     TabPanel2.ActiveIndex = 0;
                     break;
 
@@ -466,7 +469,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                         X.Msg.Alert(Resources.Common.Error, result.Summary).Show();
                         return;
                     }
-                     result = AddSalaryDeductions(b.recordId, deductions);
+                    result = AddSalaryDeductions(b.recordId, deductions);
                     if (!result.Success)
                     {
                         X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
@@ -474,7 +477,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                         return;
                     }
                     //check if the insert failed
-                   
+
                     else
                     {
 
@@ -585,7 +588,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             b.recordId = id;
             b.date = new DateTime(b.date.Year, b.date.Month, b.date.Day, 14, 0, 0);
             if (CurrencyCombo.SelectedItem != null)
-                b.currencyName = CurrencyCombo.Text;
+                b.currencyName = CurrencyCombo.SelectedItem.Text;
             if (btId.SelectedItem != null)
                 b.btName = btId.SelectedItem.Text;
 
@@ -745,7 +748,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             BTStore.DataBind();
         }
 
-      
+
         private void FillEntitlements()
         {
             SalaryDetailsListRequest req = new SalaryDetailsListRequest();
@@ -755,7 +758,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             entitlementsStore.DataSource = details.Items;
             entitlementsStore.DataBind();
 
-            
+
 
         }
         private void FillDeductions()
@@ -767,7 +770,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             deductionStore.DataSource = details.Items;
             deductionStore.DataBind();
 
-            
+
 
         }
         #region Combo Dynamic Add
@@ -873,7 +876,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             int salaryId = Convert.ToInt32(salaryIdString);
             foreach (var detail in details)
             {
-                
+
                 detail.seqNo = i++;
                 detail.salaryId = salaryId;
                 if (!detail.includeInTotal.HasValue)
@@ -909,15 +912,20 @@ namespace AionHR.Web.UI.Forms.EmployeePages
 
         protected void edStore_ReadData(object sender, StoreReadDataEventArgs e)
         {
+            LoadedStore();
+
+        }
+
+        private void LoadedStore()
+        {
             ListRequest req = new ListRequest();
             ListResponse<EntitlementDeduction> eds = _employeeService.ChildGetAll<EntitlementDeduction>(req);
             var data = eds.Items;
 
-            (sender as Store).DataSource = eds.Items;
-            (sender as Store).DataBind();
-            
+            edStore.DataSource = eds.Items;
+            edStore.DataBind();
         }
 
-       
+
     }
 }

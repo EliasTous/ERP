@@ -139,6 +139,15 @@ namespace AionHR.Web.UI.Forms.EmployeePages {
         protected global::Ext.Net.Hidden CurrentDetail;
         
         /// <summary>
+        /// edStore control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Store edStore;
+        
+        /// <summary>
         /// Viewport11 control.
         /// </summary>
         /// <remarks>
@@ -760,15 +769,6 @@ namespace AionHR.Web.UI.Forms.EmployeePages {
         protected global::Ext.Net.ComboBox edId;
         
         /// <summary>
-        /// edStore control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Store edStore;
-        
-        /// <summary>
         /// includeInTotal control.
         /// </summary>
         /// <remarks>
@@ -821,15 +821,6 @@ namespace AionHR.Web.UI.Forms.EmployeePages {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.ComboBox deductionedId;
-        
-        /// <summary>
-        /// deductionEdStore control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Store deductionEdStore;
         
         /// <summary>
         /// Checkbox1 control.

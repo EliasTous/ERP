@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title></title>
     <link rel="stylesheet" type="text/css" href="CSS/Common.css?id=11" />
-    <link rel="stylesheet" type="text/css" href="CSS/Employees.css?id=12" />
+    <link rel="stylesheet" type="text/css" href="CSS/Employees.css?id=13" />
     <link rel="stylesheet" href="CSS/LiveSearch.css" />
     <script type="text/javascript" src="Scripts/jquery.min.js"></script>
     <script type="text/javascript" src="Scripts/Branches.js?id=0"></script>
@@ -141,7 +141,7 @@
 
                                 </Component>
                                 <Listeners>
-                                    <Bind Handler="alert(record.get('pictureUrl')); cmp.setImageUrl(record.get('pictureUrl'))" />
+                                    <Bind Handler=" cmp.setImageUrl(record.get('pictureUrl'))" />
                                 </Listeners>
                             </ext:ComponentColumn>
                             <ext:Column ID="ColName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldFullName%>" DataIndex="name.fullName" Flex="3" Hideable="false">
@@ -287,15 +287,15 @@
 
             <Items>
                 <ext:Panel ID="leftPanel" runat="server" Region="West" PaddingSpec="0 0 0 0" Padding="0" TitleAlign="Center"
-                    Header="true" Collapsible="false" titlePosition="2" BodyPadding="5" Width="150"
+                    Header="false" Collapsible="false"  BodyPadding="5" Width="150" StyleSpec="border-left:2px solid #2A92D4;border-right:2px solid #2A92D4;" 
                     Title="<%$ Resources:Common , NavigationPane %>" CollapseToolText="<%$ Resources:Common , CollapsePanel %>" ExpandToolText="<%$ Resources:Common , ExpandPanel %>" BodyBorder="0">
 
                     <Items>
-                        <ext:Panel runat="server" ID="alignedPanel">
+                        <ext:Panel runat="server" ID="alignedPanel" Header="false">
 
                             <Items>
                                 
-                                <ext:Image runat="server" ID="imgControl" Width="100" Height="100" Align="Middle" MarginSpec="0 0 0 20 " >
+                                <ext:Image runat="server" ID="imgControl" Width="100" Height="100" Align="Middle" MarginSpec="15 0 0 20 " >
                                     <Listeners>
                                         <Click Handler="triggierImageClick(App.picturePath.fileInputEl.id); " />
                                     </Listeners>
