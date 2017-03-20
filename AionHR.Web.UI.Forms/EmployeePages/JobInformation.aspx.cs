@@ -130,7 +130,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     this.EditEHForm.SetValues(response.result);
                     FillEHStatus();
                     statusId.Select(response.result.statusId.ToString());
-
+                    
                     this.EditEHwindow.Title = Resources.Common.EditWindowsTitle;
                     this.EditEHwindow.Show();
                     break;
@@ -150,6 +150,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     FillBranch();
                     FillDivision();
                     FillPosition();
+                   
                     departmentId.Select(response2.result.departmentId.ToString());
                     branchId.Select(response2.result.branchId.ToString());
                     positionId.Select(response2.result.positionId.ToString());
@@ -336,7 +337,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             EditEHForm.Reset();
             this.EditEHwindow.Title = Resources.Common.AddNewRecord;
             FillEHStatus();
-
+            ehDate.SelectedDate = DateTime.Today;
             this.EditEHwindow.Show();
         }
         protected void ADDNewJI(object sender, DirectEventArgs e)
@@ -349,6 +350,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             FillDepartment();
             FillBranch();
             FillPosition();
+            date.SelectedDate = DateTime.Today;
 
             this.EditJobInfoWindow.Show();
         }

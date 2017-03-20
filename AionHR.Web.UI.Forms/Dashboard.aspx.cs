@@ -176,9 +176,9 @@ namespace AionHR.Web.UI.Forms
             ActiveAttendanceRequest r = GetActiveAttendanceRequest();
 
             ListResponse<ActiveAbsence> ABs = _timeAttendanceService.ChildGetAll<ActiveAbsence>(r);
-            List<ActiveAbsence> a = new List<ActiveAbsence>();
-            a.Add(new ActiveAbsence() { branchName = "here", positionName = "someone", employeeId = 8, employeeName = new Model.Employees.Profile.EmployeeName() { fullName = "rabie" } });
-            absenseStore.DataSource = a;
+            //List<ActiveAbsence> a = new List<ActiveAbsence>();
+            //a.Add(new ActiveAbsence() { branchName = "here", positionName = "someone", employeeId = 8, employeeName = new Model.Employees.Profile.EmployeeName() { fullName = "rabie" } });
+            absenseStore.DataSource = ABs.Items;
             absenseStore.DataBind();
         }
 
@@ -193,13 +193,13 @@ namespace AionHR.Web.UI.Forms
 
         protected void leavesStore_ReadData(object sender, StoreReadDataEventArgs e)
         {
-            // ActiveAttendanceRequest r =  GetActiveAttendanceRequest();
+            ActiveAttendanceRequest r = GetActiveAttendanceRequest();
 
-            //ListResponse<ActiveLeave> Leaves = _timeAttendanceService.ChildGetAll<ActiveLeave>(r);
-            //leavesStore.DataSource = Leaves.Items;
-            List<ActiveLeave> leaves = new List<ActiveLeave>();
-            leaves.Add(new ActiveLeave() { destination = "dc", employeeId = 8, employeeName = new Model.Employees.Profile.EmployeeName() { fullName = "vima" }, endDate = DateTime.Now.AddDays(10) });
-            leavesStore.DataSource = leaves;
+            ListResponse<ActiveLeave> Leaves = _timeAttendanceService.ChildGetAll<ActiveLeave>(r);
+            leavesStore.DataSource = Leaves.Items;
+            //List<ActiveLeave> leaves = new List<ActiveLeave>();
+            //leaves.Add(new ActiveLeave() { destination = "dc", employeeId = 8, employeeName = new Model.Employees.Profile.EmployeeName() { fullName = "vima" }, endDate = DateTime.Now.AddDays(10) });
+            
 
             leavesStore.DataBind();
         }
@@ -210,9 +210,9 @@ namespace AionHR.Web.UI.Forms
 
             ListResponse<MissedPunch> ACs = _timeAttendanceService.ChildGetAll<MissedPunch>(r);
 
-            List<MissedPunch> s = new List<MissedPunch>();
-            s.Add(new MissedPunch() { date = DateTime.Now, employeeId = 8, employeeName = new Model.Employees.Profile.EmployeeName() { fullName = "issa" }, missedIn = true, missedOut = false, recordId = "1", time = "08:30" });
-            missingPunchesStore.DataSource = s;
+            //List<MissedPunch> s = new List<MissedPunch>();
+            //s.Add(new MissedPunch() { date = DateTime.Now, employeeId = 8, employeeName = new Model.Employees.Profile.EmployeeName() { fullName = "issa" }, missedIn = true, missedOut = false, recordId = "1", time = "08:30" });
+            missingPunchesStore.DataSource = ACs.Items;
             missingPunchesStore.DataBind();
         }
 

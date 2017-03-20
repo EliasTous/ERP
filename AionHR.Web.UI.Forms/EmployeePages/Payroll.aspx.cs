@@ -22,6 +22,7 @@ using AionHR.Services.Messaging;
 using AionHR.Model.Company.Structure;
 using AionHR.Model.System;
 using AionHR.Model.Employees.Profile;
+using AionHR.Infrastructure.JSON;
 
 namespace AionHR.Web.UI.Forms.EmployeePages
 {
@@ -62,7 +63,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                 if (string.IsNullOrEmpty(Request.QueryString["employeeId"]))
                     X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorOperation).Show();
                 CurrentEmployee.Text = Request.QueryString["employeeId"];
-                LoadedStore();
+                
 
 
 
@@ -133,9 +134,14 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     this.EditSAForm.SetValues(response3.result);
                     FillCurrency();
                     FillScr();
+                    dedsStore_ReadData(null, null);
+                    ensStore_ReadData(null, null);
+                    
                     CurrentSalary.Text = r3.RecordID;
                     currencyId.Select(response3.result.currencyId.ToString());
                     scrId.Select(response3.result.scrId.ToString());
+
+                    X.Call("TogglePaymentMethod", response3.result.paymentMethod);
                     FillEntitlements();
                     FillDeductions();
                     this.EditSAWindow.Title = Resources.Common.EditWindowsTitle;
@@ -189,6 +195,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     //Step 2 : call setvalues with the retrieved object
                     this.BOForm.SetValues(response1.result);
                     FillCurrencyBO();
+                    
                     FillBT();
                     CurrencyCombo.Select(response1.result.currencyId.ToString());
                     btId.Select(response1.result.btId.ToString());
@@ -352,6 +359,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             this.EditSAWindow.Title = Resources.Common.AddNewRecord;
             FillCurrency();
             FillScr();
+            effectiveDate.SelectedDate = DateTime.Today;
 
             this.EditSAWindow.Show();
         }
@@ -363,6 +371,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             BOForm.Reset();
             this.EditBOWindow.Title = Resources.Common.AddNewRecord;
             FillCurrencyBO();
+            date.SelectedDate = DateTime.Today;
             FillBT();
 
             this.EditBOWindow.Show();
@@ -459,7 +468,12 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     }
                     b.recordId = r.recordId;
                     entitlements = JsonConvert.DeserializeObject<List<SalaryDetail>>(ents);
-                    deductions = JsonConvert.DeserializeObject<List<SalaryDetail>>(deds);
+                    JsonSerializerSettings settings = new JsonSerializerSettings();
+                    CustomResolver resolver = new CustomResolver();
+                    resolver.AddRule("deductionId", "edId");
+                    settings.ContractResolver = resolver;
+                    deductions = JsonConvert.DeserializeObject<List<SalaryDetail>>(deds,settings);
+
                     PostResponse<SalaryDetail[]> result = AddSalaryEntitlements(b.recordId, entitlements);
 
 
@@ -528,7 +542,11 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                         return;
                     }
                     entitlements = JsonConvert.DeserializeObject<List<SalaryDetail>>(ents);
-                    deductions = JsonConvert.DeserializeObject<List<SalaryDetail>>(deds);
+                    JsonSerializerSettings settings = new JsonSerializerSettings();
+                    CustomResolver resolver = new CustomResolver();
+                    resolver.AddRule("deductionId", "edId");
+                    settings.ContractResolver = resolver;
+                    deductions = JsonConvert.DeserializeObject<List<SalaryDetail>>(deds,settings);
                     PostResponse<SalaryDetail[]> result = AddSalaryEntitlements(b.recordId, entitlements);
 
 
@@ -910,20 +928,76 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             return response;
         }
 
-        protected void edStore_ReadData(object sender, StoreReadDataEventArgs e)
+        protected void ensStore_ReadData(object sender, StoreReadDataEventArgs e)
         {
-            LoadedStore();
+
+            ListRequest req = new ListRequest();
+            ListResponse<EntitlementDeduction> eds = _employeeService.ChildGetAll<EntitlementDeduction>(req);
+            entsStore.DataSource = eds.Items.Where(s => s.type == 1).ToList();
+            entsStore.DataBind();
+
+        }
+        protected void dedsStore_ReadData(object sender, StoreReadDataEventArgs e)
+        {
+
+            ListRequest req = new ListRequest();
+            ListResponse<EntitlementDeduction> eds = _employeeService.ChildGetAll<EntitlementDeduction>(req);
+            dedsStore.DataSource = eds.Items.Where(s => s.type ==2).ToList();
+            dedsStore.DataBind();
 
         }
 
-        private void LoadedStore()
+      
+        protected void addEnt(object sender, DirectEventArgs e)
         {
-            ListRequest req = new ListRequest();
-            ListResponse<EntitlementDeduction> eds = _employeeService.ChildGetAll<EntitlementDeduction>(req);
-            var data = eds.Items;
+            if (string.IsNullOrEmpty(entEdId.Text))
+                return;
+            EntitlementDeduction dept = new EntitlementDeduction();
+            dept.name = entEdId.Text;
+            dept.type = 1;
 
-            edStore.DataSource = eds.Items;
-            edStore.DataBind();
+            PostRequest<EntitlementDeduction> depReq = new PostRequest<EntitlementDeduction>();
+            depReq.entity = dept;
+            PostResponse<EntitlementDeduction> response = _employeeService.ChildAddOrUpdate<EntitlementDeduction>(depReq);
+            if (response.Success)
+            {
+                dept.recordId = response.recordId;
+                entsStore.Insert(0, dept);
+                entEdId.Select(0);
+            }
+            else
+            {
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, response.Summary).Show();
+                return;
+            }
+
+        }
+
+        protected void addDed(object sender, DirectEventArgs e)
+        {
+            if (string.IsNullOrEmpty(dedEdId.Text))
+                return;
+            EntitlementDeduction dept = new EntitlementDeduction();
+            dept.name = dedEdId.Text;
+            dept.type =2 ;
+
+            PostRequest<EntitlementDeduction> depReq = new PostRequest<EntitlementDeduction>();
+            depReq.entity = dept;
+            PostResponse<EntitlementDeduction> response = _employeeService.ChildAddOrUpdate<EntitlementDeduction>(depReq);
+            if (response.Success)
+            {
+                dept.recordId = response.recordId;
+                dedsStore.Insert(0, dept);
+                dedEdId.Select(0);
+            }
+            else
+            {
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, response.Summary).Show();
+                return;
+            }
+
         }
 
 

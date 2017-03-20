@@ -213,20 +213,20 @@ namespace AionHR.Web.UI.Forms
         private void InitCombos(bool isAdd)
         {
             FillBranch();
-            branchId.Enabled = isAdd;
-            branchId.ReadOnly = !isAdd;
+            //branchId.Enabled = isAdd;
+            //branchId.ReadOnly = !isAdd;
 
             FillDepartment();
 
-            departmentId.Enabled = isAdd;
-            departmentId.ReadOnly = !isAdd;
+           // departmentId.Enabled = isAdd;
+            //departmentId.ReadOnly = !isAdd;
             FillPosition();
 
-            positionId.Enabled = isAdd;
-            positionId.ReadOnly = !isAdd;
+            //positionId.Enabled = isAdd;
+            //positionId.ReadOnly = !isAdd;
             FillDivision();
-            divisionId.Enabled = isAdd;
-            divisionId.ReadOnly = !isAdd;
+            //divisionId.Enabled = isAdd;
+           // divisionId.ReadOnly = !isAdd;
             FillNationality();
 
 
@@ -376,8 +376,8 @@ namespace AionHR.Web.UI.Forms
             //Reset all values of the relative object
             BasicInfoTab.Reset();
             panelRecordDetails.ActiveIndex = 0;
-            //picturePath.Clear();
-            //imgControl.ImageUrl = "";
+            picturePath.Clear();
+            imgControl.ImageUrl = "";
             InitCombos(true);
             CurrentEmployee.Text = "";
             this.EditRecordWindow.Title = Resources.Common.AddNewRecord;
@@ -518,7 +518,7 @@ namespace AionHR.Web.UI.Forms
             if (positionId.SelectedItem != null)
                 b.positionName = positionId.SelectedItem.Text;
             if (divisionId.SelectedItem != null)
-                b.divisionName = positionId.SelectedItem.Text;
+                b.divisionName = divisionId.SelectedItem.Text;
             b.name.fullName = b.name.firstName + " " + b.name.middleName + " " + b.name.lastName + " ";
             b.birthDate = new DateTime(b.birthDate.Value.Year, b.birthDate.Value.Month, b.birthDate.Value.Day, 14, 0, 0);
             b.hireDate = new DateTime(b.hireDate.Value.Year, b.hireDate.Value.Month, b.hireDate.Value.Day, 14, 0, 0);
@@ -666,6 +666,7 @@ namespace AionHR.Web.UI.Forms
                         record.Set("branchName", b.branchName);
                         record.Set("departmentName", b.departmentName);
                         record.Set("positionName", b.positionName);
+                        record.Set("divisionName", b.divisionName);
                         record.Set("name", b.name);
                         record.Set("reference", b.reference);
                         record.Set("pictureUrl", b.pictureUrl);
@@ -776,6 +777,8 @@ namespace AionHR.Web.UI.Forms
         protected void addDepartment(object sender, DirectEventArgs e)
         {
             Department dept = new Department();
+            if (string.IsNullOrEmpty(departmentId.Text))
+                return;
             dept.name = departmentId.Text;
             dept.isSegmentHead = false;
             PostRequest<Department> depReq = new PostRequest<Department>();
@@ -797,6 +800,8 @@ namespace AionHR.Web.UI.Forms
         }
         protected void addBranch(object sender, DirectEventArgs e)
         {
+            if (string.IsNullOrEmpty(branchId.Text))
+                return;
             Branch dept = new Branch();
             dept.name = branchId.Text;
             dept.isInactive = false;
@@ -820,6 +825,8 @@ namespace AionHR.Web.UI.Forms
 
         protected void addPosition(object sender, DirectEventArgs e)
         {
+            if (string.IsNullOrEmpty(positionId.Text))
+                return;
             Model.Company.Structure.Position dept = new Model.Company.Structure.Position();
             dept.name = positionId.Text;
 
@@ -843,6 +850,8 @@ namespace AionHR.Web.UI.Forms
 
         protected void addDivision(object sender, DirectEventArgs e)
         {
+            if (string.IsNullOrEmpty(divisionId.Text))
+                return;
             Division dept = new Division();
             dept.name = divisionId.Text;
             dept.isInactive = false;
@@ -867,6 +876,8 @@ namespace AionHR.Web.UI.Forms
 
         protected void addNationality(object sender, DirectEventArgs e)
         {
+            if (string.IsNullOrEmpty(nationalityId.Text))
+                return;
             Nationality obj = new Nationality();
             obj.name = nationalityId.Text;
             
@@ -891,6 +902,8 @@ namespace AionHR.Web.UI.Forms
 
         protected void addCalendar(object sender, DirectEventArgs e)
         {
+            if (string.IsNullOrEmpty(caId.Text))
+                return;
             WorkingCalendar obj = new WorkingCalendar();
             obj.name = caId.Text;
             
@@ -915,6 +928,8 @@ namespace AionHR.Web.UI.Forms
 
         protected void addVS(object sender, DirectEventArgs e)
         {
+            if (string.IsNullOrEmpty(vsId.Text))
+                return;
             VacationSchedule obj = new VacationSchedule();
             obj.name = vsId.Text;
             

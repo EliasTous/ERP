@@ -464,5 +464,30 @@ namespace AionHR.Web.UI.Forms
             BranchStore.DataSource = resp.Items;
             BranchStore.DataBind();
         }
+
+        protected void addBranch(object sender, DirectEventArgs e)
+        {
+            if (string.IsNullOrEmpty(branchId.Text))
+                return;
+            Branch dept = new Branch();
+            dept.name = branchId.Text;
+            dept.isInactive = false;
+            PostRequest<Branch> depReq = new PostRequest<Branch>();
+            depReq.entity = dept;
+            PostResponse<Branch> response = _companyStructureService.ChildAddOrUpdate<Branch>(depReq);
+            if (response.Success)
+            {
+                dept.recordId = response.recordId;
+                BranchStore.Insert(0, dept);
+                branchId.Select(0);
+            }
+            else
+            {
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, response.Summary).Show();
+                return;
+            }
+
+        }
     }
 }

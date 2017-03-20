@@ -437,7 +437,7 @@
                                                     <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
                                                 </Listeners>
                                 </ext:ComboBox>
-                                <ext:DateField runat="server" Name="date" FieldLabel="<%$ Resources:FieldEHDate%>" AllowBlank="false" />
+                                <ext:DateField ID="ehDate" runat="server" Name="date" FieldLabel="<%$ Resources:FieldEHDate%>" AllowBlank="false" />
                                 <ext:TextArea runat="server" Name="comment" FieldLabel="<%$ Resources:FieldEHComment%>" />
                             </Items>
 

@@ -186,6 +186,12 @@
   <data name="MonthYearDay" xml:space="preserve">
     <value>Month - Year - Day</value>
   </data>
+  <data name="ReferenceFirstNameLastName" xml:space="preserve">
+    <value>Reference, First Name, LastName</value>
+  </data>
+  <data name="ReferenceLastNameFirstName" xml:space="preserve">
+    <value>Reference, , LastName, First Name</value>
+  </data>
   <data name="WindowTitle" xml:space="preserve">
     <value>Routers</value>
   </data>

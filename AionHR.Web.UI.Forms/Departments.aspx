@@ -14,7 +14,7 @@
 
 
 </head>
-<body style="background: url(Images/bg.png) repeat;" >
+<body style="background: url(Images/bg.png) repeat;">
     <form id="Form1" runat="server">
         <ext:ResourceManager ID="ResourceManager1" runat="server" Theme="Neptune" AjaxTimeout="1200000" />
 
@@ -45,8 +45,8 @@
                         <ext:ModelField Name="name" />
                         <ext:ModelField Name="departmentRef" />
                         <ext:ModelField Name="supervisorId" />
-                        <ext:ModelField Name="svFullName"  ServerMapping="supervisorName.fullName"/>
-                        
+                        <ext:ModelField Name="svFullName" ServerMapping="supervisorName.fullName" />
+
                         <ext:ModelField Name="isSegmentHead" />
                         <ext:ModelField Name="segmentCode" />
                         <ext:ModelField Name="parentName" />
@@ -126,7 +126,7 @@
                         <Columns>
 
                             <ext:Column Visible="false" ID="ColrecordId" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldrecordId %>" DataIndex="recordId" Hideable="false" Width="75" Align="Center" />
-                            <ext:Column ID="ColReference" MenuDisabled="true"  Sortable="true" runat="server" Text="<%$ Resources: FieldReference%>" DataIndex="departmentRef" Flex="1" Hideable="false" />
+                            <ext:Column ID="ColReference" MenuDisabled="true" Sortable="true" runat="server" Text="<%$ Resources: FieldReference%>" DataIndex="departmentRef" Flex="1" Hideable="false" />
                             <ext:Column CellCls="cellLink" Sortable="true" ID="ColName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldName%>" DataIndex="name" Flex="2" Hideable="false">
                                 <Renderer Handler="return '<u>'+ record.data['name']+'</u>'">
                                 </Renderer>
@@ -190,7 +190,7 @@
                             <Items>
                                 <ext:StatusBar ID="StatusBar1" runat="server" />
                                 <ext:ToolbarFill />
-                               
+
                             </Items>
                         </ext:Toolbar>
 
@@ -235,7 +235,7 @@
                         <ext:GridView ID="GridView1" runat="server" />
                     </View>
 
-                 
+
                     <SelectionModel>
                         <ext:RowSelectionModel ID="rowSelectionModel" runat="server" Mode="Single" StopIDModeInheritance="true" />
                         <%--<ext:CheckboxSelectionModel ID="CheckboxSelectionModel1" runat="server" Mode="Multi" StopIDModeInheritance="true" />--%>
@@ -261,17 +261,17 @@
             <Items>
                 <ext:TabPanel ID="panelRecordDetails" runat="server" ActiveTabIndex="0" Border="false" DeferredRender="false">
                     <Items>
-                       <ext:FormPanel DefaultButton="SaveButton"
+                        <ext:FormPanel DefaultButton="SaveButton"
                             ID="BasicInfoTab"
                             runat="server"
                             Title="<%$ Resources: BasicInfoTabEditWindowTitle %>"
-                            Icon="ApplicationSideList" 
+                            Icon="ApplicationSideList"
                             DefaultAnchor="100%" OnLoad="BasicInfoTab_Load"
                             BodyPadding="5">
                             <Items>
                                 <ext:TextField ID="recordId" Hidden="true" runat="server" FieldLabel="<%$ Resources:FieldrecordId%>" Disabled="true" DataIndex="recordId" />
                                 <ext:TextField ID="name" runat="server" FieldLabel="<%$ Resources:FieldName%>" DataIndex="name" AllowBlank="false" BlankText="<%$ Resources:Common, MandatoryField%>" />
-                                <ext:TextField ID="departmentRef" runat="server" FieldLabel="<%$ Resources: FieldReference %>" DataIndex="departmentRef"  />
+                                <ext:TextField ID="departmentRef" runat="server" FieldLabel="<%$ Resources: FieldReference %>" DataIndex="departmentRef" />
 
 
                                 <ext:Checkbox ID="isSegmentHeadCheck" runat="server" FieldLabel="<%$ Resources: FieldIsSegmentedHead%>" DataIndex="isSegmentHead" Name="isSegmentHead" InputValue="true" />
@@ -279,17 +279,17 @@
                                     DisplayField="fullName"
                                     ValueField="recordId"
                                     TypeAhead="false"
-                                   FieldLabel ="<%$ Resources: FieldSvFullName%>"
-                                    HideTrigger="true"  SubmitValue="true"
+                                    FieldLabel="<%$ Resources: FieldSvFullName%>"
+                                    HideTrigger="true" SubmitValue="true"
                                     MinChars="3"
-                                    TriggerAction="Query" ForceSelection="false" >
+                                    TriggerAction="Query" ForceSelection="false">
                                     <Store>
                                         <ext:Store runat="server" ID="supervisorStore" AutoLoad="false">
                                             <Model>
                                                 <ext:Model runat="server">
                                                     <Fields>
                                                         <ext:ModelField Name="recordId" />
-                                                        <ext:ModelField Name="fullName"  />
+                                                        <ext:ModelField Name="fullName" />
                                                     </Fields>
                                                 </ext:Model>
                                             </Model>
@@ -301,32 +301,39 @@
 
                                     </Store>
                                 </ext:ComboBox>
-                                <ext:ComboBox runat="server" ID="parentId"
-                                    DisplayField="name"
-                                    ValueField="recordId"  QueryMode="Local"  ForceSelection="true" TypeAhead="true" MinChars="1" 
-                                   
-                                   FieldLabel ="<%$ Resources: FieldParentName%>"
-                                    
-                                   
-                                     >
+                                <ext:ComboBox Enabled="false" runat="server" AllowBlank="true" ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" ID="parentId" Name="parentId" FieldLabel="<%$ Resources:FieldParentName%>" SimpleSubmit="true">
                                     <Store>
-                                        <ext:Store runat="server" ID="Store2" AutoLoad="true">
+                                        <ext:Store runat="server" ID="departmentStore">
                                             <Model>
                                                 <ext:Model runat="server">
                                                     <Fields>
                                                         <ext:ModelField Name="recordId" />
-                                                        <ext:ModelField Name="fullName" />
+                                                        <ext:ModelField Name="name" />
                                                     </Fields>
                                                 </ext:Model>
                                             </Model>
                                             <Proxy>
                                                 <ext:PageProxy DirectFn="App.direct.FillParent"></ext:PageProxy>
                                             </Proxy>
-
                                         </ext:Store>
-
                                     </Store>
-                                    
+                                    <RightButtons>
+                                        <ext:Button ID="Button2" runat="server" Icon="Add" Hidden="true">
+                                            <Listeners>
+                                                <Click Handler="CheckSession();  " />
+                                            </Listeners>
+                                            <DirectEvents>
+
+                                                <Click OnEvent="addDepartment">
+                                                    
+                                                </Click>
+                                            </DirectEvents>
+                                        </ext:Button>
+                                    </RightButtons>
+                                    <Listeners>
+                                        <FocusEnter Handler="if(!this.readOnly) this.rightButtons[0].setHidden(false);" />
+                                        <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
+                                    </Listeners>
                                 </ext:ComboBox>
                             </Items>
 
@@ -340,7 +347,7 @@
 
                     <Listeners>
                         <Click Handler="CheckSession(); if (!#{BasicInfoTab}.getForm().isValid()) {return false;} " />
-                    </Listeners>    
+                    </Listeners>
                     <DirectEvents>
                         <Click OnEvent="SaveNewRecord" Failure="Ext.MessageBox.alert('#{titleSavingError}.value', '#{titleSavingErrorMessage}.value');">
                             <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="={#{EditRecordWindow}.body}" />

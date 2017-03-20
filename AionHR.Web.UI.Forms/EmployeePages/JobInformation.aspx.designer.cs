@@ -526,6 +526,15 @@ namespace AionHR.Web.UI.Forms.EmployeePages {
         protected global::Ext.Net.Button Button6;
         
         /// <summary>
+        /// ehDate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.DateField ehDate;
+        
+        /// <summary>
         /// SaveEHButton control.
         /// </summary>
         /// <remarks>

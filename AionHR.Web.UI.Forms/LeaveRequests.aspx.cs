@@ -567,6 +567,32 @@ namespace AionHR.Web.UI.Forms
 
         }
 
+        protected void addLeaveType(object sender, DirectEventArgs e)
+        {
+            if (string.IsNullOrEmpty(ltId.Text))
+                return;
+            LeaveType dept = new LeaveType();
+            dept.name = ltId.Text;
+
+            PostRequest<LeaveType> depReq = new PostRequest<LeaveType>();
+            depReq.entity = dept;
+            PostResponse<LeaveType> response = _leaveManagementService.ChildAddOrUpdate<LeaveType>(depReq);
+            if (response.Success)
+            {
+                dept.recordId = response.recordId;
+                ltStore.Insert(0, dept);
+                ltId.Select(0);
+            }
+            else
+            {
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, response.Summary).Show();
+                return;
+            }
+
+        }
+
+
 
 
     }

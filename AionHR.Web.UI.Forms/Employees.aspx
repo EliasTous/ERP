@@ -11,10 +11,10 @@
     <link rel="stylesheet" type="text/css" href="CSS/Common.css?id=11" />
     <link rel="stylesheet" type="text/css" href="CSS/Employees.css?id=13" />
     <link rel="stylesheet" href="CSS/LiveSearch.css" />
-    <script type="text/javascript" src="Scripts/jquery.min.js"></script>
+    
     <script type="text/javascript" src="Scripts/Branches.js?id=0"></script>
     <script type="text/javascript" src="Scripts/common.js?id=0"></script>
-    <script type="text/javascript" src="Scripts/Employees.js?id=15"></script>
+    <script type="text/javascript" src="Scripts/Employees.js?id=17"></script>
     <script type="text/javascript">
        
     </script>
@@ -133,7 +133,7 @@
                         <Columns>
 
                             <ext:Column Visible="false" ID="ColrecordId" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldrecordId %>" DataIndex="recordId" Hideable="false" Width="75" Align="Center" />
-                            <ext:Column ID="ColReference" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldReference%>" DataIndex="reference" Flex="1" Hideable="false" />
+                            
                             <ext:ComponentColumn runat="server" DataIndex="pictureUrl">
                                 <Component>
                                     <ext:Image runat="server" Height="100" Width="50">
@@ -144,16 +144,17 @@
                                     <Bind Handler=" cmp.setImageUrl(record.get('pictureUrl'))" />
                                 </Listeners>
                             </ext:ComponentColumn>
-                            <ext:Column ID="ColName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldFullName%>" DataIndex="name.fullName" Flex="3" Hideable="false">
+                            <ext:Column ID="ColReference" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldReference%>" DataIndex="reference" Flex="2" Hideable="false" />
+                            <ext:Column ID="ColName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldFullName%>" DataIndex="name.fullName" Flex="4" Hideable="false">
                                 <Renderer Handler=" return '<u>'+ record.data['name'].fullName +'</u>'">
                                 </Renderer>
                             </ext:Column>
-                            <ext:Column ID="ColDepartmentName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDepartment%>" DataIndex="departmentName" Flex="2" Hideable="false">
+                            <ext:Column ID="ColDepartmentName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDepartment%>" DataIndex="departmentName" Flex="3" Hideable="false">
                             </ext:Column>
-                            <ext:Column ID="ColPositionName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldPosition%>" DataIndex="positionName" Flex="2" Hideable="false" />
-                            <ext:Column ID="ColBranchName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldBranch%>" DataIndex="branchName" Flex="2" Hideable="false" />
-                            <ext:Column ID="Column1" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDivision%>" DataIndex="divisionName" Flex="2" Hideable="false" />
-                            <ext:Column ID="ColHireDate" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldHireDate%>" DataIndex="hireDate" Flex="2" Hideable="false">
+                            <ext:Column ID="ColPositionName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldPosition%>" DataIndex="positionName" Flex="3" Hideable="false" />
+                            <ext:Column ID="ColBranchName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldBranch%>" DataIndex="branchName" Flex="3" Hideable="false" />
+                            <ext:Column ID="Column1" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDivision%>" DataIndex="divisionName" Flex="3" Hideable="false" />
+                            <ext:Column ID="ColHireDate" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldHireDate%>" DataIndex="hireDate" Flex="3" Hideable="false">
                                 <Renderer Handler="return record.data['hireDate']; "></Renderer>
                             </ext:Column>
 
@@ -299,7 +300,13 @@
                                     <Listeners>
                                         <Click Handler="triggierImageClick(App.picturePath.fileInputEl.id); " />
                                     </Listeners>
+                                  
                                 </ext:Image>
+                                <ext:HyperlinkButton runat="server" Text="Clear" >
+                                    <Listeners>
+                                        <Click Handler="showImagePreview(App.picturePath.fileInputEl.id);" />
+                                    </Listeners>
+                                </ext:HyperlinkButton>
                                 <ext:FileUploadField ID="picturePath" runat="server" ButtonOnly="true" Hidden="true">
 
                                     <Listeners>
@@ -406,10 +413,7 @@
                                                             <DirectEvents>
 
                                                                 <Click OnEvent="addNationality">
-                                                                    <ExtraParams>
-                                                                        
-                                                                        <ext:Parameter Name="values" Value="#{BasicInfoTab}.getForm().getValues(false, false, false, true)" Mode="Raw" Encode="true" />
-                                                                    </ExtraParams>
+                                                            
                                                                 </Click>
                                                             </DirectEvents>
                                                         </ext:Button>
@@ -442,16 +446,13 @@
                                                             <DirectEvents>
 
                                                                 <Click OnEvent="addDepartment">
-                                                                    <ExtraParams>
-                                                                        
-                                                                        <ext:Parameter Name="values" Value="#{BasicInfoTab}.getForm().getValues(false, false, false, true)" Mode="Raw" Encode="true" />
-                                                                    </ExtraParams>
+                                                             
                                                                 </Click>
                                                             </DirectEvents>
                                                         </ext:Button>
                                                     </RightButtons>
                                                     <Listeners>
-                                                        <FocusEnter Handler="this.rightButtons[0].setHidden(false);" />
+                                                        <FocusEnter Handler="if(!this.readOnly) this.rightButtons[0].setHidden(false);" />
                                                         <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
                                                     </Listeners>
                                                 </ext:ComboBox>
@@ -469,23 +470,20 @@
                                                         </ext:Store>
                                                     </Store>
                                                   <RightButtons>
-                                                        <ext:Button ID="Button3" runat="server" Icon="Add" Hidden="true">
+                                                        <ext:Button ID="Button3" runat="server" Icon="Add" Hidden="true" >
                                                             <Listeners>
-                                                                <Click Handler="CheckSession();  " />
+                                                                <Click Handler="CheckSession();" />
                                                             </Listeners>
                                                             <DirectEvents>
 
                                                                 <Click OnEvent="addBranch">
-                                                                    <ExtraParams>
-                                                                        
-                                                                        <ext:Parameter Name="values" Value="#{BasicInfoTab}.getForm().getValues(false, false, false, true)" Mode="Raw" Encode="true" />
-                                                                    </ExtraParams>
+                                                                 
                                                                 </Click>
                                                             </DirectEvents>
                                                         </ext:Button>
                                                     </RightButtons>
                                                     <Listeners>
-                                                        <FocusEnter Handler="this.rightButtons[0].setHidden(false);" />
+                                                        <FocusEnter Handler="if(!this.readOnly) this.rightButtons[0].setHidden(false);" />
                                                         <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
                                                     </Listeners>
                                                 </ext:ComboBox>
@@ -513,16 +511,13 @@
                                                             <DirectEvents>
 
                                                                 <Click OnEvent="addDivision">
-                                                                    <ExtraParams>
-                                                                        
-                                                                        <ext:Parameter Name="values" Value="#{BasicInfoTab}.getForm().getValues(false, false, false, true)" Mode="Raw" Encode="true" />
-                                                                    </ExtraParams>
+                                                               
                                                                 </Click>
                                                             </DirectEvents>
                                                         </ext:Button>
                                                     </RightButtons>
                                                     <Listeners>
-                                                        <FocusEnter Handler="this.rightButtons[0].setHidden(false);" />
+                                                        <FocusEnter Handler=" if(!this.readOnly)this.rightButtons[0].setHidden(false);" />
                                                         <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
                                                     </Listeners>
                                                 </ext:ComboBox>
@@ -547,16 +542,13 @@
                                                             <DirectEvents>
 
                                                                 <Click OnEvent="addPosition">
-                                                                    <ExtraParams>
-                                                                        
-                                                                        <ext:Parameter Name="values" Value="#{BasicInfoTab}.getForm().getValues(false, false, false, true)" Mode="Raw" Encode="true" />
-                                                                    </ExtraParams>
+                                                              
                                                                 </Click>
                                                             </DirectEvents>
                                                         </ext:Button>
                                                     </RightButtons>
                                                     <Listeners>
-                                                        <FocusEnter Handler="this.rightButtons[0].setHidden(false);" />
+                                                        <FocusEnter Handler=" if(!this.readOnly)this.rightButtons[0].setHidden(false);" />
                                                         <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
                                                     </Listeners>
                                                 </ext:ComboBox>
@@ -585,10 +577,7 @@
                                                             <DirectEvents>
 
                                                                 <Click OnEvent="addVS">
-                                                                    <ExtraParams>
-                                                                        
-                                                                        <ext:Parameter Name="values" Value="#{BasicInfoTab}.getForm().getValues(false, false, false, true)" Mode="Raw" Encode="true" />
-                                                                    </ExtraParams>
+                                                               
                                                                 </Click>
                                                             </DirectEvents>
                                                         </ext:Button>
@@ -619,10 +608,7 @@
                                                             <DirectEvents>
 
                                                                 <Click OnEvent="addCalendar">
-                                                                    <ExtraParams>
-                                                                        
-                                                                        <ext:Parameter Name="values" Value="#{BasicInfoTab}.getForm().getValues(false, false, false, true)" Mode="Raw" Encode="true" />
-                                                                    </ExtraParams>
+                                                                 
                                                                 </Click>
                                                             </DirectEvents>
                                                         </ext:Button>

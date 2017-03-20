@@ -106,9 +106,10 @@ function addEntitlement() {
     entitlementsGrid.getView().headerCt.setSortState(); // To update columns sort UI
 
     store.insert(0, {
-        from: '0',
-        to: '1',
-        days: 2
+        edId: 1,
+        pct: 0,
+        fixedAmount: 0,
+        comments:""
 
     });
 
@@ -124,9 +125,10 @@ function addDeduction() {
     deductionGrid.getView().headerCt.setSortState(); // To update columns sort UI
 
     store.insert(0, {
-        from: '0',
-        to: '1',
-        days: 2
+        edId: 1,
+        pct: 0,
+        fixedAmount: 0,
+        comments: ""
 
     });
 
@@ -173,9 +175,21 @@ function removeDeduction() {
     }
 }
 
-var nameRenderer = function (value) {
+var entnameRenderer = function (value) {
    
-    var r = App.edStore.getById(value);
+    var r = App.entsStore.getById(value);
+
+    if (Ext.isEmpty(r)) {
+        return "";
+    }
+
+    return r.data.name;
+};
+
+var dednameRenderer = function (value) {
+
+    
+    var r = App.dedsStore.getById(value);
 
     if (Ext.isEmpty(r)) {
         return "";

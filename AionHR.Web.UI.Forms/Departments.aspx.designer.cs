@@ -391,13 +391,22 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.ComboBox parentId;
         
         /// <summary>
-        /// Store2 control.
+        /// departmentStore control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Store Store2;
+        protected global::Ext.Net.Store departmentStore;
+        
+        /// <summary>
+        /// Button2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Button Button2;
         
         /// <summary>
         /// SaveButton control.

@@ -82,22 +82,27 @@ var showImagePreview = function (id) {
             //Alert the user and clear the input file
         }
     }
+    else {
+        $("#" + $('#imgControl')[0].firstChild.id).attr('src', '');
+        App.picturePath.reset();
+        picturePath.Clear();
+    }
 }
 
 
 var checkExtension = function (file) {
-    
+
     try {
 
         if (file == null || file == '') {
-                return true;
+            return true;
         }
         var dot = file.lastIndexOf('.');
         if (dot >= 0) {
             var ext = file.substr(dot + 1, file.length).toLowerCase();
             if (ext in { 'jpg': '', 'png': '', 'jpeg': '' }) { return true; }
         }
-    
+
         return false;
     }
     catch (e) {
@@ -121,27 +126,27 @@ var onEmployeeTreeItemClick = function (record, e) {
 
 };
 var openNewTabEmployee = function (id, url, title, iconCls) {
-    
-    
+
+
     var tab = App.employeesTabPanel.getComponent(id);
     // if (id != 'dashboard') {
     //alert(interval);
     //  clearInterval(interval);
     //alert('cleared');
     // }
-    
-    
+
+
 
     if (!tab) {
-        
-        
+
+
         tab = App.employeesTabPanel.add({
             id: id,
             title: title,
             iconCls: iconCls,
             closable: false,
             loader: {
-                url: url+"?employeeId="+document.getElementById("CurrentEmployee").value,
+                url: url + "?employeeId=" + document.getElementById("CurrentEmployee").value,
                 renderer: "frame",
                 loadMask: {
                     showMask: true,
@@ -149,7 +154,7 @@ var openNewTabEmployee = function (id, url, title, iconCls) {
                 }
             }
         });
-       
+
     }
     else {
         App.employeesTabPanel.closeTab(tab);
@@ -179,16 +184,15 @@ function dump(obj) {
     }
     return out;
 }
-function FillLeftPanel(fullName,departmentName,branchName,positionName)
-{
+function FillLeftPanel(fullName, departmentName, branchName, positionName) {
     //alert(fullName);
     //alert(departmentName);
 
     App.fullNameLbl.setText(fullName, false);
 
     //alert(App.fullNameLbl.html);
-    App.departmentLbl.setText(departmentName,false);
-    App.branchLbl.setText(branchName,false);
+    App.departmentLbl.setText(departmentName, false);
+    App.branchLbl.setText(branchName, false);
     App.positionLbl.setText(positionName, false);
-    
+
 }

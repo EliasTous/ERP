@@ -256,20 +256,37 @@
                                 <ext:TextField ID="recordId" Hidden="true" runat="server" FieldLabel="<%$ Resources:FieldrecordId%>" Disabled="true" Name="recordId" />
                                 <ext:TextField ID="name" runat="server" FieldLabel="<%$ Resources:FieldName%>" Name="name" AllowBlank="false" BlankText="<%$ Resources:Common, MandatoryField%>" />
                                 <ext:TextField ID="reference" AllowBlank="false" runat="server" FieldLabel="<%$ Resources:FieldReference%>" Name="reference"  BlankText="<%$ Resources:Common, MandatoryField%>" />
-                                   <ext:ComboBox runat="server"  AllowBlank="false" ValueField="recordId" DisplayField="name" ID="divisionId" Name="divisionId" FieldLabel="<%$ Resources:FieldDivision%>"  SimpleSubmit="true" QueryMode="Local"  ForceSelection="true" TypeAhead="true" MinChars="1" >
-                                            <Store>
-                                                <ext:Store runat="server" ID="DivisionStore">
-                                                    <Model>
-                                                        <ext:Model runat="server">
-                                                            <Fields>
-                                                                <ext:ModelField Name="recordId" />
-                                                                <ext:ModelField Name="name" />
-                                                            </Fields>
-                                                        </ext:Model>
-                                                    </Model>
-                                                </ext:Store>
-                                            </Store>
-                                        </ext:ComboBox>
+                                  <ext:ComboBox Enabled="false" runat="server" AllowBlank="false" ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" ID="divisionId" Name="divisionId" FieldLabel="<%$ Resources:FieldDivision%>" SimpleSubmit="true">
+                                                    <Store>
+                                                        <ext:Store runat="server" ID="divisionStore">
+                                                            <Model>
+                                                                <ext:Model runat="server">
+                                                                    <Fields>
+                                                                        <ext:ModelField Name="recordId" />
+                                                                        <ext:ModelField Name="name" />
+                                                                    </Fields>
+                                                                </ext:Model>
+                                                            </Model>
+                                                        </ext:Store>
+                                                    </Store>
+                                                 <RightButtons>
+                                                        <ext:Button ID="Button4" runat="server" Icon="Add" Hidden="true">
+                                                            <Listeners>
+                                                                <Click Handler="CheckSession();  " />
+                                                            </Listeners>
+                                                            <DirectEvents>
+
+                                                                <Click OnEvent="addDivision">
+                                                               
+                                                                </Click>
+                                                            </DirectEvents>
+                                                        </ext:Button>
+                                                    </RightButtons>
+                                                    <Listeners>
+                                                        <FocusEnter Handler=" if(!this.readOnly)this.rightButtons[0].setHidden(false);" />
+                                                        <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
+                                                    </Listeners>
+                                                </ext:ComboBox>
                                
 
                             </Items>

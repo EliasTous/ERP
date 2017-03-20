@@ -572,5 +572,31 @@ namespace AionHR.Web.UI.Forms
 
         }
 
+        protected void addDepartment(object sender, DirectEventArgs e)
+        {
+            Department dept = new Department();
+            if (string.IsNullOrEmpty(parentId.Text))
+                return;
+            dept.name = parentId.Text;
+            dept.isSegmentHead = false;
+            PostRequest<Department> depReq = new PostRequest<Department>();
+            depReq.entity = dept;
+            PostResponse<Department> response = _branchService.ChildAddOrUpdate<Department>(depReq);
+            if (response.Success)
+            {
+                dept.recordId = response.recordId;
+                departmentStore.Insert(0, dept);
+                parentId.Select(0);
+                this.Store1.Insert(0, dept);
+            }
+            else
+            {
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, response.Summary).Show();
+                return;
+            }
+
+        }
+
     }
 }

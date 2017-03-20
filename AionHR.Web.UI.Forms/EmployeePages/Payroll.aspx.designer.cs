@@ -139,13 +139,22 @@ namespace AionHR.Web.UI.Forms.EmployeePages {
         protected global::Ext.Net.Hidden CurrentDetail;
         
         /// <summary>
-        /// edStore control.
+        /// entsStore control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Store edStore;
+        protected global::Ext.Net.Store entsStore;
+        
+        /// <summary>
+        /// dedsStore control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Store dedsStore;
         
         /// <summary>
         /// Viewport11 control.
@@ -760,13 +769,22 @@ namespace AionHR.Web.UI.Forms.EmployeePages {
         protected global::Ext.Net.Button btnRemoveEmployee;
         
         /// <summary>
-        /// edId control.
+        /// entEdId control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.ComboBox edId;
+        protected global::Ext.Net.ComboBox entEdId;
+        
+        /// <summary>
+        /// Button10 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Button Button10;
         
         /// <summary>
         /// includeInTotal control.
@@ -814,13 +832,22 @@ namespace AionHR.Web.UI.Forms.EmployeePages {
         protected global::Ext.Net.Button btnRemoveDeduction;
         
         /// <summary>
-        /// deductionedId control.
+        /// dedEdId control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.ComboBox deductionedId;
+        protected global::Ext.Net.ComboBox dedEdId;
+        
+        /// <summary>
+        /// Button9 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Button Button9;
         
         /// <summary>
         /// Checkbox1 control.

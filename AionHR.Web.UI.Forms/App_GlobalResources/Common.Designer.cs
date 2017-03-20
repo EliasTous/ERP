@@ -169,7 +169,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Attendance Schedule.
+        ///   Looks up a localized string similar to Schedule.
         /// </summary>
         internal static string AttendanceSchedule {
             get {
@@ -939,6 +939,24 @@ namespace Resources {
         internal static string Ok {
             get {
                 return ResourceManager.GetString("Ok", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Organization Chart.
+        /// </summary>
+        internal static string OrganizationChart {
+            get {
+                return ResourceManager.GetString("OrganizationChart", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pattern Applied Successfully.
+        /// </summary>
+        internal static string PatternAppliedSucc {
+            get {
+                return ResourceManager.GetString("PatternAppliedSucc", resourceCulture);
             }
         }
         

@@ -267,32 +267,40 @@
 
 
                                 
-                                <ext:ComboBox runat="server" ID="referToPositionId" QueryMode="Local"  ForceSelection="true" TypeAhead="true" MinChars="1" 
-                                    DisplayField="name"
-                                    ValueField="recordId"
-                                    
-                                   
-                                    FieldLabel ="<%$ Resources: FieldReferer %>"
-                                    
-                                    >
-                                    <Store>
-                                        <ext:Store runat="server" ID="supervisorStore" AutoLoad="true">
-                                            <Model>
-                                                <ext:Model runat="server">
-                                                    <Fields>
-                                                        <ext:ModelField Name="recordId" />
-                                                        <ext:ModelField Name="name" />
-                                                    </Fields>
-                                                </ext:Model>
-                                            </Model>
-                                            <Proxy>
-                                                <ext:PageProxy DirectFn="App.direct.FillParent"></ext:PageProxy>
-                                            </Proxy>
+                                <ext:ComboBox Enabled="false" ValueField="recordId" AllowBlank="true" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" runat="server" ID="referToPositionId" Name="referToPositionId" FieldLabel="<%$ Resources:FieldReferer%>" SimpleSubmit="true">
+                                                    <Store>
+                                                        <ext:Store runat="server" ID="positionStore">
+                                                            <Model>
+                                                                <ext:Model runat="server">
+                                                                    <Fields>
+                                                                        <ext:ModelField Name="recordId" />
+                                                                        <ext:ModelField Name="name" />
+                                                                    </Fields>
+                                                                </ext:Model>
+                                                            </Model>
+                                                            <Proxy>
+                                                                <ext:PageProxy DirectFn="App.direct.FillParent" />
+                                                            </Proxy>
+                                                        </ext:Store>
+                                                    </Store>
+                                                    <RightButtons>
+                                                        <ext:Button ID="Button1" runat="server" Icon="Add" Hidden="true">
+                                                            <Listeners>
+                                                                <Click Handler="CheckSession();  " />
+                                                            </Listeners>
+                                                            <DirectEvents>
 
-                                        </ext:Store>
-
-                                    </Store>
-                                </ext:ComboBox>
+                                                                <Click OnEvent="addPosition">
+                                                              
+                                                                </Click>
+                                                            </DirectEvents>
+                                                        </ext:Button>
+                                                    </RightButtons>
+                                                    <Listeners>
+                                                        <FocusEnter Handler=" if(!this.readOnly)this.rightButtons[0].setHidden(false);" />
+                                                        <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
+                                                    </Listeners>
+                                                </ext:ComboBox>
                             </Items>
 
                         </ext:FormPanel>

@@ -9,7 +9,7 @@
     <title></title>
     <link rel="stylesheet" type="text/css" href="../CSS/Common.css?id=1" />
     <link rel="stylesheet" href="../CSS/LiveSearch.css" />
-    <script type="text/javascript" src="../Scripts/Payroll.js?id=22"></script>
+    <script type="text/javascript" src="../Scripts/Payroll.js?id=6"></script>
     <script type="text/javascript" src="../Scripts/common.js?id=0"></script>
 
 
@@ -32,7 +32,7 @@
         <ext:Hidden ID="CurrentDetail" runat="server" Text="" />
 
 
-        <ext:Store runat="server" ID="edStore" OnReadData="edStore_ReadData" >
+        <ext:Store runat="server" ID="entsStore" OnReadData="ensStore_ReadData" AutoLoad="true">
             <Model>
                 <ext:Model runat="server" IDProperty="recordId">
                     <Fields>
@@ -43,7 +43,17 @@
             </Model>
 
         </ext:Store>
+        <ext:Store runat="server" ID="dedsStore" OnReadData="dedsStore_ReadData" AutoLoad="true">
+            <Model>
+                <ext:Model runat="server" IDProperty="recordId">
+                    <Fields>
+                        <ext:ModelField Name="recordId" />
+                        <ext:ModelField Name="name" />
+                    </Fields>
+                </ext:Model>
+            </Model>
 
+        </ext:Store>
 
         <ext:Viewport ID="Viewport11" runat="server" Layout="VBoxLayout" Padding="10">
             <LayoutConfig>
@@ -347,8 +357,8 @@
                             </ext:DateColumn>
 
 
-                            <ext:Column Flex="3" ID="Column9" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldSACurrencyName %>" DataIndex="currencyName" Hideable="false" Width="75" Align="Center" >
-                              <Renderer Handler="return record.data['currencyName'];" />    
+                            <ext:Column Flex="3" ID="Column9" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldSACurrencyName %>" DataIndex="currencyName" Hideable="false" Width="75" Align="Center">
+                                <Renderer Handler="return record.data['currencyName'];" />
                             </ext:Column>
 
 
@@ -446,7 +456,7 @@
             Icon="PageEdit"
             Title="<%$ Resources:EditSAWindowTitle %>"
             Width="650"
-            Height="300"
+            Height="330"
             AutoShow="false"
             Modal="true"
             Hidden="true"
@@ -528,16 +538,16 @@
                                                 <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
                                             </Listeners>
                                         </ext:ComboBox>
-                                        <ext:DateField runat="server" ID="effectiveDate" Name="effectiveDate" FieldLabel="<%$ Resources:FieldEffectiveDate%>" />
+                                        <ext:DateField AllowBlank="false" runat="server" ID="effectiveDate" Name="effectiveDate" FieldLabel="<%$ Resources:FieldEffectiveDate%>" />
 
-                                        <ext:ComboBox ID="salaryType" runat="server" FieldLabel="<%$ Resources:FieldSalaryType%>" Name="salaryType" IDMode="Static" SubmitValue="true">
+                                        <ext:ComboBox AllowBlank="false" ID="salaryType" runat="server" FieldLabel="<%$ Resources:FieldSalaryType%>" Name="salaryType" IDMode="Static" SubmitValue="true">
                                             <Items>
                                                 <ext:ListItem Text="<%$ Resources: SalaryDaily%>" Value="0"></ext:ListItem>
                                                 <ext:ListItem Text="<%$ Resources: SalaryWeekly%>" Value="1"></ext:ListItem>
                                                 <ext:ListItem Text="<%$ Resources: SalaryMonthly%>" Value="2"></ext:ListItem>
                                             </Items>
                                         </ext:ComboBox>
-                                        <ext:ComboBox ID="paymentFrequency" runat="server" FieldLabel="<%$ Resources:FieldPaymentFrequency%>" Name="paymentFrequency" IDMode="Static" SubmitValue="true">
+                                        <ext:ComboBox AllowBlank="false" ID="paymentFrequency" runat="server" FieldLabel="<%$ Resources:FieldPaymentFrequency%>" Name="paymentFrequency" IDMode="Static" SubmitValue="true">
                                             <Items>
                                                 <ext:ListItem Text="<%$ Resources: SalaryDaily%>" Value="0"></ext:ListItem>
                                                 <ext:ListItem Text="<%$ Resources: SalaryWeekly%>" Value="1"></ext:ListItem>
@@ -545,7 +555,7 @@
                                             </Items>
                                         </ext:ComboBox>
 
-                                        <ext:ComboBox ID="paymentMethod" runat="server" FieldLabel="<%$ Resources:FieldPaymentMethod%>" Name="paymentMethod" IDMode="Static" SubmitValue="true">
+                                        <ext:ComboBox AllowBlank="false" ID="paymentMethod" runat="server" FieldLabel="<%$ Resources:FieldPaymentMethod%>" Name="paymentMethod" IDMode="Static" SubmitValue="true">
                                             <Items>
                                                 <ext:ListItem Text="<%$ Resources: SalaryCash%>" Value="0"></ext:ListItem>
                                                 <ext:ListItem Text="<%$ Resources: SalaryBank%>" Value="1"></ext:ListItem>
@@ -558,9 +568,9 @@
                                 </ext:Panel>
                                 <ext:Panel runat="server">
                                     <Items>
-                                        <ext:TextField ID="bankName" runat="server" FieldLabel="<%$ Resources:FieldBankName%>" Name="bankName" />
+                                        <ext:TextField ID="bankName" runat="server" FieldLabel="<%$ Resources:FieldBankName%>" Name="bankName" AllowBlank="false" />
 
-                                        <ext:TextField ID="accountNumber" runat="server" FieldLabel="<%$ Resources:FieldAccountNumber%>" Name="accountNumber" />
+                                        <ext:TextField ID="accountNumber" runat="server" FieldLabel="<%$ Resources:FieldAccountNumber%>" Name="accountNumber" AllowBlank="false" />
                                         <ext:TextField ID="comments" runat="server" FieldLabel="<%$ Resources:FieldComments%>" Name="comments" />
                                         <ext:TextField ID="basicAmount" runat="server" FieldLabel="<%$ Resources:FieldBasicAmount%>" Name="basicAmount" />
                                         <ext:TextField ID="finalAmount" runat="server" FieldLabel="<%$ Resources:FieldFinalAmount%>" Name="finalAmount" />
@@ -630,23 +640,40 @@
                                     <ColumnModel>
                                         <Columns>
                                             <ext:RowNumbererColumn runat="server" Width="25" />
-                                            <ext:Column
+                                            <%--<ext:Column
                                                 runat="server"
                                                 DataIndex="seqNo"
                                                 Align="Center">
                                                 <Editor>
                                                     <ext:NumberField runat="server" DataIndex="seqNo" Enabled="false" ReadOnly="true" />
                                                 </Editor>
-                                            </ext:Column>
+                                            </ext:Column>--%>
                                             <ext:Column
                                                 runat="server"
                                                 Text="<%$ Resources:FieldEntitlementDeduction%>"
                                                 DataIndex="edId"
                                                 Align="Center">
-                                                <Renderer Fn="nameRenderer" />
+                                                <Renderer Fn="entnameRenderer" />
                                                 <Editor>
 
-                                                    <ext:ComboBox runat="server" AllowBlank="false" ValueField="recordId" DisplayField="name" ID="edId" Name="edId" StoreID="edStore">
+                                                    <ext:ComboBox runat="server" AllowBlank="false" ValueField="recordId" DisplayField="name" ID="entEdId" Name="edId" StoreID="entsStore">
+                                                        <RightButtons>
+                                                        <ext:Button ID="Button10" runat="server" Icon="Add" Hidden="true">
+                                                            <Listeners>
+                                                                <Click Handler="CheckSession();  " />
+                                                            </Listeners>
+                                                            <DirectEvents>
+
+                                                                <Click OnEvent="addEnt">
+                                                              
+                                                                </Click>
+                                                            </DirectEvents>
+                                                        </ext:Button>
+                                                    </RightButtons>
+                                                    <Listeners>
+                                                        <FocusEnter Handler=" if(!this.readOnly)this.rightButtons[0].setHidden(false);" />
+                                                        <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
+                                                    </Listeners>
                                                     </ext:ComboBox>
                                                 </Editor>
                                             </ext:Column>
@@ -767,24 +794,39 @@
                                     <ColumnModel>
                                         <Columns>
                                             <ext:RowNumbererColumn runat="server" Width="25" />
-                                            <ext:Column
+                                            <%--  <ext:Column
                                                 runat="server"
                                                 DataIndex="seqNo"
                                                 Align="Center">
                                                 <Editor>
                                                     <ext:NumberField runat="server" DataIndex="seqNo" Enabled="false" ReadOnly="true" />
                                                 </Editor>
-                                            </ext:Column>
+                                            </ext:Column>--%>
                                             <ext:Column
                                                 runat="server"
                                                 Text="<%$ Resources:FieldEntitlementDeduction%>"
                                                 DataIndex="edId"
                                                 Align="Center">
-                                                <Renderer fn="nameRenderer" />
+                                                <Renderer Fn="dednameRenderer" />
                                                 <Editor>
-                                                   
-                                                    <ext:ComboBox runat="server" AllowBlank="false" ValueField="recordId"  DisplayField="name" ID="deductionedId" Name="edId"  StoreID="edStore">
-            
+
+                                                    <ext:ComboBox runat="server" AllowBlank="false" ValueField="recordId" DisplayField="name" ID="dedEdId" Name="deductionId" StoreID="dedsStore">
+                                                        <RightButtons>
+                                                            <ext:Button ID="Button9" runat="server" Icon="Add" Hidden="true">
+                                                                <Listeners>
+                                                                    <Click Handler="CheckSession();  " />
+                                                                </Listeners>
+                                                                <DirectEvents>
+
+                                                                    <Click OnEvent="addDed">
+                                                                    </Click>
+                                                                </DirectEvents>
+                                                            </ext:Button>
+                                                        </RightButtons>
+                                                        <Listeners>
+                                                            <FocusEnter Handler=" if(!this.readOnly)this.rightButtons[0].setHidden(false);" />
+                                                            <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
+                                                        </Listeners>
                                                     </ext:ComboBox>
                                                 </Editor>
                                             </ext:Column>
@@ -833,7 +875,7 @@
                                                 <Editor>
                                                     <ext:TextField
                                                         runat="server" Name="comments" DataIndex="comments"
-                                                        AllowBlank="false" />
+                                                        AllowBlank="true" />
                                                 </Editor>
                                             </ext:Column>
                                         </Columns>
@@ -963,8 +1005,8 @@
                                         <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
                                     </Listeners>
                                 </ext:ComboBox>
-                                <ext:DateField runat="server" ID="date" Name="date" FieldLabel="<%$ Resources:FieldDate%>" />
-                                <ext:TextField ID="TextField7" runat="server" FieldLabel="<%$ Resources:FieldAmount%>" Name="amount" />
+                                <ext:DateField runat="server" ID="date" Name="date" FieldLabel="<%$ Resources:FieldDate%>" AllowBlank="false" />
+                                <ext:TextField ID="TextField7" runat="server" FieldLabel="<%$ Resources:FieldAmount%>" Name="amount" AllowBlank="false" />
                                 <ext:TextField ID="TextField9" runat="server" FieldLabel="<%$ Resources:FieldComment%>" Name="comment" />
 
 

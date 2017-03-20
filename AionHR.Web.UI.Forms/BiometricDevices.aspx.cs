@@ -466,8 +466,33 @@ namespace AionHR.Web.UI.Forms
         {
             ListRequest branchesRequest = new ListRequest();
             ListResponse<Division> resp = _companyStructureService.ChildGetAll<Division>(branchesRequest);
-            DivisionStore.DataSource = resp.Items;
-            DivisionStore.DataBind();
+            divisionStore.DataSource = resp.Items;
+            divisionStore.DataBind();
+        }
+        protected void addDivision(object sender, DirectEventArgs e)
+        {
+            if (string.IsNullOrEmpty(divisionId.Text))
+                return;
+            Division dept = new Division();
+            dept.name = divisionId.Text;
+            dept.isInactive = false;
+            PostRequest<Division> depReq = new PostRequest<Division>();
+            depReq.entity = dept;
+
+            PostResponse<Division> response = _companyStructureService.ChildAddOrUpdate<Division>(depReq);
+            if (response.Success)
+            {
+                dept.recordId = response.recordId;
+                divisionStore.Insert(0, dept);
+                divisionId.Select(0);
+            }
+            else
+            {
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, response.Summary).Show();
+                return;
+            }
+
         }
     }
 }

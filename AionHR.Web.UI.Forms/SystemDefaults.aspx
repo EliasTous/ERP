@@ -9,52 +9,52 @@
     <title></title>
     <link rel="stylesheet" type="text/css" href="CSS/Common.css" />
     <link rel="stylesheet" href="CSS/LiveSearch.css" />
-    <script type="text/javascript" src="Scripts/Nationalities.js" ></script>
-    <script type="text/javascript" src="Scripts/common.js" ></script>
-   
- 
+    <script type="text/javascript" src="Scripts/Nationalities.js"></script>
+    <script type="text/javascript" src="Scripts/common.js"></script>
+
+
 </head>
-<body style="background: url(Images/bg.png) repeat;" ">
+<body style="background: url(Images/bg.png) repeat;">
     <form id="Form1" runat="server">
-        <ext:ResourceManager ID="ResourceManager1" runat="server" Theme="Neptune" AjaxTimeout="1200000" />        
-        
+        <ext:ResourceManager ID="ResourceManager1" runat="server" Theme="Neptune" AjaxTimeout="1200000" />
+
         <ext:Hidden ID="textMatch" runat="server" Text="<%$ Resources:Common , MatchFound %>" />
         <ext:Hidden ID="textLoadFailed" runat="server" Text="<%$ Resources:Common , LoadFailed %>" />
         <ext:Hidden ID="titleSavingError" runat="server" Text="<%$ Resources:Common , TitleSavingError %>" />
         <ext:Hidden ID="titleSavingErrorMessage" runat="server" Text="<%$ Resources:Common , TitleSavingErrorMessage %>" />
-        
-      
 
-        
-    
+
+
+
+
         <ext:Viewport ID="Viewport1" runat="server" Layout="Fit">
             <Items>
-           <ext:Panel 
-            ID="EditRecordWindow"
-            runat="server"
-            Icon="PageEdit"
-            Title="<%$ Resources:EditWindowsTitle %>"
-            Width="450"
-            Height="330"
-            AutoShow="false"
-            Modal="true"
-            Hidden="False"
-            Layout="Fit">
-            
-            <Items>
-                <ext:TabPanel ID="panelRecordDetails" runat="server" ActiveTabIndex="0" Border="false" DeferredRender="false">
+                <ext:Panel
+                    ID="EditRecordWindow"
+                    runat="server"
+                    Icon="PageEdit"
+                    Title="<%$ Resources:EditWindowsTitle %>"
+                    Width="450"
+                    Height="330"
+                    AutoShow="false"
+                    Modal="true"
+                    Hidden="False"
+                    Layout="Fit">
+
                     <Items>
-                       <ext:FormPanel DefaultButton="SaveButton"
-                            ID="BasicInfoTab"
-                            runat="server" 
-                            Title="<%$ Resources: BasicInfoTabEditWindowTitle %>"
-                            Icon="ApplicationSideList"
-                            DefaultAnchor="100%" 
-                            BodyPadding="5">
+                        <ext:TabPanel ID="panelRecordDetails" runat="server" ActiveTabIndex="0" Border="false" DeferredRender="false">
                             <Items>
-                                 
-                                <ext:ComboBox QueryMode="Local"  ForceSelection="true" TypeAhead="true" MinChars="1"  FieldLabel="<%$ Resources: FieldCountry %>" Name="countryId" runat="server" DisplayField="name" ValueField="recordId" ID="countryIdCombo" >
-                                     <Store>
+                                <ext:FormPanel DefaultButton="SaveButton"
+                                    ID="BasicInfoTab"
+                                    runat="server"
+                                    Title="<%$ Resources: BasicInfoTabEditWindowTitle %>"
+                                    Icon="ApplicationSideList"
+                                    DefaultAnchor="100%"
+                                    BodyPadding="5">
+                                    <Items>
+
+                                        <ext:ComboBox QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: FieldCountry %>" Name="countryId" runat="server" DisplayField="name" ValueField="recordId" ID="countryIdCombo">
+                                            <Store>
                                                 <ext:Store runat="server" ID="NationalityStore">
                                                     <Model>
                                                         <ext:Model runat="server">
@@ -66,9 +66,25 @@
                                                     </Model>
                                                 </ext:Store>
                                             </Store>
-                                    </ext:ComboBox>
-                                <ext:ComboBox QueryMode="Local"  ForceSelection="true" TypeAhead="true" MinChars="1"  FieldLabel="<%$ Resources: FieldCurrency %>" Name="currencyId" DisplayField="name" ValueField="recordId" runat="server" ID="currencyIdCombo" >
-                                     <Store>
+                                            <RightButtons>
+                                                <ext:Button ID="Button1" runat="server" Icon="Add" Hidden="true">
+                                                    <Listeners>
+                                                        <Click Handler="CheckSession();  " />
+                                                    </Listeners>
+                                                    <DirectEvents>
+
+                                                        <Click OnEvent="addPosition">
+                                                        </Click>
+                                                    </DirectEvents>
+                                                </ext:Button>
+                                            </RightButtons>
+                                            <Listeners>
+                                                <FocusEnter Handler=" if(!this.readOnly)this.rightButtons[0].setHidden(false);" />
+                                                <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
+                                            </Listeners>
+                                        </ext:ComboBox>
+                                        <ext:ComboBox QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: FieldCurrency %>" Name="currencyId" DisplayField="name" ValueField="recordId" runat="server" ID="currencyIdCombo">
+                                            <Store>
                                                 <ext:Store runat="server" ID="CurrencyStore">
                                                     <Model>
                                                         <ext:Model runat="server">
@@ -80,103 +96,105 @@
                                                     </Model>
                                                 </ext:Store>
                                             </Store>
-                                    </ext:ComboBox>
-                                <ext:ComboBox QueryMode="Local"  ForceSelection="true" TypeAhead="true" MinChars="1"  FieldLabel="<%$ Resources: FieldDateFormat %>" Name="dateFormat" runat="server" ID="dateFormatCombo" >
-                                    <Items>
-                                        <ext:ListItem Text="<%$ Resources: YearMonthDay %>" Value="yyyy-MM-dd" />
-                                        <ext:ListItem Text="<%$ Resources: MonthYearDay %>"  Value="MM-yyyy-dd" />
-                                        <ext:ListItem Text="<%$ Resources: YearDayMonth %>"  Value="yyyy-dd-MM" />
-                                        <ext:ListItem Text="<%$ Resources: MonthDayYear %>"  Value="MM-dd-yyyy" />
-                                        <ext:ListItem Text="<%$ Resources: DayMonthYear %>"  Value="dd-MM-yyyy" />
-                                        <ext:ListItem Text="<%$ Resources: DayYearMonth %>"  Value="dd-yyyy-MM" />
-                                    </Items>
-                                    </ext:ComboBox>
+                                        </ext:ComboBox>
+                                        <ext:ComboBox QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: FieldDateFormat %>" Name="dateFormat" runat="server" ID="dateFormatCombo">
+                                            <Items>
+                                                <ext:ListItem Text="<%$ Resources: YearMonthDay %>" Value="yyyy-MM-dd" />
+                                                <ext:ListItem Text="<%$ Resources: MonthYearDay %>" Value="MM-yyyy-dd" />
+                                                <ext:ListItem Text="<%$ Resources: YearDayMonth %>" Value="yyyy-dd-MM" />
+                                                <ext:ListItem Text="<%$ Resources: MonthDayYear %>" Value="MM-dd-yyyy" />
+                                                <ext:ListItem Text="<%$ Resources: DayMonthYear %>" Value="dd-MM-yyyy" />
+                                                <ext:ListItem Text="<%$ Resources: DayYearMonth %>" Value="dd-yyyy-MM" />
+                                            </Items>
+                                        </ext:ComboBox>
 
-                                <ext:ComboBox QueryMode="Local"  ForceSelection="true" TypeAhead="true" MinChars="1"  FieldLabel="<%$ Resources: FieldNameFormat %>" Name="nameFormat" runat="server" ID="nameFormatCombo" >
-                                    <Items>
-                                         <ext:ListItem Text="<%$ Resources:FirstNameLastName %>" Value="{firstName} {lastName}" />
-                                        <ext:ListItem Text="<%$ Resources:LastNameFirstName %>"  Value="{lastName} {firstName}" />
-                                        <ext:ListItem Text="<%$ Resources:FirstNameMiddleNameLastName %>"  Value="{firstName} {middleName} {lastName}" />
-                                        
-                                    </Items>
-                                    </ext:ComboBox>
-                                <ext:ComboBox QueryMode="Local"  ForceSelection="true" TypeAhead="true" MinChars="1"  FieldLabel="<%$ Resources: FieldFirstDayOfWeek %>" Name="fdow" runat="server"  ID="fdowCombo">
-                                    <Items>
-                                         <ext:ListItem Text="<%$ Resources:Common, MondayText %>" Value="1" />
-                                        <ext:ListItem Text="<%$ Resources:Common, TuesdayText %>"  Value="2" />
-                                        <ext:ListItem Text="<%$ Resources:Common, WednesdayText %>"  Value="3" />
-                                        <ext:ListItem Text="<%$ Resources:Common, ThursdayText %>"  Value="4" />
-                                        <ext:ListItem Text="<%$ Resources:Common, FridayText %>"  Value="5" />
-                                        <ext:ListItem Text="<%$ Resources:Common, SaturdayText %>"  Value="6" />
-                                        <ext:ListItem Text="<%$ Resources:Common, SundayText %>"  Value="7" />
-                                    </Items>
-                                    </ext:ComboBox>
+                                        <ext:ComboBox QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: FieldNameFormat %>" Name="nameFormat" runat="server" ID="nameFormatCombo">
+                                            <Items>
+                                                <ext:ListItem Text="<%$ Resources:FirstNameLastName %>" Value="{firstName} {lastName}" />
+                                                <ext:ListItem Text="<%$ Resources:LastNameFirstName %>" Value="{lastName} {firstName}" />
+                                                <ext:ListItem Text="<%$ Resources:FirstNameMiddleNameLastName %>" Value="{firstName} {middleName} {lastName}" />
+                                                <ext:ListItem Text="<%$ Resources:ReferenceFirstNameLastName %>" Value="{reference} {firstName} {lastName}" />
+                                                <ext:ListItem Text="<%$ Resources:ReferenceLastNameFirstName %>" Value="{reference} {lastName} {firstName}" />
 
-                                
-                                <ext:ComboBox QueryMode="Local"  ForceSelection="true" TypeAhead="true" MinChars="1"  FieldLabel="<%$ Resources: FieldTimeZone %>" Name="timeZone" runat="server"  ID="timeZoneCombo">
-                                     <Items>
-                                        <ext:ListItem Text="-12 UTC" Value="-12" />
-                                        <ext:ListItem Text="-11 UTC" Value="-11" />
-                                        <ext:ListItem Text="-10 UTC" Value="-10" />
-                                        <ext:ListItem Text="-9 UTC" Value="-9" />
-                                        <ext:ListItem Text="-8 UTC" Value="-8" />
-                                        <ext:ListItem Text="-7 UTC" Value="-7" />
-                                        <ext:ListItem Text="-6 UTC" Value="-6" />
-                                        <ext:ListItem Text="-5 UTC" Value="-5" />
-                                        <ext:ListItem Text="-4 UTC" Value="-4" />
-                                        <ext:ListItem Text="-3 UTC" Value="-3" />
-                                        <ext:ListItem Text="-2 UTC" Value="-2" />
-                                        <ext:ListItem Text="-1 UTC" Value="-1" />
-                                        <ext:ListItem Text=" UTC" Value="0" />
-                                        <ext:ListItem Text="+1 UTC" Value="1" />
-                                        <ext:ListItem Text="+2 UTC" Value="2" />
-                                        <ext:ListItem Text="+3 UTC" Value="3" />
-                                        <ext:ListItem Text="+4 UTC" Value="4" />
-                                        <ext:ListItem Text="+5 UTC" Value="5" />
-                                        <ext:ListItem Text="+6 UTC" Value="6" />
-                                        <ext:ListItem Text="+7 UTC" Value="7" />
-                                        <ext:ListItem Text="+8 UTC" Value="8" />
-                                        <ext:ListItem Text="+9 UTC" Value="9" />
-                                        <ext:ListItem Text="+10 UTC" Value="10" />
-                                        <ext:ListItem Text="+11 UTC" Value="11" />
-                                        <ext:ListItem Text="+12 UTC" Value="12" />
+                                            </Items>
+                                        </ext:ComboBox>
+                                        <ext:ComboBox QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: FieldFirstDayOfWeek %>" Name="fdow" runat="server" ID="fdowCombo">
+                                            <Items>
+                                                <ext:ListItem Text="<%$ Resources:Common, MondayText %>" Value="1" />
+                                                <ext:ListItem Text="<%$ Resources:Common, TuesdayText %>" Value="2" />
+                                                <ext:ListItem Text="<%$ Resources:Common, WednesdayText %>" Value="3" />
+                                                <ext:ListItem Text="<%$ Resources:Common, ThursdayText %>" Value="4" />
+                                                <ext:ListItem Text="<%$ Resources:Common, FridayText %>" Value="5" />
+                                                <ext:ListItem Text="<%$ Resources:Common, SaturdayText %>" Value="6" />
+                                                <ext:ListItem Text="<%$ Resources:Common, SundayText %>" Value="7" />
+                                            </Items>
+                                        </ext:ComboBox>
+
+
+                                        <ext:ComboBox QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: FieldTimeZone %>" Name="timeZone" runat="server" ID="timeZoneCombo">
+                                            <Items>
+                                                <ext:ListItem Text="-12 UTC" Value="-12" />
+                                                <ext:ListItem Text="-11 UTC" Value="-11" />
+                                                <ext:ListItem Text="-10 UTC" Value="-10" />
+                                                <ext:ListItem Text="-9 UTC" Value="-9" />
+                                                <ext:ListItem Text="-8 UTC" Value="-8" />
+                                                <ext:ListItem Text="-7 UTC" Value="-7" />
+                                                <ext:ListItem Text="-6 UTC" Value="-6" />
+                                                <ext:ListItem Text="-5 UTC" Value="-5" />
+                                                <ext:ListItem Text="-4 UTC" Value="-4" />
+                                                <ext:ListItem Text="-3 UTC" Value="-3" />
+                                                <ext:ListItem Text="-2 UTC" Value="-2" />
+                                                <ext:ListItem Text="-1 UTC" Value="-1" />
+                                                <ext:ListItem Text=" UTC" Value="0" />
+                                                <ext:ListItem Text="+1 UTC" Value="1" />
+                                                <ext:ListItem Text="+2 UTC" Value="2" />
+                                                <ext:ListItem Text="+3 UTC" Value="3" />
+                                                <ext:ListItem Text="+4 UTC" Value="4" />
+                                                <ext:ListItem Text="+5 UTC" Value="5" />
+                                                <ext:ListItem Text="+6 UTC" Value="6" />
+                                                <ext:ListItem Text="+7 UTC" Value="7" />
+                                                <ext:ListItem Text="+8 UTC" Value="8" />
+                                                <ext:ListItem Text="+9 UTC" Value="9" />
+                                                <ext:ListItem Text="+10 UTC" Value="10" />
+                                                <ext:ListItem Text="+11 UTC" Value="11" />
+                                                <ext:ListItem Text="+12 UTC" Value="12" />
+                                            </Items>
+                                        </ext:ComboBox>
+                                        <ext:Checkbox FieldLabel="<%$ Resources: FieldLog %>" runat="server" ID="logCheck" Name="transactionLog" InputValue="True" />
+                                        <ext:Checkbox FieldLabel="<%$ Resources: FieldEnableCamera %>" runat="server" InputValue="True" Name="enableCamera" ID="enableCameraCheck" />
                                     </Items>
-                                    </ext:ComboBox>
-                                <ext:Checkbox FieldLabel="<%$ Resources: FieldLog %>" runat="server"  ID="logCheck" Name="transactionLog" InputValue="True"/>
-                                <ext:Checkbox FieldLabel="<%$ Resources: FieldEnableCamera %>" runat="server" InputValue="True" Name="enableCamera"  ID="enableCameraCheck"/>
+
+                                </ext:FormPanel>
+
                             </Items>
-
-                        </ext:FormPanel>
-                        
+                        </ext:TabPanel>
                     </Items>
-                </ext:TabPanel>
-            </Items>
-            <Buttons>
-                <ext:Button ID="SaveButton" runat="server" Text="<%$ Resources:Common, Save %>" Icon="Disk">
+                    <Buttons>
+                        <ext:Button ID="SaveButton" runat="server" Text="<%$ Resources:Common, Save %>" Icon="Disk">
 
-                    <Listeners>
-                        <Click Handler="CheckSession(); if (!#{BasicInfoTab}.getForm().isValid()) {return false;}  " />
-                    </Listeners>
-                    <DirectEvents>
-                        <Click OnEvent="SaveNewRecord" Failure="Ext.MessageBox.alert('#{titleSavingError}.value', '#{titleSavingErrorMessage}.value');">
-                            <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="={#{EditRecordWindow}.body}" />
-                            <ExtraParams>
-                                
-                                <ext:Parameter Name="values" Value ="#{BasicInfoTab}.getForm().getValues()" Mode="Raw" Encode="true" />
-                            </ExtraParams>
-                        </Click>
-                    </DirectEvents>
-                </ext:Button>
-                
-            </Buttons>
-        </ext:Panel>    
+                            <Listeners>
+                                <Click Handler="CheckSession(); if (!#{BasicInfoTab}.getForm().isValid()) {return false;}  " />
+                            </Listeners>
+                            <DirectEvents>
+                                <Click OnEvent="SaveNewRecord" Failure="Ext.MessageBox.alert('#{titleSavingError}.value', '#{titleSavingErrorMessage}.value');">
+                                    <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="={#{EditRecordWindow}.body}" />
+                                    <ExtraParams>
+
+                                        <ext:Parameter Name="values" Value="#{BasicInfoTab}.getForm().getValues()" Mode="Raw" Encode="true" />
+                                    </ExtraParams>
+                                </Click>
+                            </DirectEvents>
+                        </ext:Button>
+
+                    </Buttons>
+                </ext:Panel>
             </Items>
-            
+
         </ext:Viewport>
 
-        
 
-       
+
+
 
 
     </form>

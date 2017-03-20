@@ -388,7 +388,7 @@
     <value>Vacation Schedules</value>
   </data>
   <data name="AttendanceSchedule" xml:space="preserve">
-    <value>Attendance Schedule</value>
+    <value>Schedule</value>
   </data>
   <data name="DayTypes" xml:space="preserve">
     <value>Day Types</value>
@@ -545,5 +545,11 @@
   </data>
   <data name="LeaveRequests" xml:space="preserve">
     <value>Leave Requests</value>
+  </data>
+  <data name="PatternAppliedSucc" xml:space="preserve">
+    <value>Pattern Applied Successfully</value>
+  </data>
+  <data name="OrganizationChart" xml:space="preserve">
+    <value>Organization Chart</value>
   </data>
 </root>

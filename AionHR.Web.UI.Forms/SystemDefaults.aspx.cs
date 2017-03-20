@@ -189,7 +189,31 @@ namespace AionHR.Web.UI.Forms
 
         }
 
+        protected void addNationality(object sender, DirectEventArgs e)
+        {
+            if (string.IsNullOrEmpty(countryIdCombo.Text))
+                return;
+            Nationality obj = new Nationality();
+            obj.name = countryIdCombo.Text;
 
+            PostRequest<Nationality> req = new PostRequest<Nationality>();
+            req.entity = obj;
+
+            PostResponse<Nationality> response = _systemService.ChildAddOrUpdate<Nationality>(req);
+            if (response.Success)
+            {
+                obj.recordId = response.recordId;
+                NationalityStore.Insert(0, obj);
+                countryIdCombo.Select(0);
+            }
+            else
+            {
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, response.Summary).Show();
+                return;
+            }
+
+        }
 
 
 
@@ -203,6 +227,30 @@ namespace AionHR.Web.UI.Forms
             else return "1";
         }
 
+        protected void addPosition(object sender, DirectEventArgs e)
+        {
+            if (string.IsNullOrEmpty(countryIdCombo.Text))
+                return;
+            Nationality dept = new Nationality();
+            dept.name = countryIdCombo.Text;
+
+            PostRequest<Nationality> depReq = new PostRequest<Nationality>();
+            depReq.entity = dept;
+            PostResponse<Nationality> response = _systemService.ChildAddOrUpdate<Nationality>(depReq);
+            if (response.Success)
+            {
+                dept.recordId = response.recordId;
+                NationalityStore.Insert(0, dept);
+                countryIdCombo.Select(0);
+            }
+            else
+            {
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, response.Summary).Show();
+                return;
+            }
+
+        }
 
     }
 }

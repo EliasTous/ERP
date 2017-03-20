@@ -256,20 +256,37 @@
                                 <ext:TextField MaxLength="12" MinLength="12" ID="routerRef" runat="server" FieldLabel="<%$ Resources:FieldReference%>" Name="routerRef"   ReadOnly="true" AllowBlank="false" MinLengthText="<%$ Resources:ErrorInvalidMacAddress%>" MaxLengthText="<%$ Resources:ErrorInvalidMacAddress%>"/>
                                  
                                 <ext:Checkbox runat="server" Name="isInactive" InputValue="true" ID="isInactiveCheck" DataIndex="isInactive" FieldLabel="<%$ Resources:FieldIsInactive%>" />
-                                <ext:ComboBox runat="server" AllowBlank="false" ValueField="recordId" DisplayField="name" ID="branchId" Name="branchId" FieldLabel="<%$ Resources:FieldBranch%>" SimpleSubmit="true" QueryMode="Local"  ForceSelection="true" TypeAhead="true" MinChars="1" >
-                                            <Store>
-                                                <ext:Store runat="server" ID="BranchStore">
-                                                    <Model>
-                                                        <ext:Model runat="server" IDProperty="recordId">
-                                                            <Fields>
-                                                                <ext:ModelField Name="recordId" />
-                                                                <ext:ModelField Name="name" />
-                                                            </Fields>
-                                                        </ext:Model>
-                                                    </Model>
-                                                </ext:Store>
-                                            </Store>
-                                        </ext:ComboBox>
+                                <ext:ComboBox Enabled="false" runat="server" AllowBlank="false" ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" ID="branchId" Name="branchId" FieldLabel="<%$ Resources:FieldBranch%>" SimpleSubmit="true">
+                                                    <Store>
+                                                        <ext:Store runat="server" ID="BranchStore">
+                                                            <Model>
+                                                                <ext:Model runat="server">
+                                                                    <Fields>
+                                                                        <ext:ModelField Name="recordId" />
+                                                                        <ext:ModelField Name="name" />
+                                                                    </Fields>
+                                                                </ext:Model>
+                                                            </Model>
+                                                        </ext:Store>
+                                                    </Store>
+                                                  <RightButtons>
+                                                        <ext:Button ID="Button3" runat="server" Icon="Add" Hidden="true" >
+                                                            <Listeners>
+                                                                <Click Handler="CheckSession();" />
+                                                            </Listeners>
+                                                            <DirectEvents>
+
+                                                                <Click OnEvent="addBranch">
+                                                                 
+                                                                </Click>
+                                                            </DirectEvents>
+                                                        </ext:Button>
+                                                    </RightButtons>
+                                                    <Listeners>
+                                                        <FocusEnter Handler="if(!this.readOnly) this.rightButtons[0].setHidden(false);" />
+                                                        <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
+                                                    </Listeners>
+                                                </ext:ComboBox>
                                
 
                             </Items>

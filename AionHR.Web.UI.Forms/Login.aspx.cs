@@ -92,7 +92,7 @@ namespace AionHR.Web.UI.Forms
             if (response.Success)
             {
                 //Redirecting..
-                Response.Cookies.Add(new HttpCookie("accountName", accountName));
+                Response.Cookies.Add(new HttpCookie("accountName", accountName) { Expires = DateTime.Now.AddDays(30) });
                 if (rememberMeCheck.Checked)
                 {
                     Response.Cookies.Add(new HttpCookie("email") { Value = userName, Expires = DateTime.Now.AddDays(30), });
@@ -101,18 +101,8 @@ namespace AionHR.Web.UI.Forms
                 }
                 else
                 {
-                    HttpCookie currentUserCookie = HttpContext.Current.Request.Cookies["email"];
-                    if (currentUserCookie == null)
-                        return "1";
-                    HttpContext.Current.Response.Cookies.Remove("email");
-                    currentUserCookie.Expires = DateTime.Now.AddDays(-10);
-                    currentUserCookie.Value = null;
-                    HttpContext.Current.Response.SetCookie(currentUserCookie);
-                    HttpCookie passwordCookie = HttpContext.Current.Request.Cookies["password"];
-                    HttpContext.Current.Response.Cookies.Remove("password");
-                    passwordCookie.Expires = DateTime.Now.AddDays(-10);
-                    passwordCookie.Value = null;
-                    HttpContext.Current.Response.SetCookie(passwordCookie);
+                    RemoveCookies();
+                    
                 }
                 if (response.User.languageId == 3)
                     _systemService.SessionHelper.SetLanguage("ar");
@@ -130,8 +120,21 @@ namespace AionHR.Web.UI.Forms
             }
         }
 
-
-
+        private void RemoveCookies()
+        {
+            HttpCookie currentUserCookie = HttpContext.Current.Request.Cookies["email"];
+            if (currentUserCookie == null)
+                return;
+            HttpContext.Current.Response.Cookies.Remove("email");
+            currentUserCookie.Expires = DateTime.Now.AddDays(-10);
+            currentUserCookie.Value = null;
+            HttpContext.Current.Response.SetCookie(currentUserCookie);
+            HttpCookie passwordCookie = HttpContext.Current.Request.Cookies["password"];
+            HttpContext.Current.Response.Cookies.Remove("password");
+            passwordCookie.Expires = DateTime.Now.AddDays(-10);
+            passwordCookie.Value = null;
+            HttpContext.Current.Response.SetCookie(passwordCookie);
+        }
 
         [DirectMethod]
         public object DirectCheckField(string value)

@@ -103,6 +103,7 @@
     <Content Include="CSS\Header.css" />
     <Content Include="CSS\Home.css" />
     <Content Include="CSS\LiveSearch.css" />
+    <Content Include="CSS\OrganizationChart.css" />
     <Content Include="CSS\Tools.css" />
     <Content Include="Currencies.aspx" />
     <Content Include="Dashboard.aspx" />
@@ -143,6 +144,7 @@
     <Content Include="LeaveTypes.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="Nationalities.aspx" />
+    <Content Include="OrganizationChart.aspx" />
     <Content Include="packages.config" />
     <Content Include="Routers.aspx" />
     <Content Include="SalaryChangeReasons.aspx" />
@@ -151,6 +153,7 @@
     <Content Include="Scripts\AttendanceDayView.js" />
     <Content Include="Scripts\BonusTypes.js" />
     <Content Include="Scripts\Calendars.js" />
+    <Content Include="Scripts\OrganizationChart.js" />
     <Content Include="Scripts\Payroll.js" />
     <Content Include="Scripts\LeaveTypes.js" />
     <Content Include="Scripts\Divisions.js" />
@@ -406,6 +409,13 @@
     <Compile Include="Nationalities.aspx.designer.cs">
       <DependentUpon>Nationalities.aspx</DependentUpon>
     </Compile>
+    <Compile Include="OrganizationChart.aspx.cs">
+      <DependentUpon>OrganizationChart.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="OrganizationChart.aspx.designer.cs">
+      <DependentUpon>OrganizationChart.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Positions.aspx.cs">
       <DependentUpon>Positions.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -649,6 +659,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="EmployeePages\App_LocalResources\Payroll.aspx.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_LocalResources\OrganizationChart.aspx.resx" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

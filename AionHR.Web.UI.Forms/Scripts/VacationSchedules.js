@@ -46,6 +46,7 @@ function addEmployee () {
     periodsGrid.getView().headerCt.setSortState(); // To update columns sort UI
 
     store.insert(0, {
+
         from: '0',
         to: '1',
         days: 2

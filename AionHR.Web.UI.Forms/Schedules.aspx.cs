@@ -23,6 +23,7 @@ using AionHR.Model.Company.Structure;
 using AionHR.Model.Employees.Profile;
 using AionHR.Model.Employees.Leaves;
 using AionHR.Model.Attendance;
+using AionHR.Model.TimeAttendance;
 
 namespace AionHR.Web.UI.Forms
 {
@@ -848,5 +849,48 @@ namespace AionHR.Web.UI.Forms
             X.Call("setReadOnly", "periodsGrid", v);
 
         }
+
+        protected void selectPattern_click(object sender, DirectEventArgs e)
+        {
+            List<DayType> days = LoadDayTypes();
+            workDTStore.DataSource = days.Where(s => s.isWorkingDay == true).ToList();
+            workDTStore.DataBind();
+            WeekendDTStore.DataSource = days.Where(s => s.isWorkingDay == false).ToList();
+            WeekendDTStore.DataBind();
+
+            patternWindow.Show();
+        }
+
+        protected void SavePattern(object sender, DirectEventArgs e)
+        {
+            string day = e.ExtraParams["pattern"];
+            SchedulePattern b = JSON.Deserialize<SchedulePattern>(day);
+
+            b.scId = Convert.ToInt32(CurrentSchedule.Text);
+            PostRequest<SchedulePattern> request = new PostRequest<SchedulePattern>();
+            request.entity = b;
+            PostResponse<SchedulePattern> response = _branchService.ChildAddOrUpdate<SchedulePattern>(request);
+
+            if (!response.Success)//it maybe another check
+            {
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.ErrorUpdatingRecord, response.Summary).Show();
+                return;
+            }
+            else
+            {
+                Store1.Reload();
+                Notification.Show(new NotificationConfig
+                {
+                    Title = Resources.Common.Notification,
+                    Icon = Icon.Information,
+                    Html = Resources.Common.PatternAppliedSucc
+                });
+                this.patternWindow.Close();
+            }
+
+        }
+
+
     }
 }

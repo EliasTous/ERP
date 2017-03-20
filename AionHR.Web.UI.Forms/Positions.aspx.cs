@@ -509,6 +509,32 @@ namespace AionHR.Web.UI.Forms
 
         }
 
+        protected void addPosition(object sender, DirectEventArgs e)
+        {
+            if (string.IsNullOrEmpty(referToPositionId.Text))
+                return;
+            Model.Company.Structure.Position dept = new Model.Company.Structure.Position();
+            dept.name = referToPositionId.Text;
+
+            PostRequest<Model.Company.Structure.Position> depReq = new PostRequest<Model.Company.Structure.Position>();
+            depReq.entity = dept;
+            PostResponse<Model.Company.Structure.Position> response = _branchService.ChildAddOrUpdate<Model.Company.Structure.Position>(depReq);
+            if (response.Success)
+            {
+                dept.recordId = response.recordId;
+                positionStore.Insert(0, dept);
+                referToPositionId.Select(0);
+                this.Store1.Insert(0, dept);
+            }
+            else
+            {
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, response.Summary).Show();
+                return;
+            }
+
+        }
+
 
     }
 }
