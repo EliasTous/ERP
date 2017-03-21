@@ -62,7 +62,7 @@ namespace AionHR.Web.UI.Forms
         {
 
 
-
+            
             if (!X.IsAjaxRequest && !IsPostBack)
             {
 
@@ -573,7 +573,7 @@ namespace AionHR.Web.UI.Forms
                         RecordResponse<Employee> response = _employeeService.Get<Employee>(req);
                         if(response.Success)
                         {
-                            b.pictureUrl = response.result.pictureUrl;
+                            b.pictureUrl = response.result.pictureUrl + "?x=" + DateTime.Now;
                         }
                         //Add this record to the store 
                         this.Store1.Insert(0, b);
@@ -659,7 +659,7 @@ namespace AionHR.Web.UI.Forms
                         RecordResponse<Employee> response = _employeeService.Get<Employee>(req);
                         if (response.Success)
                         {
-                            b.pictureUrl = response.result.pictureUrl;
+                            b.pictureUrl = response.result.pictureUrl + "?x=" + DateTime.Now;
                         }
                         ModelProxy record = this.Store1.GetById(index);
                         //BasicInfoTab.UpdateRecord(record);
@@ -769,7 +769,7 @@ namespace AionHR.Web.UI.Forms
             branchLbl.Html = forSummary.branchName + "<br />";
             positionLbl.Html = forSummary.positionName + "<br />";
             //employeeName.Text = resp.result.name.firstName + resp.result.name.lastName;
-            imgControl.ImageUrl = response.result.pictureUrl;
+            imgControl.ImageUrl = response.result.pictureUrl + "?x=" + DateTime.Now;
         }
 
         #region combobox dynamic insert
