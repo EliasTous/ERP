@@ -124,10 +124,10 @@
     <value>Edit Employeement History</value>
   </data>
   <data name="EditJobInfoWindow" xml:space="preserve">
-    <value>Edit JI</value>
+    <value>Edit Job Info</value>
   </data>
   <data name="EditJobInfoWindowsTitle" xml:space="preserve">
-    <value>Edit JI</value>
+    <value>Edit Job Info</value>
   </data>
   <data name="EHGridTitle" xml:space="preserve">
     <value>Employment History</value>
@@ -199,7 +199,7 @@
     <value>Change Reason</value>
   </data>
   <data name="EditSAWindowTitle" xml:space="preserve">
-    <value>Edit SA</value>
+    <value>Edit Salary</value>
   </data>
   <data name="FieldAccountNumber" xml:space="preserve">
     <value>Account Number</value>

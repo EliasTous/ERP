@@ -579,11 +579,12 @@ namespace AionHR.Web.UI.Forms
                         this.Store1.Insert(0, b);
 
 
-
-                        CurrentEmployee.Text = b.recordId;
+                        CurrentEmployee.Text = req.RecordID.ToString();
+                        FillLeftPanel();
+                        FixLoaderUrls(req.RecordID.ToString());
                         FillLeftPanel();
                         InitCombos(false);
-
+                        
                         RowSelectionModel sm = this.GridPanel1.GetSelectionModel() as RowSelectionModel;
                         sm.DeselectAll();
                         sm.Select(b.recordId.ToString());

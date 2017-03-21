@@ -1,6 +1,7 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="LeaveCalendar.aspx.cs" Inherits="AionHR.Web.UI.Forms.LeaveCalendar" %>
 
 <%@ Register Assembly="Ext.Net" Namespace="Ext.Net" TagPrefix="ext" %>
+<%@ Register Assembly="DayPilot" Namespace="DayPilot.Web.Ui" TagPrefix="DayPilot" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
@@ -9,20 +10,20 @@
     <title></title>
     <link rel="stylesheet" type="text/css" href="CSS/Common.css" />
     <link rel="stylesheet" href="CSS/LiveSearch.css" />
-    <script type="text/javascript" src="Scripts/AttendanceDayView.js?id=0"></script>
+    <script type="text/javascript" src="Scripts/LeaveCalendar.js?id=0"></script>
     <script type="text/javascript" src="Scripts/common.js"></script>
     <script type="text/javascript" src="Scripts/moment.js"></script>
     <script type="text/javascript">
         function setTotal(t) {
             // alert(t);
             // alert(document.getElementById("total"));
-            
+
             document.getElementById("total").innerHTML = t;
             Ext.defer(function () {
                 App.GridPanel1.view.refresh();
             }, 10);
         }
-       
+
     </script>
 
 
@@ -35,7 +36,7 @@
         <ext:Hidden ID="textLoadFailed" runat="server" Text="<%$ Resources:Common , LoadFailed %>" />
         <ext:Hidden ID="titleSavingError" runat="server" Text="<%$ Resources:Common , TitleSavingError %>" />
         <ext:Hidden ID="titleSavingErrorMessage" runat="server" Text="<%$ Resources:Common , TitleSavingErrorMessage %>" />
-        
+
 
         <ext:Store
             ID="Store1"
@@ -88,19 +89,13 @@
 
 
 
-        <ext:Viewport ID="Viewport1" runat="server" Layout="Fit">
-            
-            <Items>
-            <ext:CalendarPanel
-                            ID="CalendarPanel1"
-                            runat="server"
-                            Region="Center"
-                            ActiveIndex="2"
-                            Border="false">
-                <TopBar>
-                    <ext:Toolbar runat="server">
-                        <Items>
-                               <ext:ComboBox runat="server" ValueField="recordId" DisplayField="name" ID="branchId" Name="branchId" FieldLabel="<%$ Resources:FieldBranch%>" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" >
+        
+                <ext:Panel runat="server">
+
+                    <TopBar>
+                        <ext:Toolbar runat="server">
+                            <Items>
+                                <ext:ComboBox runat="server" ValueField="recordId" DisplayField="name" ID="branchId" Name="branchId" FieldLabel="<%$ Resources:FieldBranch%>" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1">
                                     <Store>
                                         <ext:Store runat="server" ID="branchStore">
                                             <Model>
@@ -120,8 +115,8 @@
                                         <ext:ListItem Text="-----All-----" Value="0" />
                                     </Items>
                                 </ext:ComboBox>
-                                 
-                                <ext:ComboBox runat="server" ValueField="recordId" DisplayField="name" ID="departmentId" Name="departmentId" FieldLabel="<%$ Resources:FieldDepartment%>" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" >
+
+                                <ext:ComboBox runat="server" ValueField="recordId" DisplayField="name" ID="departmentId" Name="departmentId" FieldLabel="<%$ Resources:FieldDepartment%>" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1">
                                     <Store>
                                         <ext:Store runat="server" ID="departmentStore">
                                             <Model>
@@ -142,43 +137,67 @@
                                     </Items>
 
                                 </ext:ComboBox>
-                        </Items>
-                    </ext:Toolbar>
-                </TopBar>
-                            <CalendarStore ID="CalendarStore1" runat="server">
-                                <Calendars>
-                                    <ext:CalendarModel CalendarId="1" Title="Home" />
-                                    <ext:CalendarModel CalendarId="2" Title="Work" />
-                                    <ext:CalendarModel CalendarId="3" Title="School" />
-                                    <ext:CalendarModel CalendarId="4" Title="Other" />
-                                </Calendars>
-                            </CalendarStore>
-                            <%-- Setting enableFx to false is a workaround for #833 --%>
-                            <MonthView
-                                runat="server"
-                                ShowHeader="true"
-                                ShowWeekLinks="false"
-                                ShowWeekNumbers="true"
-                                EnableFx="false"
-                                
-                                
-                                />
-                            <WeekView runat="server">
-                                <CustomConfig>
-                                    <ext:ConfigItem Name="enableFx" Value="false" Mode="Raw" />
-                                </CustomConfig>
-                            </WeekView>
-                            <DayView runat="server">
-                                <CustomConfig>
-                                    <ext:ConfigItem Name="enableFx" Value="false" Mode="Raw" />
-                                </CustomConfig>
-                            </DayView>
-                            <Listeners>
-                               
-                            </Listeners>
-                        </ext:CalendarPanel>
-            </Items>
-        </ext:Viewport>
+                                   <ext:ComboBox runat="server" ValueField="recordId" DisplayField="name" ID="monthCombo" Name="month" FieldLabel="<%$ Resources:FieldMonth%>" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1">
+                                       <Items>
+                                           <ext:ListItem Text="<%$ Resources:Common,January%>" Value="1" />
+                                           <ext:ListItem Text="<%$ Resources:Common,February%>" Value="2" />
+                                           <ext:ListItem Text="<%$ Resources:Common,March%>" Value="3" />
+                                           <ext:ListItem Text="<%$ Resources:Common,April%>" Value="4" />
+                                           <ext:ListItem Text="<%$ Resources:Common,May%>" Value="5" />
+                                           <ext:ListItem Text="<%$ Resources:Common,June%>" Value="6" />
+                                           <ext:ListItem Text="<%$ Resources:Common,July%>" Value="7" />
+                                           <ext:ListItem Text="<%$ Resources:Common,August%>" Value="8" />
+                                           <ext:ListItem Text="<%$ Resources:Common,September%>" Value="9" />
+                                           <ext:ListItem Text="<%$ Resources:Common,October%>" Value="10" />
+                                           <ext:ListItem Text="<%$ Resources:Common,November%>" Value="11" />
+                                           <ext:ListItem Text="<%$ Resources:Common,December%>" Value="12" />
+                                       </Items>
+                                       </ext:ComboBox>
+                                  <ext:ComboBox runat="server" ValueField="recordId" DisplayField="name" ID="yearCombo" Name="year" FieldLabel="<%$ Resources:FieldYear%>" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1">
+                                       <Items>
+                                            <ext:ListItem Text="2015" Value="2015" />
+                                            <ext:ListItem Text="2016" Value="2016" />
+                                            <ext:ListItem Text="2017" Value="2017" />
+                                            <ext:ListItem Text="2018" Value="2018" />
+                                            <ext:ListItem Text="2019" Value="2019" />
+                                            <ext:ListItem Text="2020" Value="2020" />
+                                           <ext:ListItem Text="2021" Value="2021" />
+                                           
+                                       </Items>
+                                       </ext:ComboBox>
+                                 <ext:Button ID="applyButton" runat="server" Text="<%$ Resources: ApplyFilter%>" >
+                                     <Listeners>
+                                         <Click Handler="CheckSession" />
+                                     </Listeners>
+                                     <DirectEvents>
+                                         <Click  OnEvent="Unnamed_Event">
+                                            
+                                         </Click>
+                                     </DirectEvents>
+                                 </ext:Button>
+                            </Items>
+                        </ext:Toolbar>
+                    </TopBar>
+                    <Content>
+                        <DayPilot:DayPilotScheduler ID="DayPilotScheduler1" runat="server"
+                            HeaderFontSize="8pt" HeaderHeight="20"
+                           
+                            
+                            EventFontSize="11px"
+                            CellDuration="1440"
+                            
+                           
+                            EventHeight="25">
+                            <Resources>
+                                <DayPilot:Resource Name="Room A" Value="A" />
+
+                            </Resources>
+                        </DayPilot:DayPilotScheduler>
+
+                    </Content>
+
+                </ext:Panel>
+      
 
 
 

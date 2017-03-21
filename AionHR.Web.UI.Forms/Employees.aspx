@@ -340,14 +340,15 @@
 
                 <ext:TabPanel ID="panelRecordDetails" Layout="FitLayout" DefaultAnchor="100%" runat="server" ActiveTabIndex="0" Border="false" DeferredRender="false" Region="Center">
                     <Items>
-                        <ext:FormPanel DefaultButton="SaveButton"
+                        <ext:FormPanel DefaultButton="SaveButton" 
                             ID="BasicInfoTab"
                             runat="server"
                             Title="<%$ Resources: BasicInfoTabEditWindowTitle %>"
                             Icon="ApplicationSideList"
                             DefaultAnchor="100%"
                             BodyPadding="5" Layout="TableLayout">
-
+            
+                            
                             <Items>
                                 <ext:Panel runat="server" Margin="20">
                                     <Items>

@@ -157,6 +157,7 @@
     <Content Include="Scripts\AttendanceDayView.js" />
     <Content Include="Scripts\BonusTypes.js" />
     <Content Include="Scripts\Calendars.js" />
+    <Content Include="Scripts\LeaveCalendar.js" />
     <Content Include="Scripts\OrganizationChart.js" />
     <Content Include="Scripts\Payroll.js" />
     <Content Include="Scripts\LeaveTypes.js" />

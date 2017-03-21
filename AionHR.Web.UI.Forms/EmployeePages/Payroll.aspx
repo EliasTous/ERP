@@ -572,8 +572,8 @@
 
                                         <ext:TextField ID="accountNumber" runat="server" FieldLabel="<%$ Resources:FieldAccountNumber%>" Name="accountNumber" AllowBlank="false" />
                                         <ext:TextField ID="comments" runat="server" FieldLabel="<%$ Resources:FieldComments%>" Name="comments" />
-                                        <ext:TextField ID="basicAmount" runat="server" FieldLabel="<%$ Resources:FieldBasicAmount%>" Name="basicAmount" />
-                                        <ext:TextField ID="finalAmount" runat="server" FieldLabel="<%$ Resources:FieldFinalAmount%>" Name="finalAmount" />
+                                        <ext:TextField ID="basicAmount" AllowBlank="false" runat="server" FieldLabel="<%$ Resources:FieldBasicAmount%>" Name="basicAmount" />
+                                        <ext:TextField ID="finalAmount" AllowBlank="false" runat="server" FieldLabel="<%$ Resources:FieldFinalAmount%>" Name="finalAmount" />
                                         <ext:Checkbox ID="isTaxable" runat="server" FieldLabel="<%$ Resources: FieldIsTaxable%>" DataIndex="isTaxable" Name="isTaxable" InputValue="1" />
                                     </Items>
                                 </ext:Panel>
@@ -650,13 +650,13 @@
                                             </ext:Column>--%>
                                             <ext:Column
                                                 runat="server"
-                                                Text="<%$ Resources:FieldEntitlementDeduction%>"
+                                                Text="<%$ Resources:FieldEntitlement%>"
                                                 DataIndex="edId"
                                                 Align="Center">
                                                 <Renderer Fn="entnameRenderer" />
                                                 <Editor>
 
-                                                    <ext:ComboBox runat="server" AllowBlank="false" ValueField="recordId" DisplayField="name" ID="entEdId" Name="edId" StoreID="entsStore">
+                                                    <ext:ComboBox  ForceSelection="true" runat="server" AllowBlank="false" ValueField="recordId" DisplayField="name" ID="entEdId" Name="edId" StoreID="entsStore">
                                                         <RightButtons>
                                                         <ext:Button ID="Button10" runat="server" Icon="Add" Hidden="true">
                                                             <Listeners>
@@ -804,13 +804,13 @@
                                             </ext:Column>--%>
                                             <ext:Column
                                                 runat="server"
-                                                Text="<%$ Resources:FieldEntitlementDeduction%>"
+                                                Text="<%$ Resources:FieldDeduction%>"
                                                 DataIndex="edId"
                                                 Align="Center">
                                                 <Renderer Fn="dednameRenderer" />
                                                 <Editor>
 
-                                                    <ext:ComboBox runat="server" AllowBlank="false" ValueField="recordId" DisplayField="name" ID="dedEdId" Name="deductionId" StoreID="dedsStore">
+                                                    <ext:ComboBox ForceSelection="true" runat="server" AllowBlank="false" ValueField="recordId" DisplayField="name" ID="dedEdId" Name="deductionId" StoreID="dedsStore">
                                                         <RightButtons>
                                                             <ext:Button ID="Button9" runat="server" Icon="Add" Hidden="true">
                                                                 <Listeners>

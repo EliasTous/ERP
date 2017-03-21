@@ -231,11 +231,12 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                 n.recordId = index;
                 n.isTaxable = 0;
                 n.finalAmount = 0;
-                n.employeeId = 0;
+                n.employeeId = Convert.ToInt32(CurrentEmployee.Text);
                 n.comments = "";
                 n.accountNumber = "";
                 n.basicAmount = 0;
                 n.currencyId = 0;
+                
                 n.effectiveDate = DateTime.Now;
                 n.paymentFrequency = n.paymentMethod = n.salaryType = 0;
                 n.scrId = 0;
