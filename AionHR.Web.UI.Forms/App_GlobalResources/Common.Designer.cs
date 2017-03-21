@@ -763,6 +763,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Leave Calendar.
+        /// </summary>
+        internal static string LeaveCalendar {
+            get {
+                return ResourceManager.GetString("LeaveCalendar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Leave Management.
         /// </summary>
         internal static string LeaveManagement {

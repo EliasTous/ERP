@@ -44,6 +44,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DayPilot">
+      <HintPath>..\..\..\..\Desktop\dlls\DayPilot.dll</HintPath>
+    </Reference>
     <Reference Include="Ext.Net, Version=4.1.0.0, Culture=neutral, PublicKeyToken=2e12ce3d0176cd87, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\Ext.net\Ext.NET.WebForms.4.1.0\lib\net45\Ext.Net.dll</HintPath>
@@ -140,6 +143,7 @@
     <Content Include="Images\Tools\edit.png" />
     <Content Include="Images\Tools\expand-all.gif" />
     <Content Include="Images\Tools\group.png" />
+    <Content Include="LeaveCalendar.aspx" />
     <Content Include="LeaveRequests.aspx" />
     <Content Include="LeaveTypes.aspx" />
     <Content Include="Login.aspx" />
@@ -380,6 +384,13 @@
     </Compile>
     <Compile Include="ARLogin.aspx.designer.cs">
       <DependentUpon>ARLogin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LeaveCalendar.aspx.cs">
+      <DependentUpon>LeaveCalendar.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LeaveCalendar.aspx.designer.cs">
+      <DependentUpon>LeaveCalendar.aspx</DependentUpon>
     </Compile>
     <Compile Include="LeaveRequests.aspx.cs">
       <DependentUpon>LeaveRequests.aspx</DependentUpon>
@@ -662,6 +673,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_LocalResources\OrganizationChart.aspx.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_LocalResources\LeaveCalendar.aspx.resx" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

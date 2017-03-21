@@ -360,7 +360,9 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             this.EditSAWindow.Title = Resources.Common.AddNewRecord;
             FillCurrency();
             FillScr();
-            effectiveDate.SelectedDate = DateTime.Today;
+            dedsStore_ReadData(null, null);
+            ensStore_ReadData(null, null);
+              effectiveDate.SelectedDate = DateTime.Today;
 
             this.EditSAWindow.Show();
         }
@@ -468,12 +470,13 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                         return;
                     }
                     b.recordId = r.recordId;
+                    CurrentSalary.Text = b.recordId;
                     entitlements = JsonConvert.DeserializeObject<List<SalaryDetail>>(ents);
-                    JsonSerializerSettings settings = new JsonSerializerSettings();
-                    CustomResolver resolver = new CustomResolver();
-                    resolver.AddRule("deductionId", "edId");
-                    settings.ContractResolver = resolver;
-                    deductions = JsonConvert.DeserializeObject<List<SalaryDetail>>(deds,settings);
+                    //JsonSerializerSettings settings = new JsonSerializerSettings();
+                    //CustomResolver resolver = new CustomResolver();
+                    //resolver.AddRule("deductionId", "edId");
+                    //settings.ContractResolver = resolver;
+                    deductions = JsonConvert.DeserializeObject<List<SalaryDetail>>(deds);
 
                     PostResponse<SalaryDetail[]> result = AddSalaryEntitlementsDeductions(b.recordId, entitlements,deductions);
 
