@@ -143,8 +143,7 @@
                             <ext:Column ID="ColTimeZone" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldTimeZone%>" DataIndex="timeZone" Flex="1" Hideable="false">
                                 <Renderer Handler="var sign = ''; if(record.data['timeZone']>=0) sign = '+'; return 'UTC '+sign + record.data['timeZone'] + ':00 ' " />     
                                 </ext:Column>
-                            <ext:Column ID="ColSegmentCode" Hidden="true" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldSegmentCode%>" DataIndex="segmentCode" Flex="2" Hideable="false"/>
-                           
+                      
                            
                             <ext:CheckColumn ID="ColInactive" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldIsInactive %>" DataIndex="isInactive" Flex="1" Width="75" Hideable="false" />
 

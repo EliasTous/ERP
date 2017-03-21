@@ -780,7 +780,7 @@ namespace AionHR.Web.UI.Forms
             if (string.IsNullOrEmpty(departmentId.Text))
                 return;
             dept.name = departmentId.Text;
-            dept.isSegmentHead = false;
+            
             PostRequest<Department> depReq = new PostRequest<Department>();
             depReq.entity = dept;
             PostResponse<Department> response = _companyStructureService.ChildAddOrUpdate<Department>(depReq);

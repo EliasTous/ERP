@@ -12,7 +12,7 @@ namespace AionHR.Model.Company.Structure
         public string reference { get; set; }
         public string name { get; set; }
         public int timeZone { get; set; }
-        public string segmentCode { get; set; }
+        
         public bool? isInactive { get; set; }
     }
 }

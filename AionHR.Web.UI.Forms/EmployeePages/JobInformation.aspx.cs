@@ -720,7 +720,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
         {
             Department dept = new Department();
             dept.name = departmentId.Text;
-            dept.isSegmentHead = false;
+            
             PostRequest<Department> depReq = new PostRequest<Department>();
             depReq.entity = dept;
             PostResponse<Department> response = _companyStructureService.ChildAddOrUpdate<Department>(depReq);

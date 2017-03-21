@@ -289,6 +289,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                 n.currencyId = 0;
                 n.date = DateTime.Now;
                 n.employeeId = 0;
+                n.recordId = index;
 
 
 
@@ -305,7 +306,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                 else
                 {
                     //Step 2 :  remove the object from the store
-                    SAStore.Remove(index);
+                    BOStore.Remove(index);
 
                     //Step 3 : Showing a notification for the user 
                     Notification.Show(new NotificationConfig
@@ -474,16 +475,9 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     settings.ContractResolver = resolver;
                     deductions = JsonConvert.DeserializeObject<List<SalaryDetail>>(deds,settings);
 
-                    PostResponse<SalaryDetail[]> result = AddSalaryEntitlements(b.recordId, entitlements);
+                    PostResponse<SalaryDetail[]> result = AddSalaryEntitlementsDeductions(b.recordId, entitlements,deductions);
 
-
-                    if (!result.Success)
-                    {
-                        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                        X.Msg.Alert(Resources.Common.Error, result.Summary).Show();
-                        return;
-                    }
-                    result = AddSalaryDeductions(b.recordId, deductions);
+                    
                     if (!result.Success)
                     {
                         X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
@@ -543,11 +537,11 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     }
                     entitlements = JsonConvert.DeserializeObject<List<SalaryDetail>>(ents);
                     JsonSerializerSettings settings = new JsonSerializerSettings();
-                    CustomResolver resolver = new CustomResolver();
-                    resolver.AddRule("deductionId", "edId");
-                    settings.ContractResolver = resolver;
-                    deductions = JsonConvert.DeserializeObject<List<SalaryDetail>>(deds,settings);
-                    PostResponse<SalaryDetail[]> result = AddSalaryEntitlements(b.recordId, entitlements);
+                    //CustomResolver resolver = new CustomResolver();
+                    //resolver.AddRule("deductionId", "edId");
+                    //settings.ContractResolver = resolver;
+                    deductions = JsonConvert.DeserializeObject<List<SalaryDetail>>(deds);
+                    PostResponse<SalaryDetail[]> result = AddSalaryEntitlementsDeductions(b.recordId, entitlements,deductions);
 
 
                     if (!result.Success)
@@ -556,13 +550,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                         X.Msg.Alert(Resources.Common.Error, result.Summary).Show();
                         return;
                     }
-                    result = AddSalaryDeductions(b.recordId, deductions);
-                    if (!result.Success)
-                    {
-                        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                        X.Msg.Alert(Resources.Common.Error, result.Summary).Show();
-                        return;
-                    }
+                 
                     else
                     {
 
@@ -888,30 +876,22 @@ namespace AionHR.Web.UI.Forms.EmployeePages
 
         #endregion
 
-        private PostResponse<SalaryDetail[]> AddSalaryEntitlements(string salaryIdString, List<SalaryDetail> details)
+        private PostResponse<SalaryDetail[]> AddSalaryEntitlementsDeductions(string salaryIdString, List<SalaryDetail> entitlements, List<SalaryDetail> deductions)
         {
             short i = 1;
             int salaryId = Convert.ToInt32(salaryIdString);
-            foreach (var detail in details)
+            
+            foreach (var detail in entitlements)
             {
 
                 detail.seqNo = i++;
                 detail.salaryId = salaryId;
                 if (!detail.includeInTotal.HasValue)
                     detail.includeInTotal = false;
-                detail.type = 1;
+                
 
             }
-            PostRequest<SalaryDetail[]> periodRequest = new PostRequest<SalaryDetail[]>();
-            periodRequest.entity = details.ToArray();
-            PostResponse<SalaryDetail[]> response = _employeeService.ChildAddOrUpdate<SalaryDetail[]>(periodRequest);
-            return response;
-        }
-        private PostResponse<SalaryDetail[]> AddSalaryDeductions(string salaryIdString, List<SalaryDetail> details)
-        {
-            short i = 1;
-            int salaryId = Convert.ToInt32(salaryIdString);
-            foreach (var detail in details)
+            foreach (var detail in deductions)
             {
 
                 detail.seqNo = i++;
@@ -919,14 +899,53 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                 if (!detail.includeInTotal.HasValue)
                     detail.includeInTotal = false;
 
-                detail.type = 2;
 
             }
             PostRequest<SalaryDetail[]> periodRequest = new PostRequest<SalaryDetail[]>();
-            periodRequest.entity = details.ToArray();
+            entitlements.AddRange(deductions);
+            periodRequest.entity = entitlements.ToArray();
             PostResponse<SalaryDetail[]> response = _employeeService.ChildAddOrUpdate<SalaryDetail[]>(periodRequest);
             return response;
         }
+        //private PostResponse<SalaryDetail[]> AddSalaryEntitlements(string salaryIdString, List<SalaryDetail> details)
+        //{
+        //    short i = 1;
+        //    int salaryId = Convert.ToInt32(salaryIdString);
+        //    foreach (var detail in details)
+        //    {
+
+        //        detail.seqNo = i++;
+        //        detail.salaryId = salaryId;
+        //        if (!detail.includeInTotal.HasValue)
+        //            detail.includeInTotal = false;
+        //        detail.type = 1;
+
+        //    }
+        //    PostRequest<SalaryDetail[]> periodRequest = new PostRequest<SalaryDetail[]>();
+        //    periodRequest.entity = details.ToArray();
+        //    PostResponse<SalaryDetail[]> response = _employeeService.ChildAddOrUpdate<SalaryDetail[]>(periodRequest);
+        //    return response;
+        //}
+        //private PostResponse<SalaryDetail[]> AddSalaryDeductions(string salaryIdString, List<SalaryDetail> details)
+        //{
+        //    short i = 1;
+        //    int salaryId = Convert.ToInt32(salaryIdString);
+        //    foreach (var detail in details)
+        //    {
+
+        //        detail.seqNo = i++;
+        //        detail.salaryId = salaryId;
+        //        if (!detail.includeInTotal.HasValue)
+        //            detail.includeInTotal = false;
+
+        //        detail.type = 2;
+
+        //    }
+        //    PostRequest<SalaryDetail[]> periodRequest = new PostRequest<SalaryDetail[]>();
+        //    periodRequest.entity = details.ToArray();
+        //    PostResponse<SalaryDetail[]> response = _employeeService.ChildAddOrUpdate<SalaryDetail[]>(periodRequest);
+        //    return response;
+        //}
 
         protected void ensStore_ReadData(object sender, StoreReadDataEventArgs e)
         {

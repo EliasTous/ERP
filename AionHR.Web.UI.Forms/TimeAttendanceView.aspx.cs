@@ -68,6 +68,7 @@ namespace AionHR.Web.UI.Forms
                 HideShowColumns();
                 FillBranch();
                 FillDepartment();
+                FillDivision();
                 dayId.SelectedDate = DateTime.Today;
 
 

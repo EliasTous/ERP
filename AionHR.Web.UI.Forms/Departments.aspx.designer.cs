@@ -202,15 +202,6 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Column ColsupervisorId;
         
         /// <summary>
-        /// ColIsSegmented control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.CheckColumn ColIsSegmented;
-        
-        /// <summary>
         /// ColParentName control.
         /// </summary>
         /// <remarks>
@@ -355,13 +346,13 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.TextField departmentRef;
         
         /// <summary>
-        /// isSegmentHeadCheck control.
+        /// isInactiveCheck control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Checkbox isSegmentHeadCheck;
+        protected global::Ext.Net.Checkbox isInactiveCheck;
         
         /// <summary>
         /// supervisorId control.

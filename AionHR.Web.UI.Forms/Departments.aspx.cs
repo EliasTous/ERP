@@ -438,6 +438,8 @@ namespace AionHR.Web.UI.Forms
                 b.supervisorName.fullName = supervisorId.SelectedItem.Text;
             if (parentId.SelectedItem != null)
                 b.parentName = parentId.SelectedItem.Text;
+            if (!b.isInactive.HasValue)
+                b.isInactive = false;
             if (string.IsNullOrEmpty(id))
             {
 
@@ -578,7 +580,7 @@ namespace AionHR.Web.UI.Forms
             if (string.IsNullOrEmpty(parentId.Text))
                 return;
             dept.name = parentId.Text;
-            dept.isSegmentHead = false;
+            
             PostRequest<Department> depReq = new PostRequest<Department>();
             depReq.entity = dept;
             PostResponse<Department> response = _branchService.ChildAddOrUpdate<Department>(depReq);

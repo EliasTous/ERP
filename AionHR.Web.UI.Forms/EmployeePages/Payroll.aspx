@@ -722,7 +722,7 @@
                                                 <Editor>
                                                     <ext:TextField
                                                         runat="server"
-                                                        AllowBlank="false" />
+                                                        AllowBlank="true" />
                                                 </Editor>
                                             </ext:Column>
                                         </Columns>

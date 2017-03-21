@@ -47,8 +47,6 @@
                         <ext:ModelField Name="supervisorId" />
                         <ext:ModelField Name="svFullName" ServerMapping="supervisorName.fullName" />
 
-                        <ext:ModelField Name="isSegmentHead" />
-                        <ext:ModelField Name="segmentCode" />
                         <ext:ModelField Name="parentName" />
                         <ext:ModelField Name="parentId" />
 
@@ -133,7 +131,6 @@
                             </ext:Column>
                             <ext:Column Visible="false" ID="ColparentId" MenuDisabled="true" runat="server" DataIndex="parentId" Flex="1" Hideable="false" />
                             <ext:Column Visible="false" ID="ColsupervisorId" MenuDisabled="true" runat="server" DataIndex="supervisorId" Flex="1" Hideable="false" />
-                            <ext:CheckColumn ID="ColIsSegmented" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldIsSegmentedHead %>" Flex="1" DataIndex="isSegmentHead" Hideable="false" />
                             <ext:Column ID="ColParentName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldParentName%>" DataIndex="parentName" Flex="1" Hideable="false" />
                             <ext:Column ID="ColSvName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldSvFullName%>" DataIndex="svFullName" Flex="1" Hideable="false" />
 
@@ -274,7 +271,7 @@
                                 <ext:TextField ID="departmentRef" runat="server" FieldLabel="<%$ Resources: FieldReference %>" DataIndex="departmentRef" />
 
 
-                                <ext:Checkbox ID="isSegmentHeadCheck" runat="server" FieldLabel="<%$ Resources: FieldIsSegmentedHead%>" DataIndex="isSegmentHead" Name="isSegmentHead" InputValue="true" />
+                                <ext:Checkbox ID="isInactiveCheck" runat="server" FieldLabel="<%$ Resources: FieldIsInactive%>" DataIndex="isInactive" Name="isInactive" InputValue="true" />
                                 <ext:ComboBox runat="server" ID="supervisorId"
                                     DisplayField="fullName"
                                     ValueField="recordId"
