@@ -116,7 +116,7 @@ namespace AionHR.Web.UI.Forms
             
             switch (type)
             {
-                case "ColName":
+                case "normal":
                     //Step 1 : get the object from the Web Service 
                     RecordRequest r = new RecordRequest();
                     r.RecordID = id;

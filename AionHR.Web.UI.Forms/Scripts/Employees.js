@@ -85,8 +85,14 @@ var showImagePreview = function (id) {
     else {
         $("#" + $('#imgControl')[0].firstChild.id).attr('src', '');
         App.picturePath.reset();
-        picturePath.Clear();
+        App.picturePath.Clear();
     }
+}
+
+var ClearImage = function()
+{
+    App.picturePath.reset();  
+    $("#" + $('#imgControl')[0].firstChild.id).attr('src', '');
 }
 
 

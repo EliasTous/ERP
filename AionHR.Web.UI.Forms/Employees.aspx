@@ -15,7 +15,7 @@
     
     <script type="text/javascript" src="Scripts/Branches.js?id=0"></script>
     <script type="text/javascript" src="Scripts/common.js?id=0"></script>
-    <script type="text/javascript" src="Scripts/Employees.js?id=17"></script>
+    <script type="text/javascript" src="Scripts/Employees.js?id=18"></script>
     <script type="text/javascript">
        
     </script>
@@ -305,7 +305,8 @@
                                 </ext:Image>
                                 <ext:HyperlinkButton runat="server" Text="Clear" >
                                     <Listeners>
-                                        <Click Handler="showImagePreview(App.picturePath.fileInputEl.id);" />
+                                        <Click Handler=" ClearImage();" />
+
                                     </Listeners>
                                 </ext:HyperlinkButton>
                                 <ext:FileUploadField ID="picturePath" runat="server" ButtonOnly="true" Hidden="true">

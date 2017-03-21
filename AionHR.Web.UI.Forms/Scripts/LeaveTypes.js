@@ -40,13 +40,15 @@ var cellClick = function (view, cell, columnIndex, record, row, rowIndex, e) {
 
 
     //forbidden
-    return false;
+    return true;
 };
 
 
 var getCellType = function (grid, rowIndex, cellIndex) {
    
     var columnId = grid.columns[cellIndex].id; // Get column id
+    if (columnId != "colDelete")
+        return "normal";
     return columnId;
 };
 

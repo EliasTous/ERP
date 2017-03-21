@@ -211,7 +211,7 @@
     <value>Job Information</value>
   </data>
   <data name="PayrollTab" xml:space="preserve">
-    <value>Payroll</value>
+    <value>Salary</value>
   </data>
   <data name="WindowTitle" xml:space="preserve">
     <value>Employees</value>
