@@ -246,4 +246,7 @@
   <data name="FieldDeduction" xml:space="preserve">
     <value>Deduction</value>
   </data>
+  <data name="FieldIsPercentage" xml:space="preserve">
+    <value>Is Percentage</value>
+  </data>
 </root>

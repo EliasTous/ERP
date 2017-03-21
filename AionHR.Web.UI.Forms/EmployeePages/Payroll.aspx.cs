@@ -148,6 +148,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     this.EditSAWindow.Show();
 
                     TabPanel2.ActiveIndex = 0;
+                    BasicSalary.Text =  e.ExtraParams["sal"];
                     break;
 
                 case "ColSADelete":
@@ -381,6 +382,28 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             this.EditBOWindow.Show();
         }
 
+        protected void ADDNewEN(object sender, DirectEventArgs e)
+        {
+
+            //Reset all values of the relative object
+            ENForm.Reset();
+            this.EditENWindow.Title = Resources.Common.AddNewRecord;
+            ensStore_ReadData(null, null);
+
+            this.EditENWindow.Show();
+        }
+
+        protected void ADDNewDE(object sender, DirectEventArgs e)
+        {
+
+            //Reset all values of the relative object
+            DEForm.Reset();
+            this.EditDEWindow.Title = Resources.Common.AddNewRecord;
+            dedsStore_ReadData(null, null);
+
+            this.EditDEWindow.Show();
+        }
+
         protected void SAStore_Refresh(object sender, StoreReadDataEventArgs e)
         {
             EmployeeSalaryListRequest request = new EmployeeSalaryListRequest();
@@ -583,6 +606,11 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorUpdatingRecord).Show();
                 }
             }
+        }
+
+        protected void SaveEN(object sender, DirectEventArgs e)
+        {
+            
         }
 
         protected void SaveBO(object sender, DirectEventArgs e)

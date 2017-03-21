@@ -96,6 +96,18 @@ function TogglePaymentMethod(index)
 
 }
 
+function TogglePerc(isPercentage) {
+    App.enPCT.setDisabled(!isPercentage);
+    App.enFixedAmount.setDisabled(isPercentage);
+
+}
+
+function DETogglePerc(isPercentage) {
+    App.dePCT.setDisabled(!isPercentage);
+    App.deFixedAmount.setDisabled(isPercentage);
+
+}
+
 function addEntitlement() {
     var entitlementsGrid = App.entitlementsGrid,
         store = entitlementsGrid.getStore();
@@ -198,3 +210,14 @@ var dednameRenderer = function (value) {
     return r.data.name;
 };
 
+function CalculateFixed(pct)
+{
+    var x = (pct / 100) * document.getElementById("BasicSalary").value;
+    return x;
+}
+function CalculatePct(fixed)
+
+{
+    var x = (fixed / document.getElementById("BasicSalary").value) * 100;
+    return x;
+}
