@@ -9,7 +9,7 @@
     <title></title>
     <link rel="stylesheet" type="text/css" href="../CSS/Common.css?id=1" />
     <link rel="stylesheet" href="../CSS/LiveSearch.css" />
-    <script type="text/javascript" src="../Scripts/Payroll.js?id=14"></script>
+    <script type="text/javascript" src="../Scripts/Payroll.js?id=16"></script>
     <script type="text/javascript" src="../Scripts/common.js?id=0"></script>
 
 
@@ -577,10 +577,10 @@
                                         <ext:TextField ID="comments" runat="server" FieldLabel="<%$ Resources:FieldComments%>" Name="comments" />
                                         <ext:TextField ID="basicAmount" AllowBlank="false" runat="server" FieldLabel="<%$ Resources:FieldBasicAmount%>" Name="basicAmount">
                                             <Listeners>
-                                                <Change Handler="document.getElementById('BasicSalary').value=this.getValue();" />
+                                                <Change Handler="document.getElementById('BasicSalary').value=this.getValue(); this.next().setValue(this.value);" />
                                             </Listeners>
                                         </ext:TextField>
-                                        <ext:TextField ID="finalAmount" AllowBlank="false" runat="server" FieldLabel="<%$ Resources:FieldFinalAmount%>" Name="finalAmount" />
+                                        <ext:TextField ID="finalAmount"  ReadOnly="true" AllowBlank="false" runat="server" FieldLabel="<%$ Resources:FieldFinalAmount%>" Name="finalAmount" />
                                         <ext:Checkbox ID="isTaxable" runat="server" FieldLabel="<%$ Resources: FieldIsTaxable%>" DataIndex="isTaxable" Name="isTaxable" InputValue="1" />
                                     </Items>
                                 </ext:Panel>
@@ -1131,6 +1131,7 @@
                             <Items>
 
                                 <ext:TextField ID="ENId" Hidden="true" runat="server" FieldLabel="<%$ Resources:FieldrecordId%>" Disabled="true" Name="recordId" />
+                                <ext:TextField ID="oldEntValue" Hidden="true" runat="server" FieldLabel="<%$ Resources:FieldrecordId%>" Disabled="true" Name="recordId" />
                               <ext:ComboBox runat="server" ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" AllowBlank="false" DisplayField="name" ID="entEdId" Name="edId" FieldLabel="<%$ Resources:FieldEntitlement%>" SimpleSubmit="true" StoreID="entsStore">
                                             
                                              <RightButtons>
@@ -1199,6 +1200,7 @@
                             <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="={#{EditENWindow}.body}" />
                             <ExtraParams>
                                 <ext:Parameter Name="id" Value="#{ENId}.getValue()" Mode="Raw" />
+                                <ext:Parameter Name="oldAmount" Value="#{oldEntValue}.getValue()" Mode="Raw" />
                                 <ext:Parameter Name="values" Value="#{ENForm}.getForm().getValues(false, false, false, true)" Mode="Raw" Encode="true" />
                             </ExtraParams>
                         </Click>
@@ -1242,7 +1244,7 @@
                             DefaultAnchor="100%" Layout="AutoLayout"
                             BodyPadding="5">
                             <Items>
-
+                                 <ext:TextField ID="DEoldValue" Hidden="true" runat="server" FieldLabel="<%$ Resources:FieldrecordId%>" Disabled="true" Name="recordId" />
                                 <ext:TextField ID="DEId" Hidden="true" runat="server" FieldLabel="<%$ Resources:FieldrecordId%>" Disabled="true" Name="recordId" />
                                 <ext:ComboBox  runat="server" ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" AllowBlank="false" DisplayField="name" ID="dedEdId" Name="DEedId" FieldLabel="<%$ Resources:FieldDeduction%>" SimpleSubmit="true" StoreID="dedsStore">
                                     <RightButtons>
@@ -1310,6 +1312,7 @@
                             <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="={#{EditDEWindow}.body}" />
                             <ExtraParams>
                                 <ext:Parameter Name="id" Value="#{DEId}.getValue()" Mode="Raw" />
+                                <ext:Parameter Name="oldAmount" Value="#{DEoldValue}.getValue()" Mode="Raw" />
                                 <ext:Parameter Name="values" Value="#{DEForm}.getForm().getValues(false, false, false, true)" Mode="Raw" Encode="true" />
                             </ExtraParams>
                         </Click>

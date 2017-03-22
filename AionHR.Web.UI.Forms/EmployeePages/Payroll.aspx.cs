@@ -117,6 +117,8 @@ namespace AionHR.Web.UI.Forms.EmployeePages
 
             int id = Convert.ToInt32(e.ExtraParams["id"]);
             string type = e.ExtraParams["type"];
+            string deduction,entitlement="";
+            SalaryDetail dedDetail,entDetail=null;
             switch (type)
             {
 
@@ -210,17 +212,20 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     
                     ensStore_ReadData(null, null);
                     ENId.Text = detail.seqNo.ToString();
+                    oldEntValue.Text = detail.fixedAmount.ToString();
                     ENForm.SetValues(detail);
                     entEdId.Select(detail.edId.ToString());
                     EditENWindow.Show();
                     break;
                 case "ColENDelete":
+                    entitlement = e.ExtraParams["values"];
+                    entDetail = JsonConvert.DeserializeObject<List<SalaryDetail>>(entitlement)[0];
                     X.Msg.Confirm(Resources.Common.Confirmation, Resources.Common.DeleteOneRecord, new MessageBoxButtonsConfig
                     {
                         Yes = new MessageBoxButtonConfig
                         {
                             //We are call a direct request metho for deleting a record
-                            Handler = String.Format("App.direct.DeleteEN({0})", id),
+                            Handler = String.Format("App.direct.DeleteEN({0},{1})", id,entDetail.fixedAmount),
                             Text = Resources.Common.Yes
                         },
                         No = new MessageBoxButtonConfig
@@ -232,20 +237,23 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     break;
                 case "ColDEName":
                     
-                    string deduction = e.ExtraParams["values"];
-                    SalaryDetail dedDetail = JsonConvert.DeserializeObject<List<SalaryDetail>>(deduction)[0];
+                    deduction = e.ExtraParams["values"];
+                     dedDetail = JsonConvert.DeserializeObject<List<SalaryDetail>>(deduction)[0];
                     DEId.Text = dedDetail.seqNo.ToString();
                     DEForm.SetValues(dedDetail);
+                    DEoldValue.Text = dedDetail.fixedAmount.ToString(); ;
                     dedEdId.Select(dedDetail.edId.ToString());
                     EditDEWindow.Show();
                     break;
                 case "ColDEDelete":
+                    deduction = e.ExtraParams["values"];
+                    dedDetail = JsonConvert.DeserializeObject<List<SalaryDetail>>(deduction)[0];
                     X.Msg.Confirm(Resources.Common.Confirmation, Resources.Common.DeleteOneRecord, new MessageBoxButtonsConfig
                     {
                         Yes = new MessageBoxButtonConfig
                         {
                             //We are call a direct request metho for deleting a record
-                            Handler = String.Format("App.direct.DeleteDE({0})", id),
+                            Handler = String.Format("App.direct.DeleteDE({0},{1})", id,dedDetail.fixedAmount),
                             Text = Resources.Common.Yes
                         },
                         No = new MessageBoxButtonConfig
@@ -381,7 +389,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
         }
 
         [DirectMethod]
-        public void DeleteEN(string index)
+        public void DeleteEN(string index,double value)
         {
             try
             {
@@ -395,7 +403,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     Icon = Icon.Information,
                     Html = Resources.Common.RecordDeletedSucc
                 });
-
+                X.Call("ChangeFinalAmount", -value);
 
             }
             catch (Exception ex)
@@ -407,7 +415,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             }
         }
         [DirectMethod]
-        public void DeleteDE(string index)
+        public void DeleteDE(string index,double value)
         {
             try
             {
@@ -422,7 +430,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     Html = Resources.Common.RecordDeletedSucc
                 });
 
-
+                X.Call("ChangeFinalAmount", value);
             }
             catch (Exception ex)
             {
@@ -720,6 +728,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             string id = e.ExtraParams["id"];
 
             string obj = e.ExtraParams["values"];
+            string oldAmount = e.ExtraParams["oldAmount"];
             SalaryDetail b = JsonConvert.DeserializeObject<SalaryDetail>(obj);
 
             b.seqNo = Convert.ToInt16(ENSeq.Text);
@@ -736,7 +745,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             {
                 b.fixedAmount = (b.pct / 100) * Convert.ToDouble(BasicSalary.Text);
             }
-
+           
             if (string.IsNullOrEmpty(id))
             {
 
@@ -758,7 +767,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     });
 
                     this.EditENWindow.Close();
-
+                    X.Call("ChangeFinalAmount", b.fixedAmount);
                 }
 
                 catch (Exception ex)
@@ -777,9 +786,10 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                 try
                 {
                     ModelProxy record = this.entitlementsStore.GetById(id);
-                    ENForm.UpdateRecord(record);
+                    
                     record.Set("edName", b.edName);
-
+                   ENForm.UpdateRecord(record);
+                    record.Set("fixedAmount", b.fixedAmount);
                     record.Commit();
                     Notification.Show(new NotificationConfig
                     {
@@ -788,6 +798,8 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                         Html = Resources.Common.RecordUpdatedSucc
                     });
                     this.EditENWindow.Close();
+                    double newChange = b.fixedAmount - Convert.ToDouble(oldAmount);
+                    X.Call("ChangeFinalAmount", newChange);
                 }
                 catch (Exception ex)
                 {
@@ -801,6 +813,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             string id = e.ExtraParams["id"];
 
             string obj = e.ExtraParams["values"];
+            string oldAmount = e.ExtraParams["oldAmount"];
             JsonSerializerSettings settings = new JsonSerializerSettings();
             CustomResolver res = new CustomResolver();
             res.AddRule("DEedId", "edId");
@@ -821,7 +834,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             {
                 b.fixedAmount = (b.pct / 100) * Convert.ToDouble(BasicSalary.Text);
             }
-
+           
             if (string.IsNullOrEmpty(id))
             {
 
@@ -843,7 +856,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     });
 
                     this.EditDEWindow.Close();
-
+                    X.Call("ChangeFinalAmount", -b.fixedAmount);
                 }
 
                 catch (Exception ex)
@@ -862,9 +875,10 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                 try
                 {
                     ModelProxy record = this.deductionStore.GetById(id);
-                    DEForm.UpdateRecord(record);
+                    
                     record.Set("edName", b.edName);
-
+                    DEForm.UpdateRecord(record);
+                    record.Set("fixedAmount", b.fixedAmount);
                     record.Commit();
                     Notification.Show(new NotificationConfig
                     {
@@ -873,6 +887,8 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                         Html = Resources.Common.RecordUpdatedSucc
                     });
                     this.EditDEWindow.Close();
+                    double newChange = Convert.ToDouble(oldAmount)  -b.fixedAmount;
+                    X.Call("ChangeFinalAmount", newChange);
                 }
                 catch (Exception ex)
                 {
