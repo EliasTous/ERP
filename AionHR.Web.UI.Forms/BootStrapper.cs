@@ -2,6 +2,7 @@
 using AionHR.Infrastructure.Logging;
 using AionHR.Infrastructure.Session;
 using AionHR.Infrastructure.Tokens;
+using AionHR.Model.Company.Cases;
 using AionHR.Model.Company.Structure;
 using AionHR.Model.Employees;
 using AionHR.Model.LeaveManagement;
@@ -50,6 +51,7 @@ namespace AionHR.Web.UI.Forms
                 For<ILeaveManagementRepository>().Use<LeaveManagementRepository>();
                 For<ICompanyStructureRepository>().Use<CompanyStructureRepository>();
                 For<ITimeAttendanceRepository>().Use<TimeAttendanceRepository>();
+                For<ICasesRepository>().Use<CasesRepository>();
 
                 //Services
                 For<ISystemService>().Use<SystemService>();
@@ -58,6 +60,7 @@ namespace AionHR.Web.UI.Forms
                 For<ICompanyStructureService>().Use<CompanyStructureService>();
                 For<ILeaveManagementService>().Use<LeaveManagementService>();
                 For<ITimeAttendanceService>().Use<TimeAttendanceService>();
+                For<ICaseService>().Use<CaseService>();
             }
         }
     }

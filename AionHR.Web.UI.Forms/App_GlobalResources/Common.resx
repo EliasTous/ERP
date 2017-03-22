@@ -525,9 +525,6 @@
   <data name="CertificateLevels" xml:space="preserve">
     <value>Certificate Levels</value>
   </data>
-  <data name="TrainingTypes" xml:space="preserve">
-    <value>Training Types</value>
-  </data>
   <data name="EntitlementDeduction" xml:space="preserve">
     <value>Entitlement Deduction</value>
   </data>

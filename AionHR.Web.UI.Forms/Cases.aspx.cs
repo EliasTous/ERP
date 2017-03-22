@@ -26,11 +26,14 @@ using AionHR.Model.Employees.Leaves;
 using AionHR.Model.Employees.Profile;
 using AionHR.Model.LeaveManagement;
 using AionHR.Services.Messaging.System;
+using AionHR.Model.Company.Cases;
 
 namespace AionHR.Web.UI.Forms
 {
-    public partial class LeaveRequests : System.Web.UI.Page
+    public partial class Cases : System.Web.UI.Page
     {
+
+
         [DirectMethod]
         public object FillEmployee(string action, Dictionary<string, object> extraParams)
         {
@@ -59,7 +62,6 @@ namespace AionHR.Web.UI.Forms
             return response.Items;
         }
 
-
         private string GetNameFormat()
         {
             SystemDefaultRecordRequest req = new SystemDefaultRecordRequest();
@@ -78,27 +80,11 @@ namespace AionHR.Web.UI.Forms
 
         }
 
-       
-        public void FillLeaveType()
-        {
-            
-            ListRequest req = new ListRequest();
-
-            ListResponse<LeaveType> response = _leaveManagementService.ChildGetAll<LeaveType>(req);
-            if(!response.Success)
-            {
-                X.Msg.Alert(Resources.Common.Error, response.Summary).Show();
-                return;
-            }
-            ltStore.DataSource = response.Items;
-            ltStore.DataBind();
-
-        }
-
         ISystemService _systemService = ServiceLocator.Current.GetInstance<ISystemService>();
-        ILeaveManagementService _leaveManagementService = ServiceLocator.Current.GetInstance<ILeaveManagementService>();
+
         IEmployeeService _employeeService = ServiceLocator.Current.GetInstance<IEmployeeService>();
-        ICompanyStructureService _companyStructureService = ServiceLocator.Current.GetInstance<ICompanyStructureService>();
+
+        ICaseService _caseService = ServiceLocator.Current.GetInstance<ICaseService>();
         protected override void InitializeCulture()
         {
 
@@ -181,7 +167,7 @@ namespace AionHR.Web.UI.Forms
 
             string id = e.ExtraParams["id"];
             string type = e.ExtraParams["type"];
-            
+
             switch (type)
             {
                 case "ColName":
@@ -189,8 +175,7 @@ namespace AionHR.Web.UI.Forms
                     RecordRequest r = new RecordRequest();
                     r.RecordID = id;
 
-                    
-                    RecordResponse<LeaveRequest> response = _leaveManagementService.ChildGetRecord<LeaveRequest>(r);
+                    RecordResponse<Case> response = _caseService.ChildGetRecord<Case>(r);
                     if (!response.Success)
                     {
                         X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
@@ -200,22 +185,6 @@ namespace AionHR.Web.UI.Forms
                     //Step 2 : call setvalues with the retrieved object
                     this.BasicInfoTab.SetValues(response.result);
 
-                    FillLeaveType();
-                    ltId.Select(response.result.ltId.ToString());
-                    if (response.result.employeeId!=0)
-                    {
-
-                        employeeId.GetStore().Add(new object[]
-                           {
-                                new
-                                {
-                                    recordId = response.result.employeeId,
-                                    fullName =response.result.employeeName.fullName
-                                }
-                           });
-                        employeeId.SetValue(response.result.employeeId);
-
-                    }
 
                     this.EditRecordWindow.Title = Resources.Common.EditWindowsTitle;
                     this.EditRecordWindow.Show();
@@ -259,20 +228,19 @@ namespace AionHR.Web.UI.Forms
             try
             {
                 //Step 1 Code to delete the object from the database 
-                LeaveRequest s = new LeaveRequest();
+                Case s = new Case();
                 s.recordId = index;
-                s.destination = "";
                 s.employeeId = 0;
-                s.endDate = DateTime.Now;
-                s.startDate = DateTime.Now;
+                s.employeeName = new EmployeeName();
+                s.details = "";
+                s.date = DateTime.Now;
+                s.closedDate = DateTime.Now;
                 s.status = 0;
-                s.isPaid = false;
-                s.justification = "";
-                s.ltId = 0;
-                   
-                PostRequest<LeaveRequest> req = new PostRequest<LeaveRequest>();
+
+
+                PostRequest<Case> req = new PostRequest<Case>();
                 req.entity = s;
-                PostResponse<LeaveRequest> r = _leaveManagementService.ChildDelete<LeaveRequest>(req);
+                PostResponse<Case> r = _caseService.Delete<Case>(req);
                 if (!r.Success)
                 {
                     X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
@@ -388,7 +356,7 @@ namespace AionHR.Web.UI.Forms
             //Reset all values of the relative object
             BasicInfoTab.Reset();
 
-            FillLeaveType();
+
             this.EditRecordWindow.Title = Resources.Common.AddNewRecord;
 
 
@@ -407,19 +375,12 @@ namespace AionHR.Web.UI.Forms
             //Fetching the corresponding list
 
             //in this test will take a list of News
-            LeaveRequestListRequest request = new LeaveRequestListRequest();
-            request.EmployeeId = 0;
-            request.BranchId = 0;
-            request.DepartmentId = 0;
-            request.OpenRequests = false;
-            request.Size = "50";
-            request.StartAt = "1";
-            request.SortBy = "firstName";
+            ListRequest request = new ListRequest();
 
             request.Filter = "";
-            ListResponse<LeaveRequest> routers = _leaveManagementService.ChildGetAll<LeaveRequest>(request);
+            ListResponse<Case> routers = _caseService.GetAll<Case>(request);
             if (!routers.Success)
-                return;
+                X.Msg.Alert(Resources.Common.Error, routers.Summary).Show();
             this.Store1.DataSource = routers.Items;
             e.Total = routers.Items.Count; ;
 
@@ -437,19 +398,16 @@ namespace AionHR.Web.UI.Forms
 
 
             string obj = e.ExtraParams["values"];
-            LeaveRequest b = JsonConvert.DeserializeObject<LeaveRequest>(obj);
+            Case b = JsonConvert.DeserializeObject<Case>(obj);
 
             string id = e.ExtraParams["id"];
             // Define the object to add or edit as null
-            if (!b.isPaid.HasValue)
-                b.isPaid = false;
+
             b.employeeName = new EmployeeName();
             if (employeeId.SelectedItem != null)
-
+               
                 b.employeeName.fullName = employeeId.SelectedItem.Text;
-            if (ltId.SelectedItem != null)
 
-                b.ltName = ltId.SelectedItem.Text;
             if (string.IsNullOrEmpty(id))
             {
 
@@ -457,10 +415,10 @@ namespace AionHR.Web.UI.Forms
                 {
                     //New Mode
                     //Step 1 : Fill The object and insert in the store 
-                    PostRequest<LeaveRequest> request = new PostRequest<LeaveRequest>();
+                    PostRequest<Case> request = new PostRequest<Case>();
 
                     request.entity = b;
-                    PostResponse<LeaveRequest> r = _leaveManagementService.ChildAddOrUpdate<LeaveRequest>(request);
+                    PostResponse<Case> r = _caseService.AddOrUpdate<Case>(request);
 
 
                     //check if the insert failed
@@ -510,9 +468,9 @@ namespace AionHR.Web.UI.Forms
                 try
                 {
                     //getting the id of the record
-                    PostRequest<LeaveRequest> request = new PostRequest<LeaveRequest>();
+                    PostRequest<Case> request = new PostRequest<Case>();
                     request.entity = b;
-                    PostResponse<LeaveRequest> r = _leaveManagementService.ChildAddOrUpdate<LeaveRequest>(request);                      //Step 1 Selecting the object or building up the object for update purpose
+                    PostResponse<Case> r = _caseService.AddOrUpdate<Case>(request);                      //Step 1 Selecting the object or building up the object for update purpose
 
                     //Step 2 : saving to store
 
@@ -520,7 +478,7 @@ namespace AionHR.Web.UI.Forms
                     if (!r.Success)//it maybe another check
                     {
                         X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                        X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorUpdatingRecord).Show();
+                        X.Msg.Alert(Resources.Common.Error, r.Summary).Show();
                         return;
                     }
                     else
@@ -529,8 +487,7 @@ namespace AionHR.Web.UI.Forms
 
                         ModelProxy record = this.Store1.GetById(id);
                         BasicInfoTab.UpdateRecord(record);
-                       // record.Set("employeeName", b.employeeName.fullName);
-                        record.Set("ltName", b.ltName);
+                        record.Set("employeeName", b.employeeName.fullName);
                         record.Commit();
                         Notification.Show(new NotificationConfig
                         {
@@ -566,34 +523,5 @@ namespace AionHR.Web.UI.Forms
         {
 
         }
-
-        protected void addLeaveType(object sender, DirectEventArgs e)
-        {
-            if (string.IsNullOrEmpty(ltId.Text))
-                return;
-            LeaveType dept = new LeaveType();
-            dept.name = ltId.Text;
-
-            PostRequest<LeaveType> depReq = new PostRequest<LeaveType>();
-            depReq.entity = dept;
-            PostResponse<LeaveType> response = _leaveManagementService.ChildAddOrUpdate<LeaveType>(depReq);
-            if (response.Success)
-            {
-                dept.recordId = response.recordId;
-                ltStore.Insert(0, dept);
-                ltId.Select(0);
-            }
-            else
-            {
-                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, response.Summary).Show();
-                return;
-            }
-
-        }
-
-
-
-
     }
 }
