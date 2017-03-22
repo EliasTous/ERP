@@ -126,7 +126,7 @@ namespace AionHR.Web.UI.Forms
 
             switch (type)
             {
-                case "ColName":
+                case "imgEdit":
 
                     //Step 1 : get the object from the Web Service 
                     FillProfileInfo(id.ToString());
@@ -142,7 +142,7 @@ namespace AionHR.Web.UI.Forms
                     this.EditRecordWindow.Show();
                     break;
 
-                case "colDelete":
+                case "imgDelete":
                     X.Msg.Confirm(Resources.Common.Confirmation, Resources.Common.DeleteOneRecord, new MessageBoxButtonsConfig
                     {
                         Yes = new MessageBoxButtonConfig
@@ -163,9 +163,7 @@ namespace AionHR.Web.UI.Forms
 
                     //Here will show up a winow relatice to attachement depending on the case we are working on
                     break;
-                case "colEdit":
-
-                    break;
+          
 
                 default:
                     break;

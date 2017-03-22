@@ -15,7 +15,7 @@
     
     
     <script type="text/javascript" src="Scripts/common.js?id=1"></script>
-    <script type="text/javascript" src="Scripts/Employees.js?id=23"></script>
+    <script type="text/javascript" src="Scripts/Employees.js?id=26"></script>
     <script type="text/javascript">
        
     </script>
@@ -161,7 +161,7 @@
 
 
                             <ext:Column runat="server"
-                                ID="colEdit" Visible="false"
+                                ID="colEdit" Visible="true"
                                 Text="<%$ Resources:Common, Edit %>"
                                 Width="60"
                                 Hideable="false"
@@ -171,7 +171,7 @@
                                 MenuDisabled="true"
                                 Resizable="false">
 
-                                <Renderer Fn="editRender" />
+                                <Renderer Handler="var x = editRender(); x=x+ deleteRender(); return x;"/>
 
                             </ext:Column>
                             <ext:Column runat="server"

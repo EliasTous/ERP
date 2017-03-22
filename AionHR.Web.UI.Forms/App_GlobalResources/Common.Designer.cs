@@ -250,6 +250,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Case Commands.
+        /// </summary>
+        internal static string CaseCommands {
+            get {
+                return ResourceManager.GetString("CaseCommands", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Case Management.
         /// </summary>
         internal static string CaseManagement {
@@ -718,6 +727,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Files.
+        /// </summary>
+        internal static string Files {
+            get {
+                return ResourceManager.GetString("Files", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Filter.
         /// </summary>
         internal static string Filter {
@@ -939,6 +957,24 @@ namespace Resources {
         internal static string May {
             get {
                 return ResourceManager.GetString("May", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Media.
+        /// </summary>
+        internal static string Media {
+            get {
+                return ResourceManager.GetString("Media", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Media Category.
+        /// </summary>
+        internal static string MediaCategory {
+            get {
+                return ResourceManager.GetString("MediaCategory", resourceCulture);
             }
         }
         

@@ -79,15 +79,18 @@ namespace AionHR.Web.UI.Forms.Utilities
             Ext.Net.Node AssetCategories = BuildLeafNode("rootParent_Employee_AssetCategories", Resources.Common.AssetCategories, "Group", true, employees);
             Ext.Net.Node BonusTypes = BuildLeafNode("rootParent_Employee_BonusTypes", Resources.Common.BonusTypes, "Group", true, employees);
             FillConfigItem(sponsors, "sponsors", "Sponsors.aspx", Resources.Common.Sponsors, "icon-Employees", "1");
-            FillConfigItem(allowanceTypes, "allowanceTypes", "AllowanceTypes.aspx", Resources.Common.AllowanceTypes, "icon-Employees", "1");
-            FillConfigItem(certificateLevels, "certificateLevels", "CertificateLevels.aspx", Resources.Common.CertificateLevels, "icon-Employees", "1");
-            FillConfigItem(trainingTypes, "trainingTypes", "TrainingTypes.aspx", Resources.Common.TrainingTypes, "icon-Employees", "1");
+           // FillConfigItem(allowanceTypes, "allowanceTypes", "AllowanceTypes.aspx", Resources.Common.AllowanceTypes, "icon-Employees", "1");
+           // FillConfigItem(certificateLevels, "certificateLevels", "CertificateLevels.aspx", Resources.Common.CertificateLevels, "icon-Employees", "1");
+           // FillConfigItem(trainingTypes, "trainingTypes", "TrainingTypes.aspx", Resources.Common.TrainingTypes, "icon-Employees", "1");
             FillConfigItem(EntitlementDeductions, "entitlementDeductions", "EntitlementDeductions.aspx", Resources.Common.EntitlementDeduction, "icon-Employees", "1");
             FillConfigItem(DocumentTypes, "documentTypes", "DocumentTypes.aspx", Resources.Common.DocumentTypes, "icon-Employees", "1");
             FillConfigItem(SalaryChangeReasons, "salaryChangeReasons", "SalaryChangeReasons.aspx", Resources.Common.SalaryChangeReasons, "icon-Employees", "1");
             FillConfigItem(AssetCategories, "assetCategories", "AssetCategories.aspx", Resources.Common.AssetCategories, "icon-Employees", "1");
             FillConfigItem(BonusTypes, "bonusTypes", "BonusTypes.aspx", Resources.Common.BonusTypes, "icon-Employees", "1");
 
+            Ext.Net.Node cases = BuildParentNode("rootParent_cases", Resources.Common.Cases, true, rootParent);
+            Ext.Net.Node casesList = BuildLeafNode("rootParent_Cases_List", Resources.Common.CaseManagement, "Group", true, cases);
+            Ext.Net.Node casesCommands = BuildLeafNode("rootParent_Cases_Commands", Resources.Common.CaseCommands, "Group", true, cases);
 
             nodes.Add(rootParent);
             return nodes;
@@ -170,6 +173,10 @@ namespace AionHR.Web.UI.Forms.Utilities
             FillConfigItem(defaults, "defaults", "SystemDefaults.aspx", Resources.Common.SystemDefaults, "icon-Employees", "1");
             FillConfigItem(users, "users", "Users.aspx", Resources.Common.Users, "icon-Employees", "1");
 
+
+            Ext.Net.Node files = BuildParentNode("rootParent_files", Resources.Common.Files, true, rootParent);
+            Ext.Net.Node mediaCategory = BuildLeafNode("rootParent_files_MC", Resources.Common.MediaCategory, "Group", true, files);
+            Ext.Net.Node media = BuildLeafNode("rootParent_files_Media", Resources.Common.Media, "Group", true, files);
 
 
             nodes.Add(rootParent);

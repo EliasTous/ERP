@@ -591,4 +591,16 @@
   <data name="September" xml:space="preserve">
     <value>September</value>
   </data>
+  <data name="CaseCommands" xml:space="preserve">
+    <value>Case Commands</value>
+  </data>
+  <data name="Files" xml:space="preserve">
+    <value>Files</value>
+  </data>
+  <data name="Media" xml:space="preserve">
+    <value>Media</value>
+  </data>
+  <data name="MediaCategory" xml:space="preserve">
+    <value>Media Category</value>
+  </data>
 </root>
