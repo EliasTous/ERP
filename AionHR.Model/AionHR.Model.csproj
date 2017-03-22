@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Company\Cases\ICasesRepository.cs" />
     <Compile Include="Company\Structure\Division.cs" />
     <Compile Include="Company\Structure\ICompanyStructureRepository.cs" />
     <Compile Include="Company\Structure\IDepartmentRepository.cs" />

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AionHR.Model.Company.Cases
 {
-    public  class Case : ModelBase
+    public  class Case : ModelBase,IEntity
     {
         public int employeeId { get; set; }
         public DateTime date { get; set; }
