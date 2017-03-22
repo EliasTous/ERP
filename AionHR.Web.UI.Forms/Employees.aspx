@@ -495,9 +495,9 @@
 
                                                 <ext:ComboBox Enabled="false" runat="server" AllowBlank="false" ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" ID="divisionId" Name="divisionId" FieldLabel="<%$ Resources:FieldDivision%>" SimpleSubmit="true">
                                                     <Store>
-                                                        <ext:Store runat="server" ID="divisionStore">
+                                                        <ext:Store runat="server" ID="divisionStore" IDMode="Explicit">
                                                             <Model>
-                                                                <ext:Model runat="server">
+                                                                <ext:Model runat="server" IDProperty="recordId">
                                                                     <Fields>
                                                                         <ext:ModelField Name="recordId" />
                                                                         <ext:ModelField Name="name" />
