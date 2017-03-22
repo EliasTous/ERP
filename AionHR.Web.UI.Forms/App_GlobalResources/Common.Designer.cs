@@ -1429,15 +1429,6 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Training Types.
-        /// </summary>
-        //internal static string Cases {
-        //    get {
-        //        return ResourceManager.GetString("Cases", resourceCulture);
-        //    }
-        //}
-        
-        /// <summary>
         ///   Looks up a localized string similar to Transfers.
         /// </summary>
         internal static string Transfers {

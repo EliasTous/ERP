@@ -1,4 +1,5 @@
 ﻿using AionHR.Infrastructure.Domain;
+using AionHR.Model.Employees.Profile;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,5 +15,6 @@ namespace AionHR.Model.Company.Cases
         public string details { get; set; }
         public short status { get; set; }
         public DateTime closedDate { get; set; }
+        public EmployeeName employeeName { get; set; }
     }
 }

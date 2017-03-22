@@ -268,7 +268,7 @@
                             BodyPadding="5">
                             <Items>
                                 <ext:TextField ID="recordId" runat="server"  Name="recordId"  Hidden="true"/>
-                                <ext:TextField ID="employeeName" runat="server" FieldLabel="<%$ Resources:FieldEmplyeeName%>" Name="employeeName"   AllowBlank="false"/>
+                                <ext:TextField ID="employeeName" runat="server" FieldLabel="<%$ Resources:FieldEmployeeName%>" Name="employeeName"   AllowBlank="false"/>
                                 <ext:DateField ID="date" runat="server" FieldLabel="<%$ Resources:FieldDate%>" Name="date" AllowBlank="false" />
                                 <ext:DateField ID="closedDate" runat="server" FieldLabel="<%$ Resources:FieldClosedDate%>" Name="closedDate" AllowBlank="false" />
                                 <ext:TextArea ID="details" runat="server" FieldLabel="<%$ Resources:FieldDetails%>" Name="details" />
@@ -280,6 +280,33 @@
                                         <ext:ListItem Text="<%$ Resources: FieldPending %>" Value="1" />
                                         <ext:ListItem Text="<%$ Resources: FieldClosed %>" Value="2" />
                                     </Items>
+                                </ext:ComboBox>
+
+                                <ext:ComboBox runat="server" ID="employeeId"
+                                    DisplayField="fullName"
+                                    ValueField="recordId"
+                                    TypeAhead="false"
+                                    FieldLabel="<%$ Resources: FieldEmployeeName%>"
+                                    HideTrigger="true" SubmitValue="true"
+                                    MinChars="3"
+                                    TriggerAction="Query" ForceSelection="false">
+                                    <Store>
+                                        <ext:Store runat="server" ID="employeeStore" AutoLoad="false">
+                                            <Model>
+                                                <ext:Model runat="server">
+                                                    <Fields>
+                                                        <ext:ModelField Name="recordId" />
+                                                        <ext:ModelField Name="fullName" />
+                                                    </Fields>
+                                                </ext:Model>
+                                            </Model>
+                                            <Proxy>
+                                                <ext:PageProxy DirectFn="App.direct.FillEmployee"></ext:PageProxy>
+                                            </Proxy>
+
+                                        </ext:Store>
+
+                                    </Store>
                                 </ext:ComboBox>
 
                             </Items>

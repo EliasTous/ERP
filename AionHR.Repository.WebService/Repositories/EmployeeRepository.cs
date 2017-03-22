@@ -31,7 +31,7 @@ namespace AionHR.Repository.WebService.Repositories
             ChildGetAllLookup.Add(typeof(Sponsor), "qrySP");
             ChildGetAllLookup.Add(typeof(AllowanceType), "qryAT");
             ChildGetAllLookup.Add(typeof(CertificateLevel), "qryCL");
-            ChildGetAllLookup.Add(typeof(Case), "qryTT");
+            ChildGetAllLookup.Add(typeof(TrainingType), "qryTT");
             ChildGetAllLookup.Add(typeof(EntitlementDeduction), "qryED");
             ChildGetAllLookup.Add(typeof(DocumentType), "qryDT");
             ChildGetAllLookup.Add(typeof(SalaryChangeReason), "qrySC");
@@ -49,7 +49,7 @@ namespace AionHR.Repository.WebService.Repositories
             ChildGetLookup.Add(typeof(Sponsor), "getSP");
             ChildGetLookup.Add(typeof(AllowanceType), "getAT");
             ChildGetLookup.Add(typeof(CertificateLevel), "getCL");
-            ChildGetLookup.Add(typeof(Case), "getTT");
+            ChildGetLookup.Add(typeof(TrainingType), "getTT");
             ChildGetLookup.Add(typeof(EntitlementDeduction), "getED");
             ChildGetLookup.Add(typeof(DocumentType), "getDT");
             ChildGetLookup.Add(typeof(SalaryChangeReason), "getSC");
@@ -64,7 +64,7 @@ namespace AionHR.Repository.WebService.Repositories
             ChildAddOrUpdateLookup.Add(typeof(Sponsor), "setSP");
             ChildAddOrUpdateLookup.Add(typeof(AllowanceType), "setAT");
             ChildAddOrUpdateLookup.Add(typeof(CertificateLevel), "setCL");
-            ChildAddOrUpdateLookup.Add(typeof(Case), "setTT");
+            ChildAddOrUpdateLookup.Add(typeof(TrainingType), "setTT");
             ChildAddOrUpdateLookup.Add(typeof(EntitlementDeduction), "setED");
             ChildAddOrUpdateLookup.Add(typeof(DocumentType), "setDT");
             ChildAddOrUpdateLookup.Add(typeof(SalaryChangeReason), "setSC");
@@ -80,7 +80,7 @@ namespace AionHR.Repository.WebService.Repositories
             ChildDeleteLookup.Add(typeof(Sponsor), "delSP");
             ChildDeleteLookup.Add(typeof(AllowanceType), "delAT");
             ChildDeleteLookup.Add(typeof(CertificateLevel), "delCL");
-            ChildDeleteLookup.Add(typeof(Case), "delTT");
+            ChildDeleteLookup.Add(typeof(TrainingType), "delTT");
             ChildDeleteLookup.Add(typeof(EntitlementDeduction), "delED");
             ChildDeleteLookup.Add(typeof(DocumentType), "delDT");
             ChildDeleteLookup.Add(typeof(SalaryChangeReason), "delSC");

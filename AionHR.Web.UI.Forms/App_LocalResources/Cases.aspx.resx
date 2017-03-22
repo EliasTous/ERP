@@ -138,6 +138,9 @@
   <data name="FieldEmployeeId" xml:space="preserve">
     <value>Employee ID</value>
   </data>
+  <data name="FieldEmployeeName" xml:space="preserve">
+    <value>Employee Name</value>
+  </data>
   <data name="FieldOpen" xml:space="preserve">
     <value>Open</value>
   </data>
