@@ -1,4 +1,5 @@
-﻿using AionHR.Model.Company.Cases;
+﻿using AionHR.Infrastructure.Configuration;
+using AionHR.Model.Company.Cases;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +14,7 @@ namespace AionHR.Repository.WebService.Repositories
 
         public CasesRepository()
         {
+            base.ServiceURL = ApplicationSettingsFactory.GetApplicationSettings().BaseURL + serviceName;
             GetAllMethodName = "qryCA";
             AddOrUpdateMethodName = "setCA";
             GetRecordMethodName = "getCA";

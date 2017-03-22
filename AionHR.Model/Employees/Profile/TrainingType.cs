@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AionHR.Model.Employees.Profile
 {
-    public class TrainingType : ModelBase
+    public class Case : ModelBase
     {
         public string name { get; set; }
     }
