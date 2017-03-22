@@ -533,7 +533,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
         protected void SaveJI(object sender, DirectEventArgs e)
         {
 
-
+            
             //Getting the id to check if it is an Add or an edit as they are managed within the same form.
             string id = e.ExtraParams["id"];
 
@@ -542,6 +542,9 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             b.employeeId = Convert.ToInt32(CurrentEmployee.Text);
             b.recordId = id;
             b.date = new DateTime(b.date.Year, b.date.Month, b.date.Day, 14, 0, 0);
+
+           
+
             if (branchId.SelectedItem != null)
                 b.branchName = branchId.SelectedItem.Text;
             if (departmentId.SelectedItem != null)
@@ -654,6 +657,12 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorUpdatingRecord).Show();
                 }
             }
+            if(b.date.Date == DateTime.Today)
+            {
+                X.Call("parent.FillLeftPanel", b.departmentName +"<br/>",b.branchName + "<br/>", b.positionName + "<br/>");
+                X.Call("parent.SelectJICombos", b.departmentId, b.branchId, b.positionId,b.divisionId);
+            }
+          
         }
 
        [DirectMethod]

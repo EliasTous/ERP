@@ -148,6 +148,24 @@ namespace AionHR.Web.UI.Forms.EmployeePages {
         protected global::Ext.Net.Hidden BasicSalary;
         
         /// <summary>
+        /// ENSeq control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Hidden ENSeq;
+        
+        /// <summary>
+        /// DESeq control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Hidden DESeq;
+        
+        /// <summary>
         /// entsStore control.
         /// </summary>
         /// <remarks>
@@ -787,6 +805,24 @@ namespace AionHR.Web.UI.Forms.EmployeePages {
         protected global::Ext.Net.Store entitlementsStore;
         
         /// <summary>
+        /// ColENName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Column ColENName;
+        
+        /// <summary>
+        /// ColENDelete control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Column ColENDelete;
+        
+        /// <summary>
         /// DeductionForm control.
         /// </summary>
         /// <remarks>
@@ -830,6 +866,24 @@ namespace AionHR.Web.UI.Forms.EmployeePages {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.Button Button14;
+        
+        /// <summary>
+        /// ColDEName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Column ColDEName;
+        
+        /// <summary>
+        /// ColDEDelete control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Column ColDEDelete;
         
         /// <summary>
         /// Button12 control.
@@ -1012,13 +1066,13 @@ namespace AionHR.Web.UI.Forms.EmployeePages {
         protected global::Ext.Net.FormPanel ENForm;
         
         /// <summary>
-        /// TextField3 control.
+        /// ENId control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.TextField TextField3;
+        protected global::Ext.Net.TextField ENId;
         
         /// <summary>
         /// entEdId control.

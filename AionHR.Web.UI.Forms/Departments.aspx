@@ -300,7 +300,7 @@
                                 </ext:ComboBox>
                                 <ext:ComboBox Enabled="false" runat="server" AllowBlank="true" ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" ID="parentId" Name="parentId" FieldLabel="<%$ Resources:FieldParentName%>" SimpleSubmit="true">
                                     <Store>
-                                        <ext:Store runat="server" ID="departmentStore">
+                                        <ext:Store runat="server" ID="departmentStore"  AutoLoad="true" AutoSync="true">
                                             <Model>
                                                 <ext:Model runat="server">
                                                     <Fields>

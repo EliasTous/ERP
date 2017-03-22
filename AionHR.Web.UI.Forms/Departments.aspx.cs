@@ -128,6 +128,7 @@ namespace AionHR.Web.UI.Forms
                         X.Msg.Alert(Resources.Common.Error, response.Summary).Show();
                         return;
                     }
+                    //FillParent();
                     //Step 2 : call setvalues with the retrieved object
 
 
@@ -230,7 +231,19 @@ namespace AionHR.Web.UI.Forms
 
         }
 
+        private void FillParent()
+        {
+            ListRequest req = new ListRequest();
 
+            ListResponse<Department> response = _branchService.ChildGetAll<Department>(req);
+            if (!response.Success)
+            {
+                X.Msg.Alert(Resources.Common.Error, response.Summary).Show();
+                departmentStore.DataSource = new List<Department>();
+            }
+            departmentStore.DataSource = response.Items;
+            departmentStore.DataBind();
+        }
         [DirectMethod]
         public object FillParent(string action, Dictionary<string, object> extraParams)
         {
@@ -386,6 +399,7 @@ namespace AionHR.Web.UI.Forms
 
             //Reset all values of the relative object
             BasicInfoTab.Reset();
+           // FillParent();
             this.EditRecordWindow.Title = Resources.Common.AddNewRecord;
 
             this.EditRecordWindow.Show();

@@ -13,9 +13,9 @@
     <link rel="stylesheet" type="text/css" href="CSS/Employees.css?id=13" />
     <link rel="stylesheet" href="CSS/LiveSearch.css" />
     
-    <script type="text/javascript" src="Scripts/Branches.js?id=0"></script>
-    <script type="text/javascript" src="Scripts/common.js?id=0"></script>
-    <script type="text/javascript" src="Scripts/Employees.js?id=18"></script>
+    
+    <script type="text/javascript" src="Scripts/common.js?id=1"></script>
+    <script type="text/javascript" src="Scripts/Employees.js?id=23"></script>
     <script type="text/javascript">
        
     </script>
@@ -98,7 +98,7 @@
                                     </Listeners>
                                     <DirectEvents>
                                         <Click OnEvent="ADDNewRecord">
-                                            <EventMask ShowMask="true" CustomTarget="{#{App}}" />
+                                            <EventMask ShowMask="true" CustomTarget="={#{GridPanel1}.body}" />
                                         </Click>
                                     </DirectEvents>
                                 </ext:Button>
@@ -142,7 +142,7 @@
 
                                 </Component>
                                 <Listeners>
-                                    <Bind Handler=" cmp.setImageUrl(record.get('pictureUrl'))" />
+                                    <Bind Handler=" cmp.setImageUrl(record.get('pictureUrl'));" />
                                 </Listeners>
                             </ext:ComponentColumn>
                             <ext:Column ID="ColReference" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldReference%>" DataIndex="reference" Flex="2" Hideable="false" />
@@ -455,7 +455,7 @@
                                                         </ext:Button>
                                                     </RightButtons>
                                                     <Listeners>
-                                                        <FocusEnter Handler="if(!this.readOnly) this.rightButtons[0].setHidden(false);" />
+                                                        <FocusEnter Handler="  if(!this.readOnly) this.rightButtons[0].setHidden(false);" />
                                                         <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
                                                     </Listeners>
                                                 </ext:ComboBox>
@@ -486,7 +486,7 @@
                                                         </ext:Button>
                                                     </RightButtons>
                                                     <Listeners>
-                                                        <FocusEnter Handler="if(!this.readOnly) this.rightButtons[0].setHidden(false);" />
+                                                        <FocusEnter Handler=" if(!this.readOnly)this.rightButtons[0].setHidden(false);" />
                                                         <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
                                                     </Listeners>
                                                 </ext:ComboBox>

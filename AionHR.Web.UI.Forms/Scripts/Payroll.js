@@ -27,7 +27,7 @@ var cellClick = function (view, cell, columnIndex, record, row, rowIndex, e) {
         return true;
     }
 
-    if (t.className == "imgDelete" && (columnId == "ColSADelete"|| columnId=="ColBODelete")) {
+    if (t.className == "imgDelete" && (columnId == "ColSADelete" || columnId == "ColBODelete" || columnId == "ColENDelete" || columnId == "ColDEDelete")) {
         //the ajax call is allowed
         return true;
     }
@@ -35,7 +35,7 @@ var cellClick = function (view, cell, columnIndex, record, row, rowIndex, e) {
         //the ajax call is allowed
         return true;
     }
-    if ( columnId=="ColBOName"|| columnId=="ColSAName")
+    if (columnId == "ColBOName" || columnId == "ColSAName" || columnId == "ColENName" || columnId == "ColDEName")
         return true;
 
 
@@ -212,6 +212,7 @@ var dednameRenderer = function (value) {
 
 function CalculateFixed(pct)
 {
+
     var x = (pct / 100) * document.getElementById("BasicSalary").value;
     return x;
 }

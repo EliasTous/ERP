@@ -105,6 +105,7 @@ namespace AionHR.Infrastructure.WebService
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
         public T GetAsync<T>()
+
         {
             try
             {

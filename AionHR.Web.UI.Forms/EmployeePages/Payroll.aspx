@@ -9,7 +9,7 @@
     <title></title>
     <link rel="stylesheet" type="text/css" href="../CSS/Common.css?id=1" />
     <link rel="stylesheet" href="../CSS/LiveSearch.css" />
-    <script type="text/javascript" src="../Scripts/Payroll.js?id=12"></script>
+    <script type="text/javascript" src="../Scripts/Payroll.js?id=14"></script>
     <script type="text/javascript" src="../Scripts/common.js?id=0"></script>
 
 
@@ -31,7 +31,8 @@
         <ext:Hidden ID="PaymentMethodBank" runat="server" Text="<%$ Resources: PaymentMethodBank %>" />
         <ext:Hidden ID="CurrentDetail" runat="server" Text="" />
         <ext:Hidden ID="BasicSalary" runat="server" Text="" />
-
+        <ext:Hidden ID="ENSeq" runat="server" Text="" />
+        <ext:Hidden ID="DESeq" runat="server" Text="" />
 
         <ext:Store runat="server" ID="entsStore" OnReadData="ensStore_ReadData" AutoLoad="true">
             <Model>
@@ -574,7 +575,11 @@
 
                                         <ext:TextField ID="accountNumber" runat="server" FieldLabel="<%$ Resources:FieldAccountNumber%>" Name="accountNumber" AllowBlank="false" />
                                         <ext:TextField ID="comments" runat="server" FieldLabel="<%$ Resources:FieldComments%>" Name="comments" />
-                                        <ext:TextField ID="basicAmount" AllowBlank="false" runat="server" FieldLabel="<%$ Resources:FieldBasicAmount%>" Name="basicAmount" />
+                                        <ext:TextField ID="basicAmount" AllowBlank="false" runat="server" FieldLabel="<%$ Resources:FieldBasicAmount%>" Name="basicAmount">
+                                            <Listeners>
+                                                <Change Handler="document.getElementById('BasicSalary').value=this.getValue();" />
+                                            </Listeners>
+                                        </ext:TextField>
                                         <ext:TextField ID="finalAmount" AllowBlank="false" runat="server" FieldLabel="<%$ Resources:FieldFinalAmount%>" Name="finalAmount" />
                                         <ext:Checkbox ID="isTaxable" runat="server" FieldLabel="<%$ Resources: FieldIsTaxable%>" DataIndex="isTaxable" Name="isTaxable" InputValue="1" />
                                     </Items>
@@ -619,7 +624,7 @@
                                     <Store>
                                         <ext:Store ID="entitlementsStore" runat="server">
                                             <Model>
-                                                <ext:Model runat="server">
+                                                <ext:Model runat="server" IDProperty="seqNo">
                                                     <Fields>
                                                         <ext:ModelField Name="seqNo" />
                                                         <ext:ModelField Name="edId" />
@@ -635,14 +640,11 @@
                                         </ext:Store>
                                     </Store>
 
-                                    <Plugins>
-                                        <ext:RowEditing runat="server" ClicksToMoveEditor="1" AutoCancel="false">
-                                        </ext:RowEditing>
-                                    </Plugins>
+
 
                                     <ColumnModel>
                                         <Columns>
-                                            <ext:RowNumbererColumn runat="server" Width="25" />
+
                                             <%--<ext:Column
                                                 runat="server"
                                                 DataIndex="seqNo"
@@ -651,7 +653,7 @@
                                                     <ext:NumberField runat="server" DataIndex="seqNo" Enabled="false" ReadOnly="true" />
                                                 </Editor>
                                             </ext:Column>--%>
-                                            <ext:Column
+                                            <ext:Column ID="ColENName"
                                                 runat="server"
                                                 Text="<%$ Resources:FieldEntitlement%>"
                                                 DataIndex="edId"
@@ -727,11 +729,38 @@
                                                         AllowBlank="true" />
                                                 </Editor>
                                             </ext:Column>
+                                            <ext:Column runat="server"
+                                                ID="ColENDelete" Flex="2" Visible="true"
+                                                Text="<%$ Resources: Common , Delete %>"
+                                                Width="60"
+                                                Align="Center"
+                                                Fixed="true"
+                                                Filterable="false"
+                                                Hideable="false"
+                                                MenuDisabled="true"
+                                                Resizable="false">
+                                                <Renderer Fn="deleteRender" />
+                                            </ext:Column>
                                         </Columns>
                                     </ColumnModel>
                                     <Listeners>
-                                        <SelectionChange Handler="App.btnRemoveEmployee.setDisabled(!selected.length);" />
+                                        <Render Handler="this.on('cellclick', cellClick);" />
                                     </Listeners>
+                                    <DirectEvents>
+
+                                        <CellClick OnEvent="PoPuP">
+                                            <EventMask ShowMask="true" />
+                                            <ExtraParams>
+
+                                                <ext:Parameter Name="id" Value="record.getId()" Mode="Raw" />
+                                                <ext:Parameter Name="type" Value="getCellType( this, rowIndex, cellIndex)" Mode="Raw" />
+                                                <ext:Parameter Name="values" Value="Ext.encode(#{entitlementsGrid}.getRowsValues({selectedOnly : true}))" Mode="Raw" />
+                                            </ExtraParams>
+
+                                        </CellClick>
+                                    </DirectEvents>
+
+
                                 </ext:GridPanel>
                             </Items>
 
@@ -753,7 +782,7 @@
                                     <Store>
                                         <ext:Store ID="deductionStore" runat="server">
                                             <Model>
-                                                <ext:Model runat="server">
+                                                <ext:Model runat="server" IDProperty="seqNo">
                                                     <Fields>
                                                         <ext:ModelField Name="seqNo" />
                                                         <ext:ModelField Name="edId" />
@@ -792,7 +821,7 @@
                                     </TopBar>
                                     <ColumnModel>
                                         <Columns>
-                                            <ext:RowNumbererColumn runat="server" Width="25" />
+
                                             <%--  <ext:Column
                                                 runat="server"
                                                 DataIndex="seqNo"
@@ -801,7 +830,7 @@
                                                     <ext:NumberField runat="server" DataIndex="seqNo" Enabled="false" ReadOnly="true" />
                                                 </Editor>
                                             </ext:Column>--%>
-                                            <ext:Column
+                                            <ext:Column ID="ColDEName"
                                                 runat="server"
                                                 Text="<%$ Resources:FieldDeduction%>"
                                                 DataIndex="edId"
@@ -877,11 +906,35 @@
                                                         AllowBlank="true" />
                                                 </Editor>
                                             </ext:Column>
+                                            <ext:Column runat="server"
+                                                ID="ColDEDelete" Flex="2" Visible="true"
+                                                Text="<%$ Resources: Common , Delete %>"
+                                                Width="60"
+                                                Align="Center"
+                                                Fixed="true"
+                                                Filterable="false"
+                                                Hideable="false"
+                                                MenuDisabled="true"
+                                                Resizable="false">
+                                                <Renderer Fn="deleteRender" />
+                                            </ext:Column>
+
                                         </Columns>
                                     </ColumnModel>
-                                    <Listeners>
-                                        <SelectionChange Handler="App.btnRemoveDeduction.setDisabled(!selected.length);" />
-                                    </Listeners>
+
+                                    <DirectEvents>
+
+                                        <CellClick OnEvent="PoPuP">
+                                            <EventMask ShowMask="true" />
+                                            <ExtraParams>
+
+                                                <ext:Parameter Name="id" Value="record.getId()" Mode="Raw" />
+                                                <ext:Parameter Name="type" Value="getCellType( this, rowIndex, cellIndex)" Mode="Raw" />
+                                                <ext:Parameter Name="values" Value="Ext.encode(#{deductionGrid}.getRowsValues({selectedOnly : true}))" Mode="Raw" />
+                                            </ExtraParams>
+
+                                        </CellClick>
+                                    </DirectEvents>
                                 </ext:GridPanel>
                             </Items>
 
@@ -1050,7 +1103,7 @@
             ID="EditENWindow"
             runat="server"
             Icon="PageEdit"
-            Title="<%$ Resources:EditBOWindowTitle %>"
+            Title="<%$ Resources:FieldEntitlement %>"
             Width="650"
             Height="300"
             AutoShow="false"
@@ -1065,36 +1118,39 @@
             Layout="Fit">
 
             <Items>
-                <ext:TabPanel ID="TabPanel3" runat="server" ActiveTabIndex="0" Border="false" DeferredRender="false">
+                <ext:TabPanel ID="TabPanel3" runat="server" ActiveTabIndex="0" Border="false" DeferredRender="false" Header="false">
                     <Items>
                         <ext:FormPanel
                             ID="ENForm" DefaultButton="SaveENButton"
                             runat="server"
-                            Title="<%$ Resources: EditBOWindowTitle %>"
+                            Header="false"
+                            Title="<%$ Resources: FieldEntitlement %>"
                             Icon="ApplicationSideList"
                             DefaultAnchor="100%" Layout="AutoLayout"
                             BodyPadding="5">
                             <Items>
 
-                                <ext:TextField ID="TextField3" Hidden="true" runat="server" FieldLabel="<%$ Resources:FieldrecordId%>" Disabled="true" Name="recordId" />
-                                <ext:ComboBox Enabled="false" ValueField="recordId" AllowBlank="false" QueryMode="Local" FieldLabel="<%$ Resources:FieldEntitlement%>" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" runat="server" ID="entEdId" Name="edId" StoreID="entsStore">
-                                    <RightButtons>
-                                        <ext:Button ID="Button10" runat="server" Icon="Add" Hidden="true">
-                                            <Listeners>
-                                                <Click Handler="CheckSession();  " />
-                                            </Listeners>
-                                            <DirectEvents>
+                                <ext:TextField ID="ENId" Hidden="true" runat="server" FieldLabel="<%$ Resources:FieldrecordId%>" Disabled="true" Name="recordId" />
+                              <ext:ComboBox runat="server" ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" AllowBlank="false" DisplayField="name" ID="entEdId" Name="edId" FieldLabel="<%$ Resources:FieldEntitlement%>" SimpleSubmit="true" StoreID="entsStore">
+                                            
+                                             <RightButtons>
+                                                        <ext:Button ID="Button10" runat="server" Icon="Add" Hidden="true">
+                                                            <Listeners>
+                                                                <Click Handler="CheckSession();  " />
+                                                            </Listeners>
+                                                            <DirectEvents>
 
-                                                <Click OnEvent="addEnt">
-                                                </Click>
-                                            </DirectEvents>
-                                        </ext:Button>
-                                    </RightButtons>
-                                    <Listeners>
-                                        <FocusEnter Handler=" if(!this.readOnly)this.rightButtons[0].setHidden(false);" />
-                                        <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
-                                    </Listeners>
-                                </ext:ComboBox>
+                                                                <Click OnEvent="addEnt">
+                                                            
+                                                                </Click>
+                                                            </DirectEvents>
+                                                        </ext:Button>
+                                                    </RightButtons>
+                                            <Listeners>
+                                                <FocusEnter Handler="this.rightButtons[0].setHidden(false);" />
+                                                <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
+                                            </Listeners>
+                                        </ext:ComboBox>
                                 <ext:Checkbox ID="EnIncludeInTotal" FieldLabel="<%$ Resources: FieldIncludeInTotal %>" runat="server" DataIndex="includeInTotal" Name="includeInTotal" InputValue="true" />
                                 <ext:Checkbox FieldLabel="<%$ Resources:FieldIsPercentage%>" runat="server">
                                     <Listeners>
@@ -1104,23 +1160,23 @@
 
                                 <ext:NumberField
                                     runat="server"
-                                    AllowBlank="false" ID="enPCT"
+                                    AllowBlank="false" ID="enPCT" Name="pct"
                                     MinValue="0" Disabled="true"
                                     FieldLabel="<%$ Resources:FieldPCT%>"
                                     MaxValue="100">
                                     <Listeners>
-                                        <Change Handler="this.next().setValue(CalculateFixed(this.value));" />
+                                        <Change Handler=" if(this.prev().value==true) this.next().setValue(CalculateFixed(this.value));" />
                                     </Listeners>
                                 </ext:NumberField>
 
                                 <ext:NumberField
-                                    runat="server"
+                                    runat="server" Name="fixedAmount"
                                     AllowBlank="false"
                                     MinValue="0"
                                     ID="enFixedAmount"
                                     FieldLabel="<%$ Resources:FieldFixedAmount%>">
                                     <Listeners>
-                                        <Change Handler="this.prev().setValue(CalculatePct(this.value));" />
+                                        <Change Handler="if(this.prev().prev().value==false) this.prev().setValue(CalculatePct(this.value));" />
                                     </Listeners>
                                 </ext:NumberField>
                                 <ext:TextArea runat="server" Name="comment" DataIndex="comments" FieldLabel="<%$ Resources:FieldComment%>" />
@@ -1139,7 +1195,7 @@
                         <Click Handler="CheckSession(); if (!#{ENForm}.getForm().isValid()) {return false;} " />
                     </Listeners>
                     <DirectEvents>
-                        <Click OnEvent="SaveBO" Failure="Ext.MessageBox.alert('#{titleSavingError}.value', '#{titleSavingErrorMessage}.value');">
+                        <Click OnEvent="SaveEN" Failure="Ext.MessageBox.alert('#{titleSavingError}.value', '#{titleSavingErrorMessage}.value');">
                             <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="={#{EditENWindow}.body}" />
                             <ExtraParams>
                                 <ext:Parameter Name="id" Value="#{ENId}.getValue()" Mode="Raw" />
@@ -1160,7 +1216,7 @@
             ID="EditDEWindow"
             runat="server"
             Icon="PageEdit"
-            Title="<%$ Resources:EditBOWindowTitle %>"
+            Title="<%$ Resources:FieldDeduction %>"
             Width="650"
             Height="300"
             AutoShow="false"
@@ -1175,19 +1231,20 @@
             Layout="Fit">
 
             <Items>
-                <ext:TabPanel ID="TabPanel4" runat="server" ActiveTabIndex="0" Border="false" DeferredRender="false">
+                <ext:TabPanel ID="TabPanel4" runat="server" ActiveTabIndex="0" Border="false" DeferredRender="false" Header="false"  TitleCollapse="true">
                     <Items>
                         <ext:FormPanel
                             ID="DEForm" DefaultButton="SaveDEButton"
                             runat="server"
-                            Title="<%$ Resources: EditBOWindowTitle %>"
+                            
                             Icon="ApplicationSideList"
+                            Header="false" TitleCollapse="true"
                             DefaultAnchor="100%" Layout="AutoLayout"
                             BodyPadding="5">
                             <Items>
 
                                 <ext:TextField ID="DEId" Hidden="true" runat="server" FieldLabel="<%$ Resources:FieldrecordId%>" Disabled="true" Name="recordId" />
-                                <ext:ComboBox Enabled="false" ValueField="recordId" AllowBlank="false" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" runat="server" ID="dedEdId" Name="deductionId" StoreID="dedsStore">
+                                <ext:ComboBox  runat="server" ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" AllowBlank="false" DisplayField="name" ID="dedEdId" Name="DEedId" FieldLabel="<%$ Resources:FieldDeduction%>" SimpleSubmit="true" StoreID="dedsStore">
                                     <RightButtons>
                                         <ext:Button ID="Button9" runat="server" Icon="Add" Hidden="true">
                                             <Listeners>
@@ -1201,11 +1258,11 @@
                                         </ext:Button>
                                     </RightButtons>
                                     <Listeners>
-                                        <FocusEnter Handler=" if(!this.readOnly)this.rightButtons[0].setHidden(false);" />
+                                        <FocusEnter Handler="this.rightButtons[0].setHidden(false);" />
                                         <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
                                     </Listeners>
                                 </ext:ComboBox>
-                                <ext:Checkbox ID="Checkbox1" runat="server" DataIndex="includeInTotal" Name="includeInTotal" InputValue="true" />
+                                <ext:Checkbox ID="Checkbox1" FieldLabel="<%$ Resources: FieldIncludeInTotal %>" runat="server" DataIndex="includeInTotal" Name="includeInTotal" InputValue="true" />
                                 <ext:Checkbox FieldLabel="<%$ Resources:FieldIsPercentage%>" runat="server">
                                     <Listeners>
                                         <Change Handler="DETogglePerc(this.value)" />
@@ -1214,23 +1271,23 @@
 
                                 <ext:NumberField
                                     runat="server"
-                                    AllowBlank="false" ID="dePCT"
+                                    AllowBlank="false" ID="dePCT" Name="pct"
                                     MinValue="0" Disabled="true"
                                     FieldLabel="<%$ Resources:FieldPCT%>"
                                     MaxValue="100">
                                     <Listeners>
-                                        <Change Handler="this.next().setValue(CalculateFixed(this.value));" />
+                                        <Change Handler=" if(this.prev().value==true) this.next().setValue(CalculateFixed(this.value));" />
                                     </Listeners>
                                 </ext:NumberField>
 
                                 <ext:NumberField
-                                    runat="server"
+                                    runat="server" Name="fixedAmount"
                                     AllowBlank="false"
                                     MinValue="0"
                                     ID="deFixedAmount"
                                     FieldLabel="<%$ Resources:FieldFixedAmount%>">
                                     <Listeners>
-                                        <Change Handler="this.prev().setValue(CalculatePct(this.value));" />
+                                        <Change Handler="if(this.prev().prev().value==false) this.prev().setValue(CalculatePct(this.value));" />
                                     </Listeners>
                                 </ext:NumberField>
                                 <ext:TextArea runat="server" Name="comment" DataIndex="comments" FieldLabel="<%$ Resources:FieldComment%>" />
@@ -1249,7 +1306,7 @@
                         <Click Handler="CheckSession(); if (!#{DEForm}.getForm().isValid()) {return false;} " />
                     </Listeners>
                     <DirectEvents>
-                        <Click OnEvent="SaveBO" Failure="Ext.MessageBox.alert('#{titleSavingError}.value', '#{titleSavingErrorMessage}.value');">
+                        <Click OnEvent="SaveDE" Failure="Ext.MessageBox.alert('#{titleSavingError}.value', '#{titleSavingErrorMessage}.value');">
                             <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="={#{EditDEWindow}.body}" />
                             <ExtraParams>
                                 <ext:Parameter Name="id" Value="#{DEId}.getValue()" Mode="Raw" />

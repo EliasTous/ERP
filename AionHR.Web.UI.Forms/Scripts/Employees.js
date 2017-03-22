@@ -191,14 +191,42 @@ function dump(obj) {
     return out;
 }
 function FillLeftPanel(fullName, departmentName, branchName, positionName) {
-    //alert(fullName);
-    //alert(departmentName);
+    
 
     App.fullNameLbl.setText(fullName, false);
 
-    //alert(App.fullNameLbl.html);
+    FillLeftPanel(dep, branchName, positionName);
+
+}
+
+function FillLeftPanel(departmentName, branchName, positionName) {
+
+    ///App.fullNameLbl.setText(fullName, false);
+
+ 
     App.departmentLbl.setText(departmentName, false);
     App.branchLbl.setText(branchName, false);
     App.positionLbl.setText(positionName, false);
 
 }
+function SelectJICombos(deptId,bId,pId,dId)
+{
+    App.departmentId.select(deptId);
+    App.branchId.select(bId);
+    App.positionId.select(pId);
+    App.divisionId.select(dId);
+}
+
+
+var enterKeyPressSearchHandler = function (el, event) {
+
+    var enter = false;
+    if (event.getKey() == event.ENTER) {
+        if (el.getValue().length > 0)
+        { enter = true; }
+    }
+
+    if (enter === true) {
+        App.Store1.reload();
+    }
+};
