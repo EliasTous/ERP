@@ -20,7 +20,7 @@ namespace AionHR.Services.Interfaces
 
         PostResponse<T> AddOrUpdate<T>(PostRequest<T> request);
 
-        StatusResponse Delete<T>(RecordRequest request);
+        PostResponse<T> Delete<T>(PostRequest<T> request);
 
         RecordResponse<TChild> ChildGetRecord<TChild>(RecordRequest request);
         ListResponse<TChild> ChildGetAll<TChild>(ListRequest request);
