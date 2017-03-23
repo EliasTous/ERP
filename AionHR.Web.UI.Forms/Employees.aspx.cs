@@ -879,8 +879,13 @@ namespace AionHR.Web.UI.Forms
             if (response.Success)
             {
                 dept.recordId = response.recordId;
-                divisionStore.Insert(0, dept);
-                divisionId.Select(0);
+
+                //When updating a store on server side via a directmethod, it is mandatory to re DataBind() so for that we called FillDivision() 
+                 FillDivision();
+                //  divisionStore.Insert(0,dept);
+              //  divisionStore.Add(new { recordId = dept.recordId, name = dept.name });
+
+                divisionId.Value = dept.recordId;
             }
             else
             {

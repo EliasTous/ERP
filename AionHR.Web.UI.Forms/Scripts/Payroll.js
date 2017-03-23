@@ -222,3 +222,7 @@ function CalculatePct(fixed)
     var x = (fixed / document.getElementById("BasicSalary").value) * 100;
     return x;
 }
+function ChangeFinalAmount(amountOffset)
+{
+    App.finalAmount.setValue(Number(App.finalAmount.value) + Number(amountOffset));
+}

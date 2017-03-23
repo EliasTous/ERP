@@ -529,7 +529,7 @@ namespace AionHR.Web.UI.Forms
 
                         ModelProxy record = this.Store1.GetById(id);
                         BasicInfoTab.UpdateRecord(record);
-                        record.Set("employeeName", b.employeeName.fullName);
+                       // record.Set("employeeName", b.employeeName.fullName);
                         record.Set("ltName", b.ltName);
                         record.Commit();
                         Notification.Show(new NotificationConfig

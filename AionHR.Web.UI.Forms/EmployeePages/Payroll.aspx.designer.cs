@@ -1075,6 +1075,15 @@ namespace AionHR.Web.UI.Forms.EmployeePages {
         protected global::Ext.Net.TextField ENId;
         
         /// <summary>
+        /// oldEntValue control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.TextField oldEntValue;
+        
+        /// <summary>
         /// entEdId control.
         /// </summary>
         /// <remarks>
@@ -1163,6 +1172,15 @@ namespace AionHR.Web.UI.Forms.EmployeePages {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.FormPanel DEForm;
+        
+        /// <summary>
+        /// DEoldValue control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.TextField DEoldValue;
         
         /// <summary>
         /// DEId control.

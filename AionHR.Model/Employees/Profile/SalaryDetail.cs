@@ -19,6 +19,7 @@ namespace AionHR.Model.Employees.Profile
         public double pct { get; set; }
         public double fixedAmount { get; set; }
 
+        
         public int type { get; set; }
     }
 }

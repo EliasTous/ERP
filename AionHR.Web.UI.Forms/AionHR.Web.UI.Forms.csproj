@@ -45,7 +45,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="DayPilot">
-      <HintPath>..\..\..\..\Desktop\dlls\DayPilot.dll</HintPath>
+      <HintPath>..\packages\DayPilot.dll</HintPath>
     </Reference>
     <Reference Include="Ext.Net, Version=4.1.0.0, Culture=neutral, PublicKeyToken=2e12ce3d0176cd87, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
