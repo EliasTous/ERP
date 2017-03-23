@@ -15,7 +15,7 @@
     
     
     <script type="text/javascript" src="Scripts/common.js?id=1"></script>
-    <script type="text/javascript" src="Scripts/Employees.js?id=26"></script>
+    <script type="text/javascript" src="Scripts/Employees.js?id=28"></script>
     <script type="text/javascript">
        
     </script>
@@ -45,8 +45,8 @@
                     Scroll="Vertical"
                     Region="Center"
                     Border="false"
-                    Icon="User"
-                    ColumnLines="True" IDMode="Explicit" RenderXType="True">
+                    Icon="User" HideHeaders="true"
+                    ColumnLines="false" IDMode="Explicit" RenderXType="True">
                     <Store>
                         <ext:Store
                             ID="Store1"
@@ -129,7 +129,7 @@
                         </ext:Toolbar>
 
                     </TopBar>
-
+                    
                     <ColumnModel ID="ColumnModel1" runat="server" SortAscText="<%$ Resources:Common , SortAscText %>" SortDescText="<%$ Resources:Common ,SortDescText  %>" SortClearText="<%$ Resources:Common ,SortClearText  %>" ColumnsText="<%$ Resources:Common ,ColumnsText  %>" EnableColumnHide="false">
                         <Columns>
 
@@ -145,7 +145,7 @@
                                     <Bind Handler=" cmp.setImageUrl(record.get('pictureUrl'));" />
                                 </Listeners>
                             </ext:ComponentColumn>
-                            <ext:Column ID="ColReference" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldReference%>" DataIndex="reference" Flex="2" Hideable="false" />
+                            <ext:Column ID="ColReference" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldReference%>" DataIndex="reference"  Width="60" Hideable="false" />
                             <ext:Column ID="ColName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldFullName%>" DataIndex="name.fullName" Flex="4" Hideable="false">
                                 <Renderer Handler=" return '<u>'+ record.data['name'].fullName +'</u>'">
                                 </Renderer>
@@ -155,7 +155,7 @@
                             <ext:Column ID="ColPositionName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldPosition%>" DataIndex="positionName" Flex="3" Hideable="false" />
                             <ext:Column ID="ColBranchName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldBranch%>" DataIndex="branchName" Flex="3" Hideable="false" />
                             <ext:Column ID="Column1" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDivision%>" DataIndex="divisionName" Flex="3" Hideable="false" />
-                            <ext:Column ID="ColHireDate" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldHireDate%>" DataIndex="hireDate" Flex="3" Hideable="false">
+                            <ext:Column ID="ColHireDate" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldHireDate%>" DataIndex="hireDate" Width="80" Hideable="false">
                                 <Renderer Handler="return record.data['hireDate']; "></Renderer>
                             </ext:Column>
 
@@ -163,7 +163,7 @@
                             <ext:Column runat="server"
                                 ID="colEdit" Visible="true"
                                 Text="<%$ Resources:Common, Edit %>"
-                                Width="60"
+                                Width="70"
                                 Hideable="false"
                                 Align="Center"
                                 Fixed="true"
@@ -171,7 +171,7 @@
                                 MenuDisabled="true"
                                 Resizable="false">
 
-                                <Renderer Handler="var x = editRender(); x=x+ deleteRender(); return x;"/>
+                                <Renderer Handler="var x = editRender(); x=x+'&nbsp&nbsp'; return x;"/>
 
                             </ext:Column>
                             <ext:Column runat="server"
@@ -241,6 +241,7 @@
                     </BottomBar>
                     <Listeners>
                         <Render Handler="CheckSession(); this.on('cellclick', cellClick);" />
+                        
                     </Listeners>
                     <DirectEvents>
 
@@ -277,18 +278,20 @@
             runat="server"
             Icon="PageEdit"
             Title="<%$ Resources:EditWindowsTitle %>"
-            Width="781"
+            Width="900"
             Height="500"
             AutoShow="false"
             Modal="true"
             Hidden="true"
-            Maximizable="true"
-            Maximized="true"
+            Maximizable="false"
+            Header="false"
+             Resizable="false"
+            Maximized="false"
             Layout="BorderLayout">
 
 
             <Items>
-                <ext:Panel ID="leftPanel" runat="server" Region="West" PaddingSpec="0 0 0 0" Padding="0" TitleAlign="Center"
+                <ext:Panel ID="leftPanel" runat="server" Region="West" PaddingSpec="0 0 0 0" Padding="0" TitleAlign="Center" DefaultAnchor="100%"
                     Header="false" Collapsible="false"  BodyPadding="5" Width="150" StyleSpec="border-left:2px solid #2A92D4;border-right:2px solid #2A92D4;" 
                     Title="<%$ Resources:Common , NavigationPane %>" CollapseToolText="<%$ Resources:Common , CollapsePanel %>" ExpandToolText="<%$ Resources:Common , ExpandPanel %>" BodyBorder="0">
 
@@ -303,6 +306,7 @@
                                     </Listeners>
                                   
                                 </ext:Image>
+                                
                                 <ext:HyperlinkButton runat="server" Text="Clear" >
                                     <Listeners>
                                         <Click Handler=" ClearImage();" />
@@ -318,7 +322,7 @@
                                        
                                     </DirectEvents>
                                 </ext:FileUploadField>
-                                <ext:Panel runat="server" ID="img"><Items>
+                                <ext:Panel runat="server" ID="img" MarginSpec="50 0 0 0"><Items>
                                 <ext:Label ID="fullNameLbl" runat="server" />
                                 <ext:Label ID="departmentLbl" runat="server" />
                                 <ext:Label ID="branchLbl" runat="server" />

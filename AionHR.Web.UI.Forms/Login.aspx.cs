@@ -109,6 +109,7 @@ namespace AionHR.Web.UI.Forms
                 else
                     _systemService.SessionHelper.SetLanguage("en");
 
+                _systemService.SessionHelper.Set("CompanyName", getACResponse.result.companyName);
                 return "1";//Succeded
 
             }

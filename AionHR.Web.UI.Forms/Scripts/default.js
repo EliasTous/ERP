@@ -62,3 +62,7 @@
     });
 })();
 
+function setCompanyName(companyName)
+{
+    App.CompanyNameLiteral.setText(companyName);
+}

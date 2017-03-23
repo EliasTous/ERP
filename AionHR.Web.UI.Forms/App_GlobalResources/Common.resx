@@ -121,13 +121,13 @@
     <value>Active Module</value>
   </data>
   <data name="ApplicationModule" xml:space="preserve">
-    <value>Human Resources Solution</value>
+    <value>AION</value>
   </data>
   <data name="ApplicationTitle" xml:space="preserve">
     <value>AionHR</value>
   </data>
   <data name="CaseManagement" xml:space="preserve">
-    <value>Case Management</value>
+    <value>Cases</value>
   </data>
   <data name="Cases" xml:space="preserve">
     <value>Cases</value>
@@ -157,7 +157,7 @@
     <value>Employees</value>
   </data>
   <data name="EmployeeFiles" xml:space="preserve">
-    <value>Employee Files</value>
+    <value>Employees</value>
   </data>
   <data name="EmployeeLeaf" xml:space="preserve">
     <value>Manage Employee</value>
@@ -268,7 +268,7 @@
     <value>Yes</value>
   </data>
   <data name="Add" xml:space="preserve">
-    <value>Add</value>
+    <value />
   </data>
   <data name="AfterPageText" xml:space="preserve">
     <value>of {0}</value>
@@ -599,5 +599,8 @@
   </data>
   <data name="MediaCategory" xml:space="preserve">
     <value>Media Category</value>
+  </data>
+  <data name="Setup" xml:space="preserve">
+    <value>Setup</value>
   </data>
 </root>

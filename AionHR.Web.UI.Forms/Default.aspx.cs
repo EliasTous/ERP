@@ -60,7 +60,7 @@ namespace AionHR.Web.UI.Forms
             {
                 SetExtLanguage();
                 SetHeaderStyle();
-
+                CompanyNameLiteral.Text = "- "+_systemService.SessionHelper.Get("CompanyName").ToString();
                 //Building the tree
                 _systemService.SessionHelper.Set("ActiveModule", "-1");
                 BuildTree(1);
