@@ -117,8 +117,8 @@ namespace AionHR.Web.UI.Forms.EmployeePages
 
             int id = Convert.ToInt32(e.ExtraParams["id"]);
             string type = e.ExtraParams["type"];
-            string deduction,entitlement="";
-            SalaryDetail dedDetail,entDetail=null;
+            string deduction, entitlement = "";
+            SalaryDetail dedDetail, entDetail = null;
             switch (type)
             {
 
@@ -209,10 +209,12 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     var x = entitlementsStore.GetById(id);
                     string record = e.ExtraParams["values"];
                     SalaryDetail detail = JsonConvert.DeserializeObject<List<SalaryDetail>>(record)[0];
-                    
+                    if (!detail.includeInTotal.HasValue)
+                        detail.includeInTotal = false;
                     ensStore_ReadData(null, null);
                     ENId.Text = detail.seqNo.ToString();
                     oldEntValue.Text = detail.fixedAmount.ToString();
+                    oldENIncludeInFinal.Checked = detail.includeInTotal.Value;
                     ENForm.SetValues(detail);
                     entEdId.Select(detail.edId.ToString());
                     EditENWindow.Show();
@@ -220,12 +222,14 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                 case "ColENDelete":
                     entitlement = e.ExtraParams["values"];
                     entDetail = JsonConvert.DeserializeObject<List<SalaryDetail>>(entitlement)[0];
+                    if (!entDetail.includeInTotal.HasValue)
+                        entDetail.includeInTotal = false;
                     X.Msg.Confirm(Resources.Common.Confirmation, Resources.Common.DeleteOneRecord, new MessageBoxButtonsConfig
                     {
                         Yes = new MessageBoxButtonConfig
                         {
                             //We are call a direct request metho for deleting a record
-                            Handler = String.Format("App.direct.DeleteEN({0},{1})", id,entDetail.fixedAmount),
+                            Handler = String.Format("App.direct.DeleteEN({0},{1},'{2}')", id, entDetail.fixedAmount, entDetail.includeInTotal.Value),
                             Text = Resources.Common.Yes
                         },
                         No = new MessageBoxButtonConfig
@@ -236,24 +240,29 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     }).Show();
                     break;
                 case "ColDEName":
-                    
+
                     deduction = e.ExtraParams["values"];
-                     dedDetail = JsonConvert.DeserializeObject<List<SalaryDetail>>(deduction)[0];
+                    dedDetail = JsonConvert.DeserializeObject<List<SalaryDetail>>(deduction)[0];
+                    if (!dedDetail.includeInTotal.HasValue)
+                        dedDetail.includeInTotal = false;
                     DEId.Text = dedDetail.seqNo.ToString();
                     DEForm.SetValues(dedDetail);
-                    DEoldValue.Text = dedDetail.fixedAmount.ToString(); ;
+                    DEoldValue.Text = dedDetail.fixedAmount.ToString();
+                    oldDEIncludeInFinal.Checked = dedDetail.includeInTotal.Value;
                     dedEdId.Select(dedDetail.edId.ToString());
                     EditDEWindow.Show();
                     break;
                 case "ColDEDelete":
                     deduction = e.ExtraParams["values"];
                     dedDetail = JsonConvert.DeserializeObject<List<SalaryDetail>>(deduction)[0];
+                    if (!dedDetail.includeInTotal.HasValue)
+                        dedDetail.includeInTotal = false;
                     X.Msg.Confirm(Resources.Common.Confirmation, Resources.Common.DeleteOneRecord, new MessageBoxButtonsConfig
                     {
                         Yes = new MessageBoxButtonConfig
                         {
                             //We are call a direct request metho for deleting a record
-                            Handler = String.Format("App.direct.DeleteDE({0},{1})", id,dedDetail.fixedAmount),
+                            Handler = String.Format("App.direct.DeleteDE({0},{1},'{2}')", id, dedDetail.fixedAmount, dedDetail.includeInTotal.Value),
                             Text = Resources.Common.Yes
                         },
                         No = new MessageBoxButtonConfig
@@ -389,10 +398,11 @@ namespace AionHR.Web.UI.Forms.EmployeePages
         }
 
         [DirectMethod]
-        public void DeleteEN(string index,double value)
+        public void DeleteEN(string index, double value, string includeInTotalString)
         {
             try
             {
+                bool includeInTotal = Convert.ToBoolean(includeInTotalString);
                 //Step 2 :  remove the object from the store
                 entitlementsStore.Remove(index);
 
@@ -403,7 +413,8 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     Icon = Icon.Information,
                     Html = Resources.Common.RecordDeletedSucc
                 });
-                X.Call("ChangeFinalAmount", -value);
+                if (includeInTotal)
+                    X.Call("ChangeFinalAmount", -value);
 
             }
             catch (Exception ex)
@@ -415,10 +426,11 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             }
         }
         [DirectMethod]
-        public void DeleteDE(string index,double value)
+        public void DeleteDE(string index, double value, string includeInTotalString)
         {
             try
             {
+                bool includeInTotal = Convert.ToBoolean(includeInTotalString);
                 //Step 2 :  remove the object from the store
                 deductionStore.Remove(index);
 
@@ -429,8 +441,8 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     Icon = Icon.Information,
                     Html = Resources.Common.RecordDeletedSucc
                 });
-
-                X.Call("ChangeFinalAmount", value);
+                if (includeInTotal)
+                    X.Call("ChangeFinalAmount", value);
             }
             catch (Exception ex)
             {
@@ -729,9 +741,12 @@ namespace AionHR.Web.UI.Forms.EmployeePages
 
             string obj = e.ExtraParams["values"];
             string oldAmount = e.ExtraParams["oldAmount"];
+
             SalaryDetail b = JsonConvert.DeserializeObject<SalaryDetail>(obj);
 
             b.seqNo = Convert.ToInt16(ENSeq.Text);
+            if (!b.includeInTotal.HasValue)
+                b.includeInTotal = false;
 
             if (entEdId.SelectedItem != null)
                 b.edName = entEdId.SelectedItem.Text;
@@ -745,7 +760,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             {
                 b.fixedAmount = (b.pct / 100) * Convert.ToDouble(BasicSalary.Text);
             }
-           
+
             if (string.IsNullOrEmpty(id))
             {
 
@@ -755,6 +770,8 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     short curSeq = Convert.ToInt16(ENSeq.Text);
                     b.seqNo = curSeq++;
                     ENSeq.Text = curSeq.ToString();
+                    if (!b.includeInTotal.HasValue)
+                        b.includeInTotal = false;
                     //Add this record to the store 
                     this.entitlementsStore.Insert(0, b);
 
@@ -767,7 +784,8 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     });
 
                     this.EditENWindow.Close();
-                    X.Call("ChangeFinalAmount", b.fixedAmount);
+                    if (b.includeInTotal.Value)
+                        X.Call("ChangeFinalAmount", b.fixedAmount);
                 }
 
                 catch (Exception ex)
@@ -782,13 +800,14 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             else
             {
                 //Update Mode
-
+                double oldAmountDouble = Convert.ToDouble(oldAmount);
+                bool oldInclude = Convert.ToBoolean(e.ExtraParams["oldInclude"]);
                 try
                 {
                     ModelProxy record = this.entitlementsStore.GetById(id);
-                    
+
                     record.Set("edName", b.edName);
-                   ENForm.UpdateRecord(record);
+                    ENForm.UpdateRecord(record);
                     record.Set("fixedAmount", b.fixedAmount);
                     record.Commit();
                     Notification.Show(new NotificationConfig
@@ -798,8 +817,8 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                         Html = Resources.Common.RecordUpdatedSucc
                     });
                     this.EditENWindow.Close();
-                    double newChange = b.fixedAmount - Convert.ToDouble(oldAmount);
-                    X.Call("ChangeFinalAmount", newChange);
+                    RefreshFinalForEntitlement(oldAmountDouble, oldInclude, b.includeInTotal.Value, b.fixedAmount);
+
                 }
                 catch (Exception ex)
                 {
@@ -808,19 +827,69 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                 }
             }
         }
+
+        private static void RefreshFinalForEntitlement(double oldAmountDouble, bool oldInclude, bool include, double amount)
+        {
+            switch (include)
+            {
+                case false:
+                    if (oldInclude)
+                        X.Call("ChangeFinalAmount", -oldAmountDouble);
+
+                    break;
+                case true:
+                    if (!oldInclude)
+                        X.Call("ChangeFinalAmount", amount);
+                    else
+                    {
+                        double newChange = amount - oldAmountDouble;
+                        X.Call("ChangeFinalAmount", newChange);
+                    }
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        private static void RefreshFinalForDeduction(double oldAmountDouble, bool oldInclude, bool include, double amount)
+        {
+            switch (include)
+            {
+                case false:
+                    if (oldInclude)
+                        X.Call("ChangeFinalAmount", oldAmountDouble);
+
+                    break;
+                case true:
+                    if (!oldInclude)
+                        X.Call("ChangeFinalAmount", -amount);
+                    else
+                    {
+                        double newChange = oldAmountDouble - amount;
+                        X.Call("ChangeFinalAmount", newChange);
+                    }
+                    break;
+                default:
+                    break;
+            }
+        }
+
         protected void SaveDE(object sender, DirectEventArgs e)
         {
             string id = e.ExtraParams["id"];
 
             string obj = e.ExtraParams["values"];
             string oldAmount = e.ExtraParams["oldAmount"];
+
             JsonSerializerSettings settings = new JsonSerializerSettings();
             CustomResolver res = new CustomResolver();
             res.AddRule("DEedId", "edId");
             settings.ContractResolver = res;
-            SalaryDetail b = JsonConvert.DeserializeObject<SalaryDetail>(obj,settings);
+            SalaryDetail b = JsonConvert.DeserializeObject<SalaryDetail>(obj, settings);
 
             b.seqNo = Convert.ToInt16(DESeq.Text);
+            if (!b.includeInTotal.HasValue)
+                b.includeInTotal = false;
 
             if (dedEdId.SelectedItem != null)
                 b.edName = dedEdId.SelectedItem.Text;
@@ -834,7 +903,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             {
                 b.fixedAmount = (b.pct / 100) * Convert.ToDouble(BasicSalary.Text);
             }
-           
+
             if (string.IsNullOrEmpty(id))
             {
 
@@ -844,6 +913,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     short curSeq = Convert.ToInt16(DESeq.Text);
                     b.seqNo = curSeq++;
                     DESeq.Text = curSeq.ToString();
+                   
                     //Add this record to the store 
                     this.deductionStore.Insert(0, b);
 
@@ -856,7 +926,8 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     });
 
                     this.EditDEWindow.Close();
-                    X.Call("ChangeFinalAmount", -b.fixedAmount);
+                    if (b.includeInTotal.Value)
+                        X.Call("ChangeFinalAmount", -b.fixedAmount);
                 }
 
                 catch (Exception ex)
@@ -874,8 +945,10 @@ namespace AionHR.Web.UI.Forms.EmployeePages
 
                 try
                 {
+                    double oldAmountDouble = Convert.ToDouble(oldAmount);
+                    bool oldInclude = Convert.ToBoolean(e.ExtraParams["oldInclude"]);
                     ModelProxy record = this.deductionStore.GetById(id);
-                    
+
                     record.Set("edName", b.edName);
                     DEForm.UpdateRecord(record);
                     record.Set("fixedAmount", b.fixedAmount);
@@ -887,8 +960,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                         Html = Resources.Common.RecordUpdatedSucc
                     });
                     this.EditDEWindow.Close();
-                    double newChange = Convert.ToDouble(oldAmount)  -b.fixedAmount;
-                    X.Call("ChangeFinalAmount", newChange);
+                    RefreshFinalForDeduction(oldAmountDouble, oldInclude, b.includeInTotal.Value, b.fixedAmount);
                 }
                 catch (Exception ex)
                 {
