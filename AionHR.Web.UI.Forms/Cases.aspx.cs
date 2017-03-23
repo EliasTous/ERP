@@ -85,6 +85,8 @@ namespace AionHR.Web.UI.Forms
         IEmployeeService _employeeService = ServiceLocator.Current.GetInstance<IEmployeeService>();
 
         ICaseService _caseService = ServiceLocator.Current.GetInstance<ICaseService>();
+
+        ICompanyStructureService _companyStructureService = ServiceLocator.Current.GetInstance<ICompanyStructureService>();
         protected override void InitializeCulture()
         {
 
@@ -114,6 +116,10 @@ namespace AionHR.Web.UI.Forms
                 SetExtLanguage();
                 HideShowButtons();
                 HideShowColumns();
+
+                FillBranch();
+                FillDepartment();
+                FillDivision();
 
 
 
@@ -377,6 +383,43 @@ namespace AionHR.Web.UI.Forms
             this.EditRecordWindow.Show();
         }
 
+        private CaseManagementListRequest GetCaseManagementRequest()
+        {
+            CaseManagementListRequest req = new CaseManagementListRequest();
+
+            if (!string.IsNullOrEmpty(branchId.Text) && branchId.Value.ToString() != "0")
+            {
+                req.BranchId = (int)branchId.Value;
+            }
+            else
+            {
+                req.BranchId = 0;            
+            }
+
+            if (!string.IsNullOrEmpty(departmentId.Text) && departmentId.Value.ToString() != "0")
+            {
+                req.DepartmentId = (int)departmentId.Value;                
+            }
+            else
+            {
+                req.DepartmentId = 0;
+            }
+
+            if (!string.IsNullOrEmpty(divisionId.Text) && divisionId.Value.ToString() != "0")
+            {
+                req.DivisionId = (int)divisionId.Value;
+            }
+            else
+            {
+                req.BranchId = 0;
+            }
+            req.Size = "30";
+            req.StartAt = "1";
+            req.Filter = "";
+            req.EmployeeId = 0;
+            return req;
+        }
+
         protected void Store1_RefreshData(object sender, StoreReadDataEventArgs e)
         {
 
@@ -390,17 +433,13 @@ namespace AionHR.Web.UI.Forms
 
             //in this test will take a list of News
             //ListRequest request = new ListRequest();
-            CaseManagementListRequest request = new CaseManagementListRequest();
-            request.EmployeeId = 0;
-            request.Size = "50";
-            request.StartAt = "1";
+            CaseManagementListRequest request = GetCaseManagementRequest();
 
-            request.Filter = "";
             ListResponse<Case> routers = _caseService.GetAll<Case>(request);
             if (!routers.Success)
                 X.Msg.Alert(Resources.Common.Error, routers.Summary).Show();
             this.Store1.DataSource = routers.Items;
-            e.Total = routers.Items.Count; ;
+            e.Total = routers.Items.Count; 
 
             this.Store1.DataBind();
         }
@@ -543,5 +582,37 @@ namespace AionHR.Web.UI.Forms
         {
 
         }
+
+
+        private void FillDepartment()
+        {
+            ListRequest departmentsRequest = new ListRequest();
+            ListResponse<Department> resp = _companyStructureService.ChildGetAll<Department>(departmentsRequest);
+            if (!resp.Success)
+                X.Msg.Alert(Resources.Common.Error, resp.Summary).Show();
+            departmentStore.DataSource = resp.Items;
+            departmentStore.DataBind();
+        }
+        private void FillBranch()
+        {
+            ListRequest branchesRequest = new ListRequest();
+            ListResponse<Branch> resp = _companyStructureService.ChildGetAll<Branch>(branchesRequest);
+            if (!resp.Success)
+                X.Msg.Alert(Resources.Common.Error, resp.Summary).Show();
+            branchStore.DataSource = resp.Items;
+            branchStore.DataBind();
+        }
+
+        private void FillDivision()
+        {
+            ListRequest branchesRequest = new ListRequest();
+            ListResponse<Division> resp = _companyStructureService.ChildGetAll<Division>(branchesRequest);
+            if (!resp.Success)
+                X.Msg.Alert(Resources.Common.Error, resp.Summary).Show();
+            divisionStore.DataSource = resp.Items;
+            divisionStore.DataBind();
+        }
+
+
     }
 }

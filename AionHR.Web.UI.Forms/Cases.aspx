@@ -113,6 +113,73 @@
                                             <TriggerClick Handler="#{Store1}.reload();" />
                                         </Listeners>
                                     </ext:TextField>
+
+
+                                 <ext:ComboBox runat="server" ValueField="recordId" DisplayField="name" ID="branchId" Name="branchId" FieldLabel="<%$ Resources:FieldBranch%>" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" >
+                                    <Store>
+                                        <ext:Store runat="server" ID="branchStore">
+                                            <Model>
+                                                <ext:Model runat="server">
+                                                    <Fields>
+                                                        <ext:ModelField Name="recordId" />
+                                                        <ext:ModelField Name="name" />
+                                                    </Fields>
+                                                </ext:Model>
+                                            </Model>
+                                        </ext:Store>
+                                    </Store>
+                                    <Listeners>
+                                        <Select Handler="#{Store1}.reload()" />
+                                    </Listeners>
+                                    <Items>
+                                        <ext:ListItem Text="-----All-----" Value="0" />
+                                    </Items>
+                                </ext:ComboBox>
+                                 
+                                <ext:ComboBox runat="server" ValueField="recordId" DisplayField="name" ID="departmentId" Name="departmentId" FieldLabel="<%$ Resources:FieldDepartment%>" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" >
+                                    <Store>
+                                        <ext:Store runat="server" ID="departmentStore">
+                                            <Model>
+                                                <ext:Model runat="server">
+                                                    <Fields>
+                                                        <ext:ModelField Name="recordId" />
+                                                        <ext:ModelField Name="name" />
+                                                    </Fields>
+                                                </ext:Model>
+                                            </Model>
+                                        </ext:Store>
+                                    </Store>
+                                    <Listeners>
+                                        <Select Handler="#{Store1}.reload()" />
+                                    </Listeners>
+                                    <Items>
+                                        <ext:ListItem Text="-----All-----" Value="0" />
+                                    </Items>
+
+                                </ext:ComboBox>
+                                 <ext:ComboBox runat="server" ValueField="recordId" DisplayField="name" ID="divisionId" Name="divisionId" FieldLabel="<%$ Resources:FieldDivision%>" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" >
+                                    <Store>
+                                        <ext:Store runat="server" ID="divisionStore">
+                                            <Model>
+                                                <ext:Model runat="server">
+                                                    <Fields>
+                                                        <ext:ModelField Name="recordId" />
+                                                        <ext:ModelField Name="name" />
+                                                    </Fields>
+                                                </ext:Model>
+                                            </Model>
+                                        </ext:Store>
+                                    </Store>
+                                    <Listeners>
+                                        <Select Handler="#{Store1}.reload()" />
+                                    </Listeners>
+                                    <Items>
+                                        <ext:ListItem Text="-----All-----" Value="0" />
+                                    </Items>
+                                </ext:ComboBox>
+
+
+
                             
                             </Items>
                         </ext:Toolbar>
@@ -152,7 +219,7 @@
 
                             </ext:Column>
                             <ext:Column runat="server"
-                                ID="colDelete" Flex="1" Visible="false"
+                                ID="colDelete" Flex="1" Visible="true"
                                 Text="<%$ Resources: Common , Delete %>"
                                 Width="60"
                                 Align="Center"
@@ -296,10 +363,8 @@
                                     </Store>
                                 </ext:ComboBox>
                                 <%--<ext:TextField ID="employeeName" runat="server" FieldLabel="<%$ Resources:FieldEmployeeName%>" Name="employeeName"   AllowBlank="false"/>--%>
-                                <ext:DateField ID="date" runat="server" FieldLabel="<%$ Resources:FieldDate%>" Name="date" AllowBlank="false" />
-                                <ext:DateField ID="closedDate" runat="server" FieldLabel="<%$ Resources:FieldClosedDate%>" Name="closedDate" AllowBlank="false" />
-                                <ext:TextArea ID="details" runat="server" FieldLabel="<%$ Resources:FieldDetails%>" Name="details" />
-
+                                <ext:DateField ID="date" runat="server" FieldLabel="<%$ Resources:FieldDate%>" Name="date" AllowBlank="false" />                                
+                                <ext:TextArea ID="details" runat="server" FieldLabel="<%$ Resources:FieldDetails%>" Name="details" AllowBlank="false"/>
                                 <ext:ComboBox runat="server" ID="status" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1"
                                     FieldLabel="<%$ Resources: FieldStatus %>">
                                     <Items>
@@ -308,7 +373,7 @@
                                         <ext:ListItem Text="<%$ Resources: FieldClosed %>" Value="2" />
                                     </Items>
                                 </ext:ComboBox>
-
+                                <ext:DateField ID="closedDate" runat="server" FieldLabel="<%$ Resources:FieldClosedDate%>" Name="closedDate" AllowBlank="true" />
                                 
 
                             </Items>
