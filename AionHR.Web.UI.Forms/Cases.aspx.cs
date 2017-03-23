@@ -175,13 +175,27 @@ namespace AionHR.Web.UI.Forms
                     RecordRequest r = new RecordRequest();
                     r.RecordID = id;
 
-                    RecordResponse<Case> response = _caseService.ChildGetRecord<Case>(r);
+                    RecordResponse<Case> response = _caseService.Get<Case>(r);
                     if (!response.Success)
                     {
                         X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
                         X.Msg.Alert(Resources.Common.Error, response.Summary).Show();
                         return;
                     }
+                   
+
+                        employeeId.GetStore().Add(new object[]
+                           {
+                                new
+                                {
+                                    recordId = response.result.employeeId,
+                                    fullName =response.result.employeeName.fullName
+                                }
+                           });
+                    employeeId.SetValue(response.result.employeeId);
+
+
+                    
                     //Step 2 : call setvalues with the retrieved object
                     this.BasicInfoTab.SetValues(response.result);
 
@@ -493,7 +507,7 @@ namespace AionHR.Web.UI.Forms
 
                         ModelProxy record = this.Store1.GetById(id);
                         BasicInfoTab.UpdateRecord(record);
-                        record.Set("employeeName", b.employeeName.fullName);
+                        
                         record.Commit();
                         Notification.Show(new NotificationConfig
                         {
