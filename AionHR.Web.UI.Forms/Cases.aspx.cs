@@ -86,6 +86,8 @@ namespace AionHR.Web.UI.Forms
 
         ICaseService _caseService = ServiceLocator.Current.GetInstance<ICaseService>();
 
+
+
         ICompanyStructureService _companyStructureService = ServiceLocator.Current.GetInstance<ICompanyStructureService>();
         protected override void InitializeCulture()
         {
@@ -188,7 +190,8 @@ namespace AionHR.Web.UI.Forms
                         X.Msg.Alert(Resources.Common.Error, response.Summary).Show();
                         return;
                     }
-                   
+
+                    currentCase.Text = id;
 
                         employeeId.GetStore().Add(new object[]
                            {
@@ -199,13 +202,14 @@ namespace AionHR.Web.UI.Forms
                                 }
                            });
                     employeeId.SetValue(response.result.employeeId);
-
+                    caseComments_RefreshData(Convert.ToInt32(id));
 
                     
                     //Step 2 : call setvalues with the retrieved object
                     this.BasicInfoTab.SetValues(response.result);
 
-
+                    if(!response.result.closedDate.HasValue)
+                        closedDate.SelectedDate = DateTime.Now;
                     this.EditRecordWindow.Title = Resources.Common.EditWindowsTitle;
                     this.EditRecordWindow.Show();
                     break;
@@ -375,12 +379,61 @@ namespace AionHR.Web.UI.Forms
 
             //Reset all values of the relative object
             BasicInfoTab.Reset();
-
+            closedDate.SelectedDate = DateTime.Now;
 
             this.EditRecordWindow.Title = Resources.Common.AddNewRecord;
 
 
             this.EditRecordWindow.Show();
+        }
+
+        protected void caseComments_RefreshData(int cId)
+        {
+
+            //GEtting the filter from the page
+            string filter = string.Empty;
+            int totalCount = 1;
+
+
+
+            //Fetching the corresponding list
+
+            //in this test will take a list of News
+
+            CaseCommentsListRequest req = new CaseCommentsListRequest();
+            req.caseId = cId;
+            ListResponse<CaseComment> notes = _caseService.ChildGetAll<CaseComment>(req);
+            if (!notes.Success)
+                X.Msg.Alert(Resources.Common.Error, notes.Summary).Show();
+            this.caseCommentStore.DataSource = notes.Items;
+            
+
+            this.caseCommentStore.DataBind();
+        }
+
+        protected void ADDNewRecordComments(object sender, DirectEventArgs e)
+        {
+            string noteText = e.ExtraParams["noteText"];
+            X.Call("ClearNoteText");
+            PostRequest<CaseComment> req = new PostRequest<CaseComment>();
+            CaseComment note = new CaseComment();
+            note.recordId = null;
+            note.comment = noteText;
+            note.date = DateTime.Now;
+            note.caseId = Convert.ToInt32(currentCase.Text);
+            req.entity = note;
+            
+
+            PostResponse<CaseComment> resp = _caseService.ChildAddOrUpdate<CaseComment>(req);
+            if (!resp.Success)
+            {
+                X.Msg.Alert(Resources.Common.Error, resp.Summary).Show();
+
+            }
+            caseCommentStore.Reload();
+
+            //Reset all values of the relative object
+
         }
 
         private CaseManagementListRequest GetCaseManagementRequest()
@@ -464,8 +517,9 @@ namespace AionHR.Web.UI.Forms
             if (employeeId.SelectedItem != null)
                
                 b.employeeName.fullName = employeeId.SelectedItem.Text;
-       
 
+            if (closedDate.ReadOnly)
+                b.closedDate = null;
             if (string.IsNullOrEmpty(id))
             {
 
@@ -476,6 +530,7 @@ namespace AionHR.Web.UI.Forms
                     PostRequest<Case> request = new PostRequest<Case>();
 
                     request.entity = b;
+                    
                     PostResponse<Case> r = _caseService.AddOrUpdate<Case>(request);
 
 
@@ -490,7 +545,7 @@ namespace AionHR.Web.UI.Forms
                     else
                     {
                         b.recordId = r.recordId;
-
+                        
                         //Add this record to the store 
                         this.Store1.Insert(0, b);
 
@@ -546,7 +601,10 @@ namespace AionHR.Web.UI.Forms
 
                         ModelProxy record = this.Store1.GetById(id);
                         BasicInfoTab.UpdateRecord(record);
-                        
+
+                        if (closedDate.ReadOnly)
+                            record.Set("closedDate", null);
+
                         record.Commit();
                         Notification.Show(new NotificationConfig
                         {
@@ -613,6 +671,33 @@ namespace AionHR.Web.UI.Forms
             divisionStore.DataBind();
         }
 
+        [DirectMethod]
+        public object ValidateSave(bool isPhantom, string obj, JsonObject values)
+        {
 
+
+            if (!values.ContainsKey("note"))
+            {
+                return new { valid = false, msg = "Salary must be >=1000 for new employee" };
+            }
+
+            PostRequest<CaseComment> req = new PostRequest<CaseComment>();
+            CaseComment note = JsonConvert.DeserializeObject<List<CaseComment>>(obj)[0];
+            //note.recordId = id;
+            note.caseId = Convert.ToInt32(currentCase.Text);
+            note.comment = values["comment"].ToString();
+            int bulk;
+
+            req.entity = note;
+
+            PostResponse<CaseComment> resp = _caseService.ChildAddOrUpdate<CaseComment>(req);
+            if (!resp.Success)
+            {
+                X.Msg.Alert(Resources.Common.Error, resp.Summary).Show();
+                return new { valid = false };
+            }
+            caseCommentStore.Reload();
+            return new { valid = true };
+        }
     }
 }
