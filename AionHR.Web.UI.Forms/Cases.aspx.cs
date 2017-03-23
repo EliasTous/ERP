@@ -375,7 +375,11 @@ namespace AionHR.Web.UI.Forms
             //Fetching the corresponding list
 
             //in this test will take a list of News
-            ListRequest request = new ListRequest();
+            //ListRequest request = new ListRequest();
+            CaseManagementListRequest request = new CaseManagementListRequest();
+            request.EmployeeId = 0;
+            request.Size = "50";
+            request.StartAt = "1";
 
             request.Filter = "";
             ListResponse<Case> routers = _caseService.GetAll<Case>(request);
@@ -407,6 +411,7 @@ namespace AionHR.Web.UI.Forms
             if (employeeId.SelectedItem != null)
                
                 b.employeeName.fullName = employeeId.SelectedItem.Text;
+       
 
             if (string.IsNullOrEmpty(id))
             {
@@ -432,6 +437,7 @@ namespace AionHR.Web.UI.Forms
                     else
                     {
                         b.recordId = r.recordId;
+
                         //Add this record to the store 
                         this.Store1.Insert(0, b);
 
