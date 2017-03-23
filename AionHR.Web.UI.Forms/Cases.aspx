@@ -123,7 +123,7 @@
                         <Columns>
                             <ext:Column ID="ColRecordId" Visible="false" DataIndex="recordId" runat="server" />
                             <ext:Column ID="ColName" DataIndex="employeeName.fullName" Text="<%$ Resources: FieldEmployeeName%>" runat="server" Flex="4">
-                                 <Renderer Handler=" alert(record.data['employeeName']); return '<u>'+ record.data['employeeName'].fullName +'</u>'">
+                                 <Renderer Handler=" return '<u>'+ record.data['employeeName'].fullName +'</u>'">
                                 </Renderer>
                             </ext:Column>
                             <ext:DateColumn Format="dd-MM-yyyy" ID="colDate" DataIndex="date" Text="<%$ Resources: FieldDate%>" runat="server" Flex="2" />
