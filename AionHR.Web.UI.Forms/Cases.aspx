@@ -11,7 +11,7 @@
     <title></title>
     <link rel="stylesheet" type="text/css" href="CSS/Common.css" />
     <link rel="stylesheet" href="CSS/LiveSearch.css" />
-    <script type="text/javascript" src="Scripts/Cases.js?id=0" ></script>
+    <script type="text/javascript" src="Scripts/Cases.js?id=2" ></script>
     <script type="text/javascript" src="Scripts/common.js" ></script>
    
  
@@ -123,11 +123,12 @@
                         <Columns>
                             <ext:Column ID="ColRecordId" Visible="false" DataIndex="recordId" runat="server" />
                             <ext:Column ID="ColName" DataIndex="employeeName.fullName" Text="<%$ Resources: FieldEmployeeName%>" runat="server" Flex="4">
-                                <Renderer Handler=" return '<u>'+ record.data['employeeName'].fullName+'</u>'" />
+                                 <Renderer Handler=" alert(record.data['employeeName']); return '<u>'+ record.data['employeeName'].fullName +'</u>'">
+                                </Renderer>
                             </ext:Column>
                             <ext:DateColumn Format="dd-MM-yyyy" ID="colDate" DataIndex="date" Text="<%$ Resources: FieldDate%>" runat="server" Flex="2" />
-                            <ext:Column    CellCls="cellLink" ID="colDetails" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDetails%>" DataIndex="name" Flex="6" Hideable="false">
-                            <Renderer Handler="return '<u>'+ record.data['name']+'</u>'"></Renderer>
+                            <ext:Column    CellCls="cellLink" ID="colDetails" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDetails%>" DataIndex="details" Flex="6" Hideable="false">
+                           <%-- <Renderer Handler="return '<u>'+ record.data['details']+'</u>'"></Renderer>--%>
                             </ext:Column>
                             <ext:Column ID="colStatus" DataIndex="status" Text="<%$ Resources: FieldStatus%>" runat="server" Flex="2">
                             <Renderer Handler="return GetStatusName(record.data['status']);" />
@@ -268,20 +269,6 @@
                             BodyPadding="5">
                             <Items>
                                 <ext:TextField ID="recordId" runat="server"  Name="recordId"  Hidden="true"/>
-                                <ext:TextField ID="employeeName" runat="server" FieldLabel="<%$ Resources:FieldEmployeeName%>" Name="employeeName"   AllowBlank="false"/>
-                                <ext:DateField ID="date" runat="server" FieldLabel="<%$ Resources:FieldDate%>" Name="date" AllowBlank="false" />
-                                <ext:DateField ID="closedDate" runat="server" FieldLabel="<%$ Resources:FieldClosedDate%>" Name="closedDate" AllowBlank="false" />
-                                <ext:TextArea ID="details" runat="server" FieldLabel="<%$ Resources:FieldDetails%>" Name="details" />
-
-                                <ext:ComboBox runat="server" ID="status" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1"
-                                    FieldLabel="<%$ Resources: FieldStatus %>">
-                                    <Items>
-                                        <ext:ListItem Text="<%$ Resources: FieldOpen %>" Value="0" />
-                                        <ext:ListItem Text="<%$ Resources: FieldPending %>" Value="1" />
-                                        <ext:ListItem Text="<%$ Resources: FieldClosed %>" Value="2" />
-                                    </Items>
-                                </ext:ComboBox>
-
                                 <ext:ComboBox runat="server" ID="employeeId"
                                     DisplayField="fullName"
                                     ValueField="recordId"
@@ -308,6 +295,21 @@
 
                                     </Store>
                                 </ext:ComboBox>
+                                <%--<ext:TextField ID="employeeName" runat="server" FieldLabel="<%$ Resources:FieldEmployeeName%>" Name="employeeName"   AllowBlank="false"/>--%>
+                                <ext:DateField ID="date" runat="server" FieldLabel="<%$ Resources:FieldDate%>" Name="date" AllowBlank="false" />
+                                <ext:DateField ID="closedDate" runat="server" FieldLabel="<%$ Resources:FieldClosedDate%>" Name="closedDate" AllowBlank="false" />
+                                <ext:TextArea ID="details" runat="server" FieldLabel="<%$ Resources:FieldDetails%>" Name="details" />
+
+                                <ext:ComboBox runat="server" ID="status" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1"
+                                    FieldLabel="<%$ Resources: FieldStatus %>">
+                                    <Items>
+                                        <ext:ListItem Text="<%$ Resources: FieldOpen %>" Value="0" />
+                                        <ext:ListItem Text="<%$ Resources: FieldPending %>" Value="1" />
+                                        <ext:ListItem Text="<%$ Resources: FieldClosed %>" Value="2" />
+                                    </Items>
+                                </ext:ComboBox>
+
+                                
 
                             </Items>
 

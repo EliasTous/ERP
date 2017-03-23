@@ -62,6 +62,7 @@
     <Compile Include="Implementations\SystemService.cs" />
     <Compile Include="Interfaces\IMasterService.cs" />
     <Compile Include="Interfaces\ITimeAttendanceService.cs" />
+    <Compile Include="Messaging\CaseManagement\CaseManagementRequest.cs" />
     <Compile Include="Messaging\Employees\EmployeesRequests.cs" />
     <Compile Include="Messaging\LeaveManagement\LeaveManagementRequests.cs" />
     <Compile Include="Messaging\ListReponse.cs" />
