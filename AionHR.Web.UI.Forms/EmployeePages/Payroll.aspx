@@ -1132,6 +1132,7 @@
 
                                 <ext:TextField ID="ENId" Hidden="true" runat="server" FieldLabel="<%$ Resources:FieldrecordId%>" Disabled="true" Name="recordId" />
                                 <ext:TextField ID="oldEntValue" Hidden="true" runat="server" FieldLabel="<%$ Resources:FieldrecordId%>" Disabled="true" Name="recordId" />
+                                <ext:Checkbox ID="oldENIncludeInFinal" Hidden="true" runat="server" disabled="true" />
                               <ext:ComboBox runat="server" ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" AllowBlank="false" DisplayField="name" ID="entEdId" Name="edId" FieldLabel="<%$ Resources:FieldEntitlement%>" SimpleSubmit="true" StoreID="entsStore">
                                             
                                              <RightButtons>
@@ -1201,6 +1202,7 @@
                             <ExtraParams>
                                 <ext:Parameter Name="id" Value="#{ENId}.getValue()" Mode="Raw" />
                                 <ext:Parameter Name="oldAmount" Value="#{oldEntValue}.getValue()" Mode="Raw" />
+                                <ext:Parameter Name="oldInclude" Value="#{oldENIncludeInFinal}.getValue()" Mode="Raw" />
                                 <ext:Parameter Name="values" Value="#{ENForm}.getForm().getValues(false, false, false, true)" Mode="Raw" Encode="true" />
                             </ExtraParams>
                         </Click>
@@ -1246,6 +1248,7 @@
                             <Items>
                                  <ext:TextField ID="DEoldValue" Hidden="true" runat="server" FieldLabel="<%$ Resources:FieldrecordId%>" Disabled="true" Name="recordId" />
                                 <ext:TextField ID="DEId" Hidden="true" runat="server" FieldLabel="<%$ Resources:FieldrecordId%>" Disabled="true" Name="recordId" />
+                                <ext:Checkbox ID="oldDEIncludeInFinal" Hidden="true" runat="server" disabled="true" />
                                 <ext:ComboBox  runat="server" ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" AllowBlank="false" DisplayField="name" ID="dedEdId" Name="DEedId" FieldLabel="<%$ Resources:FieldDeduction%>" SimpleSubmit="true" StoreID="dedsStore">
                                     <RightButtons>
                                         <ext:Button ID="Button9" runat="server" Icon="Add" Hidden="true">
@@ -1313,6 +1316,7 @@
                             <ExtraParams>
                                 <ext:Parameter Name="id" Value="#{DEId}.getValue()" Mode="Raw" />
                                 <ext:Parameter Name="oldAmount" Value="#{DEoldValue}.getValue()" Mode="Raw" />
+                                <ext:Parameter Name="oldInclude" Value="#{oldDEIncludeInFinal}.getValue()" Mode="Raw" />
                                 <ext:Parameter Name="values" Value="#{DEForm}.getForm().getValues(false, false, false, true)" Mode="Raw" Encode="true" />
                             </ExtraParams>
                         </Click>
