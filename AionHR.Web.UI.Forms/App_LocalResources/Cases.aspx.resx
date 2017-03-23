@@ -123,6 +123,9 @@
   <data name="EditWindowsTitle" xml:space="preserve">
     <value>Edit Case</value>
   </data>
+  <data name="FieldBranch" xml:space="preserve">
+    <value>Branch</value>
+  </data>
   <data name="FieldClosed" xml:space="preserve">
     <value>Closed</value>
   </data>
@@ -132,8 +135,14 @@
   <data name="FieldDate" xml:space="preserve">
     <value>Date</value>
   </data>
+  <data name="FieldDepartment" xml:space="preserve">
+    <value>Department</value>
+  </data>
   <data name="FieldDetails" xml:space="preserve">
     <value>Details</value>
+  </data>
+  <data name="FieldDivision" xml:space="preserve">
+    <value>Division</value>
   </data>
   <data name="FieldEmployeeId" xml:space="preserve">
     <value>Employee ID</value>
