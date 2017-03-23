@@ -49,11 +49,13 @@
     <Compile Include="Employees\Profile\Bonus.cs" />
     <Compile Include="Employees\Profile\BonusType.cs" />
     <Compile Include="Employees\Profile\Employee.cs" />
+    <Compile Include="Employees\Profile\EmployeeNote.cs" />
     <Compile Include="Employees\Profile\EmploymentHistory.cs" />
     <Compile Include="Employees\Profile\JobInfo.cs" />
     <Compile Include="LeaveManagement\ILeaveManagementRepository.cs" />
     <Compile Include="LeaveManagement\LeaveRequest.cs" />
     <Compile Include="MasterModule\IAccountRepository.cs" />
+    <Compile Include="MediaGallery\IMediaGalleryRepository.cs" />
     <Compile Include="ModelBase.cs" />
     <Compile Include="System\SystemDefault.cs" />
     <Compile Include="TimeAttendance\ActiveDashboardModel.cs" />

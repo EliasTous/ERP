@@ -118,6 +118,7 @@
     <Content Include="DocumentTypes.aspx" />
     <Content Include="EmployeePages\EmployeeProfile.aspx" />
     <Content Include="EmployeePages\JobInformation.aspx" />
+    <Content Include="EmployeePages\Notes.aspx" />
     <Content Include="EmployeePages\Payroll.aspx" />
     <Content Include="EmployeeRoot.aspx" />
     <Content Include="Employees.aspx" />
@@ -335,6 +336,13 @@
     </Compile>
     <Compile Include="EmployeePages\JobInformation.aspx.designer.cs">
       <DependentUpon>JobInformation.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EmployeePages\Notes.aspx.cs">
+      <DependentUpon>Notes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EmployeePages\Notes.aspx.designer.cs">
+      <DependentUpon>Notes.aspx</DependentUpon>
     </Compile>
     <Compile Include="EmployeePages\Payroll.aspx.cs">
       <DependentUpon>Payroll.aspx</DependentUpon>

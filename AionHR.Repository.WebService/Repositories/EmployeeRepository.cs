@@ -43,7 +43,7 @@ namespace AionHR.Repository.WebService.Repositories
             ChildGetAllLookup.Add(typeof(EmployeeSalary), "qrySA");
             ChildGetAllLookup.Add(typeof(Bonus), "qryBO");
             ChildGetAllLookup.Add(typeof(SalaryDetail), "qrySD");
-
+            ChildGetAllLookup.Add(typeof(EmployeeNote), "qryNO");
 
 
             ChildGetLookup.Add(typeof(Sponsor), "getSP");
@@ -60,6 +60,7 @@ namespace AionHR.Repository.WebService.Repositories
             ChildGetLookup.Add(typeof(EmployeeSalary), "getSA");
             ChildGetLookup.Add(typeof(Bonus), "getBO");
             ChildGetLookup.Add(typeof(SalaryDetail), "getSD");
+            ChildGetLookup.Add(typeof(EmployeeNote), "getNO");
 
             ChildAddOrUpdateLookup.Add(typeof(Sponsor), "setSP");
             ChildAddOrUpdateLookup.Add(typeof(AllowanceType), "setAT");
@@ -76,6 +77,7 @@ namespace AionHR.Repository.WebService.Repositories
             ChildAddOrUpdateLookup.Add(typeof(EmployeeSalary), "setSA");
             ChildAddOrUpdateLookup.Add(typeof(Bonus), "setBO");
             ChildAddOrUpdateLookup.Add(typeof(SalaryDetail[]), "arrSD");
+            ChildAddOrUpdateLookup.Add(typeof(EmployeeNote), "setNO");
 
             ChildDeleteLookup.Add(typeof(Sponsor), "delSP");
             ChildDeleteLookup.Add(typeof(AllowanceType), "delAT");
@@ -91,6 +93,7 @@ namespace AionHR.Repository.WebService.Repositories
             ChildDeleteLookup.Add(typeof(EmployeeSalary), "delSA");
             ChildDeleteLookup.Add(typeof(Bonus), "delBO");
             ChildDeleteLookup.Add(typeof(SalaryDetail), "delSD");
+            ChildDeleteLookup.Add(typeof(EmployeeNote), "delNO");
 
         }
 
