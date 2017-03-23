@@ -160,6 +160,7 @@
     <Content Include="Scripts\BonusTypes.js" />
     <Content Include="Scripts\Calendars.js" />
     <Content Include="Scripts\Cases.js" />
+    <Content Include="Scripts\Notes.js" />
     <Content Include="Scripts\LeaveCalendar.js" />
     <Content Include="Scripts\OrganizationChart.js" />
     <Content Include="Scripts\Payroll.js" />
@@ -697,6 +698,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_LocalResources\Cases.aspx.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="EmployeePages\App_LocalResources\Notes.aspx.resx" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -62,7 +62,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                 if (string.IsNullOrEmpty(Request.QueryString["employeeId"]))
                     X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorOperation).Show();
                 CurrentEmployee.Text = Request.QueryString["employeeId"];
-
+                CurrentEmployeeName.Text = GetEmployeeName(CurrentEmployee.Text);
             }
 
         }
@@ -81,6 +81,32 @@ namespace AionHR.Web.UI.Forms.EmployeePages
 
         private void HideShowButtons()
         {
+
+        }
+       
+        protected void ADDNewRecord(object sender, DirectEventArgs e)
+        {
+            string noteText = e.ExtraParams["noteText"];
+            X.Call("ClearNoteText");
+            PostRequest<EmployeeNote> req = new PostRequest<EmployeeNote>();
+            EmployeeNote note = new EmployeeNote();
+            //note.recordId = id;
+            note.employeeId = Convert.ToInt32(CurrentEmployee.Text);
+            note.note = noteText;
+            note.recordId = "";
+            note.date = DateTime.Now;
+            req.entity = note;
+
+            
+            PostResponse<EmployeeNote> resp = _employeeService.ChildAddOrUpdate<EmployeeNote>(req);
+            if (!resp.Success)
+            {
+                X.Msg.Alert(Resources.Common.Error, resp.Summary).Show();
+                
+            }
+            employeementHistoryStore.Reload();
+            
+            //Reset all values of the relative object
 
         }
 
@@ -171,17 +197,15 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             try
             {
                 //Step 1 Code to delete the object from the database 
-                EmploymentHistory n = new EmploymentHistory();
+                EmployeeNote n = new EmployeeNote();
                 n.recordId = index;
-                n.comment = "";
-                n.employeeId = 0;
+                n.note = "";
                 n.date = DateTime.Now;
-                n.statusId = 0;
-
-
-                PostRequest<EmploymentHistory> req = new PostRequest<EmploymentHistory>();
+                n.employeeId = Convert.ToInt32(CurrentEmployee.Text);
+                
+                PostRequest<EmployeeNote> req = new PostRequest<EmployeeNote>();
                 req.entity = n;
-                PostResponse<EmploymentHistory> res = _employeeService.ChildDelete<EmploymentHistory>(req);
+                PostResponse<EmployeeNote> res = _employeeService.ChildDelete<EmployeeNote>(req);
                 if (!res.Success)
                 {
                     //Show an error saving...
@@ -228,23 +252,14 @@ namespace AionHR.Web.UI.Forms.EmployeePages
 
             //in this test will take a list of News
 
-            EmployeementHistoryListRequest request = new EmployeementHistoryListRequest();
-
-            request.Filter = "";
-            request.employeeId = CurrentEmployee.Text;
-            request.BranchId = "0";
-            request.DepartmentId = "0";
-            request.divisionId = "0";
-            request.positionId = "0";
-            request.Filter = "";
-            request.SortBy = "firstName,lastName";
-            request.Size = "50";
-            request.StartAt = "1";
-            ListResponse<EmploymentHistory> currencies = _employeeService.ChildGetAll<EmploymentHistory>(request);
-            if (!currencies.Success)
-                X.Msg.Alert(Resources.Common.Error, currencies.Summary).Show();
-            this.employeementHistoryStore.DataSource = currencies.Items;
-            e.Total = currencies.count;
+            EmployeeNotesListRequest req = new EmployeeNotesListRequest();
+            req.EmployeeId = Convert.ToInt32(CurrentEmployee.Text);
+            req.SortBy = "firstName";
+            ListResponse<EmployeeNote> notes = _employeeService.ChildGetAll<EmployeeNote>(req);
+            if (!notes.Success)
+                X.Msg.Alert(Resources.Common.Error, notes.Summary).Show();
+            this.employeementHistoryStore.DataSource = notes.Items;
+            e.Total = notes.count;
 
             this.employeementHistoryStore.DataBind();
         }
@@ -259,6 +274,43 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                 return "0";
             }
             else return "1";
+        }
+
+        private string GetEmployeeName(string recordId)
+        {
+            RecordRequest req = new RecordRequest();
+            req.RecordID = recordId;
+            RecordResponse<Employee> emp = _employeeService.Get<Employee>(req);
+            return emp.result.name.fullName;
+        }
+
+        [DirectMethod]
+        public object ValidateSave(bool isPhantom,string obj, JsonObject values)
+        {
+            
+
+            if (!values.ContainsKey("note") )
+            {
+                return new { valid = false, msg = "Salary must be >=1000 for new employee" };
+            }
+
+            PostRequest<EmployeeNote> req = new PostRequest<EmployeeNote>();
+            EmployeeNote note = JsonConvert.DeserializeObject<List<EmployeeNote>>(obj)[0];
+            //note.recordId = id;
+            note.employeeId = Convert.ToInt32(CurrentEmployee.Text);
+            note.note = values["note"].ToString();
+            int bulk;
+          
+            req.entity = note;
+            
+            PostResponse<EmployeeNote> resp = _employeeService.ChildAddOrUpdate<EmployeeNote>(req);
+            if(!resp.Success)
+            {
+                X.Msg.Alert(Resources.Common.Error, resp.Summary).Show();
+                return new { valid = false };
+            }
+            employeementHistoryStore.Reload();
+            return new { valid = true };
         }
 
     }

@@ -389,7 +389,7 @@ namespace AionHR.Web.UI.Forms
 
             if (!string.IsNullOrEmpty(branchId.Text) && branchId.Value.ToString() != "0")
             {
-                req.BranchId = (int)branchId.Value;
+                req.BranchId = Convert.ToInt32(branchId.Value);
             }
             else
             {
@@ -398,7 +398,7 @@ namespace AionHR.Web.UI.Forms
 
             if (!string.IsNullOrEmpty(departmentId.Text) && departmentId.Value.ToString() != "0")
             {
-                req.DepartmentId = (int)departmentId.Value;                
+                req.DepartmentId = Convert.ToInt32(departmentId.Value); 
             }
             else
             {
@@ -407,11 +407,11 @@ namespace AionHR.Web.UI.Forms
 
             if (!string.IsNullOrEmpty(divisionId.Text) && divisionId.Value.ToString() != "0")
             {
-                req.DivisionId = (int)divisionId.Value;
+                req.DivisionId = Convert.ToInt32(divisionId.Value);
             }
             else
             {
-                req.BranchId = 0;
+                req.DivisionId = 0;
             }
             req.Size = "30";
             req.StartAt = "1";

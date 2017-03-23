@@ -93,7 +93,7 @@ namespace AionHR.Web.UI.Forms
                 timeZoneCombo.Select(items.Where(s => s.Key == "timeZone").First().Value);
                 fdowCombo.Select(items.Where(s => s.Key == "fdow").First().Value);
                 logCheck.Checked = items.Where(s => s.Key == "transactionLog").First().Value == "on";
-                enableCameraCheck.Checked = items.Where(s => s.Key == "enableCamera").First().Value == "on";
+                enableCameraCheck.Checked = items.Where(s => s.Key == "enableCamera").First().Value == "true";
             }
             catch { }
         }
@@ -148,7 +148,7 @@ namespace AionHR.Web.UI.Forms
             submittedValues.Add(new KeyValuePair<string, string>("timeZone", values.timeZone.ToString()));
             submittedValues.Add(new KeyValuePair<string, string>("fdow", values.fdow.ToString()));
             submittedValues.Add(new KeyValuePair<string, string>("transactionLog", values.transactionLog == null?"off":"on"));
-            submittedValues.Add(new KeyValuePair<string, string>("enableCamera", values.enableCamera == null ? "off" : "on"));
+            submittedValues.Add(new KeyValuePair<string, string>("enableCamera", values.enableCamera == null ? "false" : "true"));
             KeyValuePair<string, string>[] valArr = submittedValues.ToArray();
             PostRequest<KeyValuePair<string, string>[]> req = new PostRequest<KeyValuePair<string, string>[]>();
             req.entity = valArr;

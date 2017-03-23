@@ -103,16 +103,7 @@
                                         </Click>
                                     </DirectEvents>
                                 </ext:Button>
-                                <ext:ToolbarFill ID="ToolbarFillExport" runat="server" />
-                                 <ext:TextField ID="searchTrigger" runat="server" EnableKeyEvents="true" Width="180" >
-                                        <Triggers>
-                                            <ext:FieldTrigger Icon="Search" />
-                                        </Triggers>
-                                        <Listeners>
-                                            <KeyPress Fn="enterKeyPressSearchHandler" Buffer="100" />
-                                            <TriggerClick Handler="#{Store1}.reload();" />
-                                        </Listeners>
-                                    </ext:TextField>
+                            
 
 
                                  <ext:ComboBox runat="server" ValueField="recordId" DisplayField="name" ID="branchId" Name="branchId" FieldLabel="<%$ Resources:FieldBranch%>" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" >
@@ -372,8 +363,13 @@
                                         <ext:ListItem Text="<%$ Resources: FieldPending %>" Value="1" />
                                         <ext:ListItem Text="<%$ Resources: FieldClosed %>" Value="2" />
                                     </Items>
+                                    <Listeners>
+                                        <Change Handler="if(this.value==2) this.next().setDisabled(false); else this.next().setDisabled(true);">
+                                            
+                                        </Change>
+                                    </Listeners>
                                 </ext:ComboBox>
-                                <ext:DateField ID="closedDate" runat="server" FieldLabel="<%$ Resources:FieldClosedDate%>" Name="closedDate" AllowBlank="true" />
+                                <ext:DateField ID="closedDate" Disabled="true" runat="server" FieldLabel="<%$ Resources:FieldClosedDate%>" Name="closedDate" AllowBlank="true" />
                                 
 
                             </Items>

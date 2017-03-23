@@ -9,8 +9,9 @@
     <title></title>
     <link rel="stylesheet" type="text/css" href="../CSS/Common.css?id=1" />
     <link rel="stylesheet" href="../CSS/LiveSearch.css" />
-    <script type="text/javascript" src="../Scripts/JobInformation.js?id=10"></script>
+    <script type="text/javascript" src="../Scripts/Notes.js?id=17"></script>
     <script type="text/javascript" src="../Scripts/common.js?id=0"></script>
+    <script type="text/javascript" src="../Scripts/moment.js?id=0"></script>
 
 
 </head>
@@ -23,11 +24,8 @@
         <ext:Hidden ID="titleSavingError" runat="server" Text="<%$ Resources:Common , TitleSavingError %>" />
         <ext:Hidden ID="titleSavingErrorMessage" runat="server" Text="<%$ Resources:Common , TitleSavingErrorMessage %>" />
         <ext:Hidden ID="CurrentEmployee" runat="server"  />
-        <ext:Hidden ID="PaymentTypeWeekly" runat="server" Text="<%$ Resources: PaymentTypeWeekly %>" />
-        <ext:Hidden ID="PaymentTypeMonthly" runat="server" Text="<%$ Resources: PaymentTypeMonthly %>" />
-        <ext:Hidden ID="PaymentTypeDaily" runat="server" Text="<%$ Resources: PaymentTypeDaily %>" />
-        <ext:Hidden ID="PaymentMethodCash" runat="server" Text="<%$ Resources: PaymentMethodCash %>" />
-        <ext:Hidden ID="PaymentMethodBank" runat="server" Text="<%$ Resources: PaymentMethodBank %>" />
+
+        <ext:Hidden ID="CurrentEmployeeName" runat="server" />
           <ext:Viewport ID="Viewport11" runat="server" Layout="VBoxLayout" Padding="10">
             <LayoutConfig>
                 <ext:VBoxLayoutConfig Align="Stretch" />
@@ -36,18 +34,35 @@
 
 
         <Items>
-
+            <ext:Panel runat="server"  Layout="AutoLayout" Width="500" >
+                                    <Items>
+                                          <ext:TextArea runat="server" ID="newNoteText" Region="North" Width="400" />
+                                <ext:Button Region="South" ID="btnAdd" Height="30" runat="server" Text="<%$ Resources:Common , Add %>" Icon="Add">
+                                  <Listeners>
+                                        <Click Handler="CheckSession();" />
+                                    </Listeners>                           
+                                    <DirectEvents>
+                                        <Click OnEvent="ADDNewRecord">
+                                            <ExtraParams >
+                                                <ext:Parameter Name="noteText" Value="#{newNoteText}.getValue()"   Mode="Raw" />
+                                            </ExtraParams>
+                                            <EventMask ShowMask="true" CustomTarget="={#{employeementHistoryGrid}.body}" />
+                                        </Click>
+                                    </DirectEvents>
+                                </ext:Button>
+                                    </Items>
+                                </ext:Panel>
                 <ext:GridPanel AutoUpdateLayout="true"
-                    ID="employeementHistoryGrid" Collapsible="true"
+                    ID="employeementHistoryGrid" Collapsible="false"
                     runat="server"
                     PaddingSpec="0 0 1 0"
-                    Header="true"
+                    Header="false"
                     Title="<%$ Resources: EHGridTitle %>"
                     Layout="FitLayout"
                     Scroll="Vertical" Flex="1"
                     Border="false" 
-                    Icon="User" DefaultAnchor="100%"  
-                    ColumnLines="True" IDMode="Explicit" RenderXType="True">
+                    Icon="User" DefaultAnchor="100%"    HideHeaders="true"
+                    ColumnLines="false" IDMode="Explicit" RenderXType="True">
                     <Store>
                         <ext:Store
                             ID="employeementHistoryStore"
@@ -68,8 +83,8 @@
                                     <Fields>
 
                                         <ext:ModelField Name="recordId" />
-                                        <ext:ModelField Name="statusName" />
-                                        <ext:ModelField Name="date" ServerMapping="date.ToShortDateString()"  />
+                                        <ext:ModelField Name="note" />
+                                        <ext:ModelField Name="date"  />
 
                                     </Fields>
                                 </ext:Model>
@@ -80,45 +95,33 @@
                         </ext:Store>
                     </Store>
                     <TopBar>
-                        <ext:Toolbar ID="Toolbar1" runat="server" ClassicButtonStyle="false">
+                        <ext:Toolbar ID="Toolbar1" runat="server" ClassicButtonStyle="false ">
                             <Items>
-                                <ext:Button ID="btnAdd" runat="server" Text="<%$ Resources:Common , Add %>" Icon="Add">
-                                    <Listeners>
-                                        <Click Handler="CheckSession();" />
-                                    </Listeners>
-                                    <DirectEvents>
-                                        <Click OnEvent="ADDNewEH">
-                                            <EventMask ShowMask="true" CustomTarget="={#{employeementHistoryGrid}.body}" />
-                                        </Click>
-                                    </DirectEvents>
-                                </ext:Button>
-                                <ext:ToolbarSeparator></ext:ToolbarSeparator>
-
-                                <ext:ToolbarFill ID="ToolbarFillExport" runat="server" />
-                                <ext:TextField ID="searchTrigger" runat="server" EnableKeyEvents="true" Width="180">
-                                    <Triggers>
-                                        <ext:FieldTrigger Icon="Search" />
-                                    </Triggers>
-                                    <Listeners>
-                                        <KeyPress Fn="enterKeyPressSearchHandler" Buffer="100" />
-                                        <TriggerClick Handler="#{employeementHistoryStore}.reload();" />
-                                    </Listeners>
-                                </ext:TextField>
+                                
+                              
+                              
+                               
 
                             </Items>
                         </ext:Toolbar>
 
                     </TopBar>
 
-                    <ColumnModel ID="ColumnModel1" runat="server" SortAscText="<%$ Resources:Common , SortAscText %>" SortDescText="<%$ Resources:Common ,SortDescText  %>" SortClearText="<%$ Resources:Common ,SortClearText  %>" ColumnsText="<%$ Resources:Common ,ColumnsText  %>" EnableColumnHide="false" Sortable="false">
+                    <ColumnModel ID="ColumnModel1" runat="server"  SortAscText="<%$ Resources:Common , SortAscText %>" SortDescText="<%$ Resources:Common ,SortDescText  %>" SortClearText="<%$ Resources:Common ,SortClearText  %>" ColumnsText="<%$ Resources:Common ,ColumnsText  %>" EnableColumnHide="false" Sortable="false">
                         <Columns>
 
                             <ext:Column Visible="false" ID="ColrecordId" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldrecordId %>" DataIndex="recordId" Hideable="false" Width="75" Align="Center" />
-                            <ext:Column CellCls="cellLink" ID="ColEHName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEHStatus%>" DataIndex="statusName" Flex="7" Hideable="false">
-                                <Renderer Handler="return '<u>'+ record.data['statusName']+'</u>'">
+                            <ext:Column CellCls="cellLink" ID="ColEHName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEHStatus%>" DataIndex="note" Flex="7" Hideable="false">
+                                <Renderer Handler="var s = moment(record.data['date']);  return '<b>'+ document.getElementById('CurrentEmployeeName').value+'</b>  - '+ s.calendar()+'<br />'+ record.data['note'];">
                                 </Renderer>
+                                <Editor>
+                                    
+                                    <ext:TextArea runat="server" ID="notesEditor" name="note" >
+                                        
+                                    </ext:TextArea>
+                                </Editor>
                             </ext:Column>
-                            <ext:DateColumn Format="dd-MM-yyyy" CellCls="cellLink" ID="Column2" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEHDate%>" DataIndex="date" Flex="1" Hideable="false" />
+                            
 
 
 
@@ -167,6 +170,10 @@
 
                         </Columns>
                     </ColumnModel>
+                    <Plugins>
+                        <ext:RowEditing runat="server" SaveHandler="validateSave" />
+                        
+                    </Plugins>
                     <DockedItems>
 
                         <ext:Toolbar ID="Toolbar2" runat="server" Dock="Bottom">
@@ -203,8 +210,9 @@
                     </SelectionModel>
                 </ext:GridPanel>
                
-
-          
+            </Items>
+          </ext:Viewport>
+        
 
     </form>
 </body>

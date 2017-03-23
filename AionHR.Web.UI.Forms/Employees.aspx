@@ -688,6 +688,13 @@
                                 <LoadMask ShowMask="true" />
                             </Loader>
                         </ext:Panel>
+                        <ext:Panel runat="server" Layout="FitLayout" Title="<%$ Resources: NotesTab %>" ID="Panel2" DefaultAnchor="100%">
+                            <Loader runat="server" Url="EmployeePages/Notes.aspx" Mode="Frame" ID="Loader2" TriggerEvent="show"
+                                ReloadOnEvent="true"
+                                DisableCaching="true">
+                                <LoadMask ShowMask="true" />
+                            </Loader>
+                        </ext:Panel>
 
                     </Items>
                 </ext:TabPanel>
