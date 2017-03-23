@@ -27,3 +27,21 @@ public class CaseManagementListRequest : ListRequest
         }
     }
 }
+
+
+public class CaseCommentsListRequest : ListRequest
+{
+    public int caseId { get; set; }
+
+    public override Dictionary<string, string> Parameters
+    {
+        get
+        {
+            parameters = base.Parameters;
+            parameters.Add("_caseId", caseId.ToString());           
+
+            return parameters;
+        }
+    }
+
+}

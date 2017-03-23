@@ -79,3 +79,24 @@ function GetStatusName(index) {
         default: break;
     }
 }
+
+var validateSave = function () {
+    var plugin = this.editingPlugin;
+
+    if (this.getForm().isValid()) { // local validation
+        App.direct.ValidateSave(plugin.context.record.phantom, Ext.encode(App.caseCommentGrid.getRowsValues({ selectedOnly: true })), this.getValues(false, false, false, true), {
+            success: function (result) {
+                if (!result.valid) {
+                    Ext.Msg.alert("Error", result.msg);
+                    return;
+                }
+
+                plugin.completeEdit();
+            }
+        });
+    }
+};
+
+function ClearNoteText() {
+    App.newNoteText.setValue("");
+}
