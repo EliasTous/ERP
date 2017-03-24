@@ -717,6 +717,13 @@
                                 <LoadMask ShowMask="true" />
                             </Loader>
                         </ext:Panel>
+                              <ext:Panel runat="server" Layout="FitLayout" Title="<%$ Resources: SkillsTab %>" ID="Panel4" DefaultAnchor="100%">
+                            <Loader runat="server" Url="EmployeePages/Skills.aspx" Mode="Frame" ID="Loader4" TriggerEvent="show"
+                                ReloadOnEvent="true"
+                                DisableCaching="true">
+                                <LoadMask ShowMask="true" />
+                            </Loader>
+                        </ext:Panel>
 
                     </Items>
                 </ext:TabPanel>

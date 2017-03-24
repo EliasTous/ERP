@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AionHR.Model.Employees.Profile
 {
-    class EmployeeCertificate:ModelBase
+   public class EmployeeCertificate:ModelBase
     {
         public int employeeId { get; set; }
         public EmployeeName employeeName { get; set; }

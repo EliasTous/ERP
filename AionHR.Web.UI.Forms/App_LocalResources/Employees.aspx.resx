@@ -231,6 +231,9 @@
   <data name="PayrollTab" xml:space="preserve">
     <value>Salary</value>
   </data>
+  <data name="SkillsTab" xml:space="preserve">
+    <value>Skills</value>
+  </data>
   <data name="WindowTitle" xml:space="preserve">
     <value>Employees</value>
   </data>

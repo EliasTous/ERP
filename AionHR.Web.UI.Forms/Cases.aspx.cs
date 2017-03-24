@@ -358,7 +358,7 @@ namespace AionHR.Web.UI.Forms
 
                 PostRequest<CaseComment> req = new PostRequest<CaseComment>();
                 req.entity = s;
-                PostResponse<CaseComment> r = _caseService.Delete<CaseComment>(req);
+                PostResponse<CaseComment> r = _caseService.ChildDelete<CaseComment>(req);
                 if (!r.Success)
                 {
                     X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
@@ -368,7 +368,7 @@ namespace AionHR.Web.UI.Forms
                 else
                 {
                     //Step 2 :  remove the object from the store
-                    Store1.Remove(index);
+                    caseCommentStore.Remove(index);
 
                     //Step 3 : Showing a notification for the user 
                     Notification.Show(new NotificationConfig

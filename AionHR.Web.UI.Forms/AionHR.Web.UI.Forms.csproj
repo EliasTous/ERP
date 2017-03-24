@@ -164,6 +164,11 @@
     <Content Include="Scripts\BonusTypes.js" />
     <Content Include="Scripts\Calendars.js" />
     <Content Include="Scripts\Cases.js" />
+    <Content Include="Scripts\CertificateLevels.js" />
+    <Content Include="Scripts\Documents.js" />
+    <Content Include="Scripts\DocumentTypes.js" />
+    <Content Include="Scripts\Geofences.js" />
+    <Content Include="Scripts\MediaCategories.js" />
     <Content Include="Scripts\Notes.js" />
     <Content Include="Scripts\LeaveCalendar.js" />
     <Content Include="Scripts\OrganizationChart.js" />
@@ -177,6 +182,8 @@
     <Content Include="Scripts\moment.js" />
     <Content Include="Scripts\Dashboard.js" />
     <Content Include="Scripts\EmployeeProfile.js" />
+    <Content Include="Scripts\SalaryChangeReasons.js" />
+    <Content Include="Scripts\Skills.js" />
     <Content Include="Scripts\Sponsors.js" />
     <Content Include="Scripts\TrainingTypes.js" />
     <Content Include="Sponsors.aspx" />
@@ -231,7 +238,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Common.resx</DependentUpon>
     </Compile>
-    <Compile Include="App_GlobalResources\Errors.Designer.cs" />
     <Compile Include="App_GlobalResources\Errors1.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

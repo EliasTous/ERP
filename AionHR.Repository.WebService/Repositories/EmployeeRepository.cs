@@ -46,6 +46,7 @@ namespace AionHR.Repository.WebService.Repositories
             ChildGetAllLookup.Add(typeof(SalaryDetail), "qrySD");
             ChildGetAllLookup.Add(typeof(EmployeeNote), "qryNO");
             ChildGetAllLookup.Add(typeof(EmployeeDocument), "qryDO");
+            ChildGetAllLookup.Add(typeof(EmployeeCertificate), "qryCE");
 
             ChildGetLookup.Add(typeof(Sponsor), "getSP");
             ChildGetLookup.Add(typeof(AllowanceType), "getAT");
@@ -63,6 +64,7 @@ namespace AionHR.Repository.WebService.Repositories
             ChildGetLookup.Add(typeof(SalaryDetail), "getSD");
             ChildGetLookup.Add(typeof(EmployeeNote), "getNO");
             ChildGetLookup.Add(typeof(EmployeeDocument), "getDO");
+            ChildGetLookup.Add(typeof(EmployeeCertificate), "getCE");
 
             ChildAddOrUpdateLookup.Add(typeof(Sponsor), "setSP");
             ChildAddOrUpdateLookup.Add(typeof(AllowanceType), "setAT");
@@ -81,6 +83,7 @@ namespace AionHR.Repository.WebService.Repositories
             ChildAddOrUpdateLookup.Add(typeof(SalaryDetail[]), "arrSD");
             ChildAddOrUpdateLookup.Add(typeof(EmployeeNote), "setNO");
             ChildAddOrUpdateLookup.Add(typeof(EmployeeDocument), "setDO");
+            ChildAddOrUpdateLookup.Add(typeof(EmployeeCertificate), "setCE");
 
             ChildDeleteLookup.Add(typeof(Sponsor), "delSP");
             ChildDeleteLookup.Add(typeof(AllowanceType), "delAT");
@@ -98,6 +101,7 @@ namespace AionHR.Repository.WebService.Repositories
             ChildDeleteLookup.Add(typeof(SalaryDetail), "delSD");
             ChildDeleteLookup.Add(typeof(EmployeeNote), "delNO");
             ChildDeleteLookup.Add(typeof(EmployeeDocument), "delDO");
+            ChildDeleteLookup.Add(typeof(EmployeeCertificate), "delCE");
 
         }
 
