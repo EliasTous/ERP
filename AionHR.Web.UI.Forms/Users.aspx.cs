@@ -304,7 +304,7 @@ namespace AionHR.Web.UI.Forms
             EmployeeListRequest req = new EmployeeListRequest();
             req.DepartmentId = "0";
             req.BranchId = "0";
-            req.IncludeIsInactive = true;
+            req.IncludeIsInactive = 2;
             req.SortBy = "firstName";
 
             req.StartAt = "1";

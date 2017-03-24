@@ -22,8 +22,21 @@ var cellClick = function (view, cell, columnIndex, record, row, rowIndex, e) {
         columnId = this.columns[columnIndex].id; // Get column id
 
   
-    if (t.className == "imgDelete" && (columnId == "ColSADelete"|| columnId=="ColEHDelete"|| columnId=="ColJIDelete")) {
+
+    if (t.className == "imgEdit" && columnId == "ColEHDelete") {
         //the ajax call is allowed
+        commandName = t.className;
+        return true;
+    }
+
+    if (t.className == "imgDelete" && columnId == "ColEHDelete") {
+        //the ajax call is allowed
+        commandName = t.className;
+        return true;
+    }
+    if (t.className == "imgAttach" && columnId == "ColEHDelete") {
+        //the ajax call is allowed
+        commandName = t.className;
         return true;
     }
   
@@ -36,7 +49,12 @@ var cellClick = function (view, cell, columnIndex, record, row, rowIndex, e) {
 
 var getCellType = function (grid, rowIndex, cellIndex) {
 
+    if (cellIndex == 0)
+        return "";
+    if (commandName != "")
+        return commandName;
     var columnId = grid.columns[cellIndex].id; // Get column id
+
     return columnId;
 };
 

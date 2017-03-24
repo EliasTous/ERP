@@ -9,7 +9,7 @@
     <title></title>
     <link rel="stylesheet" type="text/css" href="../CSS/Common.css?id=1" />
     <link rel="stylesheet" href="../CSS/LiveSearch.css" />
-    <script type="text/javascript" src="../Scripts/Notes.js?id=17"></script>
+    <script type="text/javascript" src="../Scripts/Notes.js?id=18"></script>
     <script type="text/javascript" src="../Scripts/common.js?id=0"></script>
     <script type="text/javascript" src="../Scripts/moment.js?id=0"></script>
 
@@ -86,6 +86,7 @@
                                         <ext:ModelField Name="recordId" />
                                         <ext:ModelField Name="note" />
                                         <ext:ModelField Name="date"  />
+                                        <ext:ModelField Name="userName"  />
 
                                     </Fields>
                                 </ext:Model>
@@ -115,7 +116,7 @@
 
                             <ext:Column Visible="false" ID="ColrecordId" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldrecordId %>" DataIndex="recordId" Hideable="false" Width="75" Align="Center" />
                             <ext:Column CellCls="cellLink" ID="ColEHName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEHStatus%>" DataIndex="note" Flex="7" Hideable="false">
-                                <Renderer Handler="var s = moment(record.data['date']);  return '<b>'+ document.getElementById('CurrentEmployeeName').value+'- '+ s.calendar()+'<br />'+ record.data['note'];">
+                                <Renderer Handler="var s = moment(record.data['date']);  return '<b>'+ record.data['userName']+'</b>- '+ s.calendar()+'<br />'+ record.data['note'];">
                                 </Renderer>
                                 <Editor>
                                     
@@ -145,14 +146,15 @@
                             <ext:Column runat="server"
                                 ID="ColEHDelete" Flex="1" Visible="true"
                                 Text="<%$ Resources: Common , Delete %>"
-                                Width="60"
+                                Width="70"
                                 Align="Center"
                                 Fixed="true"
                                 Filterable="false"
                                 Hideable="false"
                                 MenuDisabled="true"
                                 Resizable="false">
-                                <Renderer Fn="deleteRender" />
+                                <Renderer Handler="return editRender() + '  '+ deleteRender();" >
+                                    </Renderer>
 
                             </ext:Column>
                             <ext:Column runat="server"
@@ -174,7 +176,7 @@
                         </Columns>
                     </ColumnModel>
                     <Plugins>
-                        <ext:RowEditing runat="server" SaveHandler="validateSave" />
+                        <ext:RowEditing runat="server" SaveHandler="validateSave"   />
                         
                     </Plugins>
                     <DockedItems>
@@ -191,12 +193,15 @@
                 
                     <Listeners>
                         <Render Handler="this.on('cellclick', cellClick);" />
+                        <RowBodyDblClick Handler="App.employeementHistoryGrid.editingPlugin.cancelEdit();" />
+                        <RowDblClick Handler="App.employeementHistoryGrid.editingPlugin.cancelEdit();" />
                     </Listeners>
                     <DirectEvents>
                         <CellClick OnEvent="PoPuP">
                             <EventMask ShowMask="true" />
                             <ExtraParams>
                                 <ext:Parameter Name="id" Value="record.getId()" Mode="Raw" />
+                                <ext:Parameter Name="index" Value="rowIndex" Mode="Raw" />
                                 <ext:Parameter Name="type" Value="getCellType( this, rowIndex, cellIndex)" Mode="Raw" />
                             </ExtraParams>
 

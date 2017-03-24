@@ -139,27 +139,12 @@ namespace AionHR.Web.UI.Forms.EmployeePages
 
             int id = Convert.ToInt32(e.ExtraParams["id"]);
             string type = e.ExtraParams["type"];
+            string index = e.ExtraParams["index"];
             switch (type)
             {
                
-                case "ColJIDelete":
-                    X.Msg.Confirm(Resources.Common.Confirmation, Resources.Common.DeleteOneRecord, new MessageBoxButtonsConfig
-                    {
-                        Yes = new MessageBoxButtonConfig
-                        {
-                            //We are call a direct request metho for deleting a record
-                            Handler = String.Format("App.direct.DeleteJI({0})", id),
-                            Text = Resources.Common.Yes
-                        },
-                        No = new MessageBoxButtonConfig
-                        {
-                            Text = Resources.Common.No
-                        }
 
-                    }).Show();
-                    break;
-
-                case "ColEHDelete":
+                case "imgDelete":
                     X.Msg.Confirm(Resources.Common.Confirmation, Resources.Common.DeleteOneRecord, new MessageBoxButtonsConfig
                     {
                         Yes = new MessageBoxButtonConfig
@@ -175,7 +160,9 @@ namespace AionHR.Web.UI.Forms.EmployeePages
 
                     }).Show();
                     break;
-
+                case "imgEdit":
+                    X.Call("App.employeementHistoryGrid.editingPlugin.startEdit",Convert.ToInt32(index),0);
+                    break;
                 case "colAttach":
 
                     //Here will show up a winow relatice to attachement depending on the case we are working on

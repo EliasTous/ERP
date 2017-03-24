@@ -46,6 +46,17 @@ namespace AionHR.Services.Implementations
             return response;
         }
 
+        public PostResponse<EmployeeDocument> AddOrUpdateEmployeeDocument(EmployeeDocumentAddOrUpdateRequest req)
+        {
+            PostResponse<EmployeeDocument> response;
+            var headers = SessionHelper.GetAuthorizationHeadersForUser();
+            PostWebServiceResponse webResponse = _employeeRepository.AddOrUpdateEmployeeDocument(req.documentData, req.fileName, req.fileData, headers);
+            response = CreateServiceResponse<PostResponse<EmployeeDocument>>(webResponse);
+            response.recordId = webResponse.recordId;
+            return response;
+
+        }
+
         protected override dynamic GetRepository()
         {
             return _employeeRepository;

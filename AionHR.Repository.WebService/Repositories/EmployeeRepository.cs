@@ -20,6 +20,7 @@ namespace AionHR.Repository.WebService.Repositories
         /// </summary>
         private string serviceName = "EP.asmx/";
         private string addOrRemoveEmployeeWithImageMethodName = "setEM";
+        private string addOrRemoveEmployeeDocumentMethodName = "setDO";
         public EmployeeRepository()
         {
 
@@ -44,7 +45,7 @@ namespace AionHR.Repository.WebService.Repositories
             ChildGetAllLookup.Add(typeof(Bonus), "qryBO");
             ChildGetAllLookup.Add(typeof(SalaryDetail), "qrySD");
             ChildGetAllLookup.Add(typeof(EmployeeNote), "qryNO");
-
+            ChildGetAllLookup.Add(typeof(EmployeeDocument), "qryDO");
 
             ChildGetLookup.Add(typeof(Sponsor), "getSP");
             ChildGetLookup.Add(typeof(AllowanceType), "getAT");
@@ -61,6 +62,7 @@ namespace AionHR.Repository.WebService.Repositories
             ChildGetLookup.Add(typeof(Bonus), "getBO");
             ChildGetLookup.Add(typeof(SalaryDetail), "getSD");
             ChildGetLookup.Add(typeof(EmployeeNote), "getNO");
+            ChildGetLookup.Add(typeof(EmployeeDocument), "getDO");
 
             ChildAddOrUpdateLookup.Add(typeof(Sponsor), "setSP");
             ChildAddOrUpdateLookup.Add(typeof(AllowanceType), "setAT");
@@ -78,6 +80,7 @@ namespace AionHR.Repository.WebService.Repositories
             ChildAddOrUpdateLookup.Add(typeof(Bonus), "setBO");
             ChildAddOrUpdateLookup.Add(typeof(SalaryDetail[]), "arrSD");
             ChildAddOrUpdateLookup.Add(typeof(EmployeeNote), "setNO");
+            ChildAddOrUpdateLookup.Add(typeof(EmployeeDocument), "setDO");
 
             ChildDeleteLookup.Add(typeof(Sponsor), "delSP");
             ChildDeleteLookup.Add(typeof(AllowanceType), "delAT");
@@ -94,6 +97,7 @@ namespace AionHR.Repository.WebService.Repositories
             ChildDeleteLookup.Add(typeof(Bonus), "delBO");
             ChildDeleteLookup.Add(typeof(SalaryDetail), "delSD");
             ChildDeleteLookup.Add(typeof(EmployeeNote), "delNO");
+            ChildDeleteLookup.Add(typeof(EmployeeDocument), "delDO");
 
         }
 
@@ -107,5 +111,17 @@ namespace AionHR.Repository.WebService.Repositories
 
             return request.PostAsyncWithBinary<Employee>(emp, imgName, imgDate);
         }
+
+        public PostWebServiceResponse AddOrUpdateEmployeeDocument(EmployeeDocument emp, string fileName, byte[] fileData, Dictionary<string, string> headers = null)
+        {
+            var request = new HTTPWebServiceRequest();
+            request.MethodType = "POST";
+            request.URL = ServiceURL + addOrRemoveEmployeeDocumentMethodName;
+            if (headers != null)
+                request.Headers = headers;
+
+            return request.PostAsyncWithBinary<EmployeeDocument>(emp, fileName, fileData);
+        }
+
     }
 }

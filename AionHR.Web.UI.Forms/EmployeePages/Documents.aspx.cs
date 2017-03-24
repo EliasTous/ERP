@@ -20,16 +20,16 @@ using AionHR.Web.UI.Forms.Utilities;
 using AionHR.Model.Company.News;
 using AionHR.Services.Messaging;
 using AionHR.Model.Company.Structure;
+using AionHR.Model.System;
 using AionHR.Model.Employees.Profile;
 
-namespace AionHR.Web.UI.Forms
+namespace AionHR.Web.UI.Forms.EmployeePages
 {
-    public partial class Positions : System.Web.UI.Page
+    public partial class Documents : System.Web.UI.Page
     {
-
-        ICompanyStructureService _branchService = ServiceLocator.Current.GetInstance<ICompanyStructureService>();
         ISystemService _systemService = ServiceLocator.Current.GetInstance<ISystemService>();
         IEmployeeService _employeeService = ServiceLocator.Current.GetInstance<IEmployeeService>();
+        ICompanyStructureService _companyStructureService = ServiceLocator.Current.GetInstance<ICompanyStructureService>();
         protected override void InitializeCulture()
         {
 
@@ -53,18 +53,17 @@ namespace AionHR.Web.UI.Forms
         {
 
 
-
-
             if (!X.IsAjaxRequest && !IsPostBack)
             {
 
                 SetExtLanguage();
                 HideShowButtons();
                 HideShowColumns();
-
+                if (string.IsNullOrEmpty(Request.QueryString["employeeId"]))
+                    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorOperation).Show();
+                CurrentEmployee.Text = Request.QueryString["employeeId"];
 
             }
-
 
         }
 
@@ -101,7 +100,7 @@ namespace AionHR.Web.UI.Forms
             if (rtl)
             {
                 this.ResourceManager1.RTL = true;
-                this.Viewport1.RTL = true;
+                this.Viewport11.RTL = true;
 
             }
         }
@@ -116,11 +115,11 @@ namespace AionHR.Web.UI.Forms
             string type = e.ExtraParams["type"];
             switch (type)
             {
-                case "ColName":
+                case "imgEdit":
                     //Step 1 : get the object from the Web Service 
                     RecordRequest r = new RecordRequest();
                     r.RecordID = id.ToString();
-                    RecordResponse<Model.Company.Structure.Position> response = _branchService.ChildGetRecord<Model.Company.Structure.Position>(r);
+                    RecordResponse<EmployeeDocument> response = _employeeService.ChildGetRecord<EmployeeDocument>(r);
                     if (!response.Success)
                     {
                         X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
@@ -128,19 +127,21 @@ namespace AionHR.Web.UI.Forms
                         return;
                     }
                     //Step 2 : call setvalues with the retrieved object
-                    this.BasicInfoTab.SetValues(response.result);
-                    InitCombos(response.result);
-                    this.EditRecordWindow.Title = Resources.Common.EditWindowsTitle;
-                    this.EditRecordWindow.Show();
-                    break;
+                    this.EditDocumentForm.SetValues(response.result);
+                    FillDocumentTypes();
+                    dtId.Select(response.result.dtId.ToString());
 
-                case "colDelete":
+                    this.EditDocumentWindow.Title = Resources.Common.EditWindowsTitle;
+                    this.EditDocumentWindow.Show();
+                    break;
+             
+                case "imgDelete":
                     X.Msg.Confirm(Resources.Common.Confirmation, Resources.Common.DeleteOneRecord, new MessageBoxButtonsConfig
                     {
                         Yes = new MessageBoxButtonConfig
                         {
                             //We are call a direct request metho for deleting a record
-                            Handler = String.Format("App.direct.DeleteRecord({0})", id),
+                            Handler = String.Format("App.direct.DeleteDocument({0})", id),
                             Text = Resources.Common.Yes
                         },
                         No = new MessageBoxButtonConfig
@@ -162,45 +163,48 @@ namespace AionHR.Web.UI.Forms
 
         }
 
-        private void InitCombos(Model.Company.Structure.Position dept)
-        {
-            //parents = new BoundedComboBox("referToPositionId", "name", "recordId", GetLocalResourceObject("FieldReferer").ToString(), "FillParent", "", GetLocalResourceObject("FieldReferer").ToString(), false);
-
-            //BasicInfoTab.Items.Add(parents);
-
-            //if (dept != null)
-            //{
-
-            //    parents.Select(dept.referToPositionId);
-
-            //}
-            referToPositionId.Select(dept.referToPositionId);
-
-
-        }
-
         /// <summary>
         /// This direct method will be called after confirming the delete
         /// </summary>
         /// <param name="index">the ID of the object to delete</param>
         [DirectMethod]
-        public void DeleteRecord(string index)
+        public void DeleteDocument(string index)
         {
             try
             {
                 //Step 1 Code to delete the object from the database 
+                EmployeeDocument n = new EmployeeDocument();
+                n.recordId = index;
+                n.dtId = 0;
+                n.employeeId = Convert.ToInt32(CurrentEmployee.Text);
+                n.expiryDate = null;
+                n.remarks = "";
+                n.documentRef = "";
 
-                //Step 2 :  remove the object from the store
-                Store1.Remove(index);
 
-                //Step 3 : Showing a notification for the user 
-                Notification.Show(new NotificationConfig
+                PostRequest<EmployeeDocument> req = new PostRequest<EmployeeDocument>();
+                req.entity = n;
+                PostResponse<EmployeeDocument> res = _employeeService.ChildDelete<EmployeeDocument>(req);
+                if (!res.Success)
                 {
-                    Title = Resources.Common.Notification,
-                    Icon = Icon.Information,
-                    Html = Resources.Common.RecordDeletedSucc
-                });
+                    //Show an error saving...
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    X.Msg.Alert(Resources.Common.Error, res.Summary).Show();
+                    return;
+                }
+                else
+                {
+                    //Step 2 :  remove the object from the store
+                    employeeDocumentsStore.Remove(index);
 
+                    //Step 3 : Showing a notification for the user 
+                    Notification.Show(new NotificationConfig
+                    {
+                        Title = Resources.Common.Notification,
+                        Icon = Icon.Information,
+                        Html = Resources.Common.RecordDeletedSucc
+                    });
+                }
 
             }
             catch (Exception ex)
@@ -214,57 +218,8 @@ namespace AionHR.Web.UI.Forms
         }
 
 
-        [DirectMethod]
-        public object FillParent(string action, Dictionary<string, object> extraParams)
-        {
-            StoreRequestParameters prms = new StoreRequestParameters(extraParams);
 
 
-
-            List<Model.Company.Structure.Position> data;
-            ListRequest req = new ListRequest();
-
-            ListResponse<Model.Company.Structure.Position> response = _branchService.ChildGetAll<Model.Company.Structure.Position>(req);
-            if (!response.Success)
-                X.Msg.Alert(Resources.Common.Error, response.Summary).Show();
-            data = response.Items;
-            return new
-            {
-                data
-            };
-
-        }
-        [DirectMethod]
-        public object FillSupervisor(string action, Dictionary<string, object> extraParams)
-        {
-
-            StoreRequestParameters prms = new StoreRequestParameters(extraParams);
-
-
-
-            List<Employee> data;
-            EmployeeListRequest req = new EmployeeListRequest();
-            req.DepartmentId = "0";
-            req.BranchId = "0";
-            req.IncludeIsInactive = 2;
-            req.SortBy = "firstName";
-
-            req.StartAt = "1";
-            req.Size = "20";
-            req.Filter = prms.Query;
-
-
-            req.Filter = prms.Query;
-            ListResponse<Employee> response = _employeeService.GetAll<Employee>(req);
-            if(!response.Success)
-                X.Msg.Alert(Resources.Common.Error, response.Summary).Show();
-            data = response.Items;
-            return new
-            {
-                data
-            };
-
-        }
 
 
 
@@ -273,69 +228,12 @@ namespace AionHR.Web.UI.Forms
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        protected void btnDeleteAll(object sender, DirectEventArgs e)
-        {
 
-
-            RowSelectionModel sm = this.GridPanel1.GetSelectionModel() as RowSelectionModel;
-            if (sm.SelectedRows.Count() <= 0)
-                return;
-            X.Msg.Confirm(Resources.Common.Confirmation, Resources.Common.DeleteManyRecord, new MessageBoxButtonsConfig
-            {
-                //Calling DoYes the direct method for removing selecte record
-                Yes = new MessageBoxButtonConfig
-                {
-                    Handler = "App.direct.DoYes()",
-                    Text = Resources.Common.Yes
-                },
-                No = new MessageBoxButtonConfig
-                {
-                    Text = Resources.Common.No
-                }
-
-            }).Show();
-        }
 
         /// <summary>
         /// Direct method for removing multiple records
         /// </summary>
-        [DirectMethod(ShowMask = true)]
-        public void DoYes()
-        {
-            try
-            {
-                RowSelectionModel sm = this.GridPanel1.GetSelectionModel() as RowSelectionModel;
 
-                foreach (SelectedRow row in sm.SelectedRows)
-                {
-                    //Step 1 :Getting the id of the selected record: it maybe string 
-                    int id = int.Parse(row.RecordID);
-
-
-                    //Step 2 : removing the record from the store
-                    //To do add code here 
-
-                    //Step 3 :  remove the record from the store
-                    Store1.Remove(id);
-
-                }
-                //Showing successful notification
-                Notification.Show(new NotificationConfig
-                {
-                    Title = Resources.Common.Notification,
-                    Icon = Icon.Information,
-                    Html = Resources.Common.ManyRecordDeletedSucc
-                });
-
-            }
-            catch (Exception ex)
-            {
-                //Alert in case of any failure
-                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorDeletingRecord).Show();
-
-            }
-        }
 
         /// <summary>
         /// Adding new record
@@ -346,13 +244,15 @@ namespace AionHR.Web.UI.Forms
         {
 
             //Reset all values of the relative object
-            BasicInfoTab.Reset();
-            this.EditRecordWindow.Title = Resources.Common.AddNewRecord;
-
-            this.EditRecordWindow.Show();
+            EditDocumentForm.Reset();
+            this.EditDocumentWindow.Title = Resources.Common.AddNewRecord;
+            FillDocumentTypes();
+           
+            this.EditDocumentWindow.Show();
         }
+   
 
-        protected void Store1_RefreshData(object sender, StoreReadDataEventArgs e)
+        protected void employeeDocumentsStore_RefreshData(object sender, StoreReadDataEventArgs e)
         {
 
             //GEtting the filter from the page
@@ -364,21 +264,24 @@ namespace AionHR.Web.UI.Forms
             //Fetching the corresponding list
 
             //in this test will take a list of News
-            ListRequest request = new ListRequest();
-            request.Filter = "";
-            ListResponse<Model.Company.Structure.Position> branches = _branchService.ChildGetAll<Model.Company.Structure.Position>(request);
-            if (!branches.Success)
+
+            EmployeeDocumentsListRequest request = new EmployeeDocumentsListRequest();
+            request.EmployeeId = Convert.ToInt32(CurrentEmployee.Text);
+            ListResponse<EmployeeDocument> documents = _employeeService.ChildGetAll<EmployeeDocument>(request);
+            if (!documents.Success)
+            {
+                X.Msg.Alert(Resources.Common.Error, documents.Summary).Show();
                 return;
-            this.Store1.DataSource = branches.Items;
-            e.Total = branches.count;
+            }
+            this.employeeDocumentsStore.DataSource = documents.Items;
+            e.Total = documents.count;
 
-            this.Store1.DataBind();
+            this.employeeDocumentsStore.DataBind();
         }
+  
 
 
-
-
-        protected void SaveNewRecord(object sender, DirectEventArgs e)
+        protected void SaveDocument(object sender, DirectEventArgs e)
         {
 
 
@@ -386,11 +289,12 @@ namespace AionHR.Web.UI.Forms
             string id = e.ExtraParams["id"];
 
             string obj = e.ExtraParams["values"];
-            Model.Company.Structure.Position b = JsonConvert.DeserializeObject<Model.Company.Structure.Position>(obj);
-            if (referToPositionId.SelectedItem != null)
-                b.referToPositionName = referToPositionId.SelectedItem.Text;
+            EmployeeDocument b = JsonConvert.DeserializeObject<EmployeeDocument>(obj);
+            b.employeeId = Convert.ToInt32(CurrentEmployee.Text);
             b.recordId = id;
             // Define the object to add or edit as null
+            b.dtName = dtId.SelectedItem.Text;
+            b.expiryDate = new DateTime(b.expiryDate.Value.Year, b.expiryDate.Value.Month, b.expiryDate.Value.Day, 14, 0, 0);
 
             if (string.IsNullOrEmpty(id))
             {
@@ -398,11 +302,31 @@ namespace AionHR.Web.UI.Forms
                 try
                 {
                     //New Mode
-                    //Step 1 : Fill The object and insert in the store 
-                    PostRequest<Model.Company.Structure.Position> request = new PostRequest<Model.Company.Structure.Position>();
-                    request.entity = b;
-                    PostResponse<Model.Company.Structure.Position> r = _branchService.ChildAddOrUpdate<Model.Company.Structure.Position>(request);
+                    EmployeeDocumentAddOrUpdateRequest request = new EmployeeDocumentAddOrUpdateRequest();
+
+                    byte[] fileData = null;
+                    if (documentFile.PostedFile != null && documentFile.PostedFile.ContentLength > 0)
+                    {
+                        //using (var binaryReader = new BinaryReader(picturePath.PostedFile.InputStream))
+                        //{
+                        //    fileData = binaryReader.ReadBytes(picturePath.PostedFile.ContentLength);
+                        //}
+                        fileData = new byte[documentFile.PostedFile.ContentLength];
+                        fileData = documentFile.FileBytes;
+                        request.fileName = documentFile.PostedFile.FileName;
+                        request.fileData = fileData;
+
+                    }
+                    else
+                    {
+                        request.fileData = fileData;
+                        request.fileName = "";
+                    }
+                    request.documentData = b;
+
+                    PostResponse<EmployeeDocument> r = _employeeService.AddOrUpdateEmployeeDocument(request);
                     b.recordId = r.recordId;
+
 
                     //check if the insert failed
                     if (!r.Success)//it maybe be another condition
@@ -416,7 +340,7 @@ namespace AionHR.Web.UI.Forms
                     {
 
                         //Add this record to the store 
-                        this.Store1.Insert(0, b);
+                        this.employeeDocumentsStore.Insert(0, b);
 
                         //Display successful notification
                         Notification.Show(new NotificationConfig
@@ -426,8 +350,8 @@ namespace AionHR.Web.UI.Forms
                             Html = Resources.Common.RecordSavingSucc
                         });
 
-                        this.EditRecordWindow.Close();
-                        RowSelectionModel sm = this.GridPanel1.GetSelectionModel() as RowSelectionModel;
+                        this.EditDocumentWindow.Close();
+                        RowSelectionModel sm = this.employeeDocumentsGrid.GetSelectionModel() as RowSelectionModel;
                         sm.DeselectAll();
                         sm.Select(b.recordId.ToString());
 
@@ -451,28 +375,50 @@ namespace AionHR.Web.UI.Forms
                 try
                 {
                     int index = Convert.ToInt32(id);//getting the id of the record
-                    PostRequest<Model.Company.Structure.Position> request = new PostRequest<Model.Company.Structure.Position>();
-                    request.entity = b;
-                    PostResponse<Model.Company.Structure.Position> r = _branchService.ChildAddOrUpdate<Model.Company.Structure.Position>(request);                   //Step 1 Selecting the object or building up the object for update purpose
+                    EmployeeDocumentAddOrUpdateRequest request = new EmployeeDocumentAddOrUpdateRequest();
 
-                    //Step 2 : saving to store
+                    byte[] fileData = null;
+                    if (documentFile.HasFile && documentFile.PostedFile.ContentLength > 0)
+                    {
+                        //using (var binaryReader = new BinaryReader(picturePath.PostedFile.InputStream))
+                        // {
+                        //    fileData = binaryReader.ReadBytes(picturePath.PostedFile.ContentLength);
+                        // }
+                        fileData = new byte[documentFile.PostedFile.ContentLength];
+                        fileData = documentFile.FileBytes;
+                        request.fileName = documentFile.PostedFile.FileName;
+                        request.fileData = fileData;
+
+
+
+                    }
+                    else
+                    {
+                        request.fileData = fileData;
+                        request.fileName = "";
+                    }
+                    request.documentData = b;
+
+
+
+                    PostResponse<EmployeeDocument> r = _employeeService.AddOrUpdateEmployeeDocument(request);
+
 
                     //Step 3 :  Check if request fails
                     if (!r.Success)//it maybe another check
                     {
                         X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                        X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorUpdatingRecord).Show();
+                        X.Msg.Alert(Resources.Common.Error, r.Summary).Show();
                         return;
                     }
                     else
                     {
 
 
-                        ModelProxy record = this.Store1.GetById(index);
-
-
-                        BasicInfoTab.UpdateRecord(record);
-                        record.Set("referToPositionName", b.referToPositionName);
+                        ModelProxy record = this.employeeDocumentsStore.GetById(index);
+                        
+                        record.Set("statusName", b.dtName);
+                        EditDocumentForm.UpdateRecord(record);
                         record.Commit();
                         Notification.Show(new NotificationConfig
                         {
@@ -480,7 +426,7 @@ namespace AionHR.Web.UI.Forms
                             Icon = Icon.Information,
                             Html = Resources.Common.RecordUpdatedSucc
                         });
-                        this.EditRecordWindow.Close();
+                        this.EditDocumentWindow.Close();
 
 
                     }
@@ -494,6 +440,7 @@ namespace AionHR.Web.UI.Forms
             }
         }
 
+     
         [DirectMethod]
         public string CheckSession()
         {
@@ -504,27 +451,33 @@ namespace AionHR.Web.UI.Forms
             else return "1";
         }
 
-        protected void BasicInfoTab_Load(object sender, EventArgs e)
+        private void FillDocumentTypes()
         {
+            ListRequest documentTypes = new ListRequest();
+            ListResponse<DocumentType> resp = _employeeService.ChildGetAll<DocumentType>(documentTypes);
+            if (!resp.Success)
+            {
+                X.Msg.Alert(Resources.Common.Error, resp.Summary).Show();
+                return;
+            }
+            dtStore.DataSource = resp.Items;
+            dtStore.DataBind();
 
         }
 
-        protected void addPosition(object sender, DirectEventArgs e)
+        protected void addType(object sender, DirectEventArgs e)
         {
-            if (string.IsNullOrEmpty(referToPositionId.Text))
-                return;
-            Model.Company.Structure.Position dept = new Model.Company.Structure.Position();
-            dept.name = referToPositionId.Text;
+            DocumentType dept = new DocumentType();
+            dept.name = dtId.Text;
 
-            PostRequest<Model.Company.Structure.Position> depReq = new PostRequest<Model.Company.Structure.Position>();
+            PostRequest<DocumentType> depReq = new PostRequest<DocumentType>();
             depReq.entity = dept;
-            PostResponse<Model.Company.Structure.Position> response = _branchService.ChildAddOrUpdate<Model.Company.Structure.Position>(depReq);
+
+            PostResponse<DocumentType> response = _employeeService.ChildAddOrUpdate<DocumentType>(depReq);
             if (response.Success)
             {
                 dept.recordId = response.recordId;
-                positionStore.Insert(0, dept);
-                referToPositionId.Select(0);
-                this.Store1.Insert(0, dept);
+                FillDocumentTypes();
             }
             else
             {
@@ -534,6 +487,8 @@ namespace AionHR.Web.UI.Forms
             }
 
         }
+
+
 
 
     }

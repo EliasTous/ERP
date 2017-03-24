@@ -48,7 +48,7 @@ namespace AionHR.Web.UI.Forms
             EmployeeListRequest req = new EmployeeListRequest();
             req.DepartmentId = "0";
             req.BranchId = "0";
-            req.IncludeIsInactive = false;
+            req.IncludeIsInactive = 2;
             req.SortBy = GetNameFormat();
 
             req.StartAt = "1";
@@ -62,20 +62,7 @@ namespace AionHR.Web.UI.Forms
 
         private string GetNameFormat()
         {
-            SystemDefaultRecordRequest req = new SystemDefaultRecordRequest();
-            req.Key = "nameFormat";
-            RecordResponse<KeyValuePair<string, string>> response = _systemService.ChildGetRecord<KeyValuePair<string, string>>(req);
-            if (!response.Success)
-            {
-
-            }
-            string paranthized = response.result.Value;
-            paranthized = paranthized.Replace('{', ' ');
-            paranthized = paranthized.Replace('}', ',');
-            paranthized = paranthized.Substring(0, paranthized.Length - 1);
-            paranthized = paranthized.Replace(" ", string.Empty);
-            return paranthized;
-
+            return _systemService.SessionHelper.Get("nameFormat").ToString();
         }
 
        

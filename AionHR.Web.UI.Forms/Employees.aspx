@@ -23,7 +23,7 @@
 </head>
 <body style="background: url(Images/bg.png) repeat;">
     <form id="Form1" runat="server">
-        <ext:ResourceManager ID="ResourceManager1" runat="server" Theme="Neptune" AjaxTimeout="1200000">
+        <ext:ResourceManager ID="ResourceManager1" runat="server" Theme="Neptune" AjaxTimeout="1200000" Locale="ar-eg">
         </ext:ResourceManager>
 
         <ext:Hidden ID="textMatch" runat="server" Text="<%$ Resources:Common , MatchFound %>" />
@@ -74,7 +74,7 @@
                                         <ext:ModelField Name="positionName" />
                                         <ext:ModelField Name="branchName" />
                                         <ext:ModelField Name="divisionName" />
-                                        <ext:ModelField Name="hireDate" ServerMapping="hireDate.ToShortDateString()" />
+                                        <ext:ModelField Name="hireDate" />
 
 
 
@@ -113,6 +113,16 @@
                                         </Click>
                                     </DirectEvents>
                                 </ext:Button>
+                                <ext:ComboBox runat="server" ID="inactivePref" Editable="false" FieldLabel="<%$ Resources: Filter %>"  >
+                                    <Items>
+                                        <ext:ListItem Text="<%$ Resources: All %>" Value="2"  />
+                                        <ext:ListItem Text="<%$ Resources: ActiveOnly %>" Value="0" />
+                                        <ext:ListItem Text="<%$ Resources: InactiveOnly %>" Value="1" />
+                                    </Items>
+                                    <Listeners>
+                                        <Change Handler="App.Store1.reload()" />
+                                    </Listeners>
+                                </ext:ComboBox>
                                 <ext:ToolbarFill ID="ToolbarFillExport" runat="server" />
                                 <ext:TextField ID="searchTrigger" runat="server" EnableKeyEvents="true" Width="180">
                                     <Triggers>
@@ -155,9 +165,9 @@
                             <ext:Column ID="ColPositionName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldPosition%>" DataIndex="positionName" Flex="3" Hideable="false" />
                             <ext:Column ID="ColBranchName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldBranch%>" DataIndex="branchName" Flex="3" Hideable="false" />
                             <ext:Column ID="Column1" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDivision%>" DataIndex="divisionName" Flex="3" Hideable="false" />
-                            <ext:Column ID="ColHireDate" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldHireDate%>" DataIndex="hireDate" Width="80" Hideable="false">
-                                <Renderer Handler="return record.data['hireDate']; "></Renderer>
-                            </ext:Column>
+                            <ext:DateColumn ID="ColHireDate"  Format="dd-MMM-yyyy" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldHireDate%>" DataIndex="hireDate" Width="120" Hideable="false">
+                                
+                            </ext:DateColumn>
 
 
                             <ext:Column runat="server"
@@ -284,7 +294,8 @@
             Modal="true"
             Hidden="true"
             Maximizable="false"
-            Header="false"
+            Header="true"
+            Draggable="false"
              Resizable="false"
             Maximized="false"
             Layout="BorderLayout">
@@ -388,17 +399,17 @@
                                                 <ext:ListItem Text="<%$ Resources:Common, Religion6%>" Value="6"></ext:ListItem>
                                             </Items>
                                         </ext:ComboBox>
+                                        
+                                    </Items>
+                                </ext:Panel>
+                                <ext:Panel runat="server" Margin="20">
+                                    <Items>
                                         <ext:DateField
                                             runat="server"
                                             Name="birthDate"
                                             FieldLabel="<%$ Resources:FieldDateOfBirth%>"
                                             MsgTarget="Side"
                                             AllowBlank="false" />
-                                    </Items>
-                                </ext:Panel>
-                                <ext:Panel runat="server" Margin="20">
-                                    <Items>
-
                                         <ext:ComboBox runat="server" ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" AllowBlank="false" DisplayField="name" ID="nationalityId" Name="nationalityId" FieldLabel="<%$ Resources:FieldNationality%>" SimpleSubmit="true">
                                             <Store>
                                                 <ext:Store runat="server" ID="NationalityStore">
@@ -694,6 +705,13 @@
                         </ext:Panel>
                         <ext:Panel runat="server" Layout="FitLayout" Title="<%$ Resources: NotesTab %>" ID="Panel2" DefaultAnchor="100%">
                             <Loader runat="server" Url="EmployeePages/Notes.aspx" Mode="Frame" ID="Loader2" TriggerEvent="show"
+                                ReloadOnEvent="true"
+                                DisableCaching="true">
+                                <LoadMask ShowMask="true" />
+                            </Loader>
+                        </ext:Panel>
+                         <ext:Panel runat="server" Layout="FitLayout" Title="<%$ Resources: DocumentsTab %>" ID="Panel3" DefaultAnchor="100%">
+                            <Loader runat="server" Url="EmployeePages/Documents.aspx" Mode="Frame" ID="Loader3" TriggerEvent="show"
                                 ReloadOnEvent="true"
                                 DisableCaching="true">
                                 <LoadMask ShowMask="true" />

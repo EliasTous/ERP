@@ -110,6 +110,9 @@ namespace AionHR.Web.UI.Forms
                     _systemService.SessionHelper.SetLanguage("en");
 
                 _systemService.SessionHelper.Set("CompanyName", getACResponse.result.companyName);
+
+                _systemService.SessionHelper.Set("dateFormat", GetDateFormat());
+                _systemService.SessionHelper.Set("nameFormat", GetNameFormat());
                 return "1";//Succeded
 
             }
@@ -119,6 +122,35 @@ namespace AionHR.Web.UI.Forms
                 return "error";//Error in authentication
 
             }
+        }
+
+        private object GetDateFormat()
+        {
+            SystemDefaultRecordRequest req = new SystemDefaultRecordRequest();
+            req.Key = "dateFormat";
+            RecordResponse<KeyValuePair<string, string>> response = _systemService.ChildGetRecord<KeyValuePair<string, string>>(req);
+            if (!response.Success)
+            {
+               
+            }
+            return response.result.Value;
+        }
+        private string GetNameFormat()
+        {
+            SystemDefaultRecordRequest req = new SystemDefaultRecordRequest();
+            req.Key = "nameFormat";
+            RecordResponse<KeyValuePair<string, string>> response = _systemService.ChildGetRecord<KeyValuePair<string, string>>(req);
+            if (!response.Success)
+            {
+
+            }
+            string paranthized = response.result.Value;
+            paranthized = paranthized.Replace('{', ' ');
+            paranthized = paranthized.Replace('}', ',');
+            paranthized = paranthized.Substring(0, paranthized.Length - 1);
+            paranthized = paranthized.Replace(" ", string.Empty);
+            return paranthized;
+
         }
 
         private void RemoveCookies()

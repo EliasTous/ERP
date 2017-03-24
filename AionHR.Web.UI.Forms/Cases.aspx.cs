@@ -51,7 +51,7 @@ namespace AionHR.Web.UI.Forms
             EmployeeListRequest req = new EmployeeListRequest();
             req.DepartmentId = "0";
             req.BranchId = "0";
-            req.IncludeIsInactive = false;
+            req.IncludeIsInactive = 2;
             req.SortBy = GetNameFormat();
 
             req.StartAt = "1";
@@ -172,13 +172,14 @@ namespace AionHR.Web.UI.Forms
         protected void PoPuP(object sender, DirectEventArgs e)
         {
 
-
+            panelRecordDetails.ActiveIndex = 0;
+            SetTabPanelEnable(true);
             string id = e.ExtraParams["id"];
             string type = e.ExtraParams["type"];
 
             switch (type)
             {
-                case "ColName":
+                case "imgEdit":
                     //Step 1 : get the object from the Web Service 
                     RecordRequest r = new RecordRequest();
                     r.RecordID = id;
@@ -202,25 +203,68 @@ namespace AionHR.Web.UI.Forms
                                 }
                            });
                     employeeId.SetValue(response.result.employeeId);
-                    caseComments_RefreshData(Convert.ToInt32(id));
+                    
 
                     
                     //Step 2 : call setvalues with the retrieved object
                     this.BasicInfoTab.SetValues(response.result);
-
-                    if(!response.result.closedDate.HasValue)
+                    caseComments_RefreshData(Convert.ToInt32(id));
+                    if (!response.result.closedDate.HasValue)
                         closedDate.SelectedDate = DateTime.Now;
                     this.EditRecordWindow.Title = Resources.Common.EditWindowsTitle;
                     this.EditRecordWindow.Show();
                     break;
 
-                case "colDelete":
+                case "imgDelete":
                     X.Msg.Confirm(Resources.Common.Confirmation, Resources.Common.DeleteOneRecord, new MessageBoxButtonsConfig
                     {
                         Yes = new MessageBoxButtonConfig
                         {
                             //We are call a direct request metho for deleting a record
                             Handler = String.Format("App.direct.DeleteRecord({0})", id),
+                            Text = Resources.Common.Yes
+                        },
+                        No = new MessageBoxButtonConfig
+                        {
+                            Text = Resources.Common.No
+                        }
+
+                    }).Show();
+                    break;
+
+                case "colAttach":
+
+                    //Here will show up a winow relatice to attachement depending on the case we are working on
+                    break;
+                default:
+                    break;
+            }
+
+
+        }
+
+        protected void PoPuPCase(object sender, DirectEventArgs e)
+        {
+
+
+            string id = e.ExtraParams["id"];
+            string type = e.ExtraParams["type"];
+            string index = e.ExtraParams["index"];
+            switch (type)
+            {
+                case "imgEdit":
+                    //Step 1 : get the object from the Web Service 
+                    X.Call("App.caseCommentGrid.editingPlugin.startEdit", Convert.ToInt32(index), 0);
+                    break;
+                   
+
+                case "imgDelete":
+                    X.Msg.Confirm(Resources.Common.Confirmation, Resources.Common.DeleteOneRecord, new MessageBoxButtonsConfig
+                    {
+                        Yes = new MessageBoxButtonConfig
+                        {
+                            //We are call a direct request metho for deleting a record
+                            Handler = String.Format("App.direct.DeleteCase({0})", id),
                             Text = Resources.Common.Yes
                         },
                         No = new MessageBoxButtonConfig
@@ -296,7 +340,55 @@ namespace AionHR.Web.UI.Forms
 
         }
 
+        [DirectMethod]
+        public void DeleteCase(string index)
+        {
+            try
+            {
+                //Step 1 Code to delete the object from the database 
+                CaseComment s = new CaseComment();
+                s.caseId = Convert.ToInt32(currentCase.Text);
+                s.comment = "";
+                s.seqNo = Convert.ToInt16(index);
+                s.userId = 0;
+                s.userName = "";
+                s.date = DateTime.Now;
+               
 
+
+                PostRequest<CaseComment> req = new PostRequest<CaseComment>();
+                req.entity = s;
+                PostResponse<CaseComment> r = _caseService.Delete<CaseComment>(req);
+                if (!r.Success)
+                {
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    X.Msg.Alert(Resources.Common.Error, r.Summary).Show();
+                    return;
+                }
+                else
+                {
+                    //Step 2 :  remove the object from the store
+                    Store1.Remove(index);
+
+                    //Step 3 : Showing a notification for the user 
+                    Notification.Show(new NotificationConfig
+                    {
+                        Title = Resources.Common.Notification,
+                        Icon = Icon.Information,
+                        Html = Resources.Common.RecordDeletedSucc
+                    });
+                }
+
+            }
+            catch (Exception ex)
+            {
+                //In case of error, showing a message box to the user
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorDeletingRecord).Show();
+
+            }
+
+        }
 
 
 
@@ -376,11 +468,14 @@ namespace AionHR.Web.UI.Forms
         /// <param name="e"></param>
         protected void ADDNewRecord(object sender, DirectEventArgs e)
         {
-
+            caseCommentStore.DataSource = new List<CaseComment>();
+            caseCommentStore.DataBind();
             //Reset all values of the relative object
             BasicInfoTab.Reset();
             closedDate.SelectedDate = DateTime.Now;
-
+           
+            panelRecordDetails.ActiveIndex = 0;
+            SetTabPanelEnable(false);
             this.EditRecordWindow.Title = Resources.Common.AddNewRecord;
 
 
@@ -430,7 +525,7 @@ namespace AionHR.Web.UI.Forms
                 X.Msg.Alert(Resources.Common.Error, resp.Summary).Show();
 
             }
-            caseCommentStore.Reload();
+            caseComments_RefreshData(Convert.ToInt32(currentCase.Text));
 
             //Reset all values of the relative object
 
@@ -490,7 +585,10 @@ namespace AionHR.Web.UI.Forms
 
             ListResponse<Case> routers = _caseService.GetAll<Case>(request);
             if (!routers.Success)
+            {
                 X.Msg.Alert(Resources.Common.Error, routers.Summary).Show();
+                return;
+            }
             this.Store1.DataSource = routers.Items;
             e.Total = routers.Items.Count; 
 
@@ -557,7 +655,8 @@ namespace AionHR.Web.UI.Forms
                             Html = Resources.Common.RecordSavingSucc
                         });
 
-                        this.EditRecordWindow.Close();
+                        SetTabPanelEnable(true);
+                        currentCase.Text = b.recordId;
                         RowSelectionModel sm = this.GridPanel1.GetSelectionModel() as RowSelectionModel;
                         sm.DeselectAll();
                         sm.Select(b.recordId.ToString());
@@ -676,9 +775,9 @@ namespace AionHR.Web.UI.Forms
         {
 
 
-            if (!values.ContainsKey("note"))
+            if (!values.ContainsKey("comment"))
             {
-                return new { valid = false, msg = "Salary must be >=1000 for new employee" };
+                return new { valid = false, msg = "Error in call" };
             }
 
             PostRequest<CaseComment> req = new PostRequest<CaseComment>();
@@ -696,8 +795,19 @@ namespace AionHR.Web.UI.Forms
                 X.Msg.Alert(Resources.Common.Error, resp.Summary).Show();
                 return new { valid = false };
             }
-            caseCommentStore.Reload();
+            caseComments_RefreshData(note.caseId);
             return new { valid = true };
+        }
+
+        private void SetTabPanelEnable(bool isEnable)
+        {
+            foreach (var item in panelRecordDetails.Items)
+            {
+                if (item.ID == "BasicInfoTab")
+                    continue;
+                item.Disabled = !isEnable;
+            }
+            
         }
     }
 }

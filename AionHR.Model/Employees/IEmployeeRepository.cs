@@ -15,5 +15,7 @@ namespace AionHR.Model.Employees
    public interface IEmployeeRepository:IRepository<Employee,string>,ICommonRepository
     {
         PostWebServiceResponse AddOrUpdateEmployeeWithImage(Employee emp, string imgName, byte[] imgDate,Dictionary<string,string> headers = null);
+
+        PostWebServiceResponse AddOrUpdateEmployeeDocument(EmployeeDocument emp, string fileName, byte[] fileData, Dictionary<string, string> headers = null);
     }
 }

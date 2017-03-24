@@ -99,13 +99,11 @@
                                         </ext:ComboBox>
                                         <ext:ComboBox QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: FieldDateFormat %>" Name="dateFormat" runat="server" ID="dateFormatCombo">
                                             <Items>
-                                                <ext:ListItem Text="<%$ Resources: YearMonthDay %>" Value="yyyy-MM-dd" />
-                                                <ext:ListItem Text="<%$ Resources: MonthYearDay %>" Value="MM-yyyy-dd" />
-                                                <ext:ListItem Text="<%$ Resources: YearDayMonth %>" Value="yyyy-dd-MM" />
-                                                <ext:ListItem Text="<%$ Resources: MonthDayYear %>" Value="MM-dd-yyyy" />
-                                                <ext:ListItem Text="<%$ Resources: DayMonthYear %>" Value="dd-MM-yyyy" />
-                                                <ext:ListItem Text="<%$ Resources: DayYearMonth %>" Value="dd-yyyy-MM" />
-                                            </Items>
+                                                <ext:ListItem Text="Jan 31,2016" Value="MMM dd,yyyy" />
+                                                <ext:ListItem Text="Jan 31,16" Value="MMM dd,yy" />
+                                                <ext:ListItem Text="31/1/16" Value="MM/dd/yy" />
+                                                <ext:ListItem Text="1/31/16" Value="dd/MM/yy" />
+                                               </Items>
                                         </ext:ComboBox>
 
                                         <ext:ComboBox QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: FieldNameFormat %>" Name="nameFormat" runat="server" ID="nameFormatCombo">

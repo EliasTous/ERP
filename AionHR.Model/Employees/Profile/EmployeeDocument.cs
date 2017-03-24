@@ -10,16 +10,12 @@ namespace AionHR.Model.Employees.Profile
     public class EmployeeDocument:ModelBase
     {
         public int employeeId { get; set; }
-        public short seqNo { get; set; }
-        public int documentTypeId { get; set; }
-        public DateTime issuedDate { get; set; }
+        public EmployeeName employeeName { get; set; }
+        public int? dtId { get; set; }  
+
+        public string dtName { get; set; }
+        public string documentRef { get; set; }
         public DateTime? expiryDate { get; set; }
-        public string issuedPlace { get; set; }
-        public string reference { get; set; }
         public string remarks { get; set; }
-        public string nameOnDocument { get; set; }
-        public string documentImagePath { get; set; }
-        public string jobDescription { get; set; }
-        public string email { get; set; }
     }
 }

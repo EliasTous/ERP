@@ -7,7 +7,7 @@ public class EmployeeListRequest:ListRequest
     public string DepartmentId { get; set; }
     public string BranchId { get; set; }
 
-    public bool IncludeIsInactive { get; set; }
+    public int IncludeIsInactive { get; set; }
 
     public string SortBy { get; set; }
     
@@ -195,4 +195,42 @@ public class EmployeeNotesListRequest:ListRequest
             return parameters;
         }
     }
+}
+
+public class EmployeeDocumentsListRequest:ListRequest
+{
+    public int EmployeeId { get; set; }
+
+    public string SortBy { get; set; }
+
+
+
+
+
+
+    /// <summary>
+    /// /// parameter list shipped with the web request
+    /// </summary>
+    public override Dictionary<string, string> Parameters
+    {
+
+        get
+        {
+            parameters = base.Parameters;
+
+            parameters.Add("_employeeId", EmployeeId.ToString());
+            parameters.Add("_sortBy", SortBy);
+
+
+
+            return parameters;
+        }
+    }
+}
+public class EmployeeDocumentAddOrUpdateRequest
+{
+    public EmployeeDocument documentData { get; set; }
+    public byte[] fileData { get; set; }
+
+    public string fileName { get; set; }
 }

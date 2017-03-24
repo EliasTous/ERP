@@ -15,6 +15,8 @@ namespace AionHR.Model.Employees.Profile
 
         public DateTime date { get; set; }
         
-        
+        public int userId { get; set; }
+
+        public string userName { get; set; }
     }
 }

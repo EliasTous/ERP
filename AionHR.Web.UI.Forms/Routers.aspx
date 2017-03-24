@@ -44,6 +44,7 @@
                         <ext:ModelField Name="routerRef" />
                         <ext:ModelField Name="branchId" />
                         <ext:ModelField Name="isInactive" />
+                        <ext:ModelField Name="branchName" />
                       
                                </Fields>
                 </ext:Model>
@@ -118,6 +119,7 @@
 
                             </Renderer>
                                 </ext:Column>
+                             <ext:Column    CellCls="cellLink" ID="Column1" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldBranch%>" DataIndex="branchName" Flex="2" Hideable="false"/>
                          <ext:CheckColumn runat="server" Flex="1" Text="<%$ Resources: FieldIsInactive %>"  DataIndex="isInactive" ></ext:CheckColumn>
                            
 

@@ -48,12 +48,14 @@ namespace AionHR.Web.UI.Forms
                 rtl = false;
                 base.InitializeCulture();
                 LocalisationManager.Instance.SetEnglishLocalisation();
+                Culture = "en";
             }
 
             if (rtl)
             {
                 base.InitializeCulture();
                 LocalisationManager.Instance.SetArabicLocalisation();
+                Culture = "ar-eg";
             }
 
         }
@@ -62,15 +64,16 @@ namespace AionHR.Web.UI.Forms
         {
 
 
-            
+
             if (!X.IsAjaxRequest && !IsPostBack)
             {
 
                 SetExtLanguage();
                 HideShowButtons();
                 HideShowColumns();
-
-
+                ColHireDate.Format = _systemService.SessionHelper.Get("dateFormat").ToString();
+                
+                inactivePref.Select(0);
 
             }
 
@@ -163,7 +166,7 @@ namespace AionHR.Web.UI.Forms
 
                     //Here will show up a winow relatice to attachement depending on the case we are working on
                     break;
-          
+
 
                 default:
                     break;
@@ -216,7 +219,7 @@ namespace AionHR.Web.UI.Forms
 
             FillDepartment();
 
-           // departmentId.Enabled = isAdd;
+            // departmentId.Enabled = isAdd;
             //departmentId.ReadOnly = !isAdd;
             FillPosition();
 
@@ -224,7 +227,7 @@ namespace AionHR.Web.UI.Forms
             //positionId.ReadOnly = !isAdd;
             FillDivision();
             //divisionId.Enabled = isAdd;
-           // divisionId.ReadOnly = !isAdd;
+            // divisionId.ReadOnly = !isAdd;
             FillNationality();
 
 
@@ -393,7 +396,14 @@ namespace AionHR.Web.UI.Forms
             empRequest.BranchId = "0";
             empRequest.DepartmentId = "0";
             empRequest.Filter = searchTrigger.Text;
-            empRequest.IncludeIsInactive = false;
+            if (!string.IsNullOrEmpty(inactivePref.Text) && inactivePref.Value.ToString() != "0")
+            {
+                empRequest.IncludeIsInactive = Convert.ToInt32(inactivePref.Value);
+            }
+            else
+            {
+                empRequest.IncludeIsInactive = 2;
+            }
             if (e.Sort[0].Property == "name.fullName")
                 empRequest.SortBy = GetNameFormat();
             else
@@ -581,13 +591,13 @@ namespace AionHR.Web.UI.Forms
                         X.Msg.Alert(Resources.Common.Error, r.Summary).Show();
                         return;
                     }
-                    
+
                     else
                     {
                         RecordRequest req = new RecordRequest();
                         req.RecordID = b.recordId.ToString();
                         RecordResponse<Employee> response = _employeeService.Get<Employee>(req);
-                        if(response.Success)
+                        if (response.Success)
                         {
                             b.pictureUrl = response.result.pictureUrl + "?x=" + DateTime.Now;
                         }
@@ -600,7 +610,7 @@ namespace AionHR.Web.UI.Forms
                         FixLoaderUrls(req.RecordID.ToString());
                         FillLeftPanel();
                         InitCombos(false);
-                        
+
                         RowSelectionModel sm = this.GridPanel1.GetSelectionModel() as RowSelectionModel;
                         sm.DeselectAll();
                         sm.Select(b.recordId.ToString());
@@ -722,19 +732,7 @@ namespace AionHR.Web.UI.Forms
 
         private string GetNameFormat()
         {
-            SystemDefaultRecordRequest req = new SystemDefaultRecordRequest();
-            req.Key = "nameFormat";
-            RecordResponse<KeyValuePair<string, string>> response = _systemService.ChildGetRecord<KeyValuePair<string, string>>(req);
-            if (!response.Success)
-            {
-
-            }
-            string paranthized = response.result.Value;
-            paranthized = paranthized.Replace('{', ' ');
-            paranthized = paranthized.Replace('}', ',');
-            paranthized = paranthized.Substring(0, paranthized.Length - 1);
-            paranthized = paranthized.Replace(" ", string.Empty);
-            return paranthized;
+            return _systemService.SessionHelper.Get("nameFormat").ToString();
 
         }
 
@@ -797,7 +795,7 @@ namespace AionHR.Web.UI.Forms
             if (string.IsNullOrEmpty(departmentId.Text))
                 return;
             dept.name = departmentId.Text;
-            
+
             PostRequest<Department> depReq = new PostRequest<Department>();
             depReq.entity = dept;
             PostResponse<Department> response = _companyStructureService.ChildAddOrUpdate<Department>(depReq);
@@ -881,9 +879,9 @@ namespace AionHR.Web.UI.Forms
                 dept.recordId = response.recordId;
 
                 //When updating a store on server side via a directmethod, it is mandatory to re DataBind() so for that we called FillDivision() 
-                 FillDivision();
+                FillDivision();
                 //  divisionStore.Insert(0,dept);
-              //  divisionStore.Add(new { recordId = dept.recordId, name = dept.name });
+                //  divisionStore.Add(new { recordId = dept.recordId, name = dept.name });
 
                 divisionId.Value = dept.recordId;
             }
@@ -902,7 +900,7 @@ namespace AionHR.Web.UI.Forms
                 return;
             Nationality obj = new Nationality();
             obj.name = nationalityId.Text;
-            
+
             PostRequest<Nationality> req = new PostRequest<Nationality>();
             req.entity = obj;
 
@@ -928,7 +926,7 @@ namespace AionHR.Web.UI.Forms
                 return;
             WorkingCalendar obj = new WorkingCalendar();
             obj.name = caId.Text;
-            
+
             PostRequest<WorkingCalendar> req = new PostRequest<WorkingCalendar>();
             req.entity = obj;
 
@@ -954,7 +952,7 @@ namespace AionHR.Web.UI.Forms
                 return;
             VacationSchedule obj = new VacationSchedule();
             obj.name = vsId.Text;
-            
+
             PostRequest<VacationSchedule> req = new PostRequest<VacationSchedule>();
             req.entity = obj;
 

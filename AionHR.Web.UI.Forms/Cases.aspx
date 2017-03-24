@@ -11,7 +11,7 @@
     <title></title>
     <link rel="stylesheet" type="text/css" href="CSS/Common.css" />
     <link rel="stylesheet" href="CSS/LiveSearch.css" />
-    <script type="text/javascript" src="Scripts/Cases.js?id=5" ></script>
+    <script type="text/javascript" src="Scripts/Cases.js?id=6" ></script>
     <script type="text/javascript" src="Scripts/common.js" ></script>
       <script type="text/javascript" src="Scripts/moment.js" ></script>
    
@@ -221,7 +221,7 @@
                                 Hideable="false"
                                 MenuDisabled="true"
                                 Resizable="false">
-                                <Renderer Fn="deleteRender" />
+                                <Renderer handler="return editRender()+ '  '+ deleteRender();" />
                               
                             </ext:Column>
                             <ext:Column runat="server"
@@ -310,8 +310,8 @@
             runat="server"
             Icon="PageEdit"
             Title="<%$ Resources:EditWindowsTitle %>"
-            Width="450"
-            Height="330"
+            Width="600"
+            Height="350"
             AutoShow="false"
             Modal="true"
             Hidden="true"
@@ -400,12 +400,12 @@
 
                         </ext:FormPanel>
 
-                        <ext:Panel runat="server" >
+                        <ext:Panel runat="server" Title="<%$ Resources: CaseCommentsTabTitle %>" ID="caseCommentsTab" >
                             <Items>
-                                 <ext:Panel runat="server"  Layout="AutoLayout" Width="500" >
+                                 <ext:Panel runat="server"  Layout="HBoxLayout" Width="600" >
                                     <Items>
-                                          <ext:TextArea runat="server" ID="newNoteText" Region="North" Width="400" />
-                                <ext:Button Region="South" ID="Button1" Height="30" runat="server" Text="<%$ Resources:Common , Add %>" Icon="Add">
+                                          <ext:TextArea runat="server" ID="newNoteText" Region="West" Width="550" Height="60" />
+                                <ext:Button Region="East" ID="Button1" MarginSpec="20 0 0 0" Height="30" runat="server" Text="<%$ Resources:Common , Add %>" Icon="Add">
                                   <Listeners>
                                         <Click Handler="CheckSession();" />
                                     </Listeners>                           
@@ -427,8 +427,8 @@
                     Header="false"
                     Layout="FitLayout"
                     Scroll="Vertical" Flex="1"
-                    Border="false" 
-                    Icon="User" DefaultAnchor="100%"    
+                    Border="false"  MinHeight="220" MaxHeight="220"
+                    Icon="User" DefaultAnchor="100%"    HideHeaders="true"
                     ColumnLines="false" IDMode="Explicit" RenderXType="True">
                     <Store>
                         <ext:Store
@@ -438,13 +438,8 @@
                             RemoteFilter="true"
                             
                             PageSize="50" IDMode="Explicit" Namespace="App">
-                            <Proxy>
-                                <ext:PageProxy>
-                                    <Listeners>
-                                        <Exception Handler="Ext.MessageBox.alert('#{textLoadFailed}.value', response.statusText);" />
-                                    </Listeners>
-                                </ext:PageProxy>
-                            </Proxy>
+                           
+                           
                             <Model>
                                 <ext:Model ID="Model2" runat="server" IDProperty="seqNo">
                                     <Fields>
@@ -454,6 +449,7 @@
                                         <ext:ModelField Name="date"  />
                                         <ext:ModelField Name="userName"  />
                                         <ext:ModelField Name="seqNo"  />
+                                        <ext:ModelField Name="caseId"  />
 
                                     </Fields>
                                 </ext:Model>
@@ -479,9 +475,11 @@
                     <ColumnModel ID="ColumnModel2" runat="server"  SortAscText="<%$ Resources:Common , SortAscText %>" SortDescText="<%$ Resources:Common ,SortDescText  %>" SortClearText="<%$ Resources:Common ,SortClearText  %>" ColumnsText="<%$ Resources:Common ,ColumnsText  %>" EnableColumnHide="false" Sortable="false">
                         <Columns>
 
-                            <ext:Column Visible="false" ID="Column1" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldrecordId %>" DataIndex="seqNo" Hideable="false" Width="75" Align="Center" />
+                            <ext:Column Visible="false" ID="Column1" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldrecordId %>" DataIndex="seqNo" Hideable="false" Width="75" Align="Center" >
+                                
+                                </ext:Column>
                             <ext:Column CellCls="cellLink" ID="ColEHName" MenuDisabled="true" runat="server" DataIndex="comment" Flex="7" Hideable="false">
-                                <Renderer Handler="alert('printing'); var s = moment(record.data['date']);  return '<b>'+ record.data['userName'] +'</b>  - '+ s.calendar()+'<br />'+ record.data['comment'];">
+                                <Renderer Handler=" var s = moment(record.data['date']);  return '<b>'+ record.data['userName'] +'</b>  - '+ s.calendar()+'<br />'+ record.data['comment'];">
                                 </Renderer>
                                 <Editor>
                                     
@@ -518,11 +516,11 @@
                                 Hideable="false"
                                 MenuDisabled="true"
                                 Resizable="false">
-                                <Renderer Fn="deleteRender" />
+                                <Renderer handler="return editRender() + '  '+ deleteRender()" />
 
                             </ext:Column>
                             <ext:Column runat="server"
-                                ID="Column3"
+                                ID="Column3" Visible="false"
                                 Text="<%$ Resources:Common, Attach %>"
                                 Hideable="false"
                                 Width="60"
@@ -557,12 +555,15 @@
                 
                     <Listeners>
                         <Render Handler="this.on('cellclick', cellClick);" />
+                         <RowBodyDblClick Handler="App.caseCommentGrid.editingPlugin.cancelEdit();" />
+                        <RowDblClick Handler="App.caseCommentGrid.editingPlugin.cancelEdit();" />
                     </Listeners>
                     <DirectEvents>
-                        <CellClick OnEvent="PoPuP">
+                        <CellClick OnEvent="PoPuPCase">
                             <EventMask ShowMask="true" />
                             <ExtraParams>
                                 <ext:Parameter Name="id" Value="record.getId()" Mode="Raw" />
+                                <ext:Parameter Name="index" Value="rowIndex" Mode="Raw" />
                                 <ext:Parameter Name="type" Value="getCellType( this, rowIndex, cellIndex)" Mode="Raw" />
                             </ExtraParams>
 

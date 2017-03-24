@@ -13,6 +13,8 @@ namespace AionHR.Services.Interfaces
     {
         PostResponse<Employee> AddOrUpdateEmployeeWithPhoto(EmployeeAddOrUpdateRequest req);
 
+        PostResponse<EmployeeDocument> AddOrUpdateEmployeeDocument(EmployeeDocumentAddOrUpdateRequest req);
+
         PostResponse<SalaryDetail> DeleteSalaryDetails(int SalaryId);
     }
 }

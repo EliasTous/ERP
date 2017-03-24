@@ -116,6 +116,7 @@
     <Content Include="Departments.aspx" />
     <Content Include="Divisions.aspx" />
     <Content Include="DocumentTypes.aspx" />
+    <Content Include="EmployeePages\Documents.aspx" />
     <Content Include="EmployeePages\EmployeeProfile.aspx" />
     <Content Include="EmployeePages\JobInformation.aspx" />
     <Content Include="EmployeePages\Notes.aspx" />
@@ -160,6 +161,7 @@
     <Content Include="Scripts\BonusTypes.js" />
     <Content Include="Scripts\Calendars.js" />
     <Content Include="Scripts\Cases.js" />
+    <Content Include="Scripts\Documents.js" />
     <Content Include="Scripts\Notes.js" />
     <Content Include="Scripts\LeaveCalendar.js" />
     <Content Include="Scripts\OrganizationChart.js" />
@@ -323,6 +325,13 @@
     </Compile>
     <Compile Include="DocumentTypes.aspx.designer.cs">
       <DependentUpon>DocumentTypes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EmployeePages\Documents.aspx.cs">
+      <DependentUpon>Documents.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EmployeePages\Documents.aspx.designer.cs">
+      <DependentUpon>Documents.aspx</DependentUpon>
     </Compile>
     <Compile Include="EmployeePages\EmployeeProfile.aspx.cs">
       <DependentUpon>EmployeeProfile.aspx</DependentUpon>
@@ -701,6 +710,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="EmployeePages\App_LocalResources\Notes.aspx.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="EmployeePages\App_LocalResources\Documents.aspx.resx" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -157,6 +157,15 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Button btnDeleteSelected;
         
         /// <summary>
+        /// inactivePref control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.ComboBox inactivePref;
+        
+        /// <summary>
         /// ToolbarFillExport control.
         /// </summary>
         /// <remarks>
@@ -244,7 +253,7 @@ namespace AionHR.Web.UI.Forms {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Column ColHireDate;
+        protected global::Ext.Net.DateColumn ColHireDate;
         
         /// <summary>
         /// colEdit control.
@@ -785,5 +794,14 @@ namespace AionHR.Web.UI.Forms {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.Panel Panel2;
+        
+        /// <summary>
+        /// Panel3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Panel Panel3;
     }
 }
