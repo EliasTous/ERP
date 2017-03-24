@@ -62,7 +62,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                 if (string.IsNullOrEmpty(Request.QueryString["employeeId"]))
                     X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorOperation).Show();
                 CurrentEmployee.Text = Request.QueryString["employeeId"];
-                CurrentEmployeeName.Text = GetEmployeeName(CurrentEmployee.Text);
+                
             }
 
         }
@@ -276,13 +276,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             else return "1";
         }
 
-        private string GetEmployeeName(string recordId)
-        {
-            RecordRequest req = new RecordRequest();
-            req.RecordID = recordId;
-            RecordResponse<Employee> emp = _employeeService.Get<Employee>(req);
-            return emp.result.name.fullName;
-        }
+        
 
         [DirectMethod]
         public object ValidateSave(bool isPhantom,string obj, JsonObject values)

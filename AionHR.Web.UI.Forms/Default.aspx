@@ -33,7 +33,7 @@
                                 <img src="Images/logo.png" width="80" height="57" />
                             </div>
                             <div class="title">
-                                <asp:Literal ID="Literal3" runat="server" Text="<%$ Resources:Common ,ApplicationModule%>" /></span>
+                                <asp:Literal ID="Literal3" runat="server" Text="<%$ Resources:Common ,ApplicationModule%>" /><asp:Literal ID="CompanyNameLiteral" runat="server" Text="" /></span>
                             </div>
                             <div class="buttons">
 
@@ -87,13 +87,13 @@
                     </ext:Toolbar>
                 </TopBar>
                 <Items>
-                    <ext:TreePanel runat="server" Title="<%$ Resources:Common , ActiveModule %>" RootVisible="false" ID="commonTree" Scroll="Vertical">
+                    <ext:TreePanel runat="server" Title="" RootVisible="false" ID="commonTree" Scroll="Vertical">
                         <SelectionModel>
                             <ext:TreeSelectionModel runat="server" ID="selModel">
                             </ext:TreeSelectionModel>
                         </SelectionModel>
                         <TopBar>
-                            <ext:Toolbar ID="Toolbar2" runat="server">
+                            <ext:Toolbar ID="Toolbar2" runat="server" Hidden="true">
                                 <Items>
                                     <ext:TextField ID="filerTreeTrigger" runat="server" EnableKeyEvents="true" Width="150" EmptyText="<%$ Resources:Common , Filter %>">
                                         <Triggers>

@@ -79,7 +79,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Add.
+        ///   Looks up a localized string similar to .
         /// </summary>
         internal static string Add {
             get {
@@ -115,7 +115,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Human Resources Solution.
+        ///   Looks up a localized string similar to AION.
         /// </summary>
         internal static string ApplicationModule {
             get {
@@ -259,7 +259,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Case Management.
+        ///   Looks up a localized string similar to Cases.
         /// </summary>
         internal static string CaseManagement {
             get {
@@ -592,7 +592,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Employee Files.
+        ///   Looks up a localized string similar to Employees.
         /// </summary>
         internal static string EmployeeFiles {
             get {
@@ -1335,6 +1335,15 @@ namespace Resources {
         internal static string SessionDisconnected {
             get {
                 return ResourceManager.GetString("SessionDisconnected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Setup.
+        /// </summary>
+        internal static string Setup {
+            get {
+                return ResourceManager.GetString("Setup", resourceCulture);
             }
         }
         

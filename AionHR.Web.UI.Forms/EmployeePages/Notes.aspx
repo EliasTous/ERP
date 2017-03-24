@@ -34,10 +34,13 @@
 
 
         <Items>
-            <ext:Panel runat="server"  Layout="AutoLayout" Width="500" >
+            <ext:Panel runat="server"  Layout="FitLayout" DefaultAnchor="100%" >
                                     <Items>
-                                          <ext:TextArea runat="server" ID="newNoteText" Region="North" Width="400" />
-                                <ext:Button Region="South" ID="btnAdd" Height="30" runat="server" Text="<%$ Resources:Common , Add %>" Icon="Add">
+                                          <ext:TextArea runat="server" ID="newNoteText" Region="North" Width="400" DefaultAnchor="100%" />
+                                
+                                    </Items>
+                                </ext:Panel>
+            <ext:Button Region="East" ID="btnAdd" Height="30" Width="40" MaxWidth="80"  runat="server" Text="<%$ Resources:Common , Add %>" Icon="Add">
                                   <Listeners>
                                         <Click Handler="CheckSession();" />
                                     </Listeners>                           
@@ -50,8 +53,6 @@
                                         </Click>
                                     </DirectEvents>
                                 </ext:Button>
-                                    </Items>
-                                </ext:Panel>
                 <ext:GridPanel AutoUpdateLayout="true"
                     ID="employeementHistoryGrid" Collapsible="false"
                     runat="server"
@@ -95,7 +96,9 @@
                         </ext:Store>
                     </Store>
                     <TopBar>
+                        
                         <ext:Toolbar ID="Toolbar1" runat="server" ClassicButtonStyle="false ">
+                            
                             <Items>
                                 
                               
@@ -112,7 +115,7 @@
 
                             <ext:Column Visible="false" ID="ColrecordId" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldrecordId %>" DataIndex="recordId" Hideable="false" Width="75" Align="Center" />
                             <ext:Column CellCls="cellLink" ID="ColEHName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEHStatus%>" DataIndex="note" Flex="7" Hideable="false">
-                                <Renderer Handler="var s = moment(record.data['date']);  return '<b>'+ document.getElementById('CurrentEmployeeName').value+'</b>  - '+ s.calendar()+'<br />'+ record.data['note'];">
+                                <Renderer Handler="var s = moment(record.data['date']);  return '<b>'+ document.getElementById('CurrentEmployeeName').value+'- '+ s.calendar()+'<br />'+ record.data['note'];">
                                 </Renderer>
                                 <Editor>
                                     
