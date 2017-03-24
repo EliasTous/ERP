@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace AionHR.Services.Implementations
 {
-    class MediaGalleryService : BaseService, IMediaGalleryService
+   public class MediaGalleryService : BaseService, IMediaGalleryService
     {
         IMediaGalleryRepository _mediaGalleryRepository;
         protected override dynamic GetRepository()

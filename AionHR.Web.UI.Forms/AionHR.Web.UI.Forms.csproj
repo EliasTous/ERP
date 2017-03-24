@@ -125,6 +125,7 @@
     <Content Include="EntitlementDeductions.aspx" />
     <Content Include="ForgotAccount.aspx" />
     <Content Include="ForgotPassword.aspx" />
+    <Content Include="Geofences.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Home.aspx" />
     <Content Include="Images\bg.png" />
@@ -149,6 +150,7 @@
     <Content Include="LeaveRequests.aspx" />
     <Content Include="LeaveTypes.aspx" />
     <Content Include="Login.aspx" />
+    <Content Include="MediaCategories.aspx" />
     <Content Include="Nationalities.aspx" />
     <Content Include="OrganizationChart.aspx" />
     <Content Include="packages.config" />
@@ -160,6 +162,9 @@
     <Content Include="Scripts\BonusTypes.js" />
     <Content Include="Scripts\Calendars.js" />
     <Content Include="Scripts\Cases.js" />
+    <Content Include="Scripts\CertificateLevels.js" />
+    <Content Include="Scripts\Geofences.js" />
+    <Content Include="Scripts\MediaCategories.js" />
     <Content Include="Scripts\Notes.js" />
     <Content Include="Scripts\LeaveCalendar.js" />
     <Content Include="Scripts\OrganizationChart.js" />
@@ -387,6 +392,13 @@
     <Compile Include="ForgotPassword.aspx.designer.cs">
       <DependentUpon>ForgotPassword.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Geofences.aspx.cs">
+      <DependentUpon>Geofences.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Geofences.aspx.designer.cs">
+      <DependentUpon>Geofences.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -431,6 +443,13 @@
     </Compile>
     <Compile Include="Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MediaCategories.aspx.cs">
+      <DependentUpon>MediaCategories.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MediaCategories.aspx.designer.cs">
+      <DependentUpon>MediaCategories.aspx</DependentUpon>
     </Compile>
     <Compile Include="Nationalities.aspx.cs">
       <DependentUpon>Nationalities.aspx</DependentUpon>
@@ -701,6 +720,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="EmployeePages\App_LocalResources\Notes.aspx.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_LocalResources\MediaCategories.aspx.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_LocalResources\Geofences.aspx.resx" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

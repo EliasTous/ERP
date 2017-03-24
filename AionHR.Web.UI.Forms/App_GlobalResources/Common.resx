@@ -600,4 +600,7 @@
   <data name="MediaCategory" xml:space="preserve">
     <value>Media Category</value>
   </data>
+  <data name="Geofences" xml:space="preserve">
+    <value>Geofences</value>
+  </data>
 </root>

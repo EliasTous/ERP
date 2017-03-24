@@ -16,7 +16,11 @@ namespace AionHR.Repository.WebService.Repositories
         public MediaGalleryRepository()
         {
             base.ServiceURL = ApplicationSettingsFactory.GetApplicationSettings().BaseURL + serviceName;
-            
+            ChildGetLookup.Add(typeof(MediaCategory), "getMC");
+            ChildGetAllLookup.Add(typeof(MediaCategory), "qryMC");
+            ChildAddOrUpdateLookup.Add(typeof(MediaCategory), "setMC");
+            ChildDeleteLookup.Add(typeof(MediaCategory), "delMC");
+
         }
     }
 }

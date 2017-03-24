@@ -1,4 +1,6 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="CertificateLevels.aspx.cs" Inherits="AionHR.Web.UI.Forms.CertificateLevels" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Geofences.aspx.cs" Inherits="AionHR.Web.UI.Forms.Geofences" %>
+
+
 
 <%@ Register Assembly="Ext.Net" Namespace="Ext.Net" TagPrefix="ext" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -9,7 +11,7 @@
     <title></title>
     <link rel="stylesheet" type="text/css" href="CSS/Common.css" />
     <link rel="stylesheet" href="CSS/LiveSearch.css" />
-    <script type="text/javascript" src="Scripts/CertificateLevels.js?id=1" ></script>
+    <script type="text/javascript" src="Scripts/Geofences.js?id=0" ></script>
     <script type="text/javascript" src="Scripts/common.js" ></script>
    
  
@@ -41,12 +43,11 @@
                 <ext:Model ID="Model1" runat="server" IDProperty="recordId">
                     <Fields>
 
-                        <ext:ModelField Name="recordId" />
-                        
+                        <ext:ModelField Name="recordId" />                       
                         <ext:ModelField Name="name" />
-                        <ext:ModelField Name="reference" />
-                      
-                               </Fields>
+                        <ext:ModelField Name="branchId" />
+                        <ext:ModelField Name="branchName" />
+                    </Fields>
                 </ext:Model>
             </Model>
             <Sorters>
@@ -114,11 +115,13 @@
                     <ColumnModel ID="ColumnModel1" runat="server" SortAscText="<%$ Resources:Common , SortAscText %>" SortDescText="<%$ Resources:Common ,SortDescText  %>" SortClearText="<%$ Resources:Common ,SortClearText  %>" ColumnsText="<%$ Resources:Common ,ColumnsText  %>" EnableColumnHide="false" Sortable="false" >
                         <Columns>
                             <ext:Column ID="ColRecordId" Visible="false" DataIndex="recordId" runat="server" />
-                            <ext:Column    CellCls="cellLink" ID="ColName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldName%>" DataIndex="name" Flex="2" Hideable="false">
+                            <ext:Column    CellCls="cellLink" ID="ColName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldName%>" DataIndex="name" Flex="4" Hideable="false">
                             <Renderer Handler="return '<u>'+ record.data['name']+'</u>'">
-                            </Renderer></ext:Column>
-                            <ext:Column ID="Column1" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldReference%>" DataIndex="reference" Flex="2" Hideable="false" />
-                             
+
+                            </Renderer>
+                                </ext:Column>
+
+                            <ext:Column ID="ColBranchName" DataIndex="branchName" Text="<%$ Resources: FieldBranchName%>" runat="server" Flex="4" />
                         
                            
 
@@ -255,14 +258,38 @@
                             <Items>
                                 <ext:TextField ID="recordId" runat="server"  Name="recordId"  Hidden="true"/>
                                 <ext:TextField ID="name" runat="server" FieldLabel="<%$ Resources:FieldName%>" Name="name"   AllowBlank="false"/>
-                                <ext:TextField ID="reference" runat="server" FieldLabel="<%$ Resources:FieldReference%>" Name="reference"   AllowBlank="false"/>
-                                
 
-                                
-                                
-                                
-                               
+                                <ext:ComboBox Enabled="false" runat="server" AllowBlank="false" ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" ID="branchId" Name="branchId" FieldLabel="<%$ Resources:FieldBranchId%>" SimpleSubmit="true">
+                                                    <Store>
+                                                        <ext:Store runat="server" ID="BranchStore">
+                                                            <Model>
+                                                                <ext:Model runat="server">
+                                                                    <Fields>
+                                                                        <ext:ModelField Name="recordId" />
+                                                                        <ext:ModelField Name="name" />
+                                                                    </Fields>
+                                                                </ext:Model>
+                                                            </Model>
+                                                        </ext:Store>
+                                                    </Store>
+                                                  <RightButtons>
+                                                        <ext:Button ID="Button3" runat="server" Icon="Add" Hidden="true" >
+                                                            <Listeners>
+                                                                <Click Handler="CheckSession();" />
+                                                            </Listeners>
+                                                            <DirectEvents>
 
+                                                                <Click OnEvent="addBranch">
+                                                                 
+                                                                </Click>
+                                                            </DirectEvents>
+                                                        </ext:Button>
+                                                    </RightButtons>
+                                                    <Listeners>
+                                                        <FocusEnter Handler="if(!this.readOnly) this.rightButtons[0].setHidden(false);" />
+                                                        <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
+                                                    </Listeners>
+                                                </ext:ComboBox>
                             </Items>
 
                         </ext:FormPanel>

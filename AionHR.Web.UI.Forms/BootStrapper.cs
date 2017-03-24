@@ -7,6 +7,7 @@ using AionHR.Model.Company.Structure;
 using AionHR.Model.Employees;
 using AionHR.Model.LeaveManagement;
 using AionHR.Model.MasterModule;
+using AionHR.Model.MediaGallery;
 using AionHR.Model.System;
 using AionHR.Model.TimeAttendance;
 using AionHR.Repository.WebService.Repositories;
@@ -52,6 +53,7 @@ namespace AionHR.Web.UI.Forms
                 For<ICompanyStructureRepository>().Use<CompanyStructureRepository>();
                 For<ITimeAttendanceRepository>().Use<TimeAttendanceRepository>();
                 For<ICasesRepository>().Use<CasesRepository>();
+                For<IMediaGalleryRepository>().Use<MediaGalleryRepository>();
 
                 //Services
                 For<ISystemService>().Use<SystemService>();
@@ -61,6 +63,7 @@ namespace AionHR.Web.UI.Forms
                 For<ILeaveManagementService>().Use<LeaveManagementService>();
                 For<ITimeAttendanceService>().Use<TimeAttendanceService>();
                 For<ICaseService>().Use<CaseService>();
+                For<IMediaGalleryService>().Use<MediaGalleryService>();
             }
         }
     }
