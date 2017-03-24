@@ -9,7 +9,7 @@
     <title></title>
     <link rel="stylesheet" type="text/css" href="CSS/Common.css" />
     <link rel="stylesheet" href="CSS/LiveSearch.css" />
-    <script type="text/javascript" src="Scripts/Branches.js?id=0" ></script>
+    <script type="text/javascript" src="Scripts/Branches.js?id=1" ></script>
     <script type="text/javascript" src="Scripts/common.js" ></script>
     <script  type="text/javascript">
         var GetTimeZone = function () {
@@ -134,25 +134,25 @@
                         <Columns>
 
                               <ext:Column  Visible="false" ID="ColrecordId" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldrecordId %>" DataIndex="recordId" Hideable="false" width="75" Align="Center"/>
-                            <ext:Column ID="ColReference" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldReference%>" DataIndex="reference" Flex="1" Hideable="false"/>
+                            <ext:Column ID="ColReference" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldReference%>" DataIndex="reference" width="150" Hideable="false"/>
                             <ext:Column   CellCls="cellLink" ID="ColName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldName%>" DataIndex="name" Flex="2" Hideable="false">
                             <Renderer Handler="return '<u>'+ record.data['name']+'</u>'">
 
                             </Renderer>
                                 </ext:Column>
-                            <ext:Column ID="ColTimeZone" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldTimeZone%>" DataIndex="timeZone" Flex="1" Hideable="false">
+                            <ext:Column ID="ColTimeZone" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldTimeZone%>" DataIndex="timeZone" width="100" Hideable="false">
                                 <Renderer Handler="var sign = ''; if(record.data['timeZone']>=0) sign = '+'; return 'UTC '+sign + record.data['timeZone'] + ':00 ' " />     
                                 </ext:Column>
                       
                            
-                            <ext:CheckColumn ID="ColInactive" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldIsInactive %>" DataIndex="isInactive" Flex="1" Width="75" Hideable="false" />
+                            <ext:CheckColumn ID="ColInactive" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldIsInactive %>" DataIndex="isInactive" Width="100" Hideable="false" />
 
                          
 
-                            <ext:Column runat="server"
-                                ID="colEdit"  Visible="false"
-                                Text="<%$ Resources:Common, Edit %>"
-                                Width="60"
+                             <ext:Column runat="server"
+                                ID="colEdit"  Visible="true"
+                                Text=""
+                                Width="100"
                                 Hideable="false"
                                 Align="Center"
                                 Fixed="true"
@@ -160,13 +160,13 @@
                                 MenuDisabled="true"
                                 Resizable="false">
 
-                                <Renderer Fn="editRender" />
+                                <Renderer handler="return editRender()+'&nbsp;&nbsp;' +deleteRender(); " />
 
                             </ext:Column>
                             <ext:Column runat="server"
-                                ID="colDelete" Flex="1" Visible="true"
+                                ID="colDelete" Visible="false"
                                 Text="<%$ Resources: Common , Delete %>"
-                                Width="60"
+                                Width="100"
                                 Align="Center"
                                 Fixed="true"
                                 Filterable="false"

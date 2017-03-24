@@ -9,7 +9,7 @@
     <title></title>
     <link rel="stylesheet" type="text/css" href="CSS/Common.css" />
     <link rel="stylesheet" href="CSS/LiveSearch.css" />
-    <script type="text/javascript" src="Scripts/Branches.js"></script>
+    <script type="text/javascript" src="Scripts/Departments.js?id=0"></script>
     <script type="text/javascript" src="Scripts/common.js"></script>
 
 
@@ -124,22 +124,22 @@
                         <Columns>
 
                             <ext:Column Visible="false" ID="ColrecordId" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldrecordId %>" DataIndex="recordId" Hideable="false" Width="75" Align="Center" />
-                            <ext:Column ID="ColReference" MenuDisabled="true" Sortable="true" runat="server" Text="<%$ Resources: FieldReference%>" DataIndex="departmentRef" Flex="1" Hideable="false" />
+                            <ext:Column ID="ColReference" MenuDisabled="true" Sortable="true" runat="server" Text="<%$ Resources: FieldReference%>" DataIndex="departmentRef" width="150" Hideable="false" />
                             <ext:Column CellCls="cellLink" Sortable="true" ID="ColName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldName%>" DataIndex="name" Flex="2" Hideable="false">
                                 <Renderer Handler="return '<u>'+ record.data['name']+'</u>'">
                                 </Renderer>
                             </ext:Column>
-                            <ext:Column Visible="false" ID="ColparentId" MenuDisabled="true" runat="server" DataIndex="parentId" Flex="1" Hideable="false" />
+                            <ext:Column Visible="false" ID="ColparentId" MenuDisabled="true" runat="server" DataIndex="parentId" Flex="2" Hideable="false" />
                             <ext:Column Visible="false" ID="ColsupervisorId" MenuDisabled="true" runat="server" DataIndex="supervisorId" Flex="1" Hideable="false" />
                             <ext:Column ID="ColParentName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldParentName%>" DataIndex="parentName" Flex="1" Hideable="false" />
                             <ext:Column ID="ColSvName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldSvFullName%>" DataIndex="svFullName" Flex="1" Hideable="false" />
 
 
 
-                            <ext:Column runat="server"
-                                ID="colEdit" Visible="false"
-                                Text="<%$ Resources:Common, Edit %>"
-                                Width="60"
+                             <ext:Column runat="server"
+                                ID="colEdit"  Visible="true"
+                                Text=""
+                                Width="100"
                                 Hideable="false"
                                 Align="Center"
                                 Fixed="true"
@@ -147,13 +147,13 @@
                                 MenuDisabled="true"
                                 Resizable="false">
 
-                                <Renderer Fn="editRender" />
+                                <Renderer handler="return editRender()+'&nbsp;&nbsp;' +deleteRender(); " />
 
                             </ext:Column>
                             <ext:Column runat="server"
-                                ID="colDelete" Flex="1" Visible="true"
+                                ID="colDelete" Visible="false"
                                 Text="<%$ Resources: Common , Delete %>"
-                                Width="60"
+                                Width="100"
                                 Align="Center"
                                 Fixed="true"
                                 Filterable="false"

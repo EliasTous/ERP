@@ -11,7 +11,7 @@
     <title></title>
     <link rel="stylesheet" type="text/css" href="CSS/Common.css" />
     <link rel="stylesheet" href="CSS/LiveSearch.css" />
-    <script type="text/javascript" src="Scripts/DocumentTypes.js?id=0" ></script>
+    <script type="text/javascript" src="Scripts/DocumentTypes.js?id=1" ></script>
     <script type="text/javascript" src="Scripts/common.js" ></script>
    
  
@@ -122,10 +122,10 @@
                         
                            
 
-                            <ext:Column runat="server"
-                                ID="colEdit"  Visible="false"
-                                Text="<%$ Resources:Common, Edit %>"
-                                Width="60"
+                           <ext:Column runat="server"
+                                ID="colEdit"  Visible="true"
+                                Text=""
+                                Width="100"
                                 Hideable="false"
                                 Align="Center"
                                 Fixed="true"
@@ -133,13 +133,13 @@
                                 MenuDisabled="true"
                                 Resizable="false">
 
-                                <Renderer Fn="editRender" />
+                                <Renderer handler="return editRender()+'&nbsp;&nbsp;' +deleteRender(); " />
 
                             </ext:Column>
                             <ext:Column runat="server"
-                                ID="colDelete" Flex="1" Visible="true"
+                                ID="colDelete" Visible="false"
                                 Text="<%$ Resources: Common , Delete %>"
-                                Width="60"
+                                Width="100"
                                 Align="Center"
                                 Fixed="true"
                                 Filterable="false"

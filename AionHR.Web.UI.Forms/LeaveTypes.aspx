@@ -9,7 +9,7 @@
     <title></title>
     <link rel="stylesheet" type="text/css" href="CSS/Common.css" />
     <link rel="stylesheet" href="CSS/LiveSearch.css" />
-    <script type="text/javascript" src="Scripts/LeaveTypes.js?id=2" ></script>
+    <script type="text/javascript" src="Scripts/LeaveTypes.js?id=3" ></script>
     <script type="text/javascript" src="Scripts/common.js" ></script>
    
  
@@ -114,7 +114,7 @@
                     <ColumnModel ID="ColumnModel1" runat="server" SortAscText="<%$ Resources:Common , SortAscText %>" SortDescText="<%$ Resources:Common ,SortDescText  %>" SortClearText="<%$ Resources:Common ,SortClearText  %>" ColumnsText="<%$ Resources:Common ,ColumnsText  %>" EnableColumnHide="false" Sortable="false" >
                         <Columns>
                             <ext:Column ID="ColRecordId" Visible="false" DataIndex="recordId" runat="server" />
-                            <ext:Column ID="Column1"  DataIndex="reference" Text="<%$ Resources: FieldReference%>" runat="server" />
+                            <ext:Column ID="Column1"  DataIndex="reference" Text="<%$ Resources: FieldReference%>" Width="150" runat="server" />
                              <ext:Column    CellCls="cellLink" ID="ColName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldName%>" DataIndex="name" Flex="2" Hideable="false">
                             <Renderer Handler="return '<u>'+ record.data['name']+'</u>'">
 
@@ -124,9 +124,9 @@
                            
 
                             <ext:Column runat="server"
-                                ID="colEdit"  Visible="false"
-                                Text="<%$ Resources:Common, Edit %>"
-                                Width="60"
+                                ID="colEdit"  Visible="true"
+                                Text=""
+                                Width="100"
                                 Hideable="false"
                                 Align="Center"
                                 Fixed="true"
@@ -134,13 +134,13 @@
                                 MenuDisabled="true"
                                 Resizable="false">
 
-                                <Renderer Fn="editRender" />
+                                <Renderer handler="return editRender()+'&nbsp;&nbsp;' +deleteRender(); " />
 
                             </ext:Column>
                             <ext:Column runat="server"
-                                ID="colDelete" Flex="1" Visible="true"
+                                ID="colDelete" Visible="false"
                                 Text="<%$ Resources: Common , Delete %>"
-                                Width="60"
+                                Width="100"
                                 Align="Center"
                                 Fixed="true"
                                 Filterable="false"
@@ -148,7 +148,6 @@
                                 MenuDisabled="true"
                                 Resizable="false">
                                 <Renderer Fn="deleteRender" />
-                              
                             </ext:Column>
                             <ext:Column runat="server"
                                 ID="colAttach"

@@ -221,7 +221,7 @@
                                 Hideable="false"
                                 MenuDisabled="true"
                                 Resizable="false">
-                                <Renderer handler="return editRender()+ '  '+ deleteRender();" />
+                                <Renderer handler="return editRender()+ '&nbsp&nbsp'+ deleteRender();" />
                               
                             </ext:Column>
                             <ext:Column runat="server"
@@ -508,7 +508,7 @@
                             </ext:Column>
                             <ext:Column runat="server"
                                 ID="ColEHDelete" Flex="1" Visible="true"
-                                Text="<%$ Resources: Common , Delete %>"
+                                Text=""
                                 Width="60"
                                 Align="Center"
                                 Fixed="true"

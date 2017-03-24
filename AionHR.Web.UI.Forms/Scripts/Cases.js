@@ -11,7 +11,7 @@ var attachRender = function () {
 };
 
 
-
+var commandName;
 var cellClick = function (view, cell, columnIndex, record, row, rowIndex, e) {
 
     CheckSession();

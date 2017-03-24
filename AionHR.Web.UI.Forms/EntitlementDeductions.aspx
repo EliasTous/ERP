@@ -10,7 +10,7 @@
     <title></title>
     <link rel="stylesheet" type="text/css" href="CSS/Common.css" />
     <link rel="stylesheet" href="CSS/LiveSearch.css" />
-    <script type="text/javascript" src="Scripts/EntitlementDeductions.js?id=0" ></script>
+    <script type="text/javascript" src="Scripts/EntitlementDeductions.js?id=1" ></script>
     <script type="text/javascript" src="Scripts/common.js" ></script>
    
  
@@ -121,17 +121,17 @@
 
                             </Renderer>
                                 </ext:Column>
-                            <ext:Column    CellCls="cellLink" ID="ColType" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldType%>" DataIndex="type" Flex="2" Hideable="false">
+                            <ext:Column    CellCls="cellLink" ID="ColType" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldType%>" DataIndex="type" Width ="200" Hideable="false">
                                 <Renderer Handler="return record.data['type']==1? #{EntitlementText}.value :#{DeductionText}.value;">
 
                                 </Renderer>
                                 </ext:Column>
                            
 
-                            <ext:Column runat="server"
-                                ID="colEdit"  Visible="false"
-                                Text="<%$ Resources:Common, Edit %>"
-                                Width="60"
+                           <ext:Column runat="server"
+                                ID="colEdit"  Visible="true"
+                                Text=""
+                                Width="100"
                                 Hideable="false"
                                 Align="Center"
                                 Fixed="true"
@@ -139,13 +139,13 @@
                                 MenuDisabled="true"
                                 Resizable="false">
 
-                                <Renderer Fn="editRender" />
+                                <Renderer handler="return editRender()+'&nbsp;&nbsp;' +deleteRender(); " />
 
                             </ext:Column>
                             <ext:Column runat="server"
-                                ID="colDelete" Flex="1" Visible="true"
+                                ID="colDelete" Visible="false"
                                 Text="<%$ Resources: Common , Delete %>"
-                                Width="60"
+                                Width="100"
                                 Align="Center"
                                 Fixed="true"
                                 Filterable="false"
