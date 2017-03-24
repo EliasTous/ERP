@@ -40,6 +40,7 @@ namespace AionHR.Services.Implementations
                 
 
                 response.Summary = webResponse.Details;
+                response.ErrorCode = "Error_"+webResponse.statusId.Substring(1);
             }
 
             return response;

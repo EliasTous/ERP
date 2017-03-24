@@ -49,6 +49,7 @@
     <Compile Include="Employees\Profile\Bonus.cs" />
     <Compile Include="Employees\Profile\BonusType.cs" />
     <Compile Include="Employees\Profile\Employee.cs" />
+    <Compile Include="Employees\Profile\EmployeeCertificate.cs" />
     <Compile Include="Employees\Profile\EmployeeNote.cs" />
     <Compile Include="Employees\Profile\EmploymentHistory.cs" />
     <Compile Include="Employees\Profile\JobInfo.cs" />

@@ -26,6 +26,7 @@ namespace AionHR.Repository.WebService.Repositories
             ChildGetLookup.Add(typeof(CalendarDay), "getCD");
             ChildGetLookup.Add(typeof(BiometricDevice), "getBM");
             ChildGetLookup.Add(typeof(Router), "getRO");
+            ChildGetLookup.Add(typeof(Geofence), "getGF");
 
             ChildGetAllLookup.Add(typeof(DayType), "qryDT");
             ChildGetAllLookup.Add(typeof(AttendanceSchedule), "qrySC");
@@ -44,6 +45,7 @@ namespace AionHR.Repository.WebService.Repositories
             ChildGetAllLookup.Add(typeof(ActiveOut), "qryAO");
             ChildGetAllLookup.Add(typeof(MissedPunch), "qryMP");
             ChildGetAllLookup.Add(typeof(Router), "qryRO");
+            ChildGetAllLookup.Add(typeof(Geofence), "qryGF");
 
             ChildAddOrUpdateLookup.Add(typeof(DayType), "setDT");
             ChildAddOrUpdateLookup.Add(typeof(AttendanceSchedule), "setSC");
@@ -56,6 +58,7 @@ namespace AionHR.Repository.WebService.Repositories
             ChildAddOrUpdateLookup.Add(typeof(CalendarPattern), "batCD");
             ChildAddOrUpdateLookup.Add(typeof(SchedulePattern), "batSD");
             ChildAddOrUpdateLookup.Add(typeof(Router), "setRO");
+            ChildAddOrUpdateLookup.Add(typeof(Geofence), "setGF");
 
             ChildDeleteLookup.Add(typeof(AttendanceBreak), "delSB");
             ChildDeleteLookup.Add(typeof(AttendanceSchedule), "delSC");
@@ -63,6 +66,7 @@ namespace AionHR.Repository.WebService.Repositories
             ChildDeleteLookup.Add(typeof(DayType), "delDT");
             ChildDeleteLookup.Add(typeof(BiometricDevice), "delBM");
             ChildDeleteLookup.Add(typeof(Router), "delRO");
+            ChildDeleteLookup.Add(typeof(Geofence), "delGF");
 
 
 

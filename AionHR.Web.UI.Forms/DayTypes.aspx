@@ -121,7 +121,7 @@
                                 </Renderer>
                             </ext:Column>
 
-                            <ext:ComponentColumn runat="server" Text="Color" DataIndex="color" Flex="1">
+                            <ext:ComponentColumn runat="server" Text="<%$ Resources: FieldColor%>" DataIndex="color" Flex="1">
                                 <Component>
                                     <ext:ColorField runat="server" ReadOnly="true" />
                                 </Component>

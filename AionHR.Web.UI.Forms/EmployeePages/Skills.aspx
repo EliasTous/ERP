@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Documents.aspx.cs" Inherits="AionHR.Web.UI.Forms.EmployeePages.Documents" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Skills.aspx.cs" Inherits="AionHR.Web.UI.Forms.EmployeePages.Skills" %>
 
 <%@ Register Assembly="Ext.Net" Namespace="Ext.Net" TagPrefix="ext" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -9,7 +9,7 @@
     <title></title>
     <link rel="stylesheet" type="text/css" href="../CSS/Common.css?id=1" />
     <link rel="stylesheet" href="../CSS/LiveSearch.css" />
-    <script type="text/javascript" src="../Scripts/Documents.js?id=18"></script>
+    <script type="text/javascript" src="../Scripts/Skills.js?id=18"></script>
     <script type="text/javascript" src="../Scripts/common.js?id=0"></script>
 
 
@@ -34,7 +34,7 @@
         <Items>
 
                 <ext:GridPanel AutoUpdateLayout="true"
-                    ID="employeeDocumentsGrid" Collapsible="false"
+                    ID="SkillsGrid" Collapsible="false"
                     runat="server"
                     PaddingSpec="0 0 1 0"
                     Header="false"
@@ -46,11 +46,11 @@
                     ColumnLines="True" IDMode="Explicit" RenderXType="True">
                     <Store>
                         <ext:Store
-                            ID="employeeDocumentsStore"
+                            ID="skillStore"
                             runat="server"
                             RemoteSort="True"
                             RemoteFilter="true"
-                            OnReadData="employeeDocumentsStore_RefreshData"
+                            OnReadData="skillsStore_RefreshData"
                             PageSize="50" IDMode="Explicit" Namespace="App">
                             <Proxy>
                                 <ext:PageProxy>
@@ -64,11 +64,12 @@
                                     <Fields>
 
                                         <ext:ModelField Name="recordId" />
-                                        <ext:ModelField Name="dtName" />
-                                        <ext:ModelField Name="documentRef" />
-                                        <ext:ModelField Name="expiryDate" />
-                                        <ext:ModelField Name="remarks" />
-                                        <ext:ModelField Name="fileUrl" />
+                                        <ext:ModelField Name="clId" />
+                                        <ext:ModelField Name="clName" />
+                                        <ext:ModelField Name="institution" />
+                                        <ext:ModelField Name="dateFrom " />
+                                        <ext:ModelField Name="dateTo " />
+                                        <ext:ModelField Name="grade " />
 
                                     </Fields>
                                 </ext:Model>
@@ -100,7 +101,7 @@
                                     </Triggers>
                                     <Listeners>
                                         <KeyPress Fn="enterKeyPressSearchHandler" Buffer="100" />
-                                        <TriggerClick Handler="#{employeeDocumentsStore}.reload();" />
+                                        <TriggerClick Handler="#{skillsStore}.reload();" />
                                     </Listeners>
                                 </ext:TextField>
 
@@ -113,12 +114,12 @@
                         <Columns>
 
                             <ext:Column Visible="false" ID="ColrecordId" MenuDisabled="true" runat="server" DataIndex="recordId" Hideable="false" Width="75" Align="Center" />
-                            <ext:Column CellCls="cellLink" ID="ColEHName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDocumentRef%>" DataIndex="documentRef" Flex="2" Hideable="false" />
-                            <ext:Column CellCls="cellLink" ID="Column1" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDocumentType%>" DataIndex="dtName" Flex="2" Hideable="false" />
-                            <ext:Column CellCls="cellLink" ID="Column3" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldRemarks%>" DataIndex="remarks" Flex="2" Hideable="false" />
+                            <ext:Column CellCls="cellLink" ID="ColEHName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldCLName%>" DataIndex="documentRef" Flex="2" Hideable="false" />
+                            <ext:Column CellCls="cellLink" ID="Column1" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldInst%>" DataIndex="dtName" Flex="2" Hideable="false" />
+                            <ext:Column CellCls="cellLink" ID="Column3" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDateFrom%>" DataIndex="remarks" Flex="2" Hideable="false" />
                             
-                            <ext:DateColumn  CellCls="cellLink" ID="Column2" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldExpiryDate%>" DataIndex="expiryDate" Width="100" Hideable="false" />
-
+                            <ext:DateColumn  CellCls="cellLink" ID="Column2" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDateTo%>" DataIndex="expiryDate" Width="100" Hideable="false" />
+                            <ext:NumberColumn CellCls="cellLink" ID="Column4" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldGrade%>" DataIndex="remarks" Flex="2" Hideable="false" />
 
 
                             <ext:Column runat="server"
@@ -132,7 +133,7 @@
                                 MenuDisabled="true"
                                 Resizable="false">
 
-                                <Renderer handler="return attachRender()+'&nbsp;&nbsp;'+ editRender()+'&nbsp;&nbsp;' +deleteRender(); " />
+                                <Renderer handler="return editRender()+'&nbsp;&nbsp;' +deleteRender(); " />
 
                             </ext:Column>
                             <ext:Column runat="server"
@@ -186,7 +187,7 @@
                             <EventMask  ShowMask="false"  />
                             <ExtraParams>
                                 <ext:Parameter Name="id" Value="record.getId()" Mode="Raw" />
-                                <ext:Parameter Name="path" Value="record.data['fileUrl']" Mode="Raw" />
+                                
                                 <ext:Parameter Name="type" Value="getCellType( this, rowIndex, cellIndex,record.data['fileUrl'])" Mode="Raw" />
                             </ExtraParams>
 
@@ -207,10 +208,10 @@
        </ext:Viewport>
 
         <ext:Window
-            ID="EditDocumentWindow"
+            ID="EditSkillWindow"
             runat="server"
             Icon="PageEdit"
-            Title="<%$ Resources:EditDocumentWindowTitle %>"
+            Title="<%$ Resources:EditSkillWindowTitle %>"
             Width="450"
             Height="330"
             AutoShow="false"

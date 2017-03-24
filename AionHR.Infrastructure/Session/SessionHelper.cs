@@ -52,22 +52,42 @@ namespace AionHR.Infrastructure.Session
         {
             _sessionStorage.Clear();
         }
-
+        #region Sets
 
         public void SetLanguage(string language)
         {
             Set("Language", language);
         }
-
-        public void Set(string key, object value)
+        public void SetDateformat(string format)
         {
-            _sessionStorage.Save(key, value);
+            Set("dateFormat", format);
         }
+        public void SetNameFormat(string format)
+        {
+            Set("nameFormat", format);
+        }
+
+        #endregion
+
+        #region Gets
+        public string GetDateformat()
+        {
+            return Get("dateFormat").ToString();
+        }
+        public string GetNameformat()
+        {
+           return Get("nameFormat").ToString();
+        }
+      
+        #endregion
         public object Get(string key)
         {
             return _sessionStorage.Retrieve(key);
         }
-
+        public void Set(string key, object value)
+        {
+            _sessionStorage.Save(key, value);
+        }
         public Dictionary<string, string> GetAuthorizationHeadersForUser()
         {
             if (!CheckUserLoggedIn())

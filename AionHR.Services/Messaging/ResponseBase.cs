@@ -15,6 +15,7 @@ namespace AionHR.Services.Messaging
         /// indicate if request succeeded
         /// </summary>
         public bool Success { get; set; }
+        public string ErrorCode { get; set; }
         /// <summary>
         /// message returned with the request. In case of failure it returns the error message.
         /// </summary>

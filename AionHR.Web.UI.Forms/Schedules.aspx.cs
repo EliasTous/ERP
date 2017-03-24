@@ -193,7 +193,7 @@ namespace AionHR.Web.UI.Forms
                     scheduleDays.Store[0].DataSource = daysResponse.Items;
                     scheduleDays.Store[0].DataBind();
                     CurrentSchedule.Text = id.ToString();
-                    _systemService.SessionHelper.Set("currentSchedule", id.ToString());
+                    
                     Viewport1.ActiveIndex = 1;
                     // InitCombos(response.result);
                     break;

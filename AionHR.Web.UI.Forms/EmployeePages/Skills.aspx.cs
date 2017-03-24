@@ -26,7 +26,7 @@ using System.Net;
 
 namespace AionHR.Web.UI.Forms.EmployeePages
 {
-    public partial class Documents : System.Web.UI.Page
+    public partial class Skills : System.Web.UI.Page
     {
         ISystemService _systemService = ServiceLocator.Current.GetInstance<ISystemService>();
         IEmployeeService _employeeService = ServiceLocator.Current.GetInstance<IEmployeeService>();
@@ -128,7 +128,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     this.EditDocumentWindow.Title = Resources.Common.EditWindowsTitle;
                     this.EditDocumentWindow.Show();
                     break;
-             
+
                 case "imgDelete":
                     X.Msg.Confirm(Resources.Common.Confirmation, Resources.Common.DeleteOneRecord, new MessageBoxButtonsConfig
                     {
@@ -147,7 +147,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     break;
 
                 case "imgAttach":
-                    DownloadFile( path);
+                    DownloadFile(path);
 
                     //Here will show up a winow relatice to attachement depending on the case we are working on
                     break;
@@ -207,7 +207,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                         resp.OutputStream.Write(buffer, 0, length);
 
                         // Flush the data
-                       
+
 
                         //Clear the buffer
                         buffer = new Byte[bytesToRead];
@@ -313,10 +313,10 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             EditDocumentForm.Reset();
             this.EditDocumentWindow.Title = Resources.Common.AddNewRecord;
             FillDocumentTypes();
-           
+
             this.EditDocumentWindow.Show();
         }
-   
+
 
         protected void employeeDocumentsStore_RefreshData(object sender, StoreReadDataEventArgs e)
         {
@@ -344,7 +344,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
 
             this.employeeDocumentsStore.DataBind();
         }
-  
+
 
 
         protected void SaveDocument(object sender, DirectEventArgs e)
@@ -482,7 +482,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
 
                         EmployeeDocument updated = GetById(b.recordId);
                         ModelProxy record = this.employeeDocumentsStore.GetById(index);
-                        
+
                         EditDocumentForm.UpdateRecord(record);
                         record.Set("dtName", updated.dtName);
                         record.Set("fileUrl", updated.fileUrl);
@@ -507,7 +507,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             }
         }
 
-     
+
         [DirectMethod]
         public string CheckSession()
         {
@@ -569,7 +569,5 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             }
             return response.result;
         }
-
-
     }
 }

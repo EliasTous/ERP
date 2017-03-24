@@ -11,8 +11,9 @@ namespace AionHR.Model.Employees.Profile
     {
         public int employeeId { get; set; }
         public EmployeeName employeeName { get; set; }
-        public int? dtId { get; set; }  
+        public int? dtId { get; set; }
 
+        public string fileUrl { get; set; }
         public string dtName { get; set; }
         public string documentRef { get; set; }
         public DateTime? expiryDate { get; set; }

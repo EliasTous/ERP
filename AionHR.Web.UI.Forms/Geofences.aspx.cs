@@ -21,16 +21,15 @@ using AionHR.Model.Company.News;
 using AionHR.Services.Messaging;
 using AionHR.Model.Company.Structure;
 using AionHR.Model.System;
-using AionHR.Model.TimeAttendance;
+using AionHR.Model.Attendance;
 
 namespace AionHR.Web.UI.Forms
 {
-    public partial class BiometricDevices : System.Web.UI.Page
+    public partial class Geofences : System.Web.UI.Page
     {
-
         ISystemService _systemService = ServiceLocator.Current.GetInstance<ISystemService>();
-        ICompanyStructureService _companyStructureService = ServiceLocator.Current.GetInstance<ICompanyStructureService>();
         ITimeAttendanceService _timeAttendanceService = ServiceLocator.Current.GetInstance<ITimeAttendanceService>();
+        ICompanyStructureService _companyStructureService = ServiceLocator.Current.GetInstance<ICompanyStructureService>();
         protected override void InitializeCulture()
         {
 
@@ -52,26 +51,15 @@ namespace AionHR.Web.UI.Forms
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
-
             if (!X.IsAjaxRequest && !IsPostBack)
             {
-
                 SetExtLanguage();
                 HideShowButtons();
                 HideShowColumns();
-
-
-
             }
-
         }
 
 
-
-        /// <summary>
-        /// the detailed tabs for the edit form. I put two tabs by default so hide unecessary or add addional
-        /// </summary>
         private void HideShowTabs()
         {
             //this.OtherInfoTab.Visible = false;
@@ -105,32 +93,65 @@ namespace AionHR.Web.UI.Forms
             }
         }
 
+        private void FillBranch()
+        {
+            ListRequest branchesRequest = new ListRequest();
+            ListResponse<Branch> resp = _companyStructureService.ChildGetAll<Branch>(branchesRequest);
+            BranchStore.DataSource = resp.Items;
+            BranchStore.DataBind();
+        }
 
+        protected void addBranch(object sender, DirectEventArgs e)
+        {
+            if (string.IsNullOrEmpty(branchId.Text))
+                return;
+            Branch dept = new Branch();
+            dept.name = branchId.Text;
+            dept.isInactive = false;
+            PostRequest<Branch> depReq = new PostRequest<Branch>();
+            depReq.entity = dept;
+            PostResponse<Branch> response = _companyStructureService.ChildAddOrUpdate<Branch>(depReq);
+            if (response.Success)
+            {
+                dept.recordId = response.recordId;
+                BranchStore.Insert(0, dept);
+                branchId.Select(0);
+            }
+            else
+            {
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, response.Summary).Show();
+                return;
+            }
+
+        }
 
         protected void PoPuP(object sender, DirectEventArgs e)
         {
 
 
-            int id = Convert.ToInt32(e.ExtraParams["id"]);
+            string id = e.ExtraParams["id"];
             string type = e.ExtraParams["type"];
+
             switch (type)
             {
                 case "ColName":
                     //Step 1 : get the object from the Web Service 
                     RecordRequest r = new RecordRequest();
-                    r.RecordID = id.ToString();
-                    RecordResponse<BiometricDevice> response = _timeAttendanceService.ChildGetRecord<BiometricDevice>(r);
+                    r.RecordID = id;
+                    FillBranch();
+                    RecordResponse<Geofence> response = _timeAttendanceService.ChildGetRecord<Geofence>(r);
                     if (!response.Success)
                     {
                         X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                        X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).ToString() : response.Summary).Show();
+                        X.Msg.Alert(Resources.Common.Error, response.Summary).Show();
                         return;
                     }
                     //Step 2 : call setvalues with the retrieved object
                     this.BasicInfoTab.SetValues(response.result);
-                    FillBranch();
-                    if (response.result.divisionId != null)
-                        divisionId.Select(response.result.divisionId);
+                    //recordId.Text = id;
+
+                    branchId.Select(response.result.branchId.ToString());
                     this.EditRecordWindow.Title = Resources.Common.EditWindowsTitle;
                     this.EditRecordWindow.Show();
                     break;
@@ -141,7 +162,7 @@ namespace AionHR.Web.UI.Forms
                         Yes = new MessageBoxButtonConfig
                         {
                             //We are call a direct request metho for deleting a record
-                            Handler = String.Format("App.direct.DeleteRecord({0})", id),
+                            Handler = String.Format("App.direct.DeleteRecord('{0}')", id),
                             Text = Resources.Common.Yes
                         },
                         No = new MessageBoxButtonConfig
@@ -163,6 +184,8 @@ namespace AionHR.Web.UI.Forms
 
         }
 
+
+
         /// <summary>
         /// This direct method will be called after confirming the delete
         /// </summary>
@@ -173,20 +196,16 @@ namespace AionHR.Web.UI.Forms
             try
             {
                 //Step 1 Code to delete the object from the database 
-                BiometricDevice n = new BiometricDevice();
-                n.recordId = index;
-                n.name = "";
-                n.reference = "";
-                n.divisionId = "0";
-
-                PostRequest<BiometricDevice> req = new PostRequest<BiometricDevice>();
-                req.entity = n;
-                PostResponse<BiometricDevice> res = _timeAttendanceService.ChildDelete<BiometricDevice>(req);
-                if (!res.Success)
+                Geofence s = new Geofence();
+                s.recordId = index;
+                s.branchId = 0;
+                PostRequest<Geofence> req = new PostRequest<Geofence>();
+                req.entity = s;
+                PostResponse<Geofence> r = _timeAttendanceService.ChildDelete<Geofence>(req);
+                if (!r.Success)
                 {
-                    //Show an error saving...
                     X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", res.ErrorCode) != null ? GetGlobalResourceObject("Errors", res.ErrorCode).ToString() : res.Summary).Show();
+                    X.Msg.Alert(Resources.Common.Error, r.Summary).Show();
                     return;
                 }
                 else
@@ -213,9 +232,6 @@ namespace AionHR.Web.UI.Forms
             }
 
         }
-
-
-
 
 
         /// <summary>
@@ -245,6 +261,7 @@ namespace AionHR.Web.UI.Forms
 
             }).Show();
         }
+
 
         /// <summary>
         /// Direct method for removing multiple records
@@ -287,6 +304,7 @@ namespace AionHR.Web.UI.Forms
             }
         }
 
+
         /// <summary>
         /// Adding new record
         /// </summary>
@@ -294,14 +312,15 @@ namespace AionHR.Web.UI.Forms
         /// <param name="e"></param>
         protected void ADDNewRecord(object sender, DirectEventArgs e)
         {
-
             //Reset all values of the relative object
             BasicInfoTab.Reset();
+            FillBranch();
             this.EditRecordWindow.Title = Resources.Common.AddNewRecord;
 
-            FillBranch();
+
             this.EditRecordWindow.Show();
         }
+
 
         protected void Store1_RefreshData(object sender, StoreReadDataEventArgs e)
         {
@@ -318,19 +337,14 @@ namespace AionHR.Web.UI.Forms
             ListRequest request = new ListRequest();
 
             request.Filter = "";
-            ListResponse<BiometricDevice> nationalities = _timeAttendanceService.ChildGetAll<BiometricDevice>(request);
-            if (!nationalities.Success)
-            {
-                X.Msg.Alert(Resources.Common.ErrorSavingRecord, GetGlobalResourceObject("Errors", nationalities.ErrorCode) != null ? GetGlobalResourceObject("Errors", nationalities.ErrorCode).ToString() : nationalities.Summary).Show();
-                return;
-            }
-            this.Store1.DataSource = nationalities.Items;
-            e.Total = nationalities.count;
+            ListResponse<Geofence> routers = _timeAttendanceService.ChildGetAll<Geofence>(request);
+            if (!routers.Success)
+                X.Msg.Alert(Resources.Common.Error, routers.Summary).Show();
+            this.Store1.DataSource = routers.Items;
+            e.Total = routers.count;
 
             this.Store1.DataBind();
         }
-
-
 
 
         protected void SaveNewRecord(object sender, DirectEventArgs e)
@@ -338,12 +352,12 @@ namespace AionHR.Web.UI.Forms
 
 
             //Getting the id to check if it is an Add or an edit as they are managed within the same form.
-            string id = e.ExtraParams["id"];
+
 
             string obj = e.ExtraParams["values"];
-            BiometricDevice b = JsonConvert.DeserializeObject<BiometricDevice>(obj);
+            Geofence b = JsonConvert.DeserializeObject<Geofence>(obj);
 
-            b.recordId = id;
+            string id = e.ExtraParams["id"];
             // Define the object to add or edit as null
 
             if (string.IsNullOrEmpty(id))
@@ -353,17 +367,18 @@ namespace AionHR.Web.UI.Forms
                 {
                     //New Mode
                     //Step 1 : Fill The object and insert in the store 
-                    PostRequest<BiometricDevice> request = new PostRequest<BiometricDevice>();
+                    PostRequest<Geofence> request = new PostRequest<Geofence>();
+
                     request.entity = b;
-                    PostResponse<BiometricDevice> r = _timeAttendanceService.ChildAddOrUpdate<BiometricDevice>(request);
-                    b.recordId = r.recordId;
+                    PostResponse<Geofence> r = _timeAttendanceService.ChildAddOrUpdate<Geofence>(request);
+
 
                     //check if the insert failed
                     if (!r.Success)//it maybe be another condition
                     {
                         //Show an error saving...
                         X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                        X.Msg.Alert(Resources.Common.ErrorSavingRecord, GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() : r.Summary).Show();
+                        X.Msg.Alert(Resources.Common.Error, r.Summary).Show();
                         return;
                     }
                     else
@@ -393,7 +408,7 @@ namespace AionHR.Web.UI.Forms
                 {
                     //Error exception displaying a messsage box
                     X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.ErrorSavingRecord,ex.Message ).Show();
+                    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorSavingRecord).Show();
                 }
 
 
@@ -404,10 +419,10 @@ namespace AionHR.Web.UI.Forms
 
                 try
                 {
-                    int index = Convert.ToInt32(id);//getting the id of the record
-                    PostRequest<BiometricDevice> request = new PostRequest<BiometricDevice>();
+                    //getting the id of the record
+                    PostRequest<Geofence> request = new PostRequest<Geofence>();
                     request.entity = b;
-                    PostResponse<BiometricDevice> r = _timeAttendanceService.ChildAddOrUpdate<BiometricDevice>(request);                      //Step 1 Selecting the object or building up the object for update purpose
+                    PostResponse<Geofence> r = _timeAttendanceService.ChildAddOrUpdate<Geofence>(request);                      //Step 1 Selecting the object or building up the object for update purpose
 
                     //Step 2 : saving to store
 
@@ -415,14 +430,14 @@ namespace AionHR.Web.UI.Forms
                     if (!r.Success)//it maybe another check
                     {
                         X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                        X.Msg.Alert(Resources.Common.ErrorUpdatingRecord, r.Message).Show();
+                        X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorUpdatingRecord).Show();
                         return;
                     }
                     else
                     {
 
 
-                        ModelProxy record = this.Store1.GetById(index);
+                        ModelProxy record = this.Store1.GetById(id);
                         BasicInfoTab.UpdateRecord(record);
                         record.Commit();
                         Notification.Show(new NotificationConfig
@@ -440,10 +455,11 @@ namespace AionHR.Web.UI.Forms
                 catch (Exception ex)
                 {
                     X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.ErrorUpdatingRecord, ex.Message ).Show();
+                    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorUpdatingRecord).Show();
                 }
             }
         }
+
 
         [DirectMethod]
         public string CheckSession()
@@ -460,39 +476,11 @@ namespace AionHR.Web.UI.Forms
 
         }
 
-      
 
-        private void FillBranch()
-        {
-            ListRequest branchesRequest = new ListRequest();
-            ListResponse<Division> resp = _companyStructureService.ChildGetAll<Division>(branchesRequest);
-            divisionStore.DataSource = resp.Items;
-            divisionStore.DataBind();
-        }
-        protected void addDivision(object sender, DirectEventArgs e)
-        {
-            if (string.IsNullOrEmpty(divisionId.Text))
-                return;
-            Division dept = new Division();
-            dept.name = divisionId.Text;
-            dept.isInactive = false;
-            PostRequest<Division> depReq = new PostRequest<Division>();
-            depReq.entity = dept;
 
-            PostResponse<Division> response = _companyStructureService.ChildAddOrUpdate<Division>(depReq);
-            if (response.Success)
-            {
-                dept.recordId = response.recordId;
-                divisionStore.Insert(0, dept);
-                divisionId.Select(0);
-            }
-            else
-            {
-                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).ToString() : response.Summary).Show();
-                return;
-            }
 
-        }
+
+
+
     }
 }

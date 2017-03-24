@@ -162,8 +162,8 @@ namespace AionHR.Web.UI.Forms
             else
             {
                 FillDefaults(submittedValues);
-                _systemService.SessionHelper.Set("dateFormat", values.dateFormat.ToString());
-                _systemService.SessionHelper.Set("nameFormat", values.nameFormat.ToString());
+                _systemService.SessionHelper.SetDateformat( values.dateFormat.ToString());
+                _systemService.SessionHelper.SetNameFormat(values.nameFormat.ToString());
                 Notification.Show(new NotificationConfig
                 {
                     Title = Resources.Common.Notification,

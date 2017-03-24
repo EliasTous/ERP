@@ -93,7 +93,7 @@ namespace AionHR.Web.UI.Forms
             Response<Account> getACResponse = _masterService.GetAccount(GetACrequest);
             if (!getACResponse.Success)
             {
-                lblError.Text = getACResponse.Summary;
+                lblError.Text = GetGlobalResourceObject("Errors", getACResponse.ErrorCode) != null ? GetGlobalResourceObject("Errors", getACResponse.ErrorCode).ToString() : getACResponse.Summary;
                 return "error";//Error in authentication
             }
 
@@ -128,7 +128,7 @@ namespace AionHR.Web.UI.Forms
             }
             else
             {
-                lblError.Text = response.Summary;
+                lblError.Text = GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).ToString() : response.Summary;
                 return "error";//Error in authentication
 
             }

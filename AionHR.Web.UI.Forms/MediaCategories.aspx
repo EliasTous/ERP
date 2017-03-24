@@ -1,4 +1,5 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="CertificateLevels.aspx.cs" Inherits="AionHR.Web.UI.Forms.CertificateLevels" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="MediaCategories.aspx.cs" Inherits="AionHR.Web.UI.Forms.MediaCategories" %>
+
 
 <%@ Register Assembly="Ext.Net" Namespace="Ext.Net" TagPrefix="ext" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -9,7 +10,7 @@
     <title></title>
     <link rel="stylesheet" type="text/css" href="CSS/Common.css" />
     <link rel="stylesheet" href="CSS/LiveSearch.css" />
-    <script type="text/javascript" src="Scripts/CertificateLevels.js?id=1" ></script>
+    <script type="text/javascript" src="Scripts/MediaCategories.js?id=0" ></script>
     <script type="text/javascript" src="Scripts/common.js" ></script>
    
  
@@ -41,12 +42,9 @@
                 <ext:Model ID="Model1" runat="server" IDProperty="recordId">
                     <Fields>
 
-                        <ext:ModelField Name="recordId" />
-                        
+                        <ext:ModelField Name="recordId" />                       
                         <ext:ModelField Name="name" />
-                        <ext:ModelField Name="reference" />
-                      
-                               </Fields>
+                    </Fields>
                 </ext:Model>
             </Model>
             <Sorters>
@@ -116,9 +114,9 @@
                             <ext:Column ID="ColRecordId" Visible="false" DataIndex="recordId" runat="server" />
                             <ext:Column    CellCls="cellLink" ID="ColName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldName%>" DataIndex="name" Flex="2" Hideable="false">
                             <Renderer Handler="return '<u>'+ record.data['name']+'</u>'">
-                            </Renderer></ext:Column>
-                            <ext:Column ID="Column1" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldReference%>" DataIndex="reference" Flex="2" Hideable="false" />
-                             
+
+                            </Renderer>
+                                </ext:Column>
                         
                            
 
@@ -255,14 +253,6 @@
                             <Items>
                                 <ext:TextField ID="recordId" runat="server"  Name="recordId"  Hidden="true"/>
                                 <ext:TextField ID="name" runat="server" FieldLabel="<%$ Resources:FieldName%>" Name="name"   AllowBlank="false"/>
-                                <ext:TextField ID="reference" runat="server" FieldLabel="<%$ Resources:FieldReference%>" Name="reference"   AllowBlank="false"/>
-                                
-
-                                
-                                
-                                
-                               
-
                             </Items>
 
                         </ext:FormPanel>

@@ -121,11 +121,13 @@
     <Content Include="EmployeePages\JobInformation.aspx" />
     <Content Include="EmployeePages\Notes.aspx" />
     <Content Include="EmployeePages\Payroll.aspx" />
+    <Content Include="EmployeePages\Skills.aspx" />
     <Content Include="EmployeeRoot.aspx" />
     <Content Include="Employees.aspx" />
     <Content Include="EntitlementDeductions.aspx" />
     <Content Include="ForgotAccount.aspx" />
     <Content Include="ForgotPassword.aspx" />
+    <Content Include="Geofences.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Home.aspx" />
     <Content Include="Images\bg.png" />
@@ -150,6 +152,7 @@
     <Content Include="LeaveRequests.aspx" />
     <Content Include="LeaveTypes.aspx" />
     <Content Include="Login.aspx" />
+    <Content Include="MediaCategories.aspx" />
     <Content Include="Nationalities.aspx" />
     <Content Include="OrganizationChart.aspx" />
     <Content Include="packages.config" />
@@ -161,7 +164,6 @@
     <Content Include="Scripts\BonusTypes.js" />
     <Content Include="Scripts\Calendars.js" />
     <Content Include="Scripts\Cases.js" />
-    <Content Include="Scripts\Documents.js" />
     <Content Include="Scripts\Notes.js" />
     <Content Include="Scripts\LeaveCalendar.js" />
     <Content Include="Scripts\OrganizationChart.js" />
@@ -228,6 +230,12 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Common.resx</DependentUpon>
+    </Compile>
+    <Compile Include="App_GlobalResources\Errors.Designer.cs" />
+    <Compile Include="App_GlobalResources\Errors1.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Errors.resx</DependentUpon>
     </Compile>
     <Compile Include="App_LocalResources\Sponsors.aspx.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -361,6 +369,13 @@
     <Compile Include="EmployeePages\Payroll.aspx.designer.cs">
       <DependentUpon>Payroll.aspx</DependentUpon>
     </Compile>
+    <Compile Include="EmployeePages\Skills.aspx.cs">
+      <DependentUpon>Skills.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EmployeePages\Skills.aspx.designer.cs">
+      <DependentUpon>Skills.aspx</DependentUpon>
+    </Compile>
     <Compile Include="EmployeeRoot.aspx.cs">
       <DependentUpon>EmployeeRoot.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -395,6 +410,13 @@
     </Compile>
     <Compile Include="ForgotPassword.aspx.designer.cs">
       <DependentUpon>ForgotPassword.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Geofences.aspx.cs">
+      <DependentUpon>Geofences.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Geofences.aspx.designer.cs">
+      <DependentUpon>Geofences.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -440,6 +462,13 @@
     </Compile>
     <Compile Include="Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MediaCategories.aspx.cs">
+      <DependentUpon>MediaCategories.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MediaCategories.aspx.designer.cs">
+      <DependentUpon>MediaCategories.aspx</DependentUpon>
     </Compile>
     <Compile Include="Nationalities.aspx.cs">
       <DependentUpon>Nationalities.aspx</DependentUpon>
@@ -712,7 +741,16 @@
     <Content Include="EmployeePages\App_LocalResources\Notes.aspx.resx" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_GlobalResources\Errors.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>Errors1.designer.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="EmployeePages\App_LocalResources\Documents.aspx.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="EmployeePages\App_LocalResources\Skills.aspx.resx" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
