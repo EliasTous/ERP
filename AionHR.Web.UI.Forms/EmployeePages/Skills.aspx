@@ -9,7 +9,7 @@
     <title></title>
     <link rel="stylesheet" type="text/css" href="../CSS/Common.css?id=1" />
     <link rel="stylesheet" href="../CSS/LiveSearch.css" />
-    <script type="text/javascript" src="../Scripts/Skills.js?id=18"></script>
+    <script type="text/javascript" src="../Scripts/Skills.js?id=19"></script>
     <script type="text/javascript" src="../Scripts/common.js?id=0"></script>
 
 
@@ -34,7 +34,7 @@
         <Items>
 
                 <ext:GridPanel AutoUpdateLayout="true"
-                    ID="SkillsGrid" Collapsible="false"
+                    ID="skillsGrid" Collapsible="false"
                     runat="server"
                     PaddingSpec="0 0 1 0"
                     Header="false"
@@ -67,9 +67,9 @@
                                         <ext:ModelField Name="clId" />
                                         <ext:ModelField Name="clName" />
                                         <ext:ModelField Name="institution" />
-                                        <ext:ModelField Name="dateFrom " />
-                                        <ext:ModelField Name="dateTo " />
-                                        <ext:ModelField Name="grade " />
+                                        <ext:ModelField Name="dateFrom" />
+                                        <ext:ModelField Name="dateTo" />
+                                        <ext:ModelField Name="grade" />
 
                                     </Fields>
                                 </ext:Model>
@@ -88,7 +88,7 @@
                                     </Listeners>
                                     <DirectEvents>
                                         <Click OnEvent="ADDNewRecord">
-                                            <EventMask ShowMask="true" CustomTarget="={#{employeeDocumentsGrid}.body}" />
+                                            <EventMask ShowMask="true" CustomTarget="={#{skillsGrid}.body}" />
                                         </Click>
                                     </DirectEvents>
                                 </ext:Button>
@@ -114,12 +114,13 @@
                         <Columns>
 
                             <ext:Column Visible="false" ID="ColrecordId" MenuDisabled="true" runat="server" DataIndex="recordId" Hideable="false" Width="75" Align="Center" />
-                            <ext:Column CellCls="cellLink" ID="ColEHName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldCLName%>" DataIndex="documentRef" Flex="2" Hideable="false" />
-                            <ext:Column CellCls="cellLink" ID="Column1" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldInst%>" DataIndex="dtName" Flex="2" Hideable="false" />
-                            <ext:Column CellCls="cellLink" ID="Column3" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDateFrom%>" DataIndex="remarks" Flex="2" Hideable="false" />
+                            <ext:Column CellCls="cellLink" ID="ColEHName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldCLName%>" DataIndex="clName" Flex="2" Hideable="false" />
+                            <ext:Column CellCls="cellLink" ID="Column1" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldInst%>" DataIndex="institution" Flex="2" Hideable="false" />
+                            <ext:DateColumn CellCls="cellLink" ID="dateFromColumn" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDateFrom%>" DataIndex="dateFrom" Flex="2" Hideable="false" />
+                          
                             
-                            <ext:DateColumn  CellCls="cellLink" ID="Column2" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDateTo%>" DataIndex="expiryDate" Width="100" Hideable="false" />
-                            <ext:NumberColumn CellCls="cellLink" ID="Column4" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldGrade%>" DataIndex="remarks" Flex="2" Hideable="false" />
+                            <ext:DateColumn  CellCls="cellLink" ID="dateToColumn" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDateTo%>" DataIndex="dateTo" Width="100" Hideable="false" />
+                            <ext:NumberColumn CellCls="cellLink" ID="Column4" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldGrade%>" DataIndex="grade" Flex="2" Hideable="false" />
 
 
                             <ext:Column runat="server"
@@ -188,7 +189,7 @@
                             <ExtraParams>
                                 <ext:Parameter Name="id" Value="record.getId()" Mode="Raw" />
                                 
-                                <ext:Parameter Name="type" Value="getCellType( this, rowIndex, cellIndex,record.data['fileUrl'])" Mode="Raw" />
+                                <ext:Parameter Name="type" Value="getCellType( this, rowIndex, cellIndex)" Mode="Raw" />
                             </ExtraParams>
 
                         </CellClick>
@@ -223,19 +224,20 @@
                 <ext:TabPanel ID="TabPanel1" runat="server" ActiveTabIndex="0" Border="false" DeferredRender="false">
                     <Items>
                         <ext:FormPanel
-                            ID="EditDocumentForm" DefaultButton="SaveDocumentButton"
+                            ID="SkillsForm" DefaultButton="SaveSkillButton"
                             runat="server"
-                            Title="<%$ Resources: EditDocumentWindowTitle %>"
+                            Title="<%$ Resources: EditSkillWindowTitle %>"
                             Icon="ApplicationSideList"
                             DefaultAnchor="100%"
                             BodyPadding="5">
                             <Items>
-                                <ext:TextField runat="server" Name="recordId"  ID="EHID" Hidden="true"  Disabled="true"/>
-                                <ext:TextField runat="server" Name="documentRef" AllowBlank="false"  ID="documentRef"  FieldLabel="<%$ Resources:FieldDocumentRef%>" />
+                                <ext:TextField runat="server" Name="recordId"  ID="recordId" Hidden="true"  Disabled="true"/>
+                                <ext:TextField  runat="server" Name="institution" AllowBlank="false"  ID="institution"  FieldLabel="<%$ Resources:FieldInst%>" />
 
-                                <ext:ComboBox ValueField="recordId" AllowBlank="false" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" runat="server" ID="dtId" Name="dtId" FieldLabel="<%$ Resources:FieldDocumentType%>" SimpleSubmit="true">
+                                <ext:ComboBox ValueField="recordId" AllowBlank="false" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1"
+                                     DisplayField="name" runat="server" ID="clId" Name="clId" FieldLabel="<%$ Resources:FieldCLName%>" SimpleSubmit="true">
                                     <Store>
-                                        <ext:Store runat="server" ID="dtStore">
+                                        <ext:Store runat="server" ID="clStore">
                                             <Model>
                                                 <ext:Model runat="server">
                                                     <Fields>
@@ -253,7 +255,7 @@
                                                             </Listeners>
                                                             <DirectEvents>
 
-                                                                <Click OnEvent="addType">
+                                                                <Click OnEvent="addCl">
                                                                     <ExtraParams>
                                                                         
                                                                         
@@ -267,9 +269,11 @@
                                                     <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
                                                 </Listeners>
                                 </ext:ComboBox>
-                                <ext:DateField ID="expiryDate" runat="server" Name="expiryDate" FieldLabel="<%$ Resources:FieldExpiryDate%>"  />
-                                <ext:FileUploadField runat="server" ID="documentFile" FieldLabel="<%$ Resources:FieldFile%>" />
+                                <ext:DateField AllowBlank="false" ID="dateFrom" runat="server" Name="dateFrom" FieldLabel="<%$ Resources:FieldDateFrom%>"  />
+                                <ext:DateField AllowBlank="false"  ID="dateTo" runat="server" Name="dateTo" FieldLabel="<%$ Resources:FieldDateTo%>"  />
+                                
                                 <ext:TextArea runat="server" Name="remarks"  ID="remarks"  FieldLabel="<%$ Resources:FieldRemarks%>" />
+                                <ext:NumberField runat="server" Name="grade" ID="grade" FieldLabel="<%$ Resources:FieldGrade%>" />
                             </Items>
 
                         </ext:FormPanel>
@@ -278,17 +282,17 @@
                 </ext:TabPanel>
             </Items>
             <Buttons>
-                <ext:Button ID="SaveDocumentButton" runat="server" Text="<%$ Resources:Common, Save %>" Icon="Disk">
+                <ext:Button ID="SaveSkillButton" runat="server" Text="<%$ Resources:Common, Save %>" Icon="Disk">
 
                     <Listeners>
-                        <Click Handler="CheckSession(); if (!#{EditDocumentForm}.getForm().isValid()) {return false;} " />
+                        <Click Handler="CheckSession(); if (!#{SkillsForm}.getForm().isValid()) {return false;} " />
                     </Listeners>
                     <DirectEvents>
                         <Click OnEvent="SaveDocument" Failure="Ext.MessageBox.alert('#{titleSavingError}.value', '#{titleSavingErrorMessage}.value');">
-                            <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="={#{EditDocumentWindow}.body}" />
+                            <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="={#{EditSkillWindow}.body}" />
                             <ExtraParams>
-                                <ext:Parameter Name="id" Value="#{EHID}.getValue()" Mode="Raw" />
-                                <ext:Parameter Name="values" Value="#{EditDocumentForm}.getForm().getValues(false, false, false, true)" Mode="Raw" Encode="true" />
+                                <ext:Parameter Name="id" Value="#{recordId}.getValue()" Mode="Raw" />
+                                <ext:Parameter Name="values" Value="#{SkillsForm}.getForm().getValues(false, false, false, true)" Mode="Raw" Encode="true" />
                             </ExtraParams>
                         </Click>
                     </DirectEvents>

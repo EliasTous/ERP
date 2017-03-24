@@ -63,6 +63,8 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                 if (string.IsNullOrEmpty(Request.QueryString["employeeId"]))
                     X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorOperation).Show();
                 CurrentEmployee.Text = Request.QueryString["employeeId"];
+                dateToColumn.Format = _systemService.SessionHelper.GetDateformat();
+                dateFromColumn.Format = _systemService.SessionHelper.GetDateformat();
 
             }
 
@@ -119,14 +121,14 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             {
                 case "imgEdit":
                     //Step 1 : get the object from the Web Service 
-                    EmployeeDocument entity = GetById(id.ToString());
+                    EmployeeCertificate entity = GetById(id.ToString());
                     //Step 2 : call setvalues with the retrieved object
-                    this.EditDocumentForm.SetValues(entity);
-                    FillDocumentTypes();
-                    dtId.Select(entity.dtId.ToString());
+                    this.SkillsForm.SetValues(entity);
+                    FillCertificateLevels();
+                    clId.Select(entity.clId.ToString());
 
-                    this.EditDocumentWindow.Title = Resources.Common.EditWindowsTitle;
-                    this.EditDocumentWindow.Show();
+                    this.EditSkillWindow.Title = Resources.Common.EditWindowsTitle;
+                    this.EditSkillWindow.Show();
                     break;
 
                 case "imgDelete":
@@ -135,7 +137,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                         Yes = new MessageBoxButtonConfig
                         {
                             //We are call a direct request metho for deleting a record
-                            Handler = String.Format("App.direct.DeleteDocument({0})", id),
+                            Handler = String.Format("App.direct.DeleteSkill({0})", id),
                             Text = Resources.Common.Yes
                         },
                         No = new MessageBoxButtonConfig
@@ -146,111 +148,38 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     }).Show();
                     break;
 
-                case "imgAttach":
-                    DownloadFile(path);
-
-                    //Here will show up a winow relatice to attachement depending on the case we are working on
-                    break;
                 default:
                     break;
             }
 
 
         }
-        [DirectMethod]
-        public void DownloadFile(string url)
-        {
-            Stream stream = null;
-
-            //This controls how many bytes to read at a time and send to the client
-            int bytesToRead = 10000;
-
-            // Buffer to read bytes in chunk size specified above
-            byte[] buffer = new Byte[bytesToRead];
-
-            // The number of bytes read
-            try
-            {
-                //Create a WebRequest to get the file
-                HttpWebRequest fileReq = (HttpWebRequest)HttpWebRequest.Create(url);
-
-                //Create a response for this request
-                HttpWebResponse fileResp = (HttpWebResponse)fileReq.GetResponse();
-
-                if (fileReq.ContentLength > 0)
-                    fileResp.ContentLength = fileReq.ContentLength;
-
-                //Get the Stream returned from the response
-                stream = fileResp.GetResponseStream();
-
-                // prepare the response to the client. resp is the client Response
-                var resp = HttpContext.Current.Response;
-
-                //Indicate the type of data being sent
-                resp.ContentType = "application/octet-stream";
-                string[] segments = url.Split('/');
-                string fileName = segments[segments.Length - 1];
-                //Name the file 
-                resp.AddHeader("Content-Disposition", "attachment; filename=\"" + fileName + "\"");
-                resp.AddHeader("Content-Length", fileResp.ContentLength.ToString());
-
-                int length;
-                do
-                {
-                    // Verify that the client is connected.
-                    if (resp.IsClientConnected)
-                    {
-                        // Read data into the buffer.
-                        length = stream.Read(buffer, 0, bytesToRead);
-
-                        // and write it out to the response's output stream
-                        resp.OutputStream.Write(buffer, 0, length);
-
-                        // Flush the data
-
-
-                        //Clear the buffer
-                        buffer = new Byte[bytesToRead];
-                    }
-                    else
-                    {
-                        // cancel the download if client has disconnected
-                        length = -1;
-                    }
-                } while (length > 0); //Repeat until no data is read
-            }
-            finally
-            {
-                if (stream != null)
-                {
-                    //Close the input stream
-                    stream.Close();
-                }
-            }
-        }
+  
 
         /// <summary>
         /// This direct method will be called after confirming the delete
         /// </summary>
         /// <param name="index">the ID of the object to delete</param>
         [DirectMethod]
-        public void DeleteDocument(string index)
+        public void DeleteSkill(string index)
         {
             try
             {
                 //Step 1 Code to delete the object from the database 
-                EmployeeDocument n = new EmployeeDocument();
+                EmployeeCertificate n = new EmployeeCertificate();
                 n.recordId = index;
-                n.dtId = 0;
+                n.clId = 0;
                 n.employeeId = Convert.ToInt32(CurrentEmployee.Text);
-                n.expiryDate = null;
-                n.remarks = "";
-                n.documentRef = "";
+                n.dateFrom = DateTime.Now;
+                n.dateTo = DateTime.Now;
+                n.grade = 0;
+                n.institution = "";
+                
 
 
-                PostRequest<EmployeeDocument> req = new PostRequest<EmployeeDocument>();
+                PostRequest<EmployeeCertificate> req = new PostRequest<EmployeeCertificate>();
                 req.entity = n;
-                PostResponse<EmployeeDocument> res = _employeeService.ChildDelete<EmployeeDocument>(req);
+                PostResponse<EmployeeCertificate> res = _employeeService.ChildDelete<EmployeeCertificate>(req);
                 if (!res.Success)
                 {
                     //Show an error saving...
@@ -261,7 +190,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                 else
                 {
                     //Step 2 :  remove the object from the store
-                    employeeDocumentsStore.Remove(index);
+                    skillStore.Remove(index);
 
                     //Step 3 : Showing a notification for the user 
                     Notification.Show(new NotificationConfig
@@ -310,15 +239,15 @@ namespace AionHR.Web.UI.Forms.EmployeePages
         {
 
             //Reset all values of the relative object
-            EditDocumentForm.Reset();
-            this.EditDocumentWindow.Title = Resources.Common.AddNewRecord;
-            FillDocumentTypes();
+            SkillsForm.Reset();
+            this.EditSkillWindow.Title = Resources.Common.AddNewRecord;
+            FillCertificateLevels();
 
-            this.EditDocumentWindow.Show();
+            this.EditSkillWindow.Show();
         }
 
 
-        protected void employeeDocumentsStore_RefreshData(object sender, StoreReadDataEventArgs e)
+        protected void skillsStore_RefreshData(object sender, StoreReadDataEventArgs e)
         {
 
             //GEtting the filter from the page
@@ -333,16 +262,16 @@ namespace AionHR.Web.UI.Forms.EmployeePages
 
             EmployeeDocumentsListRequest request = new EmployeeDocumentsListRequest();
             request.EmployeeId = Convert.ToInt32(CurrentEmployee.Text);
-            ListResponse<EmployeeDocument> documents = _employeeService.ChildGetAll<EmployeeDocument>(request);
+            ListResponse<EmployeeCertificate> documents = _employeeService.ChildGetAll<EmployeeCertificate>(request);
             if (!documents.Success)
             {
                 X.Msg.Alert(Resources.Common.Error, documents.Summary).Show();
                 return;
             }
-            this.employeeDocumentsStore.DataSource = documents.Items;
+            this.skillStore.DataSource = documents.Items;
             e.Total = documents.count;
 
-            this.employeeDocumentsStore.DataBind();
+            this.skillStore.DataBind();
         }
 
 
@@ -355,12 +284,13 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             string id = e.ExtraParams["id"];
 
             string obj = e.ExtraParams["values"];
-            EmployeeDocument b = JsonConvert.DeserializeObject<EmployeeDocument>(obj);
+            EmployeeCertificate b = JsonConvert.DeserializeObject<EmployeeCertificate>(obj);
             b.employeeId = Convert.ToInt32(CurrentEmployee.Text);
             b.recordId = id;
             // Define the object to add or edit as null
-            b.dtName = dtId.SelectedItem.Text;
-            b.expiryDate = new DateTime(b.expiryDate.Value.Year, b.expiryDate.Value.Month, b.expiryDate.Value.Day, 14, 0, 0);
+            b.clName = clId.SelectedItem.Text;
+            b.dateFrom = new DateTime(b.dateFrom.Year, b.dateFrom.Month, b.dateFrom.Day, 14, 0, 0);
+            b.dateTo = new DateTime(b.dateTo.Year, b.dateTo.Month, b.dateTo.Day, 14, 0, 0);
 
             if (string.IsNullOrEmpty(id))
             {
@@ -368,29 +298,10 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                 try
                 {
                     //New Mode
-                    EmployeeDocumentAddOrUpdateRequest request = new EmployeeDocumentAddOrUpdateRequest();
+                    PostRequest<EmployeeCertificate> request = new PostRequest<EmployeeCertificate>();
+                    request.entity = b;
 
-                    byte[] fileData = null;
-                    if (documentFile.PostedFile != null && documentFile.PostedFile.ContentLength > 0)
-                    {
-                        //using (var binaryReader = new BinaryReader(picturePath.PostedFile.InputStream))
-                        //{
-                        //    fileData = binaryReader.ReadBytes(picturePath.PostedFile.ContentLength);
-                        //}
-                        fileData = new byte[documentFile.PostedFile.ContentLength];
-                        fileData = documentFile.FileBytes;
-                        request.fileName = documentFile.PostedFile.FileName;
-                        request.fileData = fileData;
-
-                    }
-                    else
-                    {
-                        request.fileData = fileData;
-                        request.fileName = "";
-                    }
-                    request.documentData = b;
-
-                    PostResponse<EmployeeDocument> r = _employeeService.AddOrUpdateEmployeeDocument(request);
+                    PostResponse<EmployeeCertificate> r = _employeeService.ChildAddOrUpdate< EmployeeCertificate>(request);
                     b.recordId = r.recordId;
 
 
@@ -404,9 +315,9 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     }
                     else
                     {
-                        EmployeeDocument insertedEntity = GetById(b.recordId);
+                       
                         //Add this record to the store 
-                        this.employeeDocumentsStore.Insert(0, insertedEntity);
+                        this.skillStore.Insert(0, b);
 
                         //Display successful notification
                         Notification.Show(new NotificationConfig
@@ -416,8 +327,8 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                             Html = Resources.Common.RecordSavingSucc
                         });
 
-                        this.EditDocumentWindow.Close();
-                        RowSelectionModel sm = this.employeeDocumentsGrid.GetSelectionModel() as RowSelectionModel;
+                        this.EditSkillWindow.Close();
+                        RowSelectionModel sm = this.skillsGrid.GetSelectionModel() as RowSelectionModel;
                         sm.DeselectAll();
                         sm.Select(b.recordId.ToString());
 
@@ -441,33 +352,12 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                 try
                 {
                     int index = Convert.ToInt32(id);//getting the id of the record
-                    EmployeeDocumentAddOrUpdateRequest request = new EmployeeDocumentAddOrUpdateRequest();
-
-                    byte[] fileData = null;
-                    if (documentFile.HasFile && documentFile.PostedFile.ContentLength > 0)
-                    {
-                        //using (var binaryReader = new BinaryReader(picturePath.PostedFile.InputStream))
-                        // {
-                        //    fileData = binaryReader.ReadBytes(picturePath.PostedFile.ContentLength);
-                        // }
-                        fileData = new byte[documentFile.PostedFile.ContentLength];
-                        fileData = documentFile.FileBytes;
-                        request.fileName = documentFile.PostedFile.FileName;
-                        request.fileData = fileData;
+                    PostRequest<EmployeeCertificate> request = new PostRequest<EmployeeCertificate>();
+                    request.entity = b; 
 
 
 
-                    }
-                    else
-                    {
-                        request.fileData = fileData;
-                        request.fileName = "";
-                    }
-                    request.documentData = b;
-
-
-
-                    PostResponse<EmployeeDocument> r = _employeeService.AddOrUpdateEmployeeDocument(request);
+                    PostResponse<EmployeeCertificate> r = _employeeService.ChildAddOrUpdate<EmployeeCertificate>(request);
 
 
                     //Step 3 :  Check if request fails
@@ -480,12 +370,12 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     else
                     {
 
-                        EmployeeDocument updated = GetById(b.recordId);
-                        ModelProxy record = this.employeeDocumentsStore.GetById(index);
+                        
+                        ModelProxy record = this.skillStore.GetById(index);
 
-                        EditDocumentForm.UpdateRecord(record);
-                        record.Set("dtName", updated.dtName);
-                        record.Set("fileUrl", updated.fileUrl);
+                        SkillsForm.UpdateRecord(record);
+                        record.Set("clName", b.clName);
+                        
                         record.Commit();
                         Notification.Show(new NotificationConfig
                         {
@@ -493,7 +383,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                             Icon = Icon.Information,
                             Html = Resources.Common.RecordUpdatedSucc
                         });
-                        this.EditDocumentWindow.Close();
+                        this.EditSkillWindow.Close();
 
 
                     }
@@ -518,34 +408,34 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             else return "1";
         }
 
-        private void FillDocumentTypes()
+        private void FillCertificateLevels()
         {
             ListRequest documentTypes = new ListRequest();
-            ListResponse<DocumentType> resp = _employeeService.ChildGetAll<DocumentType>(documentTypes);
+            ListResponse<CertificateLevel> resp = _employeeService.ChildGetAll<CertificateLevel>(documentTypes);
             if (!resp.Success)
             {
                 X.Msg.Alert(Resources.Common.Error, resp.Summary).Show();
                 return;
             }
-            dtStore.DataSource = resp.Items;
-            dtStore.DataBind();
+            clStore.DataSource = resp.Items;
+            clStore.DataBind();
 
         }
 
-        protected void addType(object sender, DirectEventArgs e)
+        protected void addCl(object sender, DirectEventArgs e)
         {
-            DocumentType dept = new DocumentType();
-            dept.name = dtId.Text;
+            CertificateLevel dept = new CertificateLevel();
+            dept.name = clId.Text;
 
-            PostRequest<DocumentType> depReq = new PostRequest<DocumentType>();
+            PostRequest<CertificateLevel> depReq = new PostRequest<CertificateLevel>();
             depReq.entity = dept;
 
-            PostResponse<DocumentType> response = _employeeService.ChildAddOrUpdate<DocumentType>(depReq);
+            PostResponse<CertificateLevel> response = _employeeService.ChildAddOrUpdate<CertificateLevel>(depReq);
             if (response.Success)
             {
                 dept.recordId = response.recordId;
-                FillDocumentTypes();
-                dtId.Select(response.recordId);
+                FillCertificateLevels();
+                clId.Select(response.recordId);
             }
             else
             {
@@ -556,11 +446,11 @@ namespace AionHR.Web.UI.Forms.EmployeePages
 
         }
 
-        private EmployeeDocument GetById(string id)
+        private EmployeeCertificate GetById(string id)
         {
             RecordRequest r = new RecordRequest();
             r.RecordID = id.ToString();
-            RecordResponse<EmployeeDocument> response = _employeeService.ChildGetRecord<EmployeeDocument>(r);
+            RecordResponse<EmployeeCertificate> response = _employeeService.ChildGetRecord<EmployeeCertificate>(r);
             if (!response.Success)
             {
                 X.MessageBox.ButtonText.Ok = Resources.Common.Ok;

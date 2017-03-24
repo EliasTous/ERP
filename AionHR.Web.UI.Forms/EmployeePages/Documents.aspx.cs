@@ -160,6 +160,9 @@ namespace AionHR.Web.UI.Forms.EmployeePages
         [DirectMethod]
         public void DownloadFile(string url)
         {
+            if (string.IsNullOrEmpty(url))
+                return;
+
             Stream stream = null;
 
             //This controls how many bytes to read at a time and send to the client
