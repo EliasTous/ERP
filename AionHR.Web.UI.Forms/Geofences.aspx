@@ -18,16 +18,16 @@
     <script type="text/javascript">
         var circle;
         var rectangle;
-     
+
         function initMap() {
-            
+
             var map = new google.maps.Map(document.getElementById('map'), {
                 center: { lat: -34.397, lng: 150.644 },
                 zoom: 8
             });
-            
+
             var drawingManager = new google.maps.drawing.DrawingManager({
-                
+
                 drawingControl: true,
                 drawingControlOptions: {
                     position: google.maps.ControlPosition.TOP_CENTER,
@@ -75,7 +75,7 @@
             //        drawingControl: true
             //    });
             //};
-            
+
         }
     </script>
  
@@ -303,8 +303,8 @@
             Icon="PageEdit"
             Title="<%$ Resources:EditWindowsTitle %>"
             Width="450"
-            Height="330"
-            AutoShow="false"
+            Height="470"
+            AutoShow="false" 
             Modal="true"
             Hidden="true"
             Layout="Fit">
@@ -355,12 +355,15 @@
                                                     </Listeners>
                                                 </ext:ComboBox>
 
-                                <ext:Panel runat="server" Layout="VBoxLayout" Height="500" >
-                                    <Content>
-                                        <div id="map" style=" height: 100%;"></div>
-                                        
-                                        
+                                <ext:Panel runat="server" Layout="FormLayout" Height="500" >
+                                    <Items>
+                                        <ext:Container runat="server">
+                                        <Content>
+                                        <div id="map" style=" height: 280px;"></div>
                                     </Content>
+                                        </ext:Container>
+                                    </Items>
+                                  
                                     <Listeners>
                                         <AfterRender Handler="initMap()" />
                                     </Listeners>
