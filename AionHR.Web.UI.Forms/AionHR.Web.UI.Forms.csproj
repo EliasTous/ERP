@@ -173,6 +173,7 @@
     <Content Include="Scripts\fileinput.js" />
     <Content Include="Scripts\fileinput.min.js" />
     <Content Include="Scripts\Geofences.js" />
+    <Content Include="Scripts\Legals.js" />
     <Content Include="Scripts\locales\ar.js" />
     <Content Include="Scripts\locales\bg.js" />
     <Content Include="Scripts\locales\ca.js" />
@@ -815,6 +816,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Uploads\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="EmployeePages\App_LocalResources\Legal.aspx.resx" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -45,7 +45,7 @@
 
                         <ext:ModelField Name="recordId" />                       
                         <ext:ModelField Name="name" />
-                        <ext:ModelField Name="intName" />
+                        <%--<ext:ModelField Name="intName" />--%>
                     </Fields>
                 </ext:Model>
             </Model>
@@ -255,7 +255,7 @@
                             <Items>
                                 <ext:TextField ID="recordId" runat="server"  Name="recordId"  Hidden="true"/>
                                 <ext:TextField ID="name" runat="server" FieldLabel="<%$ Resources:FieldName%>" Name="name"   AllowBlank="false"/>
-                                <ext:TextField ID="intName" runat="server" FieldLabel="<%$ Resources:IntName%>" Name="intName"   AllowBlank="false"/>
+                                <%--<ext:TextField ID="intName" runat="server" FieldLabel="<%$ Resources:IntName%>" Name="intName"   AllowBlank="false"/>--%>
                             </Items>
 
                         </ext:FormPanel>

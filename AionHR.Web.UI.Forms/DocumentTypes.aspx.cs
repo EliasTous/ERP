@@ -178,7 +178,7 @@ namespace AionHR.Web.UI.Forms
                 DocumentType s = new DocumentType();
                 s.recordId = index;
                 s.name = "";
-                s.intName = "";
+                //s.intName = "";
                 
                 PostRequest<DocumentType> req = new PostRequest<DocumentType>();
                 req.entity = s;

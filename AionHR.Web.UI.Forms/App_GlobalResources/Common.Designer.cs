@@ -889,6 +889,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Legals.
+        /// </summary>
+        internal static string Legals {
+            get {
+                return ResourceManager.GetString("Legals", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Live Search.
         /// </summary>
         internal static string LiveSearch {
