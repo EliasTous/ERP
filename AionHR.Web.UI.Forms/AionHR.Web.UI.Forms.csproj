@@ -101,6 +101,8 @@
     <Content Include="CSS\Calendars.css" />
     <Content Include="CSS\Common.css" />
     <Content Include="CSS\Employees.css" />
+    <Content Include="CSS\fileinput.css" />
+    <Content Include="CSS\fileinput.min.css" />
     <Content Include="CSS\HeaderAR.css" />
     <Content Include="CSS\HeaderInsideAR.css" />
     <Content Include="CSS\HeaderInside.css" />
@@ -168,7 +170,43 @@
     <Content Include="Scripts\CertificateLevels.js" />
     <Content Include="Scripts\Documents.js" />
     <Content Include="Scripts\DocumentTypes.js" />
+    <Content Include="Scripts\fileinput.js" />
+    <Content Include="Scripts\fileinput.min.js" />
     <Content Include="Scripts\Geofences.js" />
+    <Content Include="Scripts\locales\ar.js" />
+    <Content Include="Scripts\locales\bg.js" />
+    <Content Include="Scripts\locales\ca.js" />
+    <Content Include="Scripts\locales\cr.js" />
+    <Content Include="Scripts\locales\cz.js" />
+    <Content Include="Scripts\locales\da.js" />
+    <Content Include="Scripts\locales\de.js" />
+    <Content Include="Scripts\locales\el.js" />
+    <Content Include="Scripts\locales\es.js" />
+    <Content Include="Scripts\locales\fa.js" />
+    <Content Include="Scripts\locales\fi.js" />
+    <Content Include="Scripts\locales\fr.js" />
+    <Content Include="Scripts\locales\hu.js" />
+    <Content Include="Scripts\locales\id.js" />
+    <Content Include="Scripts\locales\it.js" />
+    <Content Include="Scripts\locales\ja.js" />
+    <Content Include="Scripts\locales\kr.js" />
+    <Content Include="Scripts\locales\kz.js" />
+    <Content Include="Scripts\locales\LANG.js" />
+    <Content Include="Scripts\locales\nl.js" />
+    <Content Include="Scripts\locales\pl.js" />
+    <Content Include="Scripts\locales\pt-BR.js" />
+    <Content Include="Scripts\locales\pt.js" />
+    <Content Include="Scripts\locales\ro.js" />
+    <Content Include="Scripts\locales\ru.js" />
+    <Content Include="Scripts\locales\sk.js" />
+    <Content Include="Scripts\locales\sl.js" />
+    <Content Include="Scripts\locales\sv.js" />
+    <Content Include="Scripts\locales\th.js" />
+    <Content Include="Scripts\locales\tr.js" />
+    <Content Include="Scripts\locales\uk.js" />
+    <Content Include="Scripts\locales\vi.js" />
+    <Content Include="Scripts\locales\zh-TW.js" />
+    <Content Include="Scripts\locales\zh.js" />
     <Content Include="Scripts\MediaCategories.js" />
     <Content Include="Scripts\Notes.js" />
     <Content Include="Scripts\LeaveCalendar.js" />
@@ -183,6 +221,12 @@
     <Content Include="Scripts\moment.js" />
     <Content Include="Scripts\Dashboard.js" />
     <Content Include="Scripts\EmployeeProfile.js" />
+    <Content Include="Scripts\plugins\canvas-to-blob.js" />
+    <Content Include="Scripts\plugins\canvas-to-blob.min.js" />
+    <Content Include="Scripts\plugins\purify.js" />
+    <Content Include="Scripts\plugins\purify.min.js" />
+    <Content Include="Scripts\plugins\sortable.js" />
+    <Content Include="Scripts\plugins\sortable.min.js" />
     <Content Include="Scripts\SalaryChangeReasons.js" />
     <Content Include="Scripts\Skills.js" />
     <Content Include="Scripts\Sponsors.js" />
@@ -193,6 +237,7 @@
     <Content Include="TimeAttendanceView.aspx" />
     <Content Include="TrainingTypes.aspx" />
     <Content Include="WorkingCalendars.aspx" />
+    <Content Include="CaseAttachmentsUploader.ashx" />
     <None Include="Properties\PublishProfiles\local.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -277,6 +322,9 @@
     </Compile>
     <Compile Include="Branches.aspx.designer.cs">
       <DependentUpon>Branches.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CaseAttachmentsUploader.ashx.cs">
+      <DependentUpon>CaseAttachmentsUploader.ashx</DependentUpon>
     </Compile>
     <Compile Include="Cases.aspx.cs">
       <DependentUpon>Cases.aspx</DependentUpon>
@@ -764,6 +812,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_LocalResources\MediaCategories.aspx.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Uploads\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -14,8 +14,44 @@
     <script type="text/javascript" src="Scripts/Cases.js?id=7" ></script>
     <script type="text/javascript" src="Scripts/common.js" ></script>
       <script type="text/javascript" src="Scripts/moment.js" ></script>
-   
- 
+   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/>
+<link href="CSS/fileinput.min.css" media="all" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<!-- canvas-to-blob.min.js is only needed if you wish to resize images before upload.
+     This must be loaded before fileinput.min.js -->
+<script type="text/javascript" src="Scripts/plugins/canvas-to-blob.min.js" ></script>
+<!-- sortable.min.js is only needed if you wish to sort / rearrange files in initial preview.
+     This must be loaded before fileinput.min.js -->
+<script type="text/javascript" src="Scripts/plugins/sortable.min.js" ></script>
+<!-- purify.min.js is only needed if you wish to purify HTML content in your preview for HTML files.
+     This must be loaded before fileinput.min.js -->
+<script type="text/javascript" src="Scripts/plugins/purify.min.js"></script>
+<!-- the main fileinput plugin file -->
+<script type="text/javascript" src="Scripts/fileinput.min.js"></script>
+<!-- bootstrap.js below is needed if you wish to zoom and view file content 
+     in a larger detailed modal dialog -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" type="text/javascript"></script>
+ <script type="text/javascript">
+     function initBootstrap()
+     {
+         $("#kv-explorer").fileinput({
+             'theme': 'explorer',
+             'uploadUrl': 'CaseAttachmentsUploader.ashx',
+             overwriteInitial: false,
+             uploadAsync:true,
+             'showUploadedThumbs': false
+           
+             
+         });
+         $('#kv-explorer-').on('filebatchuploaderror', function (event, data, msg) {
+             var form = data.form, files = data.files, extra = data.extra,
+                 response = data.response, reader = data.reader;
+             console.log('File batch upload error');
+             // get message
+             alert(msg);
+         });
+     }
+ </script>
 </head>
 <body style="background: url(Images/bg.png) repeat;" ">
     <form id="Form1" runat="server">
@@ -170,7 +206,17 @@
                                         <ext:ListItem Text="-----All-----" Value="0" />
                                     </Items>
                                 </ext:ComboBox>
-
+                                <ext:ComboBox runat="server" ID="statusPref" Editable="false" FieldLabel="<%$ Resources: FieldStatus %>"  >
+                                    <Items>
+                                        <ext:ListItem Text="<%$ Resources: All %>" Value="3"  />
+                                        <ext:ListItem Text="<%$ Resources: FieldPending %>" Value="1" />
+                                        <ext:ListItem Text="<%$ Resources: FieldOpen %>" Value="0" />
+                                        <ext:ListItem Text="<%$ Resources: FieldClosed %>" Value="2" />
+                                    </Items>
+                                    <Listeners>
+                                        <Change Handler="App.Store1.reload()" />
+                                    </Listeners>
+                                </ext:ComboBox>
 
 
                             
@@ -742,7 +788,35 @@
            
         </ext:Window>
 
+        <ext:Window  ID="AttachmentsWindow"
+            runat="server"
+            Icon="PageEdit"
+            Title="<%$ Resources:EditWindowsTitle %>"
+            Width="600"
+            Height="350"
+            AutoShow="false"
+            Modal="true"
+            Hidden="true"
+             Maximizable="false"
+            Resizable="false"
+             Draggable="false"
+            Layout="Fit">
+            <Items>
+                <ext:Panel runat="server" AutoScroll="true">
+                    <Content>
+                        <input id="kv-explorer" type="file" multiple>
+        
+        <br>
+        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="reset" class="btn btn-default">Reset</button>
+                    </Content>
+                    <Listeners>
+                        <AfterRender Handler="initBootstrap()" />
+                    </Listeners>
+                </ext:Panel>
 
+            </Items>
+        </ext:Window>
 
     </form>
 </body>

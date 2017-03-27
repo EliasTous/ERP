@@ -220,6 +220,15 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Store divisionStore;
         
         /// <summary>
+        /// statusPref control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.ComboBox statusPref;
+        
+        /// <summary>
         /// ColRecordId control.
         /// </summary>
         /// <remarks>
@@ -740,5 +749,14 @@ namespace AionHR.Web.UI.Forms {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.RowSelectionModel rowSelectionModel2;
+        
+        /// <summary>
+        /// AttachmentsWindow control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Window AttachmentsWindow;
     }
 }

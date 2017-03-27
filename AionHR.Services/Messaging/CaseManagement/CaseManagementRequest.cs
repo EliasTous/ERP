@@ -11,6 +11,7 @@ public class CaseManagementListRequest : ListRequest
 
     public int BranchId { get; set; }
 
+    public int Status { get; set; }
     public int DivisionId { get; set; }
 
 
@@ -23,10 +24,14 @@ public class CaseManagementListRequest : ListRequest
             parameters.Add("_departmentId", DepartmentId.ToString());
             parameters.Add("_branchId", BranchId.ToString());
             parameters.Add("_divisionId", DivisionId.ToString());
+            parameters.Add("_status", Status.ToString());
+            parameters.Add("_sortBy", SortBy.ToString());
 
             return parameters;
         }
     }
+
+    public string SortBy { get; set; }
 }
 
 

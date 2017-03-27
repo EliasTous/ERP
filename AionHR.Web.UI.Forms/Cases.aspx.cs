@@ -123,7 +123,7 @@ namespace AionHR.Web.UI.Forms
                 FillBranch();
                 FillDepartment();
                 FillDivision();
-
+                statusPref.Select(0);
 
 
             }
@@ -560,11 +560,20 @@ namespace AionHR.Web.UI.Forms
             }
             else
             {
-                req.DivisionId = 0;
+                req.Status = 0;
+            }
+            if (!string.IsNullOrEmpty(statusPref.Text) && statusPref.Value.ToString() != "")
+            {
+                req.Status = Convert.ToInt32(statusPref.Value);
+            }
+            else
+            {
+                req.Status = 0;
             }
             req.Size = "30";
             req.StartAt = "1";
             req.Filter = "";
+            req.SortBy = "employeeId";
             req.EmployeeId = 0;
             return req;
         }
@@ -806,7 +815,7 @@ namespace AionHR.Web.UI.Forms
             {
                 if (item.ID == "BasicInfoTab")
                     continue;
-                item.Disabled = !isEnable;
+                item.Disabled = false;
             }
             
         }
@@ -834,18 +843,7 @@ namespace AionHR.Web.UI.Forms
 
         protected void AddAttachments(object sender, DirectEventArgs e)
         {
-            caseCommentStore.DataSource = new List<CaseComment>();
-            caseCommentStore.DataBind();
-            //Reset all values of the relative object
-            BasicInfoTab.Reset();
-            closedDate.SelectedDate = DateTime.Now;
-
-            panelRecordDetails.ActiveIndex = 0;
-            SetTabPanelEnable(false);
-            this.EditRecordWindow.Title = Resources.Common.AddNewRecord;
-
-
-            this.EditRecordWindow.Show();
+            AttachmentsWindow.Show();
         }
         protected void PoPuPAttachement(object sender, DirectEventArgs e)
         {
