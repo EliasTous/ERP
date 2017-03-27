@@ -126,13 +126,23 @@ namespace AionHR.Web.UI.Forms
 
         }
 
+        private void FillGeofenceOnMap(Geofence f)
+        {
+            if (f.shape == 1)
+                X.Call("AddCircle",f.lat,f.lon,f.radius);
+            else
+            {
+                X.Call("AddRectangle", f.lat, f.lon, f.lat2,f.lon2);
+            }
+        }
+
         protected void PoPuP(object sender, DirectEventArgs e)
         {
 
 
             string id = e.ExtraParams["id"];
             string type = e.ExtraParams["type"];
-
+            X.Call("clearMap");
             switch (type)
             {
                 case "ColName":
@@ -140,6 +150,7 @@ namespace AionHR.Web.UI.Forms
                     RecordRequest r = new RecordRequest();
                     r.RecordID = id;
                     FillBranch();
+                    
                     RecordResponse<Geofence> response = _timeAttendanceService.ChildGetRecord<Geofence>(r);
                     if (!response.Success)
                     {
@@ -147,6 +158,7 @@ namespace AionHR.Web.UI.Forms
                         X.Msg.Alert(Resources.Common.Error, response.Summary).Show();
                         return;
                     }
+                    FillGeofenceOnMap(response.result);
                     //Step 2 : call setvalues with the retrieved object
                     this.BasicInfoTab.SetValues(response.result);
                     //recordId.Text = id;
@@ -199,6 +211,12 @@ namespace AionHR.Web.UI.Forms
                 Geofence s = new Geofence();
                 s.recordId = index;
                 s.branchId = 0;
+                s.lat2 = 0;
+                s.lat  = s.lon = 0;
+                s.lon2 = 0;
+                s.radius = 0;
+                s.shape = 0;
+                s.name = "";
                 PostRequest<Geofence> req = new PostRequest<Geofence>();
                 req.entity = s;
                 PostResponse<Geofence> r = _timeAttendanceService.ChildDelete<Geofence>(req);
@@ -316,8 +334,8 @@ namespace AionHR.Web.UI.Forms
             BasicInfoTab.Reset();
             FillBranch();
             this.EditRecordWindow.Title = Resources.Common.AddNewRecord;
-          
 
+            X.Call("clearMap");
             this.EditRecordWindow.Show();
         }
 
@@ -356,8 +374,27 @@ namespace AionHR.Web.UI.Forms
 
             string obj = e.ExtraParams["values"];
             Geofence b = JsonConvert.DeserializeObject<Geofence>(obj);
+            if (branchId.SelectedItem != null)
+                b.branchName = branchId.SelectedItem.Text;
 
             string id = e.ExtraParams["id"];
+
+            b.shape = (short)(e.ExtraParams["isCircle"] == "true"?1:0);
+            b.lat = Convert.ToDouble(e.ExtraParams["lat1"]);
+            b.lon = Convert.ToDouble(e.ExtraParams["lon1"]);
+            if (b.shape == 1)
+            {
+                b.radius = Convert.ToDouble(e.ExtraParams["radius"]);
+                b.lat2 = 0;
+                b.lon2 = 0;
+            }
+            else
+            {
+                b.lat2 = Convert.ToDouble(e.ExtraParams["lat2"]);
+                b.lon2 = Convert.ToDouble(e.ExtraParams["lon2"]);
+                b.radius = 0;
+            }
+           
             // Define the object to add or edit as null
 
             if (string.IsNullOrEmpty(id))
@@ -439,6 +476,7 @@ namespace AionHR.Web.UI.Forms
 
                         ModelProxy record = this.Store1.GetById(id);
                         BasicInfoTab.UpdateRecord(record);
+                        record.Set("branchName", b.branchName);
                         record.Commit();
                         Notification.Show(new NotificationConfig
                         {

@@ -357,5 +357,101 @@ namespace AionHR.Infrastructure.WebService
                 return response;
             }
         }
+
+        public PostWebServiceResponse PostAsyncWithMultipleAttachments<T>(T item, List<string> fileNames, List<byte[]> buffers)
+        {
+            PostWebServiceResponse response = new PostWebServiceResponse();
+            try
+            {
+                //  HttpClient client = new HttpClient();
+
+                //Defining the unique boundary
+                string boundary = "----WebKitFormBoundary" + DateTime.Now.Ticks.ToString("x");
+                WebRequest req = HttpWebRequest.Create(RequestUrl);
+                if (Headers.Count > 0)
+                    BuildHeaders(req);
+                req.Method = MethodType;//Post
+                req.ContentType = "multipart/form-data; boundary=" + boundary;
+                Stream stream = req.GetRequestStream();
+
+
+                //Body need to be extended for each part of the request 
+                // Add header for JSON part
+
+
+                // Body += "Content-Disposition: form-data; name='entity'\r\n";//entity is relative to the object we r sending
+                //Body += "Content-Type: application/json\r\n\r\n";//defining the content type for this part of request
+                // Add document object data in JSON
+                //Body += JsonConvert.SerializeObject(item);
+                Body += "\r\n--" + boundary + "\r\n";
+
+
+                // Body += "Content-Disposition: form-data; name='record'\r\n";
+                //  Body += "Content-Type: application/json\r\n\r\n";
+
+                Body += string.Format("Content-Disposition: form-data; name=\"{0}\"\r\n\r\n", "record");
+
+                string jsonString = JsonConvert.SerializeObject(item);
+                Body += jsonString;
+
+                //Finalized the json part
+
+
+
+
+
+                for(int i=0;i<buffers.Count; i++)
+                {
+                    Body += "\r\n--" + boundary + "\r\n";
+                    Body += "Content-Disposition: form-data; name=\"picture\"; filename=\"" + fileNames[i] + "\"\r\n";
+                    Body += "Content-Type: application/octet-stream\r\n\r\n";
+
+                }
+
+                
+
+                //Now we need  to write the headers to the request 
+                // Add header data to request
+                byte[] data = System.Text.Encoding.UTF8.GetBytes(Body);
+                stream.Write(data, 0, data.Length);
+                for (int i = 0; i < buffers.Count; i++)
+                {
+                    stream.Write(buffers[i], 0, buffers[i].Length);
+                }
+                // Add binary file to request
+
+               
+                // Finalizing by adding the footer of the request or what we call trailer
+                byte[] trailer = System.Text.Encoding.ASCII.GetBytes("\r\n--" + boundary + "--\r\n");
+                stream.Write(trailer, 0, trailer.Length);
+                stream.Close();
+
+
+                // Do the post and get the response.
+
+                var r = req.GetResponse();
+                Stream s = r.GetResponseStream();
+                StreamReader reader = new StreamReader(s, true);
+                string x = reader.ReadToEnd();
+
+                var settings = new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore };
+                if (Resolver != null)
+                {
+                    settings.ContractResolver = Resolver;
+                }
+
+
+                response = JsonConvert.DeserializeObject<PostWebServiceResponse>(x, settings);
+                return response;
+            }
+            catch (Exception ex)
+            {
+
+                string exception = BuildLogMessage() + " : " + ex.Message;
+                LoggingFactory.GetLogger().Log(exception);
+                response.statusId = "0";
+                return response;
+            }
+        }
     }
 }

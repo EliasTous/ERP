@@ -18,15 +18,16 @@
     <script type="text/javascript">
         var circle;
         var rectangle;
-
+        var map;
+        var drawingManager;
         function initMap() {
 
-            var map = new google.maps.Map(document.getElementById('map'), {
+            map = new google.maps.Map(document.getElementById('map'), {
                 center: { lat: -34.397, lng: 150.644 },
-                zoom: 8
+                zoom: 12
             });
 
-            var drawingManager = new google.maps.drawing.DrawingManager({
+            drawingManager = new google.maps.drawing.DrawingManager({
 
                 drawingControl: true,
                 drawingControlOptions: {
@@ -35,13 +36,22 @@
                 },
 
                 circleOptions: {
-                    fillColor: '#ffff00',
-                    fillOpacity: 1,
-                    strokeWeight: 5,
+                   
+                    
+                    strokeWeight: 2,
                     clickable: false,
                     editable: true,
-                    zIndex: 1
-                }
+                    zIndex: 1,
+                    draggable:true
+                },
+                rectangleOptions: {
+                
+                
+                strokeWeight: 2,
+                draggable:true,
+                editable: true,
+                zIndex: 1
+            }
             });
             drawingManager.setMap(map);
 
@@ -58,25 +68,166 @@
                 drawingManager.setOptions({
                     drawingControl: false
                 });
+                document.getElementById("delete").removeAttribute('disabled');
+                    
             }
 
         );
-            //document.getElementById("delete").onclick = function () {
-            //    if (rectangle != null) {
-            //        rectangle.setMap(null);
-            //        rectangle = null;
-            //    }
-            //    if (circle != null) {
-            //        circle.setMap(null);
-            //        circle = null;
-            //    }
+            document.getElementById("delete").onclick = function () {
+                if (rectangle != null) {
+                    rectangle.setMap(null);
+                    rectangle = null;
+                }
+                if (circle != null) {
+                    circle.setMap(null);
+                    circle = null;
+                }
 
-            //    drawingManager.setOptions({
-            //        drawingControl: true
-            //    });
-            //};
+                drawingManager.setOptions({
+                    drawingControl: true
+                });
+                this.disabled = 'disabled';
+            };
+            
+            if (circle != null || rectangle != null)
+            {
+                drawingManager.setOptions({
+                    drawingControl: false
+                });
+                document.getElementById("delete").removeAttribute('disabled');
+            }
+            
+            
 
         }
+        function dump(obj) {
+            var out = '';
+            for (var i in obj) {
+                out += i + ": " + obj[i] + "\n";
+
+
+            }
+            return out;
+        }
+      
+        function getCircleJson()
+        {
+            
+            if (circle == null) {
+             
+                return null;
+            }
+            return { lat: circle.center.lat(), lon: circle.center.lng(), radius: circle.radius };
+        }
+        function clearMap() {
+            if (circle != null) {
+                circle.setMap(null);
+                circle = null;
+            }
+            if(rectangle!=null)
+            {
+                rectangle.setMap(null);
+                rectangle = null;
+            }
+            drawingManager.setOptions({
+                drawingControl: true
+            });
+            document.getElementById("delete").disabled = 'disabled';
+        }
+        function getRectangleJson() {
+            if (rectangle == null)
+                return null;
+            
+            return { lat1: rectangle.bounds.getNorthEast().lat(), lat2: rectangle.bounds.getSouthWest().lat(), lon1: rectangle.bounds.getNorthEast().lng(), lon2: rectangle.bounds.getSouthWest().lng() };
+        }
+        function AddCircle(latitude, longitude, r)
+        {
+            rectangle = null;
+            circle = new google.maps.Circle({
+                
+                strokeOpacity:1,
+                strokeWeight: 2,
+                
+                fillOpacity: 0.35,
+              
+                center: { lat: latitude, lng: longitude },
+                map:map,
+                radius: r
+            });
+            drawingManager.setOptions({
+                drawingControl: false
+            });
+            document.getElementById("delete").removeAttribute('disabled');
+            map.setCenter(circle.center);
+
+        }
+        function AddRectangle(lat1,lon1,lat2,lon2)
+        {
+            circle = null;
+            rectangle = new google.maps.Rectangle({
+                
+                
+                strokeWeight: 2,
+                
+                
+                map:map,
+                bounds: {
+                    north: lat1,
+                    south: lat2,
+                    east: lon1,
+                    west: lon2
+                }
+            });
+            drawingManager.setOptions({
+                drawingControl: false
+            });
+            document.getElementById("delete").removeAttribute('disabled');
+            map.setCenter(rectangle.bounds.getCenter());
+        }
+
+        function isCircle()
+        {
+            return circle != null;
+        }
+        function getLat1()
+        {
+            if (isCircle())
+                return getCircleJson().lat;
+            else
+                return getRectangleJson().lat1;
+        }
+        function getLon1() {
+            if (isCircle())
+                return getCircleJson().lon;
+            else
+                return getRectangleJson().lon1;
+
+        }
+        function getLat2() {
+            if (!isCircle())
+                return getRectangleJson().lat2;
+        }
+        function getLon2() {
+            if (!isCircle())
+               
+                return getRectangleJson().lon2;
+
+        }
+        function getRadius() {
+            if (isCircle())
+
+                return getCircleJson().radius;
+
+        }
+
+        function geocodeAddress(geocoder, resultsMap) {
+            var address = document.getElementById('address').value;
+            geocoder.geocode({ 'address': address }, function (results, status) {
+                if (status === 'OK') {
+                    resultsMap.setCenter(results[0].geometry.location);
+                }
+            });
+            }
     </script>
  
 </head>
@@ -355,12 +506,14 @@
                                                     </Listeners>
                                                 </ext:ComboBox>
 
-                                <ext:Panel runat="server" Layout="FormLayout" Height="500" >
+                                <ext:Panel runat="server" Layout="FormLayout" Height="500" Width="400" >
                                     <Items>
                                         <ext:Container runat="server">
                                         <Content>
-                                        <div id="map" style=" height: 280px;"></div>
+                                        <div id="map" style=" height: 280px;width:400px;"></div>
+                                            <input type="button" id="delete" value="Clear" disabled="disabled"/>
                                     </Content>
+                                            
                                         </ext:Container>
                                     </Items>
                                   
@@ -386,6 +539,13 @@
                             <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="={#{EditRecordWindow}.body}" />
                             <ExtraParams>
                                 <ext:Parameter Name="id" Value="#{recordId}.getValue()" Mode="Raw" />
+                                
+                                <ext:Parameter Name="isCircle" Value="isCircle()" Mode="Raw" />
+                                <ext:Parameter Name="lat1" Value="getLat1()" Mode="Raw" />
+                                <ext:Parameter Name="lon1" Value="getLon1()" Mode="Raw" />
+                                <ext:Parameter Name="lat2" Value="getLat2()" Mode="Raw" />
+                                <ext:Parameter Name="lon2" Value="getLon2()" Mode="Raw" />
+                                <ext:Parameter Name="radius" Value="getRadius()" Mode="Raw" />
                                 <ext:Parameter Name="values" Value ="#{BasicInfoTab}.getForm().getValues()" Mode="Raw" Encode="true" />
                             </ExtraParams>
                         </Click>

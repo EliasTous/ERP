@@ -126,7 +126,7 @@ namespace AionHR.Web.UI.Forms
 
             int id = Convert.ToInt32(e.ExtraParams["id"]);
             string type = e.ExtraParams["type"];
-
+           
             switch (type)
             {
                 case "imgEdit":
