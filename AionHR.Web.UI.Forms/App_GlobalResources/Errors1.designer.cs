@@ -70,7 +70,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Itttts .
+        ///   Looks up a localized string similar to Authentication Error.
         /// </summary>
         internal static string Error_19005 {
             get {

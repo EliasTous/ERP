@@ -34,13 +34,7 @@
 
 
         <Items>
-            <ext:Panel runat="server"  Layout="FitLayout" DefaultAnchor="100%" >
-                                    <Items>
-                                          <ext:TextArea runat="server" ID="newNoteText" Region="North" Width="400" DefaultAnchor="100%" />
-                                
-                                    </Items>
-                                </ext:Panel>
-            <ext:Button Region="East" ID="btnAdd" Height="30" Width="40" MaxWidth="80"  runat="server" Text="<%$ Resources:Common , Add %>" Icon="Add">
+             <ext:Button Region="East" ID="btnAdd" Height="30" Width="40" MaxWidth="40"  runat="server" Text="<%$ Resources:Common , Add %>" Icon="Add">
                                   <Listeners>
                                         <Click Handler="CheckSession();" />
                                     </Listeners>                           
@@ -53,6 +47,13 @@
                                         </Click>
                                     </DirectEvents>
                                 </ext:Button>
+            <ext:Panel runat="server"  Layout="FitLayout" DefaultAnchor="100%" >
+                                    <Items>
+                                          <ext:TextArea runat="server" ID="newNoteText" Region="North" Width="400" DefaultAnchor="100%" />
+                                
+                                    </Items>
+                                </ext:Panel>
+           
                 <ext:GridPanel AutoUpdateLayout="true"
                     ID="employeementHistoryGrid" Collapsible="false"
                     runat="server"

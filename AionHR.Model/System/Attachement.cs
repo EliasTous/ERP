@@ -6,11 +6,12 @@ using System.Threading.Tasks;
 
 namespace AionHR.Model.System
 {
-    class Attachement
+   public class Attachement
     {
         public short classId { get; set; }
         public int recordId { get; set; }
         public short? seqNo { get; set; }
         public string fileName { get; set; }
+        public string url { get; set; }
     }
 }

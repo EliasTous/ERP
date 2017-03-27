@@ -1,0 +1,86 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta content="utf-8" http-equiv="encoding">
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCRQ7sZoJrjEBuIBret1gCccSwicDusM3w&libraries=drawing"></script>
+
+    <script type="text/javascript">
+        var circle;
+        var rectangle;
+
+        function initMap() {
+
+            var map = new google.maps.Map(document.getElementById('map'), {
+                center: { lat: -34.397, lng: 150.644 },
+                zoom: 8
+            });
+
+            var drawingManager = new google.maps.drawing.DrawingManager({
+
+                drawingControl: true,
+                drawingControlOptions: {
+                    position: google.maps.ControlPosition.TOP_CENTER,
+                    drawingModes: ['circle', 'rectangle']
+                },
+
+                circleOptions: {
+                    fillColor: '#ffff00',
+                    fillOpacity: 1,
+                    strokeWeight: 5,
+                    clickable: false,
+                    editable: true,
+                    zIndex: 1
+                }
+            });
+            drawingManager.setMap(map);
+
+            google.maps.event.addListener(drawingManager, 'overlaycomplete', function (e) {
+                if (e.type == google.maps.drawing.OverlayType.CIRCLE) {
+                    circle = e.overlay;
+                }
+                else {
+                    rectangle = e.overlay;
+                }
+                // Switch back to non-drawing mode after drawing a shape.
+                drawingManager.setDrawingMode(null);
+                // To hide:
+                drawingManager.setOptions({
+                    drawingControl: false
+                });
+            }
+
+        );
+            document.getElementById("delete").onclick = function () {
+                if (rectangle != null) {
+                    rectangle.setMap(null);
+                    rectangle = null;
+                }
+                if (circle != null) {
+                    circle.setMap(null);
+                    circle = null;
+                }
+
+                drawingManager.setOptions({
+                    drawingControl: true
+                });
+            };
+
+        }
+    </script>
+    <style>
+        #map {
+  height: 100%;
+}
+        html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+    </style>
+</head>
+<body onload="initMap();" >
+    <div id="map"></div>
+    <input type="button" id="delete" value="clear" />
+</body>
+</html>

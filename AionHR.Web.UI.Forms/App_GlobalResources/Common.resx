@@ -603,4 +603,7 @@
   <data name="Setup" xml:space="preserve">
     <value>Setup</value>
   </data>
+  <data name="Geofences" xml:space="preserve">
+    <value>Geofences</value>
+  </data>
 </root>

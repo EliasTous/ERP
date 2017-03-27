@@ -151,7 +151,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                 {
                     //New Mode
                     //Step 1 : Fill The object and insert in the store 
-                    EmployeeAddOrUpdateRequest request = new EmployeeAddOrUpdateRequest();
+                    PostRequestWithAttachment<Employee> request = new PostRequestWithAttachment<Employee>();
 
                     byte[] fileData = null;
                     //if (picturePath.PostedFile != null && picturePath.PostedFile.ContentLength > 0)
@@ -165,14 +165,14 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     //}
                     //else
                     //{
-                    request.imageData = fileData;
-                        request.fileName = "";
+                    request.FileData = fileData;
+                        request.FileName = "";
                     //}
-                    request.empData = b;
+                    request.entity = b;
 
 
 
-                    PostResponse<Employee> r = _employeeService.AddOrUpdateEmployeeWithPhoto(request);
+                    PostResponse<Employee> r = _employeeService.AddOrUpdateWithAttachment<Employee>(request);
                     b.recordId = r.recordId;
 
                     //check if the insert failed

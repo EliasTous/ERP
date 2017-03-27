@@ -105,27 +105,7 @@ namespace AionHR.Repository.WebService.Repositories
 
         }
 
-        public PostWebServiceResponse AddOrUpdateEmployeeWithImage(Employee emp, string imgName, byte[] imgDate,Dictionary<string,string> headers = null)
-        {
-            var request = new HTTPWebServiceRequest();
-            request.MethodType = "POST";
-            request.URL = ServiceURL + addOrRemoveEmployeeWithImageMethodName;
-            if (headers != null)
-                request.Headers = headers;
-
-            return request.PostAsyncWithBinary<Employee>(emp, imgName, imgDate);
-        }
-
-        public PostWebServiceResponse AddOrUpdateEmployeeDocument(EmployeeDocument emp, string fileName, byte[] fileData, Dictionary<string, string> headers = null)
-        {
-            var request = new HTTPWebServiceRequest();
-            request.MethodType = "POST";
-            request.URL = ServiceURL + addOrRemoveEmployeeDocumentMethodName;
-            if (headers != null)
-                request.Headers = headers;
-
-            return request.PostAsyncWithBinary<EmployeeDocument>(emp, fileName, fileData);
-        }
+  
 
     }
 }

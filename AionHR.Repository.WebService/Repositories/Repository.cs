@@ -90,6 +90,20 @@ namespace AionHR.Repository.WebService.Repositories
                 
         }
 
+        public PostWebServiceResponse AddOrUpdate(T entity,string fileName, byte[] fileData, Dictionary<string, string> Headers = null, Dictionary<string, string> QueryStringParams = null)
+        {
+            var request = new HTTPWebServiceRequest();
+            request.MethodType = "POST";
+            request.URL = ServiceURL + AddOrUpdateMethodName;
+            if (Headers != null)
+                request.Headers = Headers;
+            if (QueryStringParams != null)
+                request.QueryStringParams = QueryStringParams;
+            return request.PostAsyncWithBinary<T>(entity, fileName, fileData);
+
+
+        }
+
         public BlankWebServiceResponse Delete( Dictionary<string, string> Headers = null, Dictionary<string, string> QueryStringParams = null)
         {
             var request = new HTTPWebServiceRequest();
@@ -142,6 +156,18 @@ namespace AionHR.Repository.WebService.Repositories
             return request.PostAsyncFormData<TChild>(entity);
         }
 
+        public PostWebServiceResponse ChildAddOrUpdate<TChild>(TChild entity,string fileName,byte[] fileData, Dictionary<string, string> Headers = null, Dictionary<string, string> QueryStringParams = null)
+        {
+            var request = new HTTPWebServiceRequest();
+            request.MethodType = "POST";
+            request.URL = ServiceURL + ChildAddOrUpdateLookup[typeof(TChild)];
+            if (Headers != null)
+                request.Headers = Headers;
+            if (QueryStringParams != null)
+                request.QueryStringParams = QueryStringParams;
+            return request.PostAsyncWithBinary<TChild>(entity, fileName, fileData);
+        }
+
         public PostWebServiceResponse ChildDelete<TChild>(TChild entity, Dictionary<string, string> Headers = null, Dictionary<string, string> QueryStringParams = null)
         {
             var request = new HTTPWebServiceRequest();
@@ -154,5 +180,7 @@ namespace AionHR.Repository.WebService.Repositories
 
             return request.PostAsyncFormData<TChild>(entity);
         }
+
+
     }
 }

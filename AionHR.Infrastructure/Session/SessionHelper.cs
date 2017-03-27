@@ -72,11 +72,19 @@ namespace AionHR.Infrastructure.Session
         #region Gets
         public string GetDateformat()
         {
-            return Get("dateFormat").ToString();
+            object dateFormat = Get("dateFormat");
+            if (dateFormat == null)
+                return "MMM dd,yyyy";
+
+            return dateFormat.ToString();
         }
         public string GetNameformat()
         {
-           return Get("nameFormat").ToString();
+            object nameFormat = Get("nameFormat");
+            if (nameFormat == null)
+                return "{firstName} {lastName}";
+
+            return nameFormat.ToString();
         }
       
         #endregion

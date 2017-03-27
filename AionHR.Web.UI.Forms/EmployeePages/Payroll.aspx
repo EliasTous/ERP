@@ -9,7 +9,7 @@
     <title></title>
     <link rel="stylesheet" type="text/css" href="../CSS/Common.css?id=1" />
     <link rel="stylesheet" href="../CSS/LiveSearch.css" />
-    <script type="text/javascript" src="../Scripts/Payroll.js?id=16"></script>
+    <script type="text/javascript" src="../Scripts/Payroll.js?id=17"></script>
     <script type="text/javascript" src="../Scripts/common.js?id=0"></script>
 
 
@@ -24,6 +24,7 @@
         <ext:Hidden ID="titleSavingErrorMessage" runat="server" Text="<%$ Resources:Common , TitleSavingErrorMessage %>" />
         <ext:Hidden ID="CurrentEmployee" runat="server" />
         <ext:Hidden ID="CurrentSalary" runat="server" />
+        <ext:Hidden ID="CurrentSalaryCurrency" runat="server" />
         <ext:Hidden ID="PaymentTypeWeekly" runat="server" Text="<%$ Resources: PaymentTypeWeekly %>" />
         <ext:Hidden ID="PaymentTypeMonthly" runat="server" Text="<%$ Resources: PaymentTypeMonthly %>" />
         <ext:Hidden ID="PaymentTypeDaily" runat="server" Text="<%$ Resources: PaymentTypeDaily %>" />
@@ -101,7 +102,7 @@
                                         <ext:ModelField Name="recordId" />
                                         <ext:ModelField Name="employeeId" />
                                         <ext:ModelField Name="currencyId" />
-                                        <ext:ModelField Name="currencyName" />
+                                        <ext:ModelField Name="currencyRef" />
                                         <ext:ModelField Name="scrId" />
                                         <ext:ModelField Name="scrName" />
                                         <ext:ModelField Name="effectiveDate" ServerMapping="effectiveDate.ToShortDateString()" />
@@ -160,9 +161,7 @@
                         <Columns>
 
                             <ext:Column Visible="false" ID="recID" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldrecordId %>" DataIndex="recordId" Hideable="false" Width="75" Align="Center" />
-                            <ext:Column Flex="3" ID="ColSAName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldScrName %>" DataIndex="scrName" Hideable="false" Width="75" Align="Center">
-                                <Renderer Handler="return '<u>' + record.data['scrName']+'</u>';" />
-                            </ext:Column>
+                           
                             <ext:DateColumn Format="dd-MM-yyyy" Flex="3" ID="cc" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEffectiveDate %>" DataIndex="effectiveDate" Hideable="false" Width="75" Align="Center">
                             </ext:DateColumn>
 
@@ -174,15 +173,18 @@
                             <ext:Column Visible="false" Flex="2" ID="Column14" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldPaymentFrequency %>" DataIndex="paymentFrequency" Hideable="false" Width="75" Align="Center">
                                 <Renderer Handler="return getPaymentTypeString(record.data['paymentFrequency'])" />
                             </ext:Column>
-                            <ext:Column Flex="3" ID="Column15" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldPaymentMethod %>" DataIndex="paymentMethod" Hideable="false" Width="75" Align="Center">
-                                <Renderer Handler="return getPaymentMethodString(record.data['paymentMethod'])" />
-                            </ext:Column>
+                    
+                            <ext:Column Flex="3" ID="Column20" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldBasicAmount %>" DataIndex="basicAmount" Hideable="false" Width="75" Align="Center" >
+                                <Renderer Handler="return record.data['basicAmount'] + '&nbsp;'+ record.data['currencyRef'];">
 
-                            <ext:Column Flex="3" ID="Column20" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldBasicAmount %>" DataIndex="basicAmount" Hideable="false" Width="75" Align="Center" />
-                            <ext:Column Flex="3" ID="Column21" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldFinalAmount %>" DataIndex="finalAmount" Hideable="false" Width="75" Align="Center" />
-                            <ext:Column Flex="3" ID="Column22" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldSACurrencyName %>" DataIndex="currencyName" Hideable="false" Width="75" Align="Center" />
-                            <ext:CheckColumn Flex="2" ID="Column19" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldIsTaxable %>" DataIndex="isTaxable" Hideable="false" Width="75" Align="Center" />
+                                </Renderer>
+                                </ext:Column>
+                            <ext:Column Flex="3" ID="Column21" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldFinalAmount %>" DataIndex="finalAmount" Hideable="false" Width="75" Align="Center" >
+                                   <Renderer Handler="return record.data['finalAmount'] + '&nbsp;'+ record.data['currencyRef'];">
 
+                                </Renderer>
+                                </ext:Column>
+                       
 
                             <ext:Column runat="server"
                                 ID="Column16" Visible="false"
@@ -200,15 +202,15 @@
                             </ext:Column>
                             <ext:Column runat="server"
                                 ID="ColSADelete" Flex="2" Visible="true"
-                                Text="<%$ Resources: Common , Delete %>"
-                                Width="60"
+                                Text=""
+                                Width="80"
                                 Align="Center"
                                 Fixed="true"
                                 Filterable="false"
                                 Hideable="false"
                                 MenuDisabled="true"
                                 Resizable="false">
-                                <Renderer Fn="deleteRender" />
+                                <Renderer handler="return editRender()+'&nbsp;&nbsp;'+deleteRender(); " />
 
                             </ext:Column>
                             <ext:Column runat="server" Visible="false"
@@ -245,7 +247,7 @@
                         <Render Handler="this.on('cellclick', cellClick);" />
                     </Listeners>
                     <DirectEvents>
-                        <CellClick OnEvent="PoPuP">
+                        <CellClick OnEvent="PoPuPSA">
                             <EventMask ShowMask="true" />
                             <ExtraParams>
                                 <ext:Parameter Name="sal" Value="record.data['basicAmount']" Mode="Raw" />
@@ -300,7 +302,7 @@
                                         <ext:ModelField Name="recordId" />
                                         <ext:ModelField Name="employeeId" />
                                         <ext:ModelField Name="currencyId" />
-                                        <ext:ModelField Name="currencyName" />
+                                        <ext:ModelField Name="currencyRef" />
                                         <ext:ModelField Name="btId" />
                                         <ext:ModelField Name="btName" />
                                         <ext:ModelField Name="date" ServerMapping="date.ToShortDateString()" />
@@ -353,19 +355,18 @@
                         <Columns>
 
                             <ext:Column Visible="false" ID="Column1" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldrecordId %>" DataIndex="recordId" Hideable="false" Width="75" Align="Center" />
-                            <ext:Column Flex="3" ID="ColBOName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldBTName %>" DataIndex="btName" Hideable="false" Width="75" Align="Center">
-                                <Renderer Handler="return '<u>' + record.data['btName']+'</u>';" />
-                            </ext:Column>
+                            <ext:Column Flex="3" ID="ColBOName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldBTName %>" DataIndex="btName" Hideable="false" Width="75" Align="Center"/>
+                            
                             <ext:DateColumn Flex="3" Format="dd-MM-yyyy" ID="ccc" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDate %>" DataIndex="date" Hideable="false" Width="75" Align="Center">
                             </ext:DateColumn>
 
 
-                            <ext:Column Flex="3" ID="Column9" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldSACurrencyName %>" DataIndex="currencyName" Hideable="false" Width="75" Align="Center">
-                                <Renderer Handler="return record.data['currencyName'];" />
-                            </ext:Column>
+                        
 
 
-                            <ext:Column Flex="3" ID="Column7" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldAmount %>" DataIndex="amount" Hideable="false" Width="75" Align="Center" />
+                            <ext:Column Flex="3" ID="Column7" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldAmount %>" DataIndex="amount" Hideable="false" Width="75" Align="Center" >
+                                <Renderer Handler="return record.data['amount'] + '&nbsp;'+record.data['currencyRef'];"/>
+                                    </ext:Column>
 
 
                             <ext:Column runat="server"
@@ -384,15 +385,15 @@
                             </ext:Column>
                             <ext:Column runat="server"
                                 ID="ColBODelete" Flex="2" Visible="true"
-                                Text="<%$ Resources: Common , Delete %>"
-                                Width="60"
+                                Text=""
+                                Width="80"
                                 Align="Center"
                                 Fixed="true"
                                 Filterable="false"
                                 Hideable="false"
                                 MenuDisabled="true"
                                 Resizable="false">
-                                <Renderer Fn="deleteRender" />
+                                <Renderer handler="return editRender()+'&nbsp;&nbsp;'+deleteRender(); " />
 
                             </ext:Column>
                             <ext:Column runat="server" Visible="false"
@@ -429,7 +430,7 @@
                         <Render Handler="this.on('cellclick', cellClick);" />
                     </Listeners>
                     <DirectEvents>
-                        <CellClick OnEvent="PoPuP">
+                        <CellClick OnEvent="PoPuPBO">
                             <EventMask ShowMask="true" />
                             <ExtraParams>
                                 <ext:Parameter Name="id" Value="record.getId()" Mode="Raw" />
@@ -480,7 +481,7 @@
                                     <Items>
                                         <ext:TextField ID="SAId" Hidden="true" runat="server" FieldLabel="<%$ Resources:FieldrecordId%>" Disabled="true" Name="recordId" />
 
-                                        <ext:ComboBox runat="server" AllowBlank="false" ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" ID="currencyId" Name="currencyId" FieldLabel="<%$ Resources:FieldSACurrencyName%>" SimpleSubmit="true">
+                                        <ext:ComboBox runat="server" AllowBlank="false" ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="reference" ID="currencyId" Name="currencyId" FieldLabel="<%$ Resources:FieldSACurrencyName%>" SimpleSubmit="true">
 
                                             <Store>
                                                 <ext:Store runat="server" ID="currencyStore">
@@ -488,7 +489,7 @@
                                                         <ext:Model runat="server">
                                                             <Fields>
                                                                 <ext:ModelField Name="recordId" />
-                                                                <ext:ModelField Name="name" />
+                                                                <ext:ModelField Name="reference" />
                                                             </Fields>
                                                         </ext:Model>
                                                     </Model>
@@ -507,6 +508,7 @@
                                                 </ext:Button>
                                             </RightButtons>
                                             <Listeners>
+                                                <Change Handler="CurrentSalaryCurrency.value = App.currencyId.getRawValue();" />
                                                 <FocusEnter Handler="this.rightButtons[0].setHidden(false);" />
                                                 <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
                                             </Listeners>
@@ -705,6 +707,7 @@
                                                         MinValue="0"
                                                         MaxValue="100" />
                                                 </Editor>
+                                                 <Renderer Handler="return record.data['pct'] +'%';"/>
                                             </ext:NumberColumn>
 
                                             <ext:NumberColumn
@@ -717,6 +720,7 @@
                                                         runat="server"
                                                         AllowBlank="false" />
                                                 </Editor>
+                                                <Renderer Handler=" return record.data['fixedAmount'] + '&nbsp;' + App.currencyId.getRawValue();"/>
                                             </ext:NumberColumn>
                                             <ext:Column
                                                 runat="server"
@@ -731,15 +735,15 @@
                                             </ext:Column>
                                             <ext:Column runat="server"
                                                 ID="ColENDelete" Flex="2" Visible="true"
-                                                Text="<%$ Resources: Common , Delete %>"
-                                                Width="60"
+                                                Text=""
+                                                Width="80"
                                                 Align="Center"
                                                 Fixed="true"
                                                 Filterable="false"
                                                 Hideable="false"
                                                 MenuDisabled="true"
                                                 Resizable="false">
-                                                <Renderer Fn="deleteRender" />
+                                                <Renderer handler="return editRender()+'&nbsp;&nbsp;'+deleteRender(); " />
                                             </ext:Column>
                                         </Columns>
                                     </ColumnModel>
@@ -748,7 +752,7 @@
                                     </Listeners>
                                     <DirectEvents>
 
-                                        <CellClick OnEvent="PoPuP">
+                                        <CellClick OnEvent="PoPuPEN">
                                             <EventMask ShowMask="true" />
                                             <ExtraParams>
 
@@ -882,6 +886,7 @@
                                                         MinValue="0"
                                                         MaxValue="100" />
                                                 </Editor>
+                                                <Renderer Handler="return record.data['pct'] +'%';"/>
                                             </ext:NumberColumn>
 
                                             <ext:NumberColumn
@@ -894,7 +899,12 @@
                                                         runat="server"
                                                         AllowBlank="false" />
                                                 </Editor>
+                                                <Renderer Handler="return record.data['fixedAmount'] + '&nbsp;'+ App.currencyId.getRawValue();">
+
+                                </Renderer>
+                               
                                             </ext:NumberColumn>
+
                                             <ext:Column
                                                 runat="server"
                                                 Text="<%$ Resources:FieldComment%>"
@@ -908,7 +918,7 @@
                                             </ext:Column>
                                             <ext:Column runat="server"
                                                 ID="ColDEDelete" Flex="2" Visible="true"
-                                                Text="<%$ Resources: Common , Delete %>"
+                                                Text=""
                                                 Width="60"
                                                 Align="Center"
                                                 Fixed="true"
@@ -916,7 +926,7 @@
                                                 Hideable="false"
                                                 MenuDisabled="true"
                                                 Resizable="false">
-                                                <Renderer Fn="deleteRender" />
+                                               <Renderer handler="return editRender()+'&nbsp;&nbsp;'+deleteRender(); " />
                                             </ext:Column>
 
                                         </Columns>
@@ -924,7 +934,7 @@
 
                                     <DirectEvents>
 
-                                        <CellClick OnEvent="PoPuP">
+                                        <CellClick OnEvent="PoPuPDE">
                                             <EventMask ShowMask="true" />
                                             <ExtraParams>
 
@@ -975,7 +985,7 @@
             runat="server"
             Icon="PageEdit"
             Title="<%$ Resources:EditBOWindowTitle %>"
-            Width="650"
+            Width="400"
             Height="300"
             AutoShow="false"
             Modal="true"
@@ -1002,7 +1012,7 @@
 
                                 <ext:TextField ID="BOId" Hidden="true" runat="server" FieldLabel="<%$ Resources:FieldrecordId%>" Disabled="true" Name="recordId" />
 
-                                <ext:ComboBox runat="server" AllowBlank="false" ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" ID="CurrencyCombo" DataIndex="currencyId" FieldLabel="<%$ Resources:FieldSACurrencyName%>" SimpleSubmit="true">
+                                <ext:ComboBox runat="server" AllowBlank="false" ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="reference" ID="CurrencyCombo" DataIndex="currencyId" FieldLabel="<%$ Resources:FieldSACurrencyName%>" SimpleSubmit="true">
 
                                     <Store>
                                         <ext:Store runat="server" ID="BOCurrencyStore">
@@ -1010,7 +1020,7 @@
                                                 <ext:Model runat="server" IDProperty="recordId">
                                                     <Fields>
                                                         <ext:ModelField Name="recordId" />
-                                                        <ext:ModelField Name="name" />
+                                                        <ext:ModelField Name="reference" />
                                                     </Fields>
                                                 </ext:Model>
                                             </Model>

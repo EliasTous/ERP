@@ -120,11 +120,17 @@
   <data name="BasicInfoTabEditWindowTitle" xml:space="preserve">
     <value>Case Info</value>
   </data>
+  <data name="CaseAttachmentsTitle" xml:space="preserve">
+    <value>Attachments</value>
+  </data>
   <data name="CaseCommentsTabTitle" xml:space="preserve">
     <value>Comments</value>
   </data>
   <data name="EditWindowsTitle" xml:space="preserve">
     <value>Edit Case</value>
+  </data>
+  <data name="FieldAttachmentName" xml:space="preserve">
+    <value>File Name</value>
   </data>
   <data name="FieldBranch" xml:space="preserve">
     <value>Branch</value>

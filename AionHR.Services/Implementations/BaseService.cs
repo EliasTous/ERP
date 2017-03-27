@@ -97,6 +97,18 @@ namespace AionHR.Services.Implementations
             return response;
         }
 
+        public PostResponse<T> AddOrUpdateWithAttachment<T>(PostRequestWithAttachment<T> request)
+
+        {
+            PostResponse<T> response;
+            var headers = SessionHelper.GetAuthorizationHeadersForUser();
+            PostWebServiceResponse webResponse = GetRepository().AddOrUpdate(request.entity,request.FileName,request.FileData, headers);
+            response = CreateServiceResponse<PostResponse<T>>(webResponse);
+            if (webResponse != null)
+                response.recordId = webResponse.recordId;
+            return response;
+        }
+
         public PostResponse<T> Delete<T>(PostRequest<T> request)
         {
             PostResponse<T> response;
@@ -149,6 +161,16 @@ namespace AionHR.Services.Implementations
             response = CreateServiceResponse<PostResponse<TChild>>(webResponse);
             if (webResponse != null)
                 response.recordId = webResponse.recordId;
+            return response;
+        }
+
+       public  PostResponse<TChild> ChildAddOrUpdateWithAttachment<TChild>(PostRequestWithAttachment<TChild> request)
+        {
+            PostResponse<TChild> response;
+            var headers = SessionHelper.GetAuthorizationHeadersForUser();
+            PostWebServiceResponse webResponse = GetRepository().ChildAddOrUpdate<TChild>(request.entity, request.FileName, request.FileData, headers);
+            response = CreateServiceResponse<PostResponse<TChild>>(webResponse);
+            response.recordId = webResponse.recordId;
             return response;
         }
 

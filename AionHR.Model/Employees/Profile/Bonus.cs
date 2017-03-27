@@ -16,7 +16,7 @@ namespace AionHR.Model.Employees.Profile
 
         public string btName { get; set; }
 
-        public string currencyName { get; set; }
+        public string currencyRef { get; set; }
 
         public DateTime date { get; set; }
 

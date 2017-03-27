@@ -11,7 +11,7 @@
     <title></title>
     <link rel="stylesheet" type="text/css" href="CSS/Common.css" />
     <link rel="stylesheet" href="CSS/LiveSearch.css" />
-    <script type="text/javascript" src="Scripts/Cases.js?id=6" ></script>
+    <script type="text/javascript" src="Scripts/Cases.js?id=7" ></script>
     <script type="text/javascript" src="Scripts/common.js" ></script>
       <script type="text/javascript" src="Scripts/moment.js" ></script>
    
@@ -315,6 +315,9 @@
             AutoShow="false"
             Modal="true"
             Hidden="true"
+             Maximizable="false"
+            Resizable="false"
+             Draggable="false"
             Layout="Fit">
             
             <Items>
@@ -371,6 +374,7 @@
                                         </Change>
                                     </Listeners>
                                 </ext:ComboBox>
+                                
                                 <ext:DateField ID="closedDate" Disabled="true" runat="server" FieldLabel="<%$ Resources:FieldClosedDate%>" Name="closedDate" AllowBlank="true" />
                                 
 
@@ -581,6 +585,156 @@
                 </ext:GridPanel>
                             </Items>
                             </ext:Panel>
+
+                        <ext:GridPanel Title="<%$ Resources: CaseAttachmentsTitle %>" runat="server" ID="filesGrid"  AutoUpdateLayout="true" DefaultAnchor="100%" Layout="FitLayout"
+                              PaddingSpec="0 0 1 0"
+                    Header="false"
+                   
+                    Scroll="Vertical" Flex="1"
+                    Border="false"  MinHeight="220" MaxHeight="220"
+                    Icon="User"    
+                    ColumnLines="false" IDMode="Explicit" RenderXType="True"
+                            >
+                             <Store>
+                        <ext:Store
+                            ID="filesStore"
+                            runat="server"
+                          
+                            
+                            PageSize="50" IDMode="Explicit" Namespace="App">
+                            
+                            <Model>
+                                <ext:Model ID="Model3" runat="server" IDProperty="seqNo">
+                                    <Fields>
+
+                                        <ext:ModelField Name="recordId" />
+                                        <ext:ModelField Name="seqNo" />
+                                        <ext:ModelField Name="fileName" />
+                                        <ext:ModelField Name="url" />
+                                       
+
+                                    </Fields>
+                                </ext:Model>
+                            </Model>
+                            <Sorters>
+                                <ext:DataSorter Property="seqNo" Direction="ASC" />
+                            </Sorters>
+                        </ext:Store>
+                    </Store>
+                                <TopBar>
+                                   
+                        <ext:Toolbar ID="Toolbar5" runat="server" ClassicButtonStyle="false">
+                            
+                            <Items>
+                                <ext:Panel runat="server">
+                                    <Content>
+                                <asp:FileUpload runat="server" ID="multiFileUpload" AllowMultiple="true" ClientIDMode="Static" onchange="this.form.submit()" />
+                            </Content>
+                                </ext:Panel>
+                                <ext:Button ID="Button2" runat="server" Text="<%$ Resources:Common , Add %>" Icon="Add">
+                                     
+                                    <Listeners>
+                                        <Click Handler="CheckSession();" />
+                                    </Listeners>
+                                    <DirectEvents>
+                                        <Click OnEvent="AddAttachments">
+                                            <EventMask ShowMask="true" CustomTarget="={#{filesGrid}.body}" />
+                                        </Click>
+                                    </DirectEvents>
+                                </ext:Button>
+                                </Items>
+                            </ext:Toolbar>
+                                    </TopBar>
+                            <ColumnModel ID="ColumnModel3" runat="server" SortAscText="<%$ Resources:Common , SortAscText %>" SortDescText="<%$ Resources:Common ,SortDescText  %>" SortClearText="<%$ Resources:Common ,SortClearText  %>" ColumnsText="<%$ Resources:Common ,ColumnsText  %>" EnableColumnHide="false" Sortable="false">
+                        <Columns>
+
+                            <ext:Column Visible="false" ID="Column4" MenuDisabled="true" runat="server" DataIndex="seqNo" Hideable="false" Width="75" Align="Center" />
+                            <ext:Column CellCls="cellLink" ID="Column5" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldAttachmentName%>" DataIndex="fileName" Flex="2" Hideable="false" />
+                          
+
+                            <ext:Column runat="server"
+                                ID="Column8" Visible="true"
+                                Text=""
+                                Width="100"
+                                Hideable="false"
+                                Align="Center"
+                                Fixed="true"
+                                Filterable="false"
+                                MenuDisabled="true"
+                                Resizable="false">
+
+                                <Renderer handler="return attachRender()+'&nbsp;&nbsp;'+deleteRender(); " />
+
+                            </ext:Column>
+                            <ext:Column runat="server"
+                                ID="Column9" Flex="1" Visible="false"
+                                Text="  "
+                                Width="60"
+                                Align="Center"
+                                Fixed="true"
+                                Filterable="false"
+                                Hideable="false"
+                                MenuDisabled="true"
+                                Resizable="false">
+                                <Renderer Fn="deleteRender" />
+
+                            </ext:Column>
+                            <ext:Column runat="server"
+                                ID="Column10" Visible="false"
+                                Text="<%$ Resources:Common, Attach %>"
+                                Hideable="false"
+                                Width="60"
+                                Align="Center"
+                                Fixed="true"
+                                Filterable="false"
+                                MenuDisabled="true"
+                                Resizable="false">
+                                <Renderer Fn="attachRender" />
+                            </ext:Column>
+
+
+
+
+                        </Columns>
+                    </ColumnModel>
+                    <DockedItems>
+
+                        <ext:Toolbar ID="Toolbar6" runat="server" Dock="Bottom">
+                            <Items>
+                                <ext:StatusBar ID="StatusBar3" runat="server" />
+                                <ext:ToolbarFill />
+
+                            </Items>
+                        </ext:Toolbar>
+
+                    </DockedItems>
+                
+                    <Listeners>
+                        <Render Handler="this.on('cellclick', cellClick);" />
+                    </Listeners>
+                    <DirectEvents>
+                        <CellClick  OnEvent="PoPuPAttachement">
+                            <EventMask  ShowMask="false"  />
+                            <ExtraParams>
+                                <ext:Parameter Name="id" Value="record.getId()" Mode="Raw" />
+                                <ext:Parameter Name="path" Value="record.data['fileUrl']" Mode="Raw" />
+                                <ext:Parameter Name="type" Value="getCellType( this, rowIndex, cellIndex)" Mode="Raw" />
+                            </ExtraParams>
+
+                        </CellClick>
+                    </DirectEvents>
+                    <View>
+                        <ext:GridView ID="GridView3" runat="server" />
+                    </View>
+
+
+                    <SelectionModel>
+                        <ext:RowSelectionModel ID="rowSelectionModel2" runat="server" Mode="Single" StopIDModeInheritance="true" />
+                        <%--<ext:CheckboxSelectionModel ID="CheckboxSelectionModel1" runat="server" Mode="Multi" StopIDModeInheritance="true" />--%>
+                    </SelectionModel>
+                </ext:GridPanel>
+           
+                       
                         
                     </Items>
                 </ext:TabPanel>

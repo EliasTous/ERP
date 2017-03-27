@@ -11,9 +11,73 @@
     <title></title>
     <link rel="stylesheet" type="text/css" href="CSS/Common.css" />
     <link rel="stylesheet" href="CSS/LiveSearch.css" />
-    <script type="text/javascript" src="Scripts/Geofences.js?id=0" ></script>
-    <script type="text/javascript" src="Scripts/common.js" ></script>
+     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCRQ7sZoJrjEBuIBret1gCccSwicDusM3w&libraries=drawing"></script>
    
+    <script type="text/javascript" src="Scripts/Geofences.js?id=2" ></script>
+    <script type="text/javascript" src="Scripts/common.js" ></script>
+    <script type="text/javascript">
+        var circle;
+        var rectangle;
+     
+        function initMap() {
+            
+            var map = new google.maps.Map(document.getElementById('map'), {
+                center: { lat: -34.397, lng: 150.644 },
+                zoom: 8
+            });
+            
+            var drawingManager = new google.maps.drawing.DrawingManager({
+                
+                drawingControl: true,
+                drawingControlOptions: {
+                    position: google.maps.ControlPosition.TOP_CENTER,
+                    drawingModes: ['circle', 'rectangle']
+                },
+
+                circleOptions: {
+                    fillColor: '#ffff00',
+                    fillOpacity: 1,
+                    strokeWeight: 5,
+                    clickable: false,
+                    editable: true,
+                    zIndex: 1
+                }
+            });
+            drawingManager.setMap(map);
+
+            google.maps.event.addListener(drawingManager, 'overlaycomplete', function (e) {
+                if (e.type == google.maps.drawing.OverlayType.CIRCLE) {
+                    circle = e.overlay;
+                }
+                else {
+                    rectangle = e.overlay;
+                }
+                // Switch back to non-drawing mode after drawing a shape.
+                drawingManager.setDrawingMode(null);
+                // To hide:
+                drawingManager.setOptions({
+                    drawingControl: false
+                });
+            }
+
+        );
+            //document.getElementById("delete").onclick = function () {
+            //    if (rectangle != null) {
+            //        rectangle.setMap(null);
+            //        rectangle = null;
+            //    }
+            //    if (circle != null) {
+            //        circle.setMap(null);
+            //        circle = null;
+            //    }
+
+            //    drawingManager.setOptions({
+            //        drawingControl: true
+            //    });
+            //};
+            
+        }
+    </script>
  
 </head>
 <body style="background: url(Images/bg.png) repeat;" ">
@@ -290,6 +354,17 @@
                                                         <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
                                                     </Listeners>
                                                 </ext:ComboBox>
+
+                                <ext:Panel runat="server" Layout="VBoxLayout" Height="500" >
+                                    <Content>
+                                        <div id="map" style=" height: 100%;"></div>
+                                        
+                                        
+                                    </Content>
+                                    <Listeners>
+                                        <AfterRender Handler="initMap()" />
+                                    </Listeners>
+                                </ext:Panel>
                             </Items>
 
                         </ext:FormPanel>

@@ -371,7 +371,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                 try
                 {
                     //New Mode
-                    EmployeeDocumentAddOrUpdateRequest request = new EmployeeDocumentAddOrUpdateRequest();
+                    PostRequestWithAttachment<EmployeeDocument> request = new PostRequestWithAttachment<EmployeeDocument>();
 
                     byte[] fileData = null;
                     if (documentFile.PostedFile != null && documentFile.PostedFile.ContentLength > 0)
@@ -382,18 +382,18 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                         //}
                         fileData = new byte[documentFile.PostedFile.ContentLength];
                         fileData = documentFile.FileBytes;
-                        request.fileName = documentFile.PostedFile.FileName;
-                        request.fileData = fileData;
+                        request.FileName = documentFile.PostedFile.FileName;
+                        request.FileData = fileData;
 
                     }
                     else
                     {
-                        request.fileData = fileData;
-                        request.fileName = "";
+                        request.FileData = fileData;
+                        request.FileName = "";
                     }
-                    request.documentData = b;
+                    request.entity = b;
 
-                    PostResponse<EmployeeDocument> r = _employeeService.AddOrUpdateEmployeeDocument(request);
+                    PostResponse<EmployeeDocument> r = _employeeService.ChildAddOrUpdateWithAttachment<EmployeeDocument>(request);
                     b.recordId = r.recordId;
 
 
@@ -444,7 +444,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                 try
                 {
                     int index = Convert.ToInt32(id);//getting the id of the record
-                    EmployeeDocumentAddOrUpdateRequest request = new EmployeeDocumentAddOrUpdateRequest();
+                    PostRequestWithAttachment<EmployeeDocument> request = new PostRequestWithAttachment<EmployeeDocument>();
 
                     byte[] fileData = null;
                     if (documentFile.HasFile && documentFile.PostedFile.ContentLength > 0)
@@ -455,22 +455,22 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                         // }
                         fileData = new byte[documentFile.PostedFile.ContentLength];
                         fileData = documentFile.FileBytes;
-                        request.fileName = documentFile.PostedFile.FileName;
-                        request.fileData = fileData;
+                        request.FileName = documentFile.PostedFile.FileName;
+                        request.FileData = fileData;
 
 
 
                     }
                     else
                     {
-                        request.fileData = fileData;
-                        request.fileName = "";
+                        request.FileData = fileData;
+                        request.FileName = "";
                     }
-                    request.documentData = b;
+                    request.entity = b;
 
 
 
-                    PostResponse<EmployeeDocument> r = _employeeService.AddOrUpdateEmployeeDocument(request);
+                    PostResponse<EmployeeDocument> r = _employeeService.ChildAddOrUpdateWithAttachment<EmployeeDocument>(request);
 
 
                     //Step 3 :  Check if request fails

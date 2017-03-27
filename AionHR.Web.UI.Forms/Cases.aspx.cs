@@ -27,6 +27,7 @@ using AionHR.Model.Employees.Profile;
 using AionHR.Model.LeaveManagement;
 using AionHR.Services.Messaging.System;
 using AionHR.Model.Company.Cases;
+using System.Net;
 
 namespace AionHR.Web.UI.Forms
 {
@@ -203,9 +204,9 @@ namespace AionHR.Web.UI.Forms
                                 }
                            });
                     employeeId.SetValue(response.result.employeeId);
-                    
 
-                    
+                    FillFilesStore(Convert.ToInt32(id));
+
                     //Step 2 : call setvalues with the retrieved object
                     this.BasicInfoTab.SetValues(response.result);
                     caseComments_RefreshData(Convert.ToInt32(id));
@@ -809,5 +810,210 @@ namespace AionHR.Web.UI.Forms
             }
             
         }
+
+        #region AttachmentManagement
+
+        private void FillFilesStore( int caseId)
+        {
+            //ListRequest request = new ListRequest();
+            CaseAttachmentsListRequest request = new CaseAttachmentsListRequest();
+            request.recordId = caseId;
+
+            ListResponse<Attachement> routers = _systemService.ChildGetAll<Attachement>(request);
+            if (!routers.Success)
+            {
+                X.Msg.Alert(Resources.Common.Error, routers.Summary).Show();
+                return;
+            }
+            this.filesStore.DataSource = routers.Items;
+            
+
+            this.filesStore.DataBind();
+        }
+        
+
+        protected void AddAttachments(object sender, DirectEventArgs e)
+        {
+            caseCommentStore.DataSource = new List<CaseComment>();
+            caseCommentStore.DataBind();
+            //Reset all values of the relative object
+            BasicInfoTab.Reset();
+            closedDate.SelectedDate = DateTime.Now;
+
+            panelRecordDetails.ActiveIndex = 0;
+            SetTabPanelEnable(false);
+            this.EditRecordWindow.Title = Resources.Common.AddNewRecord;
+
+
+            this.EditRecordWindow.Show();
+        }
+        protected void PoPuPAttachement(object sender, DirectEventArgs e)
+        {
+
+
+            int id = Convert.ToInt32(e.ExtraParams["id"]);
+            string type = e.ExtraParams["type"];
+            string path = e.ExtraParams["path"];
+            switch (type)
+            {
+             
+
+                case "imgDelete":
+                    X.Msg.Confirm(Resources.Common.Confirmation, Resources.Common.DeleteOneRecord, new MessageBoxButtonsConfig
+                    {
+                        Yes = new MessageBoxButtonConfig
+                        {
+                            //We are call a direct request metho for deleting a record
+                            Handler = String.Format("App.direct.DeleteAttachment({0})", id),
+                            Text = Resources.Common.Yes
+                        },
+                        No = new MessageBoxButtonConfig
+                        {
+                            Text = Resources.Common.No
+                        }
+
+                    }).Show();
+                    break;
+
+                case "imgAttach":
+                    DownloadFile(path);
+
+                    //Here will show up a winow relatice to attachement depending on the case we are working on
+                    break;
+                default:
+                    break;
+            }
+
+
+        }
+        [DirectMethod]
+        public void DownloadFile(string url)
+        {
+            if (string.IsNullOrEmpty(url))
+                return;
+
+            Stream stream = null;
+
+            //This controls how many bytes to read at a time and send to the client
+            int bytesToRead = 10000;
+
+            // Buffer to read bytes in chunk size specified above
+            byte[] buffer = new Byte[bytesToRead];
+
+            // The number of bytes read
+            try
+            {
+                //Create a WebRequest to get the file
+                HttpWebRequest fileReq = (HttpWebRequest)HttpWebRequest.Create(url);
+
+                //Create a response for this request
+                HttpWebResponse fileResp = (HttpWebResponse)fileReq.GetResponse();
+
+                if (fileReq.ContentLength > 0)
+                    fileResp.ContentLength = fileReq.ContentLength;
+
+                //Get the Stream returned from the response
+                stream = fileResp.GetResponseStream();
+
+                // prepare the response to the client. resp is the client Response
+                var resp = HttpContext.Current.Response;
+
+                //Indicate the type of data being sent
+                resp.ContentType = "application/octet-stream";
+                string[] segments = url.Split('/');
+                string fileName = segments[segments.Length - 1];
+                //Name the file 
+                resp.AddHeader("Content-Disposition", "attachment; filename=\"" + fileName + "\"");
+                resp.AddHeader("Content-Length", fileResp.ContentLength.ToString());
+
+                int length;
+                do
+                {
+                    // Verify that the client is connected.
+                    if (resp.IsClientConnected)
+                    {
+                        // Read data into the buffer.
+                        length = stream.Read(buffer, 0, bytesToRead);
+
+                        // and write it out to the response's output stream
+                        resp.OutputStream.Write(buffer, 0, length);
+
+                        // Flush the data
+
+
+                        //Clear the buffer
+                        buffer = new Byte[bytesToRead];
+                    }
+                    else
+                    {
+                        // cancel the download if client has disconnected
+                        length = -1;
+                    }
+                } while (length > 0); //Repeat until no data is read
+            }
+            finally
+            {
+                if (stream != null)
+                {
+                    //Close the input stream
+                    stream.Close();
+                }
+            }
+        }
+
+        /// <summary>
+        /// This direct method will be called after confirming the delete
+        /// </summary>
+        /// <param name="index">the ID of the object to delete</param>
+        [DirectMethod]
+        public void DeleteDocument(string index)
+        {
+            try
+            {
+                //Step 1 Code to delete the object from the database 
+                EmployeeDocument n = new EmployeeDocument();
+                n.recordId = index;
+                n.dtId = 0;
+                n.employeeId = Convert.ToInt32(currentCase.Text);
+                n.expiryDate = null;
+                n.remarks = "";
+                n.documentRef = "";
+
+
+                PostRequest<EmployeeDocument> req = new PostRequest<EmployeeDocument>();
+                req.entity = n;
+                PostResponse<EmployeeDocument> res = _employeeService.ChildDelete<EmployeeDocument>(req);
+                if (!res.Success)
+                {
+                    //Show an error saving...
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    X.Msg.Alert(Resources.Common.Error, res.Summary).Show();
+                    return;
+                }
+                else
+                {
+                    //Step 2 :  remove the object from the store
+                    filesStore.Remove(index);
+
+                    //Step 3 : Showing a notification for the user 
+                    Notification.Show(new NotificationConfig
+                    {
+                        Title = Resources.Common.Notification,
+                        Icon = Icon.Information,
+                        Html = Resources.Common.RecordDeletedSucc
+                    });
+                }
+
+            }
+            catch (Exception ex)
+            {
+                //In case of error, showing a message box to the user
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorDeletingRecord).Show();
+
+            }
+
+        }
+        #endregion
     }
 }

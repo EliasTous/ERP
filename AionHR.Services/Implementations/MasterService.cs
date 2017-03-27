@@ -31,6 +31,7 @@ namespace AionHR.Services.Implementations
             Dictionary<string, string> headers = SessionHelper.GetAuthorizationHeadersForUser();
             
             var accountRecord = _accountRepository.GetRecord(headers, request.Parameters);
+            response =CreateServiceResponse<Response<Account>>(accountRecord);
             if (accountRecord == null)
             {
                 response.Success = false;

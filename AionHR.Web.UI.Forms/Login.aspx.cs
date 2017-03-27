@@ -187,11 +187,10 @@ namespace AionHR.Web.UI.Forms
             }
             else
             {
-                tbAccountName.IndicatorIcon = Icon.Error;
-                ResourceManager1.RegisterIcon(Icon.Error);
+                
                 lblError.Text = GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).ToString() : response.Summary;
             }
-            tbAccountName.ShowIndicator();
+            
             
             return response.Success;
         }
@@ -218,6 +217,30 @@ namespace AionHR.Web.UI.Forms
 
             }
             tbAccountName.ShowIndicator();
+
+        }
+        [DirectMethod]
+        public bool CheckFieldDirect()
+        {
+            string accName = tbAccountName.Text;
+            GetAccountRequest request = new GetAccountRequest();
+            request.Account = accName;
+
+            Response<Account> response = _masterService.GetAccount(request);
+
+            if (response.result!=null)
+            {
+
+
+                return true;
+
+            }
+            else
+            {
+
+                return false;
+            }
+           
 
         }
 

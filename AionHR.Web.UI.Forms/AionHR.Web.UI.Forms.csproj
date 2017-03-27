@@ -117,10 +117,10 @@
     <Content Include="Divisions.aspx" />
     <Content Include="DocumentTypes.aspx" />
     <Content Include="EmployeePages\Documents.aspx" />
-    <Content Include="EmployeePages\EmployeeProfile.aspx" />
     <Content Include="EmployeePages\JobInformation.aspx" />
     <Content Include="EmployeePages\Notes.aspx" />
     <Content Include="EmployeePages\Payroll.aspx" />
+    <Content Include="EmployeePages\Skills.aspx" />
     <Content Include="EmployeeRoot.aspx" />
     <Content Include="Employees.aspx" />
     <Content Include="EntitlementDeductions.aspx" />
@@ -129,6 +129,7 @@
     <Content Include="Geofences.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Home.aspx" />
+    <Content Include="HtmlPage1.html" />
     <Content Include="Images\bg.png" />
     <Content Include="ARLogin.aspx" />
     <Content Include="Images\casemanagement.png" />
@@ -152,6 +153,7 @@
     <Content Include="LeaveTypes.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="MediaCategories.aspx" />
+    <Content Include="multitest.aspx" />
     <Content Include="Nationalities.aspx" />
     <Content Include="OrganizationChart.aspx" />
     <Content Include="packages.config" />
@@ -346,13 +348,6 @@
     <Compile Include="EmployeePages\Documents.aspx.designer.cs">
       <DependentUpon>Documents.aspx</DependentUpon>
     </Compile>
-    <Compile Include="EmployeePages\EmployeeProfile.aspx.cs">
-      <DependentUpon>EmployeeProfile.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="EmployeePages\EmployeeProfile.aspx.designer.cs">
-      <DependentUpon>EmployeeProfile.aspx</DependentUpon>
-    </Compile>
     <Compile Include="EmployeePages\JobInformation.aspx.cs">
       <DependentUpon>JobInformation.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -373,6 +368,13 @@
     </Compile>
     <Compile Include="EmployeePages\Payroll.aspx.designer.cs">
       <DependentUpon>Payroll.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EmployeePages\Skills.aspx.cs">
+      <DependentUpon>Skills.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EmployeePages\Skills.aspx.designer.cs">
+      <DependentUpon>Skills.aspx</DependentUpon>
     </Compile>
     <Compile Include="EmployeeRoot.aspx.cs">
       <DependentUpon>EmployeeRoot.aspx</DependentUpon>
@@ -467,6 +469,13 @@
     </Compile>
     <Compile Include="MediaCategories.aspx.designer.cs">
       <DependentUpon>MediaCategories.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="multitest.aspx.cs">
+      <DependentUpon>multitest.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="multitest.aspx.designer.cs">
+      <DependentUpon>multitest.aspx</DependentUpon>
     </Compile>
     <Compile Include="Nationalities.aspx.cs">
       <DependentUpon>Nationalities.aspx</DependentUpon>
@@ -749,6 +758,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="EmployeePages\App_LocalResources\Skills.aspx.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_LocalResources\Geofences.aspx.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_LocalResources\MediaCategories.aspx.resx" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

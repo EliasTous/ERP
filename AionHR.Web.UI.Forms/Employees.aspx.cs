@@ -396,7 +396,7 @@ namespace AionHR.Web.UI.Forms
             empRequest.BranchId = "0";
             empRequest.DepartmentId = "0";
             empRequest.Filter = searchTrigger.Text;
-            if (!string.IsNullOrEmpty(inactivePref.Text) && inactivePref.Value.ToString() != "0")
+            if (!string.IsNullOrEmpty(inactivePref.Text) && inactivePref.Value.ToString() != "")
             {
                 empRequest.IncludeIsInactive = Convert.ToInt32(inactivePref.Value);
             }
@@ -556,7 +556,7 @@ namespace AionHR.Web.UI.Forms
                 {
                     //New Mode
                     //Step 1 : Fill The object and insert in the store 
-                    EmployeeAddOrUpdateRequest request = new EmployeeAddOrUpdateRequest();
+                    PostRequestWithAttachment<Employee> request = new PostRequestWithAttachment<Employee>();
 
                     byte[] fileData = null;
                     if (picturePath.PostedFile != null && picturePath.PostedFile.ContentLength > 0)
@@ -567,20 +567,20 @@ namespace AionHR.Web.UI.Forms
                         //}
                         fileData = new byte[picturePath.PostedFile.ContentLength];
                         fileData = picturePath.FileBytes;
-                        request.fileName = picturePath.PostedFile.FileName;
-                        request.imageData = fileData;
+                        request.FileName = picturePath.PostedFile.FileName;
+                        request.FileData = fileData;
 
                     }
                     else
                     {
-                        request.imageData = fileData;
-                        request.fileName = "";
+                        request.FileData = fileData;
+                        request.FileName = "";
                     }
-                    request.empData = b;
+                    request.entity = b;
 
 
 
-                    PostResponse<Employee> r = _employeeService.AddOrUpdateEmployeeWithPhoto(request);
+                    PostResponse<Employee> r = _employeeService.AddOrUpdateWithAttachment<Employee>(request);
                     b.recordId = r.recordId;
 
                     //check if the insert failed
@@ -641,7 +641,7 @@ namespace AionHR.Web.UI.Forms
                 try
                 {
                     int index = Convert.ToInt32(id);//getting the id of the record
-                    EmployeeAddOrUpdateRequest request = new EmployeeAddOrUpdateRequest();
+                    PostRequestWithAttachment<Employee> request = new PostRequestWithAttachment<Employee>();
 
                     byte[] fileData = null;
                     if (picturePath.HasFile && picturePath.PostedFile.ContentLength > 0)
@@ -652,22 +652,22 @@ namespace AionHR.Web.UI.Forms
                         // }
                         fileData = new byte[picturePath.PostedFile.ContentLength];
                         fileData = picturePath.FileBytes;
-                        request.fileName = picturePath.PostedFile.FileName;
-                        request.imageData = fileData;
+                        request.FileName = picturePath.PostedFile.FileName;
+                        request.FileData = fileData;
 
 
 
                     }
                     else
                     {
-                        request.imageData = fileData;
-                        request.fileName = "";
+                        request.FileData = fileData;
+                        request.FileName = "";
                     }
-                    request.empData = b;
+                    request.entity = b;
 
 
 
-                    PostResponse<Employee> r = _employeeService.AddOrUpdateEmployeeWithPhoto(request);
+                    PostResponse<Employee> r = _employeeService.AddOrUpdateWithAttachment<Employee>(request);
 
                     //Step 2 : saving to store
 

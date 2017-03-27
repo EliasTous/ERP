@@ -12,7 +12,7 @@ namespace AionHR.Model.Employees.Profile
         public int employeeId { get; set; }
         public int currencyId { get; set; }
 
-        public string currencyName { get; set; }
+        public string currencyRef { get; set; }
         public int scrId { get; set; }
 
         public string scrName { get; set; }

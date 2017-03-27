@@ -111,18 +111,17 @@ namespace AionHR.Web.UI.Forms.EmployeePages
 
 
 
-        protected void PoPuP(object sender, DirectEventArgs e)
+        protected void PoPuPSA(object sender, DirectEventArgs e)
         {
 
 
             int id = Convert.ToInt32(e.ExtraParams["id"]);
             string type = e.ExtraParams["type"];
-            string deduction, entitlement = "";
-            SalaryDetail dedDetail, entDetail = null;
+            
             switch (type)
             {
 
-                case "ColSAName":
+                case "imgEdit":
                     RecordRequest r3 = new RecordRequest();
                     r3.RecordID = id.ToString();
                     RecordResponse<EmployeeSalary> response3 = _employeeService.ChildGetRecord<EmployeeSalary>(r3);
@@ -140,6 +139,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     ensStore_ReadData(null, null);
 
                     CurrentSalary.Text = r3.RecordID;
+                    CurrentSalaryCurrency.Text = response3.result.currencyRef;
                     currencyId.Select(response3.result.currencyId.ToString());
                     scrId.Select(response3.result.scrId.ToString());
 
@@ -153,7 +153,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     BasicSalary.Text = e.ExtraParams["sal"];
                     break;
 
-                case "ColSADelete":
+                case "imgDelete":
                     X.Msg.Confirm(Resources.Common.Confirmation, Resources.Common.DeleteOneRecord, new MessageBoxButtonsConfig
                     {
                         Yes = new MessageBoxButtonConfig
@@ -169,7 +169,26 @@ namespace AionHR.Web.UI.Forms.EmployeePages
 
                     }).Show();
                     break;
-                case "ColBODelete":
+              
+                default:
+                    break;
+            }
+
+
+        }
+
+        protected void PoPuPBO(object sender, DirectEventArgs e)
+        {
+
+
+            int id = Convert.ToInt32(e.ExtraParams["id"]);
+            string type = e.ExtraParams["type"];
+        
+            switch (type)
+            {
+
+                
+                case "imgDelete":
                     X.Msg.Confirm(Resources.Common.Confirmation, Resources.Common.DeleteOneRecord, new MessageBoxButtonsConfig
                     {
                         Yes = new MessageBoxButtonConfig
@@ -185,7 +204,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
 
                     }).Show();
                     break;
-                case "ColBOName":
+                case "imgEdit":
                     RecordRequest r1 = new RecordRequest();
                     r1.RecordID = id.ToString();
                     RecordResponse<Bonus> response1 = _employeeService.ChildGetRecord<Bonus>(r1);
@@ -205,7 +224,27 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     this.EditBOWindow.Title = Resources.Common.EditWindowsTitle;
                     this.EditBOWindow.Show();
                     break;
-                case "ColENName":
+                
+                default:
+                    break;
+            }
+
+
+        }
+
+        protected void PoPuPEN(object sender, DirectEventArgs e)
+        {
+
+
+            int id = Convert.ToInt32(e.ExtraParams["id"]);
+            string type = e.ExtraParams["type"];
+            string entitlement = "";
+            SalaryDetail  entDetail = null;
+            switch (type)
+            {
+
+                
+                case "imgEdit":
                     var x = entitlementsStore.GetById(id);
                     string record = e.ExtraParams["values"];
                     SalaryDetail detail = JsonConvert.DeserializeObject<List<SalaryDetail>>(record)[0];
@@ -219,7 +258,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     entEdId.Select(detail.edId.ToString());
                     EditENWindow.Show();
                     break;
-                case "ColENDelete":
+                case "imgDelete":
                     entitlement = e.ExtraParams["values"];
                     entDetail = JsonConvert.DeserializeObject<List<SalaryDetail>>(entitlement)[0];
                     if (!entDetail.includeInTotal.HasValue)
@@ -239,6 +278,26 @@ namespace AionHR.Web.UI.Forms.EmployeePages
 
                     }).Show();
                     break;
+            
+                default:
+                    break;
+            }
+
+
+        }
+
+        protected void PoPuPDE(object sender, DirectEventArgs e)
+        {
+
+
+            int id = Convert.ToInt32(e.ExtraParams["id"]);
+            string type = e.ExtraParams["type"];
+            string deduction = "";
+            SalaryDetail dedDetail = null;
+            switch (type)
+            {
+
+               
                 case "ColDEName":
 
                     deduction = e.ExtraParams["values"];
@@ -272,10 +331,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
 
                     }).Show();
                     break;
-                case "colAttach":
-
-                    //Here will show up a winow relatice to attachement depending on the case we are working on
-                    break;
+            
                 default:
                     break;
             }
@@ -485,6 +541,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             deductionStore.DataSource = new List<SalaryDetail>();
             deductionStore.DataBind();
             TabPanel2.ActiveIndex = 0;
+            CurrentSalaryCurrency.Text = "";
             this.EditSAWindow.Title = Resources.Common.AddNewRecord;
             FillCurrency();
             FillScr();
@@ -595,7 +652,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             b.recordId = id;
             b.effectiveDate = new DateTime(b.effectiveDate.Year, b.effectiveDate.Month, b.effectiveDate.Day, 14, 0, 0);
             if (currencyId.SelectedItem != null)
-                b.currencyName = currencyId.SelectedItem.Text;
+                b.currencyRef = currencyId.SelectedItem.Text;
             if (scrId.SelectedItem != null)
                 b.scrName = scrId.SelectedItem.Text;
             if (!b.isTaxable.HasValue)
@@ -644,8 +701,8 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     {
 
                         //Add this record to the store 
-                        this.SAStore.Insert(0, b);
-
+                        //this.SAStore.Insert(0, b);
+                        this.SAStore.Reload();
                         //Display successful notification
                         Notification.Show(new NotificationConfig
                         {
@@ -711,7 +768,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
 
                         ModelProxy record = this.SAStore.GetById(index);
                         EditSAForm.UpdateRecord(record);
-                        record.Set("currencyName", b.currencyName);
+                        record.Set("currencyRef", b.currencyRef);
                         record.Set("scrName", b.scrName);
                         record.Set("effectiveDate", b.effectiveDate.ToShortDateString());
                         record.Commit();
@@ -983,7 +1040,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             b.recordId = id;
             b.date = new DateTime(b.date.Year, b.date.Month, b.date.Day, 14, 0, 0);
             if (CurrencyCombo.SelectedItem != null)
-                b.currencyName = CurrencyCombo.SelectedItem.Text;
+                b.currencyRef = CurrencyCombo.SelectedItem.Text;
             if (btId.SelectedItem != null)
                 b.btName = btId.SelectedItem.Text;
 
@@ -1012,9 +1069,9 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     }
                     else
                     {
-
+                        this.BOStore.Reload();
                         //Add this record to the store 
-                        this.BOStore.Insert(0, b);
+                        //this.BOStore.Insert(0, b);
 
                         //Display successful notification
                         Notification.Show(new NotificationConfig
@@ -1068,7 +1125,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
 
                         ModelProxy record = this.BOStore.GetById(index);
                         BOForm.UpdateRecord(record);
-                        record.Set("currencyName", b.currencyName);
+                        record.Set("currencyRef", b.currencyRef);
                         record.Set("btName", b.btName);
                         record.Set("date", b.date.ToShortDateString());
                         record.Commit();
@@ -1173,7 +1230,8 @@ namespace AionHR.Web.UI.Forms.EmployeePages
         {
             Currency obj = new Currency();
             obj.name = CurrencyCombo.Text;
-            obj.reference = "1";
+            obj.reference = CurrencyCombo.Text;
+            
             PostRequest<Currency> req = new PostRequest<Currency>();
             req.entity = obj;
             PostResponse<Currency> response = _systemService.ChildAddOrUpdate<Currency>(req);
@@ -1195,7 +1253,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
         {
             Currency obj = new Currency();
             obj.name = currencyId.Text;
-            obj.reference = "1";
+            obj.reference = currencyId.Text;
             PostRequest<Currency> req = new PostRequest<Currency>();
             req.entity = obj;
             PostResponse<Currency> response = _systemService.ChildAddOrUpdate<Currency>(req);

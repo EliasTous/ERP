@@ -45,7 +45,7 @@
                     Scroll="Vertical"
                     Region="Center"
                     Border="false"
-                    Icon="User" HideHeaders="true"
+                    Icon="User" HideHeaders="false"
                     ColumnLines="false" IDMode="Explicit" RenderXType="True">
                     <Store>
                         <ext:Store
@@ -157,7 +157,7 @@
                             </ext:ComponentColumn>
                             <ext:Column ID="ColReference" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldReference%>" DataIndex="reference"  Width="60" Hideable="false" />
                             <ext:Column ID="ColName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldFullName%>" DataIndex="name.fullName" Flex="4" Hideable="false">
-                                <Renderer Handler=" return '<u>'+ record.data['name'].fullName +'</u>'">
+                                <Renderer Handler=" return  record.data['name'].fullName ">
                                 </Renderer>
                             </ext:Column>
                             <ext:Column ID="ColDepartmentName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDepartment%>" DataIndex="departmentName" Flex="3" Hideable="false">
@@ -372,7 +372,7 @@
                                         <ext:TextField ID="reference" runat="server" FieldLabel="<%$ Resources:FieldReference%>" Name="reference" BlankText="<%$ Resources:Common, MandatoryField%>" />
                                         <ext:TextField ID="firstName" runat="server" FieldLabel="<%$ Resources:FieldFirstName%>" Name="firstName" AllowBlank="false" BlankText="<%$ Resources:Common, MandatoryField%>">
                                         </ext:TextField>
-                                        <ext:TextField ID="middleName" AllowBlank="false" runat="server" FieldLabel="<%$ Resources:FieldMiddleName%>" Name="middleName" BlankText="<%$ Resources:Common, MandatoryField%>" />
+                                        <ext:TextField ID="middleName"  runat="server" FieldLabel="<%$ Resources:FieldMiddleName%>" Name="middleName" BlankText="<%$ Resources:Common, MandatoryField%>" />
                                         <ext:TextField ID="lastName" AllowBlank="false" runat="server" FieldLabel="<%$ Resources:FieldLastName%>" Name="lastName" BlankText="<%$ Resources:Common, MandatoryField%>" />
                                         <ext:TextField ID="familyName" runat="server" FieldLabel="<%$ Resources:FieldFamilyName%>" Name="familyName" BlankText="<%$ Resources:Common, MandatoryField%>" />
                                         <ext:TextField ID="homeEmail" runat="server" FieldLabel="<%$ Resources:FieldHomeEmail%>" Name="homeMail" Vtype="email" BlankText="<%$ Resources:Common, MandatoryField%>" />
@@ -666,7 +666,20 @@
                                 </ext:Panel>--%>
                             </Items>
                             <Buttons>
-
+                                <ext:Button ID="DeleteButton" Text="Delete"   DefaultAlign="Left"  AlignTarget="Left"  Icon="Delete"  Region="West" runat="server" >
+                                    <Listeners>
+                                        <Click Handler="CheckSession(); if (!#{BasicInfoTab}.getForm().isValid()) {  return false;} " />
+                                    </Listeners>
+                                    <DirectEvents>
+                                        <Click OnEvent="SaveNewRecord" Failure="Ext.MessageBox.alert('#{titleSavingError}.value', '#{titleSavingErrorMessage}.value');">
+                                            <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="={#{EditRecordWindow}.body}" />
+                                            <ExtraParams>
+                                                <ext:Parameter Name="id" Value="#{recordId}.getValue()" Mode="Raw" />
+                                                <ext:Parameter Name="values" Value="#{BasicInfoTab}.getForm().getValues(false, false, false, true)" Mode="Raw" Encode="true" />
+                                            </ExtraParams>
+                                        </Click>
+                                    </DirectEvents>
+                                    </ext:Button>
                                 <ext:Button ID="SaveButton" runat="server" Text="<%$ Resources:Common, Save %>" Icon="Disk">
 
                                     <Listeners>
@@ -687,6 +700,7 @@
                                         <Click Handler="this.up('window').hide();" />
                                     </Listeners>
                                 </ext:Button>
+                                
                             </Buttons>
                         </ext:FormPanel>
                         <ext:Panel runat="server" Layout="FitLayout" Title="<%$ Resources: JobInformationTab %>" ID="profilePanel" DefaultAnchor="100%">

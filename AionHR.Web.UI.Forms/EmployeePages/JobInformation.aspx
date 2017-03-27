@@ -9,7 +9,7 @@
     <title></title>
     <link rel="stylesheet" type="text/css" href="../CSS/Common.css?id=1" />
     <link rel="stylesheet" href="../CSS/LiveSearch.css" />
-    <script type="text/javascript" src="../Scripts/JobInformation.js?id=10"></script>
+    <script type="text/javascript" src="../Scripts/JobInformation.js?id=11"></script>
     <script type="text/javascript" src="../Scripts/common.js?id=0"></script>
 
 
@@ -114,11 +114,9 @@
                         <Columns>
 
                             <ext:Column Visible="false" ID="ColrecordId" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldrecordId %>" DataIndex="recordId" Hideable="false" Width="75" Align="Center" />
-                            <ext:Column CellCls="cellLink" ID="ColEHName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEHStatus%>" DataIndex="statusName" Flex="7" Hideable="false">
-                                <Renderer Handler="return '<u>'+ record.data['statusName']+'</u>'">
-                                </Renderer>
-                            </ext:Column>
-                            <ext:DateColumn Format="dd-MM-yyyy" CellCls="cellLink" ID="Column2" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEHDate%>" DataIndex="date" Flex="1" Hideable="false" />
+                            <ext:Column CellCls="cellLink" ID="ColEHName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEHStatus%>" DataIndex="statusName" Flex="7" Hideable="false"/>
+                                
+                            <ext:DateColumn Format="dd-MM-yyyy" CellCls="cellLink" ID="Column2" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEHDate%>" DataIndex="date" Width="100" Hideable="false" />
 
 
 
@@ -146,11 +144,11 @@
                                 Hideable="false"
                                 MenuDisabled="true"
                                 Resizable="false">
-                                <Renderer Fn="deleteRender" />
+                                 <Renderer handler="return editRender()+'&nbsp;&nbsp;'+deleteRender(); " />
 
                             </ext:Column>
                             <ext:Column runat="server"
-                                ID="colAttach"
+                                ID="colAttach" Visible="false"
                                 Text="<%$ Resources:Common, Attach %>"
                                 Hideable="false"
                                 Width="60"
@@ -183,7 +181,7 @@
                         <Render Handler="this.on('cellclick', cellClick);" />
                     </Listeners>
                     <DirectEvents>
-                        <CellClick OnEvent="PoPuP">
+                        <CellClick OnEvent="PoPuPEH">
                             <EventMask ShowMask="true" />
                             <ExtraParams>
                                 <ext:Parameter Name="id" Value="record.getId()" Mode="Raw" />
@@ -298,7 +296,7 @@
                             <ext:Column runat="server"
                                 ID="ColJIName" Visible="true"
                                 Text="<%$ Resources:Common, Edit %>"
-                                Width="60"
+                                Width="80"
                                 Hideable="false"
                                 Align="Center"
                                 Fixed="true"
@@ -306,20 +304,20 @@
                                 MenuDisabled="true"
                                 Resizable="false">
 
-                                <Renderer Fn="editRender" />
+                                <Renderer handler="return editRender()+'&nbsp;&nbsp;'+deleteRender(); " />
 
                             </ext:Column>
                             <ext:Column runat="server"
-                                ID="ColJIDelete" Flex="1" Visible="true"
+                                ID="ColJIDelete" Flex="1" Visible="false"
                                 Text="<%$ Resources: Common , Delete %>"
-                                Width="60"
+                                Width="100"
                                 Align="Center"
                                 Fixed="true"
                                 Filterable="false"
                                 Hideable="false"
                                 MenuDisabled="true"
                                 Resizable="false">
-                                <Renderer Fn="deleteRender" />
+                              <Renderer handler="return editRender()+'&nbsp;&nbsp;'+deleteRender(); " />
 
                             </ext:Column>
                             <ext:Column runat="server" Visible="false"
@@ -356,7 +354,7 @@
                         <Render Handler="this.on('cellclick', cellClick);" />
                     </Listeners>
                     <DirectEvents>
-                        <CellClick OnEvent="PoPuP">
+                        <CellClick OnEvent="PoPuPJI">
                             <EventMask ShowMask="true" />
                             <ExtraParams>
                                 <ext:Parameter Name="id" Value="record.getId()" Mode="Raw" />

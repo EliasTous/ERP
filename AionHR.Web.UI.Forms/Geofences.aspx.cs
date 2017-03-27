@@ -316,7 +316,7 @@ namespace AionHR.Web.UI.Forms
             BasicInfoTab.Reset();
             FillBranch();
             this.EditRecordWindow.Title = Resources.Common.AddNewRecord;
-
+          
 
             this.EditRecordWindow.Show();
         }

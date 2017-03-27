@@ -1,4 +1,5 @@
 ﻿using AionHR.Services.Messaging;
+using AionHR.Services.Messaging.System;
 using System.Collections.Generic;
 
 public class CaseManagementListRequest : ListRequest
@@ -44,4 +45,12 @@ public class CaseCommentsListRequest : ListRequest
         }
     }
 
+}
+
+public class CaseAttachmentsListRequest: SystemAttachmentsListRequest
+{
+    public CaseAttachmentsListRequest()
+    {
+        base.classRef = "CMCA";
+    }
 }

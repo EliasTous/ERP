@@ -22,17 +22,7 @@ namespace AionHR.Services.Implementations
             _employeeRepository = employeeRepository;
         }
 
-        public PostResponse<Employee> AddOrUpdateEmployeeWithPhoto(EmployeeAddOrUpdateRequest req)
-        {
-            PostResponse<Employee> response;
-            var headers = SessionHelper.GetAuthorizationHeadersForUser();
-            PostWebServiceResponse webResponse = _employeeRepository.AddOrUpdateEmployeeWithImage(req.empData, req.fileName, req.imageData,headers);
-            response = CreateServiceResponse<PostResponse<Employee>>(webResponse);
-            response.recordId = webResponse.recordId;
-            return response;
-            
-             
-        }
+
 
         public PostResponse<SalaryDetail> DeleteSalaryDetails(int SalaryId)
         {
@@ -46,16 +36,7 @@ namespace AionHR.Services.Implementations
             return response;
         }
 
-        public PostResponse<EmployeeDocument> AddOrUpdateEmployeeDocument(EmployeeDocumentAddOrUpdateRequest req)
-        {
-            PostResponse<EmployeeDocument> response;
-            var headers = SessionHelper.GetAuthorizationHeadersForUser();
-            PostWebServiceResponse webResponse = _employeeRepository.AddOrUpdateEmployeeDocument(req.documentData, req.fileName, req.fileData, headers);
-            response = CreateServiceResponse<PostResponse<EmployeeDocument>>(webResponse);
-            response.recordId = webResponse.recordId;
-            return response;
-
-        }
+       
 
         protected override dynamic GetRepository()
         {

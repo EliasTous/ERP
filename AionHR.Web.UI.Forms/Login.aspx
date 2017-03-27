@@ -86,9 +86,9 @@
                     Layout="FormLayout"
                     BodyPadding="10" AutoUpdateLayout="false" DefaultAnchor="100%"
                     DefaultButton="btnLogin" Border="false" Shadow="true">
-                    <FieldDefaults PreserveIndicatorIcon="true" />
+                    <FieldDefaults PreserveIndicatorIcon="false" />
                     <Items>
-                        <ext:TextField
+                      <ext:TextField
                             ID="tbAccountName"
                             runat="server"
                             AutoFocus="true"

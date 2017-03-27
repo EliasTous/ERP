@@ -50,7 +50,7 @@
 
 
             </ext:Panel>
-            <ext:Panel ID="leftPanel" runat="server" Region="West" Layout="AccordionLayout" Width="260" PaddingSpec="0 0 0 0" Padding="0"
+            <ext:Panel ID="leftPanel" runat="server" Region="West" Layout="AccordionLayout" AutoUpdateLayout="true" Width="260" PaddingSpec="0 0 0 0" Padding="0"
                 Header="true" Collapsible="true"  Split="true" CollapseMode="Mini" StyleSpec="border-bottom:2px solid #2A92D4;"
                 Title="<%$ Resources:Common , NavigationPane %>" CollapseToolText="<%$ Resources:Common , CollapsePanel %>" ExpandToolText="<%$ Resources:Common , ExpandPanel %>" Icon="ApplicationTileVertical" BodyBorder="0">
                 <TopBar>
@@ -87,7 +87,7 @@
                     </ext:Toolbar>
                 </TopBar>
                 <Items>
-                    <ext:TreePanel runat="server" Title="" RootVisible="false" ID="commonTree" Scroll="Vertical">
+                    <ext:TreePanel runat="server" Title="Tree Panel" AutoUpdateLayout="true" RootVisible="false" ID="commonTree" Scroll="Vertical">
                         <SelectionModel>
                             <ext:TreeSelectionModel runat="server" ID="selModel">
                             </ext:TreeSelectionModel>

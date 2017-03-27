@@ -20,12 +20,16 @@ namespace AionHR.Services.Interfaces
 
         PostResponse<T> AddOrUpdate<T>(PostRequest<T> request);
 
+        PostResponse<T> AddOrUpdateWithAttachment<T>(PostRequestWithAttachment<T> request);
+
         PostResponse<T> Delete<T>(PostRequest<T> request);
 
         RecordResponse<TChild> ChildGetRecord<TChild>(RecordRequest request);
         ListResponse<TChild> ChildGetAll<TChild>(ListRequest request);
 
         PostResponse<TChild> ChildAddOrUpdate<TChild>(PostRequest<TChild> request);
+
+        PostResponse<TChild> ChildAddOrUpdateWithAttachment<TChild>(PostRequestWithAttachment<TChild> request);
 
         PostResponse<TChild> ChildDelete<TChild>(PostRequest<TChild> request);
 

@@ -107,7 +107,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
 
 
 
-        protected void PoPuP(object sender, DirectEventArgs e)
+        protected void PoPuPEH(object sender, DirectEventArgs e)
         {
 
 
@@ -115,7 +115,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             string type = e.ExtraParams["type"];
             switch (type)
             {
-                case "ColEHName":
+                case "imgEdit":
                     //Step 1 : get the object from the Web Service 
                     RecordRequest r = new RecordRequest();
                     r.RecordID = id.ToString();
@@ -176,7 +176,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     }).Show();
                     break;
               
-                case "ColEHDelete":
+                case "imgDelete":
                     X.Msg.Confirm(Resources.Common.Confirmation, Resources.Common.DeleteOneRecord, new MessageBoxButtonsConfig
                     {
                         Yes = new MessageBoxButtonConfig
@@ -197,6 +197,65 @@ namespace AionHR.Web.UI.Forms.EmployeePages
 
                     //Here will show up a winow relatice to attachement depending on the case we are working on
                     break;
+                default:
+                    break;
+            }
+
+
+        }
+
+        protected void PoPuPJI(object sender, DirectEventArgs e)
+        {
+
+
+            int id = Convert.ToInt32(e.ExtraParams["id"]);
+            string type = e.ExtraParams["type"];
+            switch (type)
+            {
+               
+                case "imgEdit":
+                    RecordRequest r2 = new RecordRequest();
+                    r2.RecordID = id.ToString();
+                    RecordResponse<JobInfo> response2 = _employeeService.ChildGetRecord<JobInfo>(r2);
+                    if (!response2.Success)
+                    {
+                        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                        X.Msg.Alert(Resources.Common.Error, response2.Summary).Show();
+                        return;
+                    }
+                    //Step 2 : call setvalues with the retrieved object
+                    this.EditJobInfoTab.SetValues(response2.result);
+                    FillDepartment();
+                    FillBranch();
+                    FillDivision();
+                    FillPosition();
+
+                    departmentId.Select(response2.result.departmentId.ToString());
+                    branchId.Select(response2.result.branchId.ToString());
+                    positionId.Select(response2.result.positionId.ToString());
+                    divisionId.Select(response2.result.divisionId.ToString());
+                    this.EditJobInfoWindow.Title = Resources.Common.EditWindowsTitle;
+                    this.EditJobInfoWindow.Show();
+                    break;
+
+                case "imgDelete":
+                    X.Msg.Confirm(Resources.Common.Confirmation, Resources.Common.DeleteOneRecord, new MessageBoxButtonsConfig
+                    {
+                        Yes = new MessageBoxButtonConfig
+                        {
+                            //We are call a direct request metho for deleting a record
+                            Handler = String.Format("App.direct.DeleteJI({0})", id),
+                            Text = Resources.Common.Yes
+                        },
+                        No = new MessageBoxButtonConfig
+                        {
+                            Text = Resources.Common.No
+                        }
+
+                    }).Show();
+                    break;
+
+               
                 default:
                     break;
             }

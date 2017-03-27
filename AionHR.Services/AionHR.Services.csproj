@@ -70,6 +70,7 @@
     <Compile Include="Messaging\ListReponse.cs" />
     <Compile Include="Messaging\Master Service\MasterServiceRequests.cs" />
     <Compile Include="Messaging\PostRequest.cs" />
+    <Compile Include="Messaging\PostRequestWithAttachment.cs" />
     <Compile Include="Messaging\PostResponse.cs" />
     <Compile Include="Messaging\RecordResponse.cs" />
     <Compile Include="Messaging\RequestBase.cs" />
@@ -82,11 +83,14 @@
     <Compile Include="Messaging\ResponseBase.cs" />
     <Compile Include="Messaging\System\PasswordRecoveryRequest.cs" />
     <Compile Include="Messaging\System\PasswordRecoveryResponse.cs" />
+    <Compile Include="Messaging\System\SystemAttachmentsListRequest.cs" />
     <Compile Include="Messaging\System\SystemDefaultRecordRequest.cs" />
     <Compile Include="Messaging\TimeAttendance\TimeAttendanceRequests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="AionHR\Services\Messaging\" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AionHR.Infrastructure\AionHR.Infrastructure.csproj">
       <Project>{9955b92f-f16c-49b9-99f3-4919d3327263}</Project>
