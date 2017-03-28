@@ -54,6 +54,7 @@
     <Compile Include="Configuration\ApplicationSettingsFactory.cs" />
     <Compile Include="Configuration\IApplicationSettings.cs" />
     <Compile Include="Configuration\WebConfigApplicationSettings.cs" />
+    <Compile Include="Domain\Constants.cs" />
     <Compile Include="Domain\ICommonRepository.cs" />
     <Compile Include="Domain\IEntity.cs" />
     <Compile Include="Domain\IRepository.cs" />

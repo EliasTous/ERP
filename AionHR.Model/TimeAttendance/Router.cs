@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AionHR.Model.Attendance
 {
-    public class Router
+    public class Router:ModelBase
     {
         public string routerRef { get; set; }
         public int branchId { get; set; }

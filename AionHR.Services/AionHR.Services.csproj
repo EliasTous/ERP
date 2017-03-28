@@ -85,6 +85,7 @@
     <Compile Include="Messaging\System\PasswordRecoveryResponse.cs" />
     <Compile Include="Messaging\System\SystemAttachmentsListRequest.cs" />
     <Compile Include="Messaging\System\SystemDefaultRecordRequest.cs" />
+    <Compile Include="Messaging\System\TransactionLogListRequest.cs" />
     <Compile Include="Messaging\TimeAttendance\TimeAttendanceRequests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

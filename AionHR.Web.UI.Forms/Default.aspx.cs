@@ -1,6 +1,8 @@
 ﻿using AionHR.Model.MasterModule;
+using AionHR.Model.System;
 using AionHR.Services.Interfaces;
 using AionHR.Services.Messaging;
+using AionHR.Services.Messaging.System;
 using AionHR.Web.UI.Forms.Utilities;
 using Ext.Net;
 using Microsoft.Practices.ServiceLocation;
@@ -223,6 +225,53 @@ namespace AionHR.Web.UI.Forms
                 return "0";
             }
             else return "1";
+        }
+
+        protected void PoPuP(object sender, DirectEventArgs e)
+        {
+
+
+            int id = Convert.ToInt32(e.ExtraParams["id"]);
+            string type = e.ExtraParams["type"];
+            switch (type)
+            {
+                case "imgEdit":
+                    //Step 1 : get the object from the Web Service 
+                    RecordRequest r = new RecordRequest();
+                    r.RecordID = id.ToString();
+                    RecordResponse<TransactionLog> log = _systemService.ChildGetRecord<TransactionLog>(r);
+                    logBodyForm.SetValues(log.result);
+                    logBodyScreen.Show();
+                    break;
+                default: int x = 0;
+                    break;
+
+              
+            }
+
+
+        }
+
+        [DirectMethod]
+        public void FillTransactionLogWindow(int classRef, int recordId)
+        {
+           
+            TransactionLogListRequest request = new TransactionLogListRequest();
+            request.ClassId = classRef;
+            request.PrimaryKey = recordId;
+            request.UserId = 0;
+            request.Type = 0;
+            request.StartAt = "1";
+            request.Size = "50";
+            request.SoryBy = "eventDt";
+            ListResponse<TransactionLog> logs = _systemService.ChildGetAll<TransactionLog>(request);
+            if(!logs.Success)
+            {
+
+            }
+            transactionLogStore.DataSource = logs.Items;
+            transactionLogStore.DataBind();
+            TransationLogScreen.Show();
         }
     }
 }

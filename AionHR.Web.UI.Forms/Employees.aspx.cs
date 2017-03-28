@@ -26,6 +26,7 @@ using AionHR.Model.System;
 using AionHR.Model.Employees.Leaves;
 using AionHR.Model.Attendance;
 using AionHR.Services.Messaging.System;
+using AionHR.Infrastructure.Domain;
 
 namespace AionHR.Web.UI.Forms
 {
@@ -74,7 +75,7 @@ namespace AionHR.Web.UI.Forms
                 ColHireDate.Format = _systemService.SessionHelper.Get("dateFormat").ToString();
                 
                 inactivePref.Select(0);
-
+                CurrentClassId.Text = ClassId.EPEM.ToString();
             }
 
 

@@ -31,7 +31,8 @@ namespace AionHR.Repository.WebService.Repositories
             ChildAddOrUpdateLookup.Add(typeof(UserInfo), "setUS");
             ChildGetAllLookup.Add(typeof(UserInfo), "qryUS");
             ChildGetLookup.Add(typeof(UserInfo), "getUS");
-            
+            ChildGetLookup.Add(typeof(TransactionLog), "getTL");
+
 
             ChildDeleteLookup.Add(typeof(Nationality) ,"delNA");
             ChildDeleteLookup.Add(typeof(UserInfo), "delUS");
@@ -39,6 +40,7 @@ namespace AionHR.Repository.WebService.Repositories
             ChildGetLookup.Add(typeof(KeyValuePair<string, string>), "getDE");
             ChildGetAllLookup.Add(typeof(Attachement), "qryAT");
             ChildGetAllLookup.Add(typeof(KeyValuePair<string,string>), "qryDE");
+            ChildGetAllLookup.Add(typeof(TransactionLog), "qryTL");
 
             ChildAddOrUpdateLookup.Add(typeof(KeyValuePair<string, string>[]), "arrDE");
 

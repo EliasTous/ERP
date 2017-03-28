@@ -609,4 +609,37 @@
   <data name="Legals" xml:space="preserve">
     <value>Legals</value>
   </data>
+  <data name="TransactionLogTitle" xml:space="preserve">
+    <value>Title</value>
+  </data>
+  <data name="FieldChangeType" xml:space="preserve">
+    <value>Change Type</value>
+  </data>
+  <data name="FieldDate" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="FieldUsername" xml:space="preserve">
+    <value>Username</value>
+  </data>
+  <data name="TrType1" xml:space="preserve">
+    <value>SET</value>
+  </data>
+  <data name="TrType2" xml:space="preserve">
+    <value>SET ARRAY</value>
+  </data>
+  <data name="TrType3" xml:space="preserve">
+    <value>DEL</value>
+  </data>
+  <data name="TrType4" xml:space="preserve">
+    <value>EXEC</value>
+  </data>
+  <data name="TrType5" xml:space="preserve">
+    <value>GET</value>
+  </data>
+  <data name="TrType6" xml:space="preserve">
+    <value>QUERY</value>
+  </data>
+  <data name="TrType7" xml:space="preserve">
+    <value>MAIL</value>
+  </data>
 </root>

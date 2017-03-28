@@ -117,8 +117,8 @@ namespace AionHR.Web.UI.Forms
             {
                 case "ColName":
                     //Step 1 : get the object from the Web Service 
-                    GetRouterRequest r = new GetRouterRequest();
-                    r.RouterRef = id;
+                    RecordRequest r = new RecordRequest();
+                    r.RecordID = id;
                     FillBranch();
                     RecordResponse<Router> response = _timeAttendanceService.ChildGetRecord<Router>(r);
                     if (!response.Success)
@@ -341,7 +341,8 @@ namespace AionHR.Web.UI.Forms
 
             string id = e.ExtraParams["id"];
             // Define the object to add or edit as null
-
+            b.recordId = id;
+            
             if (string.IsNullOrEmpty(id))
             {
 

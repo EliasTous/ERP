@@ -148,7 +148,7 @@ namespace AionHR.Web.UI.Forms
                 //dayId.SelectedDate = DateTime.Today;
                 DayPilotScheduler1.StartDate = new DateTime(DateTime.Today.Year, DateTime.Today.Month, 1);
                 DayPilotScheduler1.Days = DateTime.DaysInMonth(DateTime.Today.Year, DateTime.Today.Month);
-                
+                DayPilotScheduler1.Update();
                 
 
             }

@@ -9,48 +9,51 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title></title>
+     <script src="Scripts/jquery.min.js" type="text/javascript"></script>
     <link rel="stylesheet" type="text/css" href="CSS/Common.css" />
+   
     <link rel="stylesheet" href="CSS/LiveSearch.css" />
     <script type="text/javascript" src="Scripts/Cases.js?id=7" ></script>
     <script type="text/javascript" src="Scripts/common.js" ></script>
-      <script type="text/javascript" src="Scripts/moment.js" ></script>
-   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/>
-<link href="CSS/fileinput.min.css" media="all" rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-<!-- canvas-to-blob.min.js is only needed if you wish to resize images before upload.
-     This must be loaded before fileinput.min.js -->
-<script type="text/javascript" src="Scripts/plugins/canvas-to-blob.min.js" ></script>
-<!-- sortable.min.js is only needed if you wish to sort / rearrange files in initial preview.
-     This must be loaded before fileinput.min.js -->
-<script type="text/javascript" src="Scripts/plugins/sortable.min.js" ></script>
-<!-- purify.min.js is only needed if you wish to purify HTML content in your preview for HTML files.
-     This must be loaded before fileinput.min.js -->
-<script type="text/javascript" src="Scripts/plugins/purify.min.js"></script>
-<!-- the main fileinput plugin file -->
-<script type="text/javascript" src="Scripts/fileinput.min.js"></script>
-<!-- bootstrap.js below is needed if you wish to zoom and view file content 
-     in a larger detailed modal dialog -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" type="text/javascript"></script>
+     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/>
+ 
+     <link href="CSS/fileinput.min.css" rel="stylesheet" />
+<link href="CSS/theme.css" rel="stylesheet" />
+ 
+<!-- load the JS files in the right order -->
+<script src="Scripts/fileinput.js" type="text/javascript"></script>
+<script src="Scripts/theme.js" type="text/javascript">  </script>
  <script type="text/javascript">
      function initBootstrap()
      {
-         $("#kv-explorer").fileinput({
+         
+         
+         $("#input-ke-1").fileinput({
              'theme': 'explorer',
-             'uploadUrl': 'CaseAttachmentsUploader.ashx',
+             'uploadUrl': 'CaseAttachmentsUploader.ashx?caseId='+document.getElementById('currentCase').value,
              overwriteInitial: false,
-             uploadAsync:true,
+             initialPreviewAsData: true,
+             uploadAsync:false,
              'showUploadedThumbs': false
            
              
          });
-         $('#kv-explorer-').on('filebatchuploaderror', function (event, data, msg) {
+         $('#input-ke-1').on('filebatchuploaderror', function (event, data, msg) {
              var form = data.form, files = data.files, extra = data.extra,
                  response = data.response, reader = data.reader;
              console.log('File batch upload error');
              // get message
              alert(msg);
          });
+         $('#input-ke-1').on('filebatchuploadsuccess', function (event, data, msg) {
+             App.direct.FillFilesStore(document.getElementById('currentCase').value);
+             App.AttachmentsWindow.close();
+             
+         });
+        
      }
+     
  </script>
 </head>
 <body style="background: url(Images/bg.png) repeat;" ">
@@ -645,7 +648,7 @@
                         <ext:Store
                             ID="filesStore"
                             runat="server"
-                          
+                            
                             
                             PageSize="50" IDMode="Explicit" Namespace="App">
                             
@@ -672,11 +675,7 @@
                         <ext:Toolbar ID="Toolbar5" runat="server" ClassicButtonStyle="false">
                             
                             <Items>
-                                <ext:Panel runat="server">
-                                    <Content>
-                                <asp:FileUpload runat="server" ID="multiFileUpload" AllowMultiple="true" ClientIDMode="Static" onchange="this.form.submit()" />
-                            </Content>
-                                </ext:Panel>
+                               
                                 <ext:Button ID="Button2" runat="server" Text="<%$ Resources:Common , Add %>" Icon="Add">
                                      
                                     <Listeners>
@@ -804,14 +803,16 @@
             <Items>
                 <ext:Panel runat="server" AutoScroll="true">
                     <Content>
-                        <input id="kv-explorer" type="file" multiple>
-        
+                        <input id="input-ke-1" name="inputKE1[]" type="file" multiple class="file-loading" >
+                        <input type="hidden" name="caseId" id="caseId" value="" />
         <br>
-        <button type="submit" class="btn btn-primary">Submit</button>
-        <button type="reset" class="btn btn-default">Reset</button>
+      
                     </Content>
                     <Listeners>
-                        <AfterRender Handler="initBootstrap()" />
+                      
+                        
+                        <AfterLayout Handler="alert('layout');initBootstrap(); document.getElementById('caseId').value = document.getElementById('currentCase').value;" />
+                       
                     </Listeners>
                 </ext:Panel>
 

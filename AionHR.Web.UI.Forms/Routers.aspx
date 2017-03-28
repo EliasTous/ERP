@@ -38,9 +38,9 @@
                 </ext:PageProxy>
             </Proxy>
             <Model>
-                <ext:Model ID="Model1" runat="server" IDProperty="routerRef">
+                <ext:Model ID="Model1" runat="server" IDProperty="recordId">
                     <Fields>
-
+                        <ext:ModelField Name="recordId" />
                         <ext:ModelField Name="routerRef" />
                         <ext:ModelField Name="branchId" />
                         <ext:ModelField Name="isInactive" />

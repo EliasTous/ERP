@@ -727,6 +727,33 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Change Type.
+        /// </summary>
+        internal static string FieldChangeType {
+            get {
+                return ResourceManager.GetString("FieldChangeType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Date.
+        /// </summary>
+        internal static string FieldDate {
+            get {
+                return ResourceManager.GetString("FieldDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Username.
+        /// </summary>
+        internal static string FieldUsername {
+            get {
+                return ResourceManager.GetString("FieldUsername", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Files.
         /// </summary>
         internal static string Files {
@@ -1456,11 +1483,83 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Title.
+        /// </summary>
+        internal static string TransactionLogTitle {
+            get {
+                return ResourceManager.GetString("TransactionLogTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Transfers.
         /// </summary>
         internal static string Transfers {
             get {
                 return ResourceManager.GetString("Transfers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SET.
+        /// </summary>
+        internal static string TrType1 {
+            get {
+                return ResourceManager.GetString("TrType1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SET ARRAY.
+        /// </summary>
+        internal static string TrType2 {
+            get {
+                return ResourceManager.GetString("TrType2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DEL.
+        /// </summary>
+        internal static string TrType3 {
+            get {
+                return ResourceManager.GetString("TrType3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to EXEC.
+        /// </summary>
+        internal static string TrType4 {
+            get {
+                return ResourceManager.GetString("TrType4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to GET.
+        /// </summary>
+        internal static string TrType5 {
+            get {
+                return ResourceManager.GetString("TrType5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to QUERY.
+        /// </summary>
+        internal static string TrType6 {
+            get {
+                return ResourceManager.GetString("TrType6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to MAIL.
+        /// </summary>
+        internal static string TrType7 {
+            get {
+                return ResourceManager.GetString("TrType7", resourceCulture);
             }
         }
         

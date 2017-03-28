@@ -113,6 +113,7 @@
     <Content Include="CSS\Tools.css" />
     <Content Include="Currencies.aspx" />
     <Content Include="Dashboard.aspx" />
+    <Content Include="DayPilotTest.aspx" />
     <Content Include="DayTypes.aspx" />
     <Content Include="Default.aspx" />
     <Content Include="Departments.aspx" />
@@ -155,7 +156,6 @@
     <Content Include="LeaveTypes.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="MediaCategories.aspx" />
-    <Content Include="multitest.aspx" />
     <Content Include="Nationalities.aspx" />
     <Content Include="OrganizationChart.aspx" />
     <Content Include="packages.config" />
@@ -355,6 +355,13 @@
     <Compile Include="Dashboard.aspx.designer.cs">
       <DependentUpon>Dashboard.aspx</DependentUpon>
     </Compile>
+    <Compile Include="DayPilotTest.aspx.cs">
+      <DependentUpon>DayPilotTest.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DayPilotTest.aspx.designer.cs">
+      <DependentUpon>DayPilotTest.aspx</DependentUpon>
+    </Compile>
     <Compile Include="DayTypes.aspx.cs">
       <DependentUpon>DayTypes.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -518,13 +525,6 @@
     </Compile>
     <Compile Include="MediaCategories.aspx.designer.cs">
       <DependentUpon>MediaCategories.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="multitest.aspx.cs">
-      <DependentUpon>multitest.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="multitest.aspx.designer.cs">
-      <DependentUpon>multitest.aspx</DependentUpon>
     </Compile>
     <Compile Include="Nationalities.aspx.cs">
       <DependentUpon>Nationalities.aspx</DependentUpon>

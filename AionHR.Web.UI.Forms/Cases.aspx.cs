@@ -821,8 +821,8 @@ namespace AionHR.Web.UI.Forms
         }
 
         #region AttachmentManagement
-
-        private void FillFilesStore( int caseId)
+        [DirectMethod]
+        public void FillFilesStore( int caseId)
         {
             //ListRequest request = new ListRequest();
             CaseAttachmentsListRequest request = new CaseAttachmentsListRequest();

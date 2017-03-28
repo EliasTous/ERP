@@ -32,6 +32,7 @@
         <ext:Hidden ID="titleSavingErrorMessage" runat="server" Text="<%$ Resources:Common , TitleSavingErrorMessage %>" />
         <ext:Hidden ID="timeZoneOffset" runat="server" EnableViewState="true" />
         <ext:Hidden ID="CurrentEmployee" runat="server" EnableViewState="true" />
+        <ext:Hidden ID="CurrentClassId" runat="server" EnableViewState="true" />
         <ext:Hidden runat="server" ID="lblLoading" Text="<%$Resources:Common , Loading %>" />
         <ext:Viewport runat="server" Layout="BorderLayout" ID="Viewport1">
             <Items>
@@ -665,8 +666,11 @@
                                     </Items>
                                 </ext:Panel>--%>
                             </Items>
-                            <Buttons>
-                                <ext:Button ID="DeleteButton" Text="Delete"   DefaultAlign="Left"  AlignTarget="Left"  Icon="Delete"  Region="West" runat="server" >
+                            <BottomBar>
+                                <ext:Toolbar runat="server"  ClassicButtonStyle="false" Cls="tlb-BackGround">
+
+                                    <Items>
+                                         <ext:Button Cls="x-btn-left"  ID="DeleteButton" Text="Delete"   DefaultAlign="Left"  AlignTarget="Left"  Icon="Delete"  Region="West" runat="server" >
                                     <Listeners>
                                         <Click Handler="CheckSession(); if (!#{BasicInfoTab}.getForm().isValid()) {  return false;} " />
                                     </Listeners>
@@ -680,7 +684,8 @@
                                         </Click>
                                     </DirectEvents>
                                     </ext:Button>
-                                <ext:Button ID="SaveButton" runat="server" Text="<%$ Resources:Common, Save %>" Icon="Disk">
+                                        <ext:ToolbarFill runat="server"/>
+                                <ext:Button Cls="x-btn-left" ID="SaveButton" runat="server" Text="<%$ Resources:Common, Save %>" Icon="Disk">
 
                                     <Listeners>
                                         <Click Handler="CheckSession(); if (!#{BasicInfoTab}.getForm().isValid()) {  return false;} " />
@@ -695,13 +700,20 @@
                                         </Click>
                                     </DirectEvents>
                                 </ext:Button>
-                                <ext:Button ID="CancelButton" runat="server" Text="<%$ Resources:Common , Cancel %>" Icon="Cancel">
+                                <ext:Button   Cls="x-btn-right" ID="CancelButton" runat="server" Text="<%$ Resources:Common , Cancel %>" Icon="Cancel">
                                     <Listeners>
                                         <Click Handler="this.up('window').hide();" />
                                     </Listeners>
                                 </ext:Button>
-                                
-                            </Buttons>
+                                        <ext:Button   Cls="x-btn-right" ID="Button8" runat="server" Text="History" Icon="Clock">
+                                    <Listeners>
+                                        <Click Handler="CheckSession(); parent.OpenTransactionLog(#{CurrentClassId}.value,#{CurrentEmployee}.value);" />
+                                    </Listeners>
+                                </ext:Button>
+                                    </Items>
+                                </ext:Toolbar>
+                            </BottomBar>
+                        
                         </ext:FormPanel>
                         <ext:Panel runat="server" Layout="FitLayout" Title="<%$ Resources: JobInformationTab %>" ID="profilePanel" DefaultAnchor="100%">
                             <Loader runat="server" Url="EmployeePages/JobInformation.aspx" Mode="Frame" ID="profileLoader" TriggerEvent="show"
