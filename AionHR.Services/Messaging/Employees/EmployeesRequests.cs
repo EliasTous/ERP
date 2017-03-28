@@ -227,6 +227,50 @@ public class EmployeeDocumentsListRequest:ListRequest
         }
     }
 }
+
+
+public class EmployeeRightToWorkListRequest : ListRequest
+{
+    public string EmployeeId { get; set; }
+
+    /// <summary>
+    /// /// parameter list shipped with the web request
+    /// </summary>
+    public override Dictionary<string, string> Parameters
+    {
+
+        get
+        {
+            parameters = base.Parameters;
+
+            parameters.Add("_employeeId", EmployeeId.ToString());
+            return parameters;
+        }
+    }
+}
+
+
+public class EmployeeBackgroundCheckListRequest : ListRequest
+{
+    public string EmployeeId { get; set; }
+
+    /// <summary>
+    /// /// parameter list shipped with the web request
+    /// </summary>
+    public override Dictionary<string, string> Parameters
+    {
+
+        get
+        {
+            parameters = base.Parameters;
+
+            parameters.Add("_employeeId", EmployeeId.ToString());
+            return parameters;
+        }
+    }
+}
+
+
 public class EmployeeDocumentAddOrUpdateRequest
 {
     public EmployeeDocument documentData { get; set; }

@@ -751,6 +751,14 @@
                             </Loader>
                         </ext:Panel>
 
+                         <ext:Panel runat="server" Layout="FitLayout" Title="<%$ Resources: LegalsTab %>" ID="Panel5" DefaultAnchor="100%">
+                            <Loader runat="server" Url="EmployeePages/Legals.aspx" Mode="Frame" ID="Loader5" TriggerEvent="show"
+                                ReloadOnEvent="true"
+                                DisableCaching="true">
+                                <LoadMask ShowMask="true" />
+                            </Loader>
+                        </ext:Panel>
+
                     </Items>
                 </ext:TabPanel>
 

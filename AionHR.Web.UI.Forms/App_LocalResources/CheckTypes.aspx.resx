@@ -117,28 +117,19 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="EditRWWindow" xml:space="preserve">
-    <value>Right To Work Info</value>
+  <data name="BasicInfoTabEditWindowTitle" xml:space="preserve">
+    <value>Check Type Info</value>
   </data>
-  <data name="EditRWWindowTitle" xml:space="preserve">
-    <value>Edit Right To Work</value>
+  <data name="EditWindowsTitle" xml:space="preserve">
+    <value>Edit Check Type</value>
   </data>
-  <data name="EHGridTitle" xml:space="preserve">
-    <value>Right To Work</value>
+  <data name="FieldName" xml:space="preserve">
+    <value>Name</value>
   </data>
-  <data name="FieldDocumentRef" xml:space="preserve">
-    <value>Document Ref</value>
+  <data name="FieldRecordId" xml:space="preserve">
+    <value>Record ID</value>
   </data>
-  <data name="FieldDocumentType" xml:space="preserve">
-    <value>Document Type</value>
-  </data>
-  <data name="FieldExpiryDate" xml:space="preserve">
-    <value>Expiry Date</value>
-  </data>
-  <data name="FieldIssueDate" xml:space="preserve">
-    <value>Issue Date</value>
-  </data>
-  <data name="FieldRemarks" xml:space="preserve">
-    <value>Remarks</value>
+  <data name="WindowTitle" xml:space="preserve">
+    <value>Check Types</value>
   </data>
 </root>

@@ -313,6 +313,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Check Types.
+        /// </summary>
+        internal static string CheckTypes {
+            get {
+                return ResourceManager.GetString("CheckTypes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Collapse All.
         /// </summary>
         internal static string CollapseAll {
