@@ -9,15 +9,21 @@
     <title></title>
     <link rel="stylesheet" type="text/css" href="CSS/Common.css" />
     <link rel="stylesheet" href="CSS/LiveSearch.css" />
-    <script type="text/javascript" src="Scripts/test.js" ></script>
-    <script type="text/javascript" src="Scripts/common.js" ></script>
-   
- 
+    <script type="text/javascript" src="Scripts/test.js"></script>
+    <script type="text/javascript" src="Scripts/common.js"></script>
+
+    <style>
+        .tlb-BackGround {
+            background: #fff;
+        }
+    </style>
+
+
 </head>
 <body style="background: url(Images/bg.png) repeat;">
     <form id="Form1" runat="server">
-        <ext:ResourceManager ID="ResourceManager1" runat="server" Theme="Neptune" AjaxTimeout="1200000" />        
-        
+        <ext:ResourceManager ID="ResourceManager1" runat="server" Theme="Neptune" AjaxTimeout="1200000" />
+
         <ext:Hidden ID="textMatch" runat="server" Text="<%$ Resources:Common , MatchFound %>" />
         <ext:Hidden ID="textLoadFailed" runat="server" Text="<%$ Resources:Common , LoadFailed %>" />
         <ext:Hidden ID="titleSavingError" runat="server" Text="<%$ Resources:Common , TitleSavingError %>" />
@@ -45,7 +51,7 @@
                         <ext:ModelField Name="subject" />
                         <ext:ModelField Name="newsText" />
                         <ext:ModelField Name="notifyViaEmail" />
-                       
+
 
 
                     </Fields>
@@ -57,7 +63,7 @@
         </ext:Store>
 
 
-    
+
         <ext:Viewport ID="Viewport1" runat="server" Layout="Fit">
             <Items>
                 <ext:GridPanel
@@ -76,10 +82,10 @@
                     <TopBar>
                         <ext:Toolbar ID="Toolbar1" runat="server" ClassicButtonStyle="false">
                             <Items>
-                                <ext:Button ID="btnAdd" runat="server" Text="<%$ Resources:Common , Add %>" Icon="Add">       
-                                     <Listeners>
+                                <ext:Button ID="btnAdd" runat="server" Text="<%$ Resources:Common , Add %>" Icon="Add">
+                                    <Listeners>
                                         <Click Handler="CheckSession();" />
-                                    </Listeners>                           
+                                    </Listeners>
                                     <DirectEvents>
                                         <Click OnEvent="ADDNewRecord">
                                             <EventMask ShowMask="true" CustomTarget="={#{GridPanel1}.body}" />
@@ -88,7 +94,7 @@
                                 </ext:Button>
                                 <ext:ToolbarSeparator></ext:ToolbarSeparator>
                                 <ext:Button ID="btnDeleteSelected" runat="server" Text="<%$ Resources:Common , DeleteAll %>" Icon="Delete">
-                                 <Listeners>
+                                    <Listeners>
                                         <Click Handler="CheckSession();"></Click>
                                     </Listeners>
                                     <DirectEvents>
@@ -98,35 +104,34 @@
                                     </DirectEvents>
                                 </ext:Button>
                                 <ext:ToolbarFill ID="ToolbarFillExport" runat="server" />
-                                 <ext:TextField ID="searchTrigger" runat="server" EnableKeyEvents="true" Width="180" >
-                                        <Triggers>
-                                            <ext:FieldTrigger Icon="Search" />
-                                        </Triggers>
-                                        <Listeners>
-                                            <KeyPress Fn="enterKeyPressSearchHandler" Buffer="100" />
-                                            <TriggerClick Handler="#{Store1}.reload();" />
-                                        </Listeners>
-                                    </ext:TextField>
-                            
+                                <ext:TextField ID="searchTrigger" runat="server" EnableKeyEvents="true" Width="180">
+                                    <Triggers>
+                                        <ext:FieldTrigger Icon="Search" />
+                                    </Triggers>
+                                    <Listeners>
+                                        <KeyPress Fn="enterKeyPressSearchHandler" Buffer="100" />
+                                        <TriggerClick Handler="#{Store1}.reload();" />
+                                    </Listeners>
+                                </ext:TextField>
+
                             </Items>
                         </ext:Toolbar>
 
                     </TopBar>
 
-                    <ColumnModel ID="ColumnModel1" runat="server" SortAscText="<%$ Resources:Common , SortAscText %>" SortDescText="<%$ Resources:Common ,SortDescText  %>" SortClearText="<%$ Resources:Common ,SortClearText  %>" ColumnsText="<%$ Resources:Common ,ColumnsText  %>" EnableColumnHide="false" Sortable="false" >
+                    <ColumnModel ID="ColumnModel1" runat="server" SortAscText="<%$ Resources:Common , SortAscText %>" SortDescText="<%$ Resources:Common ,SortDescText  %>" SortClearText="<%$ Resources:Common ,SortClearText  %>" ColumnsText="<%$ Resources:Common ,ColumnsText  %>" EnableColumnHide="false" Sortable="false">
                         <Columns>
 
-                              <ext:Column ID="ColrecordId" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldrecordId %>" DataIndex="recordId" Hideable="false" width="75" Align="Center"/>
+                            <ext:Column ID="ColrecordId" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldrecordId %>" DataIndex="recordId" Hideable="false" Width="75" Align="Center" />
                             <ext:Column ID="colsubject" MenuDisabled="true" runat="server" Text="<%$ Resources: Fieldsubject%>" DataIndex="subject" Flex="1" Hideable="false">
-                                <Renderer Handler="return '<b>' + record.data['subject'] + '</b>' " />                            
+                                <Renderer Handler="return '<b>' + record.data['subject'] + '</b>' " />
                             </ext:Column>
                             <ext:Column ID="colnewsText" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldnewsText %>" DataIndex="newsText" Width="200" Hideable="false">
-                              
                             </ext:Column>
-                           
+
                             <ext:CheckColumn ID="ColnotifyViaEmail" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldnotifyViaEmail %>" DataIndex="notifyViaEmail" Width="75" Hideable="false" />
 
-                         
+
 
                             <ext:Column runat="server"
                                 ID="colEdit"
@@ -220,7 +225,6 @@
                             Border="true"
                             EmptyMsg="<%$ Resources:Common , EmptyMsg %>">
                             <Items>
-                               
                             </Items>
                             <Listeners>
                                 <BeforeRender Handler="this.items.removeAt(this.items.length - 2);" />
@@ -245,7 +249,7 @@
                         <ext:GridView ID="GridView1" runat="server" />
                     </View>
 
-                    <Plugins>                       
+                    <Plugins>
                         <ext:LiveSearchGridPanel ID="LiveSearchGridPanel1" runat="server">
                             <Listeners>
                                 <RegExpError Handler="#{StatusBar1}.setStatus({text: message, iconCls: 'x-status-error'});" />
@@ -261,7 +265,7 @@
             </Items>
         </ext:Viewport>
 
-        
+
 
         <ext:Window
             ID="EditRecordWindow"
@@ -289,7 +293,7 @@
                                 <ext:TextField ID="subject" runat="server" FieldLabel="<%$ Resources:Fieldsubject%>" Name="subject" AllowBlank="false" BlankText="<%$ Resources:Common, MandatoryField%>" />
                                 <ext:TextField ID="newsText" runat="server" FieldLabel="<%$ Resources: FieldnewsText %>" DataIndex="newsText" AllowBlank="false" />
                                 <ext:Checkbox ID="notifyViaEmail" runat="server" FieldLabel="<%$ Resources: FieldnotifyViaEmail%>" DataIndex="notifyViaEmail" Name="notifyViaEmail" />
-                               
+
 
                             </Items>
 
@@ -305,27 +309,34 @@
                     </Items>
                 </ext:TabPanel>
             </Items>
-            <Buttons>
-                <ext:Button ID="SaveButton" runat="server" Text="<%$ Resources:Common, Save %>" Icon="Disk">
+            
+            <BottomBar>
+                <ext:Toolbar runat="server" Cls="tlb-BackGround">
+                    <Items>
 
-                    <Listeners>
-                        <Click Handler="CheckSession(); if (!#{BasicInfoTab}.getForm().isValid()) {return false;} " />
-                    </Listeners>
-                    <DirectEvents>
-                        <Click OnEvent="SaveNewRecord" Failure="Ext.MessageBox.alert('#{titleSavingError}.value', '#{titleSavingErrorMessage}.value');">
-                            <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="={#{EditRecordWindow}.body}" />
-                            <ExtraParams>
-                                <ext:Parameter Name="id" Value="#{recordId}.getValue()" Mode="Raw" />
-                            </ExtraParams>
-                        </Click>
-                    </DirectEvents>
-                </ext:Button>
-                <ext:Button ID="CancelButton" runat="server" Text="<%$ Resources:Common , Cancel %>" Icon="Cancel">
-                    <Listeners>
-                        <Click Handler="this.up('window').hide();" />
-                    </Listeners>
-                </ext:Button>
-            </Buttons>
+                        <ext:Button ID="SaveButton" runat="server" Text="<%$ Resources:Common, Save %>" Icon="Disk">
+
+                            <Listeners>
+                                <Click Handler="CheckSession(); if (!#{BasicInfoTab}.getForm().isValid()) {return false;} " />
+                            </Listeners>
+                            <DirectEvents>
+                                <Click OnEvent="SaveNewRecord" Failure="Ext.MessageBox.alert('#{titleSavingError}.value', '#{titleSavingErrorMessage}.value');">
+                                    <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="={#{EditRecordWindow}.body}" />
+                                    <ExtraParams>
+                                        <ext:Parameter Name="id" Value="#{recordId}.getValue()" Mode="Raw" />
+                                    </ExtraParams>
+                                </Click>
+                            </DirectEvents>
+                        </ext:Button>
+                        <ext:ToolbarFill />
+                        <ext:Button ID="CancelButton" runat="server" Text="<%$ Resources:Common , Cancel %>" Icon="Cancel" Cls="x-btn-left">
+                            <Listeners>
+                                <Click Handler="this.up('window').hide();" />
+                            </Listeners>
+                        </ext:Button>
+                    </Items>
+                </ext:Toolbar>
+            </BottomBar>
         </ext:Window>
 
 
