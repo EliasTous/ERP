@@ -10,6 +10,6 @@ namespace AionHR.Model.Employees.Profile
    public class DocumentType : ModelBase
     {
         public string name { get; set; }
-        public string intName { get; set; }
+        //public string intName { get; set; }
     }
 }

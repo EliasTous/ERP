@@ -177,7 +177,7 @@ namespace AionHR.Web.UI.Forms
                 //Step 1 Code to delete the object from the database 
                 CertificateLevel s = new CertificateLevel();
                 s.recordId = index;
-                s.reference = "";
+                //s.reference = "";
 
                 s.name = "";
                 PostRequest<CertificateLevel> req = new PostRequest<CertificateLevel>();

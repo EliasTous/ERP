@@ -283,15 +283,6 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.TextField name;
         
         /// <summary>
-        /// intName control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.TextField intName;
-        
-        /// <summary>
         /// SaveButton control.
         /// </summary>
         /// <remarks>

@@ -9,7 +9,7 @@ namespace AionHR.Model.Employees.Profile
 {
    public class CertificateLevel : ModelBase
     {
-        public string reference { get; set; }
+        //public string reference { get; set; }
         public string name { get; set; }
     }
 }

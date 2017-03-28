@@ -606,4 +606,7 @@
   <data name="Geofences" xml:space="preserve">
     <value>Geofences</value>
   </data>
+  <data name="Legals" xml:space="preserve">
+    <value>Legals</value>
+  </data>
 </root>

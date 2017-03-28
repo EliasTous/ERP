@@ -44,7 +44,7 @@
                         <ext:ModelField Name="recordId" />
                         
                         <ext:ModelField Name="name" />
-                        <ext:ModelField Name="reference" />
+                        <%--<ext:ModelField Name="reference" />--%>
                       
                                </Fields>
                 </ext:Model>
@@ -117,7 +117,7 @@
                             <ext:Column    CellCls="cellLink" ID="ColName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldName%>" DataIndex="name" Flex="2" Hideable="false">
                             <Renderer Handler="return '<u>'+ record.data['name']+'</u>'">
                             </Renderer></ext:Column>
-                            <ext:Column ID="Column1" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldReference%>" DataIndex="reference" Width ="300" Hideable="false" />
+                            <%--<ext:Column ID="Column1" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldReference%>" DataIndex="reference" Width ="300" Hideable="false" />--%>
                              
                         
                            
@@ -255,7 +255,7 @@
                             <Items>
                                 <ext:TextField ID="recordId" runat="server"  Name="recordId"  Hidden="true"/>
                                 <ext:TextField ID="name" runat="server" FieldLabel="<%$ Resources:FieldName%>" Name="name"   AllowBlank="false"/>
-                                <ext:TextField ID="reference" runat="server" FieldLabel="<%$ Resources:FieldReference%>" Name="reference"   AllowBlank="false"/>
+                                <%--<ext:TextField ID="reference" runat="server" FieldLabel="<%$ Resources:FieldReference%>" Name="reference"   AllowBlank="false"/>--%>
                                 
 
                                 
