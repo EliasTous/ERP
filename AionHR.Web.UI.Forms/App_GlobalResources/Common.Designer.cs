@@ -322,7 +322,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Collapse.
+        ///   Looks up a localized string similar to Close.
         /// </summary>
         internal static string CollapsePanel {
             get {

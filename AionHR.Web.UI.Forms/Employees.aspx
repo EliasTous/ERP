@@ -318,7 +318,7 @@
                                   
                                 </ext:Image>
                                 
-                                <ext:HyperlinkButton runat="server" Text="Clear" >
+                                <ext:HyperlinkButton runat="server" Text="<%$ Resources:Clear %>" >
                                     <Listeners>
                                         <Click Handler=" ClearImage();" />
 

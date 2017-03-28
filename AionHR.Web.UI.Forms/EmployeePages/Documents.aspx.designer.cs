@@ -76,6 +76,15 @@ namespace AionHR.Web.UI.Forms.EmployeePages {
         protected global::Ext.Net.Hidden CurrentEmployee;
         
         /// <summary>
+        /// CurrentDateFormat control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Hidden CurrentDateFormat;
+        
+        /// <summary>
         /// Viewport11 control.
         /// </summary>
         /// <remarks>
@@ -190,7 +199,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.DateColumn Column2;
+        protected global::Ext.Net.Column Column2;
         
         /// <summary>
         /// colEdit control.

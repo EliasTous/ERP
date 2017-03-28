@@ -120,6 +120,12 @@
   <data name="BasicInfoTabEditWindowTitle" xml:space="preserve">
     <value>Profile</value>
   </data>
+  <data name="ButtonClear" xml:space="preserve">
+    <value>Clear</value>
+  </data>
+  <data name="ButtonRefresh" xml:space="preserve">
+    <value>Refresh</value>
+  </data>
   <data name="ContractEndingDate" xml:space="preserve">
     <value>Contract Ending Date</value>
   </data>
@@ -130,7 +136,7 @@
     <value>Place of Birth</value>
   </data>
   <data name="FieldBranch" xml:space="preserve">
-    <value>Branch</value>
+    <value>Select a Branch</value>
   </data>
   <data name="FieldBreaks" xml:space="preserve">
     <value>Breaks</value>
@@ -141,6 +147,9 @@
   <data name="FieldCheckOut" xml:space="preserve">
     <value>Check Out</value>
   </data>
+  <data name="FieldDate" xml:space="preserve">
+    <value>Select a Date</value>
+  </data>
   <data name="FieldDateOfBirth" xml:space="preserve">
     <value>Birth Date</value>
   </data>
@@ -148,13 +157,13 @@
     <value>Day</value>
   </data>
   <data name="FieldDepartment" xml:space="preserve">
-    <value>Department</value>
+    <value>Select a Department</value>
   </data>
   <data name="FieldDivision" xml:space="preserve">
-    <value>Division</value>
+    <value>Select a Division</value>
   </data>
   <data name="FieldEmployee" xml:space="preserve">
-    <value>Employee</value>
+    <value>Select an Employee</value>
   </data>
   <data name="FieldFamilyName" xml:space="preserve">
     <value>Family Name</value>

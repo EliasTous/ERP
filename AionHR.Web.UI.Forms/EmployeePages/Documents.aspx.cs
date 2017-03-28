@@ -63,6 +63,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                 if (string.IsNullOrEmpty(Request.QueryString["employeeId"]))
                     X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorOperation).Show();
                 CurrentEmployee.Text = Request.QueryString["employeeId"];
+                CurrentDateFormat.Text = _systemService.SessionHelper.GetDateformat();
 
             }
 
@@ -124,7 +125,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     this.EditDocumentForm.SetValues(entity);
                     FillDocumentTypes();
                     dtId.Select(entity.dtId.ToString());
-
+                    
                     this.EditDocumentWindow.Title = Resources.Common.EditWindowsTitle;
                     this.EditDocumentWindow.Show();
                     break;
@@ -142,7 +143,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                         {
                             Text = Resources.Common.No
                         }
-
+                        
                     }).Show();
                     break;
 
@@ -409,6 +410,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     {
                         EmployeeDocument insertedEntity = GetById(b.recordId);
                         //Add this record to the store 
+                        
                         this.employeeDocumentsStore.Insert(0, insertedEntity);
 
                         //Display successful notification
@@ -489,6 +491,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                         EditDocumentForm.UpdateRecord(record);
                         record.Set("dtName", updated.dtName);
                         record.Set("fileUrl", updated.fileUrl);
+                        record.Set("expiryDate", updated.expiryDate.Value.ToShortDateString());
                         record.Commit();
                         Notification.Show(new NotificationConfig
                         {

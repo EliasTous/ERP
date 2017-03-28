@@ -9,7 +9,9 @@ var deleteRender = function () {
 var attachRender = function () {
     return '<img class="imgAttach"  style="cursor:pointer;" src="../Images/Tools/attach.png" />';
 };
-
+var attachRender2 = function () {
+    return '<img class="imgError"  src="../Images/Tools/error.png" />';
+};
 
 var commandName;
 var cellClick = function (view, cell, columnIndex, record, row, rowIndex, e) {

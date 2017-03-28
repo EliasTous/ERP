@@ -16,5 +16,7 @@ namespace AionHR.Model.System
          RecordWebServiceResponse<UserInfo> Authenticate(Dictionary<string, string> Headers = null, Dictionary<string, string> QueryStringParams = null);
         RecordWebServiceResponse<UserInfo> ResetPassword(Dictionary<string, string> Headers = null, Dictionary<string, string> QueryStringParams = null);
         RecordWebServiceResponse<UserInfo> RequestPasswordRecovery(Dictionary<string, string> Headers = null, Dictionary<string, string> QueryStringParams = null);
+
+        PostWebServiceResponse UploadMultipleAttachments(Attachement at, List<string> fileNames, List<byte[]> filesData, Dictionary<string, string> Headers = null, Dictionary<string, string> QueryStringParams = null);
     }
 }

@@ -10,7 +10,21 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
+    <script type="text/javascript">
+        function dump(obj) {
+            var out = '';
+            for (var i in obj) {
+                out += i + ": " + obj[i] + "\n";
 
+
+            }
+            return out;
+        }
+        function checkAccount(acc)
+        {
+            
+        }
+    </script>
 
     <link rel="stylesheet" type="text/css" href="CSS/Header.css" />
     <link rel="stylesheet" type="text/css" href="CSS/Common.css" />
@@ -92,20 +106,41 @@
                             ID="tbAccountName"
                             runat="server"
                             AutoFocus="true"
-                            IsRemoteValidation="true"
+                            
                             MsgTarget="Side"
                             FieldLabel="<%$ Resources:  Account %>"
-                            AllowBlank="false"
+                            
                             BlankText="<%$ Resources: Common, MandatoryField %>"
                             EmptyText="<%$ Resources:  EnterYourAccount %>">
 
-                            <RemoteValidation Delay="2000" OnValidation="CheckField">
-                                <EventMask ShowMask="true" CustomTarget="#{panelLogin}" />
-                            </RemoteValidation>
+                            
                             <Listeners>
-
-                                <RemoteValidationValid Handler="this.setIndicatorIconCls('icon-tick');this.setIndicatorIconCls('icon-tick'); " />
-                                <RemoteValidationInvalid Handler="this.setIndicatorIconCls('icon-error'); " />
+                                <Change Handler=" App.direct.CheckFieldDirect(#{tbAccountName}.value,{
+                success: function (result) {
+                    if(result=='1'){
+                    App.tbAccountName.setIndicatorIconCls('icon-tick'); App.tbAccountName.setIndicatorIconCls('icon-tick');}
+                                    else
+                                     {App.tbAccountName.setIndicatorIconCls('');App.tbAccountName.setIndicatorIconCls('');}
+                }
+            });   " />
+                                <FocusLeave Handler="App.direct.CheckFieldDirect(#{tbAccountName}.value,{
+                success: function (result) {
+                    if(result=='1')
+                    App.tbAccountName.setIndicatorIconCls('icon-tick');
+                                    else{
+                                    App.tbAccountName.setIndicatorIconCls('icon-error');App.tbAccountName.setIndicatorIconCls('icon-error');}
+                }
+            });    " />
+                                <FocusEnter Handler="App.direct.CheckFieldDirect(#{tbAccountName}.value,{
+                success: function (result) {
+                    if(result=='1'){
+                    App.tbAccountName.setIndicatorIconCls('icon-tick'); App.tbAccountName.setIndicatorIconCls('icon-tick');}
+                                    else
+                                     {App.tbAccountName.setIndicatorIconCls('');App.tbAccountName.setIndicatorIconCls('');}
+                }
+            });   " />
+                                <%--<RemoteValidationValid Handler="this.setIndicatorIconCls('icon-tick');this.setIndicatorIconCls('icon-tick'); " />--%>
+                               <%--<RemoteValidationInvalid Handler="this.setIndicatorIconCls('icon-error'); " />--%>
                             </Listeners>
 
                         </ext:TextField>
@@ -141,7 +176,7 @@
                         <ext:Button ID="btnLogin" runat="server" Text="<%$ Resources:  Login %>">
                             <Listeners>
                                 <Click Handler="
-                                        if (!#{panelLogin}.validate()) {                                
+                                        if (!#{panelLogin}.validate()|| #{tbAccountName}.value=='') {                                
                                             return false;
                                         }
                                     

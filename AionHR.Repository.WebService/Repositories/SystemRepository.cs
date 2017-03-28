@@ -86,7 +86,17 @@ namespace AionHR.Repository.WebService.Repositories
 
         }
 
-
+        public PostWebServiceResponse UploadMultipleAttachments(Attachement at, List<string> fileNames,List<byte[]> filesData,Dictionary<string, string> Headers = null, Dictionary<string, string> QueryStringParams = null)
+        {
+            var request = new HTTPWebServiceRequest();
+            request.MethodType = "POST";
+            request.URL = ServiceURL + "setAT";
+            if (Headers != null)
+                request.Headers = Headers;
+            if (QueryStringParams != null)
+                request.QueryStringParams = QueryStringParams;
+            return request.PostAsyncWithMultipleAttachments<Attachement>(at, fileNames, filesData);
+        }
 
 
     }

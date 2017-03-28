@@ -56,6 +56,7 @@ namespace AionHR.Web.UI.Forms
                 SetExtLanguage();
                 HideShowButtons();
                 HideShowColumns();
+                CurrentCountry.Text = "Lebanon";
             }
         }
 
@@ -420,7 +421,7 @@ namespace AionHR.Web.UI.Forms
                     }
                     else
                     {
-
+                        b.recordId = r.recordId;
                         //Add this record to the store 
                         this.Store1.Insert(0, b);
 

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AionHR.Model.System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,19 @@ namespace AionHR.Services.Messaging.System
                 parameters.Add("_recordId", recordId.ToString());
                 return parameters;
             }
+        }
+    }
+    public class SystemAttachmentsPostRequest : PostRequest<Attachement>
+    {
+       public List<string> FileNames { get; set; }
+
+       public List<byte[]> FilesData { get; set; }
+
+        public SystemAttachmentsPostRequest()
+        {
+            FileNames = new List<string>();
+            FilesData = new List<byte[]>();
+                
         }
     }
 }

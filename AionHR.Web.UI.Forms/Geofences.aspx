@@ -13,221 +13,10 @@
     <link rel="stylesheet" href="CSS/LiveSearch.css" />
      <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCRQ7sZoJrjEBuIBret1gCccSwicDusM3w&libraries=drawing"></script>
    
-    <script type="text/javascript" src="Scripts/Geofences.js?id=2" ></script>
+    <script type="text/javascript" src="Scripts/Geofences.js?id=6" ></script>
     <script type="text/javascript" src="Scripts/common.js" ></script>
     <script type="text/javascript">
-        var circle;
-        var rectangle;
-        var map;
-        var drawingManager;
-        function initMap() {
-
-            map = new google.maps.Map(document.getElementById('map'), {
-                center: { lat: -34.397, lng: 150.644 },
-                zoom: 12
-            });
-
-            drawingManager = new google.maps.drawing.DrawingManager({
-
-                drawingControl: true,
-                drawingControlOptions: {
-                    position: google.maps.ControlPosition.TOP_CENTER,
-                    drawingModes: ['circle', 'rectangle']
-                },
-
-                circleOptions: {
-                   
-                    
-                    strokeWeight: 2,
-                    clickable: false,
-                    editable: true,
-                    zIndex: 1,
-                    draggable:true
-                },
-                rectangleOptions: {
-                
-                
-                strokeWeight: 2,
-                draggable:true,
-                editable: true,
-                zIndex: 1
-            }
-            });
-            drawingManager.setMap(map);
-
-            google.maps.event.addListener(drawingManager, 'overlaycomplete', function (e) {
-                if (e.type == google.maps.drawing.OverlayType.CIRCLE) {
-                    circle = e.overlay;
-                }
-                else {
-                    rectangle = e.overlay;
-                }
-                // Switch back to non-drawing mode after drawing a shape.
-                drawingManager.setDrawingMode(null);
-                // To hide:
-                drawingManager.setOptions({
-                    drawingControl: false
-                });
-                document.getElementById("delete").removeAttribute('disabled');
-                    
-            }
-
-        );
-            document.getElementById("delete").onclick = function () {
-                if (rectangle != null) {
-                    rectangle.setMap(null);
-                    rectangle = null;
-                }
-                if (circle != null) {
-                    circle.setMap(null);
-                    circle = null;
-                }
-
-                drawingManager.setOptions({
-                    drawingControl: true
-                });
-                this.disabled = 'disabled';
-            };
-            
-            if (circle != null || rectangle != null)
-            {
-                drawingManager.setOptions({
-                    drawingControl: false
-                });
-                document.getElementById("delete").removeAttribute('disabled');
-            }
-            
-            
-
-        }
-        function dump(obj) {
-            var out = '';
-            for (var i in obj) {
-                out += i + ": " + obj[i] + "\n";
-
-
-            }
-            return out;
-        }
-      
-        function getCircleJson()
-        {
-            
-            if (circle == null) {
-             
-                return null;
-            }
-            return { lat: circle.center.lat(), lon: circle.center.lng(), radius: circle.radius };
-        }
-        function clearMap() {
-            if (circle != null) {
-                circle.setMap(null);
-                circle = null;
-            }
-            if(rectangle!=null)
-            {
-                rectangle.setMap(null);
-                rectangle = null;
-            }
-            drawingManager.setOptions({
-                drawingControl: true
-            });
-            document.getElementById("delete").disabled = 'disabled';
-        }
-        function getRectangleJson() {
-            if (rectangle == null)
-                return null;
-            
-            return { lat1: rectangle.bounds.getNorthEast().lat(), lat2: rectangle.bounds.getSouthWest().lat(), lon1: rectangle.bounds.getNorthEast().lng(), lon2: rectangle.bounds.getSouthWest().lng() };
-        }
-        function AddCircle(latitude, longitude, r)
-        {
-            rectangle = null;
-            circle = new google.maps.Circle({
-                
-                strokeOpacity:1,
-                strokeWeight: 2,
-                
-                fillOpacity: 0.35,
-              
-                center: { lat: latitude, lng: longitude },
-                map:map,
-                radius: r
-            });
-            drawingManager.setOptions({
-                drawingControl: false
-            });
-            document.getElementById("delete").removeAttribute('disabled');
-            map.setCenter(circle.center);
-
-        }
-        function AddRectangle(lat1,lon1,lat2,lon2)
-        {
-            circle = null;
-            rectangle = new google.maps.Rectangle({
-                
-                
-                strokeWeight: 2,
-                
-                
-                map:map,
-                bounds: {
-                    north: lat1,
-                    south: lat2,
-                    east: lon1,
-                    west: lon2
-                }
-            });
-            drawingManager.setOptions({
-                drawingControl: false
-            });
-            document.getElementById("delete").removeAttribute('disabled');
-            map.setCenter(rectangle.bounds.getCenter());
-        }
-
-        function isCircle()
-        {
-            return circle != null;
-        }
-        function getLat1()
-        {
-            if (isCircle())
-                return getCircleJson().lat;
-            else
-                return getRectangleJson().lat1;
-        }
-        function getLon1() {
-            if (isCircle())
-                return getCircleJson().lon;
-            else
-                return getRectangleJson().lon1;
-
-        }
-        function getLat2() {
-            if (!isCircle())
-                return getRectangleJson().lat2;
-        }
-        function getLon2() {
-            if (!isCircle())
-               
-                return getRectangleJson().lon2;
-
-        }
-        function getRadius() {
-            if (isCircle())
-
-                return getCircleJson().radius;
-
-        }
-
-        function geocodeAddress(geocoder, resultsMap) {
-            var address = document.getElementById('address').value;
-            geocoder.geocode({ 'address': address }, function (results, status) {
-                if (status === 'OK') {
-                    resultsMap.setCenter(results[0].geometry.location);
-                }
-            });
-            }
+    
     </script>
  
 </head>
@@ -239,7 +28,7 @@
         <ext:Hidden ID="textLoadFailed" runat="server" Text="<%$ Resources:Common , LoadFailed %>" />
         <ext:Hidden ID="titleSavingError" runat="server" Text="<%$ Resources:Common , TitleSavingError %>" />
         <ext:Hidden ID="titleSavingErrorMessage" runat="server" Text="<%$ Resources:Common , TitleSavingErrorMessage %>" />
-        
+        <ext:Hidden ID="CurrentCountry" runat="server" />
         <ext:Store
             ID="Store1"
             runat="server"
@@ -453,11 +242,13 @@
             runat="server"
             Icon="PageEdit"
             Title="<%$ Resources:EditWindowsTitle %>"
-            Width="450"
-            Height="470"
+            Width="800"
+            Height="500"
             AutoShow="false" 
             Modal="true"
             Hidden="true"
+         Resizable="false"
+            Maximizable="false"
             Layout="Fit">
             
             <Items>
@@ -467,7 +258,7 @@
                             ID="BasicInfoTab" DefaultButton="SaveButton"
                             runat="server"
                             Title="<%$ Resources: BasicInfoTabEditWindowTitle %>"
-                            Icon="ApplicationSideList"
+                            Icon="ApplicationSideList" 
                             DefaultAnchor="100%" OnLoad="BasicInfoTab_Load"
                             BodyPadding="5">
                             <Items>
@@ -506,11 +297,11 @@
                                                     </Listeners>
                                                 </ext:ComboBox>
 
-                                <ext:Panel runat="server" Layout="FormLayout" Height="500" Width="400" >
+                                <ext:Panel runat="server" Layout="FormLayout"  Flex="1" >
                                     <Items>
-                                        <ext:Container runat="server">
+                                        <ext:Container runat="server" >
                                         <Content>
-                                        <div id="map" style=" height: 280px;width:400px;"></div>
+                                        <div id="map" style="height:300px;width:650px" ></div>
                                             <input type="button" id="delete" value="Clear" disabled="disabled"/>
                                     </Content>
                                             
@@ -518,7 +309,7 @@
                                     </Items>
                                   
                                     <Listeners>
-                                        <AfterRender Handler="initMap()" />
+                                        <AfterRender Handler="initMap(document.getElementById('CurrentCountry').value);" />
                                     </Listeners>
                                 </ext:Panel>
                             </Items>
@@ -532,7 +323,7 @@
                 <ext:Button ID="SaveButton" runat="server" Text="<%$ Resources:Common, Save %>" Icon="Disk">
 
                     <Listeners>
-                        <Click Handler="CheckSession(); if (!#{BasicInfoTab}.getForm().isValid()) {return false;}  " />
+                        <Click Handler="CheckSession(); if (!#{BasicInfoTab}.getForm().isValid() ||(circle==null&& rectangle==null)) {return false;}  " />
                     </Listeners>
                     <DirectEvents>
                         <Click OnEvent="SaveNewRecord" Failure="Ext.MessageBox.alert('#{titleSavingError}.value', '#{titleSavingErrorMessage}.value');">

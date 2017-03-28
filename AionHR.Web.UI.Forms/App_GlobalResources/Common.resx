@@ -145,7 +145,7 @@
     <value>Collapse All</value>
   </data>
   <data name="CollapsePanel" xml:space="preserve">
-    <value>Collapse</value>
+    <value>Close</value>
   </data>
   <data name="Company" xml:space="preserve">
     <value>Company Information</value>

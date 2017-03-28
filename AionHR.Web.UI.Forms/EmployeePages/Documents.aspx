@@ -9,8 +9,9 @@
     <title></title>
     <link rel="stylesheet" type="text/css" href="../CSS/Common.css?id=1" />
     <link rel="stylesheet" href="../CSS/LiveSearch.css" />
-    <script type="text/javascript" src="../Scripts/Documents.js?id=18"></script>
+    <script type="text/javascript" src="../Scripts/Documents.js?id=22"></script>
     <script type="text/javascript" src="../Scripts/common.js?id=0"></script>
+    <script type="text/javascript" src="../Scripts/moment.js?id=0"></script>
 
 
 </head>
@@ -23,7 +24,7 @@
         <ext:Hidden ID="titleSavingError" runat="server" Text="<%$ Resources:Common , TitleSavingError %>" />
         <ext:Hidden ID="titleSavingErrorMessage" runat="server" Text="<%$ Resources:Common , TitleSavingErrorMessage %>" />
         <ext:Hidden ID="CurrentEmployee" runat="server"  />
-
+        <ext:Hidden ID="CurrentDateFormat" runat="server"  />
           <ext:Viewport ID="Viewport11" runat="server" Layout="VBoxLayout" Padding="10">
             <LayoutConfig>
                 <ext:VBoxLayoutConfig Align="Stretch" />
@@ -66,7 +67,7 @@
                                         <ext:ModelField Name="recordId" />
                                         <ext:ModelField Name="dtName" />
                                         <ext:ModelField Name="documentRef" />
-                                        <ext:ModelField Name="expiryDate" />
+                                        <ext:ModelField Name="expiryDate" ServerMapping="expiryDate.ToShortDateString()" />
                                         <ext:ModelField Name="remarks" />
                                         <ext:ModelField Name="fileUrl" />
 
@@ -117,7 +118,9 @@
                             <ext:Column CellCls="cellLink" ID="Column1" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDocumentType%>" DataIndex="dtName" Flex="2" Hideable="false" />
                             <ext:Column CellCls="cellLink" ID="Column3" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldRemarks%>" DataIndex="remarks" Flex="2" Hideable="false" />
                             
-                            <ext:DateColumn  CellCls="cellLink" ID="Column2" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldExpiryDate%>" DataIndex="expiryDate" Width="100" Hideable="false" />
+                            <ext:Column  CellCls="cellLink" ID="Column2" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldExpiryDate%>" DataIndex="expiryDate" Width="120" Hideable="false" >
+                                <Renderer Handler="var now = moment(); var icon=''; var date = moment(record.data['expiryDate']);if(now>date)   icon= attachRender2();return record.data['expiryDate'] + '&nbsp;&nbsp;'+ icon;" />
+                                </ext:Column>
 
 
 

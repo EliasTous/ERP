@@ -64,8 +64,18 @@ namespace AionHR.Infrastructure.Session
         }
         public void SetNameFormat(string format)
         {
-            Set("nameFormat", format);
+            string commad = format.Replace('}', ',');
+            string removedBrace = commad.Replace('{', Char.MinValue);
+            string lastLetterRemoved = removedBrace.Substring(0, removedBrace.Length - 1);
+            Set("nameFormat", lastLetterRemoved);
         }
+
+        public void SetDefaultCountry(string format)
+        {
+            Set("countryId", format);
+        }
+
+
 
         #endregion
 
@@ -86,7 +96,16 @@ namespace AionHR.Infrastructure.Session
 
             return nameFormat.ToString();
         }
-      
+
+        public string GetDefaultCountry()
+        {
+            object nameFormat = Get("countryId");
+            if (nameFormat == null)
+                return "Lebanon";
+
+            return nameFormat.ToString();
+        }
+
         #endregion
         public object Get(string key)
         {

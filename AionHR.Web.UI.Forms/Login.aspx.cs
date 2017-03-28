@@ -111,8 +111,7 @@ namespace AionHR.Web.UI.Forms
 
                 _systemService.SessionHelper.Set("CompanyName", getACResponse.result.companyName);
 
-                _systemService.SessionHelper.Set("dateFormat", GetDateFormat());
-                _systemService.SessionHelper.Set("nameFormat", GetNameFormat());
+                StoreSystemDefaults();
                 return "1";//Succeded
 
             }
@@ -124,6 +123,34 @@ namespace AionHR.Web.UI.Forms
             }
         }
 
+        private void StoreSystemDefaults()
+        {
+            ListRequest req = new ListRequest();
+            ListResponse<KeyValuePair<string, string>> defaults = _systemService.ChildGetAll<KeyValuePair<string, string>>(req);
+            if (!defaults.Success)
+            {
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, defaults.Summary).Show();
+                return;
+            }
+            try
+            {
+                _systemService.SessionHelper.SetDateformat(defaults.Items.Where(s => s.Key == "dateFormat").First().Value);
+            }
+            catch
+            {
+                _systemService.SessionHelper.SetDateformat("MMM, dd, yyyy");
+            }
+            try
+            {
+                _systemService.SessionHelper.SetNameFormat(defaults.Items.Where(s => s.Key == "nameFormat").First().Value);
+            }
+            catch
+            {
+                _systemService.SessionHelper.SetDateformat("{firstName}{lastName} ");
+            }
+
+        }
         private object GetDateFormat()
         {
             SystemDefaultRecordRequest req = new SystemDefaultRecordRequest();
@@ -212,17 +239,16 @@ namespace AionHR.Web.UI.Forms
             else
             {
 
-                e.Success = false;
-                e.ErrorMessage = "Invalid Account";//should access local resources, just didn't figure how yet , only Resources.Common is accessible
-
+              
             }
-            tbAccountName.ShowIndicator();
+            //tbAccountName.ShowIndicator();
 
         }
+
         [DirectMethod]
-        public bool CheckFieldDirect()
+        public string CheckFieldDirect(string accName)
         {
-            string accName = tbAccountName.Text;
+            
             GetAccountRequest request = new GetAccountRequest();
             request.Account = accName;
 
@@ -232,13 +258,13 @@ namespace AionHR.Web.UI.Forms
             {
 
 
-                return true;
+                return "1";
 
             }
             else
             {
 
-                return false;
+                return "0";
             }
            
 

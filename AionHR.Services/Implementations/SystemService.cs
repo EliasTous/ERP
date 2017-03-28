@@ -106,5 +106,16 @@ namespace AionHR.Services.Implementations
         {
             return childRepo;
         }
+
+        public PostResponse<Attachement> UploadMultipleAttachments(SystemAttachmentsPostRequest request)
+        {
+            PostResponse<Attachement> response;
+            var headers = SessionHelper.GetAuthorizationHeadersForUser();
+            PostWebServiceResponse webResponse = childRepo.UploadMultipleAttachments(request.entity, request.FileNames, request.FilesData, headers);
+            response = CreateServiceResponse<PostResponse<Attachement>>(webResponse);
+            if (webResponse != null)
+                response.recordId = webResponse.recordId;
+            return response;
+        }
     }
 }
