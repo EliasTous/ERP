@@ -609,4 +609,7 @@
   <data name="Legals" xml:space="preserve">
     <value>Legals</value>
   </data>
+  <data name="CheckTypes" xml:space="preserve">
+    <value>Check Types</value>
+  </data>
 </root>

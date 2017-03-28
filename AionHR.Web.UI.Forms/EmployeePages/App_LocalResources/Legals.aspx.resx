@@ -117,127 +117,64 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="ActiveOnly" xml:space="preserve">
-    <value>Active Only</value>
+  <data name="BCGridTitle" xml:space="preserve">
+    <value>Background Check</value>
   </data>
-  <data name="All" xml:space="preserve">
-    <value>All</value>
+  <data name="EditBCWindow" xml:space="preserve">
+    <value>Background Check Info</value>
   </data>
-  <data name="BasicInfoTabEditWindowTitle" xml:space="preserve">
-    <value>Profile</value>
+  <data name="EditBCWindowTitle" xml:space="preserve">
+    <value>Edit Background Check</value>
   </data>
-  <data name="ContractEndingDate" xml:space="preserve">
-    <value>Contract Ending Date</value>
+  <data name="EditRWWindow" xml:space="preserve">
+    <value>Right To Work Info</value>
   </data>
-  <data name="DocumentsTab" xml:space="preserve">
-    <value>Files</value>
+  <data name="EditRWWindowTitle" xml:space="preserve">
+    <value>Edit Right To Work</value>
   </data>
-  <data name="EditWindowsTitle" xml:space="preserve">
-    <value>Edit Branch</value>
+  <data name="FieldBCCheckType" xml:space="preserve">
+    <value>Type of Check</value>
   </data>
-  <data name="FieldBirthPlace" xml:space="preserve">
-    <value>Place of Birth</value>
+  <data name="FieldBCCTName" xml:space="preserve">
+    <value>Check Type</value>
   </data>
-  <data name="FieldBranch" xml:space="preserve">
-    <value>Branch</value>
+  <data name="FieldBCEmployeeName" xml:space="preserve">
+    <value>Employee Name</value>
   </data>
-  <data name="FieldDateOfBirth" xml:space="preserve">
-    <value>Birth Date</value>
+  <data name="FieldBCExpiryDate" xml:space="preserve">
+    <value>Expiry Date</value>
   </data>
-  <data name="FieldDepartment" xml:space="preserve">
-    <value>Department</value>
+  <data name="FieldBCIssueDate" xml:space="preserve">
+    <value>Issue Date</value>
   </data>
-  <data name="FieldDivision" xml:space="preserve">
-    <value>Division</value>
+  <data name="FieldBCRemarks" xml:space="preserve">
+    <value>Remarks</value>
   </data>
-  <data name="FieldFamilyName" xml:space="preserve">
-    <value>Family Name</value>
+  <data name="FieldRWDocumentRef" xml:space="preserve">
+    <value>Document Ref</value>
   </data>
-  <data name="FieldFirstName" xml:space="preserve">
-    <value>First Name</value>
+  <data name="FieldRWDocumentType" xml:space="preserve">
+    <value>Document Type</value>
   </data>
-  <data name="FieldFullName" xml:space="preserve">
-    <value>Name</value>
+  <data name="FieldRWDtName" xml:space="preserve">
+    <value>Document Type</value>
   </data>
-  <data name="FieldGender" xml:space="preserve">
-    <value>Gender</value>
+  <data name="FieldRWEmployeeName" xml:space="preserve">
+    <value>Employee Name</value>
   </data>
-  <data name="FieldHireDate" xml:space="preserve">
-    <value>Hire Date</value>
+  <data name="FieldRWExpiryDate" xml:space="preserve">
+    <value>Expiry Date</value>
   </data>
-  <data name="FieldHomeEmail" xml:space="preserve">
-    <value>Home Email</value>
+  <data name="FieldRWIssueDate" xml:space="preserve">
+    <value>Issue Date</value>
   </data>
-  <data name="FieldIsInactive" xml:space="preserve">
-    <value>Is Inactive?</value>
+  <data name="FieldRWRemarks" xml:space="preserve">
+    <value>Remarks</value>
   </data>
-  <data name="FieldLastName" xml:space="preserve">
-    <value>Last Name</value>
-  </data>
-  <data name="FieldLastTACheck" xml:space="preserve">
-    <value>Last Check In</value>
-  </data>
-  <data name="FieldLastTACheckStatus" xml:space="preserve">
-    <value>Last Check In Status</value>
-  </data>
-  <data name="FieldMiddleName" xml:space="preserve">
-    <value>Middle Name</value>
-  </data>
-  <data name="FieldMobile" xml:space="preserve">
-    <value>Mobile</value>
-  </data>
-  <data name="FieldNationality" xml:space="preserve">
-    <value>Nationality</value>
-  </data>
-  <data name="FieldPicturePath" xml:space="preserve">
-    <value>PicturePath</value>
-  </data>
-  <data name="FieldPosition" xml:space="preserve">
-    <value>Position</value>
+  <data name="RWGridTitle" xml:space="preserve">
+    <value>Right To Work</value>
   </data>
   <data name="FieldRecordId" xml:space="preserve">
     <value>Record ID</value>
-  </data>
-  <data name="FieldReference" xml:space="preserve">
-    <value>Reference</value>
-  </data>
-  <data name="FieldReligion" xml:space="preserve">
-    <value>Religion</value>
-  </data>
-  <data name="FieldSponsor" xml:space="preserve">
-    <value>Sponsor</value>
-  </data>
-  <data name="FieldVacationSchedule" xml:space="preserve">
-    <value>Vacation</value>
-  </data>
-  <data name="FieldWorkEmail" xml:space="preserve">
-    <value>Work Email</value>
-  </data>
-  <data name="FieldWorkingCalendar" xml:space="preserve">
-    <value>Calendar</value>
-  </data>
-  <data name="Filter" xml:space="preserve">
-    <value>Display:</value>
-  </data>
-  <data name="InactiveOnly" xml:space="preserve">
-    <value>Inactive Only</value>
-  </data>
-  <data name="JobInformationTab" xml:space="preserve">
-    <value>Job</value>
-  </data>
-  <data name="LegalsTab" xml:space="preserve">
-    <value>Legals</value>
-  </data>
-  <data name="NotesTab" xml:space="preserve">
-    <value>Notes</value>
-  </data>
-  <data name="PayrollTab" xml:space="preserve">
-    <value>Salary</value>
-  </data>
-  <data name="SkillsTab" xml:space="preserve">
-    <value>Skills</value>
-  </data>
-  <data name="WindowTitle" xml:space="preserve">
-    <value>Employees</value>
   </data>
 </root>

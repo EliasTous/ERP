@@ -1,13 +1,13 @@
 ﻿
 var editRender = function () {
-    return '<img class="imgEdit" style="cursor:pointer;" src="../Images/Tools/edit.png" />';
+    return '<img class="imgEdit" style="cursor:pointer;" src="Images/Tools/edit.png" />';
 };
 
 var deleteRender = function () {
-    return '<img class="imgDelete"  style="cursor:pointer;" src="../Images/Tools/delete.png" />';
+    return '<img class="imgDelete"  style="cursor:pointer;" src="Images/Tools/delete.png" />';
 };
 var attachRender = function () {
-    return '<img class="imgAttach"  style="cursor:pointer;" src="../Images/Tools/attach.png" />';
+    return '<img class="imgAttach"  style="cursor:pointer;" src="Images/Tools/attach.png" />';
 };
 
 
@@ -17,10 +17,8 @@ var cellClick = function (view, cell, columnIndex, record, row, rowIndex, e) {
     CheckSession();
 
 
-
     var t = e.getTarget(),
-        columnId = this.columns[columnIndex].id; // Get column id
-
+            columnId = this.columns[columnIndex].id; // Get column id
 
     if (t.className == "imgEdit") {
         //the ajax call is allowed
@@ -33,7 +31,12 @@ var cellClick = function (view, cell, columnIndex, record, row, rowIndex, e) {
         commandName = t.className;
         return true;
     }
-    if (columnId == "ColRWName" || columnId == "ColBCName")// || columnId == "ColSAName")
+    if (t.className == "imgAttach") {
+        //the ajax call is allowed
+        commandName = t.className;
+        return true;
+    }
+    if (columnId == "ColName")
         return true;
 
 
@@ -43,6 +46,9 @@ var cellClick = function (view, cell, columnIndex, record, row, rowIndex, e) {
 
 
 var getCellType = function (grid, rowIndex, cellIndex) {
+
+    //var columnId = grid.columns[cellIndex].id; // Get column id
+    //return columnId;
 
     if (cellIndex == 0)
         return "";

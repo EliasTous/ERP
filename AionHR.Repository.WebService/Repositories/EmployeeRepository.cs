@@ -47,7 +47,9 @@ namespace AionHR.Repository.WebService.Repositories
             ChildGetAllLookup.Add(typeof(EmployeeNote), "qryNO");
             ChildGetAllLookup.Add(typeof(EmployeeDocument), "qryDO");
             ChildGetAllLookup.Add(typeof(EmployeeCertificate), "qryCE");
-            //ChildGetAllLookup.Add(typeof(E), "qryRW");
+            ChildGetAllLookup.Add(typeof(EmployeeRightToWork), "qryRW");
+            ChildGetAllLookup.Add(typeof(EmployeeBackgroundCheck), "qryBC");
+            ChildGetAllLookup.Add(typeof(CheckType), "qryCT");
 
             ChildGetLookup.Add(typeof(Sponsor), "getSP");
             ChildGetLookup.Add(typeof(AllowanceType), "getAT");
@@ -66,6 +68,9 @@ namespace AionHR.Repository.WebService.Repositories
             ChildGetLookup.Add(typeof(EmployeeNote), "getNO");
             ChildGetLookup.Add(typeof(EmployeeDocument), "getDO");
             ChildGetLookup.Add(typeof(EmployeeCertificate), "getCE");
+            ChildGetLookup.Add(typeof(EmployeeRightToWork), "getRW");
+            ChildGetLookup.Add(typeof(EmployeeBackgroundCheck), "getBC");
+            ChildGetLookup.Add(typeof(CheckType), "getCT");
 
             ChildAddOrUpdateLookup.Add(typeof(Sponsor), "setSP");
             ChildAddOrUpdateLookup.Add(typeof(AllowanceType), "setAT");
@@ -85,6 +90,9 @@ namespace AionHR.Repository.WebService.Repositories
             ChildAddOrUpdateLookup.Add(typeof(EmployeeNote), "setNO");
             ChildAddOrUpdateLookup.Add(typeof(EmployeeDocument), "setDO");
             ChildAddOrUpdateLookup.Add(typeof(EmployeeCertificate), "setCE");
+            ChildAddOrUpdateLookup.Add(typeof(EmployeeRightToWork), "setRW");
+            ChildAddOrUpdateLookup.Add(typeof(EmployeeBackgroundCheck), "setBC");
+            ChildAddOrUpdateLookup.Add(typeof(CheckType), "setCT");
 
             ChildDeleteLookup.Add(typeof(Sponsor), "delSP");
             ChildDeleteLookup.Add(typeof(AllowanceType), "delAT");
@@ -103,6 +111,9 @@ namespace AionHR.Repository.WebService.Repositories
             ChildDeleteLookup.Add(typeof(EmployeeNote), "delNO");
             ChildDeleteLookup.Add(typeof(EmployeeDocument), "delDO");
             ChildDeleteLookup.Add(typeof(EmployeeCertificate), "delCE");
+            ChildDeleteLookup.Add(typeof(EmployeeRightToWork), "delRW");
+            ChildDeleteLookup.Add(typeof(EmployeeBackgroundCheck), "delBC");
+            ChildDeleteLookup.Add(typeof(CheckType), "delCT");
 
         }
 
