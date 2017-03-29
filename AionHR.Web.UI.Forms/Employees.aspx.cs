@@ -264,13 +264,29 @@ namespace AionHR.Web.UI.Forms
         /// </summary>
         /// <param name="index">the ID of the object to delete</param>
         [DirectMethod]
-        public void DeleteRecord(string index)
+        public void DeleteRecord(object sender, DirectEventArgs e)
         {
             try
+                
             {
+                string index = e.ExtraParams["id"];
                 //Step 1 Code to delete the object from the database 
 
                 //Step 2 :  remove the object from the store
+                
+
+
+                PostRequest<Employee> req = new PostRequest<Employee>();
+                Employee emp = new Employee();
+                req.entity = emp;
+                emp.recordId = index;
+                emp.branchId = emp.departmentId = emp.divisionId = emp.vsId = emp.sponsorId = emp.caId = emp.nationalityId = emp.positionId = 0;
+                PostResponse<Employee> post = _employeeService.Delete(req);
+                if(!post.Success)
+                {
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    X.Msg.Alert(Resources.Common.Error,post.Summary).Show();
+                }
                 Store1.Remove(index);
 
                 //Step 3 : Showing a notification for the user 
@@ -280,7 +296,7 @@ namespace AionHR.Web.UI.Forms
                     Icon = Icon.Information,
                     Html = Resources.Common.RecordDeletedSucc
                 });
-
+                EditRecordWindow.Close();
 
             }
             catch (Exception ex)

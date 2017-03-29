@@ -135,6 +135,30 @@ namespace AionHR.Web.UI.Forms
         }
 
 
+        [DirectMethod]
+        public string CheckFieldDirect(string accName)
+        {
+
+            GetAccountRequest request = new GetAccountRequest();
+            request.Account = accName;
+
+            Response<Account> response = _masterService.GetAccount(request);
+
+            if (response.result != null)
+            {
+
+
+                return "1";
+
+            }
+            else
+            {
+
+                return "0";
+            }
+
+
+        }
 
 
         [DirectMethod]

@@ -642,4 +642,7 @@
   <data name="TrType7" xml:space="preserve">
     <value>MAIL</value>
   </data>
+  <data name="CheckTypes" xml:space="preserve">
+    <value>Check Types</value>
+  </data>
 </root>

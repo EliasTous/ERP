@@ -11,19 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <script type="text/javascript">
-        function dump(obj) {
-            var out = '';
-            for (var i in obj) {
-                out += i + ": " + obj[i] + "\n";
-
-
-            }
-            return out;
-        }
-        function checkAccount(acc)
-        {
-            
-        }
+        
     </script>
 
     <link rel="stylesheet" type="text/css" href="CSS/Header.css" />

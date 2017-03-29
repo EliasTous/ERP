@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="CSS/LiveSearch.css" />
     <script type="text/javascript" src="Scripts/Cases.js?id=7" ></script>
     <script type="text/javascript" src="Scripts/common.js" ></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" type="text/javascript"></script>
+  <%--  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" type="text/javascript"></script>--%>
      <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/>
  
      <link href="CSS/fileinput.min.css" rel="stylesheet" />
@@ -27,15 +27,19 @@
  <script type="text/javascript">
      function initBootstrap()
      {
-         
+        
          
          $("#input-ke-1").fileinput({
-             'theme': 'explorer',
-             'uploadUrl': 'CaseAttachmentsUploader.ashx?caseId='+document.getElementById('currentCase').value,
+             language:'ar',
+             theme: 'explorer',
+             uploadUrl: 'CaseAttachmentsUploader.ashx?caseId='+document.getElementById('currentCase').value,
              overwriteInitial: false,
              initialPreviewAsData: true,
-             uploadAsync:false,
-             'showUploadedThumbs': false
+             uploadAsync: false,
+             
+             
+             showRemove:false,
+             showUploadedThumbs: false
            
              
          });
@@ -803,7 +807,7 @@
             <Items>
                 <ext:Panel runat="server" AutoScroll="true">
                     <Content>
-                        <input id="input-ke-1" name="inputKE1[]" type="file" multiple class="file-loading" >
+                        <input id="input-ke-1" name="inputKE1[]" type="file" multiple class="file-loading"  >
                         <input type="hidden" name="caseId" id="caseId" value="" />
         <br>
       
@@ -811,7 +815,7 @@
                     <Listeners>
                       
                         
-                        <AfterLayout Handler="alert('layout');initBootstrap(); document.getElementById('caseId').value = document.getElementById('currentCase').value;" />
+                        <AfterLayout Handler=" $('#input-ke-1').fileinput('destroy'); initBootstrap(); document.getElementById('caseId').value = document.getElementById('currentCase').value;" />
                        
                     </Listeners>
                 </ext:Panel>

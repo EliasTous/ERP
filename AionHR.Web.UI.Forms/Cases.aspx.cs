@@ -815,7 +815,7 @@ namespace AionHR.Web.UI.Forms
             {
                 if (item.ID == "BasicInfoTab")
                     continue;
-                item.Disabled = false;
+                item.Disabled = !isEnable;
             }
             
         }

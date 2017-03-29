@@ -675,15 +675,19 @@
                                         <Click Handler="CheckSession(); if (!#{BasicInfoTab}.getForm().isValid()) {  return false;} " />
                                     </Listeners>
                                     <DirectEvents>
-                                        <Click OnEvent="SaveNewRecord" Failure="Ext.MessageBox.alert('#{titleSavingError}.value', '#{titleSavingErrorMessage}.value');">
+                                        <Click OnEvent="DeleteRecord" Failure="Ext.MessageBox.alert('#{titleSavingError}.value', '#{titleSavingErrorMessage}.value');">
                                             <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="={#{EditRecordWindow}.body}" />
                                             <ExtraParams>
                                                 <ext:Parameter Name="id" Value="#{recordId}.getValue()" Mode="Raw" />
-                                                <ext:Parameter Name="values" Value="#{BasicInfoTab}.getForm().getValues(false, false, false, true)" Mode="Raw" Encode="true" />
                                             </ExtraParams>
                                         </Click>
                                     </DirectEvents>
                                     </ext:Button>
+                                           <ext:Button   Cls="x-btn-right" ID="Button8" runat="server" Text="History" Icon="Clock">
+                                    <Listeners>
+                                        <Click Handler="CheckSession(); parent.OpenTransactionLog(#{CurrentClassId}.value,#{CurrentEmployee}.value);" />
+                                    </Listeners>
+                                </ext:Button>
                                         <ext:ToolbarFill runat="server"/>
                                 <ext:Button Cls="x-btn-left" ID="SaveButton" runat="server" Text="<%$ Resources:Common, Save %>" Icon="Disk">
 
@@ -705,11 +709,7 @@
                                         <Click Handler="this.up('window').hide();" />
                                     </Listeners>
                                 </ext:Button>
-                                        <ext:Button   Cls="x-btn-right" ID="Button8" runat="server" Text="History" Icon="Clock">
-                                    <Listeners>
-                                        <Click Handler="CheckSession(); parent.OpenTransactionLog(#{CurrentClassId}.value,#{CurrentEmployee}.value);" />
-                                    </Listeners>
-                                </ext:Button>
+                                     
                                     </Items>
                                 </ext:Toolbar>
                             </BottomBar>

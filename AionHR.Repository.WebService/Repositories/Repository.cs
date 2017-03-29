@@ -104,17 +104,17 @@ namespace AionHR.Repository.WebService.Repositories
 
         }
 
-        public BlankWebServiceResponse Delete( Dictionary<string, string> Headers = null, Dictionary<string, string> QueryStringParams = null)
+        public PostWebServiceResponse Delete(T entity, Dictionary<string, string> Headers = null, Dictionary<string, string> QueryStringParams = null)
         {
             var request = new HTTPWebServiceRequest();
-            request.MethodType = "GET";
+            request.MethodType = "POST";
             request.URL = ServiceURL + DeleteMethodName;
             if (Headers != null)
                 request.Headers = Headers;
             if (QueryStringParams != null)
                 request.QueryStringParams = QueryStringParams;
 
-            return request.GetAsync<BlankWebServiceResponse>();
+            return request.PostAsyncFormData<T>(entity);
         }
 
        public RecordWebServiceResponse<TChild> ChildGetRecord<TChild>(Dictionary<string, string> Headers = null, Dictionary<string, string> QueryStringParams = null)

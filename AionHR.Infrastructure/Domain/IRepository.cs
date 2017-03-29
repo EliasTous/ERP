@@ -22,7 +22,7 @@ namespace AionHR.Infrastructure.Domain
 
         PostWebServiceResponse AddOrUpdate(T entity, Dictionary<string, string> Headers = null, Dictionary<string, string> QueryStringParams = null);
 
-         BlankWebServiceResponse Delete(Dictionary<string, string> Headers = null, Dictionary<string, string> QueryStringParams = null);
+        PostWebServiceResponse Delete(T entity, Dictionary<string, string> Headers = null, Dictionary<string, string> QueryStringParams = null);
 
          RecordWebServiceResponse<TChild> ChildGetRecord<TChild>(Dictionary<string, string> Headers = null, Dictionary<string, string> QueryStringParams = null);
 

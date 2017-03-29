@@ -115,7 +115,7 @@ namespace AionHR.Services.Implementations
             var headers = SessionHelper.GetAuthorizationHeadersForUser();
             Dictionary<string, string> queryParams = new Dictionary<string, string>();
             queryParams = request.Parameters;
-            var webResponse = GetRepository().Delete<T>(request.entity, headers);
+            var webResponse = GetRepository().Delete(request.entity, headers);
             response = CreateServiceResponse<PostResponse<T>>(webResponse);
 
             return response;
