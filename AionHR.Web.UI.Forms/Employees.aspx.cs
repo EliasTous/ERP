@@ -281,11 +281,13 @@ namespace AionHR.Web.UI.Forms
                 req.entity = emp;
                 emp.recordId = index;
                 emp.branchId = emp.departmentId = emp.divisionId = emp.vsId = emp.sponsorId = emp.caId = emp.nationalityId = emp.positionId = 0;
+                emp.hireDate = DateTime.Now;
                 PostResponse<Employee> post = _employeeService.Delete(req);
                 if(!post.Success)
                 {
                     X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
                     X.Msg.Alert(Resources.Common.Error,post.Summary).Show();
+                    return;
                 }
                 Store1.Remove(index);
 
@@ -722,6 +724,7 @@ namespace AionHR.Web.UI.Forms
                             Title = Resources.Common.Notification,
                             Icon = Icon.Information,
                             Html = Resources.Common.RecordUpdatedSucc
+                            , CloseVisible= true
                         });
 
                         this.EditRecordWindow.Close();

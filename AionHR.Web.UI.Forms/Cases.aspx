@@ -13,9 +13,11 @@
     <link rel="stylesheet" type="text/css" href="CSS/Common.css" />
    
     <link rel="stylesheet" href="CSS/LiveSearch.css" />
-    <script type="text/javascript" src="Scripts/Cases.js?id=7" ></script>
+    <script type="text/javascript" src="Scripts/Cases.js?id=8" ></script>
+
+
     <script type="text/javascript" src="Scripts/common.js" ></script>
-  <%--  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" type="text/javascript"></script>--%>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" type="text/javascript"></script>
      <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/>
  
      <link href="CSS/fileinput.min.css" rel="stylesheet" />
@@ -24,25 +26,34 @@
 <!-- load the JS files in the right order -->
 <script src="Scripts/fileinput.js" type="text/javascript"></script>
 <script src="Scripts/theme.js" type="text/javascript">  </script>
+     <script type="text/javascript" src="Scripts/locales/ar.js?id=7" ></script>
  <script type="text/javascript">
      function initBootstrap()
      {
         
-         
+        
          $("#input-ke-1").fileinput({
-             language:'ar',
+           
              theme: 'explorer',
              uploadUrl: 'CaseAttachmentsUploader.ashx?caseId='+document.getElementById('currentCase').value,
              overwriteInitial: false,
              initialPreviewAsData: true,
              uploadAsync: false,
+             language:document.getElementById('CurrentLanguage').value,
+             showZoom:false,
+             showRemove: false,
              
-             
-             showRemove:false,
+             fileActionSettings: {
+                 showDrag: false,
+                 showUpload:false,
+                 showZoom:false
+             },
              showUploadedThumbs: false
            
              
          });
+         
+         
          $('#input-ke-1').on('filebatchuploaderror', function (event, data, msg) {
              var form = data.form, files = data.files, extra = data.extra,
                  response = data.response, reader = data.reader;
@@ -73,7 +84,7 @@
         <ext:Hidden ID="StatusPending" runat="server" Text="<%$ Resources:FieldPending %>" />
         <ext:Hidden ID="StatusOpen" runat="server" Text="<%$ Resources: FieldOpen %>" />
         <ext:Hidden ID="StatusClosed" runat="server" Text="<%$ Resources: FieldClosed %>" />
-        
+        <ext:Hidden ID="CurrentLanguage" runat="server" />
         <ext:Store
             ID="Store1"
             runat="server"
@@ -236,7 +247,7 @@
                         <Columns>
                             <ext:Column ID="ColRecordId" Visible="false" DataIndex="recordId" runat="server" />
                             <ext:Column ID="ColName" DataIndex="employeeName.fullName" Text="<%$ Resources: FieldEmployeeName%>" runat="server" Flex="4">
-                                 <Renderer Handler="return '<u>'+ record.data['employeeName'].fullName +'</u>'">
+                                 <Renderer Handler="return  record.data['employeeName'].fullName ">
                                 </Renderer>
                             </ext:Column>
                             <ext:DateColumn Format="dd-MM-yyyy" ID="colDate" DataIndex="date" Text="<%$ Resources: FieldDate%>" runat="server" Flex="2" />
@@ -766,7 +777,7 @@
                             <EventMask  ShowMask="false"  />
                             <ExtraParams>
                                 <ext:Parameter Name="id" Value="record.getId()" Mode="Raw" />
-                                <ext:Parameter Name="path" Value="record.data['fileUrl']" Mode="Raw" />
+                                <ext:Parameter Name="path" Value="record.data['url']" Mode="Raw" />
                                 <ext:Parameter Name="type" Value="getCellType( this, rowIndex, cellIndex)" Mode="Raw" />
                             </ExtraParams>
 

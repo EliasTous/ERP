@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="CSS/LiveSearch.css" />
      <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCRQ7sZoJrjEBuIBret1gCccSwicDusM3w&libraries=drawing"></script>
    
-    <script type="text/javascript" src="Scripts/Geofences.js?id=6" ></script>
+    <script type="text/javascript" src="Scripts/Geofences.js?id=7" ></script>
     <script type="text/javascript" src="Scripts/common.js" ></script>
     <script type="text/javascript">
     
@@ -120,9 +120,7 @@
                         <Columns>
                             <ext:Column ID="ColRecordId" Visible="false" DataIndex="recordId" runat="server" />
                             <ext:Column    CellCls="cellLink" ID="ColName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldName%>" DataIndex="name" Flex="4" Hideable="false">
-                            <Renderer Handler="return '<u>'+ record.data['name']+'</u>'">
-
-                            </Renderer>
+                          
                                 </ext:Column>
 
                             <ext:Column ID="ColBranchName" DataIndex="branchName" Text="<%$ Resources: FieldBranchName%>" runat="server" Flex="4" />
@@ -140,20 +138,20 @@
                                 MenuDisabled="true"
                                 Resizable="false">
 
-                                <Renderer Fn="editRender" />
+                                <Renderer handler="return editRender()+'&nbsp;&nbsp;' +deleteRender(); " />
 
                             </ext:Column>
                             <ext:Column runat="server"
-                                ID="colDelete" Flex="1" Visible="true"
+                                ID="colDelete"  Visible="true"
                                 Text="<%$ Resources: Common , Delete %>"
-                                Width="60"
+                                Width="80"
                                 Align="Center"
                                 Fixed="true"
                                 Filterable="false"
                                 Hideable="false"
                                 MenuDisabled="true"
                                 Resizable="false">
-                                <Renderer Fn="deleteRender" />
+                                <Renderer handler="return editRender()+'&nbsp;&nbsp;' +deleteRender(); " />
                               
                             </ext:Column>
                             <ext:Column runat="server"

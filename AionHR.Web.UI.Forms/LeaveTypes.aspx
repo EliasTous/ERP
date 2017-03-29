@@ -116,9 +116,7 @@
                             <ext:Column ID="ColRecordId" Visible="false" DataIndex="recordId" runat="server" />
                             <ext:Column ID="Column1"  DataIndex="reference" Text="<%$ Resources: FieldReference%>" Width="150" runat="server" />
                              <ext:Column    CellCls="cellLink" ID="ColName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldName%>" DataIndex="name" Flex="2" Hideable="false">
-                            <Renderer Handler="return '<u>'+ record.data['name']+'</u>'">
-
-                            </Renderer>
+                       
                                 </ext:Column>
                          <ext:CheckColumn runat="server" Flex="1" Text="<%$ Resources: FieldRequiresApproval %>"  DataIndex="requireApproval" ></ext:CheckColumn>
                            

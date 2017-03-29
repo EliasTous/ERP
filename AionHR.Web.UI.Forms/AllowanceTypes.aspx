@@ -116,9 +116,7 @@
                             <ext:Column ID="ColRecordId" Visible="false" DataIndex="recordId" runat="server" />
                             
                              <ext:Column    CellCls="cellLink" ID="ColName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldName%>" DataIndex="name" Flex="2" Hideable="false">
-                            <Renderer Handler="return '<u>'+ record.data['name']+'</u>'">
-
-                            </Renderer>
+                    
                                 </ext:Column>
                          <ext:CheckColumn runat="server" Flex="1" Text="<%$ Resources: FieldIsCash %>"  DataIndex="isCash" ></ext:CheckColumn>
                            
@@ -138,16 +136,16 @@
 
                             </ext:Column>
                             <ext:Column runat="server"
-                                ID="colDelete" Flex="1" Visible="true"
+                                ID="colDelete" Visible="true"
                                 Text="<%$ Resources: Common , Delete %>"
-                                Width="60"
+                                Width="80"
                                 Align="Center"
                                 Fixed="true"
                                 Filterable="false"
                                 Hideable="false"
                                 MenuDisabled="true"
                                 Resizable="false">
-                                <Renderer Fn="deleteRender" />
+                                 <Renderer handler="return editRender()+'&nbsp;&nbsp;' +deleteRender(); " />
                               
                             </ext:Column>
                             <ext:Column runat="server"

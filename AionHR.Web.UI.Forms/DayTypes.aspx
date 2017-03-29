@@ -117,8 +117,7 @@
                             <ext:Column Visible="false" ID="ColrecordId" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldrecordId %>" DataIndex="recordId" Hideable="false" Width="75" Align="Center" />
 
                             <ext:Column ID="ColName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldName%>" DataIndex="name" Flex="2" Hideable="false">
-                                <Renderer Handler="return '<u>'+ record.data['name']+'</u>'">
-                                </Renderer>
+                                
                             </ext:Column>
 
                             <ext:ComponentColumn runat="server" Text="<%$ Resources: FieldColor%>" DataIndex="color" Flex="1">

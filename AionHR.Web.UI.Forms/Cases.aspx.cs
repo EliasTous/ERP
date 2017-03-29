@@ -164,7 +164,11 @@ namespace AionHR.Web.UI.Forms
             {
                 this.ResourceManager1.RTL = true;
                 this.Viewport1.RTL = true;
-
+                CurrentLanguage.Text = "ar";
+            }
+            else
+            {
+                CurrentLanguage.Text = "en";
             }
         }
 
@@ -949,6 +953,11 @@ namespace AionHR.Web.UI.Forms
                     }
                 } while (length > 0); //Repeat until no data is read
             }
+            catch(Exception exp)
+            {
+                X.Msg.Alert(Resources.Common.Error, exp.Message + "<br/>"+ exp.StackTrace).Show();
+                return;
+            }
             finally
             {
                 if (stream != null)
@@ -999,6 +1008,7 @@ namespace AionHR.Web.UI.Forms
                         Title = Resources.Common.Notification,
                         Icon = Icon.Information,
                         Html = Resources.Common.RecordDeletedSucc
+                        
                     });
                 }
 

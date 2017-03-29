@@ -22,7 +22,7 @@ namespace AionHR.Web.UI.Forms
         {
            
             SystemAttachmentsPostRequest req = new SystemAttachmentsPostRequest();
-            req.entity = new Model.System.Attachement() { classRef = "CMCA ", recordId = Convert.ToInt32(context.Request.QueryString["caseId"]) };
+            req.entity = new Model.System.Attachement() { classRef = "CMCA", recordId = Convert.ToInt32(context.Request.QueryString["caseId"]) };
             //write your handler implementation here.
             if (context.Request.Files.Count <= 0)
             {
@@ -36,7 +36,9 @@ namespace AionHR.Web.UI.Forms
                     HttpPostedFile f = context.Request.Files.Get(i);
                     fileData = new byte[f.ContentLength];
                     f.InputStream.Read(fileData, 0, f.ContentLength);
-                    req.FilesData.Add(fileData);
+                    f.InputStream.Close();
+                    
+                    req.FilesData.Add((byte[])fileData.Clone());
                     req.FileNames.Add(f.FileName);
 
 

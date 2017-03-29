@@ -117,9 +117,7 @@
                             <ext:Column ID="ColRecordId" Visible="false" DataIndex="recordId" runat="server" />
                             <ext:Column    CellCls="cellLink" ID="ColName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldName%>" DataIndex="name" Flex="2" Hideable="false">
 
-                            <Renderer Handler="return '<u>'+ record.data['name']+'</u>'">
-
-                            </Renderer>
+                         
                                 </ext:Column>
                             <ext:Column    CellCls="cellLink" ID="ColType" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldType%>" DataIndex="type" Width ="200" Hideable="false">
                                 <Renderer Handler="return record.data['type']==1? #{EntitlementText}.value :#{DeductionText}.value;">

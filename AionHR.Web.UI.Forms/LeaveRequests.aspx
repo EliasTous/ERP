@@ -10,7 +10,7 @@
     <title></title>
     <link rel="stylesheet" type="text/css" href="CSS/Common.css" />
     <link rel="stylesheet" href="CSS/LiveSearch.css" />
-    <script type="text/javascript" src="Scripts/LeaveRequests.js?id=1"></script>
+    <script type="text/javascript" src="Scripts/LeaveRequests.js?id=2"></script>
     <script type="text/javascript" src="Scripts/common.js"></script>
 
 
@@ -126,7 +126,7 @@
                         <Columns>
                             <ext:Column ID="ColRecordId" Visible="false" DataIndex="recordId" runat="server" />
                             <ext:Column ID="ColName" DataIndex="employeeName.fullName" Text="<%$ Resources: FieldEmployeeName%>" runat="server" Flex="6">
-                                <Renderer Handler=" return '<u>'+ record.data['employeeName'].fullName+'</u>'" />
+                                <Renderer Handler=" return  record.data['employeeName'].fullName" />
                             </ext:Column>
                             <ext:DateColumn Format="dd-MM-yyyy" ID="Column1" DataIndex="startDate" Text="<%$ Resources: FieldStartDate%>" runat="server" Flex="2" />
                             <ext:DateColumn Format="dd-MM-yyyy" ID="Column2" DataIndex="endDate" Text="<%$ Resources: FieldEndDate%>" runat="server" Flex="2" />
@@ -154,16 +154,16 @@
 
                             </ext:Column>
                             <ext:Column runat="server"
-                                ID="colDelete" Flex="1" Visible="true"
+                                ID="colDelete" Visible="true"
                                 Text="<%$ Resources: Common , Delete %>"
-                                Width="60"
+                                Width="80"
                                 Align="Center"
                                 Fixed="true"
                                 Filterable="false"
                                 Hideable="false"
                                 MenuDisabled="true"
                                 Resizable="false">
-                                <Renderer Fn="deleteRender" />
+                                <Renderer handler="return editRender()+'&nbsp;&nbsp;' +deleteRender(); " />
 
                             </ext:Column>
                             <ext:Column runat="server"

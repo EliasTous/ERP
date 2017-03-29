@@ -672,7 +672,7 @@
                                     <Items>
                                          <ext:Button Cls="x-btn-left"  ID="DeleteButton" Text="Delete"   DefaultAlign="Left"  AlignTarget="Left"  Icon="Delete"  Region="West" runat="server" >
                                     <Listeners>
-                                        <Click Handler="CheckSession(); if (!#{BasicInfoTab}.getForm().isValid()) {  return false;} " />
+                                        <Click Handler="CheckSession();  " />
                                     </Listeners>
                                     <DirectEvents>
                                         <Click OnEvent="DeleteRecord" Failure="Ext.MessageBox.alert('#{titleSavingError}.value', '#{titleSavingErrorMessage}.value');">
