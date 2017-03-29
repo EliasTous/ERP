@@ -504,7 +504,9 @@ namespace AionHR.Web.UI.Forms
             req.caseId = cId;
             ListResponse<CaseComment> notes = _caseService.ChildGetAll<CaseComment>(req);
             if (!notes.Success)
-                X.Msg.Alert(Resources.Common.Error, notes.Summary).Show();
+            {
+             //   X.Msg.Alert(Resources.Common.Error, notes.Summary).Show();
+            }
             this.caseCommentStore.DataSource = notes.Items;
             
 
@@ -918,8 +920,9 @@ namespace AionHR.Web.UI.Forms
                 stream = fileResp.GetResponseStream();
 
                 // prepare the response to the client. resp is the client Response
+                
                 var resp = HttpContext.Current.Response;
-
+                
                 //Indicate the type of data being sent
                 resp.ContentType = "application/octet-stream";
                 string[] segments = url.Split('/');
@@ -952,10 +955,11 @@ namespace AionHR.Web.UI.Forms
                         length = -1;
                     }
                 } while (length > 0); //Repeat until no data is read
+                resp.Flush();
             }
             catch(Exception exp)
             {
-                X.Msg.Alert(Resources.Common.Error, exp.Message + "<br/>"+ exp.StackTrace).Show();
+                X.Msg.Alert(Resources.Common.Error, exp.Message+"<br />"+exp.StackTrace).Show();
                 return;
             }
             finally

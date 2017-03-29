@@ -229,6 +229,42 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Button btnScheduler;
         
         /// <summary>
+        /// b1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Button b1;
+        
+        /// <summary>
+        /// firstMenu control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.MenuItem firstMenu;
+        
+        /// <summary>
+        /// b2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Button b2;
+        
+        /// <summary>
+        /// b3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Button b3;
+        
+        /// <summary>
         /// commonTree control.
         /// </summary>
         /// <remarks>

@@ -126,8 +126,8 @@
                             <ext:Column Visible="false" ID="ColrecordId" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldrecordId %>" DataIndex="recordId" Hideable="false" Width="75" Align="Center" />
                             <ext:Column ID="ColReference" MenuDisabled="true" Sortable="true" runat="server" Text="<%$ Resources: FieldReference%>" DataIndex="departmentRef" width="150" Hideable="false" />
                             <ext:Column CellCls="cellLink" Sortable="true" ID="ColName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldName%>" DataIndex="name" Flex="2" Hideable="false">
-                                <Renderer Handler="return  record.data['name']>
-                                </Renderer>
+                                <Renderer Handler="return  record.data['name']"/>
+                                
                             </ext:Column>
                             <ext:Column Visible="false" ID="ColparentId" MenuDisabled="true" runat="server" DataIndex="parentId" Flex="2" Hideable="false" />
                             <ext:Column Visible="false" ID="ColsupervisorId" MenuDisabled="true" runat="server" DataIndex="supervisorId" Flex="1" Hideable="false" />

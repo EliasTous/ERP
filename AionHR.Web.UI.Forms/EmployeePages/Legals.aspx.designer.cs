@@ -364,15 +364,6 @@ namespace AionHR.Web.UI.Forms.EmployeePages {
         protected global::Ext.Net.DateColumn DateColumn2;
         
         /// <summary>
-        /// Column4 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Column Column4;
-        
-        /// <summary>
         /// ColBCName control.
         /// </summary>
         /// <remarks>
@@ -526,6 +517,15 @@ namespace AionHR.Web.UI.Forms.EmployeePages {
         protected global::Ext.Net.DateField rwExpiryDate;
         
         /// <summary>
+        /// rwFile control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.FileUploadField rwFile;
+        
+        /// <summary>
         /// SaveRWButton control.
         /// </summary>
         /// <remarks>
@@ -623,6 +623,15 @@ namespace AionHR.Web.UI.Forms.EmployeePages {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.DateField DateField2;
+        
+        /// <summary>
+        /// bcFile control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.FileUploadField bcFile;
         
         /// <summary>
         /// SaveBCButton control.

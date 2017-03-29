@@ -68,6 +68,7 @@
     <Compile Include="TimeAttendance\AttendanceDay.cs" />
     <Compile Include="TimeAttendance\AttendanceSchedule.cs" />
     <Compile Include="TimeAttendance\AttendanceScheduleDay.cs" />
+    <Compile Include="TimeAttendance\AttendanceShift.cs" />
     <Compile Include="TimeAttendance\BiometricDevice.cs" />
     <Compile Include="TimeAttendance\Calendar.cs" />
     <Compile Include="TimeAttendance\CalendarDay.cs" />

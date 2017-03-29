@@ -490,7 +490,7 @@
                                         </ext:Store>
                                     </Store>
                                     <Plugins>
-                                        <ext:RowEditing runat="server" ClicksToMoveEditor="1" AutoCancel="false" />
+                                        <ext:RowEditing runat="server" ClicksToMoveEditor="1" AutoCancel="false" SaveBtnText="<%$ Resources:Common , Save %>" CancelBtnText="<%$ Resources:Common , Cancel %>" />
                                     </Plugins>
                                     <TopBar>
                                         <ext:Toolbar runat="server">

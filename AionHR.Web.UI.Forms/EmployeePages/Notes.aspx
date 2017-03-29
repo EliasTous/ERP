@@ -177,7 +177,7 @@
                         </Columns>
                     </ColumnModel>
                     <Plugins>
-                        <ext:RowEditing runat="server" SaveHandler="validateSave"   />
+                        <ext:RowEditing runat="server" SaveHandler="validateSave"  SaveBtnText="<%$ Resources:Common , Save %>" CancelBtnText="<%$ Resources:Common , Cancel %>" />
                         
                     </Plugins>
                     <DockedItems>

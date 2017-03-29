@@ -66,7 +66,7 @@ namespace AionHR.Web.UI.Forms
                 //Building the tree
                 _systemService.SessionHelper.Set("ActiveModule", "-1");
                 BuildTree(1);
-                commonTree.Title = Resources.Common.EmployeeFiles;
+                
                // TryRegister();
             }
         }

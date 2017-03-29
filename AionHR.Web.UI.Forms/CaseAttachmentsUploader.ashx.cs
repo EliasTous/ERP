@@ -5,6 +5,7 @@ using AionHR.Services.Messaging.System;
 using Microsoft.Practices.ServiceLocation;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.SessionState;
@@ -34,8 +35,9 @@ namespace AionHR.Web.UI.Forms
                 for (int i = 0; i < context.Request.Files.Count; ++i)
                 {
                     HttpPostedFile f = context.Request.Files.Get(i);
-                    fileData = new byte[f.ContentLength];
-                    f.InputStream.Read(fileData, 0, f.ContentLength);
+                    fileData = new byte[Convert.ToInt32(f.InputStream.Length)];
+                    f.InputStream.Seek(0, SeekOrigin.Begin);
+                    f.InputStream.Read(fileData, 0, Convert.ToInt32(f.InputStream.Length));
                     f.InputStream.Close();
                     
                     req.FilesData.Add((byte[])fileData.Clone());

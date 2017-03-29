@@ -11,7 +11,7 @@
     <title></title>
     <link rel="stylesheet" type="text/css" href="../CSS/Common.css?id=1" />
     <link rel="stylesheet" href="../CSS/LiveSearch.css" />
-    <script type="text/javascript" src="../Scripts/Legals.js?id=0"></script>
+    <script type="text/javascript" src="../Scripts/Legals.js?id=1"></script>
     <script type="text/javascript" src="../Scripts/common.js?id=0"></script>
 
 
@@ -73,6 +73,7 @@
                                         <ext:ModelField Name="remarks" />
                                         <ext:ModelField Name="documentRef" />
                                         <ext:ModelField Name="dtName" />
+                                        <ext:ModelField Name="fileUrl" />
                                         <ext:ModelField Name="employeeName" IsComplex="true" />
 
                                     </Fields>
@@ -121,18 +122,18 @@
 <%--                            <ext:Column ID="ColName" DataIndex="employeeName.fullName" Text="<%$ Resources: FieldRWEmployeeName%>" runat="server" Width="240">
                                 <Renderer Handler=" return '<u>'+ record.data['employeeName'].fullName+'</u>'" />
                             </ext:Column>--%>
-                            <ext:Column ID="dtName" DataIndex="dtName" Text="<%$ Resources: FieldRWDtName%>" runat="server" width="150" />
-                            <ext:Column ID="documentRef1" DataIndex="documentRef" Text="<%$ Resources: FieldRWDocumentRef%>" runat="server" Width="150" />
+                            <ext:Column ID="dtName" DataIndex="dtName" Text="<%$ Resources: FieldRWDtName%>" runat="server" Flex="3" />
+                            <ext:Column ID="documentRef1" DataIndex="documentRef" Text="<%$ Resources: FieldRWDocumentRef%>" runat="server" Flex="2" />
                             <ext:DateColumn Format="dd-MM-yyyy" ID="validFrom" DataIndex="issueDate" Text="<%$ Resources: FieldRWIssueDate%>" runat="server" width="100" />
                             <ext:DateColumn Format="dd-MM-yyyy" ID="validTo" DataIndex="expiryDate" Text="<%$ Resources: FieldRWExpiryDate%>" runat="server" width="100" />
-                            <ext:Column ID="remarks" DataIndex="remarks" Text="<%$ Resources: FieldRWRemarks%>" runat="server" Width="150" />
+                            <ext:Column ID="remarks" DataIndex="remarks" Text="<%$ Resources: FieldRWRemarks%>" runat="server" Flex="2" />
                             
 
 
                            <ext:Column runat="server"
                                 ID="colEdit"  Visible="true"
                                 Text=""
-                                Width="100"
+                                Width="120"
                                 Hideable="false"
                                 Align="Center"
                                 Fixed="true"
@@ -140,7 +141,7 @@
                                 MenuDisabled="true"
                                 Resizable="false">
 
-                                <Renderer handler="return editRender()+'&nbsp;&nbsp;' +deleteRender(); " />
+                                <Renderer handler="return attachRender()+'&nbsp;&nbsp;' +editRender()+'&nbsp;&nbsp;' +deleteRender();" />
 
                             </ext:Column>
                             <ext:Column runat="server"
@@ -191,9 +192,10 @@
                     </Listeners>
                     <DirectEvents>
                         <CellClick OnEvent="PoPuPRW">
-                            <EventMask ShowMask="true" />
+                            
                             <ExtraParams>
                                 <ext:Parameter Name="id" Value="record.getId()" Mode="Raw" />
+                                <ext:Parameter Name="path" Value="record.data['fileUrl']" Mode="Raw" />
                                 <ext:Parameter Name="type" Value="getCellType( this, rowIndex, cellIndex)" Mode="Raw" />
                             </ExtraParams>
 
@@ -245,6 +247,7 @@
                                         <ext:ModelField Name="expiryDate" />
                                         <ext:ModelField Name="ctId" />
                                         <ext:ModelField Name="remarks" />
+                                        <ext:ModelField Name="fileUrl" />
                                         <ext:ModelField Name="ctName" />
                                         <ext:ModelField Name="employeeName" IsComplex="true" />
                                         
@@ -296,10 +299,10 @@
 <%--                            <ext:Column ID="Column2" DataIndex="employeeName.fullName" Text="<%$ Resources: FieldBCEmployeeName%>" runat="server" Width="240">
                                 <Renderer Handler=" return '<u>'+ record.data['employeeName'].fullName+'</u>'" />
                             </ext:Column>--%>
-                            <ext:Column ID="Column3" DataIndex="ctName" Text="<%$ Resources: FieldBCCTName%>" runat="server" width="150" />
+                            <ext:Column ID="Column3" DataIndex="ctName" Text="<%$ Resources: FieldBCCTName%>" runat="server" Flex="1" />
                             <ext:DateColumn Format="dd-MM-yyyy" ID="DateColumn1" DataIndex="date" Text="<%$ Resources: FieldBCIssueDate%>" runat="server" width="100" />
                             <ext:DateColumn Format="dd-MM-yyyy" ID="DateColumn2" DataIndex="expiryDate" Text="<%$ Resources: FieldBCExpiryDate%>" runat="server" width="100" />
-                            <ext:Column ID="Column4" DataIndex="remarks" Text="<%$ Resources: FieldBCRemarks%>" runat="server" Width="300" />
+                            <%--<ext:Column  Visible="false" ID="Column4" DataIndex="remarks" Text="<%$ Resources: FieldBCRemarks%>" runat="server" Flex="1" />--%>
                           
 
 
@@ -307,7 +310,7 @@
                             <ext:Column runat="server"
                                 ID="ColBCName" Visible="true"
                                 Text=""
-                                Width="80"
+                                Width="100"
                                 Hideable="false"
                                 Align="Center"
                                 Fixed="true"
@@ -315,7 +318,7 @@
                                 MenuDisabled="true"
                                 Resizable="false">
 
-                                <Renderer handler="return editRender()+'&nbsp;&nbsp;'+deleteRender(); " />
+                                <Renderer handler="return attachRender()+'&nbsp;&nbsp;'+editRender()+'&nbsp;&nbsp;'+deleteRender(); " />
 
                             </ext:Column>
                             <ext:Column runat="server"
@@ -366,9 +369,10 @@
                     </Listeners>
                     <DirectEvents>
                         <CellClick OnEvent="PoPuPBC">
-                            <EventMask ShowMask="true" />
+                            
                             <ExtraParams>
                                 <ext:Parameter Name="id" Value="record.getId()" Mode="Raw" />
+                                <ext:Parameter Name="path" Value="record.data['fileUrl']" Mode="Raw" />
                                 <ext:Parameter Name="type" Value="getCellType( this, rowIndex, cellIndex)" Mode="Raw" />
                             </ExtraParams>
 
@@ -450,6 +454,7 @@
                                 <ext:DateField ID="rwIssueDate" runat="server" Name="issueDate" FieldLabel="<%$ Resources:FieldRWIssueDate%>" AllowBlank="false" />
                                 <ext:DateField ID="rwExpiryDate" runat="server" Name="expiryDate" FieldLabel="<%$ Resources:FieldRWExpiryDate%>" AllowBlank="false" />
                                 <ext:TextArea runat="server" Name="remarks" FieldLabel="<%$ Resources:FieldRWRemarks%>" />
+                                <ext:FileUploadField runat="server" ID="rwFile" FieldLabel="<%$ Resources:FieldFile%>" />
                             </Items>
 
                         </ext:FormPanel>
@@ -541,6 +546,7 @@
                                 <ext:DateField ID="DateField1" runat="server" Name="date" FieldLabel="<%$ Resources:FieldBCIssueDate%>" AllowBlank="false" />
                                 <ext:DateField ID="DateField2" runat="server" Name="expiryDate" FieldLabel="<%$ Resources:FieldBCExpiryDate%>" AllowBlank="false" />
                                 <ext:TextArea runat="server" Name="remarks" FieldLabel="<%$ Resources:FieldBCRemarks%>" />
+                                 <ext:FileUploadField runat="server" ID="bcFile" FieldLabel="<%$ Resources:FieldFile%>" />
 
                             </Items>
 

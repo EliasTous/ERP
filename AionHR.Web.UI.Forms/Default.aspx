@@ -8,7 +8,7 @@
     <link rel="stylesheet" type="text/css" href="CSS/Tools.css" />
     
     <script type="text/javascript" src="Scripts/jquery.min.js"></script>
-    <script type="text/javascript" src="Scripts/app.js"></script>
+    <script type="text/javascript" src="Scripts/app.js?id=1"></script>
     <script type="text/javascript" src="Scripts/Common.js"></script>
     <script type="text/javascript" src="Scripts/default.js?id=10"></script>
 
@@ -57,17 +57,21 @@
 
 
             </ext:Panel>
-            <ext:Panel ID="leftPanel" runat="server" Region="West"  Layout="AccordionLayout" AutoUpdateLayout="true" Width="260" PaddingSpec="0 0 0 0" Padding="0"
-                Header="true" Collapsible="true"  Split="true" CollapseMode="Mini" StyleSpec="border-bottom:2px solid #2A92D4;"
-                Title="<%$ Resources:Common , NavigationPane %>" CollapseToolText="<%$ Resources:Common , CollapsePanel %>" ExpandToolText="<%$ Resources:Common , ExpandPanel %>" Icon="ApplicationTileVertical" BodyBorder="0">
+            <ext:Panel ID="leftPanel" runat="server" Region="West"  Layout="FitLayout" AutoUpdateLayout="true" Width="260" PaddingSpec="0 0 0 0" Padding="0"
+                Header="false" Collapsible="true"  Split="true" CollapseMode="Mini" StyleSpec="border-bottom:2px solid #2A92D4;"
+                Title="<%$ Resources:Common , NavigationPane %>" CollapseToolText="<%$ Resources:Common , CollapsePanel %>"  ExpandToolText="<%$ Resources:Common , ExpandPanel %>" Icon="ApplicationTileVertical" BodyBorder="0">
                 <TopBar>
                     <ext:Toolbar ID="Toolbar1" runat="server" Border="true">
                         <Items>
                             <ext:Label runat="server" Text="<%$ Resources:Common , Modules %>" />
                             <ext:Button ID="btnEmployeeFiles" runat="server" Icon="Group" ToolTip="<%$ Resources:Common , EmployeeFiles %>">
                                 <Listeners>
-                                    <Click Handler="#{commonTree}.setTitle(this.tooltip);openModule(1);" />
+                                    <%--<Click Handler="#{commonTree}.setTitle(this.tooltip);openModule(1);" />--%>
+                                    <Click Handler="openModule(1);#{b1}.setVisible(true); #{b2}.setVisible(false); #{b3}.setVisible(false);" />
                                 </Listeners>
+                                <Menu>
+
+                                </Menu>
                             </ext:Button>
 
                         
@@ -75,14 +79,21 @@
                             <ext:ToolbarSeparator runat="server"></ext:ToolbarSeparator>
                             <ext:Button ID="btnCompany" runat="server" Icon="Building" ToolTip="<%$ Resources:Common , Company %>">                              
                                 <Listeners>
-                                    <Click Handler="#{commonTree}.setTitle(this.tooltip);openModule(3);" />
+                                    <%--<Click Handler="#{commonTree}.setTitle(this.tooltip);openModule(3);" />--%>
+                                    <Click Handler="openModule(3);#{b1}.setVisible(false); #{b2}.setVisible(true); #{b3}.setVisible(false);" />
                                 </Listeners>
+                               
+                              
                             </ext:Button>
                               <ext:ToolbarSeparator runat="server"></ext:ToolbarSeparator>
                             <ext:Button ID="btnScheduler" runat="server" Icon="CalendarSelectDay" ToolTip="<%$ Resources:Common , Scheduler %>">                              
                                 <Listeners>
-                                    <Click Handler="#{commonTree}.setTitle(this.tooltip);openModule(4);" />
+                                    <%--<Click Handler="#{commonTree}.setTitle(this.tooltip);openModule(4);" />--%>
+                                    <Click Handler="openModule(4); #{b1}.setVisible(false); #{b2}.setVisible(false); #{b3}.setVisible(true); " />
                                 </Listeners>
+                                <Menu>
+
+                                </Menu>
                             </ext:Button>
                                 <ext:ToolbarSeparator runat="server"></ext:ToolbarSeparator>
                         <%--    <ext:Button ID="btnReport" runat="server" Icon="ChartBar" ToolTip="<%$ Resources:Common , Reports %>">                              
@@ -90,11 +101,38 @@
                                     <Click Handler="#{commonTree}.setTitle(this.tooltip);openModule(5);" />
                                 </Listeners>
                             </ext:Button>--%>
+                            <ext:ToolbarFill runat="server"/>
+                            <ext:Button ID="b1" runat="server"  Icon="DatabaseGear" ToolTip="<%$ Resources:Common , EmployeeFiles %>">                              
+                                <Listeners>
+                                    <%--<Click Handler="#{commonTree}.setTitle(this.tooltip);openModule(4);" />--%>
+                                
+
+                                </Listeners>
+                                 <Menu>
+                                   <ext:Menu runat="server"><Items>
+                                      <ext:MenuItem runat="server" Text="Navigation Link" ID="firstMenu" />
+                                                    <ext:MenuItem runat="server" Text="Navigation Link" />
+                                               </Items></ext:Menu>
+                                     </Menu>
+                            </ext:Button>
+                            <ext:Button ID="b2" runat="server"  Hidden="true" Icon="DatabaseGear" ToolTip="<%$ Resources:Common , Company %>">                              
+                                <Listeners>
+                                    <%--<Click Handler="#{commonTree}.setTitle(this.tooltip);openModule(4);" />--%>
+                                    <Click Handler="openModule(3);" />
+                                </Listeners>
+                            </ext:Button>
+                            <ext:Button ID="b3" runat="server"  Hidden="true" Icon="DatabaseGear" ToolTip="<%$ Resources:Common , Scheduler %>">                              
+                                <Listeners>
+                                    <%--<Click Handler="#{commonTree}.setTitle(this.tooltip);openModule(4);" />--%>
+                                    <Click Handler="openModule(1);" />
+                                </Listeners>
+                            </ext:Button>
+
                         </Items>
                     </ext:Toolbar>
                 </TopBar>
                 <Items>
-                    <ext:TreePanel runat="server" Title="Tree Panel" AutoUpdateLayout="true" RootVisible="false" ID="commonTree" Scroll="Vertical">
+                    <ext:TreePanel runat="server" AutoUpdateLayout="true" RootVisible="false" ID="commonTree" Scroll="Vertical">
                         <SelectionModel>
                             <ext:TreeSelectionModel runat="server" ID="selModel">
                             </ext:TreeSelectionModel>
@@ -136,7 +174,7 @@
                             <ext:ModelField Name="css" />
                             <ext:ModelField Name="click" />
                         </Fields>
-
+                        
                         <Listeners>
                             <ItemClick Handler="CheckSession(); onTreeItemClick(record, e);" />
                         </Listeners>

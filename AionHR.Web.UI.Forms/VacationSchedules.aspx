@@ -292,7 +292,7 @@
                                         </ext:Store>
                                     </Store>
                                     <Plugins>
-                                        <ext:RowEditing runat="server" ClicksToMoveEditor="1" AutoCancel="false" />
+                                        <ext:RowEditing runat="server" ClicksToMoveEditor="1" AutoCancel="false" SaveBtnText="<%$ Resources:Common , Save %>" CancelBtnText="<%$ Resources:Common , Cancel %>" />
                                     </Plugins>
                                     <TopBar>
                                         <ext:Toolbar runat="server">
@@ -305,7 +305,7 @@
                                                 <ext:Button
                                                     ID="btnRemoveEmployee"
                                                     runat="server"
-                                                    Text="Remove Period"
+                                                    Text="<%$ Resources:Common , Delete %>" 
                                                     Icon="UserDelete"
                                                     Disabled="true">
                                                     <Listeners>
@@ -320,7 +320,7 @@
                                             <ext:RowNumbererColumn runat="server" Width="25" />
                                             <ext:NumberColumn
                                                 runat="server"
-                                                Text="From Months"
+                                                Text="<%$ Resources:Common , FromMonths %>" 
                                                 DataIndex="from"
                                                 
                                                 Align="Center">
@@ -338,7 +338,7 @@
                                             </ext:NumberColumn>
                                             <ext:NumberColumn
                                                 runat="server"
-                                                Text="To Months"
+                                                Text="<%$ Resources:Common , ToMonths %>" 
                                                 DataIndex="to"
                                                 
                                                 Align="Center">
@@ -362,7 +362,7 @@
                                             
                                             <ext:NumberColumn
                                                 runat="server"
-                                                Text="Vacation Days"
+                                                Text="<%$ Resources:Common , Days %>" 
                                                 DataIndex="days"
                                                 
                                                 Align="Center">

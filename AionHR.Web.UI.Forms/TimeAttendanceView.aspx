@@ -9,7 +9,7 @@
     <title></title>
     <link rel="stylesheet" type="text/css" href="CSS/Common.css" />
     <link rel="stylesheet" href="CSS/LiveSearch.css" />
-    <script type="text/javascript" src="Scripts/AttendanceDayView.js?id=1"></script>
+    <script type="text/javascript" src="Scripts/AttendanceDayView.js?id=2"></script>
     <script type="text/javascript" src="Scripts/common.js"></script>
     <script type="text/javascript" src="Scripts/moment.js"></script>
     <script type="text/javascript">
@@ -22,12 +22,54 @@
                 App.GridPanel1.view.refresh();
             }, 10);
         }
-       
+
+        function startRefresh() {
+
+
+            setInterval(RefreshAllGrids, 5000);
+
+        }
+        function RefreshAllGrids() {
+
+
+
+            if (window.
+                parent.App.tabPanel.getActiveTab().id == "ad") {
+
+
+
+                /* Not Chained
+                App.activeStore.reload();
+                App.absenseStore.reload();
+                App.latenessStore.reload();
+                App.missingPunchesStore.reload();
+                App.checkMontierStore.reload();
+                App.outStore.reload();*/
+
+
+                /*Chained*/
+
+                App.Store1.reload();
+            }
+            else {
+                // alert('No Refresh');
+            }
+
+        }
+        function dump(obj) {
+            var out = '';
+            for (var i in obj) {
+                out += i + ": " + obj[i] + "\n";
+
+
+            }
+            return out;
+        }
     </script>
 
 
 </head>
-<body style="background: url(Images/bg.png) repeat;">
+<body style="background: url(Images/bg.png) repeat;" onload="startRefresh();">
     <form id="Form1" runat="server">
         <ext:ResourceManager ID="ResourceManager1" runat="server" Theme="Neptune" AjaxTimeout="1200000" />
 
@@ -57,6 +99,7 @@
                     <Fields>
 
                         <ext:ModelField Name="dayId" />
+                        <ext:ModelField Name="employeeId" />
                         <ext:ModelField Name="employeeName" IsComplex="true" />
                         <ext:ModelField Name="branchName" />
                         <ext:ModelField Name="departmentName" />
@@ -207,7 +250,7 @@
                                 </ext:DateField>
                                 <ext:Button runat="server" Text="<%$ Resources: ButtonClear%>" MarginSpec="0 0 0 0"  Width="100">
                                     <Listeners>
-                                        <Click Handler="#{departmentId}.clear(); #{dayId}.clear(); #{branchId}.clear(); #{divisionId}.clear(); #{Store1}.reload(); #{employeeId}.clear();">
+                                        <Click Handler="#{departmentId}.clear();#{dayId}.setValue(new Date()); #{branchId}.clear(); #{divisionId}.clear(); #{Store1}.reload(); #{employeeId}.clear();">
 
                                         </Click>
                                     </Listeners>
@@ -242,8 +285,7 @@
                         <Columns>
 
                             <ext:Column ID="ColDay" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDay%>" DataIndex="dayId" Flex="2" Hideable="false">
-                                <Renderer Handler="var s =  moment(record.data['dayId'],'YYYYMMDD'); return s.calendar();">
-                                </Renderer>
+                                
                                  <SummaryRenderer Handler="return #{TotalText}.value;" />
                             </ext:Column>
                             <ext:Column ID="ColName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldFullName%>" DataIndex="employeeName.fullName" Flex="3" Hideable="false">
@@ -258,31 +300,31 @@
                             </ext:Column>
                            
                              <ext:Column ID="ColCheckIn" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldCheckIn%>" DataIndex="checkIn" Flex="2" Hideable="false">
-                                <Renderer Handler="var cssClass='';if(record.data['OL_A_SIGN']<0) cssClass='color:red;'; var result = ' <div style= ' + cssClass +' > ' + record.data['checkIn'] + '<br/>' + record.data['OL_A']; + '</div>'; return result;" />
+                                <Renderer Handler=" var olA = ''; if(record.data['OL_A']=='00:00') olA=''; else olA= record.data['OL_A']; var cssClass='';if(record.data['OL_A_SIGN']<0) cssClass='color:red;'; var result = ' <div style= ' + cssClass +' > ' + record.data['checkIn'] + '<br/>' + olA + '</div>'; return result;" />
                                   <SummaryRenderer Handler="return '<hr/>';" />
                             </ext:Column>
 
                             <ext:Column ID="ColCheckOut" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldCheckOut%>" DataIndex="checkOut" Flex="2" Hideable="false">
-                                <Renderer Handler="var cssClass='';if(record.data['OL_D_SIGN']<0) cssClass='color:red;'; var result = ' <div style= ' + cssClass +' > ' + record.data['checkOut'] + '<br/>' + record.data['OL_D']; + '</div>'; return result;" />
+                                <Renderer Handler="var olD = ''; if(record.data['OL_D']=='00:00') olD=''; else olD= record.data['OL_D']; var cssClass='';if(record.data['OL_D_SIGN']<0) cssClass='color:red;'; var result = ' <div style= ' + cssClass +' > ' + record.data['checkOut'] + '<br/>' + olD + '</div>'; return result;" />
                                  <SummaryRenderer Handler="return '<hr/>';" />
                             </ext:Column>
 
 
                             <ext:Column SummaryType="None" ID="Column1" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldHoursWorked%>" DataIndex="hoursWorked" Flex="2" Hideable="false">
-                                <Renderer Handler=" var cssClass='';if(record.data['OL_N_SIGN']<0) cssClass='color:red;'; var result = ' <div style= ' + cssClass +' > ' + record.data['workingTime'] + '<br/>' + record.data['OL_N']; + '</div>'; return result;" />
+                                <Renderer Handler="var olN = ''; if(record.data['OL_N']=='00:00') olN=''; else olN= record.data['OL_N']; var cssClass='';if(record.data['OL_N_SIGN']<0) cssClass='color:red;'; var result = ' <div style= ' + cssClass +' > ' + record.data['workingTime'] + '<br/>' + olN + '</div>'; return result;" />
                                  <SummaryRenderer Handler="return document.getElementById('total').innerHTML+ ' ' + #{HoursWorked}.value;" />
                             </ext:Column>
 
 
                             <ext:Column ID="Column2" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldBreaks%>" DataIndex="breaks" Flex="2" Hideable="false">
-                                <Renderer Handler="var cssClass='';if(record.data['OL_B_SIGN']<0) cssClass='color:red;'; var result = ' <div style= ' + cssClass +' > ' + record.data['breaks'] + '<br/>' + record.data['OL_B']; + '</div>'; return result;" />
+                                <Renderer Handler="var olB = ''; if(record.data['OL_B']=='00:00') olB=''; else olB= record.data['OL_B'];var cssClass='';if(record.data['OL_B_SIGN']<0) cssClass='color:red;'; var result = ' <div style= ' + cssClass +' > ' + record.data['breaks'] + '<br/>' + olB + '</div>'; return result;" />
                             </ext:Column>
 
 
 
                             <ext:Column runat="server"
-                                ID="colEdit" Visible="false"
-                                Text="<%$ Resources:Common, Edit %>"
+                                ID="colEdit" Visible="true"
+                                Text="<%$ Resources:Common, FieldDetails %>"
                                 Width="60"
                                 Hideable="false"
                                 Align="Center"
@@ -364,17 +406,103 @@
                         
                         <ext:Summary ID="Summary1" runat="server"  DefaultValueMode="Ignore" />
                     </Features>
+                     <Listeners>
+                        <Render Handler="this.on('cellclick', cellClick);" />
+                    </Listeners>
+                    <DirectEvents>
+                        <CellClick OnEvent="PoPuP">
+                            <EventMask ShowMask="true" />
+                            <ExtraParams>
+                                <ext:Parameter Name="dayId" Value="record.data['dayId']" Mode="Raw" />
+                                <ext:Parameter Name="employeeId" Value="record.data['employeeId']" Mode="Raw" />
+                                <ext:Parameter Name="type" Value="getCellType( this, rowIndex, cellIndex)" Mode="Raw" />
+                            </ExtraParams>
 
+                        </CellClick>
+                    </DirectEvents>
                     <SelectionModel>
                         <ext:RowSelectionModel ID="rowSelectionModel" runat="server" Mode="Single" StopIDModeInheritance="true" />
                         <%--<ext:CheckboxSelectionModel ID="CheckboxSelectionModel1" runat="server" Mode="Multi" StopIDModeInheritance="true" />--%>
                     </SelectionModel>
+                    
+                  
                 </ext:GridPanel>
                 <ext:Label runat="server" ID="total" />
             </Items>
         </ext:Viewport>
 
+        <ext:Window
+            ID="AttendanceShiftWindow"
+            runat="server"
+            Icon="PageEdit"
+            
+            Width="450"
+            Height="500"
+            AutoShow="false"
+            Modal="true"
+            Hidden="true"
+            Layout="Fit">
 
+            <Items>
+                <ext:GridPanel runat="server" 
+                   id="attendanceShiftGrid"
+                    PaddingSpec="0 0 1 0"
+                    Header="false"
+                    Flex="1"
+                    Layout="FitLayout"
+                    Scroll="Vertical"
+                    Border="false"
+                    Icon="User"
+                    ColumnLines="True" IDMode="Explicit" RenderXType="True">
+                    <Store>
+                        <ext:Store runat="server" ID="attendanceShiftStore" >
+                            
+                            <Model>
+                                <ext:Model runat="server" IDProperty="recordId" >
+                                    <Fields>
+                                         <ext:ModelField Name="dayId" />
+                                         <ext:ModelField Name="checkIn" />
+                                         <ext:ModelField Name="checkOut" />
+                                         <ext:ModelField Name="duration" />
+                                     
+
+                                    </Fields>
+                                </ext:Model>
+                            </Model>
+                        </ext:Store>
+                    </Store>
+                    <ColumnModel runat="server">
+                        <Columns>
+                            
+                            <ext:Column runat="server" DataIndex="checkIn" Text="<%$ Resources: FieldCheckIn %>" Flex="1" />
+                            <ext:Column runat="server" DataIndex="checkOut" Text="<%$ Resources: FieldCheckOut %>" Flex="1"  />
+                            <ext:Column runat="server" DataIndex="duration" Text="<%$ Resources: FieldHoursWorked %>" Flex="1" />
+                           
+
+                        </Columns>
+                    
+                    </ColumnModel>
+                        
+                    </ext:GridPanel>
+                
+            </Items>
+            
+        </ext:Window>
+
+    <ext:Window ID="logBodyScreen" runat="server"
+            Icon="PageEdit"
+            
+            Width="450"
+            Height="500"
+            AutoShow="false"
+            Modal="true"
+            Hidden="true"
+            Layout="Fit">
+        <Items>
+            <ext:FormPanel runat="server" ID="logBodyForm" Layout="FitLayout"><Items>
+            <ext:TextArea runat="server" ID="bodyText" Name="data"  /></Items></ext:FormPanel>
+        </Items>
+        </ext:Window>
 
 
 

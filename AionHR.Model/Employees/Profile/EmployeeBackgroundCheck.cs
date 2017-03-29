@@ -17,5 +17,7 @@ namespace AionHR.Model.Employees.Profile
         public string remarks { get; set; }
         public DateTime date { get; set; }
         public DateTime expiryDate { get; set; }
+
+        public string fileUrl { get; set; }
     }
 }

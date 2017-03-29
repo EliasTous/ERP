@@ -313,7 +313,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Check Types.
+        ///   Looks up a localized string similar to BackgroundCheck Types.
         /// </summary>
         internal static string CheckTypes {
             get {
@@ -426,6 +426,15 @@ namespace Resources {
         internal static string DayMonthYear {
             get {
                 return ResourceManager.GetString("DayMonthYear", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vacation(Days).
+        /// </summary>
+        internal static string Days {
+            get {
+                return ResourceManager.GetString("Days", resourceCulture);
             }
         }
         
@@ -754,6 +763,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Details.
+        /// </summary>
+        internal static string FieldDetails {
+            get {
+                return ResourceManager.GetString("FieldDetails", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Username.
         /// </summary>
         internal static string FieldUsername {
@@ -813,6 +831,15 @@ namespace Resources {
         internal static string FridayText {
             get {
                 return ResourceManager.GetString("FridayText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to From(Months).
+        /// </summary>
+        internal static string FromMonths {
+            get {
+                return ResourceManager.GetString("FromMonths", resourceCulture);
             }
         }
         
@@ -1488,6 +1515,15 @@ namespace Resources {
         internal static string TitleSavingErrorMessage {
             get {
                 return ResourceManager.GetString("TitleSavingErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to To(Months).
+        /// </summary>
+        internal static string ToMonths {
+            get {
+                return ResourceManager.GetString("ToMonths", resourceCulture);
             }
         }
         

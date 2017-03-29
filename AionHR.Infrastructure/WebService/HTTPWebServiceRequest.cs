@@ -396,28 +396,29 @@ namespace AionHR.Infrastructure.WebService
 
                 //Finalized the json part
 
+                byte[] data = System.Text.Encoding.UTF8.GetBytes(Body);
+                stream.Write(data, 0, data.Length);
 
-
-
-
-                for(int i=0;i<buffers.Count; i++)
+                string additionalFile = "";
+                byte[] additionalFileData = null;
+                for (int i=0;i<buffers.Count; i++)
                 {
-                    Body += "\r\n--" + boundary + "\r\n";
-                    Body += "Content-Disposition: form-data; name=\"picture\"; filename=\"" + fileNames[i] + "\"\r\n";
-                    Body += "Content-Type: application/octet-stream\r\n\r\n";
-
+                    additionalFile = "";
+                    additionalFile += "\r\n--" + boundary + "\r\n";
+                    additionalFile += "Content-Disposition: form-data; name=\"picture"+ i.ToString()+"\"; filename=\"" + fileNames[i] + "\"\r\n";
+                    additionalFile += "Content-Type: application/octet-stream\r\n\r\n";
+                    
+                    additionalFileData = System.Text.Encoding.UTF8.GetBytes(additionalFile);
+                    stream.Write(additionalFileData, 0, additionalFileData.Length);
+                    stream.Write(buffers[i], 0, buffers[i].Length);
                 }
 
                 
 
                 //Now we need  to write the headers to the request 
                 // Add header data to request
-                byte[] data = System.Text.Encoding.UTF8.GetBytes(Body);
-                stream.Write(data, 0, data.Length);
-                for (int i = 0; i < buffers.Count; i++)
-                {
-                    stream.Write(buffers[i], 0, buffers[i].Length);
-                }
+                
+              
                 // Add binary file to request
 
                

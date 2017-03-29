@@ -22,6 +22,7 @@ using AionHR.Services.Messaging;
 using AionHR.Model.Company.Structure;
 using AionHR.Model.System;
 using AionHR.Model.Employees.Profile;
+using System.Net;
 
 namespace AionHR.Web.UI.Forms.EmployeePages
 {
@@ -107,6 +108,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
 
             int id = Convert.ToInt32(e.ExtraParams["id"]);
             string type = e.ExtraParams["type"];
+            string path = e.ExtraParams["path"];
             switch (type)
             {
                 case "imgEdit":
@@ -128,40 +130,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     this.EditRWwindow.Title = Resources.Common.EditWindowsTitle;
                     this.EditRWwindow.Show();
                     break;
-                case "ColBCName":
-                    RecordRequest r2 = new RecordRequest();
-                    r2.RecordID = id.ToString();
-                    RecordResponse<EmployeeBackgroundCheck> response2 = _employeeService.ChildGetRecord<EmployeeBackgroundCheck>(r2);
-                    if (!response2.Success)
-                    {
-                        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                        X.Msg.Alert(Resources.Common.Error, response2.Summary).Show();
-                        return;
-                    }
-                    //Step 2 : call setvalues with the retrieved object
-                    this.EditBCTab.SetValues(response2.result);
-                    FillBCCheckType();
-                    ctId.Select(response2.result.ctId.ToString());
-                    this.EditRWwindow.Title = Resources.Common.EditWindowsTitle;
-                    this.EditRWwindow.Show();
-                    break;
-
-                case "ColBCDelete":
-                    X.Msg.Confirm(Resources.Common.Confirmation, Resources.Common.DeleteOneRecord, new MessageBoxButtonsConfig
-                    {
-                        Yes = new MessageBoxButtonConfig
-                        {
-                            //We are call a direct request metho for deleting a record
-                            Handler = String.Format("App.direct.DeleteBC({0})", id),
-                            Text = Resources.Common.Yes
-                        },
-                        No = new MessageBoxButtonConfig
-                        {
-                            Text = Resources.Common.No
-                        }
-
-                    }).Show();
-                    break;
+              
 
                 case "imgDelete":
                     X.Msg.Confirm(Resources.Common.Confirmation, Resources.Common.DeleteOneRecord, new MessageBoxButtonsConfig
@@ -180,8 +149,8 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     }).Show();
                     break;
 
-                case "colAttach":
-
+                case "imgAttach":
+                    DownloadFile(path);
                     //Here will show up a winow relatice to attachement depending on the case we are working on
                     break;
                 default:
@@ -198,6 +167,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
 
             int id = Convert.ToInt32(e.ExtraParams["id"]);
             string type = e.ExtraParams["type"];
+            string path = e.ExtraParams["path"];
             switch (type)
             {
 
@@ -235,8 +205,9 @@ namespace AionHR.Web.UI.Forms.EmployeePages
 
                     }).Show();
                     break;
-
-
+                case "imgAttach":
+                    DownloadFile(path);
+                    break;
                 default:
                     break;
             }
@@ -391,7 +362,25 @@ namespace AionHR.Web.UI.Forms.EmployeePages
         }
 
 
+        private List<EmployeeRightToWork> GetRightToWork()
+        {
+            EmployeeRightToWorkListRequest request = new EmployeeRightToWorkListRequest();
 
+            request.EmployeeId = CurrentEmployee.Text;
+
+            ListResponse<EmployeeRightToWork> currencies = _employeeService.ChildGetAll<EmployeeRightToWork>(request);
+            return currencies.Items;
+        }
+
+        private List<EmployeeBackgroundCheck> GetSecurityCheck()
+        {
+            EmployeeBackgroundCheckListRequest request = new EmployeeBackgroundCheckListRequest();
+
+            request.EmployeeId = CurrentEmployee.Text;
+
+            ListResponse<EmployeeBackgroundCheck> currencies = _employeeService.ChildGetAll<EmployeeBackgroundCheck>(request);
+            return currencies.Items;
+        }
         protected void rightToWork_RefreshData(object sender, StoreReadDataEventArgs e)
         {
 
@@ -413,7 +402,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             if (!currencies.Success)
                 X.Msg.Alert(Resources.Common.Error, currencies.Summary).Show();
             this.rightToWorkStore.DataSource = currencies.Items;
-            e.Total = currencies.count;
+           
 
             this.rightToWorkStore.DataBind();
         }
@@ -436,7 +425,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             if (!currencies.Success)
                 X.Msg.Alert(Resources.Common.Error, currencies.Summary).Show();
             this.BCStore.DataSource = currencies.Items;
-            e.Total = currencies.count;
+            
 
             this.BCStore.DataBind();
         }
@@ -465,9 +454,27 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                 {
                     //New Mode
                     //Step 1 : Fill The object and insert in the store 
-                    PostRequest<EmployeeRightToWork> request = new PostRequest<EmployeeRightToWork>();
+                    PostRequestWithAttachment<EmployeeRightToWork> request = new PostRequestWithAttachment<EmployeeRightToWork>();
                     request.entity = b;
-                    PostResponse<EmployeeRightToWork> r = _employeeService.ChildAddOrUpdate<EmployeeRightToWork>(request);
+                    byte[] fileData = null;
+                    if (rwFile.PostedFile != null && rwFile.PostedFile.ContentLength > 0)
+                    {
+                        //using (var binaryReader = new BinaryReader(picturePath.PostedFile.InputStream))
+                        //{
+                        //    fileData = binaryReader.ReadBytes(picturePath.PostedFile.ContentLength);
+                        //}
+                        fileData = new byte[rwFile.PostedFile.ContentLength];
+                        fileData = rwFile.FileBytes;
+                        request.FileName = rwFile.PostedFile.FileName;
+                        request.FileData = fileData;
+
+                    }
+                    else
+                    {
+                        request.FileData = fileData;
+                        request.FileName = "";
+                    }
+                        PostResponse<EmployeeRightToWork> r = _employeeService.ChildAddOrUpdateWithAttachment<EmployeeRightToWork>(request);
                     b.recordId = r.recordId;
 
                     //check if the insert failed
@@ -480,9 +487,11 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     }
                     else
                     {
+                        EmployeeRightToWork rw = GetRWById(r.recordId);
 
                         //Add this record to the store 
-                        this.rightToWorkStore.Insert(0, b);
+                        this.rightToWorkStore.Insert(0, rw);
+
 
                         //Display successful notification
                         Notification.Show(new NotificationConfig
@@ -517,10 +526,28 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                 try
                 {
                     int index = Convert.ToInt32(id);//getting the id of the record
-                    PostRequest<EmployeeRightToWork> request = new PostRequest<EmployeeRightToWork>();
+                    PostRequestWithAttachment<EmployeeRightToWork> request = new PostRequestWithAttachment<EmployeeRightToWork>();
                     request.entity = b;
-                    PostResponse<EmployeeRightToWork> r = _employeeService.ChildAddOrUpdate<EmployeeRightToWork>(request);                      //Step 1 Selecting the object or building up the object for update purpose
+                    byte[] fileData = null;
+                    if (rwFile.PostedFile != null && rwFile.PostedFile.ContentLength > 0)
+                    {
+                        //using (var binaryReader = new BinaryReader(picturePath.PostedFile.InputStream))
+                        //{
+                        //    fileData = binaryReader.ReadBytes(picturePath.PostedFile.ContentLength);
+                        //}
+                        fileData = new byte[rwFile.PostedFile.ContentLength];
+                        fileData = rwFile.FileBytes;
+                        request.FileName = rwFile.PostedFile.FileName;
+                        request.FileData = fileData;
 
+                    }
+                    else
+                    {
+                        request.FileData = fileData;
+                        request.FileName = "";
+                    }
+                        PostResponse<EmployeeRightToWork> r = _employeeService.ChildAddOrUpdateWithAttachment<EmployeeRightToWork>(request);                      //Step 1 Selecting the object or building up the object for update purpose
+                    
                     //Step 2 : saving to store
 
                     //Step 3 :  Check if request fails
@@ -533,13 +560,16 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     else
                     {
 
+                        EmployeeRightToWork rw = GetRWById(b.recordId);
+                        ModelProxy record = this.rightToWorkStore.GetById(id);
+                        record.Set("expiryDate", rw.expiryDate);
+                        record.Set("issueDate", rw.issueDate);
+                        record.Set("fileUrl", rw.fileUrl);
+                        record.Set("documentRef", rw.documentRef);
+                        record.Set("dtId", rw.dtId);
+                        record.Set("dtName", rw.dtName);
+                        record.Set("remarks", rw.remarks);
 
-                        ModelProxy record = this.rightToWorkStore.GetById(index);
-                        record.Set("issueDate", b.issueDate.ToShortDateString());
-                        record.Set("expiryDate", b.expiryDate.ToShortDateString());
-                        record.Set("remarks", b.remarks);
-                        record.Set("documentRef", b.documentRef);
-                        EditRWForm.UpdateRecord(record);
                         record.Commit();
                         Notification.Show(new NotificationConfig
                         {
@@ -585,9 +615,27 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                 {
                     //New Mode
                     //Step 1 : Fill The object and insert in the store 
-                    PostRequest<EmployeeBackgroundCheck> request = new PostRequest<EmployeeBackgroundCheck>();
+                    PostRequestWithAttachment<EmployeeBackgroundCheck> request = new PostRequestWithAttachment<EmployeeBackgroundCheck>();
                     request.entity = b;
-                    PostResponse<EmployeeBackgroundCheck> r = _employeeService.ChildAddOrUpdate<EmployeeBackgroundCheck>(request);
+                    byte[] fileData = null;
+                    if (bcFile.PostedFile != null && bcFile.PostedFile.ContentLength > 0)
+                    {
+                        //using (var binaryReader = new BinaryReader(picturePath.PostedFile.InputStream))
+                        //{
+                        //    fileData = binaryReader.ReadBytes(picturePath.PostedFile.ContentLength);
+                        //}
+                        fileData = new byte[bcFile.PostedFile.ContentLength];
+                        fileData = bcFile.FileBytes;
+                        request.FileName = bcFile.PostedFile.FileName;
+                        request.FileData = fileData;
+
+                    }
+                    else
+                    {
+                        request.FileData = fileData;
+                        request.FileName = "";
+                    }
+                        PostResponse<EmployeeBackgroundCheck> r = _employeeService.ChildAddOrUpdateWithAttachment<EmployeeBackgroundCheck>(request);
                     b.recordId = r.recordId;
 
                     //check if the insert failed
@@ -602,8 +650,8 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     {
 
                         //Add this record to the store 
-                        this.BCStore.Insert(0, b);
-
+                        EmployeeBackgroundCheck bc = GetBCById(r.recordId);
+                        this.BCStore.Insert(0, bc);
                         //Display successful notification
                         Notification.Show(new NotificationConfig
                         {
@@ -637,9 +685,27 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                 try
                 {
                     int index = Convert.ToInt32(id);//getting the id of the record
-                    PostRequest<EmployeeBackgroundCheck> request = new PostRequest<EmployeeBackgroundCheck>();
+                    PostRequestWithAttachment<EmployeeBackgroundCheck> request = new PostRequestWithAttachment<EmployeeBackgroundCheck>();
                     request.entity = b;
-                    PostResponse<EmployeeBackgroundCheck> r = _employeeService.ChildAddOrUpdate<EmployeeBackgroundCheck>(request);                      //Step 1 Selecting the object or building up the object for update purpose
+                    byte[] fileData = null;
+                    if (bcFile.PostedFile != null && bcFile.PostedFile.ContentLength > 0)
+                    {
+                        //using (var binaryReader = new BinaryReader(picturePath.PostedFile.InputStream))
+                        //{
+                        //    fileData = binaryReader.ReadBytes(picturePath.PostedFile.ContentLength);
+                        //}
+                        fileData = new byte[bcFile.PostedFile.ContentLength];
+                        fileData = bcFile.FileBytes;
+                        request.FileName = bcFile.PostedFile.FileName;
+                        request.FileData = fileData;
+
+                    }
+                    else
+                    {
+                        request.FileData = fileData;
+                        request.FileName = "";
+                    }
+                        PostResponse<EmployeeBackgroundCheck> r = _employeeService.ChildAddOrUpdateWithAttachment<EmployeeBackgroundCheck>(request);                      //Step 1 Selecting the object or building up the object for update purpose
 
                     //Step 2 : saving to store
 
@@ -653,12 +719,18 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     else
                     {
 
-
-                        ModelProxy record = this.BCStore.GetById(index);
-                        EditBCTab.UpdateRecord(record);
-                        record.Set("ctName", b.ctName);
+                        EmployeeBackgroundCheck BC = GetBCById(b.recordId);
+                        ModelProxy record = this.BCStore.GetById(id);
+                        record.Set("expiryDate", BC.expiryDate);
+                       
+                        record.Set("fileUrl", BC.fileUrl);
+                       
+                        record.Set("ctId", BC.ctId);
+                        record.Set("ctName", BC.ctName);
+                        record.Set("remarks", BC.remarks);
 
                         record.Commit();
+
                         Notification.Show(new NotificationConfig
                         {
                             Title = Resources.Common.Notification,
@@ -768,12 +840,98 @@ namespace AionHR.Web.UI.Forms.EmployeePages
         }
 
 
+        [DirectMethod]
+        public void DownloadFile(string url)
+        {
+            if (string.IsNullOrEmpty(url))
+                return;
+
+            Stream stream = null;
+
+            //This controls how many bytes to read at a time and send to the client
+            int bytesToRead = 10000;
+
+            // Buffer to read bytes in chunk size specified above
+            byte[] buffer = new Byte[bytesToRead];
+
+            // The number of bytes read
+            try
+            {
+                //Create a WebRequest to get the file
+                HttpWebRequest fileReq = (HttpWebRequest)HttpWebRequest.Create(url);
+
+                //Create a response for this request
+                HttpWebResponse fileResp = (HttpWebResponse)fileReq.GetResponse();
+
+                if (fileReq.ContentLength > 0)
+                    fileResp.ContentLength = fileReq.ContentLength;
+
+                //Get the Stream returned from the response
+                stream = fileResp.GetResponseStream();
+
+                // prepare the response to the client. resp is the client Response
+                var resp = HttpContext.Current.Response;
+
+                //Indicate the type of data being sent
+                resp.ContentType = "application/octet-stream";
+                string[] segments = url.Split('/');
+                string fileName = segments[segments.Length - 1];
+                //Name the file 
+                resp.AddHeader("Content-Disposition", "attachment; filename=\"" + fileName + "\"");
+                resp.AddHeader("Content-Length", fileResp.ContentLength.ToString());
+
+                int length;
+                do
+                {
+                    // Verify that the client is connected.
+                    if (resp.IsClientConnected)
+                    {
+                        // Read data into the buffer.
+                        length = stream.Read(buffer, 0, bytesToRead);
+
+                        // and write it out to the response's output stream
+                        resp.OutputStream.Write(buffer, 0, length);
+
+                        // Flush the data
+
+
+                        //Clear the buffer
+                        buffer = new Byte[bytesToRead];
+                    }
+                    else
+                    {
+                        // cancel the download if client has disconnected
+                        length = -1;
+                    }
+                } while (length > 0); //Repeat until no data is read
+            }
+            finally
+            {
+                if (stream != null)
+                {
+                    //Close the input stream
+                    stream.Close();
+                }
+            }
+        }
 
 
 
 
+        private EmployeeRightToWork GetRWById(string Id)
+        {
+            RecordRequest req = new RecordRequest();
+            req.RecordID = Id;
+            return _employeeService.ChildGetRecord<EmployeeRightToWork>(req).result;
 
+        }
 
+        private EmployeeBackgroundCheck GetBCById(string id)
+        {
+            RecordRequest req = new RecordRequest();
+            req.RecordID = id;
+            return _employeeService.ChildGetRecord<EmployeeBackgroundCheck>(req).result;
+        }
 
 
 

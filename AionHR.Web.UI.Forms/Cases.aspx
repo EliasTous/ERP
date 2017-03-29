@@ -13,7 +13,7 @@
     <link rel="stylesheet" type="text/css" href="CSS/Common.css" />
    
     <link rel="stylesheet" href="CSS/LiveSearch.css" />
-    <script type="text/javascript" src="Scripts/Cases.js?id=8" ></script>
+    <script type="text/javascript" src="Scripts/Cases.js?id=10" ></script>
 
 
     <script type="text/javascript" src="Scripts/common.js" ></script>
@@ -26,6 +26,7 @@
 <!-- load the JS files in the right order -->
 <script src="Scripts/fileinput.js" type="text/javascript"></script>
 <script src="Scripts/theme.js" type="text/javascript">  </script>
+    <script src="Scripts/moment.js" type="text/javascript">  </script>
      <script type="text/javascript" src="Scripts/locales/ar.js?id=7" ></script>
  <script type="text/javascript">
      function initBootstrap()
@@ -493,10 +494,10 @@
                     runat="server"
                     PaddingSpec="0 0 1 0"
                     Header="false"
-                    Layout="FitLayout"
+                    Layout="FitLayout" 
                     Scroll="Vertical" Flex="1"
                     Border="false"  MinHeight="220" MaxHeight="220"
-                    Icon="User" DefaultAnchor="100%"    HideHeaders="true"
+                    Icon="User" DefaultAnchor="100%"    
                     ColumnLines="false" IDMode="Explicit" RenderXType="True">
                     <Store>
                         <ext:Store
@@ -605,8 +606,10 @@
 
                         </Columns>
                     </ColumnModel>
-                    <Plugins>
-                        <ext:RowEditing runat="server" SaveHandler="validateSave" />
+                    <Plugins >
+                        <ext:RowEditing runat="server" SaveHandler="validateSave" SaveBtnText="<%$ Resources:Common , Save %>" CancelBtnText="<%$ Resources:Common , Cancel %>"  >
+                            
+                            </ext:RowEditing>
                         
                     </Plugins>
                     <DockedItems>
@@ -650,12 +653,12 @@
                             </Items>
                             </ext:Panel>
 
-                        <ext:GridPanel Title="<%$ Resources: CaseAttachmentsTitle %>" runat="server" ID="filesGrid"  AutoUpdateLayout="true" DefaultAnchor="100%" Layout="FitLayout"
+                        <ext:GridPanel Title="<%$ Resources: CaseAttachmentsTitle %>" runat="server" ID="filesGrid"  DefaultAnchor="100%" Layout="FitLayout"
                               PaddingSpec="0 0 1 0"
                     Header="false"
                    
                     Scroll="Vertical" Flex="1"
-                    Border="false"  MinHeight="220" MaxHeight="220"
+                    Border="false"  MinHeight="270" MaxHeight="270"
                     Icon="User"    
                     ColumnLines="false" IDMode="Explicit" RenderXType="True"
                             >
@@ -723,7 +726,7 @@
                                 MenuDisabled="true"
                                 Resizable="false">
 
-                                <Renderer handler="return attachRender()+'&nbsp;&nbsp;'+deleteRender(); " />
+                                <Renderer handler="return attachRender(); " />
 
                             </ext:Column>
                             <ext:Column runat="server"
@@ -772,9 +775,9 @@
                     <Listeners>
                         <Render Handler="this.on('cellclick', cellClick);" />
                     </Listeners>
-                    <DirectEvents>
-                        <CellClick  OnEvent="PoPuPAttachement">
-                            <EventMask  ShowMask="false"  />
+                    <DirectEvents >
+                        <CellClick  OnEvent="PoPuPAttachement" IsUpload="true" FormID="form1" >
+                            
                             <ExtraParams>
                                 <ext:Parameter Name="id" Value="record.getId()" Mode="Raw" />
                                 <ext:Parameter Name="path" Value="record.data['url']" Mode="Raw" />

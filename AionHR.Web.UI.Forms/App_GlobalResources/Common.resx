@@ -643,6 +643,18 @@
     <value>MAIL</value>
   </data>
   <data name="CheckTypes" xml:space="preserve">
-    <value>Check Types</value>
+    <value>BackgroundCheck Types</value>
+  </data>
+  <data name="FieldDetails" xml:space="preserve">
+    <value>Details</value>
+  </data>
+  <data name="Days" xml:space="preserve">
+    <value>Vacation(Days)</value>
+  </data>
+  <data name="FromMonths" xml:space="preserve">
+    <value>From(Months)</value>
+  </data>
+  <data name="ToMonths" xml:space="preserve">
+    <value>To(Months)</value>
   </data>
 </root>

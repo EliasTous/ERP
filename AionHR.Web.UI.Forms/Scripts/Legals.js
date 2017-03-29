@@ -33,6 +33,11 @@ var cellClick = function (view, cell, columnIndex, record, row, rowIndex, e) {
         commandName = t.className;
         return true;
     }
+    if (t.className == "imgAttach") {
+        //the ajax call is allowed
+        commandName = t.className;
+        return true;
+    }
     if (columnId == "ColRWName" || columnId == "ColBCName")// || columnId == "ColSAName")
         return true;
 

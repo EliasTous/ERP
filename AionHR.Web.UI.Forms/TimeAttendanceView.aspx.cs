@@ -25,7 +25,7 @@ using AionHR.Model.Employees.Profile;
 using AionHR.Model.System;
 using AionHR.Model.Employees.Leaves;
 using AionHR.Model.Attendance;
-
+using AionHR.Model.TimeAttendance;
 
 namespace AionHR.Web.UI.Forms
 {
@@ -70,7 +70,7 @@ namespace AionHR.Web.UI.Forms
                 FillDepartment();
                 FillDivision();
                 dayId.SelectedDate = DateTime.Today;
-
+                
 
             }
 
@@ -88,7 +88,35 @@ namespace AionHR.Web.UI.Forms
         }
 
 
+        protected void PoPuP(object sender, DirectEventArgs e)
+        {
 
+
+            int dayId = Convert.ToInt32(e.ExtraParams["dayId"]);
+            int employeeId = Convert.ToInt32(e.ExtraParams["employeeId"]);
+            string type = e.ExtraParams["type"];
+            switch (type)
+            {
+                case "imgEdit":
+                    //Step 1 : get the object from the Web Service 
+                    AttendanceShiftListRequest request = new AttendanceShiftListRequest();
+                    request.EmployeeId = employeeId;
+                    request.DayId = dayId;
+                    ListResponse<AttendanceShift> shifts = _timeAttendanceService.ChildGetAll<AttendanceShift>(request);
+                    if(shifts.Success)
+                    {
+                        attendanceShiftStore.DataSource = shifts.Items;
+                        attendanceShiftStore.DataBind();
+                        AttendanceShiftWindow.Show();
+                    }
+
+                    break;
+                default:
+                    break;
+            }
+
+
+        }
         private void HideShowButtons()
         {
 
@@ -408,7 +436,9 @@ namespace AionHR.Web.UI.Forms
             return response.Items;
         }
 
+        protected void attendanceShiftStore_ReadData(object sender, StoreReadDataEventArgs e)
+        {
 
-
+        }
     }
 }

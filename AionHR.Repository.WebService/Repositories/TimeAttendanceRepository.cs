@@ -46,6 +46,7 @@ namespace AionHR.Repository.WebService.Repositories
             ChildGetAllLookup.Add(typeof(MissedPunch), "qryMP");
             ChildGetAllLookup.Add(typeof(Router), "qryRO");
             ChildGetAllLookup.Add(typeof(Geofence), "qryGF");
+            ChildGetAllLookup.Add(typeof(AttendanceShift), "qryAS");
 
             ChildAddOrUpdateLookup.Add(typeof(DayType), "setDT");
             ChildAddOrUpdateLookup.Add(typeof(AttendanceSchedule), "setSC");

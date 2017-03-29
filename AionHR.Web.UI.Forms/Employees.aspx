@@ -403,7 +403,7 @@
                                         
                                     </Items>
                                 </ext:Panel>
-                                <ext:Panel runat="server" Margin="20">
+                                <ext:Panel runat="server" MarginSpec="0 0 0 100">
                                     <Items>
                                         <ext:DateField
                                             runat="server"
