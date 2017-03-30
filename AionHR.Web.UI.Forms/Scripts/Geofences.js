@@ -73,7 +73,14 @@ var circle;
 var rectangle;
 var map;
 var geocoder;
-
+function setWidth()
+{
+    console.log(App.mapHolder.getWidth());
+    console.log(App.mapHolder.getHeight());
+    document.getElementById("map").style.width = App.mapHolder.getWidth() +4 + 'px';
+  document.getElementById("map").style.height = App.mapHolder.getHeight() - 25 + 'px';
+ 
+}
 var drawingManager;
 function initMap(addr) {
 
