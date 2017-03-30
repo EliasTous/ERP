@@ -370,7 +370,7 @@ namespace AionHR.Web.UI.Forms
             if (!branches.Success)
                 return;
             this.Store1.DataSource = branches.Items;
-            e.Total = branches.count;
+           
 
             this.Store1.DataBind();
         }
@@ -522,9 +522,9 @@ namespace AionHR.Web.UI.Forms
             if (response.Success)
             {
                 dept.recordId = response.recordId;
-                positionStore.Insert(0, dept);
-                referToPositionId.Select(0);
-                this.Store1.Insert(0, dept);
+                FillParent(null, null);
+                referToPositionId.Select(dept.recordId);
+                Store1.Reload();
             }
             else
             {

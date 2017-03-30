@@ -6,7 +6,7 @@
 <head runat="server">
     <link rel="stylesheet" type="text/css" href="CSS/Common.css" />
     <link rel="stylesheet" type="text/css" href="CSS/Tools.css" />
-    
+
     <script type="text/javascript" src="Scripts/jquery.min.js"></script>
     <script type="text/javascript" src="Scripts/app.js?id=1"></script>
     <script type="text/javascript" src="Scripts/Common.js"></script>
@@ -22,7 +22,14 @@
     <ext:Hidden runat="server" ID="lblOk" Text="<%$Resources:Common , Ok %>" />
     <ext:Hidden runat="server" ID="lblErrorOperation" Text="<%$Resources:Common , ErrorOperation %>" />
     <ext:Hidden runat="server" ID="lblLoading" Text="<%$Resources:Common , Loading %>" />
-    <ext:Hidden runat="server" ID="TrType1" Text="<%$Resources:Common , TrType1 %>" />
+    <ext:Hidden runat="server" ID="sponsorsTitle" Text="<%$Resources: Common , Sponsors%>" />
+    <ext:Hidden runat="server" ID="clTitle" Text="<%$Resources: Common , CertificateLevels%>" />
+    <ext:Hidden runat="server" ID="edTitle" Text="<%$Resources: Common , EntitlementDeduction%>" />
+    <ext:Hidden runat="server" ID="dtTitle" Text="<%$Resources: Common , DocumentTypes%>" />
+    <ext:Hidden runat="server" ID="scrTitle" Text="<%$Resources: Common , SalaryChangeReasons%>" />
+    <ext:Hidden runat="server" ID="acTitle" Text="<%$Resources: Common , AssetCategories%>" />
+    <ext:Hidden runat="server" ID="btTitle" Text="<%$Resources: Common , BonusTypes%>" />
+    <ext:Hidden runat="server" ID="bcTitle" Text="<%$Resources:Common , CheckTypes %>" />
     <ext:Hidden runat="server" ID="TrType2" Text="<%$Resources:Common , TrType2 %>" />
     <ext:Hidden runat="server" ID="TrType3" Text="<%$Resources:Common , TrType3 %>" />
     <ext:Hidden runat="server" ID="TrType4" Text="<%$Resources:Common , TrType4 %>" />
@@ -57,9 +64,9 @@
 
 
             </ext:Panel>
-            <ext:Panel ID="leftPanel" runat="server" Region="West"  Layout="FitLayout" AutoUpdateLayout="true" Width="260" PaddingSpec="0 0 0 0" Padding="0"
-                Header="false" Collapsible="true"  Split="true" CollapseMode="Mini" StyleSpec="border-bottom:2px solid #2A92D4;"
-                Title="<%$ Resources:Common , NavigationPane %>" CollapseToolText="<%$ Resources:Common , CollapsePanel %>"  ExpandToolText="<%$ Resources:Common , ExpandPanel %>" Icon="ApplicationTileVertical" BodyBorder="0">
+            <ext:Panel ID="leftPanel" runat="server" Region="West" Layout="FitLayout" AutoUpdateLayout="true" Width="260" PaddingSpec="0 0 0 0" Padding="0"
+                Header="false" Collapsible="true" Split="true" CollapseMode="Mini" StyleSpec="border-bottom:2px solid #2A92D4;"
+                Title="<%$ Resources:Common , NavigationPane %>" CollapseToolText="<%$ Resources:Common , CollapsePanel %>" ExpandToolText="<%$ Resources:Common , ExpandPanel %>" Icon="ApplicationTileVertical" BodyBorder="0">
                 <TopBar>
                     <ext:Toolbar ID="Toolbar1" runat="server" Border="true">
                         <Items>
@@ -70,58 +77,68 @@
                                     <Click Handler="openModule(1);#{b1}.setVisible(true); #{b2}.setVisible(false); #{b3}.setVisible(false);" />
                                 </Listeners>
                                 <Menu>
-
                                 </Menu>
                             </ext:Button>
 
-                        
+
 
                             <ext:ToolbarSeparator runat="server"></ext:ToolbarSeparator>
-                            <ext:Button ID="btnCompany" runat="server" Icon="Building" ToolTip="<%$ Resources:Common , Company %>">                              
+                            <ext:Button ID="btnCompany" runat="server" Icon="Building" ToolTip="<%$ Resources:Common , Company %>">
                                 <Listeners>
                                     <%--<Click Handler="#{commonTree}.setTitle(this.tooltip);openModule(3);" />--%>
                                     <Click Handler="openModule(3);#{b1}.setVisible(false); #{b2}.setVisible(true); #{b3}.setVisible(false);" />
                                 </Listeners>
-                               
-                              
+
+
                             </ext:Button>
-                              <ext:ToolbarSeparator runat="server"></ext:ToolbarSeparator>
-                            <ext:Button ID="btnScheduler" runat="server" Icon="CalendarSelectDay" ToolTip="<%$ Resources:Common , Scheduler %>">                              
+                            <ext:ToolbarSeparator runat="server"></ext:ToolbarSeparator>
+                            <ext:Button ID="btnScheduler" runat="server" Icon="CalendarSelectDay" ToolTip="<%$ Resources:Common , Scheduler %>">
                                 <Listeners>
                                     <%--<Click Handler="#{commonTree}.setTitle(this.tooltip);openModule(4);" />--%>
                                     <Click Handler="openModule(4); #{b1}.setVisible(false); #{b2}.setVisible(false); #{b3}.setVisible(true); " />
                                 </Listeners>
                                 <Menu>
-
                                 </Menu>
                             </ext:Button>
-                                <ext:ToolbarSeparator runat="server"></ext:ToolbarSeparator>
-                        <%--    <ext:Button ID="btnReport" runat="server" Icon="ChartBar" ToolTip="<%$ Resources:Common , Reports %>">                              
+                            <ext:ToolbarSeparator runat="server"></ext:ToolbarSeparator>
+                            <%--    <ext:Button ID="btnReport" runat="server" Icon="ChartBar" ToolTip="<%$ Resources:Common , Reports %>">                              
                                 <Listeners>
                                     <Click Handler="#{commonTree}.setTitle(this.tooltip);openModule(5);" />
                                 </Listeners>
                             </ext:Button>--%>
-                            <ext:ToolbarFill runat="server"/>
-                            <ext:Button ID="b1" runat="server"  Icon="DatabaseGear" ToolTip="<%$ Resources:Common , EmployeeFiles %>">                              
+                            <ext:ToolbarFill runat="server" />
+                            <ext:Button ID="b1" runat="server" Icon="DatabaseGear" ToolTip="<%$ Resources:Common , EmployeeFiles %>">
                                 <Listeners>
                                     <%--<Click Handler="#{commonTree}.setTitle(this.tooltip);openModule(4);" />--%>
-                                
-
                                 </Listeners>
-                                 <Menu>
-                                   <ext:Menu runat="server"><Items>
-                                      <ext:MenuItem runat="server" Text="Navigation Link" ID="firstMenu" />
-                                                    <ext:MenuItem runat="server" Text="Navigation Link" />
-                                               </Items></ext:Menu>
-                                     </Menu>
+                                <Menu>
+
+                                    <ext:Menu runat="server">
+
+                                        <Items>
+                                            <ext:MenuItem runat="server" Text="<%$Resources: Common , Sponsors%>"  >
+                                                <Listeners>
+                                                    <Click Handler="openNewTab('sponsors', 'Sponsors.aspx', #{sponsorsTitle}.value, 'icon-Employees')" />
+                                                </Listeners>
+                                                </ext:MenuItem>
+                                             <ext:MenuItem runat="server" Text="<%$Resources: Common , CertificateLevels%>"  >
+                                                <Listeners>
+                                                    <Click Handler="openNewTab('certificateLevels', 'CertificateLevels.aspx', #{clTitle}.value, 'icon-Employees')" />
+                                                </Listeners>
+                                                </ext:MenuItem>
+
+                                            
+                                        </Items>
+                                    </ext:Menu>
+                                </Menu>
                             </ext:Button>
-                            <ext:Button ID="b2" runat="server"  Hidden="true" Icon="DatabaseGear" ToolTip="<%$ Resources:Common , Company %>">                              
+                            <ext:Button ID="b2" runat="server" Hidden="true" Icon="DatabaseGear" ToolTip="<%$ Resources:Common , Company %>">
                                 <Listeners>
                                     <%--<Click Handler="#{commonTree}.setTitle(this.tooltip);openModule(4);" />--%>
                                     <Click Handler="openModule(3);" />
                                 </Listeners>
                             </ext:Button>
-                            <ext:Button ID="b3" runat="server"  Hidden="true" Icon="DatabaseGear" ToolTip="<%$ Resources:Common , Scheduler %>">                              
+                            <ext:Button ID="b3" runat="server" Hidden="true" Icon="DatabaseGear" ToolTip="<%$ Resources:Common , Scheduler %>">
                                 <Listeners>
                                     <%--<Click Handler="#{commonTree}.setTitle(this.tooltip);openModule(4);" />--%>
                                     <Click Handler="openModule(1);" />
@@ -174,13 +191,13 @@
                             <ext:ModelField Name="css" />
                             <ext:ModelField Name="click" />
                         </Fields>
-                        
+
                         <Listeners>
                             <ItemClick Handler="CheckSession(); onTreeItemClick(record, e);" />
                         </Listeners>
 
                     </ext:TreePanel>
-                <%--    <ext:Panel
+                    <%--    <ext:Panel
                         ID="pnlAlignMiddle"
                         runat="server"
                         Title="Buttons"
@@ -224,17 +241,15 @@
                     <ext:Panel runat="server" Title="Settings" />
                     <ext:Panel runat="server" Title="Even More Stuff" />
                     <ext:Panel runat="server" Title="My Stuff" />--%>
-
-
                 </Items>
             </ext:Panel>
             <ext:TabPanel ID="tabPanel" runat="server" Region="Center" EnableTabScroll="true" MinTabWidth="100" BodyBorder="0" StyleSpec="border-bottom:2px solid #2A92D4;">
                 <Items>
-                    <ext:Panel ID="tabHome" Closable="false" runat="server" Title="<%$ Resources:Common , Home %>" Icon="House" >
+                    <ext:Panel ID="tabHome" Closable="false" runat="server" Title="<%$ Resources:Common , Home %>" Icon="House">
                         <Loader ID="Loader1"
                             runat="server"
                             Url="Employees.aspx"
-                            Mode="Frame" 
+                            Mode="Frame"
                             ShowMask="true">
                             <LoadMask ShowMask="true" />
                         </Loader>
@@ -247,102 +262,102 @@
         </Items>
     </ext:Viewport>
     <ext:Window
-            ID="TransationLogScreen"
-            runat="server"
-            Icon="PageEdit"
-            
-            Width="450"
-            Height="500"
-            AutoShow="false"
-            Modal="true"
-            Hidden="true"
-            Layout="Fit">
+        ID="TransationLogScreen"
+        runat="server"
+        Icon="PageEdit"
+        Width="450"
+        Height="500"
+        AutoShow="false"
+        Modal="true"
+        Hidden="true"
+        Layout="Fit">
 
-            <Items>
-                <ext:GridPanel runat="server" 
-                   id="transactionLogGrid"
-                    PaddingSpec="0 0 1 0"
-                    Header="false"
-                    
-                    Layout="FitLayout"
-                    Scroll="Vertical"
-                    Border="false"
-                    Icon="User"
-                    ColumnLines="True" IDMode="Explicit" RenderXType="True">
-                    <Store>
-                        <ext:Store runat="server" ID="transactionLogStore">
-                            <Model>
-                                <ext:Model runat="server" IDProperty="recordId" >
-                                    <Fields>
-                                         <ext:ModelField Name="recordId" />
-                                         <ext:ModelField Name="userName" />
-                                         <ext:ModelField Name="classId" />
-                                         <ext:ModelField Name="pk" />
-                                         <ext:ModelField Name="userId" />
-                                         <ext:ModelField Name="type" />
-                                        <ext:ModelField Name="eventDt" />
-                                        <ext:ModelField Name="data" />
+        <Items>
+            <ext:GridPanel runat="server"
+                ID="transactionLogGrid"
+                PaddingSpec="0 0 1 0"
+                Header="false"
+                Layout="FitLayout"
+                Scroll="Vertical"
+                Border="false"
+                Icon="User"
+                ColumnLines="True" IDMode="Explicit" RenderXType="True">
+                <Store>
+                    <ext:Store runat="server" ID="transactionLogStore">
+                        <Model>
+                            <ext:Model runat="server" IDProperty="recordId">
+                                <Fields>
+                                    <ext:ModelField Name="recordId" />
+                                    <ext:ModelField Name="userName" />
+                                    <ext:ModelField Name="classId" />
+                                    <ext:ModelField Name="pk" />
+                                    <ext:ModelField Name="userId" />
+                                    <ext:ModelField Name="type" />
+                                    <ext:ModelField Name="eventDt" />
+                                    <ext:ModelField Name="data" />
 
-                                    </Fields>
-                                </ext:Model>
-                            </Model>
-                        </ext:Store>
-                    </Store>
-                    <ColumnModel runat="server">
-                        <Columns>
-                            <ext:DateColumn runat="server" DataIndex="eventDt" Text="<%$ Resources:Common , FieldDate %>" Width="100" />
-                            <ext:Column runat="server" DataIndex="userName" Text="<%$ Resources:Common , FieldUsername %>" Flex="1" />
-                            <ext:Column runat="server" DataIndex="type" Text="<%$ Resources:Common , FieldChangeType %>" Width="75" >
-                                <Renderer Handler="return GetChangeTypeString(record.data['type']);" />
-                                </ext:Column>
-                            <ext:Column runat="server"
-                                ID="colEdit"  Visible="true"
-                                Text=""
-                                Width="60" 
-                                Hideable="false"
-                                Align="Center"
-                                Fixed="true"
-                                Filterable="false"
-                                MenuDisabled="true"
-                                Resizable="false">
+                                </Fields>
+                            </ext:Model>
+                        </Model>
+                    </ext:Store>
+                </Store>
+                <ColumnModel runat="server">
+                    <Columns>
+                        <ext:DateColumn runat="server" DataIndex="eventDt" Text="<%$ Resources:Common , FieldDate %>" Width="100" />
+                        <ext:Column runat="server" DataIndex="userName" Text="<%$ Resources:Common , FieldUsername %>" Flex="1" />
+                        <ext:Column runat="server" DataIndex="type" Text="<%$ Resources:Common , FieldChangeType %>" Width="75">
+                            <Renderer Handler="return GetChangeTypeString(record.data['type']);" />
+                        </ext:Column>
+                        <ext:Column runat="server"
+                            ID="colEdit" Visible="true"
+                            Text=""
+                            Width="60"
+                            Hideable="false"
+                            Align="Center"
+                            Fixed="true"
+                            Filterable="false"
+                            MenuDisabled="true"
+                            Resizable="false">
 
-                                <Renderer handler="return editRender(); " />
-                                </ext:Column>
+                            <Renderer Handler="return editRender(); " />
+                        </ext:Column>
 
-                        </Columns>
-                    
-                    </ColumnModel>
-                         <Listeners>
-                        <Render Handler="this.on('cellclick', cellClick);" />
-                    </Listeners>
-                    <DirectEvents>
-                        <CellClick OnEvent="PoPuP">
-                            <EventMask ShowMask="true" />
-                            <ExtraParams>
-                                <ext:Parameter Name="id" Value="record.getId()" Mode="Raw" />
-                                <ext:Parameter Name="type" Value="getCellType( this, rowIndex, cellIndex)" Mode="Raw" />
-                            </ExtraParams>
+                    </Columns>
 
-                        </CellClick>
-                    </DirectEvents>
-                    </ext:GridPanel>
-            </Items>
-            
-        </ext:Window>
+                </ColumnModel>
+                <Listeners>
+                    <Render Handler="this.on('cellclick', cellClick);" />
+                </Listeners>
+                <DirectEvents>
+                    <CellClick OnEvent="PoPuP">
+                        <EventMask ShowMask="true" />
+                        <ExtraParams>
+                            <ext:Parameter Name="id" Value="record.getId()" Mode="Raw" />
+                            <ext:Parameter Name="type" Value="getCellType( this, rowIndex, cellIndex)" Mode="Raw" />
+                        </ExtraParams>
+
+                    </CellClick>
+                </DirectEvents>
+            </ext:GridPanel>
+        </Items>
+
+    </ext:Window>
 
     <ext:Window ID="logBodyScreen" runat="server"
-            Icon="PageEdit"
-            
-            Width="450"
-            Height="500"
-            AutoShow="false"
-            Modal="true"
-            Hidden="true"
-            Layout="Fit">
+        Icon="PageEdit"
+        Width="450"
+        Height="500"
+        AutoShow="false"
+        Modal="true"
+        Hidden="true"
+        Layout="Fit">
         <Items>
-            <ext:FormPanel runat="server" ID="logBodyForm" Layout="FitLayout"><Items>
-            <ext:TextArea runat="server" ID="bodyText" Name="data"  /></Items></ext:FormPanel>
+            <ext:FormPanel runat="server" ID="logBodyForm" Layout="FitLayout">
+                <Items>
+                    <ext:TextArea runat="server" ID="bodyText" Name="data" />
+                </Items>
+            </ext:FormPanel>
         </Items>
-        </ext:Window>
+    </ext:Window>
 </body>
 </html>

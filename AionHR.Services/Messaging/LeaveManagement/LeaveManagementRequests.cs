@@ -45,7 +45,7 @@ public class VacationPeriodsListRequest:ListRequest
 }
 public class LeaveRequestListRequest:ListRequest
 {
-    public bool OpenRequests { get; set; }
+    public int OpenRequests { get; set; }
     public int BranchId { get; set; }
     public int DepartmentId { get; set; }
     public int EmployeeId { get; set; }

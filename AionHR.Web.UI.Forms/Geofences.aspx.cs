@@ -115,8 +115,8 @@ namespace AionHR.Web.UI.Forms
             if (response.Success)
             {
                 dept.recordId = response.recordId;
-                BranchStore.Insert(0, dept);
-                branchId.Select(0);
+                FillBranch();
+                branchId.Select(dept.recordId);
             }
             else
             {

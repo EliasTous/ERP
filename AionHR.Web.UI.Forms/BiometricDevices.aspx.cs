@@ -483,8 +483,8 @@ namespace AionHR.Web.UI.Forms
             if (response.Success)
             {
                 dept.recordId = response.recordId;
-                divisionStore.Insert(0, dept);
-                divisionId.Select(0);
+                FillBranch();
+                divisionId.Select(dept.recordId);
             }
             else
             {

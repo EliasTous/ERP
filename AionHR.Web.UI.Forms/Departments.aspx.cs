@@ -601,9 +601,9 @@ namespace AionHR.Web.UI.Forms
             if (response.Success)
             {
                 dept.recordId = response.recordId;
-                departmentStore.Insert(0, dept);
-                parentId.Select(0);
-                this.Store1.Insert(0, dept);
+                FillParent();
+                parentId.Select(dept.recordId);
+                Store1.Reload();
             }
             else
             {

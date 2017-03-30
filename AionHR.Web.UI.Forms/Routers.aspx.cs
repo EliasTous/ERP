@@ -115,7 +115,7 @@ namespace AionHR.Web.UI.Forms
             routerRef.ReadOnly = true;
             switch (type)
             {
-                case "ColName":
+                case "imgEdit":
                     //Step 1 : get the object from the Web Service 
                     RecordRequest r = new RecordRequest();
                     r.RecordID = id;
@@ -135,13 +135,13 @@ namespace AionHR.Web.UI.Forms
                     this.EditRecordWindow.Show();
                     break;
 
-                case "colDelete":
+                case "imgDelete":
                     X.Msg.Confirm(Resources.Common.Confirmation, Resources.Common.DeleteOneRecord, new MessageBoxButtonsConfig
                     {
                         Yes = new MessageBoxButtonConfig
                         {
                             //We are call a direct request metho for deleting a record
-                            Handler = String.Format("App.direct.DeleteRecord('{0}')", id),
+                            Handler = String.Format("App.direct.DeleteRecord({0})", id),
                             Text = Resources.Common.Yes
                         },
                         No = new MessageBoxButtonConfig
@@ -479,8 +479,8 @@ namespace AionHR.Web.UI.Forms
             if (response.Success)
             {
                 dept.recordId = response.recordId;
-                BranchStore.Insert(0, dept);
-                branchId.Select(0);
+                FillBranch();
+                branchId.Select(dept.recordId);
             }
             else
             {

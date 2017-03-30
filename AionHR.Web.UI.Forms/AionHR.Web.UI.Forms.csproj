@@ -163,6 +163,7 @@
     <Content Include="packages.config" />
     <Content Include="Routers.aspx" />
     <Content Include="SalaryChangeReasons.aspx" />
+    <Content Include="Scripts\Routers.js" />
     <Content Include="Scripts\Positions.js" />
     <Content Include="Scripts\BiometricDevices.js" />
     <Content Include="Scripts\AllowanceTypes.js" />

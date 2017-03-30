@@ -72,7 +72,7 @@ namespace AionHR.Web.UI.Forms
                 SetExtLanguage();
                 HideShowButtons();
                 HideShowColumns();
-                ColHireDate.Format = _systemService.SessionHelper.Get("dateFormat").ToString();
+                ColHireDate.Format = _systemService.SessionHelper.GetDateformat();
                 
                 inactivePref.Select(0);
                 CurrentClassId.Text = ClassId.EPEM.ToString();
@@ -215,20 +215,20 @@ namespace AionHR.Web.UI.Forms
         private void InitCombos(bool isAdd)
         {
             FillBranch();
-            //branchId.Enabled = isAdd;
-            //branchId.ReadOnly = !isAdd;
+            branchId.Enabled = isAdd;
+            branchId.ReadOnly = !isAdd;
 
             FillDepartment();
 
-            // departmentId.Enabled = isAdd;
-            //departmentId.ReadOnly = !isAdd;
+            departmentId.Enabled = isAdd;
+            departmentId.ReadOnly = !isAdd;
             FillPosition();
 
-            //positionId.Enabled = isAdd;
-            //positionId.ReadOnly = !isAdd;
+            positionId.Enabled = isAdd;
+            positionId.ReadOnly = !isAdd;
             FillDivision();
-            //divisionId.Enabled = isAdd;
-            // divisionId.ReadOnly = !isAdd;
+            divisionId.Enabled = isAdd;
+            divisionId.ReadOnly = !isAdd;
             FillNationality();
 
 
@@ -629,7 +629,7 @@ namespace AionHR.Web.UI.Forms
                         FixLoaderUrls(req.RecordID.ToString());
                         FillLeftPanel();
                         InitCombos(false);
-
+                        recordId.Text = b.recordId;
                         RowSelectionModel sm = this.GridPanel1.GetSelectionModel() as RowSelectionModel;
                         sm.DeselectAll();
                         sm.Select(b.recordId.ToString());
@@ -787,7 +787,12 @@ namespace AionHR.Web.UI.Forms
             RecordRequest r = new RecordRequest();
             r.RecordID = CurrentEmployee.Text.ToString();
             RecordResponse<Employee> response = _employeeService.Get<Employee>(r);
-
+            if (!response.Success)
+            {
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, response.Summary).Show();
+                return;
+            }
             Employee forSummary = response.result;
             forSummary.firstName = forSummary.name.firstName;
             forSummary.middleName = forSummary.name.middleName;
@@ -822,8 +827,8 @@ namespace AionHR.Web.UI.Forms
             if (response.Success)
             {
                 dept.recordId = response.recordId;
-                departmentStore.Insert(0, dept);
-                departmentId.Select(0);
+                FillDepartment();
+                departmentId.Select(dept.recordId);
             }
             else
             {
@@ -846,8 +851,8 @@ namespace AionHR.Web.UI.Forms
             if (response.Success)
             {
                 dept.recordId = response.recordId;
-                BranchStore.Insert(0, dept);
-                branchId.Select(0);
+                FillBranch();
+                branchId.Select(dept.recordId);
             }
             else
             {
@@ -871,8 +876,8 @@ namespace AionHR.Web.UI.Forms
             if (response.Success)
             {
                 dept.recordId = response.recordId;
-                positionStore.Insert(0, dept);
-                positionId.Select(0);
+                FillPosition();
+                positionId.Select(dept.recordId);
             }
             else
             {
@@ -928,8 +933,8 @@ namespace AionHR.Web.UI.Forms
             if (response.Success)
             {
                 obj.recordId = response.recordId;
-                NationalityStore.Insert(0, obj);
-                nationalityId.Select(0);
+                FillNationality();
+                nationalityId.Select(obj.recordId);
             }
             else
             {
@@ -940,57 +945,7 @@ namespace AionHR.Web.UI.Forms
 
         }
 
-        protected void addCalendar(object sender, DirectEventArgs e)
-        {
-            if (string.IsNullOrEmpty(caId.Text))
-                return;
-            WorkingCalendar obj = new WorkingCalendar();
-            obj.name = caId.Text;
-
-            PostRequest<WorkingCalendar> req = new PostRequest<WorkingCalendar>();
-            req.entity = obj;
-
-            PostResponse<WorkingCalendar> response = _timeAttendanceService.ChildAddOrUpdate<WorkingCalendar>(req);
-            if (response.Success)
-            {
-                obj.recordId = response.recordId;
-                CalendarStore.Insert(0, obj);
-                caId.Select(0);
-            }
-            else
-            {
-                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, response.Summary).Show();
-                return;
-            }
-
-        }
-
-        protected void addVS(object sender, DirectEventArgs e)
-        {
-            if (string.IsNullOrEmpty(vsId.Text))
-                return;
-            VacationSchedule obj = new VacationSchedule();
-            obj.name = vsId.Text;
-
-            PostRequest<VacationSchedule> req = new PostRequest<VacationSchedule>();
-            req.entity = obj;
-
-            PostResponse<VacationSchedule> response = _leaveManagementService.ChildAddOrUpdate<VacationSchedule>(req);
-            if (response.Success)
-            {
-                obj.recordId = response.recordId;
-                VacationScheduleStore.Insert(0, obj);
-                vsId.Select(0);
-            }
-            else
-            {
-                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, response.Summary).Show();
-                return;
-            }
-
-        }
+     
 
         #endregion
     }

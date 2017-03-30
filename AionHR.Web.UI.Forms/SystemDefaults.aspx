@@ -73,7 +73,7 @@
                                                     </Listeners>
                                                     <DirectEvents>
 
-                                                        <Click OnEvent="addPosition">
+                                                        <Click OnEvent="addNationality">
                                                         </Click>
                                                     </DirectEvents>
                                                 </ext:Button>
@@ -96,6 +96,22 @@
                                                     </Model>
                                                 </ext:Store>
                                             </Store>
+                                               <RightButtons>
+                                                <ext:Button ID="Button2" runat="server" Icon="Add" Hidden="true">
+                                                    <Listeners>
+                                                        <Click Handler="CheckSession();  " />
+                                                    </Listeners>
+                                                    <DirectEvents>
+
+                                                        <Click OnEvent="addCurrency">
+                                                        </Click>
+                                                    </DirectEvents>
+                                                </ext:Button>
+                                            </RightButtons>
+                                            <Listeners>
+                                                <FocusEnter Handler=" if(!this.readOnly)this.rightButtons[0].setHidden(false);" />
+                                                <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
+                                            </Listeners>
                                         </ext:ComboBox>
                                         <ext:ComboBox QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: FieldDateFormat %>" Name="dateFormat" runat="server" ID="dateFormatCombo">
                                             <Items>

@@ -206,8 +206,8 @@ namespace AionHR.Web.UI.Forms
             if (response.Success)
             {
                 obj.recordId = response.recordId;
-                NationalityStore.Insert(0, obj);
-                countryIdCombo.Select(0);
+                FillNationality();
+                countryIdCombo.Select(obj.recordId);
             }
             else
             {
@@ -230,21 +230,21 @@ namespace AionHR.Web.UI.Forms
             else return "1";
         }
 
-        protected void addPosition(object sender, DirectEventArgs e)
+        protected void addCurrency(object sender, DirectEventArgs e)
         {
             if (string.IsNullOrEmpty(countryIdCombo.Text))
                 return;
-            Nationality dept = new Nationality();
-            dept.name = countryIdCombo.Text;
+            Currency dept = new Currency();
+            dept.name = currencyIdCombo.Text;
 
-            PostRequest<Nationality> depReq = new PostRequest<Nationality>();
+            PostRequest<Currency> depReq = new PostRequest<Currency>();
             depReq.entity = dept;
-            PostResponse<Nationality> response = _systemService.ChildAddOrUpdate<Nationality>(depReq);
+            PostResponse<Currency> response = _systemService.ChildAddOrUpdate<Currency>(depReq);
             if (response.Success)
             {
                 dept.recordId = response.recordId;
-                NationalityStore.Insert(0, dept);
-                countryIdCombo.Select(0);
+                FillCurrency();
+                currencyIdCombo.Select(dept.recordId);
             }
             else
             {

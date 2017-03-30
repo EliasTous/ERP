@@ -122,7 +122,8 @@ namespace AionHR.Infrastructure.WebService
                 StreamReader reader = new StreamReader(s, true);
                 string x = reader.ReadToEnd();
 
-                var settings = new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore };
+                var settings = new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore,DateTimeZoneHandling = DateTimeZoneHandling.Utc };
+                
                 if (Resolver != null)
                 {
                     settings.ContractResolver = Resolver;
@@ -170,7 +171,7 @@ namespace AionHR.Infrastructure.WebService
                 {
                     settings.ContractResolver = Resolver;
                 }
-
+                settings.DateTimeZoneHandling = DateTimeZoneHandling.Utc;
 
                 response = JsonConvert.DeserializeObject<PostWebServiceResponse>(x, settings);
                 return response;
@@ -213,8 +214,8 @@ namespace AionHR.Infrastructure.WebService
 
 
                 Body += string.Format("Content-Disposition: form-data; name=\"{0}\"\r\n\r\n", "record");
-
-                string jsonString = JsonConvert.SerializeObject(item);
+                var serSettings = new JsonSerializerSettings() { NullValueHandling = NullValueHandling.Ignore, DateTimeZoneHandling=DateTimeZoneHandling.Utc };
+                string jsonString = JsonConvert.SerializeObject(item,serSettings);
                 Body += jsonString;
                 Body += "\r\n--" + boundary + "\r\n"; ;
 
@@ -225,7 +226,7 @@ namespace AionHR.Infrastructure.WebService
                 // Add binary file to request
 
 
-                // Finalizing by adding the footer of the request or what we call trailer
+                // Finalizing by adding the footer of the request or what we call trailr
                 byte[] trailer = System.Text.Encoding.ASCII.GetBytes("\r\n--" + boundary + "--\r\n");
                 stream.Write(trailer, 0, trailer.Length);
                 stream.Close();
@@ -238,12 +239,12 @@ namespace AionHR.Infrastructure.WebService
                 StreamReader reader = new StreamReader(s, true);
                 string x = reader.ReadToEnd();
 
-                var settings = new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore };
+                var settings = new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore, DateTimeZoneHandling = DateTimeZoneHandling.Utc };
                 if (Resolver != null)
                 {
                     settings.ContractResolver = Resolver;
                 }
-
+                settings.DateTimeZoneHandling = DateTimeZoneHandling.Utc;
 
                 response = JsonConvert.DeserializeObject<PostWebServiceResponse>(x, settings);
                 return response;
@@ -291,8 +292,8 @@ namespace AionHR.Infrastructure.WebService
               //  Body += "Content-Type: application/json\r\n\r\n";
 
                 Body += string.Format("Content-Disposition: form-data; name=\"{0}\"\r\n\r\n", "record");
-
-                string jsonString = JsonConvert.SerializeObject(item);
+                var settings = new JsonSerializerSettings() { NullValueHandling = NullValueHandling.Ignore, DateTimeZoneHandling= DateTimeZoneHandling.Utc };
+                string jsonString = JsonConvert.SerializeObject(item,settings);
                 Body += jsonString;
 
                 //Finalized the json part
@@ -338,7 +339,7 @@ namespace AionHR.Infrastructure.WebService
                 StreamReader reader = new StreamReader(s, true);
                 string x = reader.ReadToEnd();
 
-                var settings = new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore };
+                
                 if (Resolver != null)
                 {
                     settings.ContractResolver = Resolver;
@@ -388,10 +389,10 @@ namespace AionHR.Infrastructure.WebService
 
                 // Body += "Content-Disposition: form-data; name='record'\r\n";
                 //  Body += "Content-Type: application/json\r\n\r\n";
-
+                var settings = new JsonSerializerSettings() { NullValueHandling = NullValueHandling.Ignore, DateTimeZoneHandling = DateTimeZoneHandling.Utc };
                 Body += string.Format("Content-Disposition: form-data; name=\"{0}\"\r\n\r\n", "record");
 
-                string jsonString = JsonConvert.SerializeObject(item);
+                string jsonString = JsonConvert.SerializeObject(item,settings);
                 Body += jsonString;
 
                 //Finalized the json part
@@ -435,7 +436,6 @@ namespace AionHR.Infrastructure.WebService
                 StreamReader reader = new StreamReader(s, true);
                 string x = reader.ReadToEnd();
 
-                var settings = new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore };
                 if (Resolver != null)
                 {
                     settings.ContractResolver = Resolver;

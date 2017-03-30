@@ -64,7 +64,8 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorOperation).Show();
                 CurrentEmployee.Text = Request.QueryString["employeeId"];
 
-
+                cc.Format = _systemService.SessionHelper.GetDateformat();
+                ccc.Format = _systemService.SessionHelper.GetDateformat();
 
 
             }
@@ -1238,8 +1239,8 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             if (response.Success)
             {
                 obj.recordId = response.recordId;
-                BOCurrencyStore.Insert(0, obj);
-                CurrencyCombo.Select(0);
+                FillCurrencyBO();
+                CurrencyCombo.Select(obj.recordId);
             }
             else
             {
@@ -1260,8 +1261,9 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             if (response.Success)
             {
                 obj.recordId = response.recordId;
-                currencyStore.Insert(0, obj);
-                currencyId.Select(0);
+                FillCurrency();
+
+                currencyId.Select(obj.recordId);
             }
             else
             {
@@ -1284,8 +1286,8 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             if (response.Success)
             {
                 obj.recordId = response.recordId;
-                BTStore.Insert(0, obj);
-                btId.Select(0);
+                FillBT();
+                btId.Select(obj.recordId);
             }
             else
             {
@@ -1308,8 +1310,8 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             if (response.Success)
             {
                 obj.recordId = response.recordId;
-                scrStore.Insert(0, obj);
-                scrId.Select(0);
+                FillScr();
+                scrId.Select(obj.recordId);
             }
             else
             {
@@ -1428,8 +1430,8 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             if (response.Success)
             {
                 dept.recordId = response.recordId;
-                entsStore.Insert(0, dept);
-                entEdId.Select(0);
+                entsStore.Reload();
+                entEdId.Value = response.recordId;
             }
             else
             {
@@ -1454,8 +1456,8 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             if (response.Success)
             {
                 dept.recordId = response.recordId;
-                dedsStore.Insert(0, dept);
-                dedEdId.Select(0);
+                dedsStore_ReadData(null, null);
+                dedEdId.Value = dept.recordId;
             }
             else
             {

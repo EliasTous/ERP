@@ -795,8 +795,8 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             if (response.Success)
             {
                 dept.recordId = response.recordId;
-                departmentStore.Insert(0, dept);
-                departmentId.Select(0);
+                FillDepartment();
+                departmentId.Select(dept.recordId);
             }
             else
             {
@@ -817,8 +817,8 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             if (response.Success)
             {
                 dept.recordId = response.recordId;
-                BranchStore.Insert(0, dept);
-                branchId.Select(0);
+                FillBranch();
+                branchId.Select(dept.recordId);
             }
             else
             {
@@ -840,8 +840,8 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             if (response.Success)
             {
                 dept.recordId = response.recordId;
-                positionStore.Insert(0, dept);
-                positionId.Select(0);
+                FillPosition();
+                positionId.Select(dept.recordId);
             }
             else
             {
@@ -864,8 +864,8 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             if (response.Success)
             {
                 dept.recordId = response.recordId;
-                divisionStore.Insert(0, dept);
-                divisionId.Select(0);
+                FillDivision();
+                divisionId.Select(dept.recordId);
             }
             else
             {
@@ -888,8 +888,8 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             if (response.Success)
             {
                 dept.recordId = response.recordId;
-                EHStatusStore.Insert(0, dept);
-                statusId.Select(0);
+                FillEHStatus();
+                statusId.Select(dept.recordId);
             }
             else
             {

@@ -115,8 +115,10 @@ namespace AionHR.Web.UI.Forms
                 SetExtLanguage();
                 HideShowButtons();
                 HideShowColumns();
-
-
+                FillDepartment();
+                FillDivision();
+                FillBranch();
+                includeOpen.Select(3);
 
             }
 
@@ -382,6 +384,65 @@ namespace AionHR.Web.UI.Forms
             this.EditRecordWindow.Show();
         }
 
+        private LeaveRequestListRequest GetFilteredRequest()
+        {
+            LeaveRequestListRequest req = new LeaveRequestListRequest();
+
+            if (!string.IsNullOrEmpty(branchId.Text) && branchId.Value.ToString() != "0")
+            {
+                req.BranchId = Convert.ToInt32(branchId.Value);
+                
+
+
+            }
+            else
+            {
+                req.BranchId = 0;
+                
+            }
+
+            if (!string.IsNullOrEmpty(departmentId.Text) && departmentId.Value.ToString() != "0")
+            {
+                req.DepartmentId = Convert.ToInt32(departmentId.Value);
+             
+
+            }
+            else
+            {
+                req.DepartmentId = 0;
+            }
+
+           
+
+            if (!string.IsNullOrEmpty(employeeFilter.Text) && employeeFilter.Value.ToString() != "0")
+            {
+                req.EmployeeId = Convert.ToInt32(employeeFilter.Value);
+
+
+            }
+            else
+            {
+                req.EmployeeId = 0;
+
+            }
+
+            if (!string.IsNullOrEmpty(includeOpen.Text))
+            {
+                req.OpenRequests = Convert.ToInt32(includeOpen.Value);
+
+
+            }
+            else
+            {
+                req.OpenRequests = 3;
+
+            }
+
+            
+
+            return req;
+        }
+
         protected void Store1_RefreshData(object sender, StoreReadDataEventArgs e)
         {
 
@@ -394,11 +455,8 @@ namespace AionHR.Web.UI.Forms
             //Fetching the corresponding list
 
             //in this test will take a list of News
-            LeaveRequestListRequest request = new LeaveRequestListRequest();
-            request.EmployeeId = 0;
-            request.BranchId = 0;
-            request.DepartmentId = 0;
-            request.OpenRequests = false;
+            LeaveRequestListRequest request = GetFilteredRequest();
+            
             request.Size = "50";
             request.StartAt = "1";
             request.SortBy = "firstName";
@@ -567,8 +625,8 @@ namespace AionHR.Web.UI.Forms
             if (response.Success)
             {
                 dept.recordId = response.recordId;
-                ltStore.Insert(0, dept);
-                ltId.Select(0);
+                FillLeaveType();
+                ltId.Select(dept.recordId);
             }
             else
             {
@@ -580,7 +638,44 @@ namespace AionHR.Web.UI.Forms
         }
 
 
+        private void FillDepartment()
+        {
+            ListRequest departmentsRequest = new ListRequest();
+            ListResponse<Department> resp = _companyStructureService.ChildGetAll<Department>(departmentsRequest);
+            if (!resp.Success)
+                X.Msg.Alert(Resources.Common.Error, resp.Summary).Show();
+            departmentStore.DataSource = resp.Items;
+            departmentStore.DataBind();
+        }
+        private void FillBranch()
+        {
+            ListRequest branchesRequest = new ListRequest();
+            ListResponse<Branch> resp = _companyStructureService.ChildGetAll<Branch>(branchesRequest);
+            if (!resp.Success)
+                X.Msg.Alert(Resources.Common.Error, resp.Summary).Show();
+            branchStore.DataSource = resp.Items;
+            branchStore.DataBind();
+        }
 
+        private void FillDivision()
+        {
+            ListRequest branchesRequest = new ListRequest();
+            ListResponse<Division> resp = _companyStructureService.ChildGetAll<Division>(branchesRequest);
+            if (!resp.Success)
+                X.Msg.Alert(Resources.Common.Error, resp.Summary).Show();
+            divisionStore.DataSource = resp.Items;
+            divisionStore.DataBind();
+        }
+
+
+
+
+
+
+
+
+
+  
 
     }
 }

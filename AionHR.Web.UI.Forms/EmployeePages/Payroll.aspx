@@ -162,24 +162,24 @@
 
                             <ext:Column Visible="false" ID="recID" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldrecordId %>" DataIndex="recordId" Hideable="false" Width="75" Align="Center" />
                            
-                            <ext:DateColumn Format="dd-MM-yyyy" Flex="3" ID="cc" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEffectiveDate %>" DataIndex="effectiveDate" Hideable="false" Width="75" Align="Center">
+                            <ext:DateColumn   ID="cc" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEffectiveDate %>" DataIndex="effectiveDate" Hideable="false" Width="100" Align="Center">
                             </ext:DateColumn>
 
 
-                            <ext:Column Visible="false" Flex="2" ID="Column13" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldSalaryType %>" DataIndex="salaryType" Hideable="false" Width="75" Align="Center">
+                            <ext:Column Visible="false"  ID="Column13" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldSalaryType %>" DataIndex="salaryType" Hideable="false"  Flex="1" Align="Center">
                                 <Renderer Handler="return getPaymentTypeString(record.data['salaryType'])" />
                             </ext:Column>
 
-                            <ext:Column Visible="false" Flex="2" ID="Column14" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldPaymentFrequency %>" DataIndex="paymentFrequency" Hideable="false" Width="75" Align="Center">
+                            <ext:Column Visible="false"  ID="Column14" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldPaymentFrequency %>" DataIndex="paymentFrequency" Flex="1" Hideable="false" Width="75" Align="Center">
                                 <Renderer Handler="return getPaymentTypeString(record.data['paymentFrequency'])" />
                             </ext:Column>
                     
-                            <ext:Column Flex="3" ID="Column20" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldBasicAmount %>" DataIndex="basicAmount" Hideable="false" Width="75" Align="Center" >
+                            <ext:Column  ID="Column20" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldBasicAmount %>" DataIndex="basicAmount" Hideable="false" Flex="1" Width="75" Align="Center" >
                                 <Renderer Handler="return record.data['basicAmount'] + '&nbsp;'+ record.data['currencyRef'];">
 
                                 </Renderer>
                                 </ext:Column>
-                            <ext:Column Flex="3" ID="Column21" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldFinalAmount %>" DataIndex="finalAmount" Hideable="false" Width="75" Align="Center" >
+                            <ext:Column  ID="Column21" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldFinalAmount %>" DataIndex="finalAmount" Hideable="false" Flex="1" Width="75" Align="Center" >
                                    <Renderer Handler="return record.data['finalAmount'] + '&nbsp;'+ record.data['currencyRef'];">
 
                                 </Renderer>
@@ -201,7 +201,7 @@
 
                             </ext:Column>
                             <ext:Column runat="server"
-                                ID="ColSADelete" Flex="2" Visible="true"
+                                ID="ColSADelete"  Visible="true"
                                 Text=""
                                 Width="80"
                                 Align="Center"
@@ -355,16 +355,16 @@
                         <Columns>
 
                             <ext:Column Visible="false" ID="Column1" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldrecordId %>" DataIndex="recordId" Hideable="false" Width="75" Align="Center" />
-                            <ext:Column Flex="3" ID="ColBOName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldBTName %>" DataIndex="btName" Hideable="false" Width="75" Align="Center"/>
+                            <ext:Column  ID="ColBOName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldBTName %>" DataIndex="btName" Hideable="false" Flex="1" Align="Center"/>
                             
-                            <ext:DateColumn Flex="3" Format="dd-MM-yyyy" ID="ccc" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDate %>" DataIndex="date" Hideable="false" Width="75" Align="Center">
+                            <ext:DateColumn   ID="ccc" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDate %>" DataIndex="date" Hideable="false" Width="100" Align="Center">
                             </ext:DateColumn>
 
 
                         
 
 
-                            <ext:Column Flex="3" ID="Column7" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldAmount %>" DataIndex="amount" Hideable="false" Width="75" Align="Center" >
+                            <ext:Column ID="Column7" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldAmount %>" DataIndex="amount" Hideable="false" Flex="1" Align="Center" >
                                 <Renderer Handler="return record.data['amount'] + '&nbsp;'+record.data['currencyRef'];"/>
                                     </ext:Column>
 
@@ -384,7 +384,7 @@
 
                             </ext:Column>
                             <ext:Column runat="server"
-                                ID="ColBODelete" Flex="2" Visible="true"
+                                ID="ColBODelete"  Visible="true"
                                 Text=""
                                 Width="80"
                                 Align="Center"
@@ -656,7 +656,7 @@
                                                 </Editor>
                                             </ext:Column>--%>
                                             <ext:Column ID="ColENName"
-                                                runat="server"
+                                                runat="server" Flex="2"
                                                 Text="<%$ Resources:FieldEntitlement%>"
                                                 DataIndex="edId"
                                                 Align="Center">
@@ -684,7 +684,7 @@
                                                 </Editor>
                                             </ext:Column>
                                             <ext:CheckColumn
-                                                runat="server"
+                                                runat="server" Flex="1"
                                                 Text="<%$ Resources:FieldIncludeInTotal%>"
                                                 DataIndex="includeInTotal"
                                                 Align="Center">
@@ -696,7 +696,7 @@
 
 
                                             <ext:NumberColumn
-                                                runat="server"
+                                                runat="server" Flex="1"
                                                 Text="<%$ Resources:FieldPCT%>"
                                                 DataIndex="pct"
                                                 Align="Center">
@@ -711,7 +711,7 @@
                                             </ext:NumberColumn>
 
                                             <ext:NumberColumn
-                                                runat="server"
+                                                runat="server" Flex="2"
                                                 Text="<%$ Resources:FieldFixedAmount%>"
                                                 DataIndex="fixedAmount"
                                                 Align="Center">
@@ -723,9 +723,9 @@
                                                 <Renderer Handler=" return record.data['fixedAmount'] + '&nbsp;' + App.currencyId.getRawValue();"/>
                                             </ext:NumberColumn>
                                             <ext:Column
-                                                runat="server"
+                                                runat="server" 
                                                 Text="<%$ Resources:FieldComment%>"
-                                                DataIndex="comments"
+                                                DataIndex="comments" Visible="false"
                                                 Align="Center">
                                                 <Editor>
                                                     <ext:TextField
@@ -734,7 +734,7 @@
                                                 </Editor>
                                             </ext:Column>
                                             <ext:Column runat="server"
-                                                ID="ColENDelete" Flex="2" Visible="true"
+                                                ID="ColENDelete"  Visible="true"
                                                 Text=""
                                                 Width="80"
                                                 Align="Center"
@@ -835,7 +835,7 @@
                                                 </Editor>
                                             </ext:Column>--%>
                                             <ext:Column ID="ColDEName"
-                                                runat="server"
+                                                runat="server" Flex="2"
                                                 Text="<%$ Resources:FieldDeduction%>"
                                                 DataIndex="edId"
                                                 Align="Center">
@@ -863,7 +863,7 @@
                                                 </Editor>
                                             </ext:Column>
                                             <ext:CheckColumn
-                                                runat="server"
+                                                runat="server" Flex="1"
                                                 Text="<%$ Resources:FieldIncludeInTotal%>"
                                                 DataIndex="includeInTotal"
                                                 Align="Center">
@@ -877,7 +877,7 @@
                                             <ext:NumberColumn
                                                 runat="server"
                                                 Text="<%$ Resources:FieldPCT%>"
-                                                DataIndex="pct"
+                                                DataIndex="pct" Flex="1"
                                                 Align="Center">
                                                 <Editor>
                                                     <ext:NumberField
@@ -892,7 +892,7 @@
                                             <ext:NumberColumn
                                                 runat="server"
                                                 Text="<%$ Resources:FieldFixedAmount%>"
-                                                DataIndex="fixedAmount"
+                                                DataIndex="fixedAmount" Flex="2"
                                                 Align="Center">
                                                 <Editor>
                                                     <ext:NumberField
@@ -908,7 +908,7 @@
                                             <ext:Column
                                                 runat="server"
                                                 Text="<%$ Resources:FieldComment%>"
-                                                DataIndex="comments"
+                                                DataIndex="comments" Visible="false"
                                                 Align="Center">
                                                 <Editor>
                                                     <ext:TextField
@@ -917,7 +917,7 @@
                                                 </Editor>
                                             </ext:Column>
                                             <ext:Column runat="server"
-                                                ID="ColDEDelete" Flex="2" Visible="true"
+                                                ID="ColDEDelete"  Visible="true"
                                                 Text=""
                                                 Width="60"
                                                 Align="Center"

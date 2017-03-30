@@ -383,7 +383,7 @@
                                                 <ext:InputMask Mask="99999999" />
                                             </Plugins>
                                         </ext:TextField>
-                                        <ext:RadioGroup ID="gender" AllowBlank="false" runat="server" GroupName="gender" FieldLabel="<%$ Resources:FieldGender%>">
+                                        <ext:RadioGroup ID="gender" AllowBlank="true" runat="server" GroupName="gender" FieldLabel="<%$ Resources:FieldGender%>">
                                             <Items>
                                                 <ext:Radio runat="server" ID="gender0" Name="gender" InputValue="0" BoxLabel="<%$ Resources:Common ,Male%>" />
                                                 <ext:Radio runat="server" ID="gender1" Name="gender" InputValue="1" BoxLabel="<%$ Resources:Common ,Female%>" />
@@ -588,23 +588,7 @@
                                                     </Model>
                                                 </ext:Store>
                                             </Store>
-                                             <RightButtons>
-                                                        <ext:Button ID="Button5" runat="server" Icon="Add" Hidden="true">
-                                                            <Listeners>
-                                                                <Click Handler="CheckSession();  " />
-                                                            </Listeners>
-                                                            <DirectEvents>
-
-                                                                <Click OnEvent="addVS">
-                                                               
-                                                                </Click>
-                                                            </DirectEvents>
-                                                        </ext:Button>
-                                                    </RightButtons>
-                                            <Listeners>
-                                                <FocusEnter Handler="this.rightButtons[0].setHidden(false);" />
-                                                <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
-                                            </Listeners>
+                                           
                                         </ext:ComboBox>
                                         <ext:ComboBox runat="server" ID="caId" AllowBlank="false" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" ValueField="recordId" DisplayField="name" Name="caId" FieldLabel="<%$ Resources:FieldWorkingCalendar%>" SimpleSubmit="true">
                                             <Store>
@@ -619,23 +603,7 @@
                                                     </Model>
                                                 </ext:Store>
                                             </Store>
-                                             <RightButtons>
-                                                        <ext:Button ID="Button6" runat="server" Icon="Add" Hidden="true">
-                                                            <Listeners>
-                                                                <Click Handler="CheckSession();  " />
-                                                            </Listeners>
-                                                            <DirectEvents>
-
-                                                                <Click OnEvent="addCalendar">
-                                                                 
-                                                                </Click>
-                                                            </DirectEvents>
-                                                        </ext:Button>
-                                                    </RightButtons>
-                                            <Listeners>
-                                                <FocusEnter Handler="this.rightButtons[0].setHidden(false);" />
-                                                <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
-                                            </Listeners>
+                                             
                                         </ext:ComboBox>
                                         <ext:TextField ID="birthPlace" runat="server" FieldLabel="<%$ Resources:FieldBirthPlace%>" Name="placeOfBirth" AllowBlank="true" />
 

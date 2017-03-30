@@ -37,12 +37,15 @@ namespace AionHR.Repository.WebService.Repositories
             ChildDeleteLookup.Add(typeof(Nationality) ,"delNA");
             ChildDeleteLookup.Add(typeof(UserInfo), "delUS");
             ChildDeleteLookup.Add(typeof(Currency), "delCU");
+            ChildDeleteLookup.Add(typeof(Attachement), "delAT");
             ChildGetLookup.Add(typeof(KeyValuePair<string, string>), "getDE");
             ChildGetAllLookup.Add(typeof(Attachement), "qryAT");
             ChildGetAllLookup.Add(typeof(KeyValuePair<string,string>), "qryDE");
             ChildGetAllLookup.Add(typeof(TransactionLog), "qryTL");
 
             ChildAddOrUpdateLookup.Add(typeof(KeyValuePair<string, string>[]), "arrDE");
+
+
 
         }
 

@@ -163,7 +163,7 @@
                             
 
 
-                                 <ext:ComboBox runat="server" ValueField="recordId" DisplayField="name" ID="branchId" Name="branchId" FieldLabel="<%$ Resources:FieldBranch%>" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" >
+                                 <ext:ComboBox runat="server" ValueField="recordId" DisplayField="name" ID="branchId" Name="branchId" EmptyText="<%$ Resources:FilterBranch%>" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" >
                                     <Store>
                                         <ext:Store runat="server" ID="branchStore">
                                             <Model>
@@ -179,12 +179,10 @@
                                     <Listeners>
                                         <Select Handler="#{Store1}.reload()" />
                                     </Listeners>
-                                    <Items>
-                                        <ext:ListItem Text="-----All-----" Value="0" />
-                                    </Items>
+                               
                                 </ext:ComboBox>
                                  
-                                <ext:ComboBox runat="server" ValueField="recordId" DisplayField="name" ID="departmentId" Name="departmentId" FieldLabel="<%$ Resources:FieldDepartment%>" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" >
+                                <ext:ComboBox runat="server" ValueField="recordId" DisplayField="name" ID="departmentId" Name="departmentId" EmptyText="<%$ Resources:FilterDepartment%>" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" >
                                     <Store>
                                         <ext:Store runat="server" ID="departmentStore">
                                             <Model>
@@ -200,12 +198,10 @@
                                     <Listeners>
                                         <Select Handler="#{Store1}.reload()" />
                                     </Listeners>
-                                    <Items>
-                                        <ext:ListItem Text="-----All-----" Value="0" />
-                                    </Items>
+                                
 
                                 </ext:ComboBox>
-                                 <ext:ComboBox runat="server" ValueField="recordId" DisplayField="name" ID="divisionId" Name="divisionId" FieldLabel="<%$ Resources:FieldDivision%>" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" >
+                                 <ext:ComboBox runat="server" ValueField="recordId" DisplayField="name" ID="divisionId" Name="divisionId" EmptyText="<%$ Resources:FilterDivision%>" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" >
                                     <Store>
                                         <ext:Store runat="server" ID="divisionStore">
                                             <Model>
@@ -221,11 +217,9 @@
                                     <Listeners>
                                         <Select Handler="#{Store1}.reload()" />
                                     </Listeners>
-                                    <Items>
-                                        <ext:ListItem Text="-----All-----" Value="0" />
-                                    </Items>
+                                    
                                 </ext:ComboBox>
-                                <ext:ComboBox runat="server" ID="statusPref" Editable="false" FieldLabel="<%$ Resources: FieldStatus %>"  >
+                                <ext:ComboBox runat="server" ID="statusPref" Editable="false" EmptyText="<%$ Resources: FilterStatus %>"  >
                                     <Items>
                                         <ext:ListItem Text="<%$ Resources: All %>" Value="3"  />
                                         <ext:ListItem Text="<%$ Resources: FieldPending %>" Value="1" />
@@ -236,7 +230,13 @@
                                         <Change Handler="App.Store1.reload()" />
                                     </Listeners>
                                 </ext:ComboBox>
+                                  <ext:Button runat="server" Text="<%$ Resources: ButtonClear%>" MarginSpec="0 0 0 0"  Width="100">
+                                    <Listeners>
+                                        <Click Handler="#{departmentId}.clear();#{branchId}.clear(); #{divisionId}.clear(); #{Store1}.reload(); #{statusPref}.setValue(3);">
 
+                                        </Click>
+                                    </Listeners>
+                                </ext:Button>
 
                             
                             </Items>
@@ -400,7 +400,7 @@
                                 <ext:ComboBox runat="server" ID="employeeId"
                                     DisplayField="fullName"
                                     ValueField="recordId"
-                                    TypeAhead="false"
+                                    TypeAhead="false" AllowBlank="false"
                                     FieldLabel="<%$ Resources: FieldEmployeeName%>"
                                     HideTrigger="true" SubmitValue="true"
                                     MinChars="3"
@@ -427,7 +427,7 @@
                                 <ext:DateField ID="date" runat="server" FieldLabel="<%$ Resources:FieldDate%>" Name="date" AllowBlank="false" />                                
                                 <ext:TextArea ID="details" runat="server" FieldLabel="<%$ Resources:FieldDetails%>" Name="details" AllowBlank="false"/>
                                 <ext:ComboBox runat="server" ID="status" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1"
-                                    FieldLabel="<%$ Resources: FieldStatus %>">
+                                    FieldLabel="<%$ Resources: FieldStatus %>" AllowBlank="false">
                                     <Items>
                                         <ext:ListItem Text="<%$ Resources: FieldOpen %>" Value="0" />
                                         <ext:ListItem Text="<%$ Resources: FieldPending %>" Value="1" />
@@ -726,7 +726,7 @@
                                 MenuDisabled="true"
                                 Resizable="false">
 
-                                <Renderer handler="return attachRender(); " />
+                                <Renderer handler="return attachRender() + '&nbsp&nbsp' + deleteRender(); " />
 
                             </ext:Column>
                             <ext:Column runat="server"

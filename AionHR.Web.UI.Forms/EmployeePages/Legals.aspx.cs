@@ -802,8 +802,8 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             if (response.Success)
             {
                 dept.recordId = response.recordId;
-                RWDocumentTypeStore.Insert(0, dept);
-                dtId.Select(0);
+                FillRWDocumentType();
+                dtId.Select(dept.recordId);
             }
             else
             {
@@ -817,25 +817,25 @@ namespace AionHR.Web.UI.Forms.EmployeePages
 
         protected void addCheckType(object sender, DirectEventArgs e)
         {
-            //DocumentType dept = new DocumentType();
-            //dept.name = dtName.Text;
+            CheckType dept = new CheckType();
+            dept.name = ctId.Text;
 
-            //PostRequest<DocumentType> depReq = new PostRequest<DocumentType>();
-            //depReq.entity = dept;
+            PostRequest<CheckType> depReq = new PostRequest<CheckType>();
+            depReq.entity = dept;
 
-            //PostResponse<DocumentType> response = _employeeService.ChildAddOrUpdate<DocumentType>(depReq);
-            //if (response.Success)
-            //{
-            //    dept.recordId = response.recordId;
-            //    RWDocumentTypeStore.Insert(0, dept);
-            //    dtId.Select(0);
-            //}
-            //else
-            //{
-            //    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-            //    X.Msg.Alert(Resources.Common.Error, response.Summary).Show();
-            //    return;
-            //}
+            PostResponse<CheckType> response = _employeeService.ChildAddOrUpdate<CheckType>(depReq);
+            if (response.Success)
+            {
+                dept.recordId = response.recordId;
+                FillBCCheckType();
+                ctId.Select(dept.recordId);
+            }
+            else
+            {
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, response.Summary).Show();
+                return;
+            }
 
         }
 

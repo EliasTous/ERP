@@ -120,8 +120,14 @@
   <data name="BasicInfoTabEditWindowTitle" xml:space="preserve">
     <value>Leave Request Info</value>
   </data>
+  <data name="ButtonClear" xml:space="preserve">
+    <value>Clear</value>
+  </data>
   <data name="EditWindowsTitle" xml:space="preserve">
     <value>Edit Leave Request</value>
+  </data>
+  <data name="FieldAll" xml:space="preserve">
+    <value>All</value>
   </data>
   <data name="FieldApproved" xml:space="preserve">
     <value>Approved</value>
@@ -158,6 +164,24 @@
   </data>
   <data name="FieldStatus" xml:space="preserve">
     <value>Status</value>
+  </data>
+  <data name="FilterBranch" xml:space="preserve">
+    <value>Select a Branch</value>
+  </data>
+  <data name="FilterDepartment" xml:space="preserve">
+    <value>Select a Department</value>
+  </data>
+  <data name="FilterDivision" xml:space="preserve">
+    <value>Select a Division</value>
+  </data>
+  <data name="FilterEmployee" xml:space="preserve">
+    <value>Select an Employee</value>
+  </data>
+  <data name="FilterOpen" xml:space="preserve">
+    <value>Show Open Requests</value>
+  </data>
+  <data name="FilterStatus" xml:space="preserve">
+    <value>Select a Status</value>
   </data>
   <data name="WindowTitle" xml:space="preserve">
     <value>Leave Requests</value>

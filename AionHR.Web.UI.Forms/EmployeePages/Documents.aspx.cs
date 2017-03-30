@@ -125,11 +125,11 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     this.EditDocumentForm.SetValues(entity);
                     FillDocumentTypes();
                     dtId.Select(entity.dtId.ToString());
-                    
+
                     this.EditDocumentWindow.Title = Resources.Common.EditWindowsTitle;
                     this.EditDocumentWindow.Show();
                     break;
-             
+
                 case "imgDelete":
                     X.Msg.Confirm(Resources.Common.Confirmation, Resources.Common.DeleteOneRecord, new MessageBoxButtonsConfig
                     {
@@ -143,12 +143,12 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                         {
                             Text = Resources.Common.No
                         }
-                        
+
                     }).Show();
                     break;
 
                 case "imgAttach":
-                    DownloadFile( path);
+                    DownloadFile(path);
 
                     //Here will show up a winow relatice to attachement depending on the case we are working on
                     break;
@@ -211,7 +211,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                         resp.OutputStream.Write(buffer, 0, length);
 
                         // Flush the data
-                       
+
 
                         //Clear the buffer
                         buffer = new Byte[bytesToRead];
@@ -317,10 +317,10 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             EditDocumentForm.Reset();
             this.EditDocumentWindow.Title = Resources.Common.AddNewRecord;
             FillDocumentTypes();
-           
+
             this.EditDocumentWindow.Show();
         }
-   
+
 
         protected void employeeDocumentsStore_RefreshData(object sender, StoreReadDataEventArgs e)
         {
@@ -348,7 +348,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
 
             this.employeeDocumentsStore.DataBind();
         }
-  
+
 
 
         protected void SaveDocument(object sender, DirectEventArgs e)
@@ -364,7 +364,8 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             b.recordId = id;
             // Define the object to add or edit as null
             b.dtName = dtId.SelectedItem.Text;
-            b.expiryDate = new DateTime(b.expiryDate.Value.Year, b.expiryDate.Value.Month, b.expiryDate.Value.Day, 14, 0, 0);
+            if (b.expiryDate.HasValue)
+                b.expiryDate = new DateTime(b.expiryDate.Value.Year, b.expiryDate.Value.Month, b.expiryDate.Value.Day, 14, 0, 0);
 
             if (string.IsNullOrEmpty(id))
             {
@@ -410,7 +411,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     {
                         EmployeeDocument insertedEntity = GetById(b.recordId);
                         //Add this record to the store 
-                        
+
                         this.employeeDocumentsStore.Insert(0, insertedEntity);
 
                         //Display successful notification
@@ -487,11 +488,12 @@ namespace AionHR.Web.UI.Forms.EmployeePages
 
                         EmployeeDocument updated = GetById(b.recordId);
                         ModelProxy record = this.employeeDocumentsStore.GetById(index);
-                        
+
                         EditDocumentForm.UpdateRecord(record);
                         record.Set("dtName", updated.dtName);
                         record.Set("fileUrl", updated.fileUrl);
-                        record.Set("expiryDate", updated.expiryDate.Value.ToShortDateString());
+                        if (b.expiryDate.HasValue)
+                            record.Set("expiryDate", updated.expiryDate.Value.ToShortDateString());
                         record.Commit();
                         Notification.Show(new NotificationConfig
                         {
@@ -513,7 +515,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             }
         }
 
-     
+
         [DirectMethod]
         public string CheckSession()
         {

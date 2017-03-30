@@ -9,7 +9,7 @@
     <title></title>
     <link rel="stylesheet" type="text/css" href="CSS/Common.css" />
     <link rel="stylesheet" href="CSS/LiveSearch.css" />
-    <script type="text/javascript" src="Scripts/Nationalities.js" ></script>
+    <script type="text/javascript" src="Scripts/Routers.js" ></script>
     <script type="text/javascript" src="Scripts/common.js" ></script>
    
  
@@ -145,7 +145,7 @@
                                 Hideable="false"
                                 MenuDisabled="true"
                                 Resizable="false">
-                                <Renderer Fn="deleteRender" />
+                               <Renderer handler="return editRender()+'&nbsp;&nbsp;' +deleteRender(); " />
                               
                             </ext:Column>
                             <ext:Column runat="server"

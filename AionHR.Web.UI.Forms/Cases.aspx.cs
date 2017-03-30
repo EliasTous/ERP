@@ -670,7 +670,7 @@ namespace AionHR.Web.UI.Forms
                             Icon = Icon.Information,
                             Html = Resources.Common.RecordSavingSucc
                         });
-
+                        recordId.Text = b.recordId;
                         SetTabPanelEnable(true);
                         currentCase.Text = b.recordId;
                         RowSelectionModel sm = this.GridPanel1.GetSelectionModel() as RowSelectionModel;
@@ -719,7 +719,7 @@ namespace AionHR.Web.UI.Forms
 
                         if (closedDate.ReadOnly)
                             record.Set("closedDate", null);
-
+                        record.Set("employeeName", b.employeeName);
                         record.Commit();
                         Notification.Show(new NotificationConfig
                         {
@@ -972,28 +972,27 @@ namespace AionHR.Web.UI.Forms
             }
         }
 
+
+
         /// <summary>
         /// This direct method will be called after confirming the delete
         /// </summary>
         /// <param name="index">the ID of the object to delete</param>
         [DirectMethod]
-        public void DeleteDocument(string index)
+        public void DeleteAttachment(string index)
         {
             try
             {
                 //Step 1 Code to delete the object from the database 
-                EmployeeDocument n = new EmployeeDocument();
-                n.recordId = index;
-                n.dtId = 0;
-                n.employeeId = Convert.ToInt32(currentCase.Text);
-                n.expiryDate = null;
-                n.remarks = "";
-                n.documentRef = "";
+                Attachement n = new Attachement();
+                n.classRef = "CMCA";
+                n.recordId = Convert.ToInt32(currentCase.Text);
+                n.seqNo = Convert.ToInt16(index);
 
 
-                PostRequest<EmployeeDocument> req = new PostRequest<EmployeeDocument>();
+                PostRequest<Attachement> req = new PostRequest<Attachement>();
                 req.entity = n;
-                PostResponse<EmployeeDocument> res = _employeeService.ChildDelete<EmployeeDocument>(req);
+                PostResponse<Attachement> res = _systemService.ChildDelete<Attachement>(req);
                 if (!res.Success)
                 {
                     //Show an error saving...

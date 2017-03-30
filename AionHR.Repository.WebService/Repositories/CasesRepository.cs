@@ -18,6 +18,7 @@ namespace AionHR.Repository.WebService.Repositories
             GetAllMethodName = "qryCA";
             AddOrUpdateMethodName = "setCA";
             GetRecordMethodName = "getCA";
+            DeleteMethodName = "delCA";
 
             ChildGetAllLookup.Add(typeof(CaseComment), "qryCC");
 
