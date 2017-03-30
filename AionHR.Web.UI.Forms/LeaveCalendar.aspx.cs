@@ -146,8 +146,9 @@ namespace AionHR.Web.UI.Forms
                 FillDepartment();
 
                 //dayId.SelectedDate = DateTime.Today;
-                DayPilotScheduler1.StartDate = new DateTime(DateTime.Today.Year, DateTime.Today.Month, 1);
-                DayPilotScheduler1.Days = DateTime.DaysInMonth(DateTime.Today.Year, DateTime.Today.Month);
+                DateTime d = new DateTime(2017, 4, 1);
+                DayPilotScheduler1.StartDate = new DateTime(2017,4,1);
+                DayPilotScheduler1.Days = DateTime.DaysInMonth(2017,4);
                 DayPilotScheduler1.Update();
                 
 
@@ -264,6 +265,18 @@ namespace AionHR.Web.UI.Forms
                 return "0";
             }
             else return "1";
+        }
+
+        [DirectMethod]
+        public void UpdateCal()
+        {
+            try
+            {
+                DayPilotScheduler1.StartDate = new DateTime(Convert.ToInt32(yearCombo.Value), Convert.ToInt32(monthCombo.Value), 1);
+                DayPilotScheduler1.Days = DateTime.DaysInMonth(Convert.ToInt32(yearCombo.Value), Convert.ToInt32(monthCombo.Value));
+
+            }
+            catch (Exception exp) { }
         }
 
         protected void Unnamed_Event(object sender, DirectEventArgs e)

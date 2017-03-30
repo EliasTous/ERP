@@ -50,6 +50,8 @@ namespace AionHR.Repository.WebService.Repositories
             ChildGetAllLookup.Add(typeof(EmployeeRightToWork), "qryRW");
             ChildGetAllLookup.Add(typeof(EmployeeBackgroundCheck), "qryBC");
             ChildGetAllLookup.Add(typeof(CheckType), "qryCT");
+            ChildGetAllLookup.Add(typeof(TerminationReason), "qryTR");
+            
 
             ChildGetLookup.Add(typeof(Sponsor), "getSP");
             ChildGetLookup.Add(typeof(AllowanceType), "getAT");
@@ -71,6 +73,7 @@ namespace AionHR.Repository.WebService.Repositories
             ChildGetLookup.Add(typeof(EmployeeRightToWork), "getRW");
             ChildGetLookup.Add(typeof(EmployeeBackgroundCheck), "getBC");
             ChildGetLookup.Add(typeof(CheckType), "getCT");
+            ChildGetLookup.Add(typeof(TerminationReason), "getTR");
 
             ChildAddOrUpdateLookup.Add(typeof(Sponsor), "setSP");
             ChildAddOrUpdateLookup.Add(typeof(AllowanceType), "setAT");
@@ -93,6 +96,8 @@ namespace AionHR.Repository.WebService.Repositories
             ChildAddOrUpdateLookup.Add(typeof(EmployeeRightToWork), "setRW");
             ChildAddOrUpdateLookup.Add(typeof(EmployeeBackgroundCheck), "setBC");
             ChildAddOrUpdateLookup.Add(typeof(CheckType), "setCT");
+            ChildAddOrUpdateLookup.Add(typeof(TerminationReason), "setTR");
+            ChildAddOrUpdateLookup.Add(typeof(EmployeeTermination), "setTE");
 
             ChildDeleteLookup.Add(typeof(Sponsor), "delSP");
             ChildDeleteLookup.Add(typeof(AllowanceType), "delAT");
@@ -114,6 +119,7 @@ namespace AionHR.Repository.WebService.Repositories
             ChildDeleteLookup.Add(typeof(EmployeeRightToWork), "delRW");
             ChildDeleteLookup.Add(typeof(EmployeeBackgroundCheck), "delBC");
             ChildDeleteLookup.Add(typeof(CheckType), "delCT");
+            ChildDeleteLookup.Add(typeof(TerminationReason), "detTR");
 
         }
 

@@ -657,4 +657,10 @@
   <data name="ToMonths" xml:space="preserve">
     <value>To(Months)</value>
   </data>
+  <data name="EmailNotFound" xml:space="preserve">
+    <value>Could not find a vaild email to send the reset password link</value>
+  </data>
+  <data name="RecoverySentSucc" xml:space="preserve">
+    <value>Your Reset password email has been sent successfully</value>
+  </data>
 </root>

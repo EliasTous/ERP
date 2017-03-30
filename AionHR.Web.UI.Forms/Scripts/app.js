@@ -205,7 +205,7 @@ var openModule = function (id) {
     if (nodes.length > 0) {
         // tree.initChildren(nodes);
         tree.setRootNode(nodes[0]);
-        firstMenu.setRootNode(nodes[0]);
+    
         if (node != null) {
 
             if (node.data.id != "root") {

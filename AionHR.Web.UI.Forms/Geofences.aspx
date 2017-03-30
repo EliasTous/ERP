@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="CSS/LiveSearch.css" />
      <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCRQ7sZoJrjEBuIBret1gCccSwicDusM3w&libraries=drawing"></script>
    
-    <script type="text/javascript" src="Scripts/Geofences.js?id=14" ></script>
+    <script type="text/javascript" src="Scripts/Geofences.js?id=15" ></script>
     <script type="text/javascript" src="Scripts/common.js" ></script>
     <script type="text/javascript">
     
@@ -310,9 +310,9 @@
                                     </Items>
                                   
                                     <Listeners>
-                                       <Show Handler="setWidth();" />
+                                       <Show Handler="setWidth(); google.maps.event.trigger(map, 'resize');" />
                                         <AfterRender Handler="initMap(document.getElementById('CurrentCountry').value);" />
-                                        <Resize Handler="setWidth()" />
+                                        <Resize Handler="setWidth(); google.maps.event.trigger(map, 'resize');" />
                                     </Listeners>
                                 </ext:Panel>
                             </Items>

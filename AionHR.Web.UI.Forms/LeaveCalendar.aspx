@@ -167,13 +167,9 @@
                                        </ext:ComboBox>
                                  <ext:Button ID="applyButton" runat="server" Text="<%$ Resources: ApplyFilter%>" >
                                      <Listeners>
-                                         <Click Handler="CheckSession" />
+                                         <Click Handler="CheckSession(); App.direct.UpdateCal(); " />
                                      </Listeners>
-                                     <DirectEvents>
-                                         <Click  OnEvent="Unnamed_Event">
-                                            
-                                         </Click>
-                                     </DirectEvents>
+                                    
                                  </ext:Button>
                             </Items>
                         </ext:Toolbar>

@@ -601,6 +601,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Could not find a vaild email to send the reset password link.
+        /// </summary>
+        internal static string EmailNotFound {
+            get {
+                return ResourceManager.GetString("EmailNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Employees.
         /// </summary>
         internal static string Employee {
@@ -1227,6 +1236,15 @@ namespace Resources {
         internal static string RecordUpdatedSucc {
             get {
                 return ResourceManager.GetString("RecordUpdatedSucc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your Reset password email has been sent successfully.
+        /// </summary>
+        internal static string RecoverySentSucc {
+            get {
+                return ResourceManager.GetString("RecoverySentSucc", resourceCulture);
             }
         }
         

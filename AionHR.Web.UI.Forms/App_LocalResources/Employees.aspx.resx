@@ -240,7 +240,49 @@
   <data name="SkillsTab" xml:space="preserve">
     <value>Skills</value>
   </data>
+  <data name="terminationWindowTitle" xml:space="preserve">
+    <value>Termination</value>
+  </data>
   <data name="WindowTitle" xml:space="preserve">
     <value>Employees</value>
+  </data>
+  <data name="Worker" xml:space="preserve">
+    <value>Worker</value>
+  </data>
+  <data name="Company" xml:space="preserve">
+    <value>Company</value>
+  </data>
+  <data name="FieldTerminationDate" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="FieldTerminationReason" xml:space="preserve">
+    <value>Termination Reason</value>
+  </data>
+  <data name="FieldTerminationType" xml:space="preserve">
+    <value>Type</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="NotYetKnown" xml:space="preserve">
+    <value>Not determined yet</value>
+  </data>
+  <data name="Other" xml:space="preserve">
+    <value>Other</value>
+  </data>
+  <data name="RehireEligibilty" xml:space="preserve">
+    <value>Rehire Eligibilty</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>Yes</value>
+  </data>
+  <data name="confirmDelete" xml:space="preserve">
+    <value>Please Type "Delete" to Confirm the delete operation.</value>
+  </data>
+  <data name="deleteConfirmation" xml:space="preserve">
+    <value>Confirm Employee Delete</value>
+  </data>
+  <data name="ResetPassword" xml:space="preserve">
+    <value>Reset Password</value>
   </data>
 </root>

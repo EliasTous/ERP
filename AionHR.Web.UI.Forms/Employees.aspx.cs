@@ -139,11 +139,12 @@ namespace AionHR.Web.UI.Forms
                     FixLoaderUrls(id.ToString());
                     //employeePanel.Loader.Url = "EmployeePages/EmployeeProfile.aspx?employeeId="+CurrentEmployee.Text;
                     //employeePanel.Loader.LoadContent();
-
+                   
                     panelRecordDetails.ActiveIndex = 0;
                     //timeZoneCombo.Select(response.result.timeZone.ToString());
                     this.EditRecordWindow.Title = Resources.Common.EditWindowsTitle;
                     this.EditRecordWindow.Show();
+
                     break;
 
                 case "imgDelete":
@@ -249,14 +250,18 @@ namespace AionHR.Web.UI.Forms
                 imgControl.ImageUrl = "";
 
             }
+            SetTabPanelActivated(isAdd);
+
+        }
+
+        private void SetTabPanelActivated(bool isActive)
+        {
             foreach (var item in panelRecordDetails.Items)
             {
                 if (item.ID == "BasicInfoTab")
                     continue;
-                item.Disabled = isAdd;
+                item.Disabled = !isActive;
             }
-
-
         }
 
         /// <summary>
@@ -269,7 +274,7 @@ namespace AionHR.Web.UI.Forms
             try
                 
             {
-                string index = e.ExtraParams["id"];
+                string index = CurrentEmployee.Text;
                 //Step 1 Code to delete the object from the database 
 
                 //Step 2 :  remove the object from the store
@@ -312,7 +317,15 @@ namespace AionHR.Web.UI.Forms
 
         }
 
+        private void SetActivated(bool active)
+        {
+            BasicInfoTab.Enabled = active;
+            SetTabPanelActivated(active);
+            SaveButton.Enabled = active;
+            CancelButton.Enabled = active;
+            DeleteButton.Enabled = active;
 
+        }
 
 
 
@@ -542,7 +555,6 @@ namespace AionHR.Web.UI.Forms
         }
 
 
-
         protected void SaveNewRecord(object sender, DirectEventArgs e)
         {
 
@@ -740,6 +752,32 @@ namespace AionHR.Web.UI.Forms
             }
         }
 
+
+        protected void SaveTermination(object sender, DirectEventArgs e)
+        {
+            string id = CurrentEmployee.Text;
+            string obj = e.ExtraParams["values"];
+            EmployeeTermination t = JsonConvert.DeserializeObject<EmployeeTermination>(obj);
+            t.employeeId = Convert.ToInt32(CurrentEmployee.Text);
+            PostRequest<EmployeeTermination> request = new PostRequest<EmployeeTermination>();
+            request.entity = t;
+
+            PostResponse<EmployeeTermination> resp = _employeeService.ChildAddOrUpdate<EmployeeTermination>(request);
+            if(!resp.Success)
+            {
+                //Show an error saving...
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, resp.Summary).Show();
+                return;
+            }
+
+            else
+            {
+                terminationWindow.Close();
+            }
+
+            
+        }
         [DirectMethod]
         public string CheckSession()
         {
@@ -778,6 +816,7 @@ namespace AionHR.Web.UI.Forms
             FillNameFields(response.result.name);
             InitCombos(false);
             SelectCombos(response.result);
+            SetActivated(!response.result.isInactive);
 
 
         }
@@ -944,9 +983,147 @@ namespace AionHR.Web.UI.Forms
             }
 
         }
+        protected void addTR(object sender, DirectEventArgs e)
+        {
+            if (string.IsNullOrEmpty(trId.Text))
+                return;
+            TerminationReason obj = new TerminationReason();
+            obj.name = trId.Text;
 
-     
+            PostRequest<TerminationReason> req = new PostRequest<TerminationReason>();
+            req.entity = obj;
+
+            PostResponse<TerminationReason> response = _employeeService.ChildAddOrUpdate<TerminationReason>(req);
+            if (response.Success)
+            {
+                obj.recordId = response.recordId;
+                FillTerminationReasons();
+                trId.Select(obj.recordId);
+            }
+            else
+            {
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, response.Summary).Show();
+                return;
+            }
+
+        }
+
 
         #endregion
+
+        protected void ShowTermination(object sender, DirectEventArgs e)
+        {
+            terminationForm.Reset();
+            FillTerminationReasons();
+            terminationWindow.Show();
+        }
+
+
+        private void FillTerminationReasons()
+        {
+            ListRequest caRequest = new ListRequest();
+            ListResponse<TerminationReason> resp = _employeeService.ChildGetAll<TerminationReason>(caRequest);
+            if (!resp.Success)
+            {
+                X.Msg.Alert(Resources.Common.Error, resp.Summary).Show();
+                return;
+            }
+            trStore.DataSource = resp.Items;
+            trStore.DataBind();
+        }
+
+        [DirectMethod]
+        public void promptDelete(object sender, DirectEventArgs e)
+        {
+            confirmForm.Reset();
+            confirmWindow.Show();
+
+
+        }
+
+        protected void CompleteDelete(object sender, DirectEventArgs e)
+        {
+            string id = CurrentEmployee.Text;
+            string obj = e.ExtraParams["delText"];
+            if(obj.ToLower()!="delete")
+            {
+                return;
+            }
+
+            try
+
+            {
+                string index = CurrentEmployee.Text;
+                //Step 1 Code to delete the object from the database 
+
+                //Step 2 :  remove the object from the store
+
+
+
+                PostRequest<Employee> req = new PostRequest<Employee>();
+                Employee emp = new Employee();
+                req.entity = emp;
+                emp.recordId = index;
+                emp.branchId = emp.departmentId = emp.divisionId = emp.vsId = emp.sponsorId = emp.caId = emp.nationalityId = emp.positionId = 0;
+                emp.hireDate = DateTime.Now;
+                PostResponse<Employee> post = _employeeService.Delete(req);
+                if (!post.Success)
+                {
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    X.Msg.Alert(Resources.Common.Error, post.Summary).Show();
+                    return;
+                }
+                Store1.Remove(index);
+
+                //Step 3 : Showing a notification for the user 
+                Notification.Show(new NotificationConfig
+                {
+                    Title = Resources.Common.Notification,
+                    Icon = Icon.Information,
+                    Html = Resources.Common.RecordDeletedSucc
+                });
+                confirmWindow.Close();
+                EditRecordWindow.Close();
+
+            }
+            catch (Exception ex)
+            {
+                //In case of error, showing a message box to the user
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorDeletingRecord).Show();
+
+            }
+
+
+        }
+
+        protected void ResetPassword(object sender, DirectEventArgs e)
+        {
+            AccountRecoveryRequest recoverRequest = new AccountRecoveryRequest();
+            recoverRequest.Email = workEmail.Text;
+            if(string.IsNullOrEmpty(recoverRequest.Email))
+            {
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.ResetPassword,Resources.Common.EmailNotFound).Show();
+                
+            }
+            PasswordRecoveryResponse response = _systemService.RequestPasswordRecovery(recoverRequest);
+            if (response.Success)
+            {
+
+                X.Msg.Alert(Resources.Common.ResetPassword, Resources.Common.RecoverySentSucc).Show();
+                
+
+            }
+            else
+            {
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, response.Summary).Show();
+
+            }
+
+
+        }
     }
 }

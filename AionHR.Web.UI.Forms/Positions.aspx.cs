@@ -522,9 +522,9 @@ namespace AionHR.Web.UI.Forms
             if (response.Success)
             {
                 dept.recordId = response.recordId;
-                FillParent(null, null);
+                positionStore.Reload();
                 referToPositionId.Select(dept.recordId);
-                Store1.Reload();
+                Store1.Insert(0, dept);
             }
             else
             {

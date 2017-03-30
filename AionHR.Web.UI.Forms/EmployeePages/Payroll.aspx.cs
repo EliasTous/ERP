@@ -136,8 +136,8 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     this.EditSAForm.SetValues(response3.result);
                     FillCurrency();
                     FillScr();
-                    dedsStore_ReadData(null, null);
-                    ensStore_ReadData(null, null);
+                    dedsStore.Reload();
+                    entsStore.Reload();
 
                     CurrentSalary.Text = r3.RecordID;
                     CurrentSalaryCurrency.Text = response3.result.currencyRef;
@@ -251,7 +251,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     SalaryDetail detail = JsonConvert.DeserializeObject<List<SalaryDetail>>(record)[0];
                     if (!detail.includeInTotal.HasValue)
                         detail.includeInTotal = false;
-                    ensStore_ReadData(null, null);
+                    entsStore.Reload();
                     ENId.Text = detail.seqNo.ToString();
                     oldEntValue.Text = detail.fixedAmount.ToString();
                     oldENIncludeInFinal.Checked = detail.includeInTotal.Value;
@@ -546,8 +546,8 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             this.EditSAWindow.Title = Resources.Common.AddNewRecord;
             FillCurrency();
             FillScr();
-            dedsStore_ReadData(null, null);
-            ensStore_ReadData(null, null);
+            dedsStore.Reload();
+            entsStore.Reload();
             effectiveDate.SelectedDate = DateTime.Today;
             ENSeq.Text = "0";
             DESeq.Text = "0";
@@ -573,7 +573,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             //Reset all values of the relative object
             ENForm.Reset();
             this.EditENWindow.Title = Resources.Common.AddNewRecord;
-            ensStore_ReadData(null, null);
+            entsStore.Reload();
 
             this.EditENWindow.Show();
         }
@@ -584,7 +584,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             //Reset all values of the relative object
             DEForm.Reset();
             this.EditDEWindow.Title = Resources.Common.AddNewRecord;
-            dedsStore_ReadData(null, null);
+            dedsStore.Reload();
 
             this.EditDEWindow.Show();
         }
@@ -1456,7 +1456,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             if (response.Success)
             {
                 dept.recordId = response.recordId;
-                dedsStore_ReadData(null, null);
+                dedsStore.Reload();
                 dedEdId.Value = dept.recordId;
             }
             else

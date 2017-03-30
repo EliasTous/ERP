@@ -54,8 +54,10 @@
     <Compile Include="Employees\Profile\EmployeeCertificate.cs" />
     <Compile Include="Employees\Profile\EmployeeNote.cs" />
     <Compile Include="Employees\Profile\EmployeeRightToWork.cs" />
+    <Compile Include="Employees\Profile\EmployeeTermination.cs" />
     <Compile Include="Employees\Profile\EmploymentHistory.cs" />
     <Compile Include="Employees\Profile\JobInfo.cs" />
+    <Compile Include="Employees\Profile\TerminationReason.cs" />
     <Compile Include="LeaveManagement\ILeaveManagementRepository.cs" />
     <Compile Include="LeaveManagement\LeaveRequest.cs" />
     <Compile Include="MasterModule\IAccountRepository.cs" />
