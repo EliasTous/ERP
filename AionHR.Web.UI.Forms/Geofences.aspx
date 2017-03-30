@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="CSS/LiveSearch.css" />
      <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCRQ7sZoJrjEBuIBret1gCccSwicDusM3w&libraries=drawing"></script>
    
-    <script type="text/javascript" src="Scripts/Geofences.js?id=7" ></script>
+    <script type="text/javascript" src="Scripts/Geofences.js?id=14" ></script>
     <script type="text/javascript" src="Scripts/common.js" ></script>
     <script type="text/javascript">
     
@@ -245,7 +245,7 @@
             AutoShow="false" 
             Modal="true"
             Hidden="true"
-         Resizable="false"
+         Resizable="true"
             Maximizable="false"
             Layout="Fit">
             
@@ -257,8 +257,11 @@
                             runat="server"
                             Title="<%$ Resources: BasicInfoTabEditWindowTitle %>"
                             Icon="ApplicationSideList" 
-                            DefaultAnchor="100%" OnLoad="BasicInfoTab_Load"
+                            DefaultAnchor="100%" OnLoad="BasicInfoTab_Load" Layout="VBoxLayout"
                             BodyPadding="5">
+                               <LayoutConfig>
+                                <ext:VBoxLayoutConfig Align="Stretch" />
+                            </LayoutConfig>
                             <Items>
                                 <ext:TextField ID="recordId" runat="server"  Name="recordId"  Hidden="true"/>
                                 <ext:TextField ID="name" runat="server" FieldLabel="<%$ Resources:FieldName%>" Name="name"   AllowBlank="false"/>
@@ -295,11 +298,11 @@
                                                     </Listeners>
                                                 </ext:ComboBox>
 
-                                <ext:Panel runat="server" Layout="FormLayout"  Flex="1" >
+                                <ext:Panel ID="mapHolder" runat="server" Layout="FitLayout"  Flex="1" >
                                     <Items>
-                                        <ext:Container runat="server" >
+                                        <ext:Container runat="server"  >
                                         <Content>
-                                        <div id="map" style="height:300px;width:650px" ></div>
+                                        <div id="map" style="height:300px;width:790px;" ></div>
                                             <input type="button" id="delete" value="Clear" disabled="disabled"/>
                                     </Content>
                                             
@@ -307,7 +310,9 @@
                                     </Items>
                                   
                                     <Listeners>
+                                       <Show Handler="setWidth();" />
                                         <AfterRender Handler="initMap(document.getElementById('CurrentCountry').value);" />
+                                        <Resize Handler="setWidth()" />
                                     </Listeners>
                                 </ext:Panel>
                             </Items>
