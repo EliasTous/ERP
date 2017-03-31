@@ -120,7 +120,7 @@
                             <ext:Column Visible="false" ID="ColrecordId" MenuDisabled="true" runat="server"  DataIndex="recordId" Hideable="false" Width="75" Align="Center" />
 
                             <ext:Column CellCls="cellLink" Sortable="true" ID="ColName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldName%>" DataIndex="name" Flex="1" Hideable="false">
-                                <Renderer Handler="return '<u>'+ record.data['name']+'</u>'">
+                                <Renderer Handler="return record.data['name']">
                                 </Renderer>
                             </ext:Column>
 

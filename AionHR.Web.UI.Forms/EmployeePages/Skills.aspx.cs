@@ -174,6 +174,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                 n.dateTo = DateTime.Now;
                 n.grade = 0;
                 n.institution = "";
+                n.major = "";
                 
 
 
@@ -291,6 +292,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             b.clName = clId.SelectedItem.Text;
             b.dateFrom = new DateTime(b.dateFrom.Year, b.dateFrom.Month, b.dateFrom.Day, 14, 0, 0);
             b.dateTo = new DateTime(b.dateTo.Year, b.dateTo.Month, b.dateTo.Day, 14, 0, 0);
+            
 
             if (string.IsNullOrEmpty(id))
             {

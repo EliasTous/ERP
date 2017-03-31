@@ -22,14 +22,74 @@ using AionHR.Services.Messaging;
 using AionHR.Model.Company.Structure;
 using AionHR.Model.System;
 using AionHR.Model.Attendance;
+using AionHR.Model.Employees.Leaves;
+using AionHR.Model.Employees.Profile;
+using AionHR.Model.LeaveManagement;
+using AionHR.Services.Messaging.System;
+using AionHR.Infrastructure.JSON;
 
 namespace AionHR.Web.UI.Forms
 {
-    public partial class Routers : System.Web.UI.Page
+    public partial class AssetAllowances : System.Web.UI.Page
     {
+
         ISystemService _systemService = ServiceLocator.Current.GetInstance<ISystemService>();
-        ITimeAttendanceService _timeAttendanceService = ServiceLocator.Current.GetInstance<ITimeAttendanceService>();
+        ILeaveManagementService _leaveManagementService = ServiceLocator.Current.GetInstance<ILeaveManagementService>();
+        IEmployeeService _employeeService = ServiceLocator.Current.GetInstance<IEmployeeService>();
         ICompanyStructureService _companyStructureService = ServiceLocator.Current.GetInstance<ICompanyStructureService>();
+
+        [DirectMethod]
+        public object FillEmployee(string action, Dictionary<string, object> extraParams)
+        {
+            StoreRequestParameters prms = new StoreRequestParameters(extraParams);
+            List<Employee> data = GetEmployeesFiltered(prms.Query);
+            data.ForEach(s => { s.fullName = s.name.fullName; });
+            //  return new
+            // {
+            return data;
+        }
+
+        private List<Employee> GetEmployeesFiltered(string query)
+        {
+
+            EmployeeListRequest req = new EmployeeListRequest();
+            req.DepartmentId = "0";
+            req.BranchId = "0";
+            req.IncludeIsInactive = 2;
+            req.SortBy = GetNameFormat();
+
+            req.StartAt = "1";
+            req.Size = "20";
+            req.Filter = query;
+
+            ListResponse<Employee> response = _employeeService.GetAll<Employee>(req);
+            return response.Items;
+        }
+
+
+        private string GetNameFormat()
+        {
+            return _systemService.SessionHelper.Get("nameFormat").ToString();
+        }
+
+
+        public void FillAssetCategory()
+        {
+
+            ListRequest req = new ListRequest();
+
+            ListResponse<AssetCategory> response = _employeeService.ChildGetAll<AssetCategory>(req);
+            if (!response.Success)
+            {
+                X.Msg.Alert(Resources.Common.Error, response.Summary).Show();
+                return;
+            }
+            acStore.DataSource = response.Items;
+            acStore.DataBind();
+
+        }
+
+
         protected override void InitializeCulture()
         {
 
@@ -59,8 +119,10 @@ namespace AionHR.Web.UI.Forms
                 SetExtLanguage();
                 HideShowButtons();
                 HideShowColumns();
-
-
+                FillDepartment();
+                FillAssetCateg();
+                FillBranch();
+                
 
             }
 
@@ -105,22 +167,51 @@ namespace AionHR.Web.UI.Forms
         }
 
 
+        private void FillDepartment()
+        {
+            ListRequest departmentsRequest = new ListRequest();
+            ListResponse<Department> resp = _companyStructureService.ChildGetAll<Department>(departmentsRequest);
+            if (!resp.Success)
+                X.Msg.Alert(Resources.Common.Error, resp.Summary).Show();
+            departmentStore.DataSource = resp.Items;
+            departmentStore.DataBind();
+        }
+        private void FillBranch()
+        {
+            ListRequest branchesRequest = new ListRequest();
+            ListResponse<Branch> resp = _companyStructureService.ChildGetAll<Branch>(branchesRequest);
+            if (!resp.Success)
+                X.Msg.Alert(Resources.Common.Error, resp.Summary).Show();
+            branchStore.DataSource = resp.Items;
+            branchStore.DataBind();
+        }
+
+        private void FillAssetCateg()
+        {
+            ListRequest assetCategRequest = new ListRequest();
+            ListResponse<AssetCategory> resp = _employeeService.ChildGetAll<AssetCategory>(assetCategRequest);
+            if (!resp.Success)
+                X.Msg.Alert(Resources.Common.Error, resp.Summary).Show();
+            assetCategoryStore.DataSource = resp.Items;
+            assetCategoryStore.DataBind();
+        }
 
         protected void PoPuP(object sender, DirectEventArgs e)
         {
-            
+
 
             string id = e.ExtraParams["id"];
             string type = e.ExtraParams["type"];
-            routerRef.ReadOnly = true;
+
             switch (type)
             {
                 case "imgEdit":
                     //Step 1 : get the object from the Web Service 
                     RecordRequest r = new RecordRequest();
                     r.RecordID = id;
-                    FillBranch();
-                    RecordResponse<Router> response = _timeAttendanceService.ChildGetRecord<Router>(r);
+
+
+                    RecordResponse<AssetAllowance> response = _employeeService.ChildGetRecord<AssetAllowance>(r);
                     if (!response.Success)
                     {
                         X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
@@ -129,8 +220,24 @@ namespace AionHR.Web.UI.Forms
                     }
                     //Step 2 : call setvalues with the retrieved object
                     this.BasicInfoTab.SetValues(response.result);
-                    recordId.Text = id;
-                    branchId.Select(response.result.branchId.ToString());
+
+                    FillAssetCategory();
+                    aacId.Select(response.result.acId.ToString());
+                    if (response.result.employeeId != 0)
+                    {
+
+                        employeeId.GetStore().Add(new object[]
+                           {
+                                new
+                                {
+                                    recordId = response.result.employeeId,
+                                    fullName =response.result.employeeName.fullName
+                                }
+                           });
+                        employeeId.SetValue(response.result.employeeId);
+
+                    }
+
                     this.EditRecordWindow.Title = Resources.Common.EditWindowsTitle;
                     this.EditRecordWindow.Show();
                     break;
@@ -163,23 +270,26 @@ namespace AionHR.Web.UI.Forms
 
         }
 
-        /// <summary>
-        /// This direct method will be called after confirming the delete
-        /// </summary>
-        /// <param name="index">the ID of the object to delete</param>
+
         [DirectMethod]
         public void DeleteRecord(string index)
         {
             try
             {
                 //Step 1 Code to delete the object from the database 
-                Router s = new Router();
+                AssetAllowance s = new AssetAllowance();
                 s.recordId = index;
-                s.isInactive = false;
-                s.branchId = 0;
-                PostRequest<Router> req = new PostRequest<Router>();
+                s.comment = "";
+                s.employeeId = 0;
+                s.date = DateTime.Now;
+                s.returnedDate = DateTime.Now;
+                s.serialNo = "";
+                s.description = "";
+                s.acId = 0;
+
+                PostRequest<AssetAllowance> req = new PostRequest<AssetAllowance>();
                 req.entity = s;
-                PostResponse<Router> r = _timeAttendanceService.ChildDelete<Router>(req);
+                PostResponse<AssetAllowance> r = _employeeService.ChildDelete<AssetAllowance>(req);
                 if (!r.Success)
                 {
                     X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
@@ -212,14 +322,6 @@ namespace AionHR.Web.UI.Forms
         }
 
 
-
-
-
-        /// <summary>
-        /// Deleting all selected record
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         protected void btnDeleteAll(object sender, DirectEventArgs e)
         {
 
@@ -243,9 +345,7 @@ namespace AionHR.Web.UI.Forms
             }).Show();
         }
 
-        /// <summary>
-        /// Direct method for removing multiple records
-        /// </summary>
+
         [DirectMethod(ShowMask = true)]
         public void DoYes()
         {
@@ -284,23 +384,74 @@ namespace AionHR.Web.UI.Forms
             }
         }
 
-        /// <summary>
-        /// Adding new record
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+
+
         protected void ADDNewRecord(object sender, DirectEventArgs e)
         {
 
             //Reset all values of the relative object
             BasicInfoTab.Reset();
-            routerRef.ReadOnly = false;
-            FillBranch();
+
+            FillAssetCategory();
             this.EditRecordWindow.Title = Resources.Common.AddNewRecord;
-            
+
 
             this.EditRecordWindow.Show();
         }
+
+
+
+
+        private AssetAllowanceListRequest GetFilteredRequest()
+        {
+            AssetAllowanceListRequest req = new AssetAllowanceListRequest();
+
+            if (!string.IsNullOrEmpty(branchId.Text) && branchId.Value.ToString() != "0")
+            {
+                req.BranchId = Convert.ToInt32(branchId.Value);
+
+
+
+            }
+            else
+            {
+                req.BranchId = 0;
+
+            }
+
+            if (!string.IsNullOrEmpty(departmentId.Text) && departmentId.Value.ToString() != "0")
+            {
+                req.DepartmentId = Convert.ToInt32(departmentId.Value);
+
+
+            }
+            else
+            {
+                req.DepartmentId = 0;
+            }
+
+
+
+            if (!string.IsNullOrEmpty(employeeFilter.Text) && employeeFilter.Value.ToString() != "0")
+            {
+                req.EmployeeId = Convert.ToInt32(employeeFilter.Value);
+
+
+            }
+            else
+            {
+                req.EmployeeId = 0;
+
+            }
+
+           
+
+
+
+            return req;
+        }
+
+
 
         protected void Store1_RefreshData(object sender, StoreReadDataEventArgs e)
         {
@@ -314,18 +465,21 @@ namespace AionHR.Web.UI.Forms
             //Fetching the corresponding list
 
             //in this test will take a list of News
-            ListRequest request = new ListRequest();
+            AssetAllowanceListRequest request = GetFilteredRequest();
+
+            request.Size = "50";
+            request.StartAt = "1";
+            request.SortBy = "firstName";
 
             request.Filter = "";
-            ListResponse<Router> routers = _timeAttendanceService.ChildGetAll<Router>(request);
+            ListResponse<AssetAllowance> routers = _employeeService.ChildGetAll<AssetAllowance>(request);
             if (!routers.Success)
-                X.Msg.Alert(Resources.Common.Error, routers.Summary).Show();
+                return;
             this.Store1.DataSource = routers.Items;
-            e.Total = routers.count;
+            e.Total = routers.Items.Count; ;
 
             this.Store1.DataBind();
         }
-
 
 
 
@@ -334,17 +488,25 @@ namespace AionHR.Web.UI.Forms
 
 
             //Getting the id to check if it is an Add or an edit as they are managed within the same form.
-            
+
 
             string obj = e.ExtraParams["values"];
-            Router b = JsonConvert.DeserializeObject<Router>(obj);
+            JsonSerializerSettings settings = new JsonSerializerSettings();
+            CustomResolver res = new CustomResolver();
+            res.AddRule("aacId", "acId");
+            settings.ContractResolver = res;
+            AssetAllowance b = JsonConvert.DeserializeObject<AssetAllowance>(obj,settings);
 
             string id = e.ExtraParams["id"];
             // Define the object to add or edit as null
-            b.recordId = id;
 
-            if (branchId.SelectedItem.Text != null)
-                b.branchName = branchId.SelectedItem.Text;
+            b.employeeName = new EmployeeName();
+            if (employeeId.SelectedItem != null)
+                b.employeeName.fullName = employeeId.SelectedItem.Text;
+
+            if (aacId.SelectedItem != null)
+                b.acName = aacId.SelectedItem.Text;
+
 
             if (string.IsNullOrEmpty(id))
             {
@@ -353,11 +515,11 @@ namespace AionHR.Web.UI.Forms
                 {
                     //New Mode
                     //Step 1 : Fill The object and insert in the store 
-                    PostRequest<Router> request = new PostRequest<Router>();
-                    
+                    PostRequest<AssetAllowance> request = new PostRequest<AssetAllowance>();
+
                     request.entity = b;
-                    PostResponse<Router> r = _timeAttendanceService.ChildAddOrUpdate<Router>(request);
-                    
+                    PostResponse<AssetAllowance> r = _employeeService.ChildAddOrUpdate<AssetAllowance>(request);
+
 
                     //check if the insert failed
                     if (!r.Success)//it maybe be another condition
@@ -384,7 +546,7 @@ namespace AionHR.Web.UI.Forms
                         this.EditRecordWindow.Close();
                         RowSelectionModel sm = this.GridPanel1.GetSelectionModel() as RowSelectionModel;
                         sm.DeselectAll();
-                        sm.Select(b.routerRef.ToString());
+                        sm.Select(b.recordId.ToString());
 
 
 
@@ -406,9 +568,9 @@ namespace AionHR.Web.UI.Forms
                 try
                 {
                     //getting the id of the record
-                    PostRequest<Router> request = new PostRequest<Router>();
+                    PostRequest<AssetAllowance> request = new PostRequest<AssetAllowance>();
                     request.entity = b;
-                    PostResponse<Router> r = _timeAttendanceService.ChildAddOrUpdate<Router>(request);                      //Step 1 Selecting the object or building up the object for update purpose
+                    PostResponse<AssetAllowance> r = _employeeService.ChildAddOrUpdate<AssetAllowance>(request);                      //Step 1 Selecting the object or building up the object for update purpose
 
                     //Step 2 : saving to store
 
@@ -425,6 +587,8 @@ namespace AionHR.Web.UI.Forms
 
                         ModelProxy record = this.Store1.GetById(id);
                         BasicInfoTab.UpdateRecord(record);
+                        record.Set("employeeName", b.employeeName);
+                        record.Set("acName", b.acName);
                         record.Commit();
                         Notification.Show(new NotificationConfig
                         {
@@ -446,6 +610,7 @@ namespace AionHR.Web.UI.Forms
             }
         }
 
+
         [DirectMethod]
         public string CheckSession()
         {
@@ -456,34 +621,27 @@ namespace AionHR.Web.UI.Forms
             else return "1";
         }
 
+
         protected void BasicInfoTab_Load(object sender, EventArgs e)
         {
 
         }
 
-        private void FillBranch()
+        protected void addAssetCategory(object sender, DirectEventArgs e)
         {
-            ListRequest branchesRequest = new ListRequest();
-            ListResponse<Branch> resp = _companyStructureService.ChildGetAll<Branch>(branchesRequest);
-            BranchStore.DataSource = resp.Items;
-            BranchStore.DataBind();
-        }
-
-        protected void addBranch(object sender, DirectEventArgs e)
-        {
-            if (string.IsNullOrEmpty(branchId.Text))
+            if (string.IsNullOrEmpty(aacId.Text))
                 return;
-            Branch dept = new Branch();
-            dept.name = branchId.Text;
-            dept.isInactive = false;
-            PostRequest<Branch> depReq = new PostRequest<Branch>();
+            AssetCategory dept = new AssetCategory();
+            dept.name = aacId.Text;
+
+            PostRequest<AssetCategory> depReq = new PostRequest<AssetCategory>();
             depReq.entity = dept;
-            PostResponse<Branch> response = _companyStructureService.ChildAddOrUpdate<Branch>(depReq);
+            PostResponse<AssetCategory> response = _employeeService.ChildAddOrUpdate<AssetCategory>(depReq);
             if (response.Success)
             {
                 dept.recordId = response.recordId;
-                FillBranch();
-                branchId.Select(dept.recordId);
+                FillAssetCategory();
+                aacId.Select(dept.recordId);
             }
             else
             {
@@ -493,5 +651,37 @@ namespace AionHR.Web.UI.Forms
             }
 
         }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     }
 }

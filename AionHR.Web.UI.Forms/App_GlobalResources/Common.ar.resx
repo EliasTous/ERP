@@ -268,7 +268,7 @@
     <value>نعم</value>
   </data>
   <data name="Add" xml:space="preserve">
-    <value>اضافة</value>
+    <value />
   </data>
   <data name="AfterPageText" xml:space="preserve">
     <value>من  {0}</value>
