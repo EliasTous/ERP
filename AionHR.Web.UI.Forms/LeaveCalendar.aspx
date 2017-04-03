@@ -14,8 +14,7 @@
     <script type="text/javascript" src="Scripts/common.js"></script>
     <script type="text/javascript" src="Scripts/moment.js"></script>
     <script type="text/javascript">
-        function getMonthByNumber(numb)
-        {
+        function getMonthByNumber(numb) {
             return document.getElementById("m" + numb).value;
         }
         function setTotal(t) {
@@ -38,7 +37,27 @@
         }
     </script>
 
+    <style type="text/css">
+        #DayPilotScheduler1 {
+            width:100% !important;
+            height:100% !important;
+        }
 
+
+
+
+
+            #DayPilotScheduler1 > table {
+                width:100% !important;
+                height:100% !important;
+            }
+
+
+            #DayPilotScheduler1 > table td:first-child div:first-child {
+  width:100% !important;
+}
+    
+    </style>
 </head>
 <body style="background: url(Images/bg.png) repeat;">
     <form id="Form1" runat="server">
@@ -55,16 +74,16 @@
         <ext:Hidden ID="CurrentYear" runat="server" EnableViewState="true" />
         <ext:Hidden runat="server" Text="<%$ Resources:Common,January%>" ID="m1" />
         <ext:Hidden runat="server" Text="<%$ Resources:Common,February%>" ID="m2" />
-        <ext:Hidden runat="server"  Text="<%$ Resources:Common,March%>" ID="m3" />
-        <ext:Hidden runat="server"  Text="<%$ Resources:Common,April%>" ID="m4" />
-        <ext:Hidden runat="server"  Text="<%$ Resources:Common,May%>" ID="m5" />
-        <ext:Hidden  runat="server" Text="<%$ Resources:Common,June%>" ID="m6" />
-        <ext:Hidden  runat="server" Text="<%$ Resources:Common,July%>" ID="m7" />
-        <ext:Hidden  runat="server" Text="<%$ Resources:Common,August%>" ID="m8" />
-        <ext:Hidden  runat="server" Text="<%$ Resources:Common,September%>" ID="m9" />
-        <ext:Hidden  runat="server" Text="<%$ Resources:Common,October%>" ID="m10" />
-        <ext:Hidden  runat="server" Text="<%$ Resources:Common,November%>" ID="m11" />
-        <ext:Hidden runat="server"  Text="<%$ Resources:Common,December%>" ID="m12" />
+        <ext:Hidden runat="server" Text="<%$ Resources:Common,March%>" ID="m3" />
+        <ext:Hidden runat="server" Text="<%$ Resources:Common,April%>" ID="m4" />
+        <ext:Hidden runat="server" Text="<%$ Resources:Common,May%>" ID="m5" />
+        <ext:Hidden runat="server" Text="<%$ Resources:Common,June%>" ID="m6" />
+        <ext:Hidden runat="server" Text="<%$ Resources:Common,July%>" ID="m7" />
+        <ext:Hidden runat="server" Text="<%$ Resources:Common,August%>" ID="m8" />
+        <ext:Hidden runat="server" Text="<%$ Resources:Common,September%>" ID="m9" />
+        <ext:Hidden runat="server" Text="<%$ Resources:Common,October%>" ID="m10" />
+        <ext:Hidden runat="server" Text="<%$ Resources:Common,November%>" ID="m11" />
+        <ext:Hidden runat="server" Text="<%$ Resources:Common,December%>" ID="m12" />
         <ext:Store
             ID="Store1"
             runat="server"
@@ -106,15 +125,15 @@
             </Sorters>
         </ext:Store>
 
+        <ext:Viewport ID="Viewport1" runat="server" Layout="BorderLayout">
+            <Items>
 
+                <ext:Panel runat="server"  Region="Center">
 
-
-        <ext:Panel runat="server" Layout="FitLayout">
-
-            <TopBar>
-                <ext:Toolbar runat="server">
-                    <Items>
-                        <ext:Button ID="btnAdd" runat="server" Text="<%$ Resources:Common , Add %>" Icon="Add">
+                    <TopBar>
+                        <ext:Toolbar runat="server">
+                            <Items>
+                                <ext:Button ID="btnAdd" runat="server" Text="<%$ Resources:Common , Add %>" Icon="Add">
                                     <Listeners>
                                         <Click Handler="CheckSession();" />
                                     </Listeners>
@@ -124,44 +143,44 @@
                                         </Click>
                                     </DirectEvents>
                                 </ext:Button>
-                        <ext:ComboBox runat="server" ValueField="recordId" DisplayField="name" ID="branchId" Name="branchId" EmptyText="<%$ Resources:FieldBranch%>" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1">
-                            <Store>
-                                <ext:Store runat="server" ID="branchStore">
-                                    <Model>
-                                        <ext:Model runat="server">
-                                            <Fields>
-                                                <ext:ModelField Name="recordId" />
-                                                <ext:ModelField Name="name" />
-                                            </Fields>
-                                        </ext:Model>
-                                    </Model>
-                                </ext:Store>
-                            </Store>
-                            <Listeners>
-                                <Select Handler="#{Store1}.reload()" />
-                            </Listeners>
+                                <ext:ComboBox runat="server" ValueField="recordId" DisplayField="name" ID="branchId" Name="branchId" EmptyText="<%$ Resources:FieldBranch%>" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1">
+                                    <Store>
+                                        <ext:Store runat="server" ID="branchStore">
+                                            <Model>
+                                                <ext:Model runat="server">
+                                                    <Fields>
+                                                        <ext:ModelField Name="recordId" />
+                                                        <ext:ModelField Name="name" />
+                                                    </Fields>
+                                                </ext:Model>
+                                            </Model>
+                                        </ext:Store>
+                                    </Store>
+                                    <Listeners>
+                                        <Select Handler="#{Store1}.reload()" />
+                                    </Listeners>
 
-                        </ext:ComboBox>
+                                </ext:ComboBox>
 
-                        <ext:ComboBox runat="server" ValueField="recordId" DisplayField="name" ID="departmentId" Name="departmentId" EmptyText="<%$ Resources:FieldDepartment%>" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1">
-                            <Store>
-                                <ext:Store runat="server" ID="departmentStore">
-                                    <Model>
-                                        <ext:Model runat="server">
-                                            <Fields>
-                                                <ext:ModelField Name="recordId" />
-                                                <ext:ModelField Name="name" />
-                                            </Fields>
-                                        </ext:Model>
-                                    </Model>
-                                </ext:Store>
-                            </Store>
-                            <Listeners>
-                                <Select Handler="#{Store1}.reload()" />
-                            </Listeners>
+                                <ext:ComboBox runat="server" ValueField="recordId" DisplayField="name" ID="departmentId" Name="departmentId" EmptyText="<%$ Resources:FieldDepartment%>" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1">
+                                    <Store>
+                                        <ext:Store runat="server" ID="departmentStore">
+                                            <Model>
+                                                <ext:Model runat="server">
+                                                    <Fields>
+                                                        <ext:ModelField Name="recordId" />
+                                                        <ext:ModelField Name="name" />
+                                                    </Fields>
+                                                </ext:Model>
+                                            </Model>
+                                        </ext:Store>
+                                    </Store>
+                                    <Listeners>
+                                        <Select Handler="#{Store1}.reload()" />
+                                    </Listeners>
 
-                        </ext:ComboBox>
-                        <%--   <ext:ComboBox runat="server" ValueField="recordId" DisplayField="name" ID="monthCombo" Name="month" EmptyText="<%$ Resources:FieldMonth%>" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1">
+                                </ext:ComboBox>
+                                <%--   <ext:ComboBox runat="server" ValueField="recordId" DisplayField="name" ID="monthCombo" Name="month" EmptyText="<%$ Resources:FieldMonth%>" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1">
                                        <Items>
                                            <ext:ListItem Text="<%$ Resources:Common,January%>" Value="1" />
                                            <ext:ListItem Text="<%$ Resources:Common,February%>" Value="2" />
@@ -189,100 +208,100 @@
                                            
                                        </Items>
                                        </ext:ComboBox>--%>
-                        <ext:ComboBox runat="server" ID="employeeFilter" Width="130" LabelAlign="Top"
-                            DisplayField="fullName"
-                            ValueField="recordId" AllowBlank="true"
-                            TypeAhead="false"
-                            HideTrigger="true" SubmitValue="true"
-                            MinChars="3" EmptyText="<%$ Resources: FilterEmployee%>"
-                            TriggerAction="Query" ForceSelection="false">
-                            <Store>
-                                <ext:Store runat="server" ID="Store2" AutoLoad="false">
-                                    <Model>
-                                        <ext:Model runat="server">
-                                            <Fields>
-                                                <ext:ModelField Name="recordId" />
-                                                <ext:ModelField Name="fullName" />
-                                            </Fields>
-                                        </ext:Model>
-                                    </Model>
-                                    <Proxy>
-                                        <ext:PageProxy DirectFn="App.direct.FillEmployeeFilter"></ext:PageProxy>
-                                    </Proxy>
-                                </ext:Store>
-                            </Store>
-                            <Listeners>
-                                <Select Handler="#{Store1}.reload()" />
-                            </Listeners>
+                                <ext:ComboBox runat="server" ID="employeeFilter" Width="130" LabelAlign="Top"
+                                    DisplayField="fullName"
+                                    ValueField="recordId" AllowBlank="true"
+                                    TypeAhead="false"
+                                    HideTrigger="true" SubmitValue="true"
+                                    MinChars="3" EmptyText="<%$ Resources: FilterEmployee%>"
+                                    TriggerAction="Query" ForceSelection="false">
+                                    <Store>
+                                        <ext:Store runat="server" ID="Store2" AutoLoad="false">
+                                            <Model>
+                                                <ext:Model runat="server">
+                                                    <Fields>
+                                                        <ext:ModelField Name="recordId" />
+                                                        <ext:ModelField Name="fullName" />
+                                                    </Fields>
+                                                </ext:Model>
+                                            </Model>
+                                            <Proxy>
+                                                <ext:PageProxy DirectFn="App.direct.FillEmployeeFilter"></ext:PageProxy>
+                                            </Proxy>
+                                        </ext:Store>
+                                    </Store>
+                                    <Listeners>
+                                        <Select Handler="#{Store1}.reload()" />
+                                    </Listeners>
 
-                        </ext:ComboBox>
+                                </ext:ComboBox>
 
-                        <ext:ComboBox runat="server" ID="includeOpen" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1"
-                            EmptyText="<%$ Resources: FilterStatus %>">
-                            <Items>
+                                <ext:ComboBox runat="server" ID="includeOpen" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1"
+                                    EmptyText="<%$ Resources: FilterStatus %>">
+                                    <Items>
 
-                                <ext:ListItem Text="<%$ Resources: FieldPending %>" Value="0" />
-                                <ext:ListItem Text="<%$ Resources: FieldApproved %>" Value="1" />
-                                <ext:ListItem Text="<%$ Resources: FieldRefused %>" Value="2" />
-                                <ext:ListItem Text="<%$ Resources: FieldAll %>" Value="3" />
+                                        <ext:ListItem Text="<%$ Resources: FieldPending %>" Value="0" />
+                                        <ext:ListItem Text="<%$ Resources: FieldApproved %>" Value="1" />
+                                        <ext:ListItem Text="<%$ Resources: FieldRefused %>" Value="2" />
+                                        <ext:ListItem Text="<%$ Resources: FieldAll %>" Value="3" />
+                                    </Items>
+                                    <Listeners>
+                                        <Select Handler="#{Store1}.reload()" />
+                                    </Listeners>
+                                </ext:ComboBox>
+                                <ext:Button ID="applyButton" runat="server" Text="<%$ Resources: ApplyFilter%>">
+                                    <Listeners>
+                                        <Click Handler="CheckSession(); App.direct.UpdateCal(#{CurrentMonth}.value,#{CurrentYear}.value);" />
+                                    </Listeners>
+
+                                </ext:Button>
                             </Items>
-                            <Listeners>
-                                <Select Handler="#{Store1}.reload()" />
-                            </Listeners>
-                        </ext:ComboBox>
-                        <ext:Button ID="applyButton" runat="server" Text="<%$ Resources: ApplyFilter%>">
-                            <Listeners>
-                                <Click Handler="CheckSession(); App.direct.UpdateCal(#{CurrentMonth}.value,#{CurrentYear}.value);" />
-                            </Listeners>
-
-                        </ext:Button>
-                    </Items>
-                </ext:Toolbar>
-            </TopBar>
-            <Items>
-                <ext:Panel runat="server" Layout="HBoxLayout">
+                        </ext:Toolbar>
+                    </TopBar>
                     <Items>
-                        <ext:Button runat="server" Text="<">
-                            <Listeners>
-                                <Click Handler="CheckSession(); if(parseInt(#{CurrentMonth}.value)<1) {#{currentMonth}.value = 12; #{CurrentYear}.value = parseInt(#{CurrentYear}.value) - 1; } else{ #{CurrentMonth}.value = parseInt(#{CurrentMonth}.value) -1; } App.direct.UpdateCal(#{CurrentMonth}.value,#{CurrentYear}.value); #{monthLbl}.setText(getMonthByNumber(#{CurrentMonth}.value)); #{yearLbl}.setText(#{CurrentYear}.value);" />
-                            </Listeners>
-                        </ext:Button>
-                        <ext:Container ID="cont" runat="server">
-                            <Content>
-                                <ext:Label runat="server" ID="monthLbl" StyleSpec="text-align:center;" />
-                                <ext:Label runat="server" ID="Label1" StyleSpec="text-align:center;"  Text="- "/>
-                                <ext:Label runat="server" ID="yearLbl" StyleSpec="text-align:center;" />
-                                <DayPilot:DayPilotScheduler ID="DayPilotScheduler1" runat="server"
-                                    HeaderFontSize="8pt" HeaderHeight="20"
-                                    EventClickHandling="JavaScript"
-                                    EventClickJavaScript="App.direct.HandleClick({0});"
-                                    EventFontSize="11px"
-                                    CellDuration="1440"
-                                    OnEventClick="DayPilotScheduler1_EventClick"
-                                    OnBeforeEventRender="DayPilotScheduler1_BeforeEventRender"
-                                    EventHeight="25">
-                                </DayPilot:DayPilotScheduler>
-                            </Content>
-                        </ext:Container>
+                        <ext:Panel runat="server" Layout="HBoxLayout">
+                            <Items>
+                                <ext:Button runat="server" Text="<">
+                                    <Listeners>
+                                        <Click Handler="CheckSession(); if(parseInt(#{CurrentMonth}.value)<1) {#{currentMonth}.value = 12; #{CurrentYear}.value = parseInt(#{CurrentYear}.value) - 1; } else{ #{CurrentMonth}.value = parseInt(#{CurrentMonth}.value) -1; } App.direct.UpdateCal(#{CurrentMonth}.value,#{CurrentYear}.value); #{monthLbl}.setText(getMonthByNumber(#{CurrentMonth}.value)); #{yearLbl}.setText(#{CurrentYear}.value);" />
+                                    </Listeners>
+                                </ext:Button>
+                                <ext:Container ID="cont" runat="server" Flex="1">
+                                    <Content>
+                                        <ext:Label runat="server" ID="monthLbl" StyleSpec="text-align:center;" />
+                                        <ext:Label runat="server" ID="Label1" StyleSpec="text-align:center;" Text="- " />
+                                        <ext:Label runat="server" ID="yearLbl" StyleSpec="text-align:center;" />
+                                        <DayPilot:DayPilotScheduler ID="DayPilotScheduler1" runat="server"
+                                            HeaderFontSize="8pt" HeaderHeight="20" CssOnly="false" 
+                                            EventClickHandling="JavaScript"
+                                            EventClickJavaScript="App.direct.HandleClick({0});"
+                                            EventFontSize="11px"
+                                            CellDuration="1440"
+                                            OnEventClick="DayPilotScheduler1_EventClick"
+                                            OnBeforeEventRender="DayPilotScheduler1_BeforeEventRender"
+                                            EventHeight="25"  >
+                                        </DayPilot:DayPilotScheduler>
+                                    </Content>
+                                </ext:Container>
 
 
-                        <ext:Button runat="server" Text=">">
-                            <Listeners>
-                                <Click Handler="CheckSession(); if(parseInt(#{CurrentMonth}.value)>11) {#{currentMonth}.value = 1; #{CurrentYear}.value = parseInt(#{CurrentYear}.value) + 1; } else{ #{CurrentMonth}.value = parseInt(#{CurrentMonth}.value) + 1; } App.direct.UpdateCal(#{CurrentMonth}.value,#{CurrentYear}.value); #{monthLbl}.setText(getMonthByNumber(#{CurrentMonth}.value));#{yearLbl}.setText(#{CurrentYear}.value);" />
-                            </Listeners>
-                        </ext:Button>
+                                <ext:Button runat="server" Text=">">
+                                    <Listeners>
+                                        <Click Handler="CheckSession(); if(parseInt(#{CurrentMonth}.value)>11) {#{currentMonth}.value = 1; #{CurrentYear}.value = parseInt(#{CurrentYear}.value) + 1; } else{ #{CurrentMonth}.value = parseInt(#{CurrentMonth}.value) + 1; } App.direct.UpdateCal(#{CurrentMonth}.value,#{CurrentYear}.value); #{monthLbl}.setText(getMonthByNumber(#{CurrentMonth}.value));#{yearLbl}.setText(#{CurrentYear}.value);" />
+                                    </Listeners>
+                                </ext:Button>
+                            </Items>
+                        </ext:Panel>
                     </Items>
+                    <Content>
+                    </Content>
+
                 </ext:Panel>
             </Items>
-            <Content>
-            </Content>
-
-        </ext:Panel>
 
 
 
-
-
+        </ext:Viewport>
 
 
 

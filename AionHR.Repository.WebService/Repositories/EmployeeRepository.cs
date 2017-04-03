@@ -52,6 +52,8 @@ namespace AionHR.Repository.WebService.Repositories
             ChildGetAllLookup.Add(typeof(CheckType), "qryCT");
             ChildGetAllLookup.Add(typeof(TerminationReason), "qryTR");
             ChildGetAllLookup.Add(typeof(AssetAllowance), "qryAA");
+            ChildGetAllLookup.Add(typeof(EmployeeContact), "qryEC");
+            ChildGetAllLookup.Add(typeof(RelationshipType), "qryRT");
 
 
             ChildGetLookup.Add(typeof(Sponsor), "getSP");
@@ -76,6 +78,11 @@ namespace AionHR.Repository.WebService.Repositories
             ChildGetLookup.Add(typeof(CheckType), "getCT");
             ChildGetLookup.Add(typeof(TerminationReason), "getTR");
             ChildGetLookup.Add(typeof(AssetAllowance), "getAA");
+            ChildGetLookup.Add(typeof(EmployeeContact), "getEC");
+            ChildGetLookup.Add(typeof(RelationshipType), "getRT");
+
+
+
 
             ChildAddOrUpdateLookup.Add(typeof(Sponsor), "setSP");
             ChildAddOrUpdateLookup.Add(typeof(AllowanceType), "setAT");
@@ -101,6 +108,10 @@ namespace AionHR.Repository.WebService.Repositories
             ChildAddOrUpdateLookup.Add(typeof(TerminationReason), "setTR");
             ChildAddOrUpdateLookup.Add(typeof(EmployeeTermination), "setTE");
             ChildAddOrUpdateLookup.Add(typeof(AssetAllowance), "setAA");
+            ChildAddOrUpdateLookup.Add(typeof(EmployeeContact), "setEC");
+            ChildAddOrUpdateLookup.Add(typeof(RelationshipType), "setRT");
+
+
 
             ChildDeleteLookup.Add(typeof(Sponsor), "delSP");
             ChildDeleteLookup.Add(typeof(AllowanceType), "delAT");
@@ -123,7 +134,9 @@ namespace AionHR.Repository.WebService.Repositories
             ChildDeleteLookup.Add(typeof(EmployeeBackgroundCheck), "delBC");
             ChildDeleteLookup.Add(typeof(CheckType), "delCT");
             ChildDeleteLookup.Add(typeof(TerminationReason), "detTR");
-            ChildDeleteLookup.Add(typeof(AssetAllowance), "detAA");
+            ChildDeleteLookup.Add(typeof(AssetAllowance), "delAA");
+            ChildDeleteLookup.Add(typeof(EmployeeContact), "delEC");
+            ChildDeleteLookup.Add(typeof(RelationshipType), "delRT");
 
         }
 
