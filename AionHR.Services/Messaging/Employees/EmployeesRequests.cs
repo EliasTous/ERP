@@ -278,3 +278,30 @@ public class EmployeeDocumentAddOrUpdateRequest
 
     public string fileName { get; set; }
 }
+
+
+public class AssetAllowanceListRequest : ListRequest
+{
+    public int BranchId { get; set; }
+    public int DepartmentId { get; set; }
+    public int EmployeeId { get; set; }
+
+    public int AcId { get; set; }
+
+    public string SortBy { get; set; }
+    public override Dictionary<string, string> Parameters
+    {
+        get
+        {
+            parameters = base.Parameters;
+            parameters.Add("_branchId", BranchId.ToString());
+            parameters.Add("_departmentId", DepartmentId.ToString());
+            parameters.Add("_employeeId", EmployeeId.ToString());
+            parameters.Add("_acId", AcId.ToString());
+            parameters.Add("_sortBy", SortBy.ToString());
+
+
+            return parameters;
+        }
+    }
+}

@@ -117,40 +117,55 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="EditSkillWindowTitle" xml:space="preserve">
-    <value>Skills</value>
+  <data name="BasicInfoTabEditWindowTitle" xml:space="preserve">
+    <value>Asset Allowance Info</value>
   </data>
-  <data name="FieldCLName" xml:space="preserve">
-    <value>Level</value>
+  <data name="ButtonClear" xml:space="preserve">
+    <value>Clear</value>
   </data>
-  <data name="FieldDateFrom" xml:space="preserve">
-    <value>From</value>
+  <data name="EditWindowsTitle" xml:space="preserve">
+    <value>Asset Allowance Request</value>
   </data>
-  <data name="FieldDateTo" xml:space="preserve">
-    <value>To</value>
+  <data name="FieldAcName" xml:space="preserve">
+    <value>Asset Category Name</value>
   </data>
-  <data name="FieldDocumentRef" xml:space="preserve">
-    <value>Reference</value>
+  <data name="FieldAll" xml:space="preserve">
+    <value>All</value>
   </data>
-  <data name="FieldDocumentType" xml:space="preserve">
-    <value>Type</value>
+  <data name="FieldComment" xml:space="preserve">
+    <value>Comment</value>
   </data>
-  <data name="FieldExpiryDate" xml:space="preserve">
-    <value>Expiry Date</value>
+  <data name="FieldDate" xml:space="preserve">
+    <value>Date</value>
   </data>
-  <data name="FieldFile" xml:space="preserve">
-    <value>File</value>
+  <data name="FieldDescription" xml:space="preserve">
+    <value>Description</value>
   </data>
-  <data name="FieldGrade" xml:space="preserve">
-    <value>Grade</value>
+  <data name="FieldEmployeeName" xml:space="preserve">
+    <value>Employee Name</value>
   </data>
-  <data name="FieldInst" xml:space="preserve">
-    <value>Institution</value>
+  <data name="FieldRecordId" xml:space="preserve">
+    <value>Record ID</value>
   </data>
-  <data name="FieldMajor" xml:space="preserve">
-    <value>Major</value>
+  <data name="FieldReturnedDate" xml:space="preserve">
+    <value>Returned Date</value>
   </data>
-  <data name="FieldRemarks" xml:space="preserve">
-    <value>Remakrs</value>
+  <data name="FieldSerialNo" xml:space="preserve">
+    <value>Serial No</value>
+  </data>
+  <data name="FilterAssetCateg" xml:space="preserve">
+    <value>Select an Asset Category</value>
+  </data>
+  <data name="FilterBranch" xml:space="preserve">
+    <value>Select a Branch</value>
+  </data>
+  <data name="FilterDepartment" xml:space="preserve">
+    <value>Select a Department</value>
+  </data>
+  <data name="FilterEmployee" xml:space="preserve">
+    <value>Select an Employee</value>
+  </data>
+  <data name="WindowTitle" xml:space="preserve">
+    <value>Leave Requests</value>
   </data>
 </root>

@@ -17,5 +17,7 @@ namespace AionHR.Model.Employees.Profile
         public DateTime dateFrom { get; set; }
         public DateTime dateTo { get; set; }
         public double? grade { get; set; }
+
+        public string major { get; set; }
     }
 }

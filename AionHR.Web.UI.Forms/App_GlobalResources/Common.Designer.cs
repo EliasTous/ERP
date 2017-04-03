@@ -151,6 +151,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Asset Allowances.
+        /// </summary>
+        internal static string AssetAllowances {
+            get {
+                return ResourceManager.GetString("AssetAllowances", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Asset Categories.
         /// </summary>
         internal static string AssetCategories {

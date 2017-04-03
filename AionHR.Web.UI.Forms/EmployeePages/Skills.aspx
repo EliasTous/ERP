@@ -70,6 +70,7 @@
                                         <ext:ModelField Name="dateFrom" />
                                         <ext:ModelField Name="dateTo" />
                                         <ext:ModelField Name="grade" />
+                                        <ext:ModelField Name="major" />
 
                                     </Fields>
                                 </ext:Model>
@@ -121,6 +122,7 @@
                             
                             <ext:DateColumn  CellCls="cellLink" ID="dateToColumn" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDateTo%>" DataIndex="dateTo" Width="100" Hideable="false" />
                             <ext:NumberColumn CellCls="cellLink" ID="Column4" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldGrade%>" DataIndex="grade" Flex="2" Hideable="false" />
+                            <ext:Column CellCls="cellLink" ID="Column2" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldMajor%>" DataIndex="major" Flex="2" Hideable="false" />
 
 
                             <ext:Column runat="server"
@@ -214,7 +216,7 @@
             Icon="PageEdit"
             Title="<%$ Resources:EditSkillWindowTitle %>"
             Width="450"
-            Height="330"
+            Height="360"
             AutoShow="false"
             Modal="true"
             Hidden="true"
@@ -274,6 +276,7 @@
                                 
                                 <ext:TextArea runat="server" Name="remarks"  ID="remarks"  FieldLabel="<%$ Resources:FieldRemarks%>" />
                                 <ext:NumberField runat="server" Name="grade" ID="grade" FieldLabel="<%$ Resources:FieldGrade%>" />
+                                <ext:TextField  runat="server" Name="major" AllowBlank="false"  ID="major"  FieldLabel="<%$ Resources:FieldMajor%>" />
                             </Items>
 
                         </ext:FormPanel>

@@ -663,4 +663,7 @@
   <data name="RecoverySentSucc" xml:space="preserve">
     <value>Your Reset password email has been sent successfully</value>
   </data>
+  <data name="AssetAllowances" xml:space="preserve">
+    <value>Asset Allowances</value>
+  </data>
 </root>
