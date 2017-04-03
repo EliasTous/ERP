@@ -28,6 +28,7 @@ using AionHR.Model.LeaveManagement;
 using AionHR.Services.Messaging.System;
 using AionHR.Model.Company.Cases;
 using System.Net;
+using AionHR.Infrastructure.Domain;
 
 namespace AionHR.Web.UI.Forms
 {
@@ -124,7 +125,7 @@ namespace AionHR.Web.UI.Forms
                 FillDepartment();
                 FillDivision();
                 statusPref.Select(0);
-
+                dateCol.Format = _systemService.SessionHelper.GetDateformat() + ": hh:mm:ss";
 
             }
 
@@ -849,6 +850,18 @@ namespace AionHR.Web.UI.Forms
 
         protected void AddAttachments(object sender, DirectEventArgs e)
         {
+            ListRequest req = new ListRequest();
+            ListResponse<DocumentType> docs = _employeeService.ChildGetAll<DocumentType>(req);
+            if(!docs.Success)
+            {
+                return;
+            }
+            List<object> options = new List<object>();
+            foreach (var item in docs.Items)
+            {
+                options.Add(new { text = item.name, value = item.recordId });
+            }
+            X.Call("InitTypes", options);
             AttachmentsWindow.Show();
         }
         protected void PoPuPAttachement(object sender, DirectEventArgs e)
@@ -985,7 +998,7 @@ namespace AionHR.Web.UI.Forms
             {
                 //Step 1 Code to delete the object from the database 
                 Attachement n = new Attachement();
-                n.classRef = "CMCA";
+                n.classId = ClassId.CMCA;
                 n.recordId = Convert.ToInt32(currentCase.Text);
                 n.seqNo = Convert.ToInt16(index);
 

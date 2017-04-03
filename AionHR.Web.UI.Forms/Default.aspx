@@ -29,7 +29,10 @@
     <ext:Hidden runat="server" ID="scrTitle" Text="<%$Resources: Common , SalaryChangeReasons%>" />
     <ext:Hidden runat="server" ID="acTitle" Text="<%$Resources: Common , AssetCategories%>" />
     <ext:Hidden runat="server" ID="btTitle" Text="<%$Resources: Common , BonusTypes%>" />
-    <ext:Hidden runat="server" ID="bcTitle" Text="<%$Resources:Common , CheckTypes %>" />
+    <ext:Hidden runat="server" ID="deTitle" Text="<%$Resources:Common , Departments %>" />
+    <ext:Hidden runat="server" ID="brTitle" Text="<%$Resources:Common , Branches %>" />
+    <ext:Hidden runat="server" ID="caTitle" Text="<%$Resources:Common , WorkingCalendars %>" />
+    <ext:Hidden runat="server" ID="roTitle" Text="<%$Resources:Common , Routers %>" />
     <ext:Hidden runat="server" ID="TrType2" Text="<%$Resources:Common , TrType2 %>" />
     <ext:Hidden runat="server" ID="TrType3" Text="<%$Resources:Common , TrType3 %>" />
     <ext:Hidden runat="server" ID="TrType4" Text="<%$Resources:Common , TrType4 %>" />
@@ -67,6 +70,84 @@
             <ext:Panel ID="leftPanel" runat="server" Region="West" Layout="FitLayout" AutoUpdateLayout="true" Width="260" PaddingSpec="0 0 0 0" Padding="0"
                 Header="false" Collapsible="true" Split="true" CollapseMode="Mini" StyleSpec="border-bottom:2px solid #2A92D4;"
                 Title="<%$ Resources:Common , NavigationPane %>" CollapseToolText="<%$ Resources:Common , CollapsePanel %>" ExpandToolText="<%$ Resources:Common , ExpandPanel %>" Icon="ApplicationTileVertical" BodyBorder="0">
+                <BottomBar>
+                    <ext:Toolbar runat="server">
+                        <Items>
+                            <ext:Button ID="b1" runat="server" Icon="PageGear" ToolTip="<%$ Resources:Common , EmployeeFiles %>">
+                                <Listeners>
+                                    <%--<Click Handler="#{commonTree}.setTitle(this.tooltip);openModule(4);" />--%>
+                                </Listeners>
+                                <Menu>
+
+                                    <ext:Menu runat="server">
+
+                                        <Items>
+                                            <ext:MenuItem runat="server" Text="<%$ Resources:Common , EmployeeFiles %>">
+
+                                                <Menu>
+                                                    <ext:Menu runat="server">
+                                                        <Items>
+                                                            <ext:MenuItem runat="server" Text="<%$Resources: Common , Sponsors%>">
+                                                                <Listeners>
+                                                                    <Click Handler="openNewTab('sponsors', 'Sponsors.aspx', #{sponsorsTitle}.value, 'icon-Employees')" />
+                                                                </Listeners>
+                                                            </ext:MenuItem>
+                                                            <ext:MenuItem runat="server" Text="<%$Resources: Common , CertificateLevels%>">
+                                                                <Listeners>
+                                                                    <Click Handler="openNewTab('certificateLevels', 'CertificateLevels.aspx', #{clTitle}.value, 'icon-Employees')" />
+                                                                </Listeners>
+                                                            </ext:MenuItem>
+                                                        </Items>
+                                                    </ext:Menu>
+                                                </Menu>
+                                            </ext:MenuItem>
+                                            <ext:MenuItem runat="server" Text="<%$ Resources:Common , CompanyStructure %>">
+
+                                                <Menu>
+                                                    <ext:Menu runat="server">
+                                                        <Items>
+                                                            <ext:MenuItem runat="server" Text="<%$Resources: Common , Departments%>">
+                                                                <Listeners>
+                                                                    <Click Handler="openNewTab('departments', 'Departments.aspx', #{deTitle}.value, 'icon-Employees')" />
+                                                                </Listeners>
+                                                            </ext:MenuItem>
+                                                            <ext:MenuItem runat="server" Text="<%$Resources: Common , Branches%>">
+                                                                <Listeners>
+                                                                    <Click Handler="openNewTab('branches', 'Branches.aspx', #{brTitle}.value, 'icon-Employees')" />
+                                                                </Listeners>
+                                                            </ext:MenuItem>
+                                                        </Items>
+                                                    </ext:Menu>
+                                                </Menu>
+                                            </ext:MenuItem>
+                                            <ext:MenuItem runat="server" Text="<%$ Resources:Common , TimeAttendance %>">
+
+                                                <Menu>
+                                                    <ext:Menu runat="server">
+                                                        <Items>
+                                                            <ext:MenuItem runat="server" Text="<%$Resources: Common , Routers%>">
+                                                                <Listeners>
+                                                                    <Click Handler="openNewTab('ro', 'Routers.aspx', #{roTitle}.value, 'icon-Employees')" />
+                                                                </Listeners>
+                                                            </ext:MenuItem>
+                                                            <ext:MenuItem runat="server" Text="<%$Resources: Common , WorkingCalendars%>">
+                                                                <Listeners>
+                                                                    <Click Handler="openNewTab('calendars', 'WorkingCalendars.aspx', #{caTitle}.value, 'icon-Employees')" />
+                                                                </Listeners>
+                                                            </ext:MenuItem>
+                                                        </Items>
+                                                    </ext:Menu>
+                                                </Menu>
+                                            </ext:MenuItem>
+
+
+                                        </Items>
+                                    </ext:Menu>
+                                </Menu>
+                            </ext:Button>
+                        </Items>
+                    </ext:Toolbar>
+                </BottomBar>
                 <TopBar>
                     <ext:Toolbar ID="Toolbar1" runat="server" Border="true">
                         <Items>
@@ -74,7 +155,7 @@
                             <ext:Button ID="btnEmployeeFiles" runat="server" Icon="Group" ToolTip="<%$ Resources:Common , EmployeeFiles %>">
                                 <Listeners>
                                     <%--<Click Handler="#{commonTree}.setTitle(this.tooltip);openModule(1);" />--%>
-                                    <Click Handler="openModule(1);#{b1}.setVisible(true); #{b2}.setVisible(false); #{b3}.setVisible(false);" />
+                                    <Click Handler="openModule(1);" />
                                 </Listeners>
                                 <Menu>
                                 </Menu>
@@ -86,7 +167,7 @@
                             <ext:Button ID="btnCompany" runat="server" Icon="Building" ToolTip="<%$ Resources:Common , Company %>">
                                 <Listeners>
                                     <%--<Click Handler="#{commonTree}.setTitle(this.tooltip);openModule(3);" />--%>
-                                    <Click Handler="openModule(3);#{b1}.setVisible(false); #{b2}.setVisible(true); #{b3}.setVisible(false);" />
+                                    <Click Handler="openModule(3);" />
                                 </Listeners>
 
 
@@ -95,7 +176,7 @@
                             <ext:Button ID="btnScheduler" runat="server" Icon="CalendarSelectDay" ToolTip="<%$ Resources:Common , Scheduler %>">
                                 <Listeners>
                                     <%--<Click Handler="#{commonTree}.setTitle(this.tooltip);openModule(4);" />--%>
-                                    <Click Handler="openModule(4); #{b1}.setVisible(false); #{b2}.setVisible(false); #{b3}.setVisible(true); " />
+                                    <Click Handler="openModule(4);  " />
                                 </Listeners>
                                 <Menu>
                                 </Menu>
@@ -107,43 +188,8 @@
                                 </Listeners>
                             </ext:Button>--%>
                             <ext:ToolbarFill runat="server" />
-                            <ext:Button ID="b1" runat="server" Icon="DatabaseGear" ToolTip="<%$ Resources:Common , EmployeeFiles %>">
-                                <Listeners>
-                                    <%--<Click Handler="#{commonTree}.setTitle(this.tooltip);openModule(4);" />--%>
-                                </Listeners>
-                                <Menu>
+                           
 
-                                    <ext:Menu runat="server">
-
-                                        <Items>
-                                            <ext:MenuItem runat="server" Text="<%$Resources: Common , Sponsors%>"  >
-                                                <Listeners>
-                                                    <Click Handler="openNewTab('sponsors', 'Sponsors.aspx', #{sponsorsTitle}.value, 'icon-Employees')" />
-                                                </Listeners>
-                                                </ext:MenuItem>
-                                             <ext:MenuItem runat="server" Text="<%$Resources: Common , CertificateLevels%>"  >
-                                                <Listeners>
-                                                    <Click Handler="openNewTab('certificateLevels', 'CertificateLevels.aspx', #{clTitle}.value, 'icon-Employees')" />
-                                                </Listeners>
-                                                </ext:MenuItem>
-
-                                            
-                                        </Items>
-                                    </ext:Menu>
-                                </Menu>
-                            </ext:Button>
-                            <ext:Button ID="b2" runat="server" Hidden="true" Icon="DatabaseGear" ToolTip="<%$ Resources:Common , Company %>">
-                                <Listeners>
-                                    <%--<Click Handler="#{commonTree}.setTitle(this.tooltip);openModule(4);" />--%>
-                                    <Click Handler="openModule(3);" />
-                                </Listeners>
-                            </ext:Button>
-                            <ext:Button ID="b3" runat="server" Hidden="true" Icon="DatabaseGear" ToolTip="<%$ Resources:Common , Scheduler %>">
-                                <Listeners>
-                                    <%--<Click Handler="#{commonTree}.setTitle(this.tooltip);openModule(4);" />--%>
-                                    <Click Handler="openModule(1);" />
-                                </Listeners>
-                            </ext:Button>
 
                         </Items>
                     </ext:Toolbar>

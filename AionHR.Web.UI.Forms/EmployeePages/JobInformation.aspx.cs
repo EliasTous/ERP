@@ -22,6 +22,7 @@ using AionHR.Services.Messaging;
 using AionHR.Model.Company.Structure;
 using AionHR.Model.System;
 using AionHR.Model.Employees.Profile;
+using AionHR.Services.Messaging.System;
 
 namespace AionHR.Web.UI.Forms.EmployeePages
 {
@@ -224,7 +225,22 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                         return;
                     }
                     //Step 2 : call setvalues with the retrieved object
+                   
                     this.EditJobInfoTab.SetValues(response2.result);
+                    if (response2.result.reportToId.HasValue)
+                    {
+
+                        reportToId.GetStore().Add(new object[]
+                           {
+                                new
+                                {
+                                    recordId = response2.result.reportToId,
+                                    fullName =response2.result.reportToName.fullName
+                                }
+                           });
+                        reportToId.SetValue(response2.result.reportToId);
+
+                    }
                     FillDepartment();
                     FillBranch();
                     FillDivision();
@@ -612,6 +628,10 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                 b.positionName = positionId.SelectedItem.Text;
             if (divisionId.SelectedItem != null)
                 b.divisionName = divisionId.SelectedItem.Text;
+
+            b.reportToName = new EmployeeName();
+            if (reportToId.SelectedItem != null)
+                b.reportToName.fullName = reportToId.SelectedItem.Text;
             // Define the object to add or edit as null
 
             if (string.IsNullOrEmpty(id))
@@ -696,7 +716,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                         record.Set("branchName", b.branchName);
                         record.Set("positionName", b.positionName);
                         record.Set("divisionName", b.divisionName);
-
+                        record.Set("reportToName", b.reportToName);
                         record.Commit();
                         Notification.Show(new NotificationConfig
                         {
@@ -780,6 +800,45 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                 X.Msg.Alert(Resources.Common.Error, resp.Summary).Show();
             divisionStore.DataSource = resp.Items;
             divisionStore.DataBind();
+        }
+
+        [DirectMethod]
+        public object FillSupervisor(string action, Dictionary<string, object> extraParams)
+        {
+
+            StoreRequestParameters prms = new StoreRequestParameters(extraParams);
+
+
+
+            List<Employee> data = GetEmployeesFiltered(prms.Query);
+            if (data == null)
+                data = new List<Employee>();
+            data.ForEach(s => { s.fullName = s.name.fullName; });
+            //  return new
+            // {
+            return data;
+            //};
+
+        }
+
+        private List<Employee> GetEmployeesFiltered(string query)
+        {
+
+            EmployeeListRequest req = new EmployeeListRequest();
+            req.DepartmentId = "0";
+            req.BranchId = "0";
+            req.IncludeIsInactive = 2;
+            req.SortBy = GetNameFormat();
+
+            req.StartAt = "1";
+            req.Size = "20";
+            req.Filter = query;
+
+
+
+
+            ListResponse<Employee> response = _employeeService.GetAll<Employee>(req);
+            return response.Items;
         }
 
         #region combobox dynamic insert
@@ -901,7 +960,23 @@ namespace AionHR.Web.UI.Forms.EmployeePages
         }
         #endregion
 
+        private string GetNameFormat()
+        {
+            SystemDefaultRecordRequest req = new SystemDefaultRecordRequest();
+            req.Key = "nameFormat";
+            RecordResponse<KeyValuePair<string, string>> response = _systemService.ChildGetRecord<KeyValuePair<string, string>>(req);
+            if (!response.Success)
+            {
 
+            }
+            string paranthized = response.result.Value;
+            paranthized = paranthized.Replace('{', ' ');
+            paranthized = paranthized.Replace('}', ',');
+            paranthized = paranthized.Substring(0, paranthized.Length - 1);
+            paranthized = paranthized.Replace(" ", string.Empty);
+            return paranthized;
+
+        }
 
     }
 }

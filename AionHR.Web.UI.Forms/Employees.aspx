@@ -383,7 +383,13 @@
                                                 <ext:InputMask Mask="99999999" />
                                             </Plugins>
                                         </ext:TextField>
-                                        <ext:RadioGroup ID="gender" AllowBlank="true" runat="server" GroupName="gender" FieldLabel="<%$ Resources:FieldGender%>">
+                                      
+
+                                    </Items>
+                                </ext:Panel>
+                                <ext:Panel runat="server" MarginSpec="0 0 0 100">
+                                    <Items>
+                                          <ext:RadioGroup ID="gender" AllowBlank="true" runat="server" GroupName="gender" FieldLabel="<%$ Resources:FieldGender%>">
                                             <Items>
                                                 <ext:Radio runat="server" ID="gender0" Name="gender" InputValue="0" BoxLabel="<%$ Resources:Common ,Male%>" />
                                                 <ext:Radio runat="server" ID="gender1" Name="gender" InputValue="1" BoxLabel="<%$ Resources:Common ,Female%>" />
@@ -400,11 +406,6 @@
                                                 <ext:ListItem Text="<%$ Resources:Common, Religion6%>" Value="6"></ext:ListItem>
                                             </Items>
                                         </ext:ComboBox>
-
-                                    </Items>
-                                </ext:Panel>
-                                <ext:Panel runat="server" MarginSpec="0 0 0 100">
-                                    <Items>
                                         <ext:DateField
                                             runat="server"
                                             Name="birthDate"
@@ -441,7 +442,7 @@
                                                 <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
                                             </Listeners>
                                         </ext:ComboBox>
-                                        <ext:FieldContainer runat="server" Border="true">
+                                        <ext:FieldContainer runat="server" Border="true" Visible="false">
                                             <Items>
                                                 <ext:ComboBox Enabled="false" runat="server" AllowBlank="false" ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" ID="departmentId" Name="departmentId" FieldLabel="<%$ Resources:FieldDepartment%>" SimpleSubmit="true">
                                                     <Store>
@@ -741,6 +742,15 @@
                                     <Menu>
                                         <ext:Menu runat="server">
                                             <Items>
+                                                 <ext:MenuItem runat="server" Text="<%$ Resources:ResetPassword %>">
+                                                    <Listeners>
+                                                        <Click Handler="CheckSession();" />
+                                                        
+                                                    </Listeners>
+                                                    <DirectEvents>
+                                                        <Click OnEvent="ResetPassword" />
+                                                    </DirectEvents>
+                                                </ext:MenuItem>
                                                 <ext:MenuItem runat="server" Text="<%$ Resources:terminationWindowTitle %>">
                                                     <Listeners>
                                                         <Click Handler="CheckSession();" />
@@ -759,15 +769,7 @@
                                                     </DirectEvents>
                                                 </ext:MenuItem>
 
-                                                 <ext:MenuItem runat="server" Text="<%$ Resources:ResetPassword %>">
-                                                    <Listeners>
-                                                        <Click Handler="CheckSession();" />
-                                                        
-                                                    </Listeners>
-                                                    <DirectEvents>
-                                                        <Click OnEvent="ResetPassword" />
-                                                    </DirectEvents>
-                                                </ext:MenuItem>
+                                                
 
                                             </Items>
                                         </ext:Menu>
@@ -831,13 +833,22 @@
                                     <RightButtons>
                                         <ext:Button ID="Button5" runat="server" Icon="Add" Hidden="true">
                                             <Listeners>
-                                                <Click Handler="CheckSession();  " />
+                                                <Click Handler="CheckSession(); 
+                                                     App.direct.addTR( {
+                    success: function (result) { 
+                       if(result!=null)
+                                                    #{trStore}.insert(0,result);
+                                                    
+                    }
+                  
+                });
+                                                      " />
                                             </Listeners>
-                                            <DirectEvents>
+                                <%--            <DirectEvents>
 
-                                                <Click OnEvent="addTR">
+                                                <Click OnEvent="addTR" >
                                                 </Click>
-                                            </DirectEvents>
+                                            </DirectEvents>--%>
                                         </ext:Button>
                                     </RightButtons>
                                     <Listeners>

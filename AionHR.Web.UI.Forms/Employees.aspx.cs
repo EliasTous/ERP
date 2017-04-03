@@ -321,9 +321,9 @@ namespace AionHR.Web.UI.Forms
         {
             BasicInfoTab.Enabled = active;
             SetTabPanelActivated(active);
-            SaveButton.Enabled = active;
-            CancelButton.Enabled = active;
-            DeleteButton.Enabled = active;
+            SaveButton.Hidden = !active;
+            
+            DeleteButton.Hidden = !active;
 
         }
 
@@ -983,10 +983,12 @@ namespace AionHR.Web.UI.Forms
             }
 
         }
-        protected void addTR(object sender, DirectEventArgs e)
+
+        [DirectMethod]
+        public object addTR()
         {
             if (string.IsNullOrEmpty(trId.Text))
-                return;
+                return null;
             TerminationReason obj = new TerminationReason();
             obj.name = trId.Text;
 
@@ -997,14 +999,15 @@ namespace AionHR.Web.UI.Forms
             if (response.Success)
             {
                 obj.recordId = response.recordId;
-                FillTerminationReasons();
-                trId.Select(obj.recordId);
+                return obj;
+                
+                
             }
             else
             {
                 X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
                 X.Msg.Alert(Resources.Common.Error, response.Summary).Show();
-                return;
+                return null;
             }
 
         }

@@ -243,4 +243,7 @@
   <data name="PaymentMethodCash" xml:space="preserve">
     <value>Cash</value>
   </data>
+  <data name="FieldReportsTo" xml:space="preserve">
+    <value>Reports To</value>
+  </data>
 </root>

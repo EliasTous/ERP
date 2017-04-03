@@ -635,6 +635,7 @@
                                                         <ext:ModelField Name="comments" />
                                                         <ext:ModelField Name="pct" />
                                                         <ext:ModelField Name="fixedAmount" />
+                                                        <ext:ModelField Name="isTaxable" />
 
                                                     </Fields>
                                                 </ext:Model>
@@ -693,7 +694,16 @@
                                                 </Editor>
 
                                             </ext:CheckColumn>
+                                                     <ext:CheckColumn
+                                                runat="server"
+                                               Visible="false"
+                                                DataIndex="isTaxable"
+                                                Align="Center">
+                                                <Editor>
+                                                    <%--<ext:Checkbox ID="Checkbox1" runat="server" DataIndex="includeInTotal" Name="includeInTotal" InputValue="true" />--%>
+                                                </Editor>
 
+                                            </ext:CheckColumn>
 
                                             <ext:NumberColumn
                                                 runat="server" Flex="1"
@@ -793,6 +803,7 @@
                                                         <ext:ModelField Name="edName" />
                                                         <ext:ModelField Name="includeInTotal" />
                                                         <ext:ModelField Name="comments" />
+                                                        <ext:ModelField Name="isTaxable" />
                                                         <ext:ModelField Name="pct" />
                                                         <ext:ModelField Name="fixedAmount" />
 
@@ -872,7 +883,16 @@
                                                 </Editor>
 
                                             </ext:CheckColumn>
+                                             <ext:CheckColumn
+                                                runat="server"
+                                               Visible="false"
+                                                DataIndex="isTaxable"
+                                                Align="Center">
+                                                <Editor>
+                                                    <%--<ext:Checkbox ID="Checkbox1" runat="server" DataIndex="includeInTotal" Name="includeInTotal" InputValue="true" />--%>
+                                                </Editor>
 
+                                            </ext:CheckColumn>
 
                                             <ext:NumberColumn
                                                 runat="server"
@@ -1143,6 +1163,7 @@
                                 <ext:TextField ID="ENId" Hidden="true" runat="server" FieldLabel="<%$ Resources:FieldrecordId%>" Disabled="true" Name="recordId" />
                                 <ext:TextField ID="oldEntValue" Hidden="true" runat="server" FieldLabel="<%$ Resources:FieldrecordId%>" Disabled="true" Name="recordId" />
                                 <ext:Checkbox ID="oldENIncludeInFinal" Hidden="true" runat="server" disabled="true" />
+                              
                               <ext:ComboBox runat="server" ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" AllowBlank="false" DisplayField="name" ID="entEdId" Name="edId" FieldLabel="<%$ Resources:FieldEntitlement%>" SimpleSubmit="true" StoreID="entsStore">
                                             
                                              <RightButtons>
@@ -1163,6 +1184,7 @@
                                                 <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
                                             </Listeners>
                                         </ext:ComboBox>
+                                  <ext:Checkbox ID="enIsTaxable" DataIndex="isTaxable" Name="isTaxable"  FieldLabel="<%$ Resources:FieldIsTaxable%>"  runat="server" InputValue="True"  />
                                 <ext:Checkbox ID="EnIncludeInTotal" FieldLabel="<%$ Resources: FieldIncludeInTotal %>" runat="server" DataIndex="includeInTotal" Name="includeInTotal" InputValue="true" />
                                 <ext:Checkbox FieldLabel="<%$ Resources:FieldIsPercentage%>" runat="server">
                                     <Listeners>
@@ -1259,6 +1281,7 @@
                                  <ext:TextField ID="DEoldValue" Hidden="true" runat="server" FieldLabel="<%$ Resources:FieldrecordId%>" Disabled="true" Name="recordId" />
                                 <ext:TextField ID="DEId" Hidden="true" runat="server" FieldLabel="<%$ Resources:FieldrecordId%>" Disabled="true" Name="recordId" />
                                 <ext:Checkbox ID="oldDEIncludeInFinal" Hidden="true" runat="server" disabled="true" />
+                                
                                 <ext:ComboBox  runat="server" ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" AllowBlank="false" DisplayField="name" ID="dedEdId" Name="DEedId" FieldLabel="<%$ Resources:FieldDeduction%>" SimpleSubmit="true" StoreID="dedsStore">
                                     <RightButtons>
                                         <ext:Button ID="Button9" runat="server" Icon="Add" Hidden="true">
@@ -1283,7 +1306,7 @@
                                         <Change Handler="DETogglePerc(this.value)" />
                                     </Listeners>
                                 </ext:Checkbox>
-
+                                <ext:Checkbox ID="deIsTaxable" DataIndex="isTaxable" Name="isTaxable"  FieldLabel="<%$ Resources:FieldIsTaxable%>"  runat="server" InputValue="true" />
                                 <ext:NumberField
                                     runat="server"
                                     AllowBlank="false" ID="dePCT" Name="pct"

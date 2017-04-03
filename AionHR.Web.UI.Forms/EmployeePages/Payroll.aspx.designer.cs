@@ -1075,6 +1075,15 @@ namespace AionHR.Web.UI.Forms.EmployeePages {
         protected global::Ext.Net.Button Button10;
         
         /// <summary>
+        /// enIsTaxable control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Checkbox enIsTaxable;
+        
+        /// <summary>
         /// EnIncludeInTotal control.
         /// </summary>
         /// <remarks>
@@ -1199,6 +1208,15 @@ namespace AionHR.Web.UI.Forms.EmployeePages {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.Checkbox Checkbox1;
+        
+        /// <summary>
+        /// deIsTaxable control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Checkbox deIsTaxable;
         
         /// <summary>
         /// dePCT control.

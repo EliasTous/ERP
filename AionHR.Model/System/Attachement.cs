@@ -8,10 +8,12 @@ namespace AionHR.Model.System
 {
    public class Attachement
     {
-        public string classRef { get; set; }
+        public int classId { get; set; }
         public int recordId { get; set; }
         public short? seqNo { get; set; }
         public string fileName { get; set; }
         public string url { get; set; }
+
+        public DateTime date { get; set; }
     }
 }

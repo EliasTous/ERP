@@ -27,8 +27,27 @@
 <script src="Scripts/fileinput.js" type="text/javascript"></script>
 <script src="Scripts/theme.js" type="text/javascript">  </script>
     <script src="Scripts/moment.js" type="text/javascript">  </script>
+    <script src="Scripts/moment-timezone.js" type="text/javascript">  </script>
+
      <script type="text/javascript" src="Scripts/locales/ar.js?id=7" ></script>
  <script type="text/javascript">
+     var types = [];
+     var curIndex = 0;
+     var passed = 'no';
+     function InitTypes(s)
+     {
+         
+         types = s;
+     }
+     function dump(obj) {
+         var out = '';
+         for (var i in obj) {
+             out += i + ": " + obj[i] + "\n";
+
+
+         }
+         return out;
+     }
      function initBootstrap()
      {
         
@@ -43,12 +62,32 @@
              language:document.getElementById('CurrentLanguage').value,
              showZoom:false,
              showRemove: false,
-             
+             uploadExtraData: function () {
+                 //var extra = [];
+                 //alert(curIndex);
+                 //var x = document.getElementsByName("values");
+                 
+                 //var ext = { id: x[curIndex].value };
+                 //if(passed=='yes')
+                 //    curIndex = curIndex + 1;
+                 //passed = 'yes';
+                 //return ext;
+             },
              fileActionSettings: {
                  showDrag: false,
-                 showUpload:false,
-                 showZoom:false
+                 showUpload:true,
+                 showZoom: false,
+              
+                     
+                 
              },
+             layoutTemplates: {
+               
+                 actionUpload: '<select type="text" name="values"  >\n'+
+                     
+                     '</select>'
+          
+             }  ,
              showUploadedThumbs: false
            
              
@@ -63,11 +102,27 @@
              alert(msg);
          });
          $('#input-ke-1').on('filebatchuploadsuccess', function (event, data, msg) {
+             curIndex = 0;
+             passed = 'no';
              App.direct.FillFilesStore(document.getElementById('currentCase').value);
              App.AttachmentsWindow.close();
              
          });
-        
+     
+         $('#input-ke-1').on('fileloaded', function (event, file, previewId, index, reader) {
+             var x = document.getElementsByName("values");
+          
+             var s = $("#" + previewId).find("select")[0];
+            
+                 for(var j=0;j<types.length;j++)
+                 {
+                     var opt = document.createElement('option');
+                     opt.value = types[j].value;
+                     opt.innerHTML =  types[j].text;
+                     s.appendChild(opt);
+                 }
+             
+         });
      }
      
  </script>
@@ -678,6 +733,7 @@
                                         <ext:ModelField Name="seqNo" />
                                         <ext:ModelField Name="fileName" />
                                         <ext:ModelField Name="url" />
+                                        <ext:ModelField Name="date" />
                                        
 
                                     </Fields>
@@ -713,6 +769,9 @@
 
                             <ext:Column Visible="false" ID="Column4" MenuDisabled="true" runat="server" DataIndex="seqNo" Hideable="false" Width="75" Align="Center" />
                             <ext:Column CellCls="cellLink" ID="Column5" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldAttachmentName%>" DataIndex="fileName" Flex="2" Hideable="false" />
+                            <ext:DateColumn  ID="dateCol" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDate%>" DataIndex="date" Flex="2" Hideable="false" >
+                                <Renderer Handler="var s = moment(record.data['date']);   return s.calendar();" />
+                                </ext:DateColumn>
                           
 
                             <ext:Column runat="server"

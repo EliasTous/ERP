@@ -1,4 +1,5 @@
-﻿using AionHR.Model.System;
+﻿using AionHR.Infrastructure.Domain;
+using AionHR.Model.System;
 using AionHR.Services.Interfaces;
 using AionHR.Services.Messaging;
 using AionHR.Services.Messaging.System;
@@ -23,7 +24,7 @@ namespace AionHR.Web.UI.Forms
         {
            
             SystemAttachmentsPostRequest req = new SystemAttachmentsPostRequest();
-            req.entity = new Model.System.Attachement() { classRef = "CMCA", recordId = Convert.ToInt32(context.Request.QueryString["caseId"]) };
+            req.entity = new Model.System.Attachement() { classId = ClassId.CMCA, recordId = Convert.ToInt32(context.Request.QueryString["caseId"]) };
             //write your handler implementation here.
             if (context.Request.Files.Count <= 0)
             {

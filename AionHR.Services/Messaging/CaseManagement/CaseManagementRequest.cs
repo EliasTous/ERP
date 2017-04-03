@@ -1,4 +1,5 @@
-﻿using AionHR.Services.Messaging;
+﻿using AionHR.Infrastructure.Domain;
+using AionHR.Services.Messaging;
 using AionHR.Services.Messaging.System;
 using System.Collections.Generic;
 
@@ -56,6 +57,6 @@ public class CaseAttachmentsListRequest: SystemAttachmentsListRequest
 {
     public CaseAttachmentsListRequest()
     {
-        base.classRef = "CMCA";
+        base.classId = ClassId.CMCA;
     }
 }
