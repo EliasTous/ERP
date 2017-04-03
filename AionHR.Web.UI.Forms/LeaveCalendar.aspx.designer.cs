@@ -238,6 +238,15 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Model Model1;
         
         /// <summary>
+        /// Viewport1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Viewport Viewport1;
+        
+        /// <summary>
         /// btnAdd control.
         /// </summary>
         /// <remarks>
