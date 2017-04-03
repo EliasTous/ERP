@@ -74,7 +74,7 @@ namespace AionHR.Web.UI.Forms
                 HideShowColumns();
                 ColHireDate.Format = _systemService.SessionHelper.GetDateformat();
                 
-                inactivePref.Select(0);
+                inactivePref.Select("0");
                 CurrentClassId.Text = ClassId.EPEM.ToString();
             }
 
@@ -232,6 +232,8 @@ namespace AionHR.Web.UI.Forms
             divisionId.ReadOnly = !isAdd;
             FillNationality();
 
+            Button8.Hidden = isAdd;
+            gearButton.Hidden = isAdd;
 
             FillSponsor();
 
@@ -250,7 +252,7 @@ namespace AionHR.Web.UI.Forms
                 imgControl.ImageUrl = "";
 
             }
-            SetTabPanelActivated(isAdd);
+            SetTabPanelActivated(!isAdd);
 
         }
 
@@ -631,6 +633,7 @@ namespace AionHR.Web.UI.Forms
                         if (response.Success)
                         {
                             b.pictureUrl = response.result.pictureUrl + "?x=" + DateTime.Now;
+                            b.name = response.result.name;
                         }
                         //Add this record to the store 
                         this.Store1.Insert(0, b);
@@ -718,6 +721,7 @@ namespace AionHR.Web.UI.Forms
                         if (response.Success)
                         {
                             b.pictureUrl = response.result.pictureUrl + "?x=" + DateTime.Now;
+                            b.name = response.result.name;
                         }
                         ModelProxy record = this.Store1.GetById(index);
                         //BasicInfoTab.UpdateRecord(record);
@@ -841,12 +845,15 @@ namespace AionHR.Web.UI.Forms
                 forSummary.fullName + "<br />",
                 forSummary.departmentName + "<br />",
               forSummary.branchName + "<br />",
-               forSummary.positionName + "<br />"
+               forSummary.positionName + "<br />",
+               (forSummary.reportToName== null)?"": GetLocalResourceObject("FieldReportsTo").ToString() + forSummary.reportToName.fullName
             );
             fullNameLbl.Html = forSummary.fullName + "<br />";
             departmentLbl.Html = forSummary.departmentName + "<br />";
             branchLbl.Html = forSummary.branchName + "<br />";
             positionLbl.Html = forSummary.positionName + "<br />";
+            if (forSummary.reportToName != null)
+                reportsToLbl.Html = GetLocalResourceObject("FieldReportsTo").ToString() + forSummary.reportToName.fullName;
             //employeeName.Text = resp.result.name.firstName + resp.result.name.lastName;
             imgControl.ImageUrl = response.result.pictureUrl + "?x=" + DateTime.Now;
         }
@@ -1019,6 +1026,7 @@ namespace AionHR.Web.UI.Forms
         {
             terminationForm.Reset();
             FillTerminationReasons();
+            date.SelectedDate = DateTime.Today;
             terminationWindow.Show();
         }
 

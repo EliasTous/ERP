@@ -4,6 +4,7 @@ using AionHR.Infrastructure.Session;
 using AionHR.Infrastructure.Tokens;
 using AionHR.Model.Company.Cases;
 using AionHR.Model.Company.Structure;
+using AionHR.Model.EmployeeComplaints;
 using AionHR.Model.Employees;
 using AionHR.Model.LeaveManagement;
 using AionHR.Model.MasterModule;
@@ -54,6 +55,7 @@ namespace AionHR.Web.UI.Forms
                 For<ITimeAttendanceRepository>().Use<TimeAttendanceRepository>();
                 For<ICasesRepository>().Use<CasesRepository>();
                 For<IMediaGalleryRepository>().Use<MediaGalleryRepository>();
+                For<IComplaintsRepository>().Use<ComplaintsRepository>();
 
                 //Services
                 For<ISystemService>().Use<SystemService>();
@@ -64,6 +66,7 @@ namespace AionHR.Web.UI.Forms
                 For<ITimeAttendanceService>().Use<TimeAttendanceService>();
                 For<ICaseService>().Use<CaseService>();
                 For<IMediaGalleryService>().Use<MediaGalleryService>();
+                For<IComplaintsService>().Use<ComplaintsService>();
             }
         }
     }

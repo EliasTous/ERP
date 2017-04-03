@@ -666,4 +666,7 @@
   <data name="AssetAllowances" xml:space="preserve">
     <value>Asset Allowances</value>
   </data>
+  <data name="EmpOrganizationChart" xml:space="preserve">
+    <value>Employee Organization</value>
+  </data>
 </root>

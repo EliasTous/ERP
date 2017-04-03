@@ -195,6 +195,15 @@ function dump(obj) {
     }
     return out;
 }
+function FillLeftPanel(fullName, departmentName, branchName, positionName,reportToName) {
+
+
+    
+
+    App.reportsToLbl.setText(reportToName);
+    FillLeftPanel(fullName,dep, branchName, positionName);
+
+}
 function FillLeftPanel(fullName, departmentName, branchName, positionName) {
     
 
@@ -212,6 +221,7 @@ function FillLeftPanel(departmentName, branchName, positionName) {
     App.departmentLbl.setText(departmentName, false);
     App.branchLbl.setText(branchName, false);
     App.positionLbl.setText(positionName, false);
+   
 
 }
 function SelectJICombos(deptId,bId,pId,dId)

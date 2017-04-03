@@ -379,12 +379,12 @@
                                 <ext:DateField ID="startDate" runat="server" FieldLabel="<%$ Resources:FieldStartDate%>" Name="startDate" AllowBlank="false" />
                                 <ext:DateField ID="endDate" runat="server" FieldLabel="<%$ Resources:FieldEndDate%>" Name="endDate" AllowBlank="false" />
                                 <ext:TextArea ID="justification" runat="server" FieldLabel="<%$ Resources:FieldJustification%>" Name="justification" />
-                                <ext:TextField ID="destination" runat="server" FieldLabel="<%$ Resources:FieldDestination%>" Name="destination" />
+                                <ext:TextField ID="destination" runat="server" FieldLabel="<%$ Resources:FieldDestination%>" Name="destination" AllowBlank="false" />
 
 
                                 <ext:Checkbox runat="server" Name="isPaid" InputValue="true" ID="isPaid" DataIndex="isPaid" FieldLabel="<%$ Resources:FieldIsPaid%>" />
 
-                                <ext:ComboBox runat="server" ID="employeeId"
+                                <ext:ComboBox runat="server" ID="employeeId" AllowBlank="false"
                                     DisplayField="fullName"
                                     ValueField="recordId"
                                     TypeAhead="false"
@@ -414,7 +414,7 @@
 
                                 <ext:ComboBox runat="server" ID="ltId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1"
                                     DisplayField="name"
-                                    ValueField="recordId"
+                                    ValueField="recordId"  AllowBlank="false"
                                     FieldLabel="<%$ Resources: FieldLtName %>">
                                     <Store>
                                         <ext:Store runat="server" ID="ltStore">
@@ -450,7 +450,7 @@
                                 </ext:ComboBox>
 
 
-                                <ext:ComboBox runat="server" ID="status" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1"
+                                <ext:ComboBox runat="server" ID="status" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" AllowBlank="false"
                                     FieldLabel="<%$ Resources: FieldStatus %>">
                                     <Items>
 

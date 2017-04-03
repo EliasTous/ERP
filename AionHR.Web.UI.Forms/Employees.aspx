@@ -15,7 +15,7 @@
 
 
     <script type="text/javascript" src="Scripts/common.js?id=1"></script>
-    <script type="text/javascript" src="Scripts/Employees.js?id=28"></script>
+    <script type="text/javascript" src="Scripts/Employees.js?id=29"></script>
     <script type="text/javascript">
        
     </script>
@@ -338,6 +338,7 @@
                                         <ext:Label ID="departmentLbl" runat="server" />
                                         <ext:Label ID="branchLbl" runat="server" />
                                         <ext:Label ID="positionLbl" runat="server" />
+                                        <ext:Label ID="reportsToLbl" runat="server" />
                                     </Items>
                                 </ext:Panel>
 

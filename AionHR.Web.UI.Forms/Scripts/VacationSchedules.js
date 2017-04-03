@@ -107,9 +107,7 @@ var cellClick = function (view, cell, columnIndex, record, row, rowIndex, e) {
         commandName = t.className;
         return true;
     }
-    if (columnId == "ColName")
-        return true;
-
+    
 
     //forbidden
     return false;

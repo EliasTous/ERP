@@ -299,7 +299,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             {
 
                
-                case "ColDEName":
+                case "imgEdit":
 
                     deduction = e.ExtraParams["values"];
                     dedDetail = JsonConvert.DeserializeObject<List<SalaryDetail>>(deduction)[0];
@@ -312,7 +312,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     dedEdId.Select(dedDetail.edId.ToString());
                     EditDEWindow.Show();
                     break;
-                case "ColDEDelete":
+                case "imgDelete":
                     deduction = e.ExtraParams["values"];
                     dedDetail = JsonConvert.DeserializeObject<List<SalaryDetail>>(deduction)[0];
                     if (!dedDetail.includeInTotal.HasValue)

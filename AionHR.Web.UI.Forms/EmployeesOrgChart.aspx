@@ -16,7 +16,7 @@
 
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     
-    <script type="text/javascript" src="Scripts/OrganizationChart.js?id=24" ></script>
+    <script type="text/javascript" src="Scripts/EmployeesOrgChart.js?id=29" ></script>
     <script type="text/javascript" src="Scripts/common.js" ></script>
    
 

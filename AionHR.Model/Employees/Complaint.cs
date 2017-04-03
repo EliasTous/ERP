@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AionHR.Model.Employees
 {
-    public class Complient : ModelBase
+    public class Complaint : ModelBase,IEntity
     {
         public int employeeID { get; set; }
         public string actionTaken { get; set; }

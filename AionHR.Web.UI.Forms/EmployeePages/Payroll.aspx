@@ -9,7 +9,7 @@
     <title></title>
     <link rel="stylesheet" type="text/css" href="../CSS/Common.css?id=1" />
     <link rel="stylesheet" href="../CSS/LiveSearch.css" />
-    <script type="text/javascript" src="../Scripts/Payroll.js?id=17"></script>
+    <script type="text/javascript" src="../Scripts/Payroll.js?id=18"></script>
     <script type="text/javascript" src="../Scripts/common.js?id=0"></script>
 
 
@@ -951,7 +951,9 @@
 
                                         </Columns>
                                     </ColumnModel>
-
+                                       <Listeners>
+                                        <Render Handler="this.on('cellclick', cellClick);" />
+                                    </Listeners>
                                     <DirectEvents>
 
                                         <CellClick OnEvent="PoPuPDE">

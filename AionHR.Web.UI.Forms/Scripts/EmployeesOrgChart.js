@@ -92,9 +92,9 @@ function drawChart() {
         for (i = 0 ; i < DeptsData.length; i++) {
             var row = [];
 
-            row.push(DeptsData[i].name);
+            row.push({ v: DeptsData[i].id, f: "<div><img width='100' height='100' src='"+DeptsData[i].picture+"'/><br/><strong>" + DeptsData[i].name +"</strong><br/>"+ DeptsData[i].position+"</div>"});
 
-            row.push(DeptsData[i].parent);
+            row.push(DeptsData[i].reportToId);
             row.push('');
             data.addRow(row);
 

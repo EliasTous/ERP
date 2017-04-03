@@ -21,13 +21,14 @@ using AionHR.Model.Company.News;
 using AionHR.Services.Messaging;
 using AionHR.Model.Company.Structure;
 using AionHR.Model.System;
+using AionHR.Model.Employees.Profile;
 
 namespace AionHR.Web.UI.Forms
 {
     public partial class EmployeesOrgChart : System.Web.UI.Page
     {
         ISystemService _systemService = ServiceLocator.Current.GetInstance<ISystemService>();
-        ICompanyStructureService _companyStructureService = ServiceLocator.Current.GetInstance<ICompanyStructureService>();
+        IEmployeeService _employeeService = ServiceLocator.Current.GetInstance<IEmployeeService>();
         protected override void InitializeCulture()
         {
 
@@ -64,15 +65,15 @@ namespace AionHR.Web.UI.Forms
 
         }
 
-        private List<object> GetEmpsJson(List<Department> depts)
+        private List<object> GetEmpsJson(List<Employee> emps)
         {
 
 
 
             List<object> result = new List<object>();
-            foreach (var item in depts)
+            foreach (var item in emps)
             {
-                result.Add(new { name = item.name, parent = item.parentName, tooltip = "''" });
+                result.Add(new {id=item.recordId,reportToId=item.reportToId, name = item.name.fullName, parent = item.reportToName==null?"": item.reportToName.fullName, position=item.positionName,picture=item.pictureUrl, tooltip = "''" });
 
             }
             return result;
@@ -80,20 +81,34 @@ namespace AionHR.Web.UI.Forms
         private void FillHirarichy()
         {
 
-            ListRequest req = new ListRequest();
-            ListResponse<Department> response = _companyStructureService.ChildGetAll<Department>(req);
-            if (!response.Success)
+            EmployeeListRequest empRequest = new EmployeeListRequest();
+            empRequest.BranchId = "0";
+            empRequest.DepartmentId = "0";
+         
+            empRequest.IncludeIsInactive = 2;
+
+            empRequest.SortBy = GetNameFormat();
+
+            empRequest.Size = "100";
+            empRequest.StartAt = "1";
+
+            ListResponse<Employee> emps = _employeeService.GetAll<Employee>(empRequest);
+            if (!emps.Success)
             {
                 X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.ErrorUpdatingRecord, response.Summary).Show();
+                X.Msg.Alert(Resources.Common.ErrorUpdatingRecord, emps.Summary).Show();
                 return;
             }
 
-            X.Call("Init", GetEmpsJson(response.Items));
+            X.Call("Init", GetEmpsJson(emps.Items));
         }
 
 
+        private string GetNameFormat()
+        {
+            return _systemService.SessionHelper.Get("nameFormat").ToString();
 
+        }
         /// <summary>
         /// the detailed tabs for the edit form. I put two tabs by default so hide unecessary or add addional
         /// </summary>

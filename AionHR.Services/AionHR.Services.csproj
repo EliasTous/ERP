@@ -49,11 +49,13 @@
     <Compile Include="Implementations\CaseService.cs" />
     <Compile Include="Implementations\CommonErrors.cs" />
     <Compile Include="Implementations\CompanyStructureService.cs" />
+    <Compile Include="Implementations\ComplaintsService.cs" />
     <Compile Include="Implementations\EmployeeService.cs" />
     <Compile Include="Implementations\LeaveManagementService.cs" />
     <Compile Include="Implementations\MasterService.cs" />
     <Compile Include="Implementations\MediaGalleryService.cs" />
     <Compile Include="Implementations\TimeAttendanceService.cs" />
+    <Compile Include="Interfaces\IComplaintsService.cs" />
     <Compile Include="Interfaces\IBaseService.cs" />
     <Compile Include="Interfaces\ICaseService.cs" />
     <Compile Include="Interfaces\ICompanyStructureService.cs" />

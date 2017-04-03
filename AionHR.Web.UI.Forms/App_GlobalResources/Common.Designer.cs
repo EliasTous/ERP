@@ -646,6 +646,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Employee Organization.
+        /// </summary>
+        internal static string EmpOrganizationChart {
+            get {
+                return ResourceManager.GetString("EmpOrganizationChart", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No Record to Display.
         /// </summary>
         internal static string EmptyMsg {
