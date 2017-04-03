@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AionHR.Model.Employees.Profile
 {
-    public class Employee:ModelBase,IEntity
+    public class Employee : ModelBase, IEntity
     {
         public string reference { get; set; }
 
@@ -38,7 +38,7 @@ namespace AionHR.Model.Employees.Profile
 
         public string divisionName { get; set; }
         public string branchName { get; set; }
-        
+
         public DateTime? hireDate { get; set; }
         public int? lastDayWork { get; set; }
         public DateTime? contractEndingDate { get; set; }
@@ -74,5 +74,22 @@ namespace AionHR.Model.Employees.Profile
         public string lastName { get; set; }
         public string familyName { get; set; }
         public string reference { get; set; }
+    }
+
+
+    public class AddressBook
+    {
+        public string street1 { get; set; }
+
+        public string street2 { get; set; }
+
+        public string city { get; set; }
+
+        public string postalCode { get; set; }
+
+        public int countryId { get; set; }
+
+        public string countryName { get; set; }
+
     }
 }

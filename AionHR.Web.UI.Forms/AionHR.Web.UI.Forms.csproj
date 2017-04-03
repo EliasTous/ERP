@@ -121,6 +121,7 @@
     <Content Include="Departments.aspx" />
     <Content Include="Divisions.aspx" />
     <Content Include="DocumentTypes.aspx" />
+    <Content Include="EmployeePages\Contacts.aspx" />
     <Content Include="EmployeePages\Documents.aspx" />
     <Content Include="EmployeePages\JobInformation.aspx" />
     <Content Include="EmployeePages\Legals.aspx" />
@@ -162,9 +163,12 @@
     <Content Include="Nationalities.aspx" />
     <Content Include="OrganizationChart.aspx" />
     <Content Include="packages.config" />
+    <Content Include="RelationshipTypes.aspx" />
     <Content Include="Routers.aspx" />
     <Content Include="SalaryChangeReasons.aspx" />
     <Content Include="Scripts\AssetAllowances.js" />
+    <Content Include="Scripts\Contacts.js" />
+    <Content Include="Scripts\RelationshipTypes.js" />
     <Content Include="Scripts\Routers.js" />
     <Content Include="Scripts\Positions.js" />
     <Content Include="Scripts\BiometricDevices.js" />
@@ -419,6 +423,13 @@
     <Compile Include="DocumentTypes.aspx.designer.cs">
       <DependentUpon>DocumentTypes.aspx</DependentUpon>
     </Compile>
+    <Compile Include="EmployeePages\Contacts.aspx.cs">
+      <DependentUpon>Contacts.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EmployeePages\Contacts.aspx.designer.cs">
+      <DependentUpon>Contacts.aspx</DependentUpon>
+    </Compile>
     <Compile Include="EmployeePages\Documents.aspx.cs">
       <DependentUpon>Documents.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -577,6 +588,13 @@
       <DependentUpon>Positions.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RelationshipTypes.aspx.cs">
+      <DependentUpon>RelationshipTypes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RelationshipTypes.aspx.designer.cs">
+      <DependentUpon>RelationshipTypes.aspx</DependentUpon>
+    </Compile>
     <Compile Include="resetPw.aspx.cs">
       <DependentUpon>resetPw.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -748,7 +766,9 @@
     <Content Include="App_LocalResources\WorkingCalendars.aspx.resx" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_LocalResources\Employees.aspx.resx" />
+    <Content Include="App_LocalResources\Employees.aspx.resx">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_LocalResources\Sponsors.aspx.resx">
@@ -854,6 +874,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_LocalResources\AssetAllowances.aspx.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="EmployeePages\App_LocalResources\Contacts.aspx.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_LocalResources\RelationshipTypes.aspx.resx" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
