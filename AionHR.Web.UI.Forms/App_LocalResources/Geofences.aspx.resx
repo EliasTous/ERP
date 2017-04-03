@@ -124,7 +124,7 @@
     <value>Edit Geofence</value>
   </data>
   <data name="FieldBranchId" xml:space="preserve">
-    <value>Branch ID</value>
+    <value>Branch</value>
   </data>
   <data name="FieldBranchName" xml:space="preserve">
     <value>Branch Name</value>

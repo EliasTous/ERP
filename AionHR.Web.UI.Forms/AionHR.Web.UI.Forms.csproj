@@ -128,6 +128,7 @@
     <Content Include="EmployeePages\Skills.aspx" />
     <Content Include="EmployeeRoot.aspx" />
     <Content Include="Employees.aspx" />
+    <Content Include="EmployeesOrgChart.aspx" />
     <Content Include="EntitlementDeductions.aspx" />
     <Content Include="ForgotAccount.aspx" />
     <Content Include="ForgotPassword.aspx" />
@@ -163,6 +164,8 @@
     <Content Include="packages.config" />
     <Content Include="Routers.aspx" />
     <Content Include="SalaryChangeReasons.aspx" />
+    <Content Include="Scripts\EmployeesOrgChart.js" />
+    <Content Include="Scripts\moment-timezone.js" />
     <Content Include="Scripts\Routers.js" />
     <Content Include="Scripts\Positions.js" />
     <Content Include="Scripts\BiometricDevices.js" />
@@ -465,6 +468,13 @@
     </Compile>
     <Compile Include="Employees.aspx.designer.cs">
       <DependentUpon>Employees.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EmployeesOrgChart.aspx.cs">
+      <DependentUpon>EmployeesOrgChart.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EmployeesOrgChart.aspx.designer.cs">
+      <DependentUpon>EmployeesOrgChart.aspx</DependentUpon>
     </Compile>
     <Compile Include="EntitlementDeductions.aspx.cs">
       <DependentUpon>EntitlementDeductions.aspx</DependentUpon>

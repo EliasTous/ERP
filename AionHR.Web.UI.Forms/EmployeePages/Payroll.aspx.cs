@@ -805,7 +805,8 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             b.seqNo = Convert.ToInt16(ENSeq.Text);
             if (!b.includeInTotal.HasValue)
                 b.includeInTotal = false;
-
+            if (!b.isTaxable.HasValue)
+                b.isTaxable = false;
             if (entEdId.SelectedItem != null)
                 b.edName = entEdId.SelectedItem.Text;
 
@@ -948,7 +949,8 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             b.seqNo = Convert.ToInt16(DESeq.Text);
             if (!b.includeInTotal.HasValue)
                 b.includeInTotal = false;
-
+            if (!b.isTaxable.HasValue)
+                b.isTaxable = false;
             if (dedEdId.SelectedItem != null)
                 b.edName = dedEdId.SelectedItem.Text;
 

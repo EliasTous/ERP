@@ -9,7 +9,7 @@ namespace AionHR.Services.Messaging.System
 {
    public class SystemAttachmentsListRequest:ListRequest
     {
-        protected string classRef { get; set; }
+        protected int classId { get; set; }
 
         public int recordId { get; set; }
 
@@ -20,7 +20,7 @@ namespace AionHR.Services.Messaging.System
             get
             {
                 parameters = base.Parameters;
-                parameters.Add("_classRef", classRef);
+                parameters.Add("_classId", classId.ToString());
                 parameters.Add("_recordId", recordId.ToString());
                 return parameters;
             }

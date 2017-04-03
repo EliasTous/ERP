@@ -60,6 +60,10 @@ namespace AionHR.Model.Employees.Profile
                 return hireDate.Value.ToString("yyyy-MM-dd");
             }
         }
+
+        public string reportToId { get; set; }
+
+        public EmployeeName reportToName { get; set; }
     }
 
     public class EmployeeName

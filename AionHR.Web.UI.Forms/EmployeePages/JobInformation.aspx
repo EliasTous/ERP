@@ -45,7 +45,7 @@
                     Title="<%$ Resources: EHGridTitle %>"
                     Layout="FitLayout"
                     Scroll="Vertical" Flex="1"
-                    Border="false" 
+                    Border="false"  ExpandToolText="0" CollapseToolText="0"
                     Icon="User" DefaultAnchor="100%"  
                     ColumnLines="True" IDMode="Explicit" RenderXType="True">
                     <Store>
@@ -200,9 +200,9 @@
                         <%--<ext:CheckboxSelectionModel ID="CheckboxSelectionModel1" runat="server" Mode="Multi" StopIDModeInheritance="true" />--%>
                     </SelectionModel>
                 </ext:GridPanel>
-                <ext:GridPanel Visible="True"
+                <ext:GridPanel Visible="True" ExpandToolText=""
                     ID="JobInfoGrid" AutoUpdateLayout="true" Collapsible="true"
-                    runat="server"
+                    runat="server"  CollapseToolText=""
                     PaddingSpec="0 0 1 0"   
                     Header="true"
                     Title="<%$ Resources: JIGridTitle %>"
@@ -236,6 +236,7 @@
                                         <ext:ModelField Name="branchName" />
                                         <ext:ModelField Name="positionName" />
                                         <ext:ModelField Name="divisionName" />
+                                        <ext:ModelField Name="reportToName" IsComplex="true" />
                                         
                                         
 
@@ -289,6 +290,9 @@
                             <ext:Column Flex="2" ID="Column7" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldJIBranch%>" DataIndex="branchName" Hideable="false"  Align="Center" />
                             <ext:Column Flex="2" ID="Column8" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldJIPosition%>" DataIndex="positionName" Hideable="false"  Align="Center" />
                             <ext:Column Flex="2" ID="Column9" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldJIDivision%>" DataIndex="divisionName" Hideable="false" Align="Center" />
+                            <ext:Column Flex="2" ID="Column4" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldReportsTo%>" DataIndex="reportToName.fullName" Hideable="false" Align="Center" >
+                                <Renderer Handler=" return record.data['reportToName'].fullName;" />
+                                </ext:Column>
                           
 
 
@@ -617,6 +621,32 @@
                                                     <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
                                                 </Listeners>
                                             </ext:ComboBox>
+                                  <ext:ComboBox runat="server" ID="reportToId"
+                                    DisplayField="fullName"
+                                    ValueField="recordId"
+                                    TypeAhead="false"
+                                    FieldLabel="<%$ Resources: FieldReportsTo%>"
+                                    HideTrigger="true" SubmitValue="true"
+                                    MinChars="3"
+                                    TriggerAction="Query" ForceSelection="false">
+                                    <Store>
+                                        <ext:Store runat="server" ID="reportToStore" AutoLoad="false">
+                                            <Model>
+                                                <ext:Model runat="server">
+                                                    <Fields>
+                                                        <ext:ModelField Name="recordId" />
+                                                        <ext:ModelField Name="fullName" />
+                                                    </Fields>
+                                                </ext:Model>
+                                            </Model>
+                                            <Proxy>
+                                                <ext:PageProxy DirectFn="App.direct.FillSupervisor"></ext:PageProxy>
+                                            </Proxy>
+
+                                        </ext:Store>
+
+                                    </Store>
+                                </ext:ComboBox>
 
                             </Items>
 

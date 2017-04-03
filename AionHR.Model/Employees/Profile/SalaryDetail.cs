@@ -15,6 +15,8 @@ namespace AionHR.Model.Employees.Profile
 
         public string edName { get; set; }
         public bool? includeInTotal { get; set; }
+
+        public bool? isTaxable { get; set; }
         public string comments { get; set; }
         public double pct { get; set; }
         public double fixedAmount { get; set; }

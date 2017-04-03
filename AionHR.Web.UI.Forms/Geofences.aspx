@@ -246,7 +246,7 @@
             Modal="true"
             Hidden="true"
          Resizable="true"
-            Maximizable="false"
+            Maximizable="true"
             Layout="Fit">
             
             <Items>

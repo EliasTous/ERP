@@ -130,13 +130,40 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Hidden btTitle;
         
         /// <summary>
-        /// bcTitle control.
+        /// deTitle control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Hidden bcTitle;
+        protected global::Ext.Net.Hidden deTitle;
+        
+        /// <summary>
+        /// brTitle control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Hidden brTitle;
+        
+        /// <summary>
+        /// caTitle control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Hidden caTitle;
+        
+        /// <summary>
+        /// roTitle control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Hidden roTitle;
         
         /// <summary>
         /// TrType2 control.
@@ -256,6 +283,15 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Panel leftPanel;
         
         /// <summary>
+        /// b1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Button b1;
+        
+        /// <summary>
         /// Toolbar1 control.
         /// </summary>
         /// <remarks>
@@ -290,33 +326,6 @@ namespace AionHR.Web.UI.Forms {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.Button btnScheduler;
-        
-        /// <summary>
-        /// b1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Button b1;
-        
-        /// <summary>
-        /// b2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Button b2;
-        
-        /// <summary>
-        /// b3 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Button b3;
         
         /// <summary>
         /// commonTree control.

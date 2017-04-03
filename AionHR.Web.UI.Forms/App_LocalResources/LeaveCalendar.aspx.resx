@@ -123,11 +123,26 @@
   <data name="BasicInfoTabEditWindowTitle" xml:space="preserve">
     <value>Profile</value>
   </data>
+  <data name="BasicInfoTabEditWindowTitle1" xml:space="preserve">
+    <value>Leave Request Info</value>
+  </data>
+  <data name="ButtonClear" xml:space="preserve">
+    <value>Clear</value>
+  </data>
   <data name="ContractEndingDate" xml:space="preserve">
     <value>Contract Ending Date</value>
   </data>
   <data name="EditWindowsTitle" xml:space="preserve">
     <value>Edit Branch</value>
+  </data>
+  <data name="EditWindowsTitle1" xml:space="preserve">
+    <value>Edit Leave Request</value>
+  </data>
+  <data name="FieldAll" xml:space="preserve">
+    <value>All</value>
+  </data>
+  <data name="FieldApproved" xml:space="preserve">
+    <value>Approved</value>
   </data>
   <data name="FieldBirthPlace" xml:space="preserve">
     <value>Place of Birth</value>
@@ -153,11 +168,20 @@
   <data name="FieldDepartment" xml:space="preserve">
     <value>Department</value>
   </data>
+  <data name="FieldDestination" xml:space="preserve">
+    <value>Destination</value>
+  </data>
   <data name="FieldDivision" xml:space="preserve">
     <value>Division</value>
   </data>
   <data name="FieldEmployee" xml:space="preserve">
     <value>Employee</value>
+  </data>
+  <data name="FieldEmployeeName" xml:space="preserve">
+    <value>Employee Name</value>
+  </data>
+  <data name="FieldEndDate" xml:space="preserve">
+    <value>End Date</value>
   </data>
   <data name="FieldFamilyName" xml:space="preserve">
     <value>Family Name</value>
@@ -183,6 +207,12 @@
   <data name="FieldIsInactive" xml:space="preserve">
     <value>Is Inactive?</value>
   </data>
+  <data name="FieldIsPaid" xml:space="preserve">
+    <value>Is Paid?</value>
+  </data>
+  <data name="FieldJustification" xml:space="preserve">
+    <value>Justification</value>
+  </data>
   <data name="FieldLastName" xml:space="preserve">
     <value>Last Name</value>
   </data>
@@ -191,6 +221,9 @@
   </data>
   <data name="FieldLastTACheckStatus" xml:space="preserve">
     <value>Last Check In Status</value>
+  </data>
+  <data name="FieldLtName" xml:space="preserve">
+    <value>Leave Type Name</value>
   </data>
   <data name="FieldMiddleName" xml:space="preserve">
     <value>Middle Name</value>
@@ -204,6 +237,9 @@
   <data name="FieldNationality" xml:space="preserve">
     <value>Nationality</value>
   </data>
+  <data name="FieldPending" xml:space="preserve">
+    <value>Pending</value>
+  </data>
   <data name="FieldPicturePath" xml:space="preserve">
     <value>PicturePath</value>
   </data>
@@ -213,14 +249,26 @@
   <data name="FieldRecordId" xml:space="preserve">
     <value>Record ID</value>
   </data>
+  <data name="FieldRecordId1" xml:space="preserve">
+    <value>Record ID</value>
+  </data>
   <data name="FieldReference" xml:space="preserve">
     <value>Reference</value>
+  </data>
+  <data name="FieldRefused" xml:space="preserve">
+    <value>Refused</value>
   </data>
   <data name="FieldReligion" xml:space="preserve">
     <value>Religion</value>
   </data>
   <data name="FieldSponsor" xml:space="preserve">
     <value>Sponsor</value>
+  </data>
+  <data name="FieldStartDate" xml:space="preserve">
+    <value>Start Date</value>
+  </data>
+  <data name="FieldStatus" xml:space="preserve">
+    <value>Status</value>
   </data>
   <data name="FieldVacationSchedule" xml:space="preserve">
     <value>Vacation Schedule</value>
@@ -233,6 +281,24 @@
   </data>
   <data name="FieldYear" xml:space="preserve">
     <value>Year</value>
+  </data>
+  <data name="FilterBranch" xml:space="preserve">
+    <value>Select a Branch</value>
+  </data>
+  <data name="FilterDepartment" xml:space="preserve">
+    <value>Select a Department</value>
+  </data>
+  <data name="FilterDivision" xml:space="preserve">
+    <value>Select a Division</value>
+  </data>
+  <data name="FilterEmployee" xml:space="preserve">
+    <value>Select an Employee</value>
+  </data>
+  <data name="FilterOpen" xml:space="preserve">
+    <value>Show Open Requests</value>
+  </data>
+  <data name="FilterStatus" xml:space="preserve">
+    <value>Select a Status</value>
   </data>
   <data name="TotalText" xml:space="preserve">
     <value>Total</value>
