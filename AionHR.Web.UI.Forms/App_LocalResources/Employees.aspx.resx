@@ -288,4 +288,7 @@
   <data name="FieldReportsTo" xml:space="preserve">
     <value>Reports To</value>
   </data>
+  <data name="ContactsTab" xml:space="preserve">
+    <value>Contacts</value>
+  </data>
 </root>

@@ -121,6 +121,7 @@
     <Content Include="Departments.aspx" />
     <Content Include="Divisions.aspx" />
     <Content Include="DocumentTypes.aspx" />
+    <Content Include="EmployeePages\Contacts.aspx" />
     <Content Include="EmployeePages\Documents.aspx" />
     <Content Include="EmployeePages\JobInformation.aspx" />
     <Content Include="EmployeePages\Legals.aspx" />
@@ -420,6 +421,13 @@
     </Compile>
     <Compile Include="DocumentTypes.aspx.designer.cs">
       <DependentUpon>DocumentTypes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EmployeePages\Contacts.aspx.cs">
+      <DependentUpon>Contacts.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EmployeePages\Contacts.aspx.designer.cs">
+      <DependentUpon>Contacts.aspx</DependentUpon>
     </Compile>
     <Compile Include="EmployeePages\Documents.aspx.cs">
       <DependentUpon>Documents.aspx</DependentUpon>
@@ -866,6 +874,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_LocalResources\EmployeesOrgChart.aspx.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="EmployeePages\App_LocalResources\Contacts.aspx.resx" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
