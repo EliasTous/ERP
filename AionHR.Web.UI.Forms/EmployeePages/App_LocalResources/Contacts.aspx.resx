@@ -117,175 +117,46 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="ActiveOnly" xml:space="preserve">
-    <value>Active Only</value>
-  </data>
-  <data name="All" xml:space="preserve">
-    <value>All</value>
-  </data>
-  <data name="BasicInfoTabEditWindowTitle" xml:space="preserve">
-    <value>Profile</value>
-  </data>
-  <data name="Clear" xml:space="preserve">
-    <value>Clear</value>
-  </data>
-  <data name="ContractEndingDate" xml:space="preserve">
-    <value>Contract Ending Date</value>
-  </data>
-  <data name="DocumentsTab" xml:space="preserve">
-    <value>Files</value>
-  </data>
-  <data name="EditWindowsTitle" xml:space="preserve">
-    <value>Edit Branch</value>
-  </data>
-  <data name="FieldBirthPlace" xml:space="preserve">
-    <value>Place of Birth</value>
-  </data>
-  <data name="FieldBranch" xml:space="preserve">
-    <value>Branch</value>
-  </data>
-  <data name="FieldDateOfBirth" xml:space="preserve">
-    <value>Birth Date</value>
-  </data>
-  <data name="FieldDepartment" xml:space="preserve">
-    <value>Department</value>
-  </data>
-  <data name="FieldDivision" xml:space="preserve">
-    <value>Division</value>
-  </data>
-  <data name="FieldFamilyName" xml:space="preserve">
-    <value>Family Name</value>
-  </data>
-  <data name="FieldFirstName" xml:space="preserve">
-    <value>First Name</value>
-  </data>
-  <data name="FieldFullName" xml:space="preserve">
-    <value>Name</value>
-  </data>
-  <data name="FieldGender" xml:space="preserve">
-    <value>Gender</value>
-  </data>
-  <data name="FieldHireDate" xml:space="preserve">
-    <value>Hire Date</value>
-  </data>
-  <data name="FieldHomeEmail" xml:space="preserve">
-    <value>Home Email</value>
-  </data>
-  <data name="FieldIsInactive" xml:space="preserve">
-    <value>Is Inactive?</value>
-  </data>
-  <data name="FieldLastName" xml:space="preserve">
-    <value>Last Name</value>
-  </data>
-  <data name="FieldLastTACheck" xml:space="preserve">
-    <value>Last Check In</value>
-  </data>
-  <data name="FieldLastTACheckStatus" xml:space="preserve">
-    <value>Last Check In Status</value>
-  </data>
-  <data name="FieldMiddleName" xml:space="preserve">
-    <value>Middle Name</value>
-  </data>
-  <data name="FieldMobile" xml:space="preserve">
-    <value>Mobile</value>
-  </data>
-  <data name="FieldNationality" xml:space="preserve">
-    <value>Nationality</value>
-  </data>
-  <data name="FieldPicturePath" xml:space="preserve">
-    <value>PicturePath</value>
-  </data>
-  <data name="FieldPosition" xml:space="preserve">
-    <value>Position</value>
-  </data>
-  <data name="FieldRecordId" xml:space="preserve">
-    <value>Record ID</value>
-  </data>
-  <data name="FieldReference" xml:space="preserve">
-    <value>Reference</value>
-  </data>
-  <data name="FieldReligion" xml:space="preserve">
-    <value>Religion</value>
-  </data>
-  <data name="FieldSponsor" xml:space="preserve">
-    <value>Sponsor</value>
-  </data>
-  <data name="FieldVacationSchedule" xml:space="preserve">
-    <value>Vacation</value>
-  </data>
-  <data name="FieldWorkEmail" xml:space="preserve">
-    <value>Work Email</value>
-  </data>
-  <data name="FieldWorkingCalendar" xml:space="preserve">
-    <value>Calendar</value>
-  </data>
-  <data name="Filter" xml:space="preserve">
-    <value>Display:</value>
-  </data>
-  <data name="InactiveOnly" xml:space="preserve">
-    <value>Inactive Only</value>
-  </data>
-  <data name="JobInformationTab" xml:space="preserve">
-    <value>Job</value>
-  </data>
-  <data name="LegalsTab" xml:space="preserve">
-    <value>Legals</value>
-  </data>
-  <data name="NotesTab" xml:space="preserve">
-    <value>Notes</value>
-  </data>
-  <data name="PayrollTab" xml:space="preserve">
-    <value>Salary</value>
-  </data>
-  <data name="SkillsTab" xml:space="preserve">
-    <value>Skills</value>
-  </data>
-  <data name="terminationWindowTitle" xml:space="preserve">
-    <value>Termination</value>
-  </data>
-  <data name="WindowTitle" xml:space="preserve">
-    <value>Employees</value>
-  </data>
-  <data name="Worker" xml:space="preserve">
-    <value>Worker</value>
-  </data>
-  <data name="Company" xml:space="preserve">
-    <value>Company</value>
-  </data>
-  <data name="FieldTerminationDate" xml:space="preserve">
-    <value>Date</value>
-  </data>
-  <data name="FieldTerminationReason" xml:space="preserve">
-    <value>Termination Reason</value>
-  </data>
-  <data name="FieldTerminationType" xml:space="preserve">
-    <value>Type</value>
-  </data>
-  <data name="No" xml:space="preserve">
-    <value>No</value>
-  </data>
-  <data name="NotYetKnown" xml:space="preserve">
-    <value>Not determined yet</value>
-  </data>
-  <data name="Other" xml:space="preserve">
-    <value>Other</value>
-  </data>
-  <data name="RehireEligibilty" xml:space="preserve">
-    <value>Rehire Eligibilty</value>
-  </data>
-  <data name="Yes" xml:space="preserve">
-    <value>Yes</value>
-  </data>
-  <data name="confirmDelete" xml:space="preserve">
-    <value>Please Type "Delete" to Confirm the delete operation.</value>
-  </data>
-  <data name="deleteConfirmation" xml:space="preserve">
-    <value>Confirm Employee Delete</value>
-  </data>
-  <data name="ResetPassword" xml:space="preserve">
-    <value>Reset Password</value>
-  </data>
-  <data name="ContactsTab" xml:space="preserve">
+  <data name="EditContactWindowTitle" xml:space="preserve">
     <value>Contacts</value>
+  </data>
+  <data name="FieldAddressName" xml:space="preserve">
+    <value>Address</value>
+  </data>
+  <data name="FieldCellPhone" xml:space="preserve">
+    <value>Cell Phone</value>
+  </data>
+  <data name="FieldCity" xml:space="preserve">
+    <value>City</value>
+  </data>
+  <data name="FieldCountryId" xml:space="preserve">
+    <value>Country Id</value>
+  </data>
+  <data name="FieldCountryName" xml:space="preserve">
+    <value>Country Name</value>
+  </data>
+  <data name="FieldEmail" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="FieldHomePhone" xml:space="preserve">
+    <value>Home Phone</value>
+  </data>
+  <data name="FieldInst" xml:space="preserve">
+    <value>Institution</value>
+  </data>
+  <data name="FieldPostalCode" xml:space="preserve">
+    <value>Postal Code</value>
+  </data>
+  <data name="FieldRTName" xml:space="preserve">
+    <value>Relationship</value>
+  </data>
+  <data name="FieldStreet1" xml:space="preserve">
+    <value>Street 1</value>
+  </data>
+  <data name="FieldStreet2" xml:space="preserve">
+    <value>Street 2</value>
+  </data>
+  <data name="FieldWorkPhone" xml:space="preserve">
+    <value>Work Phone</value>
   </data>
 </root>
