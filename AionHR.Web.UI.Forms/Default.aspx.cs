@@ -66,7 +66,8 @@ namespace AionHR.Web.UI.Forms
                 //Building the tree
                 _systemService.SessionHelper.Set("ActiveModule", "-1");
                 BuildTree(1);
-                
+                transactionDate.Format = _systemService.SessionHelper.GetDateformat() + ", hh:mm:ss" ;
+
                //TryRegister();
             }
         }

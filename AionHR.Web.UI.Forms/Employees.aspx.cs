@@ -232,7 +232,7 @@ namespace AionHR.Web.UI.Forms
             divisionId.ReadOnly = !isAdd;
             FillNationality();
 
-            Button8.Hidden = isAdd;
+            
             gearButton.Hidden = isAdd;
 
             FillSponsor();
@@ -725,10 +725,10 @@ namespace AionHR.Web.UI.Forms
                         }
                         ModelProxy record = this.Store1.GetById(index);
                         //BasicInfoTab.UpdateRecord(record);
-                        record.Set("branchName", b.branchName);
-                        record.Set("departmentName", b.departmentName);
-                        record.Set("positionName", b.positionName);
-                        record.Set("divisionName", b.divisionName);
+                        //record.Set("branchName", b.branchName);
+                        //record.Set("departmentName", b.departmentName);
+                        //record.Set("positionName", b.positionName);
+                        //record.Set("divisionName", b.divisionName);
                         record.Set("name", b.name);
                         record.Set("reference", b.reference);
                         record.Set("pictureUrl", b.pictureUrl);

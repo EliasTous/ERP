@@ -17,7 +17,7 @@
     <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
     <link rel="stylesheet"  href="CSS/Calendars.css" />
-    <script type="text/javascript" src="Scripts/Calendars.js?id=0"></script>
+    <script type="text/javascript" src="Scripts/Calendars.js?id=1"></script>
 
  
 
@@ -133,7 +133,7 @@
                             <ext:Column Visible="false" ID="ColrecordId" MenuDisabled="true" runat="server" DataIndex="recordId" Hideable="false" Width="75" Align="Center" Flex="1" />
 
                             <ext:Column CellCls="cellLink" Sortable="true" ID="ColName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldName%>" DataIndex="name" Flex="2" Hideable="false">
-                                <Renderer Handler="return '<u>'+ record.data['name']+'</u>'">
+                                <Renderer Handler="return  record.data['name'];">
                                 </Renderer>
                             </ext:Column>
 
@@ -154,7 +154,7 @@
 
                             </ext:Column>
                             <ext:Column runat="server"
-                                ID="colDelete"  Visible="true"
+                                ID="colDelete"  Visible="false"
                                 Text="<%$ Resources: Common , Delete %>"
                                 Width="60"
                                 Align="Center"
@@ -167,7 +167,7 @@
 
                             </ext:Column>
                             <ext:Column runat="server"
-                                ID="colAttach"
+                                ID="colAttach" Visible="false"
                                 Text="<%$ Resources:Common, Attach %>"
                                 Hideable="false"
                                 Width="60"
@@ -182,13 +182,13 @@
                                 ID="colDetails"
                                 Text="<%$ Resources:EditYears %>"
                                 Hideable="false"
-                                Width="60"
+                                Width="110"
                                 Align="Center"
                                 Fixed="true"
                                 Filterable="false"
                                 MenuDisabled="true"
                                 Resizable="false">
-                                <Renderer Fn="attachRender" />
+                                <Renderer handler="return editRender()+'&nbsp;&nbsp;'+attachRender()+'&nbsp;&nbsp;' +deleteRender();" />
                                  </ext:Column>
 
 
@@ -263,7 +263,7 @@
                         <Render Handler="this.on('cellclick', cellClick);" />
                     </Listeners>
                     <DirectEvents>
-                        <CellClick OnEvent="PoPuP">
+                        <CellClick OnEvent="PoPuPYear">
                             <EventMask ShowMask="true" />
                             <ExtraParams>
                                 <ext:Parameter Name="id" Value="record.getId()" Mode="Raw" />
@@ -336,7 +336,7 @@
                     </ColumnModel>
                 </ext:GridPanel>
 
-                <ext:Panel runat="server" Title="<%$ Resources: CalendarDays %>" >
+                <ext:Panel runat="server" Title="<%$ Resources: CalendarDays %>" Header="false" >
                     
                     <TopBar>
                         <ext:Toolbar ID="Toolbar4" runat="server" ClassicButtonStyle="false">

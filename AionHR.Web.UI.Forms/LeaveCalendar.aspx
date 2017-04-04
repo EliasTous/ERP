@@ -273,7 +273,7 @@
                                         <ext:Label runat="server" ID="yearLbl" StyleSpec="text-align:center;" />
                                         <DayPilot:DayPilotScheduler ID="DayPilotScheduler1" runat="server" 
                                             HeaderFontSize="8pt" HeaderHeight="20" CssOnly="false" 
-                                            EventClickHandling="JavaScript" Scale="Day"
+                                            EventClickHandling="JavaScript"  Scale="Day"
                                             EventClickJavaScript="App.direct.HandleClick({0});"
                                             EventFontSize="11px"
                                             CellDuration="1440"

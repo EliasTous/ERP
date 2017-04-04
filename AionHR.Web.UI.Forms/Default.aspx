@@ -10,7 +10,7 @@
     <script type="text/javascript" src="Scripts/jquery.min.js"></script>
     <script type="text/javascript" src="Scripts/app.js?id=1"></script>
     <script type="text/javascript" src="Scripts/Common.js"></script>
-    <script type="text/javascript" src="Scripts/default.js?id=11"></script>
+    <script type="text/javascript" src="Scripts/default.js?id=13"></script>
 
     <title>
         <asp:Literal ID="Literal1" runat="server" Text="<%$Resources:Common , ApplicationTitle%>" />
@@ -493,7 +493,7 @@
                 </Store>
                 <ColumnModel runat="server">
                     <Columns>
-                        <ext:DateColumn runat="server" DataIndex="eventDt" Text="<%$ Resources:Common , FieldDate %>" Width="100" />
+                        <ext:DateColumn ID="transactionDate" runat="server" DataIndex="eventDt" Text="<%$ Resources:Common , FieldDate %>" Width="200" />
                         <ext:Column runat="server" DataIndex="userName" Text="<%$ Resources:Common , FieldUsername %>" Flex="1" />
                         <ext:Column runat="server" DataIndex="type" Text="<%$ Resources:Common , FieldChangeType %>" Width="75">
                             <Renderer Handler="return GetChangeTypeString(record.data['type']);" />
@@ -509,7 +509,7 @@
                             MenuDisabled="true"
                             Resizable="false">
 
-                            <Renderer Handler="return editRender(); " />
+                            <Renderer Handler="return attachRender(); " />
                         </ext:Column>
 
                     </Columns>

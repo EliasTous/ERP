@@ -34,6 +34,7 @@
      var types = [];
      var curIndex = 0;
      var passed = 'no';
+     var values = [];
      function InitTypes(s)
      {
          
@@ -58,32 +59,26 @@
              uploadUrl: 'CaseAttachmentsUploader.ashx?caseId='+document.getElementById('currentCase').value,
              overwriteInitial: false,
              initialPreviewAsData: true,
-             uploadAsync: false,
+             uploadAsync: true,
              language:document.getElementById('CurrentLanguage').value,
              showZoom:false,
              showRemove: false,
+            
              uploadExtraData: function () {
-                 //var extra = [];
-                 //alert(curIndex);
-                 //var x = document.getElementsByName("values");
-                 
-                 //var ext = { id: x[curIndex].value };
-                 //if(passed=='yes')
-                 //    curIndex = curIndex + 1;
-                 //passed = 'yes';
-                 //return ext;
+                 alert(dump(values));
              },
              fileActionSettings: {
                  showDrag: false,
                  showUpload:true,
                  showZoom: false,
               
-                     
+                
                  
              },
+             
              layoutTemplates: {
                
-                 actionUpload: '<select type="text" name="values"  >\n'+
+                 actionUpload: '<select type="text" name="values"   >\n'+
                      
                      '</select>'
           
@@ -111,7 +106,10 @@
      
          $('#input-ke-1').on('fileloaded', function (event, file, previewId, index, reader) {
              var x = document.getElementsByName("values");
-          
+             curIndex = curIndex + 1;
+             alert(curIndex);
+             event.data = function () { return { key: values[curIndex] }; };
+             
              var s = $("#" + previewId).find("select")[0];
             
                  for(var j=0;j<types.length;j++)
@@ -121,6 +119,10 @@
                      opt.innerHTML =  types[j].text;
                      s.appendChild(opt);
                  }
+                 s.onchange = function () { alert($(this).val); values[curIndex] = s.val(); }
+             
+         });
+         $('#input-ke-1').on('filedeleted', function (event, key) {
              
          });
      }

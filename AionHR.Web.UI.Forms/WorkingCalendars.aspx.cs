@@ -128,7 +128,7 @@ namespace AionHR.Web.UI.Forms
             string type = e.ExtraParams["type"];
             switch (type)
             {
-                case "ColName":
+                case "imgEdit":
                     ////Step 1 : get the object from the Web Service 
                     //panelRecordDetails.ActiveIndex = 0;
                     RecordRequest r = new RecordRequest();
@@ -165,7 +165,7 @@ namespace AionHR.Web.UI.Forms
 
 
                     break;
-                case "colDetails":
+                case "imgAttach":
                     //panelRecordDetails.ActiveIndex = 0;
 
                     CalendarYearsListRequest yearsRequest = new CalendarYearsListRequest();
@@ -216,7 +216,7 @@ namespace AionHR.Web.UI.Forms
                     // InitCombos(response.result);
                     break;
 
-                case "colDelete":
+                case "imgDelete":
                     X.Msg.Confirm(Resources.Common.Confirmation, Resources.Common.DeleteOneRecord, new MessageBoxButtonsConfig
                     {
                         Yes = new MessageBoxButtonConfig
@@ -244,6 +244,74 @@ namespace AionHR.Web.UI.Forms
 
 
         }
+
+        protected void PoPuPYear(object sender, DirectEventArgs e)
+        {
+
+
+            int id = Convert.ToInt32(e.ExtraParams["id"]);
+            string type = e.ExtraParams["type"];
+            switch (type)
+            {
+                
+                case "imgAttach":
+                    //panelRecordDetails.ActiveIndex = 0;
+
+                    //CalendarYearsListRequest yearsRequest = new CalendarYearsListRequest();
+                    //yearsRequest.CalendarId = id.ToString();
+
+                    //ListResponse<CalendarYear> daysResponse = _branchService.ChildGetAll<CalendarYear>(yearsRequest);
+
+
+                    ////Step 2 : call setvalues with the retrieved object
+                    //calendarYears.Store[0].DataSource = daysResponse.Items;
+                    //calendarYears.Store[0].DataBind();
+                    CurrentYear.Text = id.ToString();
+                    try
+                    {
+                        LoadDays();
+                    }
+                    catch (Exception exp)
+                    {
+
+                        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                        X.Msg.Alert(Resources.Common.Error, exp.Message).Show();
+                        return;
+
+                    }
+                    Viewport1.ActiveIndex = 2;
+                    // InitCombos(response.result);
+                    break;
+
+                case "imgDelete":
+                    X.Msg.Confirm(Resources.Common.Confirmation, Resources.Common.DeleteOneRecord, new MessageBoxButtonsConfig
+                    {
+                        Yes = new MessageBoxButtonConfig
+                        {
+                            //We are call a direct request metho for deleting a record
+                            Handler = String.Format("App.direct.DeleteRecord({0})", id),
+                            Text = Resources.Common.Yes
+                        },
+                        No = new MessageBoxButtonConfig
+                        {
+                            Text = Resources.Common.No
+                        }
+
+                    }).Show();
+
+                    break;
+
+                case "colAttach":
+
+                    //Here will show up a winow relatice to attachement depending on the case we are working on
+                    break;
+                default:
+                    break;
+            }
+
+
+        }
+
 
         private void LoadDays()
         {
