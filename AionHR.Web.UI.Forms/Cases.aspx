@@ -58,12 +58,25 @@
              uploadUrl: 'CaseAttachmentsUploader.ashx?caseId='+document.getElementById('currentCase').value,
              overwriteInitial: false,
              initialPreviewAsData: true,
-             uploadAsync: false,
+             uploadAsync: true,
              language:document.getElementById('CurrentLanguage').value,
              showZoom:false,
              showRemove: false,
-             uploadExtraData: function () {
-                 //var extra = [];
+           //  uploadExtraData: { id: $($(this).find('select')[0]).val() },
+             uploadExtraData: function (previewId, index) {
+
+                var valType = $($("#" + previewId).find('select')[0]).val();
+                 return { id: valType };
+              //   var obj = {};
+             //    $(this).find('select').each(function () {
+              //       var id = 'valType', val = $(this).val();
+              //       obj[id] = val;
+              //   });
+              //   console.log(obj);
+               //  return obj;
+                
+                // var extra = [];
+               //  { typeValue: $('#id').val() };
                  //alert(curIndex);
                  //var x = document.getElementsByName("values");
                  
@@ -71,7 +84,7 @@
                  //if(passed=='yes')
                  //    curIndex = curIndex + 1;
                  //passed = 'yes';
-                 //return ext;
+                 //return extra;
              },
              fileActionSettings: {
                  showDrag: false,
@@ -94,6 +107,14 @@
          });
          
          
+         $('#input-ke-1').on('filepreupload', function (event, data, previewId, index) {
+             var form = data.form, files = data.files, extra = data.extra,
+                 response = data.response, reader = data.reader;
+             console.log($(this).find('select')[0]);
+         });
+
+
+
          $('#input-ke-1').on('filebatchuploaderror', function (event, data, msg) {
              var form = data.form, files = data.files, extra = data.extra,
                  response = data.response, reader = data.reader;
