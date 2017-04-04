@@ -117,5 +117,18 @@ namespace AionHR.Services.Implementations
                 response.recordId = webResponse.recordId;
             return response;
         }
+
+        public PostResponse<BatchSql> RunSqlBatch(BatchSql r)
+        {
+            PostResponse<BatchSql> response = new PostResponse<BatchSql>();
+
+            
+            Dictionary<string, string> headers = SessionHelper.GetAuthorizationHeadersForUser();
+            var accountRecord = childRepo.ChildAddOrUpdate<BatchSql>(r, headers);
+            response = base.CreateServiceResponse<PostResponse<BatchSql>>(accountRecord);
+          
+            return response;
+
+        }
     }
 }

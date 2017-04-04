@@ -67,17 +67,17 @@ namespace AionHR.Web.UI.Forms
                 _systemService.SessionHelper.Set("ActiveModule", "-1");
                 BuildTree(1);
                 
-               // TryRegister();
+               //TryRegister();
             }
         }
 
         private void TryRegister()
         {
             Registration r = new Registration();
-            r.company = "sss";
-            r.email = "george.kalsssssash@softmachine.co";
+            r.company = "ssss";
+            r.email = "george.kalssash@softmachine.co";
             r.languageId = 1;
-            r.name = "sss";
+            r.name = "ssss";
             PostRequest<Registration> req = new PostRequest<Registration>();
             req.entity = r;
 
@@ -93,8 +93,8 @@ namespace AionHR.Web.UI.Forms
 
             Account acc = new Account();
             acc.registrationId = Convert.ToInt32(response.recordId);
-            acc.accountName = "sss";
-            acc.companyName = "sss";
+            acc.accountName = "ssss";
+            acc.companyName = "ssss";
             acc.languageId = 1;
             PostRequest<Account> accountRequest = new PostRequest<Account>();
             PostResponse<Account> accountResponse = null;
@@ -105,21 +105,42 @@ namespace AionHR.Web.UI.Forms
 
             }
             catch { }
-            DbSetup s = new DbSetup();
-            s.accountId = Convert.ToInt32(accountResponse.recordId);
-            s.email = "george.kalsssssash@softmachine.co";
-            s.fullName = "georgessss kalash";
-
-            s.languageId = r.languageId;
-            s.password = "123";
+            DbSetup set = new DbSetup();
+            set.accountId = Convert.ToInt32(accountResponse.recordId);
+           
 
             PostRequest<DbSetup> dbRequest = new PostRequest<DbSetup>();
-
+            dbRequest.entity = set;
             try
             {
-                PostResponse<DbSetup> dbResponse = _masterService.CreateDB(s);
+                PostResponse<DbSetup> dbResponse = _masterService.CreateDB(set);
             }
             catch { }
+
+            BatchSql bat = new BatchSql();
+            try
+            {
+                PostResponse<BatchSql> dbResponse = _systemService.RunSqlBatch(bat);
+            }
+            catch { }
+            UserInfo s = new UserInfo();
+            s.email = "george.kalssash@softmachine.co";
+            s.fullName = "georgess kalash";
+            s.accountId = accountResponse.recordId;
+            s.languageId = r.languageId;
+            s.password = "123";
+            s.recordId = null;
+            s.isAdmin = true;
+            s.isInactive = false;
+            PostRequest<UserInfo> userReq = new PostRequest<UserInfo>();
+            userReq.entity = s;
+            try {
+                PostResponse<UserInfo> userResp = _systemService.ChildAddOrUpdate<UserInfo>(userReq);
+            }
+            catch
+            {
+
+            }
 
         }
 

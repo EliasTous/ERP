@@ -10,6 +10,7 @@ using AionHR.Services.Messaging;
 using AionHR.Services.Messaging.System;
 using AionHR.Infrastructure.WebService;
 using AionHR.Infrastructure.Domain;
+using AionHR.Model.System;
 
 namespace AionHR.Services.Implementations
 {
@@ -96,11 +97,17 @@ namespace AionHR.Services.Implementations
         {
             PostResponse<DbSetup> response = new PostResponse<DbSetup>();
             SessionHelper.ClearSession();
-            SessionHelper.Set("AccountId", "0"); //To be checked as it is a strange behavior ( simulated from old code)
+            SessionHelper.Set("AccountId", "0");
+            SessionHelper.Set("UserId", "0");
             Dictionary<string, string> headers = SessionHelper.GetAuthorizationHeadersForUser();
             var accountRecord = _accountRepository.ChildAddOrUpdate<DbSetup>(r, headers);
             response = base.CreateServiceResponse<PostResponse<DbSetup>>(accountRecord);
-
+           
+          
+            SessionHelper.ClearSession();
+            SessionHelper.Set("AccountId", r.accountId);
+            SessionHelper.Set("UserId", "0");
+         
             if (accountRecord != null)
                 response.recordId = accountRecord.recordId;
             return response;

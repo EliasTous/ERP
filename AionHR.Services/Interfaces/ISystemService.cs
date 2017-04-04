@@ -24,5 +24,7 @@ namespace AionHR.Services.Interfaces
         PasswordRecoveryResponse ResetPassword(ResetPasswordRequest request);
 
         PostResponse<Attachement> UploadMultipleAttachments(SystemAttachmentsPostRequest req);
+
+        PostResponse<BatchSql> RunSqlBatch(BatchSql r);
     }
 }
