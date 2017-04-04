@@ -628,6 +628,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Complaints.
+        /// </summary>
+        internal static string EmployeeComplaints {
+            get {
+                return ResourceManager.GetString("EmployeeComplaints", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Employees.
         /// </summary>
         internal static string EmployeeFiles {

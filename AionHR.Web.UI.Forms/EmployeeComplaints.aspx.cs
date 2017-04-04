@@ -27,15 +27,15 @@ using AionHR.Model.Employees.Profile;
 using AionHR.Model.LeaveManagement;
 using AionHR.Services.Messaging.System;
 using AionHR.Model.Company.Cases;
+using AionHR.Model.EmployeeComplaints;
 using System.Net;
 using AionHR.Infrastructure.Domain;
+using AionHR.Model.Employees;
 
 namespace AionHR.Web.UI.Forms
 {
-    public partial class Cases : System.Web.UI.Page
+    public partial class EmployeeComplaints : System.Web.UI.Page
     {
-
-
         [DirectMethod]
         public object FillEmployee(string action, Dictionary<string, object> extraParams)
         {
@@ -86,8 +86,7 @@ namespace AionHR.Web.UI.Forms
 
         IEmployeeService _employeeService = ServiceLocator.Current.GetInstance<IEmployeeService>();
 
-        ICaseService _caseService = ServiceLocator.Current.GetInstance<ICaseService>();
-
+        IComplaintsService _complaintService = ServiceLocator.Current.GetInstance<IComplaintsService>();
 
 
         ICompanyStructureService _companyStructureService = ServiceLocator.Current.GetInstance<ICompanyStructureService>();
@@ -123,9 +122,9 @@ namespace AionHR.Web.UI.Forms
 
                 FillBranch();
                 FillDepartment();
-                FillDivision();
-                statusPref.Select(0);
-                dateCol.Format = _systemService.SessionHelper.GetDateformat() + ": hh:mm:ss";
+                //FillDivision();
+                statusPref.Select("0");
+                //dateCol.Format = _systemService.SessionHelper.GetDateformat() + ": hh:mm:ss";
 
             }
 
@@ -174,12 +173,11 @@ namespace AionHR.Web.UI.Forms
         }
 
 
-
         protected void PoPuP(object sender, DirectEventArgs e)
         {
 
             panelRecordDetails.ActiveIndex = 0;
-            SetTabPanelEnable(true);
+            //SetTabPanelEnable(true);
             string id = e.ExtraParams["id"];
             string type = e.ExtraParams["type"];
 
@@ -190,7 +188,7 @@ namespace AionHR.Web.UI.Forms
                     RecordRequest r = new RecordRequest();
                     r.RecordID = id;
 
-                    RecordResponse<Case> response = _caseService.Get<Case>(r);
+                    RecordResponse<Complaint> response = _complaintService.Get<Complaint>(r);
                     if (!response.Success)
                     {
                         X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
@@ -200,23 +198,23 @@ namespace AionHR.Web.UI.Forms
 
                     currentCase.Text = id;
 
-                        employeeId.GetStore().Add(new object[]
-                           {
+                    employeeId.GetStore().Add(new object[]
+                       {
                                 new
                                 {
                                     recordId = response.result.employeeId,
                                     fullName =response.result.employeeName.fullName
                                 }
-                           });
+                       });
                     employeeId.SetValue(response.result.employeeId);
 
-                    FillFilesStore(Convert.ToInt32(id));
+                    //FillFilesStore(Convert.ToInt32(id));
 
                     //Step 2 : call setvalues with the retrieved object
                     this.BasicInfoTab.SetValues(response.result);
-                    caseComments_RefreshData(Convert.ToInt32(id));
-                    if (!response.result.closedDate.HasValue)
-                        closedDate.SelectedDate = DateTime.Now;
+                    //caseComments_RefreshData(Convert.ToInt32(id));
+                    if (!response.result.dateReceived.HasValue)
+                        dateReceived.SelectedDate = DateTime.Now;
                     this.EditRecordWindow.Title = Resources.Common.EditWindowsTitle;
                     this.EditRecordWindow.Show();
                     break;
@@ -249,72 +247,27 @@ namespace AionHR.Web.UI.Forms
 
         }
 
-        protected void PoPuPCase(object sender, DirectEventArgs e)
-        {
 
-
-            string id = e.ExtraParams["id"];
-            string type = e.ExtraParams["type"];
-            string index = e.ExtraParams["index"];
-            switch (type)
-            {
-                case "imgEdit":
-                    //Step 1 : get the object from the Web Service 
-                    X.Call("App.caseCommentGrid.editingPlugin.startEdit", Convert.ToInt32(index), 0);
-                    break;
-                   
-
-                case "imgDelete":
-                    X.Msg.Confirm(Resources.Common.Confirmation, Resources.Common.DeleteOneRecord, new MessageBoxButtonsConfig
-                    {
-                        Yes = new MessageBoxButtonConfig
-                        {
-                            //We are call a direct request metho for deleting a record
-                            Handler = String.Format("App.direct.DeleteCase({0})", id),
-                            Text = Resources.Common.Yes
-                        },
-                        No = new MessageBoxButtonConfig
-                        {
-                            Text = Resources.Common.No
-                        }
-
-                    }).Show();
-                    break;
-
-                case "colAttach":
-
-                    //Here will show up a winow relatice to attachement depending on the case we are working on
-                    break;
-                default:
-                    break;
-            }
-
-
-        }
-
-        /// <summary>
-        /// This direct method will be called after confirming the delete
-        /// </summary>
-        /// <param name="index">the ID of the object to delete</param>
         [DirectMethod]
         public void DeleteRecord(string index)
         {
             try
             {
                 //Step 1 Code to delete the object from the database 
-                Case s = new Case();
+                Complaint s = new Complaint();
                 s.recordId = index;
                 s.employeeId = 0;
                 s.employeeName = new EmployeeName();
-                s.details = "";
-                s.date = DateTime.Now;
-                s.closedDate = DateTime.Now;
+                s.actionRequired = "";
+                s.actionTaken = "";
+                s.complaintDetails = "";
+                s.dateReceived = DateTime.Now;
                 s.status = 0;
 
 
-                PostRequest<Case> req = new PostRequest<Case>();
+                PostRequest<Complaint> req = new PostRequest<Complaint>();
                 req.entity = s;
-                PostResponse<Case> r = _caseService.Delete<Case>(req);
+                PostResponse<Complaint> r = _complaintService.Delete<Complaint>(req);
                 if (!r.Success)
                 {
                     X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
@@ -345,57 +298,6 @@ namespace AionHR.Web.UI.Forms
             }
 
         }
-
-        [DirectMethod]
-        public void DeleteCase(string index)
-        {
-            try
-            {
-                //Step 1 Code to delete the object from the database 
-                CaseComment s = new CaseComment();
-                s.caseId = Convert.ToInt32(currentCase.Text);
-                s.comment = "";
-                s.seqNo = Convert.ToInt16(index);
-                s.userId = 0;
-                s.userName = "";
-                s.date = DateTime.Now;
-               
-
-
-                PostRequest<CaseComment> req = new PostRequest<CaseComment>();
-                req.entity = s;
-                PostResponse<CaseComment> r = _caseService.ChildDelete<CaseComment>(req);
-                if (!r.Success)
-                {
-                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.Error, r.Summary).Show();
-                    return;
-                }
-                else
-                {
-                    //Step 2 :  remove the object from the store
-                    caseCommentStore.Remove(index);
-
-                    //Step 3 : Showing a notification for the user 
-                    Notification.Show(new NotificationConfig
-                    {
-                        Title = Resources.Common.Notification,
-                        Icon = Icon.Information,
-                        Html = Resources.Common.RecordDeletedSucc
-                    });
-                }
-
-            }
-            catch (Exception ex)
-            {
-                //In case of error, showing a message box to the user
-                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorDeletingRecord).Show();
-
-            }
-
-        }
-
 
 
         /// <summary>
@@ -467,6 +369,7 @@ namespace AionHR.Web.UI.Forms
             }
         }
 
+
         /// <summary>
         /// Adding new record
         /// </summary>
@@ -474,74 +377,23 @@ namespace AionHR.Web.UI.Forms
         /// <param name="e"></param>
         protected void ADDNewRecord(object sender, DirectEventArgs e)
         {
-            caseCommentStore.DataSource = new List<CaseComment>();
-            caseCommentStore.DataBind();
+            //caseCommentStore.DataSource = new List<CaseComment>();
+            //caseCommentStore.DataBind();
             //Reset all values of the relative object
             BasicInfoTab.Reset();
-            closedDate.SelectedDate = DateTime.Now;
-           
+            dateReceived.SelectedDate = DateTime.Now;
+
             panelRecordDetails.ActiveIndex = 0;
-            SetTabPanelEnable(false);
+            //SetTabPanelEnable(false);
             this.EditRecordWindow.Title = Resources.Common.AddNewRecord;
 
 
             this.EditRecordWindow.Show();
         }
 
-        protected void caseComments_RefreshData(int cId)
+        private EmployeeComplaintListRequest GetEmployeeComplaintRequest()
         {
-
-            //GEtting the filter from the page
-            string filter = string.Empty;
-            int totalCount = 1;
-
-
-
-            //Fetching the corresponding list
-
-            //in this test will take a list of News
-
-            CaseCommentsListRequest req = new CaseCommentsListRequest();
-            req.caseId = cId;
-            ListResponse<CaseComment> notes = _caseService.ChildGetAll<CaseComment>(req);
-            if (!notes.Success)
-            {
-             //   X.Msg.Alert(Resources.Common.Error, notes.Summary).Show();
-            }
-            this.caseCommentStore.DataSource = notes.Items;
-            
-
-            this.caseCommentStore.DataBind();
-        }
-
-        protected void ADDNewRecordComments(object sender, DirectEventArgs e)
-        {
-            string noteText = e.ExtraParams["noteText"];
-            X.Call("ClearNoteText");
-            PostRequest<CaseComment> req = new PostRequest<CaseComment>();
-            CaseComment note = new CaseComment();
-            note.recordId = null;
-            note.comment = noteText;
-            note.date = DateTime.Now;
-            note.caseId = Convert.ToInt32(currentCase.Text);
-            req.entity = note;
-            
-
-            PostResponse<CaseComment> resp = _caseService.ChildAddOrUpdate<CaseComment>(req);
-            if (!resp.Success)
-            {
-                X.Msg.Alert(Resources.Common.Error, resp.Summary).Show();
-
-            }
-            caseComments_RefreshData(Convert.ToInt32(currentCase.Text));
-
-            //Reset all values of the relative object
-
-        }
-
-        private CaseManagementListRequest GetCaseManagementRequest()
-        {
-            CaseManagementListRequest req = new CaseManagementListRequest();
+            EmployeeComplaintListRequest req = new EmployeeComplaintListRequest();
 
             if (!string.IsNullOrEmpty(branchId.Text) && branchId.Value.ToString() != "0")
             {
@@ -549,26 +401,26 @@ namespace AionHR.Web.UI.Forms
             }
             else
             {
-                req.BranchId = 0;            
+                req.BranchId = 0;
             }
 
             if (!string.IsNullOrEmpty(departmentId.Text) && departmentId.Value.ToString() != "0")
             {
-                req.DepartmentId = Convert.ToInt32(departmentId.Value); 
+                req.DepartmentId = Convert.ToInt32(departmentId.Value);
             }
             else
             {
                 req.DepartmentId = 0;
             }
 
-            if (!string.IsNullOrEmpty(divisionId.Text) && divisionId.Value.ToString() != "0")
-            {
-                req.DivisionId = Convert.ToInt32(divisionId.Value);
-            }
-            else
-            {
-                req.DivisionId = 0;
-            }
+            //if (!string.IsNullOrEmpty(divisionId.Text) && divisionId.Value.ToString() != "0")
+            //{
+            //    req.DivisionId = Convert.ToInt32(divisionId.Value);
+            //}
+            //else
+            //{
+            //    req.DivisionId = 0;
+            //}
             if (!string.IsNullOrEmpty(statusPref.Text) && statusPref.Value.ToString() != "")
             {
                 req.Status = Convert.ToInt32(statusPref.Value);
@@ -582,8 +434,10 @@ namespace AionHR.Web.UI.Forms
             req.Filter = "";
             req.SortBy = "employeeId";
             req.EmployeeId = 0;
+            req.DivisionId = 0;
             return req;
         }
+
 
         protected void Store1_RefreshData(object sender, StoreReadDataEventArgs e)
         {
@@ -598,22 +452,19 @@ namespace AionHR.Web.UI.Forms
 
             //in this test will take a list of News
             //ListRequest request = new ListRequest();
-            CaseManagementListRequest request = GetCaseManagementRequest();
+            EmployeeComplaintListRequest request = GetEmployeeComplaintRequest();
 
-            ListResponse<Case> routers = _caseService.GetAll<Case>(request);
+            ListResponse<Complaint> routers = _complaintService.GetAll<Complaint>(request);
             if (!routers.Success)
             {
                 X.Msg.Alert(Resources.Common.Error, routers.Summary).Show();
                 return;
             }
             this.Store1.DataSource = routers.Items;
-            e.Total = routers.Items.Count; 
+            e.Total = routers.Items.Count;
 
             this.Store1.DataBind();
         }
-
-
-
 
         protected void SaveNewRecord(object sender, DirectEventArgs e)
         {
@@ -623,18 +474,18 @@ namespace AionHR.Web.UI.Forms
 
 
             string obj = e.ExtraParams["values"];
-            Case b = JsonConvert.DeserializeObject<Case>(obj);
+            Complaint b = JsonConvert.DeserializeObject<Complaint>(obj);
 
             string id = e.ExtraParams["id"];
             // Define the object to add or edit as null
 
             b.employeeName = new EmployeeName();
             if (employeeId.SelectedItem != null)
-               
                 b.employeeName.fullName = employeeId.SelectedItem.Text;
 
-            if (closedDate.ReadOnly)
-                b.closedDate = null;
+            if (dateReceived.ReadOnly)
+                b.dateReceived = null;
+
             if (string.IsNullOrEmpty(id))
             {
 
@@ -642,11 +493,11 @@ namespace AionHR.Web.UI.Forms
                 {
                     //New Mode
                     //Step 1 : Fill The object and insert in the store 
-                    PostRequest<Case> request = new PostRequest<Case>();
+                    PostRequest<Complaint> request = new PostRequest<Complaint>();
 
                     request.entity = b;
-                    
-                    PostResponse<Case> r = _caseService.AddOrUpdate<Case>(request);
+
+                    PostResponse<Complaint> r = _complaintService.AddOrUpdate<Complaint>(request);
 
 
                     //check if the insert failed
@@ -660,7 +511,7 @@ namespace AionHR.Web.UI.Forms
                     else
                     {
                         b.recordId = r.recordId;
-                        
+
                         //Add this record to the store 
                         this.Store1.Insert(0, b);
 
@@ -672,12 +523,14 @@ namespace AionHR.Web.UI.Forms
                             Html = Resources.Common.RecordSavingSucc
                         });
                         recordId.Text = b.recordId;
-                        SetTabPanelEnable(true);
+                        //SetTabPanelEnable(true);
                         currentCase.Text = b.recordId;
+                        this.EditRecordWindow.Close();
                         RowSelectionModel sm = this.GridPanel1.GetSelectionModel() as RowSelectionModel;
                         sm.DeselectAll();
                         sm.Select(b.recordId.ToString());
 
+                        
 
 
                     }
@@ -698,9 +551,9 @@ namespace AionHR.Web.UI.Forms
                 try
                 {
                     //getting the id of the record
-                    PostRequest<Case> request = new PostRequest<Case>();
+                    PostRequest<Complaint> request = new PostRequest<Complaint>();
                     request.entity = b;
-                    PostResponse<Case> r = _caseService.AddOrUpdate<Case>(request);                      //Step 1 Selecting the object or building up the object for update purpose
+                    PostResponse<Complaint> r = _complaintService.AddOrUpdate<Complaint>(request);                      //Step 1 Selecting the object or building up the object for update purpose
 
                     //Step 2 : saving to store
 
@@ -718,8 +571,8 @@ namespace AionHR.Web.UI.Forms
                         ModelProxy record = this.Store1.GetById(id);
                         BasicInfoTab.UpdateRecord(record);
 
-                        if (closedDate.ReadOnly)
-                            record.Set("closedDate", null);
+                        if (dateReceived.ReadOnly)
+                            record.Set("dateReceived", null);
                         record.Set("employeeName", b.employeeName);
                         record.Commit();
                         Notification.Show(new NotificationConfig
@@ -742,6 +595,7 @@ namespace AionHR.Web.UI.Forms
             }
         }
 
+
         [DirectMethod]
         public string CheckSession()
         {
@@ -756,7 +610,6 @@ namespace AionHR.Web.UI.Forms
         {
 
         }
-
 
         private void FillDepartment()
         {
@@ -777,267 +630,42 @@ namespace AionHR.Web.UI.Forms
             branchStore.DataBind();
         }
 
-        private void FillDivision()
-        {
-            ListRequest branchesRequest = new ListRequest();
-            ListResponse<Division> resp = _companyStructureService.ChildGetAll<Division>(branchesRequest);
-            if (!resp.Success)
-                X.Msg.Alert(Resources.Common.Error, resp.Summary).Show();
-            divisionStore.DataSource = resp.Items;
-            divisionStore.DataBind();
-        }
-
-        [DirectMethod]
-        public object ValidateSave(bool isPhantom, string obj, JsonObject values)
-        {
-
-
-            if (!values.ContainsKey("comment"))
-            {
-                return new { valid = false, msg = "Error in call" };
-            }
-
-            PostRequest<CaseComment> req = new PostRequest<CaseComment>();
-            CaseComment note = JsonConvert.DeserializeObject<List<CaseComment>>(obj)[0];
-            //note.recordId = id;
-            note.caseId = Convert.ToInt32(currentCase.Text);
-            note.comment = values["comment"].ToString();
-            int bulk;
-
-            req.entity = note;
-
-            PostResponse<CaseComment> resp = _caseService.ChildAddOrUpdate<CaseComment>(req);
-            if (!resp.Success)
-            {
-                X.Msg.Alert(Resources.Common.Error, resp.Summary).Show();
-                return new { valid = false };
-            }
-            caseComments_RefreshData(note.caseId);
-            return new { valid = true };
-        }
-
-        private void SetTabPanelEnable(bool isEnable)
-        {
-            foreach (var item in panelRecordDetails.Items)
-            {
-                if (item.ID == "BasicInfoTab")
-                    continue;
-                item.Disabled = !isEnable;
-            }
-            
-        }
-
-        #region AttachmentManagement
-        [DirectMethod]
-        public void FillFilesStore( int caseId)
-        {
-            //ListRequest request = new ListRequest();
-            CaseAttachmentsListRequest request = new CaseAttachmentsListRequest();
-            request.recordId = caseId;
-
-            ListResponse<Attachement> routers = _systemService.ChildGetAll<Attachement>(request);
-            if (!routers.Success)
-            {
-                X.Msg.Alert(Resources.Common.Error, routers.Summary).Show();
-                return;
-            }
-            this.filesStore.DataSource = routers.Items;
-            
-
-            this.filesStore.DataBind();
-        }
-        
-
-        protected void AddAttachments(object sender, DirectEventArgs e)
-        {
-            ListRequest req = new ListRequest();
-            ListResponse<DocumentType> docs = _employeeService.ChildGetAll<DocumentType>(req);
-            if(!docs.Success)
-            {
-                return;
-            }
-            List<object> options = new List<object>();
-            foreach (var item in docs.Items)
-            {
-                options.Add(new { text = item.name, value = item.recordId });
-            }
-            X.Call("InitTypes", options);
-            AttachmentsWindow.Show();
-        }
-        protected void PoPuPAttachement(object sender, DirectEventArgs e)
-        {
-
-
-            int id = Convert.ToInt32(e.ExtraParams["id"]);
-            string type = e.ExtraParams["type"];
-            string path = e.ExtraParams["path"];
-            switch (type)
-            {
-             
-
-                case "imgDelete":
-                    X.Msg.Confirm(Resources.Common.Confirmation, Resources.Common.DeleteOneRecord, new MessageBoxButtonsConfig
-                    {
-                        Yes = new MessageBoxButtonConfig
-                        {
-                            //We are call a direct request metho for deleting a record
-                            Handler = String.Format("App.direct.DeleteAttachment({0})", id),
-                            Text = Resources.Common.Yes
-                        },
-                        No = new MessageBoxButtonConfig
-                        {
-                            Text = Resources.Common.No
-                        }
-
-                    }).Show();
-                    break;
-
-                case "imgAttach":
-                    DownloadFile(path);
-
-                    //Here will show up a winow relatice to attachement depending on the case we are working on
-                    break;
-                default:
-                    break;
-            }
-
-
-        }
-        [DirectMethod]
-        public void DownloadFile(string url)
-        {
-            if (string.IsNullOrEmpty(url))
-                return;
-
-            Stream stream = null;
-
-            //This controls how many bytes to read at a time and send to the client
-            int bytesToRead = 10000;
-
-            // Buffer to read bytes in chunk size specified above
-            byte[] buffer = new Byte[bytesToRead];
-
-            // The number of bytes read
-            try
-            {
-                //Create a WebRequest to get the file
-                HttpWebRequest fileReq = (HttpWebRequest)HttpWebRequest.Create(url);
-
-                //Create a response for this request
-                HttpWebResponse fileResp = (HttpWebResponse)fileReq.GetResponse();
-
-                if (fileReq.ContentLength > 0)
-                    fileResp.ContentLength = fileReq.ContentLength;
-
-                //Get the Stream returned from the response
-                stream = fileResp.GetResponseStream();
-
-                // prepare the response to the client. resp is the client Response
-                
-                var resp = HttpContext.Current.Response;
-                
-                //Indicate the type of data being sent
-                resp.ContentType = "application/octet-stream";
-                string[] segments = url.Split('/');
-                string fileName = segments[segments.Length - 1];
-                //Name the file 
-                resp.AddHeader("Content-Disposition", "attachment; filename=\"" + fileName + "\"");
-                resp.AddHeader("Content-Length", fileResp.ContentLength.ToString());
-
-                int length;
-                do
-                {
-                    // Verify that the client is connected.
-                    if (resp.IsClientConnected)
-                    {
-                        // Read data into the buffer.
-                        length = stream.Read(buffer, 0, bytesToRead);
-
-                        // and write it out to the response's output stream
-                        resp.OutputStream.Write(buffer, 0, length);
-
-                        // Flush the data
-
-
-                        //Clear the buffer
-                        buffer = new Byte[bytesToRead];
-                    }
-                    else
-                    {
-                        // cancel the download if client has disconnected
-                        length = -1;
-                    }
-                } while (length > 0); //Repeat until no data is read
-                resp.Flush();
-            }
-            catch(Exception exp)
-            {
-                X.Msg.Alert(Resources.Common.Error, exp.Message+"<br />"+exp.StackTrace).Show();
-                return;
-            }
-            finally
-            {
-                if (stream != null)
-                {
-                    //Close the input stream
-                    stream.Close();
-                }
-            }
-        }
+        //private void FillDivision()
+        //{
+        //    ListRequest branchesRequest = new ListRequest();
+        //    ListResponse<Division> resp = _companyStructureService.ChildGetAll<Division>(branchesRequest);
+        //    if (!resp.Success)
+        //        X.Msg.Alert(Resources.Common.Error, resp.Summary).Show();
+        //    divisionStore.DataSource = resp.Items;
+        //    divisionStore.DataBind();
+        //}
 
 
 
-        /// <summary>
-        /// This direct method will be called after confirming the delete
-        /// </summary>
-        /// <param name="index">the ID of the object to delete</param>
-        [DirectMethod]
-        public void DeleteAttachment(string index)
-        {
-            try
-            {
-                //Step 1 Code to delete the object from the database 
-                Attachement n = new Attachement();
-                n.classId = ClassId.CMCA;
-                n.recordId = Convert.ToInt32(currentCase.Text);
-                n.seqNo = Convert.ToInt16(index);
 
 
-                PostRequest<Attachement> req = new PostRequest<Attachement>();
-                req.entity = n;
-                PostResponse<Attachement> res = _systemService.ChildDelete<Attachement>(req);
-                if (!res.Success)
-                {
-                    //Show an error saving...
-                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.Error, res.Summary).Show();
-                    return;
-                }
-                else
-                {
-                    //Step 2 :  remove the object from the store
-                    filesStore.Remove(index);
 
-                    //Step 3 : Showing a notification for the user 
-                    Notification.Show(new NotificationConfig
-                    {
-                        Title = Resources.Common.Notification,
-                        Icon = Icon.Information,
-                        Html = Resources.Common.RecordDeletedSucc
-                        
-                    });
-                }
 
-            }
-            catch (Exception ex)
-            {
-                //In case of error, showing a message box to the user
-                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorDeletingRecord).Show();
 
-            }
 
-        }
-        #endregion
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     }
 }

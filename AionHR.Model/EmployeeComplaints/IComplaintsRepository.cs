@@ -10,5 +10,6 @@ namespace AionHR.Model.EmployeeComplaints
 {
    public  interface IComplaintsRepository:IRepository<Complaint, string>,ICommonRepository
     {
+
     }
 }
