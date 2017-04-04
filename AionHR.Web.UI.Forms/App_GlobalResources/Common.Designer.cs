@@ -655,7 +655,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Employee Organization.
+        ///   Looks up a localized string similar to Employee Chart.
         /// </summary>
         internal static string EmpOrganizationChart {
             get {

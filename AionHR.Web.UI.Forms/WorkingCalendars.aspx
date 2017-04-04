@@ -154,7 +154,7 @@
 
                             </ext:Column>
                             <ext:Column runat="server"
-                                ID="colDelete" Flex="1" Visible="true"
+                                ID="colDelete"  Visible="true"
                                 Text="<%$ Resources: Common , Delete %>"
                                 Width="60"
                                 Align="Center"
@@ -178,7 +178,7 @@
                                 Resizable="false">
                                 <Renderer Fn="attachRender" />
                             </ext:Column>
-                             <ext:Column runat="server" Flex="1"
+                             <ext:Column runat="server"
                                 ID="colDetails"
                                 Text="<%$ Resources:EditYears %>"
                                 Hideable="false"
@@ -321,7 +321,7 @@
                             </ext:Column>
                             <ext:Column runat="server" ID="colYear" Text="<%$ Resources: Year %>"  DataIndex="year" Flex="2" />
                              <ext:Column runat="server"
-                                ID="colYearDetails" Flex="1"
+                                ID="colYearDetails" 
                                 Text="<%$ Resources:EditCalendar %>"
                                 Hideable="false"
                                 Width="60"

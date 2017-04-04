@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace AionHR.Model.MasterModule
 {
-   public class DbSetup
+    public class DbSetup
 
     {
         public int accountId;
-        public string fullName;
-        public string email;
-        public string password;
-        public short languageId;
+    }
+    public class BatchSql
+    {
+        
     }
 }

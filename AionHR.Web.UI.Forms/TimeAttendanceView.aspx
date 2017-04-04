@@ -26,7 +26,7 @@
         function startRefresh() {
 
 
-            setInterval(RefreshAllGrids, 5000);
+            setInterval(RefreshAllGrids, 60000);
 
         }
         function RefreshAllGrids() {
