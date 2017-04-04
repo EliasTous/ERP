@@ -24,7 +24,8 @@ namespace AionHR.Repository.WebService.Repositories
             base.GetRecordMethodName = "getAC";
             ChildAddOrUpdateLookup.Add(typeof(Registration), "setRE");
             ChildAddOrUpdateLookup.Add(typeof(Account), "setAC");
-            ChildAddOrUpdateLookup.Add(typeof(DbSetup), "createDB");
+            ChildAddOrUpdateLookup.Add(typeof(DbSetup), "setDB");
+           
 
         }
 

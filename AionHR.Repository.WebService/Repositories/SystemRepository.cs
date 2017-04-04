@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using AionHR.Infrastructure.WebService;
 using AionHR.Infrastructure.Domain;
+using AionHR.Model.MasterModule;
 
 namespace AionHR.Repository.WebService.Repositories
 {
@@ -45,6 +46,8 @@ namespace AionHR.Repository.WebService.Repositories
 
             ChildAddOrUpdateLookup.Add(typeof(KeyValuePair<string, string>[]), "arrDE");
 
+
+            ChildAddOrUpdateLookup.Add(typeof(BatchSql), "batchSQL");
 
 
         }

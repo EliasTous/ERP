@@ -271,9 +271,9 @@
                                         <ext:Label runat="server" ID="monthLbl" StyleSpec="text-align:center;" />
                                         <ext:Label runat="server" ID="Label1" StyleSpec="text-align:center;" Text="- " />
                                         <ext:Label runat="server" ID="yearLbl" StyleSpec="text-align:center;" />
-                                        <DayPilot:DayPilotScheduler ID="DayPilotScheduler1" runat="server"
+                                        <DayPilot:DayPilotScheduler ID="DayPilotScheduler1" runat="server" 
                                             HeaderFontSize="8pt" HeaderHeight="20" CssOnly="false" 
-                                            EventClickHandling="JavaScript"
+                                            EventClickHandling="JavaScript" Scale="Day"
                                             EventClickJavaScript="App.direct.HandleClick({0});"
                                             EventFontSize="11px"
                                             CellDuration="1440"

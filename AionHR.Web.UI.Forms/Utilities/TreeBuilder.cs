@@ -74,31 +74,31 @@ namespace AionHR.Web.UI.Forms.Utilities
             FillConfigItem(assetAllowance, "assetAllowances", "AssetAllowances.aspx", Resources.Common.AssetAllowances, "icon-Employees", "1");
             FillConfigItem(employeesLeaf, "manageemployees", "Employees.aspx", Resources.Common.EmployeeLeaf, "icon-Employees", "1");
 
-            Ext.Net.Node setup = BuildParentNode("rootParent_setup", Resources.Common.Setup, false, rootParent);
-            Ext.Net.Node sponsors = BuildLeafNode("rootParent_Employee_Sponsors", Resources.Common.Sponsors, "Group", true, setup);
-            //Ext.Net.Node allowanceTypes = BuildLeafNode("rootParent_Employee_allowance", Resources.Common.AllowanceTypes, "Group", true, setup);
-            Ext.Net.Node certificateLevels = BuildLeafNode("rootParent_Employee_certificate", Resources.Common.CertificateLevels, "Group", true, setup);
-            Ext.Net.Node relationshipTypes = BuildLeafNode("rootParent_Employee_relationship", Resources.Common.RelationshipTypes, "Group", true, setup);
+            //Ext.Net.Node setup = BuildParentNode("rootParent_setup", Resources.Common.Setup, false, rootParent);
+            //Ext.Net.Node sponsors = BuildLeafNode("rootParent_Employee_Sponsors", Resources.Common.Sponsors, "Group", true, setup);
+            ////Ext.Net.Node allowanceTypes = BuildLeafNode("rootParent_Employee_allowance", Resources.Common.AllowanceTypes, "Group", true, setup);
+            //Ext.Net.Node certificateLevels = BuildLeafNode("rootParent_Employee_certificate", Resources.Common.CertificateLevels, "Group", true, setup);
+            //Ext.Net.Node relationshipTypes = BuildLeafNode("rootParent_Employee_relationship", Resources.Common.RelationshipTypes, "Group", true, setup);
 
-            Ext.Net.Node EntitlementDeductions = BuildLeafNode("rootParent_Employee_EntitlementDeductions", Resources.Common.EntitlementDeduction, "Group", true, setup);
-            Ext.Net.Node DocumentTypes = BuildLeafNode("rootParent_Employee_DocumentTypes", Resources.Common.DocumentTypes, "Group", true, setup);
-            Ext.Net.Node SalaryChangeReasons = BuildLeafNode("rootParent_Employee_SalaryChangeReason", Resources.Common.SalaryChangeReasons, "Group", true, setup);
-            Ext.Net.Node AssetCategories = BuildLeafNode("rootParent_Employee_AssetCategories", Resources.Common.AssetCategories, "Group", true, setup);
-            Ext.Net.Node BonusTypes = BuildLeafNode("rootParent_Employee_BonusTypes", Resources.Common.BonusTypes, "Group", true, setup);
-            Ext.Net.Node CheckTypes = BuildLeafNode("rootParent_Employee_CheckType", Resources.Common.CheckTypes, "Group", true, setup);
+            //Ext.Net.Node EntitlementDeductions = BuildLeafNode("rootParent_Employee_EntitlementDeductions", Resources.Common.EntitlementDeduction, "Group", true, setup);
+            //Ext.Net.Node DocumentTypes = BuildLeafNode("rootParent_Employee_DocumentTypes", Resources.Common.DocumentTypes, "Group", true, setup);
+            //Ext.Net.Node SalaryChangeReasons = BuildLeafNode("rootParent_Employee_SalaryChangeReason", Resources.Common.SalaryChangeReasons, "Group", true, setup);
+            //Ext.Net.Node AssetCategories = BuildLeafNode("rootParent_Employee_AssetCategories", Resources.Common.AssetCategories, "Group", true, setup);
+            //Ext.Net.Node BonusTypes = BuildLeafNode("rootParent_Employee_BonusTypes", Resources.Common.BonusTypes, "Group", true, setup);
+            //Ext.Net.Node CheckTypes = BuildLeafNode("rootParent_Employee_CheckType", Resources.Common.CheckTypes, "Group", true, setup);
 
 
-             FillConfigItem(sponsors, "sponsors", "Sponsors.aspx", Resources.Common.Sponsors, "icon-Employees", "1");
-            //FillConfigItem(allowanceTypes, "allowanceTypes", "AllowanceTypes.aspx", Resources.Common.AllowanceTypes, "icon-Employees", "1");
-            FillConfigItem(certificateLevels, "certificateLevels", "CertificateLevels.aspx", Resources.Common.CertificateLevels, "icon-Employees", "1");
-            FillConfigItem(relationshipTypes, "relationshipTypes", "RelationshipTypes.aspx", Resources.Common.RelationshipTypes, "icon-Employees", "1");
+            // FillConfigItem(sponsors, "sponsors", "Sponsors.aspx", Resources.Common.Sponsors, "icon-Employees", "1");
+            ////FillConfigItem(allowanceTypes, "allowanceTypes", "AllowanceTypes.aspx", Resources.Common.AllowanceTypes, "icon-Employees", "1");
+            //FillConfigItem(certificateLevels, "certificateLevels", "CertificateLevels.aspx", Resources.Common.CertificateLevels, "icon-Employees", "1");
+            //FillConfigItem(relationshipTypes, "relationshipTypes", "RelationshipTypes.aspx", Resources.Common.RelationshipTypes, "icon-Employees", "1");
 
-            FillConfigItem(EntitlementDeductions, "entitlementDeductions", "EntitlementDeductions.aspx", Resources.Common.EntitlementDeduction, "icon-Employees", "1");
-            FillConfigItem(DocumentTypes, "documentTypes", "DocumentTypes.aspx", Resources.Common.DocumentTypes, "icon-Employees", "1");
-            FillConfigItem(SalaryChangeReasons, "salaryChangeReasons", "SalaryChangeReasons.aspx", Resources.Common.SalaryChangeReasons, "icon-Employees", "1");
-            FillConfigItem(AssetCategories, "assetCategories", "AssetCategories.aspx", Resources.Common.AssetCategories, "icon-Employees", "1");
-            FillConfigItem(BonusTypes, "bonusTypes", "BonusTypes.aspx", Resources.Common.BonusTypes, "icon-Employees", "1");
-            FillConfigItem(CheckTypes, "checkTypes", "CheckTypes.aspx", Resources.Common.CheckTypes, "icon-Employees", "1");
+            //FillConfigItem(EntitlementDeductions, "entitlementDeductions", "EntitlementDeductions.aspx", Resources.Common.EntitlementDeduction, "icon-Employees", "1");
+            //FillConfigItem(DocumentTypes, "documentTypes", "DocumentTypes.aspx", Resources.Common.DocumentTypes, "icon-Employees", "1");
+            //FillConfigItem(SalaryChangeReasons, "salaryChangeReasons", "SalaryChangeReasons.aspx", Resources.Common.SalaryChangeReasons, "icon-Employees", "1");
+            //FillConfigItem(AssetCategories, "assetCategories", "AssetCategories.aspx", Resources.Common.AssetCategories, "icon-Employees", "1");
+            //FillConfigItem(BonusTypes, "bonusTypes", "BonusTypes.aspx", Resources.Common.BonusTypes, "icon-Employees", "1");
+            //FillConfigItem(CheckTypes, "checkTypes", "CheckTypes.aspx", Resources.Common.CheckTypes, "icon-Employees", "1");
 
 
 
@@ -160,39 +160,41 @@ namespace AionHR.Web.UI.Forms.Utilities
 
             Ext.Net.Node rootParent = BuildRootParentNode("rootParent", Resources.Common.Company, true);
             Ext.Net.Node companyStructure = BuildParentNode("rootParent_CS", Resources.Common.CompanyStructure, true, rootParent);
-            Ext.Net.Node setup = BuildParentNode("rootParent_setup", Resources.Common.Setup, false, rootParent);
             Ext.Net.Node org = BuildLeafNode("rootParent_CS_ORG", Resources.Common.OrganizationChart, "Group", true, companyStructure);
             Ext.Net.Node emporg = BuildLeafNode("rootParent_CS_EMPORG", Resources.Common.EmpOrganizationChart, "Group", true, companyStructure);
-            Ext.Net.Node departments = BuildLeafNode("rootParent_CS_DE", Resources.Common.Departments, "Group", true, setup);
-            Ext.Net.Node branches = BuildLeafNode("rootParent_CS_BR", Resources.Common.Branches, "Group", true, setup);
-            Ext.Net.Node divisions = BuildLeafNode("rootParent_CS_DI", Resources.Common.Divisions, "Group", true, setup);
-            Ext.Net.Node positions = BuildLeafNode("rootParent_CS_PO", Resources.Common.Positions, "Group", true, setup);
-            //Ext.Net.Node activities = BuildParentNode("rootParent_AC", Resources.Common.Activities, true, rootParent);
-            //Ext.Net.Node transfers = BuildLeafNode("rootParent_AC_TR", Resources.Common.Transfers, "Group", true, activities);
-            Ext.Net.Node systemSettings = BuildParentNode("rootParent_SY", Resources.Common.SystemSettings, true, setup);
-            Ext.Net.Node nationalities = BuildLeafNode("rootParent_SY_NA", Resources.Common.Nationalities, "Group", true, systemSettings);
+            //Ext.Net.Node setup = BuildParentNode("rootParent_setup", Resources.Common.Setup, false, rootParent);
             
-            Ext.Net.Node defaults = BuildLeafNode("rootParent_SY_DE", Resources.Common.SystemDefaults, "Group", true, systemSettings);
-            Ext.Net.Node currencies = BuildLeafNode("rootParent_CS_CU", Resources.Common.Currencies, "Group", true, systemSettings);
-            Ext.Net.Node users = BuildLeafNode("rootParent_CS_US", Resources.Common.Users, "Group", true, systemSettings);
-
-            FillConfigItem(emporg, "emporg", "EmployeesOrgChart.aspx", Resources.Common.EmpOrganizationChart, "icon-Employees", "1");
-            FillConfigItem(branches, "branches", "Branches.aspx", Resources.Common.Branches, "icon-Employees", "1");
-            FillConfigItem(divisions, "divisions", "Divisions.aspx", Resources.Common.Divisions, "icon-Employees", "1");
-            FillConfigItem(departments, "departments", "Departments.aspx", Resources.Common.Departments, "icon-Employees", "1");
-            FillConfigItem(positions, "positions", "Positions.aspx", Resources.Common.Positions, "icon-Employees", "1");
-            FillConfigItem(currencies, "currencies", "Currencies.aspx", Resources.Common.Currencies, "icon-Employees", "1");
+           
+            //Ext.Net.Node departments = BuildLeafNode("rootParent_CS_DE", Resources.Common.Departments, "Group", true, setup);
+            //Ext.Net.Node branches = BuildLeafNode("rootParent_CS_BR", Resources.Common.Branches, "Group", true, setup);
+            //Ext.Net.Node divisions = BuildLeafNode("rootParent_CS_DI", Resources.Common.Divisions, "Group", true, setup);
+            //Ext.Net.Node positions = BuildLeafNode("rootParent_CS_PO", Resources.Common.Positions, "Group", true, setup);
+            ////Ext.Net.Node activities = BuildParentNode("rootParent_AC", Resources.Common.Activities, true, rootParent);
+            ////Ext.Net.Node transfers = BuildLeafNode("rootParent_AC_TR", Resources.Common.Transfers, "Group", true, activities);
+            //Ext.Net.Node systemSettings = BuildParentNode("rootParent_SY", Resources.Common.SystemSettings, true, setup);
+            //Ext.Net.Node nationalities = BuildLeafNode("rootParent_SY_NA", Resources.Common.Nationalities, "Group", true, systemSettings);
             
-            FillConfigItem(nationalities, "nationalities", "Nationalities.aspx", Resources.Common.Nationalities, "icon-Employees", "1");
-            FillConfigItem(defaults, "defaults", "SystemDefaults.aspx", Resources.Common.SystemDefaults, "icon-Employees", "1");
-            FillConfigItem(users, "users", "Users.aspx", Resources.Common.Users, "icon-Employees", "1");
+            //Ext.Net.Node defaults = BuildLeafNode("rootParent_SY_DE", Resources.Common.SystemDefaults, "Group", true, systemSettings);
+            //Ext.Net.Node currencies = BuildLeafNode("rootParent_CS_CU", Resources.Common.Currencies, "Group", true, systemSettings);
+            //Ext.Net.Node users = BuildLeafNode("rootParent_CS_US", Resources.Common.Users, "Group", true, systemSettings);
+
+            //FillConfigItem(emporg, "emporg", "EmployeesOrgChart.aspx", Resources.Common.EmpOrganizationChart, "icon-Employees", "1");
+            //FillConfigItem(branches, "branches", "Branches.aspx", Resources.Common.Branches, "icon-Employees", "1");
+            //FillConfigItem(divisions, "divisions", "Divisions.aspx", Resources.Common.Divisions, "icon-Employees", "1");
+            //FillConfigItem(departments, "departments", "Departments.aspx", Resources.Common.Departments, "icon-Employees", "1");
+            //FillConfigItem(positions, "positions", "Positions.aspx", Resources.Common.Positions, "icon-Employees", "1");
+            //FillConfigItem(currencies, "currencies", "Currencies.aspx", Resources.Common.Currencies, "icon-Employees", "1");
+            
+            //FillConfigItem(nationalities, "nationalities", "Nationalities.aspx", Resources.Common.Nationalities, "icon-Employees", "1");
+            //FillConfigItem(defaults, "defaults", "SystemDefaults.aspx", Resources.Common.SystemDefaults, "icon-Employees", "1");
+            //FillConfigItem(users, "users", "Users.aspx", Resources.Common.Users, "icon-Employees", "1");
 
 
-            Ext.Net.Node files = BuildParentNode("rootParent_files", Resources.Common.Files, true, rootParent);
-            Ext.Net.Node mediaCategory = BuildLeafNode("rootParent_files_MC", Resources.Common.MediaCategory, "Group", true, files);
-            //Ext.Net.Node media = BuildLeafNode("rootParent_files_Media", Resources.Common.Media, "Group", true, files);
+            //Ext.Net.Node files = BuildParentNode("rootParent_files", Resources.Common.Files, true, rootParent);
+            //Ext.Net.Node mediaCategory = BuildLeafNode("rootParent_files_MC", Resources.Common.MediaCategory, "Group", true, files);
+            ////Ext.Net.Node media = BuildLeafNode("rootParent_files_Media", Resources.Common.Media, "Group", true, files);
 
-            FillConfigItem(mediaCategory, "mediaCategories", "MediaCategories.aspx", Resources.Common.MediaCategory, "icon-Employees", "1");
+            //FillConfigItem(mediaCategory, "mediaCategories", "MediaCategories.aspx", Resources.Common.MediaCategory, "icon-Employees", "1");
 
 
             nodes.Add(rootParent);
@@ -208,32 +210,32 @@ namespace AionHR.Web.UI.Forms.Utilities
             Ext.Net.Node rootParent = BuildRootParentNode("rootParent", Resources.Common.Company, true);
             Ext.Net.Node timeAt = BuildParentNode("rootParent_TA", Resources.Common.TimeAttendance, true, rootParent);
             Ext.Net.Node leaveMgmt = BuildParentNode("rootParent_LM", Resources.Common.LeaveManagement, true, rootParent);
-            Ext.Net.Node lvsetup = BuildParentNode("rootParent_LMS", Resources.Common.Setup, false, leaveMgmt);
-            Ext.Net.Node tasetup = BuildParentNode("rootParent_TAS", Resources.Common.Setup, false, timeAt);
-            Ext.Net.Node vs = BuildLeafNode("rootParent_LM_VS", Resources.Common.VacationSchedules, "Group", true, lvsetup);
-            Ext.Net.Node lt = BuildLeafNode("rootParent_LM_LT", Resources.Common.LeaveTypes, "Group", true, lvsetup);
+            //Ext.Net.Node lvsetup = BuildParentNode("rootParent_LMS", Resources.Common.Setup, false, leaveMgmt);
+            //Ext.Net.Node tasetup = BuildParentNode("rootParent_TAS", Resources.Common.Setup, false, timeAt);
+            //Ext.Net.Node vs = BuildLeafNode("rootParent_LM_VS", Resources.Common.VacationSchedules, "Group", true, lvsetup);
+            //Ext.Net.Node lt = BuildLeafNode("rootParent_LM_LT", Resources.Common.LeaveTypes, "Group", true, lvsetup);
             Ext.Net.Node lr = BuildLeafNode("rootParent_LM_LR", Resources.Common.LeaveRequests, "Group", true, leaveMgmt);
             Ext.Net.Node lc = BuildLeafNode("rootParent_LM_LC", Resources.Common.LeaveCalendar, "Group", true, leaveMgmt);
-            Ext.Net.Node dts = BuildLeafNode("rootParent_TA_DT", Resources.Common.DayTypes, "Group", true, tasetup);
+            //Ext.Net.Node dts = BuildLeafNode("rootParent_TA_DT", Resources.Common.DayTypes, "Group", true, tasetup);
             Ext.Net.Node ad = BuildLeafNode("rootParent_TA_AD", Resources.Common.AttendanceDay, "Group", true, timeAt);
-            Ext.Net.Node sc = BuildLeafNode("rootParent_TA_SC", Resources.Common.AttendanceSchedule, "Group", true, tasetup);
-            Ext.Net.Node ca = BuildLeafNode("rootParent_TA_CA", Resources.Common.WorkingCalendars, "Group", true, tasetup);
-            Ext.Net.Node bm = BuildLeafNode("rootParent_TA_BM", Resources.Common.BiometricDevices, "Group", true, tasetup);
-            Ext.Net.Node ro = BuildLeafNode("rootParent_TA_RO", Resources.Common.Routers, "Group", true, tasetup);
+            //Ext.Net.Node sc = BuildLeafNode("rootParent_TA_SC", Resources.Common.AttendanceSchedule, "Group", true, tasetup);
+            //Ext.Net.Node ca = BuildLeafNode("rootParent_TA_CA", Resources.Common.WorkingCalendars, "Group", true, tasetup);
+            //Ext.Net.Node bm = BuildLeafNode("rootParent_TA_BM", Resources.Common.BiometricDevices, "Group", true, tasetup);
+            //Ext.Net.Node ro = BuildLeafNode("rootParent_TA_RO", Resources.Common.Routers, "Group", true, tasetup);
             Ext.Net.Node dashboard = BuildLeafNode("rootParent_TA_dshboard", Resources.Common.Dashboard, "Group", true, timeAt);
-            Ext.Net.Node gf = BuildLeafNode("rootParent_TA_GF", Resources.Common.Geofences, "Group", true, tasetup);
-            FillConfigItem(vs, "vacationSchedules", "VacationSchedules.aspx", Resources.Common.VacationSchedules, "icon-Employees", "1");
-            FillConfigItem(lt, "lt", "LeaveTypes.aspx", Resources.Common.LeaveTypes, "icon-Employees", "1");
+            //Ext.Net.Node gf = BuildLeafNode("rootParent_TA_GF", Resources.Common.Geofences, "Group", true, tasetup);
+            //FillConfigItem(vs, "vacationSchedules", "VacationSchedules.aspx", Resources.Common.VacationSchedules, "icon-Employees", "1");
+            //FillConfigItem(lt, "lt", "LeaveTypes.aspx", Resources.Common.LeaveTypes, "icon-Employees", "1");
             FillConfigItem(lr, "lr", "LeaveRequests.aspx", Resources.Common.LeaveRequests, "icon-Employees", "1");
             FillConfigItem(lc, "lc", "LeaveCalendar.aspx", Resources.Common.LeaveCalendar, "icon-Employees", "1");
-            FillConfigItem(dts, "dayTypes", "DayTypes.aspx", Resources.Common.DayTypes, "icon-Employees", "1");
-            FillConfigItem(sc, "schedules", "Schedules.aspx", Resources.Common.AttendanceSchedule, "icon-Employees", "1");
-            FillConfigItem(ca, "calendars", "WorkingCalendars.aspx", Resources.Common.WorkingCalendars, "icon-Employees", "1");
-            FillConfigItem(bm, "bm", "BiometricDevices.aspx", Resources.Common.BiometricDevices, "icon-Employees", "1");
-            FillConfigItem(ro, "ro", "Routers.aspx", Resources.Common.Routers, "icon-Employees", "1");
+            //FillConfigItem(dts, "dayTypes", "DayTypes.aspx", Resources.Common.DayTypes, "icon-Employees", "1");
+            //FillConfigItem(sc, "schedules", "Schedules.aspx", Resources.Common.AttendanceSchedule, "icon-Employees", "1");
+            //FillConfigItem(ca, "calendars", "WorkingCalendars.aspx", Resources.Common.WorkingCalendars, "icon-Employees", "1");
+            //FillConfigItem(bm, "bm", "BiometricDevices.aspx", Resources.Common.BiometricDevices, "icon-Employees", "1");
+            //FillConfigItem(ro, "ro", "Routers.aspx", Resources.Common.Routers, "icon-Employees", "1");
             FillConfigItem(ad, "ad", "TimeAttendanceView.aspx", Resources.Common.AttendanceDay, "icon-Employees", "1");
             FillConfigItem(dashboard, "dashboard", "Dashboard.aspx", Resources.Common.Dashboard, "icon-Employees", "1");
-            FillConfigItem(gf, "geofences", "Geofences.aspx", Resources.Common.Geofences, "icon-Employees", "1");
+            //FillConfigItem(gf, "geofences", "Geofences.aspx", Resources.Common.Geofences, "icon-Employees", "1");
             nodes.Add(rootParent);
             return nodes;
         }
