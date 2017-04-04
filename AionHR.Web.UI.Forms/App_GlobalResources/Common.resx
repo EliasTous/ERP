@@ -669,4 +669,7 @@
   <data name="EmpOrganizationChart" xml:space="preserve">
     <value>Employee Organization</value>
   </data>
+  <data name="EmployeeComplaints" xml:space="preserve">
+    <value>Complaints</value>
+  </data>
 </root>

@@ -385,15 +385,6 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Contacts.
-        /// </summary>
-        internal static string Contacts {
-            get {
-                return ResourceManager.GetString("Contacts", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to © 2017 AionHR. All rights reserved..
         /// </summary>
         internal static string CopyRight {
@@ -633,6 +624,15 @@ namespace Resources {
         internal static string Employee {
             get {
                 return ResourceManager.GetString("Employee", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Complaints.
+        /// </summary>
+        internal static string EmployeeComplaints {
+            get {
+                return ResourceManager.GetString("EmployeeComplaints", resourceCulture);
             }
         }
         
@@ -1299,15 +1299,6 @@ namespace Resources {
         internal static string RegularExpression {
             get {
                 return ResourceManager.GetString("RegularExpression", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Relationship Types.
-        /// </summary>
-        internal static string RelationshipTypes {
-            get {
-                return ResourceManager.GetString("RelationshipTypes", resourceCulture);
             }
         }
         

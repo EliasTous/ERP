@@ -91,7 +91,7 @@
     <Compile Include="Company\Structure\Branch.cs" />
     <Compile Include="Company\Structure\Department.cs" />
     <Compile Include="Company\Structure\Position.cs" />
-    <Compile Include="Employees\Complaint.cs" />
+    <Compile Include="EmployeeComplaints\Complaint.cs" />
     <Compile Include="LeaveManagement\Leave.cs" />
     <Compile Include="LeaveManagement\LeaveType.cs" />
     <Compile Include="LeaveManagement\VactationSchedule.cs" />
