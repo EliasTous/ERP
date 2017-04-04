@@ -12,7 +12,7 @@
     <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
     <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
     <script type="text/javascript" src="Scripts/moment.js"></script>
-    <script type="text/javascript" src="Scripts/Schedules.js?id=3"></script>
+    <script type="text/javascript" src="Scripts/Schedules.js?id=7"></script>
     <script type="text/javascript" src="Scripts/common.js"></script>
 
     <script type="text/javascript">
@@ -170,7 +170,7 @@
 
                             </ext:Column>
                             <ext:Column runat="server"
-                                ID="colDelete" Flex="1" Visible="true"
+                                ID="colDelete" Flex="1" Visible="false"
                                 Text="<%$ Resources: Common , Delete %>"
                                 Width="60"
                                 Align="Center"
@@ -194,17 +194,17 @@
                                 Resizable="false">
                                 <Renderer Fn="attachRender" />
                             </ext:Column>
-                            <ext:Column runat="server" Flex="1"
+                            <ext:Column runat="server" 
                                 ID="colDetails"
                                 Text="<%$ Resources:EditDaysButton %>"
                                 Hideable="false"
-                                Width="60"
+                                Width="120"
                                 Align="Center"
                                 Fixed="true"
                                 Filterable="false"
                                 MenuDisabled="true"
                                 Resizable="false">
-                                <Renderer Fn="attachRender" />
+                                <Renderer handler="return editRender()+'&nbsp;&nbsp;'+attachRender()+'&nbsp;&nbsp;'+deleteRender(); " />
                             </ext:Column>
 
 
@@ -270,7 +270,7 @@
 
                 <ext:GridPanel runat="server" Title="<%$ Resources: WindowTitle %>" Header="false" ID="scheduleDays">
                     <DirectEvents>
-                        <CellClick OnEvent="PoPuP">
+                        <CellClick OnEvent="PoPuPDay">
                             <EventMask ShowMask="true" />
                             <ExtraParams>
                                 <ext:Parameter Name="id" Value="record.getId()" Mode="Raw" />
@@ -279,6 +279,9 @@
 
                         </CellClick>
                     </DirectEvents>
+                      <Listeners>
+                        <Render Handler="this.on('cellclick', cellClick);" />
+                    </Listeners>
                     <Store>
                         <ext:Store ID="scheduleStore" runat="server">
                             <Model>
@@ -324,11 +327,24 @@
                     </TopBar>
                     <ColumnModel>
                         <Columns>
-                            <ext:Column runat="server" ID="colDayName" Text="<%$ Resources: FieldDow %>" DataIndex="dow">
-                                <Renderer Handler="return '<u>' +getDay(record.data['dow'])+'</u>';" />
+                            <ext:Column runat="server" ID="colDayName" Text="<%$ Resources: FieldDow %>" DataIndex="dow" Flex="1">
+                                <Renderer Handler="return getDay(record.data['dow'])" />
                             </ext:Column>
-                            <ext:Column runat="server" ID="firstInCol" Text="<%$ Resources: FieldFirstIn %>" DataIndex="firstIn" />
-                            <ext:Column runat="server" ID="lastOutCol" Text="<%$ Resources: FieldLastOut %>" DataIndex="lastOut" />
+                            <ext:Column runat="server" ID="firstInCol" Text="<%$ Resources: FieldFirstIn %>" DataIndex="firstIn" Width="100" />
+                            <ext:Column runat="server" ID="lastOutCol" Text="<%$ Resources: FieldLastOut %>" DataIndex="lastOut" Width="100" />
+                            <ext:Column runat="server" 
+                                ID="Column1" Visible="true"
+                                Text="<%$ Resources:Common, Edit %>"
+                                Width="60"
+                                Hideable="false"
+                                Align="Center"
+                                Fixed="true"
+                                Filterable="false"
+                                MenuDisabled="true"
+                                Resizable="false">
+
+                                <Renderer Fn="editRender" />
+                                </ext:Column>
                         </Columns>
                     </ColumnModel>
                 </ext:GridPanel>

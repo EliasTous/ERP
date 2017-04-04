@@ -34,7 +34,6 @@
      var types = [];
      var curIndex = 0;
      var passed = 'no';
-     var values = [];
      function InitTypes(s)
      {
          
@@ -51,7 +50,7 @@
      }
      function initBootstrap()
      {
-        
+         curIndex = 0;
         
          $("#input-ke-1").fileinput({
            
@@ -63,22 +62,41 @@
              language:document.getElementById('CurrentLanguage').value,
              showZoom:false,
              showRemove: false,
-            
-             uploadExtraData: function () {
-                 alert(dump(values));
+           //  uploadExtraData: { id: $($(this).find('select')[0]).val() },
+             uploadExtraData: function (previewId, index) {
+
+                var valType = $($("#" + previewId).find('select')[0]).val();
+                 return { id: valType };
+              //   var obj = {};
+             //    $(this).find('select').each(function () {
+              //       var id = 'valType', val = $(this).val();
+              //       obj[id] = val;
+              //   });
+              //   console.log(obj);
+               //  return obj;
+                
+                // var extra = [];
+               //  { typeValue: $('#id').val() };
+                 //alert(curIndex);
+                 //var x = document.getElementsByName("values");
+                 
+                 //var ext = { id: x[curIndex].value };
+                 //if(passed=='yes')
+                 //    curIndex = curIndex + 1;
+                 //passed = 'yes';
+                 //return extra;
              },
              fileActionSettings: {
                  showDrag: false,
                  showUpload:true,
                  showZoom: false,
               
-                
+                     
                  
              },
-             
              layoutTemplates: {
                
-                 actionUpload: '<select type="text" name="values"   >\n'+
+                 actionUpload: '<select type="text" name="values"  >\n'+
                      
                      '</select>'
           
@@ -89,6 +107,14 @@
          });
          
          
+         $('#input-ke-1').on('filepreupload', function (event, data, previewId, index) {
+             var form = data.form, files = data.files, extra = data.extra,
+                 response = data.response, reader = data.reader;
+             console.log($(this).find('select')[0]);
+         });
+
+
+
          $('#input-ke-1').on('filebatchuploaderror', function (event, data, msg) {
              var form = data.form, files = data.files, extra = data.extra,
                  response = data.response, reader = data.reader;
@@ -103,13 +129,14 @@
              App.AttachmentsWindow.close();
              
          });
-     
+         $('#input-ke-1').on('filebatchpreupload', function (event, data, previewId, index) {
+             var form = data.form, files = data.files, extra = data.extra,
+                 response = data.response, reader = data.reader;
+             console.log('File batch pre upload');
+         });
          $('#input-ke-1').on('fileloaded', function (event, file, previewId, index, reader) {
              var x = document.getElementsByName("values");
-             curIndex = curIndex + 1;
-             alert(curIndex);
-             event.data = function () { return { key: values[curIndex] }; };
-             
+          
              var s = $("#" + previewId).find("select")[0];
             
                  for(var j=0;j<types.length;j++)
@@ -119,10 +146,6 @@
                      opt.innerHTML =  types[j].text;
                      s.appendChild(opt);
                  }
-                 s.onchange = function () { alert($(this).val); values[curIndex] = s.val(); }
-             
-         });
-         $('#input-ke-1').on('filedeleted', function (event, key) {
              
          });
      }

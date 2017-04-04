@@ -6,6 +6,7 @@ using AionHR.Services.Messaging.System;
 using AionHR.Web.UI.Forms.Utilities;
 using Ext.Net;
 using Microsoft.Practices.ServiceLocation;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -62,13 +63,13 @@ namespace AionHR.Web.UI.Forms
             {
                 SetExtLanguage();
                 SetHeaderStyle();
-                CompanyNameLiteral.Text = "- "+_systemService.SessionHelper.Get("CompanyName").ToString();
+                CompanyNameLiteral.Text = "- " + _systemService.SessionHelper.Get("CompanyName").ToString();
                 //Building the tree
                 _systemService.SessionHelper.Set("ActiveModule", "-1");
                 BuildTree(1);
-                transactionDate.Format = _systemService.SessionHelper.GetDateformat() + ", hh:mm:ss" ;
+                transactionDate.Format = _systemService.SessionHelper.GetDateformat() + ", hh:mm:ss";
 
-               //TryRegister();
+                //TryRegister();
             }
         }
 
@@ -108,7 +109,7 @@ namespace AionHR.Web.UI.Forms
             catch { }
             DbSetup set = new DbSetup();
             set.accountId = Convert.ToInt32(accountResponse.recordId);
-           
+
 
             PostRequest<DbSetup> dbRequest = new PostRequest<DbSetup>();
             dbRequest.entity = set;
@@ -135,7 +136,8 @@ namespace AionHR.Web.UI.Forms
             s.isInactive = false;
             PostRequest<UserInfo> userReq = new PostRequest<UserInfo>();
             userReq.entity = s;
-            try {
+            try
+            {
                 PostResponse<UserInfo> userResp = _systemService.ChildAddOrUpdate<UserInfo>(userReq);
             }
             catch
@@ -249,6 +251,31 @@ namespace AionHR.Web.UI.Forms
             else return "1";
         }
 
+        protected void TransactionLog_RefreshData(object sender, StoreReadDataEventArgs e)
+        {
+            List<Ext.Net.Parameter> l = e.Parameters.ToList<Ext.Net.Parameter>();
+            
+            //GEtting the filter from the page
+            TransactionLogListRequest request = new TransactionLogListRequest();
+            request.ClassId = Convert.ToInt32(l[0].Value);
+            request.PrimaryKey = Convert.ToInt32(l[1].Value);
+            request.UserId = 0;
+            request.Type = 0;
+            request.StartAt = e.Start.ToString();
+            request.Size = e.Limit.ToString();
+            request.SoryBy = "eventDt";
+            ListResponse<TransactionLog> logs = _systemService.ChildGetAll<TransactionLog>(request);
+            if (!logs.Success)
+            {
+                return;
+            }
+            
+            e.Total = logs.count;
+            transactionLogStore.DataSource = logs.Items;
+            transactionLogStore.DataBind();
+            TransationLogScreen.Show();
+        }
+
         protected void PoPuP(object sender, DirectEventArgs e)
         {
 
@@ -262,13 +289,26 @@ namespace AionHR.Web.UI.Forms
                     RecordRequest r = new RecordRequest();
                     r.RecordID = id.ToString();
                     RecordResponse<TransactionLog> log = _systemService.ChildGetRecord<TransactionLog>(r);
+                    string x = "";
+                    try
+                    {
+                        JObject json = JObject.Parse(log.result.data);
+                        string formatted = json.ToString();
+                        x = formatted;
+                    }
+                    catch
+                    {
+                        x = log.result.data;
+                    }
+                    log.result.data = x;
                     logBodyForm.SetValues(log.result);
                     logBodyScreen.Show();
                     break;
-                default: int x = 0;
+                default:
+                    
                     break;
 
-              
+
             }
 
 
@@ -277,23 +317,13 @@ namespace AionHR.Web.UI.Forms
         [DirectMethod]
         public void FillTransactionLogWindow(int classRef, int recordId)
         {
-           
-            TransactionLogListRequest request = new TransactionLogListRequest();
-            request.ClassId = classRef;
-            request.PrimaryKey = recordId;
-            request.UserId = 0;
-            request.Type = 0;
-            request.StartAt = "1";
-            request.Size = "50";
-            request.SoryBy = "eventDt";
-            ListResponse<TransactionLog> logs = _systemService.ChildGetAll<TransactionLog>(request);
-            if(!logs.Success)
-            {
-
-            }
-            transactionLogStore.DataSource = logs.Items;
-            transactionLogStore.DataBind();
-            TransationLogScreen.Show();
+            CurrentClassRef.Text = classRef.ToString();
+            CurrentRecordId.Text = recordId.ToString();
+            Ext.Net.ParameterCollection col = new Ext.Net.ParameterCollection();
+            col.Add(new Ext.Net.Parameter() { Name = "ClassId", Value = classRef.ToString() });
+            col.Add(new Ext.Net.Parameter() { Name = "PrimaryKey", Value = recordId.ToString() });
+            transactionLogStore.Reload(col);
+          
         }
     }
 }

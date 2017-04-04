@@ -297,7 +297,7 @@
                                     <TopBar>
                                         <ext:Toolbar runat="server">
                                             <Items>
-                                                <ext:Button runat="server" Text="Add Period" Icon="UserAdd">
+                                                <ext:Button runat="server" Text="<%$ Resources: BtnAddPeriod %>" Icon="UserAdd">
                                                     <Listeners>
                                                         <Click Fn="addEmployee" />
                                                     </Listeners>

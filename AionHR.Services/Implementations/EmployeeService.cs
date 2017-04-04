@@ -36,7 +36,22 @@ namespace AionHR.Services.Implementations
             return response;
         }
 
-       
+        public override RecordResponse<T> Get<T>(RecordRequest request)
+        {
+            RecordResponse<T> f= base.Get<T>(request);
+            if (string.IsNullOrEmpty(((f.result)as Employee).pictureUrl))
+                ((f.result) as Employee).pictureUrl = "images/empPhoto.jpg";
+            return f;
+
+            
+        }
+
+        public override ListResponse<T> GetAll<T>(ListRequest request)
+        {
+            ListResponse<T> list= base.GetAll<T>(request);
+            list.Items.ForEach(t => { if (string.IsNullOrEmpty((t as Employee).pictureUrl)) (t as Employee).pictureUrl = "images/empPhoto.jpg"; });
+            return list;
+        }
 
         protected override dynamic GetRepository()
         {

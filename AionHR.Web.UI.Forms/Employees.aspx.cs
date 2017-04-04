@@ -73,7 +73,7 @@ namespace AionHR.Web.UI.Forms
                 HideShowButtons();
                 HideShowColumns();
                 ColHireDate.Format = _systemService.SessionHelper.GetDateformat();
-                
+
                 inactivePref.Select("0");
                 CurrentClassId.Text = ClassId.EPEM.ToString();
             }
@@ -127,7 +127,7 @@ namespace AionHR.Web.UI.Forms
 
             int id = Convert.ToInt32(e.ExtraParams["id"]);
             string type = e.ExtraParams["type"];
-           
+
             switch (type)
             {
                 case "imgEdit":
@@ -139,7 +139,7 @@ namespace AionHR.Web.UI.Forms
                     FixLoaderUrls(id.ToString());
                     //employeePanel.Loader.Url = "EmployeePages/EmployeeProfile.aspx?employeeId="+CurrentEmployee.Text;
                     //employeePanel.Loader.LoadContent();
-                   
+
                     panelRecordDetails.ActiveIndex = 0;
                     //timeZoneCombo.Select(response.result.timeZone.ToString());
                     this.EditRecordWindow.Title = Resources.Common.EditWindowsTitle;
@@ -232,7 +232,7 @@ namespace AionHR.Web.UI.Forms
             divisionId.ReadOnly = !isAdd;
             FillNationality();
 
-            
+
             gearButton.Hidden = isAdd;
 
             FillSponsor();
@@ -274,13 +274,13 @@ namespace AionHR.Web.UI.Forms
         public void DeleteRecord(object sender, DirectEventArgs e)
         {
             try
-                
+
             {
                 string index = CurrentEmployee.Text;
                 //Step 1 Code to delete the object from the database 
 
                 //Step 2 :  remove the object from the store
-                
+
 
 
                 PostRequest<Employee> req = new PostRequest<Employee>();
@@ -290,10 +290,10 @@ namespace AionHR.Web.UI.Forms
                 emp.branchId = emp.departmentId = emp.divisionId = emp.vsId = emp.sponsorId = emp.caId = emp.nationalityId = emp.positionId = 0;
                 emp.hireDate = DateTime.Now;
                 PostResponse<Employee> post = _employeeService.Delete(req);
-                if(!post.Success)
+                if (!post.Success)
                 {
                     X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.Error,post.Summary).Show();
+                    X.Msg.Alert(Resources.Common.Error, post.Summary).Show();
                     return;
                 }
                 Store1.Remove(index);
@@ -324,7 +324,7 @@ namespace AionHR.Web.UI.Forms
             BasicInfoTab.Enabled = active;
             SetTabPanelActivated(active);
             SaveButton.Hidden = !active;
-            
+
             DeleteButton.Hidden = !active;
 
         }
@@ -740,7 +740,8 @@ namespace AionHR.Web.UI.Forms
                             Title = Resources.Common.Notification,
                             Icon = Icon.Information,
                             Html = Resources.Common.RecordUpdatedSucc
-                            , CloseVisible= true
+                            ,
+                            CloseVisible = true
                         });
 
                         this.EditRecordWindow.Close();
@@ -767,7 +768,7 @@ namespace AionHR.Web.UI.Forms
             request.entity = t;
 
             PostResponse<EmployeeTermination> resp = _employeeService.ChildAddOrUpdate<EmployeeTermination>(request);
-            if(!resp.Success)
+            if (!resp.Success)
             {
                 //Show an error saving...
                 X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
@@ -780,7 +781,7 @@ namespace AionHR.Web.UI.Forms
                 terminationWindow.Close();
             }
 
-            
+
         }
         [DirectMethod]
         public string CheckSession()
@@ -846,7 +847,7 @@ namespace AionHR.Web.UI.Forms
                 forSummary.departmentName + "<br />",
               forSummary.branchName + "<br />",
                forSummary.positionName + "<br />",
-               (forSummary.reportToName== null)?"": GetLocalResourceObject("FieldReportsTo").ToString() + forSummary.reportToName.fullName
+               (forSummary.reportToName == null) ? "" : GetLocalResourceObject("FieldReportsTo").ToString() + forSummary.reportToName.fullName
             );
             fullNameLbl.Html = forSummary.fullName + "<br />";
             departmentLbl.Html = forSummary.departmentName + "<br />";
@@ -855,7 +856,9 @@ namespace AionHR.Web.UI.Forms
             if (forSummary.reportToName != null)
                 reportsToLbl.Html = GetLocalResourceObject("FieldReportsTo").ToString() + forSummary.reportToName.fullName;
             //employeeName.Text = resp.result.name.firstName + resp.result.name.lastName;
-            imgControl.ImageUrl = response.result.pictureUrl + "?x=" + DateTime.Now;
+         
+                imgControl.ImageUrl = response.result.pictureUrl + "?x=" + DateTime.Now;
+           
         }
 
         #region combobox dynamic insert
@@ -1007,8 +1010,8 @@ namespace AionHR.Web.UI.Forms
             {
                 obj.recordId = response.recordId;
                 return obj;
-                
-                
+
+
             }
             else
             {
@@ -1057,7 +1060,7 @@ namespace AionHR.Web.UI.Forms
         {
             string id = CurrentEmployee.Text;
             string obj = e.ExtraParams["delText"];
-            if(obj.ToLower()!="delete")
+            if (obj.ToLower() != "delete")
             {
                 return;
             }
@@ -1113,18 +1116,18 @@ namespace AionHR.Web.UI.Forms
         {
             AccountRecoveryRequest recoverRequest = new AccountRecoveryRequest();
             recoverRequest.Email = workEmail.Text;
-            if(string.IsNullOrEmpty(recoverRequest.Email))
+            if (string.IsNullOrEmpty(recoverRequest.Email))
             {
                 X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.ResetPassword,Resources.Common.EmailNotFound).Show();
-                
+                X.Msg.Alert(Resources.Common.ResetPassword, Resources.Common.EmailNotFound).Show();
+
             }
             PasswordRecoveryResponse response = _systemService.RequestPasswordRecovery(recoverRequest);
             if (response.Success)
             {
 
                 X.Msg.Alert(Resources.Common.ResetPassword, Resources.Common.RecoverySentSucc).Show();
-                
+
 
             }
             else

@@ -384,7 +384,7 @@
         <table runat="server" id="tbCalendar" cellpadding="5" cellspacing="0" clientidmode="Static">
             <tr>
                 <th>
-                    Month\Day
+                   <asp:Label runat="server" Text ="<%$ Resources:MonthDay %>" />
                 </th>
                 <th>
                     01
@@ -2282,8 +2282,8 @@
                             <ColumnModel>
                                 <Columns>
                                     <ext:Column runat="server" DataIndex="recordId" Visible ="false" />
-                                    <ext:Column runat="server" DataIndex="name"   Text="Day Type" Flex="1" />
-                                    <ext:ComponentColumn runat="server" Text="Color" DataIndex="color" Flex="1">
+                                    <ext:Column runat="server" DataIndex="name"   Text="<%$ Resources:Common, DayTypes %>" Flex="1" />
+                                    <ext:ComponentColumn runat="server" Text="Color" DataIndex="<%$ Resources: Color%>" Flex="1">
                                 <Component>
                                     <ext:ColorField runat="server" ReadOnly="true" />
                                 </Component>

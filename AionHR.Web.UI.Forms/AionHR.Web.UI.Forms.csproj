@@ -144,6 +144,7 @@
     <Content Include="Images\casemanagement.png" />
     <Content Include="Images\company.png" />
     <Content Include="Images\employees.png" />
+    <Content Include="Images\empPhoto.jpg" />
     <Content Include="Images\home.png" />
     <Content Include="Images\language.png" />
     <Content Include="Images\logo.png" />

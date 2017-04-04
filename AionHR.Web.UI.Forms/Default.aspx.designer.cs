@@ -292,6 +292,15 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Hidden ltTitle;
         
         /// <summary>
+        /// TrType1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Hidden TrType1;
+        
+        /// <summary>
         /// TrType2 control.
         /// </summary>
         /// <remarks>
@@ -344,6 +353,24 @@ namespace AionHR.Web.UI.Forms {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.Hidden TrType7;
+        
+        /// <summary>
+        /// CurrentClassRef control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Hidden CurrentClassRef;
+        
+        /// <summary>
+        /// CurrentRecordId control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Hidden CurrentRecordId;
         
         /// <summary>
         /// ResourceManager1 control.
@@ -569,6 +596,15 @@ namespace AionHR.Web.UI.Forms {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.Column colEdit;
+        
+        /// <summary>
+        /// PagingToolbar1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.PagingToolbar PagingToolbar1;
         
         /// <summary>
         /// logBodyScreen control.

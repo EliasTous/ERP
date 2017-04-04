@@ -153,7 +153,7 @@
 
                                 </Component>
                                 <Listeners>
-                                    <Bind Handler=" cmp.setImageUrl(record.get('pictureUrl'));" />
+                                    <Bind Handler=" cmp.setImageUrl(record.get('pictureUrl')); " />
                                 </Listeners>
                             </ext:ComponentColumn>
                             <ext:Column ID="ColReference" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldRef%>" DataIndex="name.reference" Width="60" Hideable="false" >

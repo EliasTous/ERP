@@ -150,6 +150,9 @@
   <data name="RequestError" xml:space="preserve">
     <value>خطأ في الطلب، حاول مرة أخرى ...</value>
   </data>
+  <data name="ResetPassword" xml:space="preserve">
+    <value>استعادة كلمة المرور</value>
+  </data>
   <data name="UserID" xml:space="preserve">
     <value>البريد الإلكتروني</value>
   </data>
