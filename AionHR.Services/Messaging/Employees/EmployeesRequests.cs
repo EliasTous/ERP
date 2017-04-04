@@ -317,7 +317,7 @@ public class EmployeeComplaintListRequest : ListRequest
     public int BranchId { get; set; }
 
     public int Status { get; set; }
-    //public int DivisionId { get; set; }
+    public int DivisionId { get; set; }
 
 
     public override Dictionary<string, string> Parameters
@@ -328,7 +328,7 @@ public class EmployeeComplaintListRequest : ListRequest
             parameters.Add("_employeeId", EmployeeId.ToString());
             parameters.Add("_departmentId", DepartmentId.ToString());
             parameters.Add("_branchId", BranchId.ToString());
-            //parameters.Add("_divisionId", DivisionId.ToString());
+            parameters.Add("_divisionId", DivisionId.ToString());
             parameters.Add("_status", Status.ToString());
             parameters.Add("_sortBy", SortBy.ToString());
 

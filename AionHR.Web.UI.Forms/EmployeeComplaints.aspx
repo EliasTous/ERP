@@ -13,119 +13,18 @@
     <link rel="stylesheet" type="text/css" href="CSS/Common.css" />
    
     <link rel="stylesheet" href="CSS/LiveSearch.css" />
-    <script type="text/javascript" src="Scripts/EmployeeComplaints.js?id=10" ></script>
+    <script type="text/javascript" src="Scripts/EmployeeComplaints.js?id=13" ></script>
 
 
     <script type="text/javascript" src="Scripts/common.js" ></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" type="text/javascript"></script>
-     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/>
- 
-     <link href="CSS/fileinput.min.css" rel="stylesheet" />
+
 <link href="CSS/theme.css" rel="stylesheet" />
  
 <!-- load the JS files in the right order -->
-<script src="Scripts/fileinput.js" type="text/javascript"></script>
+
 <script src="Scripts/theme.js" type="text/javascript">  </script>
-    <script src="Scripts/moment.js" type="text/javascript">  </script>
-    <script src="Scripts/moment-timezone.js" type="text/javascript">  </script>
-
-     <script type="text/javascript" src="Scripts/locales/ar.js?id=7" ></script>
- <script type="text/javascript">
-     var types = [];
-     var curIndex = 0;
-     var passed = 'no';
-     function InitTypes(s)
-     {
-         
-         types = s;
-     }
-     function dump(obj) {
-         var out = '';
-         for (var i in obj) {
-             out += i + ": " + obj[i] + "\n";
-
-
-         }
-         return out;
-     }
-     function initBootstrap()
-     {
-        
-        
-         $("#input-ke-1").fileinput({
-           
-             theme: 'explorer',
-             uploadUrl: 'CaseAttachmentsUploader.ashx?caseId='+document.getElementById('currentCase').value,
-             overwriteInitial: false,
-             initialPreviewAsData: true,
-             uploadAsync: false,
-             language:document.getElementById('CurrentLanguage').value,
-             showZoom:false,
-             showRemove: false,
-             uploadExtraData: function () {
-                 //var extra = [];
-                 //alert(curIndex);
-                 //var x = document.getElementsByName("values");
-                 
-                 //var ext = { id: x[curIndex].value };
-                 //if(passed=='yes')
-                 //    curIndex = curIndex + 1;
-                 //passed = 'yes';
-                 //return ext;
-             },
-             fileActionSettings: {
-                 showDrag: false,
-                 showUpload:true,
-                 showZoom: false,
-              
-                     
-                 
-             },
-             layoutTemplates: {
-               
-                 actionUpload: '<select type="text" name="values"  >\n'+
-                     
-                     '</select>'
-          
-             }  ,
-             showUploadedThumbs: false
-           
-             
-         });
-         
-         
-         $('#input-ke-1').on('filebatchuploaderror', function (event, data, msg) {
-             var form = data.form, files = data.files, extra = data.extra,
-                 response = data.response, reader = data.reader;
-             console.log('File batch upload error');
-             // get message
-             alert(msg);
-         });
-         $('#input-ke-1').on('filebatchuploadsuccess', function (event, data, msg) {
-             curIndex = 0;
-             passed = 'no';
-             App.direct.FillFilesStore(document.getElementById('currentCase').value);
-             App.AttachmentsWindow.close();
-             
-         });
-     
-         $('#input-ke-1').on('fileloaded', function (event, file, previewId, index, reader) {
-             var x = document.getElementsByName("values");
-          
-             var s = $("#" + previewId).find("select")[0];
-            
-                 for(var j=0;j<types.length;j++)
-                 {
-                     var opt = document.createElement('option');
-                     opt.value = types[j].value;
-                     opt.innerHTML =  types[j].text;
-                     s.appendChild(opt);
-                 }
-             
-         });
-     }
-     
- </script>
+   
+ 
 </head>
 <body style="background: url(Images/bg.png) repeat;" ">
     <form id="Form1" runat="server">
@@ -148,7 +47,7 @@
             RemoteFilter="true"
             OnReadData="Store1_RefreshData"
             PageSize="50" IDMode="Explicit" Namespace="App">
-            <Proxy>
+           <Proxy>
                 <ext:PageProxy>
                     <Listeners>
                         <Exception Handler="Ext.MessageBox.alert('#{textLoadFailed}.value', response.statusText);" />
@@ -288,7 +187,7 @@
                                 </ext:ComboBox>
                                   <ext:Button runat="server" Text="<%$ Resources: ButtonClear%>" MarginSpec="0 0 0 0"  Width="100">
                                     <Listeners>
-                                        <Click Handler="#{departmentId}.clear();#{branchId}.clear(); #{divisionId}.clear(); #{Store1}.reload(); #{statusPref}.setValue(3);">
+                                        <Click Handler="#{departmentId}.clear();#{branchId}.clear(); #{Store1}.reload(); #{statusPref}.setValue(3);">
 
                                         </Click>
                                     </Listeners>
@@ -303,7 +202,7 @@
                     <ColumnModel ID="ColumnModel1" runat="server" SortAscText="<%$ Resources:Common , SortAscText %>" SortDescText="<%$ Resources:Common ,SortDescText  %>" SortClearText="<%$ Resources:Common ,SortClearText  %>" ColumnsText="<%$ Resources:Common ,ColumnsText  %>" EnableColumnHide="false" Sortable="false" >
                         <Columns>
                             <ext:Column ID="ColRecordId" Visible="false" DataIndex="recordId" runat="server" />
-                            <ext:Column ID="ColName" DataIndex="employeeName.fullName" Text="<%$ Resources: FieldEmployeeName%>" runat="server" Flex="2">
+                            <ext:Column ID="ColName" DataIndex="employeeName.fullName" Text="<%$ Resources: FieldEmployeeName%>" runat="server" Flex="3">
                                  <Renderer Handler="return  record.data['employeeName'].fullName ">
                                 </Renderer>
                             </ext:Column>
@@ -311,7 +210,7 @@
                             <ext:Column    CellCls="cellLink" ID="colActionTaken" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldActionTaken%>" DataIndex="actionTaken" Flex="2" Hideable="false"></ext:Column>
                             <ext:Column    CellCls="cellLink" ID="colActionRequired" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldActionRequired%>" DataIndex="actionRequired" Flex="2" Hideable="false"></ext:Column>
                             <ext:Column    CellCls="cellLink" ID="colComplaintDetails" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldComplaintDetails%>" DataIndex="complaintDetails" Flex="2" Hideable="false"></ext:Column>
-                            <ext:Column ID="colStatus" DataIndex="status" Text="<%$ Resources: FieldStatus%>" runat="server" Flex="2">
+                            <ext:Column ID="colStatus" DataIndex="status" Text="<%$ Resources: FieldStatus%>" runat="server" Flex="1">
                             <Renderer Handler="return GetStatusName(record.data['status']);" />
                             </ext:Column>
           
@@ -491,11 +390,7 @@
                                         <ext:ListItem Text="<%$ Resources: FieldPending %>" Value="1" />
                                         <ext:ListItem Text="<%$ Resources: FieldClosed %>" Value="2" />
                                     </Items>
-                                    <Listeners>
-                                        <Change Handler="if(this.value==2) this.next().setDisabled(false); else this.next().setDisabled(true);">
-                                            
-                                        </Change>
-                                    </Listeners>
+                                    
                                 </ext:ComboBox>
                                 
                                 
@@ -865,39 +760,9 @@
                 </ext:TabPanel>
             </Items>
            
-        </ext:Window>--%>--%>
+        </ext:Window>
 
-       <%-- <ext:Window  ID="AttachmentsWindow"
-            runat="server"
-            Icon="PageEdit"
-            Title="<%$ Resources:EditWindowsTitle %>"
-            Width="600"
-            Height="350"
-            AutoShow="false"
-            Modal="true"
-            Hidden="true"
-             Maximizable="false"
-            Resizable="false"
-             Draggable="false"
-            Layout="Fit">
-            <Items>
-                <ext:Panel runat="server" AutoScroll="true">
-                    <Content>
-                        <input id="input-ke-1" name="inputKE1[]" type="file" multiple class="file-loading"  >
-                        <input type="hidden" name="caseId" id="caseId" value="" />
-        <br>
-      
-                    </Content>
-                    <Listeners>
-                      
-                        
-                        <AfterLayout Handler=" $('#input-ke-1').fileinput('destroy'); initBootstrap(); document.getElementById('caseId').value = document.getElementById('currentCase').value;" />
-                       
-                    </Listeners>
-                </ext:Panel>
-
-            </Items>
-        </ext:Window>--%>
+     
 
     </form>
 </body>

@@ -86,8 +86,7 @@ namespace AionHR.Web.UI.Forms
 
         IEmployeeService _employeeService = ServiceLocator.Current.GetInstance<IEmployeeService>();
 
-        ICaseService _caseService = ServiceLocator.Current.GetInstance<ICaseService>();
-
+        IComplaintsService _complaintService = ServiceLocator.Current.GetInstance<IComplaintsService>();
 
 
         ICompanyStructureService _companyStructureService = ServiceLocator.Current.GetInstance<ICompanyStructureService>();
@@ -124,7 +123,7 @@ namespace AionHR.Web.UI.Forms
                 FillBranch();
                 FillDepartment();
                 //FillDivision();
-                statusPref.Select(0);
+                statusPref.Select("0");
                 //dateCol.Format = _systemService.SessionHelper.GetDateformat() + ": hh:mm:ss";
 
             }
@@ -189,7 +188,7 @@ namespace AionHR.Web.UI.Forms
                     RecordRequest r = new RecordRequest();
                     r.RecordID = id;
 
-                    RecordResponse<Complaint> response = _caseService.Get<Complaint>(r);
+                    RecordResponse<Complaint> response = _complaintService.Get<Complaint>(r);
                     if (!response.Success)
                     {
                         X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
@@ -203,11 +202,11 @@ namespace AionHR.Web.UI.Forms
                        {
                                 new
                                 {
-                                    recordId = response.result.employeeID,
+                                    recordId = response.result.employeeId,
                                     fullName =response.result.employeeName.fullName
                                 }
                        });
-                    employeeId.SetValue(response.result.employeeID);
+                    employeeId.SetValue(response.result.employeeId);
 
                     //FillFilesStore(Convert.ToInt32(id));
 
@@ -257,7 +256,7 @@ namespace AionHR.Web.UI.Forms
                 //Step 1 Code to delete the object from the database 
                 Complaint s = new Complaint();
                 s.recordId = index;
-                s.employeeID = 0;
+                s.employeeId = 0;
                 s.employeeName = new EmployeeName();
                 s.actionRequired = "";
                 s.actionTaken = "";
@@ -268,7 +267,7 @@ namespace AionHR.Web.UI.Forms
 
                 PostRequest<Complaint> req = new PostRequest<Complaint>();
                 req.entity = s;
-                PostResponse<Complaint> r = _caseService.Delete<Complaint>(req);
+                PostResponse<Complaint> r = _complaintService.Delete<Complaint>(req);
                 if (!r.Success)
                 {
                     X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
@@ -420,7 +419,7 @@ namespace AionHR.Web.UI.Forms
             //}
             //else
             //{
-            //    req.Status = 0;
+            //    req.DivisionId = 0;
             //}
             if (!string.IsNullOrEmpty(statusPref.Text) && statusPref.Value.ToString() != "")
             {
@@ -435,6 +434,7 @@ namespace AionHR.Web.UI.Forms
             req.Filter = "";
             req.SortBy = "employeeId";
             req.EmployeeId = 0;
+            req.DivisionId = 0;
             return req;
         }
 
@@ -454,7 +454,7 @@ namespace AionHR.Web.UI.Forms
             //ListRequest request = new ListRequest();
             EmployeeComplaintListRequest request = GetEmployeeComplaintRequest();
 
-            ListResponse<Complaint> routers = _caseService.GetAll<Complaint>(request);
+            ListResponse<Complaint> routers = _complaintService.GetAll<Complaint>(request);
             if (!routers.Success)
             {
                 X.Msg.Alert(Resources.Common.Error, routers.Summary).Show();
@@ -497,7 +497,7 @@ namespace AionHR.Web.UI.Forms
 
                     request.entity = b;
 
-                    PostResponse<Complaint> r = _caseService.AddOrUpdate<Complaint>(request);
+                    PostResponse<Complaint> r = _complaintService.AddOrUpdate<Complaint>(request);
 
 
                     //check if the insert failed
@@ -525,10 +525,12 @@ namespace AionHR.Web.UI.Forms
                         recordId.Text = b.recordId;
                         //SetTabPanelEnable(true);
                         currentCase.Text = b.recordId;
+                        this.EditRecordWindow.Close();
                         RowSelectionModel sm = this.GridPanel1.GetSelectionModel() as RowSelectionModel;
                         sm.DeselectAll();
                         sm.Select(b.recordId.ToString());
 
+                        
 
 
                     }
@@ -551,7 +553,7 @@ namespace AionHR.Web.UI.Forms
                     //getting the id of the record
                     PostRequest<Complaint> request = new PostRequest<Complaint>();
                     request.entity = b;
-                    PostResponse<Complaint> r = _caseService.AddOrUpdate<Complaint>(request);                      //Step 1 Selecting the object or building up the object for update purpose
+                    PostResponse<Complaint> r = _complaintService.AddOrUpdate<Complaint>(request);                      //Step 1 Selecting the object or building up the object for update purpose
 
                     //Step 2 : saving to store
 

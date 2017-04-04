@@ -567,7 +567,7 @@ namespace AionHR.Web.UI.Forms
             }
             else
             {
-                req.Status = 0;
+                req.DivisionId = 0;
             }
             if (!string.IsNullOrEmpty(statusPref.Text) && statusPref.Value.ToString() != "")
             {
