@@ -328,13 +328,13 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Button applyButton;
         
         /// <summary>
-        /// cont control.
+        /// calTools control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Container cont;
+        protected global::Ext.Net.Toolbar calTools;
         
         /// <summary>
         /// monthLbl control.
@@ -362,6 +362,24 @@ namespace AionHR.Web.UI.Forms {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.Label yearLbl;
+        
+        /// <summary>
+        /// schedulerHolder control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Panel schedulerHolder;
+        
+        /// <summary>
+        /// cont control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Container cont;
         
         /// <summary>
         /// DayPilotScheduler1 control.

@@ -39,8 +39,8 @@
 
     <style type="text/css">
         #DayPilotScheduler1 {
-            width:100% !important;
-            height:100% !important;
+            width: 100% !important;
+            height: 100% !important;
         }
 
 
@@ -48,15 +48,14 @@
 
 
             #DayPilotScheduler1 > table {
-                width:100% !important;
-                height:100% !important;
+                width: 100% !important;
+                height: 100% !important;
             }
 
 
-            #DayPilotScheduler1 > table td:first-child div:first-child {
-  width:100% !important;
-}
-    
+                #DayPilotScheduler1 > table td:first-child div:first-child {
+                    width: 100% !important;
+                }
     </style>
 </head>
 <body style="background: url(Images/bg.png) repeat;">
@@ -128,7 +127,7 @@
         <ext:Viewport ID="Viewport1" runat="server" Layout="BorderLayout">
             <Items>
 
-                <ext:Panel runat="server"  Region="Center">
+                <ext:Panel runat="server" Region="Center">
 
                     <TopBar>
                         <ext:Toolbar runat="server">
@@ -259,37 +258,58 @@
                         </ext:Toolbar>
                     </TopBar>
                     <Items>
-                        <ext:Panel runat="server" Layout="HBoxLayout">
-                            <Items>
-                                <ext:Button runat="server" Text="<">
-                                    <Listeners>
-                                        <Click Handler="CheckSession(); if(parseInt(#{CurrentMonth}.value)<1) {#{currentMonth}.value = 12; #{CurrentYear}.value = parseInt(#{CurrentYear}.value) - 1; } else{ #{CurrentMonth}.value = parseInt(#{CurrentMonth}.value) -1; } App.direct.UpdateCal(#{CurrentMonth}.value,#{CurrentYear}.value); #{monthLbl}.setText(getMonthByNumber(#{CurrentMonth}.value)); #{yearLbl}.setText(#{CurrentYear}.value);" />
-                                    </Listeners>
-                                </ext:Button>
-                                <ext:Container ID="cont" runat="server" Flex="1">
-                                    <Content>
+                        <ext:Panel runat="server" Layout="VBoxLayout" AutoScroll="true">
+                            <LayoutConfig>
+                                <ext:VBoxLayoutConfig Align="Stretch" />
+                            </LayoutConfig>
+                            <Defaults>
+                                <ext:Parameter Name="margin" Value="0 5 0 5" Mode="Value" />
+                            </Defaults>
+                            <TopBar>
+                                <ext:Toolbar runat="server" ID="calTools" ClassicButtonStyle="true">
+                                    <Items>
+                                        <ext:ToolbarFill />
                                         <ext:Label runat="server" ID="monthLbl" StyleSpec="text-align:center;" />
                                         <ext:Label runat="server" ID="Label1" StyleSpec="text-align:center;" Text="- " />
                                         <ext:Label runat="server" ID="yearLbl" StyleSpec="text-align:center;" />
-                                        <DayPilot:DayPilotScheduler ID="DayPilotScheduler1" runat="server" 
-                                            HeaderFontSize="8pt" HeaderHeight="20" CssOnly="false" 
-                                            EventClickHandling="JavaScript"  Scale="Day"
-                                            EventClickJavaScript="App.direct.HandleClick({0});"
-                                            EventFontSize="11px"
-                                            CellDuration="1440"
-                                            OnEventClick="DayPilotScheduler1_EventClick"
-                                            OnBeforeEventRender="DayPilotScheduler1_BeforeEventRender"
-                                            EventHeight="25"  >
-                                        </DayPilot:DayPilotScheduler>
-                                    </Content>
-                                </ext:Container>
+
+                                        <ext:Button runat="server" Text="<">
+                                            <Listeners>
+                                                <Click Handler="CheckSession(); if(parseInt(#{CurrentMonth}.value)<1) {#{currentMonth}.value = 12; #{CurrentYear}.value = parseInt(#{CurrentYear}.value) - 1; } else{ #{CurrentMonth}.value = parseInt(#{CurrentMonth}.value) -1; } App.direct.UpdateCal(#{CurrentMonth}.value,#{CurrentYear}.value); #{monthLbl}.setText(getMonthByNumber(#{CurrentMonth}.value)); #{yearLbl}.setText(#{CurrentYear}.value);" />
+                                            </Listeners>
+                                        </ext:Button>
+                                        <ext:Button runat="server" Text=">">
+                                            <Listeners>
+                                                <Click Handler="CheckSession(); if(parseInt(#{CurrentMonth}.value)>11) {#{currentMonth}.value = 1; #{CurrentYear}.value = parseInt(#{CurrentYear}.value) + 1; } else{ #{CurrentMonth}.value = parseInt(#{CurrentMonth}.value) + 1; } App.direct.UpdateCal(#{CurrentMonth}.value,#{CurrentYear}.value); #{monthLbl}.setText(getMonthByNumber(#{CurrentMonth}.value));#{yearLbl}.setText(#{CurrentYear}.value);" />
+                                            </Listeners>
+                                        </ext:Button>
+
+                                    </Items>
+                                </ext:Toolbar>
+                            </TopBar>
+                            <Items>
+                                <ext:Panel ID="schedulerHolder" runat="server" Layout="FitLayout" Flex="1">
+                                    <Items>
+                                        <ext:Container ID="cont" runat="server">
+                                            <Content>
+
+                                                <DayPilot:DayPilotScheduler ID="DayPilotScheduler1" runat="server"
+                                                    HeaderFontSize="8pt" HeaderHeight="20" CssOnly="false"
+                                                    EventClickHandling="JavaScript" Scale="Day"
+                                                    EventClickJavaScript="App.direct.HandleClick({0});"
+                                                    EventFontSize="11px"
+                                                    CellDuration="1440"
+                                                    OnEventClick="DayPilotScheduler1_EventClick"
+                                                    OnBeforeEventRender="DayPilotScheduler1_BeforeEventRender"
+                                                    EventHeight="25">
+                                                </DayPilot:DayPilotScheduler>
+                                            </Content>
+                                        </ext:Container>
+                                    </Items>
+                                </ext:Panel>
 
 
-                                <ext:Button runat="server" Text=">">
-                                    <Listeners>
-                                        <Click Handler="CheckSession(); if(parseInt(#{CurrentMonth}.value)>11) {#{currentMonth}.value = 1; #{CurrentYear}.value = parseInt(#{CurrentYear}.value) + 1; } else{ #{CurrentMonth}.value = parseInt(#{CurrentMonth}.value) + 1; } App.direct.UpdateCal(#{CurrentMonth}.value,#{CurrentYear}.value); #{monthLbl}.setText(getMonthByNumber(#{CurrentMonth}.value));#{yearLbl}.setText(#{CurrentYear}.value);" />
-                                    </Listeners>
-                                </ext:Button>
+
                             </Items>
                         </ext:Panel>
                     </Items>
