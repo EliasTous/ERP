@@ -6,7 +6,7 @@ var deleteRender = function () {
     return '<img class="imgDelete"  style="cursor:pointer;" src="Images/Tools/delete.png" />';
 };
 var attachRender = function () {
-    return '<img class="imgAttach"  style="cursor:pointer;" src="Images/Tools/attach.png" />';
+    return '<img class="imgEdit"  style="cursor:pointer;" src="Images/Tools/collapse-all.gif" />';
 };
 
 

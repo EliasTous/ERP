@@ -180,7 +180,7 @@
                             </Listeners>
                           
                         </ext:Button>
-                        <ext:Button ID="btnForgot" runat="server" Text="<%$ Resources:Common , ResetPassword %>">
+                        <ext:Button ID="btnForgot" runat="server" Text="<%$ Resources: ResetPassword %>">
                             <DirectEvents>
                                 <Click OnEvent="forgotpw_Event">
                                     <EventMask ShowMask="true" Msg="<%$ Resources:Common , Loading %>" MinDelay="500" />

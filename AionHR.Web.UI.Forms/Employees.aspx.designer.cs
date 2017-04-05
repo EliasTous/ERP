@@ -346,6 +346,15 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Window EditRecordWindow;
         
         /// <summary>
+        /// gearButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Button gearButton;
+        
+        /// <summary>
         /// leftPanel control.
         /// </summary>
         /// <remarks>
@@ -760,15 +769,6 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Button DeleteButton;
         
         /// <summary>
-        /// Button8 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Button Button8;
-        
-        /// <summary>
         /// SaveButton control.
         /// </summary>
         /// <remarks>
@@ -848,15 +848,6 @@ namespace AionHR.Web.UI.Forms {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.Panel Panel6;
-        
-        /// <summary>
-        /// gearButton control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Button gearButton;
         
         /// <summary>
         /// terminationWindow control.

@@ -781,7 +781,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Change Type.
+        ///   Looks up a localized string similar to Activity.
         /// </summary>
         internal static string FieldChangeType {
             get {
@@ -808,7 +808,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Username.
+        ///   Looks up a localized string similar to User.
         /// </summary>
         internal static string FieldUsername {
             get {
@@ -885,6 +885,15 @@ namespace Resources {
         internal static string Geofences {
             get {
                 return ResourceManager.GetString("Geofences", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to History.
+        /// </summary>
+        internal static string History {
+            get {
+                return ResourceManager.GetString("History", resourceCulture);
             }
         }
         
@@ -1591,7 +1600,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to SET.
+        ///   Looks up a localized string similar to Edit.
         /// </summary>
         internal static string TrType1 {
             get {
@@ -1600,7 +1609,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to SET ARRAY.
+        ///   Looks up a localized string similar to Edit Items.
         /// </summary>
         internal static string TrType2 {
             get {
@@ -1609,7 +1618,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to DEL.
+        ///   Looks up a localized string similar to Delete.
         /// </summary>
         internal static string TrType3 {
             get {
@@ -1618,7 +1627,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to EXEC.
+        ///   Looks up a localized string similar to Exceute.
         /// </summary>
         internal static string TrType4 {
             get {
@@ -1627,7 +1636,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to GET.
+        ///   Looks up a localized string similar to Read.
         /// </summary>
         internal static string TrType5 {
             get {
@@ -1636,7 +1645,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to QUERY.
+        ///   Looks up a localized string similar to Read Items.
         /// </summary>
         internal static string TrType6 {
             get {
@@ -1645,7 +1654,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to MAIL.
+        ///   Looks up a localized string similar to Send Mail.
         /// </summary>
         internal static string TrType7 {
             get {

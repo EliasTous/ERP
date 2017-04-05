@@ -240,4 +240,10 @@
   <data name="To" xml:space="preserve">
     <value>To</value>
   </data>
+  <data name="Color" xml:space="preserve">
+    <value>Color</value>
+  </data>
+  <data name="MonthDay" xml:space="preserve">
+    <value>Month/Day</value>
+  </data>
 </root>

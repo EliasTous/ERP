@@ -10,7 +10,7 @@
     <script type="text/javascript" src="Scripts/jquery.min.js"></script>
     <script type="text/javascript" src="Scripts/app.js?id=1"></script>
     <script type="text/javascript" src="Scripts/Common.js"></script>
-    <script type="text/javascript" src="Scripts/default.js?id=11"></script>
+    <script type="text/javascript" src="Scripts/default.js?id=13"></script>
 
     <title>
         <asp:Literal ID="Literal1" runat="server" Text="<%$Resources:Common , ApplicationTitle%>" />
@@ -48,13 +48,16 @@
     <ext:Hidden runat="server" ID="vsTitle" Text="<%$Resources:Common , VacationSchedules %>" />
     <ext:Hidden runat="server" ID="ltTitle" Text="<%$Resources:Common , LeaveTypes %>" />
 
-
+    <ext:Hidden runat="server" ID="TrType1" Text="<%$Resources:Common , TrType1 %>" />
     <ext:Hidden runat="server" ID="TrType2" Text="<%$Resources:Common , TrType2 %>" />
     <ext:Hidden runat="server" ID="TrType3" Text="<%$Resources:Common , TrType3 %>" />
     <ext:Hidden runat="server" ID="TrType4" Text="<%$Resources:Common , TrType4 %>" />
     <ext:Hidden runat="server" ID="TrType5" Text="<%$Resources:Common , TrType5 %>" />
     <ext:Hidden runat="server" ID="TrType6" Text="<%$Resources:Common , TrType6 %>" />
     <ext:Hidden runat="server" ID="TrType7" Text="<%$Resources:Common , TrType7 %>" />
+
+    <ext:Hidden runat="server" ID="CurrentClassRef"  />
+    <ext:Hidden runat="server" ID="CurrentRecordId"  />
     <ext:ResourceManager ID="ResourceManager1" runat="server" Theme="Neptune" IDMode="Explicit" AjaxTimeout="1200000" />
     <ext:Viewport ID="Viewport1" runat="server" Layout="border">
         <Items>
@@ -453,7 +456,7 @@
     </ext:Viewport>
     <ext:Window
         ID="TransationLogScreen"
-        runat="server"
+        runat="server" Title="<%$ Resources:Common,History %>"
         Icon="PageEdit"
         Width="450"
         Height="500"
@@ -473,7 +476,11 @@
                 Icon="User"
                 ColumnLines="True" IDMode="Explicit" RenderXType="True">
                 <Store>
-                    <ext:Store runat="server" ID="transactionLogStore">
+                    <ext:Store runat="server" ID="transactionLogStore"
+                        RemoteSort="True"
+                            RemoteFilter="true"
+                            OnReadData="TransactionLog_RefreshData"
+                            PageSize="30" IDMode="Explicit" Namespace="App" IsPagingStore="true">
                         <Model>
                             <ext:Model runat="server" IDProperty="recordId">
                                 <Fields>
@@ -493,7 +500,7 @@
                 </Store>
                 <ColumnModel runat="server">
                     <Columns>
-                        <ext:DateColumn runat="server" DataIndex="eventDt" Text="<%$ Resources:Common , FieldDate %>" Width="100" />
+                        <ext:DateColumn ID="transactionDate" runat="server" DataIndex="eventDt" Text="<%$ Resources:Common , FieldDate %>" Width="180" />
                         <ext:Column runat="server" DataIndex="userName" Text="<%$ Resources:Common , FieldUsername %>" Flex="1" />
                         <ext:Column runat="server" DataIndex="type" Text="<%$ Resources:Common , FieldChangeType %>" Width="75">
                             <Renderer Handler="return GetChangeTypeString(record.data['type']);" />
@@ -509,7 +516,7 @@
                             MenuDisabled="true"
                             Resizable="false">
 
-                            <Renderer Handler="return editRender(); " />
+                            <Renderer Handler="return attachRender(); " />
                         </ext:Column>
 
                     </Columns>
@@ -528,12 +535,35 @@
 
                     </CellClick>
                 </DirectEvents>
+                 <BottomBar>
+
+                        <ext:PagingToolbar ID="PagingToolbar1"
+                            runat="server"
+                            FirstText="<%$ Resources:Common , FirstText %>"
+                            NextText="<%$ Resources:Common , NextText %>"
+                            PrevText="<%$ Resources:Common , PrevText %>"
+                            LastText="<%$ Resources:Common , LastText %>"
+                            RefreshText="<%$ Resources:Common ,RefreshText  %>"
+                            BeforePageText="<%$ Resources:Common ,BeforePageText  %>"
+                            AfterPageText="<%$ Resources:Common , AfterPageText %>"
+                            DisplayInfo="true"
+                            DisplayMsg="<%$ Resources:Common , DisplayMsg %>"
+                            Border="true"
+                            EmptyMsg="<%$ Resources:Common , EmptyMsg %>">
+                            <Items>
+                            </Items>
+                            <Listeners>
+                                <BeforeRender Handler="this.items.removeAt(this.items.length - 2);" />
+                            </Listeners>
+                        </ext:PagingToolbar>
+
+                    </BottomBar>
             </ext:GridPanel>
         </Items>
 
     </ext:Window>
 
-    <ext:Window ID="logBodyScreen" runat="server"
+    <ext:Window ID="logBodyScreen" runat="server" Title="<%$ Resources:Common,History %>"
         Icon="PageEdit"
         Width="450"
         Height="500"
@@ -544,7 +574,7 @@
         <Items>
             <ext:FormPanel runat="server" ID="logBodyForm" Layout="FitLayout">
                 <Items>
-                    <ext:TextArea runat="server" ID="bodyText" Name="data" />
+                    <ext:TextArea runat="server" ID="bodyText" Name="data" ReadOnly="true" />
                 </Items>
             </ext:FormPanel>
         </Items>

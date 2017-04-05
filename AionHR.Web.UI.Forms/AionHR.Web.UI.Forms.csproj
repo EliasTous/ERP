@@ -44,8 +44,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DayPilot">
-      <HintPath>..\packages\DayPilot.dll</HintPath>
+    <Reference Include="DayPilot, Version=8.1.3460.1, Culture=neutral, PublicKeyToken=426941954f05e7fe, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Downloads\DayPilotLite-5.0.308\Binary\DayPilot.dll</HintPath>
     </Reference>
     <Reference Include="Ext.Net, Version=4.1.0.0, Culture=neutral, PublicKeyToken=2e12ce3d0176cd87, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -144,6 +145,7 @@
     <Content Include="Images\casemanagement.png" />
     <Content Include="Images\company.png" />
     <Content Include="Images\employees.png" />
+    <Content Include="Images\empPhoto.jpg" />
     <Content Include="Images\home.png" />
     <Content Include="Images\language.png" />
     <Content Include="Images\logo.png" />
@@ -165,6 +167,7 @@
     <Content Include="Nationalities.aspx" />
     <Content Include="OrganizationChart.aspx" />
     <Content Include="packages.config" />
+    <Content Include="RelationshipTypes.aspx" />
     <Content Include="Routers.aspx" />
     <Content Include="SalaryChangeReasons.aspx" />
     <Content Include="Scripts\AssetAllowances.js" />
@@ -605,6 +608,13 @@
       <DependentUpon>Positions.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RelationshipTypes.aspx.cs">
+      <DependentUpon>RelationshipTypes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RelationshipTypes.aspx.designer.cs">
+      <DependentUpon>RelationshipTypes.aspx</DependentUpon>
+    </Compile>
     <Compile Include="resetPw.aspx.cs">
       <DependentUpon>resetPw.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

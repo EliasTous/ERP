@@ -49,7 +49,7 @@ namespace AionHR.Services.Implementations
         protected abstract dynamic GetRepository();
 
 
-        public RecordResponse<T> Get<T>(RecordRequest request)
+        public virtual RecordResponse<T> Get<T>(RecordRequest request)
         {
             RecordResponse<T> response;
             var headers = SessionHelper.GetAuthorizationHeadersForUser();
@@ -64,7 +64,7 @@ namespace AionHR.Services.Implementations
             return response;
 
         }
-        public ListResponse<T> GetAll<T>(ListRequest request)
+        public virtual ListResponse<T> GetAll<T>(ListRequest request)
         {
 
 

@@ -291,4 +291,7 @@
   <data name="ContactsTab" xml:space="preserve">
     <value>Contacts</value>
   </data>
+  <data name="FieldRef" xml:space="preserve">
+    <value>Ref</value>
+  </data>
 </root>

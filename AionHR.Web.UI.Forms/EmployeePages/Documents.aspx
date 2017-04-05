@@ -114,11 +114,11 @@
                         <Columns>
 
                             <ext:Column Visible="false" ID="ColrecordId" MenuDisabled="true" runat="server" DataIndex="recordId" Hideable="false" Width="75" Align="Center" />
-                            <ext:Column CellCls="cellLink" ID="ColEHName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDocumentRef%>" DataIndex="documentRef" Flex="2" Hideable="false" />
+                            <ext:Column CellCls="cellLink" Visible="false" ID="ColEHName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDocumentRef%>" DataIndex="documentRef" Flex="2" Hideable="false" />
                             <ext:Column CellCls="cellLink" ID="Column1" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDocumentType%>" DataIndex="dtName" Flex="2" Hideable="false" />
-                            <ext:Column CellCls="cellLink" ID="Column3" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldRemarks%>" DataIndex="remarks" Flex="2" Hideable="false" />
+                            <ext:Column CellCls="cellLink" Visible="false" ID="Column3" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldRemarks%>" DataIndex="remarks" Flex="2" Hideable="false" />
                             
-                            <ext:Column  CellCls="cellLink" ID="Column2" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldExpiryDate%>" DataIndex="expiryDate" Width="120" Hideable="false" >
+                            <ext:Column  CellCls="cellLink" Visible="false" ID="Column2" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldExpiryDate%>" DataIndex="expiryDate" Width="120" Hideable="false" >
                                 <Renderer Handler="var now = moment(); var icon=''; var date = moment(record.data['expiryDate']);if(now>date)   icon= attachRender2();return record.data['expiryDate'] + '&nbsp;&nbsp;'+ icon;" />
                                 </ext:Column>
 

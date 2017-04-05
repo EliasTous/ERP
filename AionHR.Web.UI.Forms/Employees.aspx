@@ -153,10 +153,13 @@
 
                                 </Component>
                                 <Listeners>
-                                    <Bind Handler=" cmp.setImageUrl(record.get('pictureUrl'));" />
+                                    <Bind Handler=" cmp.setImageUrl(record.get('pictureUrl')); " />
                                 </Listeners>
                             </ext:ComponentColumn>
-                            <ext:Column ID="ColReference" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldReference%>" DataIndex="reference" Width="60" Hideable="false" />
+                            <ext:Column ID="ColReference" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldRef%>" DataIndex="name.reference" Width="60" Hideable="false" >
+                                 <Renderer Handler=" return  record.data['name'].reference ">
+                                </Renderer>
+                                </ext:Column>
                             <ext:Column ID="ColName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldFullName%>" DataIndex="name.fullName" Flex="4" Hideable="false">
                                 <Renderer Handler=" return  record.data['name'].fullName ">
                                 </Renderer>
@@ -299,13 +302,58 @@
             Resizable="false"
             Maximized="false"
             Layout="BorderLayout">
+            
+           <HeaderConfig runat="server" >
+               <Items>
+                   <ext:Button runat="server" Icon="PageGear" ID="gearButton">
+                                    <Menu>
+                                        <ext:Menu runat="server">
+                                            <Items>
+                                                 <ext:MenuItem runat="server" Text="<%$ Resources:ResetPassword %>" Icon="Exclamation">
+                                                    <Listeners>
+                                                        <Click Handler="CheckSession();" />
+                                                        
+                                                    </Listeners>
+                                                    <DirectEvents>
+                                                        <Click OnEvent="ResetPassword" />
+                                                    </DirectEvents>
+                                                </ext:MenuItem>
+                                                <ext:MenuItem runat="server" Text="<%$ Resources:terminationWindowTitle %>" Icon="Stop">
+                                                    <Listeners>
+                                                        <Click Handler="CheckSession();" />
+                                                    </Listeners>
+                                                    <DirectEvents>
+                                                        <Click OnEvent="ShowTermination" />
+                                                    </DirectEvents>
+                                                </ext:MenuItem>
+                                                <ext:MenuItem runat="server" Text="<%$ Resources:Common,Delete %>" Icon="Cancel">
+                                                    <Listeners>
+                                                        <Click Handler="CheckSession();" />
+                                                        
+                                                    </Listeners>
+                                                    <DirectEvents>
+                                                        <Click OnEvent="promptDelete" />
+                                                    </DirectEvents>
+                                                </ext:MenuItem>
+                                                 <ext:MenuItem Text="<%$ Resources:Common,History %>" Icon="Clock">
+                                            <Listeners>
+                                                <Click Handler="CheckSession(); parent.OpenTransactionLog(#{CurrentClassId}.value,#{CurrentEmployee}.value);" />
+                                            </Listeners>
+                                        </ext:MenuItem>
+                                                
 
-
+                                            </Items>
+                                        </ext:Menu>
+                                    </Menu>
+                                </ext:Button>
+               </Items>
+           </HeaderConfig>
             <Items>
+             
                 <ext:Panel ID="leftPanel" runat="server" Region="West" PaddingSpec="0 0 0 0" Padding="0" TitleAlign="Center" DefaultAnchor="100%"
                     Header="false" Collapsible="false" BodyPadding="5" Width="150" StyleSpec="border-left:2px solid #2A92D4;border-right:2px solid #2A92D4;"
                     Title="<%$ Resources:Common , NavigationPane %>" CollapseToolText="<%$ Resources:Common , CollapsePanel %>" ExpandToolText="<%$ Resources:Common , ExpandPanel %>" BodyBorder="0">
-
+                    
                     <Items>
                         <ext:Panel runat="server" ID="alignedPanel" Header="false">
 
@@ -357,7 +405,16 @@
 
 
                 <ext:TabPanel ID="panelRecordDetails" Layout="FitLayout" DefaultAnchor="100%" runat="server" ActiveTabIndex="0" Border="false" DeferredRender="false" Region="Center">
-                    <Items>
+                     <TopBar>
+                        <ext:Toolbar runat="server">
+                            <Items>
+                                <ext:ToolbarFill runat="server">
+                                </ext:ToolbarFill>
+                                
+                            </Items>
+                        </ext:Toolbar>
+                    </TopBar>
+                       <Items>
                         <ext:FormPanel DefaultButton="SaveButton"
                             ID="BasicInfoTab"
                             runat="server"
@@ -648,11 +705,7 @@
                                                 </Click>
                                             </DirectEvents>
                                         </ext:Button>
-                                        <ext:Button Cls="x-btn-right" ID="Button8" runat="server" Text="History" Icon="Clock">
-                                            <Listeners>
-                                                <Click Handler="CheckSession(); parent.OpenTransactionLog(#{CurrentClassId}.value,#{CurrentEmployee}.value);" />
-                                            </Listeners>
-                                        </ext:Button>
+                                       
                                         <ext:ToolbarFill runat="server" />
                                         <ext:Button Cls="x-btn-left" ID="SaveButton" runat="server" Text="<%$ Resources:Common, Save %>" Icon="Disk">
 
@@ -669,7 +722,7 @@
                                                 </Click>
                                             </DirectEvents>
                                         </ext:Button>
-                                        <ext:Button Cls="x-btn-right" ID="CancelButton" runat="server" Text="<%$ Resources:Common , Cancel %>" Icon="Cancel">
+                                        <ext:Button Visible="false" Cls="x-btn-right" ID="CancelButton" runat="server" Text="<%$ Resources:Common , Cancel %>" Icon="Cancel">
                                             <Listeners>
                                                 <Click Handler="this.up('window').hide();" />
                                             </Listeners>
@@ -734,51 +787,7 @@
 
 
                     </Items>
-                    <TopBar>
-                        <ext:Toolbar runat="server">
-                            <Items>
-                                <ext:ToolbarFill runat="server">
-                                </ext:ToolbarFill>
-                                <ext:Button runat="server" Icon="PageGear" ID="gearButton">
-                                    <Menu>
-                                        <ext:Menu runat="server">
-                                            <Items>
-                                                 <ext:MenuItem runat="server" Text="<%$ Resources:ResetPassword %>">
-                                                    <Listeners>
-                                                        <Click Handler="CheckSession();" />
-                                                        
-                                                    </Listeners>
-                                                    <DirectEvents>
-                                                        <Click OnEvent="ResetPassword" />
-                                                    </DirectEvents>
-                                                </ext:MenuItem>
-                                                <ext:MenuItem runat="server" Text="<%$ Resources:terminationWindowTitle %>">
-                                                    <Listeners>
-                                                        <Click Handler="CheckSession();" />
-                                                    </Listeners>
-                                                    <DirectEvents>
-                                                        <Click OnEvent="ShowTermination" />
-                                                    </DirectEvents>
-                                                </ext:MenuItem>
-                                                <ext:MenuItem runat="server" Text="<%$ Resources:Common,Delete %>">
-                                                    <Listeners>
-                                                        <Click Handler="CheckSession();" />
-                                                        
-                                                    </Listeners>
-                                                    <DirectEvents>
-                                                        <Click OnEvent="promptDelete" />
-                                                    </DirectEvents>
-                                                </ext:MenuItem>
-
-                                                
-
-                                            </Items>
-                                        </ext:Menu>
-                                    </Menu>
-                                </ext:Button>
-                            </Items>
-                        </ext:Toolbar>
-                    </TopBar>
+                 
                 </ext:TabPanel>
 
             </Items>

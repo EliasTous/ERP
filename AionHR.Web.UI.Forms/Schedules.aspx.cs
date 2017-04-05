@@ -128,7 +128,7 @@ namespace AionHR.Web.UI.Forms
             string type = e.ExtraParams["type"];
             switch (type)
             {
-                case "ColName":
+                case "imgEdit":
                     ////Step 1 : get the object from the Web Service 
                     //panelRecordDetails.ActiveIndex = 0;
                     RecordRequest r = new RecordRequest();
@@ -151,31 +151,8 @@ namespace AionHR.Web.UI.Forms
 
 
                     break;
-                case "colDayName":
-                    ////Step 1 : get the object from the Web Service 
-                    //panelRecordDetails.ActiveIndex = 0;
-                    try
-                    {
-                        FillDow(id.ToString());
-                    }
-                    catch (Exception exp)
-                    {
-
-                        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                        X.Msg.Alert(Resources.Common.Error, exp.Message).Show();
-                        return;
-
-                    }
-                    //_systemService.SessionHelper.Set("currentSchedule",r.RecordID);
-                    //// InitCombos(response.result);
-                    this.EditDayBreaks.Title = Resources.Common.EditWindowsTitle;
-                    this.EditDayBreaks.Show();
-                    //FillDow("1");
-
-
-
-                    break;
-                case "colDetails":
+                
+                case "imgAttach":
                     //panelRecordDetails.ActiveIndex = 0;
 
                     AttendanceScheduleDayListRequest daysRequest = new AttendanceScheduleDayListRequest();
@@ -199,7 +176,7 @@ namespace AionHR.Web.UI.Forms
                     break;
 
 
-                case "colDelete":
+                case "imgDelete":
                     X.Msg.Confirm(Resources.Common.Confirmation, Resources.Common.DeleteOneRecord, new MessageBoxButtonsConfig
                     {
                         Yes = new MessageBoxButtonConfig
@@ -223,6 +200,44 @@ namespace AionHR.Web.UI.Forms
                     break;
                 default:
                     break;
+            }
+
+
+        }
+
+        protected void PoPuPDay(object sender, DirectEventArgs e)
+        {
+
+
+            int id = Convert.ToInt32(e.ExtraParams["id"]);
+            string type = e.ExtraParams["type"];
+            switch (type)
+            {
+                case "imgEdit":
+                    ////Step 1 : get the object from the Web Service 
+                    //panelRecordDetails.ActiveIndex = 0;
+                    try
+                    {
+                        FillDow(id.ToString());
+                    }
+                    catch (Exception exp)
+                    {
+
+                        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                        X.Msg.Alert(Resources.Common.Error, exp.Message).Show();
+                        return;
+
+                    }
+                    //_systemService.SessionHelper.Set("currentSchedule",r.RecordID);
+                    //// InitCombos(response.result);
+                    this.EditDayBreaks.Title = Resources.Common.EditWindowsTitle;
+                    this.EditDayBreaks.Show();
+                    //FillDow("1");
+
+
+
+                    break;
+                default: break;
             }
 
 

@@ -122,7 +122,7 @@ namespace AionHR.Infrastructure.WebService
                 StreamReader reader = new StreamReader(s, true);
                 string x = reader.ReadToEnd();
 
-                var settings = new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore,DateTimeZoneHandling = DateTimeZoneHandling.Utc };
+                var settings = new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore,DateTimeZoneHandling = DateTimeZoneHandling.Utc};
                 
                 if (Resolver != null)
                 {
