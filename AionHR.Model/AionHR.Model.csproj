@@ -55,6 +55,7 @@
     <Compile Include="Employees\Profile\EmployeeBackgroundCheck.cs" />
     <Compile Include="Employees\Profile\EmployeeCertificate.cs" />
     <Compile Include="Employees\Profile\EmployeeContact.cs" />
+    <Compile Include="Employees\Profile\EmployeeEmergencyContact.cs" />
     <Compile Include="Employees\Profile\EmployeeNote.cs" />
     <Compile Include="Employees\Profile\EmployeeRightToWork.cs" />
     <Compile Include="Employees\Profile\EmployeeTermination.cs" />

@@ -35,11 +35,11 @@
         <Items>
 
                 <ext:GridPanel AutoUpdateLayout="true"
-                    ID="contactsGrid" Collapsible="false"
+                    ID="emergencyContactsGrid" Collapsible="false"
                     runat="server"
                     PaddingSpec="0 0 1 0"
                     Header="false"
-                    
+                    Title="<%$ Resources: ECGridTitle %>"
                     Layout="FitLayout"
                     Scroll="Vertical" Flex="1"
                     Border="false" 
@@ -47,11 +47,11 @@
                     ColumnLines="True" IDMode="Explicit" RenderXType="True">
                     <Store>
                         <ext:Store
-                            ID="contactStore"
+                            ID="emergencyContactStore"
                             runat="server"
                             RemoteSort="True"
                             RemoteFilter="true"
-                            OnReadData="contactsStore_RefreshData"
+                            OnReadData="emergencyContactsStore_RefreshData"
                             PageSize="50" IDMode="Explicit" Namespace="App">
                             <Proxy>
                                 <ext:PageProxy>
@@ -90,8 +90,8 @@
                                         <Click Handler="CheckSession();" />
                                     </Listeners>
                                     <DirectEvents>
-                                        <Click OnEvent="ADDNewRecord">
-                                            <EventMask ShowMask="true" CustomTarget="={#{contactsGrid}.body}" />
+                                        <Click OnEvent="ADDNewEC">
+                                            <EventMask ShowMask="true" CustomTarget="={#{emergencyContactsGrid}.body}" />
                                         </Click>
                                     </DirectEvents>
                                 </ext:Button>
@@ -117,19 +117,20 @@
                         <Columns>
 
                             <ext:Column Visible="false" ID="ColrecordId" MenuDisabled="true" runat="server" DataIndex="recordId" Hideable="false" Width="75" Align="Center" />
-                            <ext:Column CellCls="cellLink" ID="ColEHName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldRTName%>" DataIndex="rtName" Flex="2" Hideable="false" />
-                            <ext:Column CellCls="cellLink" ID="Column1" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldWorkPhone%>" DataIndex="WorkPhone" Flex="2" Hideable="false" />
-                            <ext:Column CellCls="cellLink" ID="Column3" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldHomePhone%>" DataIndex="homePhone" Flex="2" Hideable="false" />
-                            <ext:Column CellCls="cellLink" ID="Column5" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldCellPhone%>" DataIndex="cellPhone" Flex="2" Hideable="false" />
-                            <ext:Column CellCls="cellLink" ID="Column6" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEmail%>" DataIndex="email" Flex="2" Hideable="false" />
-                            <ext:Column ID="ColName" DataIndex="addressName.fullName" Text="<%$ Resources: FieldAddressName%>" runat="server" Flex="4">
+                            <ext:Column CellCls="cellLink" ID="Column8" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEMInst%>" DataIndex="name" width="140" Hideable="false" />
+                            <ext:Column CellCls="cellLink" ID="ColEHName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEMRTName%>" DataIndex="rtName" width="100" Hideable="false" />
+                            <ext:Column CellCls="cellLink" ID="Column1" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEMWorkPhone%>" DataIndex="WorkPhone" width="100" Hideable="false" />
+                            <ext:Column CellCls="cellLink" ID="Column3" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEMHomePhone%>" DataIndex="homePhone" width="120" Hideable="false" />
+                            <ext:Column CellCls="cellLink" ID="Column5" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEMCellPhone%>" DataIndex="cellPhone" width="100" Hideable="false" />
+                            <ext:Column CellCls="cellLink" ID="Column6" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEMEmail%>" DataIndex="email" Flex="2" Hideable="false" />
+                           <%-- <ext:Column ID="ColName" DataIndex="addressName.fullName" Text="<%$ Resources: FieldAddressName%>" runat="server" Flex="4">
                                 <Renderer Handler=" return  record.data['addressId'].street1  + '&nbsp' + record.data['addressId'].countryName " />
-                                </ext:Column>
+                                </ext:Column>--%>
 
                             <ext:Column runat="server"
                                 ID="colEdit" Visible="true"
                                 Text=""
-                                Width="100"
+                                Width="60"
                                 Hideable="false"
                                 Align="Center"
                                 Fixed="true"
@@ -187,7 +188,7 @@
                         <Render Handler="this.on('cellclick', cellClick);" />
                     </Listeners>
                     <DirectEvents>
-                        <CellClick  OnEvent="PoPuP">
+                        <CellClick  OnEvent="PoPuPEM">
                             <EventMask  ShowMask="false"  />
                             <ExtraParams>
                                 <ext:Parameter Name="id" Value="record.getId()" Mode="Raw" />
@@ -207,15 +208,194 @@
                         <%--<ext:CheckboxSelectionModel ID="CheckboxSelectionModel1" runat="server" Mode="Multi" StopIDModeInheritance="true" />--%>
                     </SelectionModel>
                 </ext:GridPanel>
+
+
+                <ext:GridPanel Visible="True"
+                    ID="contactGrid" AutoUpdateLayout="true" Collapsible="true"
+                    runat="server"
+                    PaddingSpec="0 0 1 0"   
+                    Header="true"
+                    Title="<%$ Resources: CGridTitle %>"
+                    Layout="FitLayout" Flex="1"
+                    Scroll="Vertical"
+                    Border="false"
+                    Icon="User"
+                    ColumnLines="True" IDMode="Explicit" RenderXType="True">
+                    <Store>
+                        <ext:Store
+                            ID="contactStore"
+                            runat="server"
+                            RemoteSort="True"
+                            RemoteFilter="true"
+                            OnReadData="contactStore_RefreshData"
+                            PageSize="50" IDMode="Explicit" Namespace="App">
+                            <Proxy>
+                                <ext:PageProxy>
+                                    <Listeners>
+                                        <Exception Handler="Ext.MessageBox.alert('#{textLoadFailed}.value', response.statusText);" />
+                                    </Listeners>
+                                </ext:PageProxy>
+                            </Proxy>
+                            <Model>
+                                <ext:Model ID="Model2" runat="server" IDProperty="recordId">
+                                    <Fields>
+
+                                        <ext:ModelField Name="recordId" />
+                                        <ext:ModelField Name="street1" />
+                                        <ext:ModelField Name="street2" />
+                                        <ext:ModelField Name="city" />
+                                        <ext:ModelField Name="postalCode" />
+                                        <ext:ModelField Name="cellPhone" />
+                                        <ext:ModelField Name="countryId" />
+                                        <ext:ModelField Name="countryName" />                                       
+                                        
+
+                                    </Fields>
+                                </ext:Model>
+                            </Model>
+                            <Sorters>
+                                <ext:DataSorter Property="recordId" Direction="ASC" />
+                            </Sorters>
+                        </ext:Store>
+                    </Store>
+                    <TopBar>
+                        <ext:Toolbar ID="Toolbar3" runat="server" ClassicButtonStyle="false">
+                            <Items>
+                                <ext:Button ID="Button2" runat="server" Text="<%$ Resources:Common , Add %>" Icon="Add">
+                                    <Listeners>
+                                        <Click Handler="CheckSession();" />
+                                    </Listeners>
+                                    <DirectEvents>
+                                        <Click OnEvent="ADDNewC">
+                                            <EventMask ShowMask="true" CustomTarget="={#{contactGrid}.body}" />
+                                        </Click>
+                                    </DirectEvents>
+                                </ext:Button>
+                                <ext:ToolbarSeparator></ext:ToolbarSeparator>
+
+                                <ext:ToolbarFill ID="ToolbarFill1" runat="server" />
+                                <ext:TextField ID="TextField5" runat="server" EnableKeyEvents="true" Width="180">
+                                    <Triggers>
+                                        <ext:FieldTrigger Icon="Search" />
+                                    </Triggers>
+                                    <Listeners>
+                                        <KeyPress Fn="enterKeyPressSearchHandler" Buffer="100" />
+                                        <TriggerClick Handler="#{contactGrid}.reload();" />
+                                    </Listeners>
+                                </ext:TextField>
+
+                            </Items>
+                        </ext:Toolbar>
+
+                    </TopBar>
+
+                    <ColumnModel ID="ColumnModel2" runat="server" SortAscText="<%$ Resources:Common , SortAscText %>" SortDescText="<%$ Resources:Common ,SortDescText  %>" SortClearText="<%$ Resources:Common ,SortClearText  %>" ColumnsText="<%$ Resources:Common ,ColumnsText  %>" EnableColumnHide="false" Sortable="false">
+                        <Columns>
+
+                           <ext:Column ID="Column2" Visible="false" DataIndex="recordId" runat="server" />
+                            <ext:Column ID="Column9" DataIndex="cellPhone" Text="<%$ Resources: FieldCCellPhone%>" runat="server" Flex="1" />
+                            <ext:Column ID="Column4" DataIndex="street1" Text="<%$ Resources: FieldCStreet1%>" runat="server" Flex="1" />
+                            <ext:Column ID="Column10" DataIndex="street2" Text="<%$ Resources: FieldCStreet2%>" runat="server" Flex="1" />
+                            <ext:Column ID="Column11" DataIndex="city" Text="<%$ Resources: FieldCCity%>" runat="server" Flex="1" />
+                            <ext:Column ID="Column12" DataIndex="postalCode" Text="<%$ Resources: FieldCPostalCode%>" runat="server" Flex="1" />
+                            <ext:Column ID="Column13" DataIndex="countryName" Text="<%$ Resources: FieldCCountryName%>" runat="server" Flex="1" />
+                                                     
+
+
+
+                            <ext:Column runat="server"
+                                ID="ColCName" Visible="true"
+                                Text=""
+                                Width="100"
+                                Hideable="false"
+                                Align="Center"
+                                Fixed="true"
+                                Filterable="false"
+                                MenuDisabled="true"
+                                Resizable="false">
+
+                                <Renderer handler="return attachRender()+'&nbsp;&nbsp;'+editRender()+'&nbsp;&nbsp;'+deleteRender(); " />
+
+                            </ext:Column>
+                            <ext:Column runat="server"
+                                ID="ColCDelete" Flex="1" Visible="false"
+                                Text=""
+                                Width="100"
+                                Align="Center"
+                                Fixed="true"
+                                Filterable="false"
+                                Hideable="false"
+                                MenuDisabled="true"
+                                Resizable="false">
+                              <Renderer handler="return editRender()+'&nbsp;&nbsp;'+deleteRender(); " />
+
+                            </ext:Column>
+                            <ext:Column runat="server" Visible="false"
+                                ID="Column7"
+                                Text="<%$ Resources:Common, Attach %>"
+                                Hideable="false"
+                                Width="60"
+                                Align="Center"
+                                Fixed="true"
+                                Filterable="false"
+                                MenuDisabled="true"
+                                Resizable="false">
+                                <Renderer Fn="attachRender" />
+                            </ext:Column>
+
+
+
+
+                        </Columns>
+                    </ColumnModel>
+                    <DockedItems>
+
+                        <ext:Toolbar ID="Toolbar4" runat="server" Dock="Bottom">
+                            <Items>
+                                <ext:StatusBar ID="StatusBar2" runat="server" />
+                                <ext:ToolbarFill />
+
+                            </Items>
+                        </ext:Toolbar>
+
+                    </DockedItems>
+                    
+                    <Listeners>
+                        <Render Handler="this.on('cellclick', cellClick);" />
+                    </Listeners>
+                    <DirectEvents>
+                        <CellClick OnEvent="PoPuPC">
+                            
+                            <ExtraParams>
+                                <ext:Parameter Name="id" Value="record.getId()" Mode="Raw" />
+                                <ext:Parameter Name="path" Value="record.data['fileUrl']" Mode="Raw" />
+                                <ext:Parameter Name="type" Value="getCellType( this, rowIndex, cellIndex)" Mode="Raw" />
+                            </ExtraParams>
+
+                        </CellClick>
+                    </DirectEvents>
+                    <View>
+                        <ext:GridView ID="GridView2" runat="server" />
+                    </View>
+
+
+                    <SelectionModel>
+                        <ext:RowSelectionModel ID="rowSelectionModel1" runat="server" Mode="Single" StopIDModeInheritance="true" />
+                        <%--<ext:CheckboxSelectionModel ID="CheckboxSelectionModel1" runat="server" Mode="Multi" StopIDModeInheritance="true" />--%>
+                    </SelectionModel>
+                </ext:GridPanel>
+
+
+
            
             </Items>
        </ext:Viewport>
 
         <ext:Window
-            ID="EditContactWindow"
+            ID="EditEmergencyContactWindow"
             runat="server"
             Icon="PageEdit"
-            Title="<%$ Resources:EditContactWindowTitle %>"
+            Title="<%$ Resources:EditEmergencyContactWindowTitle %>"
             Width="570"
             Height="320"
             AutoShow="false"
@@ -227,9 +407,9 @@
                 <ext:TabPanel ID="TabPanel1" runat="server" ActiveTabIndex="0" Border="false" DeferredRender="false">
                     <Items>
                         <ext:FormPanel
-                            ID="ContactsForm" DefaultButton="SaveContactButton"
+                            ID="EmergencyContactsForm" DefaultButton="SaveEmergencyContactButton"
                             runat="server" Layout="TableLayout"
-                            Title="<%$ Resources: EditContactWindowTitle %>"
+                            Title="<%$ Resources: EditEmergencyContactWindowTitle %>"
                             Icon="ApplicationSideList"
                             DefaultAnchor="100%"
                             BodyPadding="5">
@@ -237,10 +417,10 @@
                                 <ext:Panel runat="server">
                                     <Items>
   <ext:TextField runat="server" Name="recordId"  ID="recordId" Hidden="true"  Disabled="true"/>
-                                <ext:TextField  runat="server" Name="institution" AllowBlank="false"  ID="institution"  FieldLabel="<%$ Resources:FieldInst%>" />
+                                <ext:TextField  runat="server" Name="institution" AllowBlank="false"  ID="institution"  FieldLabel="<%$ Resources:FieldEMInst%>" />
 
                                 <ext:ComboBox ValueField="recordId" AllowBlank="false" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1"
-                                     DisplayField="name" runat="server" ID="rtId" Name="rtId" FieldLabel="<%$ Resources:FieldRTName%>" SimpleSubmit="true">
+                                     DisplayField="name" runat="server" ID="rtId" Name="rtId" FieldLabel="<%$ Resources:FieldEMRTName%>" SimpleSubmit="true">
                                     <Store>
                                         <ext:Store runat="server" ID="rtStore">
                                             <Model>
@@ -275,23 +455,23 @@
                                                 </Listeners>
                                 </ext:ComboBox>
                                 
-                                <ext:TextField  runat="server" Name="workPhone" AllowBlank="false"  ID="TextField1"  FieldLabel="<%$ Resources:FieldWorkPhone%>" />                                
-                                <ext:TextField  runat="server" Name="homePhone" AllowBlank="false"  ID="TextField2"  FieldLabel="<%$ Resources:FieldHomePhone%>" />
-                                <ext:TextField  runat="server" Name="cellPhone" AllowBlank="false"  ID="TextField3"  FieldLabel="<%$ Resources:FieldCellPhone%>" />
-                                <ext:TextField  runat="server" Name="email" AllowBlank="false"  ID="TextField4"  FieldLabel="<%$ Resources:FieldEmail%>" />
+                                <ext:TextField  runat="server" Name="workPhone" AllowBlank="false"  ID="TextField1"  FieldLabel="<%$ Resources:FieldEMWorkPhone%>" />                                
+                                <ext:TextField  runat="server" Name="homePhone" AllowBlank="false"  ID="TextField2"  FieldLabel="<%$ Resources:FieldEMHomePhone%>" />
+                                <ext:TextField  runat="server" Name="cellPhone" AllowBlank="false"  ID="TextField3"  FieldLabel="<%$ Resources:FieldEMCellPhone%>" />
+                                <ext:TextField  runat="server" Name="email" AllowBlank="false"  ID="TextField4"  FieldLabel="<%$ Resources:FieldEMEmail%>" />
                                 
                                     </Items>
                                 </ext:Panel>
                                 <ext:Panel runat="server">
                                     <Items> 
-                                         <ext:TextField  runat="server" Name="street1" AllowBlank="false"  ID="street1"  FieldLabel="<%$ Resources:FieldStreet1%>" />
-                                <ext:TextField  runat="server" Name="street2" AllowBlank="false"  ID="street2"  FieldLabel="<%$ Resources:FieldStreet2%>" />
-                                <ext:TextField  runat="server" Name="city" AllowBlank="false"  ID="city"  FieldLabel="<%$ Resources:FieldCity%>" />
-                                <ext:TextField  runat="server" Name="postalCode" AllowBlank="false"  ID="postalCode"  FieldLabel="<%$ Resources:FieldPostalCode%>" />
+                                         <ext:TextField  runat="server" Name="street1" AllowBlank="false"  ID="street1"  FieldLabel="<%$ Resources:FieldEMStreet1%>" />
+                                <ext:TextField  runat="server" Name="street2" AllowBlank="false"  ID="street2"  FieldLabel="<%$ Resources:FieldEMStreet2%>" />
+                                <ext:TextField  runat="server" Name="city" AllowBlank="false"  ID="city"  FieldLabel="<%$ Resources:FieldEMCity%>" />
+                                <ext:TextField  runat="server" Name="postalCode" AllowBlank="false"  ID="postalCode"  FieldLabel="<%$ Resources:FieldEMPostalCode%>" />
                                 <%--<ext:TextField  runat="server" Name="countryName" AllowBlank="false"  ID="countryName"  FieldLabel="<%$ Resources:FieldCountryName%>" />--%>
                                 
                                  <ext:ComboBox ValueField="recordId" AllowBlank="false" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1"
-                                     DisplayField="name" runat="server" ID="naId" Name="naId" FieldLabel="<%$ Resources:FieldCountryName%>" SimpleSubmit="true">
+                                     DisplayField="name" runat="server" ID="naId" Name="naId" FieldLabel="<%$ Resources:FieldEMCountryName%>" SimpleSubmit="true">
                                     <Store>
                                         <ext:Store runat="server" ID="naStore">
                                             <Model>
@@ -366,13 +546,120 @@
                 </ext:TabPanel>
             </Items>
             <Buttons>
-                <ext:Button ID="SaveContactButton" runat="server" Text="<%$ Resources:Common, Save %>" Icon="Disk">
+                <ext:Button ID="SaveEmergencyContactButton" runat="server" Text="<%$ Resources:Common, Save %>" Icon="Disk">
+
+                    <Listeners>
+                        <Click Handler="CheckSession(); if (!#{EmergencyContactsForm}.getForm().isValid()) {return false;} " />
+                    </Listeners>
+                    <DirectEvents>
+                        <Click OnEvent="SaveEMDocument" Failure="Ext.MessageBox.alert('#{titleSavingError}.value', '#{titleSavingErrorMessage}.value');">
+                            <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="={#{EditEmergencyContactWindow}.body}" />
+                            <ExtraParams>
+                                <ext:Parameter Name="id" Value="#{recordId}.getValue()" Mode="Raw" />
+                                <ext:Parameter Name="values" Value="#{EmergencyContactsForm}.getForm().getValues(false, false, false, true)" Mode="Raw" Encode="true" />
+                            </ExtraParams>
+                        </Click>
+                    </DirectEvents>
+                </ext:Button>
+                <ext:Button ID="Button3" runat="server" Text="<%$ Resources:Common , Cancel %>" Icon="Cancel">
+                    <Listeners>
+                        <Click Handler="this.up('window').hide();" />
+                    </Listeners>
+                </ext:Button>
+            </Buttons>
+        </ext:Window>
+
+        <ext:Window
+            ID="EditContactWindow"
+            runat="server"
+            Icon="PageEdit"
+            Title="<%$ Resources:EditContactWindowTitle %>"
+            Width="570"
+            Height="320"
+            AutoShow="false"
+            Modal="true"
+            Hidden="true"
+            Layout="Fit">
+
+            <Items>
+                <ext:TabPanel ID="TabPanel2" runat="server" ActiveTabIndex="0" Border="false" DeferredRender="false">
+                    <Items>
+                        <ext:FormPanel
+                            ID="ContactsForm" DefaultButton="SaveContactButton"
+                            runat="server" Layout="TableLayout"
+                            Title="<%$ Resources: EditContactWindowTitle %>"
+                            Icon="ApplicationSideList"
+                            DefaultAnchor="100%"
+                            BodyPadding="5">
+                            <Items>
+                                <ext:Panel runat="server">
+                                    <Items>
+                                <ext:TextField runat="server" Name="recordId"  ID="TextField6" Hidden="true"  Disabled="true"/>
+                                <ext:TextField  runat="server" Name="cellPhone" AllowBlank="false"  ID="TextField10"  FieldLabel="<%$ Resources:FieldCCellPhone%>" />
+                                <ext:TextField  runat="server" Name="street1" AllowBlank="false"  ID="TextField12"  FieldLabel="<%$ Resources:FieldCStreet1%>" />
+                                <ext:TextField  runat="server" Name="street2" AllowBlank="false"  ID="TextField13"  FieldLabel="<%$ Resources:FieldCStreet2%>" />
+                                <ext:TextField  runat="server" Name="city" AllowBlank="false"  ID="TextField14"  FieldLabel="<%$ Resources:FieldCCity%>" />
+                                <ext:TextField  runat="server" Name="postalCode" AllowBlank="false"  ID="TextField15"  FieldLabel="<%$ Resources:FieldCPostalCode%>" />
+                                <%--<ext:TextField  runat="server" Name="countryName" AllowBlank="false"  ID="countryName"  FieldLabel="<%$ Resources:FieldCountryName%>" />--%>
+                                
+                                 <ext:ComboBox ValueField="recordId" AllowBlank="false" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1"
+                                     DisplayField="name" runat="server" ID="ComboBox2" Name="naId" FieldLabel="<%$ Resources:FieldCCountryName%>" SimpleSubmit="true">
+                                    <Store>
+                                        <ext:Store runat="server" ID="Store2">
+                                            <Model>
+                                                <ext:Model runat="server">
+                                                    <Fields>
+                                                        <ext:ModelField Name="recordId" />
+                                                        <ext:ModelField Name="name" />
+                                                    </Fields>
+                                                </ext:Model>
+                                            </Model>
+                                        </ext:Store>
+                                    </Store>
+                                          <RightButtons>
+                                                        <ext:Button ID="Button5" runat="server" Icon="Add" Hidden="true">
+                                                            <Listeners>
+                                                                <Click Handler="CheckSession();  " />
+                                                            </Listeners>
+                                                            <DirectEvents>
+
+                                                                <Click OnEvent="addNA">
+                                                                    <ExtraParams>
+                                                                        
+                                                                        
+                                                                    </ExtraParams>
+                                                                </Click>
+                                                            </DirectEvents>
+                                                        </ext:Button>
+                                                    </RightButtons>
+                                                <Listeners>
+                                                    <FocusEnter Handler="this.rightButtons[0].setHidden(false);" />
+                                                    <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
+                                                </Listeners>
+                                </ext:ComboBox>
+                         
+
+                                    </Items>
+                                </ext:Panel>
+                              
+                               
+
+                                    
+                            </Items>
+
+                        </ext:FormPanel>
+
+                    </Items>
+                </ext:TabPanel>
+            </Items>
+            <Buttons>
+                <ext:Button ID="Button7" runat="server" Text="<%$ Resources:Common, Save %>" Icon="Disk">
 
                     <Listeners>
                         <Click Handler="CheckSession(); if (!#{ContactsForm}.getForm().isValid()) {return false;} " />
                     </Listeners>
                     <DirectEvents>
-                        <Click OnEvent="SaveDocument" Failure="Ext.MessageBox.alert('#{titleSavingError}.value', '#{titleSavingErrorMessage}.value');">
+                        <Click OnEvent="SaveCDocument" Failure="Ext.MessageBox.alert('#{titleSavingError}.value', '#{titleSavingErrorMessage}.value');">
                             <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="={#{EditContactWindow}.body}" />
                             <ExtraParams>
                                 <ext:Parameter Name="id" Value="#{recordId}.getValue()" Mode="Raw" />
@@ -381,7 +668,7 @@
                         </Click>
                     </DirectEvents>
                 </ext:Button>
-                <ext:Button ID="Button3" runat="server" Text="<%$ Resources:Common , Cancel %>" Icon="Cancel">
+                <ext:Button ID="Button8" runat="server" Text="<%$ Resources:Common , Cancel %>" Icon="Cancel">
                     <Listeners>
                         <Click Handler="this.up('window').hide();" />
                     </Listeners>

@@ -117,46 +117,76 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="CGridTitle" xml:space="preserve">
+    <value>Contacts</value>
+  </data>
+  <data name="ECGridTitle" xml:space="preserve">
+    <value>Emergency Contacts</value>
+  </data>
   <data name="EditContactWindowTitle" xml:space="preserve">
     <value>Contacts</value>
   </data>
-  <data name="FieldAddressName" xml:space="preserve">
-    <value>Address</value>
+  <data name="EditEmergencyContactWindowTitle" xml:space="preserve">
+    <value>Emergency Contacts</value>
   </data>
-  <data name="FieldCellPhone" xml:space="preserve">
+  <data name="FieldCCellPhone" xml:space="preserve">
     <value>Cell Phone</value>
   </data>
-  <data name="FieldCity" xml:space="preserve">
+  <data name="FieldCCity" xml:space="preserve">
     <value>City</value>
   </data>
-  <data name="FieldCountryId" xml:space="preserve">
+  <data name="FieldCCountryId" xml:space="preserve">
     <value>Country Id</value>
   </data>
-  <data name="FieldCountryName" xml:space="preserve">
+  <data name="FieldCCountryName" xml:space="preserve">
     <value>Country Name</value>
   </data>
-  <data name="FieldEmail" xml:space="preserve">
-    <value>Email</value>
-  </data>
-  <data name="FieldHomePhone" xml:space="preserve">
-    <value>Home Phone</value>
-  </data>
-  <data name="FieldInst" xml:space="preserve">
-    <value>Institution</value>
-  </data>
-  <data name="FieldPostalCode" xml:space="preserve">
+  <data name="FieldCPostalCode" xml:space="preserve">
     <value>Postal Code</value>
   </data>
-  <data name="FieldRTName" xml:space="preserve">
-    <value>Relationship</value>
-  </data>
-  <data name="FieldStreet1" xml:space="preserve">
+  <data name="FieldCStreet1" xml:space="preserve">
     <value>Street 1</value>
   </data>
-  <data name="FieldStreet2" xml:space="preserve">
+  <data name="FieldCStreet2" xml:space="preserve">
     <value>Street 2</value>
   </data>
-  <data name="FieldWorkPhone" xml:space="preserve">
+  <data name="FieldEMAddressName" xml:space="preserve">
+    <value>Address</value>
+  </data>
+  <data name="FieldEMCellPhone" xml:space="preserve">
+    <value>Cell Phone</value>
+  </data>
+  <data name="FieldEMCity" xml:space="preserve">
+    <value>City</value>
+  </data>
+  <data name="FieldEMCountryId" xml:space="preserve">
+    <value>Country Id</value>
+  </data>
+  <data name="FieldEMCountryName" xml:space="preserve">
+    <value>Country Name</value>
+  </data>
+  <data name="FieldEMEmail" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="FieldEMHomePhone" xml:space="preserve">
+    <value>Home Phone</value>
+  </data>
+  <data name="FieldEMInst" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="FieldEMPostalCode" xml:space="preserve">
+    <value>Postal Code</value>
+  </data>
+  <data name="FieldEMRTName" xml:space="preserve">
+    <value>Relationship</value>
+  </data>
+  <data name="FieldEMStreet1" xml:space="preserve">
+    <value>Street 1</value>
+  </data>
+  <data name="FieldEMStreet2" xml:space="preserve">
+    <value>Street 2</value>
+  </data>
+  <data name="FieldEMWorkPhone" xml:space="preserve">
     <value>Work Phone</value>
   </data>
 </root>
