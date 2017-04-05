@@ -174,8 +174,10 @@
     <Content Include="Routers.aspx" />
     <Content Include="SalaryChangeReasons.aspx" />
     <Content Include="Scripts\AssetAllowances.js" />
+    <Content Include="Scripts\Contacts.js" />
     <Content Include="Scripts\EmployeeComplaints.js" />
     <Content Include="Scripts\EmployeesOrgChart.js" />
+    <Content Include="Scripts\RelationshipTypes.js" />
     <Content Include="Scripts\Routers.js" />
     <Content Include="Scripts\Positions.js" />
     <Content Include="Scripts\BiometricDevices.js" />

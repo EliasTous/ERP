@@ -52,7 +52,7 @@ namespace AionHR.Repository.WebService.Repositories
             ChildGetAllLookup.Add(typeof(CheckType), "qryCT");
             ChildGetAllLookup.Add(typeof(TerminationReason), "qryTR");
             ChildGetAllLookup.Add(typeof(AssetAllowance), "qryAA");
-            ChildGetAllLookup.Add(typeof(EmployeeContact), "qryEC");
+            ChildGetAllLookup.Add(typeof(EmployeeEmergencyContact), "qryEC");
             ChildGetAllLookup.Add(typeof(RelationshipType), "qryRT");
 
 
@@ -78,7 +78,7 @@ namespace AionHR.Repository.WebService.Repositories
             ChildGetLookup.Add(typeof(CheckType), "getCT");
             ChildGetLookup.Add(typeof(TerminationReason), "getTR");
             ChildGetLookup.Add(typeof(AssetAllowance), "getAA");
-            ChildGetLookup.Add(typeof(EmployeeContact), "getEC");
+            ChildGetLookup.Add(typeof(EmployeeEmergencyContact), "getEC");
             ChildGetLookup.Add(typeof(RelationshipType), "getRT");
             ChildGetLookup.Add(typeof(EmployeeQuickView), "getQV");
 
@@ -109,7 +109,7 @@ namespace AionHR.Repository.WebService.Repositories
             ChildAddOrUpdateLookup.Add(typeof(TerminationReason), "setTR");
             ChildAddOrUpdateLookup.Add(typeof(EmployeeTermination), "setTE");
             ChildAddOrUpdateLookup.Add(typeof(AssetAllowance), "setAA");
-            ChildAddOrUpdateLookup.Add(typeof(EmployeeContact), "setEC");
+            ChildAddOrUpdateLookup.Add(typeof(EmployeeEmergencyContact), "setEC");
             ChildAddOrUpdateLookup.Add(typeof(RelationshipType), "setRT");
 
 
@@ -136,7 +136,7 @@ namespace AionHR.Repository.WebService.Repositories
             ChildDeleteLookup.Add(typeof(CheckType), "delCT");
             ChildDeleteLookup.Add(typeof(TerminationReason), "detTR");
             ChildDeleteLookup.Add(typeof(AssetAllowance), "delAA");
-            ChildDeleteLookup.Add(typeof(EmployeeContact), "delEC");
+            ChildDeleteLookup.Add(typeof(EmployeeEmergencyContact), "delEC");
             ChildDeleteLookup.Add(typeof(RelationshipType), "delRT");
 
         }
