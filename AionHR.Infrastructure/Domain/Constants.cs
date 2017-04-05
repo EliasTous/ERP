@@ -22,6 +22,7 @@ namespace AionHR.Infrastructure.Domain
         public const int CSBR = 21020;
         public const int CSPO = 21030;
         public const int CSDE = 21040;
+        public const int CSFI = 20080;
 
         // document management (company level)
         public const int DMDT = 22010;
@@ -138,6 +139,7 @@ namespace AionHR.Infrastructure.Domain
         // complaints
         public const int ECCO = 44000;
 
+        
     }
 
 }

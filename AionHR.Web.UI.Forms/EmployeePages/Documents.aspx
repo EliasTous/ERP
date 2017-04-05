@@ -111,9 +111,7 @@
       
          $('#input-ke-1').on('filebatchuploadcomplete', function (event, data, msg) {
              
-             alert(dump(data));
-             alert(dump(event));
-             alert(dump(msg));
+            
              App.employeeDocumentsStore.reload();
              App.AttachmentsWindow.close();
              

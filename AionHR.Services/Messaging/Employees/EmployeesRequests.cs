@@ -1,5 +1,7 @@
-﻿using AionHR.Model.Employees.Profile;
+﻿using AionHR.Infrastructure.Domain;
+using AionHR.Model.Employees.Profile;
 using AionHR.Services.Messaging;
+using AionHR.Services.Messaging.System;
 using System.Collections.Generic;
 
 public class EmployeeListRequest:ListRequest
@@ -337,4 +339,11 @@ public class EmployeeComplaintListRequest : ListRequest
     }
 
     public string SortBy { get; set; }
+}
+public class EmployeeAttachmentsListRequest : SystemAttachmentsListRequest
+{
+    public EmployeeAttachmentsListRequest()
+    {
+        base.classId = ClassId.EPEM;
+    }
 }

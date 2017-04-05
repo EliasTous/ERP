@@ -1,0 +1,467 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Globalization;
+using System.IO;
+using System.Linq;
+using System.Linq.Expressions;
+using System.Text;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.HtmlControls;
+using System.Web.UI.WebControls;
+using System.Xml;
+using System.Xml.Xsl;
+using Ext.Net;
+using Newtonsoft.Json;
+using AionHR.Services.Interfaces;
+using Microsoft.Practices.ServiceLocation;
+using AionHR.Web.UI.Forms.Utilities;
+using AionHR.Model.Company.News;
+using AionHR.Services.Messaging;
+using AionHR.Model.Company.Structure;
+using AionHR.Model.System;
+using AionHR.Model.Attendance;
+using AionHR.Model.Employees.Leaves;
+using AionHR.Model.Employees.Profile;
+using AionHR.Model.LeaveManagement;
+using AionHR.Services.Messaging.System;
+using AionHR.Model.Company.Cases;
+using System.Net;
+using AionHR.Infrastructure.Domain;
+using AionHR.Services.Messaging.CompanyStructure;
+
+namespace AionHR.Web.UI.Forms
+{
+    public partial class CompanyFiles : System.Web.UI.Page
+    {
+        ISystemService _systemService = ServiceLocator.Current.GetInstance<ISystemService>();
+
+        IEmployeeService _employeeService = ServiceLocator.Current.GetInstance<IEmployeeService>();
+
+        ICaseService _caseService = ServiceLocator.Current.GetInstance<ICaseService>();
+
+
+
+        ICompanyStructureService _companyStructureService = ServiceLocator.Current.GetInstance<ICompanyStructureService>();
+        protected override void InitializeCulture()
+        {
+
+            bool rtl = true;
+            if (!_systemService.SessionHelper.CheckIfArabicSession())
+            {
+                rtl = false;
+                base.InitializeCulture();
+                LocalisationManager.Instance.SetEnglishLocalisation();
+            }
+
+            if (rtl)
+            {
+                base.InitializeCulture();
+                LocalisationManager.Instance.SetArabicLocalisation();
+            }
+
+        }
+
+        protected void Page_Load(object sender, EventArgs e)
+        {
+
+
+            if (!X.IsAjaxRequest && !IsPostBack)
+            {
+
+                SetExtLanguage();
+                HideShowButtons();
+                HideShowColumns();
+
+               
+                dateCol.Format = _systemService.SessionHelper.GetDateformat() + ": hh:mm:ss";
+                CompanyFilesClassId.Text = ClassId.CSFI.ToString();
+         
+            }
+
+        }
+
+
+
+        /// <summary>
+        /// the detailed tabs for the edit form. I put two tabs by default so hide unecessary or add addional
+        /// </summary>
+        private void HideShowTabs()
+        {
+            //this.OtherInfoTab.Visible = false;
+        }
+
+        protected void Store1_RefreshData(object sender, StoreReadDataEventArgs e)
+        {
+
+             CompanyFilesListRequest request = new CompanyFilesListRequest();
+            request.recordId = 0;
+
+            ListResponse<Attachement> routers = _systemService.ChildGetAll<Attachement>(request);
+            if (!routers.Success)
+            {
+                X.Msg.Alert(Resources.Common.Error, routers.Summary).Show();
+                return;
+            }
+            this.Store1.DataSource = routers.Items;
+
+
+            this.Store1.DataBind();
+        }
+
+        private void HideShowButtons()
+        {
+
+        }
+
+
+        /// <summary>
+        /// hiding uncessary column in the grid. 
+        /// </summary>
+        private void HideShowColumns()
+        {
+            this.colAttach.Visible = false;
+        }
+
+
+        private void SetExtLanguage()
+        {
+            bool rtl = _systemService.SessionHelper.CheckIfArabicSession();
+            if (rtl)
+            {
+                this.ResourceManager1.RTL = true;
+                this.Viewport1.RTL = true;
+                CurrentLanguage.Text = "ar";
+            }
+            else
+            {
+                CurrentLanguage.Text = "en";
+            }
+        }
+
+
+
+        protected void PoPuP(object sender, DirectEventArgs e)
+        {
+
+            
+            string id = e.ExtraParams["id"];
+            string type = e.ExtraParams["type"];
+
+            switch (type)
+            {
+            
+                case "imgDelete":
+                    X.Msg.Confirm(Resources.Common.Confirmation, Resources.Common.DeleteOneRecord, new MessageBoxButtonsConfig
+                    {
+                        Yes = new MessageBoxButtonConfig
+                        {
+                            //We are call a direct request metho for deleting a record
+                            Handler = String.Format("App.direct.DeleteRecord({0})", id),
+                            Text = Resources.Common.Yes
+                        },
+                        No = new MessageBoxButtonConfig
+                        {
+                            Text = Resources.Common.No
+                        }
+
+                    }).Show();
+                    break;
+
+                case "colAttach":
+
+                    //Here will show up a winow relatice to attachement depending on the case we are working on
+                    break;
+                default:
+                    break;
+            }
+
+
+        }
+
+        [DirectMethod]
+        public void DeleteRecord(string index)
+        {
+            try
+            {
+                //Step 1 Code to delete the object from the database 
+                Case s = new Case();
+                s.recordId = index;
+                s.employeeId = 0;
+                s.employeeName = new EmployeeName();
+                s.details = "";
+                s.date = DateTime.Now;
+                s.closedDate = DateTime.Now;
+                s.status = 0;
+
+
+                PostRequest<Case> req = new PostRequest<Case>();
+                req.entity = s;
+                PostResponse<Case> r = _caseService.Delete<Case>(req);
+                if (!r.Success)
+                {
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    X.Msg.Alert(Resources.Common.Error, r.Summary).Show();
+                    return;
+                }
+                else
+                {
+                    //Step 2 :  remove the object from the store
+                    Store1.Remove(index);
+
+                    //Step 3 : Showing a notification for the user 
+                    Notification.Show(new NotificationConfig
+                    {
+                        Title = Resources.Common.Notification,
+                        Icon = Icon.Information,
+                        Html = Resources.Common.RecordDeletedSucc
+                    });
+                }
+
+            }
+            catch (Exception ex)
+            {
+                //In case of error, showing a message box to the user
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorDeletingRecord).Show();
+
+            }
+
+        }
+
+        protected void btnDeleteAll(object sender, DirectEventArgs e)
+        {
+
+
+            RowSelectionModel sm = this.GridPanel1.GetSelectionModel() as RowSelectionModel;
+            if (sm.SelectedRows.Count() <= 0)
+                return;
+            X.Msg.Confirm(Resources.Common.Confirmation, Resources.Common.DeleteManyRecord, new MessageBoxButtonsConfig
+            {
+                //Calling DoYes the direct method for removing selecte record
+                Yes = new MessageBoxButtonConfig
+                {
+                    Handler = "App.direct.DoYes()",
+                    Text = Resources.Common.Yes
+                },
+                No = new MessageBoxButtonConfig
+                {
+                    Text = Resources.Common.No
+                }
+
+            }).Show();
+        }
+
+        /// <summary>
+        /// Direct method for removing multiple records
+        /// </summary>
+        [DirectMethod(ShowMask = true)]
+        public void DoYes()
+        {
+            try
+            {
+                RowSelectionModel sm = this.GridPanel1.GetSelectionModel() as RowSelectionModel;
+
+                foreach (SelectedRow row in sm.SelectedRows)
+                {
+                    //Step 1 :Getting the id of the selected record: it maybe string 
+                    int id = int.Parse(row.RecordID);
+
+
+                    //Step 2 : removing the record from the store
+                    //To do add code here 
+
+                    //Step 3 :  remove the record from the store
+                    Store1.Remove(id);
+
+                }
+                //Showing successful notification
+                Notification.Show(new NotificationConfig
+                {
+                    Title = Resources.Common.Notification,
+                    Icon = Icon.Information,
+                    Html = Resources.Common.ManyRecordDeletedSucc
+                });
+
+            }
+            catch (Exception ex)
+            {
+                //Alert in case of any failure
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorDeletingRecord).Show();
+
+            }
+        }
+
+        /// <summary>
+        /// Adding new record
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void ADDNewRecord(object sender, DirectEventArgs e)
+        {
+            ListRequest req = new ListRequest();
+            ListResponse<SystemFolder> docs = _systemService.ChildGetAll<SystemFolder>(req);
+            if (!docs.Success)
+            {
+                return;
+            }
+            List<object> options = new List<object>();
+            foreach (var item in docs.Items)
+            {
+                options.Add(new { text = item.name, value = item.recordId });
+            }
+            X.Call("InitTypes", options);
+            AttachmentsWindow.Show();
+        }
+
+
+
+        [DirectMethod]
+        public string CheckSession()
+        {
+            if (!_systemService.SessionHelper.CheckUserLoggedIn())
+            {
+                return "0";
+            }
+            else return "1";
+        }
+        [DirectMethod]
+        public void DownloadFile(string url)
+        {
+            if (string.IsNullOrEmpty(url))
+                return;
+
+            Stream stream = null;
+
+            //This controls how many bytes to read at a time and send to the client
+            int bytesToRead = 10000;
+
+            // Buffer to read bytes in chunk size specified above
+            byte[] buffer = new Byte[bytesToRead];
+
+            // The number of bytes read
+            try
+            {
+                //Create a WebRequest to get the file
+                HttpWebRequest fileReq = (HttpWebRequest)HttpWebRequest.Create(url);
+
+                //Create a response for this request
+                HttpWebResponse fileResp = (HttpWebResponse)fileReq.GetResponse();
+
+                if (fileReq.ContentLength > 0)
+                    fileResp.ContentLength = fileReq.ContentLength;
+
+                //Get the Stream returned from the response
+                stream = fileResp.GetResponseStream();
+
+                // prepare the response to the client. resp is the client Response
+
+                var resp = HttpContext.Current.Response;
+
+                //Indicate the type of data being sent
+                resp.ContentType = "application/octet-stream";
+                string[] segments = url.Split('/');
+                string fileName = segments[segments.Length - 1];
+                //Name the file 
+                resp.AddHeader("Content-Disposition", "attachment; filename=\"" + fileName + "\"");
+                resp.AddHeader("Content-Length", fileResp.ContentLength.ToString());
+
+                int length;
+                do
+                {
+                    // Verify that the client is connected.
+                    if (resp.IsClientConnected)
+                    {
+                        // Read data into the buffer.
+                        length = stream.Read(buffer, 0, bytesToRead);
+
+                        // and write it out to the response's output stream
+                        resp.OutputStream.Write(buffer, 0, length);
+
+                        // Flush the data
+
+
+                        //Clear the buffer
+                        buffer = new Byte[bytesToRead];
+                    }
+                    else
+                    {
+                        // cancel the download if client has disconnected
+                        length = -1;
+                    }
+                } while (length > 0); //Repeat until no data is read
+                resp.Flush();
+            }
+            catch (Exception exp)
+            {
+                X.Msg.Alert(Resources.Common.Error, exp.Message + "<br />" + exp.StackTrace).Show();
+                return;
+            }
+            finally
+            {
+                if (stream != null)
+                {
+                    //Close the input stream
+                    stream.Close();
+                }
+            }
+        }
+
+
+
+        /// <summary>
+        /// This direct method will be called after confirming the delete
+        /// </summary>
+        /// <param name="index">the ID of the object to delete</param>
+        [DirectMethod]
+        public void DeleteAttachment(string index)
+        {
+            try
+            {
+                //Step 1 Code to delete the object from the database 
+                Attachement n = new Attachement();
+                n.classId = ClassId.CMCA;
+                n.recordId = 0;
+                n.seqNo = Convert.ToInt16(index);
+
+
+                PostRequest<Attachement> req = new PostRequest<Attachement>();
+                req.entity = n;
+                PostResponse<Attachement> res = _systemService.ChildDelete<Attachement>(req);
+                if (!res.Success)
+                {
+                    //Show an error saving...
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    X.Msg.Alert(Resources.Common.Error, res.Summary).Show();
+                    return;
+                }
+                else
+                {
+                    //Step 2 :  remove the object from the store
+                    Store1.Remove(index);
+
+                    //Step 3 : Showing a notification for the user 
+                    Notification.Show(new NotificationConfig
+                    {
+                        Title = Resources.Common.Notification,
+                        Icon = Icon.Information,
+                        Html = Resources.Common.RecordDeletedSucc
+
+                    });
+                }
+
+            }
+            catch (Exception ex)
+            {
+                //In case of error, showing a message box to the user
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorDeletingRecord).Show();
+
+            }
+
+        }
+
+    }
+}

@@ -103,6 +103,7 @@
     <Content Include="Cases.aspx" />
     <Content Include="CertificateLevels.aspx" />
     <Content Include="CheckTypes.aspx" />
+    <Content Include="CompanyFiles.aspx" />
     <Content Include="CSS\Dashboard.css" />
     <Content Include="CSS\Calendars.css" />
     <Content Include="CSS\Common.css" />
@@ -174,6 +175,7 @@
     <Content Include="Routers.aspx" />
     <Content Include="SalaryChangeReasons.aspx" />
     <Content Include="Scripts\AssetAllowances.js" />
+    <Content Include="Scripts\CompanyFiles.js" />
     <Content Include="Scripts\Contacts.js" />
     <Content Include="Scripts\EmployeeComplaints.js" />
     <Content Include="Scripts\EmployeesOrgChart.js" />
@@ -365,6 +367,13 @@
     </Compile>
     <Compile Include="Branches.aspx.designer.cs">
       <DependentUpon>Branches.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CompanyFiles.aspx.cs">
+      <DependentUpon>CompanyFiles.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CompanyFiles.aspx.designer.cs">
+      <DependentUpon>CompanyFiles.aspx</DependentUpon>
     </Compile>
     <Compile Include="SystemAttachmentsUploader.ashx.cs">
       <DependentUpon>SystemAttachmentsUploader.ashx</DependentUpon>
@@ -924,6 +933,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="EmployeePages\App_LocalResources\Documents.aspx.ar.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_LocalResources\CompanyFiles.aspx.resx" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

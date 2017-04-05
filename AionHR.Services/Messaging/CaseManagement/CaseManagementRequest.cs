@@ -61,10 +61,4 @@ public class CaseAttachmentsListRequest: SystemAttachmentsListRequest
     }
 }
 
-public class EmployeeAttachmentsListRequest: SystemAttachmentsListRequest
-{
-    public EmployeeAttachmentsListRequest()
-    {
-        base.classId = ClassId.EPEM;
-    }
-}
+

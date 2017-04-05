@@ -55,7 +55,7 @@
          $("#input-ke-1").fileinput({
            
              theme: 'explorer',
-             uploadUrl: 'SystemAttachmentsUploader.ashx?recordId=' + document.getElementById('currentCase').value+"&classId=",
+             uploadUrl: 'SystemAttachmentsUploader.ashx?recordId=' + document.getElementById('currentCase').value + "&classId=" + document.getElementById('CasesClassId').value,
              overwriteInitial: false,
              initialPreviewAsData: true,
              uploadAsync: true,
@@ -125,7 +125,7 @@
          $('#input-ke-1').on('filebatchuploadcomplete', function (event, data, msg) {
              
              App.direct.FillFilesStore(document.getElementById('currentCase').value);
-             App.AttachmentsWindow.close();
+             //App.AttachmentsWindow.close();
              
          });
          $('#input-ke-1').on('filebatchpreupload', function (event, data, previewId, index) {
