@@ -60,3 +60,11 @@ public class CaseAttachmentsListRequest: SystemAttachmentsListRequest
         base.classId = ClassId.CMCA;
     }
 }
+
+public class EmployeeAttachmentsListRequest: SystemAttachmentsListRequest
+{
+    public EmployeeAttachmentsListRequest()
+    {
+        base.classId = ClassId.EPEM;
+    }
+}

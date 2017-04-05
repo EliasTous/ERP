@@ -7,13 +7,15 @@ using System.Threading.Tasks;
 
 namespace AionHR.Model.MasterModule
 {
-    public class Account:IEntity
+    public class Account : IEntity
     {
-        public int? accountId;
-        public int registrationId;
-        public string accountName;
-        public short languageId;
-        public short timeZone;
-        public string companyName;
+        public int? accountId { get; set; }
+        public int registrationId { get; set; }
+        public string accountName { get; set; }
+        public short languageId { get; set; }
+        public short timeZone { get; set; }
+        public string companyName { get; set; }
+
+        public bool trial { get; set; }
     }
 }

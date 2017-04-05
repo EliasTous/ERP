@@ -144,6 +144,9 @@
   <data name="FieldTo" xml:space="preserve">
     <value>To Months</value>
   </data>
+  <data name="MonthsFieldError" xml:space="preserve">
+    <value>The months is a required field and should be from 0 to 1000</value>
+  </data>
   <data name="Periods" xml:space="preserve">
     <value>Periods</value>
   </data>

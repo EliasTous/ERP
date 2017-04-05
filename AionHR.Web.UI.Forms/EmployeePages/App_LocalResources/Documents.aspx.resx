@@ -120,6 +120,9 @@
   <data name="EditDocumentWindowTitle" xml:space="preserve">
     <value>Document</value>
   </data>
+  <data name="FieldDate" xml:space="preserve">
+    <value>Date</value>
+  </data>
   <data name="FieldDocumentRef" xml:space="preserve">
     <value>Reference</value>
   </data>

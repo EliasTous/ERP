@@ -69,7 +69,10 @@ namespace AionHR.Infrastructure.Session
             string lastLetterRemoved = removedBrace.Substring(0, removedBrace.Length - 1);
             Set("nameFormat", lastLetterRemoved);
         }
-
+        public void SetCurrencyId(string value)
+        {
+            Set("currencyId", value);
+        }
         public void SetDefaultCountry(string format)
         {
             Set("countryId", format);
@@ -102,6 +105,14 @@ namespace AionHR.Infrastructure.Session
             object nameFormat = Get("countryId");
             if (nameFormat == null)
                 return "Lebanon";
+
+            return nameFormat.ToString();
+        }
+        public string GetDefaultCurrency()
+        {
+            object nameFormat = Get("currencyId");
+            if (nameFormat == null)
+                return "0";
 
             return nameFormat.ToString();
         }
@@ -140,6 +151,8 @@ namespace AionHR.Infrastructure.Session
             return _tokenGenerator.GetUserToken(accountID, userID);
         }
 
+     
+
         //public void AddTimeZone(string timeZone)
         //{
         //    _sessionStorage.Save("TimeZone", timeZone);
@@ -151,8 +164,8 @@ namespace AionHR.Infrastructure.Session
         //    if ( o != null)
         //            return o.ToString();
         //        else return "";
-            
-            
+
+
         //}
 
 

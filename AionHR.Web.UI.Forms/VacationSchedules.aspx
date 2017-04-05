@@ -331,7 +331,7 @@
                                                         runat="server"
                                                          ID="fromField"
                                                         AllowBlank="false"
-                                                       
+                                                        InvalidText="<%$Resources:MonthsFieldError %>"
                                                         MinValue="0"
                                                         MaxValue="1000" />
                                                 </Editor>
@@ -350,7 +350,7 @@
                                                         ID="toField"
                                                         AllowBlank="false"
                                                         MinValue="0"
-                                                  
+                                                         InvalidText="<%$Resources:MonthsFieldError %>"
                                                         MaxValue="1000" >
                                                        
                                                         </ext:NumberField>

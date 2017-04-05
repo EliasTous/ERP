@@ -506,7 +506,7 @@
                                         </ext:Store>
                                     </Store>
                                     <Plugins>
-                                        <ext:RowEditing runat="server" ClicksToMoveEditor="1" AutoCancel="false" SaveBtnText="<%$ Resources:Common , Save %>" CancelBtnText="<%$ Resources:Common , Cancel %>" />
+                                        <ext:RowEditing runat="server" ClicksToMoveEditor="1" AutoCancel="false" SaveBtnText="<%$ Resources:Common , Save %>" CancelBtnText="<%$ Resources:Common , Cancel %>"  ErrorsText="" />
                                     </Plugins>
                                     <TopBar>
                                         <ext:Toolbar runat="server">
@@ -548,7 +548,7 @@
                                                 <Editor>
                                                     <%-- Vtype="numberrange"
                                                         EndNumberField="toField"--%>
-                                                    <ext:TextField runat="server" ID="fromField">
+                                                    <ext:TextField runat="server" ID="fromField" InvalidText="<%$ Resources:Common,TimeFieldError %>">
 
                                                         <Plugins>
                                                             <ext:InputMask Mask="99:99"></ext:InputMask>
@@ -570,7 +570,7 @@
                                                          Vtype="numberrange"--%>
                                                     <ext:TextField
                                                         runat="server"
-                                                        ID="toField"
+                                                        ID="toField"  InvalidText="<%$ Resources:Common,TimeFieldError %>"
                                                         AllowBlank="false">
                                                         <Plugins>
                                                             <ext:InputMask runat="server" Mask="99:99">

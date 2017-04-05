@@ -55,7 +55,7 @@
          $("#input-ke-1").fileinput({
            
              theme: 'explorer',
-             uploadUrl: 'CaseAttachmentsUploader.ashx?caseId='+document.getElementById('currentCase').value,
+             uploadUrl: 'SystemAttachmentsUploader.ashx?recordId=' + document.getElementById('currentCase').value+"&classId=",
              overwriteInitial: false,
              initialPreviewAsData: true,
              uploadAsync: true,
@@ -112,7 +112,7 @@
                  response = data.response, reader = data.reader;
              console.log($(this).find('select')[0]);
          });
-
+       
 
 
          $('#input-ke-1').on('filebatchuploaderror', function (event, data, msg) {
@@ -122,9 +122,8 @@
              // get message
              alert(msg);
          });
-         $('#input-ke-1').on('filebatchuploadsuccess', function (event, data, msg) {
-             curIndex = 0;
-             passed = 'no';
+         $('#input-ke-1').on('filebatchuploadcomplete', function (event, data, msg) {
+             
              App.direct.FillFilesStore(document.getElementById('currentCase').value);
              App.AttachmentsWindow.close();
              
@@ -166,6 +165,7 @@
         <ext:Hidden ID="StatusOpen" runat="server" Text="<%$ Resources: FieldOpen %>" />
         <ext:Hidden ID="StatusClosed" runat="server" Text="<%$ Resources: FieldClosed %>" />
         <ext:Hidden ID="CurrentLanguage" runat="server" />
+        <ext:Hidden ID="CasesClassId" runat="server" />
         <ext:Store
             ID="Store1"
             runat="server"
@@ -759,6 +759,7 @@
                                         <ext:ModelField Name="fileName" />
                                         <ext:ModelField Name="url" />
                                         <ext:ModelField Name="date" />
+                                        <ext:ModelField Name="folderId" />
                                        
 
                                     </Fields>
@@ -793,7 +794,8 @@
                         <Columns>
 
                             <ext:Column Visible="false" ID="Column4" MenuDisabled="true" runat="server" DataIndex="seqNo" Hideable="false" Width="75" Align="Center" />
-                            <ext:Column CellCls="cellLink" ID="Column5" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldAttachmentName%>" DataIndex="fileName" Flex="2" Hideable="false" />
+                            <ext:Column CellCls="cellLink" ID="Column5" MenuDisabled="true" runat="server"  DataIndex="folderId" Flex="2" Hideable="false" />
+                            <ext:Column CellCls="cellLink" ID="Column6" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldAttachmentName%>" DataIndex="fileName" Flex="2" Hideable="false" />
                             <ext:DateColumn  ID="dateCol" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDate%>" DataIndex="date" Flex="2" Hideable="false" >
                                 <Renderer Handler="var s = moment(record.data['date']);   return s.calendar();" />
                                 </ext:DateColumn>

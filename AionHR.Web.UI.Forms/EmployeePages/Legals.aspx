@@ -122,11 +122,11 @@
 <%--                            <ext:Column ID="ColName" DataIndex="employeeName.fullName" Text="<%$ Resources: FieldRWEmployeeName%>" runat="server" Width="240">
                                 <Renderer Handler=" return '<u>'+ record.data['employeeName'].fullName+'</u>'" />
                             </ext:Column>--%>
-                            <ext:Column ID="dtName" DataIndex="dtName" Text="<%$ Resources: FieldRWDtName%>" runat="server" Flex="3" />
+                            <ext:Column ID="dtName" DataIndex="dtName" Text="<%$ Resources: FieldRWDtName%>" runat="server" Flex="4" />
                             <ext:Column ID="documentRef1" DataIndex="documentRef" Text="<%$ Resources: FieldRWDocumentRef%>" runat="server" Flex="2" />
                             <ext:DateColumn Format="dd-MM-yyyy" ID="validFrom" DataIndex="issueDate" Text="<%$ Resources: FieldRWIssueDate%>" runat="server" width="100" />
                             <ext:DateColumn Format="dd-MM-yyyy" ID="validTo" DataIndex="expiryDate" Text="<%$ Resources: FieldRWExpiryDate%>" runat="server" width="100" />
-                            <ext:Column ID="remarks" DataIndex="remarks" Text="<%$ Resources: FieldRWRemarks%>" runat="server" Flex="2" />
+                            <ext:Column ID="remarks" DataIndex="remarks" Text="<%$ Resources: FieldRWRemarks%>" runat="server" Flex="2" Visible="false" />
                             
 
 
@@ -141,7 +141,7 @@
                                 MenuDisabled="true"
                                 Resizable="false">
 
-                                <Renderer handler="return attachRender()+'&nbsp;&nbsp;' +editRender()+'&nbsp;&nbsp;' +deleteRender();" />
+                                <Renderer handler="var att ='&nbsp;'; if(record.data['fileUrl']!='') att = attachRender(); return att+'&nbsp;&nbsp;' +editRender()+'&nbsp;&nbsp;' +deleteRender();" />
 
                             </ext:Column>
                             <ext:Column runat="server"
@@ -318,7 +318,7 @@
                                 MenuDisabled="true"
                                 Resizable="false">
 
-                                <Renderer handler="return attachRender()+'&nbsp;&nbsp;'+editRender()+'&nbsp;&nbsp;'+deleteRender(); " />
+                                <Renderer handler="var att ='&nbsp;'; if(record.data['fileUrl']!='') att = attachRender(); return att+'&nbsp;&nbsp;'+editRender()+'&nbsp;&nbsp;'+deleteRender(); " />
 
                             </ext:Column>
                             <ext:Column runat="server"
@@ -331,7 +331,7 @@
                                 Hideable="false"
                                 MenuDisabled="true"
                                 Resizable="false">
-                              <Renderer handler="return editRender()+'&nbsp;&nbsp;'+deleteRender(); " />
+                              <Renderer handler="return editRender()+'&nbsp;&nbsp;'+deleteRender();  "  />
 
                             </ext:Column>
                             <ext:Column runat="server" Visible="false"

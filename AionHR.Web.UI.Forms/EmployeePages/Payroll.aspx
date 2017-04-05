@@ -513,7 +513,7 @@
                                                 <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
                                             </Listeners>
                                         </ext:ComboBox>
-                                        <ext:ComboBox runat="server" AllowBlank="false" ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" ID="scrId" Name="scrId" FieldLabel="<%$ Resources:FieldScrName%>" SimpleSubmit="true">
+                                        <ext:ComboBox runat="server" AllowBlank="true" ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" ID="scrId" Name="scrId" FieldLabel="<%$ Resources:FieldScrName%>" SimpleSubmit="true">
                                             <Store>
                                                 <ext:Store runat="server" ID="scrStore">
                                                     <Model>
@@ -685,7 +685,7 @@
                                                 </Editor>
                                             </ext:Column>
                                             <ext:CheckColumn
-                                                runat="server" Flex="1"
+                                                runat="server" Flex="1" Visible="false"
                                                 Text="<%$ Resources:FieldIncludeInTotal%>"
                                                 DataIndex="includeInTotal"
                                                 Align="Center">
@@ -875,7 +875,7 @@
                                             </ext:Column>
                                             <ext:CheckColumn
                                                 runat="server" Flex="1"
-                                                Text="<%$ Resources:FieldIncludeInTotal%>"
+                                                Text="<%$ Resources:FieldIncludeInTotal%>"  Visible="false"
                                                 DataIndex="includeInTotal"
                                                 Align="Center">
                                                 <Editor>

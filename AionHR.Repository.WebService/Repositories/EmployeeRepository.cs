@@ -80,6 +80,7 @@ namespace AionHR.Repository.WebService.Repositories
             ChildGetLookup.Add(typeof(AssetAllowance), "getAA");
             ChildGetLookup.Add(typeof(EmployeeContact), "getEC");
             ChildGetLookup.Add(typeof(RelationshipType), "getRT");
+            ChildGetLookup.Add(typeof(EmployeeQuickView), "getQV");
 
 
 

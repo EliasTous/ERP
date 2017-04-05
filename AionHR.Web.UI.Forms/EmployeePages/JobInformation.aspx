@@ -289,7 +289,7 @@
                             <ext:Column Flex="2" ID="Column3" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldJIDepartment %>" DataIndex="departmentName" Hideable="false" Align="Center" />
                             <ext:Column Flex="2" ID="Column7" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldJIBranch%>" DataIndex="branchName" Hideable="false"  Align="Center" />
                             <ext:Column Flex="2" ID="Column8" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldJIPosition%>" DataIndex="positionName" Hideable="false"  Align="Center" />
-                            <ext:Column Flex="2" ID="Column9" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldJIDivision%>" DataIndex="divisionName" Hideable="false" Align="Center" />
+                            <ext:Column Flex="2" Visible="false" ID="Column9" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldJIDivision%>" DataIndex="divisionName" Hideable="false" Align="Center" />
                             <ext:Column Flex="2" ID="Column4" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldReportsTo%>" DataIndex="reportToName.fullName" Hideable="false" Align="Center" >
                                 <Renderer Handler=" return record.data['reportToName'].fullName;" />
                                 </ext:Column>

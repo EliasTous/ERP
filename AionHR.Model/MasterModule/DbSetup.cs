@@ -9,7 +9,11 @@ namespace AionHR.Model.MasterModule
     public class DbSetup
 
     {
-        public int accountId;
+        public int accountId { get; set; }
+
+        public bool trial { get; set; }
+
+        public bool sampleData { get; set; }
     }
     public class BatchSql
     {

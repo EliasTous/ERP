@@ -15,7 +15,7 @@
 
 
     <script type="text/javascript" src="Scripts/common.js?id=1"></script>
-    <script type="text/javascript" src="Scripts/Employees.js?id=29"></script>
+    <script type="text/javascript" src="Scripts/Employees.js?id=32"></script>
     <script type="text/javascript">
        
     </script>
@@ -156,10 +156,10 @@
                                     <Bind Handler=" cmp.setImageUrl(record.get('pictureUrl')); " />
                                 </Listeners>
                             </ext:ComponentColumn>
-                            <ext:Column ID="ColReference" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldRef%>" DataIndex="name.reference" Width="60" Hideable="false" >
-                                 <Renderer Handler=" return  record.data['name'].reference ">
+                            <ext:Column ID="ColReference" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldRef%>" DataIndex="name.reference" Width="60" Hideable="false">
+                                <Renderer Handler=" return  record.data['name'].reference ">
                                 </Renderer>
-                                </ext:Column>
+                            </ext:Column>
                             <ext:Column ID="ColName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldFullName%>" DataIndex="name.fullName" Flex="4" Hideable="false">
                                 <Renderer Handler=" return  record.data['name'].fullName ">
                                 </Renderer>
@@ -302,76 +302,72 @@
             Resizable="false"
             Maximized="false"
             Layout="BorderLayout">
-            
-           <HeaderConfig runat="server" >
-               <Items>
-                   <ext:Button runat="server" Icon="PageGear" ID="gearButton">
-                                    <Menu>
-                                        <ext:Menu runat="server">
-                                            <Items>
-                                                 <ext:MenuItem runat="server" Text="<%$ Resources:ResetPassword %>" Icon="Exclamation">
-                                                    <Listeners>
-                                                        <Click Handler="CheckSession();" />
-                                                        
-                                                    </Listeners>
-                                                    <DirectEvents>
-                                                        <Click OnEvent="ResetPassword" />
-                                                    </DirectEvents>
-                                                </ext:MenuItem>
-                                                <ext:MenuItem runat="server" Text="<%$ Resources:terminationWindowTitle %>" Icon="Stop">
-                                                    <Listeners>
-                                                        <Click Handler="CheckSession();" />
-                                                    </Listeners>
-                                                    <DirectEvents>
-                                                        <Click OnEvent="ShowTermination" />
-                                                    </DirectEvents>
-                                                </ext:MenuItem>
-                                                <ext:MenuItem runat="server" Text="<%$ Resources:Common,Delete %>" Icon="Cancel">
-                                                    <Listeners>
-                                                        <Click Handler="CheckSession();" />
-                                                        
-                                                    </Listeners>
-                                                    <DirectEvents>
-                                                        <Click OnEvent="promptDelete" />
-                                                    </DirectEvents>
-                                                </ext:MenuItem>
-                                                 <ext:MenuItem Text="<%$ Resources:Common,History %>" Icon="Clock">
-                                            <Listeners>
-                                                <Click Handler="CheckSession(); parent.OpenTransactionLog(#{CurrentClassId}.value,#{CurrentEmployee}.value);" />
-                                            </Listeners>
-                                        </ext:MenuItem>
-                                                
 
-                                            </Items>
-                                        </ext:Menu>
-                                    </Menu>
-                                </ext:Button>
-               </Items>
-           </HeaderConfig>
+            <HeaderConfig runat="server">
+                <Items>
+                    <ext:Button runat="server" Icon="PageGear" ID="gearButton">
+                        <Menu>
+                            <ext:Menu runat="server">
+                                <Items>
+                                    <ext:MenuItem runat="server" Text="<%$ Resources:ResetPassword %>" Icon="Exclamation">
+                                        <Listeners>
+                                            <Click Handler="CheckSession();" />
+
+                                        </Listeners>
+                                        <DirectEvents>
+                                            <Click OnEvent="ResetPassword" />
+                                        </DirectEvents>
+                                    </ext:MenuItem>
+                                    <ext:MenuItem runat="server" Text="<%$ Resources:terminationWindowTitle %>" Icon="Stop">
+                                        <Listeners>
+                                            <Click Handler="CheckSession();" />
+                                        </Listeners>
+                                        <DirectEvents>
+                                            <Click OnEvent="ShowTermination" />
+                                        </DirectEvents>
+                                    </ext:MenuItem>
+                                    <ext:MenuItem runat="server" Text="<%$ Resources:Common,Delete %>" Icon="Cancel">
+                                        <Listeners>
+                                            <Click Handler="CheckSession();" />
+
+                                        </Listeners>
+                                        <DirectEvents>
+                                            <Click OnEvent="promptDelete" />
+                                        </DirectEvents>
+                                    </ext:MenuItem>
+                                    <ext:MenuItem Text="<%$ Resources:Common,History %>" Icon="Clock">
+                                        <Listeners>
+                                            <Click Handler="CheckSession(); parent.OpenTransactionLog(#{CurrentClassId}.value,#{CurrentEmployee}.value);" />
+                                        </Listeners>
+                                    </ext:MenuItem>
+
+
+                                </Items>
+                            </ext:Menu>
+                        </Menu>
+                    </ext:Button>
+                </Items>
+            </HeaderConfig>
             <Items>
-             
-                <ext:Panel ID="leftPanel" runat="server" Region="West" PaddingSpec="0 0 0 0" Padding="0" TitleAlign="Center" DefaultAnchor="100%"
+
+                <ext:Panel ID="leftPanel" runat="server" Region="West" PaddingSpec="00 0 0" Padding="0" TitleAlign="Center" DefaultAnchor="100%"
                     Header="false" Collapsible="false" BodyPadding="5" Width="150" StyleSpec="border-left:2px solid #2A92D4;border-right:2px solid #2A92D4;"
                     Title="<%$ Resources:Common , NavigationPane %>" CollapseToolText="<%$ Resources:Common , CollapsePanel %>" ExpandToolText="<%$ Resources:Common , ExpandPanel %>" BodyBorder="0">
-                    
+
                     <Items>
                         <ext:Panel runat="server" ID="alignedPanel" Header="false">
 
                             <Items>
 
-                                <ext:Image runat="server" ID="imgControl" Width="100" Height="100" Align="Middle" MarginSpec="15 0 0 20 ">
+                                <ext:Image runat="server" ID="imgControl" Width="100" Height="100" Align="Middle" MarginSpec="15 0 0 20 " >
                                     <Listeners>
-                                        <Click Handler="triggierImageClick(App.picturePath.fileInputEl.id); " />
+                                        <%--<Click Handler="triggierImageClick(App.picturePath.fileInputEl.id); " />--%>
+                                        <Click Handler="App.imageSelectionWindow.show()" />
                                     </Listeners>
 
                                 </ext:Image>
 
-                                <ext:HyperlinkButton runat="server" Text="<%$ Resources:Clear %>">
-                                    <Listeners>
-                                        <Click Handler=" ClearImage();" />
-
-                                    </Listeners>
-                                </ext:HyperlinkButton>
+                              
                                 <ext:FileUploadField ID="picturePath" runat="server" ButtonOnly="true" Hidden="true">
 
                                     <Listeners>
@@ -387,6 +383,23 @@
                                         <ext:Label ID="branchLbl" runat="server" />
                                         <ext:Label ID="positionLbl" runat="server" />
                                         <ext:Label ID="reportsToLbl" runat="server" />
+
+                                       
+                                        <ext:Label ID="eosBalanceTitle" Text="<%$ Resources:eosBalanceTitle %>" runat="server" /><ext:Label ID="eosBalanceLbl" runat="server" />
+                                         <ext:Label ID="lastLeaveStartDateTitle" Text="<%$ Resources:lastLeaveStartDateTitle %>" runat="server" /><ext:Label ID="lastLeaveStartDateLbl" runat="server" />
+                                       
+                                        <ext:Label ID="paidLeavesYTDTitle" Text="<%$ Resources:paidLeavesYTDTitle %>" runat="server" /><ext:Label ID="paidLeavesYTDLbl" runat="server" />
+                                        <ext:Label ID="leavesBalanceTitle" Text="<%$ Resources:leavesBalanceTitle %>" runat="server" /><ext:Label ID="leavesBalance" runat="server" />
+                                        <ext:Label ID="allowedLeaveYtdTitle" Text="<%$ Resources:allowedLeaveYtdTitle %>" runat="server" /><ext:Label ID="allowedLeaveYtd" runat="server" />
+                                        <ext:HyperlinkButton runat="server" Text="<%$ Resources:DisplayTeamLink %>">
+                                            <Listeners>
+                                                <Click Handler="CheckSession()" />
+                                            </Listeners>
+                                            <DirectEvents>
+                                                <Click OnEvent="DisplayTeam" />
+                                            </DirectEvents>
+                                        </ext:HyperlinkButton>
+                                            
                                     </Items>
                                 </ext:Panel>
 
@@ -404,19 +417,19 @@
 
 
 
-                <ext:TabPanel ID="panelRecordDetails" Layout="FitLayout" DefaultAnchor="100%" runat="server" ActiveTabIndex="0" Border="false" DeferredRender="false" Region="Center">
-                     <TopBar>
+                <ext:TabPanel ID="panelRecordDetails" Layout="FitLayout" DefaultAnchor="100%"  runat="server" ActiveTabIndex="0" Border="false" DeferredRender="false" Region="Center">
+                    <TopBar>
                         <ext:Toolbar runat="server">
                             <Items>
                                 <ext:ToolbarFill runat="server">
                                 </ext:ToolbarFill>
-                                
+
                             </Items>
                         </ext:Toolbar>
                     </TopBar>
-                       <Items>
+                    <Items>
                         <ext:FormPanel DefaultButton="SaveButton"
-                            ID="BasicInfoTab"
+                            ID="BasicInfoTab" PaddingSpec="40 0 0 0"
                             runat="server"
                             Title="<%$ Resources: BasicInfoTabEditWindowTitle %>"
                             Icon="ApplicationSideList"
@@ -441,13 +454,13 @@
                                                 <ext:InputMask Mask="99999999" />
                                             </Plugins>
                                         </ext:TextField>
-                                      
+
 
                                     </Items>
                                 </ext:Panel>
                                 <ext:Panel runat="server" MarginSpec="0 0 0 100">
                                     <Items>
-                                          <ext:RadioGroup ID="gender" AllowBlank="true" runat="server" GroupName="gender" FieldLabel="<%$ Resources:FieldGender%>">
+                                        <ext:RadioGroup ID="gender" AllowBlank="true" runat="server" GroupName="gender" FieldLabel="<%$ Resources:FieldGender%>">
                                             <Items>
                                                 <ext:Radio runat="server" ID="gender0" Name="gender" InputValue="0" BoxLabel="<%$ Resources:Common ,Male%>" />
                                                 <ext:Radio runat="server" ID="gender1" Name="gender" InputValue="1" BoxLabel="<%$ Resources:Common ,Female%>" />
@@ -697,7 +710,7 @@
                                                 <Click Handler="CheckSession();  " />
                                             </Listeners>
                                             <DirectEvents>
-                                                <Click OnEvent="DeleteRecord"  Failure="Ext.MessageBox.alert('#{titleSavingError}.value', '#{titleSavingErrorMessage}.value');">
+                                                <Click OnEvent="DeleteRecord" Failure="Ext.MessageBox.alert('#{titleSavingError}.value', '#{titleSavingErrorMessage}.value');">
                                                     <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="={#{EditRecordWindow}.body}" />
                                                     <ExtraParams>
                                                         <ext:Parameter Name="id" Value="#{recordId}.getValue()" Mode="Raw" />
@@ -705,7 +718,7 @@
                                                 </Click>
                                             </DirectEvents>
                                         </ext:Button>
-                                       
+
                                         <ext:ToolbarFill runat="server" />
                                         <ext:Button Cls="x-btn-left" ID="SaveButton" runat="server" Text="<%$ Resources:Common, Save %>" Icon="Disk">
 
@@ -777,7 +790,7 @@
                             </Loader>
                         </ext:Panel>
 
-                         <ext:Panel runat="server" Layout="FitLayout" Title="<%$ Resources: ContactsTab %>" ID="Panel6" DefaultAnchor="100%">
+                        <ext:Panel runat="server" Layout="FitLayout" Title="<%$ Resources: ContactsTab %>" ID="Panel6" DefaultAnchor="100%">
                             <Loader runat="server" Url="EmployeePages/Contacts.aspx" Mode="Frame" ID="Loader6" TriggerEvent="show"
                                 ReloadOnEvent="true"
                                 DisableCaching="true">
@@ -787,7 +800,7 @@
 
 
                     </Items>
-                 
+
                 </ext:TabPanel>
 
             </Items>
@@ -828,7 +841,7 @@
 
                                 <ext:ComboBox Enabled="false" ValueField="recordId" AllowBlank="true" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" runat="server" ID="trId" Name="trId" FieldLabel="<%$ Resources:FieldTerminationReason%>" SimpleSubmit="true">
                                     <Store>
-                                        <ext:Store runat="server" ID="trStore" >
+                                        <ext:Store runat="server" ID="trStore">
                                             <Model>
                                                 <ext:Model runat="server">
                                                     <Fields>
@@ -837,7 +850,7 @@
                                                     </Fields>
                                                 </ext:Model>
                                             </Model>
-                                            
+
                                         </ext:Store>
                                     </Store>
                                     <RightButtons>
@@ -854,7 +867,7 @@
                 });
                                                       " />
                                             </Listeners>
-                                <%--            <DirectEvents>
+                                            <%--            <DirectEvents>
 
                                                 <Click OnEvent="addTR" >
                                                 </Click>
@@ -904,7 +917,7 @@
             </Buttons>
         </ext:Window>
 
-          <ext:Window
+        <ext:Window
             ID="confirmWindow"
             runat="server"
             Icon="PageEdit"
@@ -928,7 +941,7 @@
                             BodyPadding="5">
                             <Items>
                                 <ext:TextField ID="delText" FieldLabel="<%$ Resources: confirmDelete %>" AllowBlank="true" runat="server" LabelAlign="Top" DataIndex="recordId" />
-                             
+
                             </Items>
 
                         </ext:FormPanel>
@@ -947,7 +960,7 @@
                             <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="={#{confirmWindow}.body}" />
                             <ExtraParams>
                                 <ext:Parameter Name="delText" Value="#{delText}.getValue()" Mode="Raw" />
-                                
+
                             </ExtraParams>
                         </Click>
                     </DirectEvents>
@@ -959,7 +972,142 @@
                 </ext:Button>
             </Buttons>
         </ext:Window>
+        <ext:Window
+            ID="imageSelectionWindow"
+            runat="server"
+            Icon="PageEdit"
+            Title="<%$ Resources:ImageSelectionWindowTitle %>"
+            Width="450"
+            Height="400"
+            AutoShow="false"
+            Modal="true"
+            Hidden="true"
+            Resizable="false"
+             Maximizable="false"
+            
+            Layout="Fit">
 
+            <Items>
+
+                <ext:FormPanel
+                    ID="imageUploadForm"
+                    runat="server" DefaultButton="SaveButton"
+                    Title="<%$ Resources:ImageSelectionWindowTitle %>"
+                    Icon="ApplicationSideList"
+                     Header="false"
+                    DefaultAnchor="100%"
+                    BodyPadding="5">
+                    <Items>
+                        <ext:Image runat="server" Width="300" Height="300" ID="employeePhoto">
+                            
+                        </ext:Image>
+                        <ext:Toolbar runat="server">
+                            <Items>
+                                <ext:ToolbarFill runat="server" />
+
+                                <ext:Button runat="server" Icon="PictureAdd" Text="<%$ Resources:BrowsePicture %>" >
+                                    <Listeners>
+                                        <Click Handler="triggierImageClick(App.FileUploadField1.fileInputEl.id); "></Click>
+                                    </Listeners>
+                                    </ext:Button>
+                                <ext:Button runat="server" ID="uploadPhotoButton" Icon="DatabaseSave" Text="<%$ Resources:UploadPicture %>" Disabled="true" >
+                                    <Listeners>
+                                                <Click Handler="CheckSession(); if (!#{imageUploadForm}.getForm().isValid()) {  return false;} " />
+                                            </Listeners>
+                                            <DirectEvents>
+                                                <Click OnEvent="UploadImage" Failure="Ext.MessageBox.alert('#{titleSavingError}.value', '#{titleSavingErrorMessage}.value');">
+                                                    <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="={#{imageSelectionWindow}.body}" />
+                                                    <ExtraParams>
+                                                        <ext:Parameter Name="values" Value="#{imageUploadForm}.getForm().getValues(false, false, false, true)" Mode="Raw" Encode="true" />
+                                                    </ExtraParams>
+                                                </Click>
+                                            </DirectEvents>
+                                    </ext:Button>
+                                <ext:Button runat="server" Icon="Cancel" Text="<%$ Resources:RemovePicture %>" >
+                                    <Listeners>
+                                        <Click Handler="ClearImage2(); App.uploadPhotoButton.setDisabled(false); " />
+                                    </Listeners>
+                                    </ext:Button>
+                                <ext:FileUploadField ID="FileUploadField1" runat="server" ButtonOnly="true" Hidden="true">
+                                    <Listeners>
+                                        <Change Handler="showImagePreview2(App.FileUploadField1.fileInputEl.id);" />
+                                    </Listeners>
+
+                                </ext:FileUploadField>
+                                <ext:ToolbarFill runat="server" />
+                            </Items>
+                        </ext:Toolbar>
+                    </Items>
+                    <Listeners>
+                        
+                    <AfterLayout Handler="CheckSession();ClearImage2();"    />
+                    </Listeners>
+                    <DirectEvents>
+                        <AfterLayout OnEvent="DisplayImage">
+                            
+                        </AfterLayout>
+                    </DirectEvents>
+                </ext:FormPanel>
+
+
+            </Items>
+
+        </ext:Window>
+         <ext:Window
+            ID="TeamWindow"
+            runat="server"
+            Icon="PageEdit"
+            Title="<%$ Resources:TeamWindow %>"
+            Width="450"
+            Height="400"
+            AutoShow="false"
+            Modal="true"
+            Hidden="true"
+            Layout="Fit">
+             
+            <Items>
+                
+        <ext:GridPanel ID="TeamGrid" runat="server"  Width="200" Scroll="Vertical" HideHeaders="true">
+                            <Store>
+                                <ext:Store runat="server"  ID="TeamStore">
+                                    <Model>
+                                        <ext:Model runat="server" IDProperty="recordId" >
+                                            <Fields>
+                                                <ext:ModelField Name="recordId" />
+                                                <ext:ModelField Name="pictureUrl" />
+                                                <ext:ModelField Name="name" IsComplex="true" />
+                                                <ext:ModelField Name="positionName" />
+
+
+                                            </Fields>
+                                        </ext:Model>
+
+                                    </Model>
+                                </ext:Store>
+                                
+                            </Store>
+                            <ColumnModel>
+                                <Columns>
+                                    <ext:Column runat="server" DataIndex="recordId" Visible ="false" />
+                                      <ext:ComponentColumn runat="server" DataIndex="pictureUrl">
+                                <Component>
+                                    <ext:Image runat="server" Height="100" Width="50">
+                                    </ext:Image>
+
+                                </Component>
+                                <Listeners>
+                                    <Bind Handler=" cmp.setImageUrl(record.get('pictureUrl')); " />
+                                </Listeners>
+                            </ext:ComponentColumn>
+                                    <ext:Column runat="server" DataIndex="name.fullName" Flex="1" >
+                                        <Renderer Handler="return record.data['name'].fullName +' ,'+ record.data['positionName'];" />
+                                        </ext:Column>
+                                  
+                                </Columns>
+                            </ColumnModel>
+                        </ext:GridPanel>
+                </Items>
+                </ext:Window>
     </form>
 </body>
 </html>

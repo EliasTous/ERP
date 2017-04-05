@@ -20,7 +20,7 @@ using System.Web.UI.WebControls;
 
 namespace AionHR.Web.UI.Forms
 {
-    public partial class resetPw : System.Web.UI.Page
+    public partial class ARresetPW : System.Web.UI.Page
     {
         ISystemService _systemService = ServiceLocator.Current.GetInstance<ISystemService>();
         IMasterService _masterService = ServiceLocator.Current.GetInstance<IMasterService>();
@@ -46,9 +46,6 @@ namespace AionHR.Web.UI.Forms
         {
             if (Request.QueryString["guid"] == null || Request.QueryString["accountId"] == null || Request.QueryString["email"] == null)
                 Response.Redirect("~/ForgotPassword.aspx");
-            if (Request.QueryString["languageId"] == "2")
-                Response.Redirect(string.Format("~/ARresetPW.aspx?guid={0}&accountId={1}&email={2}", Request.QueryString["guid"], Request.QueryString["accountId"], Request.QueryString["email"]));
-
 
         }
 
@@ -71,7 +68,6 @@ namespace AionHR.Web.UI.Forms
 
 
         }
-
 
 
     }

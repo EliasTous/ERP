@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ForgotPassword.aspx.cs" Inherits="AionHR.Web.UI.Forms.ForgotPassword" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ARForgotPassword.aspx.cs" Inherits="AionHR.Web.UI.Forms.ARForgotPassword" %>
 
 <%@ Register TagPrefix="ext" Namespace="Ext.Net" Assembly="Ext.Net" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -12,7 +12,7 @@
 
 
 
-    <link rel="stylesheet" type="text/css" href="CSS/Header.css" />
+    <link rel="stylesheet" type="text/css" href="CSS/HeaderAR.css" />
     <link rel="stylesheet" type="text/css" href="CSS/Common.css" />
 
     <style type="text/css">
@@ -25,13 +25,13 @@
 </head>
 <body style="background: url(Images/bg.png)">
 
-    <div class="header">
+     <div class="header">
         <div class="left">
             <div class="logoImage">
                 <img src="Images/logo.png" width="90" height="82" />
             </div>
             <div class="title">
-                <div style="width: 400px">
+                <div>
                     <span class="title-sub">
                         <asp:Literal ID="Literal5" runat="server" Text="<%$ Resources:Common ,ApplicationTitle%>" /></span>
                 </div>
@@ -43,8 +43,8 @@
         </div>
         <div class="right">
             <div class="button-group" style="margin-top: 15px;">
-                <a class="button" href="ARForgotPassword.aspx">
-                    <asp:Literal ID="Literal8" runat="server" Text="عربي" /></a>
+                <a class="button" href="ForgotPassword.aspx">
+                    <asp:Literal ID="Literal8" runat="server" Text="EN" /></a>
             </div>
         </div>
     </div>
@@ -79,6 +79,7 @@
                     ID="panelLogin"
                     runat="server"
                     Icon="LockGo"
+                    RTL="true"
                     Title="<%$ Resources:RequestPasswordRecovery %>"
                     Draggable="false"
                     Width="400"

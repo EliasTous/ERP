@@ -154,7 +154,7 @@
                                 Hideable="false"
                                 MenuDisabled="true"
                                 Resizable="false">
-                                <Renderer Handler="return editRender() + '  '+ deleteRender();" >
+                                <Renderer Handler="return editRender() + '&nbsp;&nbsp;'+ deleteRender();" >
                                     </Renderer>
 
                             </ext:Column>

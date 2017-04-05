@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ForgotPassword.aspx.cs" Inherits="AionHR.Web.UI.Forms.ForgotPassword" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ARresetPW.aspx.cs" Inherits="AionHR.Web.UI.Forms.ARresetPW" %>
 
 <%@ Register TagPrefix="ext" Namespace="Ext.Net" Assembly="Ext.Net" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -12,7 +12,7 @@
 
 
 
-    <link rel="stylesheet" type="text/css" href="CSS/Header.css" />
+    <link rel="stylesheet" type="text/css" href="CSS/HeaderAR.css" />
     <link rel="stylesheet" type="text/css" href="CSS/Common.css" />
 
     <style type="text/css">
@@ -41,10 +41,10 @@
                 </div>
             </div>
         </div>
-        <div class="right">
+         <div class="right">
             <div class="button-group" style="margin-top: 15px;">
-                <a class="button" href="ARForgotPassword.aspx">
-                    <asp:Literal ID="Literal8" runat="server" Text="عربي" /></a>
+                <a class="button" href="resetPW.aspx">
+                    <asp:Literal ID="Literal8" runat="server" Text="EN" /></a>
             </div>
         </div>
     </div>
@@ -75,50 +75,52 @@
                 <ext:VBoxLayoutConfig Align="Center" />
             </LayoutConfig>
             <Items>
-                <ext:FormPanel
+                <ext:FormPanel 
                     ID="panelLogin"
-                    runat="server"
+                    runat="server" RTL="true"
+                    Closable="false"
+                    Resizable="false"
                     Icon="LockGo"
-                    Title="<%$ Resources:RequestPasswordRecovery %>"
+                    Title="<%$ Resources:ResetPassword%>"
                     Draggable="false"
                     Width="400"
+                    Modal="false"
                     Frame="true"
+                    BodyPadding="20"
                     Layout="FormLayout"
-                    BodyPadding="10" AutoUpdateLayout="false" DefaultAnchor="100%"
                     DefaultButton="btnLogin" Border="false" Shadow="true">
-                    <FieldDefaults PreserveIndicatorIcon="true" />
 
                     <Items>
                         <ext:TextField
-                            ID="tbAccountName"
-                            runat="server"
+                            ID="tbPassword"
+                            runat="server" Anchor="-5" 
                             AutoFocus="true"
-                            IsRemoteValidation="true"
-                            MsgTarget="Side"
-                            FieldLabel="<%$ Resources:  Account %>"
-                            AllowBlank="false"
-                            BlankText="<%$ Resources: Common, MandatoryField %>"
-                            EmptyText="<%$ Resources:  EnterYourAccount %>">
-
-                            <RemoteValidation Delay="2000" OnValidation="CheckField">
-                                <EventMask ShowMask="true" CustomTarget="#{panelLogin}" />
-                            </RemoteValidation>
+                            InputType="Password"
+                            FieldLabel="<%$ Resources:NewPassword%>"
+                            AllowBlank="false"  
+                            BlankText=""
+                            
+                            EmptyText=""  >
                             <Listeners>
+                            <ValidityChange Handler="this.next().validate();" />
+                            <Blur Handler="this.next().validate();" />
+                        </Listeners>
+                           
+                            </ext:TextField>
 
-                                <RemoteValidationValid Handler="this.setIndicatorIconCls('icon-tick');this.setIndicatorIconCls('icon-tick'); " />
-                                <RemoteValidationInvalid Handler="this.setIndicatorIconCls('icon-error'); " />
-                            </Listeners>
-
-                        </ext:TextField>
-
-                        <ext:TextField ID="tbUsername"
+                        <ext:TextField ID="tbPasswordConfirm"
                             runat="server"
-                            MsgTarget="Side" Vtype="email"
-                            BlankText="<%$ Resources:Common, MandatoryField %>"
+                            BlankText=""
+                            InputType="Password"
                             AllowBlank="false"
-                            FieldLabel="<%$ Resources:  UserID %>"
-                            EmptyText="<%$ Resources:  EnterYourID %>" />
-
+                            FieldLabel="<%$ Resources:PasswordConfirm%>"
+                            
+                            EmptyText="" >
+                             <CustomConfig>
+                        <ext:ConfigItem Name="initialPassField" Value="tbPassword" Mode="Value" />
+                    </CustomConfig>
+                            </ext:TextField>
+                        
                         <ext:FieldContainer runat="server" ID="lblErroContainer" FieldLabel="">
                             <Items>
                                 <ext:Label ID="lblError"
@@ -130,7 +132,7 @@
                         </ext:FieldContainer>
                     </Items>
                     <Buttons>
-                        <ext:Button ID="btnLogin" runat="server" Text="Reset">
+                        <ext:Button ID="btnLogin" runat="server" Text="<%$ Resources:ResetPassword%>">
                             <Listeners>
                                 <Click Handler="
                             if (!#{panelLogin}.validate()) {                                
@@ -143,8 +145,8 @@
                                 </Click>
                             </DirectEvents>
                         </ext:Button>
-
-
+                   
+                        
                     </Buttons>
                 </ext:FormPanel>
             </Items>

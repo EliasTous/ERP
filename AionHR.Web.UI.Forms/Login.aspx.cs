@@ -149,7 +149,14 @@ namespace AionHR.Web.UI.Forms
             {
                 _systemService.SessionHelper.SetDateformat("{firstName}{lastName} ");
             }
-
+            try
+            {
+                _systemService.SessionHelper.SetCurrencyId(defaults.Items.Where(s => s.Key == "currencyId").First().Value);
+            }
+            catch
+            {
+                _systemService.SessionHelper.SetCurrencyId("0");
+            }
         }
         private object GetDateFormat()
         {

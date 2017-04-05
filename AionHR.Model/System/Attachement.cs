@@ -14,6 +14,7 @@ namespace AionHR.Model.System
         public string fileName { get; set; }
         public string url { get; set; }
 
+        public int folderId { get; set; }
         public DateTime date { get; set; }
     }
 }

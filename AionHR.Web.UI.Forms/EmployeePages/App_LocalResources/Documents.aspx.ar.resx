@@ -118,135 +118,129 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="BasicInfoTabEditWindowTitle" xml:space="preserve">
-    <value>Currency Info</value>
+    <value>معلومات العملة</value>
   </data>
-  <data name="BOGridTitle" xml:space="preserve">
-    <value>Bonus</value>
+  <data name="EditEHWindowTitle" xml:space="preserve">
+    <value>تعديل تاريخ الموظف</value>
   </data>
-  <data name="EditBOWindowTitle" xml:space="preserve">
-    <value>Bonus</value>
+  <data name="EditJobInfoWindow" xml:space="preserve">
+    <value>تعديل معلومات الوظيفة</value>
+  </data>
+  <data name="EditJobInfoWindowsTitle" xml:space="preserve">
+    <value>تعديل معلومات الوظيفة</value>
   </data>
   <data name="EditSAWindowTitle" xml:space="preserve">
-    <value>Edit Salary</value>
+    <value>تعديل الراتب</value>
+  </data>
+  <data name="EHGridTitle" xml:space="preserve">
+    <value>تاريخ الموظف</value>
   </data>
   <data name="FieldAccountNumber" xml:space="preserve">
-    <value>Account Number</value>
-  </data>
-  <data name="FieldAmount" xml:space="preserve">
-    <value>Amount</value>
+    <value>رقم الحساب</value>
   </data>
   <data name="FieldBankName" xml:space="preserve">
-    <value>Bank</value>
+    <value>البنك</value>
   </data>
   <data name="FieldBasicAmount" xml:space="preserve">
-    <value>Basic Amount</value>
-  </data>
-  <data name="FieldBTName" xml:space="preserve">
-    <value>Bonus Type</value>
-  </data>
-  <data name="FieldComment" xml:space="preserve">
-    <value>Comment</value>
+    <value>BasicAmount</value>
   </data>
   <data name="FieldComments" xml:space="preserve">
-    <value>Comments</value>
-  </data>
-  <data name="FieldDate" xml:space="preserve">
-    <value>Date</value>
+    <value>التعليقات</value>
   </data>
   <data name="FieldEffectiveDate" xml:space="preserve">
-    <value>Date</value>
+    <value>التاريخ</value>
+  </data>
+  <data name="FieldEHComment" xml:space="preserve">
+    <value>التعليق</value>
+  </data>
+  <data name="FieldEHDate" xml:space="preserve">
+    <value>التاريخ</value>
+  </data>
+  <data name="FieldEHStatus" xml:space="preserve">
+    <value>الحالة</value>
   </data>
   <data name="FieldFinalAmount" xml:space="preserve">
-    <value>Final Amount</value>
+    <value>القيمة النهائية</value>
   </data>
   <data name="FieldIsTaxable" xml:space="preserve">
-    <value>IsTaxable</value>
+    <value>خاضع للضرائب</value>
+  </data>
+  <data name="FieldJIBranch" xml:space="preserve">
+    <value>الفرع</value>
+  </data>
+  <data name="FieldJIDate" xml:space="preserve">
+    <value>التاريخ</value>
+  </data>
+  <data name="FieldJIDepartment" xml:space="preserve">
+    <value>القسم</value>
+  </data>
+  <data name="FieldJIDivision" xml:space="preserve">
+    <value>الإدارة العليا</value>
+  </data>
+  <data name="FieldJIPosition" xml:space="preserve">
+    <value>المنصب</value>
   </data>
   <data name="FieldName" xml:space="preserve">
-    <value>Name</value>
+    <value>الاسم</value>
   </data>
   <data name="FieldPaymentFrequency" xml:space="preserve">
     <value>Payment Frequency</value>
   </data>
   <data name="FieldPaymentMethod" xml:space="preserve">
-    <value>Payment Method</value>
+    <value>طريقة الدفع</value>
   </data>
   <data name="FieldRecordId" xml:space="preserve">
-    <value>Record ID</value>
+    <value>الرقم</value>
   </data>
   <data name="FieldReference" xml:space="preserve">
-    <value>Reference</value>
+    <value>الرمز</value>
   </data>
   <data name="FieldSACurrencyName" xml:space="preserve">
-    <value>Currency</value>
+    <value>العملة</value>
   </data>
   <data name="FieldSalaryType" xml:space="preserve">
-    <value>SalaryType</value>
+    <value>نوع الراتب</value>
   </data>
   <data name="FieldScrName" xml:space="preserve">
-    <value>Change Reason</value>
+    <value>سبب التغيير</value>
+  </data>
+  <data name="JIGridTitle" xml:space="preserve">
+    <value>معلومات الوظيفة</value>
   </data>
   <data name="PaymentMethodBank" xml:space="preserve">
-    <value>Bank</value>
+    <value>البنك</value>
   </data>
   <data name="PaymentMethodCash" xml:space="preserve">
-    <value>Cash</value>
+    <value>نقدي</value>
   </data>
   <data name="PaymentTypeDaily" xml:space="preserve">
-    <value>Daily</value>
+    <value>يوميا</value>
   </data>
   <data name="PaymentTypeMonthly" xml:space="preserve">
-    <value>Monthly</value>
+    <value>شهريا</value>
   </data>
   <data name="PaymentTypeWeekly" xml:space="preserve">
-    <value>Weekly</value>
+    <value>اسبوعيا</value>
   </data>
   <data name="SAGridTitle" xml:space="preserve">
-    <value>Salary </value>
+    <value>الراتب</value>
   </data>
   <data name="SalaryBank" xml:space="preserve">
-    <value>Bank</value>
+    <value>البنك</value>
   </data>
   <data name="SalaryCash" xml:space="preserve">
-    <value>Cash</value>
+    <value>نقدي</value>
   </data>
   <data name="SalaryDaily" xml:space="preserve">
-    <value>Daily</value>
+    <value>يوميا</value>
   </data>
   <data name="SalaryMonthly" xml:space="preserve">
-    <value>Monthly</value>
+    <value>شهريا</value>
   </data>
   <data name="SalaryWeekly" xml:space="preserve">
-    <value>Weekly</value>
+    <value>اسبوعيا</value>
   </data>
   <data name="WindowTitle" xml:space="preserve">
-    <value>Currencies</value>
-  </data>
-  <data name="Deductions" xml:space="preserve">
-    <value>Deductions</value>
-  </data>
-  <data name="DeductionsEntitlements" xml:space="preserve">
-    <value>DeductionsEntitlements</value>
-  </data>
-  <data name="Entitlements" xml:space="preserve">
-    <value>Entitlements</value>
-  </data>
-  <data name="FieldEntitlement" xml:space="preserve">
-    <value>Entitlement</value>
-  </data>
-  <data name="FieldFixedAmount" xml:space="preserve">
-    <value>amount</value>
-  </data>
-  <data name="FieldIncludeInTotal" xml:space="preserve">
-    <value>Include In total</value>
-  </data>
-  <data name="FieldPCT" xml:space="preserve">
-    <value>percentage</value>
-  </data>
-  <data name="FieldDeduction" xml:space="preserve">
-    <value>Deduction</value>
-  </data>
-  <data name="FieldIsPercentage" xml:space="preserve">
-    <value>Is Percentage</value>
+    <value>العملات</value>
   </data>
 </root>

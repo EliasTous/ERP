@@ -9,8 +9,13 @@ namespace AionHR.Model.Employees.Profile
 {
     public class EmployeeQuickView:ModelBase
     {
-        public string segmentHeadName { get; set; }
-        public short employmentStatus { get; set; }
+        public string esName { get; set; }
+        public EmployeeName name { get; set; }
+        public string positionName { get; set; }
+        public string departmentName { get; set; }
+        public string divisionName { get; set; }
+        public string branchName { get; set; }
+        public EmployeeName reportToName { get; set; }
         public int eosBalance { get; set; }
         public DateTime lastLeaveStartDate { get; set; }
         public DateTime lastLeaveEndDate { get; set; }

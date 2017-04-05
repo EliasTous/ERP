@@ -830,6 +830,14 @@ namespace AionHR.Web.UI.Forms
         {
             RecordRequest r = new RecordRequest();
             r.RecordID = CurrentEmployee.Text.ToString();
+            RecordResponse<EmployeeQuickView> qv = _employeeService.ChildGetRecord<EmployeeQuickView>(r);
+            if (!qv.Success)
+            {
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, qv.Summary).Show();
+                return;
+            }
+            EmployeeQuickView forSummary = qv.result;
             RecordResponse<Employee> response = _employeeService.Get<Employee>(r);
             if (!response.Success)
             {
@@ -837,28 +845,29 @@ namespace AionHR.Web.UI.Forms
                 X.Msg.Alert(Resources.Common.Error, response.Summary).Show();
                 return;
             }
-            Employee forSummary = response.result;
-            forSummary.firstName = forSummary.name.firstName;
-            forSummary.middleName = forSummary.name.middleName;
-            forSummary.lastName = forSummary.name.lastName;
-            forSummary.fullName = forSummary.name.fullName;
             X.Call("FillLeftPanel",
-                forSummary.fullName + "<br />",
-                forSummary.departmentName + "<br />",
-              forSummary.branchName + "<br />",
-               forSummary.positionName + "<br />",
-               (forSummary.reportToName == null) ? "" : GetLocalResourceObject("FieldReportsTo").ToString() + forSummary.reportToName.fullName
+                response.result.name.fullName + "<br />",
+                response.result.departmentName + "<br />",
+              response.result.branchName + "<br />",
+               response.result.positionName + "<br />",
+               (forSummary.reportToName == null) ? "" : "<br />"+ GetLocalResourceObject("FieldReportsTo").ToString() +" :"+ forSummary.reportToName.fullName + "<br />"
             );
-            fullNameLbl.Html = forSummary.fullName + "<br />";
+            fullNameLbl.Html = response.result.name.fullName + "<br />";
             departmentLbl.Html = forSummary.departmentName + "<br />";
             branchLbl.Html = forSummary.branchName + "<br />";
-            positionLbl.Html = forSummary.positionName + "<br />";
+            positionLbl.Html = forSummary.positionName + "<br /><br /><br />";
+            eosBalanceLbl.Html = forSummary.eosBalance + "<br />";
+            
+            paidLeavesYTDLbl.Html = forSummary.paidLeavesYTD + "<br/>";
+            lastLeaveStartDateLbl.Html = "<br/>"+forSummary.lastLeaveStartDate.ToShortDateString() + " - "+ forSummary.lastLeaveEndDate.ToShortDateString() +"<br />";
+            leavesBalance.Html = forSummary.leavesBalance+"<br />";
+            allowedLeaveYtd.Html = forSummary.allowedLeaveYtd + "<br />";
             if (forSummary.reportToName != null)
-                reportsToLbl.Html = GetLocalResourceObject("FieldReportsTo").ToString() + forSummary.reportToName.fullName;
+                reportsToLbl.Html = GetLocalResourceObject("FieldReportsTo").ToString() +" :"+ forSummary.reportToName.fullName+ "<br />";
             //employeeName.Text = resp.result.name.firstName + resp.result.name.lastName;
-         
-                imgControl.ImageUrl = response.result.pictureUrl + "?x=" + DateTime.Now;
-           
+            
+            imgControl.ImageUrl = response.result.pictureUrl + "?x=" + DateTime.Now;
+            employeePhoto.ImageUrl = response.result.pictureUrl + "?x=" + DateTime.Now;
         }
 
         #region combobox dynamic insert
@@ -1138,6 +1147,94 @@ namespace AionHR.Web.UI.Forms
             }
 
 
+        }
+        protected void UploadImage(object sender, DirectEventArgs e)
+        {
+
+
+            //Getting the id to check if it is an Add or an edit as they are managed within the same form.
+            //string id = e.ExtraParams["id"];
+            string id = CurrentEmployee.Text;
+            string obj = e.ExtraParams["values"];
+
+            SystemAttachmentsPostRequest req = new SystemAttachmentsPostRequest();
+            if (FileUploadField1.PostedFile != null && FileUploadField1.PostedFile.ContentLength > 0)
+            {
+
+               
+                Attachement at = new Attachement();
+                at.classId = ClassId.EPEM;
+                at.recordId = Convert.ToInt32(CurrentEmployee.Text);
+                at.fileName = FileUploadField1.PostedFile.FileName;
+                at.folderId = 0;
+                req.FileNames.Add(FileUploadField1.PostedFile.FileName);
+                req.FilesData.Add(FileUploadField1.FileBytes);
+                req.entity = at;
+            }
+            else
+            {
+                X.Msg.Alert(Resources.Common.ResetPassword, Resources.Common.ErrorSavingRecord).Show();
+                return;
+            }
+            PostResponse<Attachement> resp = _systemService.UploadMultipleAttachments(req);
+            if(!resp.Success)
+            {
+                X.Msg.Alert(Resources.Common.ResetPassword, resp.Summary).Show();
+                return;
+            }
+            Notification.Show(new NotificationConfig
+            {
+                Title = Resources.Common.Notification,
+                Icon = Icon.Information,
+                Html = Resources.Common.RecordUpdatedSucc
+                           , HideDelay=1000,
+                CloseVisible = true
+            });
+            imageSelectionWindow.Hide();
+            FillLeftPanel();
+
+
+        }
+
+        protected void DisplayImage(object sender, DirectEventArgs e)
+        {
+
+
+            RecordRequest r = new RecordRequest();
+            r.RecordID = CurrentEmployee.Text.ToString();
+            RecordResponse<Employee> response = _employeeService.Get<Employee>(r);
+            if (!response.Success)
+            {
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, response.Summary).Show();
+                return;
+            }
+            employeePhoto.ImageUrl = response.result.pictureUrl + "?x=" + DateTime.Now;
+        }
+
+        protected void DisplayTeam(object sender, DirectEventArgs e)
+        {
+            EmployeeListRequest empRequest = new EmployeeListRequest();
+            empRequest.BranchId = "0";
+            empRequest.DepartmentId = "0";
+            empRequest.Filter = searchTrigger.Text;
+            if (!string.IsNullOrEmpty(inactivePref.Text) && inactivePref.Value.ToString() != "")
+            {
+                empRequest.IncludeIsInactive = Convert.ToInt32(inactivePref.Value);
+            }
+            else
+            {
+                empRequest.IncludeIsInactive = 2;
+            }
+            empRequest.SortBy = "firstName";
+            empRequest.Size = "30";
+            empRequest.StartAt = "1";
+            
+
+            ListResponse<Employee> emps = _employeeService.GetAll<Employee>(empRequest);
+            TeamStore.DataSource = emps.Items;
+            TeamStore.DataBind();
+            TeamWindow.Show();
         }
     }
 }

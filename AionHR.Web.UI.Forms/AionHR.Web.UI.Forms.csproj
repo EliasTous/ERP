@@ -92,6 +92,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="AllowanceTypes.aspx" />
+    <Content Include="App_LocalResources\ARForgotPassword.aspx.resx" />
+    <Content Include="ARForgotPassword.aspx" />
+    <Content Include="ARresetPW.aspx" />
     <Content Include="AssetAllowances.aspx" />
     <Content Include="AssetCategories.aspx" />
     <Content Include="BiometricDevices.aspx" />
@@ -254,7 +257,7 @@
     <Content Include="TimeAttendanceView.aspx" />
     <Content Include="TrainingTypes.aspx" />
     <Content Include="WorkingCalendars.aspx" />
-    <Content Include="CaseAttachmentsUploader.ashx" />
+    <Content Include="SystemAttachmentsUploader.ashx" />
     <None Include="Properties\PublishProfiles\local.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -311,6 +314,20 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Sponsors.aspx.resx</DependentUpon>
     </Compile>
+    <Compile Include="ARForgotPassword.aspx.cs">
+      <DependentUpon>ARForgotPassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ARForgotPassword.aspx.designer.cs">
+      <DependentUpon>ARForgotPassword.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ARresetPW.aspx.cs">
+      <DependentUpon>ARresetPW.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ARresetPW.aspx.designer.cs">
+      <DependentUpon>ARresetPW.aspx</DependentUpon>
+    </Compile>
     <Compile Include="AssetAllowances.aspx.cs">
       <DependentUpon>AssetAllowances.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -347,8 +364,8 @@
     <Compile Include="Branches.aspx.designer.cs">
       <DependentUpon>Branches.aspx</DependentUpon>
     </Compile>
-    <Compile Include="CaseAttachmentsUploader.ashx.cs">
-      <DependentUpon>CaseAttachmentsUploader.ashx</DependentUpon>
+    <Compile Include="SystemAttachmentsUploader.ashx.cs">
+      <DependentUpon>SystemAttachmentsUploader.ashx</DependentUpon>
     </Compile>
     <Compile Include="Cases.aspx.cs">
       <DependentUpon>Cases.aspx</DependentUpon>
@@ -743,9 +760,6 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_LocalResources\ForgotPassword.aspx.ar.resx" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="App_LocalResources\ForgotPassword.aspx.resx" />
   </ItemGroup>
   <ItemGroup>
@@ -899,6 +913,15 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_LocalResources\EmployeeComplaints.aspx.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_LocalResources\resetPw.aspx.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_LocalResources\ARresetPW.aspx.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="EmployeePages\App_LocalResources\Documents.aspx.ar.resx" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

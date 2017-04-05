@@ -6,14 +6,136 @@
 <head runat="server">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+
     <title></title>
     <link rel="stylesheet" type="text/css" href="../CSS/Common.css?id=1" />
     <link rel="stylesheet" href="../CSS/LiveSearch.css" />
+      <script src="../Scripts/jquery.min.js" type="text/javascript"></script>
     <script type="text/javascript" src="../Scripts/Documents.js?id=23"></script>
     <script type="text/javascript" src="../Scripts/common.js?id=0"></script>
-    <script type="text/javascript" src="../Scripts/moment.js?id=0"></script>
+  
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" type="text/javascript"></script>
+     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/>
+ 
+     <link href="../CSS/fileinput.min.css" rel="stylesheet" />
+<link href="../CSS/theme.css" rel="stylesheet" />
+ 
+<!-- load the JS files in the right order -->
+<script src="../Scripts/fileinput.js" type="text/javascript"></script>
+<script src="../Scripts/theme.js" type="text/javascript">  </script>
+    <script src="../Scripts/moment.js" type="text/javascript">  </script>
+    <script src="../Scripts/moment-timezone.js" type="text/javascript">  </script>
+
+     <script type="text/javascript" src="../Scripts/locales/ar.js?id=7" ></script>
+ <script type="text/javascript">
+     var types = [];
+     var curIndex = 0;
+     var passed = 'no';
+     function InitTypes(s)
+     {
+         
+         types = s;
+     }
+     function dump(obj) {
+         var out = '';
+         for (var i in obj) {
+             out += i + ": " + obj[i] + "\n";
 
 
+         }
+         return out;
+     }
+     function initBootstrap()
+     {
+         curIndex = 0;
+         
+         $("#input-ke-1").fileinput({
+           
+             theme: 'explorer',
+             uploadUrl: '../SystemAttachmentsUploader.ashx?recordId=' + document.getElementById('CurrentEmployee').value + "&classId=" + document.getElementById("EmployeeClassId").value,
+             overwriteInitial: false,
+             initialPreviewAsData: true,
+             uploadAsync: true,
+             language:document.getElementById('CurrentLanguage').value,
+             showZoom:false,
+             showRemove: false,
+           //  uploadExtraData: { id: $($(this).find('select')[0]).val() },
+             uploadExtraData: function (previewId, index) {
+
+                var valType = $($("#" + previewId).find('select')[0]).val();
+                 return { id: valType };
+              //   var obj = {};
+             //    $(this).find('select').each(function () {
+              //       var id = 'valType', val = $(this).val();
+              //       obj[id] = val;
+              //   });
+              //   console.log(obj);
+               //  return obj;
+                
+                // var extra = [];
+               //  { typeValue: $('#id').val() };
+                 //alert(curIndex);
+                 //var x = document.getElementsByName("values");
+                 
+                 //var ext = { id: x[curIndex].value };
+                 //if(passed=='yes')
+                 //    curIndex = curIndex + 1;
+                 //passed = 'yes';
+                 //return extra;
+             },
+             fileActionSettings: {
+                 showDrag: false,
+                 showUpload:true,
+                 showZoom: false,
+              
+                     
+                 
+             },
+             layoutTemplates: {
+               
+                 actionUpload: '<select type="text" name="values"  >\n'+
+                     
+                     '</select>'
+          
+             }  ,
+             showUploadedThumbs: false
+           
+             
+         });
+         
+         
+     
+       
+
+
+      
+         $('#input-ke-1').on('filebatchuploadcomplete', function (event, data, msg) {
+             
+             alert(dump(data));
+             alert(dump(event));
+             alert(dump(msg));
+             App.employeeDocumentsStore.reload();
+             App.AttachmentsWindow.close();
+             
+         });
+              $('#input-ke-1').on('fileloaded', function (event, file, previewId, index, reader) {
+             var x = document.getElementsByName("values");
+          
+             var s = $("#" + previewId).find("select")[0];
+            
+                 for(var j=0;j<types.length;j++)
+                 {
+                     var opt = document.createElement('option');
+                     opt.value = types[j].value;
+                     opt.innerHTML =  types[j].text;
+                     s.appendChild(opt);
+                 }
+             
+         });
+     }
+
+
+     </script>
 </head>
 <body style="background: url(Images/bg.png) repeat;">
     <form id="Form1" runat="server">
@@ -25,6 +147,9 @@
         <ext:Hidden ID="titleSavingErrorMessage" runat="server" Text="<%$ Resources:Common , TitleSavingErrorMessage %>" />
         <ext:Hidden ID="CurrentEmployee" runat="server"  />
         <ext:Hidden ID="CurrentDateFormat" runat="server"  />
+        <ext:Hidden ID="EmployeeClassId" runat="server"  />
+        <ext:Hidden ID="CurrentLanguage" runat="server"  />
+        
           <ext:Viewport ID="Viewport11" runat="server" Layout="VBoxLayout" Padding="10">
             <LayoutConfig>
                 <ext:VBoxLayoutConfig Align="Stretch" />
@@ -64,12 +189,12 @@
                                 <ext:Model ID="Model1" runat="server" IDProperty="recordId">
                                     <Fields>
 
-                                        <ext:ModelField Name="recordId" />
-                                        <ext:ModelField Name="dtName" />
-                                        <ext:ModelField Name="documentRef" />
-                                        <ext:ModelField Name="expiryDate" ServerMapping="expiryDate.ToShortDateString()" />
-                                        <ext:ModelField Name="remarks" />
-                                        <ext:ModelField Name="fileUrl" />
+                                         <ext:ModelField Name="recordId" />
+                                        <ext:ModelField Name="seqNo" />
+                                        <ext:ModelField Name="fileName" />
+                                        <ext:ModelField Name="url" />
+                                        <ext:ModelField Name="date" />
+                                        <ext:ModelField Name="folderId" />
 
                                     </Fields>
                                 </ext:Model>
@@ -114,13 +239,11 @@
                         <Columns>
 
                             <ext:Column Visible="false" ID="ColrecordId" MenuDisabled="true" runat="server" DataIndex="recordId" Hideable="false" Width="75" Align="Center" />
-                            <ext:Column CellCls="cellLink" Visible="false" ID="ColEHName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDocumentRef%>" DataIndex="documentRef" Flex="2" Hideable="false" />
-                            <ext:Column CellCls="cellLink" ID="Column1" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDocumentType%>" DataIndex="dtName" Flex="2" Hideable="false" />
-                            <ext:Column CellCls="cellLink" Visible="false" ID="Column3" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldRemarks%>" DataIndex="remarks" Flex="2" Hideable="false" />
-                            
-                            <ext:Column  CellCls="cellLink" Visible="false" ID="Column2" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldExpiryDate%>" DataIndex="expiryDate" Width="120" Hideable="false" >
-                                <Renderer Handler="var now = moment(); var icon=''; var date = moment(record.data['expiryDate']);if(now>date)   icon= attachRender2();return record.data['expiryDate'] + '&nbsp;&nbsp;'+ icon;" />
-                                </ext:Column>
+                            <ext:Column CellCls="cellLink" Visible="false" ID="ColEHName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDocumentRef%>" DataIndex="fileName" Flex="2" Hideable="false" />
+                            <ext:Column CellCls="cellLink" ID="Column1" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDocumentType%>" DataIndex="folderId" Flex="2" Hideable="false" />
+                                     <ext:DateColumn  ID="dateCol" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDate%>" DataIndex="date" Flex="2" Hideable="false" >
+                                <Renderer Handler="var s = moment(record.data['date']);   return s.calendar();" />
+                                </ext:DateColumn>
 
 
 
@@ -135,7 +258,7 @@
                                 MenuDisabled="true"
                                 Resizable="false">
 
-                                <Renderer handler="return attachRender()+'&nbsp;&nbsp;'+ editRender()+'&nbsp;&nbsp;' +deleteRender(); " />
+                                <Renderer handler="return attachRender()+'&nbsp;&nbsp;' +deleteRender(); " />
 
                             </ext:Column>
                             <ext:Column runat="server"
@@ -303,7 +426,37 @@
             </Buttons>
         </ext:Window>
 
-       
+          <ext:Window  ID="AttachmentsWindow"
+            runat="server"
+            Icon="PageEdit"
+            Title="<%$ Resources:EditDocumentWindowTitle %>"
+            Width="600"
+            Height="350"
+            AutoShow="false"
+            Modal="true"
+            Hidden="true"
+             Maximizable="false"
+            Resizable="false"
+             Draggable="false"
+            Layout="Fit">
+            <Items>
+                <ext:Panel runat="server" AutoScroll="true">
+                    <Content>
+                        <input id="input-ke-1" name="inputKE1[]" type="file" multiple class="file-loading"  >
+                        
+        <br>
+      
+                    </Content>
+                    <Listeners>
+                      
+                        
+                        <AfterLayout Handler=" $('#input-ke-1').fileinput('destroy'); initBootstrap(); " />
+                       
+                    </Listeners>
+                </ext:Panel>
+
+            </Items>
+        </ext:Window>
 
           
 

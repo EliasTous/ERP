@@ -16,15 +16,15 @@ namespace AionHR.Web.UI.Forms
     /// <summary>
     /// Summary description for CaseAttachmentsUploader
     /// </summary>
-    public class CaseAttachmentsUploader : IHttpHandler, IRequiresSessionState
+    public class SystemAttachmentsUploader : IHttpHandler, IRequiresSessionState
     {
         ISystemService _systemService = ServiceLocator.Current.GetInstance<ISystemService>();
 
         public void ProcessRequest(HttpContext context)
         {
-           
+            context.Response.ContentType = "application/javascript";
             SystemAttachmentsPostRequest req = new SystemAttachmentsPostRequest();
-            req.entity = new Model.System.Attachement() { classId = ClassId.CMCA, recordId = Convert.ToInt32(context.Request.QueryString["caseId"]) };
+            req.entity = new Model.System.Attachement() { classId = Convert.ToInt32(context.Request.QueryString["classId"]), recordId = Convert.ToInt32(context.Request.QueryString["recordId"]), folderId= Convert.ToInt32(context.Request.Form["id"]), fileName = context.Request.Files[0].FileName  };
             //write your handler implementation here.
             if (context.Request.Files.Count <= 0)
             {
@@ -46,10 +46,17 @@ namespace AionHR.Web.UI.Forms
 
 
                 }
+                
                 PostResponse<Attachement> resp = _systemService.UploadMultipleAttachments(req);
+                if (!resp.Success)
+                {
+                    context.Response.Write("{'Error':'Error'}");
+                    return;
+                }
+                
             }
             context.Response.Write("{}");
-            context.Response.ContentType = "application/javascript";
+            
         }
 
         public bool IsReusable

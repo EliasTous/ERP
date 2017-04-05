@@ -628,7 +628,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Complaints.
+        ///   Looks up a localized string similar to Employee Complaints.
         /// </summary>
         internal static string EmployeeComplaints {
             get {
@@ -646,7 +646,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Manage Employee.
+        ///   Looks up a localized string similar to Directory.
         /// </summary>
         internal static string EmployeeLeaf {
             get {
@@ -1551,6 +1551,15 @@ namespace Resources {
         internal static string TimeAttendance {
             get {
                 return ResourceManager.GetString("TimeAttendance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Value is required and should be of form hh:mm.
+        /// </summary>
+        internal static string TimeFieldError {
+            get {
+                return ResourceManager.GetString("TimeFieldError", resourceCulture);
             }
         }
         

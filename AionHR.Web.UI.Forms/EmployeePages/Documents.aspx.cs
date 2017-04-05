@@ -23,6 +23,7 @@ using AionHR.Model.Company.Structure;
 using AionHR.Model.System;
 using AionHR.Model.Employees.Profile;
 using System.Net;
+using AionHR.Infrastructure.Domain;
 
 namespace AionHR.Web.UI.Forms.EmployeePages
 {
@@ -64,7 +65,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorOperation).Show();
                 CurrentEmployee.Text = Request.QueryString["employeeId"];
                 CurrentDateFormat.Text = _systemService.SessionHelper.GetDateformat();
-
+                EmployeeClassId.Text = ClassId.EPDO.ToString();
             }
 
         }
@@ -102,8 +103,12 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             if (rtl)
             {
                 this.ResourceManager1.RTL = true;
-                this.Viewport11.RTL = true;
-
+                
+                CurrentLanguage.Text = "ar";
+            }
+            else
+            {
+                CurrentLanguage.Text = "en";
             }
         }
 
@@ -243,18 +248,15 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             try
             {
                 //Step 1 Code to delete the object from the database 
-                EmployeeDocument n = new EmployeeDocument();
-                n.recordId = index;
-                n.dtId = 0;
-                n.employeeId = Convert.ToInt32(CurrentEmployee.Text);
-                n.expiryDate = null;
-                n.remarks = "";
-                n.documentRef = "";
+                Attachement n = new Attachement();
+                n.classId = ClassId.EPDO;
+                n.recordId = Convert.ToInt32(CurrentEmployee.Text);
+                n.seqNo = Convert.ToInt16(index);
 
 
-                PostRequest<EmployeeDocument> req = new PostRequest<EmployeeDocument>();
+                PostRequest<Attachement> req = new PostRequest<Attachement>();
                 req.entity = n;
-                PostResponse<EmployeeDocument> res = _employeeService.ChildDelete<EmployeeDocument>(req);
+                PostResponse<Attachement> res = _systemService.ChildDelete<Attachement>(req);
                 if (!res.Success)
                 {
                     //Show an error saving...
@@ -273,9 +275,9 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                         Title = Resources.Common.Notification,
                         Icon = Icon.Information,
                         Html = Resources.Common.RecordDeletedSucc
+
                     });
                 }
-
             }
             catch (Exception ex)
             {
@@ -314,11 +316,25 @@ namespace AionHR.Web.UI.Forms.EmployeePages
         {
 
             //Reset all values of the relative object
-            EditDocumentForm.Reset();
-            this.EditDocumentWindow.Title = Resources.Common.AddNewRecord;
-            FillDocumentTypes();
+            //EditDocumentForm.Reset();
+            //this.EditDocumentWindow.Title = Resources.Common.AddNewRecord;
+            //FillDocumentTypes();
 
-            this.EditDocumentWindow.Show();
+            //this.EditDocumentWindow.Show();
+
+            ListRequest req = new ListRequest();
+            ListResponse<SystemFolder> docs = _systemService.ChildGetAll<SystemFolder>(req);
+            if (!docs.Success)
+            {
+                return;
+            }
+            List<object> options = new List<object>();
+            foreach (var item in docs.Items)
+            {
+                options.Add(new { text = item.name, value = item.recordId });
+            }
+            X.Call("InitTypes", options);
+            AttachmentsWindow.Show();
         }
 
 
@@ -335,9 +351,9 @@ namespace AionHR.Web.UI.Forms.EmployeePages
 
             //in this test will take a list of News
 
-            EmployeeDocumentsListRequest request = new EmployeeDocumentsListRequest();
-            request.EmployeeId = Convert.ToInt32(CurrentEmployee.Text);
-            ListResponse<EmployeeDocument> documents = _employeeService.ChildGetAll<EmployeeDocument>(request);
+            EmployeeAttachmentsListRequest request = new EmployeeAttachmentsListRequest();
+            request.recordId = Convert.ToInt32(CurrentEmployee.Text);
+            ListResponse<Attachement> documents = _systemService.ChildGetAll<Attachement>(request);
             if (!documents.Success)
             {
                 X.Msg.Alert(Resources.Common.Error, documents.Summary).Show();

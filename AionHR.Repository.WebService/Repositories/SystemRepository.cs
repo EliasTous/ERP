@@ -43,6 +43,7 @@ namespace AionHR.Repository.WebService.Repositories
             ChildGetAllLookup.Add(typeof(Attachement), "qryAT");
             ChildGetAllLookup.Add(typeof(KeyValuePair<string,string>), "qryDE");
             ChildGetAllLookup.Add(typeof(TransactionLog), "qryTL");
+            ChildGetAllLookup.Add(typeof(SystemFolder), "qryFO");
 
             ChildAddOrUpdateLookup.Add(typeof(KeyValuePair<string, string>[]), "arrDE");
 

@@ -126,7 +126,7 @@ namespace AionHR.Web.UI.Forms
                 FillDivision();
                 statusPref.Select(0);
                 dateCol.Format = _systemService.SessionHelper.GetDateformat() + ": hh:mm:ss";
-
+                CasesClassId.Text = ClassId.CMCA.ToString();
             }
 
         }
@@ -851,7 +851,7 @@ namespace AionHR.Web.UI.Forms
         protected void AddAttachments(object sender, DirectEventArgs e)
         {
             ListRequest req = new ListRequest();
-            ListResponse<DocumentType> docs = _employeeService.ChildGetAll<DocumentType>(req);
+            ListResponse<SystemFolder> docs = _systemService.ChildGetAll<SystemFolder>(req);
             if(!docs.Success)
             {
                 return;

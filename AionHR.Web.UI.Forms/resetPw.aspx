@@ -43,7 +43,7 @@
         </div>
         <div class="right">
             <div class="button-group" style="margin-top: 15px;">
-                <a class="button" href="ARLogin.aspx">
+                <a class="button" href="ARresetPW.aspx">
                     <asp:Literal ID="Literal8" runat="server" Text="عربي" /></a>
             </div>
         </div>
@@ -81,7 +81,7 @@
                     Closable="false"
                     Resizable="false"
                     Icon="LockGo"
-                    Title="Forget Password"
+                    Title="<%$ Resources:ResetPassword%>"
                     Draggable="false"
                     Width="400"
                     Modal="false"
@@ -96,7 +96,7 @@
                             runat="server" Anchor="-5" 
                             AutoFocus="true"
                             InputType="Password"
-                            FieldLabel="Password"
+                            FieldLabel="<%$ Resources:NewPassword%>"
                             AllowBlank="false"  
                             BlankText=""
                             
@@ -113,7 +113,7 @@
                             BlankText=""
                             InputType="Password"
                             AllowBlank="false"
-                            FieldLabel="Password Confirmation"
+                            FieldLabel="<%$ Resources:PasswordConfirm%>"
                             
                             EmptyText="" >
                              <CustomConfig>
@@ -132,7 +132,7 @@
                         </ext:FieldContainer>
                     </Items>
                     <Buttons>
-                        <ext:Button ID="btnLogin" runat="server" Text="submit">
+                        <ext:Button ID="btnLogin" runat="server" Text="<%$ Resources:ResetPassword%>">
                             <Listeners>
                                 <Click Handler="
                             if (!#{panelLogin}.validate()) {                                

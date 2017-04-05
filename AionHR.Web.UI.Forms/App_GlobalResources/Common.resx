@@ -160,7 +160,7 @@
     <value>Employees</value>
   </data>
   <data name="EmployeeLeaf" xml:space="preserve">
-    <value>Manage Employee</value>
+    <value>Directory</value>
   </data>
   <data name="Error" xml:space="preserve">
     <value>Error</value>
@@ -671,5 +671,11 @@
   </data>
   <data name="History" xml:space="preserve">
     <value>History</value>
+  </data>
+  <data name="TimeFieldError" xml:space="preserve">
+    <value>Value is required and should be of form hh:mm</value>
+  </data>
+  <data name="EmployeeComplaints" xml:space="preserve">
+    <value>Employee Complaints</value>
   </data>
 </root>
