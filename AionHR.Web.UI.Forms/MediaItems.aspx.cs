@@ -227,7 +227,7 @@ namespace AionHR.Web.UI.Forms
                     break;
 
                 case "imgAttach":
-                    DownloadFile(path);
+                   // DownloadFile(path);
                     //Here will show up a winow relatice to attachement depending on the case we are working on
                     break;
                 default:
