@@ -229,27 +229,36 @@ function dump(obj) {
     }
     return out;
 }
-function FillLeftPanel(fullName, departmentName, branchName, positionName,reportToName) {
+function FillLeftPanel(departmentName, branchName, positionName, reportToName,balance,lastLeave,paid,leaveBalance,allowedLeaves) {
+
+
+
+
+    App.reportsToLbl.setText(reportToName);
+    App.eosBalanceTitle.setText(balance);
+    App.lastLeaveStartDateTitle.setText(lastLeave);
+    App.paidLeavesYTDTitle.setText(paid);
+    App.leavesBalanceTitle.setText(leaveBalance);
+    App.allowedLeaveYtdTitle.setText(allowedLeaves);
+    FillLeftPanel( dep, branchName, positionName);
+
+}
+function FillLeftPanel( departmentName, branchName, positionName,reportToName) {
 
 
     
 
     App.reportsToLbl.setText(reportToName);
-    FillLeftPanel(fullName,dep, branchName, positionName);
-
-}
-function FillLeftPanel(fullName, departmentName, branchName, positionName) {
-    
-
-    App.fullNameLbl.setText(fullName, false);
-
     FillLeftPanel(dep, branchName, positionName);
 
 }
 
+function FillFullName(fullName)
+{
+    App.fullNameLbl.Html = fullName;
+}
 function FillLeftPanel(departmentName, branchName, positionName) {
 
-    ///App.fullNameLbl.setText(fullName, false);
 
  
     App.departmentLbl.setText(departmentName, false);

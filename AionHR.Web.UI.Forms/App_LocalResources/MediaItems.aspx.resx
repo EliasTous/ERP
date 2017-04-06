@@ -156,4 +156,7 @@
   <data name="WindowTitle" xml:space="preserve">
     <value>Media Items</value>
   </data>
+  <data name="FieldFile" xml:space="preserve">
+    <value>File</value>
+  </data>
 </root>

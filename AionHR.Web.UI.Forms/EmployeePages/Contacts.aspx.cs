@@ -178,57 +178,57 @@ namespace AionHR.Web.UI.Forms.EmployeePages
 
         }
 
-        [DirectMethod]
-        public void DeleteSkill(string index)
-        {
-            try
-            {
-                //Step 1 Code to delete the object from the database 
-                EmployeeContact n = new EmployeeContact();
-                n.recordId = index;
-                n.rtId = 0;
-                n.employeeId = Convert.ToInt32(CurrentEmployee.Text);
-                n.cellPhone = "";
-                n.email = "";
-                n.homePhone = "";
-                n.workPhone = "";
+        //[DirectMethod]
+        //public void DeleteSkill(string index)
+        //{
+        //    try
+        //    {
+        //        //Step 1 Code to delete the object from the database 
+        //        EmployeeContact n = new EmployeeContact();
+        //        n.recordId = index;
+        //        n.rtId = 0;
+        //        n.employeeId = Convert.ToInt32(CurrentEmployee.Text);
+        //        n.cellPhone = "";
+        //        n.email = "";
+        //        n.homePhone = "";
+        //        n.workPhone = "";
 
 
 
-                PostRequest<EmployeeContact> req = new PostRequest<EmployeeContact>();
-                req.entity = n;
-                PostResponse<EmployeeContact> res = _employeeService.ChildDelete<EmployeeContact>(req);
-                if (!res.Success)
-                {
-                    //Show an error saving...
-                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.Error, res.Summary).Show();
-                    return;
-                }
-                else
-                {
-                    //Step 2 :  remove the object from the store
-                    contactStore.Remove(index);
+        //        PostRequest<EmployeeContact> req = new PostRequest<EmployeeContact>();
+        //        req.entity = n;
+        //        PostResponse<EmployeeContact> res = _employeeService.ChildDelete<EmployeeContact>(req);
+        //        if (!res.Success)
+        //        {
+        //            //Show an error saving...
+        //            X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+        //            X.Msg.Alert(Resources.Common.Error, res.Summary).Show();
+        //            return;
+        //        }
+        //        else
+        //        {
+        //            //Step 2 :  remove the object from the store
+        //            contactStore.Remove(index);
 
-                    //Step 3 : Showing a notification for the user 
-                    Notification.Show(new NotificationConfig
-                    {
-                        Title = Resources.Common.Notification,
-                        Icon = Icon.Information,
-                        Html = Resources.Common.RecordDeletedSucc
-                    });
-                }
+        //            //Step 3 : Showing a notification for the user 
+        //            Notification.Show(new NotificationConfig
+        //            {
+        //                Title = Resources.Common.Notification,
+        //                Icon = Icon.Information,
+        //                Html = Resources.Common.RecordDeletedSucc
+        //            });
+        //        }
 
-            }
-            catch (Exception ex)
-            {
-                //In case of error, showing a message box to the user
-                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorDeletingRecord).Show();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        //In case of error, showing a message box to the user
+        //        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+        //        X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorDeletingRecord).Show();
 
-            }
+        //    }
 
-        }
+        //}
 
 
         /// <summary>

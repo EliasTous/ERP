@@ -23,5 +23,9 @@ namespace AionHR.Model.Employees.Profile
         public int naId { get; set; }
 
         public string naName { get; set; }
+
+        public int rtId { get; set; }
+
+        public string rtName { get; set; }
     }
 }

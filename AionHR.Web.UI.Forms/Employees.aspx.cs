@@ -196,6 +196,7 @@ namespace AionHR.Web.UI.Forms
             reference.Text = name.reference;
 
             fullNameLbl.Html = name.fullName + "<br />";
+            X.Call("FillFullName", name.fullName + "<br />");
         }
 
         private void SelectCombos(Employee result)
@@ -240,25 +241,21 @@ namespace AionHR.Web.UI.Forms
 
             FillSponsor();
 
-
+            img.Hidden = isAdd;
             FillVacationSchedule();
             panelRecordDetails.Enabled = !isAdd;
 
             FillWorkingCalendar();
 
-            if (isAdd)
-            {
-                branchLbl.Text = "";
-                positionLbl.Text = "";
-                departmentLbl.Text = "";
-                fullNameLbl.Text = "";
-                imgControl.ImageUrl = "";
-
-            }
             SetTabPanelActivated(!isAdd);
 
         }
 
+        private void ClearLeftPanel()
+        {
+            img.Visible = false;
+            img.Hidden = true;
+        }
         private void SetTabPanelActivated(bool isActive)
         {
             foreach (var item in panelRecordDetails.Items)
@@ -647,6 +644,7 @@ namespace AionHR.Web.UI.Forms
                         FixLoaderUrls(req.RecordID.ToString());
                         FillLeftPanel();
                         InitCombos(false);
+                        FillProfileInfo(b.recordId);
                         recordId.Text = b.recordId;
                         RowSelectionModel sm = this.GridPanel1.GetSelectionModel() as RowSelectionModel;
                         sm.DeselectAll();
@@ -832,6 +830,7 @@ namespace AionHR.Web.UI.Forms
 
         private void FillLeftPanel(bool shouldUpdateGrid = false)
         {
+            
             RecordRequest r = new RecordRequest();
             r.RecordID = CurrentEmployee.Text.ToString();
             RecordResponse<EmployeeQuickView> qv = _employeeService.ChildGetRecord<EmployeeQuickView>(r);
@@ -844,14 +843,19 @@ namespace AionHR.Web.UI.Forms
             EmployeeQuickView forSummary = qv.result;
             if (string.IsNullOrEmpty(forSummary.pictureUrl))
                 forSummary.pictureUrl = "Images/empPhoto.jpg";
-            //X.Call("FillLeftPanel",
-            //    response.result.name.fullName + "<br />",
-            //    response.result.departmentName + "<br />",
-            //  response.result.branchName + "<br />",
-            //   response.result.positionName + "<br />",
-            //   (forSummary.reportToName == null) ? "" : "<br />"+ GetLocalResourceObject("FieldReportsTo").ToString() +" :"+ forSummary.reportToName.fullName + "<br />"
-            //);
-            //fullNameLbl.Html = forSummary.name.fullName + "<br />";
+            X.Call("FillLeftPanel",
+                
+                forSummary.departmentName + "<br />",
+              forSummary.branchName + "<br />",
+               forSummary.positionName + "<br />",
+               (forSummary.reportToName == null) ? "" : "<br />" + GetLocalResourceObject("FieldReportsTo").ToString() + " :" + forSummary.reportToName.fullName + "<br />",
+               forSummary.eosBalance + "<br />",
+               forSummary.paidLeavesYTD + "<br/>",
+               "<br/>" + forSummary.lastLeaveStartDate.ToShortDateString() + " - " + forSummary.lastLeaveEndDate.ToShortDateString() + "<br />",
+               forSummary.leavesBalance + "<br />",
+               forSummary.allowedLeaveYtd + "<br />"
+            );
+//            fullNameLbl.Html = forSummary.name.fullName + "<br />";
             departmentLbl.Html = forSummary.departmentName + "<br />";
             branchLbl.Html = forSummary.branchName + "<br />";
             positionLbl.Html = forSummary.positionName + "<br /><br /><br />";
@@ -873,7 +877,7 @@ namespace AionHR.Web.UI.Forms
             ModelProxy record = Store1.GetById(CurrentEmployee.Text);
             record.Set("pictureUrl", imgControl.ImageUrl);
             record.Commit();
-
+            img.Visible = true;
         }
 
         #region combobox dynamic insert

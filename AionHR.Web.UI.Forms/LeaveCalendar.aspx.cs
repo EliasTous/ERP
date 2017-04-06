@@ -339,7 +339,8 @@ namespace AionHR.Web.UI.Forms
                 DayPilotScheduler1.DataBind();
 
                 DayPilotScheduler1.Update();
-
+                DayPilotScheduler1.Update();
+                
             }
             catch (Exception exp) { }
         }

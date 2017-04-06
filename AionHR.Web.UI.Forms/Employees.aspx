@@ -15,7 +15,7 @@
 
 
     <script type="text/javascript" src="Scripts/common.js?id=1"></script>
-    <script type="text/javascript" src="Scripts/Employees.js?id=32"></script>
+    <script type="text/javascript" src="Scripts/Employees.js?id=33"></script>
     <script type="text/javascript">
        
     </script>
@@ -351,19 +351,19 @@
             </HeaderConfig>
             <Items>
 
-                <ext:Panel ID="leftPanel" runat="server" Region="West" PaddingSpec="00 0 0" Padding="0" TitleAlign="Center" DefaultAnchor="100%"
+                <ext:Panel ID="leftPanel" runat="server"  Region="West" PaddingSpec="00 0 0" Padding="0" TitleAlign="Center" DefaultAnchor="100%"
                     Header="false" Collapsible="false" BodyPadding="5" Width="150" StyleSpec="border-left:2px solid #2A92D4;border-right:2px solid #2A92D4;"
                     Title="<%$ Resources:Common , NavigationPane %>" CollapseToolText="<%$ Resources:Common , CollapsePanel %>" ExpandToolText="<%$ Resources:Common , ExpandPanel %>" BodyBorder="0">
 
                     <Items>
-                        <ext:Panel runat="server" ID="alignedPanel" Header="false">
+                        <ext:Panel runat="server" ID="alignedPanel" Header="false" >
 
                             <Items>
 
                                 <ext:Image runat="server" ID="imgControl" Width="100" Height="100" Align="Middle" MarginSpec="15 0 0 20 " >
                                     <Listeners>
                                         <%--<Click Handler="triggierImageClick(App.picturePath.fileInputEl.id); " />--%>
-                                        <Click Handler="App.imageSelectionWindow.show()" />
+                                        <Click Handler="if(document.getElementById('CurrentEmployee').value!='') App.imageSelectionWindow.show()" />
                                     </Listeners>
 
                                 </ext:Image>
@@ -377,7 +377,7 @@
                                     <DirectEvents>
                                     </DirectEvents>
                                 </ext:FileUploadField>
-                                <ext:Panel runat="server" ID="img" MarginSpec="50 0 0 0">
+                                <ext:Panel runat="server" ID="img"  MarginSpec="50 0 0 0">
                                     <Items>
                                         <ext:Label ID="fullNameLbl" runat="server" />
                                         <ext:Label ID="departmentLbl" runat="server" />
