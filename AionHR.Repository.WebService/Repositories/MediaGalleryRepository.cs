@@ -21,6 +21,12 @@ namespace AionHR.Repository.WebService.Repositories
             ChildAddOrUpdateLookup.Add(typeof(MediaCategory), "setMC");
             ChildDeleteLookup.Add(typeof(MediaCategory), "delMC");
 
+
+            ChildGetLookup.Add(typeof(MediaItem), "getME");
+            ChildGetAllLookup.Add(typeof(MediaItem), "qryME");
+            ChildAddOrUpdateLookup.Add(typeof(MediaItem), "setME");
+            ChildDeleteLookup.Add(typeof(MediaItem), "delME");
+
         }
     }
 }

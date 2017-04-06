@@ -678,4 +678,7 @@
   <data name="EmployeeComplaints" xml:space="preserve">
     <value>Employee Complaints</value>
   </data>
+  <data name="MediaItems" xml:space="preserve">
+    <value>Media Items</value>
+  </data>
 </root>

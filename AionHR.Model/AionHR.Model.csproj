@@ -67,6 +67,7 @@
     <Compile Include="LeaveManagement\LeaveRequest.cs" />
     <Compile Include="MasterModule\IAccountRepository.cs" />
     <Compile Include="MediaGallery\IMediaGalleryRepository.cs" />
+    <Compile Include="MediaGallery\MediaItem.cs" />
     <Compile Include="ModelBase.cs" />
     <Compile Include="System\SystemDefault.cs" />
     <Compile Include="System\SystemFolder.cs" />
