@@ -348,12 +348,30 @@ namespace AionHR.Web.UI.Forms
                 {
                     //New Mode
                     //Step 1 : Fill The object and insert in the store 
-                    PostRequest<MediaItem> request = new PostRequest<MediaItem>();
+                    PostRequestWithAttachment<MediaItem> request = new PostRequestWithAttachment<MediaItem>();
 
                     request.entity = b;
-                    PostResponse<MediaItem> r = _mediaGalleryService.ChildAddOrUpdate<MediaItem>(request);
+                    byte[] fileData = null;
+                    if (file.PostedFile != null && file.PostedFile.ContentLength > 0)
+                    {
+                        //using (var binaryReader = new BinaryReader(picturePath.PostedFile.InputStream))
+                        //{
+                        //    fileData = binaryReader.ReadBytes(picturePath.PostedFile.ContentLength);
+                        //}
+                        fileData = new byte[file.PostedFile.ContentLength];
+                        fileData = file.FileBytes;
+                        request.FileName = file.PostedFile.FileName;
+                        request.FileData = fileData;
 
+                    }
+                    else
+                    {
+                        request.FileData = fileData;
+                        request.FileName = "";
+                    }
+                    PostResponse<MediaItem> r = _mediaGalleryService.ChildAddOrUpdateWithAttachment<MediaItem>(request);
 
+                    
                     //check if the insert failed
                     if (!r.Success)//it maybe be another condition
                     {
@@ -364,9 +382,9 @@ namespace AionHR.Web.UI.Forms
                     }
                     else
                     {
-                        b.recordId = r.recordId;
+                        MediaItem bc = GetBCById(r.recordId);
                         //Add this record to the store 
-                        this.Store1.Insert(0, b);
+                        this.Store1.Insert(0, bc);
 
                         //Display successful notification
                         Notification.Show(new NotificationConfig
@@ -416,9 +434,11 @@ namespace AionHR.Web.UI.Forms
                     }
                     else
                     {
+                        MediaItem bc = GetBCById(r.recordId);
                         ModelProxy record = this.Store1.GetById(id);
                         BasicInfoTab.UpdateRecord(record);
                         record.Set("mcName", b.mcName);
+                        record.Set("departmentName", b.departmentName);
                         record.Set("departmentName", b.departmentName);
                         record.Commit();
                         Notification.Show(new NotificationConfig
@@ -437,6 +457,13 @@ namespace AionHR.Web.UI.Forms
                     X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorUpdatingRecord).Show();
                 }
             }
+        }
+
+        private MediaItem GetBCById(string recordId)
+        {
+            RecordRequest req = new RecordRequest();
+            req.RecordID = recordId;
+            return _mediaGalleryService.ChildGetRecord<MediaItem>(req).result;
         }
 
         [DirectMethod]

@@ -359,7 +359,7 @@
                                 <ext:TextField ID="description" runat="server" FieldLabel="<%$ Resources:FieldDescription%>" Name="description" AllowBlank="true"/>
                                 <ext:DateField ID="date" runat="server" FieldLabel="<%$ Resources:FieldDate%>" Name="date" AllowBlank="false" />                                
 
-
+                                <ext:FileUploadField runat="server" ID="file" FieldLabel="<%$ Resources:FieldFile%>" />
 
 
 
