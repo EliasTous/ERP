@@ -1,6 +1,7 @@
 ﻿using AionHR.Infrastructure.Domain;
 using AionHR.Infrastructure.WebService;
 using AionHR.Model.Employees.Profile;
+using AionHR.Model.System;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,5 +16,6 @@ namespace AionHR.Model.Employees
    public interface IEmployeeRepository:IRepository<Employee,string>,ICommonRepository
     {
 
+        PostWebServiceResponse UploadEmployeePhoto(Attachement at, string fileName, byte[] fileData, Dictionary<string, string> Headers = null, Dictionary<string, string> QueryStringParams = null);
       }
 }

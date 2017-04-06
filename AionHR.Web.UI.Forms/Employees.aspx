@@ -33,6 +33,7 @@
         <ext:Hidden ID="timeZoneOffset" runat="server" EnableViewState="true" />
         <ext:Hidden ID="CurrentEmployee" runat="server" EnableViewState="true" />
         <ext:Hidden ID="CurrentClassId" runat="server" EnableViewState="true" />
+        <ext:Hidden ID="CurrentEmployeePhotoName" runat="server" EnableViewState="true" />
         <ext:Hidden runat="server" ID="lblLoading" Text="<%$Resources:Common , Loading %>" />
         <ext:Viewport runat="server" Layout="BorderLayout" ID="Viewport1">
             <Items>
@@ -977,7 +978,7 @@
             runat="server"
             Icon="PageEdit"
             Title="<%$ Resources:ImageSelectionWindowTitle %>"
-            Width="450"
+            Width="300"
             Height="400"
             AutoShow="false"
             Modal="true"
@@ -998,7 +999,7 @@
                     DefaultAnchor="100%"
                     BodyPadding="5">
                     <Items>
-                        <ext:Image runat="server" Width="300" Height="300" ID="employeePhoto">
+                        <ext:Image runat="server" Width="150" Height="300" ID="employeePhoto">
                             
                         </ext:Image>
                         <ext:Toolbar runat="server">

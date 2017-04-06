@@ -1,5 +1,6 @@
 ﻿using AionHR.Model.Employees;
 using AionHR.Model.Employees.Profile;
+using AionHR.Model.System;
 using AionHR.Services.Messaging;
 using System;
 using System.Collections.Generic;
@@ -13,5 +14,7 @@ namespace AionHR.Services.Interfaces
     {
      
         PostResponse<SalaryDetail> DeleteSalaryDetails(int SalaryId);
+
+        PostResponse<Attachement> UploadEmployeePhoto(EmployeeUploadPhotoRequest req);
     }
 }

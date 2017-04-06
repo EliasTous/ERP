@@ -66,7 +66,7 @@
              uploadExtraData: function (previewId, index) {
 
                 var valType = $($("#" + previewId).find('select')[0]).val();
-                 return { id: valType };
+                 return { id: valType,seqNo:index };
               //   var obj = {};
              //    $(this).find('select').each(function () {
               //       var id = 'valType', val = $(this).val();
@@ -125,7 +125,7 @@
          $('#input-ke-1').on('filebatchuploadcomplete', function (event, data, msg) {
              
              App.direct.FillFilesStore(document.getElementById('currentCase').value);
-             //App.AttachmentsWindow.close();
+             App.AttachmentsWindow.close();
              
          });
          $('#input-ke-1').on('filebatchpreupload', function (event, data, previewId, index) {
@@ -760,6 +760,7 @@
                                         <ext:ModelField Name="url" />
                                         <ext:ModelField Name="date" />
                                         <ext:ModelField Name="folderId" />
+                                        <ext:ModelField Name="folderName" />
                                        
 
                                     </Fields>
@@ -794,7 +795,7 @@
                         <Columns>
 
                             <ext:Column Visible="false" ID="Column4" MenuDisabled="true" runat="server" DataIndex="seqNo" Hideable="false" Width="75" Align="Center" />
-                            <ext:Column CellCls="cellLink" ID="Column5" MenuDisabled="true" runat="server"  DataIndex="folderId" Flex="2" Hideable="false" />
+                            <ext:Column CellCls="cellLink" ID="Column5" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldFolderName%>"   DataIndex="folderName" Flex="2" Hideable="false" />
                             <ext:Column CellCls="cellLink" ID="Column6" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldAttachmentName%>" DataIndex="fileName" Flex="2" Hideable="false" />
                             <ext:DateColumn  ID="dateCol" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDate%>" DataIndex="date" Flex="2" Hideable="false" >
                                 <Renderer Handler="var s = moment(record.data['date']);   return s.calendar();" />

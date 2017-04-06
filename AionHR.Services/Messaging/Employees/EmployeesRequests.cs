@@ -1,5 +1,6 @@
 ﻿using AionHR.Infrastructure.Domain;
 using AionHR.Model.Employees.Profile;
+using AionHR.Model.System;
 using AionHR.Services.Messaging;
 using AionHR.Services.Messaging.System;
 using System.Collections.Generic;
@@ -344,6 +345,45 @@ public class EmployeeAttachmentsListRequest : SystemAttachmentsListRequest
 {
     public EmployeeAttachmentsListRequest()
     {
-        base.classId = ClassId.EPEM;
+        base.classId = ClassId.EPDO;
+    }
+}
+
+public class EmployeeUploadPhotoRequest : PostRequest<Attachement>
+{
+    public EmployeeUploadPhotoRequest()
+    {
+        entity = new Attachement();
+        entity.classId = ClassId.EPEM;
+        entity.folderId = null;
+        entity.seqNo = 0;
+        entity.folderId = null;
+    }
+
+    public string photoName { get; set; }
+
+    public byte[] photoData { get; set; }
+
+}
+
+
+public class TeamMembersListRequest : ListRequest
+{
+    
+    public int EmployeeId { get; set; }
+
+ 
+    public override Dictionary<string, string> Parameters
+    {
+        get
+        {
+            parameters = base.Parameters;
+           
+            parameters.Add("_employeeId", EmployeeId.ToString());
+        
+
+
+            return parameters;
+        }
     }
 }

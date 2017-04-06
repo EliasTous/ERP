@@ -9,6 +9,9 @@ namespace AionHR.Model.Employees.Profile
 {
     public class EmployeeQuickView:ModelBase
     {
+        public string pictureUrl {
+            get; set; }
+
         public string esName { get; set; }
         public EmployeeName name { get; set; }
         public string positionName { get; set; }

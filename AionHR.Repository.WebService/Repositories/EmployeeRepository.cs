@@ -8,6 +8,7 @@ using AionHR.Infrastructure.Domain;
 using AionHR.Infrastructure.Configuration;
 using AionHR.Model.Employees.Profile;
 using AionHR.Infrastructure.WebService;
+using AionHR.Model.System;
 
 namespace AionHR.Repository.WebService.Repositories
 {
@@ -54,6 +55,7 @@ namespace AionHR.Repository.WebService.Repositories
             ChildGetAllLookup.Add(typeof(AssetAllowance), "qryAA");
             ChildGetAllLookup.Add(typeof(EmployeeEmergencyContact), "qryEC");
             ChildGetAllLookup.Add(typeof(RelationshipType), "qryRT");
+            ChildGetAllLookup.Add(typeof(TeamMember), "qryTM");
 
 
             ChildGetLookup.Add(typeof(Sponsor), "getSP");
@@ -81,6 +83,7 @@ namespace AionHR.Repository.WebService.Repositories
             ChildGetLookup.Add(typeof(EmployeeEmergencyContact), "getEC");
             ChildGetLookup.Add(typeof(RelationshipType), "getRT");
             ChildGetLookup.Add(typeof(EmployeeQuickView), "getQV");
+            
 
 
 
@@ -141,7 +144,23 @@ namespace AionHR.Repository.WebService.Repositories
 
         }
 
-  
+        public PostWebServiceResponse UploadEmployeePhoto(Attachement at, string fileName, byte[] fileData, Dictionary<string, string> Headers = null, Dictionary<string, string> QueryStringParams = null)
+        {
+            var request = new HTTPWebServiceRequest();
+            request.MethodType = "POST";
+            request.URL = ServiceURL + "setPI";
+            if (Headers != null)
+                request.Headers = Headers;
+            if (QueryStringParams != null)
+                request.QueryStringParams = QueryStringParams;
+            List<string> filenames = new List<string>();
+            filenames.Add(fileName);
+            List<byte[]> filesData = new List<byte[]>();
+            filesData.Add(fileData);
+            return request.PostAsyncWithMultipleAttachments<Attachement>(at, filenames, filesData);
+        }
+
+
 
     }
 }

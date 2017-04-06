@@ -184,7 +184,7 @@
                                 </ext:PageProxy>
                             </Proxy>
                             <Model>
-                                <ext:Model ID="Model1" runat="server" IDProperty="recordId">
+                                <ext:Model ID="Model1" runat="server" IDProperty="seqNo">
                                     <Fields>
 
                                          <ext:ModelField Name="recordId" />
@@ -193,12 +193,13 @@
                                         <ext:ModelField Name="url" />
                                         <ext:ModelField Name="date" />
                                         <ext:ModelField Name="folderId" />
+                                        <ext:ModelField Name="folderName" />
 
                                     </Fields>
                                 </ext:Model>
                             </Model>
                             <Sorters>
-                                <ext:DataSorter Property="recordId" Direction="ASC" />
+                                <ext:DataSorter Property="seqNo" Direction="ASC" />
                             </Sorters>
                         </ext:Store>
                     </Store>
@@ -238,7 +239,7 @@
 
                             <ext:Column Visible="false" ID="ColrecordId" MenuDisabled="true" runat="server" DataIndex="recordId" Hideable="false" Width="75" Align="Center" />
                             <ext:Column CellCls="cellLink" Visible="false" ID="ColEHName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDocumentRef%>" DataIndex="fileName" Flex="2" Hideable="false" />
-                            <ext:Column CellCls="cellLink" ID="Column1" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDocumentType%>" DataIndex="folderId" Flex="2" Hideable="false" />
+                            <ext:Column CellCls="cellLink" ID="Column1" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldFolderName%>" DataIndex="folderName" Flex="2" Hideable="false" />
                                      <ext:DateColumn  ID="dateCol" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDate%>" DataIndex="date" Flex="2" Hideable="false" >
                                 <Renderer Handler="var s = moment(record.data['date']);   return s.calendar();" />
                                 </ext:DateColumn>
@@ -310,8 +311,8 @@
                             <EventMask  ShowMask="false"  />
                             <ExtraParams>
                                 <ext:Parameter Name="id" Value="record.getId()" Mode="Raw" />
-                                <ext:Parameter Name="path" Value="record.data['fileUrl']" Mode="Raw" />
-                                <ext:Parameter Name="type" Value="getCellType( this, rowIndex, cellIndex,record.data['fileUrl'])" Mode="Raw" />
+                                <ext:Parameter Name="path" Value="record.data['url']" Mode="Raw" />
+                                <ext:Parameter Name="type" Value="getCellType( this, rowIndex, cellIndex)" Mode="Raw" />
                             </ExtraParams>
 
                         </CellClick>

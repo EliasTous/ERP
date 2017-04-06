@@ -62,6 +62,7 @@
     <Compile Include="Employees\Profile\EmploymentHistory.cs" />
     <Compile Include="Employees\Profile\JobInfo.cs" />
     <Compile Include="Employees\Profile\RelationshipType.cs" />
+    <Compile Include="Employees\Profile\TeamMember.cs" />
     <Compile Include="Employees\Profile\TerminationReason.cs" />
     <Compile Include="LeaveManagement\ILeaveManagementRepository.cs" />
     <Compile Include="LeaveManagement\LeaveRequest.cs" />

@@ -136,6 +136,7 @@ namespace AionHR.Web.UI.Forms
                     FillProfileInfo(id.ToString());
                     CurrentEmployee.Text = id.ToString();
                     FillLeftPanel();
+
                     FixLoaderUrls(id.ToString());
                     //employeePanel.Loader.Url = "EmployeePages/EmployeeProfile.aspx?employeeId="+CurrentEmployee.Text;
                     //employeePanel.Loader.LoadContent();
@@ -193,6 +194,8 @@ namespace AionHR.Web.UI.Forms
             middleName.Text = name.middleName;
             familyName.Text = name.familyName;
             reference.Text = name.reference;
+
+            fullNameLbl.Html = name.fullName + "<br />";
         }
 
         private void SelectCombos(Employee result)
@@ -819,6 +822,7 @@ namespace AionHR.Web.UI.Forms
             //Step 2 : call setvalues with the retrieved object
             this.BasicInfoTab.SetValues(response.result);
             FillNameFields(response.result.name);
+
             InitCombos(false);
             SelectCombos(response.result);
             SetActivated(!response.result.isInactive);
@@ -838,36 +842,33 @@ namespace AionHR.Web.UI.Forms
                 return;
             }
             EmployeeQuickView forSummary = qv.result;
-            RecordResponse<Employee> response = _employeeService.Get<Employee>(r);
-            if (!response.Success)
-            {
-                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, response.Summary).Show();
-                return;
-            }
-            X.Call("FillLeftPanel",
-                response.result.name.fullName + "<br />",
-                response.result.departmentName + "<br />",
-              response.result.branchName + "<br />",
-               response.result.positionName + "<br />",
-               (forSummary.reportToName == null) ? "" : "<br />"+ GetLocalResourceObject("FieldReportsTo").ToString() +" :"+ forSummary.reportToName.fullName + "<br />"
-            );
-            fullNameLbl.Html = response.result.name.fullName + "<br />";
+
+            //X.Call("FillLeftPanel",
+            //    response.result.name.fullName + "<br />",
+            //    response.result.departmentName + "<br />",
+            //  response.result.branchName + "<br />",
+            //   response.result.positionName + "<br />",
+            //   (forSummary.reportToName == null) ? "" : "<br />"+ GetLocalResourceObject("FieldReportsTo").ToString() +" :"+ forSummary.reportToName.fullName + "<br />"
+            //);
+            //fullNameLbl.Html = forSummary.name.fullName + "<br />";
             departmentLbl.Html = forSummary.departmentName + "<br />";
             branchLbl.Html = forSummary.branchName + "<br />";
             positionLbl.Html = forSummary.positionName + "<br /><br /><br />";
             eosBalanceLbl.Html = forSummary.eosBalance + "<br />";
-            
+
             paidLeavesYTDLbl.Html = forSummary.paidLeavesYTD + "<br/>";
-            lastLeaveStartDateLbl.Html = "<br/>"+forSummary.lastLeaveStartDate.ToShortDateString() + " - "+ forSummary.lastLeaveEndDate.ToShortDateString() +"<br />";
-            leavesBalance.Html = forSummary.leavesBalance+"<br />";
+            lastLeaveStartDateLbl.Html = "<br/>" + forSummary.lastLeaveStartDate.ToShortDateString() + " - " + forSummary.lastLeaveEndDate.ToShortDateString() + "<br />";
+            leavesBalance.Html = forSummary.leavesBalance + "<br />";
             allowedLeaveYtd.Html = forSummary.allowedLeaveYtd + "<br />";
             if (forSummary.reportToName != null)
-                reportsToLbl.Html = GetLocalResourceObject("FieldReportsTo").ToString() +" :"+ forSummary.reportToName.fullName+ "<br />";
+                reportsToLbl.Html = GetLocalResourceObject("FieldReportsTo").ToString() + " :" + forSummary.reportToName.fullName + "<br />";
             //employeeName.Text = resp.result.name.firstName + resp.result.name.lastName;
-            
-            imgControl.ImageUrl = response.result.pictureUrl + "?x=" + DateTime.Now;
-            employeePhoto.ImageUrl = response.result.pictureUrl + "?x=" + DateTime.Now;
+
+            imgControl.ImageUrl = forSummary.pictureUrl;
+            employeePhoto.ImageUrl = forSummary.pictureUrl;
+
+
+            CurrentEmployeePhotoName.Text = forSummary.pictureUrl; ;
         }
 
         #region combobox dynamic insert
@@ -1157,37 +1158,52 @@ namespace AionHR.Web.UI.Forms
             string id = CurrentEmployee.Text;
             string obj = e.ExtraParams["values"];
 
-            SystemAttachmentsPostRequest req = new SystemAttachmentsPostRequest();
+            ;
+
+            PostResponse<Attachement> resp = null;
+
             if (FileUploadField1.PostedFile != null && FileUploadField1.PostedFile.ContentLength > 0)
             {
 
+                EmployeeUploadPhotoRequest upreq = new EmployeeUploadPhotoRequest();
+
+                upreq.entity.fileName = FileUploadField1.FileName;
+                upreq.photoName = FileUploadField1.FileName;
+                upreq.photoData = FileUploadField1.FileBytes;
+                upreq.entity.recordId = Convert.ToInt32(CurrentEmployee.Text);
                
-                Attachement at = new Attachement();
-                at.classId = ClassId.EPEM;
-                at.recordId = Convert.ToInt32(CurrentEmployee.Text);
-                at.fileName = FileUploadField1.PostedFile.FileName;
-                at.folderId = 0;
-                req.FileNames.Add(FileUploadField1.PostedFile.FileName);
-                req.FilesData.Add(FileUploadField1.FileBytes);
-                req.entity = at;
+                resp = _employeeService.UploadEmployeePhoto(upreq);
             }
             else
             {
-                X.Msg.Alert(Resources.Common.ResetPassword, Resources.Common.ErrorSavingRecord).Show();
-                return;
+                PostRequest<Attachement> req = new PostRequest<Attachement>();
+
+                Attachement at = new Attachement();
+                at.classId = ClassId.EPEM;
+                at.recordId = Convert.ToInt32(CurrentEmployee.Text);
+                at.seqNo = 0;
+                at.folderId = null;
+
+                at.fileName = CurrentEmployeePhotoName.Text;
+                req.entity = at;
+                resp = _systemService.ChildDelete<Attachement>(req);
             }
-            PostResponse<Attachement> resp = _systemService.UploadMultipleAttachments(req);
-            if(!resp.Success)
+
+
+
+            if (!resp.Success)
             {
                 X.Msg.Alert(Resources.Common.ResetPassword, resp.Summary).Show();
                 return;
             }
+
             Notification.Show(new NotificationConfig
             {
                 Title = Resources.Common.Notification,
                 Icon = Icon.Information,
                 Html = Resources.Common.RecordUpdatedSucc
-                           , HideDelay=1000,
+                           ,
+                HideDelay = 1000,
                 CloseVisible = true
             });
             imageSelectionWindow.Hide();
@@ -1209,29 +1225,20 @@ namespace AionHR.Web.UI.Forms
                 X.Msg.Alert(Resources.Common.Error, response.Summary).Show();
                 return;
             }
-            employeePhoto.ImageUrl = response.result.pictureUrl + "?x=" + DateTime.Now;
+            employeePhoto.ImageUrl = response.result.pictureUrl;
         }
 
         protected void DisplayTeam(object sender, DirectEventArgs e)
         {
-            EmployeeListRequest empRequest = new EmployeeListRequest();
-            empRequest.BranchId = "0";
-            empRequest.DepartmentId = "0";
-            empRequest.Filter = searchTrigger.Text;
-            if (!string.IsNullOrEmpty(inactivePref.Text) && inactivePref.Value.ToString() != "")
-            {
-                empRequest.IncludeIsInactive = Convert.ToInt32(inactivePref.Value);
-            }
-            else
-            {
-                empRequest.IncludeIsInactive = 2;
-            }
-            empRequest.SortBy = "firstName";
+            TeamMembersListRequest empRequest = new TeamMembersListRequest();
+            empRequest.EmployeeId = Convert.ToInt32(CurrentEmployee.Text);
+
+
             empRequest.Size = "30";
             empRequest.StartAt = "1";
-            
 
-            ListResponse<Employee> emps = _employeeService.GetAll<Employee>(empRequest);
+
+            ListResponse<TeamMember> emps = _employeeService.ChildGetAll<TeamMember>(empRequest);
             TeamStore.DataSource = emps.Items;
             TeamStore.DataBind();
             TeamWindow.Show();

@@ -148,7 +148,7 @@ namespace AionHR.Web.UI.Forms
             
             string id = e.ExtraParams["id"];
             string type = e.ExtraParams["type"];
-
+            string path = e.ExtraParams["path"];
             switch (type)
             {
             
@@ -158,7 +158,7 @@ namespace AionHR.Web.UI.Forms
                         Yes = new MessageBoxButtonConfig
                         {
                             //We are call a direct request metho for deleting a record
-                            Handler = String.Format("App.direct.DeleteRecord({0})", id),
+                            Handler = String.Format("App.direct.DeleteAttachment({0})", id),
                             Text = Resources.Common.Yes
                         },
                         No = new MessageBoxButtonConfig
@@ -169,8 +169,8 @@ namespace AionHR.Web.UI.Forms
                     }).Show();
                     break;
 
-                case "colAttach":
-
+                case "imgAttach":
+                    DownloadFile(path);
                     //Here will show up a winow relatice to attachement depending on the case we are working on
                     break;
                 default:
@@ -180,55 +180,7 @@ namespace AionHR.Web.UI.Forms
 
         }
 
-        [DirectMethod]
-        public void DeleteRecord(string index)
-        {
-            try
-            {
-                //Step 1 Code to delete the object from the database 
-                Case s = new Case();
-                s.recordId = index;
-                s.employeeId = 0;
-                s.employeeName = new EmployeeName();
-                s.details = "";
-                s.date = DateTime.Now;
-                s.closedDate = DateTime.Now;
-                s.status = 0;
-
-
-                PostRequest<Case> req = new PostRequest<Case>();
-                req.entity = s;
-                PostResponse<Case> r = _caseService.Delete<Case>(req);
-                if (!r.Success)
-                {
-                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.Error, r.Summary).Show();
-                    return;
-                }
-                else
-                {
-                    //Step 2 :  remove the object from the store
-                    Store1.Remove(index);
-
-                    //Step 3 : Showing a notification for the user 
-                    Notification.Show(new NotificationConfig
-                    {
-                        Title = Resources.Common.Notification,
-                        Icon = Icon.Information,
-                        Html = Resources.Common.RecordDeletedSucc
-                    });
-                }
-
-            }
-            catch (Exception ex)
-            {
-                //In case of error, showing a message box to the user
-                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorDeletingRecord).Show();
-
-            }
-
-        }
+     
 
         protected void btnDeleteAll(object sender, DirectEventArgs e)
         {
@@ -422,10 +374,10 @@ namespace AionHR.Web.UI.Forms
             {
                 //Step 1 Code to delete the object from the database 
                 Attachement n = new Attachement();
-                n.classId = ClassId.CMCA;
+                n.classId = ClassId.CSFI;
                 n.recordId = 0;
                 n.seqNo = Convert.ToInt16(index);
-
+                
 
                 PostRequest<Attachement> req = new PostRequest<Attachement>();
                 req.entity = n;

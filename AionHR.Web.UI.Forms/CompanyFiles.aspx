@@ -9,7 +9,7 @@
     <title></title>
     <link rel="stylesheet" type="text/css" href="CSS/Common.css" />
     <link rel="stylesheet" href="CSS/LiveSearch.css" />
-    <script type="text/javascript" src="Scripts/CompanyFiles.js?id=2" ></script>
+    <script type="text/javascript" src="Scripts/CompanyFiles.js?id=3" ></script>
    <script src="Scripts/jquery.min.js" type="text/javascript"></script>
     
    
@@ -56,11 +56,11 @@
          $("#input-ke-1").fileinput({
            
              theme: 'explorer',
-             uploadUrl: 'SystemAttachmentsUploader.ashx?recordId=0&classId=' +document.getElementById("CompanyFilesClassId").value ,
+             uploadUrl: 'SystemAttachmentsUploader.ashx?recordId=0&classId=' + document.getElementById("CompanyFilesClassId").value,
              overwriteInitial: false,
              initialPreviewAsData: true,
              uploadAsync: true,
-             language:document.getElementById('CurrentLanguage').value,
+             language: document.getElementById('CurrentLanguage').value,
              showZoom:false,
              showRemove: false,
            //  uploadExtraData: { id: $($(this).find('select')[0]).val() },
@@ -106,7 +106,7 @@
            
              
          });
-         
+        
          
          $('#input-ke-1').on('filepreupload', function (event, data, previewId, index) {
              var form = data.form, files = data.files, extra = data.extra,
@@ -114,7 +114,7 @@
              console.log($(this).find('select')[0]);
          });
        
-
+  
 
          $('#input-ke-1').on('filebatchuploaderror', function (event, data, msg) {
              var form = data.form, files = data.files, extra = data.extra,
@@ -123,17 +123,20 @@
              // get message
              alert(msg);
          });
+        
          $('#input-ke-1').on('filebatchuploadcomplete', function (event, data, msg) {
              
-             App.direct.FillFilesStore(document.getElementById('currentCase').value);
+             App.Store1.reload();
              App.AttachmentsWindow.close();
              
          });
+        
          $('#input-ke-1').on('filebatchpreupload', function (event, data, previewId, index) {
              var form = data.form, files = data.files, extra = data.extra,
                  response = data.response, reader = data.reader;
              console.log('File batch pre upload');
          });
+      
          $('#input-ke-1').on('fileloaded', function (event, file, previewId, index, reader) {
              var x = document.getElementsByName("values");
           
@@ -148,6 +151,7 @@
                  }
              
          });
+        
      }
      
  </script>
@@ -179,23 +183,24 @@
                 </ext:PageProxy>
             </Proxy>
             <Model>
-                <ext:Model ID="Model1" runat="server" IDProperty="recordId">
+                <ext:Model ID="Model1" runat="server" IDProperty="seqNo">
                     <Fields>
 
                         <ext:ModelField Name="recordId" />
                         
-                        <ext:ModelField Name="name" />
+                        <ext:ModelField Name="fileName" />
                         <ext:ModelField Name="folderId" />
                         <ext:ModelField Name="folderName" />
                         <ext:ModelField Name="date" />
                         <ext:ModelField Name="url" />
+                         <ext:ModelField Name="seqNo" />
                         <%--<ext:ModelField Name="reference" />--%>
                       
                                </Fields>
                 </ext:Model>
             </Model>
             <Sorters>
-                <ext:DataSorter Property="recordId" Direction="ASC" />
+                <ext:DataSorter Property="SeqNo" Direction="ASC" />
             </Sorters>
         </ext:Store>
 
@@ -230,26 +235,7 @@
                                     </DirectEvents>
                                 </ext:Button>
                                 <ext:ToolbarSeparator></ext:ToolbarSeparator>
-                                <ext:Button Visible="false" ID="btnDeleteSelected" runat="server" Text="<%$ Resources:Common , DeleteAll %>" Icon="Delete">
-                                 <Listeners>
-                                        <Click Handler="CheckSession();"></Click>
-                                    </Listeners>
-                                    <DirectEvents>
-                                        <Click OnEvent="btnDeleteAll">
-                                            <EventMask ShowMask="true" />
-                                        </Click>
-                                    </DirectEvents>
-                                </ext:Button>
-                                <ext:ToolbarFill ID="ToolbarFillExport" runat="server" />
-                                 <ext:TextField ID="searchTrigger" runat="server" EnableKeyEvents="true" Width="180" >
-                                        <Triggers>
-                                            <ext:FieldTrigger Icon="Search" />
-                                        </Triggers>
-                                        <Listeners>
-                                            <KeyPress Fn="enterKeyPressSearchHandler" Buffer="100" />
-                                            <TriggerClick Handler="#{Store1}.reload();" />
-                                        </Listeners>
-                                    </ext:TextField>
+                               
                             
                             </Items>
                         </ext:Toolbar>
@@ -259,9 +245,9 @@
                     <ColumnModel ID="ColumnModel1" runat="server" SortAscText="<%$ Resources:Common , SortAscText %>" SortDescText="<%$ Resources:Common ,SortDescText  %>" SortClearText="<%$ Resources:Common ,SortClearText  %>" ColumnsText="<%$ Resources:Common ,ColumnsText  %>" EnableColumnHide="false" Sortable="false" >
                         <Columns>
                             <ext:Column ID="ColRecordId" Visible="false" DataIndex="recordId" runat="server" />
-                            <ext:Column    CellCls="cellLink" ID="ColName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldName%>" DataIndex="name" Flex="2" Hideable="false">
+                            <ext:Column    CellCls="cellLink" ID="ColName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldName%>" DataIndex="fileName" Flex="2" Hideable="false">
                         </ext:Column>
-                                 <ext:Column    CellCls="cellLink" ID="Column1" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldFolder%>" DataIndex="folderId" Flex="2" Hideable="false">
+                                 <ext:Column    CellCls="cellLink" ID="Column1" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldFolderName%>" DataIndex="folderName" Flex="2" Hideable="false">
                         </ext:Column>
                               <ext:DateColumn  ID="dateCol" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDate%>" DataIndex="date" Flex="2" Hideable="false" >
                                 <Renderer Handler="var s = moment(record.data['date']);   return s.calendar();" />
@@ -354,10 +340,11 @@
                         <Render Handler="this.on('cellclick', cellClick);" />
                     </Listeners>
                     <DirectEvents>
-                        <CellClick OnEvent="PoPuP">
-                            <EventMask ShowMask="true" />
+                        <CellClick OnEvent="PoPuP"  IsUpload="true" FormID="form1">
+                  
                             <ExtraParams>
                                 <ext:Parameter Name="id" Value="record.getId()" Mode="Raw" />
+                                 <ext:Parameter Name="path" Value="record.data['url']" Mode="Raw" />
                                 <ext:Parameter Name="type" Value="getCellType( this, rowIndex, cellIndex)" Mode="Raw" />
                             </ExtraParams>
 
@@ -404,7 +391,7 @@
                     <Listeners>
                       
                         
-                        <AfterLayout Handler=" $('#input-ke-1').fileinput('destroy'); initBootstrap(); document.getElementById('caseId').value = document.getElementById('currentCase').value;" />
+                        <AfterLayout Handler=" $('#input-ke-1').fileinput('destroy'); initBootstrap(); " />
                        
                     </Listeners>
                 </ext:Panel>

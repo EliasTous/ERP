@@ -135,6 +135,9 @@
   <data name="FieldFile" xml:space="preserve">
     <value>File</value>
   </data>
+  <data name="FieldFolderName" xml:space="preserve">
+    <value>Folder</value>
+  </data>
   <data name="FieldRemarks" xml:space="preserve">
     <value>Remakrs</value>
   </data>

@@ -126,7 +126,13 @@
   <data name="FieldFolder" xml:space="preserve">
     <value>Folder</value>
   </data>
+  <data name="FieldFolderName" xml:space="preserve">
+    <value>Folder</value>
+  </data>
   <data name="FieldName" xml:space="preserve">
     <value>Name</value>
+  </data>
+  <data name="WindowTitle" xml:space="preserve">
+    <value>CompanyFiles</value>
   </data>
 </root>

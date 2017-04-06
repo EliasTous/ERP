@@ -24,7 +24,7 @@ namespace AionHR.Web.UI.Forms
         {
             context.Response.ContentType = "application/javascript";
             SystemAttachmentsPostRequest req = new SystemAttachmentsPostRequest();
-            req.entity = new Model.System.Attachement() { classId = Convert.ToInt32(context.Request.QueryString["classId"]), recordId = Convert.ToInt32(context.Request.QueryString["recordId"]), folderId= Convert.ToInt32(context.Request.Form["id"]), fileName = context.Request.Files[0].FileName  };
+            req.entity = new Model.System.Attachement() { classId = Convert.ToInt32(context.Request.QueryString["classId"]), recordId = Convert.ToInt32(context.Request.QueryString["recordId"]), folderId= Convert.ToInt32(context.Request.Form["id"]), fileName = context.Request.Files[0].FileName,seqNo= null };
             //write your handler implementation here.
             if (context.Request.Files.Count <= 0)
             {

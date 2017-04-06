@@ -10,6 +10,7 @@ using AionHR.Infrastructure.Session;
 using AionHR.Model.Employees.Profile;
 using AionHR.Infrastructure.Domain;
 using AionHR.Infrastructure.WebService;
+using AionHR.Model.System;
 
 namespace AionHR.Services.Implementations
 {
@@ -51,6 +52,17 @@ namespace AionHR.Services.Implementations
             ListResponse<T> list= base.GetAll<T>(request);
             list.Items.ForEach(t => { if (string.IsNullOrEmpty((t as Employee).pictureUrl)) (t as Employee).pictureUrl = "images/empPhoto.jpg"; });
             return list;
+        }
+
+        public PostResponse<Attachement> UploadEmployeePhoto(EmployeeUploadPhotoRequest request)
+        {
+            PostResponse<Attachement> response;
+            var headers = SessionHelper.GetAuthorizationHeadersForUser();
+            PostWebServiceResponse webResponse = _employeeRepository.UploadEmployeePhoto(request.entity, request.photoName, request.photoData, headers);
+            response = CreateServiceResponse<PostResponse<Attachement>>(webResponse);
+            if (webResponse != null)
+                response.recordId = webResponse.recordId;
+            return response;
         }
 
         protected override dynamic GetRepository()

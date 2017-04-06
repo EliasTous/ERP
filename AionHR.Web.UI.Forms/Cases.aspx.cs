@@ -854,6 +854,7 @@ namespace AionHR.Web.UI.Forms
             ListResponse<SystemFolder> docs = _systemService.ChildGetAll<SystemFolder>(req);
             if(!docs.Success)
             {
+                X.Msg.Alert(Resources.Common.Error, docs.Summary ).Show();
                 return;
             }
             List<object> options = new List<object>();
