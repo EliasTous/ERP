@@ -681,4 +681,7 @@
   <data name="MediaItems" xml:space="preserve">
     <value>Media Items</value>
   </data>
+  <data name="Folders" xml:space="preserve">
+    <value>Folders</value>
+  </data>
 </root>

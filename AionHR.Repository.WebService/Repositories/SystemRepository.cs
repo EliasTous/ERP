@@ -24,26 +24,38 @@ namespace AionHR.Repository.WebService.Repositories
             base.ServiceURL = ApplicationSettingsFactory.GetApplicationSettings().BaseURL + serviceName ;
 
             ChildAddOrUpdateLookup.Add(typeof(Nationality), "setNA");
-            ChildGetAllLookup.Add(typeof(Nationality), "qryNA");
-            ChildGetLookup.Add(typeof(Nationality), "getNA");
             ChildAddOrUpdateLookup.Add(typeof(Currency), "setCU");
-            ChildGetAllLookup.Add(typeof(Currency), "qryCU");
-            ChildGetLookup.Add(typeof(Currency), "getCU");
             ChildAddOrUpdateLookup.Add(typeof(UserInfo), "setUS");
-            ChildGetAllLookup.Add(typeof(UserInfo), "qryUS");
+            ChildAddOrUpdateLookup.Add(typeof(SystemFolder), "setFO");
+
+
+
             ChildGetLookup.Add(typeof(UserInfo), "getUS");
             ChildGetLookup.Add(typeof(TransactionLog), "getTL");
+            ChildGetLookup.Add(typeof(SystemFolder), "getFO");
+            ChildGetLookup.Add(typeof(KeyValuePair<string, string>), "getDE");
+            ChildGetLookup.Add(typeof(Currency), "getCU");
+            ChildGetLookup.Add(typeof(Nationality), "getNA");
 
 
             ChildDeleteLookup.Add(typeof(Nationality) ,"delNA");
             ChildDeleteLookup.Add(typeof(UserInfo), "delUS");
             ChildDeleteLookup.Add(typeof(Currency), "delCU");
             ChildDeleteLookup.Add(typeof(Attachement), "delAT");
-            ChildGetLookup.Add(typeof(KeyValuePair<string, string>), "getDE");
+            ChildDeleteLookup.Add(typeof(SystemFolder), "delFO");
+
+
+
             ChildGetAllLookup.Add(typeof(Attachement), "qryAT");
             ChildGetAllLookup.Add(typeof(KeyValuePair<string,string>), "qryDE");
             ChildGetAllLookup.Add(typeof(TransactionLog), "qryTL");
             ChildGetAllLookup.Add(typeof(SystemFolder), "qryFO");
+            ChildGetAllLookup.Add(typeof(Nationality), "qryNA");
+            ChildGetAllLookup.Add(typeof(Currency), "qryCU");
+            ChildGetAllLookup.Add(typeof(UserInfo), "qryUS");
+
+
+
 
             ChildAddOrUpdateLookup.Add(typeof(KeyValuePair<string, string>[]), "arrDE");
 
