@@ -1105,6 +1105,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Media Items.
+        /// </summary>
+        internal static string MediaItems {
+            get {
+                return ResourceManager.GetString("MediaItems", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to .
         /// </summary>
         internal static string Modules {

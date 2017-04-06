@@ -1092,12 +1092,12 @@
                                     <ext:Column runat="server" DataIndex="recordId" Visible ="false" />
                                       <ext:ComponentColumn runat="server" DataIndex="pictureUrl">
                                 <Component>
-                                    <ext:Image runat="server" Height="100" Width="50">
+                                    <ext:Image runat="server" Height="100" Width="50" ImageUrl="Images/empPhoto.jpg">
                                     </ext:Image>
 
                                 </Component>
                                 <Listeners>
-                                    <Bind Handler=" cmp.setImageUrl(record.get('pictureUrl')); " />
+                                    <Bind Handler="if(record.get('pictureUrl')!='') cmp.setImageUrl(record.get('pictureUrl')); " />
                                 </Listeners>
                             </ext:ComponentColumn>
                                     <ext:Column runat="server" DataIndex="name.fullName" Flex="1" >

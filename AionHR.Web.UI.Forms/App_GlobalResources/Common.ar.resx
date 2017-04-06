@@ -127,16 +127,16 @@
     <value>AionHR</value>
   </data>
   <data name="CaseManagement" xml:space="preserve">
-    <value>إدارة الحالة</value>
+    <value>إدارة القضية</value>
   </data>
   <data name="Cases" xml:space="preserve">
-    <value>الحالات</value>
+    <value>القضايا</value>
   </data>
   <data name="CaseSensitive" xml:space="preserve">
     <value>أحرف متطابقة</value>
   </data>
   <data name="CasesLeaf" xml:space="preserve">
-    <value>ادارة الحالات</value>
+    <value>ادارة القضايا</value>
   </data>
   <data name="ChangePassword" xml:space="preserve">
     <value>تغيير كلمة السر</value>
@@ -217,7 +217,7 @@
     <value>استعادة كلمة المرور</value>
   </data>
   <data name="Scheduler" xml:space="preserve">
-    <value>جدول العمل</value>
+    <value>إدارة الدوام</value>
   </data>
   <data name="SessionDisconnected" xml:space="preserve">
     <value>انتهت مهلة الجلسة!</value>
@@ -268,7 +268,7 @@
     <value>نعم</value>
   </data>
   <data name="Add" xml:space="preserve">
-    <value />
+    <value>اضافة</value>
   </data>
   <data name="AfterPageText" xml:space="preserve">
     <value>من  {0}</value>
@@ -342,11 +342,173 @@
   <data name="TitleSavingErrorMessage" xml:space="preserve">
     <value>خطأ خلال الحفظ,حاول مرة أخرى</value>
   </data>
-  <data name="FridayText" xml:space="preserve">
+  <data name="Activities" xml:space="preserve">
+    <value>النشاطات</value>
+  </data>
+  <data name="ArabicLanguage" xml:space="preserve">
+    <value>اللغة العربية</value>
+  </data>
+  <data name="AttendanceDay" xml:space="preserve">
+    <value>الدوام اليومي</value>
+  </data>
+  <data name="AttendanceSchedule" xml:space="preserve">
+    <value>جداول الدوام</value>
+  </data>
+  <data name="Back" xml:space="preserve">
+    <value>تراجع</value>
+  </data>
+  <data name="BiometricDevices" xml:space="preserve">
+    <value>أجهزة البصمة</value>
+  </data>
+  <data name="Branches" xml:space="preserve">
+    <value>الفروع</value>
+  </data>
+  <data name="CompanyStructure" xml:space="preserve">
+    <value>هيكلية الشركة</value>
+  </data>
+  <data name="Currencies" xml:space="preserve">
+    <value>العملات</value>
+  </data>
+  <data name="DayFriday" xml:space="preserve">
     <value>الجمعة</value>
   </data>
-  <data name="MondayText" xml:space="preserve">
+  <data name="DayMonday" xml:space="preserve">
     <value>الاثنين</value>
+  </data>
+  <data name="DaySaturday" xml:space="preserve">
+    <value>السبت</value>
+  </data>
+  <data name="DaySunday" xml:space="preserve">
+    <value>الأحد</value>
+  </data>
+  <data name="DayThursday" xml:space="preserve">
+    <value>الخميس</value>
+  </data>
+  <data name="DayTuesday" xml:space="preserve">
+    <value>الثلاثاء</value>
+  </data>
+  <data name="DayTypes" xml:space="preserve">
+    <value>أنواع الأيام</value>
+  </data>
+  <data name="DayWednesday" xml:space="preserve">
+    <value>الأربعاء</value>
+  </data>
+  <data name="Departments" xml:space="preserve">
+    <value>الأقسام</value>
+  </data>
+  <data name="EnglishLanguage" xml:space="preserve">
+    <value>اللغة الانكليزية</value>
+  </data>
+  <data name="Female" xml:space="preserve">
+    <value>انثى</value>
+  </data>
+  <data name="LeaveManagement" xml:space="preserve">
+    <value>إدارة الإجازات</value>
+  </data>
+  <data name="Male" xml:space="preserve">
+    <value>ذكر</value>
+  </data>
+  <data name="Nationalities" xml:space="preserve">
+    <value>الجنسيات</value>
+  </data>
+  <data name="Positions" xml:space="preserve">
+    <value>المناصب</value>
+  </data>
+  <data name="Religion0" xml:space="preserve">
+    <value>مسيحي</value>
+  </data>
+  <data name="Religion1" xml:space="preserve">
+    <value>مسلم</value>
+  </data>
+  <data name="Religion2" xml:space="preserve">
+    <value>يهودي</value>
+  </data>
+  <data name="Religion3" xml:space="preserve">
+    <value>بوذي</value>
+  </data>
+  <data name="Religion4" xml:space="preserve">
+    <value>سيخي</value>
+  </data>
+  <data name="Religion5" xml:space="preserve">
+    <value>هندوسي</value>
+  </data>
+  <data name="Religion6" xml:space="preserve">
+    <value>أخرى</value>
+  </data>
+  <data name="Sponsors" xml:space="preserve">
+    <value>الكفلاء</value>
+  </data>
+  <data name="SystemSettings" xml:space="preserve">
+    <value>إعدادات النظام</value>
+  </data>
+  <data name="TimeAttendance" xml:space="preserve">
+    <value>الدوام</value>
+  </data>
+  <data name="Transfers" xml:space="preserve">
+    <value>عمليات النقل</value>
+  </data>
+  <data name="Users" xml:space="preserve">
+    <value>المستخدمين</value>
+  </data>
+  <data name="VacationSchedules" xml:space="preserve">
+    <value>جداول الإجازات</value>
+  </data>
+  <data name="WorkingCalendars" xml:space="preserve">
+    <value>تقاويم العمل</value>
+  </data>
+  <data name="AllowanceTypes" xml:space="preserve">
+    <value>أنواع التعويضات</value>
+  </data>
+  <data name="AssetCategories" xml:space="preserve">
+    <value>أصناف الأصول</value>
+  </data>
+  <data name="BonusTypes" xml:space="preserve">
+    <value>أنواع الحوافز</value>
+  </data>
+  <data name="CertificateLevels" xml:space="preserve">
+    <value>مستويات الشهادة</value>
+  </data>
+  <data name="Dashboard" xml:space="preserve">
+    <value>شاشة المراقبة</value>
+  </data>
+  <data name="DayYearMonth" xml:space="preserve">
+    <value>يوم - سنة - شهر</value>
+  </data>
+  <data name="Divisions" xml:space="preserve">
+    <value>الإدارات العليا</value>
+  </data>
+  <data name="DocumentTypes" xml:space="preserve">
+    <value>أنواع الوثائق</value>
+  </data>
+  <data name="EntitlementDeduction" xml:space="preserve">
+    <value>الخصومات والاستحقاقات</value>
+  </data>
+  <data name="FirstNameLastName" xml:space="preserve">
+    <value>الاسم الأول، الاسم الأخير</value>
+  </data>
+  <data name="FirstNameMiddleNameLastName" xml:space="preserve">
+    <value>الاسم الأول، الاسم الأوسط، الاسم الأخير</value>
+  </data>
+  <data name="LastNameFirstName" xml:space="preserve">
+    <value>الاسم الأخير، الاسم الأول</value>
+  </data>
+  <data name="LeaveRequests" xml:space="preserve">
+    <value>طلبات الإجازات</value>
+  </data>
+  <data name="LeaveTypes" xml:space="preserve">
+    <value>أنواع الإجازات</value>
+  </data>
+  <data name="MonthDayYear" xml:space="preserve">
+    <value>شهر - يوم - سنة</value>
+  </data>
+  <data name="MonthYearDay" xml:space="preserve">
+    <value>شهر - سنة - يوم</value>
+  </data>
+  <data name="Routers" xml:space="preserve">
+    <value>الموجهات</value>
+  </data>
+  <data name="SalaryChangeReasons" xml:space="preserve">
+    <value>أسباب تغيير الراتب</value>
   </data>
   <data name="SaturdayText" xml:space="preserve">
     <value>السبت</value>
@@ -354,13 +516,163 @@
   <data name="SundayText" xml:space="preserve">
     <value>الأحد</value>
   </data>
+  <data name="SystemDefaults" xml:space="preserve">
+    <value>الإعدادات الإفتراضية للنظام</value>
+  </data>
   <data name="ThursdayText" xml:space="preserve">
     <value>الخميس</value>
+  </data>
+  <data name="TrainingTypes" xml:space="preserve">
+    <value>أنواع التدريب</value>
   </data>
   <data name="TuesdayText" xml:space="preserve">
     <value>الثلاثاء</value>
   </data>
   <data name="WednesdayText" xml:space="preserve">
     <value>الأربعاء</value>
+  </data>
+  <data name="YearDayMonth" xml:space="preserve">
+    <value>سنة - يوم - شهر</value>
+  </data>
+  <data name="YearMonthDay" xml:space="preserve">
+    <value>سنة - شهر - يوم</value>
+  </data>
+  <data name="April" xml:space="preserve">
+    <value>أبريل</value>
+  </data>
+  <data name="CaseCommands" xml:space="preserve">
+    <value>تعليقات القضايا</value>
+  </data>
+  <data name="DayMonthYear" xml:space="preserve">
+    <value>يوم - شهر - سنة</value>
+  </data>
+  <data name="December" xml:space="preserve">
+    <value>ديسمبر</value>
+  </data>
+  <data name="February" xml:space="preserve">
+    <value>فبراير</value>
+  </data>
+  <data name="Files" xml:space="preserve">
+    <value>الملفات</value>
+  </data>
+  <data name="FridayText" xml:space="preserve">
+    <value>الجمعة</value>
+  </data>
+  <data name="January" xml:space="preserve">
+    <value>يناير</value>
+  </data>
+  <data name="July" xml:space="preserve">
+    <value>يوليو</value>
+  </data>
+  <data name="June" xml:space="preserve">
+    <value>يونيو</value>
+  </data>
+  <data name="LeaveCalendar" xml:space="preserve">
+    <value>تقويم الإجازات</value>
+  </data>
+  <data name="March" xml:space="preserve">
+    <value>مارس</value>
+  </data>
+  <data name="May" xml:space="preserve">
+    <value>مايو</value>
+  </data>
+  <data name="Media" xml:space="preserve">
+    <value>الوسائط</value>
+  </data>
+  <data name="MediaCategory" xml:space="preserve">
+    <value>أصناف الوسائط</value>
+  </data>
+  <data name="MondayText" xml:space="preserve">
+    <value>الاثنين</value>
+  </data>
+  <data name="November" xml:space="preserve">
+    <value>نوفمبر</value>
+  </data>
+  <data name="October" xml:space="preserve">
+    <value>اكتوبر</value>
+  </data>
+  <data name="OrganizationChart" xml:space="preserve">
+    <value>المخطط التنظيمي</value>
+  </data>
+  <data name="PatternAppliedSucc" xml:space="preserve">
+    <value>تم تطبيق النموذج بنجاح</value>
+  </data>
+  <data name="September" xml:space="preserve">
+    <value>سبتمبر</value>
+  </data>
+  <data name="Setup" xml:space="preserve">
+    <value>الإعدادات</value>
+  </data>
+  <data name="August" xml:space="preserve">
+    <value>أغسطس</value>
+  </data>
+  <data name="AssetAllowances" xml:space="preserve">
+    <value>العُهد</value>
+  </data>
+  <data name="CheckTypes" xml:space="preserve">
+    <value>أنواع التحقق من الخلفية</value>
+  </data>
+  <data name="Days" xml:space="preserve">
+    <value>Vacation(Days)</value>
+  </data>
+  <data name="EmailNotFound" xml:space="preserve">
+    <value>لم يتم العثور على بريد الكتروني لإرسال رابط استعادة كلمة السر</value>
+  </data>
+  <data name="EmpOrganizationChart" xml:space="preserve">
+    <value>المخطط التنظيمي للموظفين</value>
+  </data>
+  <data name="FieldChangeType" xml:space="preserve">
+    <value>Activity</value>
+  </data>
+  <data name="FieldDate" xml:space="preserve">
+    <value>التاريخ</value>
+  </data>
+  <data name="FieldDetails" xml:space="preserve">
+    <value>التفاصيل</value>
+  </data>
+  <data name="FieldUsername" xml:space="preserve">
+    <value>المستخدم</value>
+  </data>
+  <data name="FromMonths" xml:space="preserve">
+    <value>من (أشهر)</value>
+  </data>
+  <data name="Geofences" xml:space="preserve">
+    <value>المناطق الجغرافية</value>
+  </data>
+  <data name="History" xml:space="preserve">
+    <value>التاريخ</value>
+  </data>
+  <data name="Legals" xml:space="preserve">
+    <value>Legals</value>
+  </data>
+  <data name="RecoverySentSucc" xml:space="preserve">
+    <value>Your Reset password email has been sent successfully</value>
+  </data>
+  <data name="ToMonths" xml:space="preserve">
+    <value>من(أشهر)</value>
+  </data>
+  <data name="TransactionLogTitle" xml:space="preserve">
+    <value>Title</value>
+  </data>
+  <data name="TrType1" xml:space="preserve">
+    <value>تعديل</value>
+  </data>
+  <data name="TrType2" xml:space="preserve">
+    <value>تعديل الكل</value>
+  </data>
+  <data name="TrType3" xml:space="preserve">
+    <value>حذف</value>
+  </data>
+  <data name="TrType4" xml:space="preserve">
+    <value>تنفيذ</value>
+  </data>
+  <data name="TrType5" xml:space="preserve">
+    <value>قراءة</value>
+  </data>
+  <data name="TrType6" xml:space="preserve">
+    <value>قراءة الكل</value>
+  </data>
+  <data name="TrType7" xml:space="preserve">
+    <value>ارسال بريد الكتروني</value>
   </data>
 </root>

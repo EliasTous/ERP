@@ -548,7 +548,6 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             FillScr();
             dedsStore.Reload();
             entsStore.Reload();
-            currencyId.Select(_systemService.SessionHelper.GetDefaultCurrency());
             effectiveDate.SelectedDate = DateTime.Today;
             ENSeq.Text = "0";
             DESeq.Text = "0";
@@ -562,7 +561,6 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             BOForm.Reset();
             this.EditBOWindow.Title = Resources.Common.AddNewRecord;
             FillCurrencyBO();
-            CurrencyCombo.Select(_systemService.SessionHelper.GetDefaultCurrency());
             date.SelectedDate = DateTime.Today;
             FillBT();
 

@@ -830,7 +830,7 @@ namespace AionHR.Web.UI.Forms
 
         }
 
-        private void FillLeftPanel()
+        private void FillLeftPanel(bool shouldUpdateGrid = false)
         {
             RecordRequest r = new RecordRequest();
             r.RecordID = CurrentEmployee.Text.ToString();
@@ -842,7 +842,8 @@ namespace AionHR.Web.UI.Forms
                 return;
             }
             EmployeeQuickView forSummary = qv.result;
-
+            if (string.IsNullOrEmpty(forSummary.pictureUrl))
+                forSummary.pictureUrl = "Images/empPhoto.jpg";
             //X.Call("FillLeftPanel",
             //    response.result.name.fullName + "<br />",
             //    response.result.departmentName + "<br />",
@@ -864,11 +865,15 @@ namespace AionHR.Web.UI.Forms
                 reportsToLbl.Html = GetLocalResourceObject("FieldReportsTo").ToString() + " :" + forSummary.reportToName.fullName + "<br />";
             //employeeName.Text = resp.result.name.firstName + resp.result.name.lastName;
 
-            imgControl.ImageUrl = forSummary.pictureUrl;
-            employeePhoto.ImageUrl = forSummary.pictureUrl;
+            imgControl.ImageUrl = forSummary.pictureUrl + "?x=" + DateTime.Now.Ticks;
+            employeePhoto.ImageUrl = forSummary.pictureUrl + "?x=" + DateTime.Now.Ticks; ;
 
 
-            CurrentEmployeePhotoName.Text = forSummary.pictureUrl; ;
+            CurrentEmployeePhotoName.Text = forSummary.pictureUrl + "?x=" + DateTime.Now.Ticks;
+            ModelProxy record = Store1.GetById(CurrentEmployee.Text);
+            record.Set("pictureUrl", imgControl.ImageUrl);
+            record.Commit();
+
         }
 
         #region combobox dynamic insert
@@ -1206,8 +1211,10 @@ namespace AionHR.Web.UI.Forms
                 HideDelay = 1000,
                 CloseVisible = true
             });
+          
+
             imageSelectionWindow.Hide();
-            FillLeftPanel();
+            FillLeftPanel(true);
 
 
         }
@@ -1225,7 +1232,7 @@ namespace AionHR.Web.UI.Forms
                 X.Msg.Alert(Resources.Common.Error, response.Summary).Show();
                 return;
             }
-            employeePhoto.ImageUrl = response.result.pictureUrl;
+            employeePhoto.ImageUrl = response.result.pictureUrl + "?x=" + DateTime.Now.Ticks; 
         }
 
         protected void DisplayTeam(object sender, DirectEventArgs e)
