@@ -210,7 +210,7 @@
                                                                         <Items>
                                                                             <ext:MenuItem runat="server" Text="<%$Resources: Common , MediaCategory%>">
                                                                                 <Listeners>
-                                                                                    <Click Handler="openNewTab('mediaCategory', 'MediaCategory.aspx', #{mcTitle}.value, 'icon-Employees')" />
+                                                                                    <Click Handler="openNewTab('mediaCategory', 'MediaCategories.aspx', #{mcTitle}.value, 'icon-Employees')" />
                                                                                 </Listeners>
                                                                             </ext:MenuItem>
 

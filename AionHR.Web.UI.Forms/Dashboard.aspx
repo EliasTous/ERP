@@ -131,7 +131,7 @@
                     <TopBar>
                         <ext:Toolbar runat="server">
                             <Items>
-                                <ext:ComboBox runat="server" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" ValueField="recordId" DisplayField="name" ID="branchId" Name="branchId" FieldLabel="<%$ Resources:FieldBranch%>">
+                                <ext:ComboBox runat="server" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" ValueField="recordId" DisplayField="name" ID="branchId" Name="branchId" EmptyText="<%$ Resources:FieldBranch%>">
                                     <Store>
                                         <ext:Store runat="server" ID="branchStore">
                                             <Model>
@@ -147,12 +147,10 @@
                                     <Listeners>
                                         <FocusLeave Handler="RefreshAllGrids();" />
                                     </Listeners>
-                                    <Items>
-                                        <ext:ListItem Text="-----All-----" Value="0" />
-                                    </Items>
+                                 
                                 </ext:ComboBox>
 
-                                <ext:ComboBox runat="server" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" ValueField="recordId" DisplayField="name" ID="departmentId" Name="departmentId" FieldLabel="<%$ Resources:FieldDepartment%>">
+                                <ext:ComboBox runat="server" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" ValueField="recordId" DisplayField="name" ID="departmentId" Name="departmentId" EmptyText="<%$ Resources:FieldDepartment%>">
                                     <Store>
                                         <ext:Store runat="server" ID="departmentStore">
                                             <Model>
@@ -169,12 +167,10 @@
                                         <FocusLeave Handler="RefreshAllGrids();" />
                                         
                                     </Listeners>
-                                    <Items>
-                                        <ext:ListItem Text="-----All-----" Value="0" />
-                                    </Items>
+                                
 
                                 </ext:ComboBox>
-                                <ext:ComboBox runat="server" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" ValueField="recordId" DisplayField="name" ID="ComboBox1" Name="positionId" FieldLabel="<%$ Resources:FieldPosition%>">
+                                <ext:ComboBox runat="server" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" ValueField="recordId" DisplayField="name" ID="ComboBox1" Name="positionId" EmptyText="<%$ Resources:FieldPosition%>">
                                     <Store>
                                         <ext:Store runat="server" ID="positionStore">
                                             <Model>
@@ -190,9 +186,7 @@
                                     <Listeners>
                                         <FocusLeave Handler="RefreshAllGrids();" />
                                     </Listeners>
-                                    <Items>
-                                        <ext:ListItem Text="-----All-----" Value="0" />
-                                    </Items>
+                                
                                 </ext:ComboBox>
 
                             </Items>
