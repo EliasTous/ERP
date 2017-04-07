@@ -367,6 +367,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to News.
+        /// </summary>
+        internal static string CompanyNews {
+            get {
+                return ResourceManager.GetString("CompanyNews", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Company Structure.
         /// </summary>
         internal static string CompanyStructure {
