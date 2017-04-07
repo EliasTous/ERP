@@ -22,7 +22,7 @@ namespace AionHR.Services.Implementations
         public CompanyStructureService(ICompanyStructureRepository companyStructureRepository, SessionHelper sessionHelper) : base(sessionHelper)
         {
             _companyRepository = companyStructureRepository;
-
+           
         }
        
 

@@ -56,6 +56,7 @@ namespace AionHR.Repository.WebService.Repositories
             ChildGetAllLookup.Add(typeof(EmployeeEmergencyContact), "qryEC");
             ChildGetAllLookup.Add(typeof(RelationshipType), "qryRT");
             ChildGetAllLookup.Add(typeof(TeamMember), "qryTM");
+            ChildGetAllLookup.Add(typeof(EmployeeContact), "qryCO");
 
 
             ChildGetLookup.Add(typeof(Sponsor), "getSP");
@@ -83,7 +84,7 @@ namespace AionHR.Repository.WebService.Repositories
             ChildGetLookup.Add(typeof(EmployeeEmergencyContact), "getEC");
             ChildGetLookup.Add(typeof(RelationshipType), "getRT");
             ChildGetLookup.Add(typeof(EmployeeQuickView), "getQV");
-            
+            ChildGetLookup.Add(typeof(EmployeeContact), "getCO");
 
 
 
@@ -114,6 +115,7 @@ namespace AionHR.Repository.WebService.Repositories
             ChildAddOrUpdateLookup.Add(typeof(AssetAllowance), "setAA");
             ChildAddOrUpdateLookup.Add(typeof(EmployeeEmergencyContact), "setEC");
             ChildAddOrUpdateLookup.Add(typeof(RelationshipType), "setRT");
+            ChildAddOrUpdateLookup.Add(typeof(EmployeeContact), "setCO");
 
 
 
@@ -140,6 +142,7 @@ namespace AionHR.Repository.WebService.Repositories
             ChildDeleteLookup.Add(typeof(TerminationReason), "detTR");
             ChildDeleteLookup.Add(typeof(AssetAllowance), "delAA");
             ChildDeleteLookup.Add(typeof(EmployeeEmergencyContact), "delEC");
+            ChildDeleteLookup.Add(typeof(EmployeeContact), "delCO");
             ChildDeleteLookup.Add(typeof(RelationshipType), "delRT");
 
         }

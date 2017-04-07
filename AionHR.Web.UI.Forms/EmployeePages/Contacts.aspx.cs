@@ -23,6 +23,7 @@ using AionHR.Model.Company.Structure;
 using AionHR.Model.System;
 using AionHR.Model.Employees.Profile;
 using System.Net;
+using AionHR.Infrastructure.JSON;
 
 namespace AionHR.Web.UI.Forms.EmployeePages
 {
@@ -101,7 +102,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             }
         }
 
-        private EmployeeContact GetById(string id)
+        private EmployeeContact GetCOById(string id)
         {
             RecordRequest r = new RecordRequest();
             r.RecordID = id.ToString();
@@ -114,7 +115,19 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             }
             return response.result;
         }
-
+        private EmployeeEmergencyContact GetECById(string id)
+        {
+            RecordRequest r = new RecordRequest();
+            r.RecordID = id.ToString();
+            RecordResponse<EmployeeEmergencyContact> response = _employeeService.ChildGetRecord<EmployeeEmergencyContact>(r);
+            if (!response.Success)
+            {
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, response.Summary).Show();
+                return null;
+            }
+            return response.result;
+        }
         private void FillRelationshipType()
         {
             ListRequest documentTypes = new ListRequest();
@@ -129,25 +142,82 @@ namespace AionHR.Web.UI.Forms.EmployeePages
 
         }
 
-        protected void PoPuP(object sender, DirectEventArgs e)
+        protected void PoPuPEC(object sender, DirectEventArgs e)
         {
 
 
             int id = Convert.ToInt32(e.ExtraParams["id"]);
             string type = e.ExtraParams["type"];
-            string path = e.ExtraParams["path"];
+            
             switch (type)
             {
                 case "imgEdit":
                     //Step 1 : get the object from the Web Service 
-                    EmployeeContact entity = GetById(id.ToString());
+                    EmployeeEmergencyContact entity = GetECById(id.ToString());
                     //Step 2 : call setvalues with the retrieved object
-                    this.ContactsForm.SetValues(entity);
+                    this.EmergencyContactsForm.SetValues(entity);
                     FillRelationshipType();
                     rtId.Select(entity.rtId.ToString());
 
-                    FillNationality();
-                    naId.Select(entity.addressId.countryId.ToString());
+                    FillECNationality();
+                    ecnaId.Select(entity.addressId.countryId.ToString());
+                    street1.Text = entity.addressId.street1;
+                    street2.Text = entity.addressId.street2;
+                    postalCode.Text = entity.addressId.postalCode;
+                    city.Text = entity.addressId.city;
+
+
+                    this.EditEmergencyContactWindow.Title = Resources.Common.EditWindowsTitle;
+                    this.EditEmergencyContactWindow.Show();
+                    break;
+
+                case "imgDelete":
+                    X.Msg.Confirm(Resources.Common.Confirmation, Resources.Common.DeleteOneRecord, new MessageBoxButtonsConfig
+                    {
+                        Yes = new MessageBoxButtonConfig
+                        {
+                            //We are call a direct request metho for deleting a record
+                            Handler = String.Format("App.direct.DeleteEC({0})", id),
+                            Text = Resources.Common.Yes
+                        },
+                        No = new MessageBoxButtonConfig
+                        {
+                            Text = Resources.Common.No
+                        }
+
+                    }).Show();
+                    break;
+
+                default:
+                    break;
+            }
+
+
+        }
+
+        protected void PoPuPCO(object sender, DirectEventArgs e)
+        {
+
+
+            int id = Convert.ToInt32(e.ExtraParams["id"]);
+            string type = e.ExtraParams["type"];
+           
+            switch (type)
+            {
+                case "imgEdit":
+                    //Step 1 : get the object from the Web Service 
+                    EmployeeContact entity = GetCOById(id.ToString());
+                    //Step 2 : call setvalues with the retrieved object
+                    this.ContactsForm.SetValues(entity);
+                    costreet1.Text = entity.addressId.street1;
+                    costreet2.Text = entity.addressId.street2;
+                    copostalCode.Text = entity.addressId.postalCode;
+                    cocity.Text = entity.addressId.city;
+
+                    
+
+                    FillCONationality();
+                    conaId.Select(entity.addressId.countryId.ToString());
 
 
                     this.EditContactWindow.Title = Resources.Common.EditWindowsTitle;
@@ -160,7 +230,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                         Yes = new MessageBoxButtonConfig
                         {
                             //We are call a direct request metho for deleting a record
-                            Handler = String.Format("App.direct.DeleteSkill({0})", id),
+                            Handler = String.Format("App.direct.DeleteCO({0})", id),
                             Text = Resources.Common.Yes
                         },
                         No = new MessageBoxButtonConfig
@@ -248,19 +318,31 @@ namespace AionHR.Web.UI.Forms.EmployeePages
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        protected void ADDNewRecord(object sender, DirectEventArgs e)
+        protected void ADDNewCO(object sender, DirectEventArgs e)
         {
 
             //Reset all values of the relative object
             ContactsForm.Reset();
             this.EditContactWindow.Title = Resources.Common.AddNewRecord;
-            FillRelationshipType();
-            FillNationality();     
+           
+            FillCONationality();     
 
             this.EditContactWindow.Show();
         }
 
-        protected void contactsStore_RefreshData(object sender, StoreReadDataEventArgs e)
+        protected void ADDNewEC(object sender, DirectEventArgs e)
+        {
+
+            //Reset all values of the relative object
+            EmergencyContactsForm.Reset();
+            this.EditContactWindow.Title = Resources.Common.AddNewRecord;
+            FillRelationshipType();
+            FillECNationality();
+
+            this.EditEmergencyContactWindow.Show();
+        }
+
+        protected void contactStore_RefreshData(object sender, StoreReadDataEventArgs e)
         {
 
             //GEtting the filter from the page
@@ -273,7 +355,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
 
             //in this test will take a list of News
 
-            EmployeeDocumentsListRequest request = new EmployeeDocumentsListRequest();
+            EmployeeContactsListRequest request = new EmployeeContactsListRequest();
             request.EmployeeId = Convert.ToInt32(CurrentEmployee.Text);
             ListResponse<EmployeeContact> documents = _employeeService.ChildGetAll<EmployeeContact>(request);
             if (!documents.Success)
@@ -283,12 +365,38 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             }
             this.contactStore.DataSource = documents.Items;
             e.Total = documents.count;
-
+            
             this.contactStore.DataBind();
+        }
+        protected void emergencyContactsStore_RefreshData(object sender, StoreReadDataEventArgs e)
+        {
+
+            //GEtting the filter from the page
+            string filter = string.Empty;
+            int totalCount = 1;
+
+
+
+            //Fetching the corresponding list
+
+            //in this test will take a list of News
+
+            EmployeeContactsListRequest request = new EmployeeContactsListRequest();
+            request.EmployeeId = Convert.ToInt32(CurrentEmployee.Text);
+            ListResponse<EmployeeEmergencyContact> documents = _employeeService.ChildGetAll<EmployeeEmergencyContact>(request);
+            if (!documents.Success)
+            {
+                X.Msg.Alert(Resources.Common.Error, documents.Summary).Show();
+                return;
+            }
+            this.emergencyContactStore.DataSource = documents.Items;
+            e.Total = documents.count;
+
+            this.emergencyContactStore.DataBind();
         }
 
 
-        protected void SaveDocument(object sender, DirectEventArgs e)
+        protected void SaveCO(object sender, DirectEventArgs e)
         {
 
 
@@ -296,12 +404,18 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             string id = e.ExtraParams["id"];
 
             string obj = e.ExtraParams["values"];
-            EmployeeContact b = JsonConvert.DeserializeObject<EmployeeContact>(obj);
+            JsonSerializerSettings settings = new JsonSerializerSettings();
+            CustomResolver res = new CustomResolver();
+            res.AddRule("conaId", "naId");
+            res.AddRule("costreet1", "addressId.street1");
+            settings.ContractResolver = res;
+            EmployeeContact b = JsonConvert.DeserializeObject<EmployeeContact>(obj,settings);
             b.employeeId = Convert.ToInt32(CurrentEmployee.Text);
             b.recordId = id;
             // Define the object to add or edit as null
             b.rtName = rtId.SelectedItem.Text;
-            b.addressId = new AddressBook() { street1 = street1.Text, street2 = street2.Text, city = city.Text, postalCode = postalCode.Text, countryId = b.naId };
+
+            b.addressId = new AddressBook() { street1 = costreet1.Text.Remove(costreet1.Text.Length - 1, 1), street2 = costreet2.Text.Remove(costreet2.Text.Length - 1, 1), city = cocity.Text.Remove(cocity.Text.Length - 1, 1), postalCode = copostalCode.Text.Remove(copostalCode.Text.Length - 1, 1), countryId = b.naId  ,countryName = conaId.SelectedItem.Text};
             b.employeeId = Convert.ToInt32(CurrentEmployee.Text);
             if (string.IsNullOrEmpty(id))
             {
@@ -339,7 +453,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                         });
 
                         this.EditContactWindow.Close();
-                        RowSelectionModel sm = this.contactsGrid.GetSelectionModel() as RowSelectionModel;
+                        RowSelectionModel sm = this.contactGrid.GetSelectionModel() as RowSelectionModel;
                         sm.DeselectAll();
                         sm.Select(b.recordId.ToString());
 
@@ -408,7 +522,129 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             }
         }
 
+        protected void SaveEC(object sender, DirectEventArgs e)
+        {
 
+
+            //Getting the id to check if it is an Add or an edit as they are managed within the same form.
+            string id = e.ExtraParams["id"];
+
+            string obj = e.ExtraParams["values"];
+            JsonSerializerSettings settings = new JsonSerializerSettings();
+            CustomResolver res = new CustomResolver();
+            res.AddRule("ecnaId", "naId");
+            settings.ContractResolver = res;
+            EmployeeEmergencyContact b = JsonConvert.DeserializeObject<EmployeeEmergencyContact>(obj,settings);
+            b.employeeId = Convert.ToInt32(CurrentEmployee.Text);
+            b.recordId = id;
+            // Define the object to add or edit as null
+            b.rtName = rtId.SelectedItem.Text;
+            b.addressId = new AddressBook() { street1 = street1.Text.Remove(street1.Text.Length - 1, 1), street2 = street2.Text.Remove(street2.Text.Length - 1, 1), city = city.Text.Remove(city.Text.Length - 1, 1), postalCode = postalCode.Text.Remove(postalCode.Text.Length - 1, 1), countryId = b.naId, countryName = ecnaId.SelectedItem.Text };
+            b.employeeId = Convert.ToInt32(CurrentEmployee.Text);
+            if (string.IsNullOrEmpty(id))
+            {
+
+                try
+                {
+                    //New Mode
+                    PostRequest<EmployeeEmergencyContact> request = new PostRequest<EmployeeEmergencyContact>();
+                    request.entity = b;
+
+                    PostResponse<EmployeeEmergencyContact> r = _employeeService.ChildAddOrUpdate<EmployeeEmergencyContact>(request);
+                    b.recordId = r.recordId;
+
+
+                    //check if the insert failed
+                    if (!r.Success)//it maybe be another condition
+                    {
+                        //Show an error saving...
+                        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                        X.Msg.Alert(Resources.Common.Error, r.Summary).Show();
+                        return;
+                    }
+                    else
+                    {
+
+                        //Add this record to the store 
+                        this.emergencyContactStore.Insert(0, b);
+
+                        //Display successful notification
+                        Notification.Show(new NotificationConfig
+                        {
+                            Title = Resources.Common.Notification,
+                            Icon = Icon.Information,
+                            Html = Resources.Common.RecordSavingSucc
+                        });
+
+                        this.EditEmergencyContactWindow.Close();
+                        RowSelectionModel sm = this.emergencyContactsGrid.GetSelectionModel() as RowSelectionModel;
+                        sm.DeselectAll();
+                        sm.Select(b.recordId.ToString());
+
+
+
+                    }
+                }
+                catch (Exception ex)
+                {
+                    //Error exception displaying a messsage box
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorSavingRecord).Show();
+                }
+
+
+            }
+            else
+            {
+                //Update Mode
+
+                try
+                {
+                    int index = Convert.ToInt32(id);//getting the id of the record
+                    PostRequest<EmployeeEmergencyContact> request = new PostRequest<EmployeeEmergencyContact>();
+                    request.entity = b;
+
+
+
+                    PostResponse<EmployeeEmergencyContact> r = _employeeService.ChildAddOrUpdate<EmployeeEmergencyContact>(request);
+
+
+                    //Step 3 :  Check if request fails
+                    if (!r.Success)//it maybe another check
+                    {
+                        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                        X.Msg.Alert(Resources.Common.Error, r.Summary).Show();
+                        return;
+                    }
+                    else
+                    {
+
+
+                        ModelProxy record = this.emergencyContactStore.GetById(index);
+
+                        EmergencyContactsForm.UpdateRecord(record);
+                        record.Set("rtName", b.rtName);
+
+                        record.Commit();
+                        Notification.Show(new NotificationConfig
+                        {
+                            Title = Resources.Common.Notification,
+                            Icon = Icon.Information,
+                            Html = Resources.Common.RecordUpdatedSucc
+                        });
+                        this.EditEmergencyContactWindow.Close();
+
+
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorUpdatingRecord).Show();
+                }
+            }
+        }
         [DirectMethod]
         public string CheckSession()
         {
@@ -444,7 +680,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
 
         }
 
-        private void FillNationality()
+        private void FillECNationality()
         {
             ListRequest documentTypes = new ListRequest();
             ListResponse<Nationality> resp = _systemService.ChildGetAll<Nationality>(documentTypes);
@@ -453,15 +689,28 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                 X.Msg.Alert(Resources.Common.Error, resp.Summary).Show();
                 return;
             }
-            naStore.DataSource = resp.Items;
-            naStore.DataBind();
+            ecnaStore.DataSource = resp.Items;
+            ecnaStore.DataBind();
+
+        }
+        private void FillCONationality()
+        {
+            ListRequest documentTypes = new ListRequest();
+            ListResponse<Nationality> resp = _systemService.ChildGetAll<Nationality>(documentTypes);
+            if (!resp.Success)
+            {
+                X.Msg.Alert(Resources.Common.Error, resp.Summary).Show();
+                return;
+            }
+            conaStore.DataSource = resp.Items;
+            conaStore.DataBind();
 
         }
 
-        protected void addNA(object sender, DirectEventArgs e)
+        protected void addECNA(object sender, DirectEventArgs e)
         {
             Nationality dept = new Nationality();
-            dept.name = naId.Text;
+            dept.name = ecnaId.Text;
 
             
 
@@ -472,8 +721,8 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             if (response.Success)
             {
                 dept.recordId = response.recordId;
-                FillRelationshipType();
-                rtId.Select(response.recordId);
+                FillECNationality();
+                ecnaId.Select(response.recordId);
             }
             else
             {
@@ -485,7 +734,119 @@ namespace AionHR.Web.UI.Forms.EmployeePages
         }
 
 
+        protected void addCONA(object sender, DirectEventArgs e)
+        {
+            Nationality dept = new Nationality();
+            dept.name = conaId.Text;
 
+
+
+            PostRequest<Nationality> depReq = new PostRequest<Nationality>();
+            depReq.entity = dept;
+
+            PostResponse<Nationality> response = _employeeService.ChildAddOrUpdate<Nationality>(depReq);
+            if (response.Success)
+            {
+                dept.recordId = response.recordId;
+                FillCONationality();
+                conaId.Select(response.recordId);
+            }
+            else
+            {
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, response.Summary).Show();
+                return;
+            }
+
+        }
+
+        [DirectMethod]
+        public void DeleteCO(string index)
+        {
+            try
+            {
+                //Step 1 Code to delete the object from the database 
+                EmployeeContact n = new EmployeeContact();
+                n.recordId = index;
+              
+                PostRequest<EmployeeContact> req = new PostRequest<EmployeeContact>();
+                req.entity = n;
+                PostResponse<EmployeeContact> res = _employeeService.ChildDelete<EmployeeContact>(req);
+                if (!res.Success)
+                {
+                    //Show an error saving...
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    X.Msg.Alert(Resources.Common.Error, res.Summary).Show();
+                    return;
+                }
+                else
+                {
+                    //Step 2 :  remove the object from the store
+                    contactStore.Remove(index);
+
+                    //Step 3 : Showing a notification for the user 
+                    Notification.Show(new NotificationConfig
+                    {
+                        Title = Resources.Common.Notification,
+                        Icon = Icon.Information,
+                        Html = Resources.Common.RecordDeletedSucc
+                    });
+                }
+
+            }
+            catch (Exception ex)
+            {
+                //In case of error, showing a message box to the user
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorDeletingRecord).Show();
+
+            }
+
+        }
+
+        [DirectMethod]
+        public void DeleteEC(string index)
+        {
+            try
+            {
+                //Step 1 Code to delete the object from the database 
+                EmployeeEmergencyContact n = new EmployeeEmergencyContact();
+                n.recordId = index;
+               
+                PostRequest<EmployeeEmergencyContact> req = new PostRequest<EmployeeEmergencyContact>();
+                req.entity = n;
+                PostResponse<EmployeeEmergencyContact> res = _employeeService.ChildDelete<EmployeeEmergencyContact>(req);
+                if (!res.Success)
+                {
+                    //Show an error saving...
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    X.Msg.Alert(Resources.Common.Error, res.Summary).Show();
+                    return;
+                }
+                else
+                {
+                    //Step 2 :  remove the object from the store
+                    emergencyContactStore.Remove(index);
+
+                    //Step 3 : Showing a notification for the user 
+                    Notification.Show(new NotificationConfig
+                    {
+                        Title = Resources.Common.Notification,
+                        Icon = Icon.Information,
+                        Html = Resources.Common.RecordDeletedSucc
+                    });
+                }
+
+            }
+            catch (Exception ex)
+            {
+                //In case of error, showing a message box to the user
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorDeletingRecord).Show();
+
+            }
+
+        }
 
 
 

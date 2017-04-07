@@ -363,7 +363,7 @@
                                 <ext:Image runat="server" ID="imgControl" Width="100" Height="100" Align="Middle" MarginSpec="15 0 0 20 " >
                                     <Listeners>
                                         <%--<Click Handler="triggierImageClick(App.picturePath.fileInputEl.id); " />--%>
-                                        <Click Handler="if(document.getElementById('CurrentEmployee').value!='') App.imageSelectionWindow.show()" />
+                                        <Click Handler="App.imageSelectionWindow.show()" />
                                     </Listeners>
 
                                 </ext:Image>
@@ -1014,6 +1014,7 @@
                                 <ext:Button runat="server" ID="uploadPhotoButton" Icon="DatabaseSave" Text="<%$ Resources:UploadPicture %>" Disabled="true" >
                                     <Listeners>
                                                 <Click Handler="CheckSession(); if (!#{imageUploadForm}.getForm().isValid()) {  return false;} " />
+                                        
                                             </Listeners>
                                             <DirectEvents>
                                                 <Click OnEvent="UploadImage" Failure="Ext.MessageBox.alert('#{titleSavingError}.value', '#{titleSavingErrorMessage}.value');">
@@ -1023,6 +1024,7 @@
                                                     </ExtraParams>
                                                 </Click>
                                             </DirectEvents>
+                                    
                                     </ext:Button>
                                 <ext:Button runat="server" Icon="Cancel" Text="<%$ Resources:RemovePicture %>" >
                                     <Listeners>
@@ -1031,7 +1033,7 @@
                                     </ext:Button>
                                 <ext:FileUploadField ID="FileUploadField1" runat="server" ButtonOnly="true" Hidden="true">
                                     <Listeners>
-                                        <Change Handler="showImagePreview2(App.FileUploadField1.fileInputEl.id);" />
+                                        <Change Handler="if(document.getElementById('CurrentEmployee').value == '')showImagePreview(App.FileUploadField1.fileInputEl.id); showImagePreview2(App.FileUploadField1.fileInputEl.id);" />
                                     </Listeners>
 
                                 </ext:FileUploadField>
@@ -1068,7 +1070,8 @@
              
             <Items>
                 
-        <ext:GridPanel ID="TeamGrid" runat="server"  Width="200" Scroll="Vertical" HideHeaders="true">
+        <ext:GridPanel ID="TeamGrid" runat="server"  Width="200" Scroll="Vertical" HideHeaders="true" EmptyText="<%$ Resources:NoTeamMembersFound %>">
+            
                             <Store>
                                 <ext:Store runat="server"  ID="TeamStore">
                                     <Model>

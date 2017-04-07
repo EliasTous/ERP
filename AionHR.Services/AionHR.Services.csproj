@@ -48,6 +48,7 @@
     <Compile Include="Implementations\BaseService.cs" />
     <Compile Include="Implementations\CaseService.cs" />
     <Compile Include="Implementations\CommonErrors.cs" />
+    <Compile Include="Implementations\CompanyNewsService.cs" />
     <Compile Include="Implementations\CompanyStructureService.cs" />
     <Compile Include="Implementations\ComplaintsService.cs" />
     <Compile Include="Implementations\EmployeeService.cs" />
@@ -55,6 +56,7 @@
     <Compile Include="Implementations\MasterService.cs" />
     <Compile Include="Implementations\MediaGalleryService.cs" />
     <Compile Include="Implementations\TimeAttendanceService.cs" />
+    <Compile Include="Interfaces\ICompanyNewsService.cs" />
     <Compile Include="Interfaces\IComplaintsService.cs" />
     <Compile Include="Interfaces\IBaseService.cs" />
     <Compile Include="Interfaces\ICaseService.cs" />
@@ -92,9 +94,7 @@
     <Compile Include="Messaging\TimeAttendance\TimeAttendanceRequests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="AionHR\Services\Messaging\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\AionHR.Infrastructure\AionHR.Infrastructure.csproj">
       <Project>{9955b92f-f16c-49b9-99f3-4919d3327263}</Project>

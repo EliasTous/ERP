@@ -331,6 +331,9 @@
     <value>Team</value>
   </data>
   <data name="DisplayTeamLink" xml:space="preserve">
-    <value>Display Team</value>
+    <value>Team</value>
+  </data>
+  <data name="NoTeamMembersFound" xml:space="preserve">
+    <value>&lt;div style='text-align:center;'&gt;No Team Members Found&lt;/div&gt;</value>
   </data>
 </root>

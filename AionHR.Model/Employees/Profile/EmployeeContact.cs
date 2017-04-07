@@ -15,6 +15,7 @@ namespace AionHR.Model.Employees.Profile
         public string street2 { get; set; }
 
         public string city { get; set; }
+        public string phone { get; set; }
 
         public string postalCode { get; set; }
 

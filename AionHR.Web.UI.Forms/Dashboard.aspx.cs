@@ -63,11 +63,11 @@ namespace AionHR.Web.UI.Forms
                 try
                 {
                     FillDepartment();
-                    departmentId.Select(0);
+                    
                     FillBranch();
-                    branchId.Select(0);
+                   
                     FillPosition();
-                    ComboBox1.Select(0);
+                    
                     ActiveAttendanceRequest r = GetActiveAttendanceRequest();
 
                     ListResponse<ActiveAbsence> ABs = _timeAttendanceService.ChildGetAll<ActiveAbsence>(r);

@@ -259,9 +259,9 @@
                     </TopBar>
                     <Items>
                         <ext:Panel runat="server" Layout="VBoxLayout" AutoScroll="true">
-                            <LayoutConfig>
+                         <%--   <LayoutConfig>
                                 <ext:VBoxLayoutConfig Align="Stretch" />
-                            </LayoutConfig>
+                            </LayoutConfig>--%>
                             <Defaults>
                                 <ext:Parameter Name="margin" Value="0 5 0 5" Mode="Value" />
                             </Defaults>
@@ -288,16 +288,16 @@
                                 </ext:Toolbar>
                             </TopBar>
                             <Items>
-                                <ext:Panel ID="schedulerHolder" runat="server" Layout="FitLayout" Flex="1">
+                                <ext:Panel ID="schedulerHolder" runat="server" Layout="FitLayout" Flex="1" >
                                     <Items>
                                         <ext:Container ID="cont" runat="server">
                                             <Content>
 
-                                                <DayPilot:DayPilotScheduler ID="DayPilotScheduler1" runat="server"
+                                                <DayPilot:DayPilotScheduler ID="DayPilotScheduler1" runat="server" 
                                                     HeaderFontSize="8pt" HeaderHeight="20" CssOnly="false"
                                                     EventClickHandling="JavaScript" Scale="Day"
                                                     EventClickJavaScript="App.direct.HandleClick({0});"
-                                                    EventFontSize="11px"
+                                                    EventFontSize="11px" 
                                                     CellDuration="1440"
                                                     OnEventClick="DayPilotScheduler1_EventClick"
                                                     OnBeforeEventRender="DayPilotScheduler1_BeforeEventRender"
