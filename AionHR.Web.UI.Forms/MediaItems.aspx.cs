@@ -228,7 +228,7 @@ namespace AionHR.Web.UI.Forms
                     break;
 
                 case "imgAttach":
-                   // DownloadFile(path);
+                    DownloadFile(path);
                     //Here will show up a winow relatice to attachement depending on the case we are working on
                     break;
                 default:
@@ -388,6 +388,7 @@ namespace AionHR.Web.UI.Forms
             request.MCId = 0;
             request.DepartmentId = 0;
             request.Type = 0;
+            
 
             request.Filter = "";
             ListResponse<MediaItem> routers = _mediaGalleryService.ChildGetAll<MediaItem>(request);

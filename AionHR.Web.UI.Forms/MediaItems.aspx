@@ -60,7 +60,7 @@
                         <ext:ModelField Name="date" />
                         <ext:ModelField Name="mcName" />
                         <ext:ModelField Name="departmentName" />
-                        <ext:ModelField Name="fileUrl" />
+                        <ext:ModelField Name="pictureUrl" />
                         
                     </Fields>
                 </ext:Model>
@@ -150,7 +150,7 @@
                                 MenuDisabled="true"
                                 Resizable="false">
 
-                                <Renderer handler="var att ='&nbsp;'; if(record.data['fileUrl']!='') att = attachRender(); return att+'&nbsp;&nbsp;' +editRender()+'&nbsp;&nbsp;' +deleteRender();" />
+                                <Renderer handler="var att ='&nbsp;'; if(record.data['pictureUrl']!='') att = attachRender(); return att+'&nbsp;&nbsp;' +editRender()+'&nbsp;&nbsp;' +deleteRender();" />
 
                             </ext:Column>
                             <ext:Column runat="server"
@@ -227,7 +227,7 @@
                             <EventMask ShowMask="true" />
                             <ExtraParams>
                                 <ext:Parameter Name="id" Value="record.getId()" Mode="Raw" />
-                                <ext:Parameter Name="path" Value="record.data['fileUrl']" Mode="Raw" />
+                                <ext:Parameter Name="path" Value="record.data['pictureUrl']" Mode="Raw" />
                                 <ext:Parameter Name="type" Value="getCellType( this, rowIndex, cellIndex)" Mode="Raw" />
                             </ExtraParams>
 
