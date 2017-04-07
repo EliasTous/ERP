@@ -18,5 +18,7 @@ namespace AionHR.Model.MediaGallery
         public string mcName { get; set; }
         public string departmentName { get; set; }
 
+        public string pictureUrl { get; set; }
+
     }
 }
