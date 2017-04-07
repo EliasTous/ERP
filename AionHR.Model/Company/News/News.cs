@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AionHR.Model.Company.News
 {
-   public class News : ModelBase
+   public class News : ModelBase,IEntity
     {
         public string subject { get; set; }
         public string newsText { get; set; }

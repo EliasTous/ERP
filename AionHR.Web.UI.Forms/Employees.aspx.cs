@@ -592,15 +592,15 @@ namespace AionHR.Web.UI.Forms
                     PostRequestWithAttachment<Employee> request = new PostRequestWithAttachment<Employee>();
 
                     byte[] fileData = null;
-                    if (picturePath.PostedFile != null && picturePath.PostedFile.ContentLength > 0)
+                    if (FileUploadField1.PostedFile != null && FileUploadField1.PostedFile.ContentLength > 0)
                     {
                         //using (var binaryReader = new BinaryReader(picturePath.PostedFile.InputStream))
                         //{
                         //    fileData = binaryReader.ReadBytes(picturePath.PostedFile.ContentLength);
                         //}
-                        fileData = new byte[picturePath.PostedFile.ContentLength];
-                        fileData = picturePath.FileBytes;
-                        request.FileName = picturePath.PostedFile.FileName;
+                        fileData = new byte[FileUploadField1.PostedFile.ContentLength];
+                        fileData = FileUploadField1.FileBytes;
+                        request.FileName = FileUploadField1.PostedFile.FileName;
                         request.FileData = fileData;
 
                     }
@@ -1167,8 +1167,12 @@ namespace AionHR.Web.UI.Forms
             string id = CurrentEmployee.Text;
             string obj = e.ExtraParams["values"];
 
-            ;
-
+            
+            if(string.IsNullOrEmpty(id))
+            {
+                imageSelectionWindow.Hide();
+                return;
+            }
             PostResponse<Attachement> resp = null;
 
             if (FileUploadField1.PostedFile != null && FileUploadField1.PostedFile.ContentLength > 0)
@@ -1226,7 +1230,11 @@ namespace AionHR.Web.UI.Forms
         protected void DisplayImage(object sender, DirectEventArgs e)
         {
 
-
+            if (string.IsNullOrEmpty(CurrentEmployee.Text))
+            {
+                employeePhoto.ImageUrl = "Images/empPhoto.jpg";
+                return;
+            }
             RecordRequest r = new RecordRequest();
             r.RecordID = CurrentEmployee.Text.ToString();
             RecordResponse<Employee> response = _employeeService.Get<Employee>(r);

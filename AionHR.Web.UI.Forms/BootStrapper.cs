@@ -3,6 +3,7 @@ using AionHR.Infrastructure.Logging;
 using AionHR.Infrastructure.Session;
 using AionHR.Infrastructure.Tokens;
 using AionHR.Model.Company.Cases;
+using AionHR.Model.Company.News;
 using AionHR.Model.Company.Structure;
 using AionHR.Model.EmployeeComplaints;
 using AionHR.Model.Employees;
@@ -56,6 +57,7 @@ namespace AionHR.Web.UI.Forms
                 For<ICasesRepository>().Use<CasesRepository>();
                 For<IMediaGalleryRepository>().Use<MediaGalleryRepository>();
                 For<IComplaintsRepository>().Use<ComplaintsRepository>();
+                For<ICompanyNewsRepository>().Use<CompanyNewsRepository>();
 
                 //Services
                 For<ISystemService>().Use<SystemService>();
@@ -67,6 +69,7 @@ namespace AionHR.Web.UI.Forms
                 For<ICaseService>().Use<CaseService>();
                 For<IMediaGalleryService>().Use<MediaGalleryService>();
                 For<IComplaintsService>().Use<ComplaintsService>();
+                For<ICompanyNewsService>().Use<CompanyNewsService>();
             }
         }
     }

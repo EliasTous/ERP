@@ -141,50 +141,50 @@ namespace AionHR.Infrastructure.WebService
             }
         }
 
-        public PostWebServiceResponse PostAsync<T>(T item)
-        {
-            PostWebServiceResponse response = new PostWebServiceResponse();
-            try
-            {
-                WebRequest req = HttpWebRequest.Create(RequestUrl);
-                req.Method = MethodType;
+        //public PostWebServiceResponse PostAsync<T>(T item)
+        //{
+        //    PostWebServiceResponse response = new PostWebServiceResponse();
+        //    try
+        //    {
+        //        WebRequest req = HttpWebRequest.Create(RequestUrl);
+        //        req.Method = MethodType;
 
 
-                if (Headers.Count > 0)
-                    BuildHeaders(req);
-                Body = JsonConvert.SerializeObject(item);
-                Stream stream = req.GetRequestStream();
-                StreamWriter wr = new StreamWriter(stream);
-                wr.Write(Body);
-                wr.Flush();
-                wr.Close();
-                stream.Close();
-                //req.ContentLength = stream.Length;
+        //        if (Headers.Count > 0)
+        //            BuildHeaders(req);
+        //        Body = JsonConvert.SerializeObject(item);
+        //        Stream stream = req.GetRequestStream();
+        //        StreamWriter wr = new StreamWriter(stream);
+        //        wr.Write(Body);
+        //        wr.Flush();
+        //        wr.Close();
+        //        stream.Close();
+        //        //req.ContentLength = stream.Length;
 
-                var r = req.GetResponse();
-                Stream s = r.GetResponseStream();
-                StreamReader reader = new StreamReader(s, true);
-                string x = reader.ReadToEnd();
+        //        var r = req.GetResponse();
+        //        Stream s = r.GetResponseStream();
+        //        StreamReader reader = new StreamReader(s, true);
+        //        string x = reader.ReadToEnd();
 
-                var settings = new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore };
-                if (Resolver != null)
-                {
-                    settings.ContractResolver = Resolver;
-                }
-                settings.DateTimeZoneHandling = DateTimeZoneHandling.Utc;
+        //        var settings = new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore };
+        //        if (Resolver != null)
+        //        {
+        //            settings.ContractResolver = Resolver;
+        //        }
+        //        settings.DateTimeZoneHandling = DateTimeZoneHandling.Utc;
 
-                response = JsonConvert.DeserializeObject<PostWebServiceResponse>(x, settings);
-                return response;
-            }
-            catch (Exception ex)
-            {
+        //        response = JsonConvert.DeserializeObject<PostWebServiceResponse>(x, settings);
+        //        return response;
+        //    }
+        //    catch (Exception ex)
+        //    {
 
-                string exception = BuildLogMessage() + " : " + ex.Message;
-                LoggingFactory.GetLogger().Log(exception);
-                response.statusId = "0";
-                return response;
-            }
-        }
+        //        string exception = BuildLogMessage() + " : " + ex.Message;
+        //        LoggingFactory.GetLogger().Log(exception);
+        //        response.statusId = "0";
+        //        return response;
+        //    }
+        //}
         public PostWebServiceResponse PostAsyncFormData<T>(T item)
         {
             PostWebServiceResponse response = new PostWebServiceResponse();
@@ -222,7 +222,7 @@ namespace AionHR.Infrastructure.WebService
                 //Now we need to add the header for the binary part inside the body
                 byte[] data = System.Text.Encoding.UTF8.GetBytes(Body);
                 stream.Write(data, 0, data.Length);
-
+                 
                 // Add binary file to request
 
 
