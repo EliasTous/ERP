@@ -181,6 +181,7 @@ namespace AionHR.Web.UI.Forms
         {
             string id = e.ExtraParams["id"];
             string type = e.ExtraParams["type"];
+            string path = e.ExtraParams["path"];
 
             switch (type)
             {
