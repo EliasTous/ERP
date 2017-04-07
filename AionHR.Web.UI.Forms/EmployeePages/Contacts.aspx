@@ -65,12 +65,14 @@
                                     <Fields>
 
                                         <ext:ModelField Name="recordId" />
+                                        <ext:ModelField Name="employeeId" />
                                         <ext:ModelField Name="rtId" />
                                         <ext:ModelField Name="rtName" />
                                         <ext:ModelField Name="workPhone" />
                                         <ext:ModelField Name="homePhone" />
                                         <ext:ModelField Name="cellPhone" />
                                         <ext:ModelField Name="email" />
+                                        <ext:ModelField Name="name" />
                                         <ext:ModelField Name="addressId" IsComplex="true" />
                                         
 
@@ -104,7 +106,7 @@
                                     </Triggers>
                                     <Listeners>
                                         <KeyPress Fn="enterKeyPressSearchHandler" Buffer="100" />
-                                        <TriggerClick Handler="#{contactsStore}.reload();" />
+                                        <TriggerClick Handler="#{emergencyContactStore}.reload();" />
                                     </Listeners>
                                 </ext:TextField>
 
@@ -117,12 +119,13 @@
                         <Columns>
 
                             <ext:Column Visible="false" ID="ColrecordId" MenuDisabled="true" runat="server" DataIndex="recordId" Hideable="false" Width="75" Align="Center" />
-                            <ext:Column CellCls="cellLink" ID="Column8" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEMInst%>" DataIndex="name" width="140" Hideable="false" />
+                            
                             <ext:Column CellCls="cellLink" ID="ColEHName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEMRTName%>" DataIndex="rtName" width="100" Hideable="false" />
-                            <ext:Column CellCls="cellLink" ID="Column1" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEMWorkPhone%>" DataIndex="WorkPhone" width="100" Hideable="false" />
+                            <ext:Column  CellCls="cellLink" ID="Column8" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEMInst%>" DataIndex="name" width="140" Hideable="false" />
+                            
                             <ext:Column CellCls="cellLink" ID="Column3" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEMHomePhone%>" DataIndex="homePhone" width="120" Hideable="false" />
-                            <ext:Column CellCls="cellLink" ID="Column5" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEMCellPhone%>" DataIndex="cellPhone" width="100" Hideable="false" />
-                            <ext:Column CellCls="cellLink" ID="Column6" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEMEmail%>" DataIndex="email" Flex="2" Hideable="false" />
+                            
+                            
                            <%-- <ext:Column ID="ColName" DataIndex="addressName.fullName" Text="<%$ Resources: FieldAddressName%>" runat="server" Flex="4">
                                 <Renderer Handler=" return  record.data['addressId'].street1  + '&nbsp' + record.data['addressId'].countryName " />
                                 </ext:Column>--%>
@@ -130,7 +133,7 @@
                             <ext:Column runat="server"
                                 ID="colEdit" Visible="true"
                                 Text=""
-                                Width="60"
+                                Width="80"
                                 Hideable="false"
                                 Align="Center"
                                 Fixed="true"
@@ -188,7 +191,7 @@
                         <Render Handler="this.on('cellclick', cellClick);" />
                     </Listeners>
                     <DirectEvents>
-                        <CellClick  OnEvent="PoPuPEM">
+                        <CellClick  OnEvent="PoPuPEC">
                             <EventMask  ShowMask="false"  />
                             <ExtraParams>
                                 <ext:Parameter Name="id" Value="record.getId()" Mode="Raw" />
@@ -241,13 +244,10 @@
                                     <Fields>
 
                                         <ext:ModelField Name="recordId" />
-                                        <ext:ModelField Name="street1" />
-                                        <ext:ModelField Name="street2" />
-                                        <ext:ModelField Name="city" />
-                                        <ext:ModelField Name="postalCode" />
-                                        <ext:ModelField Name="cellPhone" />
-                                        <ext:ModelField Name="countryId" />
-                                        <ext:ModelField Name="countryName" />                                       
+                                        <ext:ModelField Name="employeeId" />
+                                        <ext:ModelField Name="phone" />
+                                        <ext:ModelField Name="addressId" IsComplex="true" />
+                                                                
                                         
 
                                     </Fields>
@@ -266,7 +266,7 @@
                                         <Click Handler="CheckSession();" />
                                     </Listeners>
                                     <DirectEvents>
-                                        <Click OnEvent="ADDNewC">
+                                        <Click OnEvent="ADDNewCO">
                                             <EventMask ShowMask="true" CustomTarget="={#{contactGrid}.body}" />
                                         </Click>
                                     </DirectEvents>
@@ -293,12 +293,17 @@
                         <Columns>
 
                            <ext:Column ID="Column2" Visible="false" DataIndex="recordId" runat="server" />
-                            <ext:Column ID="Column9" DataIndex="cellPhone" Text="<%$ Resources: FieldCCellPhone%>" runat="server" Flex="1" />
-                            <ext:Column ID="Column4" DataIndex="street1" Text="<%$ Resources: FieldCStreet1%>" runat="server" Flex="1" />
-                            <ext:Column ID="Column10" DataIndex="street2" Text="<%$ Resources: FieldCStreet2%>" runat="server" Flex="1" />
-                            <ext:Column ID="Column11" DataIndex="city" Text="<%$ Resources: FieldCCity%>" runat="server" Flex="1" />
-                            <ext:Column ID="Column12" DataIndex="postalCode" Text="<%$ Resources: FieldCPostalCode%>" runat="server" Flex="1" />
-                            <ext:Column ID="Column13" DataIndex="countryName" Text="<%$ Resources: FieldCCountryName%>" runat="server" Flex="1" />
+                            
+                            <ext:Column ID="Column4" DataIndex="addressId.street1" Text="<%$ Resources: FieldCStreet1%>" runat="server" Flex="1" >
+                                <Renderer Handler="return record.data['addressId'].street1;" />
+                                </ext:Column>
+                            
+                            <ext:Column ID="Column11" DataIndex="addressId.city" Text="<%$ Resources: FieldCCity%>" runat="server" Flex="1" >
+                                <Renderer Handler="return record.data['addressId'].city;" />
+                                </ext:Column>
+                      
+                            
+                            <ext:Column ID="Column13" DataIndex="phone" Text="<%$ Resources: FieldCCountryName%>" runat="server" Flex="1" />
                                                      
 
 
@@ -314,7 +319,7 @@
                                 MenuDisabled="true"
                                 Resizable="false">
 
-                                <Renderer handler="return attachRender()+'&nbsp;&nbsp;'+editRender()+'&nbsp;&nbsp;'+deleteRender(); " />
+                                <Renderer handler="return editRender()+'&nbsp;&nbsp;'+deleteRender(); " />
 
                             </ext:Column>
                             <ext:Column runat="server"
@@ -364,11 +369,11 @@
                         <Render Handler="this.on('cellclick', cellClick);" />
                     </Listeners>
                     <DirectEvents>
-                        <CellClick OnEvent="PoPuPC">
+                        <CellClick OnEvent="PoPuPCO">
                             
                             <ExtraParams>
                                 <ext:Parameter Name="id" Value="record.getId()" Mode="Raw" />
-                                <ext:Parameter Name="path" Value="record.data['fileUrl']" Mode="Raw" />
+                                
                                 <ext:Parameter Name="type" Value="getCellType( this, rowIndex, cellIndex)" Mode="Raw" />
                             </ExtraParams>
 
@@ -417,7 +422,7 @@
                                 <ext:Panel runat="server">
                                     <Items>
   <ext:TextField runat="server" Name="recordId"  ID="recordId" Hidden="true"  Disabled="true"/>
-                                <ext:TextField  runat="server" Name="institution" AllowBlank="false"  ID="institution"  FieldLabel="<%$ Resources:FieldEMInst%>" />
+                                <ext:TextField  runat="server" Name="name" AllowBlank="false"  ID="name"  FieldLabel="<%$ Resources:FieldEMInst%>" />
 
                                 <ext:ComboBox ValueField="recordId" AllowBlank="false" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1"
                                      DisplayField="name" runat="server" ID="rtId" Name="rtId" FieldLabel="<%$ Resources:FieldEMRTName%>" SimpleSubmit="true">
@@ -471,9 +476,9 @@
                                 <%--<ext:TextField  runat="server" Name="countryName" AllowBlank="false"  ID="countryName"  FieldLabel="<%$ Resources:FieldCountryName%>" />--%>
                                 
                                  <ext:ComboBox ValueField="recordId" AllowBlank="false" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1"
-                                     DisplayField="name" runat="server" ID="naId" Name="naId" FieldLabel="<%$ Resources:FieldEMCountryName%>" SimpleSubmit="true">
+                                     DisplayField="name" runat="server" ID="ecnaId" Name="ecnaId" FieldLabel="<%$ Resources:FieldEMCountryName%>" SimpleSubmit="true">
                                     <Store>
-                                        <ext:Store runat="server" ID="naStore">
+                                        <ext:Store runat="server" ID="ecnaStore">
                                             <Model>
                                                 <ext:Model runat="server">
                                                     <Fields>
@@ -491,7 +496,7 @@
                                                             </Listeners>
                                                             <DirectEvents>
 
-                                                                <Click OnEvent="addNA">
+                                                                <Click OnEvent="addECNA">
                                                                     <ExtraParams>
                                                                         
                                                                         
@@ -552,7 +557,7 @@
                         <Click Handler="CheckSession(); if (!#{EmergencyContactsForm}.getForm().isValid()) {return false;} " />
                     </Listeners>
                     <DirectEvents>
-                        <Click OnEvent="SaveEMDocument" Failure="Ext.MessageBox.alert('#{titleSavingError}.value', '#{titleSavingErrorMessage}.value');">
+                        <Click OnEvent="SaveEC" Failure="Ext.MessageBox.alert('#{titleSavingError}.value', '#{titleSavingErrorMessage}.value');">
                             <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="={#{EditEmergencyContactWindow}.body}" />
                             <ExtraParams>
                                 <ext:Parameter Name="id" Value="#{recordId}.getValue()" Mode="Raw" />
@@ -595,17 +600,17 @@
                                 <ext:Panel runat="server">
                                     <Items>
                                 <ext:TextField runat="server" Name="recordId"  ID="TextField6" Hidden="true"  Disabled="true"/>
-                                <ext:TextField  runat="server" Name="cellPhone" AllowBlank="false"  ID="TextField10"  FieldLabel="<%$ Resources:FieldCCellPhone%>" />
-                                <ext:TextField  runat="server" Name="street1" AllowBlank="false"  ID="TextField12"  FieldLabel="<%$ Resources:FieldCStreet1%>" />
-                                <ext:TextField  runat="server" Name="street2" AllowBlank="false"  ID="TextField13"  FieldLabel="<%$ Resources:FieldCStreet2%>" />
-                                <ext:TextField  runat="server" Name="city" AllowBlank="false"  ID="TextField14"  FieldLabel="<%$ Resources:FieldCCity%>" />
-                                <ext:TextField  runat="server" Name="postalCode" AllowBlank="false"  ID="TextField15"  FieldLabel="<%$ Resources:FieldCPostalCode%>" />
+                                <ext:TextField  runat="server" Name="cellPhone" AllowBlank="false"  ID="cocellPhone"  FieldLabel="<%$ Resources:FieldCCellPhone%>" />
+                                <ext:TextField  runat="server" Name="street1" AllowBlank="false"  ID="costreet1"  FieldLabel="<%$ Resources:FieldCStreet1%>" />
+                                <ext:TextField  runat="server" Name="street2" AllowBlank="false"  ID="costreet2"  FieldLabel="<%$ Resources:FieldCStreet2%>" />
+                                <ext:TextField  runat="server" Name="city" AllowBlank="false"  ID="cocity"  FieldLabel="<%$ Resources:FieldCCity%>" />
+                                <ext:TextField  runat="server" Name="postalCode" AllowBlank="false"  ID="copostalCode"  FieldLabel="<%$ Resources:FieldCPostalCode%>" />
                                 <%--<ext:TextField  runat="server" Name="countryName" AllowBlank="false"  ID="countryName"  FieldLabel="<%$ Resources:FieldCountryName%>" />--%>
                                 
                                  <ext:ComboBox ValueField="recordId" AllowBlank="false" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1"
-                                     DisplayField="name" runat="server" ID="ComboBox2" Name="naId" FieldLabel="<%$ Resources:FieldCCountryName%>" SimpleSubmit="true">
+                                     DisplayField="name" runat="server" ID="conaId" Name="conaId" FieldLabel="<%$ Resources:FieldCCountryName%>" SimpleSubmit="true">
                                     <Store>
-                                        <ext:Store runat="server" ID="Store2">
+                                        <ext:Store runat="server" ID="conaStore">
                                             <Model>
                                                 <ext:Model runat="server">
                                                     <Fields>
@@ -623,7 +628,7 @@
                                                             </Listeners>
                                                             <DirectEvents>
 
-                                                                <Click OnEvent="addNA">
+                                                                <Click OnEvent="addCONA">
                                                                     <ExtraParams>
                                                                         
                                                                         
@@ -659,7 +664,7 @@
                         <Click Handler="CheckSession(); if (!#{ContactsForm}.getForm().isValid()) {return false;} " />
                     </Listeners>
                     <DirectEvents>
-                        <Click OnEvent="SaveCDocument" Failure="Ext.MessageBox.alert('#{titleSavingError}.value', '#{titleSavingErrorMessage}.value');">
+                        <Click OnEvent="SaveCO" Failure="Ext.MessageBox.alert('#{titleSavingError}.value', '#{titleSavingErrorMessage}.value');">
                             <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="={#{EditContactWindow}.body}" />
                             <ExtraParams>
                                 <ext:Parameter Name="id" Value="#{recordId}.getValue()" Mode="Raw" />
