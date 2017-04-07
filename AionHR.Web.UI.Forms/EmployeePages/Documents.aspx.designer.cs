@@ -11,7 +11,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages {
     
     
     public partial class Documents {
-        
+
         /// <summary>
         /// Form1 control.
         /// </summary>
@@ -20,7 +20,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlForm Form1;
-        
+
         /// <summary>
         /// ResourceManager1 control.
         /// </summary>
@@ -29,7 +29,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.ResourceManager ResourceManager1;
-        
+
         /// <summary>
         /// textMatch control.
         /// </summary>
@@ -38,7 +38,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.Hidden textMatch;
-        
+
         /// <summary>
         /// textLoadFailed control.
         /// </summary>
@@ -47,7 +47,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.Hidden textLoadFailed;
-        
+
         /// <summary>
         /// titleSavingError control.
         /// </summary>
@@ -56,7 +56,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.Hidden titleSavingError;
-        
+
         /// <summary>
         /// titleSavingErrorMessage control.
         /// </summary>
@@ -65,7 +65,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.Hidden titleSavingErrorMessage;
-        
+
         /// <summary>
         /// CurrentEmployee control.
         /// </summary>
@@ -74,7 +74,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.Hidden CurrentEmployee;
-        
+
         /// <summary>
         /// CurrentDateFormat control.
         /// </summary>
@@ -83,7 +83,25 @@ namespace AionHR.Web.UI.Forms.EmployeePages {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.Hidden CurrentDateFormat;
-        
+
+        /// <summary>
+        /// EmployeeClassId control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Hidden EmployeeClassId;
+
+        /// <summary>
+        /// CurrentLanguage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Hidden CurrentLanguage;
+
         /// <summary>
         /// Viewport11 control.
         /// </summary>
@@ -92,7 +110,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.Viewport Viewport11;
-        
+
         /// <summary>
         /// employeeDocumentsGrid control.
         /// </summary>
@@ -101,7 +119,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.GridPanel employeeDocumentsGrid;
-        
+
         /// <summary>
         /// employeeDocumentsStore control.
         /// </summary>
@@ -110,7 +128,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.Store employeeDocumentsStore;
-        
+
         /// <summary>
         /// Model1 control.
         /// </summary>
@@ -119,7 +137,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.Model Model1;
-        
+
         /// <summary>
         /// Toolbar1 control.
         /// </summary>
@@ -128,7 +146,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.Toolbar Toolbar1;
-        
+
         /// <summary>
         /// btnAdd control.
         /// </summary>
@@ -137,7 +155,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.Button btnAdd;
-        
+
         /// <summary>
         /// ToolbarFillExport control.
         /// </summary>
@@ -146,7 +164,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.ToolbarFill ToolbarFillExport;
-        
+
         /// <summary>
         /// searchTrigger control.
         /// </summary>
@@ -155,7 +173,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.TextField searchTrigger;
-        
+
         /// <summary>
         /// ColrecordId control.
         /// </summary>
@@ -164,7 +182,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.Column ColrecordId;
-        
+
         /// <summary>
         /// ColEHName control.
         /// </summary>
@@ -173,7 +191,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.Column ColEHName;
-        
+
         /// <summary>
         /// Column1 control.
         /// </summary>
@@ -182,25 +200,16 @@ namespace AionHR.Web.UI.Forms.EmployeePages {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.Column Column1;
-        
+
         /// <summary>
-        /// Column3 control.
+        /// dateCol control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Column Column3;
-        
-        /// <summary>
-        /// Column2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Column Column2;
-        
+        protected global::Ext.Net.DateColumn dateCol;
+
         /// <summary>
         /// colEdit control.
         /// </summary>
@@ -209,7 +218,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.Column colEdit;
-        
+
         /// <summary>
         /// ColEHDelete control.
         /// </summary>
@@ -218,7 +227,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.Column ColEHDelete;
-        
+
         /// <summary>
         /// colAttach control.
         /// </summary>
@@ -227,7 +236,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.Column colAttach;
-        
+
         /// <summary>
         /// Toolbar2 control.
         /// </summary>
@@ -236,7 +245,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.Toolbar Toolbar2;
-        
+
         /// <summary>
         /// StatusBar1 control.
         /// </summary>
@@ -245,7 +254,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.StatusBar StatusBar1;
-        
+
         /// <summary>
         /// GridView1 control.
         /// </summary>
@@ -254,7 +263,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.GridView GridView1;
-        
+
         /// <summary>
         /// rowSelectionModel control.
         /// </summary>
@@ -263,7 +272,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.RowSelectionModel rowSelectionModel;
-        
+
         /// <summary>
         /// EditDocumentWindow control.
         /// </summary>
@@ -272,7 +281,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.Window EditDocumentWindow;
-        
+
         /// <summary>
         /// TabPanel1 control.
         /// </summary>
@@ -281,7 +290,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.TabPanel TabPanel1;
-        
+
         /// <summary>
         /// EditDocumentForm control.
         /// </summary>
@@ -290,7 +299,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.FormPanel EditDocumentForm;
-        
+
         /// <summary>
         /// EHID control.
         /// </summary>
@@ -299,7 +308,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.TextField EHID;
-        
+
         /// <summary>
         /// documentRef control.
         /// </summary>
@@ -308,7 +317,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.TextField documentRef;
-        
+
         /// <summary>
         /// dtId control.
         /// </summary>
@@ -317,7 +326,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.ComboBox dtId;
-        
+
         /// <summary>
         /// dtStore control.
         /// </summary>
@@ -326,7 +335,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.Store dtStore;
-        
+
         /// <summary>
         /// Button6 control.
         /// </summary>
@@ -335,7 +344,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.Button Button6;
-        
+
         /// <summary>
         /// expiryDate control.
         /// </summary>
@@ -344,7 +353,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.DateField expiryDate;
-        
+
         /// <summary>
         /// documentFile control.
         /// </summary>
@@ -353,7 +362,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.FileUploadField documentFile;
-        
+
         /// <summary>
         /// remarks control.
         /// </summary>
@@ -362,7 +371,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.TextArea remarks;
-        
+
         /// <summary>
         /// SaveDocumentButton control.
         /// </summary>
@@ -371,7 +380,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.Button SaveDocumentButton;
-        
+
         /// <summary>
         /// Button3 control.
         /// </summary>
@@ -380,5 +389,14 @@ namespace AionHR.Web.UI.Forms.EmployeePages {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.Button Button3;
+
+        /// <summary>
+        /// AttachmentsWindow control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Window AttachmentsWindow;
     }
 }

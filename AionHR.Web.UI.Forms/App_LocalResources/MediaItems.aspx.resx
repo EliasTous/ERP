@@ -130,13 +130,13 @@
     <value>Date</value>
   </data>
   <data name="FieldDEName" xml:space="preserve">
-    <value>Department Name</value>
+    <value>Department</value>
   </data>
   <data name="FieldDescription" xml:space="preserve">
     <value>Description</value>
   </data>
   <data name="FieldMCName" xml:space="preserve">
-    <value>Media Category Name</value>
+    <value>Category</value>
   </data>
   <data name="FieldPicture" xml:space="preserve">
     <value>Picture</value>

@@ -129,19 +129,19 @@
                     <ColumnModel ID="ColumnModel1" runat="server" SortAscText="<%$ Resources:Common , SortAscText %>" SortDescText="<%$ Resources:Common ,SortDescText  %>" SortClearText="<%$ Resources:Common ,SortClearText  %>" ColumnsText="<%$ Resources:Common ,ColumnsText  %>" EnableColumnHide="false" Sortable="false" >
                         <Columns>
                             <ext:Column ID="ColRecordId" Visible="false" DataIndex="recordId" runat="server" />
-                            <ext:Column ID="Column1" Visible="true" DataIndex="departmentName" Text="<%$ Resources: FieldDEName%>" runat="server" width="250" />
-                            <ext:Column ID="Column5" Visible="true" DataIndex="mcName" Text="<%$ Resources: FieldMCName%>" runat="server" width="250" />                            
-                            <ext:Column ID="colType" Visible="true" DataIndex="type" Text="<%$ Resources: FieldType%>" runat="server" width="120">
+                            <ext:Column ID="Column1" Visible="true" DataIndex="departmentName" Text="<%$ Resources: FieldDEName%>" runat="server" Flex="2" />
+                            <ext:Column ID="Column5" Visible="true" DataIndex="mcName" Text="<%$ Resources: FieldMCName%>" runat="server" flex="2" />                            
+                            <ext:Column ID="colType" Visible="true" DataIndex="type" Text="<%$ Resources: FieldType%>" runat="server" flex="1" >
                             <Renderer Handler="return GetTypeName(record.data['type']);" />
                             </ext:Column>
-                            <ext:Column ID="Column3" Visible="true" DataIndex="description" Text="<%$ Resources: FieldDescription%>" runat="server" width="590"/>
-                            <ext:DateColumn Format="dd-MM-yyyy" Visible="true" ID="DateColumn1" DataIndex="date" Text="<%$ Resources: FieldDate%>" runat="server" width="120"/>
+                            <ext:Column ID="Column3" Visible="true" DataIndex="description" Text="<%$ Resources: FieldDescription%>" runat="server" Flex="1" />
+                            <ext:DateColumn Format="dd-MM-yyyy" Visible="true" ID="DateColumn1" DataIndex="date" Text="<%$ Resources: FieldDate%>"  runat="server" width="100"/>
                                                        
 
                            <ext:Column runat="server"
                                 ID="colEdit"  Visible="true"
                                 Text=""
-                                Width="80"
+                                Width="120"
                                 Hideable="false"
                                 Align="Center"
                                 Fixed="true"

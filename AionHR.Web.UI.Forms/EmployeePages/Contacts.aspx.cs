@@ -161,6 +161,10 @@ namespace AionHR.Web.UI.Forms.EmployeePages
 
                     FillECNationality();
                     ecnaId.Select(entity.addressId.countryId.ToString());
+                    street1.Text = entity.addressId.street1;
+                    street2.Text = entity.addressId.street2;
+                    postalCode.Text = entity.addressId.postalCode;
+                    city.Text = entity.addressId.city;
 
 
                     this.EditEmergencyContactWindow.Title = Resources.Common.EditWindowsTitle;
@@ -173,7 +177,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                         Yes = new MessageBoxButtonConfig
                         {
                             //We are call a direct request metho for deleting a record
-                            Handler = String.Format("App.direct.DeleteSkill({0})", id),
+                            Handler = String.Format("App.direct.DeleteEC({0})", id),
                             Text = Resources.Common.Yes
                         },
                         No = new MessageBoxButtonConfig
@@ -205,7 +209,11 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     EmployeeContact entity = GetCOById(id.ToString());
                     //Step 2 : call setvalues with the retrieved object
                     this.ContactsForm.SetValues(entity);
-                    
+                    costreet1.Text = entity.addressId.street1;
+                    costreet2.Text = entity.addressId.street2;
+                    copostalCode.Text = entity.addressId.postalCode;
+                    cocity.Text = entity.addressId.city;
+
                     
 
                     FillCONationality();
@@ -222,7 +230,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                         Yes = new MessageBoxButtonConfig
                         {
                             //We are call a direct request metho for deleting a record
-                            Handler = String.Format("App.direct.DeleteSkill({0})", id),
+                            Handler = String.Format("App.direct.DeleteCO({0})", id),
                             Text = Resources.Common.Yes
                         },
                         No = new MessageBoxButtonConfig
@@ -399,13 +407,15 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             JsonSerializerSettings settings = new JsonSerializerSettings();
             CustomResolver res = new CustomResolver();
             res.AddRule("conaId", "naId");
+            res.AddRule("costreet1", "addressId.street1");
             settings.ContractResolver = res;
             EmployeeContact b = JsonConvert.DeserializeObject<EmployeeContact>(obj,settings);
             b.employeeId = Convert.ToInt32(CurrentEmployee.Text);
             b.recordId = id;
             // Define the object to add or edit as null
             b.rtName = rtId.SelectedItem.Text;
-            b.addressId = new AddressBook() { street1 = costreet1.Text, street2 = costreet2.Text, city = cocity.Text, postalCode = copostalCode.Text, countryId = b.naId };
+
+            b.addressId = new AddressBook() { street1 = costreet1.Text.Remove(costreet1.Text.Length - 1, 1), street2 = costreet2.Text.Remove(costreet2.Text.Length - 1, 1), city = cocity.Text.Remove(cocity.Text.Length - 1, 1), postalCode = copostalCode.Text.Remove(copostalCode.Text.Length - 1, 1), countryId = b.naId  ,countryName = conaId.SelectedItem.Text};
             b.employeeId = Convert.ToInt32(CurrentEmployee.Text);
             if (string.IsNullOrEmpty(id))
             {
@@ -529,7 +539,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             b.recordId = id;
             // Define the object to add or edit as null
             b.rtName = rtId.SelectedItem.Text;
-            b.addressId = new AddressBook() { street1 = street1.Text, street2 = street2.Text, city = city.Text, postalCode = postalCode.Text, countryId = b.naId };
+            b.addressId = new AddressBook() { street1 = street1.Text.Remove(street1.Text.Length - 1, 1), street2 = street2.Text.Remove(street2.Text.Length - 1, 1), city = city.Text.Remove(city.Text.Length - 1, 1), postalCode = postalCode.Text.Remove(postalCode.Text.Length - 1, 1), countryId = b.naId, countryName = ecnaId.SelectedItem.Text };
             b.employeeId = Convert.ToInt32(CurrentEmployee.Text);
             if (string.IsNullOrEmpty(id))
             {
@@ -556,7 +566,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     {
 
                         //Add this record to the store 
-                        this.contactStore.Insert(0, b);
+                        this.emergencyContactStore.Insert(0, b);
 
                         //Display successful notification
                         Notification.Show(new NotificationConfig
@@ -566,7 +576,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                             Html = Resources.Common.RecordSavingSucc
                         });
 
-                        this.EditContactWindow.Close();
+                        this.EditEmergencyContactWindow.Close();
                         RowSelectionModel sm = this.emergencyContactsGrid.GetSelectionModel() as RowSelectionModel;
                         sm.DeselectAll();
                         sm.Select(b.recordId.ToString());
@@ -610,9 +620,9 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     {
 
 
-                        ModelProxy record = this.contactStore.GetById(index);
+                        ModelProxy record = this.emergencyContactStore.GetById(index);
 
-                        ContactsForm.UpdateRecord(record);
+                        EmergencyContactsForm.UpdateRecord(record);
                         record.Set("rtName", b.rtName);
 
                         record.Commit();
@@ -622,7 +632,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                             Icon = Icon.Information,
                             Html = Resources.Common.RecordUpdatedSucc
                         });
-                        this.EditContactWindow.Close();
+                        this.EditEmergencyContactWindow.Close();
 
 
                     }
@@ -746,6 +756,94 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                 X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
                 X.Msg.Alert(Resources.Common.Error, response.Summary).Show();
                 return;
+            }
+
+        }
+
+        [DirectMethod]
+        public void DeleteCO(string index)
+        {
+            try
+            {
+                //Step 1 Code to delete the object from the database 
+                EmployeeContact n = new EmployeeContact();
+                n.recordId = index;
+              
+                PostRequest<EmployeeContact> req = new PostRequest<EmployeeContact>();
+                req.entity = n;
+                PostResponse<EmployeeContact> res = _employeeService.ChildDelete<EmployeeContact>(req);
+                if (!res.Success)
+                {
+                    //Show an error saving...
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    X.Msg.Alert(Resources.Common.Error, res.Summary).Show();
+                    return;
+                }
+                else
+                {
+                    //Step 2 :  remove the object from the store
+                    contactStore.Remove(index);
+
+                    //Step 3 : Showing a notification for the user 
+                    Notification.Show(new NotificationConfig
+                    {
+                        Title = Resources.Common.Notification,
+                        Icon = Icon.Information,
+                        Html = Resources.Common.RecordDeletedSucc
+                    });
+                }
+
+            }
+            catch (Exception ex)
+            {
+                //In case of error, showing a message box to the user
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorDeletingRecord).Show();
+
+            }
+
+        }
+
+        [DirectMethod]
+        public void DeleteEC(string index)
+        {
+            try
+            {
+                //Step 1 Code to delete the object from the database 
+                EmployeeEmergencyContact n = new EmployeeEmergencyContact();
+                n.recordId = index;
+               
+                PostRequest<EmployeeEmergencyContact> req = new PostRequest<EmployeeEmergencyContact>();
+                req.entity = n;
+                PostResponse<EmployeeEmergencyContact> res = _employeeService.ChildDelete<EmployeeEmergencyContact>(req);
+                if (!res.Success)
+                {
+                    //Show an error saving...
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    X.Msg.Alert(Resources.Common.Error, res.Summary).Show();
+                    return;
+                }
+                else
+                {
+                    //Step 2 :  remove the object from the store
+                    emergencyContactStore.Remove(index);
+
+                    //Step 3 : Showing a notification for the user 
+                    Notification.Show(new NotificationConfig
+                    {
+                        Title = Resources.Common.Notification,
+                        Icon = Icon.Information,
+                        Html = Resources.Common.RecordDeletedSucc
+                    });
+                }
+
+            }
+            catch (Exception ex)
+            {
+                //In case of error, showing a message box to the user
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorDeletingRecord).Show();
+
             }
 
         }

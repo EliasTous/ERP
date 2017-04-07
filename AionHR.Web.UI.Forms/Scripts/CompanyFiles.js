@@ -1,16 +1,16 @@
 ﻿
 var editRender = function () {
-    return '<img class="imgEdit" style="cursor:pointer;" src="../Images/Tools/edit.png" />';
+    return '<img class="imgEdit" style="cursor:pointer;" src="Images/Tools/edit.png" />';
 };
 
 var deleteRender = function () {
-    return '<img class="imgDelete"  style="cursor:pointer;" src="../Images/Tools/delete.png" />';
+    return '<img class="imgDelete"  style="cursor:pointer;" src="Images/Tools/delete.png" />';
 };
 var attachRender = function () {
-    return '<img class="imgAttach"  style="cursor:pointer;" src="../Images/Tools/attach.png" />';
+    return '<img class="imgAttach"  style="cursor:pointer;" src="Images/Tools/attach.png" />';
 };
 var attachRender2 = function () {
-    return '<img class="imgError"  src="../Images/Tools/error.png" />';
+    return '<img class="imgError"  src="Images/Tools/error.png" />';
 };
 
 var commandName;
