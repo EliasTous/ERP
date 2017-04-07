@@ -117,8 +117,8 @@
                     <ColumnModel ID="ColumnModel1" runat="server" SortAscText="<%$ Resources:Common , SortAscText %>" SortDescText="<%$ Resources:Common ,SortDescText  %>" SortClearText="<%$ Resources:Common ,SortClearText  %>" ColumnsText="<%$ Resources:Common ,ColumnsText  %>" EnableColumnHide="false" Sortable="false" >
                         <Columns>
                             <ext:Column ID="ColRecordId" Visible="false" DataIndex="recordId" runat="server" />
-                            <ext:Column    CellCls="cellLink" ID="ColSubject" MenuDisabled="true" runat="server" Text="<%$ Resources: Fieldsubject%>" DataIndex="subject" Width="330" Hideable="false"></ext:Column>
-                            <ext:Column    CellCls="cellLink" ID="ColNewsText" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldnewsText%>" DataIndex="newsText" Width="600" Hideable="false"></ext:Column>
+                            <ext:Column    CellCls="cellLink" ID="ColSubject" MenuDisabled="true" runat="server" Text="<%$ Resources: Fieldsubject%>" DataIndex="subject"  Flex="1" Hideable="false"></ext:Column>
+                            <ext:Column    CellCls="cellLink" ID="ColNewsText" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldnewsText%>" DataIndex="newsText" Flex="1" Width="600" Hideable="false" ></ext:Column>
                             <ext:CheckColumn runat="server" Width="150" Text="<%$ Resources: FieldnotifyViaEmail %>" DataIndex="notifyViaEmail"></ext:CheckColumn>
                             <ext:CheckColumn runat="server" Width="150" Text="<%$ Resources: FieldallowComments %>" DataIndex="allowComments"></ext:CheckColumn>
                             <ext:CheckColumn runat="server" Width="100" Text="<%$ Resources: FieldisPublished %>" DataIndex="isPublished"></ext:CheckColumn>

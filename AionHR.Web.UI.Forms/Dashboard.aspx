@@ -14,7 +14,7 @@
     <script type="text/javascript" src="Scripts/Dashboard.js"></script>
     <!--  <script type="text/javascript" src="Scripts/app.js"></script>-->
     <script type="text/javascript" src="Scripts/common.js"></script>
-
+    <script type="text/javascript" src="Scripts/moment.js"></script>
     <script type="text/javascript">
         function getStyle()
         {
@@ -24,9 +24,9 @@
         }
         function displayMissedPunchRecord(s) {
             var str = "<div style="+getStyle()+">"+s.name;
-
+            var friendlydate = moment(s['dayId'], 'YYYYMMDD');
             str += '<br/>';
-            str += s['date'] + ', Missed';
+            str += friendlydate.format(document.getElementById("format").value) + ', Missed';
             var flag = false;
             if (s.missedIn) {
                 str += document.getElementById("MissedIn").value;
@@ -53,7 +53,7 @@
             var str = "<div style=" + getStyle() + ">" + s.name;
 
             str += '<br/>';
-            str += s.destination + ', ' + s.endDate;
+            str += s.destination + ', ' + moment(s.endDate).format(document.getElementById('format').value);
 
             return str;
 
@@ -113,6 +113,7 @@
         <ext:Hidden ID="titleSavingErrorMessage" runat="server" Text="<%$ Resources:Common , TitleSavingErrorMessage %>" />
         <ext:Hidden ID="MissedIn" runat="server" Text="<%$ Resources: FieldMissedIn %>" />
         <ext:Hidden ID="MissedOut" runat="server" Text="<%$ Resources:FieldMissedOut %>" />
+        <ext:Hidden ID="format" runat="server"  />
         <ext:Hidden ID="rtl" runat="server"  />
 
 
@@ -226,10 +227,11 @@
 
                                                         <ext:ModelField Name="employeeId" />
                                                         <ext:ModelField Name="name" ServerMapping="employeeName.fullName" />
-                                                        <ext:ModelField Name="date" ServerMapping="date.ToShortDateString()" />
+                                                        
                                                         <ext:ModelField Name="missedIn" />
                                                         <ext:ModelField Name="missedOut" />
                                                         <ext:ModelField Name="time" />
+                                                        <ext:ModelField Name="dayId" />
 
                                                     </Fields>
                                                 </ext:Model>
@@ -410,7 +412,7 @@
                         <ext:Panel AnchorHorizontal="true" ID="rightPanel" Region="Center" runat="server" Layout="FitLayout" AutoScroll="true">
                             <Items>
                                 <ext:Label runat="server" Text="<%$ Resources: ActiveGridTitle %>" StyleSpec="color:darkorange;font-weight:bold" />
-                                <ext:GridPanel MarginSpec="0 17 0 0"
+                                <ext:GridPanel MarginSpec="0 17 0 0" EnableColumnResize="false"
                                     ID="activeGrid" MaxHeight="200"
                                     runat="server"
                                     PaddingSpec="0 0 0 0"
@@ -458,11 +460,13 @@
                                         <Columns>
 
                                             <ext:Column Visible="false" ID="ColrecordId" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldrecordId %>" DataIndex="recordId" Hideable="false" Width="75" Align="Center" />
-                                            <ext:Column Flex="4" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEmployee %>" DataIndex="employeeName.fullName" Hideable="false" Width="75" Align="Center" >
+                                            <ext:Column  MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEmployee %>" DataIndex="employeeName.fullName" Hideable="false"  Flex="2" >
                                                 <Renderer Handler="return record.data['employeeName'].fullName;" />
                                                 </ext:Column>
-                                            <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldTime%>" DataIndex="time" Flex="2" Hideable="false" />
-                                            <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldPosition%>" DataIndex="positionName" Flex="2" Hideable="false" />
+                                            <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldTime%>" DataIndex="time" Width="55" Hideable="false" />
+                                            <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldPosition%>" DataIndex="positionName" Flex="3" Hideable="false" />
+                                                
+                                                
                                             <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDepartment%>" DataIndex="departmentName" Flex="3" Hideable="false" />
                                             <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldBranch%>" DataIndex="branchName" Flex="3" Hideable="false" />
 
@@ -493,7 +497,7 @@
 
                                 <ext:Label runat="server" Text="<%$ Resources: LatenessGridTitle %>" StyleSpec="color:darkorange;font-weight:bold" />
                                 <ext:GridPanel ExpandToolText="expand"
-                                    ID="latenessGrid" MarginSpec="0 17 0 0"
+                                    ID="latenessGrid" MarginSpec="0 17 0 0" EnableColumnResize="false"
                                     runat="server" Height="200" MaxHeight="200"
                                     PaddingSpec="0 0 0 0"
                                     Header="false" CollapseMode="Header" Collapsible="true" CollapseDirection="Right"
@@ -538,13 +542,13 @@
                                     <ColumnModel ID="ColumnModel3" runat="server" SortAscText="<%$ Resources:Common , SortAscText %>" SortDescText="<%$ Resources:Common ,SortDescText  %>" SortClearText="<%$ Resources:Common ,SortClearText  %>" ColumnsText="<%$ Resources:Common ,ColumnsText  %>" EnableColumnHide="false" Sortable="false">
                                         <Columns>
                                             <ext:Column Visible="false" ID="Column2" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldrecordId %>" DataIndex="recordId" Hideable="false" Width="75" Align="Center" />
-                                            <ext:Column Flex="3" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEmployee %>" DataIndex="employeeName.fullName" Hideable="false" Width="75" Align="Center" >
+                                            <ext:Column Flex="2" MenuDisabled="true"   runat="server" Text="<%$ Resources: FieldEmployee %>" DataIndex="employeeName.fullName" Hideable="false"    >
                                                     <Renderer Handler="return record.data['employeeName'].fullName;" />
                                                 </ext:Column>
-                                            <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldTime%>" DataIndex="time" Flex="2" Hideable="false" />
-                                            <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldPosition%>" DataIndex="positionName" Flex="2" Hideable="false" />
-                                            <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDepartment%>" DataIndex="departmentName" Flex="2" Hideable="false" />
-                                            <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldBranch%>" DataIndex="branchName" Flex="2" Hideable="false" />
+                                            <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldTime%>" DataIndex="time"  Width="55" Hideable="false" />
+                                            <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldPosition%>" DataIndex="positionName" Flex="3" Hideable="false" />
+                                            <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDepartment%>" DataIndex="departmentName" Flex="3" Hideable="false" />
+                                            <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldBranch%>" DataIndex="branchName" Flex="3" Hideable="false" />
 
 
                                         </Columns>
@@ -562,7 +566,7 @@
                                 </ext:GridPanel>
                                 <ext:Label runat="server" Text="<%$ Resources: OutGridTitle %>" StyleSpec="color:darkorange;font-weight:bold" />
                                 <ext:GridPanel
-                                    ID="outGrid" MarginSpec="0 17 0 0"
+                                    ID="outGrid" MarginSpec="0 17 0 0" EnableColumnResize="false"
                                     runat="server" Height="200" MaxHeight="200"
                                     PaddingSpec="0 0 0 0"
                                     Header="false"
@@ -606,11 +610,11 @@
 
                                     <ColumnModel ID="ColumnModel7" runat="server" SortAscText="<%$ Resources:Common , SortAscText %>" SortDescText="<%$ Resources:Common ,SortDescText  %>" SortClearText="<%$ Resources:Common ,SortClearText  %>" ColumnsText="<%$ Resources:Common ,ColumnsText  %>" EnableColumnHide="false" Sortable="false">
                                         <Columns>
-                                            <ext:Column Visible="false" ID="Column4" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldrecordId %>" DataIndex="recordId" Hideable="false" Width="75" Align="Center" />
-                                            <ext:Column Flex="4" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEmployee %>" DataIndex="employeeName.fullName" Hideable="false" Width="75" Align="Center" >
+                                            <ext:Column Visible="false" ID="Column4" DefaultAlign="left" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldrecordId %>" DataIndex="recordId" Hideable="false" Width="75" Align="Center" />
+                                            <ext:Column Flex="2" MenuDisabled="true"  runat="server" Text="<%$ Resources: FieldEmployee %>" DataIndex="employeeName.fullName" Hideable="false"   >
                                                     <Renderer Handler="return record.data['employeeName'].fullName;" />
                                                 </ext:Column>
-                                            <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldTime%>" DataIndex="time" Flex="2" Hideable="false" />
+                                            <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldTime%>" DataIndex="time"  Width="55" Hideable="false" />
                                             <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldPosition%>" DataIndex="positionName" Flex="3" Hideable="false" />
                                             <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDepartment%>" DataIndex="departmentName" Flex="3" Hideable="false" />
                                             <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldBranch%>" DataIndex="branchName" Flex="3" Hideable="false" />

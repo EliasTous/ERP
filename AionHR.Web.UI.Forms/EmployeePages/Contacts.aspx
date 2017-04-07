@@ -425,7 +425,7 @@
                             <Items>
                                 <ext:Panel runat="server">
                                     <Items>
-                                        <ext:TextField runat="server" Name="recordId" ID="TextField6" Hidden="true" Disabled="true" />
+                                        <ext:TextField runat="server" Name="recordId" ID="coId" Hidden="true" Disabled="true" />
                                         <ext:TextField runat="server" Name="phone" AllowBlank="false" ID="cocellPhone" FieldLabel="<%$ Resources:FieldCCellPhone%>" >
                                              <Plugins>
                                                 <ext:InputMask Mask="9999999?999" />
@@ -496,7 +496,7 @@
                         <Click OnEvent="SaveCO" Failure="Ext.MessageBox.alert('#{titleSavingError}.value', '#{titleSavingErrorMessage}.value');">
                             <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="={#{EditContactWindow}.body}" />
                             <ExtraParams>
-                                <ext:Parameter Name="id" Value="#{recordId}.getValue()" Mode="Raw" />
+                                <ext:Parameter Name="id" Value="#{coId}.getValue()" Mode="Raw" />
                                 <ext:Parameter Name="values" Value="#{ContactsForm}.getForm().getValues(false, false, false, true)" Mode="Raw" Encode="true" />
                             </ExtraParams>
                         </Click>
@@ -538,7 +538,7 @@
                             <Items>
                                 <ext:Panel runat="server" MarginSpec="0 10 0 0">
                                     <Items>
-                                        <ext:TextField runat="server" Name="recordId" ID="recordId" Hidden="true" Disabled="true" />
+                                        <ext:TextField runat="server" Name="recordId" ID="ecId" Hidden="true" Disabled="true" />
                                         <ext:TextField runat="server" Name="name" AllowBlank="false" ID="name" FieldLabel="<%$ Resources:FieldEMInst%>" />
 
                                         <ext:ComboBox ValueField="recordId" AllowBlank="false" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1"
@@ -683,7 +683,7 @@
                         <Click OnEvent="SaveEC" Failure="Ext.MessageBox.alert('#{titleSavingError}.value', '#{titleSavingErrorMessage}.value');">
                             <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="={#{EditEmergencyContactWindow}.body}" />
                             <ExtraParams>
-                                <ext:Parameter Name="id" Value="#{recordId}.getValue()" Mode="Raw" />
+                                <ext:Parameter Name="id" Value="#{ecId}.getValue()" Mode="Raw" />
                                 <ext:Parameter Name="values" Value="#{EmergencyContactsForm}.getForm().getValues(false, false, false, true)" Mode="Raw" Encode="true" />
                             </ExtraParams>
                         </Click>

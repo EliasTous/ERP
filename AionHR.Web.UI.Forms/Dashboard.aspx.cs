@@ -73,6 +73,7 @@ namespace AionHR.Web.UI.Forms
                     ListResponse<ActiveAbsence> ABs = _timeAttendanceService.ChildGetAll<ActiveAbsence>(r);
                     absenseStore.DataSource = ABs.Items;
                     absenseStore.DataBind();
+                    format.Text = _systemService.SessionHelper.GetDateformat().ToUpper();
                 }
                 catch { }
             }

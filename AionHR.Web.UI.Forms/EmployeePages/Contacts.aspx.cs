@@ -479,7 +479,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     int index = Convert.ToInt32(id);//getting the id of the record
                     PostRequest<EmployeeContact> request = new PostRequest<EmployeeContact>();
                     request.entity = b;
-
+                    b.recordId = index.ToString();
 
 
                     PostResponse<EmployeeContact> r = _employeeService.ChildAddOrUpdate<EmployeeContact>(request);

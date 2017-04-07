@@ -26,6 +26,7 @@ using AionHR.Model.Employees.Leaves;
 using AionHR.Model.Employees.Profile;
 using AionHR.Model.MediaGallery;
 using System.Net;
+using AionHR.Infrastructure.Domain;
 
 namespace AionHR.Web.UI.Forms
 {
@@ -198,6 +199,7 @@ namespace AionHR.Web.UI.Forms
                         return;
                     }
                     //Step 2 : call setvalues with the retrieved object
+                    url.Text = response.result.pictureUrl;
                     this.BasicInfoTab.SetValues(response.result);
 
                     FillMediaCategory();
@@ -408,6 +410,7 @@ namespace AionHR.Web.UI.Forms
             MediaItem b = JsonConvert.DeserializeObject<MediaItem>(obj);
 
             string id = e.ExtraParams["id"];
+            string url = e.ExtraParams["url"];
             // Define the object to add or edit as null
 
             if (mcId.SelectedItem != null)
@@ -464,8 +467,8 @@ namespace AionHR.Web.UI.Forms
                     {
                         b.recordId = r.recordId;
                         //Add this record to the store 
-                        this.Store1.Insert(0, b);
-
+                        MediaItem m = GetMEById(r.recordId);
+                        Store1.Insert(0, m);
                         //Display successful notification
                         Notification.Show(new NotificationConfig
                         {
@@ -505,6 +508,24 @@ namespace AionHR.Web.UI.Forms
                     byte[] fileData = null;
                     if (rwFile.PostedFile != null && rwFile.PostedFile.ContentLength > 0)
                     {
+                        if(!string.IsNullOrEmpty(url))
+                        {
+                            Attachement at = new Attachement();
+                            at.classId = ClassId.MGME;
+                            at.recordId = index;
+                            at.fileName = url;
+                            at.folderId = null;
+                            at.seqNo = 0;
+                            PostRequest<Attachement> req = new PostRequest<Attachement>();
+                            req.entity = at;
+                            PostResponse<Attachement> resp = _systemService.ChildDelete<Attachement>(req);
+                            if(!resp.Success)
+                            {
+                                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                                X.Msg.Alert(Resources.Common.Error, resp.Summary).Show();
+                                return;
+                            }
+                        }
                         //using (var binaryReader = new BinaryReader(picturePath.PostedFile.InputStream))
                         //{
                         //    fileData = binaryReader.ReadBytes(picturePath.PostedFile.ContentLength);
@@ -534,10 +555,13 @@ namespace AionHR.Web.UI.Forms
                     }
                     else
                     {
+                        MediaItem m = GetMEById(id);
+
                         ModelProxy record = this.Store1.GetById(id);
                         BasicInfoTab.UpdateRecord(record);
                         record.Set("mcName", b.mcName);
                         record.Set("departmentName", b.departmentName);
+                        recordId.Set("pictureUrl", m.pictureUrl);
                         record.Commit();
                         Notification.Show(new NotificationConfig
                         {
@@ -659,6 +683,12 @@ namespace AionHR.Web.UI.Forms
         }
 
 
+        private MediaItem GetMEById(string id)
+        {
+            RecordRequest req = new RecordRequest();
+            req.RecordID = id;
+            return _mediaGalleryService.ChildGetRecord<MediaItem>(req).result;
+        }
 
 
     }

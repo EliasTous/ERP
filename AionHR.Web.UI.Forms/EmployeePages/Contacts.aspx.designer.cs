@@ -436,13 +436,13 @@ namespace AionHR.Web.UI.Forms.EmployeePages {
         protected global::Ext.Net.FormPanel ContactsForm;
         
         /// <summary>
-        /// TextField6 control.
+        /// coId control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.TextField TextField6;
+        protected global::Ext.Net.TextField coId;
         
         /// <summary>
         /// cocellPhone control.
@@ -562,13 +562,13 @@ namespace AionHR.Web.UI.Forms.EmployeePages {
         protected global::Ext.Net.FormPanel EmergencyContactsForm;
         
         /// <summary>
-        /// recordId control.
+        /// ecId control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.TextField recordId;
+        protected global::Ext.Net.TextField ecId;
         
         /// <summary>
         /// name control.

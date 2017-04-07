@@ -35,7 +35,7 @@ namespace AionHR.Model.Attendance
     {
         public int employeeId { get; set; }
         public EmployeeName employeeName { get; set; }
-        public DateTime date { get; set; }
+        public string dayId { get; set; }
         public bool missedIn { get; set; }
         public bool missedOut { get; set; }
         public string time { get; set; }
