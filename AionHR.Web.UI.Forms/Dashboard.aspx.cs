@@ -149,6 +149,11 @@ namespace AionHR.Web.UI.Forms
             ActiveAttendanceRequest r = GetActiveAttendanceRequest();
 
             ListResponse<ActiveCheck> ACs = _timeAttendanceService.ChildGetAll<ActiveCheck>(r);
+            if (!ACs.Success)
+            {
+                X.Msg.Alert(Resources.Common.Error, ACs.Summary).Show();
+                return;
+            }
             activeStore.DataSource = ACs.Items;
             activeStore.DataBind();
 
@@ -178,6 +183,11 @@ namespace AionHR.Web.UI.Forms
             ListResponse<ActiveAbsence> ABs = _timeAttendanceService.ChildGetAll<ActiveAbsence>(r);
             //List<ActiveAbsence> a = new List<ActiveAbsence>();
             //a.Add(new ActiveAbsence() { branchName = "here", positionName = "someone", employeeId = 8, employeeName = new Model.Employees.Profile.EmployeeName() { fullName = "rabie" } });
+            if (!ABs.Success)
+            {
+                X.Msg.Alert(Resources.Common.Error, ABs.Summary).Show();
+                return;
+            }
             absenseStore.DataSource = ABs.Items;
             absenseStore.DataBind();
         }
@@ -187,6 +197,11 @@ namespace AionHR.Web.UI.Forms
             ActiveAttendanceRequest r = GetActiveAttendanceRequest();
 
             ListResponse<ActiveLate> ALs = _timeAttendanceService.ChildGetAll<ActiveLate>(r);
+            if (!ALs.Success)
+            {
+                X.Msg.Alert(Resources.Common.Error, ALs.Summary).Show();
+                return;
+            }
             latenessStore.DataSource = ALs.Items;
             latenessStore.DataBind();
         }
@@ -196,6 +211,11 @@ namespace AionHR.Web.UI.Forms
             ActiveAttendanceRequest r = GetActiveAttendanceRequest();
 
             ListResponse<ActiveLeave> Leaves = _timeAttendanceService.ChildGetAll<ActiveLeave>(r);
+            if (!Leaves.Success)
+            {
+                X.Msg.Alert(Resources.Common.Error, Leaves.Summary).Show();
+                return;
+            }
             leavesStore.DataSource = Leaves.Items;
             //List<ActiveLeave> leaves = new List<ActiveLeave>();
             //leaves.Add(new ActiveLeave() { destination = "dc", employeeId = 8, employeeName = new Model.Employees.Profile.EmployeeName() { fullName = "vima" }, endDate = DateTime.Now.AddDays(10) });
@@ -209,6 +229,11 @@ namespace AionHR.Web.UI.Forms
             ActiveAttendanceRequest r = GetActiveAttendanceRequest();
 
             ListResponse<MissedPunch> ACs = _timeAttendanceService.ChildGetAll<MissedPunch>(r);
+            if (!ACs.Success)
+            {
+                X.Msg.Alert(Resources.Common.Error, ACs.Summary).Show();
+                return;
+            }
 
             //List<MissedPunch> s = new List<MissedPunch>();
             //s.Add(new MissedPunch() { date = DateTime.Now, employeeId = 8, employeeName = new Model.Employees.Profile.EmployeeName() { fullName = "issa" }, missedIn = true, missedOut = false, recordId = "1", time = "08:30" });
@@ -221,6 +246,11 @@ namespace AionHR.Web.UI.Forms
             ActiveAttendanceRequest r = GetActiveAttendanceRequest();
 
             ListResponse<CheckMonitor> CMs = _timeAttendanceService.ChildGetAll<CheckMonitor>(r);
+            if (!CMs.Success)
+            {
+                X.Msg.Alert(Resources.Common.Error, CMs.Summary).Show();
+                return;
+            }
             foreach (var item in CMs.Items)
             {
                 item.figureTitle = GetLocalResourceObject(item.figureId.ToString()).ToString();
@@ -237,6 +267,11 @@ namespace AionHR.Web.UI.Forms
             ActiveAttendanceRequest r = GetActiveAttendanceRequest();
 
             ListResponse<ActiveOut> AOs = _timeAttendanceService.ChildGetAll<ActiveOut>(r);
+            if (!AOs.Success)
+            {
+                X.Msg.Alert(Resources.Common.Error, AOs.Summary).Show();
+                return;
+            }
             outStore.DataSource = AOs.Items;
 
 

@@ -125,6 +125,9 @@
         </ext:Store>
 
         <ext:Viewport ID="Viewport1" runat="server" Layout="BorderLayout">
+            <Listeners>
+                <AfterLayout Handler="App.direct.UpdateCal(#{CurrentMonth}.value,#{CurrentYear}.value,#{Viewport1}.getWidth(),{success: function (result) {  Ext.net.Mask.hide();},error: function (result) {  Ext.net.Mask.hide();}});    " />
+            </Listeners>
             <Items>
 
                 <ext:Panel runat="server" Region="Center">
@@ -259,7 +262,7 @@
                     </TopBar>
                     <Items>
                         <ext:Panel runat="server" Layout="VBoxLayout" AutoScroll="true">
-                         <%--   <LayoutConfig>
+                            <%--<LayoutConfig>
                                 <ext:VBoxLayoutConfig Align="Stretch" />
                             </LayoutConfig>--%>
                             <Defaults>
@@ -275,12 +278,12 @@
 
                                         <ext:Button runat="server" Text="<">
                                             <Listeners>
-                                                <Click Handler="CheckSession(); if(parseInt(#{CurrentMonth}.value)<1) {#{currentMonth}.value = 12; #{CurrentYear}.value = parseInt(#{CurrentYear}.value) - 1; } else{ #{CurrentMonth}.value = parseInt(#{CurrentMonth}.value) -1; } Ext.net.Mask.show(); App.direct.UpdateCal(#{CurrentMonth}.value,#{CurrentYear}.value,{success: function (result) {  Ext.net.Mask.hide();},error: function (result) {  Ext.net.Mask.hide();}});    #{monthLbl}.setText(getMonthByNumber(#{CurrentMonth}.value)); #{yearLbl}.setText(#{CurrentYear}.value);" />
+                                                <Click Handler="CheckSession(); if(parseInt(#{CurrentMonth}.value)<1) {#{currentMonth}.value = 12; #{CurrentYear}.value = parseInt(#{CurrentYear}.value) - 1; } else{ #{CurrentMonth}.value = parseInt(#{CurrentMonth}.value) -1; } Ext.net.Mask.show(); App.direct.UpdateCal(#{CurrentMonth}.value,#{CurrentYear}.value,#{Viewport1}.getWidth(),{success: function (result) {  Ext.net.Mask.hide();},error: function (result) {  Ext.net.Mask.hide();}});    #{monthLbl}.setText(getMonthByNumber(#{CurrentMonth}.value)); #{yearLbl}.setText(#{CurrentYear}.value);" />
                                             </Listeners>
                                         </ext:Button>
                                         <ext:Button runat="server" Text=">">
                                             <Listeners>
-                                                <Click Handler="CheckSession(); if(parseInt(#{CurrentMonth}.value)>11) {#{currentMonth}.value = 1; #{CurrentYear}.value = parseInt(#{CurrentYear}.value) + 1; } else{ #{CurrentMonth}.value = parseInt(#{CurrentMonth}.value) + 1; } Ext.net.Mask.show(); App.direct.UpdateCal(#{CurrentMonth}.value,#{CurrentYear}.value,{success: function (result) {  Ext.net.Mask.hide();},error: function (result) {  Ext.net.Mask.hide();}});    #{monthLbl}.setText(getMonthByNumber(#{CurrentMonth}.value));#{yearLbl}.setText(#{CurrentYear}.value);" />
+                                                <Click Handler="CheckSession(); if(parseInt(#{CurrentMonth}.value)>11) {#{currentMonth}.value = 1; #{CurrentYear}.value = parseInt(#{CurrentYear}.value) + 1; } else{ #{CurrentMonth}.value = parseInt(#{CurrentMonth}.value) + 1; } Ext.net.Mask.show(); App.direct.UpdateCal(#{CurrentMonth}.value,#{CurrentYear}.value,#{Viewport1}.getWidth(),{success: function (result) {  Ext.net.Mask.hide();},error: function (result) {  Ext.net.Mask.hide();}});    #{monthLbl}.setText(getMonthByNumber(#{CurrentMonth}.value));#{yearLbl}.setText(#{CurrentYear}.value);" />
                                             </Listeners>
                                         </ext:Button>
 
@@ -297,13 +300,20 @@
                                                     HeaderFontSize="8pt" HeaderHeight="20" CssOnly="false"
                                                     EventClickHandling="JavaScript" Scale="Day"
                                                     EventClickJavaScript="App.direct.HandleClick({0});"
-                                                    EventFontSize="11px" 
-                                                    CellDuration="1440"
+                                                    EventFontSize="11px"   CellWidth="20"
+                                                    CellDuration="1440" 
                                                     OnEventClick="DayPilotScheduler1_EventClick"
                                                     OnBeforeEventRender="DayPilotScheduler1_BeforeEventRender"
                                                     EventHeight="25">
                                                 </DayPilot:DayPilotScheduler>
                                             </Content>
+                                            <Listeners>
+                                                <AfterRender Handler="App.direct.UpdateCal(#{CurrentMonth}.value,#{CurrentYear}.value,#{Viewport1}.getWidth(),{success: function (result) {  Ext.net.Mask.hide();},error: function (result) {  Ext.net.Mask.hide();}});    " />
+                                                <%--<AfterLayout  Handler="App.direct.UpdateCal(#{CurrentMonth}.value,#{CurrentYear}.value,#{Viewport1}.getWidth(),{success: function (result) {  Ext.net.Mask.hide();},error: function (result) {  Ext.net.Mask.hide();}});    " />--%>
+                                            </Listeners>
+                           <%--           <Listeners>
+                                          <AfterLayout Handler="App.direct.UpdateCal(#{CurrentMonth}.value,#{CurrentYear}.value,#{Viewport1}.getWidth(),{success: function (result) {  Ext.net.Mask.hide();},error: function (result) {  Ext.net.Mask.hide();}});    " />
+                                      </Listeners>--%>
                                         </ext:Container>
                                     </Items>
                                 </ext:Panel>
@@ -462,6 +472,9 @@
                     </Listeners>
                 </ext:Button>
             </Buttons>
+            <Listeners>
+                <BeforeHide Handler="App.direct.UpdateCal(#{CurrentMonth}.value,#{CurrentYear}.value,#{Viewport1}.getWidth(),{success: function (result) {  Ext.net.Mask.hide();},error: function (result) {  Ext.net.Mask.hide();}});    " />
+            </Listeners>
         </ext:Window>
     </form>
 </body>

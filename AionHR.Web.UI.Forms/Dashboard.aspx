@@ -70,7 +70,7 @@
         function startRefresh() {
 
 
-            setInterval(RefreshAllGrids, 5000);
+            setInterval(RefreshAllGrids, 60000);
 
         }
         function RefreshAllGrids() {
@@ -438,7 +438,7 @@
                                                     <Fields>
 
                                                         <ext:ModelField Name="employeeId" />
-                                                        <ext:ModelField Name="name" ServerMapping="employeeName.fullName" />
+                                                        <ext:ModelField Name="employeeName" IsComplex="true" />
                                                         <ext:ModelField Name="time" />
                                                         <ext:ModelField Name="checkStatus" />
                                                         <ext:ModelField Name="positionName" />
@@ -458,7 +458,9 @@
                                         <Columns>
 
                                             <ext:Column Visible="false" ID="ColrecordId" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldrecordId %>" DataIndex="recordId" Hideable="false" Width="75" Align="Center" />
-                                            <ext:Column Flex="4" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEmployee %>" DataIndex="name" Hideable="false" Width="75" Align="Center" />
+                                            <ext:Column Flex="4" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEmployee %>" DataIndex="employeeName.fullName" Hideable="false" Width="75" Align="Center" >
+                                                <Renderer Handler="return record.data['employeeName'].fullName;" />
+                                                </ext:Column>
                                             <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldTime%>" DataIndex="time" Flex="2" Hideable="false" />
                                             <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldPosition%>" DataIndex="positionName" Flex="2" Hideable="false" />
                                             <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDepartment%>" DataIndex="departmentName" Flex="3" Hideable="false" />
@@ -519,7 +521,7 @@
                                                     <Fields>
 
                                                         <ext:ModelField Name="employeeId" />
-                                                        <ext:ModelField Name="name" ServerMapping="employeeName.fullName" />
+                                                        <ext:ModelField Name="employeeName" IsComplex="true" />
                                                         <ext:ModelField Name="time" />
                                                         <ext:ModelField Name="positionName" />
                                                         <ext:ModelField Name="departmentName" />
@@ -536,7 +538,9 @@
                                     <ColumnModel ID="ColumnModel3" runat="server" SortAscText="<%$ Resources:Common , SortAscText %>" SortDescText="<%$ Resources:Common ,SortDescText  %>" SortClearText="<%$ Resources:Common ,SortClearText  %>" ColumnsText="<%$ Resources:Common ,ColumnsText  %>" EnableColumnHide="false" Sortable="false">
                                         <Columns>
                                             <ext:Column Visible="false" ID="Column2" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldrecordId %>" DataIndex="recordId" Hideable="false" Width="75" Align="Center" />
-                                            <ext:Column Flex="3" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEmployee %>" DataIndex="name" Hideable="false" Width="75" Align="Center" />
+                                            <ext:Column Flex="3" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEmployee %>" DataIndex="employeeName.fullName" Hideable="false" Width="75" Align="Center" >
+                                                    <Renderer Handler="return record.data['employeeName'].fullName;" />
+                                                </ext:Column>
                                             <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldTime%>" DataIndex="time" Flex="2" Hideable="false" />
                                             <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldPosition%>" DataIndex="positionName" Flex="2" Hideable="false" />
                                             <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDepartment%>" DataIndex="departmentName" Flex="2" Hideable="false" />
@@ -586,7 +590,7 @@
                                                     <Fields>
 
                                                         <ext:ModelField Name="employeeId" />
-                                                        <ext:ModelField Name="name" ServerMapping="employeeName.fullName" />
+                                                       <ext:ModelField Name="employeeName" IsComplex="true" />
                                                         <ext:ModelField Name="time" />
                                                         <ext:ModelField Name="positionName" />
                                                         <ext:ModelField Name="departmentName" />
@@ -603,7 +607,9 @@
                                     <ColumnModel ID="ColumnModel7" runat="server" SortAscText="<%$ Resources:Common , SortAscText %>" SortDescText="<%$ Resources:Common ,SortDescText  %>" SortClearText="<%$ Resources:Common ,SortClearText  %>" ColumnsText="<%$ Resources:Common ,ColumnsText  %>" EnableColumnHide="false" Sortable="false">
                                         <Columns>
                                             <ext:Column Visible="false" ID="Column4" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldrecordId %>" DataIndex="recordId" Hideable="false" Width="75" Align="Center" />
-                                            <ext:Column Flex="4" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEmployee %>" DataIndex="name" Hideable="false" Width="75" Align="Center" />
+                                            <ext:Column Flex="4" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEmployee %>" DataIndex="employeeName.fullName" Hideable="false" Width="75" Align="Center" >
+                                                    <Renderer Handler="return record.data['employeeName'].fullName;" />
+                                                </ext:Column>
                                             <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldTime%>" DataIndex="time" Flex="2" Hideable="false" />
                                             <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldPosition%>" DataIndex="positionName" Flex="3" Hideable="false" />
                                             <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDepartment%>" DataIndex="departmentName" Flex="3" Hideable="false" />

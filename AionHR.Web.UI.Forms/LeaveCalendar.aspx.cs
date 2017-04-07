@@ -76,10 +76,13 @@ namespace AionHR.Web.UI.Forms
 
             DataRow dr;
 
-
+            DateTime startDate = new DateTime(Convert.ToInt32(year), Convert.ToInt32(month), 1);
+            DateTime endDate = new DateTime(Convert.ToInt32(year), Convert.ToInt32(month), DateTime.DaysInMonth(Convert.ToInt32(year), Convert.ToInt32(month)));
             foreach (var item in resp.Items)
             {
-                if (item.startDate.Month != Convert.ToInt32(month) || item.startDate.Year != Convert.ToInt32(year))
+                
+                
+                if (item.startDate > endDate || item.endDate < startDate)
                     continue;
                 DayPilotScheduler1.Resources.Add(new DayPilot.Web.Ui.Resource(item.employeeName.fullName, item.employeeId.ToString()));
                 dr = dt.NewRow();
@@ -94,10 +97,10 @@ namespace AionHR.Web.UI.Forms
                         dr["backColor"] = "#00ff00";
                         break;
                     case 1:
-                        dr["backColor"] = "#0000ff";
+                        dr["backColor"] = "#ff0000";
                         break;
                     case 2:
-                        dr["backColor"] = "#ff0000";
+                        dr["backColor"] = "#0000ff";
                         break;
                 }
 
@@ -126,17 +129,15 @@ namespace AionHR.Web.UI.Forms
                 CurrentYear.Text = DateTime.Today.Year.ToString();
                 monthLbl.Text = DateTime.Today.ToString("MMMM");
                 yearLbl.Text = DateTime.Today.ToString("yyyy");
-                DayPilotScheduler1.StartDate = new DateTime(2017, 3, 1);
-                DayPilotScheduler1.Days = DateTime.DaysInMonth(2017, 3);
+                DayPilotScheduler1.StartDate = new DateTime(DateTime.Today.Year, DateTime.Today.Month, 1);
+                DayPilotScheduler1.Days = DateTime.DaysInMonth(DateTime.Today.Year, DateTime.Today.Month);
                 DayPilotScheduler1.DataStartField = "start";
                 DayPilotScheduler1.DataEndField = "end";
                 DayPilotScheduler1.DataIdField = "id";
                 DayPilotScheduler1.DataTextField = "name";
                 DayPilotScheduler1.DataResourceField = "resource";
-                DayPilotScheduler1.DataSource = getData("3", "2017");
-                DayPilotScheduler1.DataBind();
-                DayPilotScheduler1.Update();
 
+                UpdateCal(CurrentMonth.Text, CurrentYear.Text, Viewport1.Width.Value.ToString());
 
             }
 
@@ -324,7 +325,7 @@ namespace AionHR.Web.UI.Forms
         }
 
         [DirectMethod]
-        public void UpdateCal(string month, string year)
+        public void UpdateCal(string month, string year,string parentWidth)
         {
             try
             {
@@ -338,9 +339,12 @@ namespace AionHR.Web.UI.Forms
                 DayPilotScheduler1.DataSource = getData(month, year);
                 
                 DayPilotScheduler1.DataBind();
+                int widthInt = Convert.ToInt32(parentWidth);
 
+                DayPilotScheduler1.CellWidth = ((int)widthInt / 35);
                 
                 DayPilotScheduler1.Update();
+                
                 schedulerHolder.UpdateLayout();
 
 
@@ -566,7 +570,7 @@ namespace AionHR.Web.UI.Forms
                             Html = Resources.Common.RecordSavingSucc
                         });
 
-                        UpdateCal(CurrentMonth.Text, CurrentYear.Text);
+                        UpdateCal(CurrentMonth.Text, CurrentYear.Text,Viewport1.Width.Value.ToString());
                         this.EditRecordWindow.Close();
 
 
@@ -614,7 +618,7 @@ namespace AionHR.Web.UI.Forms
                             Icon = Icon.Information,
                             Html = Resources.Common.RecordUpdatedSucc
                         });
-                        UpdateCal(CurrentMonth.Text, CurrentYear.Text);
+                        UpdateCal(CurrentMonth.Text, CurrentYear.Text,Viewport1.Width.ToString());
                         this.EditRecordWindow.Close();
 
 
@@ -633,6 +637,15 @@ namespace AionHR.Web.UI.Forms
         {
             e.BackgroundColor = (string)e.DataItem["backColor"];
 
+        }
+
+        [DirectMethod]
+        public void FixLayout(string width)
+        {
+            int widthInt = Convert.ToInt32(width);
+
+            DayPilotScheduler1.CellWidth = ((int)widthInt / 40)+20;
+            DayPilotScheduler1.Update();
         }
     }
 }

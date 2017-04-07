@@ -717,7 +717,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             PostRequest<Nationality> depReq = new PostRequest<Nationality>();
             depReq.entity = dept;
 
-            PostResponse<Nationality> response = _employeeService.ChildAddOrUpdate<Nationality>(depReq);
+            PostResponse<Nationality> response = _systemService.ChildAddOrUpdate<Nationality>(depReq);
             if (response.Success)
             {
                 dept.recordId = response.recordId;
@@ -744,7 +744,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             PostRequest<Nationality> depReq = new PostRequest<Nationality>();
             depReq.entity = dept;
 
-            PostResponse<Nationality> response = _employeeService.ChildAddOrUpdate<Nationality>(depReq);
+            PostResponse<Nationality> response = _systemService.ChildAddOrUpdate<Nationality>(depReq);
             if (response.Success)
             {
                 dept.recordId = response.recordId;
