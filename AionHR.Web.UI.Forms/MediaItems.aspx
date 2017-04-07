@@ -60,6 +60,7 @@
                         <ext:ModelField Name="date" />
                         <ext:ModelField Name="mcName" />
                         <ext:ModelField Name="departmentName" />
+                        <ext:ModelField Name="fileUrl" />
                         
                     </Fields>
                 </ext:Model>
@@ -134,14 +135,14 @@
                             <ext:Column ID="colType" Visible="true" DataIndex="type" Text="<%$ Resources: FieldType%>" runat="server" width="120">
                             <Renderer Handler="return GetTypeName(record.data['type']);" />
                             </ext:Column>
-                            <ext:Column ID="Column3" Visible="true" DataIndex="description" Text="<%$ Resources: FieldDescription%>" runat="server" width="590"/>
+                            <ext:Column ID="Column3" Visible="true" DataIndex="description" Text="<%$ Resources: FieldDescription%>" runat="server" width="550"/>
                             <ext:DateColumn Format="dd-MM-yyyy" Visible="true" ID="DateColumn1" DataIndex="date" Text="<%$ Resources: FieldDate%>" runat="server" width="120"/>
                                                        
 
                            <ext:Column runat="server"
                                 ID="colEdit"  Visible="true"
                                 Text=""
-                                Width="80"
+                                Width="120"
                                 Hideable="false"
                                 Align="Center"
                                 Fixed="true"
@@ -226,6 +227,7 @@
                             <EventMask ShowMask="true" />
                             <ExtraParams>
                                 <ext:Parameter Name="id" Value="record.getId()" Mode="Raw" />
+                                <ext:Parameter Name="path" Value="record.data['fileUrl']" Mode="Raw" />
                                 <ext:Parameter Name="type" Value="getCellType( this, rowIndex, cellIndex)" Mode="Raw" />
                             </ExtraParams>
 
