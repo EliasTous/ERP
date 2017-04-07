@@ -1,5 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="MediaItems.aspx.cs" Inherits="AionHR.Web.UI.Forms.MediaItems" %>
-
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Folders.aspx.cs" Inherits="AionHR.Web.UI.Forms.Folders" %>
 
 
 <%@ Register Assembly="Ext.Net" Namespace="Ext.Net" TagPrefix="ext" %>
@@ -11,7 +10,7 @@
     <title></title>
     <link rel="stylesheet" type="text/css" href="CSS/Common.css" />
     <link rel="stylesheet" href="CSS/LiveSearch.css" />
-    <script type="text/javascript" src="Scripts/MediaItems.js?id=0" ></script>
+    <script type="text/javascript" src="Scripts/Folders.js?id=1" ></script>
     <script type="text/javascript" src="Scripts/common.js" ></script>
    
  
@@ -24,15 +23,6 @@
         <ext:Hidden ID="textLoadFailed" runat="server" Text="<%$ Resources:Common , LoadFailed %>" />
         <ext:Hidden ID="titleSavingError" runat="server" Text="<%$ Resources:Common , TitleSavingError %>" />
         <ext:Hidden ID="titleSavingErrorMessage" runat="server" Text="<%$ Resources:Common , TitleSavingErrorMessage %>" />
-
-        <ext:Hidden ID="TypeAudio" runat="server" Text="<%$ Resources:FieldAudio %>" />
-        <ext:Hidden ID="TypeVideo" runat="server" Text="<%$ Resources: FieldVideo %>" />
-        <ext:Hidden ID="TypeTextFile" runat="server" Text="<%$ Resources: FieldTextFile %>" />
-        <ext:Hidden ID="TypePicture" runat="server" Text="<%$ Resources: FieldPicture %>" />
-        <ext:Hidden ID="CurrentLanguage" runat="server" />
-
-
-
         
         <ext:Store
             ID="Store1"
@@ -53,14 +43,7 @@
                     <Fields>
 
                         <ext:ModelField Name="recordId" />                       
-                        <ext:ModelField Name="departmentId" />
-                        <ext:ModelField Name="mcId" />
-                        <ext:ModelField Name="type" />
-                        <ext:ModelField Name="description" />
-                        <ext:ModelField Name="date" />
-                        <ext:ModelField Name="mcName" />
-                        <ext:ModelField Name="departmentName" />
-                        
+                        <ext:ModelField Name="name" />
                     </Fields>
                 </ext:Model>
             </Model>
@@ -129,19 +112,16 @@
                     <ColumnModel ID="ColumnModel1" runat="server" SortAscText="<%$ Resources:Common , SortAscText %>" SortDescText="<%$ Resources:Common ,SortDescText  %>" SortClearText="<%$ Resources:Common ,SortClearText  %>" ColumnsText="<%$ Resources:Common ,ColumnsText  %>" EnableColumnHide="false" Sortable="false" >
                         <Columns>
                             <ext:Column ID="ColRecordId" Visible="false" DataIndex="recordId" runat="server" />
-                            <ext:Column ID="Column1" Visible="true" DataIndex="departmentName" Text="<%$ Resources: FieldDEName%>" runat="server" width="250" />
-                            <ext:Column ID="Column5" Visible="true" DataIndex="mcName" Text="<%$ Resources: FieldMCName%>" runat="server" width="250" />                            
-                            <ext:Column ID="colType" Visible="true" DataIndex="type" Text="<%$ Resources: FieldType%>" runat="server" width="120">
-                            <Renderer Handler="return GetTypeName(record.data['type']);" />
-                            </ext:Column>
-                            <ext:Column ID="Column3" Visible="true" DataIndex="description" Text="<%$ Resources: FieldDescription%>" runat="server" width="590"/>
-                            <ext:DateColumn Format="dd-MM-yyyy" Visible="true" ID="DateColumn1" DataIndex="date" Text="<%$ Resources: FieldDate%>" runat="server" width="120"/>
-                                                       
+                            <ext:Column    CellCls="cellLink" ID="ColName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldName%>" DataIndex="name" Flex="2" Hideable="false">
+                    
+                                </ext:Column>
+                        
+                           
 
-                           <ext:Column runat="server"
+                            <ext:Column runat="server"
                                 ID="colEdit"  Visible="true"
                                 Text=""
-                                Width="80"
+                                Width="100"
                                 Hideable="false"
                                 Align="Center"
                                 Fixed="true"
@@ -149,13 +129,13 @@
                                 MenuDisabled="true"
                                 Resizable="false">
 
-                                <Renderer handler="var att ='&nbsp;'; if(record.data['fileUrl']!='') att = attachRender(); return att+'&nbsp;&nbsp;' +editRender()+'&nbsp;&nbsp;' +deleteRender();" />
+                                <Renderer handler="return editRender()+'&nbsp;&nbsp;' +deleteRender(); " />
 
                             </ext:Column>
                             <ext:Column runat="server"
                                 ID="colDelete" Visible="false"
                                 Text="<%$ Resources: Common , Delete %>"
-                                Width="80"
+                                Width="100"
                                 Align="Center"
                                 Fixed="true"
                                 Filterable="false"
@@ -252,7 +232,7 @@
             Icon="PageEdit"
             Title="<%$ Resources:EditWindowsTitle %>"
             Width="450"
-            Height="330"
+            Height="330" 
             AutoShow="false"
             Modal="true"
             Hidden="true"
@@ -270,99 +250,7 @@
                             BodyPadding="5">
                             <Items>
                                 <ext:TextField ID="recordId" runat="server"  Name="recordId"  Hidden="true"/>
-                                 <ext:ComboBox runat="server" ID="departmentId" Name="departmentId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1"
-                                    DisplayField="name"
-                                    ValueField="recordId"
-                                    FieldLabel="<%$ Resources: FieldDEName %>">
-                                    <Store>
-                                        <ext:Store runat="server" ID="deStore">
-                                            <Model>
-                                                <ext:Model runat="server">
-                                                    <Fields>
-                                                        <ext:ModelField Name="recordId" />
-                                                        <ext:ModelField Name="name" />
-                                                    </Fields>
-                                                </ext:Model>
-                                            </Model>
-
-
-                                        </ext:Store>
-
-                                    </Store>
-                                    <RightButtons>
-                                        <ext:Button ID="Button1" runat="server" Icon="Add" Hidden="true">
-                                            <Listeners>
-                                                <Click Handler="CheckSession();  " />
-                                            </Listeners>
-                                            <DirectEvents>
-
-                                                <Click OnEvent="addDepartment">
-                                                </Click>
-                                            </DirectEvents>
-                                        </ext:Button>
-                                    </RightButtons>
-                                    <Listeners>
-                                        <FocusEnter Handler=" if(!this.readOnly)this.rightButtons[0].setHidden(false);" />
-                                        <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
-                                    </Listeners>
-                                </ext:ComboBox>
-
-                                <ext:ComboBox runat="server" ID="mcId" Name="mcId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1"
-                                    DisplayField="name"
-                                    ValueField="recordId"
-                                    FieldLabel="<%$ Resources: FieldMCName %>">
-                                    <Store>
-                                        <ext:Store runat="server" ID="mcStore">
-                                            <Model>
-                                                <ext:Model runat="server">
-                                                    <Fields>
-                                                        <ext:ModelField Name="recordId" />
-                                                        <ext:ModelField Name="name" />
-                                                    </Fields>
-                                                </ext:Model>
-                                            </Model>
-
-
-                                        </ext:Store>
-
-                                    </Store>
-                                    <RightButtons>
-                                        <ext:Button ID="Button9" runat="server" Icon="Add" Hidden="true">
-                                            <Listeners>
-                                                <Click Handler="CheckSession();  " />
-                                            </Listeners>
-                                            <DirectEvents>
-
-                                                <Click OnEvent="addMediaCategory">
-                                                </Click>
-                                            </DirectEvents>
-                                        </ext:Button>
-                                    </RightButtons>
-                                    <Listeners>
-                                        <FocusEnter Handler=" if(!this.readOnly)this.rightButtons[0].setHidden(false);" />
-                                        <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
-                                    </Listeners>
-                                </ext:ComboBox>
-
-                                <ext:ComboBox runat="server" ID="type" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1"
-                                    FieldLabel="<%$ Resources: FieldType %>" AllowBlank="false">
-                                    <Items>
-                                        <ext:ListItem Text="<%$ Resources: FieldAudio %>" Value="0" />
-                                        <ext:ListItem Text="<%$ Resources: FieldVideo %>" Value="1" />
-                                        <ext:ListItem Text="<%$ Resources: FieldTextFile %>" Value="2" />
-                                        <ext:ListItem Text="<%$ Resources: FieldPicture %>" Value="3" />
-                                    </Items>
-                                    
-                                </ext:ComboBox>
-
-                                
-                                <ext:TextField ID="description" runat="server" FieldLabel="<%$ Resources:FieldDescription%>" Name="description" AllowBlank="true"/>
-                                <ext:DateField ID="date" runat="server" FieldLabel="<%$ Resources:FieldDate%>" Name="date" AllowBlank="false" />                                
-
-
-                                <ext:FileUploadField runat="server" ID="rwFile" FieldLabel="<%$ Resources:FieldFile%>" />
-
-
+                                <ext:TextField ID="name" runat="server" FieldLabel="<%$ Resources:FieldName%>" Name="name"   AllowBlank="false"/>
                             </Items>
 
                         </ext:FormPanel>

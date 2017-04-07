@@ -138,6 +138,7 @@
     <Content Include="Employees.aspx" />
     <Content Include="EmployeesOrgChart.aspx" />
     <Content Include="EntitlementDeductions.aspx" />
+    <Content Include="Folders.aspx" />
     <Content Include="ForgotAccount.aspx" />
     <Content Include="ForgotPassword.aspx" />
     <Content Include="Geofences.aspx" />
@@ -180,6 +181,7 @@
     <Content Include="Scripts\Contacts.js" />
     <Content Include="Scripts\EmployeeComplaints.js" />
     <Content Include="Scripts\EmployeesOrgChart.js" />
+    <Content Include="Scripts\Folders.js" />
     <Content Include="Scripts\MediaItems.js" />
     <Content Include="Scripts\RelationshipTypes.js" />
     <Content Include="Scripts\Routers.js" />
@@ -376,6 +378,13 @@
     </Compile>
     <Compile Include="CompanyFiles.aspx.designer.cs">
       <DependentUpon>CompanyFiles.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Folders.aspx.cs">
+      <DependentUpon>Folders.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Folders.aspx.designer.cs">
+      <DependentUpon>Folders.aspx</DependentUpon>
     </Compile>
     <Compile Include="MediaItems.aspx.cs">
       <DependentUpon>MediaItems.aspx</DependentUpon>
@@ -948,6 +957,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_LocalResources\MediaItems.aspx.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_LocalResources\Folders.aspx.resx" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

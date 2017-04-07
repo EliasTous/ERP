@@ -336,11 +336,14 @@ namespace AionHR.Web.UI.Forms
                 DayPilotScheduler1.DataTextField = "name";
                 DayPilotScheduler1.DataResourceField = "resource";
                 DayPilotScheduler1.DataSource = getData(month, year);
+                
                 DayPilotScheduler1.DataBind();
 
-                DayPilotScheduler1.Update();
-                DayPilotScheduler1.Update();
                 
+                DayPilotScheduler1.Update();
+                schedulerHolder.UpdateLayout();
+
+
             }
             catch (Exception exp) { }
         }

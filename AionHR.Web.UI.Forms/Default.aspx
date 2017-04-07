@@ -47,6 +47,7 @@
     <ext:Hidden runat="server" ID="gfTitle" Text="<%$Resources:Common , Geofences %>" />
     <ext:Hidden runat="server" ID="vsTitle" Text="<%$Resources:Common , VacationSchedules %>" />
     <ext:Hidden runat="server" ID="ltTitle" Text="<%$Resources:Common , LeaveTypes %>" />
+    <ext:Hidden runat="server" ID="foTitle" Text="<%$Resources:Common , Folders %>" />
 
     <ext:Hidden runat="server" ID="TrType1" Text="<%$Resources:Common , TrType1 %>" />
     <ext:Hidden runat="server" ID="TrType2" Text="<%$Resources:Common , TrType2 %>" />
@@ -212,6 +213,13 @@
                                                                                     <Click Handler="openNewTab('mediaCategory', 'MediaCategory.aspx', #{mcTitle}.value, 'icon-Employees')" />
                                                                                 </Listeners>
                                                                             </ext:MenuItem>
+
+                                                                             <ext:MenuItem runat="server" Text="<%$Resources: Common , Folders%>">
+                                                                                <Listeners>
+                                                                                    <Click Handler="openNewTab('folders', 'Folders.aspx', #{foTitle}.value, 'icon-Employees')" />
+                                                                                </Listeners>
+                                                                            </ext:MenuItem>
+
                                                                         </Items>
                                                                     </ext:Menu>
                                                                 </Menu>

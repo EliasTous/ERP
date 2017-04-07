@@ -21,23 +21,13 @@ using AionHR.Model.Company.News;
 using AionHR.Services.Messaging;
 using AionHR.Model.Company.Structure;
 using AionHR.Model.System;
-using AionHR.Model.Attendance;
-using AionHR.Model.Employees.Leaves;
-using AionHR.Model.Employees.Profile;
-using AionHR.Model.MediaGallery;
-using System.Net;
 
 namespace AionHR.Web.UI.Forms
 {
-    public partial class MediaItems : System.Web.UI.Page
+    public partial class Folders : System.Web.UI.Page
     {
 
-        ICompanyStructureService _branchService = ServiceLocator.Current.GetInstance<ICompanyStructureService>();
-
         ISystemService _systemService = ServiceLocator.Current.GetInstance<ISystemService>();
-
-        IMediaGalleryService _mediaGalleryService = ServiceLocator.Current.GetInstance<IMediaGalleryService>();
-
         protected override void InitializeCulture()
         {
 
@@ -57,18 +47,28 @@ namespace AionHR.Web.UI.Forms
 
         }
 
-
         protected void Page_Load(object sender, EventArgs e)
         {
+
+
             if (!X.IsAjaxRequest && !IsPostBack)
             {
+
                 SetExtLanguage();
                 HideShowButtons();
                 HideShowColumns();
+
+
+
             }
+
         }
 
 
+
+        /// <summary>
+        /// the detailed tabs for the edit form. I put two tabs by default so hide unecessary or add addional
+        /// </summary>
         private void HideShowTabs()
         {
             //this.OtherInfoTab.Visible = false;
@@ -102,94 +102,19 @@ namespace AionHR.Web.UI.Forms
             }
         }
 
-        [DirectMethod]
-        public void DownloadFile(string url)
-        {
-            if (string.IsNullOrEmpty(url))
-                return;
-
-            Stream stream = null;
-
-            //This controls how many bytes to read at a time and send to the client
-            int bytesToRead = 10000;
-
-            // Buffer to read bytes in chunk size specified above
-            byte[] buffer = new Byte[bytesToRead];
-
-            // The number of bytes read
-            try
-            {
-                //Create a WebRequest to get the file
-                HttpWebRequest fileReq = (HttpWebRequest)HttpWebRequest.Create(url);
-
-                //Create a response for this request
-                HttpWebResponse fileResp = (HttpWebResponse)fileReq.GetResponse();
-
-                if (fileReq.ContentLength > 0)
-                    fileResp.ContentLength = fileReq.ContentLength;
-
-                //Get the Stream returned from the response
-                stream = fileResp.GetResponseStream();
-
-                // prepare the response to the client. resp is the client Response
-                var resp = HttpContext.Current.Response;
-
-                //Indicate the type of data being sent
-                resp.ContentType = "application/octet-stream";
-                string[] segments = url.Split('/');
-                string fileName = segments[segments.Length - 1];
-                //Name the file 
-                resp.AddHeader("Content-Disposition", "attachment; filename=\"" + fileName + "\"");
-                resp.AddHeader("Content-Length", fileResp.ContentLength.ToString());
-
-                int length;
-                do
-                {
-                    // Verify that the client is connected.
-                    if (resp.IsClientConnected)
-                    {
-                        // Read data into the buffer.
-                        length = stream.Read(buffer, 0, bytesToRead);
-
-                        // and write it out to the response's output stream
-                        resp.OutputStream.Write(buffer, 0, length);
-
-                        // Flush the data
-
-
-                        //Clear the buffer
-                        buffer = new Byte[bytesToRead];
-                    }
-                    else
-                    {
-                        // cancel the download if client has disconnected
-                        length = -1;
-                    }
-                } while (length > 0); //Repeat until no data is read
-            }
-            finally
-            {
-                if (stream != null)
-                {
-                    //Close the input stream
-                    stream.Close();
-                }
-            }
-        }
-
         protected void PoPuP(object sender, DirectEventArgs e)
         {
-            string id = e.ExtraParams["id"];
-            string type = e.ExtraParams["type"];
 
+
+            int id = Convert.ToInt32(e.ExtraParams["id"]);
+            string type = e.ExtraParams["type"];
             switch (type)
             {
                 case "imgEdit":
                     //Step 1 : get the object from the Web Service 
                     RecordRequest r = new RecordRequest();
-                    r.RecordID = id;
-
-                    RecordResponse<MediaItem> response = _mediaGalleryService.ChildGetRecord<MediaItem>(r);
+                    r.RecordID = id.ToString();
+                    RecordResponse<SystemFolder> response = _systemService.ChildGetRecord<SystemFolder>(r);
                     if (!response.Success)
                     {
                         X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
@@ -198,12 +123,6 @@ namespace AionHR.Web.UI.Forms
                     }
                     //Step 2 : call setvalues with the retrieved object
                     this.BasicInfoTab.SetValues(response.result);
-
-                    FillMediaCategory();
-                    mcId.Select(response.result.mcId.ToString());
-
-                    FillDepartment();
-                    departmentId.Select(response.result.departmentId.ToString());
 
                     this.EditRecordWindow.Title = Resources.Common.EditWindowsTitle;
                     this.EditRecordWindow.Show();
@@ -227,7 +146,7 @@ namespace AionHR.Web.UI.Forms
                     break;
 
                 case "imgAttach":
-                   // DownloadFile(path);
+
                     //Here will show up a winow relatice to attachement depending on the case we are working on
                     break;
                 default:
@@ -237,30 +156,27 @@ namespace AionHR.Web.UI.Forms
 
         }
 
+        /// <summary>
+        /// This direct method will be called after confirming the delete
+        /// </summary>
+        /// <param name="index">the ID of the object to delete</param>
         [DirectMethod]
         public void DeleteRecord(string index)
         {
             try
             {
                 //Step 1 Code to delete the object from the database 
-                MediaItem s = new MediaItem();
-                s.recordId = index;
-                s.description = "";
-                s.date = DateTime.Now;
-                s.mcId = 0;
-                s.mcName = "";
-                s.departmentId = 0;
-                s.departmentName = "";
-                s.type = 0;
-
-
-                PostRequest<MediaItem> req = new PostRequest<MediaItem>();
-                req.entity = s;
-                PostResponse<MediaItem> r = _mediaGalleryService.ChildDelete<MediaItem>(req);
-                if (!r.Success)
+                SystemFolder n = new SystemFolder();
+                n.recordId = index;
+                n.name = "";
+                PostRequest<SystemFolder> req = new PostRequest<SystemFolder>();
+                req.entity = n;
+                PostResponse<SystemFolder> res = _systemService.ChildDelete<SystemFolder>(req);
+                if (!res.Success)
                 {
+                    //Show an error saving...
                     X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.Error, r.Summary).Show();
+                    X.Msg.Alert(Resources.Common.Error, res.Summary).Show();
                     return;
                 }
                 else
@@ -287,7 +203,6 @@ namespace AionHR.Web.UI.Forms
             }
 
         }
-
 
         /// <summary>
         /// Deleting all selected record
@@ -316,7 +231,6 @@ namespace AionHR.Web.UI.Forms
 
             }).Show();
         }
-
 
         /// <summary>
         /// Direct method for removing multiple records
@@ -359,61 +273,63 @@ namespace AionHR.Web.UI.Forms
             }
         }
 
+        /// <summary>
+        /// Adding new record
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void ADDNewRecord(object sender, DirectEventArgs e)
         {
+
             //Reset all values of the relative object
             BasicInfoTab.Reset();
-            FillDepartment();
-            FillMediaCategory();
             this.EditRecordWindow.Title = Resources.Common.AddNewRecord;
+            //string timeZone = Session["TimeZone"] as string;
+
             this.EditRecordWindow.Show();
         }
 
 
+
         protected void Store1_RefreshData(object sender, StoreReadDataEventArgs e)
         {
+
             //GEtting the filter from the page
             string filter = string.Empty;
             int totalCount = 1;
 
+
+
             //Fetching the corresponding list
 
             //in this test will take a list of News
-            MediaItemsListRequest request = new MediaItemsListRequest();
-
-            request.Size = "50";
-            request.StartAt = "1";
-            request.SortBy = "mcName";
-            request.MCId = 0;
-            request.DepartmentId = 0;
-            request.Type = 0;
+            ListRequest request = new ListRequest();
 
             request.Filter = "";
-            ListResponse<MediaItem> routers = _mediaGalleryService.ChildGetAll<MediaItem>(request);
-            if (!routers.Success)
-                X.Msg.Alert(Resources.Common.Error, routers.Summary).Show();
-            this.Store1.DataSource = routers.Items;
-            e.Total = routers.Items.Count; ;
+            ListResponse<SystemFolder> nationalities = _systemService.ChildGetAll<SystemFolder>(request);
+            if (!nationalities.Success)
+                X.Msg.Alert(Resources.Common.Error, nationalities.Summary).Show(); ;
+            this.Store1.DataSource = nationalities.Items;
+            e.Total = nationalities.Items.Count;
 
             this.Store1.DataBind();
         }
 
 
+
+
         protected void SaveNewRecord(object sender, DirectEventArgs e)
         {
+
+
             //Getting the id to check if it is an Add or an edit as they are managed within the same form.
-            string obj = e.ExtraParams["values"];
-            MediaItem b = JsonConvert.DeserializeObject<MediaItem>(obj);
-
             string id = e.ExtraParams["id"];
+
+            string obj = e.ExtraParams["values"];
+            SystemFolder b = JsonConvert.DeserializeObject<SystemFolder>(obj);
+
+            b.recordId = id;
             // Define the object to add or edit as null
-
-            if (mcId.SelectedItem != null)
-                b.mcName = mcId.SelectedItem.Text;
-
-            if (departmentId.SelectedItem != null)
-                b.departmentName = departmentId.SelectedItem.Text;
-
 
             if (string.IsNullOrEmpty(id))
             {
@@ -422,32 +338,9 @@ namespace AionHR.Web.UI.Forms
                 {
                     //New Mode
                     //Step 1 : Fill The object and insert in the store 
-
-                    PostRequestWithAttachment<MediaItem> request = new PostRequestWithAttachment<MediaItem>();
+                    PostRequest<SystemFolder> request = new PostRequest<SystemFolder>();
                     request.entity = b;
-                    byte[] fileData = null;
-                    if (rwFile.PostedFile != null && rwFile.PostedFile.ContentLength > 0)
-                    {
-                        //using (var binaryReader = new BinaryReader(picturePath.PostedFile.InputStream))
-                        //{
-                        //    fileData = binaryReader.ReadBytes(picturePath.PostedFile.ContentLength);
-                        //}
-                        fileData = new byte[rwFile.PostedFile.ContentLength];
-                        fileData = rwFile.FileBytes;
-                        request.FileName = rwFile.PostedFile.FileName;
-                        request.FileData = fileData;
-
-                    }
-                    else
-                    {
-                        request.FileData = fileData;
-                        request.FileName = "";
-                    }
-
-
-
-                   
-                    PostResponse<MediaItem> r = _mediaGalleryService.ChildAddOrUpdateWithAttachment<MediaItem>(request);
+                    PostResponse<SystemFolder> r = _systemService.ChildAddOrUpdate<SystemFolder>(request);
                     b.recordId = r.recordId;
 
                     //check if the insert failed
@@ -460,7 +353,7 @@ namespace AionHR.Web.UI.Forms
                     }
                     else
                     {
-                        b.recordId = r.recordId;
+
                         //Add this record to the store 
                         this.Store1.Insert(0, b);
 
@@ -496,30 +389,10 @@ namespace AionHR.Web.UI.Forms
 
                 try
                 {
-                    //getting the id of the record
                     int index = Convert.ToInt32(id);//getting the id of the record
-                    PostRequestWithAttachment<MediaItem> request = new PostRequestWithAttachment<MediaItem>();
+                    PostRequest<SystemFolder> request = new PostRequest<SystemFolder>();
                     request.entity = b;
-                    byte[] fileData = null;
-                    if (rwFile.PostedFile != null && rwFile.PostedFile.ContentLength > 0)
-                    {
-                        //using (var binaryReader = new BinaryReader(picturePath.PostedFile.InputStream))
-                        //{
-                        //    fileData = binaryReader.ReadBytes(picturePath.PostedFile.ContentLength);
-                        //}
-                        fileData = new byte[rwFile.PostedFile.ContentLength];
-                        fileData = rwFile.FileBytes;
-                        request.FileName = rwFile.PostedFile.FileName;
-                        request.FileData = fileData;
-
-                    }
-                    else
-                    {
-                        request.FileData = fileData;
-                        request.FileName = "";
-                    }
-
-                    PostResponse<MediaItem> r = _mediaGalleryService.ChildAddOrUpdateWithAttachment<MediaItem>(request);                      //Step 1 Selecting the object or building up the object for update purpose
+                    PostResponse<SystemFolder> r = _systemService.ChildAddOrUpdate<SystemFolder>(request);                      //Step 1 Selecting the object or building up the object for update purpose
 
                     //Step 2 : saving to store
 
@@ -527,15 +400,15 @@ namespace AionHR.Web.UI.Forms
                     if (!r.Success)//it maybe another check
                     {
                         X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                        X.Msg.Alert(Resources.Common.Error, r.Summary).Show();
+                        X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorUpdatingRecord).Show();
                         return;
                     }
                     else
                     {
-                        ModelProxy record = this.Store1.GetById(id);
+
+
+                        ModelProxy record = this.Store1.GetById(index);
                         BasicInfoTab.UpdateRecord(record);
-                        record.Set("mcName", b.mcName);
-                        record.Set("departmentName", b.departmentName);
                         record.Commit();
                         Notification.Show(new NotificationConfig
                         {
@@ -544,6 +417,8 @@ namespace AionHR.Web.UI.Forms
                             Html = Resources.Common.RecordUpdatedSucc
                         });
                         this.EditRecordWindow.Close();
+
+
                     }
 
                 }
@@ -554,6 +429,7 @@ namespace AionHR.Web.UI.Forms
                 }
             }
         }
+
 
         [DirectMethod]
         public string CheckSession()
@@ -572,89 +448,12 @@ namespace AionHR.Web.UI.Forms
 
 
 
-        protected void addMediaCategory(object sender, DirectEventArgs e)
-        {
-            if (string.IsNullOrEmpty(mcId.Text))
-                return;
-            MediaCategory dept = new MediaCategory();
-            dept.name = mcId.Text;
-
-            PostRequest<MediaCategory> depReq = new PostRequest<MediaCategory>();
-            depReq.entity = dept;
-            PostResponse<MediaCategory> response = _mediaGalleryService.ChildAddOrUpdate<MediaCategory>(depReq);
-            if (response.Success)
-            {
-                dept.recordId = response.recordId;
-                FillMediaCategory();
-                mcId.Select(dept.recordId);
-            }
-            else
-            {
-                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, response.Summary).Show();
-                return;
-            }
-
-        }
-
-        protected void addDepartment(object sender, DirectEventArgs e)
-        {
-            if (string.IsNullOrEmpty(departmentId.Text))
-                return;
-            Department dept = new Department();
-            dept.name = departmentId.Text;
-
-            PostRequest<Department> depReq = new PostRequest<Department>();
-            depReq.entity = dept;
-            PostResponse<Department> response = _branchService.ChildAddOrUpdate<Department>(depReq);
-            if (response.Success)
-            {
-                dept.recordId = response.recordId;
-                FillDepartment();
-                departmentId.Select(dept.recordId);
-            }
-            else
-            {
-                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, response.Summary).Show();
-                return;
-            }
-
-        }
 
 
-        public void FillMediaCategory()
-        {
-
-            ListRequest req = new ListRequest();
-
-            ListResponse<MediaCategory> response = _mediaGalleryService.ChildGetAll<MediaCategory>(req);
-            if (!response.Success)
-            {
-                X.Msg.Alert(Resources.Common.Error, response.Summary).Show();
-                return;
-            }
-            mcStore.DataSource = response.Items;
-            mcStore.DataBind();
-
-        }
 
 
-        public void FillDepartment()
-        {
 
-            ListRequest req = new ListRequest();
 
-            ListResponse<Department> response = _branchService.ChildGetAll<Department>(req);
-            if (!response.Success)
-            {
-                X.Msg.Alert(Resources.Common.Error, response.Summary).Show();
-                return;
-            }
-            deStore.DataSource = response.Items;
-            deStore.DataBind();
-
-        }
 
 
 
