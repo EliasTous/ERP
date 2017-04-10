@@ -48,6 +48,7 @@
     <Compile Include="Repositories\CompanyStructureRepository.cs" />
     <Compile Include="Repositories\ComplaintsRepository.cs" />
     <Compile Include="Repositories\EmployeeRepository.cs" />
+    <Compile Include="Repositories\LoanTrackingRepository.cs" />
     <Compile Include="Repositories\MediaGalleryRepository.cs" />
     <Compile Include="Repositories\Repository.cs" />
     <Compile Include="Repositories\SystemRepository.cs" />
