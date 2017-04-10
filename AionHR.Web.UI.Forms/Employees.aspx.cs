@@ -76,9 +76,37 @@ namespace AionHR.Web.UI.Forms
 
                 inactivePref.Select("0");
                 CurrentClassId.Text = ClassId.EPEM.ToString();
+                InitFilters();
+                BuildQuickViewTemplate();
             }
 
 
+        }
+
+        private void BuildQuickViewTemplate()
+        {
+            string html = "<table width='50%' style='font-weight:bold;'><tr><td> ";
+            html += GetLocalResourceObject("FieldReportsTo").ToString() + " {reportsTo}</td><td>";
+            html += GetLocalResourceObject("eosBalanceTitle").ToString() + " {eosBalance}</td></tr><tr><td>";
+
+            html += GetLocalResourceObject("lastLeaveStartDateTitle").ToString() + " {lastLeave}</td><td>";
+            html += GetLocalResourceObject("paidLeavesYTDTitle").ToString() + " {paidLeavesYTD}</td></tr><tr><td>";
+
+            html += GetLocalResourceObject("leavesBalanceTitle").ToString() + " {leavesBalance}</td><td>";
+            html += GetLocalResourceObject("allowedLeaveYtdTitle").ToString() + " {allowedLeaveYtd}</td></tr></table>";
+            RowExpander1.Template.Html = html;
+        }
+
+        private void InitFilters()
+        {
+            filterBranchStore.DataSource = GetBranches();
+            filterBranchStore.DataBind();
+            filterDepartmentStore.DataSource = GetDepartments();
+            filterDepartmentStore.DataBind();
+            filterPositionStore.DataSource = GetPositions();
+            filterPositionStore.DataBind();
+            filterDivisionStore.DataSource = GetDivisions();
+            filterDivisionStore.DataBind();
         }
 
 
@@ -115,7 +143,7 @@ namespace AionHR.Web.UI.Forms
             {
                 this.ResourceManager1.RTL = true;
                 this.Viewport1.RTL = true;
-
+                BuildQuickViewTemplate();
             }
         }
 
@@ -421,15 +449,9 @@ namespace AionHR.Web.UI.Forms
             this.EditRecordWindow.Show();
         }
 
-        protected void Store1_RefreshData(object sender, StoreReadDataEventArgs e)
+        private EmployeeListRequest GetListRequest(StoreReadDataEventArgs e)
         {
-
-            //GEtting the filter from the page
-
             EmployeeListRequest empRequest = new EmployeeListRequest();
-            empRequest.BranchId = "0";
-            empRequest.DepartmentId = "0";
-            empRequest.Filter = searchTrigger.Text;
             if (!string.IsNullOrEmpty(inactivePref.Text) && inactivePref.Value.ToString() != "")
             {
                 empRequest.IncludeIsInactive = Convert.ToInt32(inactivePref.Value);
@@ -438,12 +460,54 @@ namespace AionHR.Web.UI.Forms
             {
                 empRequest.IncludeIsInactive = 2;
             }
+
+            if (!string.IsNullOrEmpty(filterDepartment.Text) && filterDepartment.Value.ToString() != "")
+            {
+                empRequest.DepartmentId = (filterDepartment.Value).ToString();
+            }
+            else
+            {
+                empRequest.DepartmentId = "0";
+            }
+            if (!string.IsNullOrEmpty(filterBranch.Text) && filterBranch.Value.ToString() != "")
+            {
+                empRequest.BranchId = (filterBranch.Value).ToString();
+            }
+            else
+            {
+                empRequest.BranchId = "0";
+            }
+
+            if (!string.IsNullOrEmpty(filterPosition.Text) && filterPosition.Value.ToString() != "")
+            {
+                empRequest.PositionId = (filterPosition.Value).ToString();
+            }
+            else
+            {
+                empRequest.PositionId = "0";
+            }
+
             if (e.Sort[0].Property == "name.fullName")
                 empRequest.SortBy = GetNameFormat();
             else
                 empRequest.SortBy = e.Sort[0].Property;
             empRequest.Size = e.Limit.ToString();
             empRequest.StartAt = e.Start.ToString();
+            empRequest.Filter = searchTrigger.Text;
+
+            return empRequest;
+        }
+
+        protected void Store1_RefreshData(object sender, StoreReadDataEventArgs e)
+        {
+
+            //GEtting the filter from the page
+
+            EmployeeListRequest empRequest = GetListRequest(e);
+
+
+
+
 
             ListResponse<Employee> emps = _employeeService.GetAll<Employee>(empRequest);
             if (!emps.Success)
@@ -473,52 +537,73 @@ namespace AionHR.Web.UI.Forms
 
         }
 
-        private void FillPosition()
+        private List<Model.Company.Structure.Position> GetPositions()
         {
             ListRequest positionsRequest = new ListRequest();
             ListResponse<Model.Company.Structure.Position> resp = _companyStructureService.ChildGetAll<Model.Company.Structure.Position>(positionsRequest);
             if (!resp.Success)
             {
                 X.Msg.Alert(Resources.Common.Error, resp.Summary).Show();
-                return;
+                return new List<Model.Company.Structure.Position>();
             }
-            positionStore.DataSource = resp.Items;
+            return resp.Items;
+        }
+        private void FillPosition()
+        {
+
+            positionStore.DataSource = GetPositions();
             positionStore.DataBind();
         }
-        private void FillDepartment()
+        private List<Department> GetDepartments()
         {
             ListRequest departmentsRequest = new ListRequest();
             ListResponse<Department> resp = _companyStructureService.ChildGetAll<Department>(departmentsRequest);
             if (!resp.Success)
             {
                 X.Msg.Alert(Resources.Common.Error, resp.Summary).Show();
-                return;
+                return new List<Department>();
             }
-            departmentStore.DataSource = resp.Items;
+            return resp.Items;
+        }
+        private void FillDepartment()
+        {
+
+            departmentStore.DataSource = GetDepartments();
             departmentStore.DataBind();
         }
-        private void FillBranch()
+        private List<Branch> GetBranches()
         {
             ListRequest branchesRequest = new ListRequest();
             ListResponse<Branch> resp = _companyStructureService.ChildGetAll<Branch>(branchesRequest);
             if (!resp.Success)
             {
                 X.Msg.Alert(Resources.Common.Error, resp.Summary).Show();
-                return;
+                return new List<Branch>();
             }
-            BranchStore.DataSource = resp.Items;
+
+            return resp.Items;
+        }
+        private void FillBranch()
+        {
+
+            BranchStore.DataSource = GetBranches();
             BranchStore.DataBind();
         }
-        private void FillDivision()
+        private List<Division> GetDivisions()
         {
             ListRequest branchesRequest = new ListRequest();
             ListResponse<Division> resp = _companyStructureService.ChildGetAll<Division>(branchesRequest);
             if (!resp.Success)
             {
                 X.Msg.Alert(Resources.Common.Error, resp.Summary).Show();
-                return;
+                return new List<Division>();
             }
-            divisionStore.DataSource = resp.Items;
+            return resp.Items;
+        }
+        private void FillDivision()
+        {
+
+            divisionStore.DataSource = GetDivisions();
             divisionStore.DataBind();
         }
         private void FillSponsor()
@@ -830,7 +915,7 @@ namespace AionHR.Web.UI.Forms
 
         private void FillLeftPanel(bool shouldUpdateGrid = false)
         {
-            
+
             RecordRequest r = new RecordRequest();
             r.RecordID = CurrentEmployee.Text.ToString();
             RecordResponse<EmployeeQuickView> qv = _employeeService.ChildGetRecord<EmployeeQuickView>(r);
@@ -844,7 +929,7 @@ namespace AionHR.Web.UI.Forms
             if (string.IsNullOrEmpty(forSummary.pictureUrl))
                 forSummary.pictureUrl = "Images/empPhoto.jpg";
             X.Call("FillLeftPanel",
-                
+
                 forSummary.departmentName + "<br />",
               forSummary.branchName + "<br />",
                forSummary.positionName + "<br />",
@@ -855,7 +940,7 @@ namespace AionHR.Web.UI.Forms
                forSummary.leavesBalance + "<br />",
                forSummary.allowedLeaveYtd + "<br />"
             );
-//            fullNameLbl.Html = forSummary.name.fullName + "<br />";
+            //            fullNameLbl.Html = forSummary.name.fullName + "<br />";
             departmentLbl.Html = forSummary.departmentName + "<br />";
             branchLbl.Html = forSummary.branchName + "<br />";
             positionLbl.Html = forSummary.positionName + "<br /><br /><br />";
@@ -873,7 +958,7 @@ namespace AionHR.Web.UI.Forms
             employeePhoto.ImageUrl = forSummary.pictureUrl + "?x=" + DateTime.Now.Ticks; ;
 
 
-            CurrentEmployeePhotoName.Text = forSummary.pictureUrl + "?x=" + DateTime.Now.Ticks;
+            CurrentEmployeePhotoName.Text = forSummary.pictureUrl;
             ModelProxy record = Store1.GetById(CurrentEmployee.Text);
             record.Set("pictureUrl", imgControl.ImageUrl);
             record.Commit();
@@ -1052,6 +1137,30 @@ namespace AionHR.Web.UI.Forms
             terminationWindow.Show();
         }
 
+        [DirectMethod]
+        public  object GetQuickView(Dictionary<string, string> parameters)
+        {
+            RecordRequest req = new RecordRequest();
+            req.RecordID = parameters["id"];
+            RecordResponse<EmployeeQuickView> qv = _employeeService.ChildGetRecord<EmployeeQuickView>(req);
+            if(!qv.Success)
+            {
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, qv.Summary).Show();
+                return null;
+            }
+            return new
+            {
+                reportsTo = qv.result.reportToName.fullName,
+                eosBalance = qv.result.eosBalance,
+                paidLeavesYTD = qv.result.paidLeavesYTD,
+                leavesBalance = qv.result.leavesBalance,
+                allowedLeaveYtd = qv.result.allowedLeaveYtd,
+                lastLeave = qv.result.lastLeaveStartDate.ToString(_systemService.SessionHelper.GetDateformat()) + "-" + qv.result.lastLeaveStartDate.ToString(_systemService.SessionHelper.GetDateformat())
+
+        };
+
+        }
 
         private void FillTerminationReasons()
         {
@@ -1098,9 +1207,8 @@ namespace AionHR.Web.UI.Forms
                 Employee emp = new Employee();
                 req.entity = emp;
                 emp.recordId = index;
-                emp.branchId = emp.departmentId = emp.divisionId = emp.vsId = emp.sponsorId = emp.caId = emp.nationalityId = emp.positionId = 0;
-                emp.hireDate = DateTime.Now;
-                PostResponse<Employee> post = _employeeService.Delete(req);
+
+                PostResponse<Employee> post = _employeeService.Delete<Employee>(req);
                 if (!post.Success)
                 {
                     X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
@@ -1166,9 +1274,9 @@ namespace AionHR.Web.UI.Forms
             //string id = e.ExtraParams["id"];
             string id = CurrentEmployee.Text;
             string obj = e.ExtraParams["values"];
+            string dd = e.ExtraParams["image"];
 
-            
-            if(string.IsNullOrEmpty(id))
+            if (string.IsNullOrEmpty(id))
             {
                 imageSelectionWindow.Hide();
                 return;
@@ -1184,7 +1292,7 @@ namespace AionHR.Web.UI.Forms
                 upreq.photoName = FileUploadField1.FileName;
                 upreq.photoData = FileUploadField1.FileBytes;
                 upreq.entity.recordId = Convert.ToInt32(CurrentEmployee.Text);
-               
+
                 resp = _employeeService.UploadEmployeePhoto(upreq);
             }
             else
@@ -1219,7 +1327,7 @@ namespace AionHR.Web.UI.Forms
                 HideDelay = 1000,
                 CloseVisible = true
             });
-          
+
 
             imageSelectionWindow.Hide();
             FillLeftPanel(true);
@@ -1244,7 +1352,7 @@ namespace AionHR.Web.UI.Forms
                 X.Msg.Alert(Resources.Common.Error, response.Summary).Show();
                 return;
             }
-            employeePhoto.ImageUrl = response.result.pictureUrl + "?x=" + DateTime.Now.Ticks; 
+            employeePhoto.ImageUrl = response.result.pictureUrl + "?x=" + DateTime.Now.Ticks;
         }
 
         protected void DisplayTeam(object sender, DirectEventArgs e)

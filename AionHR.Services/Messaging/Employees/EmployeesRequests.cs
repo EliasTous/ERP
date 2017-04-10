@@ -28,12 +28,15 @@ public class EmployeeListRequest:ListRequest
            
             parameters.Add("_departmentId", DepartmentId);
             parameters.Add("_branchId", BranchId);
+            parameters.Add("_positionId", PositionId);
             parameters.Add("_includeInactive", IncludeIsInactive.ToString());
             parameters.Add("_sortBy", SortBy);
            
             return parameters;
         }
     }
+
+    public string PositionId { get; set; }
 }
 
 public class EmployeeAddOrUpdateRequest

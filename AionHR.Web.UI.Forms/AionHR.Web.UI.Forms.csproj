@@ -181,6 +181,7 @@
     <Content Include="Scripts\CompanyFiles.js" />
     <Content Include="Scripts\CompanyNews.js" />
     <Content Include="Scripts\Contacts.js" />
+    <Content Include="Scripts\cropbox-min.js" />
     <Content Include="Scripts\EmployeeComplaints.js" />
     <Content Include="Scripts\EmployeesOrgChart.js" />
     <Content Include="Scripts\Folders.js" />
@@ -268,6 +269,7 @@
     <Content Include="TrainingTypes.aspx" />
     <Content Include="WorkingCalendars.aspx" />
     <Content Include="SystemAttachmentsUploader.ashx" />
+    <Content Include="EmployeePhotoUploaderHandler.ashx" />
     <None Include="Properties\PublishProfiles\local.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -387,6 +389,9 @@
     </Compile>
     <Compile Include="CompanyNews.aspx.designer.cs">
       <DependentUpon>CompanyNews.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EmployeePhotoUploaderHandler.ashx.cs">
+      <DependentUpon>EmployeePhotoUploaderHandler.ashx</DependentUpon>
     </Compile>
     <Compile Include="Folders.aspx.cs">
       <DependentUpon>Folders.aspx</DependentUpon>
@@ -972,6 +977,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_LocalResources\CompanyNews.aspx.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_LocalResources\Employees.aspx.ar.resx" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

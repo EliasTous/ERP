@@ -158,7 +158,7 @@ namespace AionHR.Web.UI.Forms
                         Yes = new MessageBoxButtonConfig
                         {
                             //We are call a direct request metho for deleting a record
-                            Handler = String.Format("App.direct.DeleteAttachment({0})", id),
+                            Handler = String.Format("App.direct.DeleteAttachment({0},'{1}')", id,path),
                             Text = Resources.Common.Yes
                         },
                         No = new MessageBoxButtonConfig
@@ -368,7 +368,7 @@ namespace AionHR.Web.UI.Forms
         /// </summary>
         /// <param name="index">the ID of the object to delete</param>
         [DirectMethod]
-        public void DeleteAttachment(string index)
+        public void DeleteAttachment(string index,string path)
         {
             try
             {
@@ -377,7 +377,7 @@ namespace AionHR.Web.UI.Forms
                 n.classId = ClassId.CSFI;
                 n.recordId = 0;
                 n.seqNo = Convert.ToInt16(index);
-                
+                n.fileName = path;
 
                 PostRequest<Attachement> req = new PostRequest<Attachement>();
                 req.entity = n;

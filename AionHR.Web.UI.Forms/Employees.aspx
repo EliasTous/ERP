@@ -10,14 +10,19 @@
     <title></title>
     <script src="Scripts/jquery.min.js" type="text/javascript"></script>
     <link rel="stylesheet" type="text/css" href="CSS/Common.css?id=11" />
-    <link rel="stylesheet" type="text/css" href="CSS/Employees.css?id=13" />
+    <link rel="stylesheet" type="text/css" href="CSS/Employees.css?id=15" />
     <link rel="stylesheet" href="CSS/LiveSearch.css" />
 
 
     <script type="text/javascript" src="Scripts/common.js?id=1"></script>
-    <script type="text/javascript" src="Scripts/Employees.js?id=33"></script>
+    <script type="text/javascript" src="Scripts/cropbox-min.js?id=1"></script>
+    <script type="text/javascript" src="Scripts/Employees.js?id=27"></script>
     <script type="text/javascript">
-       
+        function doTranslations()
+        {
+            alert('called');
+            $("reportsTo").text = document.getElementById("reportTo").value;
+        }
     </script>
 
 </head>
@@ -33,6 +38,8 @@
         <ext:Hidden ID="timeZoneOffset" runat="server" EnableViewState="true" />
         <ext:Hidden ID="CurrentEmployee" runat="server" EnableViewState="true" />
         <ext:Hidden ID="CurrentClassId" runat="server" EnableViewState="true" />
+        
+        <ext:Hidden ID="reportTo" runat="server" EnableViewState="true" Text="reports" />
         <ext:Hidden ID="CurrentEmployeePhotoName" runat="server" EnableViewState="true" />
         <ext:Hidden runat="server" ID="lblLoading" Text="<%$Resources:Common , Loading %>" />
         <ext:Viewport runat="server" Layout="BorderLayout" ID="Viewport1">
@@ -49,6 +56,29 @@
                     Border="false"
                     Icon="User" HideHeaders="false"
                     ColumnLines="false" IDMode="Explicit" RenderXType="True">
+                    <Plugins>
+                        <ext:RowExpander ID="RowExpander1" runat="server" HiddenColumn="true" ExpandOnEnter="false" ExpandOnDblClick="false" SingleExpand="true" >
+                             <Loader runat="server" Mode="Data" DirectMethod="App.direct.GetQuickView">
+                        <LoadMask ShowMask="true" />
+                        <Params>
+                            <ext:Parameter Name="id" Value="this.record.getId()" Mode="Raw" />
+                            
+                        </Params>
+                    </Loader>
+                            
+                            <Template ID="Template1" runat="server" >
+                              
+                                <Html>
+                            
+                                </Html>
+                            </Template>
+                            <Listeners>
+                                
+                                <%--<Expand Handler="doTranslations();" />--%>
+                            </Listeners>
+                        </ext:RowExpander>
+                    </Plugins>
+
                     <Store>
                         <ext:Store
                             ID="Store1"
@@ -125,6 +155,86 @@
                                         <Change Handler="App.Store1.reload()" />
                                     </Listeners>
                                 </ext:ComboBox>
+                                <ext:ComboBox runat="server" Width="130" LabelAlign="Top" EmptyText="<%$ Resources:FieldBranch%>" ValueField="recordId" DisplayField="name" ID="filterBranch" Name="branchId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1">
+                                    <Store>
+                                        <ext:Store runat="server" ID="filterBranchStore">
+                                            <Model>
+                                                <ext:Model runat="server">
+                                                    <Fields>
+                                                        <ext:ModelField Name="recordId" />
+                                                        <ext:ModelField Name="name" />
+                                                    </Fields>
+                                                </ext:Model>
+                                            </Model>
+                                        </ext:Store>
+                                    </Store>
+                                    <Listeners>
+                                        <Select Handler="#{Store1}.reload()" />
+                                    </Listeners>
+
+                                </ext:ComboBox>
+
+                                <ext:ComboBox runat="server" Width="155" EmptyText="<%$ Resources:FieldDepartment%>" LabelAlign="Top" ValueField="recordId" DisplayField="name" ID="filterDepartment" Name="departmentId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1">
+                                    <Store>
+                                        <ext:Store runat="server" ID="filterDepartmentStore">
+                                            <Model>
+                                                <ext:Model runat="server">
+                                                    <Fields>
+                                                        <ext:ModelField Name="recordId" />
+                                                        <ext:ModelField Name="name" />
+                                                    </Fields>
+                                                </ext:Model>
+                                            </Model>
+                                        </ext:Store>
+                                    </Store>
+                                    <Listeners>
+                                        <Select Handler="#{Store1}.reload()" />
+                                    </Listeners>
+
+
+                                </ext:ComboBox>
+                                <ext:ComboBox EmptyText="<%$ Resources: FieldDivision%>" runat="server" Width="130" LabelAlign="Top" ValueField="recordId" DisplayField="name" ID="filterDivision" Name="divisionId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1">
+                                    <Store>
+                                        <ext:Store runat="server" ID="filterDivisionStore">
+                                            <Model>
+                                                <ext:Model runat="server">
+                                                    <Fields>
+                                                        <ext:ModelField Name="recordId" />
+                                                        <ext:ModelField Name="name" />
+                                                    </Fields>
+                                                </ext:Model>
+                                            </Model>
+                                        </ext:Store>
+                                    </Store>
+                                    <Listeners>
+                                        <Select Handler="#{Store1}.reload()" />
+                                    </Listeners>
+
+                                </ext:ComboBox>
+                                <ext:ComboBox EmptyText="<%$ Resources: FieldPosition%>" runat="server" Width="130" LabelAlign="Top" ValueField="recordId" DisplayField="name" ID="filterPosition" Name="divisionId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1">
+                                    <Store>
+                                        <ext:Store runat="server" ID="filterPositionStore">
+                                            <Model>
+                                                <ext:Model runat="server">
+                                                    <Fields>
+                                                        <ext:ModelField Name="recordId" />
+                                                        <ext:ModelField Name="name" />
+                                                    </Fields>
+                                                </ext:Model>
+                                            </Model>
+                                        </ext:Store>
+                                    </Store>
+                                    <Listeners>
+                                        <Select Handler="#{Store1}.reload()" />
+                                    </Listeners>
+
+                                </ext:ComboBox>
+                                <ext:Button runat="server" Text="<%$ Resources: ButtonClear%>" MarginSpec="0 0 0 0" Width="100">
+                                    <Listeners>
+                                        <Click Handler="#{filterDepartment}.clear(); #{filterBranch}.clear();  #{filterPosition}.clear(); #{filterDivision}.clear(); #{Store1}.reload(); ">
+                                        </Click>
+                                    </Listeners>
+                                </ext:Button>
                                 <ext:ToolbarFill ID="ToolbarFillExport" runat="server" />
                                 <ext:TextField ID="searchTrigger" runat="server" EnableKeyEvents="true" Width="180">
                                     <Triggers>
@@ -154,7 +264,7 @@
 
                                 </Component>
                                 <Listeners>
-                                    <Bind Handler=" cmp.setImageUrl(record.get('pictureUrl')); " />
+                                    <Bind Handler=" cmp.setImageUrl(record.get('pictureUrl')+'?id='+new Date().getTime()); " />
                                 </Listeners>
                             </ext:ComponentColumn>
                             <ext:Column ID="ColReference" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldRef%>" DataIndex="name.reference" Width="60" Hideable="false">
@@ -188,6 +298,7 @@
                                 <Renderer Handler="var x = editRender(); x=x+'&nbsp&nbsp'; return x;" />
 
                             </ext:Column>
+
                             <ext:Column runat="server"
                                 ID="colDelete" Flex="1" Visible="false"
                                 Text="<%$ Resources: Common , Delete %>"
@@ -255,6 +366,7 @@
                     </BottomBar>
                     <Listeners>
                         <Render Handler="CheckSession(); this.on('cellclick', cellClick);" />
+
 
                     </Listeners>
                     <DirectEvents>
@@ -351,16 +463,16 @@
             </HeaderConfig>
             <Items>
 
-                <ext:Panel ID="leftPanel" runat="server"  Region="West" PaddingSpec="00 0 0" Padding="0" TitleAlign="Center" DefaultAnchor="100%"
+                <ext:Panel ID="leftPanel" runat="server" Region="West" PaddingSpec="00 0 0" Padding="0" TitleAlign="Center" DefaultAnchor="100%"
                     Header="false" Collapsible="false" BodyPadding="5" Width="150" StyleSpec="border-left:2px solid #2A92D4;border-right:2px solid #2A92D4;"
                     Title="<%$ Resources:Common , NavigationPane %>" CollapseToolText="<%$ Resources:Common , CollapsePanel %>" ExpandToolText="<%$ Resources:Common , ExpandPanel %>" BodyBorder="0">
 
                     <Items>
-                        <ext:Panel runat="server" ID="alignedPanel" Header="false" >
+                        <ext:Panel runat="server" ID="alignedPanel" Header="false">
 
                             <Items>
 
-                                <ext:Image runat="server" ID="imgControl" Width="100" Height="100" Align="Middle" MarginSpec="15 0 0 20 " >
+                                <ext:Image runat="server" ID="imgControl" Width="100" Height="100" Align="Middle" MarginSpec="15 0 0 20 ">
                                     <Listeners>
                                         <%--<Click Handler="triggierImageClick(App.picturePath.fileInputEl.id); " />--%>
                                         <Click Handler="App.imageSelectionWindow.show()" />
@@ -368,7 +480,7 @@
 
                                 </ext:Image>
 
-                              
+
                                 <ext:FileUploadField ID="picturePath" runat="server" ButtonOnly="true" Hidden="true">
 
                                     <Listeners>
@@ -377,7 +489,7 @@
                                     <DirectEvents>
                                     </DirectEvents>
                                 </ext:FileUploadField>
-                                <ext:Panel runat="server" ID="img"  MarginSpec="50 0 0 0">
+                                <ext:Panel runat="server" ID="img" MarginSpec="50 0 0 0">
                                     <Items>
                                         <ext:Label ID="fullNameLbl" runat="server" />
                                         <ext:Label ID="departmentLbl" runat="server" />
@@ -385,13 +497,18 @@
                                         <ext:Label ID="positionLbl" runat="server" />
                                         <ext:Label ID="reportsToLbl" runat="server" />
 
-                                       
-                                        <ext:Label ID="eosBalanceTitle" Text="<%$ Resources:eosBalanceTitle %>" runat="server" /><ext:Label ID="eosBalanceLbl" runat="server" />
-                                         <ext:Label ID="lastLeaveStartDateTitle" Text="<%$ Resources:lastLeaveStartDateTitle %>" runat="server" /><ext:Label ID="lastLeaveStartDateLbl" runat="server" />
-                                       
-                                        <ext:Label ID="paidLeavesYTDTitle" Text="<%$ Resources:paidLeavesYTDTitle %>" runat="server" /><ext:Label ID="paidLeavesYTDLbl" runat="server" />
-                                        <ext:Label ID="leavesBalanceTitle" Text="<%$ Resources:leavesBalanceTitle %>" runat="server" /><ext:Label ID="leavesBalance" runat="server" />
-                                        <ext:Label ID="allowedLeaveYtdTitle" Text="<%$ Resources:allowedLeaveYtdTitle %>" runat="server" /><ext:Label ID="allowedLeaveYtd" runat="server" />
+
+                                        <ext:Label ID="eosBalanceTitle" Text="<%$ Resources:eosBalanceTitle %>" runat="server" />
+                                        <ext:Label ID="eosBalanceLbl" runat="server" />
+                                        <ext:Label ID="lastLeaveStartDateTitle" Text="<%$ Resources:lastLeaveStartDateTitle %>" runat="server" />
+                                        <ext:Label ID="lastLeaveStartDateLbl" runat="server" />
+
+                                        <ext:Label ID="paidLeavesYTDTitle" Text="<%$ Resources:paidLeavesYTDTitle %>" runat="server" />
+                                        <ext:Label ID="paidLeavesYTDLbl" runat="server" />
+                                        <ext:Label ID="leavesBalanceTitle" Text="<%$ Resources:leavesBalanceTitle %>" runat="server" />
+                                        <ext:Label ID="leavesBalance" runat="server" />
+                                        <ext:Label ID="allowedLeaveYtdTitle" Text="<%$ Resources:allowedLeaveYtdTitle %>" runat="server" />
+                                        <ext:Label ID="allowedLeaveYtd" runat="server" />
                                         <ext:HyperlinkButton runat="server" Text="<%$ Resources:DisplayTeamLink %>">
                                             <Listeners>
                                                 <Click Handler="CheckSession()" />
@@ -400,7 +517,7 @@
                                                 <Click OnEvent="DisplayTeam" />
                                             </DirectEvents>
                                         </ext:HyperlinkButton>
-                                            
+
                                     </Items>
                                 </ext:Panel>
 
@@ -418,7 +535,7 @@
 
 
 
-                <ext:TabPanel ID="panelRecordDetails" Layout="FitLayout" DefaultAnchor="100%"  runat="server" ActiveTabIndex="0" Border="false" DeferredRender="false" Region="Center">
+                <ext:TabPanel ID="panelRecordDetails" Layout="FitLayout" DefaultAnchor="100%" runat="server" ActiveTabIndex="0" Border="false" DeferredRender="false" Region="Center">
                     <TopBar>
                         <ext:Toolbar runat="server">
                             <Items>
@@ -984,8 +1101,7 @@
             Modal="true"
             Hidden="true"
             Resizable="false"
-             Maximizable="false"
-            
+            Maximizable="false"
             Layout="Fit">
 
             <Items>
@@ -995,45 +1111,65 @@
                     runat="server" DefaultButton="SaveButton"
                     Title="<%$ Resources:ImageSelectionWindowTitle %>"
                     Icon="ApplicationSideList"
-                     Header="false"
+                    Header="false"
                     DefaultAnchor="100%"
                     BodyPadding="5">
+                    <Content>
+                           <div class="imageBox" style="width:200px;height:200px">
+        <div class="thumbBox" style="width:200px;height:200px"></div>
+        <div class="spinner" style="display: none">Loading...</div>
+    </div>
+                    </Content>
                     <Items>
-                        <ext:Image runat="server" Width="150" Height="300" ID="employeePhoto">
-                            
+                        <ext:Image runat="server" Width="150" Height="300" ID="employeePhoto" Hidden="true">
                         </ext:Image>
+                        <ext:Hidden runat="server" ID="imageData" Name="imageData" />
                         <ext:Toolbar runat="server">
                             <Items>
                                 <ext:ToolbarFill runat="server" />
 
-                                <ext:Button runat="server" Icon="PictureAdd" Text="<%$ Resources:BrowsePicture %>" >
+                                <ext:Button runat="server" Icon="PictureAdd" Text="<%$ Resources:BrowsePicture %>">
                                     <Listeners>
                                         <Click Handler="triggierImageClick(App.FileUploadField1.fileInputEl.id); "></Click>
                                     </Listeners>
-                                    </ext:Button>
-                                <ext:Button runat="server" ID="uploadPhotoButton" Icon="DatabaseSave" Text="<%$ Resources:UploadPicture %>" Disabled="true" >
+                                </ext:Button>
+                                <ext:Button runat="server" ID="uploadPhotoButton" Icon="DatabaseSave" Text="<%$ Resources:UploadPicture %>" Disabled="true">
                                     <Listeners>
-                                                <Click Handler="CheckSession(); if (!#{imageUploadForm}.getForm().isValid()) {  return false;} " />
-                                        
-                                            </Listeners>
-                                            <DirectEvents>
-                                                <Click OnEvent="UploadImage" Failure="Ext.MessageBox.alert('#{titleSavingError}.value', '#{titleSavingErrorMessage}.value');">
-                                                    <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="={#{imageSelectionWindow}.body}" />
-                                                    <ExtraParams>
-                                                        <ext:Parameter Name="values" Value="#{imageUploadForm}.getForm().getValues(false, false, false, true)" Mode="Raw" Encode="true" />
-                                                    </ExtraParams>
-                                                </Click>
-                                            </DirectEvents>
-                                    
-                                    </ext:Button>
-                                <ext:Button runat="server" Icon="Cancel" Text="<%$ Resources:RemovePicture %>" >
+                                        <Click Handler="CheckSession(); if (!#{imageUploadForm}.getForm().isValid()) {  return false;} #{imageData}.value = cropper.getBlob();   var fd = new FormData();
+        fd.append('fname', 'test.jpg');
+                                   fd.append('id',null);          
+        fd.append('data', #{imageData}.value,'test.jpg');alert(dump(#{imageData}.value )); $.ajax({
+            type: 'POST',
+            url: 'EmployeePhotoUploaderHandler.ashx?classId=31000&recordId='+#{CurrentEmployee}.value,
+            data: fd,
+            processData: false,
+            contentType: false
+        }).done(function(data) {
+            // print the output from the upload.php script
+            console.log(data);
+        }); " />
+
+                                    </Listeners>
+                                    <DirectEvents>
+                                        <Click OnEvent="UploadImage" Failure="Ext.MessageBox.alert('#{titleSavingError}.value', '#{titleSavingErrorMessage}.value');">
+                                            
+                                            <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="={#{imageSelectionWindow}.body}" />
+                                            <ExtraParams>
+                                                <ext:Parameter Name="values" Value="#{imageUploadForm}.getForm().getValues(false, false, false, true)" Mode="Raw" Encode="true" />
+                                                
+                                            </ExtraParams>
+                                        </Click>
+                                    </DirectEvents>
+
+                                </ext:Button>
+                                <ext:Button runat="server" Icon="Cancel" Text="<%$ Resources:RemovePicture %>">
                                     <Listeners>
                                         <Click Handler="ClearImage2(); App.uploadPhotoButton.setDisabled(false); " />
                                     </Listeners>
-                                    </ext:Button>
+                                </ext:Button>
                                 <ext:FileUploadField ID="FileUploadField1" runat="server" ButtonOnly="true" Hidden="true">
                                     <Listeners>
-                                        <Change Handler="if(document.getElementById('CurrentEmployee').value == '')showImagePreview(App.FileUploadField1.fileInputEl.id); showImagePreview2(App.FileUploadField1.fileInputEl.id);" />
+                                        <Change Handler="if(document.getElementById('CurrentEmployee').value == '')showImagePreview(App.FileUploadField1.fileInputEl.id); showImagePreview2(App.FileUploadField1.fileInputEl.id); " />
                                     </Listeners>
 
                                 </ext:FileUploadField>
@@ -1042,12 +1178,17 @@
                         </ext:Toolbar>
                     </Items>
                     <Listeners>
-                        
-                    <AfterLayout Handler="CheckSession();ClearImage2();"    />
+
+                        <AfterLayout Handler="CheckSession();ClearImage2();  options =
+        {
+          imageBox: '.imageBox',
+            thumbBox: '.thumbBox',
+                            spinner: '.spinner'
+        }
+        var cropper = new cropbox(options);" />
                     </Listeners>
                     <DirectEvents>
                         <AfterLayout OnEvent="DisplayImage">
-                            
                         </AfterLayout>
                     </DirectEvents>
                 </ext:FormPanel>
@@ -1056,7 +1197,7 @@
             </Items>
 
         </ext:Window>
-         <ext:Window
+        <ext:Window
             ID="TeamWindow"
             runat="server"
             Icon="PageEdit"
@@ -1067,33 +1208,33 @@
             Modal="true"
             Hidden="true"
             Layout="Fit">
-             
+
             <Items>
-                
-        <ext:GridPanel ID="TeamGrid" runat="server"  Width="200" Scroll="Vertical" HideHeaders="true" EmptyText="<%$ Resources:NoTeamMembersFound %>">
-            
-                            <Store>
-                                <ext:Store runat="server"  ID="TeamStore">
-                                    <Model>
-                                        <ext:Model runat="server" IDProperty="recordId" >
-                                            <Fields>
-                                                <ext:ModelField Name="recordId" />
-                                                <ext:ModelField Name="pictureUrl" />
-                                                <ext:ModelField Name="name" IsComplex="true" />
-                                                <ext:ModelField Name="positionName" />
+
+                <ext:GridPanel ID="TeamGrid" runat="server" Width="200" Scroll="Vertical" HideHeaders="true" EmptyText="<%$ Resources:NoTeamMembersFound %>">
+
+                    <Store>
+                        <ext:Store runat="server" ID="TeamStore">
+                            <Model>
+                                <ext:Model runat="server" IDProperty="recordId">
+                                    <Fields>
+                                        <ext:ModelField Name="recordId" />
+                                        <ext:ModelField Name="pictureUrl" />
+                                        <ext:ModelField Name="name" IsComplex="true" />
+                                        <ext:ModelField Name="positionName" />
 
 
-                                            </Fields>
-                                        </ext:Model>
+                                    </Fields>
+                                </ext:Model>
 
-                                    </Model>
-                                </ext:Store>
-                                
-                            </Store>
-                            <ColumnModel>
-                                <Columns>
-                                    <ext:Column runat="server" DataIndex="recordId" Visible ="false" />
-                                      <ext:ComponentColumn runat="server" DataIndex="pictureUrl">
+                            </Model>
+                        </ext:Store>
+
+                    </Store>
+                    <ColumnModel>
+                        <Columns>
+                            <ext:Column runat="server" DataIndex="recordId" Visible="false" />
+                            <ext:ComponentColumn runat="server" DataIndex="pictureUrl">
                                 <Component>
                                     <ext:Image runat="server" Height="100" Width="50" ImageUrl="Images/empPhoto.jpg">
                                     </ext:Image>
@@ -1103,15 +1244,15 @@
                                     <Bind Handler="if(record.get('pictureUrl')!='') cmp.setImageUrl(record.get('pictureUrl')); " />
                                 </Listeners>
                             </ext:ComponentColumn>
-                                    <ext:Column runat="server" DataIndex="name.fullName" Flex="1" >
-                                        <Renderer Handler="return record.data['name'].fullName +' ,'+ record.data['positionName'];" />
-                                        </ext:Column>
-                                  
-                                </Columns>
-                            </ColumnModel>
-                        </ext:GridPanel>
-                </Items>
-                </ext:Window>
+                            <ext:Column runat="server" DataIndex="name.fullName" Flex="1">
+                                <Renderer Handler="return record.data['name'].fullName +' ,'+ record.data['positionName'];" />
+                            </ext:Column>
+
+                        </Columns>
+                    </ColumnModel>
+                </ext:GridPanel>
+            </Items>
+        </ext:Window>
     </form>
 </body>
 </html>

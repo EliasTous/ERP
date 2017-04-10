@@ -182,7 +182,7 @@
                                
                                 <ext:Button runat="server" Text="<%$ Resources: ButtonClear%>" MarginSpec="0 0 0 0"  Width="100">
                                     <Listeners>
-                                        <Click Handler="#{departmentId}.clear(); #{branchId}.clear(); #{divisionId}.clear(); #{Store1}.reload(); #{employeeFilter}.clear(); #{includeOpen}.setValue(3);">
+                                        <Click Handler="#{departmentId}.clear(); #{branchId}.clear(); #{assetCatId}.clear(); #{employeeFilter}.clear(); #{Store1}.reload(); ">
 
                                         </Click>
                                     </Listeners>
@@ -369,7 +369,7 @@
                                     TypeAhead="false"
                                     FieldLabel="<%$ Resources: FieldEmployeeName%>"
                                     HideTrigger="true" SubmitValue="true"
-                                    MinChars="3"
+                                    MinChars="3" AllowBlank="false"
                                     TriggerAction="Query" ForceSelection="false">
                                     <Store>
                                         <ext:Store runat="server" ID="employeeStore" AutoLoad="false">
@@ -392,7 +392,7 @@
 
 
                                 <ext:ComboBox runat="server" ID="aacId" Name="aacId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1"
-                                    DisplayField="name"
+                                    DisplayField="name" AllowBlank="false"
                                     ValueField="recordId"
                                     FieldLabel="<%$ Resources: FieldAcName %>">
                                     <Store>
@@ -428,7 +428,7 @@
                                     </Listeners>
                                 </ext:ComboBox>
                                 
-                                <ext:TextField ID="description" runat="server" FieldLabel="<%$ Resources:FieldDescription%>" Name="description" />
+                                <ext:TextField ID="description" runat="server" FieldLabel="<%$ Resources:FieldDescription%>" Name="description" AllowBlank="false" />
                                 <ext:TextField ID="serialNo" runat="server" FieldLabel="<%$ Resources:FieldSerialNo%>" Name="serialNo" />
                                 <ext:TextField ID="comment" runat="server" FieldLabel="<%$ Resources:FieldComment%>" Name="comment" />
 

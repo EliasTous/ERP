@@ -113,7 +113,7 @@ namespace AionHR.Web.UI.Forms
             string type = e.ExtraParams["type"];
             switch (type)
             {
-                case "ColName":
+                case "imgEdit":
                     //Step 1 : get the object from the Web Service 
                     RecordRequest r = new RecordRequest();
                     r.RecordID = id.ToString();
@@ -131,7 +131,7 @@ namespace AionHR.Web.UI.Forms
                     this.EditRecordWindow.Show();
                     break;
 
-                case "colDelete":
+                case "imgDelete":
                     X.Msg.Confirm(Resources.Common.Confirmation, Resources.Common.DeleteOneRecord, new MessageBoxButtonsConfig
                     {
                         Yes = new MessageBoxButtonConfig

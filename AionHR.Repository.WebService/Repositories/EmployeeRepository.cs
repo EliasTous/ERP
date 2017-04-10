@@ -29,6 +29,7 @@ namespace AionHR.Repository.WebService.Repositories
             GetAllMethodName = "qryES";
             AddOrUpdateMethodName = "setEM";
             GetRecordMethodName = "getEM1";
+            DeleteMethodName = "delEM";
 
             ChildGetAllLookup.Add(typeof(Sponsor), "qrySP");
             ChildGetAllLookup.Add(typeof(AllowanceType), "qryAT");

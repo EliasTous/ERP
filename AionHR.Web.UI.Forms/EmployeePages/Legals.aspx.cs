@@ -138,7 +138,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                         Yes = new MessageBoxButtonConfig
                         {
                             //We are call a direct request metho for deleting a record
-                            Handler = String.Format("App.direct.DeleteRW({0})", id),
+                            Handler = String.Format("App.direct.DeleteRW({0},'{1}')", id,path),
                             Text = Resources.Common.Yes
                         },
                         No = new MessageBoxButtonConfig
@@ -195,7 +195,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                         Yes = new MessageBoxButtonConfig
                         {
                             //We are call a direct request metho for deleting a record
-                            Handler = String.Format("App.direct.DeleteBC({0})", id),
+                            Handler = String.Format("App.direct.DeleteBC({0},'{1}')", id,path),
                             Text = Resources.Common.Yes
                         },
                         No = new MessageBoxButtonConfig
@@ -218,7 +218,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
 
 
         [DirectMethod]
-        public void DeleteRW(string index)
+        public void DeleteRW(string index,string path)
         {
             try
             {
@@ -230,7 +230,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                 n.expiryDate = DateTime.Now;
                 n.issueDate = DateTime.Now;
                 n.documentRef = "";
-
+                n.fileUrl = path;
 
                 PostRequest<EmployeeRightToWork> req = new PostRequest<EmployeeRightToWork>();
                 req.entity = n;
@@ -267,7 +267,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
 
         }
         [DirectMethod]
-        public void DeleteBC(string index)
+        public void DeleteBC(string index,string path)
         {
             try
             {
@@ -278,7 +278,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                 n.date = DateTime.Now;
                 n.expiryDate = DateTime.Now;
                 n.remarks = "";
-
+                n.fileUrl = path;
 
                 PostRequest<EmployeeBackgroundCheck> req = new PostRequest<EmployeeBackgroundCheck>();
                 req.entity = n;

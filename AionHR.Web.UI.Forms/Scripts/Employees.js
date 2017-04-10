@@ -10,45 +10,47 @@ var attachRender = function () {
     return '<img class="imgAttach"  style="cursor:pointer;" src="Images/Tools/attach.png" />';
 };
 
-
+var options;
 var commandName;
 var cellClick = function (view, cell, columnIndex, record, row, rowIndex, e) {
-
+    
     commandName = "";
     CheckSession();
 
-
+  
     // in case 
+    
     if (columnIndex == 0)
         return false;
-    var t = e.getTarget(),
-        columnId = this.columns[columnIndex].id; // Get column id
+    var t = e.getTarget();
+       // columnId = App.GridPanel1.columns[columnIndex].id; // Get column id
     
-    if (t.className == "imgEdit" && columnId == "colEdit") {
+    if (t.className == "imgEdit" ) {
         //the ajax call is allowed
         commandName = t.className;
         return true;
     }
 
-    if (t.className == "imgDelete" && columnId == "colDelete") {
+    if (t.className == "imgDelete" ) {
         //the ajax call is allowed
         commandName = t.className;
         return true;
     }
-    if (t.className == "imgAttach" && columnId == "colAttach") {
+    if (t.className == "imgAttach") {
         //the ajax call is allowed
         commandName = t.className;
         return true;
     }
   
-
-
+    App.RowExpander1.toggleRow(rowIndex,record);
+  
     //forbidden
     return false;
 };
 
 
 var getCellType = function (grid, rowIndex, cellIndex) {
+    
     if (cellIndex == 0)
         return "";
     if (commandName != "")
@@ -63,7 +65,7 @@ var triggierImageClick = function (id) {
 }
 
 
-
+var imageData;
 
 var showImagePreview = function (id) {
 
@@ -105,6 +107,9 @@ var showImagePreview2 = function (id) {
             var filerdr = new FileReader();
             filerdr.onload = function (e) {
                 $("#" + $('#employeePhoto')[0].firstChild.id).attr('src', e.target.result);
+                options.imgSrc = e.target.result;
+                cropper = new cropbox(options);
+
             }
             filerdr.readAsDataURL(input.files[0]);
             App.uploadPhotoButton.setDisabled(false);
@@ -113,6 +118,7 @@ var showImagePreview2 = function (id) {
             alert('File Format is not allowed');
             $("#" + $('#employeePhoto')[0].firstChild.id).attr('src', '');
             App.FileUploadField1.reset();
+            
             //Alert the user and clear the input file
         }
     }

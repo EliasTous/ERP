@@ -7,10 +7,12 @@ using System.Threading.Tasks;
 
 namespace AionHR.Model.Employees.Profile
 {
-    public class EmployeeQuickView:ModelBase
+    public class EmployeeQuickView : ModelBase
     {
-        public string pictureUrl {
-            get; set; }
+        public string pictureUrl
+        {
+            get; set;
+        }
 
         public string esName { get; set; }
         public EmployeeName name { get; set; }
@@ -25,5 +27,12 @@ namespace AionHR.Model.Employees.Profile
         public short paidLeavesYTD { get; set; }
         public short leavesBalance { get; set; }
         public short allowedLeaveYtd { get; set; }
+
+        public string LastLeave(string format)
+        {
+
+
+            return lastLeaveStartDate.ToString(format) + "-" + lastLeaveStartDate.ToString(format);
+        }
     }
 }

@@ -1,5 +1,4 @@
-﻿using AionHR.Infrastructure.Domain;
-using AionHR.Model.System;
+﻿using AionHR.Model.System;
 using AionHR.Services.Interfaces;
 using AionHR.Services.Messaging;
 using AionHR.Services.Messaging.System;
@@ -14,25 +13,22 @@ using System.Web.SessionState;
 namespace AionHR.Web.UI.Forms
 {
     /// <summary>
-    /// Summary description for CaseAttachmentsUploader
+    /// Summary description for EmployeePhotoUploaderHandler
     /// </summary>
-    public class SystemAttachmentsUploader : IHttpHandler, IRequiresSessionState
+    public class EmployeePhotoUploaderHandler : IHttpHandler, IRequiresSessionState
     {
-        ISystemService _systemService = ServiceLocator.Current.GetInstance<ISystemService>();
 
+        ISystemService _systemService = ServiceLocator.Current.GetInstance<ISystemService>();
+        IEmployeeService _employeeService = ServiceLocator.Current.GetInstance<IEmployeeService>();
         public void ProcessRequest(HttpContext context)
         {
             context.Response.ContentType = "application/javascript";
-            SystemAttachmentsPostRequest req = new SystemAttachmentsPostRequest();
-            req.entity = new Model.System.Attachement() { classId = Convert.ToInt32(context.Request.QueryString["classId"]), recordId = Convert.ToInt32(context.Request.QueryString["recordId"]), fileName = context.Request.Files[0].FileName,seqNo= null };
+           
+            EmployeeUploadPhotoRequest upreq = new EmployeeUploadPhotoRequest();
+            upreq.entity.fileName = context.Request.Files[0].FileName;
+           
             //write your handler implementation here.
-            int bulk;
-            if (int.TryParse(context.Request.Form["id"], out bulk))
-            {
-                req.entity.folderId = bulk;
-            }
-            else
-                req.entity.folderId = null;
+            
             if (context.Request.Files.Count <= 0)
             {
                 context.Response.Write("No file uploaded");
@@ -47,23 +43,24 @@ namespace AionHR.Web.UI.Forms
                     f.InputStream.Seek(0, SeekOrigin.Begin);
                     f.InputStream.Read(fileData, 0, Convert.ToInt32(f.InputStream.Length));
                     f.InputStream.Close();
-                    
-                    req.FilesData.Add((byte[])fileData.Clone());
-                    req.FileNames.Add(f.FileName);
+
+                    upreq.photoName = context.Request.Files[0].FileName;
+                    upreq.photoData = fileData;
+                    upreq.entity.recordId = Convert.ToInt32(context.Request.QueryString["recordId"]);
 
 
                 }
-                
-                PostResponse<Attachement> resp = _systemService.UploadMultipleAttachments(req);
+
+                PostResponse<Attachement> resp = _employeeService.UploadEmployeePhoto(upreq);
                 if (!resp.Success)
                 {
                     context.Response.Write("{'Error':'Error'}");
                     return;
                 }
-                
+
             }
             context.Response.Write("{}");
-            
+
         }
 
         public bool IsReusable

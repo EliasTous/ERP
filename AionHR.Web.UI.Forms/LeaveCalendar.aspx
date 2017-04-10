@@ -271,6 +271,7 @@
                             <TopBar>
                                 <ext:Toolbar runat="server" ID="calTools" ClassicButtonStyle="true">
                                     <Items>
+                                        
                                         <ext:ToolbarFill />
                                         <ext:Label runat="server" ID="monthLbl" StyleSpec="text-align:center;" />
                                         <ext:Label runat="server" ID="Label1" StyleSpec="text-align:center;" Text="- " />
@@ -286,7 +287,7 @@
                                                 <Click Handler="CheckSession(); if(parseInt(#{CurrentMonth}.value)>11) {#{currentMonth}.value = 1; #{CurrentYear}.value = parseInt(#{CurrentYear}.value) + 1; } else{ #{CurrentMonth}.value = parseInt(#{CurrentMonth}.value) + 1; } Ext.net.Mask.show(); App.direct.UpdateCal(#{CurrentMonth}.value,#{CurrentYear}.value,#{Viewport1}.getWidth(),{success: function (result) {  Ext.net.Mask.hide();},error: function (result) {  Ext.net.Mask.hide();}});    #{monthLbl}.setText(getMonthByNumber(#{CurrentMonth}.value));#{yearLbl}.setText(#{CurrentYear}.value);" />
                                             </Listeners>
                                         </ext:Button>
-
+                                        
                                     </Items>
                                 </ext:Toolbar>
                             </TopBar>
