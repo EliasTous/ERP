@@ -48,6 +48,8 @@
     <ext:Hidden runat="server" ID="vsTitle" Text="<%$Resources:Common , VacationSchedules %>" />
     <ext:Hidden runat="server" ID="ltTitle" Text="<%$Resources:Common , LeaveTypes %>" />
     <ext:Hidden runat="server" ID="foTitle" Text="<%$Resources:Common , Folders %>" />
+    <ext:Hidden runat="server" ID="rtTitle" Text="<%$Resources:Common , RelationshipTypes %>" />
+    <ext:Hidden runat="server" ID="ltltTitle" Text="<%$Resources:Common , LoanTypes %>" />
 
     <ext:Hidden runat="server" ID="TrType1" Text="<%$Resources:Common , TrType1 %>" />
     <ext:Hidden runat="server" ID="TrType2" Text="<%$Resources:Common , TrType2 %>" />
@@ -57,8 +59,8 @@
     <ext:Hidden runat="server" ID="TrType6" Text="<%$Resources:Common , TrType6 %>" />
     <ext:Hidden runat="server" ID="TrType7" Text="<%$Resources:Common , TrType7 %>" />
 
-    <ext:Hidden runat="server" ID="CurrentClassRef"  />
-    <ext:Hidden runat="server" ID="CurrentRecordId"  />
+    <ext:Hidden runat="server" ID="CurrentClassRef" />
+    <ext:Hidden runat="server" ID="CurrentRecordId" />
     <ext:ResourceManager ID="ResourceManager1" runat="server" Theme="Neptune" IDMode="Explicit" AjaxTimeout="1200000" />
     <ext:Viewport ID="Viewport1" runat="server" Layout="border">
         <Items>
@@ -147,34 +149,54 @@
                                                                     <Click Handler="openNewTab('checkTypes', 'CheckTypes.aspx', #{ctTitle}.value, 'icon-Employees')" />
                                                                 </Listeners>
                                                             </ext:MenuItem>
+
+                                                            <ext:MenuItem runat="server" Text="<%$Resources: Common , RelationshipTypes%>">
+                                                                <Listeners>
+                                                                    <Click Handler="openNewTab('relationshipTypes', 'RelationshipTypes.aspx', #{rtTitle}.value, 'icon-Employees')" />
+                                                                </Listeners>
+                                                            </ext:MenuItem>
+
+                                                            <ext:MenuItem runat="server" Text="<%$Resources: Common , LoanTypes%>">
+                                                                <Listeners>
+                                                                    <Click Handler="openNewTab('loanTypes', 'LoanTypes.aspx', #{ltltTitle}.value, 'icon-Employees')" />
+                                                                </Listeners>
+                                                            </ext:MenuItem>
                                                         </Items>
                                                     </ext:Menu>
                                                 </Menu>
                                             </ext:MenuItem>
-                                            <ext:MenuItem runat="server" Text="<%$ Resources:Common , CompanyStructure %>">
+                                            <ext:MenuItem runat="server" Text="<%$ Resources:Common , Company %>">
 
                                                 <Menu>
                                                     <ext:Menu runat="server">
                                                         <Items>
-                                                            <ext:MenuItem runat="server" Text="<%$Resources: Common , Departments%>">
-                                                                <Listeners>
-                                                                    <Click Handler="openNewTab('departments', 'Departments.aspx', #{deTitle}.value, 'icon-Employees')" />
-                                                                </Listeners>
-                                                            </ext:MenuItem>
-                                                            <ext:MenuItem runat="server" Text="<%$Resources: Common , Branches%>">
-                                                                <Listeners>
-                                                                    <Click Handler="openNewTab('branches', 'Branches.aspx', #{brTitle}.value, 'icon-Employees')" />
-                                                                </Listeners>
-                                                            </ext:MenuItem>
-                                                            <ext:MenuItem runat="server" Text="<%$Resources: Common , Divisions%>">
-                                                                <Listeners>
-                                                                    <Click Handler="openNewTab('divisions', 'Divisions.aspx', #{diTitle}.value, 'icon-Employees')" />
-                                                                </Listeners>
-                                                            </ext:MenuItem>
-                                                            <ext:MenuItem runat="server" Text="<%$Resources: Common , Positions%>">
-                                                                <Listeners>
-                                                                    <Click Handler="openNewTab('positions', 'Positions.aspx', #{poTitle}.value, 'icon-Employees')" />
-                                                                </Listeners>
+                                                            <ext:MenuItem runat="server" Text="<%$Resources: Common , CompanyStructure%>">
+                                                                <Menu>
+                                                                    <ext:Menu runat="server">
+                                                                        <Items>
+                                                                            <ext:MenuItem runat="server" Text="<%$Resources: Common , Departments%>">
+                                                                                <Listeners>
+                                                                                    <Click Handler="openNewTab('departments', 'Departments.aspx', #{deTitle}.value, 'icon-Employees')" />
+                                                                                </Listeners>
+                                                                            </ext:MenuItem>
+                                                                            <ext:MenuItem runat="server" Text="<%$Resources: Common , Branches%>">
+                                                                                <Listeners>
+                                                                                    <Click Handler="openNewTab('branches', 'Branches.aspx', #{brTitle}.value, 'icon-Employees')" />
+                                                                                </Listeners>
+                                                                            </ext:MenuItem>
+                                                                            <ext:MenuItem runat="server" Text="<%$Resources: Common , Divisions%>">
+                                                                                <Listeners>
+                                                                                    <Click Handler="openNewTab('divisions', 'Divisions.aspx', #{diTitle}.value, 'icon-Employees')" />
+                                                                                </Listeners>
+                                                                            </ext:MenuItem>
+                                                                            <ext:MenuItem runat="server" Text="<%$Resources: Common , Positions%>">
+                                                                                <Listeners>
+                                                                                    <Click Handler="openNewTab('positions', 'Positions.aspx', #{poTitle}.value, 'icon-Employees')" />
+                                                                                </Listeners>
+                                                                            </ext:MenuItem>
+                                                                        </Items>
+                                                                    </ext:Menu>
+                                                                </Menu>
                                                             </ext:MenuItem>
                                                             <ext:MenuItem runat="server" Text="<%$Resources: Common , SystemSettings%>">
                                                                 <Menu>
@@ -214,7 +236,7 @@
                                                                                 </Listeners>
                                                                             </ext:MenuItem>
 
-                                                                             <ext:MenuItem runat="server" Text="<%$Resources: Common , Folders%>">
+                                                                            <ext:MenuItem runat="server" Text="<%$Resources: Common , Folders%>">
                                                                                 <Listeners>
                                                                                     <Click Handler="openNewTab('folders', 'Folders.aspx', #{foTitle}.value, 'icon-Employees')" />
                                                                                 </Listeners>
@@ -280,7 +302,7 @@
                                                                                     <Click Handler="openNewTab('VacationSchedules', 'VacationSchedules.aspx', #{vsTitle}.value, 'icon-Employees')" />
                                                                                 </Listeners>
                                                                             </ext:MenuItem>
-                                                                              <ext:MenuItem runat="server" Text="<%$Resources: Common , LeaveTypes%>">
+                                                                            <ext:MenuItem runat="server" Text="<%$Resources: Common , LeaveTypes%>">
                                                                                 <Listeners>
                                                                                     <Click Handler="openNewTab('LeaveTypes', 'LeaveTypes.aspx', #{ltTitle}.value, 'icon-Employees')" />
                                                                                 </Listeners>
@@ -486,9 +508,9 @@
                 <Store>
                     <ext:Store runat="server" ID="transactionLogStore"
                         RemoteSort="True"
-                            RemoteFilter="true"
-                            OnReadData="TransactionLog_RefreshData"
-                            PageSize="30" IDMode="Explicit" Namespace="App" IsPagingStore="true">
+                        RemoteFilter="true"
+                        OnReadData="TransactionLog_RefreshData"
+                        PageSize="30" IDMode="Explicit" Namespace="App" IsPagingStore="true">
                         <Model>
                             <ext:Model runat="server" IDProperty="recordId">
                                 <Fields>
@@ -543,29 +565,29 @@
 
                     </CellClick>
                 </DirectEvents>
-                 <BottomBar>
+                <BottomBar>
 
-                        <ext:PagingToolbar ID="PagingToolbar1"
-                            runat="server"
-                            FirstText="<%$ Resources:Common , FirstText %>"
-                            NextText="<%$ Resources:Common , NextText %>"
-                            PrevText="<%$ Resources:Common , PrevText %>"
-                            LastText="<%$ Resources:Common , LastText %>"
-                            RefreshText="<%$ Resources:Common ,RefreshText  %>"
-                            BeforePageText="<%$ Resources:Common ,BeforePageText  %>"
-                            AfterPageText="<%$ Resources:Common , AfterPageText %>"
-                            DisplayInfo="true"
-                            DisplayMsg="<%$ Resources:Common , DisplayMsg %>"
-                            Border="true"
-                            EmptyMsg="<%$ Resources:Common , EmptyMsg %>">
-                            <Items>
-                            </Items>
-                            <Listeners>
-                                <BeforeRender Handler="this.items.removeAt(this.items.length - 2);" />
-                            </Listeners>
-                        </ext:PagingToolbar>
+                    <ext:PagingToolbar ID="PagingToolbar1"
+                        runat="server"
+                        FirstText="<%$ Resources:Common , FirstText %>"
+                        NextText="<%$ Resources:Common , NextText %>"
+                        PrevText="<%$ Resources:Common , PrevText %>"
+                        LastText="<%$ Resources:Common , LastText %>"
+                        RefreshText="<%$ Resources:Common ,RefreshText  %>"
+                        BeforePageText="<%$ Resources:Common ,BeforePageText  %>"
+                        AfterPageText="<%$ Resources:Common , AfterPageText %>"
+                        DisplayInfo="true"
+                        DisplayMsg="<%$ Resources:Common , DisplayMsg %>"
+                        Border="true"
+                        EmptyMsg="<%$ Resources:Common , EmptyMsg %>">
+                        <Items>
+                        </Items>
+                        <Listeners>
+                            <BeforeRender Handler="this.items.removeAt(this.items.length - 2);" />
+                        </Listeners>
+                    </ext:PagingToolbar>
 
-                    </BottomBar>
+                </BottomBar>
             </ext:GridPanel>
         </Items>
 

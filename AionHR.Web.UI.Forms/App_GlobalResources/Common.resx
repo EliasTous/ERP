@@ -687,4 +687,13 @@
   <data name="CompanyNews" xml:space="preserve">
     <value>News</value>
   </data>
+  <data name="LoanTypes" xml:space="preserve">
+    <value>Loan Types</value>
+  </data>
+  <data name="RelationshipTypes" xml:space="preserve">
+    <value>Relationship Types</value>
+  </data>
+  <data name="Loans" xml:space="preserve">
+    <value>Loans</value>
+  </data>
 </root>

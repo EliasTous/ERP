@@ -168,6 +168,8 @@
     <Content Include="LeaveCalendar.aspx" />
     <Content Include="LeaveRequests.aspx" />
     <Content Include="LeaveTypes.aspx" />
+    <Content Include="LoanRequests.aspx" />
+    <Content Include="LoanTypes.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="MediaCategories.aspx" />
     <Content Include="MediaItems.aspx" />
@@ -184,6 +186,8 @@
     <Content Include="Scripts\EmployeeComplaints.js" />
     <Content Include="Scripts\EmployeesOrgChart.js" />
     <Content Include="Scripts\Folders.js" />
+    <Content Include="Scripts\LoanRequests.js" />
+    <Content Include="Scripts\LoanTypes.js" />
     <Content Include="Scripts\MediaItems.js" />
     <Content Include="Scripts\RelationshipTypes.js" />
     <Content Include="Scripts\Routers.js" />
@@ -394,6 +398,20 @@
     </Compile>
     <Compile Include="Folders.aspx.designer.cs">
       <DependentUpon>Folders.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LoanRequests.aspx.cs">
+      <DependentUpon>LoanRequests.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LoanRequests.aspx.designer.cs">
+      <DependentUpon>LoanRequests.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LoanTypes.aspx.cs">
+      <DependentUpon>LoanTypes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LoanTypes.aspx.designer.cs">
+      <DependentUpon>LoanTypes.aspx</DependentUpon>
     </Compile>
     <Compile Include="MediaItems.aspx.cs">
       <DependentUpon>MediaItems.aspx</DependentUpon>
@@ -972,6 +990,15 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_LocalResources\CompanyNews.aspx.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_LocalResources\LoanTypes.aspx.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_LocalResources\RelationshipTypes.aspx.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_LocalResources\LoanRequests.aspx.resx" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

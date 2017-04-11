@@ -75,6 +75,7 @@
     <Compile Include="Messaging\Employees\EmployeesRequests.cs" />
     <Compile Include="Messaging\LeaveManagement\LeaveManagementRequests.cs" />
     <Compile Include="Messaging\ListReponse.cs" />
+    <Compile Include="Messaging\LoanManagment\LoanManagmentRequest.cs" />
     <Compile Include="Messaging\Master Service\MasterServiceRequests.cs" />
     <Compile Include="Messaging\PostRequest.cs" />
     <Compile Include="Messaging\PostRequestWithAttachment.cs" />
