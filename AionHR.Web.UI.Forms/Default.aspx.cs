@@ -204,6 +204,11 @@ namespace AionHR.Web.UI.Forms
                     tabHome.Loader.Url = "Dashboard.aspx";
                     tabHome.Loader.LoadContent();
                     return nodes.ToJson();
+                case 5:
+                    nodes = TreeBuilder.Instance.BuildReportsTree(commonTree.Root);
+                    tabHome.Loader.Url = "Dashboard.aspx";
+                    tabHome.Loader.LoadContent();
+                    return nodes.ToJson();
                 default:
                     nodes = TreeBuilder.Instance.BuildCaseManagementTree(commonTree.Root);
                     return nodes.ToJson();

@@ -1,4 +1,5 @@
-﻿using AionHR.Model.System;
+﻿using AionHR.Infrastructure.Domain;
+using AionHR.Model.System;
 using AionHR.Services.Interfaces;
 using AionHR.Services.Messaging;
 using AionHR.Services.Messaging.System;
@@ -23,18 +24,34 @@ namespace AionHR.Web.UI.Forms
         public void ProcessRequest(HttpContext context)
         {
             context.Response.ContentType = "application/javascript";
-           
-            EmployeeUploadPhotoRequest upreq = new EmployeeUploadPhotoRequest();
-            upreq.entity.fileName = context.Request.Files[0].FileName;
-           
+
+
+
             //write your handler implementation here.
-            
+
             if (context.Request.Files.Count <= 0)
             {
-                context.Response.Write("No file uploaded");
+                PostRequest<Attachement> request = new PostRequest<Attachement>();
+
+                Attachement at = new Attachement();
+                at.classId = ClassId.EPEM;
+                at.recordId = Convert.ToInt32(context.Request.QueryString["recordId"]);
+                at.seqNo = 0;
+                at.folderId = null;
+
+                at.fileName = context.Request.Form["oldUrl"];
+                request.entity = at;
+                PostResponse<Attachement> response = _systemService.ChildDelete<Attachement>(request);
+                if (response.Success)
+                    context.Response.Write("{}");
+                else
+                    context.Response.Write("{Error}");
+
             }
             else
             {
+                EmployeeUploadPhotoRequest upreq = new EmployeeUploadPhotoRequest();
+                upreq.entity.fileName = context.Request.Files[0].FileName;
                 byte[] fileData = null;
                 for (int i = 0; i < context.Request.Files.Count; ++i)
                 {

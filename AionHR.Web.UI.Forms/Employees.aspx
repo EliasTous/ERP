@@ -16,8 +16,9 @@
 
     <script type="text/javascript" src="Scripts/common.js?id=1"></script>
     <script type="text/javascript" src="Scripts/cropbox-min.js?id=1"></script>
-    <script type="text/javascript" src="Scripts/Employees.js?id=27"></script>
+    <script type="text/javascript" src="Scripts/Employees.js?id=36"></script>
     <script type="text/javascript">
+        var cropper = null;
         function doTranslations()
         {
             alert('called');
@@ -33,6 +34,7 @@
 
         <ext:Hidden ID="textMatch" runat="server" Text="<%$ Resources:Common , MatchFound %>" />
         <ext:Hidden ID="textLoadFailed" runat="server" Text="<%$ Resources:Common , LoadFailed %>" />
+         
         <ext:Hidden ID="titleSavingError" runat="server" Text="<%$ Resources:Common , TitleSavingError %>" />
         <ext:Hidden ID="titleSavingErrorMessage" runat="server" Text="<%$ Resources:Common , TitleSavingErrorMessage %>" />
         <ext:Hidden ID="timeZoneOffset" runat="server" EnableViewState="true" />
@@ -1101,6 +1103,7 @@
             Modal="true"
             Hidden="true"
             Resizable="false"
+            Draggable="false"
             Maximizable="false"
             Layout="Fit">
 
@@ -1115,17 +1118,21 @@
                     DefaultAnchor="100%"
                     BodyPadding="5">
                     <Content>
-                           <div class="imageBox" style="width:200px;height:200px">
-        <div class="thumbBox" style="width:200px;height:200px"></div>
-        <div class="spinner" style="display: none">Loading...</div>
+                           <div class="imageBox" style="width:290px;height:270px;" ">
+                               <div class="spinner" style="display: none"></div>
+        <div class="thumbBox" style="width:290px;height:270px;border:3px solid black;"></div>
+         <input type="button" id="btnZoomIn" value="+" style="float: right">
+        <input type="button" id="btnZoomOut" value="-" style="float: right">
     </div>
                     </Content>
                     <Items>
                         <ext:Image runat="server" Width="150" Height="300" ID="employeePhoto" Hidden="true">
                         </ext:Image>
                         <ext:Hidden runat="server" ID="imageData" Name="imageData" />
-                        <ext:Toolbar runat="server">
-                            <Items>
+                        </Items>
+                    <BottomBar><ext:Toolbar runat="server">
+                        <Items>
+                    
                                 <ext:ToolbarFill runat="server" />
 
                                 <ext:Button runat="server" Icon="PictureAdd" Text="<%$ Resources:BrowsePicture %>">
@@ -1135,22 +1142,30 @@
                                 </ext:Button>
                                 <ext:Button runat="server" ID="uploadPhotoButton" Icon="DatabaseSave" Text="<%$ Resources:UploadPicture %>" Disabled="true">
                                     <Listeners>
-                                        <Click Handler="CheckSession(); if (!#{imageUploadForm}.getForm().isValid()) {  return false;} #{imageData}.value = cropper.getBlob();   var fd = new FormData();
-        fd.append('fname', 'test.jpg');
+                                        
+                                        <Click Handler="CheckSession();  if (!#{imageUploadForm}.getForm().isValid()) {  return false;} #{imageData}.value = cropper.getBlob();   var fd = new FormData();
+        fd.append('fname', #{FileUploadField1}.value);
                                    fd.append('id',null);          
-        fd.append('data', #{imageData}.value,'test.jpg');alert(dump(#{imageData}.value )); $.ajax({
+                                            Ext.net.Mask.show({msg:App.lblLoading.getValue(),el:#{imageSelectionWindow}.id});  
+                                            if(#{FileUploadField1}.value!='')
+        fd.append('data', #{imageData}.value,#{FileUploadField1}.value);
+                                            else
+                                            fd.append('oldUrl',#{CurrentEmployeePhotoName}.value );
+                                             $.ajax({
             type: 'POST',
             url: 'EmployeePhotoUploaderHandler.ashx?classId=31000&recordId='+#{CurrentEmployee}.value,
             data: fd,
             processData: false,
             contentType: false
         }).done(function(data) {
-            // print the output from the upload.php script
-            console.log(data);
-        }); " />
+            App.direct.FillLeftPanelDirect();
+                                            Ext.net.Mask.hide();
+            App.imageSelectionWindow.hide();
+                                            
+    }); " />
 
                                     </Listeners>
-                                    <DirectEvents>
+                              <%--      <DirectEvents>
                                         <Click OnEvent="UploadImage" Failure="Ext.MessageBox.alert('#{titleSavingError}.value', '#{titleSavingErrorMessage}.value');">
                                             
                                             <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="={#{imageSelectionWindow}.body}" />
@@ -1159,7 +1174,7 @@
                                                 
                                             </ExtraParams>
                                         </Click>
-                                    </DirectEvents>
+                                    </DirectEvents>--%>
 
                                 </ext:Button>
                                 <ext:Button runat="server" Icon="Cancel" Text="<%$ Resources:RemovePicture %>">
@@ -1174,18 +1189,23 @@
 
                                 </ext:FileUploadField>
                                 <ext:ToolbarFill runat="server" />
-                            </Items>
-                        </ext:Toolbar>
-                    </Items>
+                                </Items>
+
+                               </ext:Toolbar>
+
+                    </BottomBar>
+                           
+                      
+                    
                     <Listeners>
 
-                        <AfterLayout Handler="CheckSession();ClearImage2();  options =
-        {
-          imageBox: '.imageBox',
-            thumbBox: '.thumbBox',
-                            spinner: '.spinner'
-        }
-        var cropper = new cropbox(options);" />
+                        <AfterLayout Handler="CheckSession();ClearImage2();  initCropper(#{employeePhoto}.src);
+                            document.querySelector('#btnZoomIn').addEventListener('click', function(){
+            cropper.zoomIn();
+        })
+        document.querySelector('#btnZoomOut').addEventListener('click', function(){
+            cropper.zoomOut();
+        })" />
                     </Listeners>
                     <DirectEvents>
                         <AfterLayout OnEvent="DisplayImage">

@@ -956,7 +956,7 @@ namespace AionHR.Web.UI.Forms
 
             imgControl.ImageUrl = forSummary.pictureUrl + "?x=" + DateTime.Now.Ticks;
             employeePhoto.ImageUrl = forSummary.pictureUrl + "?x=" + DateTime.Now.Ticks; ;
-
+            X.Call("initCropper", forSummary.pictureUrl + "?x=" + DateTime.Now.Ticks);
 
             CurrentEmployeePhotoName.Text = forSummary.pictureUrl;
             ModelProxy record = Store1.GetById(CurrentEmployee.Text);
@@ -1334,7 +1334,11 @@ namespace AionHR.Web.UI.Forms
 
 
         }
-
+        [DirectMethod]
+        public void FillLeftPanelDirect()
+        {
+            FillLeftPanel(true);
+        }
         protected void DisplayImage(object sender, DirectEventArgs e)
         {
 

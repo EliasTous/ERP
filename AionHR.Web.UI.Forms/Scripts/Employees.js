@@ -107,6 +107,7 @@ var showImagePreview2 = function (id) {
             var filerdr = new FileReader();
             filerdr.onload = function (e) {
                 $("#" + $('#employeePhoto')[0].firstChild.id).attr('src', e.target.result);
+                
                 options.imgSrc = e.target.result;
                 cropper = new cropbox(options);
 
@@ -137,6 +138,8 @@ var ClearImage = function()
 var ClearImage2 = function () {
     App.FileUploadField1.reset();
     $("#" + $('#employeePhoto')[0].firstChild.id).attr('src', 'images/empPhoto.jpg');
+    
+    initCropper('Images/empPhoto.jpg');
     App.uploadPhotoButton.setDisabled(true);
 }
 
@@ -294,3 +297,14 @@ var enterKeyPressSearchHandler = function (el, event) {
         App.Store1.reload();
     }
 };
+function initCropper(path)
+{
+    options =
+        {
+            imageBox: '.imageBox',
+            thumbBox: '.thumbBox',
+            spinner: '.spinner',
+            imgSrc:path
+        };
+    cropper = new cropbox(options);
+}
