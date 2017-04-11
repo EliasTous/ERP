@@ -687,4 +687,7 @@
   <data name="CompanyNews" xml:space="preserve">
     <value>News</value>
   </data>
+  <data name="StandardReports" xml:space="preserve">
+    <value>Standard Reports</value>
+  </data>
 </root>

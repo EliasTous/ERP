@@ -1537,6 +1537,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Standard Reports.
+        /// </summary>
+        internal static string StandardReports {
+            get {
+                return ResourceManager.GetString("StandardReports", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Sunday.
         /// </summary>
         internal static string SundayText {

@@ -339,7 +339,7 @@
                             <ext:ToolbarSeparator runat="server"></ext:ToolbarSeparator>
                                 <ext:Button ID="btnReport" runat="server" Icon="ChartBar" ToolTip="<%$ Resources:Common , Reports %>">                              
                                 <Listeners>
-                                    <Click Handler="#{commonTree}.setTitle(this.tooltip);openModule(5);" />
+                                    <Click Handler="openModule(5);" />
                                 </Listeners>
                             </ext:Button>
                             <ext:ToolbarFill runat="server" />

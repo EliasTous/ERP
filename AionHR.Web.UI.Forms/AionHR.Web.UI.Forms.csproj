@@ -175,6 +175,7 @@
     <Content Include="OrganizationChart.aspx" />
     <Content Include="packages.config" />
     <Content Include="RelationshipTypes.aspx" />
+    <Content Include="Reports\RT01.aspx" />
     <Content Include="Routers.aspx" />
     <Content Include="SalaryChangeReasons.aspx" />
     <Content Include="Scripts\AssetAllowances.js" />
@@ -406,6 +407,13 @@
     </Compile>
     <Compile Include="MediaItems.aspx.designer.cs">
       <DependentUpon>MediaItems.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\RT01.aspx.cs">
+      <DependentUpon>RT01.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reports\RT01.aspx.designer.cs">
+      <DependentUpon>RT01.aspx</DependentUpon>
     </Compile>
     <Compile Include="SystemAttachmentsUploader.ashx.cs">
       <DependentUpon>SystemAttachmentsUploader.ashx</DependentUpon>
