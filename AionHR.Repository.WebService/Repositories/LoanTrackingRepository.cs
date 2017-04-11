@@ -21,7 +21,15 @@ namespace AionHR.Repository.WebService.Repositories
             GetRecordMethodName = "getLR";
             DeleteMethodName = "delLR";
 
-     
+            ChildGetLookup.Add(typeof(LoanType), "getLT");
+            ChildGetAllLookup.Add(typeof(LoanType), "qryLT");
+            ChildAddOrUpdateLookup.Add(typeof(LoanType), "setLT");
+            ChildDeleteLookup.Add(typeof(LoanType), "delLT");
+
+            ChildGetAllLookup.Add(typeof(LoanComment), "qryLC");
+            ChildAddOrUpdateLookup.Add(typeof(LoanComment), "setLC");
+            ChildDeleteLookup.Add(typeof(LoanComment), "delLC");
+
 
         }
     }

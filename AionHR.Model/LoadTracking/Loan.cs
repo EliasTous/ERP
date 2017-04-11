@@ -21,7 +21,7 @@ namespace AionHR.Model.LoadTracking
         public DateTime? effectiveDate { get; set; }
 
         // get
-        public EmployeeName employeeName;
+        public EmployeeName employeeName { get; set; }
         public string ltName { get; set; }
         public string currencyRef { get; set; }
     }

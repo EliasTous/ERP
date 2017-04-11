@@ -690,4 +690,10 @@
   <data name="StandardReports" xml:space="preserve">
     <value>Standard Reports</value>
   </data>
+  <data name="Loans" xml:space="preserve">
+    <value>Loans</value>
+  </data>
+  <data name="RelationshipTypes" xml:space="preserve">
+    <value>Relationships Types</value>
+  </data>
 </root>

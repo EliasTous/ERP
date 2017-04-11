@@ -1051,6 +1051,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Loans.
+        /// </summary>
+        internal static string Loans {
+            get {
+                return ResourceManager.GetString("Loans", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Male.
         /// </summary>
         internal static string Male {
@@ -1335,6 +1344,15 @@ namespace Resources {
         internal static string RegularExpression {
             get {
                 return ResourceManager.GetString("RegularExpression", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Relationships Types.
+        /// </summary>
+        internal static string RelationshipTypes {
+            get {
+                return ResourceManager.GetString("RelationshipTypes", resourceCulture);
             }
         }
         

@@ -9,10 +9,10 @@ using System.Threading.Tasks;
 
 namespace AionHR.Services.Implementations
 {
-    public class LoanTrackingServicecs : BaseService, ILoanTrackingService
+    public class LoanTrackingService : BaseService, ILoanTrackingService
     {
         ILoanTrackingRepository _repository;
-        public LoanTrackingServicecs(ILoanTrackingRepository _repo, SessionHelper helper):base(helper)
+        public LoanTrackingService(ILoanTrackingRepository _repo, SessionHelper helper):base(helper)
         {
             _repository = _repo;
 

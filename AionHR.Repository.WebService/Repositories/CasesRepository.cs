@@ -21,9 +21,7 @@ namespace AionHR.Repository.WebService.Repositories
             DeleteMethodName = "delCA";
 
             ChildGetAllLookup.Add(typeof(CaseComment), "qryCC");
-
             ChildAddOrUpdateLookup.Add(typeof(CaseComment), "setCC");
-
             ChildDeleteLookup.Add(typeof(CaseComment), "delCC");
 
         }
