@@ -88,7 +88,7 @@ namespace AionHR.Web.UI.Forms
                 dr = dt.NewRow();
                 dr["id"] = item.recordId;
                 dr["start"] = item.startDate;
-                dr["end"] = item.endDate;
+                dr["end"] = item.endDate.AddDays(1) ;
                 dr["name"] = item.employeeName.fullName;
                 dr["resource"] = item.employeeId;
                 switch (item.status)
@@ -341,12 +341,12 @@ namespace AionHR.Web.UI.Forms
                 DayPilotScheduler1.DataBind();
                 int widthInt = Convert.ToInt32(parentWidth);
 
-                DayPilotScheduler1.CellWidth = ((int)widthInt / 35);
+                DayPilotScheduler1.CellWidth = ((int)widthInt / DayPilotScheduler1.Days -3);
                 
                 DayPilotScheduler1.Update();
                 
                 schedulerHolder.UpdateLayout();
-
+          
 
             }
             catch (Exception exp) { }

@@ -67,12 +67,13 @@ namespace AionHR.Web.UI.Forms
                     FillBranch();
                    
                     FillPosition();
-                    
-                    ActiveAttendanceRequest r = GetActiveAttendanceRequest();
 
-                    ListResponse<ActiveAbsence> ABs = _timeAttendanceService.ChildGetAll<ActiveAbsence>(r);
-                    absenseStore.DataSource = ABs.Items;
-                    absenseStore.DataBind();
+                    outStore.Reload();
+                    activeStore.Reload();
+                    latenessStore.Reload();
+                    leavesStore.Reload();
+                    missingPunchesStore.Reload();
+                    checkMontierStore.Reload();
                     format.Text = _systemService.SessionHelper.GetDateformat().ToUpper();
                 }
                 catch { }
@@ -220,7 +221,7 @@ namespace AionHR.Web.UI.Forms
             leavesStore.DataSource = Leaves.Items;
             //List<ActiveLeave> leaves = new List<ActiveLeave>();
             //leaves.Add(new ActiveLeave() { destination = "dc", employeeId = 8, employeeName = new Model.Employees.Profile.EmployeeName() { fullName = "vima" }, endDate = DateTime.Now.AddDays(10) });
-            
+
 
             leavesStore.DataBind();
         }
@@ -255,7 +256,7 @@ namespace AionHR.Web.UI.Forms
             foreach (var item in CMs.Items)
             {
                 item.figureTitle = GetLocalResourceObject(item.figureId.ToString()).ToString();
-
+                item.rate = item.rate / 100;
             }
 
             checkMontierStore.DataSource = CMs.Items;

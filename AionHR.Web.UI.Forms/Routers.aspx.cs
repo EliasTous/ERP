@@ -425,6 +425,7 @@ namespace AionHR.Web.UI.Forms
 
                         ModelProxy record = this.Store1.GetById(id);
                         BasicInfoTab.UpdateRecord(record);
+                        record.Set("branchName", b.branchName);
                         record.Commit();
                         Notification.Show(new NotificationConfig
                         {

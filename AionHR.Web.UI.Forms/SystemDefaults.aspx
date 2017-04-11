@@ -174,7 +174,7 @@
                                                 <ext:ListItem Text="+12 UTC" Value="12" />
                                             </Items>
                                         </ext:ComboBox>
-                                        <ext:Checkbox FieldLabel="<%$ Resources: FieldLog %>" runat="server" ID="logCheck" Name="transactionLog" InputValue="True" />
+                                        
                                         <ext:Checkbox FieldLabel="<%$ Resources: FieldEnableCamera %>" runat="server" InputValue="True" Name="enableCamera" ID="enableCameraCheck" />
                                     </Items>
 

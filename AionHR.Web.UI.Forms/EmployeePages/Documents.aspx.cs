@@ -142,7 +142,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                         Yes = new MessageBoxButtonConfig
                         {
                             //We are call a direct request metho for deleting a record
-                            Handler = String.Format("App.direct.DeleteDocument({0})", id),
+                            Handler = String.Format("App.direct.DeleteDocument({0},'{1}')", id,path),
                             Text = Resources.Common.Yes
                         },
                         No = new MessageBoxButtonConfig
@@ -244,7 +244,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
         /// </summary>
         /// <param name="index">the ID of the object to delete</param>
         [DirectMethod]
-        public void DeleteDocument(string index)
+        public void DeleteDocument(string index,string name)
         {
             try
             {
@@ -253,7 +253,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                 n.classId = ClassId.EPDO;
                 n.recordId = Convert.ToInt32(CurrentEmployee.Text);
                 n.seqNo = Convert.ToInt16(index);
-
+                n.fileName = name;
 
                 PostRequest<Attachement> req = new PostRequest<Attachement>();
                 req.entity = n;

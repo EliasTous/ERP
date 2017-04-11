@@ -212,8 +212,8 @@
                     </SelectionModel>
                 </ext:GridPanel>
 
-                <ext:GridPanel AutoUpdateLayout="true"
-                    ID="emergencyContactsGrid" Collapsible="false"
+                <ext:GridPanel AutoUpdateLayout="true"  Collapsible="true"
+                    ID="emergencyContactsGrid" 
                     runat="server"
                     PaddingSpec="0 0 1 0"
                     Header="true"

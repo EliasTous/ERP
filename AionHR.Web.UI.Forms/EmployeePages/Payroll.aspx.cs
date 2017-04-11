@@ -546,11 +546,13 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             this.EditSAWindow.Title = Resources.Common.AddNewRecord;
             FillCurrency();
             FillScr();
+            currencyId.Select(_systemService.SessionHelper.GetDefaultCurrency());
             dedsStore.Reload();
             entsStore.Reload();
             effectiveDate.SelectedDate = DateTime.Today;
             ENSeq.Text = "0";
             DESeq.Text = "0";
+
             this.EditSAWindow.Show();
         }
 
@@ -563,7 +565,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             FillCurrencyBO();
             date.SelectedDate = DateTime.Today;
             FillBT();
-
+            CurrencyCombo.Select(_systemService.SessionHelper.GetDefaultCurrency());
             this.EditBOWindow.Show();
         }
 

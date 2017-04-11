@@ -85,15 +85,6 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Hidden MissedOut;
         
         /// <summary>
-        /// format control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Hidden format;
-        
-        /// <summary>
         /// rtl control.
         /// </summary>
         /// <remarks>
@@ -101,6 +92,15 @@ namespace AionHR.Web.UI.Forms {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.Hidden rtl;
+        
+        /// <summary>
+        /// format control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Hidden format;
         
         /// <summary>
         /// Viewport1 control.

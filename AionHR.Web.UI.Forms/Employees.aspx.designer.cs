@@ -94,6 +94,15 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Hidden CurrentClassId;
         
         /// <summary>
+        /// reportTo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Hidden reportTo;
+        
+        /// <summary>
         /// CurrentEmployeePhotoName control.
         /// </summary>
         /// <remarks>
@@ -128,6 +137,15 @@ namespace AionHR.Web.UI.Forms {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.GridPanel GridPanel1;
+        
+        /// <summary>
+        /// RowExpander1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.RowExpander RowExpander1;
         
         /// <summary>
         /// Store1 control.
@@ -182,6 +200,78 @@ namespace AionHR.Web.UI.Forms {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.ComboBox inactivePref;
+        
+        /// <summary>
+        /// filterBranch control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.ComboBox filterBranch;
+        
+        /// <summary>
+        /// filterBranchStore control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Store filterBranchStore;
+        
+        /// <summary>
+        /// filterDepartment control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.ComboBox filterDepartment;
+        
+        /// <summary>
+        /// filterDepartmentStore control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Store filterDepartmentStore;
+        
+        /// <summary>
+        /// filterDivision control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.ComboBox filterDivision;
+        
+        /// <summary>
+        /// filterDivisionStore control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Store filterDivisionStore;
+        
+        /// <summary>
+        /// filterPosition control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.ComboBox filterPosition;
+        
+        /// <summary>
+        /// filterPositionStore control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Store filterPositionStore;
         
         /// <summary>
         /// ToolbarFillExport control.
@@ -1136,6 +1226,15 @@ namespace AionHR.Web.UI.Forms {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.Image employeePhoto;
+        
+        /// <summary>
+        /// imageData control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Hidden imageData;
         
         /// <summary>
         /// uploadPhotoButton control.

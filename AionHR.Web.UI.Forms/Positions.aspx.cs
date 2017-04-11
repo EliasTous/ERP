@@ -189,7 +189,18 @@ namespace AionHR.Web.UI.Forms
             try
             {
                 //Step 1 Code to delete the object from the database 
+                PostRequest<Model.Company.Structure.Position> req = new PostRequest<Model.Company.Structure.Position>();
+                Model.Company.Structure.Position p = new Model.Company.Structure.Position();
+                p.recordId = index;
+                req.entity = p;
+                PostResponse<Model.Company.Structure.Position> resp = _branchService.ChildDelete<Model.Company.Structure.Position>(req);
+                if(!resp.Success)
+                {
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    X.Msg.Alert(Resources.Common.Error, resp.Summary).Show();
+                    return;
 
+                }
                 //Step 2 :  remove the object from the store
                 Store1.Remove(index);
 
