@@ -696,4 +696,13 @@
   <data name="RelationshipTypes" xml:space="preserve">
     <value>Relationships Types</value>
   </data>
+  <data name="CompanyDocumentTypes" xml:space="preserve">
+    <value>Document Types</value>
+  </data>
+  <data name="LoanTypes" xml:space="preserve">
+    <value>Loan Types</value>
+  </data>
+  <data name="CompanyRightToWorks" xml:space="preserve">
+    <value>Right To Work</value>
+  </data>
 </root>

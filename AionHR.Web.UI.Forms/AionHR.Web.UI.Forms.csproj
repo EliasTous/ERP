@@ -103,8 +103,10 @@
     <Content Include="Cases.aspx" />
     <Content Include="CertificateLevels.aspx" />
     <Content Include="CheckTypes.aspx" />
+    <Content Include="CompanyDocumentTypes.aspx" />
     <Content Include="CompanyFiles.aspx" />
     <Content Include="CompanyNews.aspx" />
+    <Content Include="CompanyRightToWorks.aspx" />
     <Content Include="CSS\Dashboard.css" />
     <Content Include="CSS\Calendars.css" />
     <Content Include="CSS\Common.css" />
@@ -181,9 +183,11 @@
     <Content Include="Routers.aspx" />
     <Content Include="SalaryChangeReasons.aspx" />
     <Content Include="Scripts\AssetAllowances.js" />
+    <Content Include="Scripts\CompanyDocumentTypes.js" />
     <Content Include="Scripts\CompanyFiles.js" />
     <Content Include="Scripts\CompanyNews.js" />
     <Content Include="Scripts\Contacts.js" />
+    <Content Include="Scripts\cropbox-min.js" />
     <Content Include="Scripts\EmployeeComplaints.js" />
     <Content Include="Scripts\EmployeesOrgChart.js" />
     <Content Include="Scripts\Folders.js" />
@@ -273,6 +277,7 @@
     <Content Include="TrainingTypes.aspx" />
     <Content Include="WorkingCalendars.aspx" />
     <Content Include="SystemAttachmentsUploader.ashx" />
+    <Content Include="EmployeePhotoUploaderHandler.ashx" />
     <None Include="Properties\PublishProfiles\local.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -379,6 +384,13 @@
     <Compile Include="Branches.aspx.designer.cs">
       <DependentUpon>Branches.aspx</DependentUpon>
     </Compile>
+    <Compile Include="CompanyDocumentTypes.aspx.cs">
+      <DependentUpon>CompanyDocumentTypes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CompanyDocumentTypes.aspx.designer.cs">
+      <DependentUpon>CompanyDocumentTypes.aspx</DependentUpon>
+    </Compile>
     <Compile Include="CompanyFiles.aspx.cs">
       <DependentUpon>CompanyFiles.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -392,6 +404,16 @@
     </Compile>
     <Compile Include="CompanyNews.aspx.designer.cs">
       <DependentUpon>CompanyNews.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CompanyRightToWorks.aspx.cs">
+      <DependentUpon>CompanyRightToWorks.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CompanyRightToWorks.aspx.designer.cs">
+      <DependentUpon>CompanyRightToWorks.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EmployeePhotoUploaderHandler.ashx.cs">
+      <DependentUpon>EmployeePhotoUploaderHandler.ashx</DependentUpon>
     </Compile>
     <Compile Include="Folders.aspx.cs">
       <DependentUpon>Folders.aspx</DependentUpon>
@@ -1007,6 +1029,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_LocalResources\LoanRequests.aspx.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_LocalResources\CompanyDocumentTypes.aspx.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_LocalResources\CompanyRightToWorks.aspx.resx" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
