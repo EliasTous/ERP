@@ -569,7 +569,7 @@
                                         <ext:TextField ID="familyName" runat="server" FieldLabel="<%$ Resources:FieldFamilyName%>" Name="familyName" BlankText="<%$ Resources:Common, MandatoryField%>" />
                                         <ext:TextField ID="homeEmail" runat="server" FieldLabel="<%$ Resources:FieldHomeEmail%>" Name="homeMail" Vtype="email" BlankText="<%$ Resources:Common, MandatoryField%>" />
                                         <ext:TextField ID="workEmail" runat="server" FieldLabel="<%$ Resources:FieldWorkEmail%>" Name="workMail" Vtype="email" BlankText="<%$ Resources:Common, MandatoryField%>" />
-                                        <ext:TextField ID="mobile" runat="server" FieldLabel="<%$ Resources:FieldMobile%>" Name="mobile" BlankText="<%$ Resources:Common, MandatoryField%>">
+                                        <ext:TextField ID="mobile" AllowBlank="true" runat="server" FieldLabel="<%$ Resources:FieldMobile%>" Name="mobile" BlankText="<%$ Resources:Common, MandatoryField%>">
                                             <Plugins>
                                                 <ext:InputMask Mask="99999999" />
                                             </Plugins>
@@ -1156,7 +1156,8 @@
             url: 'EmployeePhotoUploaderHandler.ashx?classId=31000&recordId='+#{CurrentEmployee}.value,
             data: fd,
             processData: false,
-            contentType: false
+            contentType: false,
+                                            error:function(s){Ext.net.Mask.hide(); alert(dump(s));}
         }).done(function(data) {
             App.direct.FillLeftPanelDirect();
                                             Ext.net.Mask.hide();

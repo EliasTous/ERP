@@ -628,6 +628,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Email Report.
+        /// </summary>
+        internal static string EmailReport {
+            get {
+                return ResourceManager.GetString("EmailReport", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Employees.
         /// </summary>
         internal static string Employee {
@@ -768,6 +777,15 @@ namespace Resources {
         internal static string ExpandPanel {
             get {
                 return ResourceManager.GetString("ExpandPanel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Export as PDF.
+        /// </summary>
+        internal static string ExportAsPdf {
+            get {
+                return ResourceManager.GetString("ExportAsPdf", resourceCulture);
             }
         }
         
@@ -1060,6 +1078,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Loan Types.
+        /// </summary>
+        internal static string LoanTypes {
+            get {
+                return ResourceManager.GetString("LoanTypes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Male.
         /// </summary>
         internal static string Male {
@@ -1285,6 +1312,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Print.
+        /// </summary>
+        internal static string Print {
+            get {
+                return ResourceManager.GetString("Print", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Record Deleted Successfully.
         /// </summary>
         internal static string RecordDeletedSucc {
@@ -1452,6 +1488,33 @@ namespace Resources {
         internal static string Routers {
             get {
                 return ResourceManager.GetString("Routers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Employee Ages.
+        /// </summary>
+        internal static string RT01 {
+            get {
+                return ResourceManager.GetString("RT01", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hirings and Terminations.
+        /// </summary>
+        internal static string RT102 {
+            get {
+                return ResourceManager.GetString("RT102", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Employees Head Count.
+        /// </summary>
+        internal static string RT103 {
+            get {
+                return ResourceManager.GetString("RT103", resourceCulture);
             }
         }
         

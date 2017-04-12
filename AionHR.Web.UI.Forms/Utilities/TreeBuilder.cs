@@ -261,8 +261,13 @@ namespace AionHR.Web.UI.Forms.Utilities
 
             Ext.Net.Node rootParent = BuildRootParentNode("rootParent", Resources.Common.Reports, true);
             Ext.Net.Node timeAt = BuildParentNode("standard", Resources.Common.StandardReports, true, rootParent);
-            
-            //FillConfigItem(gf, "geofences", "Geofences.aspx", Resources.Common.Geofences, "icon-Employees", "1");
+            Ext.Net.Node rt101 = BuildLeafNode("report_rt101", Resources.Common.RT01, "Group", true, timeAt);
+            Ext.Net.Node rt102 = BuildLeafNode("report_rt102", Resources.Common.RT102, "Group", true, timeAt);
+            Ext.Net.Node rt103 = BuildLeafNode("report_rt103", Resources.Common.RT103, "Group", true, timeAt);
+            FillConfigItem(rt101, "rt101", "Reports/RT01.aspx", Resources.Common.RT01, "icon-Employees", "1");
+            FillConfigItem(rt102, "rt102", "Reports/RT102.aspx", Resources.Common.RT102, "icon-Employees", "1");
+            FillConfigItem(rt103, "rt102", "Reports/RT103.aspx", Resources.Common.RT103, "icon-Employees", "1");
+
             nodes.Add(rootParent);
             return nodes;
         }

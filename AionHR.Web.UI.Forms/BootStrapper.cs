@@ -11,6 +11,7 @@ using AionHR.Model.LeaveManagement;
 using AionHR.Model.LoadTracking;
 using AionHR.Model.MasterModule;
 using AionHR.Model.MediaGallery;
+using AionHR.Model.Reports;
 using AionHR.Model.System;
 using AionHR.Model.TimeAttendance;
 using AionHR.Repository.WebService.Repositories;
@@ -60,6 +61,7 @@ namespace AionHR.Web.UI.Forms
                 For<IComplaintsRepository>().Use<ComplaintsRepository>();
                 For<ICompanyNewsRepository>().Use<CompanyNewsRepository>();
                 For<ILoanTrackingRepository>().Use<LoanTrackingRepository>();
+                For<IReportsRepository>().Use<ReportsRepository>();
 
                 //Services
                 For<ISystemService>().Use<SystemService>();
@@ -73,6 +75,7 @@ namespace AionHR.Web.UI.Forms
                 For<IComplaintsService>().Use<ComplaintsService>();
                 For<ICompanyNewsService>().Use<CompanyNewsService>();
                 For<ILoanTrackingService>().Use<LoanTrackingService>();
+                For<IReportsService>().Use<ReportsService>();
             }
         }
     }

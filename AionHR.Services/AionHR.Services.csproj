@@ -56,6 +56,7 @@
     <Compile Include="Implementations\LoanTrackingServicecs.cs" />
     <Compile Include="Implementations\MasterService.cs" />
     <Compile Include="Implementations\MediaGalleryService.cs" />
+    <Compile Include="Implementations\ReportsService.cs" />
     <Compile Include="Implementations\TimeAttendanceService.cs" />
     <Compile Include="Interfaces\ICompanyNewsService.cs" />
     <Compile Include="Interfaces\IComplaintsService.cs" />
@@ -66,6 +67,7 @@
     <Compile Include="Interfaces\ILeaveManagementService.cs" />
     <Compile Include="Interfaces\ILoanTrackingService.cs" />
     <Compile Include="Interfaces\IMediaGalleryService.cs" />
+    <Compile Include="Interfaces\IReportsService.cs" />
     <Compile Include="Interfaces\ISystemService.cs" />
     <Compile Include="Implementations\SystemService.cs" />
     <Compile Include="Interfaces\IMasterService.cs" />
@@ -81,6 +83,18 @@
     <Compile Include="Messaging\PostRequestWithAttachment.cs" />
     <Compile Include="Messaging\PostResponse.cs" />
     <Compile Include="Messaging\RecordResponse.cs" />
+    <Compile Include="Messaging\Reports\ActiveStatusParameterSet.cs" />
+    <Compile Include="Messaging\Reports\ActivityParameterSet.cs" />
+    <Compile Include="Messaging\Reports\ClassIdParameterSet.cs" />
+    <Compile Include="Messaging\Reports\DateParameterSet.cs" />
+    <Compile Include="Messaging\Reports\DateRangeParameterSet.cs" />
+    <Compile Include="Messaging\Reports\EmployeeStatusParameterSet.cs" />
+    <Compile Include="Messaging\Reports\JobInfoParameterSet.cs" />
+    <Compile Include="Messaging\Reports\LeaveTypeParameterSet.cs" />
+    <Compile Include="Messaging\Reports\MonthParameterSet.cs" />
+    <Compile Include="Messaging\Reports\ReportCompositeRequest.cs" />
+    <Compile Include="Messaging\Reports\ReportParameterSet.cs" />
+    <Compile Include="Messaging\Reports\UserParameterSet.cs" />
     <Compile Include="Messaging\RequestBase.cs" />
     <Compile Include="Messaging\StatusResponse.cs" />
     <Compile Include="Messaging\System\AuthenticateRequest.cs" />

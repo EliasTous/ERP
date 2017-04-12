@@ -1,0 +1,13 @@
+﻿@media print {
+  body * {
+    visibility: hidden;
+  }
+  #Center, #Center * {
+    visibility: visible;
+  }
+  #Center {
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+}

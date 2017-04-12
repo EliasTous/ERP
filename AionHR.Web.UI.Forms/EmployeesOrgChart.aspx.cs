@@ -85,7 +85,7 @@ namespace AionHR.Web.UI.Forms
             empRequest.BranchId = "0";
             empRequest.DepartmentId = "0";
          
-            empRequest.IncludeIsInactive = 2;
+            empRequest.IncludeIsInactive = 0;
 
             empRequest.SortBy = GetNameFormat();
 

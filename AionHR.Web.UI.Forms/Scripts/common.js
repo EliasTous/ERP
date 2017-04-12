@@ -4,7 +4,7 @@
 
             if (result == "0") {
 
-                window.open('../ARLogin.aspx?timeout=yes', '_parent');
+                window.open('ARLogin.aspx?timeout=yes', '_parent');
                 return false;
             }
 

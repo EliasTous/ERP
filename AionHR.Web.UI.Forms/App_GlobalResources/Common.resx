@@ -696,4 +696,25 @@
   <data name="RelationshipTypes" xml:space="preserve">
     <value>Relationships Types</value>
   </data>
+  <data name="LoanTypes" xml:space="preserve">
+    <value>Loan Types</value>
+  </data>
+  <data name="RT01" xml:space="preserve">
+    <value>Employee Ages</value>
+  </data>
+  <data name="EmailReport" xml:space="preserve">
+    <value>Email Report</value>
+  </data>
+  <data name="ExportAsPdf" xml:space="preserve">
+    <value>Export as PDF</value>
+  </data>
+  <data name="Print" xml:space="preserve">
+    <value>Print</value>
+  </data>
+  <data name="RT102" xml:space="preserve">
+    <value>Hirings and Terminations</value>
+  </data>
+  <data name="RT103" xml:space="preserve">
+    <value>Employees Head Count</value>
+  </data>
 </root>

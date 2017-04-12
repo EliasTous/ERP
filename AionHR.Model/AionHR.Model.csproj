@@ -75,6 +75,12 @@
     <Compile Include="MediaGallery\IMediaGalleryRepository.cs" />
     <Compile Include="MediaGallery\MediaItem.cs" />
     <Compile Include="ModelBase.cs" />
+    <Compile Include="Reports\IReportsRepository.cs" />
+    <Compile Include="Reports\RT01.cs" />
+    <Compile Include="Reports\RT102A.cs" />
+    <Compile Include="Reports\RT102B.cs" />
+    <Compile Include="Reports\RT103.cs" />
+    <Compile Include="Reports\RT201.cs" />
     <Compile Include="System\SystemDefault.cs" />
     <Compile Include="System\SystemFolder.cs" />
     <Compile Include="System\TransactionLog.cs" />
