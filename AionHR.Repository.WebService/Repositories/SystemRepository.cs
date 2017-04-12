@@ -27,6 +27,8 @@ namespace AionHR.Repository.WebService.Repositories
             ChildAddOrUpdateLookup.Add(typeof(Currency), "setCU");
             ChildAddOrUpdateLookup.Add(typeof(UserInfo), "setUS");
             ChildAddOrUpdateLookup.Add(typeof(SystemFolder), "setFO");
+            ChildAddOrUpdateLookup.Add(typeof(CompanyDocumentType), "setDT");
+            ChildAddOrUpdateLookup.Add(typeof(CompanyRightToWork), "setRW");
 
 
 
@@ -36,6 +38,8 @@ namespace AionHR.Repository.WebService.Repositories
             ChildGetLookup.Add(typeof(KeyValuePair<string, string>), "getDE");
             ChildGetLookup.Add(typeof(Currency), "getCU");
             ChildGetLookup.Add(typeof(Nationality), "getNA");
+            ChildGetLookup.Add(typeof(CompanyDocumentType), "getDT");
+            ChildGetLookup.Add(typeof(CompanyRightToWork), "getRW");
 
 
             ChildDeleteLookup.Add(typeof(Nationality) ,"delNA");
@@ -43,6 +47,8 @@ namespace AionHR.Repository.WebService.Repositories
             ChildDeleteLookup.Add(typeof(Currency), "delCU");
             ChildDeleteLookup.Add(typeof(Attachement), "delAT");
             ChildDeleteLookup.Add(typeof(SystemFolder), "delFO");
+            ChildDeleteLookup.Add(typeof(CompanyDocumentType), "delDT");
+            ChildDeleteLookup.Add(typeof(CompanyRightToWork), "delRW");
 
 
 
@@ -53,6 +59,8 @@ namespace AionHR.Repository.WebService.Repositories
             ChildGetAllLookup.Add(typeof(Nationality), "qryNA");
             ChildGetAllLookup.Add(typeof(Currency), "qryCU");
             ChildGetAllLookup.Add(typeof(UserInfo), "qryUS");
+            ChildGetAllLookup.Add(typeof(CompanyDocumentType), "qryDT");
+            ChildGetAllLookup.Add(typeof(CompanyRightToWork), "qryRW");
 
 
 

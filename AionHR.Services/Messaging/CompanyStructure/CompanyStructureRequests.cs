@@ -45,3 +45,31 @@ public class MediaItemsListRequest : ListRequest
         }
     }
 }
+
+
+public class CompanyRightToworkListRequest : ListRequest
+{
+
+    public string SortBy { get; set; }
+    public int DTid { get; set; }
+    public int BranchId { get; set; }
+    
+
+    /// <summary>
+    /// /// parameter list shipped with the web request
+    /// </summary>
+    public override Dictionary<string, string> Parameters
+    {
+
+        get
+        {
+            parameters = base.Parameters;
+
+            parameters.Add("_sortBy", SortBy);
+            parameters.Add("_dtId", DTid.ToString());
+            parameters.Add("_branchId", BranchId.ToString());
+            
+            return parameters;
+        }
+    }
+}

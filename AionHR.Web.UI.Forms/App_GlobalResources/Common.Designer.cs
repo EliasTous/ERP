@@ -367,11 +367,29 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Document Types.
+        /// </summary>
+        internal static string CompanyDocumentTypes {
+            get {
+                return ResourceManager.GetString("CompanyDocumentTypes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to News.
         /// </summary>
         internal static string CompanyNews {
             get {
                 return ResourceManager.GetString("CompanyNews", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Right To Work.
+        /// </summary>
+        internal static string CompanyRightToWorks {
+            get {
+                return ResourceManager.GetString("CompanyRightToWorks", resourceCulture);
             }
         }
         
