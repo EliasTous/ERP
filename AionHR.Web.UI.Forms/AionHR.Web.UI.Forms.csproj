@@ -103,8 +103,10 @@
     <Content Include="Cases.aspx" />
     <Content Include="CertificateLevels.aspx" />
     <Content Include="CheckTypes.aspx" />
+    <Content Include="CompanyDocumentTypes.aspx" />
     <Content Include="CompanyFiles.aspx" />
     <Content Include="CompanyNews.aspx" />
+    <Content Include="CompanyRightToWorks.aspx" />
     <Content Include="CSS\Dashboard.css" />
     <Content Include="CSS\Calendars.css" />
     <Content Include="CSS\Common.css" />
@@ -178,6 +180,9 @@
     <Content Include="OrganizationChart.aspx" />
     <Content Include="packages.config" />
     <Content Include="RelationshipTypes.aspx" />
+    <Content Include="Reports\App_LocalResources\RT01.aspx.resx" />
+    <Content Include="Reports\App_LocalResources\RT102.aspx.resx" />
+    <Content Include="Reports\App_LocalResources\RT103.aspx.resx" />
     <Content Include="Reports\RT01.aspx" />
     <Content Include="Reports\RT102.aspx" />
     <Content Include="Reports\RT103.aspx" />
@@ -384,6 +389,13 @@
     <Compile Include="Branches.aspx.designer.cs">
       <DependentUpon>Branches.aspx</DependentUpon>
     </Compile>
+    <Compile Include="CompanyDocumentTypes.aspx.cs">
+      <DependentUpon>CompanyDocumentTypes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CompanyDocumentTypes.aspx.designer.cs">
+      <DependentUpon>CompanyDocumentTypes.aspx</DependentUpon>
+    </Compile>
     <Compile Include="CompanyFiles.aspx.cs">
       <DependentUpon>CompanyFiles.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -397,6 +409,13 @@
     </Compile>
     <Compile Include="CompanyNews.aspx.designer.cs">
       <DependentUpon>CompanyNews.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CompanyRightToWorks.aspx.cs">
+      <DependentUpon>CompanyRightToWorks.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CompanyRightToWorks.aspx.designer.cs">
+      <DependentUpon>CompanyRightToWorks.aspx</DependentUpon>
     </Compile>
     <Compile Include="EmployeePhotoUploaderHandler.ashx.cs">
       <DependentUpon>EmployeePhotoUploaderHandler.ashx</DependentUpon>
@@ -1029,15 +1048,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_LocalResources\LoanRequests.aspx.resx" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Reports\App_LocalResources\RT01.aspx.resx" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Reports\App_LocalResources\RT102.aspx.resx" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Reports\App_LocalResources\RT103.aspx.resx" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
