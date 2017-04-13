@@ -61,11 +61,14 @@ namespace AionHR.Repository.WebService.Repositories
             ChildGetAllLookup.Add(typeof(UserInfo), "qryUS");
             ChildGetAllLookup.Add(typeof(CompanyDocumentType), "qryDT");
             ChildGetAllLookup.Add(typeof(CompanyRightToWork), "qryRW");
+            ChildGetAllLookup.Add(typeof(SystemAlert), "qryAA");
+            ChildGetAllLookup.Add(typeof(DashboardItem), "dashBoard");
 
 
 
 
             ChildAddOrUpdateLookup.Add(typeof(KeyValuePair<string, string>[]), "arrDE");
+            ChildAddOrUpdateLookup.Add(typeof(SystemAlert[]), "arrAA");
 
 
             ChildAddOrUpdateLookup.Add(typeof(BatchSql), "batchSQL");

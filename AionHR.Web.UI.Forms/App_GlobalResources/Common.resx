@@ -726,4 +726,7 @@
   <data name="RT201" xml:space="preserve">
     <value>Salary History</value>
   </data>
+  <data name="SystemAlerts" xml:space="preserve">
+    <value>System Alerts</value>
+  </data>
 </root>

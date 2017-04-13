@@ -78,12 +78,19 @@
                     runat="server"
                     Border="false"
                     Layout="FitLayout" AutoScroll="true"
-                    Margins="0 0 0 0"
+                    Margins="0 0 0 0" 
                     Region="Center">
                     <TopBar>
-                        <ext:Toolbar runat="server">
+                        <ext:Toolbar runat="server"  Height="75">
                             
                             <Items>
+                                <ext:Container runat="server">
+                                    <Content>
+                                       
+                                <uc:daterange  ID="dateRange" runat="server" />
+                      
+                                    </Content>
+                                </ext:Container>
                                 <ext:ToolbarFill runat="server" />
                                 <ext:Button Icon="PageGear" runat="server"
                                     >

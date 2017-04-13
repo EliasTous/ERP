@@ -51,6 +51,7 @@
     <ext:Hidden runat="server" ID="rtTitle" Text="<%$Resources:Common , RelationshipTypes %>" />
     <ext:Hidden runat="server" ID="ltltTitle" Text="<%$Resources:Common , LoanTypes %>" />
     <ext:Hidden runat="server" ID="cdtTitle" Text="<%$Resources:Common , CompanyDocumentTypes %>" />
+    <ext:Hidden runat="server" ID="aaTitle" Text="<%$Resources:Common , SystemAlerts %>" />
 
     <ext:Hidden runat="server" ID="TrType1" Text="<%$Resources:Common , TrType1 %>" />
     <ext:Hidden runat="server" ID="TrType2" Text="<%$Resources:Common , TrType2 %>" />
@@ -91,12 +92,11 @@
 
             </ext:Panel>
             <ext:Panel ID="leftPanel" runat="server" Region="West" Layout="FitLayout" AutoUpdateLayout="true" Width="260" PaddingSpec="0 0 0 0" Padding="0"
-                Header="false" Collapsible="true" Split="true" CollapseMode="Mini" StyleSpec="border-bottom:2px solid #2A92D4;"
+                Header="true" Collapsible="true" Split="true" CollapseMode="Mini" StyleSpec="border-bottom:2px solid #2A92D4;"
                 Title="<%$ Resources:Common , NavigationPane %>" CollapseToolText="<%$ Resources:Common , CollapsePanel %>" ExpandToolText="<%$ Resources:Common , ExpandPanel %>" Icon="ApplicationTileVertical" BodyBorder="0">
-                <BottomBar>
-                    <ext:Toolbar runat="server">
-                        <Items>
-                            <ext:Button ID="b1" runat="server" Icon="PageGear" ToolTip="<%$ Resources:Common , EmployeeFiles %>">
+                <HeaderConfig Height="40">
+                    <Items>
+                         <ext:Button ID="b1" runat="server" Icon="PageGear" ToolTip="<%$ Resources:Common , EmployeeFiles %>">
                                 <Listeners>
                                     <%--<Click Handler="#{commonTree}.setTitle(this.tooltip);openModule(4);" />--%>
                                 </Listeners>
@@ -206,6 +206,11 @@
                                                                             <ext:MenuItem runat="server" Text="<%$Resources: Common , Nationalities%>">
                                                                                 <Listeners>
                                                                                     <Click Handler="openNewTab('nationalieis', 'Nationalities.aspx', #{naTitle}.value, 'icon-Employees')" />
+                                                                                </Listeners>
+                                                                            </ext:MenuItem>
+                                                                              <ext:MenuItem runat="server" Text="<%$Resources: Common , SystemAlerts%>">
+                                                                                <Listeners>
+                                                                                    <Click Handler="openNewTab('SystemAlerts', 'SystemAlerts.aspx', #{aaTitle}.value, 'icon-Employees')" />
                                                                                 </Listeners>
                                                                             </ext:MenuItem>
                                                                             <ext:MenuItem runat="server" Text="<%$Resources: Common , SystemDefaults%>">
@@ -329,6 +334,12 @@
                                     </ext:Menu>
                                 </Menu>
                             </ext:Button>
+                    </Items>
+                </HeaderConfig>
+                <BottomBar>
+                    <ext:Toolbar runat="server">
+                        <Items>
+                           
                         </Items>
                     </ext:Toolbar>
                 </BottomBar>
@@ -478,7 +489,7 @@
                     <ext:Panel ID="tabHome" Closable="false" runat="server" Title="<%$ Resources:Common , Home %>" Icon="House">
                         <Loader ID="Loader1"
                             runat="server"
-                            Url="Employees.aspx"
+                            Url="MainDashboard.aspx"
                             Mode="Frame"
                             ShowMask="true">
                             <LoadMask ShowMask="true" />

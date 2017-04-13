@@ -1663,6 +1663,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to System Alerts.
+        /// </summary>
+        internal static string SystemAlerts {
+            get {
+                return ResourceManager.GetString("SystemAlerts", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Defaults.
         /// </summary>
         internal static string SystemDefaults {

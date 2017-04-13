@@ -110,6 +110,7 @@
                     Region="Center">
                     <TopBar>
                         <ext:Toolbar runat="server">
+                         
                             <Items>
                                 
                                         <ext:Panel runat="server" Layout="HBoxLayout" ID="filterSet3" Hidden="true">

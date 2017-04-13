@@ -7,10 +7,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace AionHR.Web.UI.Forms.Reports {
+namespace AionHR.Web.UI.Forms.EmployeePages {
     
     
-    public partial class RT01 {
+    public partial class Hire {
         
         /// <summary>
         /// Form1 control.
@@ -67,138 +67,111 @@ namespace AionHR.Web.UI.Forms.Reports {
         protected global::Ext.Net.Hidden titleSavingErrorMessage;
         
         /// <summary>
-        /// rtl control.
+        /// CurrentEmployee control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Hidden rtl;
+        protected global::Ext.Net.Hidden CurrentEmployee;
         
         /// <summary>
-        /// format control.
+        /// CurrentEmployeeName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Hidden format;
+        protected global::Ext.Net.Hidden CurrentEmployeeName;
         
         /// <summary>
-        /// reportStore control.
+        /// Viewport11 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Store reportStore;
+        protected global::Ext.Net.Viewport Viewport11;
         
         /// <summary>
-        /// Model3 control.
+        /// hireInfoForm control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Model Model3;
+        protected global::Ext.Net.FormPanel hireInfoForm;
         
         /// <summary>
-        /// Viewport1 control.
+        /// probationEndDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Viewport Viewport1;
+        protected global::Ext.Net.DateField probationEndDate;
         
         /// <summary>
-        /// Center control.
+        /// nextReviewDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Panel Center;
+        protected global::Ext.Net.DateField nextReviewDate;
         
         /// <summary>
-        /// dateRange control.
+        /// npId control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AionHR.Web.UI.Forms.Reports.DateRangeFilter dateRange;
+        protected global::Ext.Net.ComboBox npId;
         
         /// <summary>
-        /// toPrint control.
+        /// npStore control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Panel toPrint;
+        protected global::Ext.Net.Store npStore;
         
         /// <summary>
-        /// CartesianChart1 control.
+        /// Button2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.CartesianChart CartesianChart1;
+        protected global::Ext.Net.Button Button2;
         
         /// <summary>
-        /// summaryStore control.
+        /// termEndDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Store summaryStore;
+        protected global::Ext.Net.DateField termEndDate;
         
         /// <summary>
-        /// Chart2 control.
+        /// recruitmentInfo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.CartesianChart Chart2;
+        protected global::Ext.Net.TextArea recruitmentInfo;
         
         /// <summary>
-        /// reportGrid control.
+        /// recruitmentCost control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.GridPanel reportGrid;
-        
-        /// <summary>
-        /// Column2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Column Column2;
-        
-        /// <summary>
-        /// GridView3 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.GridView GridView3;
-        
-        /// <summary>
-        /// rowSelectionModel2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.RowSelectionModel rowSelectionModel2;
+        protected global::Ext.Net.NumberField recruitmentCost;
     }
 }

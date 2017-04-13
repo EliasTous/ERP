@@ -133,6 +133,7 @@
     <Content Include="EmployeeComplaints.aspx" />
     <Content Include="EmployeePages\Contacts.aspx" />
     <Content Include="EmployeePages\Documents.aspx" />
+    <Content Include="EmployeePages\Hire.aspx" />
     <Content Include="EmployeePages\JobInformation.aspx" />
     <Content Include="EmployeePages\Legals.aspx" />
     <Content Include="EmployeePages\Notes.aspx" />
@@ -174,6 +175,7 @@
     <Content Include="LoanRequests.aspx" />
     <Content Include="LoanTypes.aspx" />
     <Content Include="Login.aspx" />
+    <Content Include="MainDashboard.aspx" />
     <Content Include="MediaCategories.aspx" />
     <Content Include="MediaItems.aspx" />
     <Content Include="Nationalities.aspx" />
@@ -200,7 +202,9 @@
     <Content Include="Scripts\Folders.js" />
     <Content Include="Scripts\LoanRequests.js" />
     <Content Include="Scripts\LoanTypes.js" />
+    <Content Include="Scripts\MainDashboard.js" />
     <Content Include="Scripts\MediaItems.js" />
+    <Content Include="Scripts\SystemAlerts.js" />
     <Content Include="Scripts\RelationshipTypes.js" />
     <Content Include="Scripts\Routers.js" />
     <Content Include="Scripts\Positions.js" />
@@ -280,10 +284,12 @@
     <Content Include="Scripts\Sponsors.js" />
     <Content Include="Scripts\TrainingTypes.js" />
     <Content Include="Sponsors.aspx" />
+    <Content Include="SystemAlerts.aspx" />
     <Content Include="SystemDefaults.aspx" />
     <Content Include="Test.aspx" />
     <Content Include="TimeAttendanceView.aspx" />
     <Content Include="TrainingTypes.aspx" />
+    <Content Include="Utilities\alerts.txt" />
     <Content Include="WorkingCalendars.aspx" />
     <Content Include="SystemAttachmentsUploader.ashx" />
     <Content Include="EmployeePhotoUploaderHandler.ashx" />
@@ -421,6 +427,13 @@
     <Compile Include="CompanyRightToWorks.aspx.designer.cs">
       <DependentUpon>CompanyRightToWorks.aspx</DependentUpon>
     </Compile>
+    <Compile Include="EmployeePages\Hire.aspx.cs">
+      <DependentUpon>Hire.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EmployeePages\Hire.aspx.designer.cs">
+      <DependentUpon>Hire.aspx</DependentUpon>
+    </Compile>
     <Compile Include="EmployeePhotoUploaderHandler.ashx.cs">
       <DependentUpon>EmployeePhotoUploaderHandler.ashx</DependentUpon>
     </Compile>
@@ -444,6 +457,13 @@
     </Compile>
     <Compile Include="LoanTypes.aspx.designer.cs">
       <DependentUpon>LoanTypes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MainDashboard.aspx.cs">
+      <DependentUpon>MainDashboard.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MainDashboard.aspx.designer.cs">
+      <DependentUpon>MainDashboard.aspx</DependentUpon>
     </Compile>
     <Compile Include="MediaItems.aspx.cs">
       <DependentUpon>MediaItems.aspx</DependentUpon>
@@ -498,6 +518,13 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>RT201.aspx.resx</DependentUpon>
+    </Compile>
+    <Compile Include="SystemAlerts.aspx.cs">
+      <DependentUpon>SystemAlerts.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SystemAlerts.aspx.designer.cs">
+      <DependentUpon>SystemAlerts.aspx</DependentUpon>
     </Compile>
     <Compile Include="SystemAttachmentsUploader.ashx.cs">
       <DependentUpon>SystemAttachmentsUploader.ashx</DependentUpon>
@@ -1081,6 +1108,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Reports\App_LocalResources\RT201.aspx.resx" />
+    <Content Include="App_LocalResources\SystemAlerts.aspx.resx" />
+    <Content Include="EmployeePages\App_LocalResources\Hire.aspx.resx" />
+    <Content Include="App_LocalResources\MainDashboard.aspx.resx" />
     <EmbeddedResource Include="Reports\RT201.aspx.resx">
       <DependentUpon>RT201.aspx.cs</DependentUpon>
       <Generator>ResXFileCodeGenerator</Generator>

@@ -411,3 +411,21 @@ public class EmployeeContactsListRequest : ListRequest
         }
     }
 }
+public class HireInfoRecordRequest:RecordRequest
+{
+    public string EmployeeId { get; set; }
+
+    private Dictionary<string, string> parameters;
+
+    public override Dictionary<string, string> Parameters
+    {
+        get
+        {
+            parameters = new Dictionary<string, string>();
+            parameters.Add("_employeeId", EmployeeId);
+            return parameters;
+        }
+    }
+
+
+}

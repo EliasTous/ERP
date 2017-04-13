@@ -190,7 +190,7 @@ namespace AionHR.Web.UI.Forms
             {
                 case 1:
                     nodes = TreeBuilder.Instance.BuildEmployeeFilesTree(commonTree.Root);
-                    tabHome.Loader.Url = "Employees.aspx";
+                    tabHome.Loader.Url = "MainDashboard.aspx";
                     tabHome.Loader.LoadContent();
                     return nodes.ToJson();
 

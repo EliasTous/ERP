@@ -103,6 +103,7 @@ namespace AionHR.Web.UI.Forms.Reports
                 X.Msg.Alert(Resources.Common.Error, resp.Summary).Show();
             branchStore.DataSource = resp.Items;
             branchStore.DataBind();
+            
         }
 
         private void FillDivision()

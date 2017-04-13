@@ -571,7 +571,7 @@
                                         <ext:TextField ID="workEmail" runat="server" FieldLabel="<%$ Resources:FieldWorkEmail%>" Name="workMail" Vtype="email" BlankText="<%$ Resources:Common, MandatoryField%>" />
                                         <ext:TextField ID="mobile" AllowBlank="true" runat="server" FieldLabel="<%$ Resources:FieldMobile%>" Name="mobile" BlankText="<%$ Resources:Common, MandatoryField%>">
                                             <Plugins>
-                                                <ext:InputMask Mask="99999999" />
+                                                <ext:InputMask Mask="?99999999" />
                                             </Plugins>
                                         </ext:TextField>
 
@@ -866,6 +866,13 @@
                             </BottomBar>
 
                         </ext:FormPanel>
+                         <ext:Panel runat="server" Layout="FitLayout" Title="<%$ Resources: Hiring %>" ID="Panel7" DefaultAnchor="100%">
+                            <Loader runat="server" Url="EmployeePages/Hire.aspx" Mode="Frame" ID="Loader7" TriggerEvent="show"
+                                ReloadOnEvent="true"
+                                DisableCaching="true">
+                                <LoadMask ShowMask="true" />
+                            </Loader>
+                        </ext:Panel>
                         <ext:Panel runat="server" Layout="FitLayout" Title="<%$ Resources: JobInformationTab %>" ID="profilePanel" DefaultAnchor="100%">
                             <Loader runat="server" Url="EmployeePages/JobInformation.aspx" Mode="Frame" ID="profileLoader" TriggerEvent="show"
                                 ReloadOnEvent="true"
@@ -950,7 +957,7 @@
                             BodyPadding="5">
                             <Items>
                                 <ext:TextField ID="TextField1" Hidden="true" runat="server" Disabled="true" DataIndex="recordId" />
-                                <ext:DateField runat="server" ID="date" Name="date" AllowBlank="false" FieldLabel="<%$ Resources: FieldTerminationDate %>" />
+                                <ext:DateField runat="server" ID="date" Name="date" AllowBlank="false" FieldLabel="<%$ Resources: FieldTerminationDate %>" Format="MM/dd/yyyy" />
                                 <ext:ComboBox ID="ttId" runat="server" FieldLabel="<%$ Resources:FieldTerminationType%>" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" Name="ttId" AllowBlank="false">
                                     <Items>
                                         <ext:ListItem Text="<%$ Resources:Worker%>" Value="0"></ext:ListItem>
@@ -1143,7 +1150,7 @@
                                 <ext:Button runat="server" ID="uploadPhotoButton" Icon="DatabaseSave" Text="<%$ Resources:UploadPicture %>" Disabled="true">
                                     <Listeners>
                                         
-                                        <Click Handler="CheckSession();  if (!#{imageUploadForm}.getForm().isValid()) {  return false;} #{imageData}.value = cropper.getBlob();   var fd = new FormData();
+                                        <Click Handler="CheckSession();  if (!#{imageUploadForm}.getForm().isValid() ) {  return false;} if(#{CurrentEmployee}.value==''){#{imageSelectionWindow}.hide(); return false; } #{imageData}.value = cropper.getBlob();   var fd = new FormData();
         fd.append('fname', #{FileUploadField1}.value);
                                    fd.append('id',null);          
                                             Ext.net.Mask.show({msg:App.lblLoading.getValue(),el:#{imageSelectionWindow}.id});  

@@ -1,0 +1,58 @@
+[
+    {
+      "alertId": 101,
+      "isActive": false,
+      "sendTo": 2,
+      "days": 30,
+	  "predefined":true
+    },
+    {
+      "alertId": 301,
+      "isActive": false,
+      "sendTo": 1,
+      "days": 5,
+	  "predefined":true
+    }
+ , {
+      "alertId": 302,
+      "isActive": false,
+      "sendTo": 1,
+      "days": 5,
+	  "predefined":true
+    }
+ , {
+      "alertId": 303,
+      "isActive": false,
+      "sendTo": 1,
+      "days": 5,
+	  "predefined":true
+    }
+	 , {
+      "alertId": 304,
+      "isActive": false,
+      "sendTo": 1,
+      "days": 5,
+	  "predefined":true
+    }
+ , {
+      "alertId": 305,
+      "isActive": false,
+      "sendTo": 1,
+      "days": 5,
+	  "predefined":true
+    }
+ , {
+      "alertId": 306,
+      "isActive": false,
+      "sendTo": 1,
+      "days": 5,
+	  "predefined":true
+    },
+	{
+      "alertId": 307,
+      "isActive": false,
+      "sendTo": 1,
+      "days": 5,
+	  "predefined":true
+    }
+  ]

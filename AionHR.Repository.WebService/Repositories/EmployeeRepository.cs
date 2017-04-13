@@ -58,6 +58,7 @@ namespace AionHR.Repository.WebService.Repositories
             ChildGetAllLookup.Add(typeof(RelationshipType), "qryRT");
             ChildGetAllLookup.Add(typeof(TeamMember), "qryTM");
             ChildGetAllLookup.Add(typeof(EmployeeContact), "qryCO");
+            ChildGetAllLookup.Add(typeof(NoticePeriod), "qryNP");
 
 
             ChildGetLookup.Add(typeof(Sponsor), "getSP");
@@ -86,6 +87,7 @@ namespace AionHR.Repository.WebService.Repositories
             ChildGetLookup.Add(typeof(RelationshipType), "getRT");
             ChildGetLookup.Add(typeof(EmployeeQuickView), "getQV");
             ChildGetLookup.Add(typeof(EmployeeContact), "getCO");
+            ChildGetLookup.Add(typeof(HireInfo), "getRE");
 
 
 
@@ -117,6 +119,8 @@ namespace AionHR.Repository.WebService.Repositories
             ChildAddOrUpdateLookup.Add(typeof(EmployeeEmergencyContact), "setEC");
             ChildAddOrUpdateLookup.Add(typeof(RelationshipType), "setRT");
             ChildAddOrUpdateLookup.Add(typeof(EmployeeContact), "setCO");
+            ChildAddOrUpdateLookup.Add(typeof(HireInfo), "setRE");
+            ChildAddOrUpdateLookup.Add(typeof(NoticePeriod), "setNP");
 
 
 

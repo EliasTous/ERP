@@ -39,25 +39,18 @@
                 str += document.getElementById("MissedOut").value;
             }
             return str + "</div>";
-
         }
         function displayAbsense(s) {
             var str = "<div style=" + getStyle() + ">" + s.name;
-
             str += '<br/>';
             str += s.positionName + ', ' + s.branchName;
-
             return str;
-
         }
         function displayLeaves(s) {
             var str = "<div style=" + getStyle() + ">" + s.name;
-
             str += '<br/>';
             str += s.destination + ', ' + moment(s.endDate).format(document.getElementById('format').value);
-
             return str;
-
         }
         function dump(obj) {
             var out = '';

@@ -976,6 +976,15 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Button CancelButton;
         
         /// <summary>
+        /// Panel7 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Panel Panel7;
+        
+        /// <summary>
         /// profilePanel control.
         /// </summary>
         /// <remarks>

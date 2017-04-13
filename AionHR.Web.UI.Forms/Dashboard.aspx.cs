@@ -63,9 +63,9 @@ namespace AionHR.Web.UI.Forms
                 try
                 {
                     FillDepartment();
-                    
+
                     FillBranch();
-                   
+
                     FillPosition();
 
                     outStore.Reload();
@@ -293,8 +293,8 @@ namespace AionHR.Web.UI.Forms
             ActiveAttendanceRequest req = new ActiveAttendanceRequest();
 
             int intResult;
-            
-            if (!string.IsNullOrEmpty(branchId.Text) && branchId.Value.ToString() != "0" && int.TryParse(branchId.Value.ToString(),out intResult))
+
+            if (!string.IsNullOrEmpty(branchId.Text) && branchId.Value.ToString() != "0" && int.TryParse(branchId.Value.ToString(), out intResult))
             {
                 req.BranchId = intResult;
 
@@ -307,7 +307,7 @@ namespace AionHR.Web.UI.Forms
 
             }
 
-            if (!string.IsNullOrEmpty(departmentId.Text) && departmentId.Value.ToString() != "0"&& int.TryParse(departmentId.Value.ToString(), out intResult))
+            if (!string.IsNullOrEmpty(departmentId.Text) && departmentId.Value.ToString() != "0" && int.TryParse(departmentId.Value.ToString(), out intResult))
             {
                 req.DepartmentId = intResult;
 
