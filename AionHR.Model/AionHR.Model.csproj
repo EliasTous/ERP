@@ -86,6 +86,7 @@
     <Compile Include="System\SystemDefault.cs" />
     <Compile Include="System\SystemFolder.cs" />
     <Compile Include="System\TransactionLog.cs" />
+    <Compile Include="TaskManagement\ITaskManagementRepository.cs" />
     <Compile Include="TimeAttendance\ActiveDashboardModel.cs" />
     <Compile Include="TimeAttendance\AttendanceBreak.cs" />
     <Compile Include="TimeAttendance\AttendanceDay.cs" />

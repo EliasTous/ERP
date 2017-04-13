@@ -183,9 +183,12 @@
     <Content Include="Reports\App_LocalResources\RT01.aspx.resx" />
     <Content Include="Reports\App_LocalResources\RT102.aspx.resx" />
     <Content Include="Reports\App_LocalResources\RT103.aspx.resx" />
+    <Content Include="Reports\Child.aspx" />
+    <Content Include="Reports\DateRangeFilter.ascx" />
     <Content Include="Reports\RT01.aspx" />
     <Content Include="Reports\RT102.aspx" />
     <Content Include="Reports\RT103.aspx" />
+    <Content Include="Reports\RT201.aspx" />
     <Content Include="Routers.aspx" />
     <Content Include="SalaryChangeReasons.aspx" />
     <Content Include="Scripts\AssetAllowances.js" />
@@ -271,6 +274,7 @@
     <Content Include="Scripts\plugins\sortable.js" />
     <Content Include="Scripts\plugins\sortable.min.js" />
     <Content Include="Scripts\RT101.js" />
+    <Content Include="Scripts\RT201.js" />
     <Content Include="Scripts\SalaryChangeReasons.js" />
     <Content Include="Scripts\Skills.js" />
     <Content Include="Scripts\Sponsors.js" />
@@ -448,6 +452,20 @@
     <Compile Include="MediaItems.aspx.designer.cs">
       <DependentUpon>MediaItems.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Reports\Child.aspx.cs">
+      <DependentUpon>Child.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reports\Child.aspx.designer.cs">
+      <DependentUpon>Child.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\DateRangeFilter.ascx.cs">
+      <DependentUpon>DateRangeFilter.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reports\DateRangeFilter.ascx.designer.cs">
+      <DependentUpon>DateRangeFilter.ascx</DependentUpon>
+    </Compile>
     <Compile Include="Reports\RT01.aspx.cs">
       <DependentUpon>RT01.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -468,6 +486,18 @@
     </Compile>
     <Compile Include="Reports\RT103.aspx.designer.cs">
       <DependentUpon>RT103.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\RT201.aspx.cs">
+      <DependentUpon>RT201.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reports\RT201.aspx.designer.cs">
+      <DependentUpon>RT201.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\RT201.aspx1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RT201.aspx.resx</DependentUpon>
     </Compile>
     <Compile Include="SystemAttachmentsUploader.ashx.cs">
       <DependentUpon>SystemAttachmentsUploader.ashx</DependentUpon>
@@ -1048,6 +1078,14 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_LocalResources\LoanRequests.aspx.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Reports\App_LocalResources\RT201.aspx.resx" />
+    <EmbeddedResource Include="Reports\RT201.aspx.resx">
+      <DependentUpon>RT201.aspx.cs</DependentUpon>
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>RT201.aspx1.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

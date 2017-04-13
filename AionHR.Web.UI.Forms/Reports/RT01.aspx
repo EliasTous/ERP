@@ -1,6 +1,8 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="RT01.aspx.cs" Inherits="AionHR.Web.UI.Forms.Reports.RT01" %>
 
 <%@ Register Assembly="Ext.Net" Namespace="Ext.Net" TagPrefix="ext" %>
+<%@ Register TagPrefix="uc" TagName="daterange" 
+    Src="~/Reports/DateRangeFilter.ascx" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
@@ -79,255 +81,9 @@
                     Margins="0 0 0 0"
                     Region="Center">
                     <TopBar>
-                        <ext:Toolbar runat="server" >
+                        <ext:Toolbar runat="server">
+                            
                             <Items>
-                                <ext:Panel runat="server" Layout="HBoxLayout" >
-                                    <Items>
-                                        <ext:Panel runat="server" Layout="HBoxLayout" ID="filterSet1" Hidden="true">
-                                            <Items>
-                                                <ext:ComboBox runat="server" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" ValueField="recordId" DisplayField="name" ID="branchId" Name="branchId" EmptyText="<%$ Resources:FieldBranch%>">
-                                                    <Store>
-                                                        <ext:Store runat="server" ID="branchStore">
-                                                            <Model>
-                                                                <ext:Model runat="server">
-                                                                    <Fields>
-                                                                        <ext:ModelField Name="recordId" />
-                                                                        <ext:ModelField Name="name" />
-                                                                    </Fields>
-                                                                </ext:Model>
-                                                            </Model>
-                                                        </ext:Store>
-                                                    </Store>
-
-
-                                                </ext:ComboBox>
-
-                                                <ext:ComboBox runat="server" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" ValueField="recordId" DisplayField="name" ID="departmentId" Name="departmentId" EmptyText="<%$ Resources:FieldDepartment%>">
-                                                    <Store>
-                                                        <ext:Store runat="server" ID="departmentStore">
-                                                            <Model>
-                                                                <ext:Model runat="server">
-                                                                    <Fields>
-                                                                        <ext:ModelField Name="recordId" />
-                                                                        <ext:ModelField Name="name" />
-                                                                    </Fields>
-                                                                </ext:Model>
-                                                            </Model>
-                                                        </ext:Store>
-                                                    </Store>
-
-
-
-                                                </ext:ComboBox>
-                                                <ext:ComboBox runat="server" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" ValueField="recordId" DisplayField="name" ID="ComboBox1" Name="positionId" EmptyText="<%$ Resources:FieldPosition%>">
-                                                    <Store>
-                                                        <ext:Store runat="server" ID="positionStore">
-                                                            <Model>
-                                                                <ext:Model runat="server">
-                                                                    <Fields>
-                                                                        <ext:ModelField Name="recordId" />
-                                                                        <ext:ModelField Name="name" />
-                                                                    </Fields>
-                                                                </ext:Model>
-                                                            </Model>
-                                                        </ext:Store>
-                                                    </Store>
-
-
-                                                </ext:ComboBox>
-                                                <ext:ComboBox runat="server" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" ValueField="recordId" DisplayField="name" ID="ComboBox2" Name="positionId" EmptyText="Division">
-                                                    <Store>
-                                                        <ext:Store runat="server" ID="Store1">
-                                                            <Model>
-                                                                <ext:Model runat="server">
-                                                                    <Fields>
-                                                                        <ext:ModelField Name="recordId" />
-                                                                        <ext:ModelField Name="name" />
-                                                                    </Fields>
-                                                                </ext:Model>
-                                                            </Model>
-                                                        </ext:Store>
-                                                    </Store>
-
-
-                                                </ext:ComboBox>
-                                            </Items>
-                                        </ext:Panel>
-                                        <ext:Panel runat="server" ID="filterSet2" Hidden="true">
-                                            <Items>
-                                                <ext:DateField runat="server"></ext:DateField>
-                                            </Items>
-                                        </ext:Panel>
-                                        <ext:Panel runat="server" Layout="HBoxLayout" ID="filterSet3" Hidden="true">
-                                            <Items>
-                                                <ext:DateField runat="server"></ext:DateField>
-                                                <ext:DateField runat="server"></ext:DateField>
-                                            </Items>
-                                        </ext:Panel>
-                                        <ext:Panel runat="server" ID="filterSet4" Hidden="true">
-                                            <Items>
-                                                <ext:ComboBox runat="server" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" ValueField="recordId" DisplayField="name" ID="ComboBox3" Name="branchId" EmptyText="Employment History">
-                                                    <Store>
-                                                        <ext:Store runat="server" ID="Store2">
-                                                            <Model>
-                                                                <ext:Model runat="server">
-                                                                    <Fields>
-                                                                        <ext:ModelField Name="recordId" />
-                                                                        <ext:ModelField Name="name" />
-                                                                    </Fields>
-                                                                </ext:Model>
-                                                            </Model>
-                                                        </ext:Store>
-                                                    </Store>
-
-
-                                                </ext:ComboBox>
-                                            </Items>
-                                        </ext:Panel>
-                                        <ext:Panel runat="server" ID="filterSet5" Hidden="true">
-                                            <Items>
-                                                <ext:ComboBox runat="server" ID="employeeId" Width="130" LabelAlign="Top"
-                                                    DisplayField="fullName"
-                                                    ValueField="recordId" AllowBlank="true"
-                                                    TypeAhead="false"
-                                                    HideTrigger="true" SubmitValue="true"
-                                                    MinChars="3" EmptyText="Employee"
-                                                    TriggerAction="Query" ForceSelection="false">
-                                                    <Store>
-                                                        <ext:Store runat="server" ID="EmployeeStore" AutoLoad="false">
-                                                            <Model>
-                                                                <ext:Model runat="server">
-                                                                    <Fields>
-                                                                        <ext:ModelField Name="recordId" />
-                                                                        <ext:ModelField Name="fullName" />
-                                                                    </Fields>
-                                                                </ext:Model>
-                                                            </Model>
-
-                                                        </ext:Store>
-                                                    </Store>
-
-
-                                                </ext:ComboBox>
-                                            </Items>
-                                        </ext:Panel>
-                                    </Items>
-                                </ext:Panel>
-                                <ext:ToolbarFill runat="server" />
-                                <ext:ToolbarFill runat="server" />
-                                <ext:Panel runat="server" Layout="HBoxLayout" >
-                                    <Items>
-                                        <ext:Panel runat="server" Hidden="true">
-                                            <Items>
-                                                <ext:DateField runat="server" ID="filterSet6" />
-                                            </Items>
-                                        </ext:Panel>
-
-                                        <ext:Panel runat="server" ID="filterSet7" Hidden="true">
-                                            <Items>
-                                                <ext:ComboBox runat="server" ID="inactivePref" Editable="false" FieldLabel="">
-                                                    <Items>
-                                                        <ext:ListItem Text="<%$ Resources: All %>" Value="2" />
-                                                        <ext:ListItem Text="<%$ Resources: ActiveOnly %>" Value="0" />
-                                                        <ext:ListItem Text="<%$ Resources: InactiveOnly %>" Value="1" />
-                                                    </Items>
-                                                    <Listeners>
-                                                        <Change Handler="App.Store1.reload()" />
-                                                    </Listeners>
-                                                </ext:ComboBox>
-                                            </Items>
-                                        </ext:Panel>
-                                        <ext:Panel runat="server" ID="filterSet8" Hidden="true">
-                                            <Items>
-                                                <ext:ComboBox EmptyText="Leave Type" runat="server" Width="130" LabelAlign="Top" ValueField="recordId" DisplayField="name" ID="divisionId" Name="divisionId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1">
-                                                    <Store>
-                                                        <ext:Store runat="server" ID="divisionStore">
-                                                            <Model>
-                                                                <ext:Model runat="server">
-                                                                    <Fields>
-                                                                        <ext:ModelField Name="recordId" />
-                                                                        <ext:ModelField Name="name" />
-                                                                    </Fields>
-                                                                </ext:Model>
-                                                            </Model>
-                                                        </ext:Store>
-                                                    </Store>
-
-
-                                                </ext:ComboBox>
-                                            </Items>
-                                        </ext:Panel>
-                                        <ext:Panel runat="server" ID="filterSet9" Hidden="true">
-                                            <Items>
-
-                                                <ext:CheckboxGroup runat="server">
-                                                    <Items>
-                                                        <ext:Checkbox runat="server" FieldLabel="Add"></ext:Checkbox>
-                                                        <ext:Checkbox runat="server" FieldLabel="Edit"></ext:Checkbox>
-                                                        <ext:Checkbox runat="server" FieldLabel="Delete"></ext:Checkbox>
-                                                    </Items>
-                                                </ext:CheckboxGroup>
-                                            </Items>
-                                        </ext:Panel>
-
-                                        <ext:Panel runat="server" ID="filterSet10" Hidden="true">
-                                            <Items>
-
-                                                <ext:CheckboxGroup runat="server">
-                                                    <Items>
-                                                        <ext:Checkbox runat="server" FieldLabel="Employee"></ext:Checkbox>
-                                                        <ext:Checkbox runat="server" FieldLabel="Time Management"></ext:Checkbox>
-                                                        <ext:Checkbox runat="server" FieldLabel="Company Info"></ext:Checkbox>
-                                                    </Items>
-                                                </ext:CheckboxGroup>
-                                            </Items>
-                                        </ext:Panel>
-
-                                        <ext:Panel runat="server" ID="filterSet11" Hidden="true">
-                                            <Items>
-                                                <ext:ComboBox EmptyText="User" runat="server" Width="130" LabelAlign="Top" ValueField="recordId" DisplayField="name" ID="ComboBox4" Name="divisionId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1">
-                                                    <Store>
-                                                        <ext:Store runat="server" ID="Store3">
-                                                            <Model>
-                                                                <ext:Model runat="server">
-                                                                    <Fields>
-                                                                        <ext:ModelField Name="recordId" />
-                                                                        <ext:ModelField Name="name" />
-                                                                    </Fields>
-                                                                </ext:Model>
-                                                            </Model>
-                                                        </ext:Store>
-                                                    </Store>
-
-
-                                                </ext:ComboBox>
-                                            </Items>
-                                        </ext:Panel>
-                                        <ext:Panel runat="server" ID="filterSet12" Hidden="true">
-                                            <Items>
-                                                <ext:ComboBox EmptyText="Class Ref" runat="server" Width="130" LabelAlign="Top" ValueField="recordId" DisplayField="name" ID="ComboBox5" Name="divisionId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1">
-                                                    <Store>
-                                                        <ext:Store runat="server" ID="Store4">
-                                                            <Model>
-                                                                <ext:Model runat="server">
-                                                                    <Fields>
-                                                                        <ext:ModelField Name="recordId" />
-                                                                        <ext:ModelField Name="name" />
-                                                                    </Fields>
-                                                                </ext:Model>
-                                                            </Model>
-                                                        </ext:Store>
-                                                    </Store>
-
-
-                                                </ext:ComboBox>
-                                            </Items>
-                                        </ext:Panel>
-                                         
-                                    </Items>
-                                    
-                                </ext:Panel>
-                                <ext:ToolbarFill runat="server" />
                                 <ext:ToolbarFill runat="server" />
                                 <ext:Button Icon="PageGear" runat="server"
                                     >
@@ -347,7 +103,8 @@
                                 </ext:Button>
                             </Items>
                         </ext:Toolbar>
-                    </TopBar>
+                    </TopBar>   
+                
                     <Items>
                         <ext:Panel runat="server"  Height="200" Layout="AutoLayout" Width="1000" AutoScroll="true" ID="toPrint" >
                             <Items>

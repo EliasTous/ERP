@@ -78,7 +78,7 @@ namespace AionHR.Web.UI.Forms.Reports
 
         private void ActivateFirstFilterSet()
         {
-            filterSet1.Hidden = false;
+           
 
 
         }

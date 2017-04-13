@@ -13,6 +13,17 @@ namespace AionHR.Model.Reports
         {
             get; set;
         }
-      
+
+        public DateTime effectiveDate { get; set; }
+
+        public int salaryType { get; set; }
+
+        public int paymentFrequency { get; set; }
+
+        public double basicAmount
+        {
+            get; set;
+        }
+        public string currencyRef { get; set; }
     }
 }

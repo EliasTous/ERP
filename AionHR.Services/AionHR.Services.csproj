@@ -57,6 +57,7 @@
     <Compile Include="Implementations\MasterService.cs" />
     <Compile Include="Implementations\MediaGalleryService.cs" />
     <Compile Include="Implementations\ReportsService.cs" />
+    <Compile Include="Implementations\TaskManagementService.cs" />
     <Compile Include="Implementations\TimeAttendanceService.cs" />
     <Compile Include="Interfaces\ICompanyNewsService.cs" />
     <Compile Include="Interfaces\IComplaintsService.cs" />
@@ -71,6 +72,7 @@
     <Compile Include="Interfaces\ISystemService.cs" />
     <Compile Include="Implementations\SystemService.cs" />
     <Compile Include="Interfaces\IMasterService.cs" />
+    <Compile Include="Interfaces\ITaskManagementService.cs" />
     <Compile Include="Interfaces\ITimeAttendanceService.cs" />
     <Compile Include="Messaging\CaseManagement\CaseManagementRequest.cs" />
     <Compile Include="Messaging\CompanyStructure\CompanyStructureRequests.cs" />
