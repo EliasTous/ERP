@@ -20,6 +20,7 @@ using AionHR.Services.Interfaces;
 using Microsoft.Practices.ServiceLocation;
 using StructureMap;
 using StructureMap.Configuration.DSL;
+using AionHR.Model.TaskManagement;
 
 namespace AionHR.Web.UI.Forms
 {
@@ -62,6 +63,7 @@ namespace AionHR.Web.UI.Forms
                 For<ICompanyNewsRepository>().Use<CompanyNewsRepository>();
                 For<ILoanTrackingRepository>().Use<LoanTrackingRepository>();
                 For<IReportsRepository>().Use<ReportsRepository>();
+                For<ITaskManagementRepository>().Use<TaskManagementRepository>();
 
                 //Services
                 For<ISystemService>().Use<SystemService>();
@@ -76,6 +78,7 @@ namespace AionHR.Web.UI.Forms
                 For<ICompanyNewsService>().Use<CompanyNewsService>();
                 For<ILoanTrackingService>().Use<LoanTrackingService>();
                 For<IReportsService>().Use<ReportsService>();
+                For<ITaskManagementService>().Use<TaskManagementService>();
             }
         }
     }

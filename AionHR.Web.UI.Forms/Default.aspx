@@ -51,6 +51,7 @@
     <ext:Hidden runat="server" ID="rtTitle" Text="<%$Resources:Common , RelationshipTypes %>" />
     <ext:Hidden runat="server" ID="ltltTitle" Text="<%$Resources:Common , LoanTypes %>" />
     <ext:Hidden runat="server" ID="cdtTitle" Text="<%$Resources:Common , CompanyDocumentTypes %>" />
+    <ext:Hidden runat="server" ID="ttTitle" Text="<%$Resources:Common , TaskTypes %>" />
 
     <ext:Hidden runat="server" ID="TrType1" Text="<%$Resources:Common , TrType1 %>" />
     <ext:Hidden runat="server" ID="TrType2" Text="<%$Resources:Common , TrType2 %>" />
@@ -162,6 +163,14 @@
                                                                     <Click Handler="openNewTab('loanTypes', 'LoanTypes.aspx', #{ltltTitle}.value, 'icon-Employees')" />
                                                                 </Listeners>
                                                             </ext:MenuItem>
+
+                                                             <ext:MenuItem runat="server" Text="<%$Resources: Common , TaskTypes%>">
+                                                                <Listeners>
+                                                                    <Click Handler="openNewTab('taskTypes', 'TaskTypes.aspx', #{ttTitle}.value, 'icon-Employees')" />
+                                                                </Listeners>
+                                                            </ext:MenuItem>
+
+
                                                         </Items>
                                                     </ext:Menu>
                                                 </Menu>

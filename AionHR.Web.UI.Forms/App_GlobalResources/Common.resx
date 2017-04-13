@@ -726,4 +726,10 @@
   <data name="RT201" xml:space="preserve">
     <value>Salary History</value>
   </data>
+  <data name="TaskTypes" xml:space="preserve">
+    <value>Task Types</value>
+  </data>
+  <data name="Tasks" xml:space="preserve">
+    <value>Tasks</value>
+  </data>
 </root>

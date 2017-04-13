@@ -192,6 +192,7 @@
     <Content Include="Routers.aspx" />
     <Content Include="SalaryChangeReasons.aspx" />
     <Content Include="Scripts\AssetAllowances.js" />
+    <Content Include="Scripts\CompanyDocumentTypes.js" />
     <Content Include="Scripts\CompanyFiles.js" />
     <Content Include="Scripts\CompanyNews.js" />
     <Content Include="Scripts\Contacts.js" />
@@ -278,9 +279,13 @@
     <Content Include="Scripts\SalaryChangeReasons.js" />
     <Content Include="Scripts\Skills.js" />
     <Content Include="Scripts\Sponsors.js" />
+    <Content Include="Scripts\Tasks.js" />
+    <Content Include="Scripts\TaskTypes.js" />
     <Content Include="Scripts\TrainingTypes.js" />
     <Content Include="Sponsors.aspx" />
     <Content Include="SystemDefaults.aspx" />
+    <Content Include="Tasks.aspx" />
+    <Content Include="TaskTypes.aspx" />
     <Content Include="Test.aspx" />
     <Content Include="TimeAttendanceView.aspx" />
     <Content Include="TrainingTypes.aspx" />
@@ -808,6 +813,20 @@
     <Compile Include="SystemDefaults.aspx.designer.cs">
       <DependentUpon>SystemDefaults.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Tasks.aspx.cs">
+      <DependentUpon>Tasks.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Tasks.aspx.designer.cs">
+      <DependentUpon>Tasks.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="TaskTypes.aspx.cs">
+      <DependentUpon>TaskTypes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TaskTypes.aspx.designer.cs">
+      <DependentUpon>TaskTypes.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Test.aspx.cs">
       <DependentUpon>Test.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1081,6 +1100,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Reports\App_LocalResources\RT201.aspx.resx" />
+    <Content Include="App_LocalResources\TaskTypes.aspx.resx" />
+    <Content Include="App_LocalResources\Tasks.aspx.resx" />
     <EmbeddedResource Include="Reports\RT201.aspx.resx">
       <DependentUpon>RT201.aspx.cs</DependentUpon>
       <Generator>ResXFileCodeGenerator</Generator>
