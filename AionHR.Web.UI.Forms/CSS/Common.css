@@ -15,14 +15,14 @@
     height: 90px;
     width: 100%;
     padding: 8px 10px 0px 10px;
-    //background-color: #15b4f0!important; /*400C24*/
+    background-color: #15b4f0!important; /*400C24*/
     float: left;
     color: #222222;
 }
 .linkClass{cursor:pointer; text-decoration:underline;}
 /*.x-header{
     background-color: #15b4f0; /*400C24*/
-    border-color:#15b4f0!important;
+  /*  border-color:#15b4f0!important;
 }*/
 .cellLink{
     text-decoration:underline;
@@ -56,7 +56,7 @@
     border-width: 1px;
     border-style: solid;
     background-color: #4c9dd8;
-    top:2px !important;
+    top:1px !important;
     
    
 }
@@ -105,4 +105,11 @@
 
 .x-form-error-wrap-default.x-form-error-wrap-side {
     width:18px !important;
+}
+
+#tabPanel-body {
+    top:36px !important;
+}
+#tabPanel .x-tab-bar-default {
+    padding-top: 3px;
 }
