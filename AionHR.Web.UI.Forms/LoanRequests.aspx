@@ -564,7 +564,7 @@
                     Header="false"
                     Layout="FitLayout" 
                     Scroll="Vertical" Flex="1"
-                    Border="false"  MinHeight="220" MaxHeight="220"
+                    Border="false"  MinHeight="300" MaxHeight="300"
                     Icon="User" DefaultAnchor="100%"    
                     ColumnLines="false" IDMode="Explicit" RenderXType="True">
                     <Store>

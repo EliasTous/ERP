@@ -1,5 +1,7 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="RT201.aspx.cs" Inherits="AionHR.Web.UI.Forms.Reports.RT201" %>
 
+<%@ Register Assembly="DevExpress.XtraReports.v16.2.Web, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.XtraReports.Web" TagPrefix="dx" %>
+
 <%@ Register Assembly="Ext.Net" Namespace="Ext.Net" TagPrefix="ext" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -23,7 +25,7 @@
         var prev = '';
         function printGrid(grid, window) {
             window.show();
-   
+
 
             //bd.document.getElementById(grid.view.el.id).style.height = "auto";
             //bd.document.getElementById(grid.view.scroller.id).style.height = "auto";
@@ -87,12 +89,13 @@
                     Layout="FitLayout" AutoScroll="true"
                     Margins="0 0 0 0"
                     Region="Center">
+
                     <TopBar>
                         <ext:Toolbar runat="server">
                             <Items>
                                 <ext:Panel runat="server" Layout="HBoxLayout">
                                     <Items>
-                                        <ext:Panel runat="server" Layout="HBoxLayout" ID="filterSet1" Hidden="true">
+                                        <ext:Panel runat="server" Layout="HBoxLayout" ID="filterSet1">
                                             <Items>
                                                 <ext:ComboBox runat="server" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" ValueField="recordId" DisplayField="name" ID="branchId" Name="branchId" EmptyText="<%$ Resources:FieldBranch%>">
                                                     <Store>
@@ -162,7 +165,7 @@
                                                 </ext:ComboBox>
                                             </Items>
                                         </ext:Panel>
-                           
+
 
                                         <ext:Panel runat="server" ID="filterSet7" Hidden="true">
                                             <Items>
@@ -172,18 +175,18 @@
                                                         <ext:ListItem Text="<%$ Resources: ActiveOnly %>" Value="0" />
                                                         <ext:ListItem Text="<%$ Resources: InactiveOnly %>" Value="1" />
                                                     </Items>
-                                              
+
                                                 </ext:ComboBox>
 
                                             </Items>
                                         </ext:Panel>
-                                </Items>
-                                    </ext:Panel>
-                                                                                 <ext:Button runat="server" Text="Go" >
-                                            <Listeners>
-                                                <Click Handler="App.firstStore.reload(); App.secondStore.reload();" />
-                                            </Listeners>
-                                        </ext:Button>
+                                    </Items>
+                                </ext:Panel>
+                                <ext:Button runat="server" Text="Go">
+                                    <Listeners>
+                                        <Click Handler="App.firstStore.reload(); App.direct.FillReport(); " />
+                                    </Listeners>
+                                </ext:Button>
                                 <ext:Button Icon="PageGear" runat="server">
                                     <Menu>
                                         <ext:Menu runat="server">
@@ -202,15 +205,20 @@
                             </Items>
                         </ext:Toolbar>
                     </TopBar>
+                    <Content>
+                       
+                         <dx:ASPxWebDocumentViewer ID="ASPxWebDocumentViewer1" runat="server" ></dx:ASPxWebDocumentViewer>
+                             
+                    </Content>
                     <Items>
-                        <ext:Panel runat="server" Height="200" Layout="AutoLayout" Width="1000" AutoScroll="true" ID="toPrint">
+                        <ext:Panel runat="server" Height="200" Layout="AutoLayout" Width="1000" AutoScroll="true" ID="toPrint" >
                             <Items>
 
 
                                 <ext:GridPanel ExpandToolText="expand"
                                     ID="firstGrid" MarginSpec="0 17 0 0"
                                     runat="server" StoreID="firstStore"
-                                    PaddingSpec="0 0 0 0" MinHeight="400" 
+                                    PaddingSpec="0 0 0 0" MinHeight="400"
                                     Header="false" CollapseMode="Header" Collapsible="true" CollapseDirection="Top"
                                     Title="<%$ Resources: Additions %>"
                                     Layout="FitLayout"
@@ -245,7 +253,7 @@
                                                 <Renderer Handler="return record.data['basicAmount'] + '&nbsp;'+ record.data['currencyRef'];">
                                                 </Renderer>
                                             </ext:Column>
-                                        
+
 
 
 
@@ -270,75 +278,76 @@
                     </Items>
                 </ext:Panel>
 
-
+              
             </Items>
         </ext:Viewport>
         <ext:Window ID="PrintWindow" runat="server" Width="700" Height="400" Hidden="true">
-        <TopBar>
-            <ext:Toolbar runat="server">
-                <Items>
-                    <ext:Button runat="server" Text="Print" Icon="Printer" OnClientClick="#{PrintWindow}.getBody().focus(); #{PrintWindow}.getBody().print();" />
-                </Items>
-            </ext:Toolbar>
-        </TopBar>
-        <Items>
-            <ext:GridPanel ExpandToolText="expand"
-                                    ID="GridPanel1" MarginSpec="0 17 0 0"
-                                    runat="server" StoreID="firstStore"
-                                    PaddingSpec="0 0 0 0" MinHeight="400" 
-                                    Header="false" CollapseMode="Header" Collapsible="true" CollapseDirection="Top"
-                                    Title="<%$ Resources: Additions %>"
-                                    Layout="FitLayout"
-                                    Scroll="Vertical"
-                                    Border="false"
-                                    Icon="User"
-                                    ColumnLines="True" IDMode="Explicit" RenderXType="True">
-                                    <Store>
-                                    </Store>
+            <TopBar>
+                <ext:Toolbar runat="server">
+                    <Items>
+                        <ext:Button runat="server" Text="Print" Icon="Printer" OnClientClick="#{PrintWindow}.getBody().focus(); #{PrintWindow}.getBody().print();" />
+                    </Items>
+                </ext:Toolbar>
+            </TopBar>
+            <Items>
+                <ext:GridPanel ExpandToolText="expand"
+                    ID="GridPanel1" MarginSpec="0 17 0 0"
+                    runat="server" StoreID="firstStore"
+                    PaddingSpec="0 0 0 0" MinHeight="400"
+                    Header="false" CollapseMode="Header" Collapsible="true" CollapseDirection="Top"
+                    Title="<%$ Resources: Additions %>"
+                    Layout="FitLayout"
+                    Scroll="Vertical"
+                    Border="false"
+                    Icon="User"
+                    ColumnLines="True" IDMode="Explicit" RenderXType="True">
+                    <Store>
+                    </Store>
 
 
-                                    <ColumnModel ID="ColumnModel1" runat="server" SortAscText="<%$ Resources:Common , SortAscText %>" SortDescText="<%$ Resources:Common ,SortDescText  %>" SortClearText="<%$ Resources:Common ,SortClearText  %>" ColumnsText="<%$ Resources:Common ,ColumnsText  %>" EnableColumnHide="false" Sortable="false">
-                                        <Columns>
-                                            <ext:Column Visible="false" ID="Column1" MenuDisabled="true" runat="server" DataIndex="recordId" Hideable="false" Width="75" />
-                                            <ext:Column ID="Column3" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldFullName%>" DataIndex="name.fullName" Flex="4" Hideable="false">
-                                                <Renderer Handler=" return  record.data['name'].fullName; ">
-                                                </Renderer>
-                                            </ext:Column>
-                                            <ext:DateColumn ID="DateColumn1" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEffectiveDate %>" DataIndex="effectiveDate" Hideable="false" Width="100" Align="Center">
-                                            </ext:DateColumn>
+                    <ColumnModel ID="ColumnModel1" runat="server" SortAscText="<%$ Resources:Common , SortAscText %>" SortDescText="<%$ Resources:Common ,SortDescText  %>" SortClearText="<%$ Resources:Common ,SortClearText  %>" ColumnsText="<%$ Resources:Common ,ColumnsText  %>" EnableColumnHide="false" Sortable="false">
+                        <Columns>
+                            <ext:Column Visible="false" ID="Column1" MenuDisabled="true" runat="server" DataIndex="recordId" Hideable="false" Width="75" />
+                            <ext:Column ID="Column3" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldFullName%>" DataIndex="name.fullName" Flex="4" Hideable="false">
+                                <Renderer Handler=" return  record.data['name'].fullName; ">
+                                </Renderer>
+                            </ext:Column>
+                            <ext:DateColumn ID="DateColumn1" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEffectiveDate %>" DataIndex="effectiveDate" Hideable="false" Width="100" Align="Center">
+                            </ext:DateColumn>
 
 
-                                            <ext:Column Visible="false" ID="Column4" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldSalaryType %>" DataIndex="salaryType" Hideable="false" Flex="1" Align="Center">
-                                                <Renderer Handler="return getPaymentTypeString(record.data['salaryType'])" />
-                                            </ext:Column>
+                            <ext:Column Visible="false" ID="Column4" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldSalaryType %>" DataIndex="salaryType" Hideable="false" Flex="1" Align="Center">
+                                <Renderer Handler="return getPaymentTypeString(record.data['salaryType'])" />
+                            </ext:Column>
 
-                                            <ext:Column Visible="false" ID="Column5" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldPaymentFrequency %>" DataIndex="paymentFrequency" Flex="1" Hideable="false" Width="75" Align="Center">
-                                                <Renderer Handler="return getPaymentTypeString(record.data['paymentFrequency'])" />
-                                            </ext:Column>
+                            <ext:Column Visible="false" ID="Column5" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldPaymentFrequency %>" DataIndex="paymentFrequency" Flex="1" Hideable="false" Width="75" Align="Center">
+                                <Renderer Handler="return getPaymentTypeString(record.data['paymentFrequency'])" />
+                            </ext:Column>
 
-                                            <ext:Column ID="Column6" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldBasicAmount %>" DataIndex="basicAmount" Hideable="false" Flex="1" Width="75" Align="Center">
-                                                <Renderer Handler="return record.data['basicAmount'] + '&nbsp;'+ record.data['currencyRef'];">
-                                                </Renderer>
-                                            </ext:Column>
-                                        
-
+                            <ext:Column ID="Column6" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldBasicAmount %>" DataIndex="basicAmount" Hideable="false" Flex="1" Width="75" Align="Center">
+                                <Renderer Handler="return record.data['basicAmount'] + '&nbsp;'+ record.data['currencyRef'];">
+                                </Renderer>
+                            </ext:Column>
 
 
-                                        </Columns>
-                                    </ColumnModel>
-
-                                    <View>
-                                        <ext:GridView ID="GridView1" runat="server" />
-                                    </View>
 
 
-                                    <SelectionModel>
-                                        <ext:RowSelectionModel ID="rowSelectionModel1" runat="server" Mode="Single" StopIDModeInheritance="true" />
-                                        <%--<ext:CheckboxSelectionModel ID="CheckboxSelectionModel1" runat="server" Mode="Multi" StopIDModeInheritance="true" />--%>
-                                    </SelectionModel>
-                                </ext:GridPanel>
-        </Items>
-    </ext:Window>
+                        </Columns>
+                    </ColumnModel>
+
+                    <View>
+                        <ext:GridView ID="GridView1" runat="server" />
+                    </View>
+
+
+                    <SelectionModel>
+                        <ext:RowSelectionModel ID="rowSelectionModel1" runat="server" Mode="Single" StopIDModeInheritance="true" />
+                        <%--<ext:CheckboxSelectionModel ID="CheckboxSelectionModel1" runat="server" Mode="Multi" StopIDModeInheritance="true" />--%>
+                    </SelectionModel>
+                </ext:GridPanel>
+            </Items>
+        </ext:Window>
+       
 
 
 

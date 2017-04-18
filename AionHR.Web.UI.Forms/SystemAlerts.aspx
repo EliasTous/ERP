@@ -38,6 +38,7 @@
         <ext:Hidden ID="alert304Title" runat="server" Text="<%$ Resources: Alert304Title %>" />
         <ext:Hidden ID="alert305Title" runat="server" Text="<%$ Resources: Alert305Title %>" />
         <ext:Hidden ID="alert306Title" runat="server" Text="<%$ Resources: Alert306Title %>" />
+        <ext:Hidden ID="alert307Title" runat="server" Text="<%$ Resources: Alert307Title %>" />
 
         <ext:Hidden ID="alert101Description" runat="server" Text="<%$ Resources: Alert101Description %>" />
         <ext:Hidden ID="alert301Description" runat="server" Text="<%$ Resources: Alert301Description %>" />
@@ -46,6 +47,7 @@
         <ext:Hidden ID="alert304Description" runat="server" Text="<%$ Resources: Alert304Description %>" />
         <ext:Hidden ID="alert305Description" runat="server" Text="<%$ Resources: Alert305Description %>" />
         <ext:Hidden ID="alert306Description" runat="server" Text="<%$ Resources: Alert306Description %>" />
+        <ext:Hidden ID="alert307Description" runat="server" Text="<%$ Resources: Alert307Description %>" />
 
 
 
@@ -123,7 +125,7 @@
                               
                             </ext:WidgetColumn>
                                 <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldName %>" DataIndex="alertId" Hideable="false" Flex="1">
-                                <Renderer Handler="return GetAlertName(record.data['alertId']); " />
+                                <Renderer Handler=" return GetAlertName(record.data['alertId']); " />
                             </ext:Column>
                             <ext:WidgetColumn ID="WidgetColumn1" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldSendTo %>" DataIndex="sendTo" Hideable="false" Width="150" Align="Center">
                                 <Widget>

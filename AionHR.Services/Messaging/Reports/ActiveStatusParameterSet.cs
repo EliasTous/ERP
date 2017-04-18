@@ -17,7 +17,7 @@ namespace AionHR.Services.Messaging.Reports
             get
             {
                 parameters = new Dictionary<string, string>();
-                parameters.Add("_includeInactive", active.ToString());
+                parameters.Add("_activeStatus", active.ToString());
                 return parameters;
             }
         }

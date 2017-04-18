@@ -161,6 +161,9 @@ namespace AionHR.Web.UI.Forms.Reports
                 return;
             }
 
+            Hirings h = new Hirings();
+            h.DataSource = resp.Items;
+          
             firstStore.DataSource = resp.Items;
             firstStore.DataBind();
 

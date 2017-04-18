@@ -59,7 +59,7 @@ namespace AionHR.Model.Employees.Profile
         public EmployeeName reportToName { get; set; }
     }
 
-    public class EmployeeName
+    public class EmployeeName:IComparable
     {
         public string fullName { get; set; }
         public string firstName { get; set; }
@@ -67,6 +67,11 @@ namespace AionHR.Model.Employees.Profile
         public string lastName { get; set; }
         public string familyName { get; set; }
         public string reference { get; set; }
+
+        public Int32 CompareTo(Object obj)
+        {
+            return fullName.CompareTo((obj as EmployeeName).fullName);
+        }
     }
 
 

@@ -29,6 +29,7 @@
     <ext:Hidden runat="server" ID="scrTitle" Text="<%$Resources: Common , SalaryChangeReasons%>" />
     <ext:Hidden runat="server" ID="acTitle" Text="<%$Resources: Common , AssetCategories%>" />
     <ext:Hidden runat="server" ID="btTitle" Text="<%$Resources: Common , BonusTypes%>" />
+    
     <ext:Hidden runat="server" ID="ctTitle" Text="<%$Resources: Common , CheckTypes%>" />
     <ext:Hidden runat="server" ID="deTitle" Text="<%$Resources:Common , Departments %>" />
     <ext:Hidden runat="server" ID="brTitle" Text="<%$Resources:Common , Branches %>" />

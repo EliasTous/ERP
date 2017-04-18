@@ -23,6 +23,7 @@ using AionHR.Model.Company.Structure;
 using AionHR.Model.System;
 using AionHR.Model.Attendance;
 using AionHR.Services.Messaging.Reports;
+using DevExpress.XtraReports.Web;
 
 namespace AionHR.Web.UI.Forms.Reports
 {
@@ -72,6 +73,9 @@ namespace AionHR.Web.UI.Forms.Reports
                     FillJobInfo();
                     filterSet7.Hidden = false;
                     cc.Format = format.Text;
+                    SalaryHistory h = new SalaryHistory();
+                    
+                    ASPxWebDocumentViewer1.OpenReport(h);
                 }
                 catch { }
             }
@@ -250,7 +254,7 @@ namespace AionHR.Web.UI.Forms.Reports
                 s.active = 1;
             else
                 s.active = bulk;
-            
+            req.Add(s);
             return req;
         }
         protected void firstStore_ReadData(object sender, StoreReadDataEventArgs e)
@@ -265,11 +269,35 @@ namespace AionHR.Web.UI.Forms.Reports
                 return;
             }
 
-            firstStore.DataSource = resp.Items;
-            firstStore.DataBind();
+         
+            
+            //firstStore.DataSource = resp.Items;
+            //firstStore.DataBind();
 
         }
 
+        [DirectMethod]
+        public void FillReport()
+        {
+            ReportCompositeRequest req = GetRequest();
+            ListResponse<AionHR.Model.Reports.RT201> resp = _reportsService.ChildGetAll<AionHR.Model.Reports.RT201>(req);
+            if (!resp.Success)
+            {
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, resp.Summary).Show();
+                return;
+            }
+
+            SalaryHistory h = new SalaryHistory();
+            h.DataSource = resp.Items;
+            ASPxWebDocumentViewer1 = new ASPxWebDocumentViewer();
+
+
+            h.CreateDocument();
+            ASPxWebDocumentViewer1.OpenReport(h);
+            ASPxWebDocumentViewer1.DataBind();
+            
+        }
     
     }
 }
