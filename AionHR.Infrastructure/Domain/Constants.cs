@@ -9,6 +9,21 @@ namespace AionHR.Infrastructure.Domain
 
     public static class ClassId
     {
+        public const int SY = 20; // system
+        public const int CS = 21; // company structure
+        public const int DM = 22; // documents
+        public const int MG = 23; // media
+        public const int CN = 24; // news
+        public const int RE = 30; // recruitment
+        public const int EP = 31; // employees
+        public const int TM = 32; // tasks
+        public const int TA = 41; // attendance
+        public const int LM = 42; // leave
+        public const int CM = 43; // cases
+        public const int EC = 44; // complaints
+        public const int LO = 45; // loans
+        public const int RT = 80; // reports
+
         // system
         public const int SYUS = 20010;
         public const int SYCU = 20020;
