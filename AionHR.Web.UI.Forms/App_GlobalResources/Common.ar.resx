@@ -675,4 +675,10 @@
   <data name="TrType7" xml:space="preserve">
     <value>ارسال بريد الكتروني</value>
   </data>
+  <data name="TaskTypes" xml:space="preserve">
+    <value>أنواع المهام</value>
+  </data>
+  <data name="Tasks" xml:space="preserve">
+    <value>مهام</value>
+  </data>
 </root>

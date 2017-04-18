@@ -72,11 +72,13 @@ namespace AionHR.Web.UI.Forms.Utilities
             Ext.Net.Node loansList = BuildLeafNode("rootParent_Loans_List", Resources.Common.Loans, "Group", true, employees);
             Ext.Net.Node assetAllowance = BuildLeafNode("rootParent_Employee_AssetAllowance", Resources.Common.AssetAllowances, "Group", true, employees);
             Ext.Net.Node employeeComplaint = BuildLeafNode("rootParent_Employee_EmployeeComplaint", Resources.Common.EmployeeComplaints, "Group", true, employees);
+            Ext.Net.Node tasksList = BuildLeafNode("rootParent_Tasks_List", Resources.Common.Tasks, "Group", true, employees);
             FillConfigItem(casesList, "Cases", "Cases.aspx", Resources.Common.Cases, "icon-Employees", "1");
             FillConfigItem(loansList, "Loans", "LoanRequests.aspx", Resources.Common.Loans, "icon-Employees", "1");
             FillConfigItem(assetAllowance, "assetAllowances", "AssetAllowances.aspx", Resources.Common.AssetAllowances, "icon-Employees", "1");
             FillConfigItem(employeesLeaf, "manageemployees", "Employees.aspx", Resources.Common.EmployeeLeaf, "icon-Employees", "1");
             FillConfigItem(employeeComplaint, "employeeComplaints", "EmployeeComplaints.aspx", Resources.Common.EmployeeComplaints, "icon-Employees", "1");
+            FillConfigItem(tasksList, "Tasks", "Tasks.aspx", Resources.Common.Tasks, "icon-Employees", "1");
 
             //Ext.Net.Node setup = BuildParentNode("rootParent_setup", Resources.Common.Setup, false, rootParent);
             //Ext.Net.Node sponsors = BuildLeafNode("rootParent_Employee_Sponsors", Resources.Common.Sponsors, "Group", true, setup);

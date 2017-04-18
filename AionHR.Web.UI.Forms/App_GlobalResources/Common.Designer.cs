@@ -1690,6 +1690,24 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Tasks.
+        /// </summary>
+        internal static string Tasks {
+            get {
+                return ResourceManager.GetString("Tasks", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Task Types.
+        /// </summary>
+        internal static string TaskTypes {
+            get {
+                return ResourceManager.GetString("TaskTypes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Thursday.
         /// </summary>
         internal static string ThursdayText {

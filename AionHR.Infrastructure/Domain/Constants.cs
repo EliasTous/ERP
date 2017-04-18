@@ -139,6 +139,9 @@ namespace AionHR.Infrastructure.Domain
         // complaints
         public const int ECCO = 44000;
 
+        // Task Management
+        public const int TMTA = 32010;
+
         
     }
 

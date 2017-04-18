@@ -729,4 +729,10 @@
   <data name="SystemAlerts" xml:space="preserve">
     <value>System Alerts</value>
   </data>
+  <data name="Tasks" xml:space="preserve">
+    <value>Tasks</value>
+  </data>
+  <data name="TaskTypes" xml:space="preserve">
+    <value>Task Types</value>
+  </data>
 </root>

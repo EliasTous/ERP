@@ -286,6 +286,8 @@
     <Content Include="Sponsors.aspx" />
     <Content Include="SystemAlerts.aspx" />
     <Content Include="SystemDefaults.aspx" />
+    <Content Include="Tasks.aspx" />
+    <Content Include="TaskTypes.aspx" />
     <Content Include="Test.aspx" />
     <Content Include="TimeAttendanceView.aspx" />
     <Content Include="TrainingTypes.aspx" />
@@ -834,6 +836,20 @@
     </Compile>
     <Compile Include="SystemDefaults.aspx.designer.cs">
       <DependentUpon>SystemDefaults.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Tasks.aspx.cs">
+      <DependentUpon>Tasks.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Tasks.aspx.designer.cs">
+      <DependentUpon>Tasks.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="TaskTypes.aspx.cs">
+      <DependentUpon>TaskTypes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TaskTypes.aspx.designer.cs">
+      <DependentUpon>TaskTypes.aspx</DependentUpon>
     </Compile>
     <Compile Include="Test.aspx.cs">
       <DependentUpon>Test.aspx</DependentUpon>

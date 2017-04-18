@@ -91,6 +91,9 @@
     <Compile Include="System\SystemFolder.cs" />
     <Compile Include="System\TransactionLog.cs" />
     <Compile Include="TaskManagement\ITaskManagementRepository.cs" />
+    <Compile Include="TaskManagement\Task.cs" />
+    <Compile Include="TaskManagement\TaskComment.cs" />
+    <Compile Include="TaskManagement\TaskType.cs" />
     <Compile Include="TimeAttendance\ActiveDashboardModel.cs" />
     <Compile Include="TimeAttendance\AttendanceBreak.cs" />
     <Compile Include="TimeAttendance\AttendanceDay.cs" />
