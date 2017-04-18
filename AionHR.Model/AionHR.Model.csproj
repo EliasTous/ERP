@@ -83,6 +83,8 @@
     <Compile Include="Reports\RT102B.cs" />
     <Compile Include="Reports\RT103.cs" />
     <Compile Include="Reports\RT201.cs" />
+    <Compile Include="Reports\RT202.cs" />
+    <Compile Include="Reports\RT203.cs" />
     <Compile Include="System\CompanyDocumentType.cs" />
     <Compile Include="System\CompanyRightToWork.cs" />
     <Compile Include="System\Dashboard.cs" />

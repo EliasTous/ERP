@@ -160,4 +160,19 @@ namespace AionHR.Infrastructure.Domain
         
     }
 
+    public static class TransactionTypes
+    {
+        public const short ADD = 1;
+        public const short EDIT = 2;
+        public const short DEL = 3;
+        public const short EXEC = 4;
+        public const short SET_ARRAY = 5;
+        // reading
+        public const short GET = 11;
+        public const short QRY = 12;
+        // mail
+        public const short MAIL = 21;
+
+    }
+
 }

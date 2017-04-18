@@ -27,7 +27,7 @@ using DevExpress.XtraReports.Web;
 
 namespace AionHR.Web.UI.Forms.Reports
 {
-    public partial class RT201 : System.Web.UI.Page
+    public partial class RT202 : System.Web.UI.Page
     {
         ISystemService _systemService = ServiceLocator.Current.GetInstance<ISystemService>();
         ITimeAttendanceService _timeAttendanceService = ServiceLocator.Current.GetInstance<ITimeAttendanceService>();
@@ -73,8 +73,8 @@ namespace AionHR.Web.UI.Forms.Reports
                     FillJobInfo();
                     filterSet7.Hidden = false;
                     cc.Format = format.Text;
-                    SalaryHistory h = new SalaryHistory();
-                    
+                    SalaryChanges h = new SalaryChanges();
+
                     ASPxWebDocumentViewer1.OpenReport(h);
                 }
                 catch { }
@@ -88,7 +88,7 @@ namespace AionHR.Web.UI.Forms.Reports
             FillPosition();
             FillBranch();
             FillDivision();
-            
+
         }
         private void FillDepartment()
         {
@@ -107,7 +107,7 @@ namespace AionHR.Web.UI.Forms.Reports
                 X.Msg.Alert(Resources.Common.Error, resp.Summary).Show();
             branchStore.DataSource = resp.Items;
             branchStore.DataBind();
-            
+
         }
 
         private void FillDivision()
@@ -191,26 +191,26 @@ namespace AionHR.Web.UI.Forms.Reports
             if (!string.IsNullOrEmpty(branchId.Text) && branchId.Value.ToString() != "0")
             {
                 p.BranchId = Convert.ToInt32(branchId.Value);
-                
+
 
 
             }
             else
             {
                 p.BranchId = 0;
-               
+
             }
 
             if (!string.IsNullOrEmpty(departmentId.Text) && departmentId.Value.ToString() != "0")
             {
                 p.DepartmentId = Convert.ToInt32(departmentId.Value);
-               
+
 
             }
             else
             {
                 p.DepartmentId = 0;
-               
+
             }
             if (!string.IsNullOrEmpty(positionId.Text) && positionId.Value.ToString() != "0")
             {
@@ -245,7 +245,7 @@ namespace AionHR.Web.UI.Forms.Reports
             req.StartAt = "1";
             req.SortBy = "firstName";
             JobInfoParameterSet p = GetJobInfo();
-           
+
             req.Add(p);
 
             ActiveStatusParameterSet s = new ActiveStatusParameterSet();
@@ -261,7 +261,7 @@ namespace AionHR.Web.UI.Forms.Reports
         {
 
             ReportCompositeRequest req = GetRequest();
-            ListResponse<AionHR.Model.Reports.RT201> resp = _reportsService.ChildGetAll<AionHR.Model.Reports.RT201>(req);
+            ListResponse<AionHR.Model.Reports.RT202> resp = _reportsService.ChildGetAll<AionHR.Model.Reports.RT202>(req);
             if (!resp.Success)
             {
                 X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
@@ -269,8 +269,8 @@ namespace AionHR.Web.UI.Forms.Reports
                 return;
             }
 
-         
-            
+
+
             //firstStore.DataSource = resp.Items;
             //firstStore.DataBind();
 
@@ -280,7 +280,7 @@ namespace AionHR.Web.UI.Forms.Reports
         public void FillReport()
         {
             ReportCompositeRequest req = GetRequest();
-            ListResponse<AionHR.Model.Reports.RT201> resp = _reportsService.ChildGetAll<AionHR.Model.Reports.RT201>(req);
+            ListResponse<AionHR.Model.Reports.RT202> resp = _reportsService.ChildGetAll<AionHR.Model.Reports.RT202>(req);
             if (!resp.Success)
             {
                 X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
@@ -288,7 +288,7 @@ namespace AionHR.Web.UI.Forms.Reports
                 return;
             }
 
-            SalaryHistory h = new SalaryHistory();
+            SalaryChanges h = new SalaryChanges();
             h.DataSource = resp.Items;
             ASPxWebDocumentViewer1 = new ASPxWebDocumentViewer();
 
@@ -296,13 +296,13 @@ namespace AionHR.Web.UI.Forms.Reports
             h.CreateDocument();
             ASPxWebDocumentViewer1.OpenReport(h);
             ASPxWebDocumentViewer1.DataBind();
-            
+
         }
 
         protected void Unnamed_Event(Object sender, DirectEventArgs e)
         {
             ReportCompositeRequest req = GetRequest();
-            ListResponse<AionHR.Model.Reports.RT201> resp = _reportsService.ChildGetAll<AionHR.Model.Reports.RT201>(req);
+            ListResponse<AionHR.Model.Reports.RT202> resp = _reportsService.ChildGetAll<AionHR.Model.Reports.RT202>(req);
             if (!resp.Success)
             {
                 X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
@@ -310,9 +310,9 @@ namespace AionHR.Web.UI.Forms.Reports
                 return;
             }
 
-            SalaryHistory h = new SalaryHistory();
+            SalaryChanges h = new SalaryChanges();
             h.DataSource = resp.Items;
-            
+
 
 
             h.CreateDocument();

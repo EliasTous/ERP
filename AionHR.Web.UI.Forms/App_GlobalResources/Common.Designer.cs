@@ -1546,6 +1546,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Salary Changes.
+        /// </summary>
+        internal static string RT202 {
+            get {
+                return ResourceManager.GetString("RT202", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Salary Change Reasons.
         /// </summary>
         internal static string SalaryChangeReasons {

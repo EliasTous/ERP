@@ -123,6 +123,7 @@
     <Content Include="CompanyFiles.aspx" />
     <Content Include="CompanyNews.aspx" />
     <Content Include="CompanyRightToWorks.aspx" />
+    <Content Include="CSS\MainDashboard.css" />
     <Content Include="CSS\Dashboard.css" />
     <Content Include="CSS\Calendars.css" />
     <Content Include="CSS\Common.css" />
@@ -207,6 +208,7 @@
     <Content Include="Reports\RT102.aspx" />
     <Content Include="Reports\RT103.aspx" />
     <Content Include="Reports\RT201.aspx" />
+    <Content Include="Reports\RT202.aspx" />
     <Content Include="ReportTest.aspx" />
     <Content Include="Routers.aspx" />
     <Content Include="SalaryChangeReasons.aspx" />
@@ -491,6 +493,16 @@
     <Compile Include="MediaItems.aspx.designer.cs">
       <DependentUpon>MediaItems.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Reports\App_LocalResources\RT201.aspx.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RT201.aspx.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\App_LocalResources\RT202.aspx.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RT202.aspx.resx</DependentUpon>
+    </Compile>
     <Compile Include="Reports\Child.aspx.cs">
       <DependentUpon>Child.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -544,11 +556,27 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>RT201.aspx.resx</DependentUpon>
     </Compile>
+    <Compile Include="Reports\RT202.aspx.cs">
+      <DependentUpon>RT202.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reports\RT202.aspx.designer.cs">
+      <DependentUpon>RT202.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\SalaryChanges.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Reports\SalaryHistory.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\SalaryHistory.Designer.cs">
       <DependentUpon>SalaryHistory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Terminations.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Terminations.Designer.cs">
+      <DependentUpon>Terminations.cs</DependentUpon>
     </Compile>
     <Compile Include="ReportTest.aspx.cs">
       <DependentUpon>ReportTest.aspx</DependentUpon>
@@ -1159,11 +1187,18 @@
     <Content Include="App_LocalResources\LoanRequests.aspx.resx" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Reports\App_LocalResources\RT201.aspx.resx" />
+    <Content Include="Reports\App_LocalResources\RT201.aspx.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>RT201.aspx.Designer.cs</LastGenOutput>
+    </Content>
     <Content Include="App_LocalResources\SystemAlerts.aspx.resx" />
     <Content Include="EmployeePages\App_LocalResources\Hire.aspx.resx" />
     <Content Include="App_LocalResources\MainDashboard.aspx.resx" />
     <EmbeddedResource Include="Properties\licenses.licx" />
+    <Content Include="Reports\App_LocalResources\RT202.aspx.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>RT202.aspx.Designer.cs</LastGenOutput>
+    </Content>
     <EmbeddedResource Include="Reports\Hirings.resx">
       <DependentUpon>Hirings.cs</DependentUpon>
     </EmbeddedResource>
@@ -1172,8 +1207,14 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>RT201.aspx1.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports\SalaryChanges.resx">
+      <DependentUpon>SalaryChanges.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\SalaryHistory.resx">
       <DependentUpon>SalaryHistory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Terminations.resx">
+      <DependentUpon>Terminations.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

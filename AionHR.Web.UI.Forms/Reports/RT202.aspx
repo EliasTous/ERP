@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="RT201.aspx.cs" Inherits="AionHR.Web.UI.Forms.Reports.RT201" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="RT202.aspx.cs" Inherits="AionHR.Web.UI.Forms.Reports.RT202" %>
 
 <%@ Register Assembly="DevExpress.XtraReports.v16.2.Web, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.XtraReports.Web" TagPrefix="dx" %>
 
@@ -69,6 +69,12 @@
                         <ext:ModelField Name="paymentFrequency" />
                         <ext:ModelField Name="basicAmount" />
                         <ext:ModelField Name="currencyRef" />
+                        <ext:ModelField Name="departmentName" />
+                        <ext:ModelField Name="positionName" />
+                        <ext:ModelField Name="prevCurrencyRef" />
+                        <ext:ModelField Name="prevBasicAmount" />
+                        <ext:ModelField Name="prevSalaryType" />
+
 
 
 
@@ -359,4 +365,5 @@
     </form>
 </body>
 </html>
+
 

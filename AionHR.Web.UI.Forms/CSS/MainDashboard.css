@@ -1,0 +1,88 @@
+﻿  #tbCalendar td, #tbCalendar th
+        {
+            border-left: solid 1px #e0e0e2 !important;
+            border-bottom: solid 1px #e0e0e2 !important;
+            cursor: pointer;
+        }
+        #tbCalendar th
+        {
+            background: #eaeaec !important;
+            text-align: center !important;
+            color: #444444;
+            padding: 3px 0px;
+        }
+        .content-table, #tbCalendar
+        {
+            width: 80% !important;
+        }
+        .hidden{
+            display:none;
+        }
+        #tbCalendar
+        {
+            border-top: solid 1px #e0e0e2 !important;
+            border-right: solid 1px #e0e0e2 !important;
+            font-family: Arial !important;
+            font-size: 14px !important;
+        }
+        #tbCalendar td:hover
+        {
+            background: #eaeaec !important;
+        }
+        #dialog-form
+        {
+            height: 55px !important;
+        }
+        #dv-loader
+        {
+            text-align: center;
+        }
+        .scheduleid, .daytypeid
+        {
+            display: none;
+        }
+        .notexist
+        {
+            background: #e5e5e7;
+            text-align: center;
+        }
+        .notexist:hover
+        {
+            background: #e5e5e7 !important;
+        }
+        .ui-dialog .ui-dialog-titlebar-close
+        {
+            top: 6px !important;
+        }
+        .ui-widget-header
+        {
+            background-image: url('http://code.jquery.com/ui/1.10.3/themes/smoothness/images/ui-bg_highlight-soft_75_cccccc_1x100.png') !important;
+        }
+        .ui-dialog .ui-dialog-buttonpane button
+        {
+            margin: .5em .4em .5em 0 !important;
+            border: 1px solid #d3d3d3 !important;
+        }
+        .x-activeGrid-hd-inner{
+    font-weight: bold !important;
+}
+        .title{
+            color:darkorange;
+        }
+        #ColumnModel1-innerCt{
+            height:17px!important;
+        }
+        .x-column-header-inner
+        {
+            margin:1px;
+            padding:1px;
+        }
+      html *
+{
+   font-size: 10pt!important;
+   
+   font-family: Arial !important;
+}
+       .x-grid-item-alt  {
+            background-color : #DAE2E8;
+        }
