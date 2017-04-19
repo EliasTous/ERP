@@ -20,9 +20,13 @@ namespace AionHR.Repository.WebService.Repositories
             ChildGetAllLookup.Add(typeof(RT102A), "RT102A");
             ChildGetAllLookup.Add(typeof(RT102B), "RT102B");
             ChildGetAllLookup.Add(typeof(RT103), "RT103");
+            ChildGetAllLookup.Add(typeof(RT104), "RT104");
+            ChildGetAllLookup.Add(typeof(RT105), "RT105");
             ChildGetAllLookup.Add(typeof(RT201), "RT201");
             ChildGetAllLookup.Add(typeof(RT202), "RT202");
             ChildGetAllLookup.Add(typeof(RT203), "RT203");
+
+            ChildGetAllLookup.Add(typeof(RT801), "RT801");
 
         }
     }

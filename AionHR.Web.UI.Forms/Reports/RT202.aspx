@@ -97,130 +97,34 @@
                     Region="Center">
 
                     <TopBar>
-                        <ext:Toolbar runat="server">
+                        <ext:Toolbar runat="server" Height="50" Layout="HBoxLayout" >
                             <Items>
-                                <ext:Panel runat="server" Layout="HBoxLayout">
-                                    <Items>
-                                        <ext:Panel runat="server" Layout="HBoxLayout" ID="filterSet1">
-                                            <Items>
-                                                <ext:ComboBox runat="server" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" ValueField="recordId" DisplayField="name" ID="branchId" Name="branchId" EmptyText="<%$ Resources:FieldBranch%>">
-                                                    <Store>
-                                                        <ext:Store runat="server" ID="branchStore">
-                                                            <Model>
-                                                                <ext:Model runat="server">
-                                                                    <Fields>
-                                                                        <ext:ModelField Name="recordId" />
-                                                                        <ext:ModelField Name="name" />
-                                                                    </Fields>
-                                                                </ext:Model>
-                                                            </Model>
-                                                        </ext:Store>
-                                                    </Store>
-
-
-                                                </ext:ComboBox>
-
-                                                <ext:ComboBox runat="server" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" ValueField="recordId" DisplayField="name" ID="departmentId" Name="departmentId" EmptyText="<%$ Resources:FieldDepartment%>">
-                                                    <Store>
-                                                        <ext:Store runat="server" ID="departmentStore">
-                                                            <Model>
-                                                                <ext:Model runat="server">
-                                                                    <Fields>
-                                                                        <ext:ModelField Name="recordId" />
-                                                                        <ext:ModelField Name="name" />
-                                                                    </Fields>
-                                                                </ext:Model>
-                                                            </Model>
-                                                        </ext:Store>
-                                                    </Store>
-
-
-
-                                                </ext:ComboBox>
-                                                <ext:ComboBox runat="server" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" ValueField="recordId" DisplayField="name" ID="positionId" Name="positionId" EmptyText="<%$ Resources:FieldPosition%>">
-                                                    <Store>
-                                                        <ext:Store runat="server" ID="positionStore">
-                                                            <Model>
-                                                                <ext:Model runat="server">
-                                                                    <Fields>
-                                                                        <ext:ModelField Name="recordId" />
-                                                                        <ext:ModelField Name="name" />
-                                                                    </Fields>
-                                                                </ext:Model>
-                                                            </Model>
-                                                        </ext:Store>
-                                                    </Store>
-
-
-                                                </ext:ComboBox>
-                                                <ext:ComboBox runat="server" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" ValueField="recordId" DisplayField="name" ID="divisionId" Name="divisionId" EmptyText="Division">
-                                                    <Store>
-                                                        <ext:Store runat="server" ID="divisionStore">
-                                                            <Model>
-                                                                <ext:Model runat="server">
-                                                                    <Fields>
-                                                                        <ext:ModelField Name="recordId" />
-                                                                        <ext:ModelField Name="name" />
-                                                                    </Fields>
-                                                                </ext:Model>
-                                                            </Model>
-                                                        </ext:Store>
-                                                    </Store>
-
-
-                                                </ext:ComboBox>
-                                            </Items>
-                                        </ext:Panel>
-
-
-                                        <ext:Panel runat="server" ID="filterSet7" Hidden="true">
-                                            <Items>
-                                                <ext:ComboBox runat="server" ID="inactivePref" Editable="false" FieldLabel="">
-                                                    <Items>
-                                                        <ext:ListItem Text="<%$ Resources: All %>" Value="2" />
-                                                        <ext:ListItem Text="<%$ Resources: ActiveOnly %>" Value="0" />
-                                                        <ext:ListItem Text="<%$ Resources: InactiveOnly %>" Value="1" />
-                                                    </Items>
-
-                                                </ext:ComboBox>
-
-                                            </Items>
-                                        </ext:Panel>
-                                    </Items>
-                                </ext:Panel>
-                                <ext:Button runat="server" Text="Go">
-                                    <Listeners>
-                                        <Click Handler="App.firstStore.reload(); " />
-                                    </Listeners>
-                                    <DirectEvents>
-                                        <Click OnEvent="Unnamed_Event" />
-                                    </DirectEvents>
+                                <ext:Container runat="server" Width="700">
+                                    <Content>
+                                        <uc:jobInfo runat="server" ID="jobInfo1" />
+                                        
+                                    </Content>
+                                   
+                                </ext:Container>
+                                    <ext:Container runat="server" Width="200">
+                                    <Content>
+                                        <uc:activeStatus runat="server" ID="activeStatus1" />
+                                    </Content>
+                                </ext:Container>
+                                
+                                <ext:Button runat="server" Text="Go" AutoPostBack="true" OnClick="Unnamed_Click">
                                 </ext:Button>
-                                <ext:Button Icon="PageGear" runat="server">
-                                    <Menu>
-                                        <ext:Menu runat="server">
-                                            <Items>
-                                                <ext:MenuItem runat="server" Text="<%$ Resources:Common , Print %>" Icon="Printer">
-                                                    <Listeners>
-                                                        <Click Handler="printGrid(#{firstGrid}, #{PrintWindow});" />
-                                                    </Listeners>
-                                                </ext:MenuItem>
-                                                <ext:MenuItem runat="server" Text="<%$ Resources:Common , ExportAsPdf %>" Icon="DiskDownload" />
-                                                <ext:MenuItem runat="server" Text="<%$ Resources:Common , EmailReport %>" Icon="EmailAttach" />
-                                            </Items>
-                                        </ext:Menu>
-                                    </Menu>
-                                </ext:Button>
+                  
                             </Items>
                         </ext:Toolbar>
                     </TopBar>
                     <Content>
-                       
-                         <dx:ASPxWebDocumentViewer ID="ASPxWebDocumentViewer1" runat="server" ></dx:ASPxWebDocumentViewer>
-                             
+
+                        <dx:ASPxWebDocumentViewer ID="ASPxWebDocumentViewer1" runat="server"></dx:ASPxWebDocumentViewer>
+
                     </Content>
                     <Items>
-                        <ext:Panel runat="server" Height="200" Layout="AutoLayout" Width="1000" AutoScroll="true" ID="toPrint" >
+                        <ext:Panel runat="server" Height="200" Layout="AutoLayout" Width="1000" AutoScroll="true" ID="toPrint" Hidden="true">
                             <Items>
 
 
@@ -287,7 +191,7 @@
                     </Items>
                 </ext:Panel>
 
-              
+
             </Items>
         </ext:Viewport>
         <ext:Window ID="PrintWindow" runat="server" Width="700" Height="400" Hidden="true">
@@ -356,7 +260,7 @@
                 </ext:GridPanel>
             </Items>
         </ext:Window>
-       
+
 
 
 

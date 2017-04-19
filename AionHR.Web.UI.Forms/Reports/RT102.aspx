@@ -1,5 +1,7 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="RT102.aspx.cs" Inherits="AionHR.Web.UI.Forms.Reports.RT102" %>
 
+<%@ Register Assembly="DevExpress.XtraReports.v16.2.Web, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.XtraReports.Web" TagPrefix="dx" %>
+
 <%@ Register Assembly="Ext.Net" Namespace="Ext.Net" TagPrefix="ext" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -113,134 +115,28 @@
                          
                             <Items>
                                 
-                                        <ext:Panel runat="server" Layout="HBoxLayout" ID="filterSet3" Hidden="true">
+                                        <ext:Panel runat="server" Layout="HBoxLayout" ID="filterSet3" >
                                             <Items>
                                                 <ext:DateField ID="dateFrom" runat="server" EmptyText="<%$ Resources: DateFrom %>"></ext:DateField>
                                                 <ext:DateField ID="dateTo" runat="server" EmptyText="<%$ Resources: DateTo %>"></ext:DateField>
                                             
-                                                  <ext:Button runat="server" Text="Go" >
+                                                  <ext:Button runat="server" Text="Go" AutoPostBack="true" OnClick="Unnamed_Click" >
                                             <Listeners>
-                                                <Click Handler="App.firstStore.reload(); App.secondStore.reload();" />
+                                                <Click Handler="" />
                                             </Listeners>
                                         </ext:Button>
                                             </Items>
                                         </ext:Panel>
-                                <ext:Button Icon="PageGear" runat="server">
-                                    <Menu>
-                                        <ext:Menu runat="server">
-                                            <Items>
-                                                <ext:MenuItem runat="server" Text="<%$ Resources:Common , Print %>" Icon="Printer">
-                                                    <Listeners>
-                                                        <Click Handler="App.firstGrid.print();" />
-                                                    </Listeners>
-                                                </ext:MenuItem>
-                                                <ext:MenuItem runat="server" Text="<%$ Resources:Common , ExportAsPdf %>" Icon="DiskDownload" />
-                                                <ext:MenuItem runat="server" Text="<%$ Resources:Common , EmailReport %>" Icon="EmailAttach" />
-                                            </Items>
-                                        </ext:Menu>
-                                    </Menu>
-                                </ext:Button>
+                               
                                 </Items>
                                         </ext:Toolbar>
                           
                     </TopBar>
+                  <Content>
+                                <dx:ASPxWebDocumentViewer ID="ASPxWebDocumentViewer1" runat="server" ></dx:ASPxWebDocumentViewer>
+                            </Content>
                     <Items>
-                        <ext:Panel runat="server" Height="200" Layout="AutoLayout" Width="1000" AutoScroll="true" ID="toPrint">
-                            <Items>
-
-
-                                <ext:GridPanel ExpandToolText="expand"
-                                    ID="firstGrid" MarginSpec="0 17 0 0"
-                                    runat="server" StoreID="firstStore"
-                                    PaddingSpec="0 0 0 0" MinHeight="400" MaxHeight="400"
-                                    Header="true" CollapseMode="Header" Collapsible="true" CollapseDirection="Top"
-                                    Title="<%$ Resources: Additions %>"
-                                    Layout="FitLayout"
-                                    Scroll="Vertical"
-                                    Border="false"
-                                    Icon="User"
-                                    ColumnLines="True" IDMode="Explicit" RenderXType="True">
-                                    <Store>
-                                    </Store>
-
-
-                                    <ColumnModel ID="ColumnModel3" runat="server" SortAscText="<%$ Resources:Common , SortAscText %>" SortDescText="<%$ Resources:Common ,SortDescText  %>" SortClearText="<%$ Resources:Common ,SortClearText  %>" ColumnsText="<%$ Resources:Common ,ColumnsText  %>" EnableColumnHide="false" Sortable="false">
-                                        <Columns>
-                                            <ext:Column Visible="false" ID="Column2" MenuDisabled="true" runat="server" DataIndex="recordId" Hideable="false" Width="75" />
-                                            <ext:Column ID="ColName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldFullName%>" DataIndex="name.fullName" Flex="4" Hideable="false">
-                                                <Renderer Handler=" return  record.data['name'].fullName; ">
-                                                </Renderer>
-                                            </ext:Column>
-                                            <ext:Column ID="ColDepartmentName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDepartment%>" DataIndex="departmentName" Flex="3" Hideable="false">
-                                            </ext:Column>
-                                            <ext:Column ID="ColPositionName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldPosition%>" DataIndex="positionName" Flex="3" Hideable="false" />
-                                            <ext:Column ID="ColBranchName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldBranch%>" DataIndex="branchName" Flex="3" Hideable="false" />
-                                           
-                                            <ext:DateColumn ID="ColHireDate" Format="dd-MMM-yyyy" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDate%>" DataIndex="date" Width="120" Hideable="false">
-                                            </ext:DateColumn>
-
-
-                                        </Columns>
-                                    </ColumnModel>
-
-                                    <View>
-                                        <ext:GridView ID="GridView3" runat="server" />
-                                    </View>
-
-
-                                    <SelectionModel>
-                                        <ext:RowSelectionModel ID="rowSelectionModel2" runat="server" Mode="Single" StopIDModeInheritance="true" />
-                                        <%--<ext:CheckboxSelectionModel ID="CheckboxSelectionModel1" runat="server" Mode="Multi" StopIDModeInheritance="true" />--%>
-                                    </SelectionModel>
-                                </ext:GridPanel>
-
-                                <ext:GridPanel ExpandToolText="expand" MinHeight="400"
-                                    ID="secondGrid" MarginSpec="0 17 0 0" MaxHeight="400"
-                                    runat="server" StoreID="secondStore"
-                                    PaddingSpec="0 0 0 0"
-                                    Header="true" CollapseMode="Header" Collapsible="true" CollapseDirection="Top"
-                                    Title="<%$ Resources: Terminations %>"
-                                    Layout="FitLayout"
-                                    Scroll="Vertical"
-                                    Border="false"
-                                    Icon="User"
-                                    ColumnLines="True" IDMode="Explicit" RenderXType="True">
-                                    <Store>
-                                    </Store>
-
-
-                                    <ColumnModel ID="ColumnModel1" runat="server" SortAscText="<%$ Resources:Common , SortAscText %>" SortDescText="<%$ Resources:Common ,SortDescText  %>" SortClearText="<%$ Resources:Common ,SortClearText  %>" ColumnsText="<%$ Resources:Common ,ColumnsText  %>" EnableColumnHide="false" Sortable="false">
-                                        <Columns>
-                                            <ext:Column Visible="false" ID="Column1" MenuDisabled="true" runat="server" DataIndex="recordId" Hideable="false" Width="75" />
-                                            <ext:Column ID="Column3" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldFullName%>" DataIndex="name.fullName" Flex="4" Hideable="false">
-                                                <Renderer Handler=" return  record.data['name'].fullName ">
-                                                </Renderer>
-                                            </ext:Column>
-                                            <ext:Column ID="Column4" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDepartment%>" DataIndex="departmentName" Flex="3" Hideable="false">
-                                            </ext:Column>
-                                            <ext:Column ID="Column5" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldPosition%>" DataIndex="positionName" Flex="3" Hideable="false" />
-                                            <ext:Column ID="Column6" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldBranch%>" DataIndex="branchName" Flex="3" Hideable="false" />
-                                           
-                                            <ext:DateColumn ID="DateColumn1" Format="dd-MMM-yyyy" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDate%>" DataIndex="date" Width="120" Hideable="false">
-                                            </ext:DateColumn>
-
-
-                                        </Columns>
-                                    </ColumnModel>
-
-                                    <View>
-                                        <ext:GridView ID="GridView1" runat="server" />
-                                    </View>
-
-
-                                    <SelectionModel>
-                                        <ext:RowSelectionModel ID="rowSelectionModel1" runat="server" Mode="Single" StopIDModeInheritance="true" />
-                                        <%--<ext:CheckboxSelectionModel ID="CheckboxSelectionModel1" runat="server" Mode="Multi" StopIDModeInheritance="true" />--%>
-                                    </SelectionModel>
-                                </ext:GridPanel>
-                            </Items>
-
-                        </ext:Panel>
+                     <ext:Label runat="server" Text="fff" Hidden="true" />
                     </Items>
                 </ext:Panel>
 

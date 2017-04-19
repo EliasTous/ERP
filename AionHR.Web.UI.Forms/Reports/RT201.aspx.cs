@@ -69,13 +69,11 @@ namespace AionHR.Web.UI.Forms.Reports
 
 
                     format.Text = _systemService.SessionHelper.GetDateformat();
-                    filterSet1.Hidden = false;
+                   
                     FillJobInfo();
-                    filterSet7.Hidden = false;
-                    cc.Format = format.Text;
-                    SalaryHistory h = new SalaryHistory();
                     
-                    ASPxWebDocumentViewer1.OpenReport(h);
+                    cc.Format = format.Text;
+                    Unnamed_Click(null, null);
                 }
                 catch { }
             }
@@ -313,6 +311,27 @@ namespace AionHR.Web.UI.Forms.Reports
             SalaryHistory h = new SalaryHistory();
             h.DataSource = resp.Items;
             
+
+
+            h.CreateDocument();
+            ASPxWebDocumentViewer1.OpenReport(h);
+            ASPxWebDocumentViewer1.DataBind();
+        }
+
+        protected void Unnamed_Click(object sender, EventArgs e)
+        {
+            ReportCompositeRequest req = GetRequest();
+            ListResponse<AionHR.Model.Reports.RT201> resp = _reportsService.ChildGetAll<AionHR.Model.Reports.RT201>(req);
+            if (!resp.Success)
+            {
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, resp.Summary).Show();
+                return;
+            }
+
+            SalaryHistory h = new SalaryHistory();
+            h.DataSource = resp.Items;
+
 
 
             h.CreateDocument();

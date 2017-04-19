@@ -431,11 +431,11 @@
                                                 <ext:InputMask Mask="9999999?999" />
                                             </Plugins>
                                             </ext:TextField>
-                                        <ext:TextField runat="server" Name="street1" AllowBlank="false" ID="costreet1" FieldLabel="<%$ Resources:FieldCStreet1%>" />
+                                        <ext:TextField runat="server" Name="costreet1" AllowBlank="false" ID="costreet1" FieldLabel="<%$ Resources:FieldCStreet1%>" />
                                              
-                                        <ext:TextField runat="server" Name="street2" AllowBlank="false" ID="costreet2" FieldLabel="<%$ Resources:FieldCStreet2%>" />
-                                        <ext:TextField runat="server" Name="city" AllowBlank="false" ID="cocity" FieldLabel="<%$ Resources:FieldCCity%>" />
-                                        <ext:TextField runat="server" Name="postalCode" AllowBlank="false" MaxLength="6" ID="copostalCode" FieldLabel="<%$ Resources:FieldCPostalCode%>" />
+                                        <ext:TextField runat="server" Name="costreet2" AllowBlank="false" ID="costreet2" FieldLabel="<%$ Resources:FieldCStreet2%>" />
+                                        <ext:TextField runat="server" Name="cocity" AllowBlank="false" ID="cocity" FieldLabel="<%$ Resources:FieldCCity%>" />
+                                        <ext:TextField runat="server" Name="copostalCode" AllowBlank="false" MaxLength="6" ID="copostalCode" FieldLabel="<%$ Resources:FieldCPostalCode%>" />
                                         <%--<ext:TextField  runat="server" Name="countryName" AllowBlank="false"  ID="countryName"  FieldLabel="<%$ Resources:FieldCountryName%>" />--%>
 
                                         <ext:ComboBox ValueField="recordId" AllowBlank="false" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1"

@@ -415,7 +415,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             // Define the object to add or edit as null
             b.rtName = rtId.SelectedItem.Text;
 
-            b.addressId = new AddressBook() { street1 = costreet1.Text.Remove(costreet1.Text.Length - 1, 1), street2 = costreet2.Text.Remove(costreet2.Text.Length - 1, 1), city = cocity.Text.Remove(cocity.Text.Length - 1, 1), postalCode = copostalCode.Text.Remove(copostalCode.Text.Length - 1, 1), countryId = b.naId  ,countryName = conaId.SelectedItem.Text};
+            b.addressId = new AddressBook() { street1 = costreet1.Text, street2 = costreet2.Text, city = cocity.Text, postalCode = copostalCode.Text, countryId = b.naId  ,countryName = conaId.SelectedItem.Text};
             b.employeeId = Convert.ToInt32(CurrentEmployee.Text);
             if (string.IsNullOrEmpty(id))
             {
@@ -539,7 +539,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             b.recordId = id;
             // Define the object to add or edit as null
             b.rtName = rtId.SelectedItem.Text;
-            b.addressId = new AddressBook() { street1 = street1.Text.Remove(street1.Text.Length - 1, 1), street2 = street2.Text.Remove(street2.Text.Length - 1, 1), city = city.Text.Remove(city.Text.Length - 1, 1), postalCode = postalCode.Text.Remove(postalCode.Text.Length - 1, 1), countryId = b.naId, countryName = ecnaId.SelectedItem.Text };
+            b.addressId = new AddressBook() { street1 = street1.Text, street2 = street2.Text, city = city.Text, postalCode = postalCode.Text, countryId = b.naId, countryName = ecnaId.SelectedItem.Text };
             b.employeeId = Convert.ToInt32(CurrentEmployee.Text);
             if (string.IsNullOrEmpty(id))
             {

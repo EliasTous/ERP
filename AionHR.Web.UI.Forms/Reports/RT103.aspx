@@ -80,7 +80,7 @@
                         <ext:Toolbar runat="server">
                             <Items>
                                 
-                                        <ext:Panel runat="server" Layout="HBoxLayout" ID="filterSet3" Hidden="true">
+                                        <ext:Panel runat="server" Layout="HBoxLayout" ID="filterSet3"  >
                                             <Items>
                                                 <ext:DateField ID="dateFrom" runat="server" EmptyText="<%$ Resources: DateFrom %>"></ext:DateField>
                                                 <ext:DateField ID="dateTo" runat="server" EmptyText="<%$ Resources: DateTo %>"></ext:DateField>

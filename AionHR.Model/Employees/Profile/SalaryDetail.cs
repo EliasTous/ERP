@@ -7,6 +7,18 @@ using System.Threading.Tasks;
 
 namespace AionHR.Model.Employees.Profile
 {
+    public enum PaymentMethod
+    {
+        Cash =0, Bank=1
+    }
+
+    public enum PaymentFrequency
+    {
+        Day = 0,
+        Week=1,
+        Month=2
+        
+    }
     public class SalaryDetail
     {
         public int salaryId { get; set; }

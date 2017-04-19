@@ -1537,6 +1537,24 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Years in Service.
+        /// </summary>
+        internal static string RT104 {
+            get {
+                return ResourceManager.GetString("RT104", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Job History.
+        /// </summary>
+        internal static string RT105 {
+            get {
+                return ResourceManager.GetString("RT105", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Salary History.
         /// </summary>
         internal static string RT201 {
@@ -1551,6 +1569,24 @@ namespace Resources {
         internal static string RT202 {
             get {
                 return ResourceManager.GetString("RT202", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Point-in-time Salary.
+        /// </summary>
+        internal static string RT203 {
+            get {
+                return ResourceManager.GetString("RT203", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sign-in Trail.
+        /// </summary>
+        internal static string RT801 {
+            get {
+                return ResourceManager.GetString("RT801", resourceCulture);
             }
         }
         

@@ -72,6 +72,7 @@ namespace AionHR.Web.UI.Forms.Reports
                     filterSet3.Hidden = false;
                     dateFrom.SelectedDate = DateTime.Today;
                     dateTo.SelectedDate = DateTime.Today;
+                    
                 }
                 catch { }
             }

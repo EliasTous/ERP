@@ -738,4 +738,16 @@
   <data name="RT202" xml:space="preserve">
     <value>Salary Changes</value>
   </data>
+  <data name="RT104" xml:space="preserve">
+    <value>Years in Service</value>
+  </data>
+  <data name="RT105" xml:space="preserve">
+    <value>Job History</value>
+  </data>
+  <data name="RT203" xml:space="preserve">
+    <value>Point-in-time Salary</value>
+  </data>
+  <data name="RT801" xml:space="preserve">
+    <value>Sign-in Trail</value>
+  </data>
 </root>

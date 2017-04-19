@@ -12,7 +12,18 @@
     <link rel="stylesheet" href="CSS/LiveSearch.css" />
     <script type="text/javascript" src="Scripts/Users.js?id=1"></script>
     <script type="text/javascript" src="Scripts/common.js"></script>
+    <script type="text/javascript">
+        function SetNameEnabled( status,name)
+        {
+            
+            
+            App.fullName.setDisabled(!status);
+            if (!status)
+                App.fullName.setValue(name);
+            else App.fullName.setValue('');
 
+        }
+    </script>
 
 </head>
 <body style="background: url(Images/bg.png) repeat;" >
@@ -304,6 +315,10 @@
                                         </ext:Store>
 
                                     </Store>
+
+                                    <Listeners>
+                                        <Select Handler="App.fullName.setValue(this.text);" />
+                                    </Listeners>
                                 </ext:ComboBox>
                                 <ext:ComboBox runat="server" ID="languageId" AllowBlank="false"
                                     SubmitValue="true"

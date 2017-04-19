@@ -199,16 +199,23 @@
     <Content Include="OrganizationChart.aspx" />
     <Content Include="packages.config" />
     <Content Include="RelationshipTypes.aspx" />
+    <Content Include="Reports\Controls\ActiveStatusFilter.ascx" />
     <Content Include="Reports\App_LocalResources\RT01.aspx.resx" />
     <Content Include="Reports\App_LocalResources\RT102.aspx.resx" />
     <Content Include="Reports\App_LocalResources\RT103.aspx.resx" />
-    <Content Include="Reports\Child.aspx" />
-    <Content Include="Reports\DateRangeFilter.ascx" />
+    <Content Include="Reports\Controls\DateFilter.ascx" />
+    <Content Include="Reports\Controls\DateRangeFilter.ascx" />
+    <Content Include="Reports\Controls\JobInfoFilter.ascx" />
+    <Content Include="Reports\Controls\UserComboFilter.ascx" />
     <Content Include="Reports\RT01.aspx" />
     <Content Include="Reports\RT102.aspx" />
     <Content Include="Reports\RT103.aspx" />
+    <Content Include="Reports\RT104.aspx" />
+    <Content Include="Reports\RT105.aspx" />
     <Content Include="Reports\RT201.aspx" />
     <Content Include="Reports\RT202.aspx" />
+    <Content Include="Reports\RT203.aspx" />
+    <Content Include="Reports\RT801.aspx" />
     <Content Include="ReportTest.aspx" />
     <Content Include="Routers.aspx" />
     <Content Include="SalaryChangeReasons.aspx" />
@@ -493,6 +500,13 @@
     <Compile Include="MediaItems.aspx.designer.cs">
       <DependentUpon>MediaItems.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Reports\Controls\ActiveStatusFilter.ascx.cs">
+      <DependentUpon>ActiveStatusFilter.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reports\Controls\ActiveStatusFilter.ascx.designer.cs">
+      <DependentUpon>ActiveStatusFilter.ascx</DependentUpon>
+    </Compile>
     <Compile Include="Reports\App_LocalResources\RT201.aspx.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -503,25 +517,45 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>RT202.aspx.resx</DependentUpon>
     </Compile>
-    <Compile Include="Reports\Child.aspx.cs">
-      <DependentUpon>Child.aspx</DependentUpon>
+    <Compile Include="Reports\Controls\DateFilter.ascx.cs">
+      <DependentUpon>DateFilter.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Reports\Child.aspx.designer.cs">
-      <DependentUpon>Child.aspx</DependentUpon>
+    <Compile Include="Reports\Controls\DateFilter.ascx.designer.cs">
+      <DependentUpon>DateFilter.ascx</DependentUpon>
     </Compile>
-    <Compile Include="Reports\DateRangeFilter.ascx.cs">
+    <Compile Include="Reports\Controls\DateRangeFilter.ascx.cs">
       <DependentUpon>DateRangeFilter.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Reports\DateRangeFilter.ascx.designer.cs">
+    <Compile Include="Reports\Controls\DateRangeFilter.ascx.designer.cs">
       <DependentUpon>DateRangeFilter.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Controls\UserComboFilter.ascx.cs">
+      <DependentUpon>UserComboFilter.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reports\Controls\UserComboFilter.ascx.designer.cs">
+      <DependentUpon>UserComboFilter.ascx</DependentUpon>
     </Compile>
     <Compile Include="Reports\Hirings.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\Hirings.Designer.cs">
       <DependentUpon>Hirings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Controls\JobInfoFilter.ascx.cs">
+      <DependentUpon>JobInfoFilter.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reports\Controls\JobInfoFilter.ascx.designer.cs">
+      <DependentUpon>JobInfoFilter.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\JobHistory.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\PointInTimeSalary.cs">
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RT01.aspx.cs">
       <DependentUpon>RT01.aspx</DependentUpon>
@@ -544,6 +578,20 @@
     <Compile Include="Reports\RT103.aspx.designer.cs">
       <DependentUpon>RT103.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Reports\RT104.aspx.cs">
+      <DependentUpon>RT104.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reports\RT104.aspx.designer.cs">
+      <DependentUpon>RT104.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\RT105.aspx.cs">
+      <DependentUpon>RT105.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reports\RT105.aspx.designer.cs">
+      <DependentUpon>RT105.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Reports\RT201.aspx.cs">
       <DependentUpon>RT201.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -563,6 +611,20 @@
     <Compile Include="Reports\RT202.aspx.designer.cs">
       <DependentUpon>RT202.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Reports\RT203.aspx.cs">
+      <DependentUpon>RT203.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reports\RT203.aspx.designer.cs">
+      <DependentUpon>RT203.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\RT801.aspx.cs">
+      <DependentUpon>RT801.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reports\RT801.aspx.designer.cs">
+      <DependentUpon>RT801.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Reports\SalaryChanges.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -572,11 +634,17 @@
     <Compile Include="Reports\SalaryHistory.Designer.cs">
       <DependentUpon>SalaryHistory.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reports\SignInTrail.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Reports\Terminations.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\Terminations.Designer.cs">
       <DependentUpon>Terminations.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\YearsInService.cs">
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="ReportTest.aspx.cs">
       <DependentUpon>ReportTest.aspx</DependentUpon>
@@ -1195,12 +1263,23 @@
     <Content Include="EmployeePages\App_LocalResources\Hire.aspx.resx" />
     <Content Include="App_LocalResources\MainDashboard.aspx.resx" />
     <EmbeddedResource Include="Properties\licenses.licx" />
-    <Content Include="Reports\App_LocalResources\RT202.aspx.resx">
+    <EmbeddedResource Include="Reports\App_LocalResources\RT202.aspx.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>RT202.aspx.Designer.cs</LastGenOutput>
-    </Content>
+    </EmbeddedResource>
+    <Content Include="Reports\Controls\App_LocalResources\JobInfoFilter.ascx.resx" />
+    <Content Include="Reports\Controls\App_LocalResources\DateRangeFilter.ascx.resx" />
+    <Content Include="Reports\Controls\App_LocalResources\ActiveStatusFilter.ascx.resx" />
+    <Content Include="Reports\Controls\App_LocalResources\DateFilter.ascx.resx" />
+    <Content Include="Reports\Controls\App_LocalResources\UserComboFilter.ascx.resx" />
     <EmbeddedResource Include="Reports\Hirings.resx">
       <DependentUpon>Hirings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\JobHistory.resx">
+      <DependentUpon>JobHistory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\PointInTimeSalary.resx">
+      <DependentUpon>PointInTimeSalary.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\RT201.aspx.resx">
       <DependentUpon>RT201.aspx.cs</DependentUpon>
@@ -1213,8 +1292,14 @@
     <EmbeddedResource Include="Reports\SalaryHistory.resx">
       <DependentUpon>SalaryHistory.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports\SignInTrail.resx">
+      <DependentUpon>SignInTrail.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\Terminations.resx">
       <DependentUpon>Terminations.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\YearsInService.resx">
+      <DependentUpon>YearsInService.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -71,6 +71,7 @@ namespace AionHR.Web.UI.Forms.Reports
                     filterSet3.Hidden = false;
                     dateFrom.SelectedDate = DateTime.Today;
                     dateTo.SelectedDate = DateTime.Today;
+                    Unnamed_Click(null, null);
                 }
                 catch { }
             }
@@ -182,6 +183,39 @@ namespace AionHR.Web.UI.Forms.Reports
 
             secondStore.DataSource = resp.Items;
             secondStore.DataBind();
+        }
+
+        protected void Unnamed_Click(object sender, EventArgs e)
+        {
+            ReportCompositeRequest req = GetRequest();
+            ListResponse<AionHR.Model.Reports.RT102A> resp = _reportsService.ChildGetAll<AionHR.Model.Reports.RT102A>(req);
+            if (!resp.Success)
+            {
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, resp.Summary).Show();
+                return;
+            }
+
+            Hirings h = new Hirings();
+            h.DataSource = resp.Items;
+            
+            ReportCompositeRequest req2 = GetRequest();
+            ListResponse<AionHR.Model.Reports.RT102B> resp2= _reportsService.ChildGetAll<AionHR.Model.Reports.RT102B>(req);
+            if (!resp.Success)
+            {
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, resp.Summary).Show();
+                return;
+            }
+
+            Terminations t = new Terminations();
+            t.DataSource = resp2.Items;
+
+            h.Pages.AddRange(t.Pages);
+            ASPxWebDocumentViewer1.DataBind();
+            ASPxWebDocumentViewer1.OpenReport(h);
+            
+
         }
     }
 }

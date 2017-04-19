@@ -269,13 +269,27 @@ namespace AionHR.Web.UI.Forms.Utilities
             Ext.Net.Node rt101 = BuildLeafNode("report_rt101", Resources.Common.RT01, "Group", true, timeAt);
             Ext.Net.Node rt102 = BuildLeafNode("report_rt102", Resources.Common.RT102, "Group", true, timeAt);
             Ext.Net.Node rt103 = BuildLeafNode("report_rt103", Resources.Common.RT103, "Group", true, timeAt);
+            Ext.Net.Node rt104 = BuildLeafNode("report_rt104", Resources.Common.RT104, "Group", true, timeAt);
+            Ext.Net.Node rt105 = BuildLeafNode("report_rt105", Resources.Common.RT105, "Group", true, timeAt);
+
+
             Ext.Net.Node rt201 = BuildLeafNode("report_rt201", Resources.Common.RT201, "Group", true, timeAt);
             Ext.Net.Node rt202 = BuildLeafNode("report_rt202", Resources.Common.RT202, "Group", true, timeAt);
+            Ext.Net.Node rt203 = BuildLeafNode("report_rt203", Resources.Common.RT203, "Group", true, timeAt);
+
+            Ext.Net.Node rt801 = BuildLeafNode("report_rt801", Resources.Common.RT801, "Group", true, timeAt);
+
             FillConfigItem(rt101, "rt101", "Reports/RT01.aspx", Resources.Common.RT01, "icon-Employees", "1");
             FillConfigItem(rt102, "rt102", "Reports/RT102.aspx", Resources.Common.RT102, "icon-Employees", "1");
             FillConfigItem(rt103, "rt103", "Reports/RT103.aspx", Resources.Common.RT103, "icon-Employees", "1");
+            FillConfigItem(rt104, "rt104", "Reports/RT104.aspx", Resources.Common.RT104, "icon-Employees", "1");
+            FillConfigItem(rt105, "rt105", "Reports/RT105.aspx", Resources.Common.RT105, "icon-Employees", "1");
+
             FillConfigItem(rt201, "rt201", "Reports/RT201.aspx", Resources.Common.RT201, "icon-Employees", "1");
             FillConfigItem(rt202, "rt202", "Reports/RT202.aspx", Resources.Common.RT202, "icon-Employees", "1");
+            FillConfigItem(rt203, "rt203", "Reports/RT203.aspx", Resources.Common.RT203, "icon-Employees", "1");
+
+            FillConfigItem(rt801, "rt801", "Reports/RT801.aspx", Resources.Common.RT801, "icon-Employees", "1");
 
             nodes.Add(rootParent);
             return nodes;

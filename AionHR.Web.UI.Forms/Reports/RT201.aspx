@@ -81,7 +81,7 @@
         <ext:Viewport ID="Viewport1" runat="server" Layout="FitLayout">
 
             <Items>
-
+                
                 <ext:Panel
                     ID="Center"
                     runat="server"
@@ -167,7 +167,7 @@
                                         </ext:Panel>
 
 
-                                        <ext:Panel runat="server" ID="filterSet7" Hidden="true">
+                                        <ext:Panel runat="server" ID="filterSet7" >
                                             <Items>
                                                 <ext:ComboBox runat="server" ID="inactivePref" Editable="false" FieldLabel="">
                                                     <Items>
@@ -182,29 +182,12 @@
                                         </ext:Panel>
                                     </Items>
                                 </ext:Panel>
-                                <ext:Button runat="server" Text="Go">
-                                    <Listeners>
-                                        <Click Handler="App.firstStore.reload(); " />
-                                    </Listeners>
-                                    <DirectEvents>
-                                        <Click OnEvent="Unnamed_Event" />
-                                    </DirectEvents>
+                                
+                                <ext:Button runat="server" Text="Go" OnClick="Unnamed_Click"  AutoPostBack="true">
+                                
+                                  
                                 </ext:Button>
-                                <ext:Button Icon="PageGear" runat="server">
-                                    <Menu>
-                                        <ext:Menu runat="server">
-                                            <Items>
-                                                <ext:MenuItem runat="server" Text="<%$ Resources:Common , Print %>" Icon="Printer">
-                                                    <Listeners>
-                                                        <Click Handler="printGrid(#{firstGrid}, #{PrintWindow});" />
-                                                    </Listeners>
-                                                </ext:MenuItem>
-                                                <ext:MenuItem runat="server" Text="<%$ Resources:Common , ExportAsPdf %>" Icon="DiskDownload" />
-                                                <ext:MenuItem runat="server" Text="<%$ Resources:Common , EmailReport %>" Icon="EmailAttach" />
-                                            </Items>
-                                        </ext:Menu>
-                                    </Menu>
-                                </ext:Button>
+                               
                             </Items>
                         </ext:Toolbar>
                     </TopBar>
@@ -214,11 +197,11 @@
                              
                     </Content>
                     <Items>
-                        <ext:Panel runat="server" Height="200" Layout="AutoLayout" Width="1000" AutoScroll="true" ID="toPrint" >
+                        <ext:Panel runat="server" Height="200" Layout="AutoLayout" Width="1000" AutoScroll="true" ID="toPrint" Hidden="true" >
                             <Items>
 
 
-                                <ext:GridPanel ExpandToolText="expand"
+                                <ext:GridPanel ExpandToolText="expand" Hidden="true"
                                     ID="firstGrid" MarginSpec="0 17 0 0"
                                     runat="server" StoreID="firstStore"
                                     PaddingSpec="0 0 0 0" MinHeight="400"

@@ -137,6 +137,7 @@ namespace AionHR.Web.UI.Forms
                     //Step 2 : call setvalues with the retrieved object
 
                     PasswordConfirmation.Text = response.result.password;
+                    this.BasicInfoTab.SetValues(response.result);
                     if (!String.IsNullOrEmpty(response.result.employeeId))
                     {
 
@@ -156,9 +157,11 @@ namespace AionHR.Web.UI.Forms
                            });
                         employeeId.SetValue(response.result.employeeId);
 
+                        fullName.Text = empResponse.result.name.fullName;
+                        fullName.Enabled = false;
                     }
-                    this.BasicInfoTab.SetValues(response.result);
-
+                    
+                   
                     // InitCombos(response.result);
                     this.EditRecordWindow.Title = Resources.Common.EditWindowsTitle;
                     this.EditRecordWindow.Show();
@@ -278,6 +281,15 @@ namespace AionHR.Web.UI.Forms
             data.ForEach(s => s.fullName = s.name.fullName);
             //  return new
             // {
+
+            if(data.Count==0)
+            {
+                X.Call("SetNameEnabled", true," ");
+            }
+            else
+            {
+                X.Call("SetNameEnabled", false,data[0].fullName);
+            }
             return data;
             //};
 
