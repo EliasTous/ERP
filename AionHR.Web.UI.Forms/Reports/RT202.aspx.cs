@@ -70,9 +70,9 @@ namespace AionHR.Web.UI.Forms.Reports
 
 
                     format.Text = _systemService.SessionHelper.GetDateformat();
-                 
-                    cc.Format = format.Text;
-                    Unnamed_Click(null, null);
+
+
+                    ASPxCallbackPanel1_Callback(null, null);
                 }
                 catch { }
             }
@@ -198,25 +198,32 @@ namespace AionHR.Web.UI.Forms.Reports
         {
             
         }
-
-        protected void Unnamed_Click(object sender, EventArgs e)
+        protected void ASPxCallbackPanel1_Callback(object sender, DevExpress.Web.CallbackEventArgsBase e)
         {
-            ReportCompositeRequest req = GetRequest();
-            ListResponse<AionHR.Model.Reports.RT202> resp = _reportsService.ChildGetAll<AionHR.Model.Reports.RT202>(req);
-            if (!resp.Success)
+            string[] parameters = e.Parameter.Split('|');
+            int pageIndex = Convert.ToInt32(parameters[0]);
+
+            if (pageIndex == 1)
             {
-                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, resp.Summary).Show();
-                return;
+
+                ReportCompositeRequest req = GetRequest();
+                ListResponse<AionHR.Model.Reports.RT202> resp = _reportsService.ChildGetAll<AionHR.Model.Reports.RT202>(req);
+                if (!resp.Success)
+                {
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    X.Msg.Alert(Resources.Common.Error, resp.Summary).Show();
+                    return;
+                }
+
+                SalaryChanges h = new SalaryChanges();
+                h.DataSource = resp.Items;
+
+
+                h.CreateDocument();
+                ASPxWebDocumentViewer1.OpenReport(h);
+                ASPxWebDocumentViewer1.DataBind();
             }
-
-            SalaryChanges h = new SalaryChanges();
-            h.DataSource = resp.Items;
-            
-
-            h.CreateDocument();
-            ASPxWebDocumentViewer1.OpenReport(h);
-            ASPxWebDocumentViewer1.DataBind();
         }
+        
     }
 }

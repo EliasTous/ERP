@@ -59,8 +59,9 @@
     <ext:Hidden runat="server" ID="TrType3" Text="<%$Resources:Common , TrType3 %>" />
     <ext:Hidden runat="server" ID="TrType4" Text="<%$Resources:Common , TrType4 %>" />
     <ext:Hidden runat="server" ID="TrType5" Text="<%$Resources:Common , TrType5 %>" />
-    <ext:Hidden runat="server" ID="TrType6" Text="<%$Resources:Common , TrType6 %>" />
-    <ext:Hidden runat="server" ID="TrType7" Text="<%$Resources:Common , TrType7 %>" />
+    <ext:Hidden runat="server" ID="TrType11" Text="<%$Resources:Common , TrType11 %>" />
+    <ext:Hidden runat="server" ID="TrType12" Text="<%$Resources:Common , TrType12 %>" />
+    <ext:Hidden runat="server" ID="TrType21" Text="<%$Resources:Common , TrType21 %>" />
 
     <ext:Hidden runat="server" ID="CurrentClassRef" />
     <ext:Hidden runat="server" ID="CurrentRecordId" />

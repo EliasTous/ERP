@@ -391,22 +391,31 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Hidden TrType5;
         
         /// <summary>
-        /// TrType6 control.
+        /// TrType11 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Hidden TrType6;
+        protected global::Ext.Net.Hidden TrType11;
         
         /// <summary>
-        /// TrType7 control.
+        /// TrType12 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Hidden TrType7;
+        protected global::Ext.Net.Hidden TrType12;
+        
+        /// <summary>
+        /// TrType21 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Hidden TrType21;
         
         /// <summary>
         /// CurrentClassRef control.

@@ -121,31 +121,13 @@ namespace AionHR.Web.UI.Forms.Reports {
         protected global::Ext.Net.Panel Center;
         
         /// <summary>
-        /// filterSet3 control.
+        /// dateRange1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Panel filterSet3;
-        
-        /// <summary>
-        /// dateFrom control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.DateField dateFrom;
-        
-        /// <summary>
-        /// dateTo control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.DateField dateTo;
+        protected global::AionHR.Web.UI.Forms.Reports.DateRangeFilter dateRange1;
         
         /// <summary>
         /// toPrint control.

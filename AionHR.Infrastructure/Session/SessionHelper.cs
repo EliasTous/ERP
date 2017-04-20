@@ -78,7 +78,10 @@ namespace AionHR.Infrastructure.Session
             Set("countryId", format);
         }
 
-
+        public void SetStartDate(DateTime date)
+        {
+            Set("StartDate", date);
+        }
 
         #endregion
 
@@ -98,6 +101,11 @@ namespace AionHR.Infrastructure.Session
                 return "{firstName} {lastName}";
 
             return nameFormat.ToString();
+        }
+
+        public DateTime GetStartDate()
+        {
+            return (DateTime)Get("StartDate");
         }
 
         public string GetDefaultCountry()

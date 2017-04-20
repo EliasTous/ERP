@@ -1,5 +1,7 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="RT105.aspx.cs" Inherits="AionHR.Web.UI.Forms.Reports.RT105" %>
 
+<%@ Register Assembly="DevExpress.Web.v16.2, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web" TagPrefix="dx" %>
+
 <%@ Register Assembly="DevExpress.XtraReports.v16.2.Web, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.XtraReports.Web" TagPrefix="dx" %>
 
 <%@ Register Assembly="Ext.Net" Namespace="Ext.Net" TagPrefix="ext" %>
@@ -35,6 +37,7 @@
 </head>
 <body style="background: url(Images/bg.png) repeat;">
     <form id="Form1" runat="server">
+        
         <ext:ResourceManager ID="ResourceManager1" runat="server" Theme="Neptune" AjaxTimeout="1200000" />
 
         <ext:Hidden ID="textMatch" runat="server" Text="<%$ Resources:Common , MatchFound %>" />
@@ -112,7 +115,10 @@
                                     </Content>
                                 </ext:Container>
                                 
-                                <ext:Button runat="server" Text="Go" AutoPostBack="true" OnClick="Unnamed_Click">
+                                <ext:Button runat="server" Text="<%$Resources:Common, Go %>" >
+                                     <Listeners>
+                                                <Click Handler="callbackPanel.PerformCallback('1');" />
+                                            </Listeners>
                                 </ext:Button>
                   
                             </Items>
@@ -120,7 +126,14 @@
                     </TopBar>
                     <Content>
 
-                        <dx:ASPxWebDocumentViewer ID="ASPxWebDocumentViewer1" runat="server"></dx:ASPxWebDocumentViewer>
+                         <dx:ASPxCallbackPanel ID="ASPxCallbackPanel1" runat="server" ClientInstanceName="callbackPanel"
+                            Width="100%" OnCallback="ASPxCallbackPanel1_Callback">
+                            <PanelCollection>
+                                <dx:PanelContent runat="server">
+                                    <dx:ASPxWebDocumentViewer ID="ASPxWebDocumentViewer1" runat="server"></dx:ASPxWebDocumentViewer>
+                                </dx:PanelContent>
+                            </PanelCollection>
+                        </dx:ASPxCallbackPanel>
 
                     </Content>
                     <Items>

@@ -17,7 +17,7 @@ namespace AionHR.Services.Messaging.Reports
             get
             {
                 parameters = new Dictionary<string, string>();
-                parameters.Add("_classId", ClassId.ToString());
+                parameters.Add("_moduleId", ClassId.ToString());
 
                 return parameters;
             }

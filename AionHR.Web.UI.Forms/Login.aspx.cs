@@ -1,4 +1,5 @@
-﻿using AionHR.Model.MasterModule;
+﻿using AionHR.Model.Employees.Profile;
+using AionHR.Model.MasterModule;
 using AionHR.Services.Implementations;
 using AionHR.Services.Interfaces;
 using AionHR.Services.Messaging;
@@ -27,7 +28,7 @@ namespace AionHR.Web.UI.Forms
 
         ISystemService _systemService = ServiceLocator.Current.GetInstance<ISystemService>();
         IMasterService _masterService = ServiceLocator.Current.GetInstance<IMasterService>();
-
+        IEmployeeService _employeeService = ServiceLocator.Current.GetInstance<IEmployeeService>();
         protected override void InitializeCulture()
         {
 
@@ -157,6 +158,23 @@ namespace AionHR.Web.UI.Forms
             {
                 _systemService.SessionHelper.SetCurrencyId("0");
             }
+            try
+            {
+                EmployeeListRequest request = new EmployeeListRequest();
+                request.BranchId = request.DepartmentId = request.PositionId = "0";
+                request.StartAt = "1";
+                request.SortBy = "hireDate";
+                request.Size = "1";
+                request.IncludeIsInactive = 2;
+                var resp = _employeeService.GetAll<Employee>(request);
+                
+                _systemService.SessionHelper.SetStartDate(resp.Items[0].hireDate.Value);
+            }
+            catch(Exception exp)
+            {
+                _systemService.SessionHelper.SetStartDate(DateTime.Now);
+            }
+
         }
         private object GetDateFormat()
         {

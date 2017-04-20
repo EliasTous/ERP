@@ -76,6 +76,24 @@ namespace AionHR.Web.UI.Forms.EmployeePages {
         protected global::Ext.Net.Hidden CurrentEmployee;
         
         /// <summary>
+        /// EHCount control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Hidden EHCount;
+        
+        /// <summary>
+        /// CurrentHireDate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Hidden CurrentHireDate;
+        
+        /// <summary>
         /// PaymentTypeWeekly control.
         /// </summary>
         /// <remarks>

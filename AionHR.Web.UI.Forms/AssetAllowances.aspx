@@ -370,8 +370,9 @@
                                     FieldLabel="<%$ Resources: FieldEmployeeName%>"
                                     HideTrigger="true" SubmitValue="true"
                                     MinChars="3" AllowBlank="false"
-                                    TriggerAction="Query" ForceSelection="false">
+                                    TriggerAction="Query" ForceSelection="true">
                                     <Store>
+
                                         <ext:Store runat="server" ID="employeeStore" AutoLoad="false">
                                             <Model>
                                                 <ext:Model runat="server">

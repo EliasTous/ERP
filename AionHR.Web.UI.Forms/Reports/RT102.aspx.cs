@@ -23,6 +23,7 @@ using AionHR.Model.Company.Structure;
 using AionHR.Model.System;
 using AionHR.Model.Attendance;
 using AionHR.Services.Messaging.Reports;
+using System.Threading;
 
 namespace AionHR.Web.UI.Forms.Reports
 {
@@ -68,10 +69,8 @@ namespace AionHR.Web.UI.Forms.Reports
 
 
                     format.Text = _systemService.SessionHelper.GetDateformat().ToUpper();
-                    filterSet3.Hidden = false;
-                    dateFrom.SelectedDate = DateTime.Today;
-                    dateTo.SelectedDate = DateTime.Today;
-                    Unnamed_Click(null, null);
+               
+                  
                 }
                 catch { }
             }
@@ -120,6 +119,17 @@ namespace AionHR.Web.UI.Forms.Reports
                 this.ResourceManager1.RTL = true;
                 this.Viewport1.RTL = true;
                 this.rtl.Text = rtl.ToString();
+                //Culture = "ar";
+                //UICulture = "ar-AR";
+                //Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("ar");
+                //Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("ar-AR");
+            }
+            else
+            {
+                //Culture = "en";
+                //UICulture = "en-EN";
+                //Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en");
+                //Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("en-EN");
             }
         }
 
@@ -143,77 +153,53 @@ namespace AionHR.Web.UI.Forms.Reports
             req.Size = "1000";
             req.StartAt = "1";
             req.SortBy = "departmentName";
-            DateRangeParameterSet r = new DateRangeParameterSet();
-            r.DateFrom = dateFrom.SelectedDate;
-            r.DateTo = dateTo.SelectedDate;
             
-            req.Add(r);
+            req.Add(dateRange1.GetRange());
             return req;
         }
-        protected void firstStore_ReadData(object sender, StoreReadDataEventArgs e)
+       
+        protected void ASPxCallbackPanel1_Callback(object sender, DevExpress.Web.CallbackEventArgsBase e)
         {
+            string[] parameters = e.Parameter.Split('|');
+            int pageIndex = Convert.ToInt32(parameters[0]);
 
-            ReportCompositeRequest req = GetRequest();
-            ListResponse<AionHR.Model.Reports.RT102A> resp = _reportsService.ChildGetAll<AionHR.Model.Reports.RT102A>(req);
-            if (!resp.Success)
+            if (pageIndex == 1)
             {
-                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, resp.Summary).Show();
-                return;
+
+                ReportCompositeRequest req = GetRequest();
+                ListResponse<AionHR.Model.Reports.RT102A> resp = _reportsService.ChildGetAll<AionHR.Model.Reports.RT102A>(req);
+                if (!resp.Success)
+                {
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    X.Msg.Alert(Resources.Common.Error, resp.Summary).Show();
+                    return;
+                }
+
+                Hirings h = new Hirings();
+                h.DataSource = resp.Items;
+               
+               // h.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;
+                //ReportCompositeRequest req2 = GetRequest();
+                //ListResponse<AionHR.Model.Reports.RT102B> resp2 = _reportsService.ChildGetAll<AionHR.Model.Reports.RT102B>(req);
+                //if (!resp.Success)
+                //{
+                //    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                //    X.Msg.Alert(Resources.Common.Error, resp.Summary).Show();
+                //    return;
+                //}
+                
+                //Reports.Terminations t = new Terminations();
+                //t.DataSource = resp2.Items;
+                //t.RightToLeft = DevExpress.XtraReports.UI.RightToLeft.Yes;
+                //h.Pages.AddRange(t.Pages);
+                ASPxWebDocumentViewer1.DataBind();
+                ASPxWebDocumentViewer1.OpenReport(h);
             }
 
-            Hirings h = new Hirings();
-            h.DataSource = resp.Items;
-          
-            firstStore.DataSource = resp.Items;
-            firstStore.DataBind();
-
         }
-
-        protected void secondStore_ReadData(object sender, StoreReadDataEventArgs e)
-        {
-            ReportCompositeRequest req = GetRequest();
-            ListResponse<AionHR.Model.Reports.RT102B> resp = _reportsService.ChildGetAll<AionHR.Model.Reports.RT102B>(req);
-            if (!resp.Success)
-            {
-                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, resp.Summary).Show();
-                return;
-            }
-
-            secondStore.DataSource = resp.Items;
-            secondStore.DataBind();
-        }
-
         protected void Unnamed_Click(object sender, EventArgs e)
         {
-            ReportCompositeRequest req = GetRequest();
-            ListResponse<AionHR.Model.Reports.RT102A> resp = _reportsService.ChildGetAll<AionHR.Model.Reports.RT102A>(req);
-            if (!resp.Success)
-            {
-                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, resp.Summary).Show();
-                return;
-            }
-
-            Hirings h = new Hirings();
-            h.DataSource = resp.Items;
-            
-            ReportCompositeRequest req2 = GetRequest();
-            ListResponse<AionHR.Model.Reports.RT102B> resp2= _reportsService.ChildGetAll<AionHR.Model.Reports.RT102B>(req);
-            if (!resp.Success)
-            {
-                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, resp.Summary).Show();
-                return;
-            }
-
-            Terminations t = new Terminations();
-            t.DataSource = resp2.Items;
-
-            h.Pages.AddRange(t.Pages);
-            ASPxWebDocumentViewer1.DataBind();
-            ASPxWebDocumentViewer1.OpenReport(h);
+          
             
 
         }

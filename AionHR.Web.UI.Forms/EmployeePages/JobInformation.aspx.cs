@@ -63,7 +63,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                 if (string.IsNullOrEmpty(Request.QueryString["employeeId"]))
                     X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorOperation).Show();
                 CurrentEmployee.Text = Request.QueryString["employeeId"];
-
+                CurrentHireDate.Text = Request.QueryString["hireDate"];
             }
 
         }
@@ -131,7 +131,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     this.EditEHForm.SetValues(response.result);
                     FillEHStatus();
                     statusId.Select(response.result.statusId.ToString());
-                    
+
                     this.EditEHwindow.Title = Resources.Common.EditWindowsTitle;
                     this.EditEHwindow.Show();
                     break;
@@ -151,7 +151,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     FillBranch();
                     FillDivision();
                     FillPosition();
-                   
+
                     departmentId.Select(response2.result.departmentId.ToString());
                     branchId.Select(response2.result.branchId.ToString());
                     positionId.Select(response2.result.positionId.ToString());
@@ -159,7 +159,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     this.EditJobInfoWindow.Title = Resources.Common.EditWindowsTitle;
                     this.EditJobInfoWindow.Show();
                     break;
-                
+
                 case "ColJIDelete":
                     X.Msg.Confirm(Resources.Common.Confirmation, Resources.Common.DeleteOneRecord, new MessageBoxButtonsConfig
                     {
@@ -176,7 +176,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
 
                     }).Show();
                     break;
-              
+
                 case "imgDelete":
                     X.Msg.Confirm(Resources.Common.Confirmation, Resources.Common.DeleteOneRecord, new MessageBoxButtonsConfig
                     {
@@ -213,7 +213,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             string type = e.ExtraParams["type"];
             switch (type)
             {
-               
+
                 case "imgEdit":
                     RecordRequest r2 = new RecordRequest();
                     r2.RecordID = id.ToString();
@@ -225,7 +225,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                         return;
                     }
                     //Step 2 : call setvalues with the retrieved object
-                   
+
                     this.EditJobInfoTab.SetValues(response2.result);
                     if (response2.result.reportToId.HasValue)
                     {
@@ -271,7 +271,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     }).Show();
                     break;
 
-               
+
                 default:
                     break;
             }
@@ -311,7 +311,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                 {
                     //Step 2 :  remove the object from the store
                     employeementHistoryStore.Remove(index);
-
+                    EHCount.Text = (Convert.ToInt32(EHCount.Text) - 1).ToString();
                     //Step 3 : Showing a notification for the user 
                     Notification.Show(new NotificationConfig
                     {
@@ -383,7 +383,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
 
         }
 
-        
+
 
 
 
@@ -412,7 +412,11 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             EditEHForm.Reset();
             this.EditEHwindow.Title = Resources.Common.AddNewRecord;
             FillEHStatus();
-            ehDate.SelectedDate = DateTime.Today;
+            if (EHCount.Text == "0")
+                ehDate.SelectedDate = Convert.ToDateTime(CurrentHireDate.Text);
+            else
+                ehDate.SelectedDate = DateTime.Today;
+
             this.EditEHwindow.Show();
         }
         protected void ADDNewJI(object sender, DirectEventArgs e)
@@ -430,7 +434,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             this.EditJobInfoWindow.Show();
         }
 
-      
+
 
         protected void employeementHistory_RefreshData(object sender, StoreReadDataEventArgs e)
         {
@@ -462,7 +466,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                 X.Msg.Alert(Resources.Common.Error, currencies.Summary).Show();
             this.employeementHistoryStore.DataSource = currencies.Items;
             e.Total = currencies.count;
-
+            EHCount.Text = currencies.count.ToString();
             this.employeementHistoryStore.DataBind();
         }
         protected void JIStore_RefreshData(object sender, StoreReadDataEventArgs e)
@@ -487,7 +491,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             this.JIStore.DataBind();
         }
 
-     
+
 
         protected void SaveEH(object sender, DirectEventArgs e)
         {
@@ -503,7 +507,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             // Define the object to add or edit as null
             b.statusName = statusId.SelectedItem.Text;
             b.date = new DateTime(b.date.Year, b.date.Month, b.date.Day, 14, 0, 0);
-            
+
             if (string.IsNullOrEmpty(id))
             {
 
@@ -542,7 +546,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                         RowSelectionModel sm = this.employeementHistoryGrid.GetSelectionModel() as RowSelectionModel;
                         sm.DeselectAll();
                         sm.Select(b.recordId.ToString());
-
+                        EHCount.Text = (Convert.ToInt32(EHCount.Text) + 1).ToString();
 
 
                     }
@@ -608,7 +612,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
         protected void SaveJI(object sender, DirectEventArgs e)
         {
 
-            
+
             //Getting the id to check if it is an Add or an edit as they are managed within the same form.
             string id = e.ExtraParams["id"];
 
@@ -618,7 +622,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             b.recordId = id;
             b.date = new DateTime(b.date.Year, b.date.Month, b.date.Day, 14, 0, 0);
 
-           
+
 
             if (branchId.SelectedItem != null)
                 b.branchName = branchId.SelectedItem.Text;
@@ -736,15 +740,15 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorUpdatingRecord).Show();
                 }
             }
-            if(b.date.Date == DateTime.Today)
+            if (b.date.Date == DateTime.Today)
             {
-                X.Call("parent.FillLeftPanel", b.departmentName +"<br/>",b.branchName + "<br/>", b.positionName + "<br/>");
-                X.Call("parent.SelectJICombos", b.departmentId, b.branchId, b.positionId,b.divisionId);
+                X.Call("parent.FillLeftPanel", b.departmentName + "<br/>", b.branchName + "<br/>", b.positionName + "<br/>");
+                X.Call("parent.SelectJICombos", b.departmentId, b.branchId, b.positionId, b.divisionId);
             }
-          
+
         }
 
-       [DirectMethod]
+        [DirectMethod]
         public string CheckSession()
         {
             if (!_systemService.SessionHelper.CheckUserLoggedIn())
@@ -847,7 +851,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
         {
             Department dept = new Department();
             dept.name = departmentId.Text;
-            
+
             PostRequest<Department> depReq = new PostRequest<Department>();
             depReq.entity = dept;
             PostResponse<Department> response = _companyStructureService.ChildAddOrUpdate<Department>(depReq);
@@ -939,7 +943,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
         {
             EmploymentStatus dept = new EmploymentStatus();
             dept.name = statusId.Text;
-            
+
             PostRequest<EmploymentStatus> depReq = new PostRequest<EmploymentStatus>();
             depReq.entity = dept;
 

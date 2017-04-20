@@ -165,7 +165,7 @@ namespace AionHR.Web.UI.Forms
                     CurrentEmployee.Text = id.ToString();
                     FillLeftPanel();
 
-                    FixLoaderUrls(id.ToString());
+                    
                     //employeePanel.Loader.Url = "EmployeePages/EmployeeProfile.aspx?employeeId="+CurrentEmployee.Text;
                     //employeePanel.Loader.LoadContent();
 
@@ -212,6 +212,15 @@ namespace AionHR.Web.UI.Forms
             {
                 if (item.Loader != null)
                     item.Loader.Url = item.Loader.Url + "?employeeId=" + v;
+            }
+        }
+
+        private void FixLoaderUrls(string employeeId,string hireDate)
+        {
+            foreach (var item in panelRecordDetails.Items)
+            {
+                if (item.Loader != null)
+                    item.Loader.Url = item.Loader.Url + "?employeeId=" + employeeId+"&hireDate="+hireDate;
             }
         }
 
@@ -726,7 +735,7 @@ namespace AionHR.Web.UI.Forms
 
                         CurrentEmployee.Text = req.RecordID.ToString();
                         FillLeftPanel();
-                        FixLoaderUrls(req.RecordID.ToString());
+                        FixLoaderUrls(req.RecordID.ToString(), b.hireDate.Value.ToShortDateString());
                         FillLeftPanel();
                         InitCombos(false);
                         FillProfileInfo(b.recordId);
@@ -911,7 +920,7 @@ namespace AionHR.Web.UI.Forms
             InitCombos(false);
             SelectCombos(response.result);
             SetActivated(!response.result.isInactive);
-
+            FixLoaderUrls(r.RecordID, response.result.hireDate.Value.ToShortDateString());
 
         }
 
@@ -928,6 +937,7 @@ namespace AionHR.Web.UI.Forms
                 return;
             }
             EmployeeQuickView forSummary = qv.result;
+            
             if (string.IsNullOrEmpty(forSummary.pictureUrl))
                 forSummary.pictureUrl = "Images/empPhoto.jpg";
             X.Call("FillLeftPanel",

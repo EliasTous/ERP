@@ -35,7 +35,7 @@
         <ext:Hidden ID="rtl" runat="server" />
         <ext:Hidden ID="format" runat="server" />
 
-      
+
         <ext:Store PageSize="30"
             ID="firstStore" OnReadData="firstStore_ReadData"
             runat="server"
@@ -52,12 +52,12 @@
                 <ext:Model ID="Model3" runat="server">
                     <Fields>
 
-              
+
 
                         <ext:ModelField Name="headCount" />
                         <ext:ModelField Name="date" />
-                     
-                        
+
+
 
 
                     </Fields>
@@ -77,38 +77,41 @@
                     Margins="0 0 0 0"
                     Region="Center">
                     <TopBar>
-                        <ext:Toolbar runat="server">
+                        <ext:Toolbar runat="server" Height="60">
                             <Items>
-                                
-                                        <ext:Panel runat="server" Layout="HBoxLayout" ID="filterSet3"  >
-                                            <Items>
-                                                <ext:DateField ID="dateFrom" runat="server" EmptyText="<%$ Resources: DateFrom %>"></ext:DateField>
-                                                <ext:DateField ID="dateTo" runat="server" EmptyText="<%$ Resources: DateTo %>"></ext:DateField>
-                                            
-                                                  <ext:Button runat="server" Text="Go" >
+
+                               
+                                        <ext:Container runat="server">
+                                            <Content>
+                                                <uc:dateRange runat="server" ID="dateRange1" />
+                                            </Content>
+                                        </ext:Container>
+                                <ext:ToolbarFill runat="server" />
+                                        <ext:Button runat="server" Text="<%$Resources:Common, Go %>">
                                             <Listeners>
                                                 <Click Handler="App.firstStore.reload(); App.secondStore.reload();" />
                                             </Listeners>
                                         </ext:Button>
-                                            </Items>
-                                        </ext:Panel>
-                                </Items>
-                                        </ext:Toolbar>
-                          
+                             <ext:ToolbarFill runat="server" />
+                                <ext:ToolbarFill runat="server" />
+                                 <ext:ToolbarFill runat="server" />
+                            </Items>
+                        </ext:Toolbar>
+
                     </TopBar>
                     <Items>
                         <ext:Panel runat="server" Height="200" Layout="FitLayout" Width="1000" AutoScroll="true" ID="toPrint">
                             <Items>
 
-                                 <ext:CartesianChart
+                                <ext:CartesianChart
                                     ID="Chart1"
                                     runat="server"
-                                     StoreID="firstStore"
-                                     Layout="FitLayout"
+                                    StoreID="firstStore"
+                                    Layout="FitLayout"
                                     StyleSpec="background:#fff;"
                                     InsetPadding="40">
-                                 
-                             
+
+
                                     <Axes>
                                         <ext:NumericAxis Title="<%$ Resources: EmployeeCount %>"
                                             Fields="headCount"
@@ -120,7 +123,7 @@
                                         </ext:NumericAxis>
 
                                         <ext:CategoryAxis Title="<%$ Resources: FieldDate %>"
-                                            Position="Bottom" 
+                                            Position="Bottom"
                                             Fields="date"
                                             Grid="true">
                                             <Renderer Handler="var s = moment(label); return s.format(#{format}.value);" />
@@ -147,7 +150,7 @@
                                     </Series>
                                 </ext:CartesianChart>
 
-         
+
                             </Items>
 
                         </ext:Panel>

@@ -15,7 +15,8 @@ namespace AionHR.Model.Reports
         }
 
         public int hiredMonth { get; set; }
-
+        public string HiredMonthString { get;
+            set; }
         public int hiredDay { get; set; }
          public int yearsInService { get; set; }
 

@@ -1,5 +1,7 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="RT102.aspx.cs" Inherits="AionHR.Web.UI.Forms.Reports.RT102" %>
 
+<%@ Register Assembly="DevExpress.Web.v16.2, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web" TagPrefix="dx" %>
+
 <%@ Register Assembly="DevExpress.XtraReports.v16.2.Web, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.XtraReports.Web" TagPrefix="dx" %>
 
 <%@ Register Assembly="Ext.Net" Namespace="Ext.Net" TagPrefix="ext" %>
@@ -37,68 +39,7 @@
         <ext:Hidden ID="rtl" runat="server" />
         <ext:Hidden ID="format" runat="server" />
 
-        <ext:Store PageSize="30"
-            ID="secondStore" OnReadData="secondStore_ReadData"
-            runat="server"
-            RemoteSort="True"
-            RemoteFilter="true">
-            <Proxy>
-                <ext:PageProxy>
-                    <Listeners>
-                        <Exception Handler="Ext.MessageBox.alert('#{textLoadFailed}.value', response.statusText);" />
-                    </Listeners>
-                </ext:PageProxy>
-            </Proxy>
-            <Model>
-                <ext:Model ID="Model1" runat="server">
-                    <Fields>
 
-                        <ext:ModelField Name="name" IsComplex="true" />
-
-                        <ext:ModelField Name="departmentName" />
-                        <ext:ModelField Name="positionName" />
-                        <ext:ModelField Name="branchName" />
-                        <ext:ModelField Name="divisionName" />
-                        <ext:ModelField Name="date" />
-                        <ext:ModelField Name="esName" />
-
-
-                    </Fields>
-                </ext:Model>
-            </Model>
-
-        </ext:Store>
-        <ext:Store PageSize="30"
-            ID="firstStore" OnReadData="firstStore_ReadData"
-            runat="server"
-            RemoteSort="True"
-            RemoteFilter="true">
-            <Proxy>
-                <ext:PageProxy>
-                    <Listeners>
-                        <Exception Handler="Ext.MessageBox.alert('#{textLoadFailed}.value', response.statusText);" />
-                    </Listeners>
-                </ext:PageProxy>
-            </Proxy>
-            <Model>
-                <ext:Model ID="Model3" runat="server">
-                    <Fields>
-
-                        <ext:ModelField Name="name" IsComplex="true" />
-
-                        <ext:ModelField Name="departmentName" />
-                        <ext:ModelField Name="positionName" />
-                        <ext:ModelField Name="branchName" />
-                        
-                        <ext:ModelField Name="date" />
-                        
-
-
-                    </Fields>
-                </ext:Model>
-            </Model>
-
-        </ext:Store>
         <ext:Viewport ID="Viewport1" runat="server" Layout="FitLayout">
 
             <Items>
@@ -111,32 +52,44 @@
                     Margins="0 0 0 0"
                     Region="Center">
                     <TopBar>
-                        <ext:Toolbar runat="server">
-                         
+                        <ext:Toolbar runat="server" Height="60">
+
                             <Items>
-                                
-                                        <ext:Panel runat="server" Layout="HBoxLayout" ID="filterSet3" >
-                                            <Items>
-                                                <ext:DateField ID="dateFrom" runat="server" EmptyText="<%$ Resources: DateFrom %>"></ext:DateField>
-                                                <ext:DateField ID="dateTo" runat="server" EmptyText="<%$ Resources: DateTo %>"></ext:DateField>
-                                            
-                                                  <ext:Button runat="server" Text="Go" AutoPostBack="true" OnClick="Unnamed_Click" >
+                             
+                                        <ext:Container runat="server">
+                                            <Content>
+                                                <uc:dateRange runat="server" ID="dateRange1" />
+                                            </Content>
+                                        </ext:Container>
+
+                                <ext:ToolbarFill runat="server" />
+                                        <ext:Button runat="server" Text="<%$Resources:Common, Go %>">
                                             <Listeners>
-                                                <Click Handler="" />
+                                                <Click Handler="callbackPanel.PerformCallback('1');" />
                                             </Listeners>
                                         </ext:Button>
-                                            </Items>
-                                        </ext:Panel>
-                               
-                                </Items>
-                                        </ext:Toolbar>
-                          
+                         
+                                <ext:ToolbarFill runat="server" />
+                                <ext:ToolbarFill runat="server" />
+                                 <ext:ToolbarFill runat="server" />
+
+                            </Items>
+                        </ext:Toolbar>
+
                     </TopBar>
-                  <Content>
-                                <dx:ASPxWebDocumentViewer ID="ASPxWebDocumentViewer1" runat="server" ></dx:ASPxWebDocumentViewer>
-                            </Content>
+                    <Content>
+
+                        <dx:ASPxCallbackPanel ID="ASPxCallbackPanel1" runat="server" ClientInstanceName="callbackPanel"
+                            Width="100%" OnCallback="ASPxCallbackPanel1_Callback">
+                            <PanelCollection>
+                                <dx:PanelContent runat="server">
+                                    <dx:ASPxWebDocumentViewer ID="ASPxWebDocumentViewer1" runat="server"></dx:ASPxWebDocumentViewer>
+                                </dx:PanelContent>
+                            </PanelCollection>
+                        </dx:ASPxCallbackPanel>
+                    </Content>
                     <Items>
-                     <ext:Label runat="server" Text="fff" Hidden="true" />
+                        <ext:Label runat="server" Text="fff" Hidden="true" />
                     </Items>
                 </ext:Panel>
 

@@ -1,5 +1,7 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="RT801.aspx.cs" Inherits="AionHR.Web.UI.Forms.Reports.RT801" %>
 
+<%@ Register Assembly="DevExpress.Web.v16.2, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web" TagPrefix="dx" %>
+
 <%@ Register Assembly="DevExpress.XtraReports.v16.2.Web, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.XtraReports.Web" TagPrefix="dx" %>
 
 <%@ Register Assembly="Ext.Net" Namespace="Ext.Net" TagPrefix="ext" %>
@@ -46,7 +48,7 @@
         <ext:Hidden ID="format" runat="server" />
 
 
-      
+
         <ext:Viewport ID="Viewport1" runat="server" Layout="FitLayout">
 
             <Items>
@@ -60,28 +62,38 @@
                     Region="Center">
 
                     <TopBar>
-                        <ext:Toolbar runat="server" Height="50" Layout="HBoxLayout" >
+                        <ext:Toolbar runat="server" Height="50" Layout="HBoxLayout">
                             <Items>
-                                
-                                    <ext:Container runat="server" Width="350" MarginSpec="0 0 0 50">
+
+                                <ext:Container runat="server" Width="350" MarginSpec="0 0 0 50">
                                     <Content>
                                         <uc:dateRange runat="server" ID="dateRange1" />
                                     </Content>
                                 </ext:Container>
-                                     <ext:Container runat="server" Width="200">
+                                <ext:Container runat="server" Width="200">
                                     <Content>
                                         <uc:usersCombo runat="server" ID="userCombo1" EnableViewState="true" />
                                     </Content>
                                 </ext:Container>
-                                <ext:Button runat="server" Text="Go" AutoPostBack="true" OnClick="Unnamed_Click">
+                                <ext:Button runat="server" Text="<%$Resources:Common, Go %>" >
+                                     <Listeners>
+                                                <Click Handler="callbackPanel.PerformCallback('1');" />
+                                            </Listeners>
                                 </ext:Button>
-                  
+
                             </Items>
                         </ext:Toolbar>
                     </TopBar>
                     <Content>
-
-                        <dx:ASPxWebDocumentViewer ID="ASPxWebDocumentViewer1" runat="server"></dx:ASPxWebDocumentViewer>
+                        
+                        <dx:ASPxCallbackPanel ID="ASPxCallbackPanel1" runat="server" ClientInstanceName="callbackPanel"
+                            Width="100%" OnCallback="ASPxCallbackPanel1_Callback">
+                            <panelcollection>
+                                <dx:PanelContent runat="server">
+                                    <dx:ASPxWebDocumentViewer ID="ASPxWebDocumentViewer1" runat="server"></dx:ASPxWebDocumentViewer>
+                                </dx:PanelContent>
+                            </panelcollection>
+                        </dx:ASPxCallbackPanel>
 
                     </Content>
                     <Items>
@@ -89,7 +101,7 @@
                             <Items>
 
 
-                             
+
 
                                 <ext:Label runat="server" Text="ggg" Hidden="true" />
                             </Items>
@@ -101,7 +113,7 @@
 
             </Items>
         </ext:Viewport>
-   
+
 
 
 

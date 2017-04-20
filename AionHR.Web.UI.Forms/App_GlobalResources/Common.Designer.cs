@@ -943,6 +943,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Go.
+        /// </summary>
+        internal static string Go {
+            get {
+                return ResourceManager.GetString("Go", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to History.
         /// </summary>
         internal static string History {
@@ -1182,6 +1191,132 @@ namespace Resources {
         internal static string MediaItems {
             get {
                 return ResourceManager.GetString("MediaItems", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to System.
+        /// </summary>
+        internal static string Mod20 {
+            get {
+                return ResourceManager.GetString("Mod20", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Company.
+        /// </summary>
+        internal static string Mod21 {
+            get {
+                return ResourceManager.GetString("Mod21", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Documents.
+        /// </summary>
+        internal static string Mod22 {
+            get {
+                return ResourceManager.GetString("Mod22", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Media.
+        /// </summary>
+        internal static string Mod23 {
+            get {
+                return ResourceManager.GetString("Mod23", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to News.
+        /// </summary>
+        internal static string Mod24 {
+            get {
+                return ResourceManager.GetString("Mod24", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Recruitment.
+        /// </summary>
+        internal static string Mod30 {
+            get {
+                return ResourceManager.GetString("Mod30", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Employees.
+        /// </summary>
+        internal static string Mod31 {
+            get {
+                return ResourceManager.GetString("Mod31", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tasks.
+        /// </summary>
+        internal static string Mod32 {
+            get {
+                return ResourceManager.GetString("Mod32", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Attendance.
+        /// </summary>
+        internal static string Mod41 {
+            get {
+                return ResourceManager.GetString("Mod41", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Leaves.
+        /// </summary>
+        internal static string Mod42 {
+            get {
+                return ResourceManager.GetString("Mod42", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cases.
+        /// </summary>
+        internal static string Mod43 {
+            get {
+                return ResourceManager.GetString("Mod43", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Complaints.
+        /// </summary>
+        internal static string Mod44 {
+            get {
+                return ResourceManager.GetString("Mod44", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Loans.
+        /// </summary>
+        internal static string Mod45 {
+            get {
+                return ResourceManager.GetString("Mod45", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reports.
+        /// </summary>
+        internal static string Mod80 {
+            get {
+                return ResourceManager.GetString("Mod80", resourceCulture);
             }
         }
         
@@ -1555,6 +1690,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Turnover Rate.
+        /// </summary>
+        internal static string RT106 {
+            get {
+                return ResourceManager.GetString("RT106", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Salary History.
         /// </summary>
         internal static string RT201 {
@@ -1587,6 +1731,15 @@ namespace Resources {
         internal static string RT801 {
             get {
                 return ResourceManager.GetString("RT801", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Audit Trail.
+        /// </summary>
+        internal static string RT802 {
+            get {
+                return ResourceManager.GetString("RT802", resourceCulture);
             }
         }
         
@@ -1825,7 +1978,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Edit.
+        ///   Looks up a localized string similar to Add.
         /// </summary>
         internal static string TrType1 {
             get {
@@ -1834,11 +1987,38 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Edit Items.
+        ///   Looks up a localized string similar to Read.
+        /// </summary>
+        internal static string TrType11 {
+            get {
+                return ResourceManager.GetString("TrType11", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Read Multiple.
+        /// </summary>
+        internal static string TrType12 {
+            get {
+                return ResourceManager.GetString("TrType12", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit.
         /// </summary>
         internal static string TrType2 {
             get {
                 return ResourceManager.GetString("TrType2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Send Mail.
+        /// </summary>
+        internal static string TrType21 {
+            get {
+                return ResourceManager.GetString("TrType21", resourceCulture);
             }
         }
         
@@ -1861,29 +2041,11 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Read.
+        ///   Looks up a localized string similar to Add Multiple.
         /// </summary>
         internal static string TrType5 {
             get {
                 return ResourceManager.GetString("TrType5", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Read Items.
-        /// </summary>
-        internal static string TrType6 {
-            get {
-                return ResourceManager.GetString("TrType6", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Send Mail.
-        /// </summary>
-        internal static string TrType7 {
-            get {
-                return ResourceManager.GetString("TrType7", resourceCulture);
             }
         }
         

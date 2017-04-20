@@ -11,6 +11,7 @@ namespace AionHR.Web.UI.Forms.Reports
         public Hirings()
         {
             InitializeComponent();
+           
         }
 
     }

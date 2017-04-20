@@ -96,6 +96,7 @@
     <Compile Include="Messaging\Reports\MonthParameterSet.cs" />
     <Compile Include="Messaging\Reports\ReportCompositeRequest.cs" />
     <Compile Include="Messaging\Reports\ReportParameterSet.cs" />
+    <Compile Include="Messaging\Reports\TransactionTypeParameterSet.cs" />
     <Compile Include="Messaging\Reports\UserParameterSet.cs" />
     <Compile Include="Messaging\RequestBase.cs" />
     <Compile Include="Messaging\StatusResponse.cs" />

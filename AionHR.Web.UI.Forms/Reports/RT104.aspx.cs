@@ -69,7 +69,7 @@ namespace AionHR.Web.UI.Forms.Reports
 
                     format.Text = _systemService.SessionHelper.GetDateformat().ToUpper();
 
-                    Unnamed_Click(null, null);
+                    ASPxCallbackPanel1_Callback(null, null);
                 }
                 catch { }
             }
@@ -149,27 +149,36 @@ namespace AionHR.Web.UI.Forms.Reports
            
         }
 
-   
 
-        protected void Unnamed_Click(object sender, EventArgs e)
+        protected void ASPxCallbackPanel1_Callback(object sender, DevExpress.Web.CallbackEventArgsBase e)
         {
-            ReportCompositeRequest req = GetRequest();
-            ListResponse<AionHR.Model.Reports.RT104> resp = _reportsService.ChildGetAll<AionHR.Model.Reports.RT104>(req);
-            if (!resp.Success)
+            string[] parameters = e.Parameter.Split('|');
+            int pageIndex = Convert.ToInt32(parameters[0]);
+
+            if (pageIndex == 1)
             {
-                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, resp.Summary).Show();
-                return;
+                ReportCompositeRequest req = GetRequest();
+                ListResponse<AionHR.Model.Reports.RT104> resp = _reportsService.ChildGetAll<AionHR.Model.Reports.RT104>(req);
+                if (!resp.Success)
+                {
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    X.Msg.Alert(Resources.Common.Error, resp.Summary).Show();
+                    return;
+                }
+
+                YearsInService y = new YearsInService();
+
+                List<AionHR.Model.Reports.RT104> reordered = resp.Items.Where(x => x.hiredMonth >= DateTime.Now.Month).ToList();
+                reordered.AddRange(resp.Items.Where(x => x.hiredMonth < DateTime.Now.Month).OrderBy(h => h.hiredMonth).ToList());
+                reordered.ForEach(x => x.HiredMonthString = GetGlobalResourceObject("Common", CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(x.hiredMonth)).ToString());
+                y.DataSource = reordered;
+
+
+                ASPxWebDocumentViewer1.DataBind();
+                ASPxWebDocumentViewer1.OpenReport(y);
             }
 
-            YearsInService y = new YearsInService();
-            y.DataSource = resp.Items;
-
-            
-            ASPxWebDocumentViewer1.DataBind();
-            ASPxWebDocumentViewer1.OpenReport(y);
-
-
         }
+     
     }
 }

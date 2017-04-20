@@ -20,7 +20,7 @@
             App.fullName.setDisabled(!status);
             if (!status)
                 App.fullName.setValue(name);
-            else App.fullName.setValue('');
+           
 
         }
     </script>
@@ -317,7 +317,8 @@
                                     </Store>
 
                                     <Listeners>
-                                        <Select Handler="App.fullName.setValue(this.text);" />
+                                        <Select Handler="App.direct.SetFullName();" />
+                                        <FocusLeave Handler=" if(this.value==null|| isNaN(this.value) )SetNameEnabled(true,'');  if(isNaN(this.value)) this.setValue(null);" />
                                     </Listeners>
                                 </ext:ComboBox>
                                 <ext:ComboBox runat="server" ID="languageId" AllowBlank="false"

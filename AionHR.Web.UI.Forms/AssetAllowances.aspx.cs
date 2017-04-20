@@ -429,13 +429,28 @@ namespace AionHR.Web.UI.Forms
             {
                 req.DepartmentId = 0;
             }
+            if (!string.IsNullOrEmpty(aacId.Text) && aacId.Value.ToString() != "0")
+            {
+                req.AcId = Convert.ToInt32(aacId.Value);
 
+
+            }
+            else
+            {
+                req.AcId = 0;
+            }
 
 
             if (!string.IsNullOrEmpty(employeeFilter.Text) && employeeFilter.Value.ToString() != "0")
             {
-                req.EmployeeId = Convert.ToInt32(employeeFilter.Value);
 
+                try {
+                    req.EmployeeId = Convert.ToInt32(employeeFilter.Value);
+                }
+                catch
+                {
+                    req.EmployeeId = 0;
+                }
 
             }
             else
@@ -470,7 +485,7 @@ namespace AionHR.Web.UI.Forms
             request.Size = "50";
             request.StartAt = "1";
             request.SortBy = "firstName";
-
+            
             request.Filter = "";
             ListResponse<AssetAllowance> routers = _employeeService.ChildGetAll<AssetAllowance>(request);
             if (!routers.Success)

@@ -622,10 +622,10 @@
     <value>User</value>
   </data>
   <data name="TrType1" xml:space="preserve">
-    <value>Edit</value>
+    <value>Add</value>
   </data>
   <data name="TrType2" xml:space="preserve">
-    <value>Edit Items</value>
+    <value>Edit</value>
   </data>
   <data name="TrType3" xml:space="preserve">
     <value>Delete</value>
@@ -634,13 +634,13 @@
     <value>Exceute</value>
   </data>
   <data name="TrType5" xml:space="preserve">
+    <value>Add Multiple</value>
+  </data>
+  <data name="TrType11" xml:space="preserve">
     <value>Read</value>
   </data>
-  <data name="TrType6" xml:space="preserve">
-    <value>Read Items</value>
-  </data>
-  <data name="TrType7" xml:space="preserve">
-    <value>Send Mail</value>
+  <data name="TrType12" xml:space="preserve">
+    <value>Read Multiple</value>
   </data>
   <data name="CheckTypes" xml:space="preserve">
     <value>BackgroundCheck Types</value>
@@ -749,5 +749,59 @@
   </data>
   <data name="RT801" xml:space="preserve">
     <value>Sign-in Trail</value>
+  </data>
+  <data name="RT106" xml:space="preserve">
+    <value>Turnover Rate</value>
+  </data>
+  <data name="TrType21" xml:space="preserve">
+    <value>Send Mail</value>
+  </data>
+  <data name="Mod20" xml:space="preserve">
+    <value>System</value>
+  </data>
+  <data name="Mod21" xml:space="preserve">
+    <value>Company</value>
+  </data>
+  <data name="Mod22" xml:space="preserve">
+    <value>Documents</value>
+  </data>
+  <data name="Mod23" xml:space="preserve">
+    <value>Media</value>
+  </data>
+  <data name="Mod24" xml:space="preserve">
+    <value>News</value>
+  </data>
+  <data name="Mod30" xml:space="preserve">
+    <value>Recruitment</value>
+  </data>
+  <data name="Mod31" xml:space="preserve">
+    <value>Employees</value>
+  </data>
+  <data name="Mod32" xml:space="preserve">
+    <value>Tasks</value>
+  </data>
+  <data name="Mod41" xml:space="preserve">
+    <value>Attendance</value>
+  </data>
+  <data name="Mod42" xml:space="preserve">
+    <value>Leaves</value>
+  </data>
+  <data name="Mod43" xml:space="preserve">
+    <value>Cases</value>
+  </data>
+  <data name="Mod44" xml:space="preserve">
+    <value>Complaints</value>
+  </data>
+  <data name="Mod45" xml:space="preserve">
+    <value>Loans</value>
+  </data>
+  <data name="Mod80" xml:space="preserve">
+    <value>Reports</value>
+  </data>
+  <data name="RT802" xml:space="preserve">
+    <value>Audit Trail</value>
+  </data>
+  <data name="Go" xml:space="preserve">
+    <value>Go</value>
   </data>
 </root>

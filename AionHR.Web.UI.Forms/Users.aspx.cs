@@ -157,8 +157,7 @@ namespace AionHR.Web.UI.Forms
                            });
                         employeeId.SetValue(response.result.employeeId);
 
-                        fullName.Text = empResponse.result.name.fullName;
-                        fullName.Enabled = false;
+                        X.Call("SetNameEnabled", false, empResponse.result.name.fullName);
                     }
                     
                    
@@ -286,10 +285,7 @@ namespace AionHR.Web.UI.Forms
             {
                 X.Call("SetNameEnabled", true," ");
             }
-            else
-            {
-                X.Call("SetNameEnabled", false,data[0].fullName);
-            }
+            
             return data;
             //};
 
@@ -456,7 +452,10 @@ namespace AionHR.Web.UI.Forms
             b.recordId = id;
             // Define the object to add or edit as null
             if (employeeId.SelectedItem != null)
+            {
                 b.employeeId = employeeId.SelectedItem.Value;
+                b.fullName = employeeId.SelectedItem.Text;
+            }
             
             if (string.IsNullOrEmpty(id))
             {
@@ -586,6 +585,12 @@ namespace AionHR.Web.UI.Forms
         protected void BasicInfoTab_Load(object sender, EventArgs e)
         {
 
+        }
+
+        [DirectMethod]
+        public void SetFullName()
+        {
+            X.Call("SetNameEnabled", false, employeeId.SelectedItem.Text);
         }
 
    

@@ -70,69 +70,19 @@ namespace AionHR.Web.UI.Forms.Reports
 
                     format.Text = _systemService.SessionHelper.GetDateformat();
                    
-                    FillJobInfo();
+              
                     
-                    cc.Format = format.Text;
-                    Unnamed_Click(null, null);
+                   
+                   
                 }
                 catch { }
             }
 
         }
 
-        private void FillJobInfo()
-        {
-            FillDepartment();
-            FillPosition();
-            FillBranch();
-            FillDivision();
-            
-        }
-        private void FillDepartment()
-        {
-            ListRequest departmentsRequest = new ListRequest();
-            ListResponse<Department> resp = _companyStructureService.ChildGetAll<Department>(departmentsRequest);
-            if (!resp.Success)
-                X.Msg.Alert(Resources.Common.Error, resp.Summary).Show();
-            departmentStore.DataSource = resp.Items;
-            departmentStore.DataBind();
-        }
-        private void FillBranch()
-        {
-            ListRequest branchesRequest = new ListRequest();
-            ListResponse<Branch> resp = _companyStructureService.ChildGetAll<Branch>(branchesRequest);
-            if (!resp.Success)
-                X.Msg.Alert(Resources.Common.Error, resp.Summary).Show();
-            branchStore.DataSource = resp.Items;
-            branchStore.DataBind();
-            
-        }
+     
 
-        private void FillDivision()
-        {
-            ListRequest branchesRequest = new ListRequest();
-            ListResponse<Division> resp = _companyStructureService.ChildGetAll<Division>(branchesRequest);
-            if (!resp.Success)
-                X.Msg.Alert(Resources.Common.Error, resp.Summary).Show();
-            divisionStore.DataSource = resp.Items;
-            divisionStore.DataBind();
-        }
-        private void FillPosition()
-        {
-            ListRequest branchesRequest = new ListRequest();
-            ListResponse<Model.Company.Structure.Position> resp = _companyStructureService.ChildGetAll<Model.Company.Structure.Position>(branchesRequest);
-            if (!resp.Success)
-                X.Msg.Alert(Resources.Common.Error, resp.Summary).Show();
-            positionStore.DataSource = resp.Items;
-            positionStore.DataBind();
-        }
-
-        private void ActivateFirstFilterSet()
-        {
-            filterSet1.Hidden = false;
-
-
-        }
+    
 
 
         /// <summary>
@@ -183,58 +133,7 @@ namespace AionHR.Web.UI.Forms.Reports
             else return "1";
         }
 
-        private JobInfoParameterSet GetJobInfo()
-        {
-            JobInfoParameterSet p = new JobInfoParameterSet();
-            if (!string.IsNullOrEmpty(branchId.Text) && branchId.Value.ToString() != "0")
-            {
-                p.BranchId = Convert.ToInt32(branchId.Value);
-                
-
-
-            }
-            else
-            {
-                p.BranchId = 0;
-               
-            }
-
-            if (!string.IsNullOrEmpty(departmentId.Text) && departmentId.Value.ToString() != "0")
-            {
-                p.DepartmentId = Convert.ToInt32(departmentId.Value);
-               
-
-            }
-            else
-            {
-                p.DepartmentId = 0;
-               
-            }
-            if (!string.IsNullOrEmpty(positionId.Text) && positionId.Value.ToString() != "0")
-            {
-                p.PositionId = Convert.ToInt32(positionId.Value);
-
-
-            }
-            else
-            {
-                p.PositionId = 0;
-
-            }
-            if (!string.IsNullOrEmpty(divisionId.Text) && divisionId.Value.ToString() != "0")
-            {
-                p.DivisionId = Convert.ToInt32(divisionId.Value);
-
-
-            }
-            else
-            {
-                p.DivisionId = 0;
-
-            }
-
-            return p;
-        }
+      
         private ReportCompositeRequest GetRequest()
         {
             ReportCompositeRequest req = new ReportCompositeRequest();
@@ -242,17 +141,8 @@ namespace AionHR.Web.UI.Forms.Reports
             req.Size = "1000";
             req.StartAt = "1";
             req.SortBy = "firstName";
-            JobInfoParameterSet p = GetJobInfo();
-           
-            req.Add(p);
-
-            ActiveStatusParameterSet s = new ActiveStatusParameterSet();
-            int bulk;
-            if (!int.TryParse(inactivePref.Value.ToString(), out bulk))
-                s.active = 1;
-            else
-                s.active = bulk;
-            req.Add(s);
+            req.Add(jobInfo1.GetJobInfo());
+            req.Add(activeStatus.GetActiveStatus());
             return req;
         }
         protected void firstStore_ReadData(object sender, StoreReadDataEventArgs e)
@@ -297,46 +187,33 @@ namespace AionHR.Web.UI.Forms.Reports
             
         }
 
-        protected void Unnamed_Event(Object sender, DirectEventArgs e)
+     
+        protected void ASPxCallbackPanel1_Callback(object sender, DevExpress.Web.CallbackEventArgsBase e)
         {
-            ReportCompositeRequest req = GetRequest();
-            ListResponse<AionHR.Model.Reports.RT201> resp = _reportsService.ChildGetAll<AionHR.Model.Reports.RT201>(req);
-            if (!resp.Success)
+            string[] parameters = e.Parameter.Split('|');
+            int pageIndex = Convert.ToInt32(parameters[0]);
+
+            if (pageIndex == 1)
             {
-                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, resp.Summary).Show();
-                return;
+                ReportCompositeRequest req = GetRequest();
+                ListResponse<AionHR.Model.Reports.RT201> resp = _reportsService.ChildGetAll<AionHR.Model.Reports.RT201>(req);
+                if (!resp.Success)
+                {
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    X.Msg.Alert(Resources.Common.Error, resp.Summary).Show();
+                    return;
+                }
+
+                SalaryHistory h = new SalaryHistory();
+                h.DataSource = resp.Items;
+
+
+
+                h.CreateDocument();
+                ASPxWebDocumentViewer1.OpenReport(h);
+                ASPxWebDocumentViewer1.DataBind();
             }
-
-            SalaryHistory h = new SalaryHistory();
-            h.DataSource = resp.Items;
-            
-
-
-            h.CreateDocument();
-            ASPxWebDocumentViewer1.OpenReport(h);
-            ASPxWebDocumentViewer1.DataBind();
         }
-
-        protected void Unnamed_Click(object sender, EventArgs e)
-        {
-            ReportCompositeRequest req = GetRequest();
-            ListResponse<AionHR.Model.Reports.RT201> resp = _reportsService.ChildGetAll<AionHR.Model.Reports.RT201>(req);
-            if (!resp.Success)
-            {
-                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, resp.Summary).Show();
-                return;
-            }
-
-            SalaryHistory h = new SalaryHistory();
-            h.DataSource = resp.Items;
-
-
-
-            h.CreateDocument();
-            ASPxWebDocumentViewer1.OpenReport(h);
-            ASPxWebDocumentViewer1.DataBind();
-        }
+     
     }
 }

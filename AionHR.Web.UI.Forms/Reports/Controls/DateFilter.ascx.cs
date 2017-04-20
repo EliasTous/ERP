@@ -12,7 +12,7 @@ namespace AionHR.Web.UI.Forms.Reports.Controls
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            date.SelectedDate = DateTime.Now;
         }
 
         public DateParameterSet GetDate()

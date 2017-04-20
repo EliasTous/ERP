@@ -69,9 +69,8 @@ namespace AionHR.Web.UI.Forms.Reports
 
 
                     format.Text = _systemService.SessionHelper.GetDateformat().ToUpper();
-                    filterSet3.Hidden = false;
-                    dateFrom.SelectedDate = DateTime.Today;
-                    dateTo.SelectedDate = DateTime.Today;
+                   
+                    
                     
                 }
                 catch { }
@@ -131,11 +130,9 @@ namespace AionHR.Web.UI.Forms.Reports
             req.Size = "1000";
             req.StartAt = "1";
             req.SortBy = "departmentName";
-            DateRangeParameterSet r = new DateRangeParameterSet();
-            r.DateFrom = dateFrom.SelectedDate;
-            r.DateTo = dateTo.SelectedDate;
+            req.Add(dateRange1.GetRange());
 
-            req.Add(r);
+            
             return req;
         }
 

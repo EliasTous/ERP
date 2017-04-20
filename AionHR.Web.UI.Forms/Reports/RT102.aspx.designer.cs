@@ -85,42 +85,6 @@ namespace AionHR.Web.UI.Forms.Reports {
         protected global::Ext.Net.Hidden format;
         
         /// <summary>
-        /// secondStore control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Store secondStore;
-        
-        /// <summary>
-        /// Model1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Model Model1;
-        
-        /// <summary>
-        /// firstStore control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Store firstStore;
-        
-        /// <summary>
-        /// Model3 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Model Model3;
-        
-        /// <summary>
         /// Viewport1 control.
         /// </summary>
         /// <remarks>
@@ -139,31 +103,22 @@ namespace AionHR.Web.UI.Forms.Reports {
         protected global::Ext.Net.Panel Center;
         
         /// <summary>
-        /// filterSet3 control.
+        /// dateRange1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Panel filterSet3;
+        protected global::AionHR.Web.UI.Forms.Reports.DateRangeFilter dateRange1;
         
         /// <summary>
-        /// dateFrom control.
+        /// ASPxCallbackPanel1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.DateField dateFrom;
-        
-        /// <summary>
-        /// dateTo control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.DateField dateTo;
+        protected global::DevExpress.Web.ASPxCallbackPanel ASPxCallbackPanel1;
         
         /// <summary>
         /// ASPxWebDocumentViewer1 control.

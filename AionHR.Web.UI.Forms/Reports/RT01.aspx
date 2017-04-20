@@ -86,7 +86,7 @@
                                 <ext:Container runat="server">
                                     <Content>
                                        
-                                <uc:daterange  ID="dateRange" runat="server" />
+                               
                       
                                     </Content>
                                 </ext:Container>
