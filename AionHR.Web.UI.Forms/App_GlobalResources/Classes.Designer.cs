@@ -61,15 +61,6 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Leave Type.
-        /// </summary>
-        internal static string Clas42000 {
-            get {
-                return ResourceManager.GetString("Clas42000", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Folders.
         /// </summary>
         internal static string Class20000 {
@@ -669,6 +660,15 @@ namespace Resources {
         internal static string Class41072 {
             get {
                 return ResourceManager.GetString("Class41072", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Leave Type.
+        /// </summary>
+        internal static string Class42000 {
+            get {
+                return ResourceManager.GetString("Class42000", resourceCulture);
             }
         }
         
