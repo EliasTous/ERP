@@ -100,8 +100,8 @@ public class SalaryChanges : DevExpress.XtraReports.UI.XtraReport
             this.PageInfo = new DevExpress.XtraReports.UI.XRControlStyle();
             this.DataField = new DevExpress.XtraReports.UI.XRControlStyle();
             this.GroupHeader1 = new DevExpress.XtraReports.UI.GroupHeaderBand();
-            this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
             this.xrLabel2 = new DevExpress.XtraReports.UI.XRLabel();
+            this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.xrRichText2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrRichText1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).BeginInit();
@@ -126,10 +126,10 @@ public class SalaryChanges : DevExpress.XtraReports.UI.XtraReport
             // 
             this.xrRichText2.Dpi = 100F;
             this.xrRichText2.Font = new System.Drawing.Font("Arial", 9F);
-            this.xrRichText2.LocationFloat = new DevExpress.Utils.PointFloat(468.4153F, 2.000014F);
+            this.xrRichText2.LocationFloat = new DevExpress.Utils.PointFloat(438.2068F, 2.000014F);
             this.xrRichText2.Name = "xrRichText2";
             this.xrRichText2.SerializableRtfString = resources.GetString("xrRichText2.SerializableRtfString");
-            this.xrRichText2.SizeF = new System.Drawing.SizeF(102.2848F, 23F);
+            this.xrRichText2.SizeF = new System.Drawing.SizeF(122.0768F, 23F);
             // 
             // xrLabel13
             // 
@@ -145,10 +145,10 @@ public class SalaryChanges : DevExpress.XtraReports.UI.XtraReport
             // 
             this.xrRichText1.Dpi = 100F;
             this.xrRichText1.Font = new System.Drawing.Font("Arial", 9F);
-            this.xrRichText1.LocationFloat = new DevExpress.Utils.PointFloat(570.7001F, 2.000014F);
+            this.xrRichText1.LocationFloat = new DevExpress.Utils.PointFloat(560.2835F, 2.000014F);
             this.xrRichText1.Name = "xrRichText1";
             this.xrRichText1.SerializableRtfString = resources.GetString("xrRichText1.SerializableRtfString");
-            this.xrRichText1.SizeF = new System.Drawing.SizeF(104.1725F, 23F);
+            this.xrRichText1.SizeF = new System.Drawing.SizeF(114.5891F, 23F);
             // 
             // xrTable1
             // 
@@ -157,7 +157,7 @@ public class SalaryChanges : DevExpress.XtraReports.UI.XtraReport
             this.xrTable1.Name = "xrTable1";
             this.xrTable1.Rows.AddRange(new DevExpress.XtraReports.UI.XRTableRow[] {
             this.xrTableRow1});
-            this.xrTable1.SizeF = new System.Drawing.SizeF(468.4152F, 23.00001F);
+            this.xrTable1.SizeF = new System.Drawing.SizeF(438.2068F, 23.00001F);
             // 
             // xrTableRow1
             // 
@@ -176,7 +176,7 @@ public class SalaryChanges : DevExpress.XtraReports.UI.XtraReport
             this.xrTableCell1.Dpi = 100F;
             this.xrTableCell1.Name = "xrTableCell1";
             this.xrTableCell1.Text = "xrTableCell1";
-            this.xrTableCell1.Weight = 2.4017550119868512D;
+            this.xrTableCell1.Weight = 1.5944315493964625D;
             // 
             // xrTableCell2
             // 
@@ -185,7 +185,7 @@ public class SalaryChanges : DevExpress.XtraReports.UI.XtraReport
             this.xrTableCell2.Dpi = 100F;
             this.xrTableCell2.Name = "xrTableCell2";
             this.xrTableCell2.Text = "xrTableCell2";
-            this.xrTableCell2.Weight = 1.0649349957051144D;
+            this.xrTableCell2.Weight = 1.337678732784529D;
             // 
             // xrTableCell5
             // 
@@ -194,7 +194,7 @@ public class SalaryChanges : DevExpress.XtraReports.UI.XtraReport
             this.xrTableCell5.Dpi = 100F;
             this.xrTableCell5.Name = "xrTableCell5";
             this.xrTableCell5.Text = "xrTableCell5";
-            this.xrTableCell5.Weight = 1.4392012315279372D;
+            this.xrTableCell5.Weight = 1.6573971161337853D;
             // 
             // TopMargin
             // 
@@ -216,10 +216,10 @@ public class SalaryChanges : DevExpress.XtraReports.UI.XtraReport
             // 
             this.xrLabel4.Dpi = 100F;
             this.xrLabel4.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Bold);
-            this.xrLabel4.LocationFloat = new DevExpress.Utils.PointFloat(468.4153F, 0F);
+            this.xrLabel4.LocationFloat = new DevExpress.Utils.PointFloat(438.2068F, 0F);
             this.xrLabel4.Name = "xrLabel4";
             this.xrLabel4.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel4.SizeF = new System.Drawing.SizeF(102.2848F, 36.00001F);
+            this.xrLabel4.SizeF = new System.Drawing.SizeF(122.0767F, 36.00002F);
             this.xrLabel4.StyleName = "FieldCaption";
             this.xrLabel4.StylePriority.UseFont = false;
             this.xrLabel4.StylePriority.UseTextAlignment = false;
@@ -230,10 +230,10 @@ public class SalaryChanges : DevExpress.XtraReports.UI.XtraReport
             // 
             this.xrLabel5.Dpi = 100F;
             this.xrLabel5.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Bold);
-            this.xrLabel5.LocationFloat = new DevExpress.Utils.PointFloat(229.3199F, 0F);
+            this.xrLabel5.LocationFloat = new DevExpress.Utils.PointFloat(152.2366F, 3.178914E-05F);
             this.xrLabel5.Name = "xrLabel5";
             this.xrLabel5.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel5.SizeF = new System.Drawing.SizeF(101.6801F, 36F);
+            this.xrLabel5.SizeF = new System.Drawing.SizeF(127.7217F, 36F);
             this.xrLabel5.StyleName = "FieldCaption";
             this.xrLabel5.StylePriority.UseFont = false;
             this.xrLabel5.StylePriority.UseTextAlignment = false;
@@ -247,7 +247,7 @@ public class SalaryChanges : DevExpress.XtraReports.UI.XtraReport
             this.xrLabel7.LocationFloat = new DevExpress.Utils.PointFloat(0F, 0F);
             this.xrLabel7.Name = "xrLabel7";
             this.xrLabel7.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel7.SizeF = new System.Drawing.SizeF(229.3199F, 36F);
+            this.xrLabel7.SizeF = new System.Drawing.SizeF(152.2366F, 36F);
             this.xrLabel7.StyleName = "FieldCaption";
             this.xrLabel7.StylePriority.UseFont = false;
             this.xrLabel7.StylePriority.UseTextAlignment = false;
@@ -272,10 +272,10 @@ public class SalaryChanges : DevExpress.XtraReports.UI.XtraReport
             // 
             this.xrLabel11.Dpi = 100F;
             this.xrLabel11.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Bold);
-            this.xrLabel11.LocationFloat = new DevExpress.Utils.PointFloat(570.7001F, 0F);
+            this.xrLabel11.LocationFloat = new DevExpress.Utils.PointFloat(560.2835F, 0F);
             this.xrLabel11.Name = "xrLabel11";
             this.xrLabel11.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel11.SizeF = new System.Drawing.SizeF(104.1725F, 36F);
+            this.xrLabel11.SizeF = new System.Drawing.SizeF(114.5891F, 36F);
             this.xrLabel11.StyleName = "FieldCaption";
             this.xrLabel11.StylePriority.UseFont = false;
             this.xrLabel11.StylePriority.UseTextAlignment = false;
@@ -383,28 +383,28 @@ public class SalaryChanges : DevExpress.XtraReports.UI.XtraReport
             this.xrLabel5,
             this.xrLabel8});
             this.GroupHeader1.Dpi = 100F;
-            this.GroupHeader1.HeightF = 36.00002F;
+            this.GroupHeader1.HeightF = 36.00003F;
             this.GroupHeader1.Name = "GroupHeader1";
             this.GroupHeader1.RepeatEveryPage = true;
-            // 
-            // objectDataSource1
-            // 
-            this.objectDataSource1.DataSource = typeof(AionHR.Model.Reports.RT202);
-            this.objectDataSource1.Name = "objectDataSource1";
             // 
             // xrLabel2
             // 
             this.xrLabel2.Dpi = 100F;
             this.xrLabel2.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Bold);
-            this.xrLabel2.LocationFloat = new DevExpress.Utils.PointFloat(331F, 0F);
+            this.xrLabel2.LocationFloat = new DevExpress.Utils.PointFloat(279.9583F, 0F);
             this.xrLabel2.Name = "xrLabel2";
             this.xrLabel2.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel2.SizeF = new System.Drawing.SizeF(137.4152F, 36F);
+            this.xrLabel2.SizeF = new System.Drawing.SizeF(158.2485F, 36F);
             this.xrLabel2.StyleName = "FieldCaption";
             this.xrLabel2.StylePriority.UseFont = false;
             this.xrLabel2.StylePriority.UseTextAlignment = false;
             this.xrLabel2.Text = "department";
             this.xrLabel2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
+            // 
+            // objectDataSource1
+            // 
+            this.objectDataSource1.DataSource = typeof(AionHR.Model.Reports.RT202);
+            this.objectDataSource1.Name = "objectDataSource1";
             // 
             // SalaryChanges
             // 

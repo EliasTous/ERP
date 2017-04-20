@@ -190,7 +190,7 @@ namespace AionHR.Web.UI.Forms.Reports
                     X.Msg.Alert(Resources.Common.Error, resp.Summary).Show();
                     return;
                 }
-                resp.Items.ForEach(x => { x.TypeString = GetGlobalResourceObject("Common", "TrType" + x.type.ToString()).ToString(); });
+                resp.Items.ForEach(x => { x.TypeString = GetGlobalResourceObject("Common", "TrType" + x.type.ToString()).ToString(); x.ClassIdString = GetGlobalResourceObject("Classes", "Class" + x.classId.ToString()).ToString();  });
                 AuditTrail h = new AuditTrail();
                 h.DataSource = resp.Items;
 

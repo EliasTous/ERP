@@ -1,0 +1,393 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Clas42000" xml:space="preserve">
+    <value>Leave Type</value>
+  </data>
+  <data name="Class20000" xml:space="preserve">
+    <value>Folders</value>
+  </data>
+  <data name="Class20010" xml:space="preserve">
+    <value>Users</value>
+  </data>
+  <data name="Class20011" xml:space="preserve">
+    <value>Sign-in</value>
+  </data>
+  <data name="Class20020" xml:space="preserve">
+    <value>Currencies</value>
+  </data>
+  <data name="Class20030" xml:space="preserve">
+    <value>Defaults</value>
+  </data>
+  <data name="Class20040" xml:space="preserve">
+    <value>Nationalities</value>
+  </data>
+  <data name="Class20050" xml:space="preserve">
+    <value>Attachments</value>
+  </data>
+  <data name="Class20060" xml:space="preserve">
+    <value>Transaction Log</value>
+  </data>
+  <data name="Class20070" xml:space="preserve">
+    <value>Address Book</value>
+  </data>
+  <data name="Class20080" xml:space="preserve">
+    <value>Document Type</value>
+  </data>
+  <data name="Class20081" xml:space="preserve">
+    <value>Right To Work</value>
+  </data>
+  <data name="Class20090" xml:space="preserve">
+    <value>Auto Alert</value>
+  </data>
+  <data name="Class21010" xml:space="preserve">
+    <value>Divisions</value>
+  </data>
+  <data name="Class21020" xml:space="preserve">
+    <value>Branches</value>
+  </data>
+  <data name="Class21030" xml:space="preserve">
+    <value>Positions</value>
+  </data>
+  <data name="Class21040" xml:space="preserve">
+    <value>Departments</value>
+  </data>
+  <data name="Class22010" xml:space="preserve">
+    <value>DMDT</value>
+  </data>
+  <data name="Class22020" xml:space="preserve">
+    <value>DMDO</value>
+  </data>
+  <data name="Class23010" xml:space="preserve">
+    <value>MGMC</value>
+  </data>
+  <data name="Class23020" xml:space="preserve">
+    <value>MGME</value>
+  </data>
+  <data name="Class24010" xml:space="preserve">
+    <value>CNNW</value>
+  </data>
+  <data name="Class31000" xml:space="preserve">
+    <value>EPEM</value>
+  </data>
+  <data name="Class31010" xml:space="preserve">
+    <value>EPAC</value>
+  </data>
+  <data name="Class31011" xml:space="preserve">
+    <value>EPAA</value>
+  </data>
+  <data name="Class31020" xml:space="preserve">
+    <value>EPBC</value>
+  </data>
+  <data name="Class31021" xml:space="preserve">
+    <value>EPCT</value>
+  </data>
+  <data name="Class31030" xml:space="preserve">
+    <value>EPBT</value>
+  </data>
+  <data name="Class31031" xml:space="preserve">
+    <value>EPBO</value>
+  </data>
+  <data name="Class31040" xml:space="preserve">
+    <value>EPCL</value>
+  </data>
+  <data name="Class31041" xml:space="preserve">
+    <value>EPCE</value>
+  </data>
+  <data name="Class31050" xml:space="preserve">
+    <value>EPDT</value>
+  </data>
+  <data name="Class31051" xml:space="preserve">
+    <value>EPDO</value>
+  </data>
+  <data name="Class31060" xml:space="preserve">
+    <value>Salary Change Reason</value>
+  </data>
+  <data name="Class31061" xml:space="preserve">
+    <value>Entitlements And Deductions</value>
+  </data>
+  <data name="Class31062" xml:space="preserve">
+    <value>Salary</value>
+  </data>
+  <data name="Class31063" xml:space="preserve">
+    <value>Salary Detail</value>
+  </data>
+  <data name="Class31070" xml:space="preserve">
+    <value>Status Type</value>
+  </data>
+  <data name="Class31071" xml:space="preserve">
+    <value>Employment</value>
+  </data>
+  <data name="Class31080" xml:space="preserve">
+    <value>EPJI</value>
+  </data>
+  <data name="Class31090" xml:space="preserve">
+    <value>EPNO</value>
+  </data>
+  <data name="Class31100" xml:space="preserve">
+    <value>EPRW</value>
+  </data>
+  <data name="Class31110" xml:space="preserve">
+    <value>Sponsor Address</value>
+  </data>
+  <data name="Class31111" xml:space="preserve">
+    <value>Sponsor History</value>
+  </data>
+  <data name="Class31120" xml:space="preserve">
+    <value>Relation Type</value>
+  </data>
+  <data name="Class31121" xml:space="preserve">
+    <value>Emergency Contact</value>
+  </data>
+  <data name="Class31122" xml:space="preserve">
+    <value>Contact</value>
+  </data>
+  <data name="Class31130" xml:space="preserve">
+    <value>Termination Reason</value>
+  </data>
+  <data name="Class31131" xml:space="preserve">
+    <value>Termination</value>
+  </data>
+  <data name="Class31140" xml:space="preserve">
+    <value>Notice Period</value>
+  </data>
+  <data name="Class31141" xml:space="preserve">
+    <value>Recruitment Info</value>
+  </data>
+  <data name="Class32000" xml:space="preserve">
+    <value>Task Type</value>
+  </data>
+  <data name="Class32010" xml:space="preserve">
+    <value>Task</value>
+  </data>
+  <data name="Class32020" xml:space="preserve">
+    <value>Task Comments</value>
+  </data>
+  <data name="Class41000" xml:space="preserve">
+    <value>TABM</value>
+  </data>
+  <data name="Class41010" xml:space="preserve">
+    <value>TARO</value>
+  </data>
+  <data name="Class41020" xml:space="preserve">
+    <value>TAGF</value>
+  </data>
+  <data name="Class41030" xml:space="preserve">
+    <value>TADT</value>
+  </data>
+  <data name="Class41040" xml:space="preserve">
+    <value>TADE</value>
+  </data>
+  <data name="Class41050" xml:space="preserve">
+    <value>Schedule</value>
+  </data>
+  <data name="Class41051" xml:space="preserve">
+    <value>Sched Days</value>
+  </data>
+  <data name="Class41052" xml:space="preserve">
+    <value>Sched Breaks</value>
+  </data>
+  <data name="Class41060" xml:space="preserve">
+    <value>Punches</value>
+  </data>
+  <data name="Class41061" xml:space="preserve">
+    <value>Shifts</value>
+  </data>
+  <data name="Class41062" xml:space="preserve">
+    <value>Days</value>
+  </data>
+  <data name="Class41070" xml:space="preserve">
+    <value>Header</value>
+  </data>
+  <data name="Class41071" xml:space="preserve">
+    <value>Years</value>
+  </data>
+  <data name="Class41072" xml:space="preserve">
+    <value>Days</value>
+  </data>
+  <data name="Class42010" xml:space="preserve">
+    <value>Schedule</value>
+  </data>
+  <data name="Class42012" xml:space="preserve">
+    <value>Schedule Period</value>
+  </data>
+  <data name="Class42020" xml:space="preserve">
+    <value>Leave</value>
+  </data>
+  <data name="Class43000" xml:space="preserve">
+    <value>Case</value>
+  </data>
+  <data name="Class43001" xml:space="preserve">
+    <value>Case Comments</value>
+  </data>
+  <data name="Class44000" xml:space="preserve">
+    <value>ECCO</value>
+  </data>
+  <data name="Class45000" xml:space="preserve">
+    <value>Loan Type</value>
+  </data>
+  <data name="Class45010" xml:space="preserve">
+    <value>Request</value>
+  </data>
+  <data name="Class45011" xml:space="preserve">
+    <value>Comments</value>
+  </data>
+  <data name="Class80101" xml:space="preserve">
+    <value>Age Breakdown</value>
+  </data>
+  <data name="Class80102" xml:space="preserve">
+    <value>Hiring And Termination</value>
+  </data>
+  <data name="Class80103" xml:space="preserve">
+    <value>Head Count</value>
+  </data>
+  <data name="Class80104" xml:space="preserve">
+    <value>Years In Service</value>
+  </data>
+  <data name="Class80105" xml:space="preserve">
+    <value>Job History</value>
+  </data>
+  <data name="Class80106" xml:space="preserve">
+    <value>Turnover Rate</value>
+  </data>
+  <data name="Class80201" xml:space="preserve">
+    <value>Salary History</value>
+  </data>
+  <data name="Class80202" xml:space="preserve">
+    <value>Last Salary Change</value>
+  </data>
+  <data name="Class80203" xml:space="preserve">
+    <value>Point-in-time Salary</value>
+  </data>
+  <data name="Class80301" xml:space="preserve">
+    <value>RT301</value>
+  </data>
+  <data name="Class80601" xml:space="preserve">
+    <value>RT601</value>
+  </data>
+  <data name="Class80801" xml:space="preserve">
+    <value>Sign-in Trail</value>
+  </data>
+  <data name="Class80802" xml:space="preserve">
+    <value>Audit Trail</value>
+  </data>
+  <data name="Class81100" xml:space="preserve">
+    <value>Dashboard</value>
+  </data>
+</root>

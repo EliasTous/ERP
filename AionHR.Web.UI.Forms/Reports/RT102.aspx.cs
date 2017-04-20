@@ -120,16 +120,16 @@ namespace AionHR.Web.UI.Forms.Reports
                 this.Viewport1.RTL = true;
                 this.rtl.Text = rtl.ToString();
                 //Culture = "ar";
-                //UICulture = "ar-AR";
+                //UICulture = "ar-SA";
                 //Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("ar");
-                //Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("ar-AR");
+                //Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("ar-SA");
             }
             else
             {
                 //Culture = "en";
-                //UICulture = "en-EN";
+                //UICulture = "en-US";
                 //Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en");
-                //Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("en-EN");
+                //Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("en-US");
             }
         }
 
@@ -177,7 +177,7 @@ namespace AionHR.Web.UI.Forms.Reports
 
                 Hirings h = new Hirings();
                 h.DataSource = resp.Items;
-               
+              
                // h.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;
                 //ReportCompositeRequest req2 = GetRequest();
                 //ListResponse<AionHR.Model.Reports.RT102B> resp2 = _reportsService.ChildGetAll<AionHR.Model.Reports.RT102B>(req);

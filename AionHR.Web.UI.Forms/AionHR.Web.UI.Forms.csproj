@@ -375,6 +375,16 @@
     <Compile Include="AllowanceTypes.aspx.designer.cs">
       <DependentUpon>AllowanceTypes.aspx</DependentUpon>
     </Compile>
+    <Compile Include="App_GlobalResources\Classes.ar.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Classes.ar.resx</DependentUpon>
+    </Compile>
+    <Compile Include="App_GlobalResources\Classes.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Classes.resx</DependentUpon>
+    </Compile>
     <Compile Include="App_GlobalResources\Common.ar.designer.cs">
       <DependentUpon>Common.ar.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -1271,6 +1281,14 @@
     <Content Include="App_LocalResources\SystemAlerts.aspx.resx" />
     <Content Include="EmployeePages\App_LocalResources\Hire.aspx.resx" />
     <Content Include="App_LocalResources\MainDashboard.aspx.resx" />
+    <Content Include="App_GlobalResources\Classes.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>Classes.Designer.cs</LastGenOutput>
+    </Content>
+    <Content Include="App_GlobalResources\Classes.ar.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>Classes.ar.designer.cs</LastGenOutput>
+    </Content>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <Content Include="Reports\App_LocalResources\RT202.aspx.resx" />
     <EmbeddedResource Include="Reports\RT201.aspx.resx">

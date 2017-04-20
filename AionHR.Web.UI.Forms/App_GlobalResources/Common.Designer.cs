@@ -1645,7 +1645,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Employee Ages.
+        ///   Looks up a localized string similar to Ages Breakdown.
         /// </summary>
         internal static string RT01 {
             get {
