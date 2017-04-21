@@ -23,6 +23,7 @@ using AionHR.Model.Company.Structure;
 using AionHR.Model.System;
 using AionHR.Model.Attendance;
 using AionHR.Services.Messaging.Reports;
+using Reports;
 
 namespace AionHR.Web.UI.Forms.Reports
 {
@@ -151,6 +152,7 @@ namespace AionHR.Web.UI.Forms.Reports
 
         private void FillReport()
         {
+            
             ReportCompositeRequest req = GetRequest();
             ListResponse<AionHR.Model.Reports.RT106> resp = _reportsService.ChildGetAll<AionHR.Model.Reports.RT106>(req);
             if (!resp.Success)

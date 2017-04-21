@@ -1,4 +1,4 @@
-﻿namespace AionHR.Web.UI.Forms.Reports
+﻿namespace Reports
 {
     partial class Terminations
     {

@@ -7,71 +7,74 @@ using DevExpress.XtraReports.UI;
 /// <summary>
 /// Summary description for PointInTimeSalary
 /// </summary>
-public class PointInTimeSalary : DevExpress.XtraReports.UI.XtraReport
+/// 
+namespace Reports
 {
-    private DevExpress.XtraReports.UI.DetailBand Detail;
-    private DevExpress.XtraReports.UI.TopMarginBand TopMargin;
-    private DevExpress.XtraReports.UI.BottomMarginBand BottomMargin;
-    private DevExpress.DataAccess.ObjectBinding.ObjectDataSource objectDataSource1;
-    private GroupHeaderBand groupHeaderBand1;
-    private XRLabel xrLabel6;
-    private XRLabel xrLabel2;
-    private XRLabel xrLabel4;
-    private XRLabel xrLabel3;
-    private GroupHeaderBand groupHeaderBand2;
-    private XRLine xrLine1;
-    private XRLine xrLine2;
-    private PageFooterBand pageFooterBand1;
-    private XRPageInfo xrPageInfo1;
-    private XRPageInfo xrPageInfo2;
-    private ReportHeaderBand reportHeaderBand1;
-    private XRLabel xrLabel13;
-    private XRControlStyle Title;
-    private XRControlStyle FieldCaption;
-    private XRControlStyle PageInfo;
-    private XRControlStyle DataField;
-    private XRTable xrTable1;
-    private XRTableRow xrTableRow1;
-    private XRTableCell xrTableCell1;
-    private XRTableCell xrTableCell2;
-    private XRTableCell xrTableCell4;
-    private XRRichText xrRichText1;
-    private XRControlStyle Odd;
-
-    /// <summary>
-    /// Required designer variable.
-    /// </summary>
-    private System.ComponentModel.IContainer components = null;
-
-    public PointInTimeSalary()
+    public class PointInTimeSalary : DevExpress.XtraReports.UI.XtraReport
     {
-        InitializeComponent();
-        //
-        // TODO: Add constructor logic here
-        //
-    }
+        private DevExpress.XtraReports.UI.DetailBand Detail;
+        private DevExpress.XtraReports.UI.TopMarginBand TopMargin;
+        private DevExpress.XtraReports.UI.BottomMarginBand BottomMargin;
+        private DevExpress.DataAccess.ObjectBinding.ObjectDataSource objectDataSource1;
+        private GroupHeaderBand groupHeaderBand1;
+        private XRLabel xrLabel6;
+        private XRLabel xrLabel2;
+        private XRLabel xrLabel4;
+        private XRLabel xrLabel3;
+        private GroupHeaderBand groupHeaderBand2;
+        private XRLine xrLine1;
+        private XRLine xrLine2;
+        private PageFooterBand pageFooterBand1;
+        private XRPageInfo xrPageInfo1;
+        private XRPageInfo xrPageInfo2;
+        private ReportHeaderBand reportHeaderBand1;
+        private XRLabel xrLabel13;
+        private XRControlStyle Title;
+        private XRControlStyle FieldCaption;
+        private XRControlStyle PageInfo;
+        private XRControlStyle DataField;
+        private XRTable xrTable1;
+        private XRTableRow xrTableRow1;
+        private XRTableCell xrTableCell1;
+        private XRTableCell xrTableCell2;
+        private XRTableCell xrTableCell4;
+        private XRRichText xrRichText1;
+        private XRControlStyle Odd;
 
-    /// <summary> 
-    /// Clean up any resources being used.
-    /// </summary>
-    /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing && (components != null))
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        public PointInTimeSalary()
         {
-            components.Dispose();
+            InitializeComponent();
+            //
+            // TODO: Add constructor logic here
+            //
         }
-        base.Dispose(disposing);
-    }
 
-    #region Designer generated code
+        /// <summary> 
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
 
-    /// <summary>
-    /// Required method for Designer support - do not modify
-    /// the contents of this method with the code editor.
-    /// </summary>
-    private void InitializeComponent()
-    {
+        #region Designer generated code
+
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PointInTimeSalary));
             this.Detail = new DevExpress.XtraReports.UI.DetailBand();
@@ -409,7 +412,8 @@ public class PointInTimeSalary : DevExpress.XtraReports.UI.XtraReport
             ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
 
-    }
+        }
 
-    #endregion
+        #endregion
+    }
 }

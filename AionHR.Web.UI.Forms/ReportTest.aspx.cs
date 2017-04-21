@@ -3,6 +3,7 @@ using AionHR.Services.Messaging;
 using AionHR.Services.Messaging.Reports;
 using AionHR.Web.UI.Forms.Reports;
 using Microsoft.Practices.ServiceLocation;
+using Reports;
 using System;
 using System.Collections.Generic;
 using System.Linq;

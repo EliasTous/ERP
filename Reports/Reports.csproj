@@ -68,9 +68,6 @@
     <Compile Include="JobHistory.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="OutsideReport.cs">
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="PointInTimeSalary.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -125,15 +122,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="JobHistory.resx">
       <DependentUpon>JobHistory.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="OutsideReport.ar.resx">
-      <DependentUpon>OutsideReport.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="OutsideReport.en.resx">
-      <DependentUpon>OutsideReport.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="OutsideReport.resx">
-      <DependentUpon>OutsideReport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PointInTimeSalary.resx">
       <DependentUpon>PointInTimeSalary.cs</DependentUpon>

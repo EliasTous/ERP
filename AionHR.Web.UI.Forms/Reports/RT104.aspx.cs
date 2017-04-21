@@ -23,6 +23,7 @@ using AionHR.Model.Company.Structure;
 using AionHR.Model.System;
 using AionHR.Model.Attendance;
 using AionHR.Services.Messaging.Reports;
+using Reports;
 
 namespace AionHR.Web.UI.Forms.Reports
 {

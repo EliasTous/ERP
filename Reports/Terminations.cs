@@ -4,7 +4,7 @@ using System.Collections;
 using System.ComponentModel;
 using DevExpress.XtraReports.UI;
 
-namespace AionHR.Web.UI.Forms.Reports
+namespace Reports
 {
     public partial class Terminations : DevExpress.XtraReports.UI.XtraReport
     {

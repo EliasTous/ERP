@@ -24,6 +24,7 @@ using AionHR.Model.System;
 using AionHR.Model.Attendance;
 using AionHR.Services.Messaging.Reports;
 using System.Threading;
+using Reports;
 
 namespace AionHR.Web.UI.Forms.Reports
 {
@@ -119,17 +120,17 @@ namespace AionHR.Web.UI.Forms.Reports
                 this.ResourceManager1.RTL = true;
                 this.Viewport1.RTL = true;
                 this.rtl.Text = rtl.ToString();
-                //Culture = "ar";
-                //UICulture = "ar-SA";
-                //Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("ar");
-                //Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("ar-SA");
+                Culture = "ar";
+                UICulture = "ar-SA";
+                Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("ar");
+                Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("ar-AE");
             }
             else
             {
-                //Culture = "en";
-                //UICulture = "en-US";
-                //Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en");
-                //Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("en-US");
+                Culture = "en";
+                UICulture = "en-US";
+                Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en");
+                Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("en-US");
             }
         }
 

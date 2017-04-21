@@ -7,66 +7,69 @@ using DevExpress.XtraReports.UI;
 /// <summary>
 /// Summary description for SignInTrail
 /// </summary>
-public class SignInTrail : DevExpress.XtraReports.UI.XtraReport
+/// 
+namespace Reports
 {
-    private DevExpress.XtraReports.UI.DetailBand Detail;
-    private DevExpress.XtraReports.UI.TopMarginBand TopMargin;
-    private DevExpress.XtraReports.UI.BottomMarginBand BottomMargin;
-    private XRTable xrTable1;
-    private XRTableRow xrTableRow1;
-    private XRTableCell xrTableCell1;
-    private XRTableCell xrTableCell3;
-    private DevExpress.DataAccess.ObjectBinding.ObjectDataSource objectDataSource1;
-    private GroupHeaderBand groupHeaderBand1;
-    private XRLabel xrLabel1;
-    private XRLabel xrLabel2;
-    private GroupHeaderBand groupHeaderBand2;
-    private XRLine xrLine1;
-    private XRLine xrLine2;
-    private PageFooterBand pageFooterBand1;
-    private XRPageInfo xrPageInfo1;
-    private XRPageInfo xrPageInfo2;
-    private ReportHeaderBand reportHeaderBand1;
-    private XRLabel xrLabel5;
-    private XRControlStyle Title;
-    private XRControlStyle FieldCaption;
-    private XRControlStyle PageInfo;
-    private XRControlStyle DataField;
-
-    /// <summary>
-    /// Required designer variable.
-    /// </summary>
-    private System.ComponentModel.IContainer components = null;
-
-    public SignInTrail()
+    public class SignInTrail : DevExpress.XtraReports.UI.XtraReport
     {
-        InitializeComponent();
-        //
-        // TODO: Add constructor logic here
-        //
-    }
+        private DevExpress.XtraReports.UI.DetailBand Detail;
+        private DevExpress.XtraReports.UI.TopMarginBand TopMargin;
+        private DevExpress.XtraReports.UI.BottomMarginBand BottomMargin;
+        private XRTable xrTable1;
+        private XRTableRow xrTableRow1;
+        private XRTableCell xrTableCell1;
+        private XRTableCell xrTableCell3;
+        private DevExpress.DataAccess.ObjectBinding.ObjectDataSource objectDataSource1;
+        private GroupHeaderBand groupHeaderBand1;
+        private XRLabel xrLabel1;
+        private XRLabel xrLabel2;
+        private GroupHeaderBand groupHeaderBand2;
+        private XRLine xrLine1;
+        private XRLine xrLine2;
+        private PageFooterBand pageFooterBand1;
+        private XRPageInfo xrPageInfo1;
+        private XRPageInfo xrPageInfo2;
+        private ReportHeaderBand reportHeaderBand1;
+        private XRLabel xrLabel5;
+        private XRControlStyle Title;
+        private XRControlStyle FieldCaption;
+        private XRControlStyle PageInfo;
+        private XRControlStyle DataField;
 
-    /// <summary> 
-    /// Clean up any resources being used.
-    /// </summary>
-    /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing && (components != null))
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        public SignInTrail()
         {
-            components.Dispose();
+            InitializeComponent();
+            //
+            // TODO: Add constructor logic here
+            //
         }
-        base.Dispose(disposing);
-    }
 
-    #region Designer generated code
+        /// <summary> 
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
 
-    /// <summary>
-    /// Required method for Designer support - do not modify
-    /// the contents of this method with the code editor.
-    /// </summary>
-    private void InitializeComponent()
-    {
+        #region Designer generated code
+
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
             this.components = new System.ComponentModel.Container();
             this.Detail = new DevExpress.XtraReports.UI.DetailBand();
             this.TopMargin = new DevExpress.XtraReports.UI.TopMarginBand();
@@ -330,7 +333,8 @@ public class SignInTrail : DevExpress.XtraReports.UI.XtraReport
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
 
-    }
+        }
 
-    #endregion
+        #endregion
+    }
 }

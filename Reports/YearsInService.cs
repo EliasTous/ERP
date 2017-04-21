@@ -8,63 +8,66 @@ using System.Globalization;
 /// <summary>
 /// Summary description for YearsInService
 /// </summary>
-public class YearsInService : DevExpress.XtraReports.UI.XtraReport
+/// 
+namespace Reports
 {
-    private DevExpress.XtraReports.UI.DetailBand Detail;
-    private DevExpress.XtraReports.UI.TopMarginBand TopMargin;
-    private DevExpress.XtraReports.UI.BottomMarginBand BottomMargin;
-    private DevExpress.DataAccess.ObjectBinding.ObjectDataSource objectDataSource1;
-    private GroupHeaderBand groupHeaderBand1;
-    private PageFooterBand pageFooterBand1;
-    private XRPageInfo xrPageInfo1;
-    private XRPageInfo xrPageInfo2;
-    private ReportHeaderBand reportHeaderBand1;
-    private XRLabel xrLabel9;
-    private XRControlStyle Title;
-    private XRControlStyle FieldCaption;
-    private XRControlStyle PageInfo;
-    private XRControlStyle DataField;
-    private XRRichText xrRichText1;
-    private XRLabel xrLabel1;
-    private XRLabel xrLabel2;
-    private XRLine xrLine1;
-
-    /// <summary>
-    /// Required designer variable.
-    /// </summary>
-    private System.ComponentModel.IContainer components = null;
-
-    public YearsInService()
+    public class YearsInService : DevExpress.XtraReports.UI.XtraReport
     {
-        InitializeComponent();
-        //
-        // TODO: Add constructor logic here
-        //
+        private DevExpress.XtraReports.UI.DetailBand Detail;
+        private DevExpress.XtraReports.UI.TopMarginBand TopMargin;
+        private DevExpress.XtraReports.UI.BottomMarginBand BottomMargin;
+        private DevExpress.DataAccess.ObjectBinding.ObjectDataSource objectDataSource1;
+        private GroupHeaderBand groupHeaderBand1;
+        private PageFooterBand pageFooterBand1;
+        private XRPageInfo xrPageInfo1;
+        private XRPageInfo xrPageInfo2;
+        private ReportHeaderBand reportHeaderBand1;
+        private XRLabel xrLabel9;
+        private XRControlStyle Title;
+        private XRControlStyle FieldCaption;
+        private XRControlStyle PageInfo;
+        private XRControlStyle DataField;
+        private XRRichText xrRichText1;
+        private XRLabel xrLabel1;
+        private XRLabel xrLabel2;
+        private XRLine xrLine1;
 
-     
-    }
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
 
-    /// <summary> 
-    /// Clean up any resources being used.
-    /// </summary>
-    /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing && (components != null))
+        public YearsInService()
         {
-            components.Dispose();
+            InitializeComponent();
+            //
+            // TODO: Add constructor logic here
+            //
+
+
         }
-        base.Dispose(disposing);
-    }
 
-    #region Designer generated code
+        /// <summary> 
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
 
-    /// <summary>
-    /// Required method for Designer support - do not modify
-    /// the contents of this method with the code editor.
-    /// </summary>
-    private void InitializeComponent()
-    {
+        #region Designer generated code
+
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(YearsInService));
             this.Detail = new DevExpress.XtraReports.UI.DetailBand();
@@ -288,13 +291,14 @@ public class YearsInService : DevExpress.XtraReports.UI.XtraReport
             ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
 
-    }
+        }
 
-    #endregion
+        #endregion
 
-    private void YearsInService_DataSourceRowChanged(object sender, DataSourceRowEventArgs e)
-    {
-        
-        
+        private void YearsInService_DataSourceRowChanged(object sender, DataSourceRowEventArgs e)
+        {
+
+
+        }
     }
 }

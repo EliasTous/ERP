@@ -7,71 +7,74 @@ using DevExpress.XtraReports.UI;
 /// <summary>
 /// Summary description for SalaryChanges
 /// </summary>
-public class SalaryChanges : DevExpress.XtraReports.UI.XtraReport
+/// 
+namespace Reports
 {
-    private DevExpress.XtraReports.UI.DetailBand Detail;
-    private DevExpress.XtraReports.UI.TopMarginBand TopMargin;
-    private DevExpress.XtraReports.UI.BottomMarginBand BottomMargin;
-    private DevExpress.DataAccess.ObjectBinding.ObjectDataSource objectDataSource1;
-    private XRLabel xrLabel4;
-    private XRLabel xrLabel5;
-    private XRLabel xrLabel7;
-    private XRLabel xrLabel8;
-    private XRLabel xrLabel11;
-    private PageFooterBand pageFooterBand1;
-    private XRPageInfo xrPageInfo1;
-    private XRPageInfo xrPageInfo2;
-    private ReportHeaderBand reportHeaderBand1;
-    private XRLabel xrLabel23;
-    private XRControlStyle Title;
-    private XRControlStyle FieldCaption;
-    private XRControlStyle PageInfo;
-    private XRControlStyle DataField;
-    private XRTable xrTable1;
-    private XRTableRow xrTableRow1;
-    private XRTableCell xrTableCell1;
-    private XRTableCell xrTableCell2;
-    private XRTableCell xrTableCell5;
-    private XRRichText xrRichText2;
-    private XRLabel xrLabel13;
-    private XRRichText xrRichText1;
-    private GroupHeaderBand GroupHeader1;
-    private XRLabel xrLabel2;
-
-    /// <summary>
-    /// Required designer variable.
-    /// </summary>
-    private System.ComponentModel.IContainer components = null;
-
-    public SalaryChanges()
+    public class SalaryChanges : DevExpress.XtraReports.UI.XtraReport
     {
-        InitializeComponent();
-        //
-        // TODO: Add constructor logic here
-        //
-    }
+        private DevExpress.XtraReports.UI.DetailBand Detail;
+        private DevExpress.XtraReports.UI.TopMarginBand TopMargin;
+        private DevExpress.XtraReports.UI.BottomMarginBand BottomMargin;
+        private DevExpress.DataAccess.ObjectBinding.ObjectDataSource objectDataSource1;
+        private XRLabel xrLabel4;
+        private XRLabel xrLabel5;
+        private XRLabel xrLabel7;
+        private XRLabel xrLabel8;
+        private XRLabel xrLabel11;
+        private PageFooterBand pageFooterBand1;
+        private XRPageInfo xrPageInfo1;
+        private XRPageInfo xrPageInfo2;
+        private ReportHeaderBand reportHeaderBand1;
+        private XRLabel xrLabel23;
+        private XRControlStyle Title;
+        private XRControlStyle FieldCaption;
+        private XRControlStyle PageInfo;
+        private XRControlStyle DataField;
+        private XRTable xrTable1;
+        private XRTableRow xrTableRow1;
+        private XRTableCell xrTableCell1;
+        private XRTableCell xrTableCell2;
+        private XRTableCell xrTableCell5;
+        private XRRichText xrRichText2;
+        private XRLabel xrLabel13;
+        private XRRichText xrRichText1;
+        private GroupHeaderBand GroupHeader1;
+        private XRLabel xrLabel2;
 
-    /// <summary> 
-    /// Clean up any resources being used.
-    /// </summary>
-    /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing && (components != null))
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        public SalaryChanges()
         {
-            components.Dispose();
+            InitializeComponent();
+            //
+            // TODO: Add constructor logic here
+            //
         }
-        base.Dispose(disposing);
-    }
 
-    #region Designer generated code
+        /// <summary> 
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
 
-    /// <summary>
-    /// Required method for Designer support - do not modify
-    /// the contents of this method with the code editor.
-    /// </summary>
-    private void InitializeComponent()
-    {
+        #region Designer generated code
+
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SalaryChanges));
             this.Detail = new DevExpress.XtraReports.UI.DetailBand();
@@ -431,10 +434,11 @@ public class SalaryChanges : DevExpress.XtraReports.UI.XtraReport
             ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
 
+        }
+
+        #endregion
+
+
+
     }
-
-    #endregion
-
-
-    
 }

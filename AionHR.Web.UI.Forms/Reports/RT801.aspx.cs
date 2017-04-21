@@ -25,6 +25,7 @@ using AionHR.Model.Attendance;
 using AionHR.Services.Messaging.Reports;
 using DevExpress.XtraReports.Web;
 using DevExpress.XtraPrinting.Localization;
+using Reports;
 
 namespace AionHR.Web.UI.Forms.Reports
 {

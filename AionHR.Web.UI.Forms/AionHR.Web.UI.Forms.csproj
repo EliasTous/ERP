@@ -577,12 +577,6 @@
     <Compile Include="Reports\Controls\UserComboFilter.ascx.designer.cs">
       <DependentUpon>UserComboFilter.ascx</DependentUpon>
     </Compile>
-    <Compile Include="Reports\Hirings.ar.resx.cs">
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Reports\Hirings.ar.resx.designer.cs">
-      <DependentUpon>Hirings.ar.resx.cs</DependentUpon>
-    </Compile>
     <Compile Include="Reports\RT01.aspx.cs">
       <DependentUpon>RT01.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

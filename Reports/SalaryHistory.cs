@@ -7,7 +7,7 @@ using System.Resources;
 
 using System.Reflection;
 
-namespace AionHR.Web.UI.Forms.Reports
+namespace Reports
 {
     public partial class SalaryHistory : DevExpress.XtraReports.UI.XtraReport
     {
