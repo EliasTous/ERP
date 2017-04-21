@@ -94,6 +94,8 @@ namespace AionHR.Web.UI.Forms
 
             int dayId = Convert.ToInt32(e.ExtraParams["dayId"]);
             int employeeId = Convert.ToInt32(e.ExtraParams["employeeId"]);
+            CurrentDay.Text = dayId.ToString();
+            CurrentEmployee.Text = employeeId.ToString();
             string type = e.ExtraParams["type"];
             switch (type)
             {
@@ -143,7 +145,36 @@ namespace AionHR.Web.UI.Forms
             }
         }
 
+        protected void PoPuPShift(object sender, DirectEventArgs e)
+        {
 
+
+         
+            string type = e.ExtraParams["type"];
+            string cIn = e.ExtraParams["checkedIn"];
+            string cOut = e.ExtraParams["checkedOut"];
+            string day = CurrentDay.Text;
+            string emp = CurrentEmployee.Text;
+            string id = e.ExtraParams["shiftId"];
+            switch (type)
+            {
+                case "imgEdit":
+                    //Step 1 : get the object from the Web Service 
+                    recordId.Text = id;
+                    shiftDayId.Text = day;
+                    shiftEmpId.Text = emp;
+                    checkIn.Text = cIn;
+                    checkOut.Text = cOut;
+                    EditShiftWindow.Show();
+
+
+                    break;
+                default:
+                    break;
+            }
+
+
+        }
 
 
         /// <summary>
@@ -439,6 +470,138 @@ namespace AionHR.Web.UI.Forms
         protected void attendanceShiftStore_ReadData(object sender, StoreReadDataEventArgs e)
         {
 
+        }
+
+        protected void SaveShift(object sender, DirectEventArgs e)
+        {
+
+
+            //Getting the id to check if it is an Add or an edit as they are managed within the same form.
+            string id = e.ExtraParams["recordId"];
+            string day = e.ExtraParams["dayId"];
+            string emp = e.ExtraParams["EmployeeId"];
+            
+
+            string obj = e.ExtraParams["values"];
+            AttendanceShift b = JsonConvert.DeserializeObject<AttendanceShift>(obj);
+
+            b.recordId = id;
+            b.dayId = day;
+            b.employeeId = emp;
+            // Define the object to add or edit as null
+
+            if (string.IsNullOrEmpty(id))
+            {
+
+                try
+                {
+                    //New Mode
+                    //Step 1 : Fill The object and insert in the store 
+                    PostRequest<AttendanceShift> request = new PostRequest<AttendanceShift>();
+                    request.entity = b;
+                    PostResponse<AttendanceShift> r = _timeAttendanceService.ChildAddOrUpdate<AttendanceShift>(request);
+                    b.recordId = r.recordId;
+
+                    //check if the insert failed
+                    if (!r.Success)//it maybe be another condition
+                    {
+                        //Show an error saving...
+                        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                        X.Msg.Alert(Resources.Common.Error, r.Summary).Show();
+                        return;
+                    }
+                    else
+                    {
+
+                        //Add this record to the store 
+                        this.attendanceShiftStore.Insert(0, b);
+
+                        //Display successful notification
+                        Notification.Show(new NotificationConfig
+                        {
+                            Title = Resources.Common.Notification,
+                            Icon = Icon.Information,
+                            Html = Resources.Common.RecordSavingSucc
+                        });
+
+                        this.EditShiftWindow.Close();
+                        RowSelectionModel sm = this.GridPanel1.GetSelectionModel() as RowSelectionModel;
+                        sm.DeselectAll();
+                        sm.Select(b.recordId.ToString());
+
+
+
+                    }
+                }
+                catch (Exception ex)
+                {
+                    //Error exception displaying a messsage box
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorSavingRecord).Show();
+                }
+
+
+            }
+            else
+            {
+                //Update Mode
+
+                try
+                {
+                    int index = Convert.ToInt32(id);//getting the id of the record
+                    PostRequest<AttendanceShift> request = new PostRequest<AttendanceShift>();
+                    request.entity = b;
+                    PostResponse<AttendanceShift> r = _timeAttendanceService.ChildAddOrUpdate<AttendanceShift>(request);                      //Step 1 Selecting the object or building up the object for update purpose
+
+                    //Step 2 : saving to store
+
+                    //Step 3 :  Check if request fails
+                    if (!r.Success)//it maybe another check
+                    {
+                        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                        X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorUpdatingRecord).Show();
+                        return;
+                    }
+                    else
+                    {
+
+
+                        ModelProxy record = this.attendanceShiftStore.GetById(index);
+                        
+                        EditShiftForm.UpdateRecord(record);
+                        record.Commit();
+                        Notification.Show(new NotificationConfig
+                        {
+                            Title = Resources.Common.Notification,
+                            Icon = Icon.Information,
+                            Html = Resources.Common.RecordUpdatedSucc
+                        });
+                        this.EditShiftWindow.Close();
+
+
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorUpdatingRecord).Show();
+                }
+            }
+        }
+
+
+        protected void AddShift(object sender, DirectEventArgs e)
+        {
+
+            //Reset all values of the relative object
+
+            EditShiftForm.Reset();
+            shiftDayId.Text = CurrentDay.Text;
+            shiftEmpId.Text = CurrentEmployee.Text;
+            this.EditShiftWindow.Title = Resources.Common.AddNewRecord;
+          
+            this.EditShiftWindow.Show();
         }
     }
 }

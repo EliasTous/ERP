@@ -120,4 +120,19 @@
   <data name="xrLabel1.Text" xml:space="preserve">
     <value>Employee Name</value>
   </data>
+  <data name="xrLabel15.Text" xml:space="preserve">
+    <value>Hiring</value>
+  </data>
+  <data name="xrLabel2.Text" xml:space="preserve">
+    <value>Department</value>
+  </data>
+  <data name="xrLabel3.Text" xml:space="preserve">
+    <value>Position</value>
+  </data>
+  <data name="xrLabel4.Text" xml:space="preserve">
+    <value>Branch</value>
+  </data>
+  <data name="xrLabel5.Text" xml:space="preserve">
+    <value>Hire Date</value>
+  </data>
 </root>

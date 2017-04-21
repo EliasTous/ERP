@@ -58,7 +58,6 @@
     <Compile Include="AuditTrail.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Class1.cs" />
     <Compile Include="Hirings.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -108,33 +107,87 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="AuditTrail.ar.resx">
+      <DependentUpon>AuditTrail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AuditTrail.en.resx">
+      <DependentUpon>AuditTrail.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AuditTrail.resx">
       <DependentUpon>AuditTrail.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Hirings.resx">
       <DependentUpon>Hirings.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="JobHistory.ar.resx">
+      <DependentUpon>JobHistory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="JobHistory.en.resx">
+      <DependentUpon>JobHistory.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="JobHistory.resx">
       <DependentUpon>JobHistory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PointInTimeSalary.ar.resx">
+      <DependentUpon>PointInTimeSalary.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PointInTimeSalary.en.resx">
+      <DependentUpon>PointInTimeSalary.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PointInTimeSalary.resx">
       <DependentUpon>PointInTimeSalary.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="SalaryChanges.ar.resx">
+      <DependentUpon>SalaryChanges.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SalaryChanges.en.resx">
+      <DependentUpon>SalaryChanges.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SalaryChanges.resx">
       <DependentUpon>SalaryChanges.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SalaryHistory.ar.resx">
+      <DependentUpon>SalaryHistory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SalaryHistory.en.resx">
+      <DependentUpon>SalaryHistory.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SalaryHistory.resx">
       <DependentUpon>SalaryHistory.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="SignInTrail.ar.resx">
+      <DependentUpon>SignInTrail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SignInTrail.en.resx">
+      <DependentUpon>SignInTrail.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SignInTrail.resx">
       <DependentUpon>SignInTrail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Terminations.ar.resx">
+      <DependentUpon>Terminations.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Terminations.en.resx">
+      <DependentUpon>Terminations.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Terminations.resx">
       <DependentUpon>Terminations.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="TurnoverRate.ar.resx">
+      <DependentUpon>TurnoverRate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TurnoverRate.en.resx">
+      <DependentUpon>TurnoverRate.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="TurnoverRate.resx">
       <DependentUpon>TurnoverRate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="YearsInService.ar.resx">
+      <DependentUpon>YearsInService.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="YearsInService.en.resx">
+      <DependentUpon>YearsInService.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="YearsInService.resx">
       <DependentUpon>YearsInService.cs</DependentUpon>

@@ -71,3 +71,22 @@ var enterKeyPressSearchHandler = function (el, event) {
         App.Store1.reload();
     }
 };
+function validateFrom(s) {
+
+    d = s.split(':'); if (d[0] > 23) return false; if (d[1] > 59) return false; return true;
+}
+
+function validateTo(curr, prev) {
+    if (!validateFrom(curr))
+        return false;
+    var currHours = curr.split(':')[0];
+    var currMins = curr.split(':')[1];
+    var prevHours = prev.split(':')[0];
+    var prevMins = prev.split(':')[1];
+
+    if (currHours < prevHours)
+        return false;
+    if (currHours == prevHours && currMins <= prevMins)
+        return false;
+    return true;
+}

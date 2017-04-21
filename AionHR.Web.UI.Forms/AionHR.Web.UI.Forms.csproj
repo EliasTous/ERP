@@ -1283,6 +1283,10 @@
       <Generator>GlobalResourceProxyGenerator</Generator>
       <LastGenOutput>Classes.ar.designer.cs</LastGenOutput>
     </Content>
+    <Content Include="App_LocalResources\CompanyDocumentTypes.aspx.resx" />
+    <Content Include="App_LocalResources\CompanyRightToWorks.aspx.resx" />
+    <Content Include="App_LocalResources\Tasks.aspx.resx" />
+    <Content Include="App_LocalResources\TaskTypes.aspx.resx" />
     <EmbeddedResource Include="Properties\licenses.licx" />
     <Content Include="Reports\App_LocalResources\RT202.aspx.resx" />
     <EmbeddedResource Include="Reports\RT201.aspx.resx">
