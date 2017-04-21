@@ -108,12 +108,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Hirings.ar.resx">
-      <DependentUpon>Hirings.cs</DependentUpon>
-    </Content>
-    <Content Include="Hirings.en.resx">
-      <DependentUpon>Hirings.cs</DependentUpon>
-    </Content>
     <EmbeddedResource Include="AuditTrail.resx">
       <DependentUpon>AuditTrail.cs</DependentUpon>
     </EmbeddedResource>
@@ -145,6 +139,14 @@
     <EmbeddedResource Include="YearsInService.resx">
       <DependentUpon>YearsInService.cs</DependentUpon>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Hirings.ar.resx">
+      <DependentUpon>Hirings.cs</DependentUpon>
+    </Content>
+    <Content Include="Hirings.en.resx">
+      <DependentUpon>Hirings.cs</DependentUpon>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
