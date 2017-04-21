@@ -165,6 +165,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     street2.Text = entity.addressId.street2;
                     postalCode.Text = entity.addressId.postalCode;
                     city.Text = entity.addressId.city;
+                    ecaddressId.Text = entity.addressId.recordId;
 
 
                     this.EditEmergencyContactWindow.Title = Resources.Common.EditWindowsTitle;
@@ -213,6 +214,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     costreet2.Text = entity.addressId.street2;
                     copostalCode.Text = entity.addressId.postalCode;
                     cocity.Text = entity.addressId.city;
+                    coaddressId.Text = entity.addressId.recordId;
 
                     
 
@@ -412,10 +414,12 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             EmployeeContact b = JsonConvert.DeserializeObject<EmployeeContact>(obj,settings);
             b.employeeId = Convert.ToInt32(CurrentEmployee.Text);
             b.recordId = id;
+           
             // Define the object to add or edit as null
             b.rtName = rtId.SelectedItem.Text;
 
             b.addressId = new AddressBook() { street1 = costreet1.Text, street2 = costreet2.Text, city = cocity.Text, postalCode = copostalCode.Text, countryId = b.naId  ,countryName = conaId.SelectedItem.Text};
+            b.addressId.recordId = coaddressId.Text;
             b.employeeId = Convert.ToInt32(CurrentEmployee.Text);
             if (string.IsNullOrEmpty(id))
             {
@@ -449,7 +453,8 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                         {
                             Title = Resources.Common.Notification,
                             Icon = Icon.Information,
-                            Html = Resources.Common.RecordSavingSucc
+                            Html = Resources.Common.RecordSavingSucc,
+                            HideDelay = 250
                         });
 
                         this.EditContactWindow.Close();
@@ -506,7 +511,8 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                         {
                             Title = Resources.Common.Notification,
                             Icon = Icon.Information,
-                            Html = Resources.Common.RecordUpdatedSucc
+                            Html = Resources.Common.RecordUpdatedSucc,
+                            HideDelay = 250
                         });
                         this.EditContactWindow.Close();
 
@@ -541,6 +547,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             b.rtName = rtId.SelectedItem.Text;
             b.addressId = new AddressBook() { street1 = street1.Text, street2 = street2.Text, city = city.Text, postalCode = postalCode.Text, countryId = b.naId, countryName = ecnaId.SelectedItem.Text };
             b.employeeId = Convert.ToInt32(CurrentEmployee.Text);
+            b.addressId.recordId = ecaddressId.Text;
             if (string.IsNullOrEmpty(id))
             {
 
@@ -573,7 +580,8 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                         {
                             Title = Resources.Common.Notification,
                             Icon = Icon.Information,
-                            Html = Resources.Common.RecordSavingSucc
+                            Html = Resources.Common.RecordSavingSucc,
+                            HideDelay = 250
                         });
 
                         this.EditEmergencyContactWindow.Close();
@@ -631,6 +639,8 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                             Title = Resources.Common.Notification,
                             Icon = Icon.Information,
                             Html = Resources.Common.RecordUpdatedSucc
+                            , HideDelay=250
+                       
                         });
                         this.EditEmergencyContactWindow.Close();
 

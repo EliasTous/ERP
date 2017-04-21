@@ -24,6 +24,7 @@ using AionHR.Model.System;
 using AionHR.Model.Attendance;
 using AionHR.Services.Messaging.Reports;
 using Reports;
+using System.Threading;
 
 namespace AionHR.Web.UI.Forms.Reports
 {
@@ -120,6 +121,17 @@ namespace AionHR.Web.UI.Forms.Reports
                 this.ResourceManager1.RTL = true;
                 this.Viewport1.RTL = true;
                 this.rtl.Text = rtl.ToString();
+                Culture = "ar";
+                UICulture = "ar-SA";
+                Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("ar");
+                Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("ar-AE");
+            }
+            else
+            {
+                Culture = "en";
+                UICulture = "en-US";
+                Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en");
+                Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("en-US");
             }
         }
 
@@ -163,6 +175,9 @@ namespace AionHR.Web.UI.Forms.Reports
             }
 
             TurnoverRate y = new TurnoverRate();
+            y.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;
+            y.RightToLeftLayout = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeftLayout.Yes : DevExpress.XtraReports.UI.RightToLeftLayout.No;
+
             resp.Items.ForEach(x => { x.MonthString = CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(x.month); x.month = x.month - 1; x.rate = x.rate / 100; });
             y.DataSource = resp.Items;
 

@@ -26,6 +26,7 @@ using AionHR.Services.Messaging.Reports;
 using DevExpress.XtraReports.Web;
 using DevExpress.XtraPrinting.Localization;
 using Reports;
+using System.Threading;
 
 namespace AionHR.Web.UI.Forms.Reports
 {
@@ -71,7 +72,7 @@ namespace AionHR.Web.UI.Forms.Reports
 
                     dateRange1.Clear();
                     format.Text = _systemService.SessionHelper.GetDateformat();
-                    ASPxCallbackPanel1_Callback(null, null);
+                    FillReport();
 
 
                 }
@@ -122,6 +123,17 @@ namespace AionHR.Web.UI.Forms.Reports
                 this.ResourceManager1.RTL = true;
                 this.Viewport1.RTL = true;
                 this.rtl.Text = rtl.ToString();
+                Culture = "ar";
+                UICulture = "ar-SA";
+                Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("ar");
+                Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("ar-SA");
+            }
+            else
+            {
+                Culture = "en";
+                UICulture = "en-US";
+                Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en");
+                Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("en-US");
             }
         }
 
@@ -174,6 +186,27 @@ namespace AionHR.Web.UI.Forms.Reports
             return users.Items;
         }
 
+        private void FillReport()
+        {
+
+            ReportCompositeRequest req = GetRequest();
+            ListResponse<AionHR.Model.Reports.RT801> resp = _reportsService.ChildGetAll<AionHR.Model.Reports.RT801>(req);
+            if (!resp.Success)
+            {
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, resp.Summary).Show();
+                return;
+            }
+
+            SignInTrail h = new SignInTrail();
+            h.DataSource = resp.Items;
+
+
+            h.CreateDocument();
+            ASPxWebDocumentViewer1.OpenReport(h);
+            ASPxWebDocumentViewer1.DataBind();
+        }
+
         protected void ASPxCallbackPanel1_Callback(object sender, DevExpress.Web.CallbackEventArgsBase e)
         {
             string[] parameters = e.Parameter.Split('|');
@@ -181,22 +214,7 @@ namespace AionHR.Web.UI.Forms.Reports
 
             if (pageIndex == 1)
             {
-                ReportCompositeRequest req = GetRequest();
-                ListResponse<AionHR.Model.Reports.RT801> resp = _reportsService.ChildGetAll<AionHR.Model.Reports.RT801>(req);
-                if (!resp.Success)
-                {
-                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.Error, resp.Summary).Show();
-                    return;
-                }
-
-                SignInTrail h = new SignInTrail();
-                h.DataSource = resp.Items;
-
-
-                h.CreateDocument();
-                ASPxWebDocumentViewer1.OpenReport(h);
-                ASPxWebDocumentViewer1.DataBind();
+                FillReport();
             }
         }
      

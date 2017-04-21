@@ -431,6 +431,7 @@
                                                 <ext:InputMask Mask="9999999?999" />
                                             </Plugins>
                                             </ext:TextField>
+                                         <ext:TextField runat="server" Name="coaddressId" ID="coaddressId" Hidden="true" Disabled="true" />
                                         <ext:TextField runat="server" Name="costreet1" AllowBlank="false" ID="costreet1" FieldLabel="<%$ Resources:FieldCStreet1%>" />
                                              
                                         <ext:TextField runat="server" Name="costreet2" AllowBlank="false" ID="costreet2" FieldLabel="<%$ Resources:FieldCStreet2%>" />
@@ -540,7 +541,7 @@
                                     <Items>
                                         <ext:TextField runat="server" Name="recordId" ID="ecId" Hidden="true" Disabled="true" />
                                         <ext:TextField runat="server" Name="name" AllowBlank="false" ID="name" FieldLabel="<%$ Resources:FieldEMInst%>" />
-
+                                         <ext:TextField runat="server" Name="ecaddressId" ID="ecaddressId" Hidden="true" Disabled="true" />
                                         <ext:ComboBox ValueField="recordId" AllowBlank="false" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1"
                                             DisplayField="name" runat="server" ID="rtId" Name="rtId" FieldLabel="<%$ Resources:FieldEMRTName%>" SimpleSubmit="true">
                                             <Store>

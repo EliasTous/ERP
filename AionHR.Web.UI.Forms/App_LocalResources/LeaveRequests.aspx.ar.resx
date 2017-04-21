@@ -117,142 +117,70 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="xrLabel4.Dpi" type="System.Single, mscorlib">
-    <value>100</value>
+  <data name="BasicInfoTabEditWindowTitle" xml:space="preserve">
+    <value>معلومات طلب الإجازة</value>
   </data>
-  <assembly alias="DevExpress.Data.v16.2" name="DevExpress.Data.v16.2, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-  <data name="xrLabel4.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v16.2">
-    <value>401.1667, 0</value>
+  <data name="ButtonClear" xml:space="preserve">
+    <value>جديد</value>
   </data>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="xrLabel4.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>248.8333, 36</value>
+  <data name="EditWindowsTitle" xml:space="preserve">
+    <value>تعديل طلب الإجازة</value>
   </data>
-  <data name="xrLabel4.Text" xml:space="preserve">
-    <value>xrLabel4</value>
+  <data name="FieldApproved" xml:space="preserve">
+    <value>مقبولة</value>
   </data>
-  <data name="xrLabel3.Dpi" type="System.Single, mscorlib">
-    <value>100</value>
+  <data name="FieldDestination" xml:space="preserve">
+    <value>الوجهة</value>
   </data>
-  <data name="xrLabel3.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v16.2">
-    <value>0, 0</value>
+  <data name="FieldEmployeeName" xml:space="preserve">
+    <value>اسم الموظف</value>
   </data>
-  <data name="xrLabel3.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>401.1667, 36</value>
+  <data name="FieldEndDate" xml:space="preserve">
+    <value>تاريخ النهاية</value>
   </data>
-  <data name="xrLabel3.Text" xml:space="preserve">
-    <value>xrLabel3</value>
+  <data name="FieldIsPaid" xml:space="preserve">
+    <value>مدفوعة؟</value>
   </data>
-  <data name="Detail.Dpi" type="System.Single, mscorlib">
-    <value>100</value>
+  <data name="FieldJustification" xml:space="preserve">
+    <value>السبب</value>
   </data>
-  <data name="Detail.HeightF" type="System.Single, mscorlib">
-    <value>36</value>
+  <data name="FieldLtName" xml:space="preserve">
+    <value>نوع الإجازة</value>
   </data>
-  <data name="Detail.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v16.2">
-    <value>TopLeft</value>
+  <data name="FieldPending" xml:space="preserve">
+    <value>قيد المعالجة</value>
   </data>
-  <data name="TopMargin.Dpi" type="System.Single, mscorlib">
-    <value>100</value>
+  <data name="FieldRecordId" xml:space="preserve">
+    <value>الرقم</value>
   </data>
-  <data name="TopMargin.HeightF" type="System.Single, mscorlib">
-    <value>100</value>
+  <data name="FieldRefused" xml:space="preserve">
+    <value>مرفوضة</value>
   </data>
-  <data name="TopMargin.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v16.2">
-    <value>TopLeft</value>
+  <data name="FieldStartDate" xml:space="preserve">
+    <value>تاريخ البداية</value>
   </data>
-  <data name="BottomMargin.Dpi" type="System.Single, mscorlib">
-    <value>100</value>
+  <data name="FieldStatus" xml:space="preserve">
+    <value>الحالة</value>
   </data>
-  <data name="BottomMargin.HeightF" type="System.Single, mscorlib">
-    <value>100</value>
+  <data name="FilterBranch" xml:space="preserve">
+    <value>اختر فرع</value>
   </data>
-  <data name="BottomMargin.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v16.2">
-    <value>TopLeft</value>
+  <data name="FilterDepartment" xml:space="preserve">
+    <value>اختر قسم</value>
   </data>
-  <data name="xrLabel1.Dpi" type="System.Single, mscorlib">
-    <value>100</value>
+  <data name="FilterDivision" xml:space="preserve">
+    <value>اختر ادارة عليا</value>
   </data>
-  <data name="xrLabel1.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v16.2">
-    <value>0, 0</value>
+  <data name="FilterEmployee" xml:space="preserve">
+    <value>اختر موظف</value>
   </data>
-  <data name="xrLabel1.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>401.1667, 36</value>
+  <data name="FilterOpen" xml:space="preserve">
+    <value>Show Open Requests</value>
   </data>
-  <data name="xrLabel1.Text" xml:space="preserve">
-    <value>User Name</value>
+  <data name="FilterStatus" xml:space="preserve">
+    <value>اختر وضع الإجازة</value>
   </data>
-  <data name="xrLabel2.Dpi" type="System.Single, mscorlib">
-    <value>100</value>
+  <data name="WindowTitle" xml:space="preserve">
+    <value>طلبات الإجازة</value>
   </data>
-  <data name="xrLabel2.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v16.2">
-    <value>401.1667, 0</value>
-  </data>
-  <data name="xrLabel2.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>248.8333, 36</value>
-  </data>
-  <data name="xrLabel2.Text" xml:space="preserve">
-    <value>Date</value>
-  </data>
-  <data name="groupHeaderBand1.Dpi" type="System.Single, mscorlib">
-    <value>100</value>
-  </data>
-  <data name="groupHeaderBand1.HeightF" type="System.Single, mscorlib">
-    <value>36</value>
-  </data>
-  <data name="xrPageInfo1.Dpi" type="System.Single, mscorlib">
-    <value>100</value>
-  </data>
-  <data name="xrPageInfo1.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v16.2">
-    <value>6, 6</value>
-  </data>
-  <data name="xrPageInfo1.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>313, 23</value>
-  </data>
-  <data name="xrPageInfo2.Dpi" type="System.Single, mscorlib">
-    <value>100</value>
-  </data>
-  <data name="xrPageInfo2.Format" xml:space="preserve">
-    <value>Page {0} of {1}</value>
-  </data>
-  <data name="xrPageInfo2.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v16.2">
-    <value>331, 6</value>
-  </data>
-  <data name="xrPageInfo2.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>313, 23</value>
-  </data>
-  <data name="xrPageInfo2.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v16.2">
-    <value>TopRight</value>
-  </data>
-  <data name="pageFooterBand1.Dpi" type="System.Single, mscorlib">
-    <value>100</value>
-  </data>
-  <data name="pageFooterBand1.HeightF" type="System.Single, mscorlib">
-    <value>29</value>
-  </data>
-  <data name="xrLabel5.Dpi" type="System.Single, mscorlib">
-    <value>100</value>
-  </data>
-  <data name="xrLabel5.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v16.2">
-    <value>6, 6</value>
-  </data>
-  <data name="xrLabel5.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>638, 35</value>
-  </data>
-  <data name="xrLabel5.Text" xml:space="preserve">
-    <value>Sign-in Trail</value>
-  </data>
-  <data name="reportHeaderBand1.Dpi" type="System.Single, mscorlib">
-    <value>100</value>
-  </data>
-  <data name="reportHeaderBand1.HeightF" type="System.Single, mscorlib">
-    <value>53</value>
-  </data>
-  <metadata name="objectDataSource1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
-  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
 </root>

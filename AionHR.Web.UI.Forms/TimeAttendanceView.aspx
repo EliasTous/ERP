@@ -9,7 +9,7 @@
     <title></title>
     <link rel="stylesheet" type="text/css" href="CSS/Common.css" />
     <link rel="stylesheet" href="CSS/LiveSearch.css" />
-    <script type="text/javascript" src="Scripts/AttendanceDayView.js?id=3"></script>
+    <script type="text/javascript" src="Scripts/AttendanceDayView.js?id=5"></script>
     <script type="text/javascript" src="Scripts/common.js"></script>
     <script type="text/javascript" src="Scripts/moment.js"></script>
     <script type="text/javascript">
@@ -589,9 +589,9 @@
                                     <Validator Handler="return validateFrom(this.getValue());" />
                                 </ext:TextField>
 
-                                <ext:TextField ID="checkOut" runat="server" FieldLabel="<%$ Resources:FieldCheckOut%>" Name="checkOut" AllowBlank="false">
+                                <ext:TextField ID="checkOut" runat="server" FieldLabel="<%$ Resources:FieldCheckOut%>" Name="checkOut" AllowBlank="true">
                                     <Plugins>
-                                        <ext:InputMask Mask="99:99" />
+                                        <ext:InputMask Mask="99:99" AllowInvalid="true"  />
                                     </Plugins>
                                     <Validator Handler="return validateTo(this.getValue(),this.prev().getValue());" />
                                 </ext:TextField>

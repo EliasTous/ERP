@@ -77,6 +77,8 @@ function validateFrom(s) {
 }
 
 function validateTo(curr, prev) {
+    if (curr == null || curr == '')
+        return true;
     if (!validateFrom(curr))
         return false;
     var currHours = curr.split(':')[0];

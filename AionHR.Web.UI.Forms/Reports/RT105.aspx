@@ -49,44 +49,7 @@
         <ext:Hidden ID="format" runat="server" />
 
 
-        <ext:Store PageSize="30"
-            ID="firstStore" OnReadData="firstStore_ReadData"
-            runat="server"
-            RemoteSort="True"
-            RemoteFilter="true">
-            <Proxy>
-                <ext:PageProxy>
-                    <Listeners>
-                        <Exception Handler="Ext.MessageBox.alert('#{textLoadFailed}.value', response.statusText);" />
-                    </Listeners>
-                </ext:PageProxy>
-            </Proxy>
-            <Model>
-                <ext:Model ID="Model3" runat="server">
-                    <Fields>
-
-                        <ext:ModelField Name="name" IsComplex="true" />
-
-                        <ext:ModelField Name="effectiveDate" />
-                        <ext:ModelField Name="salaryType" />
-                        <ext:ModelField Name="paymentFrequency" />
-                        <ext:ModelField Name="basicAmount" />
-                        <ext:ModelField Name="currencyRef" />
-                        <ext:ModelField Name="departmentName" />
-                        <ext:ModelField Name="positionName" />
-                        <ext:ModelField Name="prevCurrencyRef" />
-                        <ext:ModelField Name="prevBasicAmount" />
-                        <ext:ModelField Name="prevSalaryType" />
-
-
-
-
-
-                    </Fields>
-                </ext:Model>
-            </Model>
-
-        </ext:Store>
+        
         <ext:Viewport ID="Viewport1" runat="server" Layout="FitLayout">
 
             <Items>

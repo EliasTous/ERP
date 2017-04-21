@@ -118,18 +118,21 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="xrLabel13.Text" xml:space="preserve">
-    <value>Point-In-Time Salary</value>
+    <value>رواتب في يوم محدد</value>
   </data>
   <data name="xrLabel2.Text" xml:space="preserve">
-    <value>Position</value>
+    <value>المنصب</value>
   </data>
   <data name="xrLabel3.Text" xml:space="preserve">
-    <value>Name</value>
+    <value>الاسم</value>
   </data>
   <data name="xrLabel4.Text" xml:space="preserve">
-    <value>Department</value>
+    <value>القسم</value>
   </data>
   <data name="xrLabel6.Text" xml:space="preserve">
-    <value>Salary</value>
+    <value>الراتب</value>
+  </data>
+  <data name="xrPageInfo2.Format" xml:space="preserve">
+    <value>صفحة {0} من {1}</value>
   </data>
 </root>

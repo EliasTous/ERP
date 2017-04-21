@@ -587,6 +587,8 @@ namespace AionHR.Web.UI.Forms
                     X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
                     X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorUpdatingRecord).Show();
                 }
+
+                Store1.Reload();
             }
         }
 
