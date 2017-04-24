@@ -25,6 +25,8 @@ using AionHR.Model.Attendance;
 using AionHR.Services.Messaging.Reports;
 using DevExpress.XtraReports.Web;
 using Reports;
+using System.Threading;
+using AionHR.Model.Employees.Profile;
 
 namespace AionHR.Web.UI.Forms.Reports
 {
@@ -70,11 +72,12 @@ namespace AionHR.Web.UI.Forms.Reports
 
 
                     format.Text = _systemService.SessionHelper.GetDateformat();
-                   
-              
-                    
-                   
-                   
+                    ASPxWebDocumentViewer1.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.Utils.DefaultBoolean.True : DevExpress.Utils.DefaultBoolean.False;
+                    FillReport();
+
+
+
+
                 }
                 catch { }
             }
@@ -119,6 +122,17 @@ namespace AionHR.Web.UI.Forms.Reports
                 this.ResourceManager1.RTL = true;
                 this.Viewport1.RTL = true;
                 this.rtl.Text = rtl.ToString();
+                Culture = "ar";
+                UICulture = "ar-SA";
+                Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("ar");
+                Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("ar-AE");
+            }
+            else
+            {
+                Culture = "en";
+                UICulture = "en-US";
+                Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en");
+                Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("en-US");
             }
         }
 
@@ -165,7 +179,7 @@ namespace AionHR.Web.UI.Forms.Reports
 
         }
 
-        [DirectMethod]
+      
         public void FillReport()
         {
             ReportCompositeRequest req = GetRequest();
@@ -178,14 +192,18 @@ namespace AionHR.Web.UI.Forms.Reports
             }
 
             SalaryHistory h = new SalaryHistory();
+            h.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;
+            h.RightToLeftLayout = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeftLayout.Yes : DevExpress.XtraReports.UI.RightToLeftLayout.No;
+            resp.Items.ForEach(x => { x.PaymentFrequencyString = GetGlobalResourceObject("Common", ((PaymentFrequency)x.paymentFrequency).ToString()).ToString(); });
+            resp.Items.ForEach(x => { x.SalaryTypeString = GetGlobalResourceObject("Common",((PaymentFrequency)x.salaryType).ToString()).ToString(); });
             h.DataSource = resp.Items;
-            ASPxWebDocumentViewer1 = new ASPxWebDocumentViewer();
+
 
 
             h.CreateDocument();
             ASPxWebDocumentViewer1.OpenReport(h);
             ASPxWebDocumentViewer1.DataBind();
-            
+
         }
 
      
@@ -196,25 +214,13 @@ namespace AionHR.Web.UI.Forms.Reports
 
             if (pageIndex == 1)
             {
-                ReportCompositeRequest req = GetRequest();
-                ListResponse<AionHR.Model.Reports.RT201> resp = _reportsService.ChildGetAll<AionHR.Model.Reports.RT201>(req);
-                if (!resp.Success)
-                {
-                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.Error, resp.Summary).Show();
-                    return;
-                }
-
-                SalaryHistory h = new SalaryHistory();
-                h.DataSource = resp.Items;
-
-
-
-                h.CreateDocument();
-                ASPxWebDocumentViewer1.OpenReport(h);
-                ASPxWebDocumentViewer1.DataBind();
+                FillReport();
             }
         }
-     
+
+        protected void ASPxCallbackPanel1_Load(object sender, EventArgs e)
+        {
+            ASPxWebDocumentViewer1.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.Utils.DefaultBoolean.True : DevExpress.Utils.DefaultBoolean.False;
+        }
     }
 }

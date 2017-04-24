@@ -1,5 +1,5 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="ActiveStatusFilter.ascx.cs" Inherits="AionHR.Web.UI.Forms.Reports.ActiveStatusFilter" %>
-<ext:Panel runat="server" Layout="HBoxLayout" Width="200"  ><Items>
+<ext:Panel runat="server" Layout="HBoxLayout" Width="170"  ><Items>
 <ext:ComboBox runat="server" ID="inactivePref" Editable="false" FieldLabel="">
     <Items>
         <ext:ListItem Text="<%$ Resources: All %>" Value="2" />

@@ -25,7 +25,10 @@ namespace AionHR.Repository.WebService.Repositories
             ChildAddOrUpdateLookup.Add(typeof(Registration), "setRE");
             ChildAddOrUpdateLookup.Add(typeof(Account), "setAC");
             ChildAddOrUpdateLookup.Add(typeof(DbSetup), "setDB");
-           
+
+
+            ChildDeleteLookup.Add(typeof(Registration), "delRE");
+            ChildDeleteLookup.Add(typeof(Account), "delAC");
 
         }
 

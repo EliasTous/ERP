@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="BasicInfoTabEditWindowTitle" xml:space="preserve">
-    <value>Profile</value>
+    <value>Shift Details</value>
   </data>
   <data name="ButtonClear" xml:space="preserve">
     <value>Clear</value>
@@ -128,6 +128,9 @@
   </data>
   <data name="ContractEndingDate" xml:space="preserve">
     <value>Contract Ending Date</value>
+  </data>
+  <data name="DayShifts" xml:space="preserve">
+    <value>Shifts</value>
   </data>
   <data name="EditWindowsTitle" xml:space="preserve">
     <value>Edit Branch</value>

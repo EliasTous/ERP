@@ -454,6 +454,15 @@ namespace AionHR.Web.UI.Forms.EmployeePages {
         protected global::Ext.Net.TextField cocellPhone;
         
         /// <summary>
+        /// coaddressId control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.TextField coaddressId;
+        
+        /// <summary>
         /// costreet1 control.
         /// </summary>
         /// <remarks>
@@ -578,6 +587,15 @@ namespace AionHR.Web.UI.Forms.EmployeePages {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.TextField name;
+        
+        /// <summary>
+        /// ecaddressId control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.TextField ecaddressId;
         
         /// <summary>
         /// rtId control.

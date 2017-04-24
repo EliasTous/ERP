@@ -81,20 +81,22 @@
                             <Items>
 
                                
-                                        <ext:Container runat="server">
+                                        <ext:Container runat="server" Layout="FitLayout">
                                             <Content>
                                                 <uc:dateRange runat="server" ID="dateRange1" />
                                             </Content>
                                         </ext:Container>
-                                <ext:ToolbarFill runat="server" />
-                                        <ext:Button runat="server" Text="<%$Resources:Common, Go %>">
+                                <ext:Container runat="server" Layout="FitLayout">
+                                    <Content>
+                                           <ext:Button runat="server" Text="<%$Resources:Common, Go %>">
                                             <Listeners>
                                                 <Click Handler="App.firstStore.reload(); App.secondStore.reload();" />
                                             </Listeners>
                                         </ext:Button>
-                             <ext:ToolbarFill runat="server" />
-                                <ext:ToolbarFill runat="server" />
-                                 <ext:ToolbarFill runat="server" />
+                                    </Content>
+                                </ext:Container>
+                                     
+                         
                             </Items>
                         </ext:Toolbar>
 

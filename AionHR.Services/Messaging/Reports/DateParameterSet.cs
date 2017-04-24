@@ -17,7 +17,7 @@ namespace AionHR.Services.Messaging.Reports
             get
             {
                 parameters = new Dictionary<string, string>();
-                parameters.Add("_date", Date.ToShortDateString());
+                parameters.Add("_asOfDate", Date.ToShortDateString());
                 return parameters;
             }
         }

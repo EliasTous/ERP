@@ -13,6 +13,15 @@ namespace AionHR.Web.UI.Forms.Reports
     public partial class DateRangeFilter : System.Web.UI.UserControl
     {
         ISystemService _systemService = ServiceLocator.Current.GetInstance<ISystemService>();
+
+        protected void Page_Init(object sender, EventArgs e)
+        {
+            if (!IsPostBack)
+            {
+                dateFrom.SelectedDate = _systemService.SessionHelper.GetStartDate();
+                dateTo.SelectedDate = DateTime.Today;
+            }
+        }
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)

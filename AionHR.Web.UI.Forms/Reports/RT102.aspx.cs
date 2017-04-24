@@ -70,8 +70,8 @@ namespace AionHR.Web.UI.Forms.Reports
 
 
                     format.Text = _systemService.SessionHelper.GetDateformat().ToUpper();
-               
-                  
+                    ASPxWebDocumentViewer1.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.Utils.DefaultBoolean.True : DevExpress.Utils.DefaultBoolean.False;
+
                 }
                 catch { }
             }
@@ -121,7 +121,7 @@ namespace AionHR.Web.UI.Forms.Reports
                 this.Viewport1.RTL = true;
                 this.rtl.Text = rtl.ToString();
                 Culture = "ar";
-                UICulture = "ar-SA";
+                UICulture = "ar-AE";
                 Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("ar");
                 Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("ar-AE");
             }
@@ -158,6 +158,47 @@ namespace AionHR.Web.UI.Forms.Reports
             req.Add(dateRange1.GetRange());
             return req;
         }
+
+        private void FillReport()
+        {
+            ReportCompositeRequest req = GetRequest();
+            ListResponse<AionHR.Model.Reports.RT102A> resp = _reportsService.ChildGetAll<AionHR.Model.Reports.RT102A>(req);
+            if (!resp.Success)
+            {
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, resp.Summary).Show();
+                return;
+            }
+
+            Hirings h = new Hirings();
+            h.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;
+            h.RightToLeftLayout = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeftLayout.Yes : DevExpress.XtraReports.UI.RightToLeftLayout.No;
+            h.DataSource = resp.Items;
+
+
+
+            ReportCompositeRequest req2 = GetRequest();
+            ListResponse<AionHR.Model.Reports.RT102B> resp2 = _reportsService.ChildGetAll<AionHR.Model.Reports.RT102B>(req2);
+            if (!resp2.Success)
+            {
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, resp2.Summary).Show();
+                return;
+            }
+            //h.PrintingSystem.ContinuousPageNumbering = true;
+            h.CreateDocument();
+            Terminations t = new Terminations();
+            t.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;
+            t.RightToLeftLayout = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeftLayout.Yes : DevExpress.XtraReports.UI.RightToLeftLayout.No;
+
+            t.DataSource = resp2.Items;
+            t.CreateDocument();
+
+            h.Pages.AddRange(t.Pages);
+
+            ASPxWebDocumentViewer1.DataBind();
+            ASPxWebDocumentViewer1.OpenReport(h);
+        }
        
         protected void ASPxCallbackPanel1_Callback(object sender, DevExpress.Web.CallbackEventArgsBase e)
         {
@@ -166,35 +207,8 @@ namespace AionHR.Web.UI.Forms.Reports
 
             if (pageIndex == 1)
             {
-
-                ReportCompositeRequest req = GetRequest();
-                ListResponse<AionHR.Model.Reports.RT102A> resp = _reportsService.ChildGetAll<AionHR.Model.Reports.RT102A>(req);
-                if (!resp.Success)
-                {
-                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.Error, resp.Summary).Show();
-                    return;
-                }
-
-                Hirings h = new Hirings();
-                h.DataSource = resp.Items;
-              
-               // h.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;
-                //ReportCompositeRequest req2 = GetRequest();
-                //ListResponse<AionHR.Model.Reports.RT102B> resp2 = _reportsService.ChildGetAll<AionHR.Model.Reports.RT102B>(req);
-                //if (!resp.Success)
-                //{
-                //    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                //    X.Msg.Alert(Resources.Common.Error, resp.Summary).Show();
-                //    return;
-                //}
-                
-                //Reports.Terminations t = new Terminations();
-                //t.DataSource = resp2.Items;
-                //t.RightToLeft = DevExpress.XtraReports.UI.RightToLeft.Yes;
-                //h.Pages.AddRange(t.Pages);
-                ASPxWebDocumentViewer1.DataBind();
-                ASPxWebDocumentViewer1.OpenReport(h);
+                FillReport();
+             
             }
 
         }
@@ -202,6 +216,12 @@ namespace AionHR.Web.UI.Forms.Reports
         {
           
             
+
+        }
+
+        protected void ASPxCallbackPanel1_Load(object sender, EventArgs e)
+        {
+            ASPxWebDocumentViewer1.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.Utils.DefaultBoolean.True : DevExpress.Utils.DefaultBoolean.False;
 
         }
     }

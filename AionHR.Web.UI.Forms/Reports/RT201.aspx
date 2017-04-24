@@ -97,24 +97,28 @@
                         <ext:Toolbar runat="server" Height="60" >
                             <Items>
                                  
-                                <ext:Container runat="server"  Width="700">
+                                <ext:Container runat="server"   Layout="FitLayout">
                                     <Content>
                                         <uc:jobInfo runat="server" ID="jobInfo1" />
                                     </Content>
                                 </ext:Container>
-                                 <ext:Container runat="server" Width="200">
+                                 <ext:Container runat="server" Layout="FitLayout">
                                     <Content>
                                         <uc:activeStatus runat="server" ID="activeStatus" />
                                     </Content>
                                 </ext:Container>
                               
-                                
-                                <ext:Button runat="server" Text="<%$Resources:Common, Go %>">
+                                <ext:Container runat="server"  Layout="FitLayout">
+                                    <Content>
+                                        <ext:Button runat="server" Text="<%$Resources:Common, Go %>">
                                     <Listeners>
                                         <Click Handler="callbackPanel.PerformCallback('1');" />
                                     </Listeners>
 
                                 </ext:Button>
+                                    </Content>
+                                </ext:Container>
+                                
                          
                               
                             </Items>
@@ -122,7 +126,7 @@
                     </TopBar>
                     <Content>
 
-                           <dx:ASPxCallbackPanel ID="ASPxCallbackPanel1" runat="server" ClientInstanceName="callbackPanel"
+                           <dx:ASPxCallbackPanel ID="ASPxCallbackPanel1" runat="server" ClientInstanceName="callbackPanel" OnLoad="ASPxCallbackPanel1_Load"
                             Width="100%" OnCallback="ASPxCallbackPanel1_Callback">
                             <PanelCollection>
                                 <dx:PanelContent runat="server">

@@ -77,6 +77,9 @@ namespace AionHR.Model.Employees.Profile
 
     public class AddressBook
     {
+
+        public string recordId { get; set; }
+
         public string street1 { get; set; }
 
         public string street2 { get; set; }

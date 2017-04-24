@@ -12,18 +12,57 @@
     <link rel="stylesheet" type="text/css" href="CSS/Common.css?id=11" />
     <link rel="stylesheet" type="text/css" href="CSS/Employees.css?id=15" />
     <link rel="stylesheet" href="CSS/LiveSearch.css" />
+    <link rel="stylesheet" href="CSS/cal.css?id=2" />
+    <style type="text/css">
+        #cal-1, #cal-2 {
+            margin-left: 12px;
+            margin-top: 10px;
+        }
 
+        .icon-button {
+            width: 30px;
+        }
 
+        input {
+            width: 243px;
+            margin-bottom: 8px;
+        }
+
+        .calendar {
+            height: 200px;
+            width: 200px;
+        }
+    </style>
     <script type="text/javascript" src="Scripts/common.js?id=1"></script>
+    <script type="text/javascript" src="Scripts/HijriCalendar.js?id=1"></script>
+    <script type="text/javascript" src="Scripts/cal.js?id=1"></script>
     <script type="text/javascript" src="Scripts/cropbox-min.js?id=1"></script>
     <script type="text/javascript" src="Scripts/Employees.js?id=36"></script>
     <script type="text/javascript">
         var cropper = null;
-        function doTranslations()
-        {
+        function doTranslations() {
             alert('called');
             $("reportsTo").text = document.getElementById("reportTo").value;
         }
+        var cal2;
+
+        function setDateFields() {
+
+            date2.value = cal2.getDate().getDateString();
+        }
+        function showCal2() {
+            if (cal2.isHidden()) cal2.show();
+            else cal2.hide();
+            return false;
+        }
+        function attach() {
+            //cal2.callback = function () {
+
+
+            //    setDateFields();
+            //};
+        }
+
     </script>
 
 </head>
@@ -34,13 +73,13 @@
 
         <ext:Hidden ID="textMatch" runat="server" Text="<%$ Resources:Common , MatchFound %>" />
         <ext:Hidden ID="textLoadFailed" runat="server" Text="<%$ Resources:Common , LoadFailed %>" />
-         
+
         <ext:Hidden ID="titleSavingError" runat="server" Text="<%$ Resources:Common , TitleSavingError %>" />
         <ext:Hidden ID="titleSavingErrorMessage" runat="server" Text="<%$ Resources:Common , TitleSavingErrorMessage %>" />
         <ext:Hidden ID="timeZoneOffset" runat="server" EnableViewState="true" />
         <ext:Hidden ID="CurrentEmployee" runat="server" EnableViewState="true" />
         <ext:Hidden ID="CurrentClassId" runat="server" EnableViewState="true" />
-        
+
         <ext:Hidden ID="reportTo" runat="server" EnableViewState="true" Text="reports" />
         <ext:Hidden ID="CurrentEmployeePhotoName" runat="server" EnableViewState="true" />
         <ext:Hidden runat="server" ID="lblLoading" Text="<%$Resources:Common , Loading %>" />
@@ -59,23 +98,22 @@
                     Icon="User" HideHeaders="false"
                     ColumnLines="false" IDMode="Explicit" RenderXType="True">
                     <Plugins>
-                        <ext:RowExpander ID="RowExpander1" runat="server" HiddenColumn="true" ExpandOnEnter="false" ExpandOnDblClick="false" SingleExpand="true" >
-                             <Loader runat="server" Mode="Data" DirectMethod="App.direct.GetQuickView">
-                        <LoadMask ShowMask="true" />
-                        <Params>
-                            <ext:Parameter Name="id" Value="this.record.getId()" Mode="Raw" />
-                            
-                        </Params>
-                    </Loader>
-                            
-                            <Template ID="Template1" runat="server" >
-                              
+                        <ext:RowExpander ID="RowExpander1" runat="server" HiddenColumn="true" ExpandOnEnter="false" ExpandOnDblClick="false" SingleExpand="true">
+                            <Loader runat="server" Mode="Data" DirectMethod="App.direct.GetQuickView">
+                                <LoadMask ShowMask="true" />
+                                <Params>
+                                    <ext:Parameter Name="id" Value="this.record.getId()" Mode="Raw" />
+
+                                </Params>
+                            </Loader>
+
+                            <Template ID="Template1" runat="server">
+
                                 <Html>
-                            
                                 </Html>
                             </Template>
                             <Listeners>
-                                
+
                                 <%--<Expand Handler="doTranslations();" />--%>
                             </Listeners>
                         </ext:RowExpander>
@@ -547,6 +585,12 @@
                             </Items>
                         </ext:Toolbar>
                     </TopBar>
+                    <Listeners>
+                        <AfterLayout Handler="   cal2 = new Calendar(true, 0, false, true);
+        document.getElementById('cal-2').appendChild(cal2.getElement());
+        attach();
+        cal2.show(); " />
+                    </Listeners>
                     <Items>
                         <ext:FormPanel DefaultButton="SaveButton"
                             ID="BasicInfoTab" PaddingSpec="40 0 0 0"
@@ -802,6 +846,29 @@
                                             FieldLabel="<%$ Resources:FieldHireDate%>"
                                             MsgTarget="Side"
                                             AllowBlank="false" />
+                                        <ext:DropDownField AllowBlank="false"
+                                            ID="colorDay" Width="500"
+                                            runat="server"
+                                            Editable="false" 
+                                            Name="color">
+                                            <Component>
+                                                <ext:Panel runat="server"  Width="500">
+                                                    <Items>
+                                                        <ext:Container runat="server" Width="500" >
+                                                            <Content>
+                                                                <div id="cal-2">
+                                                                    <input id="date-2" type="text" />
+                                                                    <button class="icon-button" onclick="showCal2(); return false;">&#x25a6;</button>
+                                                                </div>
+                                                                <%--<uc:multiCal ID="cal1" runat="server" />--%>
+                                                            </Content>
+                                                        </ext:Container>
+                                                    </Items>
+                                                </ext:Panel>
+                                            </Component>
+
+                                        </ext:DropDownField>
+
                                     </Items>
                                 </ext:Panel>
                                 <%-- <ext:Panel runat="server" Margin="20" Visible="false">
@@ -866,7 +933,7 @@
                             </BottomBar>
 
                         </ext:FormPanel>
-                         <ext:Panel runat="server" Layout="FitLayout" Title="<%$ Resources: Hiring %>" ID="Panel7" DefaultAnchor="100%">
+                        <ext:Panel runat="server" Layout="FitLayout" Title="<%$ Resources: Hiring %>" ID="Panel7" DefaultAnchor="100%">
                             <Loader runat="server" Url="EmployeePages/Hire.aspx" Mode="Frame" ID="Loader7" TriggerEvent="show"
                                 ReloadOnEvent="true"
                                 DisableCaching="true">
@@ -1125,21 +1192,22 @@
                     DefaultAnchor="100%"
                     BodyPadding="5">
                     <Content>
-                           <div class="imageBox" style="width:290px;height:270px;" ">
-                               <div class="spinner" style="display: none"></div>
-        <div class="thumbBox" style="width:290px;height:270px;border:3px solid black;"></div>
-         <input type="button" id="btnZoomIn" value="+" style="float: right">
-        <input type="button" id="btnZoomOut" value="-" style="float: right">
-    </div>
+                        <div class="imageBox" style="width: 290px; height: 270px;">
+                            <div class="spinner" style="display: none"></div>
+                            <div class="thumbBox" style="width: 290px; height: 270px; border: 3px solid black;"></div>
+                            <input type="button" id="btnZoomIn" value="+" style="float: right">
+                            <input type="button" id="btnZoomOut" value="-" style="float: right">
+                        </div>
                     </Content>
                     <Items>
                         <ext:Image runat="server" Width="150" Height="300" ID="employeePhoto" Hidden="true">
                         </ext:Image>
                         <ext:Hidden runat="server" ID="imageData" Name="imageData" />
-                        </Items>
-                    <BottomBar><ext:Toolbar runat="server">
-                        <Items>
-                    
+                    </Items>
+                    <BottomBar>
+                        <ext:Toolbar runat="server">
+                            <Items>
+
                                 <ext:ToolbarFill runat="server" />
 
                                 <ext:Button runat="server" Icon="PictureAdd" Text="<%$ Resources:BrowsePicture %>">
@@ -1149,7 +1217,7 @@
                                 </ext:Button>
                                 <ext:Button runat="server" ID="uploadPhotoButton" Icon="DatabaseSave" Text="<%$ Resources:UploadPicture %>" Disabled="true">
                                     <Listeners>
-                                        
+
                                         <Click Handler="CheckSession();  if (!#{imageUploadForm}.getForm().isValid() ) {  return false;} if(#{CurrentEmployee}.value==''){#{imageSelectionWindow}.hide(); return false; } #{imageData}.value = cropper.getBlob();   var fd = new FormData();
         fd.append('fname', #{FileUploadField1}.value);
                                    fd.append('id',null);          
@@ -1173,7 +1241,7 @@
     }); " />
 
                                     </Listeners>
-                              <%--      <DirectEvents>
+                                    <%--      <DirectEvents>
                                         <Click OnEvent="UploadImage" Failure="Ext.MessageBox.alert('#{titleSavingError}.value', '#{titleSavingErrorMessage}.value');">
                                             
                                             <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="={#{imageSelectionWindow}.body}" />
@@ -1183,7 +1251,6 @@
                                             </ExtraParams>
                                         </Click>
                                     </DirectEvents>--%>
-
                                 </ext:Button>
                                 <ext:Button runat="server" Icon="Cancel" Text="<%$ Resources:RemovePicture %>">
                                     <Listeners>
@@ -1197,14 +1264,14 @@
 
                                 </ext:FileUploadField>
                                 <ext:ToolbarFill runat="server" />
-                                </Items>
+                            </Items>
 
-                               </ext:Toolbar>
+                        </ext:Toolbar>
 
                     </BottomBar>
-                           
-                      
-                    
+
+
+
                     <Listeners>
 
                         <AfterLayout Handler="CheckSession();ClearImage2();  initCropper(#{employeePhoto}.src);

@@ -161,6 +161,7 @@
     <Content Include="CompanyFiles.aspx" />
     <Content Include="CompanyNews.aspx" />
     <Content Include="CompanyRightToWorks.aspx" />
+    <Content Include="CSS\cal.css" />
     <Content Include="CSS\MainDashboard.css" />
     <Content Include="CSS\Dashboard.css" />
     <Content Include="CSS\Calendars.css" />
@@ -203,6 +204,7 @@
     <Content Include="ForgotPassword.aspx" />
     <Content Include="Geofences.aspx" />
     <Content Include="Global.asax" />
+    <Content Include="Controls\HijriGregDatePicker.ascx" />
     <Content Include="Home.aspx" />
     <Content Include="HtmlPage1.html" />
     <Content Include="Images\bg.png" />
@@ -276,12 +278,14 @@
     <Content Include="Routers.aspx" />
     <Content Include="SalaryChangeReasons.aspx" />
     <Content Include="Scripts\AssetAllowances.js" />
+    <Content Include="Scripts\cal.js" />
     <Content Include="Scripts\CompanyFiles.js" />
     <Content Include="Scripts\CompanyNews.js" />
     <Content Include="Scripts\Contacts.js" />
     <Content Include="Scripts\EmployeeComplaints.js" />
     <Content Include="Scripts\EmployeesOrgChart.js" />
     <Content Include="Scripts\Folders.js" />
+    <Content Include="Scripts\HijriCalendar.js" />
     <Content Include="Scripts\LoanRequests.js" />
     <Content Include="Scripts\LoanTypes.js" />
     <Content Include="Scripts\MainDashboard.js" />
@@ -537,6 +541,13 @@
     </Compile>
     <Compile Include="Folders.aspx.designer.cs">
       <DependentUpon>Folders.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\HijriGregDatePicker.ascx.cs">
+      <DependentUpon>HijriGregDatePicker.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\HijriGregDatePicker.ascx.designer.cs">
+      <DependentUpon>HijriGregDatePicker.ascx</DependentUpon>
     </Compile>
     <Compile Include="LoanRequests.aspx.cs">
       <DependentUpon>LoanRequests.aspx</DependentUpon>
@@ -1321,8 +1332,14 @@
       <Generator>GlobalResourceProxyGenerator</Generator>
       <LastGenOutput>Classes.ar.designer.cs</LastGenOutput>
     </Content>
+    <Content Include="App_LocalResources\CompanyDocumentTypes.aspx.resx" />
+    <Content Include="App_LocalResources\CompanyRightToWorks.aspx.resx" />
+    <Content Include="App_LocalResources\Tasks.aspx.resx" />
+    <Content Include="App_LocalResources\TaskTypes.aspx.resx" />
     <EmbeddedResource Include="Properties\licenses.licx" />
     <Content Include="Reports\App_LocalResources\RT202.aspx.resx" />
+    <Content Include="Reports\App_LocalResources\RT01.aspx.ar.resx" />
+    <Content Include="Reports\App_LocalResources\RT103.aspx.ar.resx" />
     <EmbeddedResource Include="Reports\RT201.aspx.resx">
       <DependentUpon>RT201.aspx.cs</DependentUpon>
       <Generator>ResXFileCodeGenerator</Generator>
