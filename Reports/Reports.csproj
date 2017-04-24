@@ -61,9 +61,6 @@
     <Compile Include="Hirings.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Hirings.Designer.cs">
-      <DependentUpon>Hirings.cs</DependentUpon>
-    </Compile>
     <Compile Include="JobHistory.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -115,6 +112,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AuditTrail.resx">
       <DependentUpon>AuditTrail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Hirings.ar.resx">
+      <DependentUpon>Hirings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Hirings.en.resx">
+      <DependentUpon>Hirings.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Hirings.resx">
       <DependentUpon>Hirings.cs</DependentUpon>
@@ -192,14 +195,6 @@
     <EmbeddedResource Include="YearsInService.resx">
       <DependentUpon>YearsInService.cs</DependentUpon>
     </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Hirings.ar.resx">
-      <DependentUpon>Hirings.cs</DependentUpon>
-    </Content>
-    <Content Include="Hirings.en.resx">
-      <DependentUpon>Hirings.cs</DependentUpon>
-    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

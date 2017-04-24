@@ -499,7 +499,7 @@
                             <ext:Column runat="server"
                                 ID="Column3" Visible="true"
                                 Text="<%$ Resources:Common, Edit %>"
-                                Width="60"
+                                Width="100"
                                 Hideable="false"
                                 Align="Center"
                                 Fixed="true"
@@ -507,7 +507,7 @@
                                 MenuDisabled="true"
                                 Resizable="false">
 
-                                <Renderer Fn="editRender" />
+                                <Renderer handler="return editRender()+'&nbsp;&nbsp;' +deleteRender(); " />
                                 </ext:Column>
                         </Columns>
 

@@ -70,7 +70,7 @@ namespace AionHR.Web.UI.Forms.Reports
 
 
                     format.Text = _systemService.SessionHelper.GetDateformat().ToUpper();
-
+                    ASPxWebDocumentViewer1.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.Utils.DefaultBoolean.True : DevExpress.Utils.DefaultBoolean.False;
                     FillReport();
                 }
                 catch { }
@@ -122,9 +122,9 @@ namespace AionHR.Web.UI.Forms.Reports
                 this.Viewport1.RTL = true;
                 this.rtl.Text = rtl.ToString();
                 Culture = "ar";
-                UICulture = "ar-SA";
+                UICulture = "ar-SY";
                 Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("ar");
-                Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("ar-AE");
+                Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("ar-SY");
             }
             else
             {
@@ -178,7 +178,7 @@ namespace AionHR.Web.UI.Forms.Reports
             y.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;
             y.RightToLeftLayout = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeftLayout.Yes : DevExpress.XtraReports.UI.RightToLeftLayout.No;
 
-            resp.Items.ForEach(x => { x.MonthString = CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(x.month); x.month = x.month - 1; x.rate = x.rate / 100; });
+            resp.Items.ForEach(x => { x.MonthString = CultureInfo.CurrentUICulture.DateTimeFormat.GetMonthName(x.month); x.month = x.month - 1; x.rate = x.rate / 100; });
             y.DataSource = resp.Items;
 
 
@@ -195,6 +195,11 @@ namespace AionHR.Web.UI.Forms.Reports
                 FillReport();
             }
 
+        }
+
+        protected void ASPxCallbackPanel1_Load(object sender, EventArgs e)
+        {
+            ASPxWebDocumentViewer1.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.Utils.DefaultBoolean.True : DevExpress.Utils.DefaultBoolean.False;
         }
     }
 }

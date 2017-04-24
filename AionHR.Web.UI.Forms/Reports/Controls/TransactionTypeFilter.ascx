@@ -1,5 +1,5 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="TransactionTypeFilter.ascx.cs" Inherits="AionHR.Web.UI.Forms.Reports.Controls.TransactionTypeFilter" %>
-<ext:Panel runat="server" Layout="HBoxLayout" Width="200"  ><Items>
+<ext:Panel runat="server" Layout="HBoxLayout" Width="170"  ><Items>
 <ext:ComboBox runat="server" ID="trxType" Editable="false" FieldLabel="">
     <Items>
         

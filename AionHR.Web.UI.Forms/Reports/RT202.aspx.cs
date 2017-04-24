@@ -27,6 +27,7 @@ using DevExpress.XtraReports.Web;
 using DevExpress.XtraPrinting.Localization;
 using Reports;
 using System.Threading;
+using AionHR.Model.Employees.Profile;
 
 namespace AionHR.Web.UI.Forms.Reports
 {
@@ -72,7 +73,7 @@ namespace AionHR.Web.UI.Forms.Reports
 
 
                     format.Text = _systemService.SessionHelper.GetDateformat();
-
+                    ASPxWebDocumentViewer1.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.Utils.DefaultBoolean.True : DevExpress.Utils.DefaultBoolean.False;
 
                     FillReport();
                 }
@@ -196,8 +197,13 @@ namespace AionHR.Web.UI.Forms.Reports
                 X.Msg.Alert(Resources.Common.Error, resp.Summary).Show();
                 return;
             }
-
+            resp.Items.ForEach(x => { x.PaymentFrequencyString = GetGlobalResourceObject("Common", ((PaymentFrequency)x.paymentFrequency).ToString()).ToString(); });
+            resp.Items.ForEach(x => { x.SalaryTypeString = GetGlobalResourceObject("Common", ((PaymentFrequency)x.salaryType).ToString()).ToString(); });
+            resp.Items.ForEach(x => { x.PrevSalaryTypeString = GetGlobalResourceObject("Common", ((PaymentFrequency)x.prevSalaryType).ToString()).ToString(); });
             SalaryChanges h = new SalaryChanges();
+            h.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;
+            h.RightToLeftLayout = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeftLayout.Yes : DevExpress.XtraReports.UI.RightToLeftLayout.No;
+
             h.DataSource = resp.Items;
 
 
@@ -223,5 +229,9 @@ namespace AionHR.Web.UI.Forms.Reports
             }
         }
 
+        protected void ASPxCallbackPanel1_Load(object sender, EventArgs e)
+        {
+            ASPxWebDocumentViewer1.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.Utils.DefaultBoolean.True : DevExpress.Utils.DefaultBoolean.False;
+        }
     }
 }

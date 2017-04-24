@@ -65,32 +65,37 @@
                         <ext:Toolbar runat="server" Height="50" Layout="HBoxLayout">
                             <Items>
 
-                                <ext:Container runat="server" Width="350" MarginSpec="0 0 0 50">
+                                <ext:Container runat="server" Layout="FitLayout"  >
                                     <Content>
                                         <uc:dateRange runat="server" ID="dateRange1" />
                                     </Content>
                                 </ext:Container>
-                                <ext:Container runat="server" Width="200">
+                                <ext:Container runat="server" Layout="FitLayout">
                                     <Content>
                                         <uc:usersCombo runat="server" ID="userCombo1" EnableViewState="true" />
                                     </Content>
                                 </ext:Container>
-                                <ext:Button runat="server" Text="<%$Resources:Common, Go %>" >
+                                <ext:Container runat="server" Layout="FitLayout">
+                                    <Content>
+                                           <ext:Button runat="server" Text="<%$Resources:Common, Go %>" >
                                      <Listeners>
                                                 <Click Handler="callbackPanel.PerformCallback('1');" />
                                             </Listeners>
                                 </ext:Button>
+                                    </Content>
+                                </ext:Container>
+                             
 
                             </Items>
                         </ext:Toolbar>
                     </TopBar>
                     <Content>
                         
-                        <dx:ASPxCallbackPanel ID="ASPxCallbackPanel1" runat="server" ClientInstanceName="callbackPanel"
+                        <dx:ASPxCallbackPanel ID="ASPxCallbackPanel1" runat="server" ClientInstanceName="callbackPanel" OnLoad="ASPxCallbackPanel1_Load"
                             Width="100%" OnCallback="ASPxCallbackPanel1_Callback">
                             <panelcollection>
                                 <dx:PanelContent runat="server">
-                                    <dx:ASPxWebDocumentViewer ID="ASPxWebDocumentViewer1" runat="server"></dx:ASPxWebDocumentViewer>
+                                    <dx:ASPxWebDocumentViewer ID="ASPxWebDocumentViewer1" runat="server" ></dx:ASPxWebDocumentViewer>
                                 </dx:PanelContent>
                             </panelcollection>
                         </dx:ASPxCallbackPanel>

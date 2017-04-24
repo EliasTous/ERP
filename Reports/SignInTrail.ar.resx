@@ -118,13 +118,16 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="xrLabel1.Text" xml:space="preserve">
-    <value>User</value>
+    <value>المستخدم</value>
   </data>
   <data name="xrLabel2.Text" xml:space="preserve">
-    <value>Date</value>
+    <value>التاريخ</value>
   </data>
   <data name="xrLabel5.Text" xml:space="preserve">
-    <value>Sign In Trail</value>
+    <value>سجل تسجيل الدخول</value>
+  </data>
+  <data name="xrLabel6.Text" xml:space="preserve">
+    <value>لم يتم العثور على نتائج</value>
   </data>
   <data name="xrPageInfo2.Format" xml:space="preserve">
     <value>صفحة {0} من {1}</value>

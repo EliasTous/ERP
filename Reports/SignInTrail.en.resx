@@ -126,4 +126,7 @@
   <data name="xrLabel5.Text" xml:space="preserve">
     <value>Sign In Trail</value>
   </data>
+  <data name="xrLabel6.Text" xml:space="preserve">
+    <value>No Results Found</value>
+  </data>
 </root>

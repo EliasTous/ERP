@@ -26,13 +26,18 @@ namespace AionHR.Model.Reports
         {
             get; set;
         }
+        private string salaryTypeString;
         public string SalaryTypeString
         {
             get
             {
 
-                return ((PaymentFrequency)salaryType).ToString();
+                return salaryTypeString;
 
+            }
+            set
+            {
+                salaryTypeString = value;
             }
         }
         public string currencyRef { get; set; }

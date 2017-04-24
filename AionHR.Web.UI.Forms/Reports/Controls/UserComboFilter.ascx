@@ -1,6 +1,6 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="UserComboFilter.ascx.cs" Inherits="AionHR.Web.UI.Forms.Reports.Controls.UserComboFilter" %>
  
-<ext:Panel runat="server" Layout="HBoxLayout" Width="200">
+<ext:Panel runat="server" Layout="HBoxLayout" Width="170">
     <Items>
 
          <ext:ComboBox runat="server" ID="userId" EnableViewState="true"

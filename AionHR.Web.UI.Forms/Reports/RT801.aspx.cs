@@ -72,7 +72,7 @@ namespace AionHR.Web.UI.Forms.Reports
 
                     dateRange1.Clear();
                     format.Text = _systemService.SessionHelper.GetDateformat();
-                    FillReport();
+                    ASPxWebDocumentViewer1.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.Utils.DefaultBoolean.True : DevExpress.Utils.DefaultBoolean.False;
 
 
                 }
@@ -156,7 +156,7 @@ namespace AionHR.Web.UI.Forms.Reports
 
             req.Size = "1000";
             req.StartAt = "1";
-            req.SortBy = "firstName";
+            req.SortBy = "eventDt";
 
 
             req.Add(dateRange1.GetRange());
@@ -199,6 +199,9 @@ namespace AionHR.Web.UI.Forms.Reports
             }
 
             SignInTrail h = new SignInTrail();
+            h.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;
+            h.RightToLeftLayout = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeftLayout.Yes : DevExpress.XtraReports.UI.RightToLeftLayout.No;
+
             h.DataSource = resp.Items;
 
 
@@ -217,6 +220,10 @@ namespace AionHR.Web.UI.Forms.Reports
                 FillReport();
             }
         }
-     
+
+        protected void ASPxCallbackPanel1_Load(object sender, EventArgs e)
+        {
+            ASPxWebDocumentViewer1.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.Utils.DefaultBoolean.True : DevExpress.Utils.DefaultBoolean.False;
+        }
     }
 }

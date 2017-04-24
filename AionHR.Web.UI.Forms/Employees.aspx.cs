@@ -876,6 +876,7 @@ namespace AionHR.Web.UI.Forms
             else
             {
                 terminationWindow.Close();
+                Store1.Reload();
             }
 
 

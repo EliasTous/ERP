@@ -69,6 +69,7 @@ namespace AionHR.Repository.WebService.Repositories
             ChildDeleteLookup.Add(typeof(BiometricDevice), "delBM");
             ChildDeleteLookup.Add(typeof(Router), "delRO");
             ChildDeleteLookup.Add(typeof(Geofence), "delGF");
+            ChildDeleteLookup.Add(typeof(AttendanceShift), "delAS");
 
 
 

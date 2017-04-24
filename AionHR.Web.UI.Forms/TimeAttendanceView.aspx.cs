@@ -169,6 +169,22 @@ namespace AionHR.Web.UI.Forms
 
 
                     break;
+                case "imgDelete":
+                    X.Msg.Confirm(Resources.Common.Confirmation, Resources.Common.DeleteOneRecord, new MessageBoxButtonsConfig
+                    {
+                        Yes = new MessageBoxButtonConfig
+                        {
+                            //We are call a direct request metho for deleting a record
+                            Handler = String.Format("App.direct.DeleteShift({0})", id),
+                            Text = Resources.Common.Yes
+                        },
+                        No = new MessageBoxButtonConfig
+                        {
+                            Text = Resources.Common.No
+                        }
+
+                    }).Show();
+                    break;
                 default:
                     break;
             }
@@ -182,14 +198,29 @@ namespace AionHR.Web.UI.Forms
         /// </summary>
         /// <param name="index">the ID of the object to delete</param>
         [DirectMethod]
-        public void DeleteRecord(string index)
+        public void DeleteShift(string index)
         {
             try
             {
                 //Step 1 Code to delete the object from the database 
-
+                AttendanceShift s = new AttendanceShift();
+                s.recordId = index;
+                s.dayId = CurrentDay.Text;
+                s.employeeId = CurrentEmployee.Text;
+                s.checkIn = "00:00";
+                s.checkOut = "00:00";
+                PostRequest<AttendanceShift> req = new PostRequest<AttendanceShift>();
+                req.entity = s;
+                PostResponse<AttendanceShift> resp = _timeAttendanceService.ChildDelete<AttendanceShift>(req);
+                if (!resp.Success)
+                {
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    X.Msg.Alert(Resources.Common.Error, resp.Summary).Show();
+                    return;
+                }
+                
                 //Step 2 :  remove the object from the store
-                Store1.Remove(index);
+                attendanceShiftStore.Remove(index);
 
                 //Step 3 : Showing a notification for the user 
                 Notification.Show(new NotificationConfig
@@ -199,7 +230,7 @@ namespace AionHR.Web.UI.Forms
                     Html = Resources.Common.RecordDeletedSucc
                 });
 
-
+                Store1.Reload();
             }
             catch (Exception ex)
             {

@@ -243,6 +243,12 @@
   <data name="xrLabel11.Text" xml:space="preserve">
     <value>Turnover Rate</value>
   </data>
+  <data name="reportHeaderBand1.Dpi" type="System.Single, mscorlib">
+    <value>100</value>
+  </data>
+  <data name="reportHeaderBand1.HeightF" type="System.Single, mscorlib">
+    <value>70.36111</value>
+  </data>
   <data name="xrLabel1.Dpi" type="System.Single, mscorlib">
     <value>100</value>
   </data>
@@ -250,7 +256,7 @@
     <value>Times New Roman, 9.75pt, style=Bold</value>
   </data>
   <data name="xrLabel1.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v16.2">
-    <value>250.0972, 45.36111</value>
+    <value>250.097336, 0</value>
   </data>
   <data name="xrLabel1.SizeF" type="System.Drawing.SizeF, System.Drawing">
     <value>97.39587, 25</value>
@@ -265,7 +271,7 @@
     <value>Times New Roman, 9.75pt, style=Bold</value>
   </data>
   <data name="xrLabel2.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v16.2">
-    <value>347.4931, 45.36111</value>
+    <value>347.493225, 0</value>
   </data>
   <data name="xrLabel2.SizeF" type="System.Drawing.SizeF, System.Drawing">
     <value>152.9514, 25</value>
@@ -280,19 +286,13 @@
     <value>Times New Roman, 9.75pt, style=Bold</value>
   </data>
   <data name="xrLabel3.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v16.2">
-    <value>500.4444, 45.36111</value>
+    <value>500.44455, 0</value>
   </data>
   <data name="xrLabel3.SizeF" type="System.Drawing.SizeF, System.Drawing">
     <value>149.5556, 25</value>
   </data>
   <data name="xrLabel3.Text" xml:space="preserve">
     <value>Turnover Rate</value>
-  </data>
-  <data name="reportHeaderBand1.Dpi" type="System.Single, mscorlib">
-    <value>100</value>
-  </data>
-  <data name="reportHeaderBand1.HeightF" type="System.Single, mscorlib">
-    <value>70.36111</value>
   </data>
   <data name="xrLabel8.Dpi" type="System.Single, mscorlib">
     <value>100</value>
@@ -359,6 +359,9 @@
   </data>
   <data name="xrTableCell7.Font" type="System.Drawing.Font, System.Drawing">
     <value>Times New Roman, 9.75pt, style=Bold</value>
+  </data>
+  <data name="xrSummary3.FormatString" xml:space="preserve">
+    <value>{0:#.00}</value>
   </data>
   <data name="xrTableCell7.Weight" type="System.Double, mscorlib">
     <value>1.52988626691148</value>
@@ -448,6 +451,9 @@
   <data name="xrTableCell11.Font" type="System.Drawing.Font, System.Drawing">
     <value>Times New Roman, 9.75pt, style=Bold</value>
   </data>
+  <data name="xrSummary6.FormatString" xml:space="preserve">
+    <value>{0:#.00}</value>
+  </data>
   <data name="xrTableCell11.Weight" type="System.Double, mscorlib">
     <value>1.14741496285602</value>
   </data>
@@ -481,6 +487,12 @@
   <metadata name="objectDataSource1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
+  <data name="PageHeader.Dpi" type="System.Single, mscorlib">
+    <value>100</value>
+  </data>
+  <data name="PageHeader.HeightF" type="System.Single, mscorlib">
+    <value>25</value>
+  </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>

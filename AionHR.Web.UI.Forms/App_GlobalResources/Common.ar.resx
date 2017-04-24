@@ -127,7 +127,7 @@
     <value>AionHR</value>
   </data>
   <data name="CaseManagement" xml:space="preserve">
-    <value>إدارة القضية</value>
+    <value>إدارة القضايا</value>
   </data>
   <data name="Cases" xml:space="preserve">
     <value>القضايا</value>
@@ -268,7 +268,7 @@
     <value>نعم</value>
   </data>
   <data name="Add" xml:space="preserve">
-    <value>اضافة</value>
+    <value> </value>
   </data>
   <data name="AfterPageText" xml:space="preserve">
     <value>من  {0}</value>
@@ -613,7 +613,7 @@
     <value>أنواع التحقق من الخلفية</value>
   </data>
   <data name="Days" xml:space="preserve">
-    <value>Vacation(Days)</value>
+    <value>الإجازة( أيام)</value>
   </data>
   <data name="EmailNotFound" xml:space="preserve">
     <value>لم يتم العثور على بريد الكتروني لإرسال رابط استعادة كلمة السر</value>
@@ -622,7 +622,7 @@
     <value>المخطط التنظيمي للموظفين</value>
   </data>
   <data name="FieldChangeType" xml:space="preserve">
-    <value>Activity</value>
+    <value>النشاط</value>
   </data>
   <data name="FieldDate" xml:space="preserve">
     <value>التاريخ</value>
@@ -652,7 +652,7 @@
     <value>من(أشهر)</value>
   </data>
   <data name="TransactionLogTitle" xml:space="preserve">
-    <value>Title</value>
+    <value>العنوان</value>
   </data>
   <data name="TrType1" xml:space="preserve">
     <value>تعديل</value>
@@ -667,18 +667,156 @@
     <value>تنفيذ</value>
   </data>
   <data name="TrType5" xml:space="preserve">
-    <value>قراءة</value>
+    <value>كتابة الكل</value>
   </data>
-  <data name="TrType6" xml:space="preserve">
+  <data name="TrType12" xml:space="preserve">
     <value>قراءة الكل</value>
   </data>
-  <data name="TrType7" xml:space="preserve">
+  <data name="TrType21" xml:space="preserve">
     <value>ارسال بريد الكتروني</value>
+  </data>
+  <data name="EmployeeComplaints" xml:space="preserve">
+    <value>شكاوى الموظفين</value>
+  </data>
+  <data name="MediaItems" xml:space="preserve">
+    <value>ملفات الوسائط</value>
+  </data>
+  <data name="TimeFieldError" xml:space="preserve">
+    <value>قيمة الزامية، يجب أن تكون من شكل س س:د د</value>
+  </data>
+  <data name="Folders" xml:space="preserve">
+    <value>المجلدات</value>
+  </data>
+  <data name="Loans" xml:space="preserve">
+    <value>سلف</value>
+  </data>
+  <data name="LoanTypes" xml:space="preserve">
+    <value>انواع السلف</value>
+  </data>
+  <data name="RelationshipTypes" xml:space="preserve">
+    <value>انواع الصلات</value>
+  </data>
+  <data name="CompanyDocumentTypes" xml:space="preserve">
+    <value>أنواع ملفات الشركة</value>
+  </data>
+  <data name="CompanyNews" xml:space="preserve">
+    <value>أخبار الشركة</value>
+  </data>
+  <data name="CompanyRightToWorks" xml:space="preserve">
+    <value>اجازة عمل</value>
+  </data>
+  <data name="EmailReport" xml:space="preserve">
+    <value>رسالة تقرير</value>
+  </data>
+  <data name="ExportAsPdf" xml:space="preserve">
+    <value>تحميل كPDF</value>
+  </data>
+  <data name="RT01" xml:space="preserve">
+    <value>أعمار الموظفين</value>
+  </data>
+  <data name="RT102" xml:space="preserve">
+    <value>توظيف و انهاء الخدمة</value>
+  </data>
+  <data name="RT103" xml:space="preserve">
+    <value>عدد الموظفين</value>
+  </data>
+  <data name="RT201" xml:space="preserve">
+    <value>سجل الرواتب</value>
+  </data>
+  <data name="StandardReports" xml:space="preserve">
+    <value>التقارير الأساسية</value>
+  </data>
+  <data name="SystemAlerts" xml:space="preserve">
+    <value>تنبيهات النظام</value>
+  </data>
+  <data name="Tasks" xml:space="preserve">
+    <value>المهام</value>
   </data>
   <data name="TaskTypes" xml:space="preserve">
     <value>أنواع المهام</value>
   </data>
-  <data name="Tasks" xml:space="preserve">
-    <value>مهام</value>
+  <data name="RT104" xml:space="preserve">
+    <value>سنين الخدمة</value>
+  </data>
+  <data name="RT105" xml:space="preserve">
+    <value>تاريخ العمل</value>
+  </data>
+  <data name="RT202" xml:space="preserve">
+    <value>تغييرات الراتب</value>
+  </data>
+  <data name="RT203" xml:space="preserve">
+    <value>تفاصيل الراتب</value>
+  </data>
+  <data name="RT801" xml:space="preserve">
+    <value>سجل تسجيل الدخول</value>
+  </data>
+  <data name="Go" xml:space="preserve">
+    <value>بحث</value>
+  </data>
+  <data name="Mod20" xml:space="preserve">
+    <value>النظام</value>
+  </data>
+  <data name="Mod21" xml:space="preserve">
+    <value>الشركة</value>
+  </data>
+  <data name="Mod22" xml:space="preserve">
+    <value>الملفات</value>
+  </data>
+  <data name="Mod23" xml:space="preserve">
+    <value>وسائل الاعلام</value>
+  </data>
+  <data name="Mod24" xml:space="preserve">
+    <value>الأخبار</value>
+  </data>
+  <data name="Mod30" xml:space="preserve">
+    <value>التوظيف</value>
+  </data>
+  <data name="Mod31" xml:space="preserve">
+    <value>الموظفين</value>
+  </data>
+  <data name="Mod32" xml:space="preserve">
+    <value>المهام</value>
+  </data>
+  <data name="Mod41" xml:space="preserve">
+    <value>الحضور</value>
+  </data>
+  <data name="Mod42" xml:space="preserve">
+    <value>الاجازات</value>
+  </data>
+  <data name="Mod43" xml:space="preserve">
+    <value>القضايا</value>
+  </data>
+  <data name="Mod44" xml:space="preserve">
+    <value>الشكاوى</value>
+  </data>
+  <data name="Mod45" xml:space="preserve">
+    <value>السلف</value>
+  </data>
+  <data name="Mod80" xml:space="preserve">
+    <value>التقارير</value>
+  </data>
+  <data name="Print" xml:space="preserve">
+    <value>طباعة</value>
+  </data>
+  <data name="RT106" xml:space="preserve">
+    <value>معدل انهاء الخدمة</value>
+  </data>
+  <data name="RT802" xml:space="preserve">
+    <value>سجل المراقبة</value>
+  </data>
+  <data name="TrType11" xml:space="preserve">
+    <value>قراءة</value>
+  </data>
+  <data name="Day" xml:space="preserve">
+    <value>يوم</value>
+  </data>
+  <data name="Month" xml:space="preserve">
+    <value>شهر</value>
+  </data>
+  <data name="Week" xml:space="preserve">
+    <value>اسبوع</value>
+  </data>
+  <data name="Year" xml:space="preserve">
+    <value>سنة</value>
   </data>
 </root>

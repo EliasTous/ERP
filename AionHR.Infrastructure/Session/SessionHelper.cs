@@ -1,6 +1,7 @@
 ﻿using AionHR.Infrastructure.Tokens;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -80,7 +81,7 @@ namespace AionHR.Infrastructure.Session
 
         public void SetStartDate(DateTime date)
         {
-            Set("StartDate", date);
+            Set("StartDate", date.ToString("dd/MM/yyy"));
         }
 
         #endregion
@@ -105,7 +106,7 @@ namespace AionHR.Infrastructure.Session
 
         public DateTime GetStartDate()
         {
-            return (DateTime)Get("StartDate");
+            return DateTime.ParseExact(Get("StartDate").ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture); 
         }
 
         public string GetDefaultCountry()

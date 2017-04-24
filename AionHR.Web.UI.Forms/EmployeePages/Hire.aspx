@@ -34,13 +34,13 @@
 
 
             <Items>
-                <ext:FormPanel runat="server" ID="hireInfoForm" Region="Center" Layout="HBoxLayout">
+                <ext:FormPanel runat="server" ID="hireInfoForm" Region="Center" Layout="HBoxLayout" >
                     <Items>
                         <ext:Panel runat="server"  flex="2"><Items></Items></ext:Panel>
-                        <ext:Panel runat="server" Flex="3"><Items>
-                        <ext:DateField runat="server" AllowBlank="false" ID="probationEndDate" Name="probationEndDate" FieldLabel="<%$ Resources:FieldProbationEndDate %>"></ext:DateField>
-                        <ext:DateField runat="server" AllowBlank="false" ID="nextReviewDate" Name="nextReviewDate" FieldLabel="<%$ Resources:FieldNextReviewDate %>"></ext:DateField>
-                        <ext:ComboBox runat="server" AllowBlank="false" ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" ID="npId" Name="npId" FieldLabel="<%$ Resources:FieldNP%>" SimpleSubmit="true">
+                        <ext:Panel runat="server" Flex="4"><Items>
+                        <ext:DateField runat="server" AllowBlank="false" ID="probationEndDate" Name="probationEndDate" LabelWidth="150" FieldLabel="<%$ Resources:FieldProbationEndDate %>"></ext:DateField>
+                        <ext:DateField runat="server" AllowBlank="false" ID="nextReviewDate" Name="nextReviewDate"  LabelWidth="150" FieldLabel="<%$ Resources:FieldNextReviewDate %>"></ext:DateField>
+                        <ext:ComboBox runat="server" AllowBlank="false" ValueField="recordId" QueryMode="Local"  LabelWidth="150" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" ID="npId" Name="npId" FieldLabel="<%$ Resources:FieldNP%>" SimpleSubmit="true">
                             <Store>
                                 <ext:Store runat="server" ID="npStore">
                                     <Model>
@@ -70,9 +70,9 @@
                                 <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
                             </Listeners>
                         </ext:ComboBox>
-                        <ext:DateField runat="server" AllowBlank="false" ID="termEndDate" Name="termEndDate" FieldLabel="<%$ Resources:FieldTermEndDate %>"></ext:DateField>
-                        <ext:TextArea runat="server" ID="recruitmentInfo" Name="recruitmentInfo" FieldLabel="<%$ Resources:FieldRecruitmentInfo %>" />
-                        <ext:NumberField runat="server" ID="recruitmentCost" Name="recruitmentCost" FieldLabel="<%$ Resources:FieldRecruitmentCost %>" />
+                        <ext:DateField  LabelWidth="150" runat="server" AllowBlank="false" ID="termEndDate" Name="termEndDate" FieldLabel="<%$ Resources:FieldTermEndDate %>"></ext:DateField>
+                        <ext:TextArea  LabelWidth="150"  runat="server" ID="recruitmentInfo" Name="recruitmentInfo" FieldLabel="<%$ Resources:FieldRecruitmentInfo %>" />
+                        <ext:NumberField runat="server"  LabelWidth="150" ID="recruitmentCost" Name="recruitmentCost" FieldLabel="<%$ Resources:FieldRecruitmentCost %>" />
                             </Items></ext:Panel>
                          <ext:Panel runat="server"  flex="2"><Items></Items></ext:Panel>
                     </Items>

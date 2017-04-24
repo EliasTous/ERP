@@ -1,5 +1,6 @@
 ﻿using AionHR.Infrastructure.Configuration;
 using AionHR.Infrastructure.Logging;
+using DevExpress.XtraReports.Security;
 using Microsoft.Practices.ServiceLocation;
 using System;
 using System.Collections.Generic;
@@ -22,6 +23,7 @@ namespace AionHR.Web.UI.Forms
                                (ServiceLocator.Current.GetInstance<IApplicationSettings>());
 
             LoggingFactory.InitializeLogFactory(ServiceLocator.Current.GetInstance<ILogger>());
+            ScriptPermissionManager.GlobalInstance = new ScriptPermissionManager(ExecutionMode.Unrestricted);
         }
 
         protected void Session_Start(object sender, EventArgs e)

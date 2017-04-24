@@ -18,27 +18,40 @@ namespace AionHR.Model.Reports
 
         public int salaryType { get; set; }
 
-        public string SalaryTypeString
+        private string salaryTypeString;
+      
+        public int paymentFrequency { get; set; }
+
+        private string paymentFrequencyString;
+
+        public string PaymentFrequencyString
         {
             get
             {
 
-                return ((PaymentFrequency)salaryType).ToString();
+                return paymentFrequencyString;
 
             }
+            set { paymentFrequencyString = value; }
         }
-        public int paymentFrequency { get; set; }
 
-        public string PaymentFrequencyString { get
-            {
-
-                return  ((PaymentFrequency)paymentFrequency).ToString();
-               
-            } }
         public double basicAmount
         {
             get; set;
         }
         public string currencyRef { get; set; }
+
+        public string SalaryTypeString
+        {
+            get
+            {
+                return salaryTypeString;
+            }
+
+            set
+            {
+                salaryTypeString = value;
+            }
+        }
     }
 }
