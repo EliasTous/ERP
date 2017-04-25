@@ -9,15 +9,39 @@
     <title></title>
     <link rel="stylesheet" type="text/css" href="CSS/Common.css" />
     <link rel="stylesheet" href="CSS/LiveSearch.css" />
+      <link rel="stylesheet" href="Scripts/HijriCalender/redmond.calendars.picker.css" />
     <script type="text/javascript" src="Scripts/test.js"></script>
+      <script src="Scripts/jquery.min.js" type="text/javascript"></script>
+      <script src="Scripts/HijriCalender/jquery.plugin.js" type="text/javascript"></script>
     <script type="text/javascript" src="Scripts/common.js"></script>
-
+    <script type="text/javascript"  src="Scripts/HijriCalender/jquery.calendars.js"></script>
+    <script type="text/javascript" src="Scripts/HijriCalender/jquery.calendars-ar.js"></script>
+    <script type="text/javascript" src="Scripts/HijriCalender/jquery.calendars.picker.js"></script>
+    <script type="text/javascript" src="Scripts/HijriCalender/jquery.calendars.plus.js"></script>
+    <script type="text/javascript" src="Scripts/HijriCalender/jquery.calendars.islamic.js"></script>
+    <script type="text/javascript" src="Scripts/HijriCalender/jquery.calendars.islamic-ar.js"></script>
+    <script type="text/javascript" src="Scripts/HijriCalender/jquery.calendars.lang.js"></script>
+    <script type="text/javascript" src="Scripts/HijriCalender/jquery.calendars.picker-ar.js"></script>
     <style>
         .tlb-BackGround {
             background: #fff;
         }
+
+        .calendars-popup {
+   
+    z-index: 80000 !important;
+}
     </style>
 
+
+    <script type="text/javascript">
+        var handleInputRender = function () {
+            jQuery(function () {
+                var calendar = jQuery.calendars.instance('Islamic', 'ar');
+                jQuery('.showCal').calendarsPicker({ calendar: calendar });
+            });
+        }
+    </script>
 
 </head>
 <body style="background: url(Images/bg.png) repeat;">
@@ -82,6 +106,13 @@
                     <TopBar>
                         <ext:Toolbar ID="Toolbar1" runat="server" ClassicButtonStyle="false">
                             <Items>
+
+                                <ext:TextField ID="txtProduceDate" Width="250" runat="server" Margin="5" FieldLabel="تاريخ الإنتاج" FieldCls="showCal">
+                                    <Listeners>
+                                        <Render Fn="handleInputRender" />
+                                    </Listeners>
+                                </ext:TextField>
+
                                 <ext:Button ID="btnAdd" runat="server" Text="<%$ Resources:Common , Add %>" Icon="Add">
                                     <Listeners>
                                         <Click Handler="CheckSession();" />
@@ -309,7 +340,7 @@
                     </Items>
                 </ext:TabPanel>
             </Items>
-            
+
             <BottomBar>
                 <ext:Toolbar runat="server" Cls="tlb-BackGround">
                     <Items>

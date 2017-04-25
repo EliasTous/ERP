@@ -286,6 +286,17 @@
     <Content Include="Scripts\EmployeesOrgChart.js" />
     <Content Include="Scripts\Folders.js" />
     <Content Include="Scripts\HijriCalendar.js" />
+    <Content Include="Scripts\HijriCalender\flora.calendars.picker.css" />
+    <Content Include="Scripts\HijriCalender\jquery.calendars-ar.js" />
+    <Content Include="Scripts\HijriCalender\jquery.calendars.islamic-ar.js" />
+    <Content Include="Scripts\HijriCalender\jquery.calendars.islamic.js" />
+    <Content Include="Scripts\HijriCalender\jquery.calendars.js" />
+    <Content Include="Scripts\HijriCalender\jquery.calendars.lang.js" />
+    <Content Include="Scripts\HijriCalender\jquery.calendars.picker-ar.js" />
+    <Content Include="Scripts\HijriCalender\jquery.calendars.picker.js" />
+    <Content Include="Scripts\HijriCalender\jquery.calendars.plus.js" />
+    <Content Include="Scripts\HijriCalender\jquery.plugin.js" />
+    <Content Include="Scripts\HijriCalender\redmond.calendars.picker.css" />
     <Content Include="Scripts\LoanRequests.js" />
     <Content Include="Scripts\LoanTypes.js" />
     <Content Include="Scripts\MainDashboard.js" />
