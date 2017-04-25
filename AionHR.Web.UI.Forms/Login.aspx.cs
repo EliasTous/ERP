@@ -148,7 +148,7 @@ namespace AionHR.Web.UI.Forms
             }
             catch
             {
-                _systemService.SessionHelper.SetDateformat("{firstName}{lastName} ");
+                _systemService.SessionHelper.SetNameFormat("{firstName}{lastName} ");
             }
             try
             {

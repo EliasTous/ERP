@@ -19,7 +19,7 @@ namespace AionHR.Web.UI.Forms.Reports.Controls
         {
             TransactionTypeParameterSet s = new TransactionTypeParameterSet();
             int bulk;
-            if (!int.TryParse(trxType.Value.ToString(), out bulk))
+            if (trxType.Value==null|| !int.TryParse(trxType.Value.ToString(), out bulk))
                 s.TransactionType = 1;
             else
                 s.TransactionType = bulk;

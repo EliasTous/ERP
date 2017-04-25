@@ -22,8 +22,8 @@ namespace AionHR.Model.Employees.Profile
         public string branchName { get; set; }
         public EmployeeName reportToName { get; set; }
         public int eosBalance { get; set; }
-        public DateTime lastLeaveStartDate { get; set; }
-        public DateTime lastLeaveEndDate { get; set; }
+        public DateTime? lastLeaveStartDate { get; set; }
+        public DateTime? lastLeaveEndDate { get; set; }
         public short paidLeavesYTD { get; set; }
         public short leavesBalance { get; set; }
         public short allowedLeaveYtd { get; set; }
@@ -31,8 +31,9 @@ namespace AionHR.Model.Employees.Profile
         public string LastLeave(string format)
         {
 
-
-            return lastLeaveStartDate.ToString(format) + "-" + lastLeaveStartDate.ToString(format);
+            if (!lastLeaveEndDate.HasValue || !lastLeaveStartDate.HasValue)
+                return "/";
+            return lastLeaveStartDate.Value.ToString(format) + "-" + lastLeaveStartDate.Value.ToString(format);
         }
     }
 }

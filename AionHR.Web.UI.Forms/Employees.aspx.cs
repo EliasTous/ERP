@@ -735,7 +735,7 @@ namespace AionHR.Web.UI.Forms
 
                         CurrentEmployee.Text = req.RecordID.ToString();
                         FillLeftPanel();
-                        FixLoaderUrls(req.RecordID.ToString(), b.hireDate.Value.ToShortDateString());
+                        
                         FillLeftPanel();
                         InitCombos(false);
                         FillProfileInfo(b.recordId);
@@ -949,7 +949,7 @@ namespace AionHR.Web.UI.Forms
                (forSummary.reportToName == null) ? "" : "<br />" + GetLocalResourceObject("FieldReportsTo").ToString() + " :" + forSummary.reportToName.fullName + "<br />",
                forSummary.eosBalance + "<br />",
                forSummary.paidLeavesYTD + "<br/>",
-               "<br/>" + forSummary.lastLeaveStartDate.ToShortDateString() + " - " + forSummary.lastLeaveEndDate.ToShortDateString() + "<br />",
+                forSummary.LastLeave(_systemService.SessionHelper.GetDateformat()) + "<br />",
                forSummary.leavesBalance + "<br />",
                forSummary.allowedLeaveYtd + "<br />"
             );
@@ -960,7 +960,7 @@ namespace AionHR.Web.UI.Forms
             eosBalanceLbl.Html = forSummary.eosBalance + "<br />";
 
             paidLeavesYTDLbl.Html = forSummary.paidLeavesYTD + "<br/>";
-            lastLeaveStartDateLbl.Html = "<br/>" + forSummary.lastLeaveStartDate.ToShortDateString() + " - " + forSummary.lastLeaveEndDate.ToShortDateString() + "<br />";
+            lastLeaveStartDateLbl.Html =  forSummary.LastLeave(_systemService.SessionHelper.GetDateformat()) + "<br />";
             leavesBalance.Html = forSummary.leavesBalance + "<br />";
             allowedLeaveYtd.Html = forSummary.allowedLeaveYtd + "<br />";
             if (forSummary.reportToName != null)
@@ -1169,7 +1169,8 @@ namespace AionHR.Web.UI.Forms
                 paidLeavesYTD = qv.result.paidLeavesYTD,
                 leavesBalance = qv.result.leavesBalance,
                 allowedLeaveYtd = qv.result.allowedLeaveYtd,
-                lastLeave = qv.result.lastLeaveStartDate.ToString(_systemService.SessionHelper.GetDateformat()) + "-" + qv.result.lastLeaveStartDate.ToString(_systemService.SessionHelper.GetDateformat())
+                lastleave=qv.result.LastLeave(_systemService.SessionHelper.GetDateformat())
+                
 
         };
 

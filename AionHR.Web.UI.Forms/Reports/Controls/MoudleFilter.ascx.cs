@@ -19,7 +19,7 @@ namespace AionHR.Web.UI.Forms.Reports.Controls
         {
             ClassIdParameterSet s = new ClassIdParameterSet();
             int bulk;
-            if (!int.TryParse(moduleId.Value.ToString(), out bulk))
+            if (moduleId.Value == null || !int.TryParse(moduleId.Value.ToString(), out bulk))
                 s.ClassId = 20;
             else
                 s.ClassId = bulk;

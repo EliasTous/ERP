@@ -12,57 +12,15 @@
     <link rel="stylesheet" type="text/css" href="CSS/Common.css?id=11" />
     <link rel="stylesheet" type="text/css" href="CSS/Employees.css?id=15" />
     <link rel="stylesheet" href="CSS/LiveSearch.css" />
-    <link rel="stylesheet" href="CSS/cal.css?id=2" />
-    <style type="text/css">
-        #cal-1, #cal-2 {
-            margin-left: 12px;
-            margin-top: 10px;
-        }
+   
 
-        .icon-button {
-            width: 30px;
-        }
-
-        input {
-            width: 243px;
-            margin-bottom: 8px;
-        }
-
-        .calendar {
-            height: 200px;
-            width: 200px;
-        }
-    </style>
     <script type="text/javascript" src="Scripts/common.js?id=1"></script>
-    <script type="text/javascript" src="Scripts/HijriCalendar.js?id=1"></script>
-    <script type="text/javascript" src="Scripts/cal.js?id=1"></script>
+
     <script type="text/javascript" src="Scripts/cropbox-min.js?id=1"></script>
     <script type="text/javascript" src="Scripts/Employees.js?id=36"></script>
     <script type="text/javascript">
         var cropper = null;
-        function doTranslations() {
-            alert('called');
-            $("reportsTo").text = document.getElementById("reportTo").value;
-        }
-        var cal2;
-
-        function setDateFields() {
-
-            date2.value = cal2.getDate().getDateString();
-        }
-        function showCal2() {
-            if (cal2.isHidden()) cal2.show();
-            else cal2.hide();
-            return false;
-        }
-        function attach() {
-            //cal2.callback = function () {
-
-
-            //    setDateFields();
-            //};
-        }
-
+      
     </script>
 
 </head>
@@ -297,7 +255,7 @@
 
                             <ext:Column Visible="false" ID="ColrecordId" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldrecordId %>" DataIndex="recordId" Hideable="false" Width="75" Align="Center" />
 
-                            <ext:ComponentColumn runat="server" DataIndex="pictureUrl">
+                            <ext:ComponentColumn runat="server" DataIndex="pictureUrl" Sortable="false">
                                 <Component>
                                     <ext:Image runat="server" Height="100" Width="50">
                                     </ext:Image>
@@ -585,12 +543,7 @@
                             </Items>
                         </ext:Toolbar>
                     </TopBar>
-                    <Listeners>
-                        <AfterLayout Handler="   cal2 = new Calendar(true, 0, false, true);
-        document.getElementById('cal-2').appendChild(cal2.getElement());
-        attach();
-        cal2.show(); " />
-                    </Listeners>
+        
                     <Items>
                         <ext:FormPanel DefaultButton="SaveButton"
                             ID="BasicInfoTab" PaddingSpec="40 0 0 0"
@@ -613,10 +566,8 @@
                                         <ext:TextField ID="familyName" runat="server" FieldLabel="<%$ Resources:FieldFamilyName%>" Name="familyName" BlankText="<%$ Resources:Common, MandatoryField%>" />
                                         <ext:TextField ID="homeEmail" runat="server" FieldLabel="<%$ Resources:FieldHomeEmail%>" Name="homeMail" Vtype="email" BlankText="<%$ Resources:Common, MandatoryField%>" />
                                         <ext:TextField ID="workEmail" runat="server" FieldLabel="<%$ Resources:FieldWorkEmail%>" Name="workMail" Vtype="email" BlankText="<%$ Resources:Common, MandatoryField%>" />
-                                        <ext:TextField ID="mobile" AllowBlank="true" runat="server" FieldLabel="<%$ Resources:FieldMobile%>" Name="mobile" BlankText="<%$ Resources:Common, MandatoryField%>">
-                                            <Plugins>
-                                                <ext:InputMask Mask="?99999999" />
-                                            </Plugins>
+                                        <ext:TextField ID="mobile" AllowBlank="true" MinLength="6" MaxLength="18" runat="server" FieldLabel="<%$ Resources:FieldMobile%>" Name="mobile" BlankText="<%$ Resources:Common, MandatoryField%>">
+                                            <Validator Handler="return !isNaN(this.value);" />
                                         </ext:TextField>
 
 
@@ -846,28 +797,7 @@
                                             FieldLabel="<%$ Resources:FieldHireDate%>"
                                             MsgTarget="Side"
                                             AllowBlank="false" />
-                                        <ext:DropDownField AllowBlank="false"
-                                            ID="colorDay" Width="500"
-                                            runat="server"
-                                            Editable="false" 
-                                            Name="color">
-                                            <Component>
-                                                <ext:Panel runat="server"  Width="500">
-                                                    <Items>
-                                                        <ext:Container runat="server" Width="500" >
-                                                            <Content>
-                                                                <div id="cal-2">
-                                                                    <input id="date-2" type="text" />
-                                                                    <button class="icon-button" onclick="showCal2(); return false;">&#x25a6;</button>
-                                                                </div>
-                                                                <%--<uc:multiCal ID="cal1" runat="server" />--%>
-                                                            </Content>
-                                                        </ext:Container>
-                                                    </Items>
-                                                </ext:Panel>
-                                            </Component>
-
-                                        </ext:DropDownField>
+                                      
 
                                     </Items>
                                 </ext:Panel>

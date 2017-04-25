@@ -14,13 +14,17 @@ namespace AionHR.Web.UI.Forms.Reports
         {
             inactivePref.Select("0");
         }
-
+        protected void Page_Init(object sender, EventArgs e)
+        {
+            inactivePref.Select("0");
+        }
         public ActiveStatusParameterSet GetActiveStatus()
         {
             ActiveStatusParameterSet s = new ActiveStatusParameterSet();
             int bulk;
-            if (!int.TryParse(inactivePref.Value.ToString(), out bulk))
-                s.active = 1;
+            if (inactivePref.Value==null || !int.TryParse(inactivePref.Value.ToString(), out bulk))
+
+                s.active = 0;
             else
                 s.active = bulk;
 

@@ -150,7 +150,7 @@ namespace AionHR.Web.UI.Forms.Reports
         private ReportCompositeRequest GetRequest()
         {
             ReportCompositeRequest req = new ReportCompositeRequest();
-
+          
             req.Size = "1000";
             req.StartAt = "1";
             req.SortBy = "departmentName";
@@ -158,10 +158,12 @@ namespace AionHR.Web.UI.Forms.Reports
             req.Add(dateRange1.GetRange());
             return req;
         }
-
-        private void FillReport()
+        
+        private void FillReport(bool isInitial=false)
         {
+            
             ReportCompositeRequest req = GetRequest();
+            
             ListResponse<AionHR.Model.Reports.RT102A> resp = _reportsService.ChildGetAll<AionHR.Model.Reports.RT102A>(req);
             if (!resp.Success)
             {
@@ -222,7 +224,7 @@ namespace AionHR.Web.UI.Forms.Reports
         protected void ASPxCallbackPanel1_Load(object sender, EventArgs e)
         {
             ASPxWebDocumentViewer1.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.Utils.DefaultBoolean.True : DevExpress.Utils.DefaultBoolean.False;
-
+            FillReport(true);
         }
     }
 }

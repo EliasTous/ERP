@@ -96,7 +96,7 @@
                                                     </Model>
                                                 </ext:Store>
                                             </Store>
-                                               <RightButtons>
+                                            <RightButtons>
                                                 <ext:Button ID="Button2" runat="server" Icon="Add" Hidden="true">
                                                     <Listeners>
                                                         <Click Handler="CheckSession();  " />
@@ -119,7 +119,8 @@
                                                 <ext:ListItem Text="Jan 31,16" Value="MMM dd,yy" />
                                                 <ext:ListItem Text="31/1/16" Value="MM/dd/yy" />
                                                 <ext:ListItem Text="1/31/16" Value="dd/MM/yy" />
-                                               </Items>
+                                                <ext:ListItem Text="31/1/2016" Value="dd/MM/yyyy" />
+                                            </Items>
                                         </ext:ComboBox>
 
                                         <ext:ComboBox QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: FieldNameFormat %>" Name="nameFormat" runat="server" ID="nameFormatCombo">
@@ -174,7 +175,7 @@
                                                 <ext:ListItem Text="+12 UTC" Value="12" />
                                             </Items>
                                         </ext:ComboBox>
-                                        
+
                                         <ext:Checkbox FieldLabel="<%$ Resources: FieldEnableCamera %>" runat="server" InputValue="True" Name="enableCamera" ID="enableCameraCheck" />
                                     </Items>
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,7 +18,7 @@ namespace AionHR.Services.Messaging.Reports
             get
             {
                 parameters = new Dictionary<string, string>();
-                parameters.Add("_asOfDate", Date.ToShortDateString());
+                parameters.Add("_asOfDate", Date.ToString("MM/dd/yyyy", new CultureInfo("en-US")));
                 return parameters;
             }
         }

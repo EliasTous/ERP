@@ -87,12 +87,32 @@ namespace AionHR.Web.UI.Forms
             try
             {
                 currencyIdCombo.Select(items.Where(s => s.Key == "currencyId").First().Value);
+            }
+            catch { }
+            try
+            {
                 countryIdCombo.Select(items.Where(s => s.Key == "countryId").First().Value);
+            }
+            catch { }
+            try
+            {
                 dateFormatCombo.Select(items.Where(s => s.Key == "dateFormat").First().Value);
-                nameFormatCombo.Select(items.Where(s => s.Key == "nameFormat").First().Value);
+            }
+            catch { }
+            try { nameFormatCombo.Select(items.Where(s => s.Key == "nameFormat").First().Value); }
+            catch { }
+            try
+            {
                 timeZoneCombo.Select(items.Where(s => s.Key == "timeZone").First().Value);
-                fdowCombo.Select(items.Where(s => s.Key == "fdow").First().Value);
-                
+            }
+
+            catch { }
+            try { fdowCombo.Select(items.Where(s => s.Key == "fdow").First().Value); }
+
+            catch { }
+            try
+
+            {
                 enableCameraCheck.Checked = items.Where(s => s.Key == "enableCamera").First().Value == "true";
             }
             catch { }
@@ -141,13 +161,19 @@ namespace AionHR.Web.UI.Forms
         {
             List<KeyValuePair<string, string>> submittedValues = new List<KeyValuePair<string, string>>();
             dynamic values = JsonConvert.DeserializeObject(e.ExtraParams["values"]);
-            submittedValues.Add(new KeyValuePair<string, string>("countryId", values.countryId.ToString()));
-            submittedValues.Add(new KeyValuePair<string, string>("currencyId", values.currencyId.ToString()));
-            submittedValues.Add(new KeyValuePair<string, string>("nameFormat", values.nameFormat.ToString()));
-            submittedValues.Add(new KeyValuePair<string, string>("dateFormat", values.dateFormat.ToString()));
-            submittedValues.Add(new KeyValuePair<string, string>("timeZone", values.timeZone.ToString()));
-            submittedValues.Add(new KeyValuePair<string, string>("fdow", values.fdow.ToString()));
-            
+            if (!string.IsNullOrEmpty(values.countryId.ToString()))
+                submittedValues.Add(new KeyValuePair<string, string>("countryId", values.countryId.ToString()));
+            if (!string.IsNullOrEmpty(values.currencyId.ToString()))
+                submittedValues.Add(new KeyValuePair<string, string>("currencyId", values.currencyId.ToString()));
+            if (!string.IsNullOrEmpty(values.nameFormat.ToString()))
+                submittedValues.Add(new KeyValuePair<string, string>("nameFormat", values.nameFormat.ToString()));
+            if (!string.IsNullOrEmpty(values.dateFormat.ToString()))
+                submittedValues.Add(new KeyValuePair<string, string>("dateFormat", values.dateFormat.ToString()));
+            if (!string.IsNullOrEmpty(values.timeZone.ToString()))
+                submittedValues.Add(new KeyValuePair<string, string>("timeZone", values.timeZone.ToString()));
+            if (!string.IsNullOrEmpty(values.fdow.ToString()))
+                submittedValues.Add(new KeyValuePair<string, string>("fdow", values.fdow.ToString()));
+
             submittedValues.Add(new KeyValuePair<string, string>("enableCamera", values.enableCamera == null ? "false" : "true"));
             KeyValuePair<string, string>[] valArr = submittedValues.ToArray();
             PostRequest<KeyValuePair<string, string>[]> req = new PostRequest<KeyValuePair<string, string>[]>();

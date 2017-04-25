@@ -167,7 +167,7 @@ namespace AionHR.Web.UI.Forms.Reports
 
             List<AionHR.Model.Reports.RT104> reordered = resp.Items.Where(x => x.hiredMonth >= DateTime.Now.Month).ToList();
             reordered.AddRange(resp.Items.Where(x => x.hiredMonth < DateTime.Now.Month).OrderBy(h => h.hiredMonth).ToList());
-            reordered.ForEach(x => x.HiredMonthString = GetGlobalResourceObject("Common", CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(x.hiredMonth)).ToString());
+            reordered.ForEach(x => x.HiredMonthString = GetGlobalResourceObject("Common", new CultureInfo("en-US").DateTimeFormat.GetMonthName(x.hiredMonth)).ToString());
             y.DataSource = reordered;
 
 
@@ -201,6 +201,7 @@ namespace AionHR.Web.UI.Forms.Reports
         protected void ASPxCallbackPanel1_Load(object sender, EventArgs e)
         {
             ASPxWebDocumentViewer1.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.Utils.DefaultBoolean.True : DevExpress.Utils.DefaultBoolean.False;
+            FillReport();
         }
     }
 }
