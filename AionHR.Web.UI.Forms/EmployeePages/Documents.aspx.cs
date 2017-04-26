@@ -122,16 +122,17 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             int id = Convert.ToInt32(e.ExtraParams["id"]);
             string type = e.ExtraParams["type"];
             string path = e.ExtraParams["path"];
+            string folder = e.ExtraParams["folderId"];
+
             switch (type)
             {
                 case "imgEdit":
                     //Step 1 : get the object from the Web Service 
-                    EmployeeDocument entity = GetById(id.ToString());
-                    //Step 2 : call setvalues with the retrieved object
-                    this.EditDocumentForm.SetValues(entity);
-                    FillDocumentTypes();
-                    dtId.Select(entity.dtId.ToString());
 
+                    dtStore.DataSource = GetFolders();
+                    dtStore.DataBind();
+                    folderId.Select(folder);
+                    seqNo.Text = id.ToString();
                     this.EditDocumentWindow.Title = Resources.Common.EditWindowsTitle;
                     this.EditDocumentWindow.Show();
                     break;
@@ -142,7 +143,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                         Yes = new MessageBoxButtonConfig
                         {
                             //We are call a direct request metho for deleting a record
-                            Handler = String.Format("App.direct.DeleteDocument({0},'{1}')", id,path),
+                            Handler = String.Format("App.direct.DeleteDocument({0},'{1}')", id, path),
                             Text = Resources.Common.Yes
                         },
                         No = new MessageBoxButtonConfig
@@ -244,7 +245,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
         /// </summary>
         /// <param name="index">the ID of the object to delete</param>
         [DirectMethod]
-        public void DeleteDocument(string index,string name)
+        public void DeleteDocument(string index, string name)
         {
             try
             {
@@ -315,7 +316,6 @@ namespace AionHR.Web.UI.Forms.EmployeePages
         /// <param name="e"></param>
         protected void ADDNewRecord(object sender, DirectEventArgs e)
         {
-
             //Reset all values of the relative object
             //EditDocumentForm.Reset();
             //this.EditDocumentWindow.Title = Resources.Common.AddNewRecord;
@@ -323,14 +323,10 @@ namespace AionHR.Web.UI.Forms.EmployeePages
 
             //this.EditDocumentWindow.Show();
 
-            ListRequest req = new ListRequest();
-            ListResponse<SystemFolder> docs = _systemService.ChildGetAll<SystemFolder>(req);
-            if (!docs.Success)
-            {
-                return;
-            }
+            List<SystemFolder> docs = GetFolders();
+
             List<object> options = new List<object>();
-            foreach (var item in docs.Items)
+            foreach (var item in docs)
             {
                 options.Add(new { text = item.name, value = item.recordId });
             }
@@ -338,6 +334,12 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             AttachmentsWindow.Show();
         }
 
+        private List<SystemFolder> GetFolders()
+        {
+            ListRequest req = new ListRequest();
+            ListResponse<SystemFolder> docs = _systemService.ChildGetAll<SystemFolder>(req);
+            return docs.Items;
+        }
 
         protected void employeeDocumentsStore_RefreshData(object sender, StoreReadDataEventArgs e)
         {
@@ -368,7 +370,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
 
 
 
-        protected void SaveDocument(object sender, DirectEventArgs e)
+        protected void SaveFolder(object sender, DirectEventArgs e)
         {
 
 
@@ -376,160 +378,66 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             string id = e.ExtraParams["id"];
 
             string obj = e.ExtraParams["values"];
-            EmployeeDocument b = JsonConvert.DeserializeObject<EmployeeDocument>(obj);
-            b.employeeId = Convert.ToInt32(CurrentEmployee.Text);
-            b.recordId = id;
+            Attachement b = JsonConvert.DeserializeObject<Attachement>(obj);
+            b.recordId = Convert.ToInt32(CurrentEmployee.Text);
+            b.seqNo = Convert.ToInt16(id);
+            b.classId = ClassId.EPDO;
             // Define the object to add or edit as null
-            b.dtName = dtId.SelectedItem.Text;
-            if (b.expiryDate.HasValue)
-                b.expiryDate = new DateTime(b.expiryDate.Value.Year, b.expiryDate.Value.Month, b.expiryDate.Value.Day, 14, 0, 0);
+            b.folderName = folderId.SelectedItem.Text;
 
-            if (string.IsNullOrEmpty(id))
+
+            try
             {
+                //New Mode
+                PostRequest<Attachement> req = new PostRequest<Attachement>();
+                req.entity = b;
 
-                try
+
+
+                PostResponse<Attachement> r = _systemService.ChildAddOrUpdate<Attachement>(req);
+
+
+
+                //check if the insert failed
+                if (!r.Success)//it maybe be another condition
                 {
-                    //New Mode
-                    PostRequestWithAttachment<EmployeeDocument> request = new PostRequestWithAttachment<EmployeeDocument>();
-
-                    byte[] fileData = null;
-                    if (documentFile.PostedFile != null && documentFile.PostedFile.ContentLength > 0)
-                    {
-                        //using (var binaryReader = new BinaryReader(picturePath.PostedFile.InputStream))
-                        //{
-                        //    fileData = binaryReader.ReadBytes(picturePath.PostedFile.ContentLength);
-                        //}
-                        fileData = new byte[documentFile.PostedFile.ContentLength];
-                        fileData = documentFile.FileBytes;
-                        request.FileName = documentFile.PostedFile.FileName;
-                        request.FileData = fileData;
-
-                    }
-                    else
-                    {
-                        request.FileData = fileData;
-                        request.FileName = "";
-                    }
-                    request.entity = b;
-
-                    PostResponse<EmployeeDocument> r = _employeeService.ChildAddOrUpdateWithAttachment<EmployeeDocument>(request);
-                    b.recordId = r.recordId;
-
-
-                    //check if the insert failed
-                    if (!r.Success)//it maybe be another condition
-                    {
-                        //Show an error saving...
-                        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                        X.Msg.Alert(Resources.Common.Error, r.Summary).Show();
-                        return;
-                    }
-                    else
-                    {
-                        EmployeeDocument insertedEntity = GetById(b.recordId);
-                        //Add this record to the store 
-
-                        this.employeeDocumentsStore.Insert(0, insertedEntity);
-
-                        //Display successful notification
-                        Notification.Show(new NotificationConfig
-                        {
-                            Title = Resources.Common.Notification,
-                            Icon = Icon.Information,
-                            Html = Resources.Common.RecordSavingSucc
-                        });
-
-                        this.EditDocumentWindow.Close();
-                        RowSelectionModel sm = this.employeeDocumentsGrid.GetSelectionModel() as RowSelectionModel;
-                        sm.DeselectAll();
-                        sm.Select(b.recordId.ToString());
-
-
-
-                    }
-                }
-                catch (Exception ex)
-                {
-                    //Error exception displaying a messsage box
+                    //Show an error saving...
                     X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorSavingRecord).Show();
+                    X.Msg.Alert(Resources.Common.Error, r.Summary).Show();
+                    return;
                 }
+                else
+                {
 
+                    
+                    ModelProxy record = this.employeeDocumentsStore.GetById(id);
+
+                    EditDocumentForm.UpdateRecord(record);
+                    record.Set("folderName", b.folderName);
+                    
+                    
+                    record.Commit();
+                    Notification.Show(new NotificationConfig
+                    {
+                        Title = Resources.Common.Notification,
+                        Icon = Icon.Information,
+                        Html = Resources.Common.RecordUpdatedSucc
+                    });
+                    this.EditDocumentWindow.Close();
+
+
+                }
 
             }
-            else
+            catch (Exception ex)
             {
-                //Update Mode
-
-                try
-                {
-                    int index = Convert.ToInt32(id);//getting the id of the record
-                    PostRequestWithAttachment<EmployeeDocument> request = new PostRequestWithAttachment<EmployeeDocument>();
-
-                    byte[] fileData = null;
-                    if (documentFile.HasFile && documentFile.PostedFile.ContentLength > 0)
-                    {
-                        //using (var binaryReader = new BinaryReader(picturePath.PostedFile.InputStream))
-                        // {
-                        //    fileData = binaryReader.ReadBytes(picturePath.PostedFile.ContentLength);
-                        // }
-                        fileData = new byte[documentFile.PostedFile.ContentLength];
-                        fileData = documentFile.FileBytes;
-                        request.FileName = documentFile.PostedFile.FileName;
-                        request.FileData = fileData;
-
-
-
-                    }
-                    else
-                    {
-                        request.FileData = fileData;
-                        request.FileName = "";
-                    }
-                    request.entity = b;
-
-
-
-                    PostResponse<EmployeeDocument> r = _employeeService.ChildAddOrUpdateWithAttachment<EmployeeDocument>(request);
-
-
-                    //Step 3 :  Check if request fails
-                    if (!r.Success)//it maybe another check
-                    {
-                        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                        X.Msg.Alert(Resources.Common.Error, r.Summary).Show();
-                        return;
-                    }
-                    else
-                    {
-
-                        EmployeeDocument updated = GetById(b.recordId);
-                        ModelProxy record = this.employeeDocumentsStore.GetById(index);
-
-                        EditDocumentForm.UpdateRecord(record);
-                        record.Set("dtName", updated.dtName);
-                        record.Set("fileUrl", updated.fileUrl);
-                        if (b.expiryDate.HasValue)
-                            record.Set("expiryDate", updated.expiryDate.Value.ToShortDateString());
-                        record.Commit();
-                        Notification.Show(new NotificationConfig
-                        {
-                            Title = Resources.Common.Notification,
-                            Icon = Icon.Information,
-                            Html = Resources.Common.RecordUpdatedSucc
-                        });
-                        this.EditDocumentWindow.Close();
-
-
-                    }
-
-                }
-                catch (Exception ex)
-                {
-                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorUpdatingRecord).Show();
-                }
+                //Error exception displaying a messsage box
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorSavingRecord).Show();
             }
+
+
+
         }
 
 
@@ -557,20 +465,20 @@ namespace AionHR.Web.UI.Forms.EmployeePages
 
         }
 
-        protected void addType(object sender, DirectEventArgs e)
+        protected void addFolder(object sender, DirectEventArgs e)
         {
-            DocumentType dept = new DocumentType();
-            dept.name = dtId.Text;
+            SystemFolder dept = new SystemFolder();
+            dept.name = folderId.Text;
 
-            PostRequest<DocumentType> depReq = new PostRequest<DocumentType>();
+            PostRequest<SystemFolder> depReq = new PostRequest<SystemFolder>();
             depReq.entity = dept;
 
-            PostResponse<DocumentType> response = _employeeService.ChildAddOrUpdate<DocumentType>(depReq);
+            PostResponse<SystemFolder> response = _systemService.ChildAddOrUpdate<SystemFolder>(depReq);
             if (response.Success)
             {
                 dept.recordId = response.recordId;
                 FillDocumentTypes();
-                dtId.Select(response.recordId);
+                folderId.Select(response.recordId);
             }
             else
             {

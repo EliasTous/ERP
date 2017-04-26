@@ -1150,7 +1150,7 @@
                     <Content>
                         <div class="imageBox" style="width: 290px; height: 270px;">
                             <div class="spinner" style="display: none"></div>
-                            <div class="thumbBox" style="width: 290px; height: 270px; border: 3px solid black;"></div>
+                            <div class="thumbBox" style="width: 290px; height: 270px; border: 3px solid black;" onclick="App.uploadPhotoButton.setDisabled(false);"></div>
                             <input type="button" id="btnZoomIn" value="+" style="float: right">
                             <input type="button" id="btnZoomOut" value="-" style="float: right">
                         </div>
@@ -1174,7 +1174,7 @@
                                 <ext:Button runat="server" ID="uploadPhotoButton" Icon="DatabaseSave" Text="<%$ Resources:UploadPicture %>" Disabled="true">
                                     <Listeners>
 
-                                        <Click Handler="CheckSession();  if (!#{imageUploadForm}.getForm().isValid() ) {  return false;} if(#{CurrentEmployee}.value==''){#{imageSelectionWindow}.hide(); return false; } #{imageData}.value = cropper.getBlob();   var fd = new FormData();
+                                        <Click Handler="CheckSession();   if (!#{imageUploadForm}.getForm().isValid() ) {  return false;} if(#{CurrentEmployee}.value==''){#{imageSelectionWindow}.hide(); return false;  } alert(dump(cropper.options));   #{imageData}.value = cropper.getBlob(); var fd = new FormData();
         fd.append('fname', #{FileUploadField1}.value);
                                    fd.append('id',null);          
                                             Ext.net.Mask.show({msg:App.lblLoading.getValue(),el:#{imageSelectionWindow}.id});  

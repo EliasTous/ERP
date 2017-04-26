@@ -10,130 +10,127 @@
     <title></title>
     <link rel="stylesheet" type="text/css" href="../CSS/Common.css?id=1" />
     <link rel="stylesheet" href="../CSS/LiveSearch.css" />
-      <script src="../Scripts/jquery.min.js" type="text/javascript"></script>
+    <script src="../Scripts/jquery.min.js" type="text/javascript"></script>
     <script type="text/javascript" src="../Scripts/Documents.js?id=23"></script>
     <script type="text/javascript" src="../Scripts/common.js?id=0"></script>
-  
+
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" type="text/javascript"></script>
-     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/>
- 
-     <link href="../CSS/fileinput.min.css" rel="stylesheet" />
-<link href="../CSS/theme.css" rel="stylesheet" />
- 
-<!-- load the JS files in the right order -->
-<script src="../Scripts/fileinput.js" type="text/javascript"></script>
-<script src="../Scripts/theme.js" type="text/javascript">  </script>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" />
+
+    <link href="../CSS/fileinput.min.css" rel="stylesheet" />
+    <link href="../CSS/theme.css" rel="stylesheet" />
+
+    <!-- load the JS files in the right order -->
+    <script src="../Scripts/fileinput.js" type="text/javascript"></script>
+    <script src="../Scripts/theme.js" type="text/javascript">  </script>
     <script src="../Scripts/moment.js" type="text/javascript">  </script>
     <script src="../Scripts/moment-timezone.js" type="text/javascript">  </script>
 
-     <script type="text/javascript" src="../Scripts/locales/ar.js?id=7" ></script>
- <script type="text/javascript">
-     var types = [];
-     var curIndex = 0;
-     var passed = 'no';
-     function InitTypes(s)
-     {
-         
-         types = s;
-     }
-     function dump(obj) {
-         var out = '';
-         for (var i in obj) {
-             out += i + ": " + obj[i] + "\n";
+    <script type="text/javascript" src="../Scripts/locales/ar.js?id=7"></script>
+    <script type="text/javascript">
+        var types = [];
+        var curIndex = 0;
+        var passed = 'no';
+        function InitTypes(s) {
+
+            types = s;
+        }
+        function dump(obj) {
+            var out = '';
+            for (var i in obj) {
+                out += i + ": " + obj[i] + "\n";
 
 
-         }
-         return out;
-     }
-     function initBootstrap()
-     {
-         curIndex = 0;
-         
-         $("#input-ke-1").fileinput({
-           
-             theme: 'explorer',
-             uploadUrl: '../SystemAttachmentsUploader.ashx?recordId=' + document.getElementById('CurrentEmployee').value + "&classId=" + document.getElementById("EmployeeClassId").value,
-             overwriteInitial: false,
-             initialPreviewAsData: true,
-             uploadAsync: true,
-             language:document.getElementById('CurrentLanguage').value,
-             showZoom:false,
-             showRemove: false,
-           //  uploadExtraData: { id: $($(this).find('select')[0]).val() },
-             uploadExtraData: function (previewId, index) {
+            }
+            return out;
+        }
+        function initBootstrap() {
+            curIndex = 0;
 
-                var valType = $($("#" + previewId).find('select')[0]).val();
-                 return { id: valType };
-              //   var obj = {};
-             //    $(this).find('select').each(function () {
-              //       var id = 'valType', val = $(this).val();
-              //       obj[id] = val;
-              //   });
-              //   console.log(obj);
-               //  return obj;
-                
-                // var extra = [];
-               //  { typeValue: $('#id').val() };
-                 //alert(curIndex);
-                 //var x = document.getElementsByName("values");
-                 
-                 //var ext = { id: x[curIndex].value };
-                 //if(passed=='yes')
-                 //    curIndex = curIndex + 1;
-                 //passed = 'yes';
-                 //return extra;
-             },
-             fileActionSettings: {
-                 showDrag: false,
-                 showUpload:true,
-                 showZoom: false,
-              
-                     
-                 
-             },
-             layoutTemplates: {
-               
-                 actionUpload: '<select type="text" name="values"  >\n'+
-                     
-                     '</select>'
-          
-             }  ,
-             showUploadedThumbs: false
-           
-             
-         });
-         
-         
-     
-       
+            $("#input-ke-1").fileinput({
+
+                theme: 'explorer',
+                uploadUrl: '../SystemAttachmentsUploader.ashx?recordId=' + document.getElementById('CurrentEmployee').value + "&classId=" + document.getElementById("EmployeeClassId").value,
+                overwriteInitial: false,
+                initialPreviewAsData: true,
+                uploadAsync: true,
+                language: document.getElementById('CurrentLanguage').value,
+                showZoom: false,
+                showRemove: false,
+                //  uploadExtraData: { id: $($(this).find('select')[0]).val() },
+                uploadExtraData: function (previewId, index) {
+
+                    var valType = $($("#" + previewId).find('select')[0]).val();
+                    return { id: valType };
+                    //   var obj = {};
+                    //    $(this).find('select').each(function () {
+                    //       var id = 'valType', val = $(this).val();
+                    //       obj[id] = val;
+                    //   });
+                    //   console.log(obj);
+                    //  return obj;
+
+                    // var extra = [];
+                    //  { typeValue: $('#id').val() };
+                    //alert(curIndex);
+                    //var x = document.getElementsByName("values");
+
+                    //var ext = { id: x[curIndex].value };
+                    //if(passed=='yes')
+                    //    curIndex = curIndex + 1;
+                    //passed = 'yes';
+                    //return extra;
+                },
+                fileActionSettings: {
+                    showDrag: false,
+                    showUpload: true,
+                    showZoom: false,
 
 
-      
-         $('#input-ke-1').on('filebatchuploadcomplete', function (event, data, msg) {
-             
-            
-             App.employeeDocumentsStore.reload();
-             App.AttachmentsWindow.close();
-             
-         });
-              $('#input-ke-1').on('fileloaded', function (event, file, previewId, index, reader) {
-             var x = document.getElementsByName("values");
-          
-             var s = $("#" + previewId).find("select")[0];
-            
-                 for(var j=0;j<types.length;j++)
-                 {
-                     var opt = document.createElement('option');
-                     opt.value = types[j].value;
-                     opt.innerHTML =  types[j].text;
-                     s.appendChild(opt);
-                 }
-             
-         });
-     }
+
+                },
+                layoutTemplates: {
+
+                    actionUpload: '<select type="text" name="values"  >\n' +
+
+                        '</select>'
+
+                },
+                showUploadedThumbs: false
 
 
-     </script>
+            });
+
+
+
+
+
+
+
+            $('#input-ke-1').on('filebatchuploadcomplete', function (event, data, msg) {
+
+
+                App.employeeDocumentsStore.reload();
+                App.AttachmentsWindow.close();
+
+            });
+            $('#input-ke-1').on('fileloaded', function (event, file, previewId, index, reader) {
+                var x = document.getElementsByName("values");
+
+                var s = $("#" + previewId).find("select")[0];
+
+                for (var j = 0; j < types.length; j++) {
+                    var opt = document.createElement('option');
+                    opt.value = types[j].value;
+                    opt.innerHTML = types[j].text;
+                    s.appendChild(opt);
+                }
+
+            });
+        }
+
+
+    </script>
 </head>
 <body style="background: url(Images/bg.png) repeat;">
     <form id="Form1" runat="server">
@@ -143,30 +140,29 @@
         <ext:Hidden ID="textLoadFailed" runat="server" Text="<%$ Resources:Common , LoadFailed %>" />
         <ext:Hidden ID="titleSavingError" runat="server" Text="<%$ Resources:Common , TitleSavingError %>" />
         <ext:Hidden ID="titleSavingErrorMessage" runat="server" Text="<%$ Resources:Common , TitleSavingErrorMessage %>" />
-        <ext:Hidden ID="CurrentEmployee" runat="server"  />
-        <ext:Hidden ID="CurrentDateFormat" runat="server"  />
-        <ext:Hidden ID="EmployeeClassId" runat="server"  />
-        <ext:Hidden ID="CurrentLanguage" runat="server"  />
-        
-          <ext:Viewport ID="Viewport11" runat="server" Layout="VBoxLayout" Padding="10">
+        <ext:Hidden ID="CurrentEmployee" runat="server" />
+        <ext:Hidden ID="CurrentDateFormat" runat="server" />
+        <ext:Hidden ID="EmployeeClassId" runat="server" />
+        <ext:Hidden ID="CurrentLanguage" runat="server" />
+
+        <ext:Viewport ID="Viewport11" runat="server" Layout="VBoxLayout" Padding="10">
             <LayoutConfig>
                 <ext:VBoxLayoutConfig Align="Stretch" />
             </LayoutConfig>
-        
 
 
-        <Items>
+
+            <Items>
 
                 <ext:GridPanel AutoUpdateLayout="true"
                     ID="employeeDocumentsGrid" Collapsible="false"
                     runat="server"
                     PaddingSpec="0 0 1 0"
                     Header="false"
-                    
                     Layout="FitLayout"
                     Scroll="Vertical" Flex="1"
-                    Border="false" 
-                    Icon="User" DefaultAnchor="100%"  
+                    Border="false"
+                    Icon="User" DefaultAnchor="100%"
                     ColumnLines="True" IDMode="Explicit" RenderXType="True">
                     <Store>
                         <ext:Store
@@ -187,7 +183,7 @@
                                 <ext:Model ID="Model1" runat="server" IDProperty="seqNo">
                                     <Fields>
 
-                                         <ext:ModelField Name="recordId" />
+                                        <ext:ModelField Name="recordId" />
                                         <ext:ModelField Name="seqNo" />
                                         <ext:ModelField Name="fileName" />
                                         <ext:ModelField Name="url" />
@@ -238,18 +234,18 @@
                         <Columns>
 
                             <ext:Column Visible="false" ID="ColrecordId" MenuDisabled="true" runat="server" DataIndex="recordId" Hideable="false" Width="75" Align="Center" />
-                            <ext:Column CellCls="cellLink" Visible="false" ID="ColEHName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDocumentRef%>" DataIndex="fileName" Flex="2" Hideable="false" />
+                            <ext:Column CellCls="cellLink" Visible="true" ID="ColEHName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDocumentRef%>" DataIndex="fileName" Flex="2" Hideable="false" />
                             <ext:Column CellCls="cellLink" ID="Column1" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldFolderName%>" DataIndex="folderName" Flex="2" Hideable="false" />
-                                     <ext:DateColumn  ID="dateCol" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDate%>" DataIndex="date" Flex="2" Hideable="false" >
+                            <ext:DateColumn ID="dateCol" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDate%>" DataIndex="date" Flex="2" Hideable="false">
                                 <Renderer Handler="var s = moment(record.data['date']);   return s.calendar();" />
-                                </ext:DateColumn>
+                            </ext:DateColumn>
 
 
 
                             <ext:Column runat="server"
                                 ID="colEdit" Visible="true"
                                 Text="<%$ Resources:Common, Edit %>"
-                                Width="100"
+                                Width="120"
                                 Hideable="false"
                                 Align="Center"
                                 Fixed="true"
@@ -257,7 +253,7 @@
                                 MenuDisabled="true"
                                 Resizable="false">
 
-                                <Renderer handler="return attachRender()+'&nbsp;&nbsp;' +deleteRender(); " />
+                                <Renderer Handler="return editRender()+ '&nbsp;&nbsp;'+ attachRender()+'&nbsp;&nbsp;' +deleteRender(); " />
 
                             </ext:Column>
                             <ext:Column runat="server"
@@ -302,16 +298,17 @@
                         </ext:Toolbar>
 
                     </DockedItems>
-                
+
                     <Listeners>
                         <Render Handler="this.on('cellclick', cellClick);" />
                     </Listeners>
                     <DirectEvents>
-                        <CellClick  OnEvent="PoPuP">
-                            <EventMask  ShowMask="false"  />
+                        <CellClick OnEvent="PoPuP">
+                            <EventMask ShowMask="false" />
                             <ExtraParams>
                                 <ext:Parameter Name="id" Value="record.getId()" Mode="Raw" />
                                 <ext:Parameter Name="path" Value="record.data['url']" Mode="Raw" />
+                                <ext:Parameter Name="folderId" Value="record.data['folderId']" Mode="Raw" />
                                 <ext:Parameter Name="type" Value="getCellType( this, rowIndex, cellIndex)" Mode="Raw" />
                             </ExtraParams>
 
@@ -327,37 +324,36 @@
                         <%--<ext:CheckboxSelectionModel ID="CheckboxSelectionModel1" runat="server" Mode="Multi" StopIDModeInheritance="true" />--%>
                     </SelectionModel>
                 </ext:GridPanel>
-           
+
             </Items>
-       </ext:Viewport>
+        </ext:Viewport>
 
         <ext:Window
             ID="EditDocumentWindow"
             runat="server"
             Icon="PageEdit"
-            Title="<%$ Resources:EditDocumentWindowTitle %>"
-            Width="450"
-            Height="330"
+             Draggable="false"
+              Maximizable="false" Resizable="false"
+            Width="300"
+            Height="120"
             AutoShow="false"
             Modal="true"
             Hidden="true"
             Layout="Fit">
 
             <Items>
-                <ext:TabPanel ID="TabPanel1" runat="server" ActiveTabIndex="0" Border="false" DeferredRender="false">
-                    <Items>
-                        <ext:FormPanel
+                <ext:FormPanel
                             ID="EditDocumentForm" DefaultButton="SaveDocumentButton"
                             runat="server"
-                            Title="<%$ Resources: EditDocumentWindowTitle %>"
-                            Icon="ApplicationSideList"
+                            
+                             Header="false"
                             DefaultAnchor="100%"
                             BodyPadding="5">
                             <Items>
-                                <ext:TextField runat="server" Name="recordId"  ID="EHID" Hidden="true"  Disabled="true"/>
-                                <ext:TextField runat="server" Name="documentRef" AllowBlank="false"  ID="documentRef"  FieldLabel="<%$ Resources:FieldDocumentRef%>" />
+                                <ext:TextField runat="server" Name="recordId" ID="seqNo" Hidden="true" Disabled="true" />
 
-                                <ext:ComboBox ValueField="recordId" AllowBlank="false" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" runat="server" ID="dtId" Name="dtId" FieldLabel="<%$ Resources:FieldDocumentType%>" SimpleSubmit="true">
+
+                                <ext:ComboBox ValueField="recordId" AllowBlank="false" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" runat="server" ID="folderId" Name="folderId" FieldLabel="<%$ Resources:FieldFolderName%>" SimpleSubmit="true">
                                     <Store>
                                         <ext:Store runat="server" ID="dtStore">
                                             <Model>
@@ -370,36 +366,28 @@
                                             </Model>
                                         </ext:Store>
                                     </Store>
-                                          <RightButtons>
-                                                        <ext:Button ID="Button6" runat="server" Icon="Add" Hidden="true">
-                                                            <Listeners>
-                                                                <Click Handler="CheckSession();  " />
-                                                            </Listeners>
-                                                            <DirectEvents>
+                                    <RightButtons>
+                                        <ext:Button ID="Button6" runat="server" Icon="Add" Hidden="true">
+                                            <Listeners>
+                                                <Click Handler="CheckSession();  " />
+                                            </Listeners>
+                                            <DirectEvents>
 
-                                                                <Click OnEvent="addType">
-                                                                    <ExtraParams>
-                                                                        
-                                                                        
-                                                                    </ExtraParams>
-                                                                </Click>
-                                                            </DirectEvents>
-                                                        </ext:Button>
-                                                    </RightButtons>
-                                                <Listeners>
-                                                    <FocusEnter Handler="this.rightButtons[0].setHidden(false);" />
-                                                    <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
-                                                </Listeners>
+                                                <Click OnEvent="addFolder">
+                                                    <ExtraParams>
+                                                    </ExtraParams>
+                                                </Click>
+                                            </DirectEvents>
+                                        </ext:Button>
+                                    </RightButtons>
+                                    <Listeners>
+                                        <FocusEnter Handler="this.rightButtons[0].setHidden(false);" />
+                                        <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
+                                    </Listeners>
                                 </ext:ComboBox>
-                                <ext:DateField ID="expiryDate" runat="server" Name="expiryDate" FieldLabel="<%$ Resources:FieldExpiryDate%>"  />
-                                <ext:FileUploadField runat="server" ID="documentFile" FieldLabel="<%$ Resources:FieldFile%>" />
-                                <ext:TextArea runat="server" Name="remarks"  ID="remarks"  FieldLabel="<%$ Resources:FieldRemarks%>" />
-                            </Items>
+                           </Items>
 
                         </ext:FormPanel>
-
-                    </Items>
-                </ext:TabPanel>
             </Items>
             <Buttons>
                 <ext:Button ID="SaveDocumentButton" runat="server" Text="<%$ Resources:Common, Save %>" Icon="Disk">
@@ -408,10 +396,10 @@
                         <Click Handler="CheckSession(); if (!#{EditDocumentForm}.getForm().isValid()) {return false;} " />
                     </Listeners>
                     <DirectEvents>
-                        <Click OnEvent="SaveDocument" Failure="Ext.MessageBox.alert('#{titleSavingError}.value', '#{titleSavingErrorMessage}.value');">
+                        <Click OnEvent="SaveFolder" Failure="Ext.MessageBox.alert('#{titleSavingError}.value', '#{titleSavingErrorMessage}.value');">
                             <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="={#{EditDocumentWindow}.body}" />
                             <ExtraParams>
-                                <ext:Parameter Name="id" Value="#{EHID}.getValue()" Mode="Raw" />
+                                <ext:Parameter Name="id" Value="#{seqNo}.getValue()" Mode="Raw" />
                                 <ext:Parameter Name="values" Value="#{EditDocumentForm}.getForm().getValues(false, false, false, true)" Mode="Raw" Encode="true" />
                             </ExtraParams>
                         </Click>
@@ -425,7 +413,7 @@
             </Buttons>
         </ext:Window>
 
-          <ext:Window  ID="AttachmentsWindow"
+        <ext:Window ID="AttachmentsWindow"
             runat="server"
             Icon="PageEdit"
             Title="<%$ Resources:EditDocumentWindowTitle %>"
@@ -434,30 +422,29 @@
             AutoShow="false"
             Modal="true"
             Hidden="true"
-             Maximizable="false"
+            Maximizable="false"
             Resizable="false"
-             Draggable="false"
+            Draggable="false"
             Layout="Fit">
             <Items>
                 <ext:Panel runat="server" AutoScroll="true">
                     <Content>
-                        <input id="input-ke-1" name="inputKE1[]" type="file" multiple class="file-loading"  >
-                        
-        <br>
-      
+                        <input id="input-ke-1" name="inputKE1[]" type="file" multiple class="file-loading">
+
+                        <br>
                     </Content>
                     <Listeners>
-                      
-                        
+
+
                         <AfterLayout Handler=" $('#input-ke-1').fileinput('destroy'); initBootstrap(); " />
-                       
+
                     </Listeners>
                 </ext:Panel>
 
             </Items>
         </ext:Window>
 
-          
+
 
     </form>
 </body>

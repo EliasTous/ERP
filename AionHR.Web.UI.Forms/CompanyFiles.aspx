@@ -268,7 +268,7 @@
                                 MenuDisabled="true"
                                 Resizable="false">
 
-                                <Renderer handler="return attachRender() + '&nbsp&nbsp' + deleteRender(); " />
+                                <Renderer handler="return editRender()+'&nbsp&nbsp'+attachRender() + '&nbsp&nbsp' + deleteRender(); " />
                               </ext:Column>
                             <ext:Column runat="server"
                                 ID="colDelete" Visible="false"
@@ -345,6 +345,7 @@
                             <ExtraParams>
                                 <ext:Parameter Name="id" Value="record.getId()" Mode="Raw" />
                                  <ext:Parameter Name="path" Value="record.data['url']" Mode="Raw" />
+                                <ext:Parameter Name="folderId" Value="record.data['folderId']" Mode="Raw" />
                                 <ext:Parameter Name="type" Value="getCellType( this, rowIndex, cellIndex)" Mode="Raw" />
                             </ExtraParams>
 
@@ -362,7 +363,90 @@
                 </ext:GridPanel>
             </Items>
         </ext:Viewport>
+        <ext:Window
+            ID="EditDocumentWindow"
+            runat="server"
+            Icon="PageEdit"
+             Draggable="false"
+              Maximizable="false" Resizable="false"
+            Width="300"
+            Height="120"
+            AutoShow="false"
+            Modal="true"
+            Hidden="true"
+            Layout="Fit">
 
+            <Items>
+                <ext:FormPanel
+                            ID="EditDocumentForm" DefaultButton="SaveDocumentButton"
+                            runat="server"
+                            
+                             Header="false"
+                            DefaultAnchor="100%"
+                            BodyPadding="5">
+                            <Items>
+                                <ext:TextField runat="server" Name="recordId" ID="seqNo" Hidden="true" Disabled="true" />
+
+
+                                <ext:ComboBox ValueField="recordId" AllowBlank="false" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" runat="server" ID="folderId" Name="folderId" FieldLabel="<%$ Resources:FieldFolderName%>" SimpleSubmit="true">
+                                    <Store>
+                                        <ext:Store runat="server" ID="dtStore">
+                                            <Model>
+                                                <ext:Model runat="server">
+                                                    <Fields>
+                                                        <ext:ModelField Name="recordId" />
+                                                        <ext:ModelField Name="name" />
+                                                    </Fields>
+                                                </ext:Model>
+                                            </Model>
+                                        </ext:Store>
+                                    </Store>
+                                    <RightButtons>
+                                        <ext:Button ID="Button6" runat="server" Icon="Add" Hidden="true">
+                                            <Listeners>
+                                                <Click Handler="CheckSession();  " />
+                                            </Listeners>
+                                            <DirectEvents>
+
+                                                <Click OnEvent="addFolder">
+                                                    <ExtraParams>
+                                                    </ExtraParams>
+                                                </Click>
+                                            </DirectEvents>
+                                        </ext:Button>
+                                    </RightButtons>
+                                    <Listeners>
+                                        <FocusEnter Handler="this.rightButtons[0].setHidden(false);" />
+                                        <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
+                                    </Listeners>
+                                </ext:ComboBox>
+                           </Items>
+
+                        </ext:FormPanel>
+            </Items>
+            <Buttons>
+                <ext:Button ID="SaveDocumentButton" runat="server" Text="<%$ Resources:Common, Save %>" Icon="Disk">
+
+                    <Listeners>
+                        <Click Handler="CheckSession(); if (!#{EditDocumentForm}.getForm().isValid()) {return false;} " />
+                    </Listeners>
+                    <DirectEvents>
+                        <Click OnEvent="SaveFolder" Failure="Ext.MessageBox.alert('#{titleSavingError}.value', '#{titleSavingErrorMessage}.value');">
+                            <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="={#{EditDocumentWindow}.body}" />
+                            <ExtraParams>
+                                <ext:Parameter Name="id" Value="#{seqNo}.getValue()" Mode="Raw" />
+                                <ext:Parameter Name="values" Value="#{EditDocumentForm}.getForm().getValues(false, false, false, true)" Mode="Raw" Encode="true" />
+                            </ExtraParams>
+                        </Click>
+                    </DirectEvents>
+                </ext:Button>
+                <ext:Button ID="Button3" runat="server" Text="<%$ Resources:Common , Cancel %>" Icon="Cancel">
+                    <Listeners>
+                        <Click Handler="this.up('window').hide();" />
+                    </Listeners>
+                </ext:Button>
+            </Buttons>
+        </ext:Window>
         
 
         

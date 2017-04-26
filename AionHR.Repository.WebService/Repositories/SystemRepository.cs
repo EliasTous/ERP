@@ -29,6 +29,7 @@ namespace AionHR.Repository.WebService.Repositories
             ChildAddOrUpdateLookup.Add(typeof(SystemFolder), "setFO");
             ChildAddOrUpdateLookup.Add(typeof(CompanyDocumentType), "setDT");
             ChildAddOrUpdateLookup.Add(typeof(CompanyRightToWork), "setRW");
+            ChildAddOrUpdateLookup.Add(typeof(Attachement), "setAT");
 
 
 

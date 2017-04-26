@@ -846,8 +846,13 @@ namespace AionHR.Web.UI.Forms
 
             this.filesStore.DataBind();
         }
-        
 
+        private List<SystemFolder> GetFolders()
+        {
+            ListRequest req = new ListRequest();
+            ListResponse<SystemFolder> docs = _systemService.ChildGetAll<SystemFolder>(req);
+            return docs.Items;
+        }
         protected void AddAttachments(object sender, DirectEventArgs e)
         {
             ListRequest req = new ListRequest();
@@ -872,10 +877,18 @@ namespace AionHR.Web.UI.Forms
             int id = Convert.ToInt32(e.ExtraParams["id"]);
             string type = e.ExtraParams["type"];
             string path = e.ExtraParams["path"];
+            string folder = e.ExtraParams["folderId"];
             switch (type)
             {
-             
 
+                case "imgEdit":
+                    dtStore.DataSource = GetFolders();
+                    dtStore.DataBind();
+                    folderId.Select(folder);
+                    seqNo.Text = id.ToString();
+                    this.EditDocumentWindow.Title = Resources.Common.EditWindowsTitle;
+                    this.EditDocumentWindow.Show();
+                    break;
                 case "imgDelete":
                     X.Msg.Confirm(Resources.Common.Confirmation, Resources.Common.DeleteOneRecord, new MessageBoxButtonsConfig
                     {
@@ -901,6 +914,100 @@ namespace AionHR.Web.UI.Forms
                 default:
                     break;
             }
+
+
+        }
+        protected void addFolder(object sender, DirectEventArgs e)
+        {
+            SystemFolder dept = new SystemFolder();
+            dept.name = folderId.Text;
+
+            PostRequest<SystemFolder> depReq = new PostRequest<SystemFolder>();
+            depReq.entity = dept;
+
+            PostResponse<SystemFolder> response = _systemService.ChildAddOrUpdate<SystemFolder>(depReq);
+            if (response.Success)
+            {
+                dept.recordId = response.recordId;
+                dtStore.DataSource = GetFolders();
+
+                folderId.Select(response.recordId);
+            }
+            else
+            {
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, response.Summary).Show();
+                return;
+            }
+
+        }
+
+        protected void SaveFolder(object sender, DirectEventArgs e)
+        {
+
+
+            //Getting the id to check if it is an Add or an edit as they are managed within the same form.
+            string id = e.ExtraParams["id"];
+
+            string obj = e.ExtraParams["values"];
+            Attachement b = JsonConvert.DeserializeObject<Attachement>(obj);
+            b.recordId = 0;
+            b.seqNo = Convert.ToInt16(id);
+            b.classId = ClassId.CMCA;
+            // Define the object to add or edit as null
+            b.folderName = folderId.SelectedItem.Text;
+
+
+            try
+            {
+                //New Mode
+                PostRequest<Attachement> req = new PostRequest<Attachement>();
+                req.entity = b;
+
+
+
+                PostResponse<Attachement> r = _systemService.ChildAddOrUpdate<Attachement>(req);
+
+
+
+                //check if the insert failed
+                if (!r.Success)//it maybe be another condition
+                {
+                    //Show an error saving...
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    X.Msg.Alert(Resources.Common.Error, r.Summary).Show();
+                    return;
+                }
+                else
+                {
+
+
+                    ModelProxy record = this.filesStore.GetById(id);
+
+                    EditDocumentForm.UpdateRecord(record);
+                    record.Set("folderName", b.folderName);
+
+
+                    record.Commit();
+                    Notification.Show(new NotificationConfig
+                    {
+                        Title = Resources.Common.Notification,
+                        Icon = Icon.Information,
+                        Html = Resources.Common.RecordUpdatedSucc
+                    });
+                    this.EditDocumentWindow.Close();
+
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+                //Error exception displaying a messsage box
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorSavingRecord).Show();
+            }
+
 
 
         }
