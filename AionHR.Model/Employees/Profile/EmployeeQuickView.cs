@@ -25,6 +25,8 @@ namespace AionHR.Model.Employees.Profile
         public DateTime? lastLeaveStartDate { get; set; }
         public DateTime? lastLeaveEndDate { get; set; }
         public short paidLeavesYTD { get; set; }
+
+        public string serviceDuration { get; set; }
         public short leavesBalance { get; set; }
         public short allowedLeaveYtd { get; set; }
 
@@ -34,6 +36,16 @@ namespace AionHR.Model.Employees.Profile
             if (!lastLeaveEndDate.HasValue || !lastLeaveStartDate.HasValue)
                 return "/";
             return lastLeaveStartDate.Value.ToString(format) + "-" + lastLeaveStartDate.Value.ToString(format);
+        }
+        public string serviceDuractionFriendly(string day, string month, string year)
+        {
+            if (string.IsNullOrEmpty(serviceDuration))
+                return "";
+             string yeard = serviceDuration.Replace("y", year);
+            string monthd = yeard.Replace("m", month);
+            return monthd.Replace("d", day);
+
+           
         }
     }
 }

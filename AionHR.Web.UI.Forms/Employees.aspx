@@ -12,17 +12,40 @@
     <link rel="stylesheet" type="text/css" href="CSS/Common.css?id=11" />
     <link rel="stylesheet" type="text/css" href="CSS/Employees.css?id=15" />
     <link rel="stylesheet" href="CSS/LiveSearch.css" />
-   
 
+    <link rel="stylesheet" href="Scripts/HijriCalender/redmond.calendars.picker.css" />
     <script type="text/javascript" src="Scripts/common.js?id=1"></script>
-
+    <script src="Scripts/HijriCalender/jquery.plugin.js" type="text/javascript"></script>
     <script type="text/javascript" src="Scripts/cropbox-min.js?id=1"></script>
     <script type="text/javascript" src="Scripts/Employees.js?id=36"></script>
+    <script type="text/javascript"  src="Scripts/HijriCalender/jquery.calendars.js"></script>
+    <script type="text/javascript" src="Scripts/HijriCalender/jquery.calendars-ar.js"></script>
+    <script type="text/javascript" src="Scripts/HijriCalender/jquery.calendars.picker.js"></script>
+    <script type="text/javascript" src="Scripts/HijriCalender/jquery.calendars.plus.js"></script>
+    <script type="text/javascript" src="Scripts/HijriCalender/jquery.calendars.islamic.js"></script>
+    <script type="text/javascript" src="Scripts/HijriCalender/jquery.calendars.islamic-ar.js"></script>
+    <script type="text/javascript" src="Scripts/HijriCalender/jquery.calendars.lang.js"></script>
+    <script type="text/javascript" src="Scripts/HijriCalender/jquery.calendars.picker-ar.js"></script>
+     
+      
     <script type="text/javascript">
         var cropper = null;
-      
+        var handleInputRender = function () {
+            jQuery(function () {
+                var calendar = jQuery.calendars.instance('Islamic', 'ar');
+                jQuery('.showCal').calendarsPicker({ calendar: calendar });
+            });
+        }
     </script>
+    <style type="text/css">
+        .tlb-BackGround {
+            background: #fff;
+        }
 
+        .calendars-popup {
+            z-index: 80000 !important;
+        }
+    </style>
 </head>
 <body style="background: url(Images/bg.png) repeat;">
     <form id="Form1" runat="server">
@@ -122,6 +145,7 @@
                     <TopBar>
                         <ext:Toolbar ID="Toolbar1" runat="server" ClassicButtonStyle="false">
                             <Items>
+                                      
                                 <ext:Button ID="btnAdd" runat="server" Text="<%$ Resources:Common , Add %>" Icon="Add">
                                     <Listeners>
                                         <Click Handler="CheckSession();" />
@@ -494,7 +518,9 @@
                                         <ext:Label ID="branchLbl" runat="server" />
                                         <ext:Label ID="positionLbl" runat="server" />
                                         <ext:Label ID="reportsToLbl" runat="server" />
-
+                                        <ext:Label ID="esName" runat="server"  />
+                                        <ext:Label ID="serviceDurationTitle" runat="server" Text="<%$ Resources:serviceDuration %>" />
+                                        <ext:Label ID="serviceDuration" runat="server"  />
 
                                         <ext:Label ID="eosBalanceTitle" Text="<%$ Resources:eosBalanceTitle %>" runat="server" />
                                         <ext:Label ID="eosBalanceLbl" runat="server" />
@@ -543,7 +569,7 @@
                             </Items>
                         </ext:Toolbar>
                     </TopBar>
-        
+
                     <Items>
                         <ext:FormPanel DefaultButton="SaveButton"
                             ID="BasicInfoTab" PaddingSpec="40 0 0 0"
@@ -797,7 +823,7 @@
                                             FieldLabel="<%$ Resources:FieldHireDate%>"
                                             MsgTarget="Side"
                                             AllowBlank="false" />
-                                      
+                          
 
                                     </Items>
                                 </ext:Panel>

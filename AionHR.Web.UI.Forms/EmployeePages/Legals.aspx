@@ -11,10 +11,70 @@
     <title></title>
     <link rel="stylesheet" type="text/css" href="../CSS/Common.css?id=1" />
     <link rel="stylesheet" href="../CSS/LiveSearch.css" />
+
     <script type="text/javascript" src="../Scripts/Legals.js?id=1"></script>
     <script type="text/javascript" src="../Scripts/common.js?id=0"></script>
 
 
+    <script src="../Scripts/jquery.min.js" type="text/javascript"></script>
+    <link rel="stylesheet" type="text/css" href="CSS/Common.css?id=11" />
+    <link rel="stylesheet" type="text/css" href="CSS/Employees.css?id=15" />
+    <link rel="stylesheet" href="CSS/LiveSearch.css" />
+
+    <link rel="stylesheet" href="../Scripts/HijriCalender/redmond.calendars.picker.css" />
+
+    <script src="../Scripts/HijriCalender/jquery.plugin.js" type="text/javascript"></script>
+
+    <script type="text/javascript" src="../Scripts/HijriCalender/jquery.calendars.js"></script>
+    <script type="text/javascript" src="../Scripts/HijriCalender/jquery.calendars-ar.js"></script>
+    <script type="text/javascript" src="../Scripts/HijriCalender/jquery.calendars.picker.js"></script>
+    <script type="text/javascript" src="../Scripts/HijriCalender/jquery.calendars.plus.js"></script>
+    <script type="text/javascript" src="../Scripts/HijriCalender/jquery.calendars.islamic.js"></script>
+    <script type="text/javascript" src="../Scripts/HijriCalender/jquery.calendars.islamic-ar.js"></script>
+    <script type="text/javascript" src="../Scripts/HijriCalender/jquery.calendars.lang.js"></script>
+    <script type="text/javascript" src="../Scripts/HijriCalender/jquery.calendars.picker-ar.js"></script>
+    <script type="text/javascript">
+        var cropper = null;
+
+        var hijriSelected = false;
+        var handleInputRender = function () {
+            
+            if (hijriSelected==true)
+                jQuery(function () {
+
+                    var calendar = jQuery.calendars.instance('Islamic',"ar");
+                    
+                  
+                    jQuery('.showCal').calendarsPicker({ calendar: calendar });
+                    jQuery('.showCal2').calendarsPicker({ calendar: calendar });
+                });
+            else
+                jQuery(function () {
+
+                    var calendar = jQuery.calendars.instance('Gregorian', document.getElementById("CurrentLang").value);
+
+
+                    jQuery('.showCal').calendarsPicker({ calendar: calendar });
+                    jQuery('.showCal2').calendarsPicker({ calendar: calendar });
+                });
+            
+        }
+        function InitGregorian() {
+            hijriSelected = false;
+        }
+        function InitHijri() {
+            hijriSelected = true;
+        }
+    </script>
+    <style type="text/css">
+        .tlb-BackGround {
+            background: #fff;
+        }
+
+        .calendars-popup {
+            z-index: 80000 !important;
+        }
+    </style>
 </head>
 <body style="background: url(Images/bg.png) repeat;">
     <form id="Form1" runat="server">
@@ -24,16 +84,16 @@
         <ext:Hidden ID="textLoadFailed" runat="server" Text="<%$ Resources:Common , LoadFailed %>" />
         <ext:Hidden ID="titleSavingError" runat="server" Text="<%$ Resources:Common , TitleSavingError %>" />
         <ext:Hidden ID="titleSavingErrorMessage" runat="server" Text="<%$ Resources:Common , TitleSavingErrorMessage %>" />
-        <ext:Hidden ID="CurrentEmployee" runat="server"  />
-
-          <ext:Viewport ID="Viewport11" runat="server" Layout="VBoxLayout" Padding="10">
+        <ext:Hidden ID="CurrentEmployee" runat="server" />
+        <ext:Hidden ID="CurrentLang" runat="server" />
+        <ext:Viewport ID="Viewport11" runat="server" Layout="VBoxLayout" Padding="10">
             <LayoutConfig>
                 <ext:VBoxLayoutConfig Align="Stretch" />
             </LayoutConfig>
-        
 
 
-        <Items>
+
+            <Items>
 
                 <ext:GridPanel AutoUpdateLayout="true"
                     ID="rightToWorkGrid" Collapsible="true"
@@ -43,8 +103,8 @@
                     Title="<%$ Resources: RWGridTitle %>"
                     Layout="FitLayout"
                     Scroll="Vertical" Flex="1"
-                    Border="false" 
-                    Icon="User" DefaultAnchor="100%"  
+                    Border="false"
+                    Icon="User" DefaultAnchor="100%"
                     ColumnLines="True" IDMode="Explicit" RenderXType="True">
                     <Store>
                         <ext:Store
@@ -69,6 +129,8 @@
                                         <ext:ModelField Name="employeeId" />
                                         <ext:ModelField Name="issueDate" />
                                         <ext:ModelField Name="expiryDate" />
+                                         <ext:ModelField Name="issueDateFormatted" />
+                                        <ext:ModelField Name="expireDateFormatted" />
                                         <ext:ModelField Name="dtId" />
                                         <ext:ModelField Name="remarks" />
                                         <ext:ModelField Name="documentRef" />
@@ -119,19 +181,19 @@
                         <Columns>
 
                             <ext:Column ID="ColRecordId" Visible="false" DataIndex="recordId" runat="server" />
-<%--                            <ext:Column ID="ColName" DataIndex="employeeName.fullName" Text="<%$ Resources: FieldRWEmployeeName%>" runat="server" Width="240">
+                            <%--                            <ext:Column ID="ColName" DataIndex="employeeName.fullName" Text="<%$ Resources: FieldRWEmployeeName%>" runat="server" Width="240">
                                 <Renderer Handler=" return '<u>'+ record.data['employeeName'].fullName+'</u>'" />
                             </ext:Column>--%>
                             <ext:Column ID="dtName" DataIndex="dtName" Text="<%$ Resources: FieldRWDtName%>" runat="server" Flex="4" />
                             <ext:Column ID="documentRef1" DataIndex="documentRef" Text="<%$ Resources: FieldRWDocumentRef%>" runat="server" Flex="2" />
-                            <ext:DateColumn Format="dd-MM-yyyy" ID="validFrom" DataIndex="issueDate" Text="<%$ Resources: FieldRWIssueDate%>" runat="server" width="100" />
-                            <ext:DateColumn Format="dd-MM-yyyy" ID="validTo" DataIndex="expiryDate" Text="<%$ Resources: FieldRWExpiryDate%>" runat="server" width="100" />
+                            <ext:Column  ID="validFrom" DataIndex="issueDateFormatted" Text="<%$ Resources: FieldRWIssueDate%>" runat="server" Width="100" />
+                            <ext:Column   ID="validTo" DataIndex="expireDateFormatted" Text="<%$ Resources: FieldRWExpiryDate%>" runat="server" Width="100" />
                             <ext:Column ID="remarks" DataIndex="remarks" Text="<%$ Resources: FieldRWRemarks%>" runat="server" Flex="2" Visible="false" />
-                            
 
 
-                           <ext:Column runat="server"
-                                ID="colEdit"  Visible="true"
+
+                            <ext:Column runat="server"
+                                ID="colEdit" Visible="true"
                                 Text=""
                                 Width="120"
                                 Hideable="false"
@@ -141,7 +203,7 @@
                                 MenuDisabled="true"
                                 Resizable="false">
 
-                                <Renderer handler="var att ='&nbsp;'; if(record.data['fileUrl']!='') att = attachRender(); return att+'&nbsp;&nbsp;' +editRender()+'&nbsp;&nbsp;' +deleteRender();" />
+                                <Renderer Handler="var att ='&nbsp;'; if(record.data['fileUrl']!='') att = attachRender(); return att+'&nbsp;&nbsp;' +editRender()+'&nbsp;&nbsp;' +deleteRender();" />
 
                             </ext:Column>
                             <ext:Column runat="server"
@@ -186,13 +248,13 @@
                         </ext:Toolbar>
 
                     </DockedItems>
-                
+
                     <Listeners>
                         <Render Handler="this.on('cellclick', cellClick);" />
                     </Listeners>
                     <DirectEvents>
                         <CellClick OnEvent="PoPuPRW">
-                            
+
                             <ExtraParams>
                                 <ext:Parameter Name="id" Value="record.getId()" Mode="Raw" />
                                 <ext:Parameter Name="path" Value="record.data['fileUrl']" Mode="Raw" />
@@ -216,7 +278,7 @@
                 <ext:GridPanel Visible="True"
                     ID="BackgroundCheckGrid" AutoUpdateLayout="true" Collapsible="true"
                     runat="server"
-                    PaddingSpec="0 0 1 0"   
+                    PaddingSpec="0 0 1 0"
                     Header="true"
                     Title="<%$ Resources: BCGridTitle %>"
                     Layout="FitLayout" Flex="1"
@@ -252,8 +314,8 @@
                                         <ext:ModelField Name="fileUrl" />
                                         <ext:ModelField Name="ctName" />
                                         <ext:ModelField Name="employeeName" IsComplex="true" />
-                                        
-                                        
+
+
 
                                     </Fields>
                                 </ext:Model>
@@ -297,15 +359,15 @@
                     <ColumnModel ID="ColumnModel2" runat="server" SortAscText="<%$ Resources:Common , SortAscText %>" SortDescText="<%$ Resources:Common ,SortDescText  %>" SortClearText="<%$ Resources:Common ,SortClearText  %>" ColumnsText="<%$ Resources:Common ,ColumnsText  %>" EnableColumnHide="false" Sortable="false">
                         <Columns>
 
-                           <ext:Column ID="Column1" Visible="false" DataIndex="recordId" runat="server" />
-<%--                            <ext:Column ID="Column2" DataIndex="employeeName.fullName" Text="<%$ Resources: FieldBCEmployeeName%>" runat="server" Width="240">
+                            <ext:Column ID="Column1" Visible="false" DataIndex="recordId" runat="server" />
+                            <%--                            <ext:Column ID="Column2" DataIndex="employeeName.fullName" Text="<%$ Resources: FieldBCEmployeeName%>" runat="server" Width="240">
                                 <Renderer Handler=" return '<u>'+ record.data['employeeName'].fullName+'</u>'" />
                             </ext:Column>--%>
                             <ext:Column ID="Column3" DataIndex="ctName" Text="<%$ Resources: FieldBCCTName%>" runat="server" Flex="1" />
-                            <ext:DateColumn Format="dd-MM-yyyy" ID="DateColumn1" DataIndex="date" Text="<%$ Resources: FieldBCIssueDate%>" runat="server" width="100" />
-                            <ext:DateColumn Format="dd-MM-yyyy" ID="DateColumn2" DataIndex="expiryDate" Text="<%$ Resources: FieldBCExpiryDate%>" runat="server" width="100" />
+                            <ext:DateColumn Format="dd-MM-yyyy" ID="DateColumn1" DataIndex="date" Text="<%$ Resources: FieldBCIssueDate%>" runat="server" Width="100" />
+                            <ext:DateColumn Format="dd-MM-yyyy" ID="DateColumn2" DataIndex="expiryDate" Text="<%$ Resources: FieldBCExpiryDate%>" runat="server" Width="100" />
                             <%--<ext:Column  Visible="false" ID="Column4" DataIndex="remarks" Text="<%$ Resources: FieldBCRemarks%>" runat="server" Flex="1" />--%>
-                          
+
 
 
 
@@ -320,7 +382,7 @@
                                 MenuDisabled="true"
                                 Resizable="false">
 
-                                <Renderer handler="var att ='&nbsp;'; if(record.data['fileUrl']!='') att = attachRender(); return att+'&nbsp;&nbsp;'+editRender()+'&nbsp;&nbsp;'+deleteRender(); " />
+                                <Renderer Handler="var att ='&nbsp;'; if(record.data['fileUrl']!='') att = attachRender(); return att+'&nbsp;&nbsp;'+editRender()+'&nbsp;&nbsp;'+deleteRender(); " />
 
                             </ext:Column>
                             <ext:Column runat="server"
@@ -333,7 +395,7 @@
                                 Hideable="false"
                                 MenuDisabled="true"
                                 Resizable="false">
-                              <Renderer handler="return editRender()+'&nbsp;&nbsp;'+deleteRender();  "  />
+                                <Renderer Handler="return editRender()+'&nbsp;&nbsp;'+deleteRender();  " />
 
                             </ext:Column>
                             <ext:Column runat="server" Visible="false"
@@ -365,13 +427,13 @@
                         </ext:Toolbar>
 
                     </DockedItems>
-                    
+
                     <Listeners>
                         <Render Handler="this.on('cellclick', cellClick);" />
                     </Listeners>
                     <DirectEvents>
                         <CellClick OnEvent="PoPuPBC">
-                            
+
                             <ExtraParams>
                                 <ext:Parameter Name="id" Value="record.getId()" Mode="Raw" />
                                 <ext:Parameter Name="path" Value="record.data['fileUrl']" Mode="Raw" />
@@ -390,9 +452,9 @@
                         <%--<ext:CheckboxSelectionModel ID="CheckboxSelectionModel1" runat="server" Mode="Multi" StopIDModeInheritance="true" />--%>
                     </SelectionModel>
                 </ext:GridPanel>
-             
+
             </Items>
-       </ext:Viewport>
+        </ext:Viewport>
 
         <ext:Window
             ID="EditRWwindow"
@@ -400,7 +462,7 @@
             Icon="PageEdit"
             Title="<%$ Resources:EditRWWindowTitle %>"
             Width="450"
-            Height="330"
+            Height="380"
             AutoShow="false"
             Modal="true"
             Hidden="true"
@@ -417,7 +479,7 @@
                             DefaultAnchor="100%"
                             BodyPadding="5">
                             <Items>
-                                <ext:TextField runat="server" Name="recordId"  ID="RWID" Hidden="true"  Disabled="true"/>
+                                <ext:TextField runat="server" Name="recordId" ID="RWID" Hidden="true" Disabled="true" />
                                 <ext:ComboBox ValueField="recordId" AllowBlank="false" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" runat="server" ID="dtId" Name="dtId" FieldLabel="<%$ Resources:FieldRWDocumentType%>" SimpleSubmit="true">
                                     <Store>
                                         <ext:Store runat="server" ID="RWDocumentTypeStore">
@@ -431,31 +493,53 @@
                                             </Model>
                                         </ext:Store>
                                     </Store>
-                                          <RightButtons>
-                                                        <ext:Button ID="Button6" runat="server" Icon="Add" Hidden="true">
-                                                            <Listeners>
-                                                                <Click Handler="CheckSession();  " />
-                                                            </Listeners>
-                                                            <DirectEvents>
+                                    <RightButtons>
+                                        <ext:Button ID="Button6" runat="server" Icon="Add" Hidden="true">
+                                            <Listeners>
+                                                <Click Handler="CheckSession();  " />
+                                            </Listeners>
+                                            <DirectEvents>
 
-                                                                <Click OnEvent="addDocumentType">
-                                                                    <ExtraParams>
-                                                                        
-                                                                        
-                                                                    </ExtraParams>
-                                                                </Click>
-                                                            </DirectEvents>
-                                                        </ext:Button>
-                                                    </RightButtons>
-                                                <Listeners>
-                                                    <FocusEnter Handler="this.rightButtons[0].setHidden(false);" />
-                                                    <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
-                                                </Listeners>
+                                                <Click OnEvent="addDocumentType">
+                                                    <ExtraParams>
+                                                    </ExtraParams>
+                                                </Click>
+                                            </DirectEvents>
+                                        </ext:Button>
+                                    </RightButtons>
+                                    <Listeners>
+                                        <FocusEnter Handler="this.rightButtons[0].setHidden(false);" />
+                                        <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
+                                    </Listeners>
                                 </ext:ComboBox>
-                                <ext:TextField ID="documentRef" runat="server" FieldLabel="<%$ Resources:FieldRWDocumentRef%>" Name="documentRef"   AllowBlank="false"/>
-                                <ext:DateField ID="rwIssueDate" runat="server" Name="issueDate" FieldLabel="<%$ Resources:FieldRWIssueDate%>" AllowBlank="false" />
-                                <ext:DateField ID="rwExpiryDate" runat="server" Name="expiryDate" FieldLabel="<%$ Resources:FieldRWExpiryDate%>" AllowBlank="false" />
+                                <ext:TextField ID="documentRef" runat="server" FieldLabel="<%$ Resources:FieldRWDocumentRef%>" Name="documentRef" AllowBlank="false" />
+                                 <ext:RadioGroup runat="server" ID="hijriCal" GroupName="hijriCal" FieldLabel="<%$ Resources:ChooseCalendarType %>"    >
+                                    <Items>
+                                        <ext:Radio ID="gregCal" runat="server" Name="hijriCal" InputValue="false" InputType="Checkbox" BoxLabel="<%$ Resources:Common, Gregorian %>" Checked="true" >
+                                            <Listeners>
+                                                <Change Handler="InitGregorian();handleInputRender();"  />
+                                            </Listeners>
+                                        </ext:Radio>
+                                        <ext:Radio ID="hijCal" runat="server" Name="hijriCal" InputValue="true" InputType="Checkbox" BoxLabel="<%$ Resources:Common, Hijri %>" >
+                                              <Listeners>
+                                                <Change Handler="InitHijri();handleInputRender();" />
+                                            </Listeners>
+                                        </ext:Radio>
+                                    </Items>
+                                </ext:RadioGroup>
+                                <ext:TextField ID="rwIssueDate" Width="250" runat="server" Margin="5" FieldLabel="<%$ Resources:FieldRWIssueDate%>" FieldCls="showCal">
+                               
+                                   
+                                </ext:TextField>
+                                <ext:TextField ID="rwExpiryDate" Width="250" runat="server" Margin="5" FieldLabel="<%$ Resources:FieldRWExpiryDate%>" FieldCls="showCal2">
+                               
+                                   
+                                </ext:TextField>
+                             <%--   <ext:DateField ID="rwIssueDate" runat="server" Name="issueDate" FieldLabel="<%$ Resources:FieldRWIssueDate%>" AllowBlank="false" />
+                                <%--<ext:DateField ID="rwExpiryDate" runat="server" Name="expiryDate" FieldLabel="<%$ Resources:FieldRWExpiryDate%>" AllowBlank="false" />--%>
                                 <ext:TextArea runat="server" Name="remarks" FieldLabel="<%$ Resources:FieldRWRemarks%>" />
+                               
+                           
                                 <ext:FileUploadField runat="server" ID="rwFile" FieldLabel="<%$ Resources:FieldFile%>" />
                             </Items>
 
@@ -512,43 +596,42 @@
                             BodyPadding="5">
                             <Items>
                                 <ext:TextField ID="BCID" Hidden="true" runat="server" FieldLabel="<%$ Resources:FieldrecordId%>" Disabled="true" Name="recordId" />
-                                
-                           <ext:ComboBox    runat="server" AllowBlank="false" ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" ID="ctId" Name="ctId" FieldLabel="<%$ Resources:FieldBCCheckType%>" SimpleSubmit="true">
-                                                <Store>
-                                                    <ext:Store runat="server" ID="checkTypeStore">
-                                                        <Model>
-                                                            <ext:Model runat="server">
-                                                                <Fields>
-                                                                    <ext:ModelField Name="recordId" />
-                                                                    <ext:ModelField Name="name" />
-                                                                </Fields>
-                                                            </ext:Model>
-                                                        </Model>
-                                                    </ext:Store>
-                                                </Store>
-                                                  <RightButtons>
-                                                        <ext:Button ID="Button2" runat="server" Icon="Add" Hidden="true">
-                                                            <Listeners>
-                                                                <Click Handler="CheckSession();  " />
-                                                            </Listeners>
-                                                            <DirectEvents>
 
-                                                                <Click OnEvent="addCheckType">
-                                                                   
-                                                                </Click>
-                                                            </DirectEvents>
-                                                        </ext:Button>
-                                                    </RightButtons>
-                                                <Listeners>
-                                                    <FocusEnter Handler="this.rightButtons[0].setHidden(false);" />
-                                                    <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
-                                                </Listeners>
-                                            </ext:ComboBox>
-                                
+                                <ext:ComboBox runat="server" AllowBlank="false" ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" ID="ctId" Name="ctId" FieldLabel="<%$ Resources:FieldBCCheckType%>" SimpleSubmit="true">
+                                    <Store>
+                                        <ext:Store runat="server" ID="checkTypeStore">
+                                            <Model>
+                                                <ext:Model runat="server">
+                                                    <Fields>
+                                                        <ext:ModelField Name="recordId" />
+                                                        <ext:ModelField Name="name" />
+                                                    </Fields>
+                                                </ext:Model>
+                                            </Model>
+                                        </ext:Store>
+                                    </Store>
+                                    <RightButtons>
+                                        <ext:Button ID="Button2" runat="server" Icon="Add" Hidden="true">
+                                            <Listeners>
+                                                <Click Handler="CheckSession();  " />
+                                            </Listeners>
+                                            <DirectEvents>
+
+                                                <Click OnEvent="addCheckType">
+                                                </Click>
+                                            </DirectEvents>
+                                        </ext:Button>
+                                    </RightButtons>
+                                    <Listeners>
+                                        <FocusEnter Handler="this.rightButtons[0].setHidden(false);" />
+                                        <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
+                                    </Listeners>
+                                </ext:ComboBox>
+
                                 <ext:DateField ID="DateField1" runat="server" Name="date" FieldLabel="<%$ Resources:FieldBCIssueDate%>" AllowBlank="false" />
                                 <ext:DateField ID="DateField2" runat="server" Name="expiryDate" FieldLabel="<%$ Resources:FieldBCExpiryDate%>" AllowBlank="false" />
                                 <ext:TextArea runat="server" Name="remarks" FieldLabel="<%$ Resources:FieldBCRemarks%>" />
-                                 <ext:FileUploadField runat="server" ID="bcFile" FieldLabel="<%$ Resources:FieldFile%>" />
+                                <ext:FileUploadField runat="server" ID="bcFile" FieldLabel="<%$ Resources:FieldFile%>" />
 
                             </Items>
 
@@ -581,7 +664,7 @@
             </Buttons>
         </ext:Window>
 
-          
+
 
     </form>
 </body>

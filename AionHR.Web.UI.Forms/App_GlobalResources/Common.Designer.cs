@@ -961,6 +961,24 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Gregorian.
+        /// </summary>
+        internal static string Gregorian {
+            get {
+                return ResourceManager.GetString("Gregorian", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hijri.
+        /// </summary>
+        internal static string Hijri {
+            get {
+                return ResourceManager.GetString("Hijri", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to History.
         /// </summary>
         internal static string History {

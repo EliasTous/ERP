@@ -123,14 +123,41 @@
   <data name="All" xml:space="preserve">
     <value>الكل</value>
   </data>
+  <data name="allowedLeaveYtdTitle" xml:space="preserve">
+    <value>الاجازات المسموحة</value>
+  </data>
   <data name="BasicInfoTabEditWindowTitle" xml:space="preserve">
     <value>ملف الموظف</value>
+  </data>
+  <data name="BrowsePicture" xml:space="preserve">
+    <value>اختيار الصورة</value>
+  </data>
+  <data name="Company" xml:space="preserve">
+    <value>شركة</value>
+  </data>
+  <data name="confirmDelete" xml:space="preserve">
+    <value>تأكيد الحذف</value>
+  </data>
+  <data name="ContactsTab" xml:space="preserve">
+    <value>معلومات الاتصال</value>
   </data>
   <data name="ContractEndingDate" xml:space="preserve">
     <value>تاريخ نهاية العقد</value>
   </data>
+  <data name="deleteConfirmation" xml:space="preserve">
+    <value>تأكيد حذف الموظف</value>
+  </data>
+  <data name="DisplayTeamLink" xml:space="preserve">
+    <value>الفريق</value>
+  </data>
+  <data name="DocumentsTab" xml:space="preserve">
+    <value>أنواع الملفات</value>
+  </data>
   <data name="EditWindowsTitle" xml:space="preserve">
     <value>تعديل الملف</value>
+  </data>
+  <data name="eosBalanceTitle" xml:space="preserve">
+    <value>رصيد نهاية الخدمة</value>
   </data>
   <data name="FieldBirthPlace" xml:space="preserve">
     <value>مكان الولادة</value>
@@ -204,6 +231,15 @@
   <data name="FieldSponsor" xml:space="preserve">
     <value>الكفيل</value>
   </data>
+  <data name="FieldTerminationDate" xml:space="preserve">
+    <value>التاريخ</value>
+  </data>
+  <data name="FieldTerminationReason" xml:space="preserve">
+    <value>السبب</value>
+  </data>
+  <data name="FieldTerminationType" xml:space="preserve">
+    <value>النوع</value>
+  </data>
   <data name="FieldVacationSchedule" xml:space="preserve">
     <value>جدول الإجازات</value>
   </data>
@@ -216,19 +252,91 @@
   <data name="Filter" xml:space="preserve">
     <value>العرض:</value>
   </data>
+  <data name="ImageSelectionWindowTitle" xml:space="preserve">
+    <value>اختيار صورة</value>
+  </data>
   <data name="InactiveOnly" xml:space="preserve">
     <value>غير النشيطين فقط</value>
   </data>
   <data name="JobInformationTab" xml:space="preserve">
     <value>معلومات العمل</value>
   </data>
+  <data name="lastLeaveEndDateTitle" xml:space="preserve">
+    <value>تاريخ العودة من اخر اجازة</value>
+  </data>
+  <data name="lastLeaveStartDateTitle" xml:space="preserve">
+    <value>تاريخ اخر اجازة</value>
+  </data>
+  <data name="leavesBalanceTitle" xml:space="preserve">
+    <value>رصيد الاجازات</value>
+  </data>
+  <data name="LegalsTab" xml:space="preserve">
+    <value>الوثائق القانونية</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>لا</value>
+  </data>
+  <data name="NoTeamMembersFound" xml:space="preserve">
+    <value>لا يوجد اعضاء فريق</value>
+  </data>
   <data name="NotesTab" xml:space="preserve">
     <value>الملاحظات</value>
+  </data>
+  <data name="NotYetKnown" xml:space="preserve">
+    <value>غير محدد</value>
+  </data>
+  <data name="Other" xml:space="preserve">
+    <value>اخر</value>
+  </data>
+  <data name="paidLeavesYTDTitle" xml:space="preserve">
+    <value>الاجازات المدفوعة</value>
   </data>
   <data name="PayrollTab" xml:space="preserve">
     <value>الراتب</value>
   </data>
+  <data name="RehireEligibilty" xml:space="preserve">
+    <value>اعادة التوظيف</value>
+  </data>
+  <data name="RemovePicture" xml:space="preserve">
+    <value>حذف صورة</value>
+  </data>
+  <data name="ResetPassword" xml:space="preserve">
+    <value>استعادة كلمة المرور</value>
+  </data>
+  <data name="ShowTeam" xml:space="preserve">
+    <value>الفريق</value>
+  </data>
+  <data name="SkillsTab" xml:space="preserve">
+    <value>المؤهلات</value>
+  </data>
+  <data name="TeamWindow" xml:space="preserve">
+    <value>الفريق</value>
+  </data>
+  <data name="UploadPicture" xml:space="preserve">
+    <value>حفظ الصورة</value>
+  </data>
   <data name="WindowTitle" xml:space="preserve">
     <value>الموظفين</value>
+  </data>
+  <data name="Worker" xml:space="preserve">
+    <value>العامل</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>نعم</value>
+  </data>
+  <data name="FieldReportsTo" xml:space="preserve">
+    <value>المدير</value>
+  </data>
+  <data name="terminationWindowTitle" xml:space="preserve">
+    <value>انهاء الخدمة</value>
+  </data>
+  <data name="Hiring" xml:space="preserve">
+    <value>التوظيف</value>
+  </data>
+  <data name="ButtonClear" xml:space="preserve">
+    <value>جديد</value>
+  </data>
+  <data name="serviceDuration" xml:space="preserve">
+    <value>في الخدمة:</value>
   </data>
 </root>

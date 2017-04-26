@@ -76,6 +76,15 @@ namespace AionHR.Web.UI.Forms.EmployeePages {
         protected global::Ext.Net.Hidden CurrentEmployee;
         
         /// <summary>
+        /// CurrentLang control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Hidden CurrentLang;
+        
+        /// <summary>
         /// Viewport11 control.
         /// </summary>
         /// <remarks>
@@ -181,7 +190,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.DateColumn validFrom;
+        protected global::Ext.Net.Column validFrom;
         
         /// <summary>
         /// validTo control.
@@ -190,7 +199,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.DateColumn validTo;
+        protected global::Ext.Net.Column validTo;
         
         /// <summary>
         /// remarks control.
@@ -499,13 +508,40 @@ namespace AionHR.Web.UI.Forms.EmployeePages {
         protected global::Ext.Net.TextField documentRef;
         
         /// <summary>
+        /// hijriCal control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.RadioGroup hijriCal;
+        
+        /// <summary>
+        /// gregCal control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Radio gregCal;
+        
+        /// <summary>
+        /// hijCal control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Radio hijCal;
+        
+        /// <summary>
         /// rwIssueDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.DateField rwIssueDate;
+        protected global::Ext.Net.TextField rwIssueDate;
         
         /// <summary>
         /// rwExpiryDate control.
@@ -514,7 +550,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.DateField rwExpiryDate;
+        protected global::Ext.Net.TextField rwExpiryDate;
         
         /// <summary>
         /// rwFile control.

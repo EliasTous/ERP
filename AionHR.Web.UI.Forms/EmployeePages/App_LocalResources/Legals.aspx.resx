@@ -180,4 +180,7 @@
   <data name="FieldFile" xml:space="preserve">
     <value>Attachment</value>
   </data>
+  <data name="ChooseCalendarType" xml:space="preserve">
+    <value>Choose Calendar</value>
+  </data>
 </root>

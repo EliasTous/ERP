@@ -322,7 +322,7 @@
     <value>Leave Balance:</value>
   </data>
   <data name="paidLeavesYTDTitle" xml:space="preserve">
-    <value>Paid:</value>
+    <value>Paid Leaves:</value>
   </data>
   <data name="ShowTeam" xml:space="preserve">
     <value>Show Team</value>
@@ -341,5 +341,8 @@
   </data>
   <data name="Hiring" xml:space="preserve">
     <value>Hiring</value>
+  </data>
+  <data name="serviceDuration" xml:space="preserve">
+    <value>In Service:</value>
   </data>
 </root>

@@ -141,7 +141,7 @@
                             <ext:Column Visible="false" ID="ColPassword" MenuDisabled="true" runat="server" DataIndex="password" Hideable="false" Width="75" Align="Center" />
                             
                             <ext:Column ID="ColFullName" MenuDisabled="true" Sortable="true" runat="server" Text="<%$ Resources: FieldFullName%>" DataIndex="fullName" Flex="1" Hideable="false">
-                                <Renderer Handler="return '<u>'+ record.data['fullName']+'</u>'">
+                                <Renderer Handler="return  record.data['fullName'];">
                                 </Renderer>
                             </ext:Column>
 

@@ -947,17 +947,22 @@ namespace AionHR.Web.UI.Forms
               forSummary.branchName + "<br />",
                forSummary.positionName + "<br />",
                (forSummary.reportToName == null) ? "" : "<br />" + GetLocalResourceObject("FieldReportsTo").ToString() + " :" + forSummary.reportToName.fullName + "<br />",
+
                forSummary.eosBalance + "<br />",
                forSummary.paidLeavesYTD + "<br/>",
                 forSummary.LastLeave(_systemService.SessionHelper.GetDateformat()) + "<br />",
                forSummary.leavesBalance + "<br />",
-               forSummary.allowedLeaveYtd + "<br />"
+               forSummary.allowedLeaveYtd + "<br />",
+               forSummary.esName,
+               forSummary.serviceDuractionFriendly(GetGlobalResourceObject("Common","Day").ToString(), GetGlobalResourceObject("Common", "Month").ToString(), GetGlobalResourceObject("Common", "Year").ToString())
             );
             //            fullNameLbl.Html = forSummary.name.fullName + "<br />";
             departmentLbl.Html = forSummary.departmentName + "<br />";
             branchLbl.Html = forSummary.branchName + "<br />";
-            positionLbl.Html = forSummary.positionName + "<br /><br /><br />";
+            positionLbl.Html = forSummary.positionName + "<br />";
+            esName.Html = forSummary.esName+ "<br /><br />";
             eosBalanceLbl.Html = forSummary.eosBalance + "<br />";
+            serviceDuration.Html = forSummary.serviceDuractionFriendly(GetGlobalResourceObject("Common", "Day").ToString(), GetGlobalResourceObject("Common", "Month").ToString(), GetGlobalResourceObject("Common", "Year").ToString())+"<br />";
 
             paidLeavesYTDLbl.Html = forSummary.paidLeavesYTD + "<br/>";
             lastLeaveStartDateLbl.Html =  forSummary.LastLeave(_systemService.SessionHelper.GetDateformat()) + "<br />";

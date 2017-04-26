@@ -97,8 +97,10 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             {
                 this.ResourceManager1.RTL = true;
                 this.Viewport11.RTL = true;
-
+                CurrentLang.Text = "ar";
             }
+            else
+                CurrentLang.Text = "en";
         }
 
 
@@ -129,6 +131,18 @@ namespace AionHR.Web.UI.Forms.EmployeePages
 
                     this.EditRWwindow.Title = Resources.Common.EditWindowsTitle;
                     this.EditRWwindow.Show();
+                    if(response.result.hijriCal)
+                    {
+                        hijCal.Checked = true;
+                        rwIssueDate.Text = response.result.issueDate.ToString("yyyy/MM/dd", new CultureInfo("ar"));
+                        rwExpiryDate.Text = response.result.expiryDate.ToString("yyyy/MM/dd", new CultureInfo("ar"));
+                    }
+                    else
+                    {
+                        gregCal.Checked = true;
+                        rwIssueDate.Text = response.result.issueDate.ToString("MM/dd/yyyy", new CultureInfo("en"));
+                        rwExpiryDate.Text = response.result.expiryDate.ToString("MM/dd/yyyy", new CultureInfo("en"));
+                    }
                     break;
               
 
@@ -340,8 +354,9 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             EditRWForm.Reset();
             this.EditRWwindow.Title = Resources.Common.AddNewRecord;
             FillRWDocumentType();
-            rwIssueDate.SelectedDate = DateTime.Today;
-            rwExpiryDate.SelectedDate = DateTime.Today;
+            rwIssueDate.Text = DateTime.Today.ToShortDateString();;
+            rwExpiryDate.Text = DateTime.Today.ToShortDateString();
+            X.Call("handleInputRender");
             this.EditRWwindow.Show();
         }
         protected void ADDNewBC(object sender, DirectEventArgs e)
@@ -432,8 +447,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
 
         protected void SaveRW(object sender, DirectEventArgs e)
         {
-
-
+       
             //Getting the id to check if it is an Add or an edit as they are managed within the same form.
             string id = e.ExtraParams["id"];
 
@@ -443,8 +457,29 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             b.recordId = id;
             // Define the object to add or edit as null
             b.dtName = dtId.SelectedItem.Text;
-            b.issueDate = new DateTime(b.issueDate.Year, b.issueDate.Month, b.issueDate.Day, 14, 0, 0);
-            b.expiryDate = new DateTime(b.expiryDate.Year, b.expiryDate.Month, b.expiryDate.Day, 14, 0, 0);
+            
+            try {
+                CultureInfo c = new CultureInfo("en");
+                string format = "";
+                if(b.hijriCal)
+                {
+                    c = new CultureInfo("ar");
+                    format = "yyyy/MM/dd";
+                }
+                else
+                {
+                    c = new CultureInfo("en");
+                    format = "MM/dd/yyyy";
+                }
+                
+                b.issueDate = DateTime.ParseExact(rwIssueDate.Text, format, c);
+                b.expiryDate = DateTime.ParseExact(rwExpiryDate.Text,format, c);
+               
+            }
+            catch(Exception exp)
+            {
+                return;
+            }
             //b.remarks = 
 
             if (string.IsNullOrEmpty(id))

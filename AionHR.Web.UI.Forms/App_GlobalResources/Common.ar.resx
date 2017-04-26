@@ -819,4 +819,10 @@
   <data name="Year" xml:space="preserve">
     <value>سنة</value>
   </data>
+  <data name="Gregorian" xml:space="preserve">
+    <value>تقويم ميلادي</value>
+  </data>
+  <data name="Hijri" xml:space="preserve">
+    <value>تقويم هجري</value>
+  </data>
 </root>

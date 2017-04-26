@@ -28,7 +28,7 @@ namespace AionHR.Web.UI.Forms
 {
     public partial class Users : System.Web.UI.Page
     {
-       
+
         ISystemService _systemService = ServiceLocator.Current.GetInstance<ISystemService>();
         IEmployeeService _employeeService = ServiceLocator.Current.GetInstance<IEmployeeService>();
         protected override void InitializeCulture()
@@ -49,7 +49,7 @@ namespace AionHR.Web.UI.Forms
             }
 
         }
-      
+
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -62,11 +62,11 @@ namespace AionHR.Web.UI.Forms
                 SetExtLanguage();
                 HideShowButtons();
                 HideShowColumns();
-               
+
 
             }
 
-           
+
         }
 
 
@@ -106,9 +106,9 @@ namespace AionHR.Web.UI.Forms
 
             }
         }
-        
 
-        private void DeactivatePassword( bool deactivate)
+
+        private void DeactivatePassword(bool deactivate)
         {
             PasswordField.Hidden = deactivate;
             PasswordConfirmation.Hidden = deactivate;
@@ -142,11 +142,11 @@ namespace AionHR.Web.UI.Forms
                     {
 
                         RecordRequest empRecord = new RecordRequest();
-                    empRecord.RecordID = response.result.employeeId;
-                    RecordResponse<Employee> empResponse = _employeeService.Get<Employee>(empRecord);
+                        empRecord.RecordID = response.result.employeeId;
+                        RecordResponse<Employee> empResponse = _employeeService.Get<Employee>(empRecord);
 
-                    RecordRequest req = new RecordRequest();
-                    
+                        RecordRequest req = new RecordRequest();
+
                         employeeId.GetStore().Add(new object[]
                            {
                                 new
@@ -159,8 +159,8 @@ namespace AionHR.Web.UI.Forms
 
                         X.Call("SetNameEnabled", false, empResponse.result.name.fullName);
                     }
-                    
-                   
+
+
                     // InitCombos(response.result);
                     this.EditRecordWindow.Title = Resources.Common.EditWindowsTitle;
                     this.EditRecordWindow.Show();
@@ -194,7 +194,7 @@ namespace AionHR.Web.UI.Forms
 
         }
 
-      
+
 
         /// <summary>
         /// This direct method will be called after confirming the delete
@@ -213,7 +213,7 @@ namespace AionHR.Web.UI.Forms
                 s.email = "";
                 s.fullName = "";
                 s.languageId = 0;
-                
+
                 PostRequest<UserInfo> req = new PostRequest<UserInfo>();
                 req.entity = s;
                 PostResponse<UserInfo> r = _systemService.ChildDelete<UserInfo>(req);
@@ -281,11 +281,11 @@ namespace AionHR.Web.UI.Forms
             //  return new
             // {
 
-            if(data.Count==0)
+            if (data.Count == 0)
             {
-                X.Call("SetNameEnabled", true," ");
+                X.Call("SetNameEnabled", true, " ");
             }
-            
+
             return data;
             //};
 
@@ -301,7 +301,7 @@ namespace AionHR.Web.UI.Forms
 
             List<Employee> emps = new List<Employee>();
             RecordResponse<Employee> emp = _employeeService.Get<Employee>(req);
-            if(!emp.Success)
+            if (!emp.Success)
                 X.Msg.Alert(Resources.Common.Error, emp.Summary).Show();
             emps.Add(emp.result);
             return emps;
@@ -322,7 +322,7 @@ namespace AionHR.Web.UI.Forms
 
 
             ListResponse<Employee> response = _employeeService.GetAll<Employee>(req);
-            if(!response.Success)
+            if (!response.Success)
                 X.Msg.Alert(Resources.Common.Error, response.Summary).Show();
             return response.Items;
         }
@@ -451,12 +451,12 @@ namespace AionHR.Web.UI.Forms
 
             b.recordId = id;
             // Define the object to add or edit as null
-            if (employeeId.SelectedItem != null)
+            if (employeeId.SelectedItem != null && employeeId.SelectedItem.Value != null)
             {
                 b.employeeId = employeeId.SelectedItem.Value;
                 b.fullName = employeeId.SelectedItem.Text;
             }
-            
+
             if (string.IsNullOrEmpty(id))
             {
 
@@ -501,7 +501,7 @@ namespace AionHR.Web.UI.Forms
                             Icon = Icon.Information,
                             Html = Resources.Common.RecordSavingSucc
                         });
-                       
+
                         this.EditRecordWindow.Close();
                         RowSelectionModel sm = this.GridPanel1.GetSelectionModel() as RowSelectionModel;
                         sm.DeselectAll();
@@ -529,11 +529,11 @@ namespace AionHR.Web.UI.Forms
                     int index = Convert.ToInt32(id);//getting the id of the record
                     PostRequest<UserInfo> request = new PostRequest<UserInfo>();
 
-                  
-                    
+
+
                     request.entity = b;
                     PostResponse<UserInfo> r = _systemService.ChildAddOrUpdate<UserInfo>(request);                   //Step 1 Selecting the object or building up the object for update purpose
-                   
+
                     //Step 2 : saving to store
 
                     //Step 3 :  Check if request fails
@@ -551,7 +551,7 @@ namespace AionHR.Web.UI.Forms
                         BasicInfoTab.UpdateRecord(record);
                         record.Set("fullName", b.fullName);
 
-                        record.Commit();    
+                        record.Commit();
                         Notification.Show(new NotificationConfig
                         {
                             Title = Resources.Common.Notification,
@@ -593,6 +593,6 @@ namespace AionHR.Web.UI.Forms
             X.Call("SetNameEnabled", false, employeeId.SelectedItem.Text);
         }
 
-   
+
     }
 }

@@ -238,7 +238,7 @@ function dump(obj) {
     }
     return out;
 }
-function FillLeftPanel(departmentName, branchName, positionName, reportToName,balance,lastLeave,paid,leaveBalance,allowedLeaves) {
+function FillLeftPanel(departmentName, branchName, positionName, reportToName,balance,lastLeave,paid,leaveBalance,allowedLeaves,esName,serviceDuration) {
 
 
 
@@ -249,6 +249,8 @@ function FillLeftPanel(departmentName, branchName, positionName, reportToName,ba
     App.paidLeavesYTDTitle.setText(paid);
     App.leavesBalanceTitle.setText(leaveBalance);
     App.allowedLeaveYtdTitle.setText(allowedLeaves);
+    App.esName = esName;
+    App.serviceDuration = serviceDuration;
     FillLeftPanel( dep, branchName, positionName);
 
 }

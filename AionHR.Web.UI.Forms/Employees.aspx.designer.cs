@@ -544,6 +544,33 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Label reportsToLbl;
         
         /// <summary>
+        /// esName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Label esName;
+        
+        /// <summary>
+        /// serviceDurationTitle control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Label serviceDurationTitle;
+        
+        /// <summary>
+        /// serviceDuration control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Label serviceDuration;
+        
+        /// <summary>
         /// eosBalanceTitle control.
         /// </summary>
         /// <remarks>

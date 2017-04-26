@@ -17,6 +17,7 @@ namespace AionHR.Model.System
         public DateTime issueDate { get; set; }
         public DateTime expiryDate { get; set; }
 
+        public bool hijriCal { get; set; }
         public string fileUrl { get; set; }
     }
 }
