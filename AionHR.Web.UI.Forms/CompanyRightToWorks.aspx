@@ -14,7 +14,81 @@
     <link rel="stylesheet" href="CSS/LiveSearch.css" />
     <script type="text/javascript" src="Scripts/MediaItems.js?id=0" ></script>
     <script type="text/javascript" src="Scripts/common.js" ></script>
-   
+    <script src="Scripts/jquery.min.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="Scripts/HijriCalender/redmond.calendars.picker.css" />
+
+    <script src="Scripts/HijriCalender/jquery.plugin.js" type="text/javascript"></script>
+
+    <script type="text/javascript" src="Scripts/HijriCalender/jquery.calendars.js"></script>
+    <script type="text/javascript" src="Scripts/HijriCalender/jquery.calendars-ar.js"></script>
+    <script type="text/javascript" src="Scripts/HijriCalender/jquery.calendars.picker.js"></script>
+    <script type="text/javascript" src="Scripts/HijriCalender/jquery.calendars.plus.js"></script>
+    <script type="text/javascript" src="Scripts/HijriCalender/jquery.calendars.islamic.js"></script>
+    <script type="text/javascript" src="Scripts/HijriCalender/jquery.calendars.islamic-ar.js"></script>
+    <script type="text/javascript" src="Scripts/HijriCalender/jquery.calendars.lang.js"></script>
+    <script type="text/javascript" src="Scripts/HijriCalender/jquery.calendars.picker-ar.js"></script>
+    <script type="text/javascript">
+        var cropper = null;
+
+        
+        var handleInputRender = function () {
+          
+            if (App.hijCal.value ==true) {
+                
+                jQuery(function () {
+
+                    var calendar = jQuery.calendars.instance('Islamic', "ar");
+
+                    jQuery('.showCal').calendarsPicker('destroy');
+                    jQuery('.showCal2').calendarsPicker('destroy');
+                    jQuery('.showCal').calendarsPicker({ calendar: calendar });
+                    jQuery('.showCal2').calendarsPicker({ calendar: calendar });
+                });
+            }
+            else {
+                
+                jQuery(function () {
+
+                    var calendar = jQuery.calendars.instance('Gregorian', document.getElementById("CurrentLanguage").value);
+
+                    jQuery('.showCal').calendarsPicker('destroy');
+                    jQuery('.showCal2').calendarsPicker('destroy');
+                    jQuery('.showCal').calendarsPicker({ calendar: calendar });
+                    jQuery('.showCal2').calendarsPicker({ calendar: calendar });
+                });
+            }
+            
+        }
+       
+        function setInputState(hijri)
+        {
+            
+            App.hijriCal.setHidden(!hijri);
+            
+            App.issueDateMulti.setHidden(!hijri);
+            App.issueDateMulti.allowBlank = !hijri;
+            App.expiryDateMulti.setHidden(!hijri);
+            App.expiryDateMulti.allowBlank = !hijri;
+
+
+            App.expiryDate.setHidden(hijri);
+            App.expiryDate.allowBlank = hijri;
+
+            App.issueDate.setHidden(hijri);
+            App.issueDate.allowBlank = hijri;
+                
+            
+        }
+    </script>
+    <style type="text/css">
+        .tlb-BackGround {
+            background: #fff;
+        }
+
+        .calendars-popup {
+            z-index: 80000 !important;
+        }
+    </style>
  
 </head>
 <body style="background: url(Images/bg.png) repeat;" ">
@@ -25,9 +99,9 @@
         <ext:Hidden ID="textLoadFailed" runat="server" Text="<%$ Resources:Common , LoadFailed %>" />
         <ext:Hidden ID="titleSavingError" runat="server" Text="<%$ Resources:Common , TitleSavingError %>" />
         <ext:Hidden ID="titleSavingErrorMessage" runat="server" Text="<%$ Resources:Common , TitleSavingErrorMessage %>" />
-
+       
         <ext:Hidden ID="CurrentLanguage" runat="server" />
-
+        <ext:Hidden ID="hijriSelected" runat="server" />
 
 
         
@@ -54,8 +128,8 @@
                         <ext:ModelField Name="dtId" />
                         <ext:ModelField Name="documentRef" />
                         <ext:ModelField Name="remarks" />
-                        <ext:ModelField Name="issueDate" />
-                        <ext:ModelField Name="expiryDate" />
+                        <ext:ModelField Name="issueDateFormatted" />
+                        <ext:ModelField Name="expireDateFormatted" />
                         <ext:ModelField Name="dtName" />
                         <ext:ModelField Name="branchName" />
                         <ext:ModelField Name="fileUrl" />
@@ -133,8 +207,8 @@
                             
                             <ext:Column ID="Column2" Visible="true" DataIndex="documentRef" Text="<%$ Resources: FieldDocumentRef%>" runat="server"  Flex="1"/>
                             <ext:Column ID="Column3" Visible="true" DataIndex="remarks" Text="<%$ Resources: FieldRemarks%>" runat="server"  Flex="1"/>
-                            <ext:DateColumn Format="dd-MM-yyyy" Visible="true" ID="DateColumn1" DataIndex="issueDate" Text="<%$ Resources: FieldIssueDate%>" runat="server" width="100"/>
-                            <ext:DateColumn Format="dd-MM-yyyy" Visible="true" ID="DateColumn2" DataIndex="expiryDate" Text="<%$ Resources: FieldExpiryDate%>" runat="server" width="100"/>
+                            <ext:Column  Visible="true" ID="DateColumn1" DataIndex="issueDateFormatted" Text="<%$ Resources: FieldIssueDate%>" runat="server" width="100"/>
+                            <ext:Column Visible="true" ID="DateColumn2" DataIndex="expireDateFormatted" Text="<%$ Resources: FieldExpiryDate%>" runat="server" width="100"/>
                                                        
 
                            <ext:Column runat="server"
@@ -348,9 +422,34 @@
                                 
                                 <ext:TextField ID="documentRef" runat="server" FieldLabel="<%$ Resources:FieldDocumentRef%>" Name="documentRef" AllowBlank="false"/>
                                 <ext:TextField ID="remarks" runat="server" FieldLabel="<%$ Resources:FieldRemarks%>" Name="remarks" AllowBlank="true"/>
-
-                                <ext:DateField ID="issueDate" runat="server" FieldLabel="<%$ Resources:FieldIssueDate%>" Name="issueDate" AllowBlank="false" />                                
-                                <ext:DateField ID="expiryDate" runat="server" FieldLabel="<%$ Resources:FieldExpiryDate%>" Name="expiryDate" AllowBlank="false" />                                
+                                 <ext:RadioGroup runat="server" ID="hijriCal" GroupName="hijriCal" FieldLabel="<%$ Resources:ChooseCalendarType %>"    >
+                                    <Items>
+                                        <ext:Radio ID="gregCal" runat="server" Name="hijriCal" InputValue="false" InputType="Checkbox" BoxLabel="<%$ Resources:Common, Gregorian %>" Checked="true" >
+                                       <%--     <Listeners>
+                                                <Change Handler="if(this.checked){InitGregorian();handleInputRender();}"  />
+                                            </Listeners>--%>
+                                        </ext:Radio>
+                                        <ext:Radio ID="hijCal" runat="server" Name="hijriCal" InputValue="true" InputType="Checkbox" BoxLabel="<%$ Resources:Common, Hijri %>" >
+                                           <%--   <Listeners>
+                                                <Change Handler="if(this.checked){InitHijri();handleInputRender();}" />
+                                            </Listeners>--%>
+                                        </ext:Radio>
+                                    </Items>
+                                     <Listeners>
+                                         <Change Handler="handleInputRender();"></Change>
+                                     </Listeners>
+                                </ext:RadioGroup>
+                                <ext:TextField ID="issueDateMulti" Width="250" runat="server" Margin="5" FieldLabel="<%$ Resources:FieldIssueDate%>" FieldCls="showCal">
+                               
+                                   
+                                </ext:TextField>
+                                <ext:TextField ID="expiryDateMulti" Width="250" runat="server" Margin="5" FieldLabel="<%$ Resources:FieldExpiryDate%>" FieldCls="showCal2">
+                               
+                                   
+                                </ext:TextField>
+                           
+                               <ext:DateField ID="issueDate" runat="server" FieldLabel="<%$ Resources:FieldIssueDate%>" Name="issueDate"  />                                
+                                <ext:DateField ID="expiryDate" runat="server" FieldLabel="<%$ Resources:FieldExpiryDate%>" Name="expiryDate"  />                               
 
 
                                 <ext:FileUploadField runat="server" ID="rwFile" FieldLabel="<%$ Resources:FieldFile%>" />
@@ -367,14 +466,14 @@
                 <ext:Button ID="SaveButton" runat="server" Text="<%$ Resources:Common, Save %>" Icon="Disk">
 
                     <Listeners>
-                        <Click Handler="CheckSession(); if (!#{BasicInfoTab}.getForm().isValid()) {return false;}  " />
+                        <Click Handler="CheckSession(); if (!#{BasicInfoTab}.getForm().isValid()) {return false;} if(#{issueDateMulti}.value =='' && #{issueDate}.value=='') return false;  " />
                     </Listeners>
                     <DirectEvents>
                         <Click OnEvent="SaveNewRecord" Failure="Ext.MessageBox.alert('#{titleSavingError}.value', '#{titleSavingErrorMessage}.value');">
                             <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="={#{EditRecordWindow}.body}" />
                             <ExtraParams>
                                 <ext:Parameter Name="id" Value="#{recordId}.getValue()" Mode="Raw" />
-                                <ext:Parameter Name="id" Value="#{url}.getValue()" Mode="Raw" />
+                                <ext:Parameter Name="url" Value="#{url}.getValue()" Mode="Raw" />
                                 <ext:Parameter Name="values" Value ="#{BasicInfoTab}.getForm().getValues()" Mode="Raw" Encode="true" />
                             </ExtraParams>
                         </Click>

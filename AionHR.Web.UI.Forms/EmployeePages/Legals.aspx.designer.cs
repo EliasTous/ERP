@@ -85,6 +85,15 @@ namespace AionHR.Web.UI.Forms.EmployeePages {
         protected global::Ext.Net.Hidden CurrentLang;
         
         /// <summary>
+        /// hijriSelected control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Hidden hijriSelected;
+        
+        /// <summary>
         /// Viewport11 control.
         /// </summary>
         /// <remarks>
@@ -535,13 +544,31 @@ namespace AionHR.Web.UI.Forms.EmployeePages {
         protected global::Ext.Net.Radio hijCal;
         
         /// <summary>
+        /// rwIssueDateMulti control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.TextField rwIssueDateMulti;
+        
+        /// <summary>
+        /// rwExpiryDateMulti control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.TextField rwExpiryDateMulti;
+        
+        /// <summary>
         /// rwIssueDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.TextField rwIssueDate;
+        protected global::Ext.Net.DateField rwIssueDate;
         
         /// <summary>
         /// rwExpiryDate control.
@@ -550,7 +577,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.TextField rwExpiryDate;
+        protected global::Ext.Net.DateField rwExpiryDate;
         
         /// <summary>
         /// rwFile control.

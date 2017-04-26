@@ -144,6 +144,9 @@
   <data name="FieldEnableCamera" xml:space="preserve">
     <value>Enable Camera</value>
   </data>
+  <data name="FieldEnableHijri" xml:space="preserve">
+    <value>Enable Hijri Calendar</value>
+  </data>
   <data name="FieldFirstDayOfWeek" xml:space="preserve">
     <value>First Day Of The Week</value>
   </data>

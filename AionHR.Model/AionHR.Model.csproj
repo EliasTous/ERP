@@ -77,6 +77,7 @@
     <Compile Include="MediaGallery\IMediaGalleryRepository.cs" />
     <Compile Include="MediaGallery\MediaItem.cs" />
     <Compile Include="ModelBase.cs" />
+    <Compile Include="Reports\Attendance.cs" />
     <Compile Include="Reports\IReportsRepository.cs" />
     <Compile Include="Reports\RT01.cs" />
     <Compile Include="Reports\RT102A.cs" />
@@ -88,6 +89,7 @@
     <Compile Include="Reports\RT201.cs" />
     <Compile Include="Reports\RT202.cs" />
     <Compile Include="Reports\RT203.cs" />
+    <Compile Include="Reports\RT301.cs" />
     <Compile Include="Reports\RT801.cs" />
     <Compile Include="Reports\RT802.cs" />
     <Compile Include="System\CompanyDocumentType.cs" />

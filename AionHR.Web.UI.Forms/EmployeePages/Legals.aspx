@@ -39,31 +39,50 @@
         var hijriSelected = false;
         var handleInputRender = function () {
             
-            if (hijriSelected==true)
+            if (App.hijCal.value==true) {
+
                 jQuery(function () {
 
-                    var calendar = jQuery.calendars.instance('Islamic',"ar");
-                    
-                  
+                    var calendar = jQuery.calendars.instance('Islamic', "ar");
+                    jQuery('.showCal').calendarsPicker('destroy');
+                    jQuery('.showCal2').calendarsPicker('destroy');
+
                     jQuery('.showCal').calendarsPicker({ calendar: calendar });
                     jQuery('.showCal2').calendarsPicker({ calendar: calendar });
                 });
-            else
+            }
+            else {
+
                 jQuery(function () {
 
                     var calendar = jQuery.calendars.instance('Gregorian', document.getElementById("CurrentLang").value);
-
+                    jQuery('.showCal').calendarsPicker('destroy');
+                    jQuery('.showCal2').calendarsPicker('destroy');
 
                     jQuery('.showCal').calendarsPicker({ calendar: calendar });
                     jQuery('.showCal2').calendarsPicker({ calendar: calendar });
                 });
+            }
             
         }
-        function InitGregorian() {
-            hijriSelected = false;
-        }
-        function InitHijri() {
-            hijriSelected = true;
+       
+        function setInputState(hijri) {
+
+            App.hijriCal.setHidden(!hijri);
+
+            App.rwIssueDateMulti.setHidden(!hijri);
+            App.rwIssueDateMulti.allowBlank = !hijri;
+            App.rwExpiryDateMulti.setHidden(!hijri);
+            App.rwExpiryDateMulti.allowBlank = !hijri;
+
+
+            App.rwExpiryDate.setHidden(hijri);
+            App.rwExpiryDate.allowBlank = hijri;
+
+            App.rwIssueDate.setHidden(hijri);
+            App.rwIssueDate.allowBlank = hijri;
+
+
         }
     </script>
     <style type="text/css">
@@ -86,6 +105,7 @@
         <ext:Hidden ID="titleSavingErrorMessage" runat="server" Text="<%$ Resources:Common , TitleSavingErrorMessage %>" />
         <ext:Hidden ID="CurrentEmployee" runat="server" />
         <ext:Hidden ID="CurrentLang" runat="server" />
+        <ext:Hidden ID="hijriSelected" runat="server" />
         <ext:Viewport ID="Viewport11" runat="server" Layout="VBoxLayout" Padding="10">
             <LayoutConfig>
                 <ext:VBoxLayoutConfig Align="Stretch" />
@@ -516,27 +536,30 @@
                                  <ext:RadioGroup runat="server" ID="hijriCal" GroupName="hijriCal" FieldLabel="<%$ Resources:ChooseCalendarType %>"    >
                                     <Items>
                                         <ext:Radio ID="gregCal" runat="server" Name="hijriCal" InputValue="false" InputType="Checkbox" BoxLabel="<%$ Resources:Common, Gregorian %>" Checked="true" >
-                                            <Listeners>
-                                                <Change Handler="InitGregorian();handleInputRender();"  />
-                                            </Listeners>
+                                       <%--     <Listeners>
+                                                <Change Handler="if(this.checked){InitGregorian();handleInputRender();}"  />
+                                            </Listeners>--%>
                                         </ext:Radio>
                                         <ext:Radio ID="hijCal" runat="server" Name="hijriCal" InputValue="true" InputType="Checkbox" BoxLabel="<%$ Resources:Common, Hijri %>" >
-                                              <Listeners>
-                                                <Change Handler="InitHijri();handleInputRender();" />
-                                            </Listeners>
+                                           <%--   <Listeners>
+                                                <Change Handler="if(this.checked){InitHijri();handleInputRender();}" />
+                                            </Listeners>--%>
                                         </ext:Radio>
                                     </Items>
+                                     <Listeners>
+                                         <Change Handler="handleInputRender()" />
+                                     </Listeners>
                                 </ext:RadioGroup>
-                                <ext:TextField ID="rwIssueDate" Width="250" runat="server" Margin="5" FieldLabel="<%$ Resources:FieldRWIssueDate%>" FieldCls="showCal">
+                                <ext:TextField ID="rwIssueDateMulti" Width="250" runat="server" Margin="5" FieldLabel="<%$ Resources:FieldRWIssueDate%>" FieldCls="showCal">
                                
                                    
                                 </ext:TextField>
-                                <ext:TextField ID="rwExpiryDate" Width="250" runat="server" Margin="5" FieldLabel="<%$ Resources:FieldRWExpiryDate%>" FieldCls="showCal2">
+                                <ext:TextField ID="rwExpiryDateMulti" Width="250" runat="server" Margin="5" FieldLabel="<%$ Resources:FieldRWExpiryDate%>" FieldCls="showCal2">
                                
                                    
                                 </ext:TextField>
-                             <%--   <ext:DateField ID="rwIssueDate" runat="server" Name="issueDate" FieldLabel="<%$ Resources:FieldRWIssueDate%>" AllowBlank="false" />
-                                <%--<ext:DateField ID="rwExpiryDate" runat="server" Name="expiryDate" FieldLabel="<%$ Resources:FieldRWExpiryDate%>" AllowBlank="false" />--%>
+                                <ext:DateField ID="rwIssueDate" runat="server" Name="issueDate" FieldLabel="<%$ Resources:FieldRWIssueDate%>" AllowBlank="false" />
+                               <ext:DateField ID="rwExpiryDate" runat="server" Name="expiryDate" FieldLabel="<%$ Resources:FieldRWExpiryDate%>" AllowBlank="false" />
                                 <ext:TextArea runat="server" Name="remarks" FieldLabel="<%$ Resources:FieldRWRemarks%>" />
                                
                            

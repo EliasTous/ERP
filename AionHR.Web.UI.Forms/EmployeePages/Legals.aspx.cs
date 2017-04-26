@@ -128,21 +128,31 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     this.EditRWForm.SetValues(response.result);
                     FillRWDocumentType();
                     dtId.Select(response.result.dtId.ToString());
-
-                    this.EditRWwindow.Title = Resources.Common.EditWindowsTitle;
-                    this.EditRWwindow.Show();
-                    if(response.result.hijriCal)
+                    if (_systemService.SessionHelper.GetHijriSupport())
                     {
-                        hijCal.Checked = true;
-                        rwIssueDate.Text = response.result.issueDate.ToString("yyyy/MM/dd", new CultureInfo("ar"));
-                        rwExpiryDate.Text = response.result.expiryDate.ToString("yyyy/MM/dd", new CultureInfo("ar"));
+                        SetHijriInputState(true);
+                        if (response.result.hijriCal)
+                        {
+                            hijCal.Checked = true;
+                            rwIssueDateMulti.Text = response.result.issueDate.ToString("yyyy/MM/dd", new CultureInfo("ar"));
+                            rwExpiryDateMulti.Text = response.result.expiryDate.ToString("yyyy/MM/dd", new CultureInfo("ar"));
+                            hijriSelected.Text = "true";
+                        }
+                        else
+                        {
+                            gregCal.Checked = true;
+                            rwIssueDateMulti.Text = response.result.issueDate.ToString("MM/dd/yyyy", new CultureInfo("en"));
+                            rwExpiryDateMulti.Text = response.result.expiryDate.ToString("MM/dd/yyyy", new CultureInfo("en"));
+                            hijriSelected.Text = "false";
+                        }
+                        X.Call("handleInputRender");
                     }
                     else
-                    {
-                        gregCal.Checked = true;
-                        rwIssueDate.Text = response.result.issueDate.ToString("MM/dd/yyyy", new CultureInfo("en"));
-                        rwExpiryDate.Text = response.result.expiryDate.ToString("MM/dd/yyyy", new CultureInfo("en"));
-                    }
+                    { SetHijriInputState(false); }
+                    RWID.Text = response.result.recordId;
+                    this.EditRWwindow.Title = Resources.Common.EditWindowsTitle;
+                    this.EditRWwindow.Show();
+                  
                     break;
               
 
@@ -229,7 +239,12 @@ namespace AionHR.Web.UI.Forms.EmployeePages
 
         }
 
+        private void SetHijriInputState(bool hijriSupported)
+        {
+            X.Call("setInputState", hijriSupported);
 
+
+        }
 
         [DirectMethod]
         public void DeleteRW(string index,string path)
@@ -354,9 +369,21 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             EditRWForm.Reset();
             this.EditRWwindow.Title = Resources.Common.AddNewRecord;
             FillRWDocumentType();
-            rwIssueDate.Text = DateTime.Today.ToShortDateString();;
-            rwExpiryDate.Text = DateTime.Today.ToShortDateString();
-            X.Call("handleInputRender");
+            if (_systemService.SessionHelper.GetHijriSupport())
+            {
+                rwIssueDate.Text = DateTime.Today.ToShortDateString(); ;
+                rwExpiryDate.Text = DateTime.Today.ToShortDateString();
+                hijriSelected.Text = "false";
+                SetHijriInputState(true);
+                X.Call("handleInputRender");
+            }
+            else
+            {
+                SetHijriInputState(false);
+            }
+            
+            
+            
             this.EditRWwindow.Show();
         }
         protected void ADDNewBC(object sender, DirectEventArgs e)
@@ -452,31 +479,39 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             string id = e.ExtraParams["id"];
 
             string obj = e.ExtraParams["values"];
-            EmployeeRightToWork b = JsonConvert.DeserializeObject<EmployeeRightToWork>(obj);
+            JsonSerializerSettings settings = new JsonSerializerSettings();
+            settings.NullValueHandling = NullValueHandling.Ignore;
+
+            EmployeeRightToWork b = JsonConvert.DeserializeObject<EmployeeRightToWork>(obj,settings);
             b.employeeId = Convert.ToInt32(CurrentEmployee.Text);
             b.recordId = id;
+            bool hijriSupported = _systemService.SessionHelper.GetHijriSupport();
             // Define the object to add or edit as null
             b.dtName = dtId.SelectedItem.Text;
-            
-            try {
+
+            try
+            {
                 CultureInfo c = new CultureInfo("en");
                 string format = "";
-                if(b.hijriCal)
+                if (hijriSupported)
                 {
-                    c = new CultureInfo("ar");
-                    format = "yyyy/MM/dd";
+                    if (b.hijriCal)
+                    {
+                        c = new CultureInfo("ar");
+                        format = "yyyy/MM/dd";
+                    }
+                    else
+                    {
+                        c = new CultureInfo("en");
+                        format = "MM/dd/yyyy";
+                    }
+
+                    b.issueDate = DateTime.ParseExact(rwIssueDateMulti.Text, format, c);
+                    b.expiryDate = DateTime.ParseExact(rwExpiryDateMulti.Text, format, c);
                 }
-                else
-                {
-                    c = new CultureInfo("en");
-                    format = "MM/dd/yyyy";
-                }
-                
-                b.issueDate = DateTime.ParseExact(rwIssueDate.Text, format, c);
-                b.expiryDate = DateTime.ParseExact(rwExpiryDate.Text,format, c);
-               
+
             }
-            catch(Exception exp)
+            catch (Exception exp)
             {
                 return;
             }

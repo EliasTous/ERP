@@ -73,7 +73,7 @@ namespace AionHR.Web.UI.Forms
                 FillCombos();
                 FillDefaults(defaults.Items);
             }
-           
+
         }
 
         private void FillCombos()
@@ -114,6 +114,12 @@ namespace AionHR.Web.UI.Forms
 
             {
                 enableCameraCheck.Checked = items.Where(s => s.Key == "enableCamera").First().Value == "true";
+            }
+            catch { }
+            try
+
+            {
+                enableHijri.Checked = items.Where(s => s.Key == "enableHijri").First().Value == "true";
             }
             catch { }
         }
@@ -175,6 +181,7 @@ namespace AionHR.Web.UI.Forms
                 submittedValues.Add(new KeyValuePair<string, string>("fdow", values.fdow.ToString()));
 
             submittedValues.Add(new KeyValuePair<string, string>("enableCamera", values.enableCamera == null ? "false" : "true"));
+            submittedValues.Add(new KeyValuePair<string, string>("enableHijri", values.enableHijri == null ? "false" : "true"));
             KeyValuePair<string, string>[] valArr = submittedValues.ToArray();
             PostRequest<KeyValuePair<string, string>[]> req = new PostRequest<KeyValuePair<string, string>[]>();
             req.entity = valArr;
@@ -188,9 +195,16 @@ namespace AionHR.Web.UI.Forms
             else
             {
                 FillDefaults(submittedValues);
-                _systemService.SessionHelper.SetDateformat( values.dateFormat.ToString());
-                _systemService.SessionHelper.SetNameFormat(values.nameFormat.ToString());
-                _systemService.SessionHelper.SetDefaultCountry(values.countryId.ToString());
+                if (!string.IsNullOrEmpty(values.dateFormat.ToString()))
+                    _systemService.SessionHelper.SetDateformat(values.dateFormat.ToString());
+                if (!string.IsNullOrEmpty(values.nameFormat.ToString()))
+                    _systemService.SessionHelper.SetNameFormat(values.nameFormat.ToString());
+                if (!string.IsNullOrEmpty(values.countryId.ToString()))
+                    _systemService.SessionHelper.SetDefaultCountry(values.countryId.ToString());
+                if (!string.IsNullOrEmpty(values.timeZone.ToString()))
+                    _systemService.SessionHelper.SetDefaultTimeZone(Convert.ToInt32(values.timeZone.ToString()));
+                _systemService.SessionHelper.SetHijriSupport(values.enableHijri == null ? false : true);
+
                 Notification.Show(new NotificationConfig
                 {
                     Title = Resources.Common.Notification,

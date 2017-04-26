@@ -74,9 +74,19 @@ namespace AionHR.Infrastructure.Session
         {
             Set("currencyId", value);
         }
+
+        public void SetDefaultTimeZone(int value)
+        {
+            Set("timeZone", value);
+        }
         public void SetDefaultCountry(string format)
         {
             Set("countryId", format);
+        }
+
+        public void SetHijriSupport(bool value)
+        {
+            Set("enableHijri", value);
         }
 
         public void SetStartDate(DateTime date)
@@ -104,6 +114,10 @@ namespace AionHR.Infrastructure.Session
             return nameFormat.ToString();
         }
 
+        public int GetDefaultTimeZone()
+        {
+            return  Convert.ToInt32(Get("timeZone").ToString());
+        }
         public DateTime GetStartDate()
         {
             return DateTime.ParseExact(Get("StartDate").ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture); 
@@ -124,6 +138,18 @@ namespace AionHR.Infrastructure.Session
                 return "0";
 
             return nameFormat.ToString();
+        }
+
+        public bool GetHijriSupport()
+        {
+            try
+            {
+                return Convert.ToBoolean(Get("enableHijri"));
+            }
+            catch
+            {
+                return false;
+            }
         }
 
         #endregion

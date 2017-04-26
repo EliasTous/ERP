@@ -1762,6 +1762,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Time Attendance Summary.
+        /// </summary>
+        internal static string RT301 {
+            get {
+                return ResourceManager.GetString("RT301", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Sign-in Trail.
         /// </summary>
         internal static string RT801 {

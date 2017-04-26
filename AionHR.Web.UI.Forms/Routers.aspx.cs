@@ -477,6 +477,7 @@ namespace AionHR.Web.UI.Forms
             Branch dept = new Branch();
             dept.name = branchId.Text;
             dept.isInactive = false;
+            dept.timeZone = _systemService.SessionHelper.GetDefaultTimeZone();
             PostRequest<Branch> depReq = new PostRequest<Branch>();
             depReq.entity = dept;
             PostResponse<Branch> response = _companyStructureService.ChildAddOrUpdate<Branch>(depReq);

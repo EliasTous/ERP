@@ -97,8 +97,10 @@ namespace AionHR.Web.UI.Forms
             {
                 this.ResourceManager1.RTL = true;
                 this.Viewport1.RTL = true;
-
+                CurrentLanguage.Text = "ar";
             }
+            else
+                CurrentLanguage.Text = "en";
         }
 
         protected void addDocumentType(object sender, DirectEventArgs e)
@@ -132,7 +134,7 @@ namespace AionHR.Web.UI.Forms
                 return;
             Branch dept = new Branch();
             dept.name = branchId.Text;
-
+            dept.timeZone = _systemService.SessionHelper.GetDefaultTimeZone();
             PostRequest<Branch> depReq = new PostRequest<Branch>();
             depReq.entity = dept;
             PostResponse<Branch> response = _companyService.ChildAddOrUpdate<Branch>(depReq);
@@ -274,7 +276,7 @@ namespace AionHR.Web.UI.Forms
                     //Step 1 : get the object from the Web Service 
                     RecordRequest r = new RecordRequest();
                     r.RecordID = id;
-
+                   
                     RecordResponse<CompanyRightToWork> response = _systemService.ChildGetRecord<CompanyRightToWork>(r);
                     if (!response.Success)
                     {
@@ -283,6 +285,7 @@ namespace AionHR.Web.UI.Forms
                         return;
                     }
                     //Step 2 : call setvalues with the retrieved object
+                    recordId.Text = response.result.recordId;
                     url.Text = response.result.fileUrl;
                     this.BasicInfoTab.SetValues(response.result);
 
@@ -291,7 +294,27 @@ namespace AionHR.Web.UI.Forms
 
                     FillBranch();
                     branchId.Select(response.result.branchId.ToString());
-
+                    if (_systemService.SessionHelper.GetHijriSupport())
+                    {
+                        SetHijriInputState(true);
+                        if (response.result.hijriCal)
+                        {
+                            hijCal.Checked = true;
+                            issueDateMulti.Text = response.result.issueDate.ToString("yyyy/MM/dd", new CultureInfo("ar"));
+                            expiryDateMulti.Text = response.result.expiryDate.ToString("yyyy/MM/dd", new CultureInfo("ar"));
+                            hijriSelected.Text = "true";
+                        }
+                        else
+                        {
+                            gregCal.Checked = true;
+                            issueDateMulti.Text = response.result.issueDate.ToString("MM/dd/yyyy", new CultureInfo("en"));
+                            expiryDateMulti.Text = response.result.expiryDate.ToString("MM/dd/yyyy", new CultureInfo("en"));
+                            hijriSelected.Text = "false";
+                        }
+                        X.Call("handleInputRender");
+                    }
+                    else
+                    { SetHijriInputState(false); }
                     this.EditRecordWindow.Title = Resources.Common.EditWindowsTitle;
                     this.EditRecordWindow.Show();
                     break;
@@ -456,11 +479,27 @@ namespace AionHR.Web.UI.Forms
             BasicInfoTab.Reset();
             FillBranch();
             FillDocumentType();
+            if(_systemService.SessionHelper.GetHijriSupport())
+            {
+                SetHijriInputState(true);
+                
+                X.Call("handleInputRender");
+            }
+            else
+            {
+                SetHijriInputState(false);
+            }
+            
             this.EditRecordWindow.Title = Resources.Common.AddNewRecord;
             this.EditRecordWindow.Show();
         }
 
+        private void SetHijriInputState(bool hijriSupported)
+        {
+            X.Call("setInputState", hijriSupported);
+            
 
+        }
         protected void Store1_RefreshData(object sender, StoreReadDataEventArgs e)
         {
             //GEtting the filter from the page
@@ -494,18 +533,45 @@ namespace AionHR.Web.UI.Forms
         {
             //Getting the id to check if it is an Add or an edit as they are managed within the same form.
             string obj = e.ExtraParams["values"];
-            CompanyRightToWork b = JsonConvert.DeserializeObject<CompanyRightToWork>(obj);
+            JsonSerializerSettings settings = new JsonSerializerSettings();
+            settings.NullValueHandling = NullValueHandling.Ignore;
+            CompanyRightToWork b = JsonConvert.DeserializeObject<CompanyRightToWork>(obj,settings);
 
             string id = e.ExtraParams["id"];
             string url = e.ExtraParams["url"];
             // Define the object to add or edit as null
-
+            bool hijriSupported = _systemService.SessionHelper.GetHijriSupport();
             if (dtId.SelectedItem != null)
                 b.dtName = dtId.SelectedItem.Text;
 
             if (branchId.SelectedItem != null)
                 b.branchName = branchId.SelectedItem.Text;
+            try
+            {
+                CultureInfo c = new CultureInfo("en");
+                string format = "";
+                if (hijriSupported)
+                {
+                    if (b.hijriCal)
+                    {
+                        c = new CultureInfo("ar");
+                        format = "yyyy/MM/dd";
+                    }
+                    else
+                    {
+                        c = new CultureInfo("en");
+                        format = "MM/dd/yyyy";
+                    }
 
+                    b.issueDate = DateTime.ParseExact(issueDateMulti.Text, format, c);
+                    b.expiryDate = DateTime.ParseExact(expiryDateMulti.Text, format, c);
+                }
+
+            }
+            catch (Exception exp)
+            {
+                return;
+            }
 
             if (string.IsNullOrEmpty(id))
             {

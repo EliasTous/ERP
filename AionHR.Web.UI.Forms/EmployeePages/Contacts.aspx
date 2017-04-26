@@ -434,9 +434,9 @@
                                          <ext:TextField runat="server" Name="coaddressId" ID="coaddressId" Hidden="true" Disabled="true" />
                                         <ext:TextField runat="server" Name="costreet1" AllowBlank="false" ID="costreet1" FieldLabel="<%$ Resources:FieldCStreet1%>" />
                                              
-                                        <ext:TextField runat="server" Name="costreet2" AllowBlank="false" ID="costreet2" FieldLabel="<%$ Resources:FieldCStreet2%>" />
+                                        <ext:TextField runat="server" Name="costreet2" AllowBlank="true" ID="costreet2" FieldLabel="<%$ Resources:FieldCStreet2%>" />
                                         <ext:TextField runat="server" Name="cocity" AllowBlank="false" ID="cocity" FieldLabel="<%$ Resources:FieldCCity%>" />
-                                        <ext:TextField runat="server" Name="copostalCode" AllowBlank="false" MaxLength="6" ID="copostalCode" FieldLabel="<%$ Resources:FieldCPostalCode%>" />
+                                        <ext:TextField runat="server" Name="copostalCode" AllowBlank="true" MaxLength="6" ID="copostalCode" FieldLabel="<%$ Resources:FieldCPostalCode%>" />
                                         <%--<ext:TextField  runat="server" Name="countryName" AllowBlank="false"  ID="countryName"  FieldLabel="<%$ Resources:FieldCountryName%>" />--%>
 
                                         <ext:ComboBox ValueField="recordId" AllowBlank="false" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1"
@@ -591,16 +591,16 @@
                                                 <ext:InputMask Mask="9999999?999" />
                                             </Plugins>
                                             </ext:TextField>
-                                        <ext:TextField runat="server" Name="email" AllowBlank="false" ID="TextField4" FieldLabel="<%$ Resources:FieldEMEmail%>" Vtype="email" />
+                                        <ext:TextField runat="server" Name="email"  ID="TextField4" FieldLabel="<%$ Resources:FieldEMEmail%>" Vtype="email" />
 
                                     </Items>
                                 </ext:Panel>
                                 <ext:Panel runat="server">
                                     <Items>
                                         <ext:TextField runat="server" Name="street1" AllowBlank="false" ID="street1" FieldLabel="<%$ Resources:FieldEMStreet1%>" />
-                                        <ext:TextField runat="server" Name="street2" AllowBlank="false" ID="street2" FieldLabel="<%$ Resources:FieldEMStreet2%>" />
+                                        <ext:TextField runat="server" Name="street2" AllowBlank="true" ID="street2" FieldLabel="<%$ Resources:FieldEMStreet2%>" />
                                         <ext:TextField runat="server" Name="city" AllowBlank="false" ID="city" FieldLabel="<%$ Resources:FieldEMCity%>" />
-                                        <ext:TextField runat="server" Name="postalCode" AllowBlank="false" ID="postalCode" FieldLabel="<%$ Resources:FieldEMPostalCode%>" MaxLength="6" />
+                                        <ext:TextField runat="server" Name="postalCode"   ID="postalCode" FieldLabel="<%$ Resources:FieldEMPostalCode%>" MaxLength="6" />
                                         <%--<ext:TextField  runat="server" Name="countryName" AllowBlank="false"  ID="countryName"  FieldLabel="<%$ Resources:FieldCountryName%>" />--%>
 
                                         <ext:ComboBox ValueField="recordId" AllowBlank="false" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1"

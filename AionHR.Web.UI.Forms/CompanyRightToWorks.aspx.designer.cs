@@ -76,6 +76,15 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Hidden CurrentLanguage;
         
         /// <summary>
+        /// hijriSelected control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Hidden hijriSelected;
+        
+        /// <summary>
         /// Store1 control.
         /// </summary>
         /// <remarks>
@@ -208,7 +217,7 @@ namespace AionHR.Web.UI.Forms {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.DateColumn DateColumn1;
+        protected global::Ext.Net.Column DateColumn1;
         
         /// <summary>
         /// DateColumn2 control.
@@ -217,7 +226,7 @@ namespace AionHR.Web.UI.Forms {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.DateColumn DateColumn2;
+        protected global::Ext.Net.Column DateColumn2;
         
         /// <summary>
         /// colEdit control.
@@ -407,6 +416,51 @@ namespace AionHR.Web.UI.Forms {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.TextField remarks;
+        
+        /// <summary>
+        /// hijriCal control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.RadioGroup hijriCal;
+        
+        /// <summary>
+        /// gregCal control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Radio gregCal;
+        
+        /// <summary>
+        /// hijCal control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Radio hijCal;
+        
+        /// <summary>
+        /// issueDateMulti control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.TextField issueDateMulti;
+        
+        /// <summary>
+        /// expiryDateMulti control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.TextField expiryDateMulti;
         
         /// <summary>
         /// issueDate control.

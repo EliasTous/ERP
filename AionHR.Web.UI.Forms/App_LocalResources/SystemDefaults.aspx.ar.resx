@@ -118,39 +118,90 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="BasicInfoTabEditWindowTitle" xml:space="preserve">
-    <value>Right To Work Info</value>
+    <value>الاعدادات الإفتراضية للنظام</value>
+  </data>
+  <data name="DayMonthYear" xml:space="preserve">
+    <value>يوم - شهر - سنة</value>
+  </data>
+  <data name="DayYearMonth" xml:space="preserve">
+    <value>يوم - سنة - شهر</value>
   </data>
   <data name="EditWindowsTitle" xml:space="preserve">
-    <value>Edit Right To Work</value>
+    <value>تعديل الاعدادات الإفتراضية للنظام</value>
   </data>
-  <data name="FieldBRName" xml:space="preserve">
-    <value>Branch</value>
+  <data name="FieldBranch" xml:space="preserve">
+    <value>الفرع</value>
   </data>
-  <data name="FieldDocumentRef" xml:space="preserve">
-    <value>Document Ref</value>
+  <data name="FieldCountry" xml:space="preserve">
+    <value>الدولة الإفتراضية</value>
   </data>
-  <data name="FieldDTName" xml:space="preserve">
-    <value>Document Type</value>
+  <data name="FieldCurrency" xml:space="preserve">
+    <value>العملة الإفتراضية</value>
   </data>
-  <data name="FieldFile" xml:space="preserve">
-    <value>Attachment</value>
+  <data name="FieldDateFormat" xml:space="preserve">
+    <value>صيغة التاريخ</value>
   </data>
-  <data name="FieldIssueDate" xml:space="preserve">
-    <value>Issue Date</value>
+  <data name="FieldEnableCamera" xml:space="preserve">
+    <value>تفعيل الكاميرا</value>
+  </data>
+  <data name="FieldEnableHijri" xml:space="preserve">
+    <value>التقويم الهجري</value>
+  </data>
+  <data name="FieldFirstDayOfWeek" xml:space="preserve">
+    <value>اليوم الأول من الأسبوع</value>
+  </data>
+  <data name="FieldIsInactive" xml:space="preserve">
+    <value>غير نشط؟</value>
+  </data>
+  <data name="FieldLog" xml:space="preserve">
+    <value>حفظ سجل العمليات</value>
+  </data>
+  <data name="FieldName" xml:space="preserve">
+    <value>الاسم</value>
+  </data>
+  <data name="FieldNameFormat" xml:space="preserve">
+    <value>صيغة الاسم الإفتراضية</value>
+  </data>
+  <data name="FieldNumberFormat" xml:space="preserve">
+    <value>صيغة الرقم الإفتراضية</value>
   </data>
   <data name="FieldRecordId" xml:space="preserve">
-    <value>Record ID</value>
+    <value>الرقم</value>
   </data>
-  <data name="FieldRemarks" xml:space="preserve">
-    <value>Remarks</value>
+  <data name="FieldReference" xml:space="preserve">
+    <value>الرمز</value>
+  </data>
+  <data name="FieldTimeZone" xml:space="preserve">
+    <value>المنطقة الزمنية الإفتراضية</value>
+  </data>
+  <data name="FirstNameLastName" xml:space="preserve">
+    <value>الاسم الأول , الاسم الأخير</value>
+  </data>
+  <data name="FirstNameMiddleNameLastName" xml:space="preserve">
+    <value>الاسم الأول , الاسم الأوسط , الاسم الأخير</value>
+  </data>
+  <data name="LastNameFirstName" xml:space="preserve">
+    <value>الاسم الأخير , الاسم الأول</value>
+  </data>
+  <data name="MonthDayYear" xml:space="preserve">
+    <value>شهر - يوم - سنة</value>
+  </data>
+  <data name="MonthYearDay" xml:space="preserve">
+    <value>شهر - سنة - يوم</value>
+  </data>
+  <data name="ReferenceFirstNameLastName" xml:space="preserve">
+    <value>الرمز، الاسم الأول، الاسم الأخير</value>
+  </data>
+  <data name="ReferenceLastNameFirstName" xml:space="preserve">
+    <value>الرمز، الاسم الأخير، الاسم الأول</value>
   </data>
   <data name="WindowTitle" xml:space="preserve">
-    <value>Media Items</value>
+    <value>الموجهات</value>
   </data>
-  <data name="FieldExpiryDate" xml:space="preserve">
-    <value>Expiry Date</value>
+  <data name="YearDayMonth" xml:space="preserve">
+    <value>سنة - يوم - شهر</value>
   </data>
-  <data name="ChooseCalendarType" xml:space="preserve">
-    <value>Calendar</value>
+  <data name="YearMonthDay" xml:space="preserve">
+    <value>سنة - شهر - يوم</value>
   </data>
 </root>

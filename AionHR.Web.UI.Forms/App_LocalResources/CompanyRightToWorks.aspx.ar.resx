@@ -118,39 +118,39 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="BasicInfoTabEditWindowTitle" xml:space="preserve">
-    <value>Right To Work Info</value>
+    <value>معلومات اجازة العمل</value>
   </data>
   <data name="EditWindowsTitle" xml:space="preserve">
-    <value>Edit Right To Work</value>
+    <value>تعديل اجازة العمل</value>
   </data>
   <data name="FieldBRName" xml:space="preserve">
-    <value>Branch</value>
+    <value>الفرع</value>
   </data>
   <data name="FieldDocumentRef" xml:space="preserve">
-    <value>Document Ref</value>
+    <value>اسم الملف</value>
   </data>
   <data name="FieldDTName" xml:space="preserve">
-    <value>Document Type</value>
+    <value>نوع الملف</value>
   </data>
   <data name="FieldFile" xml:space="preserve">
-    <value>Attachment</value>
+    <value>المرفق</value>
   </data>
   <data name="FieldIssueDate" xml:space="preserve">
-    <value>Issue Date</value>
+    <value>تاريخ الاصدار</value>
   </data>
   <data name="FieldRecordId" xml:space="preserve">
     <value>Record ID</value>
   </data>
   <data name="FieldRemarks" xml:space="preserve">
-    <value>Remarks</value>
+    <value>الملاحظات</value>
   </data>
   <data name="WindowTitle" xml:space="preserve">
     <value>Media Items</value>
   </data>
   <data name="FieldExpiryDate" xml:space="preserve">
-    <value>Expiry Date</value>
+    <value>تاريخ الانتهاء</value>
   </data>
   <data name="ChooseCalendarType" xml:space="preserve">
-    <value>Calendar</value>
+    <value>التقويم</value>
   </data>
 </root>

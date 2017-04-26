@@ -822,4 +822,7 @@
   <data name="Hijri" xml:space="preserve">
     <value>Hijri</value>
   </data>
+  <data name="RT301" xml:space="preserve">
+    <value>Time Attendance Summary</value>
+  </data>
 </root>

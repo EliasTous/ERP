@@ -160,6 +160,22 @@ namespace AionHR.Web.UI.Forms
             }
             try
             {
+                _systemService.SessionHelper.SetHijriSupport(Convert.ToBoolean(defaults.Items.Where(s => s.Key == "enableHijri").First().Value));
+            }
+            catch
+            {
+                _systemService.SessionHelper.SetHijriSupport(false);
+            }
+            try
+            {
+                _systemService.SessionHelper.SetDefaultTimeZone(Convert.ToInt32(defaults.Items.Where(s => s.Key == "timeZone").First().Value));
+            }
+            catch
+            {
+                _systemService.SessionHelper.SetDefaultTimeZone(0);
+            }
+            try
+            {
                 EmployeeListRequest request = new EmployeeListRequest();
                 request.BranchId = request.DepartmentId = request.PositionId = "0";
                 request.StartAt = "1";
@@ -240,7 +256,7 @@ namespace AionHR.Web.UI.Forms
             else
             {
                 
-                //lblError.Text = GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).ToString() : response.Summary;
+                lblError.Text = GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).ToString() : response.Summary;
             }
             
             

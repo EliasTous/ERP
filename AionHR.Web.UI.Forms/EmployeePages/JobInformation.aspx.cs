@@ -637,7 +637,8 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             if (reportToId.SelectedItem != null)
                 b.reportToName.fullName = reportToId.SelectedItem.Text;
             // Define the object to add or edit as null
-
+            if (b.reportToId == 0)
+                b.reportToId = null;
             if (string.IsNullOrEmpty(id))
             {
 
@@ -874,6 +875,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             Branch dept = new Branch();
             dept.name = branchId.Text;
             dept.isInactive = false;
+            dept.timeZone = _systemService.SessionHelper.GetDefaultTimeZone();
             PostRequest<Branch> depReq = new PostRequest<Branch>();
             depReq.entity = dept;
             PostResponse<Branch> response = _companyStructureService.ChildAddOrUpdate<Branch>(depReq);

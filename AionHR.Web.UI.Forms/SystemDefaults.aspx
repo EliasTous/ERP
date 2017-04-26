@@ -177,6 +177,7 @@
                                         </ext:ComboBox>
 
                                         <ext:Checkbox FieldLabel="<%$ Resources: FieldEnableCamera %>" runat="server" InputValue="True" Name="enableCamera" ID="enableCameraCheck" />
+                                        <ext:Checkbox FieldLabel="<%$ Resources: FieldEnableHijri %>" runat="server" InputValue="True" Name="enableHijri" ID="enableHijri" />
                                     </Items>
 
                                 </ext:FormPanel>
