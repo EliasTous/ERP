@@ -140,7 +140,7 @@ var ClearImage2 = function () {
     $("#" + $('#employeePhoto')[0].firstChild.id).attr('src', 'images/empPhoto.jpg');
     
     initCropper('Images/empPhoto.jpg');
-    App.uploadPhotoButton.setDisabled(true);
+    //App.uploadPhotoButton.setDisabled(true);
 }
 
 
@@ -309,4 +309,9 @@ function initCropper(path)
             imgSrc:path
         };
     cropper = new cropbox(options);
+}
+
+function refreshQV()
+{
+    App.direct.FillLeftPanel(true);
 }

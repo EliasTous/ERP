@@ -1762,7 +1762,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Time Attendance Summary.
+        ///   Looks up a localized string similar to Monthly Attendance.
         /// </summary>
         internal static string RT301 {
             get {

@@ -17,15 +17,8 @@
     <script type="text/javascript" src="Scripts/common.js?id=1"></script>
     <script src="Scripts/HijriCalender/jquery.plugin.js" type="text/javascript"></script>
     <script type="text/javascript" src="Scripts/cropbox-min.js?id=1"></script>
-    <script type="text/javascript" src="Scripts/Employees.js?id=36"></script>
-    <script type="text/javascript"  src="Scripts/HijriCalender/jquery.calendars.js"></script>
-    <script type="text/javascript" src="Scripts/HijriCalender/jquery.calendars-ar.js"></script>
-    <script type="text/javascript" src="Scripts/HijriCalender/jquery.calendars.picker.js"></script>
-    <script type="text/javascript" src="Scripts/HijriCalender/jquery.calendars.plus.js"></script>
-    <script type="text/javascript" src="Scripts/HijriCalender/jquery.calendars.islamic.js"></script>
-    <script type="text/javascript" src="Scripts/HijriCalender/jquery.calendars.islamic-ar.js"></script>
-    <script type="text/javascript" src="Scripts/HijriCalender/jquery.calendars.lang.js"></script>
-    <script type="text/javascript" src="Scripts/HijriCalender/jquery.calendars.picker-ar.js"></script>
+    <script type="text/javascript" src="Scripts/Employees.js?id=37"></script>
+    
      
       
     <script type="text/javascript">
@@ -35,6 +28,18 @@
                 var calendar = jQuery.calendars.instance('Islamic', 'ar');
                 jQuery('.showCal').calendarsPicker({ calendar: calendar });
             });
+        }
+        function getBase64Image(img) {
+            var canvas = document.createElement("canvas");
+            canvas.width = img.width;
+            canvas.height = img.height;
+
+            var ctx = canvas.getContext("2d");
+            ctx.drawImage(img, 0, 0);
+
+            var dataURL = canvas.toDataURL("image/png");
+
+            return dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
         }
     </script>
     <style type="text/css">
@@ -1171,10 +1176,10 @@
                                         <Click Handler="triggierImageClick(App.FileUploadField1.fileInputEl.id); "></Click>
                                     </Listeners>
                                 </ext:Button>
-                                <ext:Button runat="server" ID="uploadPhotoButton" Icon="DatabaseSave" Text="<%$ Resources:UploadPicture %>" Disabled="true">
+                                <ext:Button runat="server" ID="uploadPhotoButton" Icon="DatabaseSave" Text="<%$ Resources:UploadPicture %>" >
                                     <Listeners>
 
-                                        <Click Handler="CheckSession();   if (!#{imageUploadForm}.getForm().isValid() ) {  return false;} if(#{CurrentEmployee}.value==''){#{imageSelectionWindow}.hide(); return false;  } alert(dump(cropper.options));   #{imageData}.value = cropper.getBlob(); var fd = new FormData();
+                                        <Click Handler="CheckSession();   if (!#{imageUploadForm}.getForm().isValid() ) {  return false;} if(#{CurrentEmployee}.value==''){#{imageSelectionWindow}.hide(); return false;  }  #{imageData}.value = cropper.getBlob();  var fd = new FormData();
         fd.append('fname', #{FileUploadField1}.value);
                                    fd.append('id',null);          
                                             Ext.net.Mask.show({msg:App.lblLoading.getValue(),el:#{imageSelectionWindow}.id});  

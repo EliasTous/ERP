@@ -925,7 +925,8 @@ namespace AionHR.Web.UI.Forms
 
         }
 
-        private void FillLeftPanel(bool shouldUpdateGrid = false)
+        [DirectMethod]
+        public void FillLeftPanel(bool shouldUpdateGrid = false)
         {
 
             RecordRequest r = new RecordRequest();
@@ -973,12 +974,18 @@ namespace AionHR.Web.UI.Forms
             //employeeName.Text = resp.result.name.firstName + resp.result.name.lastName;
 
             imgControl.ImageUrl = forSummary.pictureUrl + "?x=" + DateTime.Now.Ticks;
-            employeePhoto.ImageUrl = forSummary.pictureUrl + "?x=" + DateTime.Now.Ticks; ;
-            X.Call("initCropper", forSummary.pictureUrl + "?x=" + DateTime.Now.Ticks);
+            employeePhoto.ImageUrl = forSummary.pictureUrl+ "?x=" + DateTime.Now.Ticks; ;
+
+            //here
+            X.Call("initCropper", forSummary.pictureUrl );
 
             CurrentEmployeePhotoName.Text = forSummary.pictureUrl;
             ModelProxy record = Store1.GetById(CurrentEmployee.Text);
             record.Set("pictureUrl", imgControl.ImageUrl);
+            record.Set("departmentName", forSummary.departmentName);
+            record.Set("branchName", forSummary.branchName);
+            record.Set("divisionName", forSummary.divisionName);
+            record.Set("positionName", forSummary.positionName);
             record.Commit();
             img.Visible = true;
         }
@@ -1376,7 +1383,8 @@ namespace AionHR.Web.UI.Forms
                 X.Msg.Alert(Resources.Common.Error, response.Summary).Show();
                 return;
             }
-            employeePhoto.ImageUrl = response.result.pictureUrl + "?x=" + DateTime.Now.Ticks;
+            
+            employeePhoto.ImageUrl = response.result.pictureUrl+ "?x=" + DateTime.Now.Ticks;
         }
 
         protected void DisplayTeam(object sender, DirectEventArgs e)

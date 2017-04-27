@@ -78,6 +78,9 @@
     <Compile Include="MediaGallery\MediaItem.cs" />
     <Compile Include="ModelBase.cs" />
     <Compile Include="Reports\Attendance.cs" />
+    <Compile Include="Reports\Collections.cs" />
+    <Compile Include="Reports\Day.cs" />
+    <Compile Include="Reports\EmployeeAttendanceCollection.cs" />
     <Compile Include="Reports\IReportsRepository.cs" />
     <Compile Include="Reports\RT01.cs" />
     <Compile Include="Reports\RT102A.cs" />

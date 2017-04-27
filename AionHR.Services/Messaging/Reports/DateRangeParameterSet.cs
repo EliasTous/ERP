@@ -21,8 +21,8 @@ namespace AionHR.Services.Messaging.Reports
             {
                 parameters = new Dictionary<string, string>();
 
-                parameters.Add("_fromDate", DateFrom.ToString("MM/dd/yyyy",new CultureInfo("en-US")));
-                parameters.Add("_toDate", DateTo.ToString("MM/dd/yyyy", new CultureInfo("en-US")));
+                parameters.Add("_fromDate", DateFrom.ToString("yyyy/MM/dd",new CultureInfo("en-US")));
+                parameters.Add("_toDate", DateTo.ToString("yyyy/MM/dd", new CultureInfo("en-US")));
 
                 return parameters;
             }

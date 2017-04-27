@@ -606,6 +606,9 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
                     X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorUpdatingRecord).Show();
                 }
+
+                X.Call("parent.refreshQV");
+
             }
         }
 
@@ -741,11 +744,9 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorUpdatingRecord).Show();
                 }
             }
-            if (b.date.Date == DateTime.Today)
-            {
-                X.Call("parent.FillLeftPanel", b.departmentName + "<br/>", b.branchName + "<br/>", b.positionName + "<br/>");
-                X.Call("parent.SelectJICombos", b.departmentId, b.branchId, b.positionId, b.divisionId);
-            }
+
+            X.Call("parent.refreshQV");
+
 
         }
 

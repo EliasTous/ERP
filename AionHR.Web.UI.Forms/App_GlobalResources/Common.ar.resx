@@ -825,4 +825,7 @@
   <data name="Hijri" xml:space="preserve">
     <value>تقويم هجري</value>
   </data>
+  <data name="RT301" xml:space="preserve">
+    <value>الحضور الشهري</value>
+  </data>
 </root>
