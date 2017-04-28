@@ -124,7 +124,7 @@
     <value>الكل</value>
   </data>
   <data name="allowedLeaveYtdTitle" xml:space="preserve">
-    <value>الاجازات المسموحة</value>
+    <value>الاجازات المسموحة: </value>
   </data>
   <data name="BasicInfoTabEditWindowTitle" xml:space="preserve">
     <value>ملف الموظف</value>
@@ -157,7 +157,7 @@
     <value>تعديل الملف</value>
   </data>
   <data name="eosBalanceTitle" xml:space="preserve">
-    <value>رصيد نهاية الخدمة</value>
+    <value>رصيد نهاية الخدمة: </value>
   </data>
   <data name="FieldBirthPlace" xml:space="preserve">
     <value>مكان الولادة</value>
@@ -265,10 +265,10 @@
     <value>تاريخ العودة من اخر اجازة</value>
   </data>
   <data name="lastLeaveStartDateTitle" xml:space="preserve">
-    <value>تاريخ اخر اجازة</value>
+    <value>تاريخ اخر اجازة: </value>
   </data>
   <data name="leavesBalanceTitle" xml:space="preserve">
-    <value>رصيد الاجازات</value>
+    <value>رصيد الاجازات: </value>
   </data>
   <data name="LegalsTab" xml:space="preserve">
     <value>الوثائق القانونية</value>
@@ -289,7 +289,7 @@
     <value>اخر</value>
   </data>
   <data name="paidLeavesYTDTitle" xml:space="preserve">
-    <value>الاجازات المدفوعة</value>
+    <value>الاجازات المدفوعة: </value>
   </data>
   <data name="PayrollTab" xml:space="preserve">
     <value>الراتب</value>
@@ -325,7 +325,7 @@
     <value>نعم</value>
   </data>
   <data name="FieldReportsTo" xml:space="preserve">
-    <value>المدير</value>
+    <value>المدير: </value>
   </data>
   <data name="terminationWindowTitle" xml:space="preserve">
     <value>انهاء الخدمة</value>

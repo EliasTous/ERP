@@ -5,6 +5,8 @@ namespace AionHR.Model.Reports
 
     public class AttendanceCollection : ArrayList, ITypedList
     {
+
+        public AttendanceCollection(IList s) : base(s) { }
         PropertyDescriptorCollection ITypedList.GetItemProperties(PropertyDescriptor[] listAccessors)
         {
             return TypeDescriptor.GetProperties(typeof(Attendance));

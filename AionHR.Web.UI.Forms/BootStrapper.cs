@@ -21,6 +21,7 @@ using Microsoft.Practices.ServiceLocation;
 using StructureMap;
 using StructureMap.Configuration.DSL;
 using AionHR.Model.TaskManagement;
+using AionHR.Model.Payroll;
 
 namespace AionHR.Web.UI.Forms
 {
@@ -64,6 +65,7 @@ namespace AionHR.Web.UI.Forms
                 For<ILoanTrackingRepository>().Use<LoanTrackingRepository>();
                 For<IReportsRepository>().Use<ReportsRepository>();
                 For<ITaskManagementRepository>().Use<TaskManagementRepository>();
+                For<IPayrollRepository>().Use<PayrollRepository>();
 
                 //Services
                 For<ISystemService>().Use<SystemService>();
@@ -79,6 +81,7 @@ namespace AionHR.Web.UI.Forms
                 For<ILoanTrackingService>().Use<LoanTrackingService>();
                 For<IReportsService>().Use<ReportsService>();
                 For<ITaskManagementService>().Use<TaskManagementService>();
+                For<IPayrollService>().Use<PayrollService>();
             }
         }
     }

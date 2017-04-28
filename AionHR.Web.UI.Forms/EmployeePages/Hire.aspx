@@ -38,9 +38,9 @@
                     <Items>
                         <ext:Panel runat="server"  flex="2"><Items></Items></ext:Panel>
                         <ext:Panel runat="server" Flex="4"><Items>
-                        <ext:DateField runat="server" AllowBlank="false" ID="probationEndDate" Name="probationEndDate" LabelWidth="150" FieldLabel="<%$ Resources:FieldProbationEndDate %>"></ext:DateField>
-                        <ext:DateField runat="server" AllowBlank="false" ID="nextReviewDate" Name="nextReviewDate"  LabelWidth="150" FieldLabel="<%$ Resources:FieldNextReviewDate %>"></ext:DateField>
-                        <ext:ComboBox runat="server" AllowBlank="false" ValueField="recordId" QueryMode="Local"  LabelWidth="150" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" ID="npId" Name="npId" FieldLabel="<%$ Resources:FieldNP%>" SimpleSubmit="true">
+                        <ext:DateField runat="server" AllowBlank="false" ID="probationEndDate" Name="probationEndDate" LabelWidth="200" FieldLabel="<%$ Resources:FieldProbationEndDate %>"></ext:DateField>
+                        <ext:DateField runat="server" AllowBlank="false" ID="nextReviewDate" Name="nextReviewDate"  LabelWidth="200" FieldLabel="<%$ Resources:FieldNextReviewDate %>"></ext:DateField>
+                        <ext:ComboBox runat="server" AllowBlank="false" ValueField="recordId" QueryMode="Local"  LabelWidth="200" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" ID="npId" Name="npId" FieldLabel="<%$ Resources:FieldNP%>" SimpleSubmit="true">
                             <Store>
                                 <ext:Store runat="server" ID="npStore">
                                     <Model>
@@ -70,9 +70,9 @@
                                 <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
                             </Listeners>
                         </ext:ComboBox>
-                        <ext:DateField  LabelWidth="150" runat="server" AllowBlank="false" ID="termEndDate" Name="termEndDate" FieldLabel="<%$ Resources:FieldTermEndDate %>"></ext:DateField>
-                        <ext:TextArea  LabelWidth="150"  runat="server" ID="recruitmentInfo" Name="recruitmentInfo" FieldLabel="<%$ Resources:FieldRecruitmentInfo %>" />
-                        <ext:NumberField runat="server"  LabelWidth="150" ID="recruitmentCost" Name="recruitmentCost" FieldLabel="<%$ Resources:FieldRecruitmentCost %>" />
+                        <ext:DateField  LabelWidth="200" runat="server" AllowBlank="false" ID="termEndDate" Name="termEndDate" FieldLabel="<%$ Resources:FieldTermEndDate %>"></ext:DateField>
+                        <ext:TextArea  LabelWidth="200"  runat="server" ID="recruitmentInfo" Name="recruitmentInfo" FieldLabel="<%$ Resources:FieldRecruitmentInfo %>" />
+                        <ext:NumberField runat="server"  LabelWidth="200" ID="recruitmentCost" Name="recruitmentCost" FieldLabel="<%$ Resources:FieldRecruitmentCost %>" />
                             </Items></ext:Panel>
                          <ext:Panel runat="server"  flex="2"><Items></Items></ext:Panel>
                     </Items>

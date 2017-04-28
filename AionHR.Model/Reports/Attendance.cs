@@ -19,7 +19,14 @@ namespace AionHR.Model.Reports
         public string departmentName { get; set; }
 
         public string positionName { get; set; }
-        public AttendanceCollection Attendances { get; set; }
+        private List<Attendance> listAts;
+        public AttendanceCollection Attendances
+        {
+            get
+            {
+                return new AttendanceCollection(listAts);
+            }
+        }
 
         public int DaysIn
         {
@@ -33,9 +40,18 @@ namespace AionHR.Model.Reports
 
         public void Add(Attendance at)
         {
-            
-            Attendances.RemoveAt(Attendances.IndexOf(at));
-            Attendances.Add(at);
+
+            int index = listAts.IndexOf(at);
+            if (index == -1)
+            {
+                listAts.Add(at);
+                return;
+            }
+            listAts[index].timeIn = at.timeIn;
+            listAts[index].timeOut = at.timeOut;
+            listAts[index].workingTime = at.workingTime;
+
+
             daysIn++;
         }
 
@@ -51,7 +67,7 @@ namespace AionHR.Model.Reports
 
         public EmployeeAttendances()
         {
-            Attendances = new AttendanceCollection();
+            listAts = new List<Attendance>();
             
         }
 
@@ -59,7 +75,7 @@ namespace AionHR.Model.Reports
         {
             foreach (var item in days)
             {
-                Attendances.Add(new Attendance() { timeIn = "", timeOut = "", day = item.ToString()});
+                Add(new Attendance() { timeIn = "", timeOut = "", day = item.ToString()});
             }
         }
     }

@@ -50,6 +50,7 @@
     <Compile Include="Repositories\EmployeeRepository.cs" />
     <Compile Include="Repositories\LoanTrackingRepository.cs" />
     <Compile Include="Repositories\MediaGalleryRepository.cs" />
+    <Compile Include="Repositories\PayrollRepository.cs" />
     <Compile Include="Repositories\ReportsRepository.cs" />
     <Compile Include="Repositories\Repository.cs" />
     <Compile Include="Repositories\SystemRepository.cs" />

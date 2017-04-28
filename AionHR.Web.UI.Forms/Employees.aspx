@@ -41,6 +41,31 @@
 
             return dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
         }
+
+        function AlignPanel()
+        {
+           
+            var alignment = document.getElementById("pRTL").value == 'True' ? 'right' : 'left';
+            
+            App.fullNameLbl.el.setStyle('float', alignment);
+            App.departmentLbl.el.setStyle('float', alignment);
+            App.branchLbl.el.setStyle('float', alignment);
+            App.positionLbl.el.setStyle('float', alignment);
+            App.reportsToLbl.el.setStyle('float', alignment);
+            App.esName.el.setStyle('float', alignment);
+            App.serviceDuration.el.setStyle('float', alignment);
+            App.eosBalanceTitle.el.setStyle('float', alignment);
+            App.eosBalanceLbl.el.setStyle('float', alignment);
+            App.lastLeaveStartDateTitle.el.setStyle('float', alignment);
+            App.lastLeaveStartDateLbl.el.setStyle('float', alignment);
+            App.paidLeavesYTDTitle.el.setStyle('float', alignment);
+            App.paidLeavesYTDLbl.el.setStyle('float', alignment);
+            App.leavesBalanceTitle.el.setStyle('float', alignment);
+            App.leavesBalance.el.setStyle('float', alignment);
+            App.allowedLeaveYtdTitle.el.setStyle('float', alignment);
+            App.paidLeavesYTDLbl.el.setStyle('float', alignment);
+            App.allowedLeaveYtd.el.setStyle('float', alignment);
+        }
     </script>
     <style type="text/css">
         .tlb-BackGround {
@@ -69,6 +94,7 @@
         <ext:Hidden ID="reportTo" runat="server" EnableViewState="true" Text="reports" />
         <ext:Hidden ID="CurrentEmployeePhotoName" runat="server" EnableViewState="true" />
         <ext:Hidden runat="server" ID="lblLoading" Text="<%$Resources:Common , Loading %>" />
+        <ext:Hidden runat="server" ID="pRTL" />
         <ext:Viewport runat="server" Layout="BorderLayout" ID="Viewport1">
             <Items>
                 <ext:GridPanel
@@ -442,7 +468,9 @@
             Resizable="false"
             Maximized="false"
             Layout="BorderLayout">
-
+            <Listeners>
+                <BeforeClose Handler="#{imgControl}.src ='Images/empPhoto.png';" />
+            </Listeners>
             <HeaderConfig runat="server">
                 <Items>
                     <ext:Button runat="server" Icon="PageGear" ID="gearButton">
@@ -496,7 +524,9 @@
 
                     <Items>
                         <ext:Panel runat="server" ID="alignedPanel" Header="false">
-
+                            <Listeners>
+                                <AfterLayout Handler="AlignPanel();" />
+                            </Listeners>
                             <Items>
 
                                 <ext:Image runat="server" ID="imgControl" Width="100" Height="100" Align="Middle" MarginSpec="15 0 0 20 ">
@@ -516,28 +546,50 @@
                                     <DirectEvents>
                                     </DirectEvents>
                                 </ext:FileUploadField>
-                                <ext:Panel runat="server" ID="img" MarginSpec="50 0 0 0">
+                                <ext:Panel runat="server" ID="img" MarginSpec="20 0 0 0"   >
+                                
                                     <Items>
-                                        <ext:Label ID="fullNameLbl" runat="server" />
+                                        <ext:Panel runat="server" ><Items>
+                                        <ext:Label ID="fullNameLbl" runat="server"  />
+                                            </Items></ext:Panel>
+                                        <ext:Panel runat="server" ><Items>
                                         <ext:Label ID="departmentLbl" runat="server" />
+                                             </Items></ext:Panel>
+                                         <ext:Panel runat="server" ><Items>
                                         <ext:Label ID="branchLbl" runat="server" />
+                                             </Items></ext:Panel>
+                                        <ext:Panel runat="server" ><Items>
                                         <ext:Label ID="positionLbl" runat="server" />
+                                            </Items></ext:Panel>
+                                            <ext:Panel runat="server" ><Items>
                                         <ext:Label ID="reportsToLbl" runat="server" />
+                                                </Items></ext:Panel>
+                                                <ext:Panel runat="server" ><Items>
                                         <ext:Label ID="esName" runat="server"  />
-                                        <ext:Label ID="serviceDurationTitle" runat="server" Text="<%$ Resources:serviceDuration %>" />
+                                                    </Items></ext:Panel>
+                                        <ext:Panel runat="server" ><Items>
                                         <ext:Label ID="serviceDuration" runat="server"  />
-
-                                        <ext:Label ID="eosBalanceTitle" Text="<%$ Resources:eosBalanceTitle %>" runat="server" />
-                                        <ext:Label ID="eosBalanceLbl" runat="server" />
-                                        <ext:Label ID="lastLeaveStartDateTitle" Text="<%$ Resources:lastLeaveStartDateTitle %>" runat="server" />
+                                            </Items></ext:Panel>
+                                            <ext:Panel runat="server" ><Items>
+                                        <ext:Label ID="eosBalanceTitle" Text="<%$ Resources:eosBalanceTitle %>" runat="server"  />
+                                        <ext:Label ID="eosBalanceLbl" runat="server"  />
+                                                </Items></ext:Panel>
+                                                <ext:Panel runat="server" ><Items>
+                                        <ext:Label ID="lastLeaveStartDateTitle" Text="<%$ Resources:lastLeaveStartDateTitle %>" runat="server"   />
                                         <ext:Label ID="lastLeaveStartDateLbl" runat="server" />
-
-                                        <ext:Label ID="paidLeavesYTDTitle" Text="<%$ Resources:paidLeavesYTDTitle %>" runat="server" />
-                                        <ext:Label ID="paidLeavesYTDLbl" runat="server" />
+                                                    </Items></ext:Panel>
+                                                    <ext:Panel runat="server" ><Items>
+                                        <ext:Label ID="paidLeavesYTDTitle" Text="<%$ Resources:paidLeavesYTDTitle %>" runat="server"   />
+                                        <ext:Label ID="paidLeavesYTDLbl" runat="server"  />
+                                                        </Items></ext:Panel>
+                                                        <ext:Panel runat="server" ><Items>
                                         <ext:Label ID="leavesBalanceTitle" Text="<%$ Resources:leavesBalanceTitle %>" runat="server" />
                                         <ext:Label ID="leavesBalance" runat="server" />
-                                        <ext:Label ID="allowedLeaveYtdTitle" Text="<%$ Resources:allowedLeaveYtdTitle %>" runat="server" />
+                                                            </Items></ext:Panel>
+                                                            <ext:Panel runat="server" ><Items>
+                                        <ext:Label ID="allowedLeaveYtdTitle" Text="<%$ Resources:allowedLeaveYtdTitle %>" runat="server"   />
                                         <ext:Label ID="allowedLeaveYtd" runat="server" />
+                                                                </Items></ext:Panel>
                                         <ext:HyperlinkButton runat="server" Text="<%$ Resources:DisplayTeamLink %>">
                                             <Listeners>
                                                 <Click Handler="CheckSession()" />

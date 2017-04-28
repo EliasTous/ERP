@@ -145,6 +145,7 @@ namespace AionHR.Web.UI.Forms
                 this.Viewport1.RTL = true;
                 BuildQuickViewTemplate();
             }
+            pRTL.Text = rtl.ToString();
         }
 
 
@@ -159,7 +160,7 @@ namespace AionHR.Web.UI.Forms
             switch (type)
             {
                 case "imgEdit":
-
+                    imgControl.Src = "Images\\empPhoto.jpg";
                     //Step 1 : get the object from the Web Service 
                     FillProfileInfo(id.ToString());
                     CurrentEmployee.Text = id.ToString();
@@ -947,7 +948,7 @@ namespace AionHR.Web.UI.Forms
                 forSummary.departmentName + "<br />",
               forSummary.branchName + "<br />",
                forSummary.positionName + "<br />",
-               (forSummary.reportToName == null) ? "" : "<br />" + GetLocalResourceObject("FieldReportsTo").ToString() + " :" + forSummary.reportToName.fullName + "<br />",
+               (forSummary.reportToName == null && !string.IsNullOrEmpty(forSummary.reportToName.fullName.Trim())) ? "" : "<br />" + GetLocalResourceObject("FieldReportsTo").ToString() + " :" + forSummary.reportToName.fullName + "<br />",
 
                forSummary.eosBalance + "<br />",
                forSummary.paidLeavesYTD + "<br/>",
@@ -963,14 +964,20 @@ namespace AionHR.Web.UI.Forms
             positionLbl.Html = forSummary.positionName + "<br />";
             esName.Html = forSummary.esName+ "<br /><br />";
             eosBalanceLbl.Html = forSummary.eosBalance + "<br />";
-            serviceDuration.Html = forSummary.serviceDuractionFriendly(GetGlobalResourceObject("Common", "Day").ToString(), GetGlobalResourceObject("Common", "Month").ToString(), GetGlobalResourceObject("Common", "Year").ToString())+"<br />";
+            serviceDuration.Html = forSummary.serviceDuration + "<br />";// Friendly(GetGlobalResourceObject("Common", "Day").ToString(), GetGlobalResourceObject("Common", "Month").ToString(), GetGlobalResourceObject("Common", "Year").ToString())+"<br />";
 
             paidLeavesYTDLbl.Html = forSummary.paidLeavesYTD + "<br/>";
             lastLeaveStartDateLbl.Html =  forSummary.LastLeave(_systemService.SessionHelper.GetDateformat()) + "<br />";
             leavesBalance.Html = forSummary.leavesBalance + "<br />";
             allowedLeaveYtd.Html = forSummary.allowedLeaveYtd + "<br />";
-            if (forSummary.reportToName != null)
-                reportsToLbl.Html = GetLocalResourceObject("FieldReportsTo").ToString() + " :" + forSummary.reportToName.fullName + "<br />";
+            if (forSummary.reportToName != null&& !string.IsNullOrEmpty(forSummary.reportToName.fullName.Trim()))
+            {
+                reportsToLbl.Html = GetLocalResourceObject("FieldReportsTo").ToString() + " :<br/ >" + forSummary.reportToName.fullName + "<br />";
+            }
+            else
+            {
+                reportsToLbl.Html = "";
+            }
             //employeeName.Text = resp.result.name.firstName + resp.result.name.lastName;
 
             imgControl.ImageUrl = forSummary.pictureUrl + "?x=" + DateTime.Now.Ticks;

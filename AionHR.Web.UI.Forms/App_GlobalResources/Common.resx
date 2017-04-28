@@ -825,4 +825,10 @@
   <data name="RT301" xml:space="preserve">
     <value>Monthly Attendance</value>
   </data>
+  <data name="Payroll" xml:space="preserve">
+    <value>Payroll</value>
+  </data>
+  <data name="PayrollDefaults" xml:space="preserve">
+    <value>Payroll Defaults</value>
+  </data>
 </root>

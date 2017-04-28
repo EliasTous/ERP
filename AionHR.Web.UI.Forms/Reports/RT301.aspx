@@ -58,7 +58,8 @@
                              
                                         <ext:Container runat="server"  Layout="FitLayout">
                                             <Content>
-                                                <uc:dateRange runat="server" ID="dateRange1" />
+                                                <%--<uc:dateRange runat="server" ID="dateRange1" />--%>
+                                                <uc:monthCombo runat="server" ID="dateRange1" />
                                             </Content>
                                         </ext:Container>
 

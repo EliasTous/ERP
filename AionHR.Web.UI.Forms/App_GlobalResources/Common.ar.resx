@@ -828,4 +828,10 @@
   <data name="RT301" xml:space="preserve">
     <value>الحضور الشهري</value>
   </data>
+  <data name="Payroll" xml:space="preserve">
+    <value>الرواتب</value>
+  </data>
+  <data name="PayrollDefaults" xml:space="preserve">
+    <value>إعدادات الرواتب الافتراضية</value>
+  </data>
 </root>

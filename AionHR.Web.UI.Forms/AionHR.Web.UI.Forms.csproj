@@ -241,6 +241,7 @@
     <Content Include="Nationalities.aspx" />
     <Content Include="OrganizationChart.aspx" />
     <Content Include="packages.config" />
+    <Content Include="PayrollDefaults.aspx" />
     <Content Include="RelationshipTypes.aspx" />
     <Content Include="Reports\App_LocalResources\Hirings.cs.resx" />
     <Content Include="Reports\App_LocalResources\Hirings.resx" />
@@ -263,6 +264,7 @@
     <Content Include="Reports\Controls\DateFilter.ascx" />
     <Content Include="Reports\Controls\DateRangeFilter.ascx" />
     <Content Include="Reports\Controls\JobInfoFilter.ascx" />
+    <Content Include="Reports\Controls\MonthSelector.ascx" />
     <Content Include="Reports\Controls\MoudleFilter.ascx" />
     <Content Include="Reports\Controls\TransactionTypeFilter.ascx" />
     <Content Include="Reports\Controls\UserComboFilter.ascx" />
@@ -592,6 +594,13 @@
     <Compile Include="MediaItems.aspx.designer.cs">
       <DependentUpon>MediaItems.aspx</DependentUpon>
     </Compile>
+    <Compile Include="PayrollDefaults.aspx.cs">
+      <DependentUpon>PayrollDefaults.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PayrollDefaults.aspx.designer.cs">
+      <DependentUpon>PayrollDefaults.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Reports\Controls\ActiveStatusFilter.ascx.cs">
       <DependentUpon>ActiveStatusFilter.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -619,6 +628,13 @@
     </Compile>
     <Compile Include="Reports\Controls\JobInfoFilter.ascx.designer.cs">
       <DependentUpon>JobInfoFilter.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Controls\MonthSelector.ascx.cs">
+      <DependentUpon>MonthSelector.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reports\Controls\MonthSelector.ascx.designer.cs">
+      <DependentUpon>MonthSelector.ascx</DependentUpon>
     </Compile>
     <Compile Include="Reports\Controls\MoudleFilter.ascx.cs">
       <DependentUpon>MoudleFilter.ascx</DependentUpon>
@@ -1360,6 +1376,8 @@
     <Content Include="App_LocalResources\TaskTypes.aspx.resx" />
     <Content Include="App_LocalResources\CompanyRightToWorks.aspx.ar.resx" />
     <Content Include="App_LocalResources\SystemDefaults.aspx.ar.resx" />
+    <Content Include="App_LocalResources\PayrollDefaults.aspx.resx" />
+    <Content Include="App_LocalResources\PayrollDefaults.aspx.ar.resx" />
     <EmbeddedResource Include="Properties\licenses.licx" />
     <Content Include="Reports\App_LocalResources\RT202.aspx.resx" />
     <Content Include="Reports\App_LocalResources\RT01.aspx.ar.resx" />

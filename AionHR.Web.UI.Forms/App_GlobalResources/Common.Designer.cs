@@ -1483,6 +1483,24 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Payroll.
+        /// </summary>
+        internal static string Payroll {
+            get {
+                return ResourceManager.GetString("Payroll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Payroll Defaults.
+        /// </summary>
+        internal static string PayrollDefaults {
+            get {
+                return ResourceManager.GetString("PayrollDefaults", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Positions.
         /// </summary>
         internal static string Positions {

@@ -302,5 +302,18 @@ namespace AionHR.Web.UI.Forms.Utilities
             nodes.Add(rootParent);
             return nodes;
         }
+        internal NodeCollection BuildPayrollTree(NodeCollection nodes)
+        {
+            if (nodes == null)
+                nodes = new Ext.Net.NodeCollection();
+
+
+
+            Ext.Net.Node rootParent = BuildRootParentNode("rootParent", Resources.Common.Payroll, true);
+            Ext.Net.Node timeAt = BuildParentNode("standard", Resources.Common.Payroll, true, rootParent);
+
+            nodes.Add(rootParent);
+            return nodes;
+        }
     }
 }

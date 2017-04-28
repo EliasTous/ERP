@@ -180,6 +180,12 @@
     <EmbeddedResource Include="Terminations.resx">
       <DependentUpon>Terminations.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="TimeAttendanceSummary.ar.resx">
+      <DependentUpon>TimeAttendanceSummary.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TimeAttendanceSummary.en.resx">
+      <DependentUpon>TimeAttendanceSummary.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="TimeAttendanceSummary.resx">
       <DependentUpon>TimeAttendanceSummary.cs</DependentUpon>
     </EmbeddedResource>

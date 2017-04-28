@@ -230,7 +230,7 @@ namespace AionHR.Web.UI.Forms.Reports
 
             if (pageIndex == 1)
             {
-                FillReport();
+                //FillReport();
 
             }
 
