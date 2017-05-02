@@ -232,6 +232,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to BiWeek.
+        /// </summary>
+        internal static string BiWeek {
+            get {
+                return ResourceManager.GetString("BiWeek", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Bonus Types.
         /// </summary>
         internal static string BonusTypes {
@@ -921,6 +930,15 @@ namespace Resources {
         internal static string Folders {
             get {
                 return ResourceManager.GetString("Folders", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to FourWeek.
+        /// </summary>
+        internal static string FourWeek {
+            get {
+                return ResourceManager.GetString("FourWeek", resourceCulture);
             }
         }
         

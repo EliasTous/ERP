@@ -834,4 +834,10 @@
   <data name="PayrollDefaults" xml:space="preserve">
     <value>إعدادات الرواتب الافتراضية</value>
   </data>
+  <data name="BiWeek" xml:space="preserve">
+    <value>كل أسبوعين</value>
+  </data>
+  <data name="FourWeek" xml:space="preserve">
+    <value>كل أربعة أسابيع</value>
+  </data>
 </root>

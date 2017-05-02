@@ -10,7 +10,7 @@
     <title></title>
     <link rel="stylesheet" type="text/css" href="CSS/Common.css" />
     <link rel="stylesheet" href="CSS/LiveSearch.css" />
-    <script type="text/javascript" src="Scripts/LeaveCalendar.js?id=0"></script>
+    <script type="text/javascript" src="Scripts/LeaveCalendar.js?id=1"></script>
     <script type="text/javascript" src="Scripts/common.js"></script>
     <script type="text/javascript" src="Scripts/moment.js"></script>
     <script type="text/javascript">
@@ -83,6 +83,17 @@
         <ext:Hidden runat="server" Text="<%$ Resources:Common,October%>" ID="m10" />
         <ext:Hidden runat="server" Text="<%$ Resources:Common,November%>" ID="m11" />
         <ext:Hidden runat="server" Text="<%$ Resources:Common,December%>" ID="m12" />
+              <ext:Hidden ID="SundayText" runat="server" Text="<%$ Resources:Common , SundayText %>" />
+        <ext:Hidden ID="MondayText" runat="server" Text="<%$ Resources:Common , MondayText %>" />
+        <ext:Hidden ID="TuesdayText" runat="server" Text="<%$ Resources:Common , TuesdayText %>" />
+        <ext:Hidden ID="WednesdayText" runat="server" Text="<%$ Resources:Common , WednesdayText %>" />
+        <ext:Hidden ID="ThursdayText" runat="server" Text="<%$ Resources:Common , ThursdayText %>" />
+        <ext:Hidden ID="FridayText" runat="server" Text="<%$ Resources:Common , FridayText %>" />
+        <ext:Hidden ID="SaturdayText" runat="server" Text="<%$ Resources:Common , SaturdayText %>" />
+         <ext:Hidden ID="CurrentLeave" runat="server" />
+        <ext:Hidden ID="DateFormat" runat="server" />
+        <ext:Hidden ID="LeaveChanged" runat="server" Text="1" EnableViewState="true" />
+        <ext:Hidden ID="StoredLeaveChanged" runat="server" Text="0" EnableViewState="true" />
         <ext:Store
             ID="Store1"
             runat="server"
@@ -336,7 +347,7 @@
 
 
 
-        <ext:Window
+           <ext:Window
             ID="EditRecordWindow"
             runat="server"
             Icon="PageEdit"
@@ -346,29 +357,47 @@
             AutoShow="false"
             Modal="true"
             Hidden="true"
+             Resizable="false"
+             Maximizable="false"
+             Draggable="false"
             Layout="Fit">
 
             <Items>
-                <ext:TabPanel ID="panelRecordDetails" runat="server" ActiveTabIndex="0" Border="false" DeferredRender="false">
+                <ext:TabPanel ID="panelRecordDetails" runat="server" ActiveTabIndex="0" Border="false" DeferredRender="false"  >
+              <%--  <DirectEvents>
+                    <TabChange OnEvent ="Unnamed_Event"></TabChange>
+                </DirectEvents>--%>
+                    <Listeners>
+                        <TabChange Handler="CheckSession(); App.direct.Unnamed_Event();" />
+                        
+                    </Listeners>
                     <Items>
                         <ext:FormPanel
                             ID="BasicInfoTab" DefaultButton="SaveButton"
                             runat="server"
                             Title="<%$ Resources: BasicInfoTabEditWindowTitle %>"
                             Icon="ApplicationSideList"
-                            DefaultAnchor="100%"
+                            DefaultAnchor="100%" 
                             BodyPadding="5">
                             <Items>
                                 <ext:TextField ID="recordId" runat="server" Name="recordId" Hidden="true" />
-                                <ext:DateField ID="startDate" runat="server" FieldLabel="<%$ Resources:FieldStartDate%>" Name="startDate" AllowBlank="false" />
-                                <ext:DateField ID="endDate" runat="server" FieldLabel="<%$ Resources:FieldEndDate%>" Name="endDate" AllowBlank="false" />
+                                <ext:DateField ID="startDate" runat="server" FieldLabel="<%$ Resources:FieldStartDate%>" Name="startDate" AllowBlank="false" >
+                                    <Listeners>
+                                        <Change Handler="App.direct.MarkLeaveChanged();" />
+                                    </Listeners>
+                                    </ext:DateField>
+                                <ext:DateField ID="endDate" runat="server" FieldLabel="<%$ Resources:FieldEndDate%>" Name="endDate" AllowBlank="false" >
+                                     <Listeners>
+                                        <Change Handler="App.direct.MarkLeaveChanged();" />
+                                    </Listeners>
+                                    </ext:DateField>
                                 <ext:TextArea ID="justification" runat="server" FieldLabel="<%$ Resources:FieldJustification%>" Name="justification" />
-                                <ext:TextField ID="destination" runat="server" FieldLabel="<%$ Resources:FieldDestination%>" Name="destination" />
+                                <ext:TextField ID="destination" runat="server" FieldLabel="<%$ Resources:FieldDestination%>" Name="destination" AllowBlank="false" />
 
 
                                 <ext:Checkbox runat="server" Name="isPaid" InputValue="true" ID="isPaid" DataIndex="isPaid" FieldLabel="<%$ Resources:FieldIsPaid%>" />
 
-                                <ext:ComboBox runat="server" ID="employeeId"
+                                <ext:ComboBox runat="server" ID="employeeId" AllowBlank="false"
                                     DisplayField="fullName"
                                     ValueField="recordId"
                                     TypeAhead="false"
@@ -393,12 +422,15 @@
                                         </ext:Store>
 
                                     </Store>
+                                     <Listeners>
+                                        <Change Handler="App.direct.MarkLeaveChanged();" />
+                                    </Listeners>
                                 </ext:ComboBox>
 
 
                                 <ext:ComboBox runat="server" ID="ltId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1"
                                     DisplayField="name"
-                                    ValueField="recordId"
+                                    ValueField="recordId"  AllowBlank="false"
                                     FieldLabel="<%$ Resources: FieldLtName %>">
                                     <Store>
                                         <ext:Store runat="server" ID="ltStore">
@@ -434,7 +466,7 @@
                                 </ext:ComboBox>
 
 
-                                <ext:ComboBox runat="server" ID="status" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1"
+                                <ext:ComboBox runat="server" ID="status" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" AllowBlank="false"
                                     FieldLabel="<%$ Resources: FieldStatus %>">
                                     <Items>
 
@@ -447,7 +479,98 @@
                             </Items>
 
                         </ext:FormPanel>
+                        <ext:FormPanel ID="LeaveDays" runat="server"   Title="<%$ Resources: LeaveDaysWindowTitle %>">
+                            <Items>
+                                <ext:GridPanel
+                    ID="LeaveDaysGrid"
+                    runat="server"
+                   
+                    PaddingSpec="0 0 1 0"
+                    Header="false"
+                     MaxHeight="450"
+                    Layout="FitLayout"
+                    Scroll="Vertical"
+                    Border="false"
+                    Icon="User"
+                    ColumnLines="True" IDMode="Explicit" RenderXType="True">
+                        <Store>
+                            <ext:Store runat="server" ID="leaveDaysStore">
+                                <Model>
+                                    <ext:Model runat="server">
+                                        <Fields>
+                                            <ext:ModelField Name="recordId" />
+                                            <ext:ModelField Name="leaveId" />
+                                            <ext:ModelField Name="dayId" />
+                                            <ext:ModelField Name="dow" />
+                                            <ext:ModelField Name="workingHours" />
+                                            <ext:ModelField Name="leaveHours" />
+                                        </Fields>
+                                    </ext:Model>
+                                </Model>
+                            </ext:Store>
+                        </Store>
+       
 
+                    <ColumnModel ID="ColumnModel2" runat="server" SortAscText="<%$ Resources:Common , SortAscText %>" SortDescText="<%$ Resources:Common ,SortDescText  %>" SortClearText="<%$ Resources:Common ,SortClearText  %>" ColumnsText="<%$ Resources:Common ,ColumnsText  %>" EnableColumnHide="false" Sortable="false">
+                        <Columns>
+                            <ext:Column ID="Column4" Visible="false" DataIndex="recordId" runat="server" />
+                            <ext:Column ID="Column7" Visible="false" DataIndex="leaveId" runat="server" />
+                            <ext:Column ID="Column6" DataIndex="dayId" Text="<%$ Resources: FieldDayId%>" runat="server"  Width="85">
+                                <Renderer Handler="var friendlydate = moment(record.data['dayId'], 'YYYYMMDD');  return friendlydate.format(document.getElementById('DateFormat').value);">
+                                    
+                                </Renderer>
+                            </ext:Column>
+                            <ext:Column   ID="DateColumn1" DataIndex="dow" Text="<%$ Resources: FieldDOW%>" runat="server" Width="100" >
+                                <Renderer Handler="return getDay(record.data['dow']);">
+
+                                </Renderer>
+                                </ext:Column>
+                            <ext:Column ID="DateColumn2" DataIndex="workingHours" Text="<%$ Resources: FieldWorkingHours%>" runat="server" Flex="2" />
+                            <ext:WidgetColumn ID="WidgetColumn2" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldLeaveHours %>" DataIndex="leaveHours" Hideable="false" Width="125" Align="Center">
+                                <Widget>
+                                   
+                                    <ext:NumberField runat="server" MinValue="0" DataIndex="leaveHours" >
+                                        <Listeners>
+                                            <Change Handler="var rec = this.getWidgetRecord(); try{if(rec.data['workingHours']<this.value) return false;}catch(xp){} try{rec.set('leaveHours',this.value); rec.commit();}catch(x){}" />
+                                            <AfterRender Handler=" this.maxValue=this.getWidgetRecord().data['workingHours'];" />
+                                        </Listeners>
+                                        </ext:NumberField>
+
+                                </Widget>
+
+                            </ext:WidgetColumn>
+
+                        
+
+
+
+                        </Columns>
+                    </ColumnModel>
+                    <DockedItems>
+
+                        <ext:Toolbar ID="Toolbar4" runat="server" Dock="Bottom">
+                            <Items>
+                                <ext:StatusBar ID="StatusBar2" runat="server" />
+                                <ext:ToolbarFill />
+
+                            </Items>
+                        </ext:Toolbar>
+
+                    </DockedItems>
+               
+                
+                    <View>
+                        <ext:GridView ID="GridView2" runat="server" />
+                    </View>
+
+
+                    <SelectionModel>
+                        <ext:RowSelectionModel ID="rowSelectionModel1" runat="server" Mode="Single" StopIDModeInheritance="true" />
+                        <%--<ext:CheckboxSelectionModel ID="CheckboxSelectionModel1" runat="server" Mode="Multi" StopIDModeInheritance="true" />--%>
+                    </SelectionModel>
+                </ext:GridPanel>
+                            </Items>
+                        </ext:FormPanel>
                     </Items>
                 </ext:TabPanel>
             </Items>
@@ -463,6 +586,7 @@
                             <ExtraParams>
                                 <ext:Parameter Name="id" Value="#{recordId}.getValue()" Mode="Raw" />
                                 <ext:Parameter Name="values" Value="#{BasicInfoTab}.getForm().getValues()" Mode="Raw" Encode="true" />
+                                <ext:Parameter Name="days" Value="Ext.encode(#{LeaveDaysGrid}.getRowsValues({selectedOnly : false}))" Mode="Raw" />
                             </ExtraParams>
                         </Click>
                     </DirectEvents>
@@ -473,7 +597,7 @@
                     </Listeners>
                 </ext:Button>
             </Buttons>
-            <Listeners>
+                <Listeners>
                 <BeforeHide Handler="App.direct.UpdateCal(#{CurrentMonth}.value,#{CurrentYear}.value,#{Viewport1}.getWidth(),{success: function (result) {  Ext.net.Mask.hide();},error: function (result) {  Ext.net.Mask.hide();}});    " />
             </Listeners>
         </ext:Window>

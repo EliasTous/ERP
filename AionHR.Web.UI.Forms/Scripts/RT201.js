@@ -66,12 +66,16 @@ var enterKeyPressSearchHandler = function (el, event) {
 function getPaymentTypeString(index) {
 
     switch (index) {
-        case "0":
-        case 0: return document.getElementById("PaymentTypeDaily").value; break;
         case "1":
-        case 1: return document.getElementById("PaymentTypeWeekly").value; break;
+        case 1: return document.getElementById("PaymentTypeDaily").value; break;
         case "2":
-        case 2: return document.getElementById("PaymentTypeMonthly").value; break;
+        case 2: return document.getElementById("PaymentTypeWeekly").value; break;
+        case "3":
+        case 3: return document.getElementById("PaymentTypeBiWeekly").value; break;
+        case "4": case 4:
+            return document.getElementById("PaymentTypeFourWeekly").value; break;
+        case "5": case 5:
+            return document.getElementById("PaymentTypeMonthly").value; break;
         default: return index;
     }
 }

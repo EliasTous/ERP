@@ -225,7 +225,7 @@
                             </ext:Column>
                             <ext:Column ID="Column7" DataIndex="ltName" Text="<%$ Resources: FieldLtName%>" runat="server" Flex="2" />
 
-                            <ext:DateColumn Format="dd-MM-yyyy" ID="colDate" DataIndex="date" Text="<%$ Resources: FieldDate%>" runat="server" Flex="2" />
+                            <ext:DateColumn ID="c"  DataIndex="date" Text="<%$ Resources: FieldDate%>" runat="server" Flex="2" />
 
                             <ext:Column  ID="Column20" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldAmount %>" DataIndex="amount" Hideable="false" Flex="1" Width="75" Align="Center" >
                                 <Renderer Handler="return record.data['amount'] + '&nbsp;'+ record.data['currencyRef'];"></Renderer>

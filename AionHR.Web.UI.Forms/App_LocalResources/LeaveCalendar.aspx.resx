@@ -138,6 +138,12 @@
   <data name="EditWindowsTitle1" xml:space="preserve">
     <value>Edit Leave Request</value>
   </data>
+  <data name="ErrorSelectDate" xml:space="preserve">
+    <value>Please Select a Valid Date Range First</value>
+  </data>
+  <data name="ErrorSelectEmployee" xml:space="preserve">
+    <value>Please Select an Employee First</value>
+  </data>
   <data name="FieldAll" xml:space="preserve">
     <value>All</value>
   </data>
@@ -165,6 +171,9 @@
   <data name="FieldDay" xml:space="preserve">
     <value>Day</value>
   </data>
+  <data name="FieldDayId" xml:space="preserve">
+    <value>Date</value>
+  </data>
   <data name="FieldDepartment" xml:space="preserve">
     <value>Department</value>
   </data>
@@ -173,6 +182,9 @@
   </data>
   <data name="FieldDivision" xml:space="preserve">
     <value>Division</value>
+  </data>
+  <data name="FieldDOW" xml:space="preserve">
+    <value>Day</value>
   </data>
   <data name="FieldEmployee" xml:space="preserve">
     <value>Employee</value>
@@ -221,6 +233,9 @@
   </data>
   <data name="FieldLastTACheckStatus" xml:space="preserve">
     <value>Last Check In Status</value>
+  </data>
+  <data name="FieldLeaveHours" xml:space="preserve">
+    <value>Leave Hours</value>
   </data>
   <data name="FieldLtName" xml:space="preserve">
     <value>Leave Type Name</value>
@@ -279,6 +294,9 @@
   <data name="FieldWorkingCalendar" xml:space="preserve">
     <value>Calendar</value>
   </data>
+  <data name="FieldWorkingHours" xml:space="preserve">
+    <value>Working Hours</value>
+  </data>
   <data name="FieldYear" xml:space="preserve">
     <value>Year</value>
   </data>
@@ -299,6 +317,9 @@
   </data>
   <data name="FilterStatus" xml:space="preserve">
     <value>Select a Status</value>
+  </data>
+  <data name="LeaveDaysWindowTitle" xml:space="preserve">
+    <value>Leave Days</value>
   </data>
   <data name="TotalText" xml:space="preserve">
     <value>Total</value>

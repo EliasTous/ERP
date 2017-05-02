@@ -31,6 +31,7 @@ namespace AionHR.Web.UI.Forms
         ISystemService _systemService = ServiceLocator.Current.GetInstance<ISystemService>();
         ILeaveManagementService _leaveManagementService = ServiceLocator.Current.GetInstance<ILeaveManagementService>();
         ICompanyStructureService _companyStructureService = ServiceLocator.Current.GetInstance<ICompanyStructureService>();
+        ITimeAttendanceService _timeAttendanceService = ServiceLocator.Current.GetInstance<ITimeAttendanceService>();
         protected override void InitializeCulture()
         {
 
@@ -80,6 +81,8 @@ namespace AionHR.Web.UI.Forms
         {
             FillNationality();
             FillCurrency();
+            FillCalendars();
+            FillVS();
         }
 
         private void FillDefaults(List<KeyValuePair<string, string>> items)
@@ -110,6 +113,12 @@ namespace AionHR.Web.UI.Forms
             try { fdowCombo.Select(items.Where(s => s.Key == "fdow").First().Value); }
 
             catch { }
+            try { caId.Select(items.Where(s => s.Key == "caId").First().Value); }
+
+            catch { }
+            try { vsId.Select(items.Where(s => s.Key == "vsId").First().Value); }
+
+            catch { }
             try
 
             {
@@ -122,6 +131,7 @@ namespace AionHR.Web.UI.Forms
                 enableHijri.Checked = items.Where(s => s.Key == "enableHijri").First().Value == "true";
             }
             catch { }
+
         }
 
 
@@ -179,6 +189,10 @@ namespace AionHR.Web.UI.Forms
                 submittedValues.Add(new KeyValuePair<string, string>("timeZone", values.timeZone.ToString()));
             if (!string.IsNullOrEmpty(values.fdow.ToString()))
                 submittedValues.Add(new KeyValuePair<string, string>("fdow", values.fdow.ToString()));
+            if (!string.IsNullOrEmpty(values.caId.ToString()))
+                submittedValues.Add(new KeyValuePair<string, string>("caId", values.caId.ToString()));
+            if (!string.IsNullOrEmpty(values.vsId.ToString()))
+                submittedValues.Add(new KeyValuePair<string, string>("vsId", values.vsId.ToString()));
 
             submittedValues.Add(new KeyValuePair<string, string>("enableCamera", values.enableCamera == null ? "false" : "true"));
             submittedValues.Add(new KeyValuePair<string, string>("enableHijri", values.enableHijri == null ? "false" : "true"));
@@ -258,6 +272,20 @@ namespace AionHR.Web.UI.Forms
 
         }
 
+        private void FillCalendars()
+        {
+            ListRequest nationalityRequest = new ListRequest();
+            ListResponse<WorkingCalendar> resp = _timeAttendanceService.ChildGetAll<WorkingCalendar>(nationalityRequest);
+            caStore.DataSource = resp.Items;
+            caStore.DataBind();
+        }
+        private void FillVS()
+        {
+            ListRequest nationalityRequest = new ListRequest();
+            ListResponse<VacationSchedule> resp = _leaveManagementService.ChildGetAll<VacationSchedule>(nationalityRequest);
+            vsStore.DataSource = resp.Items;
+            vsStore.DataBind();
+        }
 
 
         [DirectMethod]
@@ -285,6 +313,57 @@ namespace AionHR.Web.UI.Forms
                 dept.recordId = response.recordId;
                 FillCurrency();
                 currencyIdCombo.Select(dept.recordId);
+            }
+            else
+            {
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, response.Summary).Show();
+                return;
+            }
+
+        }
+
+        protected void addCalendar(object sender, DirectEventArgs e)
+        {
+            if (string.IsNullOrEmpty(caId.Text))
+                return;
+            WorkingCalendar dept = new WorkingCalendar();
+            dept.name = caId.Text;
+
+            PostRequest<WorkingCalendar> depReq = new PostRequest<WorkingCalendar>();
+            depReq.entity = dept;
+            PostResponse<WorkingCalendar> response = _timeAttendanceService.ChildAddOrUpdate<WorkingCalendar>(depReq);
+            if (response.Success)
+            {
+                dept.recordId = response.recordId;
+                FillCalendars();
+                caId.Select(dept.recordId);
+            }
+            else
+            {
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, response.Summary).Show();
+                return;
+            }
+
+        }
+
+
+        protected void addVS(object sender, DirectEventArgs e)
+        {
+            if (string.IsNullOrEmpty(vsId.Text))
+                return;
+            VacationSchedule dept = new VacationSchedule();
+            dept.name = vsId.Text;
+
+            PostRequest<VacationSchedule> depReq = new PostRequest<VacationSchedule>();
+            depReq.entity = dept;
+            PostResponse<VacationSchedule> response = _leaveManagementService.ChildAddOrUpdate<VacationSchedule>(depReq);
+            if (response.Success)
+            {
+                dept.recordId = response.recordId;
+                FillVS();
+                vsId.Select(dept.recordId);
             }
             else
             {

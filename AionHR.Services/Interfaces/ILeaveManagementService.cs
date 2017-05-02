@@ -1,4 +1,5 @@
 ﻿using AionHR.Model.Employees.Leaves;
+using AionHR.Model.LeaveManagement;
 using AionHR.Services.Messaging;
 using System;
 using System.Collections.Generic;
@@ -12,5 +13,6 @@ namespace AionHR.Services.Interfaces
     {
         PostResponse<VacationSchedulePeriod> DeleteVacationSchedulePeriods(int vacationScheduleId);
 
+        PostResponse<LeaveDay> DeleteLeaveDays(int leaveId);
     }
 }

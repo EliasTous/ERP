@@ -126,6 +126,7 @@ namespace AionHR.Web.UI.Forms
                 FillDepartment();
                 FillDivision();
                 statusPref.Select(4);
+                c.Format =cc.Format= _systemService.SessionHelper.GetDateformat();
                 //if (string.IsNullOrEmpty(Request.QueryString["employeeId"]))
                 //    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorOperation).Show();
                 //CurrentEmployee.Text = Request.QueryString["employeeId"];
@@ -280,6 +281,7 @@ namespace AionHR.Web.UI.Forms
                     ltId.Select(response.result.ltId.ToString());
                     CurrentAmountCurrency.Text = response.result.currencyRef;
                     currencyId.Select(response.result.currencyId.ToString());
+                    status.Select(response.result.status.ToString());
                     loanComments_RefreshData(Convert.ToInt32(id));
                     //if (!response.result.effectiveDate.HasValue)
                     //    effectiveDate.SelectedDate = DateTime.Now;

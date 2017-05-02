@@ -499,6 +499,8 @@ namespace AionHR.Web.UI.Forms
 
             if (e.Sort[0].Property == "name.fullName")
                 empRequest.SortBy = GetNameFormat();
+            else if (e.Sort[0].Property == "name.reference")
+                empRequest.SortBy = "reference";
             else
                 empRequest.SortBy = e.Sort[0].Property;
             empRequest.Size = e.Limit.ToString();

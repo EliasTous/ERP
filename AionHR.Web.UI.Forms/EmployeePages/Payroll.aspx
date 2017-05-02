@@ -547,16 +547,20 @@
 
                                         <ext:ComboBox AllowBlank="false" ID="salaryType" runat="server" FieldLabel="<%$ Resources:FieldSalaryType%>" Name="salaryType" IDMode="Static" SubmitValue="true">
                                             <Items>
-                                                <ext:ListItem Text="<%$ Resources: SalaryDaily%>" Value="0"></ext:ListItem>
-                                                <ext:ListItem Text="<%$ Resources: SalaryWeekly%>" Value="1"></ext:ListItem>
-                                                <ext:ListItem Text="<%$ Resources: SalaryMonthly%>" Value="2"></ext:ListItem>
+                                               <ext:ListItem Text="<%$ Resources: SalaryDaily%>" Value="1"></ext:ListItem>
+                                                <ext:ListItem Text="<%$ Resources: SalaryWeekly%>" Value="2"></ext:ListItem>
+                                                <ext:ListItem Text="<%$ Resources: SalaryBiWeekly%>" Value="3"></ext:ListItem>
+                                                <ext:ListItem Text="<%$ Resources: SalaryFourWeekly%>" Value="4"></ext:ListItem>
+                                                <ext:ListItem Text="<%$ Resources: SalaryMonthly%>" Value="5"></ext:ListItem>
                                             </Items>
                                         </ext:ComboBox>
                                         <ext:ComboBox AllowBlank="false" ID="paymentFrequency" runat="server" FieldLabel="<%$ Resources:FieldPaymentFrequency%>" Name="paymentFrequency" IDMode="Static" SubmitValue="true">
                                             <Items>
-                                                <ext:ListItem Text="<%$ Resources: SalaryDaily%>" Value="0"></ext:ListItem>
-                                                <ext:ListItem Text="<%$ Resources: SalaryWeekly%>" Value="1"></ext:ListItem>
-                                                <ext:ListItem Text="<%$ Resources: SalaryMonthly%>" Value="2"></ext:ListItem>
+                                                   <ext:ListItem Text="<%$ Resources: SalaryDaily%>" Value="1"></ext:ListItem>
+                                                <ext:ListItem Text="<%$ Resources: SalaryWeekly%>" Value="2"></ext:ListItem>
+                                                <ext:ListItem Text="<%$ Resources: SalaryBiWeekly%>" Value="3"></ext:ListItem>
+                                                <ext:ListItem Text="<%$ Resources: SalaryFourWeekly%>" Value="4"></ext:ListItem>
+                                                <ext:ListItem Text="<%$ Resources: SalaryMonthly%>" Value="5"></ext:ListItem>
                                             </Items>
                                         </ext:ComboBox>
 
@@ -813,8 +817,8 @@
                                         </ext:Store>
                                     </Store>
                                     <Plugins>
-                                        <ext:RowEditing runat="server" ClicksToMoveEditor="1" AutoCancel="false" SaveBtnText="<%$ Resources:Common , Save %>" CancelBtnText="<%$ Resources:Common , Cancel %>">
-                                        </ext:RowEditing>
+                                        <%--<ext:RowEditing runat="server" ClicksToMoveEditor="1" AutoCancel="false" SaveBtnText="<%$ Resources:Common , Save %>" CancelBtnText="<%$ Resources:Common , Cancel %>">
+                                        </ext:RowEditing>--%>
                                     </Plugins>
                                     <TopBar>
                                         <ext:Toolbar ID="Toolbar4" runat="server" ClassicButtonStyle="false">

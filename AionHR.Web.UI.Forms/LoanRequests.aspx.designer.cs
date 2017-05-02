@@ -292,13 +292,13 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Column Column7;
         
         /// <summary>
-        /// colDate control.
+        /// c control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.DateColumn colDate;
+        protected global::Ext.Net.DateColumn c;
         
         /// <summary>
         /// Column20 control.

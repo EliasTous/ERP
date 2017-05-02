@@ -246,7 +246,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
 
                 
                 case "imgEdit":
-                    var x = entitlementsStore.GetById(id);
+                   
                     string record = e.ExtraParams["values"];
                     SalaryDetail detail = JsonConvert.DeserializeObject<List<SalaryDetail>>(record)[0];
                     if (!detail.includeInTotal.HasValue)
