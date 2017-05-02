@@ -132,8 +132,14 @@
   <data name="FieldApproved" xml:space="preserve">
     <value>Approved</value>
   </data>
+  <data name="FieldDayId" xml:space="preserve">
+    <value>Date</value>
+  </data>
   <data name="FieldDestination" xml:space="preserve">
     <value>Destination</value>
+  </data>
+  <data name="FieldDOW" xml:space="preserve">
+    <value>Day</value>
   </data>
   <data name="FieldEmployeeName" xml:space="preserve">
     <value>Employee Name</value>
@@ -146,6 +152,9 @@
   </data>
   <data name="FieldJustification" xml:space="preserve">
     <value>Justification</value>
+  </data>
+  <data name="FieldLeaveHours" xml:space="preserve">
+    <value>Leave Hours</value>
   </data>
   <data name="FieldLtName" xml:space="preserve">
     <value>Leave Type Name</value>
@@ -164,6 +173,9 @@
   </data>
   <data name="FieldStatus" xml:space="preserve">
     <value>Status</value>
+  </data>
+  <data name="FieldWorkingHours" xml:space="preserve">
+    <value>Working Hours</value>
   </data>
   <data name="FilterBranch" xml:space="preserve">
     <value>Select a Branch</value>

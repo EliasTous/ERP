@@ -257,21 +257,21 @@ namespace AionHR.Web.UI.Forms
         }
         private void InitCombos(bool isAdd)
         {
-            FillBranch();
-            branchId.Enabled = isAdd;
-            branchId.ReadOnly = !isAdd;
+          // // FillBranch();
+          //  branchId.Enabled = isAdd;
+          //  branchId.ReadOnly = !isAdd;
 
-            FillDepartment();
+          // // FillDepartment();
 
-            departmentId.Enabled = isAdd;
-            departmentId.ReadOnly = !isAdd;
-            FillPosition();
+          //  departmentId.Enabled = isAdd;
+          //  departmentId.ReadOnly = !isAdd;
+          // // FillPosition();
 
-            positionId.Enabled = isAdd;
-            positionId.ReadOnly = !isAdd;
-            FillDivision();
-            divisionId.Enabled = isAdd;
-            divisionId.ReadOnly = !isAdd;
+          //  positionId.Enabled = isAdd;
+          //  positionId.ReadOnly = !isAdd;
+          /////  FillDivision();
+          //  divisionId.Enabled = isAdd;
+          //  divisionId.ReadOnly = !isAdd;
             FillNationality();
 
 

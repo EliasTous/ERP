@@ -26,6 +26,7 @@ using AionHR.Model.Employees.Leaves;
 using AionHR.Model.Employees.Profile;
 using AionHR.Model.LeaveManagement;
 using AionHR.Services.Messaging.System;
+using AionHR.Model.TimeAttendance;
 
 namespace AionHR.Web.UI.Forms
 {
@@ -86,6 +87,7 @@ namespace AionHR.Web.UI.Forms
         ILeaveManagementService _leaveManagementService = ServiceLocator.Current.GetInstance<ILeaveManagementService>();
         IEmployeeService _employeeService = ServiceLocator.Current.GetInstance<IEmployeeService>();
         ICompanyStructureService _companyStructureService = ServiceLocator.Current.GetInstance<ICompanyStructureService>();
+        ITimeAttendanceService _timeAttendanceService = ServiceLocator.Current.GetInstance<ITimeAttendanceService>();
         protected override void InitializeCulture()
         {
 
@@ -379,7 +381,7 @@ namespace AionHR.Web.UI.Forms
 
             FillLeaveType();
             this.EditRecordWindow.Title = Resources.Common.AddNewRecord;
-
+            //SetTabPanelEnabled(false);
 
             this.EditRecordWindow.Show();
         }
@@ -472,7 +474,13 @@ namespace AionHR.Web.UI.Forms
         }
 
 
-
+        private void SetTabPanelEnabled(bool enabled)
+        {
+            foreach (var x in panelRecordDetails.Items)
+            {
+                x.Disabled = !enabled;
+            }
+        }
 
         protected void SaveNewRecord(object sender, DirectEventArgs e)
         {
@@ -530,7 +538,8 @@ namespace AionHR.Web.UI.Forms
                             Html = Resources.Common.RecordSavingSucc
                         });
 
-                        this.EditRecordWindow.Close();
+                        //this.EditRecordWindow.Close();
+                        //SetTabPanelEnabled(true);
                         RowSelectionModel sm = this.GridPanel1.GetSelectionModel() as RowSelectionModel;
                         sm.DeselectAll();
                         sm.Select(b.recordId.ToString());
@@ -667,15 +676,68 @@ namespace AionHR.Web.UI.Forms
             divisionStore.DataBind();
         }
 
+        protected void LeaveDays_Load(object sender, EventArgs e)
+        {
+           
+        }
 
+        private int GetEmployeeCalendar(string empId)
+        {
+            RecordRequest req = new RecordRequest();
+            req.RecordID = empId;
+            RecordResponse<Employee> resp = _employeeService.Get<Employee>(req);
+            if (!resp.Success)
+            {
 
+            }
+            return resp.result.caId.Value;
+        }
 
+        
 
+        protected void Unnamed_Event(object sender, DirectEventArgs e)
+        {
+            if (panelRecordDetails.ActiveTabIndex == 1)
+            {
+                if (string.IsNullOrEmpty(CurrentLeave.Text))
+                {
+                    if(startDate.SelectedDate == DateTime.MinValue|| endDate.SelectedDate== DateTime.MinValue)
+                    {
+                        X.Msg.Alert(Resources.Common.Error, "Please Select an Valid Date Range").Show();
+                        panelRecordDetails.ActiveTabIndex = 0;
+                        return;
+                    }
+                    string startDay = startDate.SelectedDate.ToString("yyyyMMdd");
+                    string endDay = endDate.SelectedDate.ToString("yyyyMMdd");
 
+                    LeaveCalendarDayListRequest req = new LeaveCalendarDayListRequest();
+                    req.StartDayId = startDay;
+                    req.EndDayId = endDay;
+                    req.IsWorkingDay = true;
+                    int bulk;
+                    if(string.IsNullOrEmpty(employeeId.Value.ToString())|| !int.TryParse(employeeId.Value.ToString(),out bulk))
+                    {
+                        X.Msg.Alert(Resources.Common.Error, "Please Select an Employee").Show();
+                        panelRecordDetails.ActiveTabIndex = 0;
+                        return;
+                    }
+                    req.CaId = GetEmployeeCalendar(employeeId.Value.ToString()).ToString();
+                    ListResponse<LeaveCalendarDay> days = _timeAttendanceService.ChildGetAll<LeaveCalendarDay>(req);
+                    if(!days.Success)
+                    {
 
+                    }
+                    List<LeaveDay> leaveDays = new List<LeaveDay>();
+                    days.Items.ForEach(x => leaveDays.Add(new LeaveDay() { dayId = x.dayId, workingHours = x.workingHours,leaveHours=x.workingHours }));
+                    leaveDaysStore.DataSource = leaveDays;
+                    leaveDaysStore.DataBind();
 
+                }
+                else
+                {
 
-  
-
+                }
+            }
+        }
     }
 }

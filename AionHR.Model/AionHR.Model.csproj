@@ -68,6 +68,7 @@
     <Compile Include="Employees\Profile\TeamMember.cs" />
     <Compile Include="Employees\Profile\TerminationReason.cs" />
     <Compile Include="LeaveManagement\ILeaveManagementRepository.cs" />
+    <Compile Include="LeaveManagement\LeaveDay.cs" />
     <Compile Include="LeaveManagement\LeaveRequest.cs" />
     <Compile Include="LoadTracking\ILoanTrackingRepository.cs" />
     <Compile Include="LoadTracking\Loan.cs" />
@@ -122,6 +123,7 @@
     <Compile Include="TimeAttendance\DayType.cs" />
     <Compile Include="TimeAttendance\Geofence.cs" />
     <Compile Include="TimeAttendance\ITimeAttendanceRepository.cs" />
+    <Compile Include="TimeAttendance\LeaveCalendarDay.cs" />
     <Compile Include="TimeAttendance\Router.cs" />
     <Compile Include="Company\Cases\Case.cs" />
     <Compile Include="Company\Cases\CaseComment.cs" />

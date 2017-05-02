@@ -26,7 +26,7 @@
         <ext:Hidden ID="StatusPending" runat="server" Text="<%$ Resources:FieldPending %>" />
         <ext:Hidden ID="StatusApproved" runat="server" Text="<%$ Resources: FieldApproved %>" />
         <ext:Hidden ID="StatusRefused" runat="server" Text="<%$ Resources: FieldRefused %>" />
-
+        <ext:Hidden ID="CurrentLeave" runat="server" />
         <ext:Store
             ID="Store1"
             runat="server"
@@ -365,7 +365,10 @@
             Layout="Fit">
 
             <Items>
-                <ext:TabPanel ID="panelRecordDetails" runat="server" ActiveTabIndex="0" Border="false" DeferredRender="false">
+                <ext:TabPanel ID="panelRecordDetails" runat="server" ActiveTabIndex="0" Border="false" DeferredRender="false"  >
+                <DirectEvents>
+                    <TabChange OnEvent ="Unnamed_Event"></TabChange>
+                </DirectEvents>
                     <Items>
                         <ext:FormPanel
                             ID="BasicInfoTab" DefaultButton="SaveButton"
@@ -463,7 +466,89 @@
                             </Items>
 
                         </ext:FormPanel>
+                        <ext:FormPanel ID="LeaveDays" runat="server" OnLoad="LeaveDays_Load">
+                            <Items>
+                                <ext:GridPanel
+                    ID="LeaveDaysGrid"
+                    runat="server"
+                    
+                    PaddingSpec="0 0 1 0"
+                    Header="false"
+                    
+                    Layout="FitLayout"
+                    Scroll="Vertical"
+                    Border="false"
+                    Icon="User"
+                    ColumnLines="True" IDMode="Explicit" RenderXType="True">
+                        <Store>
+                            <ext:Store runat="server" ID="leaveDaysStore">
+                                <Model>
+                                    <ext:Model runat="server">
+                                        <Fields>
+                                            <ext:ModelField Name="recordId" />
+                                            <ext:ModelField Name="dayId" />
+                                            <ext:ModelField Name="dow" />
+                                            <ext:ModelField Name="workingHours" />
+                                            <ext:ModelField Name="leaveHours" />
+                                        </Fields>
+                                    </ext:Model>
+                                </Model>
+                            </ext:Store>
+                        </Store>
+       
 
+                    <ColumnModel ID="ColumnModel2" runat="server" SortAscText="<%$ Resources:Common , SortAscText %>" SortDescText="<%$ Resources:Common ,SortDescText  %>" SortClearText="<%$ Resources:Common ,SortClearText  %>" ColumnsText="<%$ Resources:Common ,ColumnsText  %>" EnableColumnHide="false" Sortable="false">
+                        <Columns>
+                            <ext:Column ID="Column4" Visible="false" DataIndex="recordId" runat="server" />
+                            <ext:Column ID="Column6" DataIndex="dayId" Text="<%$ Resources: FieldDayId%>" runat="server" Flex="6">
+                                
+                            </ext:Column>
+                            <ext:Column   ID="DateColumn1" DataIndex="dow" Text="<%$ Resources: FieldDOW%>" runat="server" Flex="2" />
+                            <ext:Column ID="DateColumn2" DataIndex="workingHours" Text="<%$ Resources: FieldWorkingHours%>" runat="server" Flex="2" />
+                            <ext:WidgetColumn ID="WidgetColumn2" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldLeaveHours %>" DataIndex="leaveHours" Hideable="false" Width="125" Align="Center">
+                                <Widget>
+                                   
+                                    <ext:NumberField runat="server" MinValue="0" DataIndex="leaveHours" >
+                                        <Listeners>
+                                            <Change Handler="var rec = this.getWidgetRecord(); if(rec.data['workingHours']<this.value) return false; rec.set('leaveHours',this.value); rec.commit();" />
+                                        </Listeners>
+                                        </ext:NumberField>
+
+                                </Widget>
+
+                            </ext:WidgetColumn>
+
+                        
+
+
+
+                        </Columns>
+                    </ColumnModel>
+                    <DockedItems>
+
+                        <ext:Toolbar ID="Toolbar4" runat="server" Dock="Bottom">
+                            <Items>
+                                <ext:StatusBar ID="StatusBar2" runat="server" />
+                                <ext:ToolbarFill />
+
+                            </Items>
+                        </ext:Toolbar>
+
+                    </DockedItems>
+               
+                
+                    <View>
+                        <ext:GridView ID="GridView2" runat="server" />
+                    </View>
+
+
+                    <SelectionModel>
+                        <ext:RowSelectionModel ID="rowSelectionModel1" runat="server" Mode="Single" StopIDModeInheritance="true" />
+                        <%--<ext:CheckboxSelectionModel ID="CheckboxSelectionModel1" runat="server" Mode="Multi" StopIDModeInheritance="true" />--%>
+                    </SelectionModel>
+                </ext:GridPanel>
+                            </Items>
+                        </ext:FormPanel>
                     </Items>
                 </ext:TabPanel>
             </Items>
