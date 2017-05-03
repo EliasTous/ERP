@@ -58,6 +58,9 @@
     <Compile Include="AuditTrail.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="DailyAttendance.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Hirings.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -115,6 +118,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AuditTrail.resx">
       <DependentUpon>AuditTrail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DailyAttendance.resx">
+      <DependentUpon>DailyAttendance.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Hirings.ar.resx">
       <DependentUpon>Hirings.cs</DependentUpon>

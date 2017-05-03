@@ -45,6 +45,14 @@ namespace AionHR.Model.Reports
 
         public string year { get; set; }
 
+        public string OL_A { get; set; }
+
+        public string OL_D { get; set; }
+
+        public string OL_A_SIGN { get; set; }
+
+        public string OL_D_SIGN { get; set; }
+
     }
     
     public class MonthAttendance

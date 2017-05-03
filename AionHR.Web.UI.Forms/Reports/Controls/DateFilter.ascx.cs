@@ -21,5 +21,22 @@ namespace AionHR.Web.UI.Forms.Reports.Controls
             d.Date = date.SelectedDate;
             return d;
         }
+
+        public DateRangeParameterSet GetAsRange()
+        {
+            DateRangeParameterSet set = new DateRangeParameterSet();
+            if (date.SelectedDate != DateTime.MinValue)
+            {
+                set.DateFrom = date.SelectedDate;
+                set.DateTo = date.SelectedDate;
+            }
+            else
+            {
+                set.DateFrom = DateTime.Now;
+                set.DateTo = DateTime.Now;
+            }
+           
+            return set;
+        }
     }
 }

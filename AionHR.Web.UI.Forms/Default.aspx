@@ -47,6 +47,7 @@
     <ext:Hidden runat="server" ID="tadtTitle" Text="<%$Resources:Common , DayTypes %>" />
     <ext:Hidden runat="server" ID="gfTitle" Text="<%$Resources:Common , Geofences %>" />
     <ext:Hidden runat="server" ID="vsTitle" Text="<%$Resources:Common , VacationSchedules %>" />
+    <ext:Hidden runat="server" ID="pyye" Text="<%$Resources:Common , FiscalYears %>" />
     <ext:Hidden runat="server" ID="ltTitle" Text="<%$Resources:Common , LeaveTypes %>" />
     <ext:Hidden runat="server" ID="pyde" Text="<%$Resources:Common , PayrollDefaults %>" />
     <ext:Hidden runat="server" ID="foTitle" Text="<%$Resources:Common , Folders %>" />
@@ -344,6 +345,11 @@
                                                         <ext:MenuItem runat="server" Text="<%$Resources: Common , PayrollDefaults%>">
                                                             <Listeners>
                                                                 <Click Handler="openNewTab('payrollDefaults', 'PayrollDefaults.aspx', #{pyde}.value, 'icon-Employees')" />
+                                                            </Listeners>
+                                                        </ext:MenuItem>
+                                                         <ext:MenuItem runat="server" Text="<%$Resources: Common , FiscalYears%>">
+                                                            <Listeners>
+                                                                <Click Handler="openNewTab('fiscalYears', 'FiscalYears.aspx', #{pyye}.value, 'icon-Employees')" />
                                                             </Listeners>
                                                         </ext:MenuItem>
                                                     </Items>

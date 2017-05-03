@@ -840,4 +840,7 @@
   <data name="FourWeek" xml:space="preserve">
     <value>كل أربعة أسابيع</value>
   </data>
+  <data name="FiscalYears" xml:space="preserve">
+    <value>السنوات المالية</value>
+  </data>
 </root>

@@ -389,7 +389,7 @@ namespace AionHR.Infrastructure.WebService
 
                 // Body += "Content-Disposition: form-data; name='record'\r\n";
                 //  Body += "Content-Type: application/json\r\n\r\n";
-                var settings = new JsonSerializerSettings() { NullValueHandling = NullValueHandling.Ignore, DateTimeZoneHandling = DateTimeZoneHandling.Utc };
+                var settings = new JsonSerializerSettings() { NullValueHandling = NullValueHandling.Include, DateTimeZoneHandling = DateTimeZoneHandling.Utc, DateFormatString= "yyyy/MM/dd" };
                 Body += string.Format("Content-Disposition: form-data; name=\"{0}\"\r\n\r\n", "record");
 
                 string jsonString = JsonConvert.SerializeObject(item,settings);

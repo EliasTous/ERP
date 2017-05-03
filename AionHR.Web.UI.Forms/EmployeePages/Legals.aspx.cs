@@ -23,6 +23,8 @@ using AionHR.Model.Company.Structure;
 using AionHR.Model.System;
 using AionHR.Model.Employees.Profile;
 using System.Net;
+using AionHR.Services.Messaging.System;
+using AionHR.Infrastructure.Domain;
 
 namespace AionHR.Web.UI.Forms.EmployeePages
 {
@@ -524,7 +526,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                 {
                     //New Mode
                     //Step 1 : Fill The object and insert in the store 
-                    PostRequestWithAttachment<EmployeeRightToWork> request = new PostRequestWithAttachment<EmployeeRightToWork>();
+                    PostRequest<EmployeeRightToWork> request = new PostRequest<EmployeeRightToWork>();
                     request.entity = b;
                     byte[] fileData = null;
                     if (rwFile.PostedFile != null && rwFile.PostedFile.ContentLength > 0)
@@ -535,16 +537,14 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                         //}
                         fileData = new byte[rwFile.PostedFile.ContentLength];
                         fileData = rwFile.FileBytes;
-                        request.FileName = rwFile.PostedFile.FileName;
-                        request.FileData = fileData;
+                        
 
                     }
                     else
                     {
-                        request.FileData = fileData;
-                        request.FileName = "";
+                        fileData = null;
                     }
-                        PostResponse<EmployeeRightToWork> r = _employeeService.ChildAddOrUpdateWithAttachment<EmployeeRightToWork>(request);
+                        PostResponse<EmployeeRightToWork> r = _employeeService.ChildAddOrUpdate<EmployeeRightToWork>(request);
                     b.recordId = r.recordId;
 
                     //check if the insert failed
@@ -557,6 +557,21 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     }
                     else
                     {
+                        if (fileData != null)
+                        {
+                            SystemAttachmentsPostRequest req = new SystemAttachmentsPostRequest();
+                            req.entity = new Model.System.Attachement() { date = DateTime.Now, classId = ClassId.EPRW, recordId = Convert.ToInt32(b.recordId), fileName = rwFile.PostedFile.FileName, seqNo = null };
+                            req.FileNames.Add(rwFile.PostedFile.FileName);
+                            req.FilesData.Add(fileData);
+                            PostResponse<Attachement> resp = _systemService.UploadMultipleAttachments(req);
+                            if (!resp.Success)//it maybe be another condition
+                            {
+                                //Show an error saving...
+                                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                                X.Msg.Alert(Resources.Common.Error, r.Summary).Show();
+                                return;
+                            }
+                        }
                         EmployeeRightToWork rw = GetRWById(r.recordId);
 
                         //Add this record to the store 
@@ -596,7 +611,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                 try
                 {
                     int index = Convert.ToInt32(id);//getting the id of the record
-                    PostRequestWithAttachment<EmployeeRightToWork> request = new PostRequestWithAttachment<EmployeeRightToWork>();
+                    PostRequest<EmployeeRightToWork> request = new PostRequest<EmployeeRightToWork>();
                     request.entity = b;
                     byte[] fileData = null;
                     if (rwFile.PostedFile != null && rwFile.PostedFile.ContentLength > 0)
@@ -607,16 +622,11 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                         //}
                         fileData = new byte[rwFile.PostedFile.ContentLength];
                         fileData = rwFile.FileBytes;
-                        request.FileName = rwFile.PostedFile.FileName;
-                        request.FileData = fileData;
+             
 
                     }
-                    else
-                    {
-                        request.FileData = fileData;
-                        request.FileName = "";
-                    }
-                        PostResponse<EmployeeRightToWork> r = _employeeService.ChildAddOrUpdateWithAttachment<EmployeeRightToWork>(request);                      //Step 1 Selecting the object or building up the object for update purpose
+               
+                        PostResponse<EmployeeRightToWork> r = _employeeService.ChildAddOrUpdate<EmployeeRightToWork>(request);                      //Step 1 Selecting the object or building up the object for update purpose
                     
                     //Step 2 : saving to store
 
@@ -629,7 +639,21 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     }
                     else
                     {
-
+                          if (fileData != null)
+                        {
+                            SystemAttachmentsPostRequest req = new SystemAttachmentsPostRequest();
+                            req.entity = new Model.System.Attachement() { date = DateTime.Now, classId = ClassId.EPRW, recordId = Convert.ToInt32(b.recordId), fileName = rwFile.PostedFile.FileName, seqNo = 0 };
+                            req.FileNames.Add(rwFile.PostedFile.FileName);
+                            req.FilesData.Add(fileData);
+                            PostResponse<Attachement> resp = _systemService.UploadMultipleAttachments(req);
+                            if (!resp.Success)//it maybe be another condition
+                            {
+                                //Show an error saving...
+                                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                                X.Msg.Alert(Resources.Common.Error, r.Summary).Show();
+                                return;
+                            }
+                        }
                         EmployeeRightToWork rw = GetRWById(b.recordId);
                         ModelProxy record = this.rightToWorkStore.GetById(id);
                         record.Set("expiryDate", rw.expiryDate);
@@ -685,7 +709,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                 {
                     //New Mode
                     //Step 1 : Fill The object and insert in the store 
-                    PostRequestWithAttachment<EmployeeBackgroundCheck> request = new PostRequestWithAttachment<EmployeeBackgroundCheck>();
+                    PostRequest<EmployeeBackgroundCheck> request = new PostRequest<EmployeeBackgroundCheck>();
                     request.entity = b;
                     byte[] fileData = null;
                     if (bcFile.PostedFile != null && bcFile.PostedFile.ContentLength > 0)
@@ -696,16 +720,14 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                         //}
                         fileData = new byte[bcFile.PostedFile.ContentLength];
                         fileData = bcFile.FileBytes;
-                        request.FileName = bcFile.PostedFile.FileName;
-                        request.FileData = fileData;
+                        
 
                     }
                     else
                     {
-                        request.FileData = fileData;
-                        request.FileName = "";
+                        fileData = null;
                     }
-                        PostResponse<EmployeeBackgroundCheck> r = _employeeService.ChildAddOrUpdateWithAttachment<EmployeeBackgroundCheck>(request);
+                        PostResponse<EmployeeBackgroundCheck> r = _employeeService.ChildAddOrUpdate<EmployeeBackgroundCheck>(request);
                     b.recordId = r.recordId;
 
                     //check if the insert failed
@@ -720,6 +742,21 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     {
 
                         //Add this record to the store 
+                        if (fileData != null)
+                        {
+                            SystemAttachmentsPostRequest req = new SystemAttachmentsPostRequest();
+                            req.entity = new Model.System.Attachement() { date = DateTime.Now, classId = ClassId.EPBC, recordId = Convert.ToInt32(b.recordId), fileName = bcFile.PostedFile.FileName, seqNo = null };
+                            req.FileNames.Add(bcFile.PostedFile.FileName);
+                            req.FilesData.Add(fileData);
+                            PostResponse<Attachement> resp = _systemService.UploadMultipleAttachments(req);
+                            if (!resp.Success)//it maybe be another condition
+                            {
+                                //Show an error saving...
+                                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                                X.Msg.Alert(Resources.Common.Error, r.Summary).Show();
+                                return;
+                            }
+                        }
                         EmployeeBackgroundCheck bc = GetBCById(r.recordId);
                         this.BCStore.Insert(0, bc);
                         //Display successful notification
@@ -755,7 +792,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                 try
                 {
                     int index = Convert.ToInt32(id);//getting the id of the record
-                    PostRequestWithAttachment<EmployeeBackgroundCheck> request = new PostRequestWithAttachment<EmployeeBackgroundCheck>();
+                    PostRequest<EmployeeBackgroundCheck> request = new PostRequest<EmployeeBackgroundCheck>();
                     request.entity = b;
                     byte[] fileData = null;
                     if (bcFile.PostedFile != null && bcFile.PostedFile.ContentLength > 0)
@@ -766,16 +803,11 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                         //}
                         fileData = new byte[bcFile.PostedFile.ContentLength];
                         fileData = bcFile.FileBytes;
-                        request.FileName = bcFile.PostedFile.FileName;
-                        request.FileData = fileData;
+                       
 
                     }
-                    else
-                    {
-                        request.FileData = fileData;
-                        request.FileName = "";
-                    }
-                        PostResponse<EmployeeBackgroundCheck> r = _employeeService.ChildAddOrUpdateWithAttachment<EmployeeBackgroundCheck>(request);                      //Step 1 Selecting the object or building up the object for update purpose
+                    
+                        PostResponse<EmployeeBackgroundCheck> r = _employeeService.ChildAddOrUpdate<EmployeeBackgroundCheck>(request);                      //Step 1 Selecting the object or building up the object for update purpose
 
                     //Step 2 : saving to store
 
@@ -788,7 +820,21 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     }
                     else
                     {
-
+                        if (fileData != null)
+                        {
+                            SystemAttachmentsPostRequest req = new SystemAttachmentsPostRequest();
+                            req.entity = new Model.System.Attachement() { date = DateTime.Now, classId = ClassId.EPBC, recordId = Convert.ToInt32(b.recordId), fileName = bcFile.PostedFile.FileName, seqNo = 0 };
+                            req.FileNames.Add(bcFile.PostedFile.FileName);
+                            req.FilesData.Add(fileData);
+                            PostResponse<Attachement> resp = _systemService.UploadMultipleAttachments(req);
+                            if (!resp.Success)//it maybe be another condition
+                            {
+                                //Show an error saving...
+                                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                                X.Msg.Alert(Resources.Common.Error, r.Summary).Show();
+                                return;
+                            }
+                        }
                         EmployeeBackgroundCheck BC = GetBCById(b.recordId);
                         ModelProxy record = this.BCStore.GetById(id);
                         record.Set("expiryDate", BC.expiryDate);

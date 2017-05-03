@@ -123,7 +123,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             string type = e.ExtraParams["type"];
             string path = e.ExtraParams["path"];
             string folder = e.ExtraParams["folderId"];
-
+            string file = e.ExtraParams["fileName"];
             switch (type)
             {
                 case "imgEdit":
@@ -133,6 +133,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     dtStore.DataBind();
                     folderId.Select(folder);
                     seqNo.Text = id.ToString();
+                    fileName.Text = file;
                     this.EditDocumentWindow.Title = Resources.Common.EditWindowsTitle;
                     this.EditDocumentWindow.Show();
                     break;
@@ -382,6 +383,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             b.recordId = Convert.ToInt32(CurrentEmployee.Text);
             b.seqNo = Convert.ToInt16(id);
             b.classId = ClassId.EPDO;
+            b.fileName = fileName.Text;
             // Define the object to add or edit as null
             b.folderName = folderId.SelectedItem.Text;
 

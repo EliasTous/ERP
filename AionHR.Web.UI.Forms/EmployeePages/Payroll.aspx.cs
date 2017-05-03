@@ -251,7 +251,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     SalaryDetail detail = JsonConvert.DeserializeObject<List<SalaryDetail>>(record)[0];
                     if (!detail.includeInTotal.HasValue)
                         detail.includeInTotal = false;
-                    entsStore.Reload();
+                    //entsStore.Reload();
                     ENId.Text = detail.seqNo.ToString();
                     oldEntValue.Text = detail.fixedAmount.ToString();
                     oldENIncludeInFinal.Checked = detail.includeInTotal.Value;

@@ -202,6 +202,7 @@
     <Content Include="Employees.aspx" />
     <Content Include="EmployeesOrgChart.aspx" />
     <Content Include="EntitlementDeductions.aspx" />
+    <Content Include="FiscalYears.aspx" />
     <Content Include="Folders.aspx" />
     <Content Include="ForgotAccount.aspx" />
     <Content Include="ForgotPassword.aspx" />
@@ -278,6 +279,7 @@
     <Content Include="Reports\RT202.aspx" />
     <Content Include="Reports\RT203.aspx" />
     <Content Include="Reports\RT301.aspx" />
+    <Content Include="Reports\RT301B.aspx" />
     <Content Include="Reports\RT801.aspx" />
     <Content Include="Reports\RT802.aspx" />
     <Content Include="ReportTest.aspx" />
@@ -288,6 +290,7 @@
     <Content Include="Scripts\CompanyFiles.js" />
     <Content Include="Scripts\CompanyNews.js" />
     <Content Include="Scripts\Contacts.js" />
+    <Content Include="Scripts\cropper.js" />
     <Content Include="Scripts\EmployeeComplaints.js" />
     <Content Include="Scripts\EmployeesOrgChart.js" />
     <Content Include="Scripts\Folders.js" />
@@ -307,6 +310,7 @@
     <Content Include="Scripts\LoanTypes.js" />
     <Content Include="Scripts\MainDashboard.js" />
     <Content Include="Scripts\MediaItems.js" />
+    <Content Include="Scripts\FiscalYears.js" />
     <Content Include="Scripts\SystemAlerts.js" />
     <Content Include="Scripts\RelationshipTypes.js" />
     <Content Include="Scripts\Routers.js" />
@@ -552,6 +556,13 @@
     <Compile Include="EmployeePhotoUploaderHandler.ashx.cs">
       <DependentUpon>EmployeePhotoUploaderHandler.ashx</DependentUpon>
     </Compile>
+    <Compile Include="FiscalYears.aspx.cs">
+      <DependentUpon>FiscalYears.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="FiscalYears.aspx.designer.cs">
+      <DependentUpon>FiscalYears.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Folders.aspx.cs">
       <DependentUpon>Folders.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -731,6 +742,13 @@
     </Compile>
     <Compile Include="Reports\RT301.aspx.designer.cs">
       <DependentUpon>RT301.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\RT301B.aspx.cs">
+      <DependentUpon>RT301B.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reports\RT301B.aspx.designer.cs">
+      <DependentUpon>RT301B.aspx</DependentUpon>
     </Compile>
     <Compile Include="Reports\RT801.aspx.cs">
       <DependentUpon>RT801.aspx</DependentUpon>
@@ -1378,6 +1396,7 @@
     <Content Include="App_LocalResources\SystemDefaults.aspx.ar.resx" />
     <Content Include="App_LocalResources\PayrollDefaults.aspx.resx" />
     <Content Include="App_LocalResources\PayrollDefaults.aspx.ar.resx" />
+    <Content Include="App_LocalResources\FiscalYears.aspx.resx" />
     <EmbeddedResource Include="Properties\licenses.licx" />
     <Content Include="Reports\App_LocalResources\RT202.aspx.resx" />
     <Content Include="Reports\App_LocalResources\RT01.aspx.ar.resx" />

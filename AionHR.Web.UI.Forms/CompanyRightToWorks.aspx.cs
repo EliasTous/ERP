@@ -27,6 +27,7 @@ using AionHR.Model.Employees.Profile;
 using AionHR.Model.MediaGallery;
 using System.Net;
 using AionHR.Infrastructure.Domain;
+using AionHR.Services.Messaging.System;
 
 namespace AionHR.Web.UI.Forms
 {
@@ -581,7 +582,7 @@ namespace AionHR.Web.UI.Forms
                     //New Mode
                     //Step 1 : Fill The object and insert in the store 
 
-                    PostRequestWithAttachment<CompanyRightToWork> request = new PostRequestWithAttachment<CompanyRightToWork>();
+                    PostRequest<CompanyRightToWork> request = new PostRequest<CompanyRightToWork>();
                     request.entity = b;
                     byte[] fileData = null;
                     if (rwFile.PostedFile != null && rwFile.PostedFile.ContentLength > 0)
@@ -592,20 +593,15 @@ namespace AionHR.Web.UI.Forms
                         //}
                         fileData = new byte[rwFile.PostedFile.ContentLength];
                         fileData = rwFile.FileBytes;
-                        request.FileName = rwFile.PostedFile.FileName;
-                        request.FileData = fileData;
+                        
 
                     }
-                    else
-                    {
-                        request.FileData = fileData;
-                        request.FileName = "";
-                    }
+                  
 
 
 
 
-                    PostResponse<CompanyRightToWork> r = _systemService.ChildAddOrUpdateWithAttachment<CompanyRightToWork>(request);
+                    PostResponse<CompanyRightToWork> r = _systemService.ChildAddOrUpdate<CompanyRightToWork>(request);
                     b.recordId = r.recordId;
 
                     //check if the insert failed
@@ -618,6 +614,21 @@ namespace AionHR.Web.UI.Forms
                     }
                     else
                     {
+                        if (fileData != null)
+                        {
+                            SystemAttachmentsPostRequest req = new SystemAttachmentsPostRequest();
+                            req.entity = new Model.System.Attachement() { date = DateTime.Now, classId = ClassId.SYRW, recordId = Convert.ToInt32(b.recordId), fileName = rwFile.PostedFile.FileName, seqNo = null };
+                            req.FileNames.Add(rwFile.PostedFile.FileName);
+                            req.FilesData.Add(fileData);
+                            PostResponse<Attachement> resp = _systemService.UploadMultipleAttachments(req);
+                            if (!resp.Success)//it maybe be another condition
+                            {
+                                //Show an error saving...
+                                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                                X.Msg.Alert(Resources.Common.Error, r.Summary).Show();
+                                return;
+                            }
+                        }
                         b.recordId = r.recordId;
                         //Add this record to the store 
                         CompanyRightToWork m = GetRWById(r.recordId);
@@ -656,7 +667,7 @@ namespace AionHR.Web.UI.Forms
                 {
                     //getting the id of the record
                     int index = Convert.ToInt32(id);//getting the id of the record
-                    PostRequestWithAttachment<CompanyRightToWork> request = new PostRequestWithAttachment<CompanyRightToWork>();
+                    PostRequest<CompanyRightToWork> request = new PostRequest<CompanyRightToWork>();
                     request.entity = b;
                     byte[] fileData = null;
                     if (rwFile.PostedFile != null && rwFile.PostedFile.ContentLength > 0)
@@ -685,17 +696,12 @@ namespace AionHR.Web.UI.Forms
                         //}
                         fileData = new byte[rwFile.PostedFile.ContentLength];
                         fileData = rwFile.FileBytes;
-                        request.FileName = rwFile.PostedFile.FileName;
-                        request.FileData = fileData;
+                      
 
                     }
-                    else
-                    {
-                        request.FileData = fileData;
-                        request.FileName = "";
-                    }
+                   
 
-                    PostResponse<CompanyRightToWork> r = _systemService.ChildAddOrUpdateWithAttachment<CompanyRightToWork>(request);                      //Step 1 Selecting the object or building up the object for update purpose
+                    PostResponse<CompanyRightToWork> r = _systemService.ChildAddOrUpdate<CompanyRightToWork>(request);                      //Step 1 Selecting the object or building up the object for update purpose
 
                     //Step 2 : saving to store
 
@@ -708,6 +714,21 @@ namespace AionHR.Web.UI.Forms
                     }
                     else
                     {
+                        if (fileData != null)
+                        {
+                            SystemAttachmentsPostRequest req = new SystemAttachmentsPostRequest();
+                            req.entity = new Model.System.Attachement() { date = DateTime.Now, classId = ClassId.SYRW, recordId = Convert.ToInt32(b.recordId), fileName = rwFile.PostedFile.FileName, seqNo = 0 };
+                            req.FileNames.Add(rwFile.PostedFile.FileName);
+                            req.FilesData.Add(fileData);
+                            PostResponse<Attachement> resp = _systemService.UploadMultipleAttachments(req);
+                            if (!resp.Success)//it maybe be another condition
+                            {
+                                //Show an error saving...
+                                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                                X.Msg.Alert(Resources.Common.Error, r.Summary).Show();
+                                return;
+                            }
+                        }
                         CompanyRightToWork m = GetRWById(id);
 
                         ModelProxy record = this.Store1.GetById(id);

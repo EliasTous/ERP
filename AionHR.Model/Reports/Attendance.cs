@@ -102,4 +102,28 @@ namespace AionHR.Model.Reports
         }
 
     }
+
+    public class DailyAttendance
+    {
+        public string name { get; set; }
+        public string branchName { get; set; }
+
+        public string departmentName { get; set; }
+
+        public string positionName { get; set; }
+
+        public string divisionName { get; set; }
+
+        public string DateString { get; set; }
+
+        public DateTime Date { get; set; }
+
+        public string DOW { get; set; }
+
+        public string workingHours { get; set; }
+
+        public string lateness { get; set; }
+
+        public string early { get; set; }
+    }
 }

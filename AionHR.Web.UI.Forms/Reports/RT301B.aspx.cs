@@ -29,7 +29,7 @@ using AionHR.Model.Reports;
 
 namespace AionHR.Web.UI.Forms.Reports
 {
-    public partial class RT301 : System.Web.UI.Page
+    public partial class RT301B : System.Web.UI.Page
     {
         ISystemService _systemService = ServiceLocator.Current.GetInstance<ISystemService>();
         ITimeAttendanceService _timeAttendanceService = ServiceLocator.Current.GetInstance<ITimeAttendanceService>();
@@ -155,10 +155,8 @@ namespace AionHR.Web.UI.Forms.Reports
             req.Size = "1000";
             req.StartAt = "1";
 
-            DateRangeParameterSet s = new DateRangeParameterSet();
-            s.DateFrom = new DateTime(2017, 2, 1);
-            s.DateTo = new DateTime(2017, 5, 1);
-            req.Add(s);
+
+            req.Add(dateRange1.GetRange());
             return req;
         }
 
@@ -175,51 +173,20 @@ namespace AionHR.Web.UI.Forms.Reports
                 return;
             }
 
-            var monthlyGrouped = resp.Items.GroupBy(x => x.month);
-            MonthlyEmployeeAttendanceCollection monthlyAtts = new MonthlyEmployeeAttendanceCollection();
+            List<AionHR.Model.Reports.DailyAttendance> atts = new List<AionHR.Model.Reports.DailyAttendance>();
+            resp.Items.ForEach(x => atts.Add(new AionHR.Model.Reports.DailyAttendance() { name= x.name.fullName, branchName=x.branchName, departmentName = x.departmentName, Date= DateTime.ParseExact(x.dayId,"yyyyMMdd",new CultureInfo("en")),   lateness= x.OL_A, early = x.OL_D, workingHours= x.workingTime   }));
+            atts.ForEach(x => { x.DOW = GetGlobalResourceObject("Common", x.Date.DayOfWeek.ToString() + "Text").ToString(); x.DateString = x.Date.ToString(_systemService.SessionHelper.GetDateformat()); });
 
-            foreach (var item in monthlyGrouped)
-            {
-                MonthAttendance at = new MonthAttendance(item.Key, item.ToList());
-                monthlyAtts.Add(at);
-            }
-
-            //var grouped = resp.Items.GroupBy(x => x.name.fullName);
-
-         
-            //EmployeeAttendanceCollection ats = new EmployeeAttendanceCollection();
-            //foreach (var item in grouped)
-            //{
-            //    EmployeeAttendances at = new EmployeeAttendances();
-            //    at.name = item.Key;
-
-            //    var details = item.ToList();
-            //    if (details.Count != 0)
-            //    {
-            //        at.departmentName = details[0].departmentName;
-            //        at.branchName = details[0].branchName;
-            //        at.positionName = details[0].positionName;
-            //    }
-
-            //    foreach (var subItem in item.ToList())
-            //    {
-            //        at.Add(new Attendance() { workingTime=subItem.workingTime, day = subItem.day, year=subItem.year, month = subItem.month, timeIn = subItem.checkIn, timeOut = subItem.checkOut });
-                    
-            //    }
-            //    ats.Add(at);
-            //}
-
-
-            TimeAttendanceSummary h = new TimeAttendanceSummary();
-            h.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;
-            h.RightToLeftLayout = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeftLayout.Yes : DevExpress.XtraReports.UI.RightToLeftLayout.No;
-            h.DataSource = monthlyAtts;
+            DailyAttendance h = new DailyAttendance();
+            //h.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;
+            //h.RightToLeftLayout = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeftLayout.Yes : DevExpress.XtraReports.UI.RightToLeftLayout.No;
+            h.DataSource = atts;
 
 
 
-            
+
             h.CreateDocument();
-           
+
 
             ASPxWebDocumentViewer1.DataBind();
             ASPxWebDocumentViewer1.OpenReport(h);

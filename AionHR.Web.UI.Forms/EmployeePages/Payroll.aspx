@@ -712,7 +712,7 @@
                                             <ext:NumberColumn
                                                 runat="server" Flex="1"
                                                 Text="<%$ Resources:FieldPCT%>"
-                                                DataIndex="pct"
+                                                DataIndex="pct"   Format="0.00%"
                                                 Align="Center">
                                                 <Editor>
                                                     <ext:NumberField
@@ -721,7 +721,7 @@
                                                         MinValue="0"
                                                         MaxValue="100" />
                                                 </Editor>
-                                                 <Renderer Handler="return record.data['pct'] +'%';"/>
+                                                 <%--<Renderer Handler="return record.data['pct'] +'%';"/>--%>
                                             </ext:NumberColumn>
 
                                             <ext:NumberColumn
@@ -901,8 +901,8 @@
                                             <ext:NumberColumn
                                                 runat="server"
                                                 Text="<%$ Resources:FieldPCT%>"
-                                                DataIndex="pct" Flex="1"
-                                                Align="Center">
+                                                DataIndex="pct" Flex="1" Format="0.00%"
+                                                Align="Center"> 
                                                 <Editor>
                                                     <ext:NumberField
                                                         runat="server"
@@ -910,7 +910,7 @@
                                                         MinValue="0"
                                                         MaxValue="100" />
                                                 </Editor>
-                                                <Renderer Handler="return record.data['pct'] +'%';"/>
+                                                <%--<Renderer Handler="return record.data['pct'] +'%';"/>--%>
                                             </ext:NumberColumn>
 
                                             <ext:NumberColumn

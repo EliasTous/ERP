@@ -925,6 +925,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to FiscalYears.
+        /// </summary>
+        internal static string FiscalYears {
+            get {
+                return ResourceManager.GetString("FiscalYears", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Folders.
         /// </summary>
         internal static string Folders {
@@ -1803,6 +1812,15 @@ namespace Resources {
         internal static string RT301 {
             get {
                 return ResourceManager.GetString("RT301", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Daily Attendance.
+        /// </summary>
+        internal static string RT301B {
+            get {
+                return ResourceManager.GetString("RT301B", resourceCulture);
             }
         }
         

@@ -151,7 +151,8 @@ namespace AionHR.Web.UI.Forms
             Attachement b = JsonConvert.DeserializeObject<Attachement>(obj);
             b.recordId = 0;
             b.seqNo = Convert.ToInt16(id);
-            b.classId = ClassId.EPDO;
+            b.classId = ClassId.CSFI;
+            b.fileName = fileName.Text;
             // Define the object to add or edit as null
             b.folderName = folderId.SelectedItem.Text;
 
@@ -224,6 +225,7 @@ namespace AionHR.Web.UI.Forms
             string type = e.ExtraParams["type"];
             string path = e.ExtraParams["path"];
             string folder = e.ExtraParams["folderId"];
+            string file = e.ExtraParams["fileName"];
             switch (type)
             {
 
@@ -232,6 +234,7 @@ namespace AionHR.Web.UI.Forms
                     dtStore.DataBind();
                     folderId.Select(folder);
                     seqNo.Text = id.ToString();
+                    fileName.Text = file;
                     this.EditDocumentWindow.Title = Resources.Common.EditWindowsTitle;
                     this.EditDocumentWindow.Show();
                     break;

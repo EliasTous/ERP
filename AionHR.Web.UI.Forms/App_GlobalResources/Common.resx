@@ -837,4 +837,10 @@
   <data name="FourWeek" xml:space="preserve">
     <value>FourWeek</value>
   </data>
+  <data name="RT301B" xml:space="preserve">
+    <value>Daily Attendance</value>
+  </data>
+  <data name="FiscalYears" xml:space="preserve">
+    <value>FiscalYears</value>
+  </data>
 </root>

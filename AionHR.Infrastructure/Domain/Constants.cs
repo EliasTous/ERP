@@ -31,6 +31,7 @@ namespace AionHR.Infrastructure.Domain
         public const int SYNA = 20040;
         public const int SYAT = 20050;
         public const int SYTL = 20060;
+        public const int SYRW = 20070;
 
         // company structure
         public const int CSDI = 21010;

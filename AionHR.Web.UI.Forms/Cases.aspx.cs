@@ -182,7 +182,7 @@ namespace AionHR.Web.UI.Forms
             SetTabPanelEnable(true);
             string id = e.ExtraParams["id"];
             string type = e.ExtraParams["type"];
-
+            
             switch (type)
             {
                 case "imgEdit":
@@ -878,6 +878,7 @@ namespace AionHR.Web.UI.Forms
             string type = e.ExtraParams["type"];
             string path = e.ExtraParams["path"];
             string folder = e.ExtraParams["folderId"];
+            string file = e.ExtraParams["fileName"];
             switch (type)
             {
 
@@ -886,6 +887,7 @@ namespace AionHR.Web.UI.Forms
                     dtStore.DataBind();
                     folderId.Select(folder);
                     seqNo.Text = id.ToString();
+                    fileName.Text = file;
                     this.EditDocumentWindow.Title = Resources.Common.EditWindowsTitle;
                     this.EditDocumentWindow.Show();
                     break;
@@ -951,8 +953,9 @@ namespace AionHR.Web.UI.Forms
 
             string obj = e.ExtraParams["values"];
             Attachement b = JsonConvert.DeserializeObject<Attachement>(obj);
-            b.recordId = 0;
+            b.recordId = Convert.ToInt32(currentCase.Text);
             b.seqNo = Convert.ToInt16(id);
+            b.fileName = e.ExtraParams["fileName"];
             b.classId = ClassId.CMCA;
             // Define the object to add or edit as null
             b.folderName = folderId.SelectedItem.Text;

@@ -13,25 +13,25 @@ var attachRender = function () {
 var options;
 var commandName;
 var cellClick = function (view, cell, columnIndex, record, row, rowIndex, e) {
-    
+
     commandName = "";
     CheckSession();
 
-  
+
     // in case 
-    
+
     if (columnIndex == 0)
         return false;
     var t = e.getTarget();
-       // columnId = App.GridPanel1.columns[columnIndex].id; // Get column id
-    
-    if (t.className == "imgEdit" ) {
+    // columnId = App.GridPanel1.columns[columnIndex].id; // Get column id
+
+    if (t.className == "imgEdit") {
         //the ajax call is allowed
         commandName = t.className;
         return true;
     }
 
-    if (t.className == "imgDelete" ) {
+    if (t.className == "imgDelete") {
         //the ajax call is allowed
         commandName = t.className;
         return true;
@@ -41,22 +41,22 @@ var cellClick = function (view, cell, columnIndex, record, row, rowIndex, e) {
         commandName = t.className;
         return true;
     }
-  
-    App.RowExpander1.toggleRow(rowIndex,record);
-  
+
+    App.RowExpander1.toggleRow(rowIndex, record);
+
     //forbidden
     return false;
 };
 
 
 var getCellType = function (grid, rowIndex, cellIndex) {
-    
+
     if (cellIndex == 0)
         return "";
     if (commandName != "")
         return commandName;
     var columnId = grid.columns[cellIndex].id; // Get column id
-  
+
     return columnId;
 };
 
@@ -107,7 +107,7 @@ var showImagePreview2 = function (id) {
             var filerdr = new FileReader();
             filerdr.onload = function (e) {
                 $("#" + $('#employeePhoto')[0].firstChild.id).attr('src', e.target.result);
-                
+
                 options.imgSrc = e.target.result;
                 cropper = new cropbox(options);
 
@@ -119,7 +119,7 @@ var showImagePreview2 = function (id) {
             alert('File Format is not allowed');
             $("#" + $('#employeePhoto')[0].firstChild.id).attr('src', '');
             App.FileUploadField1.reset();
-            
+
             //Alert the user and clear the input file
         }
     }
@@ -129,16 +129,15 @@ var showImagePreview2 = function (id) {
         App.FileUploadField1.Clear();
     }
 }
-var ClearImage = function()
-{
-    App.picturePath.reset();  
+var ClearImage = function () {
+    App.picturePath.reset();
     $("#" + $('#imgControl')[0].firstChild.id).attr('src', '');
- 
+
 }
 var ClearImage2 = function () {
     App.FileUploadField1.reset();
     $("#" + $('#employeePhoto')[0].firstChild.id).attr('src', 'images/empPhoto.jpg');
-    
+
     initCropper('Images/empPhoto.jpg');
     //App.uploadPhotoButton.setDisabled(true);
 }
@@ -238,7 +237,7 @@ function dump(obj) {
     }
     return out;
 }
-function FillLeftPanel(departmentName, branchName, positionName, reportToName,balance,lastLeave,paid,leaveBalance,allowedLeaves,esName,serviceDuration) {
+function FillLeftPanel(departmentName, branchName, positionName, reportToName, balance, lastLeave, paid, leaveBalance, allowedLeaves, esName, serviceDuration) {
 
 
 
@@ -251,35 +250,33 @@ function FillLeftPanel(departmentName, branchName, positionName, reportToName,ba
     App.allowedLeaveYtdTitle.setText(allowedLeaves);
     App.esName = esName;
     App.serviceDuration = serviceDuration;
-    FillLeftPanel( dep, branchName, positionName);
+    FillLeftPanel(dep, branchName, positionName);
 
 }
-function FillLeftPanel( departmentName, branchName, positionName,reportToName) {
+function FillLeftPanel(departmentName, branchName, positionName, reportToName) {
 
 
-    
+
 
     App.reportsToLbl.setText(reportToName);
     FillLeftPanel(dep, branchName, positionName);
 
 }
 
-function FillFullName(fullName)
-{
+function FillFullName(fullName) {
     App.fullNameLbl.Html = fullName;
 }
 function FillLeftPanel(departmentName, branchName, positionName) {
 
 
- 
+
     App.departmentLbl.setText(departmentName, false);
     App.branchLbl.setText(branchName, false);
     App.positionLbl.setText(positionName, false);
-   
+
 
 }
-function SelectJICombos(deptId,bId,pId,dId)
-{
+function SelectJICombos(deptId, bId, pId, dId) {
     App.departmentId.select(deptId);
     App.branchId.select(bId);
     App.positionId.select(pId);
@@ -299,19 +296,17 @@ var enterKeyPressSearchHandler = function (el, event) {
         App.Store1.reload();
     }
 };
-function initCropper(path)
-{
+function initCropper(path) {
     options =
         {
             imageBox: '.imageBox',
             thumbBox: '.thumbBox',
             spinner: '.spinner',
-            imgSrc:path
+            imgSrc: path
         };
     cropper = new cropbox(options);
 }
 
-function refreshQV()
-{
+function refreshQV() {
     App.direct.FillLeftPanel(true);
 }

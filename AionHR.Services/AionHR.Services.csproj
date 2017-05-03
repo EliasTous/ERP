@@ -83,6 +83,7 @@
     <Compile Include="Messaging\ListReponse.cs" />
     <Compile Include="Messaging\LoanManagment\LoanManagmentRequest.cs" />
     <Compile Include="Messaging\Master Service\MasterServiceRequests.cs" />
+    <Compile Include="Messaging\Payroll\PayrollRequests.cs" />
     <Compile Include="Messaging\PostRequest.cs" />
     <Compile Include="Messaging\PostRequestWithAttachment.cs" />
     <Compile Include="Messaging\PostResponse.cs" />

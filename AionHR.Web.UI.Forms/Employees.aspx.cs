@@ -686,7 +686,7 @@ namespace AionHR.Web.UI.Forms
                 {
                     //New Mode
                     //Step 1 : Fill The object and insert in the store 
-                    PostRequestWithAttachment<Employee> request = new PostRequestWithAttachment<Employee>();
+                    PostRequest<Employee> request = new PostRequest<Employee>();
 
                     byte[] fileData = null;
                     if (FileUploadField1.PostedFile != null && FileUploadField1.PostedFile.ContentLength > 0)
@@ -697,20 +697,15 @@ namespace AionHR.Web.UI.Forms
                         //}
                         fileData = new byte[FileUploadField1.PostedFile.ContentLength];
                         fileData = FileUploadField1.FileBytes;
-                        request.FileName = FileUploadField1.PostedFile.FileName;
-                        request.FileData = fileData;
+                  
 
                     }
-                    else
-                    {
-                        request.FileData = fileData;
-                        request.FileName = "";
-                    }
+                 
                     request.entity = b;
 
 
 
-                    PostResponse<Employee> r = _employeeService.AddOrUpdateWithAttachment<Employee>(request);
+                    PostResponse<Employee> r = _employeeService.AddOrUpdate<Employee>(request);
                     b.recordId = r.recordId;
 
                     //check if the insert failed
@@ -724,6 +719,21 @@ namespace AionHR.Web.UI.Forms
 
                     else
                     {
+                        if (fileData != null)
+                        {
+                            SystemAttachmentsPostRequest reqAT = new SystemAttachmentsPostRequest();
+                            reqAT.entity = new Model.System.Attachement() { date = DateTime.Now, classId = ClassId.EPEM, recordId = Convert.ToInt32(b.recordId), fileName = FileUploadField1.PostedFile.FileName, seqNo = null };
+                            reqAT.FileNames.Add(FileUploadField1.PostedFile.FileName);
+                            reqAT.FilesData.Add(fileData);
+                            PostResponse<Attachement> resp = _systemService.UploadMultipleAttachments(reqAT);
+                            if (!resp.Success)//it maybe be another condition
+                            {
+                                //Show an error saving...
+                                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                                X.Msg.Alert(Resources.Common.Error, r.Summary).Show();
+                                return;
+                            }
+                        }
                         RecordRequest req = new RecordRequest();
                         req.RecordID = b.recordId.ToString();
                         RecordResponse<Employee> response = _employeeService.Get<Employee>(req);
@@ -773,33 +783,15 @@ namespace AionHR.Web.UI.Forms
                 try
                 {
                     int index = Convert.ToInt32(id);//getting the id of the record
-                    PostRequestWithAttachment<Employee> request = new PostRequestWithAttachment<Employee>();
+                    PostRequest<Employee> request = new PostRequest<Employee>();
 
-                    byte[] fileData = null;
-                    if (picturePath.HasFile && picturePath.PostedFile.ContentLength > 0)
-                    {
-                        //using (var binaryReader = new BinaryReader(picturePath.PostedFile.InputStream))
-                        // {
-                        //    fileData = binaryReader.ReadBytes(picturePath.PostedFile.ContentLength);
-                        // }
-                        fileData = new byte[picturePath.PostedFile.ContentLength];
-                        fileData = picturePath.FileBytes;
-                        request.FileName = picturePath.PostedFile.FileName;
-                        request.FileData = fileData;
-
-
-
-                    }
-                    else
-                    {
-                        request.FileData = fileData;
-                        request.FileName = "";
-                    }
+                    
+                    
                     request.entity = b;
 
 
 
-                    PostResponse<Employee> r = _employeeService.AddOrUpdateWithAttachment<Employee>(request);
+                    PostResponse<Employee> r = _employeeService.AddOrUpdate<Employee>(request);
 
                     //Step 2 : saving to store
 

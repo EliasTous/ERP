@@ -141,7 +141,7 @@
              var x = document.getElementsByName("values");
           
              var s = $("#" + previewId).find("select")[0];
-            
+             s.options.length = 0;
                  for(var j=0;j<types.length;j++)
                  {
                      var opt = document.createElement('option');
@@ -346,6 +346,7 @@
                                 <ext:Parameter Name="id" Value="record.getId()" Mode="Raw" />
                                  <ext:Parameter Name="path" Value="record.data['url']" Mode="Raw" />
                                 <ext:Parameter Name="folderId" Value="record.data['folderId']" Mode="Raw" />
+                                <ext:Parameter Name="fileName" Value="record.data['fileName']" Mode="Raw" />
                                 <ext:Parameter Name="type" Value="getCellType( this, rowIndex, cellIndex)" Mode="Raw" />
                             </ExtraParams>
 
@@ -386,6 +387,7 @@
                             BodyPadding="5">
                             <Items>
                                 <ext:TextField runat="server" Name="recordId" ID="seqNo" Hidden="true" Disabled="true" />
+                                <ext:TextField runat="server" Name="fileName" ID="fileName" Hidden="true" Disabled="true" />
 
 
                                 <ext:ComboBox ValueField="recordId" AllowBlank="false" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" runat="server" ID="folderId" Name="folderId" FieldLabel="<%$ Resources:FieldFolderName%>" SimpleSubmit="true">
@@ -435,6 +437,7 @@
                             <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="={#{EditDocumentWindow}.body}" />
                             <ExtraParams>
                                 <ext:Parameter Name="id" Value="#{seqNo}.getValue()" Mode="Raw" />
+                                <ext:Parameter Name="fileName" Value="#{fileName}.getValue()" Mode="Raw" />
                                 <ext:Parameter Name="values" Value="#{EditDocumentForm}.getForm().getValues(false, false, false, true)" Mode="Raw" Encode="true" />
                             </ExtraParams>
                         </Click>

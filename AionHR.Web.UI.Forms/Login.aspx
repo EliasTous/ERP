@@ -116,6 +116,7 @@
                     if(result=='1')
                     App.tbAccountName.setIndicatorIconCls('icon-tick');
                                     else{
+                                    
                                     App.tbAccountName.setIndicatorIconCls('icon-error');App.tbAccountName.setIndicatorIconCls('icon-error');}
                 }
             });    " />
@@ -135,7 +136,7 @@
 
                         <ext:TextField ID="tbUsername"
                             runat="server"
-                            MsgTarget="Side" Vtype="email"
+                            MsgTarget="Side" 
                             BlankText="<%$ Resources:Common, MandatoryField %>"
                             AllowBlank="false"
                             FieldLabel="<%$ Resources:  UserID %>"
