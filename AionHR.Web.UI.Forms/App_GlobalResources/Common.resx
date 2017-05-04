@@ -843,4 +843,7 @@
   <data name="FiscalYears" xml:space="preserve">
     <value>FiscalYears</value>
   </data>
+  <data name="GeneratePayroll" xml:space="preserve">
+    <value>Generate Payroll</value>
+  </data>
 </root>

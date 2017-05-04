@@ -970,6 +970,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Generate Payroll.
+        /// </summary>
+        internal static string GeneratePayroll {
+            get {
+                return ResourceManager.GetString("GeneratePayroll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Geofences.
         /// </summary>
         internal static string Geofences {

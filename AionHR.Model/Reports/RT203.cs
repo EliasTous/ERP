@@ -19,7 +19,7 @@ namespace AionHR.Model.Reports
         public string departmentName { get; set; }
 
         public string positionName { get; set; }
-        public int salaryType { get; set; }
+        public int? salaryType { get; set; }
 
    
         public double basicAmount

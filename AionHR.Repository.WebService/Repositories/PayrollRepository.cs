@@ -18,9 +18,13 @@ namespace AionHR.Repository.WebService.Repositories
             base.ServiceURL = ApplicationSettingsFactory.GetApplicationSettings().BaseURL + serviceName;
 
             ChildGetAllLookup.Add(typeof(FiscalYear), "qryYE");
+            ChildGetAllLookup.Add(typeof(GenerationHeader), "qryHE");
             ChildGetAllLookup.Add(typeof(FiscalPeriod), "qryPE");
+            ChildGetAllLookup.Add(typeof(EmployeePayroll), "qryEM");
 
             ChildAddOrUpdateLookup.Add(typeof(FiscalYear), "setYE");
+            ChildAddOrUpdateLookup.Add(typeof(GenerationHeader), "setHE");
+            ChildAddOrUpdateLookup.Add(typeof(EmployeePayroll), "setEM");
 
             ChildDeleteLookup.Add(typeof(FiscalYear), "delYE");
 

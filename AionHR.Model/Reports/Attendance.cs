@@ -119,11 +119,12 @@ namespace AionHR.Model.Reports
         public DateTime Date { get; set; }
 
         public string DOW { get; set; }
+        
 
-        public string workingHours { get; set; }
+        public TimeSpan workingHours { get; set; }
 
-        public string lateness { get; set; }
+        public TimeSpan lateness { get; set; }
 
-        public string early { get; set; }
+        public TimeSpan early { get; set; }
     }
 }

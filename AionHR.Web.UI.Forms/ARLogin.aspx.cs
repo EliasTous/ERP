@@ -56,12 +56,19 @@ namespace AionHR.Web.UI.Forms
                 tbAccountName.Text = Request.Cookies["accountName"].Value;
                 DirectCheckField(tbAccountName.Text);
             }
+            if (!IsPostBack)
+            {
+
+                tbAccountName.IndicatorIcon = Icon.Accept;
+                ResourceManager1.RegisterIcon(Icon.Accept);
+            }
             if (!IsPostBack && Request.Cookies["email"] != null)
             {
                 tbUsername.Text = Request.Cookies["email"].Value;
                 tbPassword.Text = Request.Cookies["password"].Value;
                 rememberMeCheck.Checked = true;
             }
+
             if (!X.IsAjaxRequest)
             {
                 ResourceManager1.RegisterIcon(Icon.Tick);

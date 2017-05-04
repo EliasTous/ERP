@@ -843,4 +843,7 @@
   <data name="FiscalYears" xml:space="preserve">
     <value>السنوات المالية</value>
   </data>
+  <data name="DailyAttendance" xml:space="preserve">
+    <value>الدوام اليومي</value>
+  </data>
 </root>

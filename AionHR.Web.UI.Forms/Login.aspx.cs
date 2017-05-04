@@ -41,8 +41,8 @@ namespace AionHR.Web.UI.Forms
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            ResourceManager1.RegisterIcon(Icon.Tick);
-            ResourceManager1.RegisterIcon(Icon.Error);
+            //ResourceManager1.RegisterIcon(Icon.Tick);
+            //ResourceManager1.RegisterIcon(Icon.Error);
             if (Request.QueryString["timeout"] != null && Request.QueryString["timeout"].ToString() == "yes")
             {
                 //lblError.Text = Resources.Common.SessionDisconnected;
@@ -56,6 +56,12 @@ namespace AionHR.Web.UI.Forms
             {
                 tbAccountName.Text = Request.Cookies["accountName"].Value;
                 DirectCheckField(tbAccountName.Text);
+            }
+            if (!IsPostBack)
+            {
+                
+                tbAccountName.IndicatorIcon = Icon.Accept;
+                ResourceManager1.RegisterIcon(Icon.Accept);
             }
             if (!IsPostBack && Request.Cookies["email"] != null)
             {

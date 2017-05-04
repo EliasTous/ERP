@@ -19,7 +19,7 @@ namespace AionHR.Model.Reports
         public string positionName { get; set; }
         public DateTime effectiveDate { get; set; }
 
-        public int salaryType { get; set; }
+        public int? salaryType { get; set; }
 
         public string SalaryTypeString
         {
@@ -61,7 +61,7 @@ namespace AionHR.Model.Reports
 
         public double prevBasicAmount { get; set; }
 
-        public int prevSalaryType { get; set; }
+        public int? prevSalaryType { get; set; }
 
         private string prevSalaryTypeString;
         public string PrevSalaryTypeString

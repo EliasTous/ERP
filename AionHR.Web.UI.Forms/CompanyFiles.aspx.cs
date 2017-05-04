@@ -76,7 +76,7 @@ namespace AionHR.Web.UI.Forms
 
                
                 dateCol.Format = _systemService.SessionHelper.GetDateformat() + ": hh:mm:ss";
-                CompanyFilesClassId.Text = ClassId.CSFI.ToString();
+                CompanyFilesClassId.Text = ClassId.DMDO.ToString();
          
             }
 
@@ -151,7 +151,7 @@ namespace AionHR.Web.UI.Forms
             Attachement b = JsonConvert.DeserializeObject<Attachement>(obj);
             b.recordId = 0;
             b.seqNo = Convert.ToInt16(id);
-            b.classId = ClassId.CSFI;
+            b.classId = ClassId.DMDO;
             b.fileName = fileName.Text;
             // Define the object to add or edit as null
             b.folderName = folderId.SelectedItem.Text;
@@ -484,7 +484,7 @@ namespace AionHR.Web.UI.Forms
             {
                 //Step 1 Code to delete the object from the database 
                 Attachement n = new Attachement();
-                n.classId = ClassId.CSFI;
+                n.classId = ClassId.DMDO;
                 n.recordId = 0;
                 n.seqNo = Convert.ToInt16(index);
                 n.fileName = path;

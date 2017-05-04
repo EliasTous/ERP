@@ -172,14 +172,22 @@ namespace AionHR.Web.UI.Forms.Reports
                 X.Msg.Alert(Resources.Common.Error, resp.Summary).Show();
                 return;
             }
-
+            
+            
             List<AionHR.Model.Reports.DailyAttendance> atts = new List<AionHR.Model.Reports.DailyAttendance>();
-            resp.Items.ForEach(x => atts.Add(new AionHR.Model.Reports.DailyAttendance() { name= x.name.fullName, branchName=x.branchName, departmentName = x.departmentName, Date= DateTime.ParseExact(x.dayId,"yyyyMMdd",new CultureInfo("en")),   lateness= x.OL_A, early = x.OL_D, workingHours= x.workingTime   }));
+            resp.Items.ForEach(x => atts.Add(new AionHR.Model.Reports.DailyAttendance() {
+                                        name = x.name.fullName, branchName=x.branchName, departmentName = x.departmentName,
+                                        Date = DateTime.ParseExact(x.dayId,"yyyyMMdd",new CultureInfo("en")),
+                                        lateness = x.OL_A_SIGN[0]=='-'?(new TimeSpan(-Convert.ToInt32(x.OL_A.Substring(0, 2)),- Convert.ToInt32(x.OL_A.Substring(3, 2)),0)):(new TimeSpan(Convert.ToInt32(x.OL_A.Substring(0, 2)), Convert.ToInt32(x.OL_A.Substring(3, 2)), 0)),
+                                        early = x.OL_D_SIGN[0] == '-' ? (new TimeSpan(-Convert.ToInt32(x.OL_D.Substring(0, 2)), -Convert.ToInt32(x.OL_D.Substring(3, 2)), 0)) : (new TimeSpan(Convert.ToInt32(x.OL_D.Substring(0, 2)), Convert.ToInt32(x.OL_D.Substring(3, 2)), 0)),
+                workingHours = new TimeSpan(Convert.ToInt32(x.workingTime.Substring(0,2)), Convert.ToInt32(x.workingTime.Substring(3, 2)),0)
+                                    }));
             atts.ForEach(x => { x.DOW = GetGlobalResourceObject("Common", x.Date.DayOfWeek.ToString() + "Text").ToString(); x.DateString = x.Date.ToString(_systemService.SessionHelper.GetDateformat()); });
-
+            
+            
             DailyAttendance h = new DailyAttendance();
-            //h.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;
-            //h.RightToLeftLayout = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeftLayout.Yes : DevExpress.XtraReports.UI.RightToLeftLayout.No;
+            h.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;
+            h.RightToLeftLayout = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeftLayout.Yes : DevExpress.XtraReports.UI.RightToLeftLayout.No;
             h.DataSource = atts;
 
 

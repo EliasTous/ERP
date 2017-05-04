@@ -26,7 +26,7 @@ namespace AionHR.Model.Reports
         {
             get {
 
-                return "";
+                return year+month+day;
             }
             set
             {

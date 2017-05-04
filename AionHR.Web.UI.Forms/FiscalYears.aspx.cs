@@ -131,8 +131,8 @@ namespace AionHR.Web.UI.Forms
             switch (type)
             {
                 case "imgEdit":
-               
-                    
+
+
 
 
 
@@ -141,8 +141,8 @@ namespace AionHR.Web.UI.Forms
                 case "imgAttach":
                     //panelRecordDetails.ActiveIndex = 0;
 
-                   
-                   
+
+
                     CurrentYear.Text = id.ToString();
 
                     Viewport1.ActiveIndex = 1;
@@ -179,7 +179,7 @@ namespace AionHR.Web.UI.Forms
 
         }
 
-      
+
 
 
         /// <summary>
@@ -194,7 +194,7 @@ namespace AionHR.Web.UI.Forms
                 //Step 1 Code to delete the object from the database 
                 FiscalYear s = new FiscalYear();
                 s.fiscalYear = index;
-               
+
                 PostRequest<FiscalYear> req = new PostRequest<FiscalYear>();
                 req.entity = s;
                 PostResponse<FiscalYear> r = _payrollService.ChildDelete<FiscalYear>(req);
@@ -382,7 +382,7 @@ namespace AionHR.Web.UI.Forms
 
             this.EditRecordWindow.Show();
         }
- 
+
 
         protected void Store1_RefreshData(object sender, StoreReadDataEventArgs e)
         {
@@ -400,7 +400,10 @@ namespace AionHR.Web.UI.Forms
             request.Filter = "";
             ListResponse<FiscalYear> branches = _payrollService.ChildGetAll<FiscalYear>(request);
             if (!branches.Success)
+            {
                 X.Msg.Alert(Resources.Common.Error, branches.Summary).Show();
+                return;
+            }
             this.Store1.DataSource = branches.Items;
             e.Total = branches.count;
 
@@ -420,63 +423,63 @@ namespace AionHR.Web.UI.Forms
             string obj = e.ExtraParams["schedule"];
             FiscalYear b = JsonConvert.DeserializeObject<FiscalYear>(obj);
 
-            
+
             // Define the object to add or edit as null
 
-            
-                try
+
+            try
+            {
+                //New Mode
+                //Step 1 : Fill The object and insert in the store 
+                PostRequest<FiscalYear> request = new PostRequest<FiscalYear>();
+                request.entity = b;
+                PostResponse<FiscalYear> r = _payrollService.ChildAddOrUpdate<FiscalYear>(request);
+
+
+                //check if the insert failed
+                if (!r.Success)//it maybe be another condition
                 {
-                    //New Mode
-                    //Step 1 : Fill The object and insert in the store 
-                    PostRequest<FiscalYear> request = new PostRequest<FiscalYear>();
-                    request.entity = b;
-                    PostResponse<FiscalYear> r = _payrollService.ChildAddOrUpdate<FiscalYear>(request);
-                   
-
-                    //check if the insert failed
-                    if (!r.Success)//it maybe be another condition
-                    {
-                        //Show an error saving...
-                        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                        X.Msg.Alert(Resources.Common.Error, r.Summary).Show();
-                        return;
-                    }
-
-
-
-                    else
-                    {
-
-                        //Add this record to the store 
-                        this.Store1.Insert(0, b);
-
-                        //Display successful notification
-                        Notification.Show(new NotificationConfig
-                        {
-                            Title = Resources.Common.Notification,
-                            Icon = Icon.Information,
-                            Html = Resources.Common.RecordSavingSucc
-                        });
-
-                        this.EditRecordWindow.Close();
-                        RowSelectionModel sm = this.GridPanel1.GetSelectionModel() as RowSelectionModel;
-                        sm.DeselectAll();
-                        sm.Select(b.fiscalYear.ToString());
-
-
-
-                    }
-                }
-                catch (Exception ex)
-                {
-                    //Error exception displaying a messsage box
+                    //Show an error saving...
                     X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorSavingRecord).Show();
+                    X.Msg.Alert(Resources.Common.Error, r.Summary).Show();
+                    return;
                 }
 
 
-            
-            
+
+                else
+                {
+
+                    //Add this record to the store 
+                    this.Store1.Insert(0, b);
+
+                    //Display successful notification
+                    Notification.Show(new NotificationConfig
+                    {
+                        Title = Resources.Common.Notification,
+                        Icon = Icon.Information,
+                        Html = Resources.Common.RecordSavingSucc
+                    });
+
+                    this.EditRecordWindow.Close();
+                    RowSelectionModel sm = this.GridPanel1.GetSelectionModel() as RowSelectionModel;
+                    sm.DeselectAll();
+                    sm.Select(b.fiscalYear.ToString());
+
+
+
+                }
+            }
+            catch (Exception ex)
+            {
+                //Error exception displaying a messsage box
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorSavingRecord).Show();
+            }
+
+
+
+
         }
         private bool AddPeriodsList(string scheduleIdString, List<VacationSchedulePeriod> periods)
         {
@@ -534,9 +537,9 @@ namespace AionHR.Web.UI.Forms
             //sundayGrid.DataBind();
         }
 
-        
 
-     
+
+
 
         private void AddBreaksList(string scheduleIdString, short dow, List<AttendanceBreak> breaks)
         {
@@ -588,7 +591,7 @@ namespace AionHR.Web.UI.Forms
             return day.result;
         }
 
-        
+
 
         private void SetDayFormEnabled(bool v)
         {
@@ -605,9 +608,14 @@ namespace AionHR.Web.UI.Forms
         {
             FiscalPeriodsListRequest req = new FiscalPeriodsListRequest();
             req.Year = CurrentYear.Text;
-            req.PeriodType = (PaymentFrequency)Convert.ToInt32(periodType.Value.ToString());
+            req.PeriodType = (SalaryType)Convert.ToInt32(periodType.Value.ToString());
             req.Status = 0;
             ListResponse<FiscalPeriod> resp = _payrollService.ChildGetAll<FiscalPeriod>(req);
+            if (!resp.Success)
+            {
+                X.Msg.Alert(Resources.Common.Error, resp.Summary).Show();
+                return;
+            }
             fiscalPeriodsStore.DataSource = resp.Items;
             fiscalPeriodsStore.DataBind();
         }

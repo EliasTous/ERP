@@ -314,6 +314,10 @@ namespace AionHR.Web.UI.Forms.Utilities
             Ext.Net.Node rootParent = BuildRootParentNode("rootParent", Resources.Common.Payroll, true);
             Ext.Net.Node timeAt = BuildParentNode("standard", Resources.Common.Payroll, true, rootParent);
 
+            Ext.Net.Node gen = BuildLeafNode("gen", Resources.Common.GeneratePayroll, "Group", true, timeAt);
+
+            FillConfigItem(gen, "gen", "PayrollGeneration.aspx", Resources.Common.GeneratePayroll, "icon-Employees", "1");
+
             nodes.Add(rootParent);
             return nodes;
         }

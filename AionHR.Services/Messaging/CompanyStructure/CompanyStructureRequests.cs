@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AionHR.Services.Messaging;
+using AionHR.Infrastructure.Domain;
 
 namespace AionHR.Services.Messaging.CompanyStructure
 {
@@ -12,7 +13,7 @@ namespace AionHR.Services.Messaging.CompanyStructure
     {
         public CompanyFilesListRequest()
         {
-            base.classId = 20080;
+            base.classId = ClassId.DMDO;
         }
     }
 }

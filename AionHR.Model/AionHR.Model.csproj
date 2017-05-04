@@ -78,8 +78,10 @@
     <Compile Include="MediaGallery\IMediaGalleryRepository.cs" />
     <Compile Include="MediaGallery\MediaItem.cs" />
     <Compile Include="ModelBase.cs" />
+    <Compile Include="Payroll\EmployeePayroll.cs" />
     <Compile Include="Payroll\FiscalPeriod.cs" />
     <Compile Include="Payroll\FiscalYear.cs" />
+    <Compile Include="Payroll\GenerationHeader.cs" />
     <Compile Include="Payroll\IPayrollRepository.cs" />
     <Compile Include="Reports\Attendance.cs" />
     <Compile Include="Reports\Collections.cs" />

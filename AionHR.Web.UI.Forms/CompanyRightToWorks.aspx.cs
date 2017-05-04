@@ -668,32 +668,13 @@ namespace AionHR.Web.UI.Forms
                     //getting the id of the record
                     int index = Convert.ToInt32(id);//getting the id of the record
                     PostRequest<CompanyRightToWork> request = new PostRequest<CompanyRightToWork>();
+                    b.recordId = index.ToString(); ;
                     request.entity = b;
+                    
                     byte[] fileData = null;
                     if (rwFile.PostedFile != null && rwFile.PostedFile.ContentLength > 0)
                     {
-                        if (!string.IsNullOrEmpty(url))
-                        {
-                            Attachement at = new Attachement();
-                            at.classId = ClassId.MGME;
-                            at.recordId = index;
-                            at.fileName = url;
-                            at.folderId = null;
-                            at.seqNo = 0;
-                            PostRequest<Attachement> req = new PostRequest<Attachement>();
-                            req.entity = at;
-                            PostResponse<Attachement> resp = _systemService.ChildDelete<Attachement>(req);
-                            if (!resp.Success)
-                            {
-                                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                                X.Msg.Alert(Resources.Common.Error, resp.Summary).Show();
-                                return;
-                            }
-                        }
-                        //using (var binaryReader = new BinaryReader(picturePath.PostedFile.InputStream))
-                        //{
-                        //    fileData = binaryReader.ReadBytes(picturePath.PostedFile.ContentLength);
-                        //}
+                       
                         fileData = new byte[rwFile.PostedFile.ContentLength];
                         fileData = rwFile.FileBytes;
                       

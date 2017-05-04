@@ -27,6 +27,7 @@ using AionHR.Model.Employees.Profile;
 using AionHR.Model.MediaGallery;
 using System.Net;
 using AionHR.Infrastructure.Domain;
+using AionHR.Services.Messaging.System;
 
 namespace AionHR.Web.UI.Forms
 {
@@ -428,7 +429,7 @@ namespace AionHR.Web.UI.Forms
                     //New Mode
                     //Step 1 : Fill The object and insert in the store 
 
-                    PostRequestWithAttachment<MediaItem> request = new PostRequestWithAttachment<MediaItem>();
+                    PostRequest<MediaItem> request = new PostRequest<MediaItem>();
                     request.entity = b;
                     byte[] fileData = null;
                     if (rwFile.PostedFile != null && rwFile.PostedFile.ContentLength > 0)
@@ -439,20 +440,15 @@ namespace AionHR.Web.UI.Forms
                         //}
                         fileData = new byte[rwFile.PostedFile.ContentLength];
                         fileData = rwFile.FileBytes;
-                        request.FileName = rwFile.PostedFile.FileName;
-                        request.FileData = fileData;
+                        
 
                     }
-                    else
-                    {
-                        request.FileData = fileData;
-                        request.FileName = "";
-                    }
+                    
 
 
 
                    
-                    PostResponse<MediaItem> r = _mediaGalleryService.ChildAddOrUpdateWithAttachment<MediaItem>(request);
+                    PostResponse<MediaItem> r = _mediaGalleryService.ChildAddOrUpdate<MediaItem>(request);
                     b.recordId = r.recordId;
 
                     //check if the insert failed
@@ -465,6 +461,21 @@ namespace AionHR.Web.UI.Forms
                     }
                     else
                     {
+                        if (fileData != null)
+                        {
+                            SystemAttachmentsPostRequest req = new SystemAttachmentsPostRequest();
+                            req.entity = new Model.System.Attachement() { date = DateTime.Now, classId = ClassId.MGME, recordId = Convert.ToInt32(b.recordId), fileName = rwFile.PostedFile.FileName, seqNo = null };
+                            req.FileNames.Add(rwFile.PostedFile.FileName);
+                            req.FilesData.Add(fileData);
+                            PostResponse<Attachement> resp = _systemService.UploadMultipleAttachments(req);
+                            if (!resp.Success)//it maybe be another condition
+                            {
+                                //Show an error saving...
+                                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                                X.Msg.Alert(Resources.Common.Error, r.Summary).Show();
+                                return;
+                            }
+                        }
                         b.recordId = r.recordId;
                         //Add this record to the store 
                         MediaItem m = GetMEById(r.recordId);
@@ -503,46 +514,21 @@ namespace AionHR.Web.UI.Forms
                 {
                     //getting the id of the record
                     int index = Convert.ToInt32(id);//getting the id of the record
-                    PostRequestWithAttachment<MediaItem> request = new PostRequestWithAttachment<MediaItem>();
+                    PostRequest<MediaItem> request = new PostRequest<MediaItem>();
                     request.entity = b;
                     byte[] fileData = null;
                     if (rwFile.PostedFile != null && rwFile.PostedFile.ContentLength > 0)
                     {
-                        if(!string.IsNullOrEmpty(url))
-                        {
-                            Attachement at = new Attachement();
-                            at.classId = ClassId.MGME;
-                            at.recordId = index;
-                            at.fileName = url;
-                            at.folderId = null;
-                            at.seqNo = 0;
-                            PostRequest<Attachement> req = new PostRequest<Attachement>();
-                            req.entity = at;
-                            PostResponse<Attachement> resp = _systemService.ChildDelete<Attachement>(req);
-                            if(!resp.Success)
-                            {
-                                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                                X.Msg.Alert(Resources.Common.Error, resp.Summary).Show();
-                                return;
-                            }
-                        }
-                        //using (var binaryReader = new BinaryReader(picturePath.PostedFile.InputStream))
-                        //{
-                        //    fileData = binaryReader.ReadBytes(picturePath.PostedFile.ContentLength);
-                        //}
+                        
+                       
                         fileData = new byte[rwFile.PostedFile.ContentLength];
                         fileData = rwFile.FileBytes;
-                        request.FileName = rwFile.PostedFile.FileName;
-                        request.FileData = fileData;
+                  
 
                     }
-                    else
-                    {
-                        request.FileData = fileData;
-                        request.FileName = "";
-                    }
+                  
 
-                    PostResponse<MediaItem> r = _mediaGalleryService.ChildAddOrUpdateWithAttachment<MediaItem>(request);                      //Step 1 Selecting the object or building up the object for update purpose
+                    PostResponse<MediaItem> r = _mediaGalleryService.ChildAddOrUpdate<MediaItem>(request);                      //Step 1 Selecting the object or building up the object for update purpose
 
                     //Step 2 : saving to store
 
@@ -555,6 +541,21 @@ namespace AionHR.Web.UI.Forms
                     }
                     else
                     {
+                        if (fileData != null)
+                        {
+                            SystemAttachmentsPostRequest req = new SystemAttachmentsPostRequest();
+                            req.entity = new Model.System.Attachement() { date = DateTime.Now, classId = ClassId.MGME, recordId = Convert.ToInt32(b.recordId), fileName = rwFile.PostedFile.FileName, seqNo = 0 };
+                            req.FileNames.Add(rwFile.PostedFile.FileName);
+                            req.FilesData.Add(fileData);
+                            PostResponse<Attachement> resp = _systemService.UploadMultipleAttachments(req);
+                            if (!resp.Success)//it maybe be another condition
+                            {
+                                //Show an error saving...
+                                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                                X.Msg.Alert(Resources.Common.Error, r.Summary).Show();
+                                return;
+                            }
+                        }
                         MediaItem m = GetMEById(id);
 
                         ModelProxy record = this.Store1.GetById(id);

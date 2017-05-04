@@ -183,7 +183,7 @@ namespace AionHR.Web.UI.Forms.Reports
             PointInTimeSalary h = new PointInTimeSalary();
             h.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;
             h.RightToLeftLayout = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeftLayout.Yes : DevExpress.XtraReports.UI.RightToLeftLayout.No;
-            resp.Items.ForEach(x => { x.SalaryTypeString = GetGlobalResourceObject("Common", ((PaymentFrequency)x.salaryType).ToString()).ToString(); });
+            resp.Items.ForEach(x => { x.SalaryTypeString = x.salaryType.HasValue ? GetGlobalResourceObject("Common", ((SalaryType)x.salaryType).ToString()).ToString() : ""; });
 
             h.DataSource = resp.Items;
 

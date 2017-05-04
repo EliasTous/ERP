@@ -243,6 +243,7 @@
     <Content Include="OrganizationChart.aspx" />
     <Content Include="packages.config" />
     <Content Include="PayrollDefaults.aspx" />
+    <Content Include="PayrollGeneration.aspx" />
     <Content Include="RelationshipTypes.aspx" />
     <Content Include="Reports\App_LocalResources\Hirings.cs.resx" />
     <Content Include="Reports\App_LocalResources\Hirings.resx" />
@@ -293,6 +294,7 @@
     <Content Include="Scripts\cropper.js" />
     <Content Include="Scripts\EmployeeComplaints.js" />
     <Content Include="Scripts\EmployeesOrgChart.js" />
+    <Content Include="Scripts\PayrollGeneration.js" />
     <Content Include="Scripts\Folders.js" />
     <Content Include="Scripts\HijriCalendar.js" />
     <Content Include="Scripts\HijriCalender\flora.calendars.picker.css" />
@@ -611,6 +613,13 @@
     </Compile>
     <Compile Include="PayrollDefaults.aspx.designer.cs">
       <DependentUpon>PayrollDefaults.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PayrollGeneration.aspx.cs">
+      <DependentUpon>PayrollGeneration.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PayrollGeneration.aspx.designer.cs">
+      <DependentUpon>PayrollGeneration.aspx</DependentUpon>
     </Compile>
     <Compile Include="Reports\Controls\ActiveStatusFilter.ascx.cs">
       <DependentUpon>ActiveStatusFilter.ascx</DependentUpon>
@@ -1397,6 +1406,7 @@
     <Content Include="App_LocalResources\PayrollDefaults.aspx.resx" />
     <Content Include="App_LocalResources\PayrollDefaults.aspx.ar.resx" />
     <Content Include="App_LocalResources\FiscalYears.aspx.resx" />
+    <Content Include="App_LocalResources\PayrollGeneration.aspx.resx" />
     <EmbeddedResource Include="Properties\licenses.licx" />
     <Content Include="Reports\App_LocalResources\RT202.aspx.resx" />
     <Content Include="Reports\App_LocalResources\RT01.aspx.ar.resx" />
