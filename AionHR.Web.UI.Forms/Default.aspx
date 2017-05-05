@@ -49,6 +49,7 @@
     <ext:Hidden runat="server" ID="vsTitle" Text="<%$Resources:Common , VacationSchedules %>" />
     <ext:Hidden runat="server" ID="pyye" Text="<%$Resources:Common , FiscalYears %>" />
     <ext:Hidden runat="server" ID="ltTitle" Text="<%$Resources:Common , LeaveTypes %>" />
+    <ext:Hidden runat="server" ID="loTitle" Text="<%$Resources:Common , LoanOverrides %>" />
     <ext:Hidden runat="server" ID="pyde" Text="<%$Resources:Common , PayrollDefaults %>" />
     <ext:Hidden runat="server" ID="foTitle" Text="<%$Resources:Common , Folders %>" />
     <ext:Hidden runat="server" ID="rtTitle" Text="<%$Resources:Common , RelationshipTypes %>" />
@@ -164,6 +165,11 @@
                                                         <ext:MenuItem runat="server" Text="<%$Resources: Common , LoanTypes%>">
                                                             <Listeners>
                                                                 <Click Handler="openNewTab('loanTypes', 'LoanTypes.aspx', #{ltltTitle}.value, 'icon-Employees')" />
+                                                            </Listeners>
+                                                        </ext:MenuItem>
+                                                        <ext:MenuItem runat="server" Text="<%$Resources: Common , LoanOverrides%>">
+                                                            <Listeners>
+                                                                <Click Handler="openNewTab('loanOverrides', 'LoanOverrides.aspx', #{loTitle}.value, 'icon-Employees')" />
                                                             </Listeners>
                                                         </ext:MenuItem>
                                                         <ext:MenuItem runat="server" Text="<%$Resources: Common , TaskTypes%>">

@@ -177,8 +177,8 @@
                                             <Items>
                                                 <ext:ListItem Text="Jan 31,2016" Value="MMM dd,yyyy" />
                                                 <ext:ListItem Text="Jan 31,16" Value="MMM dd,yy" />
-                                                <ext:ListItem Text="31/1/16" Value="MM/dd/yy" />
-                                                <ext:ListItem Text="1/31/16" Value="dd/MM/yy" />
+                                                <ext:ListItem Text="31/1/16" Value="dd/MM/yy" />
+                                                <ext:ListItem Text="1/31/16" Value="MM/dd/yy" />
                                                 <ext:ListItem Text="31/1/2016" Value="dd/MM/yyyy" />
                                             </Items>
                                         </ext:ComboBox>

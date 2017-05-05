@@ -184,6 +184,15 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Hidden LeaveChanged;
         
         /// <summary>
+        /// TotalText control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Hidden TotalText;
+        
+        /// <summary>
         /// StoredLeaveChanged control.
         /// </summary>
         /// <remarks>
@@ -535,6 +544,15 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.DateField endDate;
         
         /// <summary>
+        /// sumHours control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.TextField sumHours;
+        
+        /// <summary>
         /// justification control.
         /// </summary>
         /// <remarks>
@@ -731,6 +749,15 @@ namespace AionHR.Web.UI.Forms {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.RowSelectionModel rowSelectionModel1;
+        
+        /// <summary>
+        /// sumHours2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.TextField sumHours2;
         
         /// <summary>
         /// SaveButton control.

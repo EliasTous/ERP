@@ -13,7 +13,20 @@
     <script type="text/javascript" src="Scripts/LeaveRequests.js?id=4"></script>
     <script type="text/javascript" src="Scripts/common.js"></script>
     <script type="text/javascript" src="Scripts/moment.js"></script>
-
+    <script type="text/javascript" >
+        function CalcSum() {
+            
+            var sum = 0;
+            App.LeaveDaysGrid.getStore().each(function (record) {
+                sum += record.data['leaveHours'];
+            });
+           
+            App.sumHours.setValue(sum);
+            App.sumHours2.setValue(sum);
+            
+           
+        }
+    </script>
 </head>
 <body style="background: url(Images/bg.png) repeat;">
     <form id="Form1" runat="server">
@@ -36,6 +49,7 @@
         <ext:Hidden ID="CurrentLeave" runat="server" />
         <ext:Hidden ID="DateFormat" runat="server" />
         <ext:Hidden ID="LeaveChanged" runat="server" Text="1" EnableViewState="true" />
+        <ext:Hidden ID="TotalText" runat="server" Text="<%$ Resources: TotalText %>" />
         <ext:Hidden ID="StoredLeaveChanged" runat="server" Text="0" EnableViewState="true" />
         <ext:Store
             ID="Store1"
@@ -398,14 +412,15 @@
                                 <ext:TextField ID="recordId" runat="server" Name="recordId" Hidden="true" />
                                 <ext:DateField ID="startDate" runat="server" FieldLabel="<%$ Resources:FieldStartDate%>" Name="startDate" AllowBlank="false" >
                                     <Listeners>
-                                        <Change Handler="App.direct.MarkLeaveChanged();" />
+                                        <Change Handler="App.direct.MarkLeaveChanged(); CalcSum();" />
                                     </Listeners>
                                     </ext:DateField>
                                 <ext:DateField ID="endDate" runat="server" FieldLabel="<%$ Resources:FieldEndDate%>" Name="endDate" AllowBlank="false" >
                                      <Listeners>
-                                        <Change Handler="App.direct.MarkLeaveChanged();" />
+                                        <Change Handler="App.direct.MarkLeaveChanged(); CalcSum(); " />
                                     </Listeners>
                                     </ext:DateField>
+                                <ext:TextField runat="server" ID="sumHours" ReadOnly="true" FieldLabel="<%$ Resources:TotalText%>" />
                                 <ext:TextArea ID="justification" runat="server" FieldLabel="<%$ Resources:FieldJustification%>" Name="justification" />
                                 <ext:TextField ID="destination" runat="server" FieldLabel="<%$ Resources:FieldDestination%>" Name="destination" AllowBlank="false" />
 
@@ -498,11 +513,11 @@
                             <Items>
                                 <ext:GridPanel
                     ID="LeaveDaysGrid"
-                    runat="server"
+                    runat="server" 
                    
                     PaddingSpec="0 0 1 0"
                     Header="false"
-                     MaxHeight="450"
+                     MaxHeight="350"
                     Layout="FitLayout"
                     Scroll="Vertical"
                     Border="false"
@@ -528,8 +543,10 @@
 
                     <ColumnModel ID="ColumnModel2" runat="server" SortAscText="<%$ Resources:Common , SortAscText %>" SortDescText="<%$ Resources:Common ,SortDescText  %>" SortClearText="<%$ Resources:Common ,SortClearText  %>" ColumnsText="<%$ Resources:Common ,ColumnsText  %>" EnableColumnHide="false" Sortable="false">
                         <Columns>
-                            <ext:Column ID="Column4" Visible="false" DataIndex="recordId" runat="server" />
-                            <ext:Column ID="Column7" Visible="false" DataIndex="leaveId" runat="server" />
+                            <ext:Column ID="Column4" Visible="false" DataIndex="recordId" runat="server" >
+                                </ext:Column>
+                            <ext:Column ID="Column7" Visible="false" DataIndex="leaveId" runat="server" >
+                                </ext:Column>
                             <ext:Column ID="Column6" DataIndex="dayId" Text="<%$ Resources: FieldDayId%>" runat="server"  Width="85">
                                 <Renderer Handler="var friendlydate = moment(record.data['dayId'], 'YYYYMMDD');  return friendlydate.format(document.getElementById('DateFormat').value);">
                                     
@@ -540,19 +557,20 @@
 
                                 </Renderer>
                                 </ext:Column>
-                            <ext:Column ID="DateColumn2" DataIndex="workingHours" Text="<%$ Resources: FieldWorkingHours%>" runat="server" Flex="2" />
+                            <ext:Column ID="DateColumn2" DataIndex="workingHours" Text="<%$ Resources: FieldWorkingHours%>" runat="server" Flex="2" >
+                                </ext:Column>
                             <ext:WidgetColumn ID="WidgetColumn2" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldLeaveHours %>" DataIndex="leaveHours" Hideable="false" Width="125" Align="Center">
                                 <Widget>
                                    
-                                    <ext:NumberField runat="server" MinValue="0" DataIndex="leaveHours" >
+                                    <ext:NumberField runat="server" MinValue="1" DataIndex="leaveHours" >
                                         <Listeners>
-                                            <Change Handler="var rec = this.getWidgetRecord(); if(rec.data['workingHours']<this.value) return false; rec.set('leaveHours',this.value); rec.commit();" />
+                                            <Change Handler="var rec = this.getWidgetRecord(); if(rec.data['workingHours']<this.value){this.setValue(rec.data['workingHours']); }if(1>this.value){this.setValue(1);}  rec.set('leaveHours',this.value); rec.commit(); CalcSum(); " />
                                             <AfterRender Handler=" this.maxValue=this.getWidgetRecord().data['workingHours'];" />
                                         </Listeners>
                                         </ext:NumberField>
 
                                 </Widget>
-
+                               
                             </ext:WidgetColumn>
 
                         
@@ -561,6 +579,7 @@
 
                         </Columns>
                     </ColumnModel>
+                                    
                     <DockedItems>
 
                         <ext:Toolbar ID="Toolbar4" runat="server" Dock="Bottom">
@@ -583,9 +602,21 @@
                         <ext:RowSelectionModel ID="rowSelectionModel1" runat="server" Mode="Single" StopIDModeInheritance="true" />
                         <%--<ext:CheckboxSelectionModel ID="CheckboxSelectionModel1" runat="server" Mode="Multi" StopIDModeInheritance="true" />--%>
                     </SelectionModel>
+                                    <BottomBar>
+                                        <ext:Toolbar runat="server" >
+                                            <Items>
+                                                <ext:ToolbarFill  runat="server"/>
+                                                <ext:TextField runat="server" Width="250" ID="sumHours2" ReadOnly="true" FieldLabel="<%$ Resources:TotalText%>" />
+                                            </Items>
+                                        </ext:Toolbar>
+                                    </BottomBar>
                 </ext:GridPanel>
+
+                               
                             </Items>
+                            
                         </ext:FormPanel>
+                       
                     </Items>
                 </ext:TabPanel>
             </Items>
@@ -593,7 +624,7 @@
                 <ext:Button ID="SaveButton" runat="server" Text="<%$ Resources:Common, Save %>" Icon="Disk">
 
                     <Listeners>
-                        <Click Handler="CheckSession(); if (!#{BasicInfoTab}.getForm().isValid()) {return false;}  " />
+                        <Click Handler="CheckSession(); if (!#{BasicInfoTab}.getForm().isValid()||!#{LeaveDays}.getForm().isValid()) {return false;}  " />
                     </Listeners>
                     <DirectEvents>
                         <Click OnEvent="SaveNewRecord" Failure="Ext.MessageBox.alert('#{titleSavingError}.value', '#{titleSavingErrorMessage}.value');">

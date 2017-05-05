@@ -1159,6 +1159,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Loan Overrides.
+        /// </summary>
+        internal static string LoanOverrides {
+            get {
+                return ResourceManager.GetString("LoanOverrides", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Loans.
         /// </summary>
         internal static string Loans {

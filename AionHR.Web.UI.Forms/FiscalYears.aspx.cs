@@ -144,7 +144,7 @@ namespace AionHR.Web.UI.Forms
 
 
                     CurrentYear.Text = id.ToString();
-
+                    
                     Viewport1.ActiveIndex = 1;
                     // InitCombos(response.result);
                     break;
@@ -609,7 +609,7 @@ namespace AionHR.Web.UI.Forms
             FiscalPeriodsListRequest req = new FiscalPeriodsListRequest();
             req.Year = CurrentYear.Text;
             req.PeriodType = (SalaryType)Convert.ToInt32(periodType.Value.ToString());
-            req.Status = 0;
+            req.Status = "3";
             ListResponse<FiscalPeriod> resp = _payrollService.ChildGetAll<FiscalPeriod>(req);
             if (!resp.Success)
             {

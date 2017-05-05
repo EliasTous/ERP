@@ -117,28 +117,28 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="EditWindowsTitle" xml:space="preserve">
-    <value>Payroll Defaults</value>
+  <data name="FieldLdMethod" xml:space="preserve">
+    <value>Loan Coverage Method</value>
   </data>
-  <data name="FieldLoan" xml:space="preserve">
-    <value>Loan Deduction Id</value>
+  <data name="FieldLdValue" xml:space="preserve">
+    <value>Payment Value</value>
   </data>
-  <data name="FieldOT" xml:space="preserve">
-    <value>Over Time Entitlement</value>
+  <data name="FieldName" xml:space="preserve">
+    <value>Name</value>
   </data>
-  <data name="FieldPE" xml:space="preserve">
-    <value>Penalty Deduction</value>
+  <data name="ldMethod1" xml:space="preserve">
+    <value>Percentage of Net Salary</value>
   </data>
-  <data name="FieldSS" xml:space="preserve">
-    <value>Social Security Deduction</value>
+  <data name="ldMethod2" xml:space="preserve">
+    <value>Percentage of Basic Salary</value>
   </data>
-  <data name="FieldUL" xml:space="preserve">
-    <value>Unpaid Leave Deduction</value>
+  <data name="ldMethod3" xml:space="preserve">
+    <value>Percentage of Loan</value>
   </data>
-  <data name="FixedAmount" xml:space="preserve">
+  <data name="ldMethod4" xml:space="preserve">
     <value>Fixed Amount</value>
   </data>
-  <data name="FixedPayment" xml:space="preserve">
+  <data name="ldMethod5" xml:space="preserve">
     <value>Fixed Payment</value>
   </data>
   <data name="LoanCoverageType" xml:space="preserve">
@@ -149,14 +149,5 @@
   </data>
   <data name="PaymentValueP" xml:space="preserve">
     <value>Payment Value %</value>
-  </data>
-  <data name="PFromBasicSalary" xml:space="preserve">
-    <value>Percentage of Basic Salary</value>
-  </data>
-  <data name="PFromLoan" xml:space="preserve">
-    <value>Percentage of Loan</value>
-  </data>
-  <data name="PFromNetSalary" xml:space="preserve">
-    <value>Percentage of Net Salary</value>
   </data>
 </root>

@@ -233,6 +233,7 @@
     <Content Include="LeaveCalendar.aspx" />
     <Content Include="LeaveRequests.aspx" />
     <Content Include="LeaveTypes.aspx" />
+    <Content Include="LoanOverrides.aspx" />
     <Content Include="LoanRequests.aspx" />
     <Content Include="LoanTypes.aspx" />
     <Content Include="Login.aspx" />
@@ -294,6 +295,7 @@
     <Content Include="Scripts\cropper.js" />
     <Content Include="Scripts\EmployeeComplaints.js" />
     <Content Include="Scripts\EmployeesOrgChart.js" />
+    <Content Include="Scripts\LoanOverrides.js" />
     <Content Include="Scripts\PayrollGeneration.js" />
     <Content Include="Scripts\Folders.js" />
     <Content Include="Scripts\HijriCalendar.js" />
@@ -578,6 +580,13 @@
     </Compile>
     <Compile Include="Controls\HijriGregDatePicker.ascx.designer.cs">
       <DependentUpon>HijriGregDatePicker.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="LoanOverrides.aspx.cs">
+      <DependentUpon>LoanOverrides.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LoanOverrides.aspx.designer.cs">
+      <DependentUpon>LoanOverrides.aspx</DependentUpon>
     </Compile>
     <Compile Include="LoanRequests.aspx.cs">
       <DependentUpon>LoanRequests.aspx</DependentUpon>
@@ -1407,6 +1416,7 @@
     <Content Include="App_LocalResources\PayrollDefaults.aspx.ar.resx" />
     <Content Include="App_LocalResources\FiscalYears.aspx.resx" />
     <Content Include="App_LocalResources\PayrollGeneration.aspx.resx" />
+    <Content Include="App_LocalResources\LoanOverrides.aspx.resx" />
     <EmbeddedResource Include="Properties\licenses.licx" />
     <Content Include="Reports\App_LocalResources\RT202.aspx.resx" />
     <Content Include="Reports\App_LocalResources\RT01.aspx.ar.resx" />

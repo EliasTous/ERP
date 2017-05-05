@@ -8,7 +8,7 @@ public class FiscalPeriodsListRequest:ListRequest
 
     public SalaryType PeriodType { get; set; }
 
-    public short Status { get; set; }
+    public string Status { get; set; }
 
     private Dictionary<string, string> parameters;
     public override Dictionary<string, string> Parameters
@@ -67,6 +67,27 @@ public class PayrollListRequest:ListRequest
             parameters.Add("_year", Year);
             parameters.Add("_salaryType", PeriodType);
             parameters.Add("_status", Status);
+            return parameters;
+        }
+    }
+}
+public class PayrollEntitlementsDeductionListRequest : ListRequest
+{
+    public string PayId { get; set; }
+
+    public string SeqNo { get; set; }
+
+   
+
+    private Dictionary<string, string> parameters;
+    public override Dictionary<string, string> Parameters
+    {
+        get
+        {
+            parameters = new Dictionary<string, string>();
+            parameters.Add("_payId", PayId);
+            parameters.Add("_seqNo", SeqNo);
+            
             return parameters;
         }
     }

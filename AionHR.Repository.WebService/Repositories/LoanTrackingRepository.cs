@@ -22,12 +22,16 @@ namespace AionHR.Repository.WebService.Repositories
             DeleteMethodName = "delLR";
 
             ChildGetLookup.Add(typeof(LoanType), "getLT");
+            ChildGetLookup.Add(typeof(LoanOverride), "getEM");
             ChildGetAllLookup.Add(typeof(LoanType), "qryLT");
+            ChildGetAllLookup.Add(typeof(LoanOverride), "qryEM");
             ChildAddOrUpdateLookup.Add(typeof(LoanType), "setLT");
             ChildDeleteLookup.Add(typeof(LoanType), "delLT");
+            ChildDeleteLookup.Add(typeof(LoanOverride), "delEM");
 
             ChildGetAllLookup.Add(typeof(LoanComment), "qryLC");
             ChildAddOrUpdateLookup.Add(typeof(LoanComment), "setLC");
+            ChildAddOrUpdateLookup.Add(typeof(LoanOverride), "setEM");
             ChildDeleteLookup.Add(typeof(LoanComment), "delLC");
 
 

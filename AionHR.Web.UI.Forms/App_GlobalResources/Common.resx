@@ -846,4 +846,7 @@
   <data name="GeneratePayroll" xml:space="preserve">
     <value>Generate Payroll</value>
   </data>
+  <data name="LoanOverrides" xml:space="preserve">
+    <value>Loan Overrides</value>
+  </data>
 </root>

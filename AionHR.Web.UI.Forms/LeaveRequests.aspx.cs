@@ -221,7 +221,7 @@ namespace AionHR.Web.UI.Forms
                     resp.Items.ForEach(x => x.dow = (short)DateTime.ParseExact(x.dayId, "yyyyMMdd", new CultureInfo("en")).DayOfWeek);
                     leaveDaysStore.DataBind();
                     LeaveChanged.Text = "0";
-                  
+                    X.Call("CalcSum");
                     panelRecordDetails.ActiveTabIndex = 0;
                     this.EditRecordWindow.Title = Resources.Common.EditWindowsTitle;
                     this.EditRecordWindow.Show();
@@ -799,6 +799,7 @@ namespace AionHR.Web.UI.Forms
             days.Items.ForEach(x => leaveDays.Add(new LeaveDay() { dow = (short)DateTime.ParseExact(x.dayId, "yyyyMMdd", new CultureInfo("en")).DayOfWeek, dayId = x.dayId, workingHours = x.workingHours, leaveHours = x.workingHours }));
             leaveDaysStore.DataSource = leaveDays;
             leaveDaysStore.DataBind();
+            X.Call("CalcSum");
         }
         [DirectMethod]
         public void Unnamed_Event()

@@ -117,6 +117,15 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Deductions" xml:space="preserve">
+    <value>Deductions</value>
+  </data>
+  <data name="Entitlements" xml:space="preserve">
+    <value>Entitlements</value>
+  </data>
+  <data name="FieldAmount" xml:space="preserve">
+    <value>Amount</value>
+  </data>
   <data name="FieldBasicAmount" xml:space="preserve">
     <value>Basic Amount</value>
   </data>
@@ -132,11 +141,20 @@
   <data name="FieldDays" xml:space="preserve">
     <value>Days</value>
   </data>
+  <data name="FieldDeduction" xml:space="preserve">
+    <value>Deduction</value>
+  </data>
   <data name="FieldDepartment" xml:space="preserve">
     <value>Select a Department</value>
   </data>
+  <data name="FieldEDAmount" xml:space="preserve">
+    <value>ED</value>
+  </data>
   <data name="FieldEmployee" xml:space="preserve">
     <value>Select an Employee</value>
+  </data>
+  <data name="FieldEntitlement" xml:space="preserve">
+    <value>Entitlement</value>
   </data>
   <data name="FieldFrom" xml:space="preserve">
     <value>From</value>
@@ -200,6 +218,9 @@
   </data>
   <data name="Status1" xml:space="preserve">
     <value>Posted</value>
+  </data>
+  <data name="Status2" xml:space="preserve">
+    <value>All</value>
   </data>
   <data name="StatusInProcess" xml:space="preserve">
     <value>In Process</value>

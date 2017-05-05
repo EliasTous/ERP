@@ -266,23 +266,26 @@ namespace AionHR.Web.UI.Forms.Utilities
 
             Ext.Net.Node rootParent = BuildRootParentNode("rootParent", Resources.Common.Reports, true);
             Ext.Net.Node timeAt = BuildParentNode("standard", Resources.Common.StandardReports, true, rootParent);
-            Ext.Net.Node rt101 = BuildLeafNode("report_rt101", Resources.Common.RT01, "Group", true, timeAt);
-            Ext.Net.Node rt102 = BuildLeafNode("report_rt102", Resources.Common.RT102, "Group", true, timeAt);
-            Ext.Net.Node rt103 = BuildLeafNode("report_rt103", Resources.Common.RT103, "Group", true, timeAt);
-            Ext.Net.Node rt104 = BuildLeafNode("report_rt104", Resources.Common.RT104, "Group", true, timeAt);
-            Ext.Net.Node rt105 = BuildLeafNode("report_rt105", Resources.Common.RT105, "Group", true, timeAt);
-            Ext.Net.Node rt106 = BuildLeafNode("report_rt106", Resources.Common.RT106, "Group", true, timeAt);
+            Ext.Net.Node rt1 = BuildParentNode("report_rt1", Resources.Common.EmployeeFiles, true, timeAt);
+            Ext.Net.Node rt101 = BuildLeafNode("report_rt101", Resources.Common.RT01, "Group", true, rt1);
+            Ext.Net.Node rt102 = BuildLeafNode("report_rt102", Resources.Common.RT102, "Group", true, rt1);
+            Ext.Net.Node rt103 = BuildLeafNode("report_rt103", Resources.Common.RT103, "Group", true, rt1);
+            Ext.Net.Node rt104 = BuildLeafNode("report_rt104", Resources.Common.RT104, "Group", true, rt1);
+            Ext.Net.Node rt105 = BuildLeafNode("report_rt105", Resources.Common.RT105, "Group", true, rt1);
+            Ext.Net.Node rt106 = BuildLeafNode("report_rt106", Resources.Common.RT106, "Group", true, rt1);
 
+            Ext.Net.Node rt2 = BuildParentNode("report_rt2", Resources.Common.Payroll,  true, timeAt);
+            Ext.Net.Node rt201 = BuildLeafNode("report_rt201", Resources.Common.RT201, "Group", true, rt2);
+            Ext.Net.Node rt202 = BuildLeafNode("report_rt202", Resources.Common.RT202, "Group", true, rt2);
+            Ext.Net.Node rt203 = BuildLeafNode("report_rt203", Resources.Common.RT203, "Group", true, rt2);
 
-            Ext.Net.Node rt201 = BuildLeafNode("report_rt201", Resources.Common.RT201, "Group", true, timeAt);
-            Ext.Net.Node rt202 = BuildLeafNode("report_rt202", Resources.Common.RT202, "Group", true, timeAt);
-            Ext.Net.Node rt203 = BuildLeafNode("report_rt203", Resources.Common.RT203, "Group", true, timeAt);
+            Ext.Net.Node rt3 = BuildParentNode("report_rt3", Resources.Common.TimeAttendance,  true, timeAt);
+            Ext.Net.Node rt301 = BuildLeafNode("report_rt301", Resources.Common.RT301, "Group", true, rt3);
+            Ext.Net.Node rt301B = BuildLeafNode("report_rt301B", Resources.Common.RT301B, "Group", true, rt3);
 
-            Ext.Net.Node rt301 = BuildLeafNode("report_rt301", Resources.Common.RT301, "Group", true, timeAt);
-            Ext.Net.Node rt301B = BuildLeafNode("report_rt301B", Resources.Common.RT301B, "Group", true, timeAt);
-
-            Ext.Net.Node rt801 = BuildLeafNode("report_rt801", Resources.Common.RT801, "Group", true, timeAt);
-            Ext.Net.Node rt802 = BuildLeafNode("report_rt802", Resources.Common.RT802, "Group", true, timeAt);
+            Ext.Net.Node rt8 = BuildParentNode("report_rt8", Resources.Common.SystemSettings, true, timeAt);
+            Ext.Net.Node rt801 = BuildLeafNode("report_rt801", Resources.Common.RT801, "Group", true, rt8);
+            Ext.Net.Node rt802 = BuildLeafNode("report_rt802", Resources.Common.RT802, "Group", true, rt8);
 
             FillConfigItem(rt101, "rt101", "Reports/RT01.aspx", Resources.Common.RT01, "icon-Employees", "1");
             FillConfigItem(rt102, "rt102", "Reports/RT102.aspx", Resources.Common.RT102, "icon-Employees", "1");

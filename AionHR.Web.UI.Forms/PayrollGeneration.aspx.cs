@@ -71,7 +71,7 @@ namespace AionHR.Web.UI.Forms
                 Viewport1.ActiveIndex = 0;
                 yearStore.DataSource = GetYears();
                 yearStore.DataBind();
-              
+
             }
 
         }
@@ -86,7 +86,7 @@ namespace AionHR.Web.UI.Forms
         {
             ListRequest l = new ListRequest();
             ListResponse<FiscalYear> resp = _payrollService.ChildGetAll<FiscalYear>(l);
-            if(!resp.Success)
+            if (!resp.Success)
             {
                 X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
                 X.Msg.Alert(Resources.Common.Error, resp.Summary).Show();
@@ -157,7 +157,7 @@ namespace AionHR.Web.UI.Forms
                 req.DepartmentId = "0";
             }
 
-           
+
 
             if (!string.IsNullOrEmpty(employeeId.Text) && employeeId.Value.ToString() != "0")
             {
@@ -175,7 +175,7 @@ namespace AionHR.Web.UI.Forms
             req.Size = "30";
             req.StartAt = "1";
             req.Filter = "";
-          
+
             return req;
         }
         private List<Employee> GetEmployeesFiltered(string query)
@@ -247,7 +247,7 @@ namespace AionHR.Web.UI.Forms
             req.entity = h;
 
             PostResponse<GenerationHeader> resp = _payrollService.ChildAddOrUpdate<GenerationHeader>(req);
-            if(!resp.Success)
+            if (!resp.Success)
             {
                 X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
                 X.Msg.Alert(Resources.Common.Error, resp.Summary).Show();
@@ -306,7 +306,7 @@ namespace AionHR.Web.UI.Forms
                     Store1.Reload();
                     break;
 
-             
+
                 default:
                     break;
             }
@@ -322,6 +322,7 @@ namespace AionHR.Web.UI.Forms
             string basic = e.ExtraParams["basicAmount"];
             string tax = e.ExtraParams["taxAmount"];
             string net = e.ExtraParams["netSalary"];
+            CurrentSeqNo.Text = id;
             switch (type)
             {
                 case "imgEdit":
@@ -334,7 +335,122 @@ namespace AionHR.Web.UI.Forms
                     break;
 
                 case "imgAttach":
+                    entitlementsStore.DataSource = GetPayrollEntitlements();
+                    entitlementsStore.DataBind();
+                    deductionStore.DataSource = GetPayrollDeductions();
+                    deductionStore.DataBind();
+                    EDWindow.Show();
                     break;
+                default:
+                    break;
+            }
+
+
+        }
+
+        protected void PoPuPEN(object sender, DirectEventArgs e)
+        {
+
+
+            int id = Convert.ToInt32(e.ExtraParams["id"]);
+            string type = e.ExtraParams["type"];
+            string record = e.ExtraParams["values"];
+            string entitlement = "";
+            
+            PayrollEntitlementDeduction detail = JsonConvert.DeserializeObject<List<PayrollEntitlementDeduction>>(record)[0];
+            switch (type)
+            {
+
+
+                case "imgEdit":
+
+                    
+                    
+
+                    edStore.DataSource = GetAllEntitlements();
+                    edStore.DataBind();
+                    edId.Select(detail.edId.ToString());
+                    isInsert.Text = "0";
+                    this.type.Text = "1";
+                    edId.RightButtons[0].Enabled = false;
+                    edId.ReadOnly = true;
+                    amount.Text = detail.amount.ToString();
+
+                    EditEDWindow.Show();
+                    break;
+                case "imgDelete":
+                    
+                    
+                    X.Msg.Confirm(Resources.Common.Confirmation, Resources.Common.DeleteOneRecord, new MessageBoxButtonsConfig
+                    {
+                        Yes = new MessageBoxButtonConfig
+                        {
+                            //We are call a direct request metho for deleting a record
+                            Handler = String.Format("App.direct.DeleteEN({0})", id),
+                            Text = Resources.Common.Yes
+                        },
+                        No = new MessageBoxButtonConfig
+                        {
+                            Text = Resources.Common.No
+                        }
+
+                    }).Show();
+                    break;
+
+                default:
+                    break;
+            }
+
+
+        }
+
+        protected void PoPuPDE(object sender, DirectEventArgs e)
+        {
+
+
+            int id = Convert.ToInt32(e.ExtraParams["id"]);
+            string type = e.ExtraParams["type"];
+            string deduction = "";
+            string record = e.ExtraParams["values"];
+            PayrollEntitlementDeduction detail = JsonConvert.DeserializeObject<List<PayrollEntitlementDeduction>>(record)[0];
+            switch (type)
+            {
+
+
+                case "imgEdit":
+
+                    
+
+                    edStore.DataSource = GetAllDeductions();
+                    edStore.DataBind();
+                    isInsert.Text = "0";
+                    this.type.Text = "2";
+                    edId.RightButtons[0].Enabled = false;
+                    edId.Select(detail.edId.ToString());
+                    amount.Text = detail.amount.ToString();
+
+                    EditEDWindow.Show();
+
+                    break;
+                case "imgDelete":
+                    deduction = e.ExtraParams["values"];
+                    
+                    X.Msg.Confirm(Resources.Common.Confirmation, Resources.Common.DeleteOneRecord, new MessageBoxButtonsConfig
+                    {
+                        Yes = new MessageBoxButtonConfig
+                        {
+                            //We are call a direct request metho for deleting a record
+                            Handler = String.Format("App.direct.DeleteDE({0})", id),
+                            Text = Resources.Common.Yes
+                        },
+                        No = new MessageBoxButtonConfig
+                        {
+                            Text = Resources.Common.No
+                        }
+
+                    }).Show();
+                    break;
+
                 default:
                     break;
             }
@@ -352,6 +468,60 @@ namespace AionHR.Web.UI.Forms
             else return "1";
         }
 
+        [DirectMethod]
+        public void DeleteEN(string index)
+        {
+            try
+            {
+                
+                //Step 2 :  remove the object from the store
+                entitlementsStore.Remove(index);
+
+                //Step 3 : Showing a notification for the user 
+                Notification.Show(new NotificationConfig
+                {
+                    Title = Resources.Common.Notification,
+                    Icon = Icon.Information,
+                    Html = Resources.Common.RecordDeletedSucc
+                });
+              
+            }
+            catch (Exception ex)
+            {
+                //In case of error, showing a message box to the user
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorDeletingRecord).Show();
+
+            }
+        }
+        [DirectMethod]
+        public void DeleteDE(string index)
+        {
+            try
+            {
+                
+                deductionStore.Remove(index);
+
+                //Step 3 : Showing a notification for the user 
+                Notification.Show(new NotificationConfig
+                {
+                    Title = Resources.Common.Notification,
+                    Icon = Icon.Information,
+                    Html = Resources.Common.RecordDeletedSucc
+                });
+              
+            }
+            catch (Exception ex)
+            {
+                //In case of error, showing a message box to the user
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorDeletingRecord).Show();
+
+            }
+        }
+
+
+
         protected void fiscalPeriodsStore_ReadData(object sender, StoreReadDataEventArgs e)
         {
             FiscalPeriodsListRequest req = new FiscalPeriodsListRequest();
@@ -359,17 +529,17 @@ namespace AionHR.Web.UI.Forms
             {
                 req.Year = fiscalYear.Value.ToString();
                 req.PeriodType = (SalaryType)Convert.ToInt32(salaryType.Value.ToString());
-                req.Status = 0;
-            
-            ListResponse<FiscalPeriod> resp = _payrollService.ChildGetAll<FiscalPeriod>(req);
+                req.Status = "0";
+
+                ListResponse<FiscalPeriod> resp = _payrollService.ChildGetAll<FiscalPeriod>(req);
                 if (!resp.Success)
                     return;
                 List<object> obs = new List<Object>();
-                resp.Items.ForEach(x => obs.Add(new {recordId=x.periodId, name=x.GetFriendlyName(GetLocalResourceObject("Month").ToString(),GetLocalResourceObject("Week").ToString(), GetLocalResourceObject("Weeks").ToString(),_systemService.SessionHelper.GetDateformat()) }));
+                resp.Items.ForEach(x => obs.Add(new { recordId = x.periodId, name = x.GetFriendlyName(GetLocalResourceObject("Month").ToString(), GetLocalResourceObject("Week").ToString(), GetLocalResourceObject("Weeks").ToString(), _systemService.SessionHelper.GetDateformat()) }));
                 fiscalPeriodsStore.DataSource = obs;
-            fiscalPeriodsStore.DataBind();
-                
-                
+                fiscalPeriodsStore.DataBind();
+
+
             }
             catch { }
         }
@@ -385,7 +555,7 @@ namespace AionHR.Web.UI.Forms
         {
             EmployeePayrollListRequest req = GetEmployeePayrollRequest();
             ListResponse<EmployeePayroll> resp = _payrollService.ChildGetAll<EmployeePayroll>(req);
-            if(!resp.Success)
+            if (!resp.Success)
             {
 
                 X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
@@ -435,7 +605,7 @@ namespace AionHR.Web.UI.Forms
 
             }
 
-            
+
             req.Size = "30";
             req.StartAt = "1";
             req.Filter = "";
@@ -447,7 +617,7 @@ namespace AionHR.Web.UI.Forms
             PayrollListRequest req = GetPayrollListRequest();
 
             ListResponse<GenerationHeader> headers = _payrollService.ChildGetAll<GenerationHeader>(req);
-            if(!headers.Success)
+            if (!headers.Success)
             {
                 X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
                 X.Msg.Alert(Resources.Common.Error, headers.Summary).Show();
@@ -466,12 +636,218 @@ namespace AionHR.Web.UI.Forms
         [DirectMethod]
         public void PayrollPages()
         {
-            
+
             yearStore.DataSource = GetYears();
             yearStore.DataBind();
             Viewport1.ActiveIndex = 0;
         }
 
+        protected void ADDNewEN(object sender, DirectEventArgs e)
+        {
+
+            //Reset all values of the relative object
+            EditEDForm.Reset();
+            this.EditEDWindow.Title = Resources.Common.AddNewRecord;
+            isInsert.Text = "1";
+            this.type.Text = "1";
+            edStore.DataSource = GetAllEntitlements();
+            edStore.DataBind();
+            edId.RightButtons[0].Enabled = true;
+            edId.ReadOnly = false;
+            this.EditEDWindow.Show();
+        }
+        private List<EntitlementDeduction> GetAllEntitlements()
+        {
+            ListRequest req = new ListRequest();
+            ListResponse<EntitlementDeduction> eds = _employeeService.ChildGetAll<EntitlementDeduction>(req);
+            return eds.Items.Where(s => s.type == 1).ToList();
+
+
+
+        }
+        private List<EntitlementDeduction> GetAllDeductions()
+        {
+            ListRequest req = new ListRequest();
+            ListResponse<EntitlementDeduction> eds = _employeeService.ChildGetAll<EntitlementDeduction>(req);
+            return eds.Items.Where(s => s.type == 2).ToList();
+
+
+
+        }
+        protected void ADDNewDE(object sender, DirectEventArgs e)
+        {
+
+            //Reset all values of the relative object
+            EditEDForm.Reset();
+            this.EditEDWindow.Title = Resources.Common.AddNewRecord;
+            edStore.DataSource = GetAllDeductions();
+            isInsert.Text = "1";
+            this.type.Text = "2";
+            edStore.DataBind();
+            edId.ReadOnly = false;
+            edId.RightButtons[0].Enabled = true;
+            this.EditEDWindow.Show();
+        }
+
+        protected void SaveED(object sender, DirectEventArgs e)
+        {
+            string type = e.ExtraParams["type"];
+
+            string obj = e.ExtraParams["values"];
+
+            string insert = e.ExtraParams["isInsert"];
+            PayrollEntitlementDeduction b = JsonConvert.DeserializeObject<PayrollEntitlementDeduction>(obj);
+
+            if (edId.SelectedItem != null)
+                b.edName = edId.SelectedItem.Text;
+
+            // Define the object to add or edit as null
+
+            if (insert == "1")
+            {
+
+                try
+                {
+                    b.seqNo = CurrentSeqNo.Text;
+                    b.payId = CurrentPayId.Text;
+
+                    if (type == "1")
+                        this.entitlementsStore.Insert(0, b);
+                    else
+                        this.deductionStore.Insert(0, b);
+                    //Display successful notification
+                   
+
+                    this.EditEDWindow.Close();
+
+                }
+
+                catch (Exception ex)
+                {
+                    //Error exception displaying a messsage box
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorSavingRecord).Show();
+                }
+
+
+            }
+            else
+            {
+                //Update Mode
+
+                try
+                {
+                    ModelProxy record = null;
+                    if (type == "1")
+                        record= this.entitlementsStore.GetById(b.edId);
+                    else
+                        record = this.deductionStore.GetById(b.edId);
+
+                    record.Set("edName", b.edName);
+
+                    record.Set("amount", b.amount);
+                    record.Commit();
+                 
+                    this.EditEDWindow.Close();
+
+
+                }
+                catch (Exception ex)
+                {
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorUpdatingRecord).Show();
+                }
+            }
+        }
+
+        protected void SaveAll(object sender, DirectEventArgs e)
+        {
+
+
+            //Getting the id to check if it is an Add or an edit as they are managed within the same form.
+            string id = e.ExtraParams["id"];
+
+            string obj = e.ExtraParams["values"];
+            string ents = e.ExtraParams["entitlements"];
+            string deds = e.ExtraParams["deductions"];
+            
+            // Define the object to add or edit as null
+
+
+            
+
+                try
+                {
+                List<PayrollEntitlementDeduction> entitlments = JsonConvert.DeserializeObject<List<PayrollEntitlementDeduction>>(ents);
+                List<PayrollEntitlementDeduction> deductions = JsonConvert.DeserializeObject<List<PayrollEntitlementDeduction>>(deds);
+                PostRequest<PayrollEntitlementDeduction> delReq = new PostRequest<PayrollEntitlementDeduction>();
+                delReq.entity = new PayrollEntitlementDeduction();
+                delReq.entity.edId = "0";
+                delReq.entity.payId = CurrentPayId.Text;
+                delReq.entity.seqNo = CurrentSeqNo.Text;
+                PostResponse<PayrollEntitlementDeduction> delResp = _payrollService.ChildAddOrUpdate<PayrollEntitlementDeduction>(delReq);
+
+                if(!delResp.Success)
+                {
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorSavingRecord).Show();
+                    return;
+
+                }
+                entitlments.AddRange(deductions);
+                PostRequest<PayrollEntitlementDeduction[]> req = new PostRequest<PayrollEntitlementDeduction[]>();
+                req.entity = entitlments.ToArray();
+                PostResponse<PayrollEntitlementDeduction[]> resp = _payrollService.ChildAddOrUpdate<PayrollEntitlementDeduction[]>(req);
+                if (!resp.Success)
+                {
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorSavingRecord).Show();
+                    return;
+
+                }
+                Notification.Show(new NotificationConfig
+                {
+                    Title = Resources.Common.Notification,
+                    Icon = Icon.Information,
+                    Html = Resources.Common.RecordUpdatedSucc
+                });
+                Store1.Reload();
+                EDWindow.Close();
+            }
+                catch (Exception ex)
+                {
+                    //Error exception displaying a messsage box
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorSavingRecord).Show();
+                }
+
+
+           
+        }
+
+        private List<PayrollEntitlementDeduction> GetPayrollEntitlements()
+        {
+            return GetPayrollEntitlementsDeductions().Where(x => x.type == 1).ToList();
+        }
+        private List<PayrollEntitlementDeduction> GetPayrollEntitlementsDeductions()
+        {
+            PayrollEntitlementsDeductionListRequest req = new PayrollEntitlementsDeductionListRequest();
+            req.PayId = CurrentPayId.Text;
+            req.SeqNo = CurrentSeqNo.Text;
+
+            ListResponse<PayrollEntitlementDeduction> resp = _payrollService.ChildGetAll<PayrollEntitlementDeduction>(req);
+            if (!resp.Success)
+            {
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, resp.Summary).Show();
+                return new List<PayrollEntitlementDeduction>();
+            }
+            return resp.Items;
+        }
+        private List<PayrollEntitlementDeduction> GetPayrollDeductions()
+        {
+            return GetPayrollEntitlementsDeductions().Where(x => x.type == 2).ToList();
+        }
 
     }
 }

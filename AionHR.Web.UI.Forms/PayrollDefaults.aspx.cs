@@ -121,6 +121,19 @@ namespace AionHR.Web.UI.Forms
             }
 
             catch { }
+            try
+            {
+                ldMethod.Select(items.Where(s => s.Key == "ldMethod").First().Value);
+            }
+
+            catch { }
+
+            try
+            {
+                ldValue.Text = (items.Where(s => s.Key == "ldValue").First().Value);
+            }
+
+            catch { }
 
         }
 
@@ -188,8 +201,12 @@ namespace AionHR.Web.UI.Forms
                 submittedValues.Add(new KeyValuePair<string, string>("penaltyDeductionId", values.peDeductionId.ToString()));
             if (!string.IsNullOrEmpty(values.otEntitlementId.ToString()))
                 submittedValues.Add(new KeyValuePair<string, string>("otEntitlementId", values.otEntitlementId.ToString()));
-          
-             KeyValuePair<string, string>[] valArr = submittedValues.ToArray();
+            if (!string.IsNullOrEmpty(values.ldMethod.ToString()))
+                submittedValues.Add(new KeyValuePair<string, string>("ldMethod", values.ldMethod.ToString()));
+            if (!string.IsNullOrEmpty(values.ldValue.ToString()))
+                submittedValues.Add(new KeyValuePair<string, string>("ldValue", values.ldValue.ToString()));
+
+            KeyValuePair<string, string>[] valArr = submittedValues.ToArray();
             PostRequest<KeyValuePair<string, string>[]> req = new PostRequest<KeyValuePair<string, string>[]>();
             req.entity = valArr;
             PostResponse<KeyValuePair<string, string>[]> resp = _systemService.ChildAddOrUpdate<KeyValuePair<string, string>[]>(req);

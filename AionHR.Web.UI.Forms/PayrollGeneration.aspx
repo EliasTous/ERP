@@ -15,8 +15,8 @@
     <script type="text/javascript">
         function setStartEnd(s, e) {
 
-            App.startDate.setValue(s);
-            App.endDate.setValue(e);
+            App.startDate.setValue(s.trim());
+            App.endDate.setValue(e.trim());
             var d = moment(e, document.getElementById("DateFormat").value);
             App.payDate.setValue(d.toDate());
         }
@@ -34,8 +34,11 @@
 
         <ext:Hidden ID="DateFormat" runat="server" />
         <ext:Hidden ID="CurrentPayId" runat="server" />
+        <ext:Hidden ID="CurrentSeqNo" runat="server" />
+        <ext:Hidden ID="CurrentCurrencyRef" runat="server" />
         <ext:Hidden ID="PeriodStatus0" runat="server" Text="<%$ Resources: Status0 %>" />
         <ext:Hidden ID="PeriodStatus1" runat="server" Text="<%$ Resources: Status1 %>" />
+        <ext:Hidden ID="PeriodStatus2" runat="server" Text="<%$ Resources: Status2 %>" />
 
 
         <ext:Viewport ID="Viewport1" runat="server" Layout="CardLayout" ActiveIndex="0">
@@ -85,6 +88,7 @@
 
                                         <ext:ListItem Text="<%$ Resources: Status0%>" Value="0"></ext:ListItem>
                                         <ext:ListItem Text="<%$ Resources: Status1%>" Value="1"></ext:ListItem>
+                                        <ext:ListItem Text="<%$ Resources: Status2%>" Value="2"></ext:ListItem>
 
                                     </Items>
                                     <Listeners>
@@ -371,6 +375,8 @@
                                                 <ext:ModelField Name="calendarMinutes" />
                                                 <ext:ModelField Name="workingDays" />
                                                 <ext:ModelField Name="workingMinutes" />
+                                                <ext:ModelField Name="eAmount" />
+                                                <ext:ModelField Name="dAmount" />
                                                 <ext:ModelField Name="seqNo" />
                                             </Fields>
                                         </ext:Model>
@@ -379,17 +385,18 @@
                             </Store>
                             <ColumnModel>
                                 <Columns>
-                                    <ext:Column runat="server" DataIndex="name.fullName" Text="<%$ Resources: FieldEmployee%>" Flex="2" >
+                                    <ext:Column runat="server" DataIndex="name.fullName" Text="<%$ Resources: FieldEmployee%>" Flex="2">
                                         <Renderer Handler="return record.data['name'].fullName;" />
-                                        </ext:Column>
+                                    </ext:Column>
                                     <ext:Column runat="server" DataIndex="branchName" Text="<%$ Resources: FieldBranch%>" Flex="1" />
                                     <ext:Column runat="server" DataIndex="departmentName" Text="<%$ Resources: FieldDepartment%>" Flex="1" />
                                     <ext:Column runat="server" DataIndex="calendarDays" Text="<%$ Resources: FieldCalDays%>" Width="100" />
                                     <ext:Column runat="server" DataIndex="calendarMinutes" Text="<%$ Resources: FieldCalMinutes%>" Width="150" />
                                     <ext:Column runat="server" DataIndex="workingDays" Text="<%$ Resources: FieldDays%>" Width="100" />
-                                    <ext:Column runat="server" DataIndex="workingMinutes" Text="<%$ Resources: FieldMinutes%>" Width="150" />
                                     <ext:Column runat="server" DataIndex="basicAmount" Text="<%$ Resources: FieldBasicAmount%>" />
                                     <ext:Column runat="server" DataIndex="taxAmount" Text="<%$ Resources: FieldTaxAmount%>" />
+                                    <ext:Column runat="server" DataIndex="eAmount" Text="<%$ Resources: Entitlements%>" />
+                                    <ext:Column runat="server" DataIndex="dAmount" Text="<%$ Resources: Deductions%>" />
                                     <ext:Column runat="server" DataIndex="netSalary" Text="<%$ Resources: FieldNetSalary%>" />
                                     <ext:Column runat="server"
                                         ID="Column1" Visible="true"
@@ -407,7 +414,7 @@
                                     </ext:Column>
                                 </Columns>
                             </ColumnModel>
-                             <Listeners>
+                            <Listeners>
                                 <Render Handler="this.on('cellclick', cellClick);" />
                             </Listeners>
                             <DirectEvents>
@@ -429,6 +436,8 @@
                         </ext:GridPanel>
                     </Items>
                 </ext:Panel>
+
+
             </Items>
 
         </ext:Viewport>
@@ -437,8 +446,8 @@
             ID="EditEMWindow"
             runat="server"
             Icon="PageEdit"
-             Draggable="false"
-              Maximizable="false" Resizable="false"
+            Draggable="false"
+            Maximizable="false" Resizable="false"
             Width="300"
             Height="200"
             AutoShow="false"
@@ -448,23 +457,22 @@
 
             <Items>
                 <ext:FormPanel
-                            ID="EditEMForm" DefaultButton="SaveDocumentButton"
-                            runat="server"
-                            
-                             Header="false"
-                            DefaultAnchor="100%"
-                            BodyPadding="5">
-                            <Items>
-                                <ext:TextField runat="server" Name="seqNo" ID="seqNo" Hidden="true" Disabled="true" />
-                                
-                                <ext:TextField runat="server" Name="basicAmount" ID="basicAmount" FieldLabel="<%$ Resources: FieldBasicAmount %>" />
-                                <ext:TextField runat="server" Name="taxAmount" ID="taxAmount" FieldLabel="<%$ Resources: FieldTaxAmount %>" />
-                                <ext:TextField runat="server" ReadOnly="true" Name="netSalary" ID="netSalary" FieldLabel="<%$ Resources: FieldNetSalary %>" />
+                    ID="EditEMForm" DefaultButton="SaveDocumentButton"
+                    runat="server"
+                    Header="false"
+                    DefaultAnchor="100%"
+                    BodyPadding="5">
+                    <Items>
+                        <ext:TextField runat="server" Name="seqNo" ID="seqNo" Hidden="true" Disabled="true" />
 
-                                
-                           </Items>
+                        <ext:TextField runat="server" Name="basicAmount" ID="basicAmount" FieldLabel="<%$ Resources: FieldBasicAmount %>" />
+                        <ext:TextField runat="server" ReadOnly="true" Name="taxAmount" ID="taxAmount" FieldLabel="<%$ Resources: FieldTaxAmount %>" />
+                        <ext:TextField runat="server" ReadOnly="true" Name="netSalary" ID="netSalary" FieldLabel="<%$ Resources: FieldNetSalary %>" />
 
-                        </ext:FormPanel>
+
+                    </Items>
+
+                </ext:FormPanel>
             </Items>
             <Buttons>
                 <ext:Button ID="SaveDocumentButton" runat="server" Text="<%$ Resources:Common, Save %>" Icon="Disk">
@@ -477,7 +485,7 @@
                             <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="={#{EditEMWindow}.body}" />
                             <ExtraParams>
                                 <ext:Parameter Name="id" Value="#{seqNo}.getValue()" Mode="Raw" />
-                                
+
                                 <ext:Parameter Name="values" Value="#{EditEMForm}.getForm().getValues(false, false, false, true)" Mode="Raw" Encode="true" />
                             </ExtraParams>
                         </Click>
@@ -491,9 +499,342 @@
             </Buttons>
         </ext:Window>
 
+        <ext:Window ID="EDWindow" runat="server"
+            Icon="PageEdit"
+            Draggable="false"
+            Maximizable="false" Resizable="false"
+            Width="700"
+            Height="400"
+            AutoShow="false"
+            Modal="true"
+            Hidden="true"
+            Layout="Fit">
+            <Items>
+                <ext:TabPanel runat="server" ID="edTabPanel" ActiveTabIndex="0">
+                    <Items>
+                        <ext:FormPanel
+                            ID="entitlementsForm"
+                            runat="server"
+                            Title="<%$ Resources: Entitlements %>"
+                            Icon="ApplicationSideList"
+                            DefaultAnchor="100%"
+                            BodyPadding="5">
+
+                            <Items>
+                                <ext:GridPanel
+                                    ID="entitlementsGrid"
+                                    runat="server"
+                                    Width="600" Header="false"
+                                    Height="350" Layout="FitLayout"
+                                    Frame="true" TitleCollapse="true" Scroll="Vertical">
+                                    <TopBar>
+                                        <ext:Toolbar ID="Toolbar3" runat="server" ClassicButtonStyle="false">
+                                            <Items>
+                                                <ext:Button ID="Button11" runat="server" Text="<%$ Resources:Common , Add %>" Icon="Add">
+                                                    <Listeners>
+                                                        <Click Handler="CheckSession();" />
+                                                    </Listeners>
+                                                    <DirectEvents>
+                                                        <Click OnEvent="ADDNewEN">
+                                                            <EventMask ShowMask="true" CustomTarget="={#{entitlementsGrid}.body}" />
+                                                        </Click>
+                                                    </DirectEvents>
+                                                </ext:Button>
 
 
+                                            </Items>
+                                        </ext:Toolbar>
 
+                                    </TopBar>
+                                    <Store>
+                                        <ext:Store ID="entitlementsStore" runat="server">
+                                            <Model>
+                                                <ext:Model runat="server" IDProperty="edId">
+                                                    <Fields>
+                                                        <ext:ModelField Name="seqNo" />
+                                                        <ext:ModelField Name="edId" />
+                                                        <ext:ModelField Name="edName" />
+                                                        <ext:ModelField Name="payId" />
+                                                        <ext:ModelField Name="amount" />
+                                                    </Fields>
+                                                </ext:Model>
+                                            </Model>
+                                        </ext:Store>
+                                    </Store>
+                                    <ColumnModel>
+                                        <Columns>
+
+
+                                            <ext:Column ID="ColENName"
+                                                runat="server" Flex="2"
+                                                Text="<%$ Resources:FieldEntitlement%>"
+                                                DataIndex="edName"
+                                                Align="Center">
+                                            </ext:Column>
+
+
+                                            <ext:NumberColumn
+                                                runat="server" Flex="2"
+                                                Text="<%$ Resources:FieldAmount%>"
+                                                DataIndex="amount"
+                                                Align="Center">
+                                                <Renderer Handler=" return record.data['amount'];" />
+                                            </ext:NumberColumn>
+
+                                            <ext:Column runat="server"
+                                                ID="ColENDelete" Visible="true"
+                                                Text=""
+                                                Width="80"
+                                                Align="Center"
+                                                Fixed="true"
+                                                Filterable="false"
+                                                Hideable="false"
+                                                MenuDisabled="true"
+                                                Resizable="false">
+                                                <Renderer Handler="return editRender()+'&nbsp;&nbsp;'+deleteRender(); " />
+                                            </ext:Column>
+                                        </Columns>
+                                    </ColumnModel>
+                                    <Listeners>
+                                        <Render Handler="this.on('cellclick', cellClick);" />
+                                    </Listeners>
+                                    <DirectEvents>
+
+                                        <CellClick OnEvent="PoPuPEN">
+                                            <EventMask ShowMask="true" />
+                                            <ExtraParams>
+
+                                                <ext:Parameter Name="id" Value="record.getId()" Mode="Raw" />
+                                                <ext:Parameter Name="type" Value="getCellType( this, rowIndex, cellIndex)" Mode="Raw" />
+                                                <ext:Parameter Name="values" Value="Ext.encode(#{entitlementsGrid}.getRowsValues({selectedOnly : true}))" Mode="Raw" />
+                                            </ExtraParams>
+
+                                        </CellClick>
+                                    </DirectEvents>
+
+
+                                </ext:GridPanel>
+                            </Items>
+
+                        </ext:FormPanel>
+                        <ext:FormPanel
+                            ID="DeductionForm"
+                            runat="server"
+                            Title="<%$ Resources: Deductions %>"
+                            Icon="ApplicationSideList"
+                            DefaultAnchor="100%"
+                            BodyPadding="5">
+                            <Items>
+                                <ext:GridPanel
+                                    ID="deductionGrid"
+                                    runat="server"
+                                    Width="600" Header="false"
+                                    Height="350" Layout="FitLayout"
+                                    Frame="true" TitleCollapse="true" Scroll="Vertical">
+                                    <Store>
+                                        <ext:Store ID="deductionStore" runat="server">
+                                            <Model>
+                                                <ext:Model runat="server" IDProperty="edId">
+                                                    <Fields>
+                                                        <ext:ModelField Name="seqNo" />
+                                                        <ext:ModelField Name="edId" />
+                                                        <ext:ModelField Name="edName" />
+                                                        <ext:ModelField Name="amount" />
+                                                         <ext:ModelField Name="payId" />
+
+                                                    </Fields>
+                                                </ext:Model>
+                                            </Model>
+                                        </ext:Store>
+                                    </Store>
+
+                                    <TopBar>
+                                        <ext:Toolbar ID="Toolbar4" runat="server" ClassicButtonStyle="false">
+                                            <Items>
+                                                <ext:Button ID="Button14" runat="server" Text="<%$ Resources:Common , Add %>" Icon="Add">
+                                                    <Listeners>
+                                                        <Click Handler="CheckSession();" />
+                                                    </Listeners>
+                                                    <DirectEvents>
+                                                        <Click OnEvent="ADDNewDE">
+                                                            <EventMask ShowMask="true" CustomTarget="={#{deductionGrid}.body}" />
+                                                        </Click>
+                                                    </DirectEvents>
+                                                </ext:Button>
+
+
+                                            </Items>
+                                        </ext:Toolbar>
+                                    </TopBar>
+                                    <ColumnModel>
+                                        <Columns>
+                                            <ext:Column ID="ColDEName"
+                                                runat="server" Flex="2"
+                                                Text="<%$ Resources:FieldDeduction%>"
+                                                DataIndex="edName"
+                                                Align="Center">
+                                            </ext:Column>
+
+                                            <ext:NumberColumn
+                                                runat="server"
+                                                Text="<%$ Resources:FieldAmount%>"
+                                                DataIndex="amount" Flex="2"
+                                                Align="Center">
+                                                <Editor>
+                                                    <ext:NumberField
+                                                        runat="server"
+                                                        AllowBlank="false" />
+                                                </Editor>
+                                                <Renderer Handler="return record.data['amount'];">
+                                                </Renderer>
+
+                                            </ext:NumberColumn>
+
+
+                                            <ext:Column runat="server"
+                                                ID="ColDEDelete" Visible="true"
+                                                Text=""
+                                                Width="80"
+                                                Align="Center"
+                                                Fixed="true"
+                                                Filterable="false"
+                                                Hideable="false"
+                                                MenuDisabled="true"
+                                                Resizable="false">
+                                                <Renderer Handler="return editRender()+'&nbsp;&nbsp;'+deleteRender(); " />
+                                            </ext:Column>
+
+                                        </Columns>
+                                    </ColumnModel>
+                                    <Listeners>
+                                        <Render Handler="this.on('cellclick', cellClick);" />
+                                    </Listeners>
+                                    <DirectEvents>
+
+                                        <CellClick OnEvent="PoPuPDE">
+                                            <EventMask ShowMask="true" />
+                                            <ExtraParams>
+
+                                                <ext:Parameter Name="id" Value="record.getId()" Mode="Raw" />
+                                                <ext:Parameter Name="type" Value="getCellType( this, rowIndex, cellIndex)" Mode="Raw" />
+                                                <ext:Parameter Name="values" Value="Ext.encode(#{deductionGrid}.getRowsValues({selectedOnly : true}))" Mode="Raw" />
+                                            </ExtraParams>
+
+                                        </CellClick>
+                                    </DirectEvents>
+                                </ext:GridPanel>
+                            </Items>
+
+                        </ext:FormPanel>
+
+                    </Items>
+                    <Buttons>
+                        <ext:Button ID="Button6" runat="server" Text="<%$ Resources:Common, Save %>" Icon="Disk">
+
+                            <Listeners>
+                                <Click Handler="CheckSession(); " />
+                            </Listeners>
+                            <DirectEvents>
+                                <Click OnEvent="SaveAll" Failure="Ext.MessageBox.alert('#{titleSavingError}.value', '#{titleSavingErrorMessage}.value');">
+                                    <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="={#{EDWindow}.body}" />
+                                    <ExtraParams>
+                                        <ext:Parameter Name="entitlements" Value="Ext.encode(#{entitlementsGrid}.getRowsValues({selectedOnly : false}))" Mode="Raw" />
+                                        <ext:Parameter Name="deductions" Value="Ext.encode(#{deductionGrid}.getRowsValues({selectedOnly : false}))" Mode="Raw" />
+                                    </ExtraParams>
+                                </Click>
+                            </DirectEvents>
+                        </ext:Button>
+                        <ext:Button ID="Button7" runat="server" Text="<%$ Resources:Common , Cancel %>" Icon="Cancel">
+                    <Listeners>
+                        <Click Handler="this.up('window').hide();" />
+                    </Listeners>
+                </ext:Button>
+                    </Buttons>
+                </ext:TabPanel>
+            </Items>
+        </ext:Window>
+
+        <ext:Window
+            ID="EditEDWindow"
+            runat="server"
+            Icon="PageEdit"
+            Draggable="false"
+            Maximizable="false" Resizable="false"
+            Width="300"
+            Height="200"
+            AutoShow="false"
+            Modal="true"
+            Hidden="true"
+            Layout="Fit">
+
+            <Items>
+                <ext:FormPanel
+                    ID="EditEDForm" DefaultButton="Button4"
+                    runat="server"
+                    Header="false"
+                    DefaultAnchor="100%"
+                    BodyPadding="5">
+                    <Items>
+                        <ext:TextField runat="server" Name="type" ID="type" Hidden="true" Disabled="true" />
+                        <ext:TextField runat="server" Name="isInsert" ID="isInsert" Hidden="true" Disabled="true" />
+                        <ext:ComboBox runat="server" ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" AllowBlank="false" DisplayField="name" ID="edId" Name="edId" FieldLabel="<%$ Resources:FieldDeduction%>" SimpleSubmit="true">
+                            <Store>
+                                <ext:Store runat="server" ID="edStore">
+                                    <Model>
+                                        <ext:Model runat="server">
+                                            <Fields>
+                                                <ext:ModelField Name="recordId" />
+                                                <ext:ModelField Name="name" />
+                                            </Fields>
+                                        </ext:Model>
+                                    </Model>
+                                </ext:Store>
+                            </Store>
+                            <RightButtons>
+                                <ext:Button ID="Button9" runat="server" Icon="Add" Hidden="true">
+                                    <Listeners>
+                                        <Click Handler="CheckSession();  " />
+                                    </Listeners>
+
+                                </ext:Button>
+                            </RightButtons>
+                            <Listeners>
+                                <FocusEnter Handler="this.rightButtons[0].setHidden(false);" />
+                                <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
+                            </Listeners>
+                        </ext:ComboBox>
+                        <ext:TextField runat="server" Name="amount" ID="amount" FieldLabel="<%$ Resources: FieldBasicAmount %>" />
+
+
+                    </Items>
+
+                </ext:FormPanel>
+            </Items>
+            <Buttons>
+                <ext:Button ID="Button4" runat="server" Text="<%$ Resources:Common, Save %>" Icon="Disk">
+
+                    <Listeners>
+                        <Click Handler="CheckSession(); if (!#{EditEDForm}.getForm().isValid()) {return false;} " />
+                    </Listeners>
+                    <DirectEvents>
+                        <Click OnEvent="SaveED" Failure="Ext.MessageBox.alert('#{titleSavingError}.value', '#{titleSavingErrorMessage}.value');">
+                            <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="={#{EditEDWindow}.body}" />
+                            <ExtraParams>
+                                <ext:Parameter Name="type" Value="#{type}.getValue()" Mode="Raw" />
+                                <ext:Parameter Name="isInsert" Value="#{isInsert}.getValue()" Mode="Raw" />
+
+                                <ext:Parameter Name="values" Value="#{EditEDForm}.getForm().getValues(false, false, false, true)" Mode="Raw" Encode="true" />
+                            </ExtraParams>
+                        </Click>
+                    </DirectEvents>
+                </ext:Button>
+                <ext:Button ID="Button5" runat="server" Text="<%$ Resources:Common , Cancel %>" Icon="Cancel">
+                    <Listeners>
+                        <Click Handler="this.up('window').hide();" />
+                    </Listeners>
+                </ext:Button>
+            </Buttons>
+        </ext:Window>
     </form>
 </body>
 </html>

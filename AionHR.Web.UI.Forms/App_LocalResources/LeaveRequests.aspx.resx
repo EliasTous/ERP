@@ -207,4 +207,7 @@
   <data name="LeaveDaysWindowTitle" xml:space="preserve">
     <value>Leave Days</value>
   </data>
+  <data name="TotalText" xml:space="preserve">
+    <value>Total</value>
+  </data>
 </root>

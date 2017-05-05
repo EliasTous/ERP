@@ -688,7 +688,7 @@
     <value>المجلدات</value>
   </data>
   <data name="Loans" xml:space="preserve">
-    <value>سلف</value>
+    <value>السلف</value>
   </data>
   <data name="LoanTypes" xml:space="preserve">
     <value>انواع السلف</value>
@@ -843,7 +843,13 @@
   <data name="FiscalYears" xml:space="preserve">
     <value>السنوات المالية</value>
   </data>
-  <data name="DailyAttendance" xml:space="preserve">
+  <data name="RT301B" xml:space="preserve">
     <value>الدوام اليومي</value>
+  </data>
+  <data name="GeneratePayrolls" xml:space="preserve">
+    <value>الرواتب</value>
+  </data>
+  <data name="LoanOverrides" xml:space="preserve">
+    <value>استثناءات السلف</value>
   </data>
 </root>

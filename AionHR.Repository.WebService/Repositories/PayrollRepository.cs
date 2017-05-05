@@ -21,12 +21,16 @@ namespace AionHR.Repository.WebService.Repositories
             ChildGetAllLookup.Add(typeof(GenerationHeader), "qryHE");
             ChildGetAllLookup.Add(typeof(FiscalPeriod), "qryPE");
             ChildGetAllLookup.Add(typeof(EmployeePayroll), "qryEM");
+            ChildGetAllLookup.Add(typeof(PayrollEntitlementDeduction), "qryED");
 
             ChildAddOrUpdateLookup.Add(typeof(FiscalYear), "setYE");
             ChildAddOrUpdateLookup.Add(typeof(GenerationHeader), "setHE");
             ChildAddOrUpdateLookup.Add(typeof(EmployeePayroll), "setEM");
+            ChildAddOrUpdateLookup.Add(typeof(PayrollEntitlementDeduction[]), "arrED");
+            ChildAddOrUpdateLookup.Add(typeof(PayrollEntitlementDeduction), "setED");
 
             ChildDeleteLookup.Add(typeof(FiscalYear), "delYE");
+            ChildDeleteLookup.Add(typeof(PayrollEntitlementDeduction), "delED");
 
         }
     }
