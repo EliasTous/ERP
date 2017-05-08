@@ -122,7 +122,7 @@ namespace AionHR.Web.UI.Forms
                 FillDepartment();
                 FillAssetCateg();
                 FillBranch();
-                
+                Column1.Format = Column2.Format = date.Format = returnedDate.Format = _systemService.SessionHelper.GetDateformat();
 
             }
 

@@ -343,7 +343,7 @@
                             </ext:Column>
                             
                             <ext:Column ID="Column7" DataIndex="ttName" Text="<%$ Resources: FieldTTName%>" runat="server" Flex="2" />
-                            <ext:DateColumn Format="dd-MM-yyyy" ID="colDueDate" DataIndex="dueDate" Text="<%$ Resources: FieldDueDate%>" runat="server" Flex="2" />
+                            <ext:DateColumn   ID="colDueDate" DataIndex="dueDate" Text="<%$ Resources: FieldDueDate%>" runat="server" Flex="2" />
                             <ext:Column    CellCls="cellLink" ID="colDescription" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDescription%>" DataIndex="description" Flex="2" Hideable="false"></ext:Column>                        
                             <ext:CheckColumn runat="server" Width="100" Text="<%$ Resources: FieldCompleted %>" DataIndex="completed"></ext:CheckColumn>
 
@@ -516,7 +516,7 @@
                                 <ext:ComboBox runat="server" ID="inRelationToId"
                                     DisplayField="fullName"
                                     ValueField="recordId"
-                                    TypeAhead="false" AllowBlank="false"
+                                    TypeAhead="false" AllowBlank="true"
                                     FieldLabel="<%$ Resources: FieldInRelationToName%>"
                                     HideTrigger="true" SubmitValue="true"
                                     MinChars="3"

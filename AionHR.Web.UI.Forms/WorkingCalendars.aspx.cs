@@ -779,7 +779,7 @@ namespace AionHR.Web.UI.Forms
             if (!response.Success)//it maybe another check
             {
                 X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorUpdatingRecord).Show();
+                X.Msg.Alert(Resources.Common.Error, response.Summary).Show();
                 return;
             }
 
@@ -829,7 +829,7 @@ namespace AionHR.Web.UI.Forms
             if (!response.Success)//it maybe another check
             {
                 X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.ErrorUpdatingRecord,response.Message).Show();
+                X.Msg.Alert(Resources.Common.ErrorUpdatingRecord,response.Summary).Show();
                 return;
             }
 
@@ -874,6 +874,12 @@ namespace AionHR.Web.UI.Forms
             request.DayId = dayId.Text;
             request.year = CurrentYear.Text;
             RecordResponse<Model.Attendance.CalendarDay> dayObj = _branchService.ChildGetRecord<Model.Attendance.CalendarDay>(request);
+            if(!dayObj.Success)
+            {
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.ErrorUpdatingRecord, dayObj.Summary).Show();
+                return;
+            }
             dayConfigWindow.Show();
             schedulesStore.DataSource = LoadSchedules();
             schedulesStore.DataBind();

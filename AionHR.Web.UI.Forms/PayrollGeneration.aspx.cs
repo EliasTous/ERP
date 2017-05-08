@@ -25,6 +25,7 @@ using AionHR.Model.Attendance;
 using AionHR.Model.Employees.Leaves;
 using AionHR.Model.Employees.Profile;
 using AionHR.Model.Payroll;
+using AionHR.Infrastructure.JSON;
 
 namespace AionHR.Web.UI.Forms
 {
@@ -71,7 +72,7 @@ namespace AionHR.Web.UI.Forms
                 Viewport1.ActiveIndex = 0;
                 yearStore.DataSource = GetYears();
                 yearStore.DataBind();
-
+               
             }
 
         }
@@ -257,7 +258,41 @@ namespace AionHR.Web.UI.Forms
             Viewport1.ActiveIndex = 2;
             FillBranch();
             FillDepartment();
+            Store1.Reload();
+            AddEDButton.Disabled = AddENButton.Disabled = SaveEDButton.Disabled = false;
         }
+
+        protected void SaveHE(object sender, DirectEventArgs e)
+        {
+           
+            string s = e.ExtraParams["values"];
+            JsonSerializerSettings settings = new JsonSerializerSettings();
+            CustomResolver res = new CustomResolver();
+            settings.ContractResolver = res;
+            res.AddRule("statusCombo", "status");
+            GenerationHeader h = JsonConvert.DeserializeObject<GenerationHeader>(s,settings);
+            h.recordId = recordId.Text;
+            PostRequest<GenerationHeader> req = new PostRequest<GenerationHeader>();
+            req.entity = h;
+            
+            PostResponse<GenerationHeader> resp = _payrollService.ChildAddOrUpdate<GenerationHeader>(req);
+            if (!resp.Success)
+            {
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, resp.Summary).Show();
+
+                return;
+            }
+            Notification.Show(new NotificationConfig
+            {
+                Title = Resources.Common.Notification,
+                Icon = Icon.Information,
+                Html = Resources.Common.RecordUpdatedSucc
+            });
+            payrollsStore.Reload();
+            EditHeaderWindow.Close();
+        }
+
 
         protected void SaveEM(object sender, DirectEventArgs e)
         {
@@ -294,18 +329,38 @@ namespace AionHR.Web.UI.Forms
 
             string id = e.ExtraParams["id"];
             string type = e.ExtraParams["type"];
-
+            string status = e.ExtraParams["status"];
+            IsPayrollPosted.Text = status;
+            AddEDButton.Disabled = AddENButton.Disabled = SaveEDButton.Disabled = status == "1";
             switch (type)
             {
-                case "imgEdit":
+                case "imgAttach":
                     //Step 1 : get the object from the Web Service 
                     CurrentPayId.Text = id;
                     Viewport1.ActiveIndex = 2;
                     FillBranch();
                     FillDepartment();
-                    Store1.Reload();
-                    break;
 
+                    Store1.Reload();
+
+                    break;
+                case "imgEdit":
+                    RecordRequest req = new RecordRequest();
+                    req.RecordID = id;
+                    RecordResponse<GenerationHeader> resp = _payrollService.ChildGetRecord<GenerationHeader>(req);
+                    if(!resp.Success)
+                    {
+                        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                        X.Msg.Alert(Resources.Common.Error, resp.Summary).Show();
+                        return;
+                    }
+                    statusCombo.Select(resp.result.status);
+                    fromDate.SelectedDate = resp.result.startDate;
+                    toDate.SelectedDate = resp.result.endDate;
+                    recordId.Text = id;
+                    EditHeaderWindow.Show();
+
+                    break;
 
                 default:
                     break;
@@ -322,7 +377,10 @@ namespace AionHR.Web.UI.Forms
             string basic = e.ExtraParams["basicAmount"];
             string tax = e.ExtraParams["taxAmount"];
             string net = e.ExtraParams["netSalary"];
+            string currencyRef = e.ExtraParams["currency"];
+            CurrentCurrencyRef.Text = currencyRef;
             CurrentSeqNo.Text = id;
+
             switch (type)
             {
                 case "imgEdit":
@@ -340,6 +398,7 @@ namespace AionHR.Web.UI.Forms
                     deductionStore.DataSource = GetPayrollDeductions();
                     deductionStore.DataBind();
                     EDWindow.Show();
+
                     break;
                 default:
                     break;
@@ -356,7 +415,7 @@ namespace AionHR.Web.UI.Forms
             string type = e.ExtraParams["type"];
             string record = e.ExtraParams["values"];
             string entitlement = "";
-            
+
             PayrollEntitlementDeduction detail = JsonConvert.DeserializeObject<List<PayrollEntitlementDeduction>>(record)[0];
             switch (type)
             {
@@ -364,8 +423,8 @@ namespace AionHR.Web.UI.Forms
 
                 case "imgEdit":
 
-                    
-                    
+
+
 
                     edStore.DataSource = GetAllEntitlements();
                     edStore.DataBind();
@@ -374,13 +433,14 @@ namespace AionHR.Web.UI.Forms
                     this.type.Text = "1";
                     edId.RightButtons[0].Enabled = false;
                     edId.ReadOnly = true;
+                    edId.FieldLabel= GetLocalResourceObject("FieldEntitlement").ToString();
                     amount.Text = detail.amount.ToString();
 
                     EditEDWindow.Show();
                     break;
                 case "imgDelete":
-                    
-                    
+
+
                     X.Msg.Confirm(Resources.Common.Confirmation, Resources.Common.DeleteOneRecord, new MessageBoxButtonsConfig
                     {
                         Yes = new MessageBoxButtonConfig
@@ -419,22 +479,23 @@ namespace AionHR.Web.UI.Forms
 
                 case "imgEdit":
 
-                    
+
 
                     edStore.DataSource = GetAllDeductions();
                     edStore.DataBind();
                     isInsert.Text = "0";
                     this.type.Text = "2";
                     edId.RightButtons[0].Enabled = false;
+                    edId.FieldLabel = GetLocalResourceObject("FieldDeduction").ToString();
                     edId.Select(detail.edId.ToString());
-                    amount.Text = detail.amount.ToString();
+                    amount.Text = Math.Abs(detail.amount).ToString();
 
                     EditEDWindow.Show();
 
                     break;
                 case "imgDelete":
                     deduction = e.ExtraParams["values"];
-                    
+
                     X.Msg.Confirm(Resources.Common.Confirmation, Resources.Common.DeleteOneRecord, new MessageBoxButtonsConfig
                     {
                         Yes = new MessageBoxButtonConfig
@@ -473,18 +534,13 @@ namespace AionHR.Web.UI.Forms
         {
             try
             {
-                
+
                 //Step 2 :  remove the object from the store
                 entitlementsStore.Remove(index);
 
                 //Step 3 : Showing a notification for the user 
-                Notification.Show(new NotificationConfig
-                {
-                    Title = Resources.Common.Notification,
-                    Icon = Icon.Information,
-                    Html = Resources.Common.RecordDeletedSucc
-                });
-              
+                
+
             }
             catch (Exception ex)
             {
@@ -499,17 +555,12 @@ namespace AionHR.Web.UI.Forms
         {
             try
             {
-                
+
                 deductionStore.Remove(index);
 
                 //Step 3 : Showing a notification for the user 
-                Notification.Show(new NotificationConfig
-                {
-                    Title = Resources.Common.Notification,
-                    Icon = Icon.Information,
-                    Html = Resources.Common.RecordDeletedSucc
-                });
-              
+               
+
             }
             catch (Exception ex)
             {
@@ -654,6 +705,7 @@ namespace AionHR.Web.UI.Forms
             edStore.DataBind();
             edId.RightButtons[0].Enabled = true;
             edId.ReadOnly = false;
+            edId.FieldLabel = GetLocalResourceObject("FieldEntitlement").ToString();
             this.EditEDWindow.Show();
         }
         private List<EntitlementDeduction> GetAllEntitlements()
@@ -686,6 +738,7 @@ namespace AionHR.Web.UI.Forms
             edStore.DataBind();
             edId.ReadOnly = false;
             edId.RightButtons[0].Enabled = true;
+            GetLocalResourceObject("FieldDeduction").ToString();
             this.EditEDWindow.Show();
         }
 
@@ -700,6 +753,10 @@ namespace AionHR.Web.UI.Forms
 
             if (edId.SelectedItem != null)
                 b.edName = edId.SelectedItem.Text;
+            if (type == "2")
+                b.amount = -Math.Abs(b.amount);
+            else
+                b.amount = Math.Abs(b.amount);
 
             // Define the object to add or edit as null
 
@@ -716,7 +773,7 @@ namespace AionHR.Web.UI.Forms
                     else
                         this.deductionStore.Insert(0, b);
                     //Display successful notification
-                   
+
 
                     this.EditEDWindow.Close();
 
@@ -739,15 +796,16 @@ namespace AionHR.Web.UI.Forms
                 {
                     ModelProxy record = null;
                     if (type == "1")
-                        record= this.entitlementsStore.GetById(b.edId);
+                        record = this.entitlementsStore.GetById(b.edId);
                     else
                         record = this.deductionStore.GetById(b.edId);
 
                     record.Set("edName", b.edName);
+                    
+                        record.Set("amount", b.amount);
 
-                    record.Set("amount", b.amount);
                     record.Commit();
-                 
+
                     this.EditEDWindow.Close();
 
 
@@ -770,14 +828,14 @@ namespace AionHR.Web.UI.Forms
             string obj = e.ExtraParams["values"];
             string ents = e.ExtraParams["entitlements"];
             string deds = e.ExtraParams["deductions"];
-            
+
             // Define the object to add or edit as null
 
 
-            
 
-                try
-                {
+
+            try
+            {
                 List<PayrollEntitlementDeduction> entitlments = JsonConvert.DeserializeObject<List<PayrollEntitlementDeduction>>(ents);
                 List<PayrollEntitlementDeduction> deductions = JsonConvert.DeserializeObject<List<PayrollEntitlementDeduction>>(deds);
                 PostRequest<PayrollEntitlementDeduction> delReq = new PostRequest<PayrollEntitlementDeduction>();
@@ -785,9 +843,9 @@ namespace AionHR.Web.UI.Forms
                 delReq.entity.edId = "0";
                 delReq.entity.payId = CurrentPayId.Text;
                 delReq.entity.seqNo = CurrentSeqNo.Text;
-                PostResponse<PayrollEntitlementDeduction> delResp = _payrollService.ChildAddOrUpdate<PayrollEntitlementDeduction>(delReq);
+                PostResponse<PayrollEntitlementDeduction> delResp = _payrollService.ChildDelete<PayrollEntitlementDeduction>(delReq);
 
-                if(!delResp.Success)
+                if (!delResp.Success)
                 {
                     X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
                     X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorSavingRecord).Show();
@@ -814,15 +872,15 @@ namespace AionHR.Web.UI.Forms
                 Store1.Reload();
                 EDWindow.Close();
             }
-                catch (Exception ex)
-                {
-                    //Error exception displaying a messsage box
-                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorSavingRecord).Show();
-                }
+            catch (Exception ex)
+            {
+                //Error exception displaying a messsage box
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorSavingRecord).Show();
+            }
 
 
-           
+
         }
 
         private List<PayrollEntitlementDeduction> GetPayrollEntitlements()

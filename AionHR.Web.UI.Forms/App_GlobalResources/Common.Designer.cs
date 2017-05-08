@@ -925,7 +925,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to FiscalYears.
+        ///   Looks up a localized string similar to Fiscal Years.
         /// </summary>
         internal static string FiscalYears {
             get {
@@ -1159,7 +1159,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Loan Overrides.
+        ///   Looks up a localized string similar to Loan Deductions.
         /// </summary>
         internal static string LoanOverrides {
             get {
@@ -1965,6 +1965,15 @@ namespace Resources {
         internal static string StandardReports {
             get {
                 return ResourceManager.GetString("StandardReports", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to States.
+        /// </summary>
+        internal static string States {
+            get {
+                return ResourceManager.GetString("States", resourceCulture);
             }
         }
         

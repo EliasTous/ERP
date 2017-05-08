@@ -1,4 +1,5 @@
 ﻿using AionHR.Infrastructure.Domain;
+using AionHR.Model.Employees.Profile;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,5 +15,7 @@ namespace AionHR.Model.Company.Structure
         public int timeZone { get; set; }
         
         public bool? isInactive { get; set; }
+
+        public AddressBook addressId { get; set; }
     }
 }

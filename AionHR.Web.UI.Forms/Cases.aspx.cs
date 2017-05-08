@@ -127,6 +127,8 @@ namespace AionHR.Web.UI.Forms
                 statusPref.Select(0);
                 dateCol.Format = _systemService.SessionHelper.GetDateformat() + ": hh:mm:ss";
                 CasesClassId.Text = ClassId.CMCA.ToString();
+                
+                date.Format= colDate.Format= colClosedDate.Format= closedDate.Format= _systemService.SessionHelper.GetDateformat();
             }
 
         }

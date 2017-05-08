@@ -12,7 +12,8 @@ namespace AionHR.Web.UI.Forms.Reports.Controls
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            moduleId.Select(0);
+            if (!IsPostBack)
+                moduleId.Select(0);
         }
 
         public ClassIdParameterSet GetModule()

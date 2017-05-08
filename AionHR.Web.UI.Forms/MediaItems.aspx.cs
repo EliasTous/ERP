@@ -67,6 +67,7 @@ namespace AionHR.Web.UI.Forms
                 SetExtLanguage();
                 HideShowButtons();
                 HideShowColumns();
+                date.Format = DateColumn1.Format = _systemService.SessionHelper.GetDateformat();
             }
         }
 

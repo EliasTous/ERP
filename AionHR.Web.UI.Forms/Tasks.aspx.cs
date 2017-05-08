@@ -152,6 +152,7 @@ namespace AionHR.Web.UI.Forms
                 FillBranch();
                 FillDepartment();
                 FillDivision();
+                colDueDate.Format = dateCol.Format = dueDate.Format = _systemService.SessionHelper.GetDateformat();
                 dateCol.Format = _systemService.SessionHelper.GetDateformat() + ": hh:mm:ss";
                 CasesClassId.Text = ClassId.TMTA.ToString();
             }

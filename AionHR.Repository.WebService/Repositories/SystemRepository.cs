@@ -30,6 +30,7 @@ namespace AionHR.Repository.WebService.Repositories
             ChildAddOrUpdateLookup.Add(typeof(CompanyDocumentType), "setDT");
             ChildAddOrUpdateLookup.Add(typeof(CompanyRightToWork), "setRW");
             ChildAddOrUpdateLookup.Add(typeof(Attachement), "setAT");
+            ChildAddOrUpdateLookup.Add(typeof(State), "setST");
 
 
 
@@ -41,6 +42,7 @@ namespace AionHR.Repository.WebService.Repositories
             ChildGetLookup.Add(typeof(Nationality), "getNA");
             ChildGetLookup.Add(typeof(CompanyDocumentType), "getDT");
             ChildGetLookup.Add(typeof(CompanyRightToWork), "getRW");
+            ChildGetLookup.Add(typeof(State), "getST");
 
 
             ChildDeleteLookup.Add(typeof(Nationality) ,"delNA");
@@ -50,6 +52,7 @@ namespace AionHR.Repository.WebService.Repositories
             ChildDeleteLookup.Add(typeof(SystemFolder), "delFO");
             ChildDeleteLookup.Add(typeof(CompanyDocumentType), "delDT");
             ChildDeleteLookup.Add(typeof(CompanyRightToWork), "delRW");
+            ChildDeleteLookup.Add(typeof(State), "delST");
 
 
 
@@ -60,6 +63,7 @@ namespace AionHR.Repository.WebService.Repositories
             ChildGetAllLookup.Add(typeof(Nationality), "qryNA");
             ChildGetAllLookup.Add(typeof(Currency), "qryCU");
             ChildGetAllLookup.Add(typeof(UserInfo), "qryUS");
+            ChildGetAllLookup.Add(typeof(State), "qryST");
             ChildGetAllLookup.Add(typeof(CompanyDocumentType), "qryDT");
             ChildGetAllLookup.Add(typeof(CompanyRightToWork), "qryRW");
             ChildGetAllLookup.Add(typeof(SystemAlert), "qryAA");

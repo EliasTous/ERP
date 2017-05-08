@@ -124,6 +124,7 @@ namespace AionHR.Web.UI.Forms
                 FillDepartment();
                 //FillDivision();
                 statusPref.Select("0");
+                dateReceived.Format = colDateReceived.Format = _systemService.SessionHelper.GetDateformat();
                 //dateCol.Format = _systemService.SessionHelper.GetDateformat() + ": hh:mm:ss";
 
             }

@@ -37,7 +37,7 @@
                 <ext:FormPanel runat="server" ID="hireInfoForm" Region="Center" Layout="HBoxLayout" >
                     <Items>
                         <ext:Panel runat="server"  flex="2"><Items></Items></ext:Panel>
-                        <ext:Panel runat="server" Flex="4"><Items>
+                        <ext:Panel runat="server" Flex="5"><Items>
                         <ext:DateField runat="server" AllowBlank="false" ID="probationEndDate" Name="probationEndDate" LabelWidth="200" FieldLabel="<%$ Resources:FieldProbationEndDate %>"></ext:DateField>
                         <ext:DateField runat="server" AllowBlank="false" ID="nextReviewDate" Name="nextReviewDate"  LabelWidth="200" FieldLabel="<%$ Resources:FieldNextReviewDate %>"></ext:DateField>
                         <ext:ComboBox runat="server" AllowBlank="false" ValueField="recordId" QueryMode="Local"  LabelWidth="200" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" ID="npId" Name="npId" FieldLabel="<%$ Resources:FieldNP%>" SimpleSubmit="true">

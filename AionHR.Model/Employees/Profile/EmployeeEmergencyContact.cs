@@ -26,5 +26,7 @@ namespace AionHR.Model.Employees.Profile
         public AddressBook addressId { get; set; }
 
         public int naId { get; set; }
+
+        public string stateId { get; set; }
     }
 }

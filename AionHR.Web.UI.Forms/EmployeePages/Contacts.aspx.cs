@@ -161,6 +161,8 @@ namespace AionHR.Web.UI.Forms.EmployeePages
 
                     FillECNationality();
                     ecnaId.Select(entity.addressId.countryId.ToString());
+                    FillECState();
+                    ecstId.Select(entity.addressId.stateId);
                     street1.Text = entity.addressId.street1;
                     street2.Text = entity.addressId.street2;
                     postalCode.Text = entity.addressId.postalCode;
@@ -215,7 +217,8 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     copostalCode.Text = entity.addressId.postalCode;
                     cocity.Text = entity.addressId.city;
                     coaddressId.Text = entity.addressId.recordId;
-
+                    FillCOState();
+                    costId.Select(entity.addressId.stateId);
                     
 
                     FillCONationality();
@@ -327,7 +330,8 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             ContactsForm.Reset();
             this.EditContactWindow.Title = Resources.Common.AddNewRecord;
            
-            FillCONationality();     
+            FillCONationality();
+            FillCOState();
 
             this.EditContactWindow.Show();
         }
@@ -340,6 +344,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             this.EditContactWindow.Title = Resources.Common.AddNewRecord;
             FillRelationshipType();
             FillECNationality();
+            FillECState();
 
             this.EditEmergencyContactWindow.Show();
         }
@@ -409,6 +414,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             JsonSerializerSettings settings = new JsonSerializerSettings();
             CustomResolver res = new CustomResolver();
             res.AddRule("conaId", "naId");
+            res.AddRule("costId", "stateId");
             res.AddRule("costreet1", "addressId.street1");
             settings.ContractResolver = res;
             EmployeeContact b = JsonConvert.DeserializeObject<EmployeeContact>(obj,settings);
@@ -418,7 +424,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             // Define the object to add or edit as null
             b.rtName = rtId.SelectedItem.Text;
 
-            b.addressId = new AddressBook() { street1 = costreet1.Text, street2 = costreet2.Text, city = cocity.Text, postalCode = copostalCode.Text, countryId = b.naId  ,countryName = conaId.SelectedItem.Text};
+            b.addressId = new AddressBook() { street1 = costreet1.Text, street2 = costreet2.Text, city = cocity.Text, postalCode = copostalCode.Text, countryId = b.naId , stateId=b.stateId ,countryName = conaId.SelectedItem.Text};
             b.addressId.recordId = coaddressId.Text;
             b.employeeId = Convert.ToInt32(CurrentEmployee.Text);
             if (string.IsNullOrEmpty(id))
@@ -539,13 +545,14 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             JsonSerializerSettings settings = new JsonSerializerSettings();
             CustomResolver res = new CustomResolver();
             res.AddRule("ecnaId", "naId");
+            res.AddRule("ecstId", "stateId");
             settings.ContractResolver = res;
             EmployeeEmergencyContact b = JsonConvert.DeserializeObject<EmployeeEmergencyContact>(obj,settings);
             b.employeeId = Convert.ToInt32(CurrentEmployee.Text);
             b.recordId = id;
             // Define the object to add or edit as null
             b.rtName = rtId.SelectedItem.Text;
-            b.addressId = new AddressBook() { street1 = street1.Text, street2 = street2.Text, city = city.Text, postalCode = postalCode.Text, countryId = b.naId, countryName = ecnaId.SelectedItem.Text };
+            b.addressId = new AddressBook() { street1 = street1.Text, street2 = street2.Text, city = city.Text, postalCode = postalCode.Text, countryId = b.naId, countryName = ecnaId.SelectedItem.Text, stateId=b.stateId };
             b.employeeId = Convert.ToInt32(CurrentEmployee.Text);
             b.addressId.recordId = ecaddressId.Text;
             if (string.IsNullOrEmpty(id))
@@ -717,6 +724,33 @@ namespace AionHR.Web.UI.Forms.EmployeePages
 
         }
 
+        private void FillECState()
+        {
+            ListRequest documentTypes = new ListRequest();
+            ListResponse<State> resp = _systemService.ChildGetAll<State>(documentTypes);
+            if (!resp.Success)
+            {
+                X.Msg.Alert(Resources.Common.Error, resp.Summary).Show();
+                return;
+            }
+            ecstStore.DataSource = resp.Items;
+            ecstStore.DataBind();
+
+        }
+        private void FillCOState()
+        {
+            ListRequest documentTypes = new ListRequest();
+            ListResponse<State> resp = _systemService.ChildGetAll<State>(documentTypes);
+            if (!resp.Success)
+            {
+                X.Msg.Alert(Resources.Common.Error, resp.Summary).Show();
+                return;
+            }
+            costStore.DataSource = resp.Items;
+            costStore.DataBind();
+
+        }
+
         protected void addECNA(object sender, DirectEventArgs e)
         {
             Nationality dept = new Nationality();
@@ -760,6 +794,59 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                 dept.recordId = response.recordId;
                 FillCONationality();
                 conaId.Select(response.recordId);
+            }
+            else
+            {
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, response.Summary).Show();
+                return;
+            }
+
+        }
+
+        protected void addECST(object sender, DirectEventArgs e)
+        {
+            State dept = new State();
+            dept.name = ecstId.Text;
+
+
+
+            PostRequest<State> depReq = new PostRequest<State>();
+            depReq.entity = dept;
+
+            PostResponse<State> response = _systemService.ChildAddOrUpdate<State>(depReq);
+            if (response.Success)
+            {
+                dept.recordId = response.recordId;
+                FillECState();
+                ecstId.Select(response.recordId);
+            }
+            else
+            {
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, response.Summary).Show();
+                return;
+            }
+
+        }
+
+
+        protected void addCOST(object sender, DirectEventArgs e)
+        {
+            State dept = new State();
+            dept.name = costId.Text;
+
+
+
+            PostRequest<State> depReq = new PostRequest<State>();
+            depReq.entity = dept;
+
+            PostResponse<State> response = _systemService.ChildAddOrUpdate<State>(depReq);
+            if (response.Success)
+            {
+                dept.recordId = response.recordId;
+                FillCOState();
+                costId.Select(response.recordId);
             }
             else
             {

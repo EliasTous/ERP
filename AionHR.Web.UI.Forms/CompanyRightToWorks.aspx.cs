@@ -65,6 +65,7 @@ namespace AionHR.Web.UI.Forms
                 SetExtLanguage();
                 HideShowButtons();
                 HideShowColumns();
+                DateColumn1.Format = DateColumn2.Format = issueDate.Format = expiryDate.Format = _systemService.SessionHelper.GetDateformat();
             }
         }
 

@@ -81,6 +81,7 @@
                         <ext:ModelField Name="payments" />
                         <ext:ModelField Name="ltName" />
                         <ext:ModelField Name="currencyRef" />
+                        <ext:ModelField Name="deductedAmount" />
                         <ext:ModelField Name="employeeName" IsComplex="true" />
                     </Fields>
                 </ext:Model>
@@ -223,24 +224,25 @@
                                  <Renderer Handler=" return record.data['employeeName'].fullName; ">
                                 </Renderer>
                             </ext:Column>
-                            <ext:Column ID="Column7" DataIndex="ltName" Text="<%$ Resources: FieldLtName%>" runat="server" Flex="2" />
+                            <ext:Column ID="Column7" DataIndex="ltName" Text="<%$ Resources: FieldLtName%>" runat="server" Flex="1" />
 
-                            <ext:DateColumn ID="c"  DataIndex="date" Text="<%$ Resources: FieldDate%>" runat="server" Flex="2" />
+                            <ext:DateColumn ID="c"  DataIndex="date" Text="<%$ Resources: FieldDate%>" runat="server" Width="100" />
 
-                            <ext:Column  ID="Column20" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldAmount %>" DataIndex="amount" Hideable="false" Flex="1" Width="75" Align="Center" >
+                            <ext:Column  ID="Column20" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldAmount %>" DataIndex="amount" Hideable="false" width="140">
                                 <Renderer Handler="return record.data['amount'] + '&nbsp;'+ record.data['currencyRef'];"></Renderer>
                              </ext:Column>
-
-                            <ext:Column ID="Column13" DataIndex="payments" Text="<%$ Resources: FieldPayments%>" runat="server" Flex="2" />                            
-
+                             <ext:Column  ID="Column4" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDeductedAmount %>" DataIndex="deductedAmount" Hideable="false" Width="140">
+                                <Renderer Handler="return record.data['deductedAmount'] + '&nbsp;'+ record.data['currencyRef'];"></Renderer>
+                             </ext:Column>
+                           
                             <ext:Column ID="Column12" DataIndex="purpose" Text="<%$ Resources: FieldPurpose%>" runat="server" Flex="2" />
                             
                                                         
-                            <ext:Column ID="colStatus" DataIndex="status" Text="<%$ Resources: FieldStatus%>" runat="server" Flex="2">
+                            <ext:Column ID="colStatus" DataIndex="status" Text="<%$ Resources: FieldStatus%>" runat="server" Width="100">
                             <Renderer Handler="return GetStatusName(record.data['status']);" />
                             </ext:Column>
 
-                            <ext:DateColumn   ID="cc" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEffectiveDate %>" DataIndex="effectiveDate" Hideable="false" Width="100" Align="Center">
+                            <ext:DateColumn   ID="cc" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEffectiveDate %>" DataIndex="effectiveDate" Hideable="false" Width="120" Align="Center">
                             </ext:DateColumn>
 
                                                     
@@ -488,8 +490,7 @@
                                             </Listeners>--%>
                                 </ext:TextField>
                                        
-                                <ext:TextField ID="payments"  ReadOnly="false" AllowBlank="false" runat="server" FieldLabel="<%$ Resources:FieldPayments%>" Name="payments" />
-
+                              
                                 <ext:TextArea ID="purpose" runat="server" FieldLabel="<%$ Resources:FieldPurpose%>" Name="purpose" AllowBlank="false"/>
 
                                 <ext:ComboBox runat="server" ID="status" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1"
@@ -501,7 +502,7 @@
                                         <ext:ListItem Text="<%$ Resources: FieldRejected %>" Value="3" />
                                     </Items>
                                     <Listeners>
-                                        <Change Handler="if(this.value==2 || this.value==3) this.next().setDisabled(false); else this.next().setDisabled(true);">
+                                        <Change Handler="if(this.value==2) this.next().setDisabled(false); else this.next().setDisabled(true);">
                                             
                                         </Change>
                                     </Listeners>

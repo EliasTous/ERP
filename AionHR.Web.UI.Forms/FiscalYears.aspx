@@ -85,7 +85,7 @@
         <ext:Viewport ID="Viewport1" runat="server" Layout="CardLayout" ActiveIndex="0">
             <Items>
                 <ext:GridPanel
-                    ID="GridPanel1"
+                    ID="GridPanel1" SortableColumns="false"  EnableColumnResize="false" EnableColumnHide="false"
                     runat="server"
                     StoreID="Store1"
                     PaddingSpec="0 0 1 0" 
@@ -94,7 +94,7 @@
                     Layout="FitLayout"
                     Scroll="Vertical"
                     Border="false"
-                    Icon="User"
+                    Icon="User" 
                     ColumnLines="True" IDMode="Explicit" RenderXType="True">
 
                     <TopBar>
@@ -254,7 +254,7 @@
                     </SelectionModel>
                 </ext:GridPanel>
 
-                <ext:GridPanel runat="server"  Header="false" ID="YearPeriods">
+                <ext:GridPanel runat="server"  Header="false" ID="YearPeriods" SortableColumns="false"  EnableColumnResize="false" EnableColumnHide="false">
                    
                       <Listeners>
                         <Render Handler="this.on('cellclick', cellClick);" />
@@ -311,7 +311,7 @@
                     </TopBar>
                     <ColumnModel>
                         <Columns>
-                         
+                         <ext:Column runat="server" DataIndex="periodId" Width="100" />
                                  <ext:DateColumn runat="server" ID="periodFrom" Text="<%$ Resources: FieldFrom%>" DataIndex="startDate" Width="150"  />
 
                             <ext:DateColumn runat="server" ID="periodTo" Text="<%$ Resources: FieldTo%>" DataIndex="endDate" Width="150" />
@@ -351,23 +351,14 @@
                             DefaultAnchor="100%" 
                             BodyPadding="5">
                             <Items>
-                                
-                                <ext:ComboBox runat="server" FieldLabel="<%$ Resources:FieldYear %>" ID="fiscalYear" Name="fiscalYear" SubmitValue="true" QueryMode="Local"  ForceSelection="true" TypeAhead="true" MinChars="1" >
-                                    <Items>
-                                        <ext:ListItem Text="2015" Value="2015" />
-                                        <ext:ListItem Text="2016" Value="2016" />
-                                        <ext:ListItem Text="2017" Value="2017" />
-                                        <ext:ListItem Text="2018" Value="2018" />
-                                        <ext:ListItem Text="2019" Value="2019" />
-                                        <ext:ListItem Text="2020" Value="2020" />
-                                        <ext:ListItem Text="2021" Value="2021" />
-                                        <ext:ListItem Text="2022" Value="2022" />
-                                    </Items>
+                    
+                                <ext:NumberField runat="server" FieldLabel="<%$ Resources:FieldYear %>" ID="fiscalYear" Name="fiscalYear" >
                                     <Listeners>
-                                        <Select Handler="App.startDate.setValue(new Date(this.value,0,1,1,1,1,1)); App.endDate.setValue(new Date(this.value,11,31,1,1,1,1));" />
+                                        <FocusLeave Handler="App.startDate.setValue(new Date(this.value,0,1,1,1,1,1)); App.endDate.setValue(new Date(this.value,11,31,1,1,1,1));" />
+                                        
                                     </Listeners>
-                                </ext:ComboBox>
-                                
+                                </ext:NumberField>
+
                                 <ext:DateField runat="server" FieldLabel="<%$ Resources: FieldFrom%>"   DataIndex="startDate" ID="startDate" Name="startDate" ReadOnly="true" />
                                 <ext:DateField runat="server" FieldLabel="<%$ Resources: FieldTo%>"    DataIndex="endDate" ID="endDate" Name="endDate" ReadOnly="true" />
 

@@ -226,8 +226,8 @@
                             <ext:Column ID="Column4" DataIndex="serialNo" Text="<%$ Resources: FieldSerialNo%>" runat="server" Flex="2" />
                             <ext:Column ID="Column6" DataIndex="comment" Text="<%$ Resources: FieldComment%>" runat="server" Flex="2" />
 
-                            <ext:DateColumn Format="dd-MM-yyyy" ID="Column1" DataIndex="date" Text="<%$ Resources: FieldDate%>" runat="server" Flex="2" />
-                            <ext:DateColumn Format="dd-MM-yyyy" ID="Column2" DataIndex="returnedDate" Text="<%$ Resources: FieldReturnedDate%>" runat="server" Flex="2" />
+                            <ext:DateColumn  ID="Column1" DataIndex="date" Text="<%$ Resources: FieldDate%>" runat="server" Flex="2" />
+                            <ext:DateColumn  ID="Column2" DataIndex="returnedDate" Text="<%$ Resources: FieldReturnedDate%>" runat="server" Flex="2" />
 
                             <ext:Column runat="server"
                                 ID="colEdit" Visible="false"

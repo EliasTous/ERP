@@ -122,6 +122,8 @@ namespace AionHR.Web.UI.Forms
                 FillBranch();
                 includeOpen.Select(3);
                 DateFormat.Text = _systemService.SessionHelper.GetDateformat().ToUpper();
+                //startDate.Format = _systemService.SessionHelper.GetDateformat();
+                //endDate.Format = _systemService.SessionHelper.GetDateformat();
             }
 
         }
@@ -401,6 +403,7 @@ namespace AionHR.Web.UI.Forms
             panelRecordDetails.ActiveTabIndex = 0;
             leaveDaysStore.DataSource = new List<LeaveDay>();
             leaveDaysStore.DataBind();
+            status.Select(0);
             this.EditRecordWindow.Show();
         }
 

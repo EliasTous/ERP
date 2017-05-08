@@ -451,7 +451,7 @@ namespace AionHR.Web.UI.Forms {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.ComboBox fiscalYear;
+        protected global::Ext.Net.NumberField fiscalYear;
         
         /// <summary>
         /// startDate control.

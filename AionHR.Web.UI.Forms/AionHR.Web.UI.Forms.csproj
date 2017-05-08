@@ -395,6 +395,7 @@
     <Content Include="Scripts\Sponsors.js" />
     <Content Include="Scripts\TrainingTypes.js" />
     <Content Include="Sponsors.aspx" />
+    <Content Include="States.aspx" />
     <Content Include="SystemAlerts.aspx" />
     <Content Include="SystemDefaults.aspx" />
     <Content Include="Tasks.aspx" />
@@ -788,6 +789,13 @@
     </Compile>
     <Compile Include="ReportTest.aspx.designer.cs">
       <DependentUpon>ReportTest.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="States.aspx.cs">
+      <DependentUpon>States.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="States.aspx.designer.cs">
+      <DependentUpon>States.aspx</DependentUpon>
     </Compile>
     <Compile Include="SystemAlerts.aspx.cs">
       <DependentUpon>SystemAlerts.aspx</DependentUpon>
@@ -1417,6 +1425,7 @@
     <Content Include="App_LocalResources\FiscalYears.aspx.resx" />
     <Content Include="App_LocalResources\PayrollGeneration.aspx.resx" />
     <Content Include="App_LocalResources\LoanOverrides.aspx.resx" />
+    <Content Include="App_LocalResources\States.aspx.resx" />
     <EmbeddedResource Include="Properties\licenses.licx" />
     <Content Include="Reports\App_LocalResources\RT202.aspx.resx" />
     <Content Include="Reports\App_LocalResources\RT01.aspx.ar.resx" />

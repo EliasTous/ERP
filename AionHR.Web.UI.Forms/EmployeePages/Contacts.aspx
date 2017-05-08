@@ -438,7 +438,39 @@
                                         <ext:TextField runat="server" Name="cocity" AllowBlank="false" ID="cocity" FieldLabel="<%$ Resources:FieldCCity%>" />
                                         <ext:TextField runat="server" Name="copostalCode" AllowBlank="true" MaxLength="6" ID="copostalCode" FieldLabel="<%$ Resources:FieldCPostalCode%>" />
                                         <%--<ext:TextField  runat="server" Name="countryName" AllowBlank="false"  ID="countryName"  FieldLabel="<%$ Resources:FieldCountryName%>" />--%>
+                                         <ext:ComboBox ValueField="recordId" AllowBlank="false" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1"
+                                            DisplayField="name" runat="server" ID="costId" Name="costId" FieldLabel="<%$ Resources:FieldState%>" SimpleSubmit="true">
+                                            <Store>
+                                                <ext:Store runat="server" ID="costStore">
+                                                    <Model>
+                                                        <ext:Model runat="server">
+                                                            <Fields>
+                                                                <ext:ModelField Name="recordId" />
+                                                                <ext:ModelField Name="name" />
+                                                            </Fields>
+                                                        </ext:Model>
+                                                    </Model>
+                                                </ext:Store>
+                                            </Store>
+                                            <RightButtons>
+                                                <ext:Button ID="Button4" runat="server" Icon="Add" Hidden="true">
+                                                    <Listeners>
+                                                        <Click Handler="CheckSession();  " />
+                                                    </Listeners>
+                                                    <DirectEvents>
 
+                                                        <Click OnEvent="addCOST">
+                                                            <ExtraParams>
+                                                            </ExtraParams>
+                                                        </Click>
+                                                    </DirectEvents>
+                                                </ext:Button>
+                                            </RightButtons>
+                                            <Listeners>
+                                                <FocusEnter Handler="this.rightButtons[0].setHidden(false);" />
+                                                <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
+                                            </Listeners>
+                                        </ext:ComboBox>
                                         <ext:ComboBox ValueField="recordId" AllowBlank="false" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1"
                                             DisplayField="name" runat="server" ID="conaId" Name="conaId" FieldLabel="<%$ Resources:FieldCCountryName%>" SimpleSubmit="true">
                                             <Store>
@@ -602,7 +634,39 @@
                                         <ext:TextField runat="server" Name="city" AllowBlank="false" ID="city" FieldLabel="<%$ Resources:FieldEMCity%>" />
                                         <ext:TextField runat="server" Name="postalCode"   ID="postalCode" FieldLabel="<%$ Resources:FieldEMPostalCode%>" MaxLength="6" />
                                         <%--<ext:TextField  runat="server" Name="countryName" AllowBlank="false"  ID="countryName"  FieldLabel="<%$ Resources:FieldCountryName%>" />--%>
+                                         <ext:ComboBox ValueField="recordId" AllowBlank="false" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1"
+                                            DisplayField="name" runat="server" ID="ecstId" Name="ecstId" FieldLabel="<%$ Resources:FieldState%>" SimpleSubmit="true">
+                                            <Store>
+                                                <ext:Store runat="server" ID="ecstStore">
+                                                    <Model>
+                                                        <ext:Model runat="server">
+                                                            <Fields>
+                                                                <ext:ModelField Name="recordId" />
+                                                                <ext:ModelField Name="name" />
+                                                            </Fields>
+                                                        </ext:Model>
+                                                    </Model>
+                                                </ext:Store>
+                                            </Store>
+                                            <RightButtons>
+                                                <ext:Button ID="Button9" runat="server" Icon="Add" Hidden="true">
+                                                    <Listeners>
+                                                        <Click Handler="CheckSession();  " />
+                                                    </Listeners>
+                                                    <DirectEvents>
 
+                                                        <Click OnEvent="addECST">
+                                                            <ExtraParams>
+                                                            </ExtraParams>
+                                                        </Click>
+                                                    </DirectEvents>
+                                                </ext:Button>
+                                            </RightButtons>
+                                            <Listeners>
+                                                <FocusEnter Handler="this.rightButtons[0].setHidden(false);" />
+                                                <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
+                                            </Listeners>
+                                        </ext:ComboBox>
                                         <ext:ComboBox ValueField="recordId" AllowBlank="false" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1"
                                             DisplayField="name" runat="server" ID="ecnaId" Name="ecnaId" FieldLabel="<%$ Resources:FieldEMCountryName%>" SimpleSubmit="true">
                                             <Store>

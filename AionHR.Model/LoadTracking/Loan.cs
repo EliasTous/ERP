@@ -24,5 +24,7 @@ namespace AionHR.Model.LoadTracking
         public EmployeeName employeeName { get; set; }
         public string ltName { get; set; }
         public string currencyRef { get; set; }
+
+        public double deductedAmount { get; set; }
     }
 }

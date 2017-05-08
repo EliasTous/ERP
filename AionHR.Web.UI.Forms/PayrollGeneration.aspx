@@ -13,12 +13,35 @@
     <script type="text/javascript" src="Scripts/common.js"></script>
     <script type="text/javascript" src="Scripts/moment.js"></script>
     <script type="text/javascript">
+       
         function setStartEnd(s, e) {
 
             App.startDate.setValue(s.trim());
             App.endDate.setValue(e.trim());
             var d = moment(e, document.getElementById("DateFormat").value);
             App.payDate.setValue(d.toDate());
+        }
+        function CalcENSum() {
+
+            var enSum = 0;
+            App.entitlementsGrid.getStore().each(function (record) {
+                enSum += record.data['amount'];
+            });
+           
+            return enSum;
+
+
+        }
+        function CalcDESum() {
+
+            var deSum = 0;
+            App.deductionGrid.getStore().each(function (record) {
+                deSum += record.data['amount'];
+            });
+
+            return deSum;
+
+
         }
     </script>
 
@@ -39,7 +62,8 @@
         <ext:Hidden ID="PeriodStatus0" runat="server" Text="<%$ Resources: Status0 %>" />
         <ext:Hidden ID="PeriodStatus1" runat="server" Text="<%$ Resources: Status1 %>" />
         <ext:Hidden ID="PeriodStatus2" runat="server" Text="<%$ Resources: Status2 %>" />
-
+        <ext:Hidden ID="total" runat="server" Text="<%$ Resources: TotalText %>" />
+        <ext:Hidden ID="IsPayrollPosted" runat="server" />
 
         <ext:Viewport ID="Viewport1" runat="server" Layout="CardLayout" ActiveIndex="0">
             <Items>
@@ -66,11 +90,12 @@
                                         </ext:Store>
                                     </Store>
                                     <Listeners>
-                                        <Select Handler="App.payrollsStore.reload();">
+                                        <Select Handler="App.salaryTypeFilter.setValue(5); App.payrollsStore.reload();">
                                         </Select>
+                                        
                                     </Listeners>
                                 </ext:ComboBox>
-                                <ext:ComboBox ID="salaryTypeFilter" Name="salaryTypeFilter" runat="server" EmptyText="<%$ Resources:FieldPeriodType%>" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1">
+                                <ext:ComboBox ID="salaryTypeFilter"  Name="salaryTypeFilter" runat="server" EmptyText="<%$ Resources:FieldPeriodType%>" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1">
                                     <Items>
 
                                         <ext:ListItem Text="<%$ Resources: SalaryWeekly%>" Value="2"></ext:ListItem>
@@ -83,7 +108,7 @@
                                         </Select>
                                     </Listeners>
                                 </ext:ComboBox>
-                                <ext:ComboBox ID="status" Name="status" runat="server" EmptyText="<%$ Resources:FieldStatus%>" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1">
+                                <ext:ComboBox ID="status"  runat="server" EmptyText="<%$ Resources:FieldStatus%>" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1">
                                     <Items>
 
                                         <ext:ListItem Text="<%$ Resources: Status0%>" Value="0"></ext:ListItem>
@@ -100,7 +125,8 @@
                         </ext:Toolbar>
                     </TopBar>
                     <Items>
-                        <ext:GridPanel runat="server" ID="payrollsGrid">
+                        <ext:GridPanel runat="server" ID="payrollsGrid" SortableColumns="false"  EnableColumnResize="false" EnableColumnHide="false">
+                            
                             <Store>
                                 <ext:Store runat="server" ID="payrollsStore" OnReadData="payrollsStore_ReadData">
                                     <Model>
@@ -140,19 +166,22 @@
                                         MenuDisabled="true"
                                         Resizable="false">
 
-                                        <Renderer Handler="return editRender(); " />
+                                        <Renderer Handler="var d= (record.data['status']==1)?'&nbsp;&nbsp;&nbsp;&nbsp;':editRender(); return d+ '&nbsp;&nbsp;'+ attachRender(); " />
 
                                     </ext:Column>
                                 </Columns>
                             </ColumnModel>
                             <Listeners>
                                 <Render Handler="this.on('cellclick', cellClick);" />
+                                <AfterRender Handler="App.year.setValue(new Date().getFullYear()); App.salaryTypeFilter.setValue(5); App.status.setValue(2); App.payrollsStore.reload()" />
+                                <%--<AfterLayout Handler="App.year.setValue(new Date().getFullYear()); App.salaryTypeFilter.setValue(5); App.status.setValue(2); App.payrollsStore.reload()" />--%>
                             </Listeners>
                             <DirectEvents>
                                 <CellClick OnEvent="PoPuPHeader">
                                     <EventMask ShowMask="true" />
                                     <ExtraParams>
                                         <ext:Parameter Name="id" Value="record.getId()" Mode="Raw" />
+                                        <ext:Parameter Name="status" Value="record.data['status']" Mode="Raw" />
                                         <ext:Parameter Name="type" Value="getCellType( this, rowIndex, cellIndex)" Mode="Raw" />
                                     </ExtraParams>
 
@@ -197,6 +226,9 @@
                             Icon="ApplicationSideList"
                             DefaultAnchor="100%"
                             BodyPadding="5">
+                            <Listeners>
+                                <AfterLayout Handler="CheckSession(); App.fiscalYear.setValue(new Date().getFullYear()); App.salaryType.setValue(5);App.fiscalPeriodsStore.reload();" />
+                            </Listeners>
                             <Items>
                                 <ext:TextField runat="server" ID="payRef" Name="payRef" FieldLabel="<%$ Resources: FieldPayRef %>" AllowBlank="true" />
                                 <ext:ComboBox QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: FieldYear %>" Name="fiscalYear" runat="server" DisplayField="fiscalYear" ValueField="fiscalYear" ID="fiscalYear">
@@ -358,7 +390,7 @@
                         </ext:Toolbar>
                     </TopBar>
                     <Items>
-                        <ext:GridPanel runat="server" ID="employeePayrolls">
+                        <ext:GridPanel runat="server" ID="employeePayrolls" SortableColumns="false"  EnableColumnResize="false" EnableColumnHide="false">
                             <Store>
                                 <ext:Store ID="Store1" runat="server" OnReadData="Store1_ReadData">
                                     <Model>
@@ -371,6 +403,7 @@
                                                 <ext:ModelField Name="branchName" />
                                                 <ext:ModelField Name="departmentName" />
                                                 <ext:ModelField Name="currencyName" />
+                                                <ext:ModelField Name="currencyRef" />
                                                 <ext:ModelField Name="calendarDays" />
                                                 <ext:ModelField Name="calendarMinutes" />
                                                 <ext:ModelField Name="workingDays" />
@@ -391,13 +424,24 @@
                                     <ext:Column runat="server" DataIndex="branchName" Text="<%$ Resources: FieldBranch%>" Flex="1" />
                                     <ext:Column runat="server" DataIndex="departmentName" Text="<%$ Resources: FieldDepartment%>" Flex="1" />
                                     <ext:Column runat="server" DataIndex="calendarDays" Text="<%$ Resources: FieldCalDays%>" Width="100" />
-                                    <ext:Column runat="server" DataIndex="calendarMinutes" Text="<%$ Resources: FieldCalMinutes%>" Width="150" />
+                                    
                                     <ext:Column runat="server" DataIndex="workingDays" Text="<%$ Resources: FieldDays%>" Width="100" />
-                                    <ext:Column runat="server" DataIndex="basicAmount" Text="<%$ Resources: FieldBasicAmount%>" />
-                                    <ext:Column runat="server" DataIndex="taxAmount" Text="<%$ Resources: FieldTaxAmount%>" />
-                                    <ext:Column runat="server" DataIndex="eAmount" Text="<%$ Resources: Entitlements%>" />
-                                    <ext:Column runat="server" DataIndex="dAmount" Text="<%$ Resources: Deductions%>" />
-                                    <ext:Column runat="server" DataIndex="netSalary" Text="<%$ Resources: FieldNetSalary%>" />
+                                    <ext:Column runat="server" DataIndex="basicAmount" Text="<%$ Resources: FieldBasicAmount%>" >
+                                        <Renderer Handler="return record.data['basicAmount']+'&nbsp; '+ record.data['currencyRef'];" />
+                                        </ext:Column>
+                                    <ext:Column runat="server" DataIndex="taxAmount" Text="<%$ Resources: FieldTaxAmount%>" >
+                                        <Renderer Handler="if(record.data['taxAmount']==0) return '-'; return record.data['taxAmount']+'&nbsp; '+ record.data['currencyRef'];" />
+                                        </ext:Column>
+                                    <ext:Column runat="server" DataIndex="eAmount" Text="<%$ Resources: Entitlements%>" >
+                                        <Renderer Handler="if(record.data['eAmount']==0) return '-';return record.data['eAmount']+' &nbsp;'+ record.data['currencyRef'];" />
+                                        </ext:Column>
+                                    
+                                    <ext:Column runat="server" DataIndex="dAmount" Text="<%$ Resources: Deductions%>" >
+                                        <Renderer Handler="if(record.data['dAmount']==0) return '-'; return '-'+ record.data['dAmount']+'&nbsp; '+ record.data['currencyRef'];;" />
+                                     </ext:Column>
+                                    <ext:Column runat="server" DataIndex="netSalary" Text="<%$ Resources: FieldNetSalary%>" >
+                                        <Renderer Handler="if(record.data['netSalary']==0) return '-'; return record.data['netSalary']+'&nbsp; '+ record.data['currencyRef'];" />
+                                        </ext:Column>
                                     <ext:Column runat="server"
                                         ID="Column1" Visible="true"
                                         Text=""
@@ -409,7 +453,7 @@
                                         MenuDisabled="true"
                                         Resizable="false">
 
-                                        <Renderer Handler="return editRender()+'&nbsp;&nbsp;' +attachRender(); " />
+                                        <Renderer Handler="var d = (#{IsPayrollPosted}.value=='1')?'&nbsp;&nbsp;&nbsp;&nbsp;':editRender();return d+'&nbsp;&nbsp;' +attachRender(); " />
 
                                     </ext:Column>
                                 </Columns>
@@ -425,6 +469,7 @@
                                         <ext:Parameter Name="basicAmount" Value="record.data['basicAmount']" Mode="Raw" />
                                         <ext:Parameter Name="taxAmount" Value="record.data['taxAmount']" Mode="Raw" />
                                         <ext:Parameter Name="netSalary" Value="record.data['netSalary']" Mode="Raw" />
+                                        <ext:Parameter Name="currency" Value="record.data['currencyRef']" Mode="Raw" />
                                         <ext:Parameter Name="type" Value="getCellType( this, rowIndex, cellIndex)" Mode="Raw" />
                                     </ExtraParams>
 
@@ -521,7 +566,7 @@
                             BodyPadding="5">
 
                             <Items>
-                                <ext:GridPanel
+                                <ext:GridPanel SortableColumns="false"  EnableColumnResize="false" EnableColumnHide="false"
                                     ID="entitlementsGrid"
                                     runat="server"
                                     Width="600" Header="false"
@@ -530,7 +575,7 @@
                                     <TopBar>
                                         <ext:Toolbar ID="Toolbar3" runat="server" ClassicButtonStyle="false">
                                             <Items>
-                                                <ext:Button ID="Button11" runat="server" Text="<%$ Resources:Common , Add %>" Icon="Add">
+                                                <ext:Button ID="AddENButton" runat="server" Text="<%$ Resources:Common , Add %>" Icon="Add">
                                                     <Listeners>
                                                         <Click Handler="CheckSession();" />
                                                     </Listeners>
@@ -570,6 +615,7 @@
                                                 Text="<%$ Resources:FieldEntitlement%>"
                                                 DataIndex="edName"
                                                 Align="Center">
+                                                <SummaryRenderer Handler="if(App.entitlementsGrid.getStore().getCount()>0) return #{total}.value;" />
                                             </ext:Column>
 
 
@@ -578,7 +624,8 @@
                                                 Text="<%$ Resources:FieldAmount%>"
                                                 DataIndex="amount"
                                                 Align="Center">
-                                                <Renderer Handler=" return record.data['amount'];" />
+                                                <SummaryRenderer Handler="if(App.entitlementsGrid.getStore().getCount()>0) return CalcENSum()+ '&nbsp;'+ #{CurrentCurrencyRef}.value;" />
+                                                <Renderer Handler=" return record.data['amount'] +' &nbsp;' + #{CurrentCurrencyRef}.value;" />
                                             </ext:NumberColumn>
 
                                             <ext:Column runat="server"
@@ -591,10 +638,14 @@
                                                 Hideable="false"
                                                 MenuDisabled="true"
                                                 Resizable="false">
-                                                <Renderer Handler="return editRender()+'&nbsp;&nbsp;'+deleteRender(); " />
+                                                <SummaryRenderer Handler="if(App.entitlementsGrid.getStore().getCount()>0) return '<hr />'" />
+                                                <Renderer Handler="if(#{IsPayrollPosted}.value=='0') return editRender()+'&nbsp;&nbsp;'+deleteRender(); " />
                                             </ext:Column>
                                         </Columns>
                                     </ColumnModel>
+                                    <Features>
+                                        <ext:Summary runat="server" />
+                                    </Features>
                                     <Listeners>
                                         <Render Handler="this.on('cellclick', cellClick);" />
                                     </Listeners>
@@ -626,7 +677,7 @@
                             BodyPadding="5">
                             <Items>
                                 <ext:GridPanel
-                                    ID="deductionGrid"
+                                    ID="deductionGrid" SortableColumns="false"  EnableColumnResize="false" EnableColumnHide="false"
                                     runat="server"
                                     Width="600" Header="false"
                                     Height="350" Layout="FitLayout"
@@ -651,7 +702,7 @@
                                     <TopBar>
                                         <ext:Toolbar ID="Toolbar4" runat="server" ClassicButtonStyle="false">
                                             <Items>
-                                                <ext:Button ID="Button14" runat="server" Text="<%$ Resources:Common , Add %>" Icon="Add">
+                                                <ext:Button ID="AddEDButton" runat="server" Text="<%$ Resources:Common , Add %>" Icon="Add">
                                                     <Listeners>
                                                         <Click Handler="CheckSession();" />
                                                     </Listeners>
@@ -673,6 +724,7 @@
                                                 Text="<%$ Resources:FieldDeduction%>"
                                                 DataIndex="edName"
                                                 Align="Center">
+                                                <SummaryRenderer Handler="if(App.deductionGrid.getStore().getCount()>0) return #{total}.value;" />
                                             </ext:Column>
 
                                             <ext:NumberColumn
@@ -685,9 +737,10 @@
                                                         runat="server"
                                                         AllowBlank="false" />
                                                 </Editor>
-                                                <Renderer Handler="return record.data['amount'];">
+                                                <Renderer Handler="return record.data['amount']+ '&nbsp;'+ #{CurrentCurrencyRef}.value;">
+                                                    
                                                 </Renderer>
-
+                                                <SummaryRenderer Handler="if(App.deductionGrid.getStore().getCount()>0) return CalcDESum()+ '&nbsp;'+ #{CurrentCurrencyRef}.value;" />
                                             </ext:NumberColumn>
 
 
@@ -701,11 +754,15 @@
                                                 Hideable="false"
                                                 MenuDisabled="true"
                                                 Resizable="false">
-                                                <Renderer Handler="return editRender()+'&nbsp;&nbsp;'+deleteRender(); " />
+                                                <Renderer Handler="if(#{IsPayrollPosted}.value=='0') return editRender()+'&nbsp;&nbsp;'+deleteRender(); " />
+                                                <SummaryRenderer Handler=" if(App.deductionGrid.getStore().getCount()>0) return '<hr />';" />
                                             </ext:Column>
 
                                         </Columns>
                                     </ColumnModel>
+                                    <Features>
+                                        <ext:Summary runat="server" />
+                                    </Features>
                                     <Listeners>
                                         <Render Handler="this.on('cellclick', cellClick);" />
                                     </Listeners>
@@ -729,7 +786,7 @@
 
                     </Items>
                     <Buttons>
-                        <ext:Button ID="Button6" runat="server" Text="<%$ Resources:Common, Save %>" Icon="Disk">
+                        <ext:Button ID="SaveEDButton" runat="server" Text="<%$ Resources:Common, Save %>" Icon="Disk">
 
                             <Listeners>
                                 <Click Handler="CheckSession(); " />
@@ -803,7 +860,7 @@
                                 <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
                             </Listeners>
                         </ext:ComboBox>
-                        <ext:TextField runat="server" Name="amount" ID="amount" FieldLabel="<%$ Resources: FieldBasicAmount %>" />
+                        <ext:NumberField runat="server" Name="amount" ID="amount" FieldLabel="<%$ Resources: FieldBasicAmount %>" />
 
 
                     </Items>
@@ -829,6 +886,71 @@
                     </DirectEvents>
                 </ext:Button>
                 <ext:Button ID="Button5" runat="server" Text="<%$ Resources:Common , Cancel %>" Icon="Cancel">
+                    <Listeners>
+                        <Click Handler="this.up('window').hide();" />
+                    </Listeners>
+                </ext:Button>
+            </Buttons>
+        </ext:Window>
+         <ext:Window
+            ID="EditHeaderWindow"
+            runat="server"
+            Icon="PageEdit"
+            Draggable="false"
+            Maximizable="false" Resizable="false"
+            Width="300"
+            Height="200"
+            AutoShow="false"
+            Modal="true"
+            Hidden="true"
+            Layout="Fit">
+
+            <Items>
+                <ext:FormPanel
+                    ID="EditHEForm" DefaultButton="Button4"
+                    runat="server"
+                    Header="false"
+                    DefaultAnchor="100%"
+                    BodyPadding="5">
+                    <Items>
+                        
+                        <ext:TextField runat="server" Name="recordId" ID="recordId" Hidden="true" Disabled="true" />
+                      
+                         <ext:ComboBox ID="statusCombo" Name="statusCombo" runat="server" FieldLabel="<%$ Resources:FieldStatus%>" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1">
+                                    <Items>
+
+                                        <ext:ListItem Text="<%$ Resources: Status0%>" Value="0"></ext:ListItem>
+                                        <ext:ListItem Text="<%$ Resources: Status1%>" Value="1"></ext:ListItem>
+                                        
+
+                                    </Items>
+                                   
+                                </ext:ComboBox>
+                        <ext:DateField runat="server" ID="fromDate" FieldLabel="<%$ Resources:FieldFrom%>" ReadOnly="true" />
+                        <ext:DateField runat="server" ID="toDate" FieldLabel="<%$ Resources:FieldTo%>" ReadOnly="true" />
+                    </Items>
+
+                </ext:FormPanel>
+            </Items>
+            <Buttons>
+                <ext:Button ID="Button10" runat="server" Text="<%$ Resources:Common, Save %>" Icon="Disk">
+
+                    <Listeners>
+                        <Click Handler="CheckSession(); if (!#{EditHEForm}.getForm().isValid()) {return false;} " />
+                    </Listeners>
+                    <DirectEvents>
+                        <Click OnEvent="SaveHE" Failure="Ext.MessageBox.alert('#{titleSavingError}.value', '#{titleSavingErrorMessage}.value');">
+                            <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="={#{EditHeaderWindow}.body}" />
+                            <ExtraParams>
+                                <ext:Parameter Name="id" Value="#{recordId}.getValue()" Mode="Raw" />
+                                
+
+                                <ext:Parameter Name="values" Value="#{EditHEForm}.getForm().getValues(false, false, false, true)" Mode="Raw" Encode="true" />
+                            </ExtraParams>
+                        </Click>
+                    </DirectEvents>
+                </ext:Button>
+                <ext:Button ID="Button12" runat="server" Text="<%$ Resources:Common , Cancel %>" Icon="Cancel">
                     <Listeners>
                         <Click Handler="this.up('window').hide();" />
                     </Listeners>

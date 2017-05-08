@@ -206,7 +206,7 @@
                                  <Renderer Handler="return  record.data['employeeName'].fullName ">
                                 </Renderer>
                             </ext:Column>
-                            <ext:DateColumn Format="dd-MM-yyyy" ID="colDateReceived" DataIndex="dateReceived" Text="<%$ Resources: FieldDateReceived%>" runat="server" Flex="1" />
+                            <ext:DateColumn  ID="colDateReceived" DataIndex="dateReceived" Text="<%$ Resources: FieldDateReceived%>" runat="server" Flex="1" />
                             <ext:Column    CellCls="cellLink" ID="colActionTaken" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldActionTaken%>" DataIndex="actionTaken" Flex="2" Hideable="false"></ext:Column>
                             <ext:Column    CellCls="cellLink" ID="colActionRequired" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldActionRequired%>" DataIndex="actionRequired" Flex="2" Hideable="false"></ext:Column>
                             <ext:Column    CellCls="cellLink" ID="colComplaintDetails" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldComplaintDetails%>" DataIndex="complaintDetails" Flex="2" Hideable="false"></ext:Column>

@@ -337,6 +337,24 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.TextField name;
         
         /// <summary>
+        /// idRef control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.TextField idRef;
+        
+        /// <summary>
+        /// rtwRef control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.TextField rtwRef;
+        
+        /// <summary>
         /// address control.
         /// </summary>
         /// <remarks>

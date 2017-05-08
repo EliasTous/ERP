@@ -12,14 +12,15 @@ namespace AionHR.Web.UI.Forms.Reports.Controls
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            trxType.Select(0);
+            if (!IsPostBack)
+                trxType.Select(0);
         }
 
         public TransactionTypeParameterSet GetTransactionType()
         {
             TransactionTypeParameterSet s = new TransactionTypeParameterSet();
             int bulk;
-            if (trxType.Value==null|| !int.TryParse(trxType.Value.ToString(), out bulk))
+            if (trxType.Value == null || !int.TryParse(trxType.Value.ToString(), out bulk))
                 s.TransactionType = 1;
             else
                 s.TransactionType = bulk;

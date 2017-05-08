@@ -606,7 +606,7 @@
                                         <ext:Toolbar runat="server" >
                                             <Items>
                                                 <ext:ToolbarFill  runat="server"/>
-                                                <ext:TextField runat="server" Width="250" ID="sumHours2" ReadOnly="true" FieldLabel="<%$ Resources:TotalText%>" />
+                                                <ext:TextField runat="server" Width="400" LabelWidth="290" PaddingSpec="0 20 0 0" ID="sumHours2" ReadOnly="true" FieldLabel="<%$ Resources:TotalText%>" />
                                             </Items>
                                         </ext:Toolbar>
                                     </BottomBar>

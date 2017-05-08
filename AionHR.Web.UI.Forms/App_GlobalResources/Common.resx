@@ -841,12 +841,15 @@
     <value>Daily Attendance</value>
   </data>
   <data name="FiscalYears" xml:space="preserve">
-    <value>FiscalYears</value>
+    <value>Fiscal Years</value>
   </data>
   <data name="GeneratePayroll" xml:space="preserve">
     <value>Generate Payroll</value>
   </data>
   <data name="LoanOverrides" xml:space="preserve">
-    <value>Loan Overrides</value>
+    <value>Loan Deductions</value>
+  </data>
+  <data name="States" xml:space="preserve">
+    <value>States</value>
   </data>
 </root>

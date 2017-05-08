@@ -16,5 +16,9 @@ namespace AionHR.Model.Employees.Profile
         public string mobile { get; set; }
         public string fax { get; set; }
         public string email { get; set; }
+
+        public string idRef { get; set; }
+
+        public string rtwRef { get; set; }
     }
 }

@@ -20,15 +20,12 @@ using AionHR.Web.UI.Forms.Utilities;
 using AionHR.Model.Company.News;
 using AionHR.Services.Messaging;
 using AionHR.Model.Company.Structure;
-using AionHR.Infrastructure.Session;
 using AionHR.Model.System;
-using AionHR.Model.Employees.Profile;
 
 namespace AionHR.Web.UI.Forms
 {
-    public partial class Branches : System.Web.UI.Page
+    public partial class States : System.Web.UI.Page
     {
-        ICompanyStructureService _branchService = ServiceLocator.Current.GetInstance<ICompanyStructureService>();
         ISystemService _systemService = ServiceLocator.Current.GetInstance<ISystemService>();
         protected override void InitializeCulture()
         {
@@ -64,7 +61,6 @@ namespace AionHR.Web.UI.Forms
 
             }
 
-           
         }
 
 
@@ -119,7 +115,7 @@ namespace AionHR.Web.UI.Forms
                     //Step 1 : get the object from the Web Service 
                     RecordRequest r = new RecordRequest();
                     r.RecordID = id.ToString();
-                    RecordResponse<Branch> response = _branchService.ChildGetRecord<Branch>(r);
+                    RecordResponse<State> response = _systemService.ChildGetRecord<State>(r);
                     if (!response.Success)
                     {
                         X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
@@ -128,13 +124,7 @@ namespace AionHR.Web.UI.Forms
                     }
                     //Step 2 : call setvalues with the retrieved object
                     this.BasicInfoTab.SetValues(response.result);
-                    timeZoneCombo.Select(response.result.timeZone.ToString());
-                    FillNationality();
-                    FillState();
-                    naId.Select(response.result.addressId.countryId.ToString());
-                    stId.Select(response.result.addressId.stateId);
-                    addressId.Text = response.result.addressId.recordId;
-                    addressForm.SetValues(response.result.addressId);
+
                     this.EditRecordWindow.Title = Resources.Common.EditWindowsTitle;
                     this.EditRecordWindow.Show();
                     break;
@@ -177,15 +167,12 @@ namespace AionHR.Web.UI.Forms
             try
             {
                 //Step 1 Code to delete the object from the database 
-                Branch n = new Branch();
+                State n = new State();
                 n.recordId = index;
                 n.name = "";
-                n.reference = "";
-                n.timeZone = 0;
-                
-                PostRequest<Branch> req = new PostRequest<Branch>();
+                PostRequest<State> req = new PostRequest<State>();
                 req.entity = n;
-                PostResponse<Branch> res = _branchService.ChildDelete<Branch>(req);
+                PostResponse<State> res = _systemService.ChildDelete<State>(req);
                 if (!res.Success)
                 {
                     //Show an error saving...
@@ -301,11 +288,9 @@ namespace AionHR.Web.UI.Forms
 
             //Reset all values of the relative object
             BasicInfoTab.Reset();
-            addressForm.Reset();
             this.EditRecordWindow.Title = Resources.Common.AddNewRecord;
-            FillNationality();
-            FillState();
-            timeZoneCombo.Select(timeZoneOffset.Text);
+           
+
             this.EditRecordWindow.Show();
         }
 
@@ -324,12 +309,14 @@ namespace AionHR.Web.UI.Forms
             ListRequest request = new ListRequest();
 
             request.Filter = "";
-            ListResponse<Branch> branches = _branchService.ChildGetAll<Branch>(request);
-            if (!branches.Success)
-            { X.Msg.Alert(Resources.Common.Error, branches.Summary).Show(); 
-                return; }
-            this.Store1.DataSource = branches.Items;
-            e.Total = branches.count;
+            ListResponse<State> nationalities = _systemService.ChildGetAll<State>(request);
+            if (!nationalities.Success)
+            {
+                X.Msg.Alert(Resources.Common.Error, nationalities.Summary).Show(); ;
+                return;
+            }
+            this.Store1.DataSource = nationalities.Items;
+            e.Total = nationalities.Items.Count;
 
             this.Store1.DataBind();
         }
@@ -345,12 +332,11 @@ namespace AionHR.Web.UI.Forms
             string id = e.ExtraParams["id"];
 
             string obj = e.ExtraParams["values"];
-            Branch b = JsonConvert.DeserializeObject<Branch>(obj);
-            b.isInactive = isInactive.Checked;
+            State b = JsonConvert.DeserializeObject<State>(obj);
+
             b.recordId = id;
             // Define the object to add or edit as null
-            b.addressId = new AddressBook() { street1 = costreet1.Text, street2 = street2.Text, city = city.Text, postalCode = postalCode.Text, countryId = Convert.ToInt32(naId.SelectedItem.Value), stateId = stId.SelectedItem.Value, countryName = naId.SelectedItem.Text };
-            b.addressId.recordId = addressId.Text;
+
             if (string.IsNullOrEmpty(id))
             {
 
@@ -358,9 +344,9 @@ namespace AionHR.Web.UI.Forms
                 {
                     //New Mode
                     //Step 1 : Fill The object and insert in the store 
-                    PostRequest<Branch> request = new PostRequest<Branch>();
+                    PostRequest<State> request = new PostRequest<State>();
                     request.entity = b;
-                    PostResponse<Branch> r = _branchService.ChildAddOrUpdate<Branch>(request);
+                    PostResponse<State> r = _systemService.ChildAddOrUpdate<State>(request);
                     b.recordId = r.recordId;
 
                     //check if the insert failed
@@ -410,9 +396,9 @@ namespace AionHR.Web.UI.Forms
                 try
                 {
                     int index = Convert.ToInt32(id);//getting the id of the record
-                    PostRequest<Branch> request = new PostRequest<Branch>();
+                    PostRequest<State> request = new PostRequest<State>();
                     request.entity = b;
-                    PostResponse<Branch> r = _branchService.ChildAddOrUpdate<Branch>(request);                      //Step 1 Selecting the object or building up the object for update purpose
+                    PostResponse<State> r = _systemService.ChildAddOrUpdate<State>(request);                      //Step 1 Selecting the object or building up the object for update purpose
 
                     //Step 2 : saving to store
 
@@ -436,8 +422,8 @@ namespace AionHR.Web.UI.Forms
                             Icon = Icon.Information,
                             Html = Resources.Common.RecordUpdatedSucc
                         });
-
                         this.EditRecordWindow.Close();
+
 
                     }
 
@@ -464,89 +450,6 @@ namespace AionHR.Web.UI.Forms
         {
 
         }
-        [DirectMethod]
-        public void StoreTimeZone(string z)
-        {
-            timeZoneOffset.Text = z;
-        }
 
-        protected void addNA(object sender, DirectEventArgs e)
-        {
-            Nationality dept = new Nationality();
-            dept.name = naId.Text;
-
-
-
-            PostRequest<Nationality> depReq = new PostRequest<Nationality>();
-            depReq.entity = dept;
-
-            PostResponse<Nationality> response = _systemService.ChildAddOrUpdate<Nationality>(depReq);
-            if (response.Success)
-            {
-                dept.recordId = response.recordId;
-                FillNationality();
-                naId.Select(response.recordId);
-            }
-            else
-            {
-                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, response.Summary).Show();
-                return;
-            }
-
-        }
-        private void FillNationality()
-        {
-            ListRequest documentTypes = new ListRequest();
-            ListResponse<Nationality> resp = _systemService.ChildGetAll<Nationality>(documentTypes);
-            if (!resp.Success)
-            {
-                X.Msg.Alert(Resources.Common.Error, resp.Summary).Show();
-                return;
-            }
-            naStore.DataSource = resp.Items;
-            naStore.DataBind();
-
-        }
-
-        private void FillState()
-        {
-            ListRequest documentTypes = new ListRequest();
-            ListResponse<State> resp = _systemService.ChildGetAll<State>(documentTypes);
-            if (!resp.Success)
-            {
-                X.Msg.Alert(Resources.Common.Error, resp.Summary).Show();
-                return;
-            }
-            stStore.DataSource = resp.Items;
-            stStore.DataBind();
-
-        }
-
-        protected void addST(object sender, DirectEventArgs e)
-        {
-            State dept = new State();
-            dept.name = stId.Text;
-
-
-
-            PostRequest<State> depReq = new PostRequest<State>();
-            depReq.entity = dept;
-
-            PostResponse<State> response = _systemService.ChildAddOrUpdate<State>(depReq);
-            if (response.Success)
-            {
-                dept.recordId = response.recordId;
-                FillState();
-                stId.Select(response.recordId);
-            }
-            else
-            {
-                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, response.Summary).Show();
-                return;
-            }
-
-        }
     }
 }

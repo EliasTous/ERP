@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Branches.aspx.cs" Inherits="AionHR.Web.UI.Forms.Branches" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="States.aspx.cs" Inherits="AionHR.Web.UI.Forms.States" %>
 
 <%@ Register Assembly="Ext.Net" Namespace="Ext.Net" TagPrefix="ext" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -9,27 +9,12 @@
     <title></title>
     <link rel="stylesheet" type="text/css" href="CSS/Common.css" />
     <link rel="stylesheet" href="CSS/LiveSearch.css" />
-    <script type="text/javascript" src="Scripts/Branches.js?id=1" ></script>
+    <script type="text/javascript" src="Scripts/Nationalities.js?id=1" ></script>
     <script type="text/javascript" src="Scripts/common.js" ></script>
-    <script  type="text/javascript">
-        var GetTimeZone = function () {
-            
-            var d = new Date();
-
-
-            var n = d.getTimezoneOffset();
-            
-          
-            
-            s = n / -60;
-            App.direct.StoreTimeZone(s);
-            
-        }
-    </script>
-
+   
  
 </head>
-<body style="background: url(Images/bg.png) repeat;" onload="GetTimeZone();">
+<body style="background: url(Images/bg.png) repeat;" >
     <form id="Form1" runat="server">
         <ext:ResourceManager ID="ResourceManager1" runat="server" Theme="Neptune" AjaxTimeout="1200000" />        
         
@@ -37,7 +22,7 @@
         <ext:Hidden ID="textLoadFailed" runat="server" Text="<%$ Resources:Common , LoadFailed %>" />
         <ext:Hidden ID="titleSavingError" runat="server" Text="<%$ Resources:Common , TitleSavingError %>" />
         <ext:Hidden ID="titleSavingErrorMessage" runat="server" Text="<%$ Resources:Common , TitleSavingErrorMessage %>" />
-        <ext:Hidden ID="timeZoneOffset" runat="server" EnableViewState="true" />
+        
         <ext:Store
             ID="Store1"
             runat="server"
@@ -58,14 +43,8 @@
 
                         <ext:ModelField Name="recordId" />
                         <ext:ModelField Name="name" />
-                        <ext:ModelField Name="reference" />
-                        <ext:ModelField Name="timeZone" />
-                        <ext:ModelField Name="segmentCode" />
-                        <ext:ModelField Name="isInactive" Type="Boolean" DefaultValue="false"/>
-                       
-
-
-                    </Fields>
+                      
+                               </Fields>
                 </ext:Model>
             </Model>
             <Sorters>
@@ -134,20 +113,13 @@
                         <Columns>
 
                               <ext:Column  Visible="false" ID="ColrecordId" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldrecordId %>" DataIndex="recordId" Hideable="false" width="75" Align="Center"/>
-                            <ext:Column ID="ColReference" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldReference%>" DataIndex="reference" width="150" Hideable="false"/>
-                            <ext:Column   CellCls="cellLink" ID="ColName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldName%>" DataIndex="name" Flex="2" Hideable="false">
-                        
+                          
+                            <ext:Column   CellCls="cellLink" ID="ColName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldName%>" DataIndex="name" Flex="1" Hideable="false">
+                       
                                 </ext:Column>
-                            <ext:Column ID="ColTimeZone" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldTimeZone%>" DataIndex="timeZone" width="100" Hideable="false">
-                                <Renderer Handler="var sign = ''; if(record.data['timeZone']>=0) sign = '+'; return 'UTC '+sign + record.data['timeZone'] + ':00 ' " />     
-                                </ext:Column>
-                      
                            
-                            <ext:CheckColumn ID="ColInactive" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldIsInactive %>" DataIndex="isInactive" Width="100" Hideable="false" />
 
-                         
-
-                             <ext:Column runat="server"
+                            <ext:Column runat="server"
                                 ID="colEdit"  Visible="true"
                                 Text=""
                                 Width="100"
@@ -198,7 +170,7 @@
                             <Items>
                                 <ext:StatusBar ID="StatusBar1" runat="server" />
                                 <ext:ToolbarFill />
-                               
+                             
                             </Items>
                         </ext:Toolbar>
 
@@ -260,9 +232,12 @@
             runat="server"
             Icon="PageEdit"
             Title="<%$ Resources:EditWindowsTitle %>"
-            Width="450"
-            Height="330"
+            Width="300"
+            Height="180"
             AutoShow="false"
+            Draggable="false"
+            Maximizable="false"
+            Resizable="false"
             Modal="true"
             Hidden="true"
             Layout="Fit">
@@ -270,9 +245,9 @@
             <Items>
                 <ext:TabPanel ID="panelRecordDetails" runat="server" ActiveTabIndex="0" Border="false" DeferredRender="false">
                     <Items>
-                       <ext:FormPanel DefaultButton="SaveButton"
+                        <ext:FormPanel
                             ID="BasicInfoTab"
-                            runat="server"
+                            runat="server" DefaultButton="SaveButton"
                             Title="<%$ Resources: BasicInfoTabEditWindowTitle %>"
                             Icon="ApplicationSideList"
                             DefaultAnchor="100%" OnLoad="BasicInfoTab_Load"
@@ -280,134 +255,20 @@
                             <Items>
                                 <ext:TextField ID="recordId" Hidden="true" runat="server" FieldLabel="<%$ Resources:FieldrecordId%>" Disabled="true" Name="recordId" />
                                 <ext:TextField ID="name" runat="server" FieldLabel="<%$ Resources:FieldName%>" Name="name" AllowBlank="false" BlankText="<%$ Resources:Common, MandatoryField%>" />
-                                <ext:TextField ID="reference" runat="server" FieldLabel="<%$ Resources: FieldReference %>" DataIndex="reference"  />
-                                <ext:ComboBox runat="server" ID="timeZoneCombo"  AllowBlank="false" SimpleSubmit="true" IDMode="Static" Name="timeZone" FieldLabel="<%$ Resources:FieldTimeZone%>" QueryMode="Local"  ForceSelection="true" TypeAhead="true" MinChars="1" >
-                                    <Items>
-                                        <ext:ListItem Text="-12 UTC" Value="-12" />
-                                        <ext:ListItem Text="-11 UTC" Value="-11" />
-                                        <ext:ListItem Text="-10 UTC" Value="-10" />
-                                        <ext:ListItem Text="-9 UTC" Value="-9" />
-                                        <ext:ListItem Text="-8 UTC" Value="-8" />
-                                        <ext:ListItem Text="-7 UTC" Value="-7" />
-                                        <ext:ListItem Text="-6 UTC" Value="-6" />
-                                        <ext:ListItem Text="-5 UTC" Value="-5" />
-                                        <ext:ListItem Text="-4 UTC" Value="-4" />
-                                        <ext:ListItem Text="-3 UTC" Value="-3" />
-                                        <ext:ListItem Text="-2 UTC" Value="-2" />
-                                        <ext:ListItem Text="-1 UTC" Value="-1" />
-                                        <ext:ListItem Text=" UTC" Value="0" />
-                                        <ext:ListItem Text="+1 UTC" Value="1" />
-                                        <ext:ListItem Text="+2 UTC" Value="2" />
-                                        <ext:ListItem Text="+3 UTC" Value="3" />
-                                        <ext:ListItem Text="+4 UTC" Value="4" />
-                                        <ext:ListItem Text="+5 UTC" Value="5" />
-                                        <ext:ListItem Text="+6 UTC" Value="6" />
-                                        <ext:ListItem Text="+7 UTC" Value="7" />
-                                        <ext:ListItem Text="+8 UTC" Value="8" />
-                                        <ext:ListItem Text="+9 UTC" Value="9" />
-                                        <ext:ListItem Text="+10 UTC" Value="10" />
-                                        <ext:ListItem Text="+11 UTC" Value="11" />
-                                        <ext:ListItem Text="+12 UTC" Value="12" />
-                                    </Items>
-                                </ext:ComboBox>
-                                
-                                <ext:Checkbox ID="isInactive" runat="server" FieldLabel="<%$ Resources: FieldIsInactive%>" Name="isInactive" InputValue="true" />
                                
 
                             </Items>
 
                         </ext:FormPanel>
-                        <ext:FormPanel runat="server" ID="addressForm" Title="<%$ Resources: AddressPage %>"
-                            Icon="ApplicationSideList"
-                            DefaultAnchor="100%" 
-                            BodyPadding="5"> 
-                            <Items>
-                                <ext:TextField runat="server" Name="ddressId" ID="addressId" Hidden="true" Disabled="true" />
-                                        <ext:TextField runat="server" Name="street1" AllowBlank="false" ID="costreet1" FieldLabel="<%$ Resources:FieldCStreet1%>" />
-                                             
-                                        <ext:TextField runat="server" Name="street2" AllowBlank="true" ID="street2" FieldLabel="<%$ Resources:FieldCStreet2%>" />
-                                        <ext:TextField runat="server" Name="city" AllowBlank="false" ID="city" FieldLabel="<%$ Resources:FieldCCity%>" />
-                                        <ext:TextField runat="server" Name="postalCode" AllowBlank="true" MaxLength="6" ID="postalCode" FieldLabel="<%$ Resources:FieldCPostalCode%>" />
-                                        <%--<ext:TextField  runat="server" Name="countryName" AllowBlank="false"  ID="countryName"  FieldLabel="<%$ Resources:FieldCountryName%>" />--%>
-                                         <ext:ComboBox ValueField="recordId" AllowBlank="false" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1"
-                                            DisplayField="name" runat="server" ID="stId" Name="stId" FieldLabel="<%$ Resources:FieldState%>" SimpleSubmit="true">
-                                            <Store>
-                                                <ext:Store runat="server" ID="stStore">
-                                                    <Model>
-                                                        <ext:Model runat="server">
-                                                            <Fields>
-                                                                <ext:ModelField Name="recordId" />
-                                                                <ext:ModelField Name="name" />
-                                                            </Fields>
-                                                        </ext:Model>
-                                                    </Model>
-                                                </ext:Store>
-                                            </Store>
-                                            <RightButtons>
-                                                <ext:Button ID="Button4" runat="server" Icon="Add" Hidden="true">
-                                                    <Listeners>
-                                                        <Click Handler="CheckSession();  " />
-                                                    </Listeners>
-                                                    <DirectEvents>
-
-                                                        <Click OnEvent="addST">
-                                                            <ExtraParams>
-                                                            </ExtraParams>
-                                                        </Click>
-                                                    </DirectEvents>
-                                                </ext:Button>
-                                            </RightButtons>
-                                            <Listeners>
-                                                <FocusEnter Handler="this.rightButtons[0].setHidden(false);" />
-                                                <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
-                                            </Listeners>
-                                        </ext:ComboBox>
-                                        <ext:ComboBox ValueField="recordId" AllowBlank="false" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1"
-                                            DisplayField="name" runat="server" ID="naId" Name="naId" FieldLabel="<%$ Resources:FieldCCountryName%>" SimpleSubmit="true">
-                                            <Store>
-                                                <ext:Store runat="server" ID="naStore">
-                                                    <Model>
-                                                        <ext:Model runat="server">
-                                                            <Fields>
-                                                                <ext:ModelField Name="recordId" />
-                                                                <ext:ModelField Name="name" />
-                                                            </Fields>
-                                                        </ext:Model>
-                                                    </Model>
-                                                </ext:Store>
-                                            </Store>
-                                            <RightButtons>
-                                                <ext:Button ID="Button5" runat="server" Icon="Add" Hidden="true">
-                                                    <Listeners>
-                                                        <Click Handler="CheckSession();  " />
-                                                    </Listeners>
-                                                    <DirectEvents>
-
-                                                        <Click OnEvent="addNA">
-                                                            <ExtraParams>
-                                                            </ExtraParams>
-                                                        </Click>
-                                                    </DirectEvents>
-                                                </ext:Button>
-                                            </RightButtons>
-                                            <Listeners>
-                                                <FocusEnter Handler="this.rightButtons[0].setHidden(false);" />
-                                                <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
-                                            </Listeners>
-                                        </ext:ComboBox>
-
-
-                            </Items>
-                        </ext:FormPanel>
+                        
                     </Items>
-                    
                 </ext:TabPanel>
             </Items>
             <Buttons>
                 <ext:Button ID="SaveButton" runat="server" Text="<%$ Resources:Common, Save %>" Icon="Disk">
 
                     <Listeners>
-                        <Click Handler="CheckSession(); if (!#{BasicInfoTab}.getForm().isValid()|| !#{addressForm}.getForm().isValid()) {return false;} " />
+                        <Click Handler="CheckSession(); if (!#{BasicInfoTab}.getForm().isValid()) {return false;} " />
                     </Listeners>
                     <DirectEvents>
                         <Click OnEvent="SaveNewRecord" Failure="Ext.MessageBox.alert('#{titleSavingError}.value', '#{titleSavingErrorMessage}.value');">

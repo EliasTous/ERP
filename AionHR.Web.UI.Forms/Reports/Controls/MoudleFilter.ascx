@@ -1,6 +1,6 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="MoudleFilter.ascx.cs" Inherits="AionHR.Web.UI.Forms.Reports.Controls.MoudleFilter" %>
-<ext:Panel runat="server" Layout="HBoxLayout" Width="170"  ><Items>
-<ext:ComboBox runat="server" ID="moduleId" Editable="false" FieldLabel="">
+<ext:Panel runat="server" Layout="HBoxLayout" Width="120"  ><Items>
+<ext:ComboBox runat="server" ID="moduleId" Editable="false" Width="120" FieldLabel="">
     <Items>
         
         <ext:ListItem Text="<%$ Resources: Common,Mod20  %>" Value="20" />

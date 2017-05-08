@@ -328,14 +328,14 @@
                                  <Renderer Handler="return  record.data['employeeName'].fullName ">
                                 </Renderer>
                             </ext:Column>
-                            <ext:DateColumn Format="dd-MM-yyyy" ID="colDate" DataIndex="date" Text="<%$ Resources: FieldDate%>" runat="server" Flex="2" />
+                            <ext:DateColumn   ID="colDate" DataIndex="date" Text="<%$ Resources: FieldDate%>" runat="server" Flex="2" />
                             <ext:Column    CellCls="cellLink" ID="colDetails" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDetails%>" DataIndex="details" Flex="6" Hideable="false">
                            <%-- <Renderer Handler="return '<u>'+ record.data['details']+'</u>'"></Renderer>--%>
                             </ext:Column>
                             <ext:Column ID="colStatus" DataIndex="status" Text="<%$ Resources: FieldStatus%>" runat="server" Flex="2">
                             <Renderer Handler="return GetStatusName(record.data['status']);" />
                             </ext:Column>
-                            <ext:DateColumn Format="dd-MM-yyyy" ID="colClosedDate" DataIndex="closedDate" Text="<%$ Resources: FieldClosedDate%>" runat="server" Flex="2" />
+                            <ext:DateColumn  ID="colClosedDate" DataIndex="closedDate" Text="<%$ Resources: FieldClosedDate%>" runat="server" Flex="2" />
                         
                            
 

@@ -136,7 +136,7 @@
                             <Renderer Handler="return GetTypeName(record.data['type']);" />
                             </ext:Column>
                             <ext:Column ID="Column3" Visible="true" DataIndex="description" Text="<%$ Resources: FieldDescription%>" runat="server"  Flex="1"/>
-                            <ext:DateColumn Format="dd-MM-yyyy" Visible="true" ID="DateColumn1" DataIndex="date" Text="<%$ Resources: FieldDate%>" runat="server" width="100"/>
+                            <ext:DateColumn  Visible="true" ID="DateColumn1" DataIndex="date" Text="<%$ Resources: FieldDate%>" runat="server" width="100"/>
                                                        
 
                            <ext:Column runat="server"

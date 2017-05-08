@@ -106,6 +106,7 @@
     <Compile Include="System\CompanyDocumentType.cs" />
     <Compile Include="System\CompanyRightToWork.cs" />
     <Compile Include="System\Dashboard.cs" />
+    <Compile Include="System\State.cs" />
     <Compile Include="System\SystemAlert.cs" />
     <Compile Include="System\SystemDefault.cs" />
     <Compile Include="System\SystemFolder.cs" />

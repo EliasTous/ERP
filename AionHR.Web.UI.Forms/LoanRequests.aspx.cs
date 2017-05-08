@@ -126,7 +126,7 @@ namespace AionHR.Web.UI.Forms
                 FillDepartment();
                 FillDivision();
                 statusPref.Select(4);
-                c.Format =cc.Format= _systemService.SessionHelper.GetDateformat();
+                c.Format = cc.Format = date.Format= effectiveDate.Format= _systemService.SessionHelper.GetDateformat();
                 //if (string.IsNullOrEmpty(Request.QueryString["employeeId"]))
                 //    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorOperation).Show();
                 //CurrentEmployee.Text = Request.QueryString["employeeId"];
@@ -369,7 +369,7 @@ namespace AionHR.Web.UI.Forms
                 //Step 1 Code to delete the object from the database 
                 Loan s = new Loan();
                 s.recordId = index;
-                s.employeeId = 0; 
+                s.employeeId = 0;
                 s.purpose = "";
                 s.date = DateTime.Now;
                 s.effectiveDate = DateTime.Now;
@@ -710,7 +710,11 @@ namespace AionHR.Web.UI.Forms
             LoanManagementListRequest request = GetLoanManagementRequest();
             request.Filter = "";
             request.EmployeeId = 0;
-
+            request.SortBy = e.Sort[0].Property;
+            if (e.Sort[0].Property == "employeeName.fullName")
+                request.SortBy = _systemService.SessionHelper.GetNameformat();
+            
+            
             request.Filter = "";
             request.Size = "50";
             request.StartAt = "1";
@@ -789,7 +793,7 @@ namespace AionHR.Web.UI.Forms
                         recordId.Text = b.recordId;
                         SetTabPanelEnable(true);
                         currentCase.Text = b.recordId;
-                        
+
                         RowSelectionModel sm = this.GridPanel1.GetSelectionModel() as RowSelectionModel;
                         sm.DeselectAll();
                         sm.Select(b.recordId.ToString());

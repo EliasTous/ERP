@@ -55,6 +55,8 @@
     <ext:Hidden runat="server" ID="rtTitle" Text="<%$Resources:Common , RelationshipTypes %>" />
     <ext:Hidden runat="server" ID="ltltTitle" Text="<%$Resources:Common , LoanTypes %>" />
     <ext:Hidden runat="server" ID="cdtTitle" Text="<%$Resources:Common , CompanyDocumentTypes %>" />
+    <ext:Hidden runat="server" ID="systTitle" Text="<%$Resources:Common , States %>" />
+   
     <ext:Hidden runat="server" ID="aaTitle" Text="<%$Resources:Common , SystemAlerts %>" />
     <ext:Hidden runat="server" ID="ttTitle" Text="<%$Resources:Common , TaskTypes %>" />
     <ext:Hidden runat="server" ID="TrType1" Text="<%$Resources:Common , TrType1 %>" />
@@ -167,11 +169,7 @@
                                                                 <Click Handler="openNewTab('loanTypes', 'LoanTypes.aspx', #{ltltTitle}.value, 'icon-Employees')" />
                                                             </Listeners>
                                                         </ext:MenuItem>
-                                                        <ext:MenuItem runat="server" Text="<%$Resources: Common , LoanOverrides%>">
-                                                            <Listeners>
-                                                                <Click Handler="openNewTab('loanOverrides', 'LoanOverrides.aspx', #{loTitle}.value, 'icon-Employees')" />
-                                                            </Listeners>
-                                                        </ext:MenuItem>
+                                                       
                                                         <ext:MenuItem runat="server" Text="<%$Resources: Common , TaskTypes%>">
                                                             <Listeners>
                                                                 <Click Handler="openNewTab('taskTypes', 'TaskTypes.aspx', #{ttTitle}.value, 'icon-Employees')" />
@@ -222,6 +220,11 @@
                                                                         <ext:MenuItem runat="server" Text="<%$Resources: Common , Nationalities%>">
                                                                             <Listeners>
                                                                                 <Click Handler="openNewTab('nationalieis', 'Nationalities.aspx', #{naTitle}.value, 'icon-Employees')" />
+                                                                            </Listeners>
+                                                                        </ext:MenuItem>
+                                                                        <ext:MenuItem runat="server" Text="<%$Resources: Common , States%>">
+                                                                            <Listeners>
+                                                                                <Click Handler="openNewTab('states', 'States.aspx', #{systTitle}.value, 'icon-Employees')" />
                                                                             </Listeners>
                                                                         </ext:MenuItem>
                                                                         <ext:MenuItem runat="server" Text="<%$Resources: Common , SystemAlerts%>">
@@ -351,6 +354,11 @@
                                                         <ext:MenuItem runat="server" Text="<%$Resources: Common , PayrollDefaults%>">
                                                             <Listeners>
                                                                 <Click Handler="openNewTab('payrollDefaults', 'PayrollDefaults.aspx', #{pyde}.value, 'icon-Employees')" />
+                                                            </Listeners>
+                                                        </ext:MenuItem>
+                                                         <ext:MenuItem runat="server" Text="<%$Resources: Common , LoanOverrides%>">
+                                                            <Listeners>
+                                                                <Click Handler="openNewTab('loanOverrides', 'LoanOverrides.aspx', #{loTitle}.value, 'icon-Employees')" />
                                                             </Listeners>
                                                         </ext:MenuItem>
                                                          <ext:MenuItem runat="server" Text="<%$Resources: Common , FiscalYears%>">

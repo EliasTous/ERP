@@ -1,8 +1,8 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="JobInfoFilter.ascx.cs" Inherits="AionHR.Web.UI.Forms.Reports.JobInfoFilter" %>
 
-<ext:Panel runat="server" Layout="HBoxLayout" Width="710">
+<ext:Panel runat="server" Layout="HBoxLayout" Width="510">
     <Items>
-        <ext:ComboBox runat="server" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" ValueField="recordId" DisplayField="name" ID="departmentId" Name="departmentId" EmptyText="<%$ Resources:FieldDepartment%>">
+        <ext:ComboBox runat="server" QueryMode="Local" Width="120" ForceSelection="true" TypeAhead="true" MinChars="1" ValueField="recordId" DisplayField="name" ID="departmentId" Name="departmentId" EmptyText="<%$ Resources:FieldDepartment%>">
             <Store>
                 <ext:Store runat="server" ID="departmentStore">
                     <Model>
@@ -20,7 +20,7 @@
 
         </ext:ComboBox>
         <ext:Panel runat="server" Width="10" />
-        <ext:ComboBox runat="server" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" ValueField="recordId" DisplayField="name" ID="branchId" Name="branchId" EmptyText="<%$ Resources:FieldBranch%>">
+        <ext:ComboBox runat="server" QueryMode="Local" Width="120" ForceSelection="true" TypeAhead="true" MinChars="1" ValueField="recordId" DisplayField="name" ID="branchId" Name="branchId" EmptyText="<%$ Resources:FieldBranch%>">
             <Store>
                 <ext:Store runat="server" ID="branchStore">
                     <Model>
@@ -37,7 +37,7 @@
 
         </ext:ComboBox>
          <ext:Panel runat="server" Width="10" />
-         <ext:ComboBox runat="server" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" ValueField="recordId" DisplayField="name" ID="divisionId" Name="divisionId" EmptyText="Division">
+         <ext:ComboBox runat="server" QueryMode="Local" Width="120" ForceSelection="true" TypeAhead="true" MinChars="1" ValueField="recordId" DisplayField="name" ID="divisionId" Name="divisionId" EmptyText="Division">
             <Store>
                 <ext:Store runat="server" ID="divisionStore">
                     <Model>
@@ -54,7 +54,7 @@
 
         </ext:ComboBox>
          <ext:Panel runat="server" Width="10" />
-        <ext:ComboBox runat="server" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" ValueField="recordId" DisplayField="name" ID="positionId" Name="positionId" EmptyText="<%$ Resources:FieldPosition%>">
+        <ext:ComboBox runat="server" QueryMode="Local" Width="120" ForceSelection="true" TypeAhead="true" MinChars="1" ValueField="recordId" DisplayField="name" ID="positionId" Name="positionId" EmptyText="<%$ Resources:FieldPosition%>">
             <Store>
                 <ext:Store runat="server" ID="positionStore">
                     <Model>

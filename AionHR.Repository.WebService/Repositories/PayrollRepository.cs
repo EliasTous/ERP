@@ -32,6 +32,7 @@ namespace AionHR.Repository.WebService.Repositories
             ChildDeleteLookup.Add(typeof(FiscalYear), "delYE");
             ChildDeleteLookup.Add(typeof(PayrollEntitlementDeduction), "delED");
 
+            ChildGetLookup.Add(typeof(GenerationHeader), "getHE");
         }
     }
 }

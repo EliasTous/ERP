@@ -3799,7 +3799,7 @@ namespace AionHR.Web.UI.Forms {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.ComboBox year;
+        protected global::Ext.Net.NumberField year;
         
         /// <summary>
         /// Button3 control.

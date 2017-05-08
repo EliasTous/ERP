@@ -135,6 +135,9 @@
   <data name="FieldFax" xml:space="preserve">
     <value>Fax</value>
   </data>
+  <data name="FieldIdRef" xml:space="preserve">
+    <value>Ref</value>
+  </data>
   <data name="FieldMobile" xml:space="preserve">
     <value>Mobile</value>
   </data>
@@ -146,6 +149,9 @@
   </data>
   <data name="FieldRecordId" xml:space="preserve">
     <value>Record ID</value>
+  </data>
+  <data name="FieldRTWRef" xml:space="preserve">
+    <value>Right to work Ref</value>
   </data>
   <data name="WindowTitle" xml:space="preserve">
     <value>Sponsors</value>

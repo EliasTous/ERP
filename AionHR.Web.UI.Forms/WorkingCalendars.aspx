@@ -2119,18 +2119,8 @@
                             <Items>
                                 
                                 <ext:TextField ID="fieldCaId" Hidden="true" runat="server" Disabled="true" DataIndex="scId" />
-                                <ext:ComboBox runat="server" FieldLabel="<%$ Resources:Year %>" ID="year" Name="year" SubmitValue="true" QueryMode="Local"  ForceSelection="true" TypeAhead="true" MinChars="1" >
-                                    <Items>
-                                        <ext:ListItem Text="2015" Value="2015" />
-                                        <ext:ListItem Text="2016" Value="2016" />
-                                        <ext:ListItem Text="2017" Value="2017" />
-                                        <ext:ListItem Text="2018" Value="2018" />
-                                        <ext:ListItem Text="2019" Value="2019" />
-                                        <ext:ListItem Text="2020" Value="2020" />
-                                        <ext:ListItem Text="2021" Value="2021" />
-                                        <ext:ListItem Text="2022" Value="2022" />
-                                    </Items>
-                                </ext:ComboBox>
+                                <ext:NumberField runat="server" FieldLabel="<%$ Resources:Year %>" ID="year" Name="year"  MinValue="1900" />
+                               
                             </Items>
 
                         </ext:FormPanel>
