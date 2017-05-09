@@ -733,6 +733,15 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.TextField familyName;
         
         /// <summary>
+        /// idRef control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.TextField idRef;
+        
+        /// <summary>
         /// homeEmail control.
         /// </summary>
         /// <remarks>
@@ -749,15 +758,6 @@ namespace AionHR.Web.UI.Forms {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.TextField workEmail;
-        
-        /// <summary>
-        /// mobile control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.TextField mobile;
         
         /// <summary>
         /// gender control.
@@ -785,6 +785,15 @@ namespace AionHR.Web.UI.Forms {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.Radio gender1;
+        
+        /// <summary>
+        /// mobile control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.TextField mobile;
         
         /// <summary>
         /// religionCombo control.
