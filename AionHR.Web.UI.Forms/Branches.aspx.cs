@@ -23,6 +23,7 @@ using AionHR.Model.Company.Structure;
 using AionHR.Infrastructure.Session;
 using AionHR.Model.System;
 using AionHR.Model.Employees.Profile;
+using AionHR.Infrastructure.JSON;
 
 namespace AionHR.Web.UI.Forms
 {
@@ -131,7 +132,7 @@ namespace AionHR.Web.UI.Forms
                     timeZoneCombo.Select(response.result.timeZone.ToString());
                     FillNationality();
                     FillState();
-                    naId.Select(response.result.addressId.countryId.ToString());
+                    naId.Select(response.result.addressId.countryId);
                     stId.Select(response.result.addressId.stateId);
                     addressId.Text = response.result.addressId.recordId;
                     addressForm.SetValues(response.result.addressId);
@@ -345,11 +346,18 @@ namespace AionHR.Web.UI.Forms
             string id = e.ExtraParams["id"];
 
             string obj = e.ExtraParams["values"];
+            string addr = e.ExtraParams["address"];
             Branch b = JsonConvert.DeserializeObject<Branch>(obj);
             b.isInactive = isInactive.Checked;
             b.recordId = id;
             // Define the object to add or edit as null
-            b.addressId = new AddressBook() { street1 = costreet1.Text, street2 = street2.Text, city = city.Text, postalCode = postalCode.Text, countryId = Convert.ToInt32(naId.SelectedItem.Value), stateId = stId.SelectedItem.Value, countryName = naId.SelectedItem.Text };
+            CustomResolver res = new CustomResolver();
+            res.AddRule("naId", "countryId");
+            res.AddRule("stId", "stateId");
+            JsonSerializerSettings settings = new JsonSerializerSettings();
+            settings.ContractResolver = res;
+         
+            b.addressId = JsonConvert.DeserializeObject<AddressBook>(addr,settings);
             b.addressId.recordId = addressId.Text;
             if (string.IsNullOrEmpty(id))
             {

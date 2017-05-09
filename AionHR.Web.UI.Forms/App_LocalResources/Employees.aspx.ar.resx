@@ -339,4 +339,7 @@
   <data name="serviceDuration" xml:space="preserve">
     <value>في الخدمة:</value>
   </data>
+  <data name="FieldIdRef" xml:space="preserve">
+    <value>رقم الهوية</value>
+  </data>
 </root>

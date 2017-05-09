@@ -412,7 +412,7 @@
     <value>الجنسيات</value>
   </data>
   <data name="Positions" xml:space="preserve">
-    <value>المناصب</value>
+    <value>الوظائف</value>
   </data>
   <data name="Religion0" xml:space="preserve">
     <value>مسيحي</value>
@@ -851,5 +851,8 @@
   </data>
   <data name="LoanOverrides" xml:space="preserve">
     <value>استثناءات السلف</value>
+  </data>
+  <data name="States" xml:space="preserve">
+    <value>المحافظات</value>
   </data>
 </root>

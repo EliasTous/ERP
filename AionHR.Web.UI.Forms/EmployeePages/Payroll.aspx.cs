@@ -118,7 +118,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
 
             int id = Convert.ToInt32(e.ExtraParams["id"]);
             string type = e.ExtraParams["type"];
-            
+            currentGrossSalary.Text = e.ExtraParams["grossSalary"];
             switch (type)
             {
 
@@ -145,6 +145,8 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     scrId.Select(response3.result.scrId.ToString());
 
                     X.Call("TogglePaymentMethod", response3.result.paymentMethod);
+                    eAmount.Text = response3.result.eAmount.ToString();
+                    dAmount.Text = response3.result.dAmount.ToString();
                     FillEntitlements();
                     FillDeductions();
                     this.EditSAWindow.Title = Resources.Common.EditWindowsTitle;
@@ -170,7 +172,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
 
                     }).Show();
                     break;
-              
+
                 default:
                     break;
             }
@@ -184,11 +186,11 @@ namespace AionHR.Web.UI.Forms.EmployeePages
 
             int id = Convert.ToInt32(e.ExtraParams["id"]);
             string type = e.ExtraParams["type"];
-        
+
             switch (type)
             {
 
-                
+
                 case "imgDelete":
                     X.Msg.Confirm(Resources.Common.Confirmation, Resources.Common.DeleteOneRecord, new MessageBoxButtonsConfig
                     {
@@ -225,7 +227,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     this.EditBOWindow.Title = Resources.Common.EditWindowsTitle;
                     this.EditBOWindow.Show();
                     break;
-                
+
                 default:
                     break;
             }
@@ -240,23 +242,38 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             int id = Convert.ToInt32(e.ExtraParams["id"]);
             string type = e.ExtraParams["type"];
             string entitlement = "";
-            SalaryDetail  entDetail = null;
+            SalaryDetail entDetail = null;
             switch (type)
             {
 
-                
+
                 case "imgEdit":
-                   
+
                     string record = e.ExtraParams["values"];
                     SalaryDetail detail = JsonConvert.DeserializeObject<List<SalaryDetail>>(record)[0];
                     if (!detail.includeInTotal.HasValue)
                         detail.includeInTotal = false;
                     //entsStore.Reload();
                     ENId.Text = detail.seqNo.ToString();
-                    oldEntValue.Text = detail.fixedAmount.ToString();
+                    if (detail.fixedAmount == 0)
+                        oldEntValue.Text = ((detail.pct / 100) * Convert.ToDouble(BasicSalary.Text)).ToString();
+                    else
+                        oldEntValue.Text = detail.fixedAmount.ToString();
                     oldENIncludeInFinal.Checked = detail.includeInTotal.Value;
                     ENForm.SetValues(detail);
                     entEdId.Select(detail.edId.ToString());
+                    if (detail.pct != 0)
+                    {
+                        enPCT.Disabled = false;
+                        enFixedAmount.Disabled = true;
+
+                    }
+                    else
+                    {
+                        enPCT.Disabled = true;
+                        enFixedAmount.Disabled = false;
+
+                    }
                     EditENWindow.Show();
                     break;
                 case "imgDelete":
@@ -279,7 +296,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
 
                     }).Show();
                     break;
-            
+
                 default:
                     break;
             }
@@ -298,7 +315,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             switch (type)
             {
 
-               
+
                 case "imgEdit":
 
                     deduction = e.ExtraParams["values"];
@@ -307,9 +324,26 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                         dedDetail.includeInTotal = false;
                     DEId.Text = dedDetail.seqNo.ToString();
                     DEForm.SetValues(dedDetail);
-                    DEoldValue.Text = dedDetail.fixedAmount.ToString();
+                    if (dedDetail.fixedAmount == 0)
+                        DEoldValue.Text = ((dedDetail.pct / 100) * Convert.ToDouble(BasicSalary.Text)).ToString();
+                    else
+                        DEoldValue.Text = dedDetail.fixedAmount.ToString();
+
                     oldDEIncludeInFinal.Checked = dedDetail.includeInTotal.Value;
                     dedEdId.Select(dedDetail.edId.ToString());
+                    if (dedDetail.pct != 0)
+                    {
+                        dePCT.Disabled = false;
+                        deFixedAmount.Disabled = true;
+                        pctOf.Select(dedDetail.pctOf.ToString());
+                        pctOf.Disabled = false;
+                    }
+                    else
+                    {
+                        dePCT.Disabled = true;
+                        deFixedAmount.Disabled = false;
+                        pctOf.Disabled = true;
+                    }
                     EditDEWindow.Show();
                     break;
                 case "imgDelete":
@@ -332,7 +366,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
 
                     }).Show();
                     break;
-            
+
                 default:
                     break;
             }
@@ -471,7 +505,10 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     Html = Resources.Common.RecordDeletedSucc
                 });
                 if (includeInTotal)
+                {
                     X.Call("ChangeFinalAmount", -value);
+                    X.Call("ChangeEntitlementsAmount", -value);
+                }
 
             }
             catch (Exception ex)
@@ -499,7 +536,10 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     Html = Resources.Common.RecordDeletedSucc
                 });
                 if (includeInTotal)
+                {
                     X.Call("ChangeFinalAmount", value);
+                    X.Call("ChangeDeductionsAmount", value);
+                }
             }
             catch (Exception ex)
             {
@@ -654,12 +694,25 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             b.employeeId = Convert.ToInt32(CurrentEmployee.Text);
             b.recordId = id;
             b.effectiveDate = new DateTime(b.effectiveDate.Year, b.effectiveDate.Month, b.effectiveDate.Day, 14, 0, 0);
-            if (currencyId.SelectedItem != null)
-                b.currencyRef = currencyId.SelectedItem.Text;
-            if (scrId.SelectedItem != null)
-                b.scrName = scrId.SelectedItem.Text;
-            if (!b.isTaxable.HasValue)
+            try
+            {
+                if (currencyId.SelectedItem != null)
+                    b.currencyRef = currencyId.SelectedItem.Text;
+            }
+            catch { }
+            try
+            {
+                if (scrId.SelectedItem != null)
+                    b.scrName = scrId.SelectedItem.Text;
+            }
+            catch { }
+            try
+            {
+                if (!b.isTaxable.HasValue) ;
+
                 b.isTaxable = 0;
+            }
+            catch { }
             // Define the object to add or edit as null
 
 
@@ -741,7 +794,13 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     int index = Convert.ToInt32(id);//getting the id of the record
                     PostRequest<EmployeeSalary> request = new PostRequest<EmployeeSalary>();
                     request.entity = b;
-                    PostResponse<EmployeeSalary> r = _employeeService.ChildAddOrUpdate<EmployeeSalary>(request);                      //Step 1 Selecting the object or building up the object for update purpose
+                    PostResponse<EmployeeSalary> r = _employeeService.ChildAddOrUpdate<EmployeeSalary>(request);
+                    if (!r.Success)//it maybe another check
+                    {
+                        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                        X.Msg.Alert(Resources.Common.Error, r.Summary).Show();
+                        return;
+                    }//Step 1 Selecting the object or building up the object for update purpose
                     var deleteDesponse = _employeeService.DeleteSalaryDetails(Convert.ToInt32(b.recordId));
                     if (!deleteDesponse.Success)//it maybe another check
                     {
@@ -801,7 +860,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
 
             string obj = e.ExtraParams["values"];
             string oldAmount = e.ExtraParams["oldAmount"];
-
+            double amount = 0;
             SalaryDetail b = JsonConvert.DeserializeObject<SalaryDetail>(obj);
 
             b.seqNo = Convert.ToInt16(ENSeq.Text);
@@ -813,15 +872,25 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                 b.edName = entEdId.SelectedItem.Text;
 
             // Define the object to add or edit as null
-            if (b.pct == 0)
+            if (b.pct == 0 || !enIsPct.Checked)
             {
                 b.pct = (b.fixedAmount / Convert.ToDouble(BasicSalary.Text)) * 100;
             }
-            else if (b.fixedAmount == 0)
+            if (!enIsPct.Checked)
+            {
+                b.pct = 0;
+                amount = b.fixedAmount;
+            }
+            else if (b.fixedAmount == 0 || enIsPct.Checked)
             {
                 b.fixedAmount = (b.pct / 100) * Convert.ToDouble(BasicSalary.Text);
             }
+            if (enIsPct.Checked)
+            {
+                amount = b.fixedAmount;
+                b.fixedAmount = 0;
 
+            }
             if (string.IsNullOrEmpty(id))
             {
 
@@ -846,7 +915,10 @@ namespace AionHR.Web.UI.Forms.EmployeePages
 
                     this.EditENWindow.Close();
                     if (b.includeInTotal.Value)
-                        X.Call("ChangeFinalAmount", b.fixedAmount);
+                    {
+                        X.Call("ChangeFinalAmount", amount);
+                        X.Call("ChangeEntitlementsAmount", amount);
+                    }
                 }
 
                 catch (Exception ex)
@@ -870,6 +942,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     record.Set("edName", b.edName);
                     ENForm.UpdateRecord(record);
                     record.Set("fixedAmount", b.fixedAmount);
+                    record.Set("pct", b.pct);
                     record.Commit();
                     Notification.Show(new NotificationConfig
                     {
@@ -878,7 +951,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                         Html = Resources.Common.RecordUpdatedSucc
                     });
                     this.EditENWindow.Close();
-                    RefreshFinalForEntitlement(oldAmountDouble, oldInclude, b.includeInTotal.Value, b.fixedAmount);
+                    RefreshFinalForEntitlement(oldAmountDouble, oldInclude, b.includeInTotal.Value, amount);
 
                 }
                 catch (Exception ex)
@@ -895,16 +968,22 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             {
                 case false:
                     if (oldInclude)
+                    {
                         X.Call("ChangeFinalAmount", -oldAmountDouble);
-
+                        X.Call("ChangeEntitlementsAmount", -oldAmountDouble);
+                    }
                     break;
                 case true:
                     if (!oldInclude)
+                    {
                         X.Call("ChangeFinalAmount", amount);
+                        X.Call("ChangeEntitlementsAmount", amount);
+                    }
                     else
                     {
                         double newChange = amount - oldAmountDouble;
                         X.Call("ChangeFinalAmount", newChange);
+                        X.Call("ChangeEntitlementsAmount", newChange);
                     }
                     break;
                 default:
@@ -918,16 +997,23 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             {
                 case false:
                     if (oldInclude)
+                    {
                         X.Call("ChangeFinalAmount", oldAmountDouble);
+                        X.Call("ChangeDeductionsAmount", oldAmountDouble);
+                    }
 
                     break;
                 case true:
                     if (!oldInclude)
+                    {
                         X.Call("ChangeFinalAmount", -amount);
+                        X.Call("ChangeDeductionsAmount", -amount);
+                    }
                     else
                     {
                         double newChange = oldAmountDouble - amount;
                         X.Call("ChangeFinalAmount", newChange);
+                        X.Call("ChangeDeductionsAmount", newChange);
                     }
                     break;
                 default:
@@ -947,7 +1033,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             res.AddRule("DEedId", "edId");
             settings.ContractResolver = res;
             SalaryDetail b = JsonConvert.DeserializeObject<SalaryDetail>(obj, settings);
-
+            double amount = 0;
             b.seqNo = Convert.ToInt16(DESeq.Text);
             if (!b.includeInTotal.HasValue)
                 b.includeInTotal = false;
@@ -957,15 +1043,25 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                 b.edName = dedEdId.SelectedItem.Text;
 
             // Define the object to add or edit as null
-            if (b.pct == 0)
+            if (b.pct == 0 || !deIsPCT.Checked)
             {
                 b.pct = (b.fixedAmount / Convert.ToDouble(BasicSalary.Text)) * 100;
             }
-            else if (b.fixedAmount == 0)
+            if (!deIsPCT.Checked)
+            {
+                b.pct = 0;
+                amount = b.fixedAmount;
+            }
+            else if (b.fixedAmount == 0 || deIsPCT.Checked)
             {
                 b.fixedAmount = (b.pct / 100) * Convert.ToDouble(BasicSalary.Text);
             }
+            if (deIsPCT.Checked)
+            {
+                amount = b.fixedAmount;
+                b.fixedAmount = 0;
 
+            }
             if (string.IsNullOrEmpty(id))
             {
 
@@ -975,7 +1071,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     short curSeq = Convert.ToInt16(DESeq.Text);
                     b.seqNo = curSeq++;
                     DESeq.Text = curSeq.ToString();
-                   
+
                     //Add this record to the store 
                     this.deductionStore.Insert(0, b);
 
@@ -989,7 +1085,10 @@ namespace AionHR.Web.UI.Forms.EmployeePages
 
                     this.EditDEWindow.Close();
                     if (b.includeInTotal.Value)
-                        X.Call("ChangeFinalAmount", -b.fixedAmount);
+                    {
+                        X.Call("ChangeFinalAmount", amount);
+                        X.Call("ChangeDeductionsAmount", amount);
+                    }
                 }
 
                 catch (Exception ex)
@@ -1014,6 +1113,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     record.Set("edName", b.edName);
                     DEForm.UpdateRecord(record);
                     record.Set("fixedAmount", b.fixedAmount);
+                    record.Set("pct", b.pct);
                     record.Commit();
                     Notification.Show(new NotificationConfig
                     {
@@ -1022,7 +1122,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                         Html = Resources.Common.RecordUpdatedSucc
                     });
                     this.EditDEWindow.Close();
-                    RefreshFinalForDeduction(oldAmountDouble, oldInclude, b.includeInTotal.Value, b.fixedAmount);
+                    RefreshFinalForDeduction(oldAmountDouble, oldInclude, b.includeInTotal.Value, amount);
                 }
                 catch (Exception ex)
                 {
@@ -1212,6 +1312,12 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             req.SalaryID = Convert.ToInt32(CurrentSalary.Text);
             req.Type = 1;
             ListResponse<SalaryDetail> details = _employeeService.ChildGetAll<SalaryDetail>(req);
+            if (!details.Success)
+            {
+                X.Msg.Alert(Resources.Common.Error, details.Summary).Show();
+
+                return;
+            }
             entitlementsStore.DataSource = details.Items;
             entitlementsStore.DataBind();
             ENSeq.Text = (details.count + 1).ToString();
@@ -1224,6 +1330,12 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             req.SalaryID = Convert.ToInt32(CurrentSalary.Text);
             req.Type = 2;
             ListResponse<SalaryDetail> details = _employeeService.ChildGetAll<SalaryDetail>(req);
+            if (!details.Success)
+            {
+                X.Msg.Alert(Resources.Common.Error, details.Summary).Show();
+
+                return;
+            }
             deductionStore.DataSource = details.Items;
             deductionStore.DataBind();
             DESeq.Text = (details.count + 1).ToString();
@@ -1236,7 +1348,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             Currency obj = new Currency();
             obj.name = CurrencyCombo.Text;
             obj.reference = CurrencyCombo.Text;
-            
+
             PostRequest<Currency> req = new PostRequest<Currency>();
             req.entity = obj;
             PostResponse<Currency> response = _systemService.ChildAddOrUpdate<Currency>(req);

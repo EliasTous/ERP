@@ -292,9 +292,9 @@
     <Content Include="Scripts\CompanyFiles.js" />
     <Content Include="Scripts\CompanyNews.js" />
     <Content Include="Scripts\Contacts.js" />
-    <Content Include="Scripts\cropper.js" />
     <Content Include="Scripts\EmployeeComplaints.js" />
     <Content Include="Scripts\EmployeesOrgChart.js" />
+    <Content Include="Scripts\jquery-new.js" />
     <Content Include="Scripts\LoanOverrides.js" />
     <Content Include="Scripts\PayrollGeneration.js" />
     <Content Include="Scripts\Folders.js" />

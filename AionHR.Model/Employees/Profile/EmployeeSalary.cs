@@ -28,5 +28,9 @@ namespace AionHR.Model.Employees.Profile
         public string comments { get; set; }
         public double basicAmount { get; set; }
         public double finalAmount { get; set; }
+
+        public double eAmount { get; set; }
+
+        public double dAmount { get; set; }
     }
 }

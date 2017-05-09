@@ -229,10 +229,10 @@
                             <ext:DateColumn ID="c"  DataIndex="date" Text="<%$ Resources: FieldDate%>" runat="server" Width="100" />
 
                             <ext:Column  ID="Column20" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldAmount %>" DataIndex="amount" Hideable="false" width="140">
-                                <Renderer Handler="return record.data['amount'] + '&nbsp;'+ record.data['currencyRef'];"></Renderer>
+                                <Renderer Handler="return record.data['currencyRef']+ '&nbsp;'+record.data['amount']; "></Renderer>
                              </ext:Column>
                              <ext:Column  ID="Column4" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDeductedAmount %>" DataIndex="deductedAmount" Hideable="false" Width="140">
-                                <Renderer Handler="return record.data['deductedAmount'] + '&nbsp;'+ record.data['currencyRef'];"></Renderer>
+                                <Renderer Handler="return  record.data['currencyRef']+ '&nbsp;'+record.data['deductedAmount'] ;"></Renderer>
                              </ext:Column>
                            
                             <ext:Column ID="Column12" DataIndex="purpose" Text="<%$ Resources: FieldPurpose%>" runat="server" Flex="2" />

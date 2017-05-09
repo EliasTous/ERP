@@ -427,20 +427,20 @@
                                     
                                     <ext:Column runat="server" DataIndex="workingDays" Text="<%$ Resources: FieldDays%>" Width="100" />
                                     <ext:Column runat="server" DataIndex="basicAmount" Text="<%$ Resources: FieldBasicAmount%>" >
-                                        <Renderer Handler="return record.data['basicAmount']+'&nbsp; '+ record.data['currencyRef'];" />
+                                        <Renderer Handler="return record.data['currencyRef']+'&nbsp; '+ record.data['basicAmount'] ;" />
                                         </ext:Column>
                                     <ext:Column runat="server" DataIndex="taxAmount" Text="<%$ Resources: FieldTaxAmount%>" >
-                                        <Renderer Handler="if(record.data['taxAmount']==0) return '-'; return record.data['taxAmount']+'&nbsp; '+ record.data['currencyRef'];" />
+                                        <Renderer Handler="if(record.data['taxAmount']==0) return '-';return record.data['currencyRef'] +'&nbsp;'  + record.data['taxAmount']; " />
                                         </ext:Column>
                                     <ext:Column runat="server" DataIndex="eAmount" Text="<%$ Resources: Entitlements%>" >
-                                        <Renderer Handler="if(record.data['eAmount']==0) return '-';return record.data['eAmount']+' &nbsp;'+ record.data['currencyRef'];" />
+                                        <Renderer Handler="if(record.data['eAmount']==0) return '-';return  record.data['currencyRef'] +' &nbsp;'+ record.data['eAmount'];" />
                                         </ext:Column>
                                     
                                     <ext:Column runat="server" DataIndex="dAmount" Text="<%$ Resources: Deductions%>" >
-                                        <Renderer Handler="if(record.data['dAmount']==0) return '-'; return '-'+ record.data['dAmount']+'&nbsp; '+ record.data['currencyRef'];;" />
+                                        <Renderer Handler="if(record.data['dAmount']==0) return '-'; return '-'+record.data['currencyRef']+'&nbsp; '+ record.data['dAmount'] ;" />
                                      </ext:Column>
                                     <ext:Column runat="server" DataIndex="netSalary" Text="<%$ Resources: FieldNetSalary%>" >
-                                        <Renderer Handler="if(record.data['netSalary']==0) return '-'; return record.data['netSalary']+'&nbsp; '+ record.data['currencyRef'];" />
+                                        <Renderer Handler="if(record.data['netSalary']==0) return '-'; return record.data['currencyRef'] +'&nbsp; '+ record.data['netSalary'] ;" />
                                         </ext:Column>
                                     <ext:Column runat="server"
                                         ID="Column1" Visible="true"
@@ -624,8 +624,8 @@
                                                 Text="<%$ Resources:FieldAmount%>"
                                                 DataIndex="amount"
                                                 Align="Center">
-                                                <SummaryRenderer Handler="if(App.entitlementsGrid.getStore().getCount()>0) return CalcENSum()+ '&nbsp;'+ #{CurrentCurrencyRef}.value;" />
-                                                <Renderer Handler=" return record.data['amount'] +' &nbsp;' + #{CurrentCurrencyRef}.value;" />
+                                                <SummaryRenderer Handler="if(App.entitlementsGrid.getStore().getCount()>0) return #{CurrentCurrencyRef}.value+ '&nbsp;'+CalcENSum() ;" />
+                                                <Renderer Handler=" return #{CurrentCurrencyRef}.value+' &nbsp;' + record.data['amount']  ;" />
                                             </ext:NumberColumn>
 
                                             <ext:Column runat="server"
@@ -737,10 +737,10 @@
                                                         runat="server"
                                                         AllowBlank="false" />
                                                 </Editor>
-                                                <Renderer Handler="return record.data['amount']+ '&nbsp;'+ #{CurrentCurrencyRef}.value;">
+                                                <Renderer Handler="return #{CurrentCurrencyRef}.value+ '&nbsp;'+ record.data['amount'] ;">
                                                     
                                                 </Renderer>
-                                                <SummaryRenderer Handler="if(App.deductionGrid.getStore().getCount()>0) return CalcDESum()+ '&nbsp;'+ #{CurrentCurrencyRef}.value;" />
+                                                <SummaryRenderer Handler="if(App.deductionGrid.getStore().getCount()>0) return #{CurrentCurrencyRef}.value+ '&nbsp;'+CalcDESum() ;" />
                                             </ext:NumberColumn>
 
 

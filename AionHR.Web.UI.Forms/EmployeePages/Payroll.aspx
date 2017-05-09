@@ -9,7 +9,7 @@
     <title></title>
     <link rel="stylesheet" type="text/css" href="../CSS/Common.css?id=1" />
     <link rel="stylesheet" href="../CSS/LiveSearch.css" />
-    <script type="text/javascript" src="../Scripts/Payroll.js?id=18"></script>
+    <script type="text/javascript" src="../Scripts/Payroll.js?id=33"></script>
     <script type="text/javascript" src="../Scripts/common.js?id=0"></script>
 
 
@@ -34,6 +34,9 @@
         <ext:Hidden ID="BasicSalary" runat="server" Text="" />
         <ext:Hidden ID="ENSeq" runat="server" Text="" />
         <ext:Hidden ID="DESeq" runat="server" Text="" />
+ <%--       <ext:Hidden ID="eAmount" runat="server" Text="" />
+        <ext:Hidden ID="dAmount" runat="server" Text="" />--%>
+        <ext:Hidden ID="currentGrossSalary" runat="server"  />
 
         <ext:Store runat="server" ID="entsStore" OnReadData="ensStore_ReadData" AutoLoad="true">
             <Model>
@@ -115,6 +118,7 @@
                                         <ext:ModelField Name="comments" />
                                         <ext:ModelField Name="basicAmount" />
                                         <ext:ModelField Name="finalAmount" />
+                                        <ext:ModelField Name="grossSalary" />
 
 
 
@@ -175,12 +179,12 @@
                             </ext:Column>
                     
                             <ext:Column  ID="Column20" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldBasicAmount %>" DataIndex="basicAmount" Hideable="false" Flex="1" Width="75" Align="Center" >
-                                <Renderer Handler="return record.data['basicAmount'] + '&nbsp;'+ record.data['currencyRef'];">
+                                <Renderer Handler="return record.data['currencyRef']+ '&nbsp;'+record.data['basicAmount']  ;">
 
                                 </Renderer>
                                 </ext:Column>
                             <ext:Column  ID="Column21" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldFinalAmount %>" DataIndex="finalAmount" Hideable="false" Flex="1" Width="75" Align="Center" >
-                                   <Renderer Handler="return record.data['finalAmount'] + '&nbsp;'+ record.data['currencyRef'];">
+                                   <Renderer Handler="return record.data['currencyRef']+ '&nbsp;'+record.data['finalAmount']  ;">
 
                                 </Renderer>
                                 </ext:Column>
@@ -251,6 +255,7 @@
                             <EventMask ShowMask="true" />
                             <ExtraParams>
                                 <ext:Parameter Name="sal" Value="record.data['basicAmount']" Mode="Raw" />
+                                <ext:Parameter Name="grossSalary" Value="record.data['grossSalary']" Mode="Raw" />
                                 <ext:Parameter Name="id" Value="record.getId()" Mode="Raw" />
                                 <ext:Parameter Name="type" Value="getCellType( this, rowIndex, cellIndex)" Mode="Raw" />
                             </ExtraParams>
@@ -365,7 +370,7 @@
 
 
                             <ext:Column ID="Column7" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldAmount %>" DataIndex="amount" Hideable="false" Flex="1" Align="Center" >
-                                <Renderer Handler="return record.data['amount'] + '&nbsp;'+record.data['currencyRef'];"/>
+                                <Renderer Handler="return  record.data['currencyRef']+ '&nbsp;'+record.data['amount'];"/>
                                     </ext:Column>
 
 
@@ -459,8 +464,8 @@
             runat="server"
             Icon="PageEdit"
             Title="<%$ Resources:EditSAWindowTitle %>"
-            Width="650"
-            Height="330"
+            Width="630"
+            Height="340"
             AutoShow="false"
             Modal="true"
             Hidden="true"
@@ -479,9 +484,9 @@
                             <Items>
                                 <ext:Panel runat="server">
                                     <Items>
-                                        <ext:TextField ID="SAId" Hidden="true" runat="server" FieldLabel="<%$ Resources:FieldrecordId%>" Disabled="true" Name="recordId" />
+                                        <ext:TextField ID="SAId" Hidden="true" runat="server" LabelWidth="130" Width="275" FieldLabel="<%$ Resources:FieldrecordId%>" Disabled="true" Name="recordId" />
 
-                                        <ext:ComboBox runat="server" AllowBlank="false" ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="reference" ID="currencyId" Name="currencyId" FieldLabel="<%$ Resources:FieldSACurrencyName%>" SimpleSubmit="true">
+                                        <ext:ComboBox runat="server" AllowBlank="false" LabelWidth="130" Width="275" ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="reference" ID="currencyId" Name="currencyId" FieldLabel="<%$ Resources:FieldSACurrencyName%>" SimpleSubmit="true">
 
                                             <Store>
                                                 <ext:Store runat="server" ID="currencyStore">
@@ -513,7 +518,7 @@
                                                 <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
                                             </Listeners>
                                         </ext:ComboBox>
-                                        <ext:ComboBox runat="server" AllowBlank="true" ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" ID="scrId" Name="scrId" FieldLabel="<%$ Resources:FieldScrName%>" SimpleSubmit="true">
+                                        <ext:ComboBox runat="server" AllowBlank="true" LabelWidth="130" Width="275" ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" ID="scrId" Name="scrId" FieldLabel="<%$ Resources:FieldScrName%>" SimpleSubmit="true">
                                             <Store>
                                                 <ext:Store runat="server" ID="scrStore">
                                                     <Model>
@@ -543,9 +548,9 @@
                                                 <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
                                             </Listeners>
                                         </ext:ComboBox>
-                                        <ext:DateField AllowBlank="false" runat="server" ID="effectiveDate" Name="effectiveDate" FieldLabel="<%$ Resources:FieldEffectiveDate%>" />
+                                        <ext:DateField AllowBlank="false" runat="server" LabelWidth="130" Width="275" ID="effectiveDate" Name="effectiveDate" FieldLabel="<%$ Resources:FieldEffectiveDate%>" />
 
-                                        <ext:ComboBox AllowBlank="false" ID="salaryType" runat="server" FieldLabel="<%$ Resources:FieldSalaryType%>" Name="salaryType" IDMode="Static" SubmitValue="true">
+                                        <ext:ComboBox AllowBlank="false" ID="salaryType" LabelWidth="130" Width="275" runat="server" FieldLabel="<%$ Resources:FieldSalaryType%>" Name="salaryType" IDMode="Static" SubmitValue="true">
                                             <Items>
                                                <ext:ListItem Text="<%$ Resources: SalaryDaily%>" Value="1"></ext:ListItem>
                                                 <ext:ListItem Text="<%$ Resources: SalaryWeekly%>" Value="2"></ext:ListItem>
@@ -554,7 +559,7 @@
                                                 <ext:ListItem Text="<%$ Resources: SalaryMonthly%>" Value="5"></ext:ListItem>
                                             </Items>
                                         </ext:ComboBox>
-                                        <ext:ComboBox AllowBlank="false" ID="paymentFrequency" runat="server" FieldLabel="<%$ Resources:FieldPaymentFrequency%>" Name="paymentFrequency" IDMode="Static" SubmitValue="true">
+                                        <ext:ComboBox AllowBlank="false" ID="paymentFrequency" LabelWidth="130" Width="275" runat="server" FieldLabel="<%$ Resources:FieldPaymentFrequency%>" Name="paymentFrequency" IDMode="Static" SubmitValue="true">
                                             <Items>
                                                    <ext:ListItem Text="<%$ Resources: SalaryDaily%>" Value="1"></ext:ListItem>
                                                 <ext:ListItem Text="<%$ Resources: SalaryWeekly%>" Value="2"></ext:ListItem>
@@ -564,7 +569,7 @@
                                             </Items>
                                         </ext:ComboBox>
 
-                                        <ext:ComboBox AllowBlank="false" ID="paymentMethod" runat="server" FieldLabel="<%$ Resources:FieldPaymentMethod%>" Name="paymentMethod" IDMode="Static" SubmitValue="true">
+                                        <ext:ComboBox LabelWidth="130" Width="275" AllowBlank="false" ID="paymentMethod" runat="server" FieldLabel="<%$ Resources:FieldPaymentMethod%>" Name="paymentMethod" IDMode="Static" SubmitValue="true">
                                             <Items>
                                                 <ext:ListItem Text="<%$ Resources: SalaryCash%>" Value="0"></ext:ListItem>
                                                 <ext:ListItem Text="<%$ Resources: SalaryBank%>" Value="1"></ext:ListItem>
@@ -573,21 +578,26 @@
                                                 <Select Handler="TogglePaymentMethod(this.value)" />
                                             </Listeners>
                                         </ext:ComboBox>
+                                        <ext:TextField LabelWidth="130" Width="275" ID="bankName" runat="server" FieldLabel="<%$ Resources:FieldBankName%>" Name="bankName" AllowBlank="false" />
                                     </Items>
                                 </ext:Panel>
-                                <ext:Panel runat="server">
+                                
+                                <ext:Panel runat="server" PaddingSpec="0 0 0 20">
                                     <Items>
-                                        <ext:TextField ID="bankName" runat="server" FieldLabel="<%$ Resources:FieldBankName%>" Name="bankName" AllowBlank="false" />
+                                        
 
-                                        <ext:TextField ID="accountNumber" runat="server" FieldLabel="<%$ Resources:FieldAccountNumber%>" Name="accountNumber" AllowBlank="false" />
-                                        <ext:TextField ID="comments" runat="server" FieldLabel="<%$ Resources:FieldComments%>" Name="comments" />
-                                        <ext:TextField ID="basicAmount" AllowBlank="false" runat="server" FieldLabel="<%$ Resources:FieldBasicAmount%>" Name="basicAmount">
+                                        <ext:TextField LabelWidth="130" Width="275"  ID="accountNumber" runat="server" FieldLabel="<%$ Resources:FieldAccountNumber%>" Name="accountNumber" AllowBlank="false" />
+                                        <ext:TextField LabelWidth="130" Width="275" ID="comments" runat="server" FieldLabel="<%$ Resources:FieldComments%>" Name="comments" />
+                                        <ext:TextField LabelWidth="130" Width="275" ID="basicAmount" AllowBlank="false" runat="server" FieldLabel="<%$ Resources:FieldBasicAmount%>" Name="basicAmount">
                                             <Listeners>
-                                                <Change Handler="document.getElementById('BasicSalary').value=this.getValue(); this.next().setValue(this.value);" />
+                                                <Change Handler="document.getElementById('BasicSalary').value=this.getValue(); this.next().setValue(this.value); this.next().next().setValue(0); this.next().next().next().setValue(0);" />
                                             </Listeners>
                                         </ext:TextField>
-                                        <ext:TextField ID="finalAmount"  ReadOnly="true" AllowBlank="false" runat="server" FieldLabel="<%$ Resources:FieldFinalAmount%>" Name="finalAmount" />
-                                        <ext:Checkbox ID="isTaxable" runat="server" FieldLabel="<%$ Resources: FieldIsTaxable%>" DataIndex="isTaxable" Name="isTaxable" InputValue="1" />
+                                        <ext:TextField LabelWidth="130" Width="275" ID="finalAmount"  ReadOnly="true" AllowBlank="false" runat="server" FieldLabel="<%$ Resources:FieldFinalAmount%>" Name="finalAmount" />
+                                        <ext:TextField LabelWidth="130" Width="275" ID="eAmount"  ReadOnly="true" AllowBlank="false" runat="server" FieldLabel="<%$ Resources:Entitlements%>" Name="eAmount" />
+                                        <ext:TextField LabelWidth="130" Width="275" ID="dAmount"  ReadOnly="true" AllowBlank="false" runat="server" FieldLabel="<%$ Resources:Deductions%>" Name="dAmount" />
+                                        
+                                        <ext:Checkbox LabelWidth="130" Width="275" ID="isTaxable" runat="server" FieldLabel="<%$ Resources: FieldIsTaxable%>" DataIndex="isTaxable" Name="isTaxable" InputValue="1" />
                                     </Items>
                                 </ext:Panel>
                             </Items>
@@ -734,7 +744,7 @@
                                                         runat="server"
                                                         AllowBlank="false" />
                                                 </Editor>
-                                                <Renderer Handler=" return record.data['fixedAmount'] + '&nbsp;' + App.currencyId.getRawValue();"/>
+                                                <Renderer Handler=" return App.currencyId.getRawValue()+ '&nbsp;' +record.data['fixedAmount']  ;"/>
                                             </ext:NumberColumn>
                                             <ext:Column
                                                 runat="server" 
@@ -809,6 +819,7 @@
                                                         <ext:ModelField Name="comments" />
                                                         <ext:ModelField Name="isTaxable" />
                                                         <ext:ModelField Name="pct" />
+                                                        <ext:ModelField Name="pctOf" />
                                                         <ext:ModelField Name="fixedAmount" />
 
                                                     </Fields>
@@ -923,7 +934,7 @@
                                                         runat="server"
                                                         AllowBlank="false" />
                                                 </Editor>
-                                                <Renderer Handler="return record.data['fixedAmount'] + '&nbsp;'+ App.currencyId.getRawValue();">
+                                                <Renderer Handler="return App.currencyId.getRawValue()+ '&nbsp;'+record.data['fixedAmount']  ;">
 
                                 </Renderer>
                                
@@ -1192,7 +1203,7 @@
                                         </ext:ComboBox>
                                   <ext:Checkbox ID="enIsTaxable" DataIndex="isTaxable" Name="isTaxable"  FieldLabel="<%$ Resources:FieldIsTaxable%>"  runat="server" InputValue="True"  />
                                 <ext:Checkbox ID="EnIncludeInTotal" FieldLabel="<%$ Resources: FieldIncludeInTotal %>" runat="server" DataIndex="includeInTotal" Name="includeInTotal" InputValue="true" />
-                                <ext:Checkbox FieldLabel="<%$ Resources:FieldIsPercentage%>" runat="server">
+                                <ext:Checkbox ID="enIsPct" FieldLabel="<%$ Resources:FieldIsPercentage%>" runat="server">
                                     <Listeners>
                                         <Change Handler="TogglePerc(this.value)" />
                                     </Listeners>
@@ -1204,9 +1215,9 @@
                                     MinValue="0" Disabled="true"
                                     FieldLabel="<%$ Resources:FieldPCT%>"
                                     MaxValue="100">
-                                    <Listeners>
+                             <%--       <Listeners>
                                         <Change Handler=" if(this.prev().value==true) this.next().setValue(CalculateFixed(this.value));" />
-                                    </Listeners>
+                                    </Listeners>--%>
                                 </ext:NumberField>
 
                                 <ext:NumberField
@@ -1215,9 +1226,9 @@
                                     MinValue="0"
                                     ID="enFixedAmount"
                                     FieldLabel="<%$ Resources:FieldFixedAmount%>">
-                                    <Listeners>
+                                    <%--<Listeners>
                                         <Change Handler="if(this.prev().prev().value==false) this.prev().setValue(CalculatePct(this.value));" />
-                                    </Listeners>
+                                    </Listeners>--%>
                                 </ext:NumberField>
                                 <ext:TextArea runat="server" Name="comment" DataIndex="comments" FieldLabel="<%$ Resources:FieldComment%>" />
 
@@ -1307,20 +1318,30 @@
                                     </Listeners>
                                 </ext:ComboBox>
                                 <ext:Checkbox ID="Checkbox1" FieldLabel="<%$ Resources: FieldIncludeInTotal %>" runat="server" DataIndex="includeInTotal" Name="includeInTotal" InputValue="true" />
-                                <ext:Checkbox FieldLabel="<%$ Resources:FieldIsPercentage%>" runat="server">
+                                 <ext:Checkbox ID="deIsTaxable" DataIndex="isTaxable" Name="isTaxable"  FieldLabel="<%$ Resources:FieldIsTaxable%>"  runat="server" InputValue="true" />
+                                
+                                <ext:Checkbox ID="deIsPCT" FieldLabel="<%$ Resources:FieldIsPercentage%>" runat="server">
                                     <Listeners>
                                         <Change Handler="DETogglePerc(this.value)" />
                                     </Listeners>
                                 </ext:Checkbox>
-                                <ext:Checkbox ID="deIsTaxable" DataIndex="isTaxable" Name="isTaxable"  FieldLabel="<%$ Resources:FieldIsTaxable%>"  runat="server" InputValue="true" />
-                                <ext:NumberField
+                                 <ext:ComboBox Disabled="true" runat="server" ID="pctOf" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" AllowBlank="true" Name="pctOf"
+                                    FieldLabel="<%$ Resources: FieldPctOf %>">
+                                    <Items>
+
+                                        
+                                        <ext:ListItem Text="<%$ Resources: pctof1 %>" Value="1" />
+                                        <ext:ListItem Text="<%$ Resources: pctof2 %>" Value="2" />
+                                    </Items>
+                                </ext:ComboBox>
+                               <ext:NumberField
                                     runat="server"
                                     AllowBlank="false" ID="dePCT" Name="pct"
                                     MinValue="0" Disabled="true"
                                     FieldLabel="<%$ Resources:FieldPCT%>"
                                     MaxValue="100">
                                     <Listeners>
-                                        <Change Handler=" if(this.prev().value==true) this.next().setValue(CalculateFixed(this.value));" />
+                                        <%--<Change Handler=" if(this.prev().value==true) this.next().setValue(CalculateFixed(this.value));" />--%>
                                     </Listeners>
                                 </ext:NumberField>
 
@@ -1331,7 +1352,7 @@
                                     ID="deFixedAmount"
                                     FieldLabel="<%$ Resources:FieldFixedAmount%>">
                                     <Listeners>
-                                        <Change Handler="if(this.prev().prev().value==false) this.prev().setValue(CalculatePct(this.value));" />
+                                        <%--<Change Handler="if(this.prev().prev().value==false) this.prev().setValue(CalculatePct(this.value));" />--%>
                                     </Listeners>
                                 </ext:NumberField>
                                 <ext:TextArea runat="server" Name="comment" DataIndex="comments" FieldLabel="<%$ Resources:FieldComment%>" />

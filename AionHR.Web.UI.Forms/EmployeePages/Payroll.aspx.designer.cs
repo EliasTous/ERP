@@ -175,6 +175,15 @@ namespace AionHR.Web.UI.Forms.EmployeePages {
         protected global::Ext.Net.Hidden DESeq;
         
         /// <summary>
+        /// currentGrossSalary control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Hidden currentGrossSalary;
+        
+        /// <summary>
         /// entsStore control.
         /// </summary>
         /// <remarks>
@@ -715,6 +724,24 @@ namespace AionHR.Web.UI.Forms.EmployeePages {
         protected global::Ext.Net.TextField finalAmount;
         
         /// <summary>
+        /// eAmount control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.TextField eAmount;
+        
+        /// <summary>
+        /// dAmount control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.TextField dAmount;
+        
+        /// <summary>
         /// isTaxable control.
         /// </summary>
         /// <remarks>
@@ -1093,6 +1120,15 @@ namespace AionHR.Web.UI.Forms.EmployeePages {
         protected global::Ext.Net.Checkbox EnIncludeInTotal;
         
         /// <summary>
+        /// enIsPct control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Checkbox enIsPct;
+        
+        /// <summary>
         /// enPCT control.
         /// </summary>
         /// <remarks>
@@ -1217,6 +1253,24 @@ namespace AionHR.Web.UI.Forms.EmployeePages {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.Checkbox deIsTaxable;
+        
+        /// <summary>
+        /// deIsPCT control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Checkbox deIsPCT;
+        
+        /// <summary>
+        /// pctOf control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.ComboBox pctOf;
         
         /// <summary>
         /// dePCT control.

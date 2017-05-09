@@ -63,33 +63,29 @@ var enterKeyPressSearchHandler = function (el, event) {
     }
 };
 
-function getPaymentTypeString(index)
-{
-    
-    switch(index)
-    {
-        case"0":
+function getPaymentTypeString(index) {
+
+    switch (index) {
+        case "0":
         case 0: return document.getElementById("PaymentTypeDaily").value; break;
-            case"1":
+        case "1":
         case 1: return document.getElementById("PaymentTypeWeekly").value; break;
-            case"2":
+        case "2":
         case 2: return document.getElementById("PaymentTypeMonthly").value; break;
         default: return index;
     }
 }
-function getPaymentMethodString(index)
-{
+function getPaymentMethodString(index) {
     switch (index) {
-        case"0":
+        case "0":
         case 0: return document.getElementById("PaymentMethodCash").value; break;
-            case"1":
+        case "1":
         case 1: return document.getElementById("PaymentMethodBank").value; break;
-       
+
         default: return index;
     }
 }
-function TogglePaymentMethod(index)
-{
+function TogglePaymentMethod(index) {
     App.accountNumber.setDisabled(index == 0);
     App.bankName.setDisabled(index == 0);
 
@@ -98,12 +94,22 @@ function TogglePaymentMethod(index)
 function TogglePerc(isPercentage) {
     App.enPCT.setDisabled(!isPercentage);
     App.enFixedAmount.setDisabled(isPercentage);
+    if (isPercentage)
+        App.enFixedAmount.setValue(0);
+    else
+        App.enPCT.setValue(0);
 
 }
 
 function DETogglePerc(isPercentage) {
     App.dePCT.setDisabled(!isPercentage);
     App.deFixedAmount.setDisabled(isPercentage);
+    App.pctOf.setDisabled(!isPercentage);
+    App.pctOf.setValue(1);
+    if (isPercentage)
+        App.deFixedAmount.setValue(0);
+    else
+        App.dePCT.setValue(0);
 
 }
 
@@ -120,7 +126,7 @@ function addEntitlement() {
         edId: 1,
         pct: 0,
         fixedAmount: 0,
-        comments:""
+        comments: ""
 
     });
 
@@ -155,13 +161,13 @@ function dump(obj) {
     return out;
 }
 function removeEntitlement() {
-   
+
     var entitlementsGrid = App.entitlementsGrid,
         sm = entitlementsGrid.getSelectionModel(),
         store = entitlementsGrid.getStore();
-    
-   
-    
+
+
+
     entitlementsGrid.editingPlugin.cancelEdit();
     store.remove(sm.getSelection());
 
@@ -187,7 +193,7 @@ function removeDeduction() {
 }
 
 var entnameRenderer = function (value) {
-   
+
     var r = App.entsStore.getById(value);
 
     if (Ext.isEmpty(r)) {
@@ -199,7 +205,7 @@ var entnameRenderer = function (value) {
 
 var dednameRenderer = function (value) {
 
-    
+
     var r = App.dedsStore.getById(value);
 
     if (Ext.isEmpty(r)) {
@@ -209,19 +215,53 @@ var dednameRenderer = function (value) {
     return r.data.name;
 };
 
-function CalculateFixed(pct)
-{
+function CalculateFixed(pct) {
 
     var x = (pct / 100) * document.getElementById("BasicSalary").value;
     return x;
 }
-function CalculatePct(fixed)
-
-{
+function CalculatePct(fixed) {
     var x = (fixed / document.getElementById("BasicSalary").value) * 100;
     return x;
 }
-function ChangeFinalAmount(amountOffset)
-{
+function ChangeFinalAmount(amountOffset) {
     App.finalAmount.setValue(Number(App.finalAmount.value) + Number(amountOffset));
+}
+function ReCalculateFinal()
+
+{
+    App.finalAmount.setValue(parseFloat(App.eAmount.value) - parseFloat(App.dAmount.value) + parseFloat(document.getElementById("BasicSalary").value));
+}
+function ChangeEntitlementsAmount(amountOffset) {
+    var sum = 0;
+    App.entitlementsGrid.getStore().each(function (record) {
+        if (record.data['pct'] == '0')
+            sum += record.data['fixedAmount'];
+        else {
+
+            sum += (record.data['pct'] / 100) * document.getElementById("BasicSalary").value;
+        }
+    });
+
+    App.eAmount.setValue(sum);
+    ChangeDeductionsAmount(0);
+    ReCalculateFinal();
+}
+
+
+function ChangeDeductionsAmount(amountOffset) {
+    var sum = 0;
+    App.deductionGrid.getStore().each(function (record) {
+        if (record.data['pct'] == '0')
+            sum += record.data['fixedAmount'];
+        else {
+            if (record.data['pctOf'] == '1')
+                sum += (record.data['pct'] / 100) * document.getElementById("BasicSalary").value;
+            else
+                sum += (record.data['pct'] / 100) *( parseInt(document.getElementById("BasicSalary").value) + parseInt(App.eAmount.value));
+        }
+    });
+
+    App.dAmount.setValue(sum);
+    ReCalculateFinal();
 }

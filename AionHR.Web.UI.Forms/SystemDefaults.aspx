@@ -53,7 +53,7 @@
                                     BodyPadding="5">
                                     <Items>
 
-                                        <ext:ComboBox QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: FieldCountry %>" Name="countryId" runat="server" DisplayField="name" ValueField="recordId" ID="countryIdCombo">
+                                        <ext:ComboBox LabelWidth="150" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: FieldCountry %>" Name="countryId" runat="server" DisplayField="name" ValueField="recordId" ID="countryIdCombo">
                                             <Store>
                                                 <ext:Store runat="server" ID="NationalityStore">
                                                     <Model>
@@ -83,7 +83,7 @@
                                                 <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
                                             </Listeners>
                                         </ext:ComboBox>
-                                        <ext:ComboBox QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: FieldCurrency %>" Name="currencyId" DisplayField="name" ValueField="recordId" runat="server" ID="currencyIdCombo">
+                                        <ext:ComboBox QueryMode="Local"  LabelWidth="150" ForceSelection="true" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: FieldCurrency %>" Name="currencyId" DisplayField="name" ValueField="recordId" runat="server" ID="currencyIdCombo">
                                             <Store>
                                                 <ext:Store runat="server" ID="CurrencyStore">
                                                     <Model>
@@ -113,7 +113,7 @@
                                                 <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
                                             </Listeners>
                                         </ext:ComboBox>
-                                         <ext:ComboBox QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: FieldWorkingCalendar %>" Name="caId" DisplayField="name" ValueField="recordId" runat="server" ID="caId">
+                                         <ext:ComboBox QueryMode="Local"  LabelWidth="150" ForceSelection="true" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: FieldWorkingCalendar %>" Name="caId" DisplayField="name" ValueField="recordId" runat="server" ID="caId">
                                             <Store>
                                                 <ext:Store runat="server" ID="caStore">
                                                     <Model>
@@ -143,7 +143,7 @@
                                                 <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
                                             </Listeners>
                                         </ext:ComboBox>
-                                        <ext:ComboBox QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: FieldVacationSchedule %>" Name="vsId" DisplayField="name" ValueField="recordId" runat="server" ID="vsId">
+                                        <ext:ComboBox QueryMode="Local"  LabelWidth="150" ForceSelection="true" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: FieldVacationSchedule %>" Name="vsId" DisplayField="name" ValueField="recordId" runat="server" ID="vsId">
                                             <Store>
                                                 <ext:Store runat="server" ID="vsStore">
                                                     <Model>
@@ -173,7 +173,7 @@
                                                 <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
                                             </Listeners>
                                         </ext:ComboBox>
-                                        <ext:ComboBox QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: FieldDateFormat %>" Name="dateFormat" runat="server" ID="dateFormatCombo">
+                                        <ext:ComboBox QueryMode="Local" LabelWidth="150" ForceSelection="true" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: FieldDateFormat %>" Name="dateFormat" runat="server" ID="dateFormatCombo">
                                             <Items>
                                                 <ext:ListItem Text="Jan 31,2016" Value="MMM dd,yyyy" />
                                                 <ext:ListItem Text="Jan 31,16" Value="MMM dd,yy" />
@@ -183,17 +183,19 @@
                                             </Items>
                                         </ext:ComboBox>
 
-                                        <ext:ComboBox QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: FieldNameFormat %>" Name="nameFormat" runat="server" ID="nameFormatCombo">
+                                        <ext:ComboBox QueryMode="Local" LabelWidth="150" ForceSelection="true" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: FieldNameFormat %>" Name="nameFormat" runat="server" ID="nameFormatCombo">
                                             <Items>
                                                 <ext:ListItem Text="<%$ Resources:FirstNameLastName %>" Value="{firstName} {lastName}" />
                                                 <ext:ListItem Text="<%$ Resources:LastNameFirstName %>" Value="{lastName} {firstName}" />
                                                 <ext:ListItem Text="<%$ Resources:FirstNameMiddleNameLastName %>" Value="{firstName} {middleName} {lastName}" />
                                                 <ext:ListItem Text="<%$ Resources:ReferenceFirstNameLastName %>" Value="{reference} {firstName} {lastName}" />
+                                                <ext:ListItem Text="<%$ Resources:ReferenceFirstNameMiddleNameLastName %>" Value="{reference} {firstName} {middleName} {lastName}" />
                                                 <ext:ListItem Text="<%$ Resources:ReferenceLastNameFirstName %>" Value="{reference} {lastName} {firstName}" />
+                                                
 
                                             </Items>
                                         </ext:ComboBox>
-                                        <ext:ComboBox QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: FieldFirstDayOfWeek %>" Name="fdow" runat="server" ID="fdowCombo">
+                                        <ext:ComboBox QueryMode="Local" LabelWidth="150" ForceSelection="true" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: FieldFirstDayOfWeek %>" Name="fdow" runat="server" ID="fdowCombo">
                                             <Items>
                                                 <ext:ListItem Text="<%$ Resources:Common, MondayText %>" Value="1" />
                                                 <ext:ListItem Text="<%$ Resources:Common, TuesdayText %>" Value="2" />
@@ -206,7 +208,7 @@
                                         </ext:ComboBox>
 
 
-                                        <ext:ComboBox QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: FieldTimeZone %>" Name="timeZone" runat="server" ID="timeZoneCombo">
+                                        <ext:ComboBox QueryMode="Local" LabelWidth="150"  ForceSelection="true" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: FieldTimeZone %>" Name="timeZone" runat="server" ID="timeZoneCombo">
                                             <Items>
                                                 <ext:ListItem Text="-12 UTC" Value="-12" />
                                                 <ext:ListItem Text="-11 UTC" Value="-11" />
@@ -236,8 +238,8 @@
                                             </Items>
                                         </ext:ComboBox>
 
-                                        <ext:Checkbox FieldLabel="<%$ Resources: FieldEnableCamera %>" runat="server" InputValue="True" Name="enableCamera" ID="enableCameraCheck" />
-                                        <ext:Checkbox FieldLabel="<%$ Resources: FieldEnableHijri %>" runat="server" InputValue="True" Name="enableHijri" ID="enableHijri" />
+                                        <ext:Checkbox FieldLabel="<%$ Resources: FieldEnableCamera %>" LabelWidth="150" runat="server" InputValue="True" Name="enableCamera" ID="enableCameraCheck" />
+                                        <ext:Checkbox FieldLabel="<%$ Resources: FieldEnableHijri %>" LabelWidth="150" runat="server" InputValue="True" Name="enableHijri" ID="enableHijri" />
                                     </Items>
 
                                 </ext:FormPanel>

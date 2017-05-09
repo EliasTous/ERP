@@ -17,5 +17,9 @@ namespace AionHR.Model.Company.Structure
         public bool? isInactive { get; set; }
 
         public AddressBook addressId { get; set; }
+
+        public string naId { get; set; }
+
+        public string stId { get; set; }
     }
 }

@@ -333,7 +333,7 @@
                                                         AllowBlank="false"
                                                         InvalidText="<%$Resources:MonthsFieldError %>"
                                                         MinValue="0"
-                                                        MaxValue="1000" />
+                                                        MaxValue="5000" />
                                                 </Editor>
                                             </ext:NumberColumn>
                                             <ext:NumberColumn
@@ -351,7 +351,7 @@
                                                         AllowBlank="false"
                                                         MinValue="0"
                                                          InvalidText="<%$Resources:MonthsFieldError %>"
-                                                        MaxValue="1000" >
+                                                        MaxValue="5000" >
                                                        
                                                         </ext:NumberField>
 

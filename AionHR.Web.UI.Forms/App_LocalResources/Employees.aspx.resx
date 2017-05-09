@@ -345,4 +345,7 @@
   <data name="serviceDuration" xml:space="preserve">
     <value>In Service:</value>
   </data>
+  <data name="FieldIdRef" xml:space="preserve">
+    <value>ID Ref</value>
+  </data>
 </root>

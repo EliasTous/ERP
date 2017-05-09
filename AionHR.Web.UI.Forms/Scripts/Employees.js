@@ -107,7 +107,8 @@ var showImagePreview2 = function (id) {
             var filerdr = new FileReader();
             filerdr.onload = function (e) {
                 $("#" + $('#employeePhoto')[0].firstChild.id).attr('src', e.target.result);
-
+                
+               $('#image').attr('src', e.target.result);
                 options.imgSrc = e.target.result;
                 cropper = new cropbox(options);
 
@@ -305,6 +306,7 @@ function initCropper(path) {
             imgSrc: path
         };
     cropper = new cropbox(options);
+    $('#image').attr('src', path);
 }
 
 function refreshQV() {

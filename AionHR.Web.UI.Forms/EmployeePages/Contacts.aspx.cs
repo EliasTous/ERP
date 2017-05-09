@@ -160,7 +160,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     rtId.Select(entity.rtId.ToString());
 
                     FillECNationality();
-                    ecnaId.Select(entity.addressId.countryId.ToString());
+                    ecnaId.Select(entity.addressId.countryId);
                     FillECState();
                     ecstId.Select(entity.addressId.stateId);
                     street1.Text = entity.addressId.street1;
@@ -222,7 +222,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     
 
                     FillCONationality();
-                    conaId.Select(entity.addressId.countryId.ToString());
+                    conaId.Select(entity.addressId.countryId);
 
 
                     this.EditContactWindow.Title = Resources.Common.EditWindowsTitle;
@@ -507,12 +507,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     {
 
 
-                        ModelProxy record = this.contactStore.GetById(index);
-
-                        ContactsForm.UpdateRecord(record);
-                        record.Set("rtName", b.rtName);
-
-                        record.Commit();
+                        contactStore.Reload();
                         Notification.Show(new NotificationConfig
                         {
                             Title = Resources.Common.Notification,
@@ -635,12 +630,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     {
 
 
-                        ModelProxy record = this.emergencyContactStore.GetById(index);
-
-                        EmergencyContactsForm.UpdateRecord(record);
-                        record.Set("rtName", b.rtName);
-
-                        record.Commit();
+                        emergencyContactStore.Reload();
                         Notification.Show(new NotificationConfig
                         {
                             Title = Resources.Common.Notification,

@@ -255,4 +255,13 @@
   <data name="SalaryFourWeekly" xml:space="preserve">
     <value>Four Weekly</value>
   </data>
+  <data name="FieldPctOf" xml:space="preserve">
+    <value>Pct Of</value>
+  </data>
+  <data name="pctof1" xml:space="preserve">
+    <value>Basic Salary</value>
+  </data>
+  <data name="pctof2" xml:space="preserve">
+    <value>Basic Salary +Entitlmenets</value>
+  </data>
 </root>

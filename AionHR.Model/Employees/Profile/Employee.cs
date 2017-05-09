@@ -11,6 +11,8 @@ namespace AionHR.Model.Employees.Profile
     {
         public string reference { get; set; }
 
+        public string idRef { get; set; }
+
         public EmployeeName name { get; set; }
         public string fullName { get; set; }
         public string firstName { get; set; }
@@ -88,7 +90,7 @@ namespace AionHR.Model.Employees.Profile
 
         public string postalCode { get; set; }
 
-        public int countryId { get; set; }
+        public string countryId { get; set; }
 
         public string countryName { get; set; }
 
