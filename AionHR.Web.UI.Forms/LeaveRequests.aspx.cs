@@ -122,8 +122,8 @@ namespace AionHR.Web.UI.Forms
                 FillBranch();
                 includeOpen.Select(3);
                 DateFormat.Text = _systemService.SessionHelper.GetDateformat().ToUpper();
-                //startDate.Format = _systemService.SessionHelper.GetDateformat();
-                //endDate.Format = _systemService.SessionHelper.GetDateformat();
+             startDate.Format = endDate.Format = _systemService.SessionHelper.GetDateformat();
+                Column2.Format= Column1.Format= _systemService.SessionHelper.GetDateformat();
             }
 
         }

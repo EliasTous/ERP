@@ -1,4 +1,6 @@
-﻿using AionHR.Services.Messaging.Reports;
+﻿using AionHR.Services.Interfaces;
+using AionHR.Services.Messaging.Reports;
+using Microsoft.Practices.ServiceLocation;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,10 +12,12 @@ namespace AionHR.Web.UI.Forms.Reports.Controls
 {
     public partial class DateFilter : System.Web.UI.UserControl
     {
+        ISystemService _systemService = ServiceLocator.Current.GetInstance<ISystemService>();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
+                date.Format = _systemService.SessionHelper.GetDateformat();
                 date.SelectedDate = DateTime.Now;
             }
            

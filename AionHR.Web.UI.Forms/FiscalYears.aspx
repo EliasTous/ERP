@@ -40,7 +40,8 @@
         <ext:Hidden ID="FridayText" runat="server" Text="<%$ Resources:Common , FridayText %>" />
         <ext:Hidden ID="SaturdayText" runat="server" Text="<%$ Resources:Common , SaturdayText %>" />
         <ext:Hidden ID="PeriodStatus0" runat="server" Text="<%$ Resources: StatusUnProcessed %>" />
-        <ext:Hidden ID="PeriodStatus1" runat="server" Text="<%$ Resources: StatusPosted %>" />
+        <ext:Hidden ID="PeriodStatus1" runat="server" Text="<%$ Resources: StatusInProcess %>" />
+        <ext:Hidden ID="PeriodStatus2" runat="server" Text="<%$ Resources: StatusPosted %>" />
        
         <ext:Hidden ID="CurrentYear" runat="server" />
         <ext:Hidden ID="CurrentDow" runat="server" />

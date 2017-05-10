@@ -14,11 +14,12 @@ namespace AionHR.Model.Employees.Profile
 
     public enum PaymentFrequency
     {
-        Day = 0,
-        Week=1,
-       
-        Month=2
-        
+        Day = 1,
+        Week = 2,
+        BiWeek = 3,
+        FourWeek = 4,
+        Month = 5
+
     }
 
     public enum SalaryType

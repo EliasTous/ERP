@@ -122,7 +122,7 @@ namespace AionHR.Web.UI.Forms
                 HideShowButtons();
                 HideShowColumns();
 
-                FillBranch();
+                FillBranchFilter();
                 FillDepartment();
                 FillDivision();
                 statusPref.Select(4);
@@ -149,6 +149,29 @@ namespace AionHR.Web.UI.Forms
                 obj.recordId = response.recordId;
                 FillLoanType();
                 ltId.Select(obj.recordId);
+            }
+            else
+            {
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, response.Summary).Show();
+                return;
+            }
+
+
+        }
+        protected void addBranch(object sender, DirectEventArgs e)
+        {
+            Branch obj = new Branch();
+            obj.name = branchId.Text;
+
+            PostRequest<Branch> req = new PostRequest<Branch>();
+            req.entity = obj;
+            PostResponse<Branch> response = _companyStructureService.ChildAddOrUpdate<Branch>(req);
+            if (response.Success)
+            {
+                obj.recordId = response.recordId;
+                FillBranchField();
+                branchId.Select(obj.recordId);
             }
             else
             {
@@ -277,11 +300,14 @@ namespace AionHR.Web.UI.Forms
                     //Step 2 : call setvalues with the retrieved object
                     this.BasicInfoTab.SetValues(response.result);
                     FillCurrency();
+                    FillBranchField();
                     FillLoanType();
                     ltId.Select(response.result.ltId.ToString());
                     CurrentAmountCurrency.Text = response.result.currencyRef;
                     currencyId.Select(response.result.currencyId.ToString());
                     status.Select(response.result.status.ToString());
+                    if (!string.IsNullOrEmpty(response.result.branchId))
+                        branchId.Select(response.result.branchId);
                     loanComments_RefreshData(Convert.ToInt32(id));
                     //if (!response.result.effectiveDate.HasValue)
                     //    effectiveDate.SelectedDate = DateTime.Now;
@@ -504,16 +530,31 @@ namespace AionHR.Web.UI.Forms
             departmentStore.DataSource = resp.Items;
             departmentStore.DataBind();
         }
-        private void FillBranch()
+        private void FillBranchFilter()
         {
             ListRequest branchesRequest = new ListRequest();
             ListResponse<Branch> resp = _companyStructureService.ChildGetAll<Branch>(branchesRequest);
             if (!resp.Success)
+            {
                 X.Msg.Alert(Resources.Common.Error, resp.Summary).Show();
+                return;
+            }
+            branchFilterStore.DataSource = resp.Items;
+            branchFilterStore.DataBind();
+        }
+
+        private void FillBranchField()
+        {
+            ListRequest branchesRequest = new ListRequest();
+            ListResponse<Branch> resp = _companyStructureService.ChildGetAll<Branch>(branchesRequest);
+            if (!resp.Success)
+            {
+                X.Msg.Alert(Resources.Common.Error, resp.Summary).Show();
+                return;
+            }
             branchStore.DataSource = resp.Items;
             branchStore.DataBind();
         }
-
         private void FillDivision()
         {
             ListRequest branchesRequest = new ListRequest();
@@ -594,6 +635,7 @@ namespace AionHR.Web.UI.Forms
             panelRecordDetails.ActiveIndex = 0;
             SetTabPanelEnable(false);
             FillLoanType();
+            FillBranchField();
             FillCurrency();
             this.EditRecordWindow.Show();
         }
@@ -753,7 +795,10 @@ namespace AionHR.Web.UI.Forms
             //b.effectiveDate = new DateTime(b.effectiveDate.Year, b.effectiveDate.Month, b.effectiveDate.Day, 14, 0, 0);
             if (currencyId.SelectedItem != null)
                 b.currencyRef = currencyId.SelectedItem.Text;
-
+            if(branchId.SelectedItem!= null)
+            {
+                b.branchName = branchId.SelectedItem.Text;
+            }
             if (ltId.SelectedItem != null)
                 b.ltName = ltId.SelectedItem.Text;
 
@@ -842,6 +887,8 @@ namespace AionHR.Web.UI.Forms
                             record.Set("date", null);
 
                         record.Set("employeeName", b.employeeName);
+                        
+                        record.Set("branchName", b.branchName);
                         record.Commit();
                         Notification.Show(new NotificationConfig
                         {

@@ -75,7 +75,7 @@ namespace AionHR.Web.UI.Forms.Reports
                     ASPxWebDocumentViewer1.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.Utils.DefaultBoolean.True : DevExpress.Utils.DefaultBoolean.False;
                     FillReport();
 
-
+                    
 
 
                 }
@@ -158,6 +158,7 @@ namespace AionHR.Web.UI.Forms.Reports
             req.SortBy = "firstName";
             req.Add(jobInfo1.GetJobInfo());
             req.Add(activeStatus.GetActiveStatus());
+            req.Add(scrFilter.GetSCR());
             return req;
         }
         protected void firstStore_ReadData(object sender, StoreReadDataEventArgs e)

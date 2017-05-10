@@ -186,6 +186,9 @@
   <data name="FieldRecordId" xml:space="preserve">
     <value>Record ID</value>
   </data>
+  <data name="FieldReference" xml:space="preserve">
+    <value>Ref</value>
+  </data>
   <data name="FieldRejected" xml:space="preserve">
     <value>Rejected</value>
   </data>

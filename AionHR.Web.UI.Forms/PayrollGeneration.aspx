@@ -67,7 +67,7 @@
 
         <ext:Viewport ID="Viewport1" runat="server" Layout="CardLayout" ActiveIndex="0">
             <Items>
-                <ext:Panel runat="server" ID="payrolls">
+                <ext:Panel runat="server" ID="payrolls" Layout="FitLayout">
                     <TopBar>
                         <ext:Toolbar runat="server">
                             <Items>
@@ -125,7 +125,7 @@
                         </ext:Toolbar>
                     </TopBar>
                     <Items>
-                        <ext:GridPanel runat="server" ID="payrollsGrid" SortableColumns="false"  EnableColumnResize="false" EnableColumnHide="false">
+                        <ext:GridPanel runat="server" ID="payrollsGrid" Scroll="Vertical" Layout="FitLayout"  SortableColumns="false"  EnableColumnResize="false" EnableColumnHide="false">
                             
                             <Store>
                                 <ext:Store runat="server" ID="payrollsStore" OnReadData="payrollsStore_ReadData">
@@ -158,7 +158,7 @@
                                     <ext:Column runat="server"
                                         ID="colEdit" Visible="true"
                                         Text=""
-                                        Width="100"
+                                        Width="130"
                                         Hideable="false"
                                         Align="Center"
                                         Fixed="true"
@@ -166,7 +166,7 @@
                                         MenuDisabled="true"
                                         Resizable="false">
 
-                                        <Renderer Handler="var d= (record.data['status']==1)?'&nbsp;&nbsp;&nbsp;&nbsp;':editRender(); return d+ '&nbsp;&nbsp;'+ attachRender(); " />
+                                        <Renderer Handler="var d= (record.data['status']==1)?'&nbsp;&nbsp;&nbsp;&nbsp;':editRender()+ '&nbsp;&nbsp;'+ deleteRender(); return d+ '&nbsp;&nbsp;'+ attachRender(); " />
 
                                     </ext:Column>
                                 </Columns>

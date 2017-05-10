@@ -265,11 +265,13 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     if (detail.pct != 0)
                     {
                         enPCT.Disabled = false;
+                        enIsPct.Checked = true;
                         enFixedAmount.Disabled = true;
 
                     }
                     else
                     {
+                        enIsPct.Checked = false;
                         enPCT.Disabled = true;
                         enFixedAmount.Disabled = false;
 
@@ -331,18 +333,27 @@ namespace AionHR.Web.UI.Forms.EmployeePages
 
                     oldDEIncludeInFinal.Checked = dedDetail.includeInTotal.Value;
                     dedEdId.Select(dedDetail.edId.ToString());
+                    
                     if (dedDetail.pct != 0)
                     {
                         dePCT.Disabled = false;
                         deFixedAmount.Disabled = true;
+                        if(dedDetail.pctOf > 2 || dedDetail.pctOf < 1)
+                        {
+                            X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                            X.Msg.Alert(Resources.Common.Error, GetLocalResourceObject("ErrorWithPCTOf")).Show();
+                            dedDetail.pctOf = 1;
+                        }
                         pctOf.Select(dedDetail.pctOf.ToString());
                         pctOf.Disabled = false;
+                        deIsPCT.Checked = true;
                     }
                     else
                     {
                         dePCT.Disabled = true;
                         deFixedAmount.Disabled = false;
                         pctOf.Disabled = true;
+                        deIsPCT.Checked = false;
                     }
                     EditDEWindow.Show();
                     break;
@@ -589,6 +600,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             currencyId.Select(_systemService.SessionHelper.GetDefaultCurrency());
             dedsStore.Reload();
             entsStore.Reload();
+            paymentMethod.Select("0");
             effectiveDate.SelectedDate = DateTime.Today;
             ENSeq.Text = "0";
             DESeq.Text = "0";
@@ -888,7 +900,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             if (enIsPct.Checked)
             {
                 amount = b.fixedAmount;
-                b.fixedAmount = 0;
+                //b.fixedAmount = 0;
 
             }
             if (string.IsNullOrEmpty(id))
@@ -1054,12 +1066,15 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             }
             else if (b.fixedAmount == 0 || deIsPCT.Checked)
             {
-                b.fixedAmount = (b.pct / 100) * Convert.ToDouble(BasicSalary.Text);
+                if (b.pctOf == 1)
+                    b.fixedAmount = (b.pct / 100) * Convert.ToDouble(BasicSalary.Text);
+                else
+                    b.fixedAmount= (b.pct / 100) * (Convert.ToDouble(BasicSalary.Text)+Convert.ToDouble(eAmount.Text));
             }
             if (deIsPCT.Checked)
             {
                 amount = b.fixedAmount;
-                b.fixedAmount = 0;
+                //b.fixedAmount = 0;
 
             }
             if (string.IsNullOrEmpty(id))

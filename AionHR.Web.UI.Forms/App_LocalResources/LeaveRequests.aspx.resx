@@ -210,4 +210,7 @@
   <data name="TotalText" xml:space="preserve">
     <value>Total</value>
   </data>
+  <data name="FieldBranch" xml:space="preserve">
+    <value>Branch</value>
+  </data>
 </root>

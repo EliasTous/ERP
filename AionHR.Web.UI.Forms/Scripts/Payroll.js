@@ -215,10 +215,13 @@ var dednameRenderer = function (value) {
     return r.data.name;
 };
 
-function CalculateFixed(pct) {
-
-    var x = (pct / 100) * document.getElementById("BasicSalary").value;
-    return x;
+function CalculateFixed(pct,pctOf) {
+    var x=0;
+    if(pctOf==1)
+        x = (pct / 100) * document.getElementById("BasicSalary").value;
+    else
+        x = (pct / 100) * (parseInt(document.getElementById("BasicSalary").value)+parseInt(App.eAmount.value));
+    return x.toFixed(2);
 }
 function CalculatePct(fixed) {
     var x = (fixed / document.getElementById("BasicSalary").value) * 100;
@@ -230,20 +233,25 @@ function ChangeFinalAmount(amountOffset) {
 function ReCalculateFinal()
 
 {
-    App.finalAmount.setValue(parseFloat(App.eAmount.value) - parseFloat(App.dAmount.value) + parseFloat(document.getElementById("BasicSalary").value));
+    var x = parseFloat(App.eAmount.value) - parseFloat(App.dAmount.value) + parseFloat(document.getElementById("BasicSalary").value);
+    App.finalAmount.setValue(x.toFixed(2));
 }
 function ChangeEntitlementsAmount(amountOffset) {
     var sum = 0;
+    var x;
     App.entitlementsGrid.getStore().each(function (record) {
         if (record.data['pct'] == '0')
             sum += record.data['fixedAmount'];
         else {
 
-            sum += (record.data['pct'] / 100) * document.getElementById("BasicSalary").value;
+            x = (record.data['pct'] / 100) * document.getElementById("BasicSalary").value;
+            record.set('fixedAmount', x);
+            record.commit();
+            sum += x;
         }
     });
 
-    App.eAmount.setValue(sum);
+    App.eAmount.setValue(sum.toFixed(2));
     ChangeDeductionsAmount(0);
     ReCalculateFinal();
 }
@@ -251,17 +259,22 @@ function ChangeEntitlementsAmount(amountOffset) {
 
 function ChangeDeductionsAmount(amountOffset) {
     var sum = 0;
+    var x;
     App.deductionGrid.getStore().each(function (record) {
         if (record.data['pct'] == '0')
             sum += record.data['fixedAmount'];
         else {
             if (record.data['pctOf'] == '1')
-                sum += (record.data['pct'] / 100) * document.getElementById("BasicSalary").value;
+                x= (record.data['pct'] / 100) * document.getElementById("BasicSalary").value;
             else
-                sum += (record.data['pct'] / 100) *( parseInt(document.getElementById("BasicSalary").value) + parseInt(App.eAmount.value));
+                x = (record.data['pct'] / 100) * (parseInt(document.getElementById("BasicSalary").value) + parseInt(App.eAmount.value));
+            record.set('fixedAmount', x);
+            record.commit();
+            sum += x;
+
         }
     });
 
-    App.dAmount.setValue(sum);
+    App.dAmount.setValue(sum.toFixed(2));
     ReCalculateFinal();
 }

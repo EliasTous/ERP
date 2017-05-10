@@ -99,12 +99,17 @@
                                  
                                 <ext:Container runat="server"   Layout="FitLayout">
                                     <Content>
-                                        <uc:jobInfo runat="server" ID="jobInfo1" />
+                                        <uc:jobInfo runat="server" ID="jobInfo1"   />
                                     </Content>
                                 </ext:Container>
                                  <ext:Container runat="server" Layout="FitLayout">
                                     <Content>
                                         <uc:activeStatus runat="server" ID="activeStatus" />
+                                    </Content>
+                                </ext:Container>
+                                <ext:Container runat="server" Layout="FitLayout">
+                                    <Content>
+                                        <uc:scrCombo runat="server" ID="scrFilter" />
                                     </Content>
                                 </ext:Container>
                               

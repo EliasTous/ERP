@@ -12,6 +12,7 @@ namespace AionHR.Model.LoadTracking
     {
         public int employeeId { get; set; }
         public int ltId { get; set; }
+        public string loanRef { get; set; }
         public DateTime date { get; set; }
         public int currencyId { get; set; }
         public double amount { get; set; }
@@ -20,6 +21,9 @@ namespace AionHR.Model.LoadTracking
         public short status { get; set; }
         public DateTime? effectiveDate { get; set; }
 
+        public string branchId { get; set; }
+
+        public string branchName { get; set; }
         // get
         public EmployeeName employeeName { get; set; }
         public string ltName { get; set; }

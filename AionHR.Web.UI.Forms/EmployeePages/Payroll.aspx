@@ -9,7 +9,7 @@
     <title></title>
     <link rel="stylesheet" type="text/css" href="../CSS/Common.css?id=1" />
     <link rel="stylesheet" href="../CSS/LiveSearch.css" />
-    <script type="text/javascript" src="../Scripts/Payroll.js?id=33"></script>
+    <script type="text/javascript" src="../Scripts/Payroll.js?id=39"></script>
     <script type="text/javascript" src="../Scripts/common.js?id=0"></script>
 
 
@@ -590,14 +590,13 @@
                                         <ext:TextField LabelWidth="130" Width="275" ID="comments" runat="server" FieldLabel="<%$ Resources:FieldComments%>" Name="comments" />
                                         <ext:TextField LabelWidth="130" Width="275" ID="basicAmount" AllowBlank="false" runat="server" FieldLabel="<%$ Resources:FieldBasicAmount%>" Name="basicAmount">
                                             <Listeners>
-                                                <Change Handler="document.getElementById('BasicSalary').value=this.getValue(); this.next().setValue(this.value); this.next().next().setValue(0); this.next().next().next().setValue(0);" />
+                                                <Change Handler="document.getElementById('BasicSalary').value=this.getValue(); this.next().setValue(this.value); ChangeEntitlementsAmount(0); ChangeDeductionsAmount();" />
                                             </Listeners>
                                         </ext:TextField>
-                                        <ext:TextField LabelWidth="130" Width="275" ID="finalAmount"  ReadOnly="true" AllowBlank="false" runat="server" FieldLabel="<%$ Resources:FieldFinalAmount%>" Name="finalAmount" />
-                                        <ext:TextField LabelWidth="130" Width="275" ID="eAmount"  ReadOnly="true" AllowBlank="false" runat="server" FieldLabel="<%$ Resources:Entitlements%>" Name="eAmount" />
-                                        <ext:TextField LabelWidth="130" Width="275" ID="dAmount"  ReadOnly="true" AllowBlank="false" runat="server" FieldLabel="<%$ Resources:Deductions%>" Name="dAmount" />
+                                        <ext:TextField LabelWidth="130" Width="275" ID="finalAmount"  ReadOnly="true" AllowBlank="true" runat="server" FieldLabel="<%$ Resources:FieldFinalAmount%>" Name="finalAmount" />
+                                        <ext:TextField LabelWidth="130" Width="275" ID="eAmount"  ReadOnly="true" AllowBlank="true" runat="server" FieldLabel="<%$ Resources:Entitlements%>" Name="eAmount" />
+                                        <ext:TextField LabelWidth="130" Width="275" ID="dAmount"  ReadOnly="true" AllowBlank="true" runat="server" FieldLabel="<%$ Resources:Deductions%>" Name="dAmount" />
                                         
-                                        <ext:Checkbox LabelWidth="130" Width="275" ID="isTaxable" runat="server" FieldLabel="<%$ Resources: FieldIsTaxable%>" DataIndex="isTaxable" Name="isTaxable" InputValue="1" />
                                     </Items>
                                 </ext:Panel>
                             </Items>
@@ -1201,8 +1200,7 @@
                                                 <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
                                             </Listeners>
                                         </ext:ComboBox>
-                                  <ext:Checkbox ID="enIsTaxable" DataIndex="isTaxable" Name="isTaxable"  FieldLabel="<%$ Resources:FieldIsTaxable%>"  runat="server" InputValue="True"  />
-                                <ext:Checkbox ID="EnIncludeInTotal" FieldLabel="<%$ Resources: FieldIncludeInTotal %>" runat="server" DataIndex="includeInTotal" Name="includeInTotal" InputValue="true" />
+                              <ext:Checkbox ID="EnIncludeInTotal" FieldLabel="<%$ Resources: FieldIncludeInTotal %>" runat="server" DataIndex="includeInTotal" Name="includeInTotal" InputValue="true" />
                                 <ext:Checkbox ID="enIsPct" FieldLabel="<%$ Resources:FieldIsPercentage%>" runat="server">
                                     <Listeners>
                                         <Change Handler="TogglePerc(this.value)" />
@@ -1215,9 +1213,9 @@
                                     MinValue="0" Disabled="true"
                                     FieldLabel="<%$ Resources:FieldPCT%>"
                                     MaxValue="100">
-                             <%--       <Listeners>
-                                        <Change Handler=" if(this.prev().value==true) this.next().setValue(CalculateFixed(this.value));" />
-                                    </Listeners>--%>
+                                    <Listeners>
+                                        <Change Handler=" if(this.prev().value==true) this.next().setValue(CalculateFixed(this.value,1));" />
+                                    </Listeners>
                                 </ext:NumberField>
 
                                 <ext:NumberField
@@ -1318,7 +1316,6 @@
                                     </Listeners>
                                 </ext:ComboBox>
                                 <ext:Checkbox ID="Checkbox1" FieldLabel="<%$ Resources: FieldIncludeInTotal %>" runat="server" DataIndex="includeInTotal" Name="includeInTotal" InputValue="true" />
-                                 <ext:Checkbox ID="deIsTaxable" DataIndex="isTaxable" Name="isTaxable"  FieldLabel="<%$ Resources:FieldIsTaxable%>"  runat="server" InputValue="true" />
                                 
                                 <ext:Checkbox ID="deIsPCT" FieldLabel="<%$ Resources:FieldIsPercentage%>" runat="server">
                                     <Listeners>
@@ -1333,6 +1330,9 @@
                                         <ext:ListItem Text="<%$ Resources: pctof1 %>" Value="1" />
                                         <ext:ListItem Text="<%$ Resources: pctof2 %>" Value="2" />
                                     </Items>
+                                      <Listeners>
+                                        <Select Handler=" if(this.prev().value==true) this.next().next().setValue(CalculateFixed(this.next().value,this.value));" />
+                                    </Listeners>
                                 </ext:ComboBox>
                                <ext:NumberField
                                     runat="server"
@@ -1341,7 +1341,7 @@
                                     FieldLabel="<%$ Resources:FieldPCT%>"
                                     MaxValue="100">
                                     <Listeners>
-                                        <%--<Change Handler=" if(this.prev().value==true) this.next().setValue(CalculateFixed(this.value));" />--%>
+                                        <Change Handler=" if(this.prev().prev().value==true) this.next().setValue(CalculateFixed(this.value,this.prev().value));" />
                                     </Listeners>
                                 </ext:NumberField>
 

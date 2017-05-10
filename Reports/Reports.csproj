@@ -67,6 +67,9 @@
     <Compile Include="JobHistory.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="LoansReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="PointInTimeSalary.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -142,6 +145,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="JobHistory.resx">
       <DependentUpon>JobHistory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LoansReport.ar.resx">
+      <DependentUpon>LoansReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LoansReport.resx">
+      <DependentUpon>LoansReport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PointInTimeSalary.ar.resx">
       <DependentUpon>PointInTimeSalary.cs</DependentUpon>

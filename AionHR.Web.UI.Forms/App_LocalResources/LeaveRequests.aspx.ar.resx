@@ -129,6 +129,9 @@
   <data name="FieldApproved" xml:space="preserve">
     <value>مقبولة</value>
   </data>
+  <data name="FieldBranch" xml:space="preserve">
+    <value>القسم</value>
+  </data>
   <data name="FieldDestination" xml:space="preserve">
     <value>الوجهة</value>
   </data>

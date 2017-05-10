@@ -361,11 +361,50 @@ namespace AionHR.Web.UI.Forms
                     EditHeaderWindow.Show();
 
                     break;
+                case "imgDelete":
 
+                    X.Msg.Confirm(Resources.Common.Confirmation, Resources.Common.DeleteOneRecord, new MessageBoxButtonsConfig
+                    {
+                        Yes = new MessageBoxButtonConfig
+                        {
+                            //We are call a direct request metho for deleting a record
+                            Handler = String.Format("App.direct.DeleteHeader({0})", id),
+                            Text = Resources.Common.Yes
+                        },
+                        No = new MessageBoxButtonConfig
+                        {
+                            Text = Resources.Common.No
+                        }
+
+                    }).Show();
+                    break;
                 default:
                     break;
             }
 
+
+        }
+        [DirectMethod]
+        public void DeleteHeader(string id)
+        {
+            GenerationHeader h = new GenerationHeader();
+            h.recordId = id;
+            PostRequest<GenerationHeader> delReq = new PostRequest<GenerationHeader>();
+            delReq.entity = h;
+            PostResponse<GenerationHeader> res = _payrollService.ChildDelete<GenerationHeader>(delReq);
+            if (!res.Success)
+            {
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorDeletingRecord).Show();
+                return;
+            }
+            Notification.Show(new NotificationConfig
+            {
+                Title = Resources.Common.Notification,
+                Icon = Icon.Information,
+                Html = Resources.Common.RecordUpdatedSucc
+            });
+            payrollsStore.Remove(id);
 
         }
         protected void PoPuPEM(object sender, DirectEventArgs e)

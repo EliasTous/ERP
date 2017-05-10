@@ -120,5 +120,62 @@ namespace AionHR.Web.UI.Forms.Reports
             positionStore.DataSource = resp.Items;
             positionStore.DataBind();
         }
+
+        private bool enableBranch = true;
+        private bool enableDepartment = true;
+        private bool enablePosition = true;
+        private bool enableDivision = true;
+
+        public bool EnableBranch
+        {
+            get
+            {
+                return enableBranch;
+            }
+
+            set
+            {
+                enableBranch = value;
+            }
+        }
+
+        public bool EnableDepartment
+        {
+            get
+            {
+                return enableDepartment;
+            }
+
+            set
+            {
+                enableDepartment = value;
+            }
+        }
+
+        public bool EnablePosition
+        {
+            get
+            {
+                return enablePosition;
+            }
+
+            set
+            {
+                enablePosition = value;
+            }
+        }
+
+        public bool EnableDivision
+        {
+            get
+            {
+                return enableDivision;
+            }
+
+            set
+            {
+                enableDivision = value;
+            }
+        }
     }
 }

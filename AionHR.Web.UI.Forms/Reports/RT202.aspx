@@ -103,7 +103,7 @@
                             <Items>
                                 <ext:Container runat="server" Layout="FitLayout">
                                     <Content>
-                                        <uc:jobInfo runat="server" ID="jobInfo1" />
+                                        <uc:jobInfo runat="server" ID="jobInfo1" EnableDepartment="false" EnableDivision="false" EnablePosition="false" />
 
                                     </Content>
 

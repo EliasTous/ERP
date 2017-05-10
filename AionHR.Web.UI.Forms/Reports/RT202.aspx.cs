@@ -197,7 +197,7 @@ namespace AionHR.Web.UI.Forms.Reports
                 X.Msg.Alert(Resources.Common.Error, resp.Summary).Show();
                 return;
             }
-            resp.Items.ForEach(x => { x.PaymentFrequencyString = GetGlobalResourceObject("Common", ((PaymentFrequency)x.paymentFrequency).ToString()).ToString(); });
+            //resp.Items.ForEach(x => { x.PaymentFrequencyString = GetGlobalResourceObject("Common", ((PaymentFrequency)x.paymentFrequency).ToString()).ToString(); });
             resp.Items.ForEach(x => { x.SalaryTypeString = x.salaryType.HasValue ? GetGlobalResourceObject("Common", ((SalaryType)x.salaryType).ToString()).ToString() : ""; });
             resp.Items.ForEach(x => { x.PrevSalaryTypeString = x.prevSalaryType.HasValue? GetGlobalResourceObject("Common", ((SalaryType)x.prevSalaryType).ToString()).ToString():""; });
             SalaryChanges h = new SalaryChanges();

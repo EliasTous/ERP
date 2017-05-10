@@ -148,6 +148,15 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Hidden PeriodStatus1;
         
         /// <summary>
+        /// PeriodStatus2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Hidden PeriodStatus2;
+        
+        /// <summary>
         /// CurrentYear control.
         /// </summary>
         /// <remarks>

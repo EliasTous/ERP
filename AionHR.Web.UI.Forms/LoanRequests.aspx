@@ -71,9 +71,12 @@
                     <Fields>
                         <ext:ModelField Name="recordId" />                       
                         <ext:ModelField Name="employeeId" />
+                        <ext:ModelField Name="loanRef" />
                         <ext:ModelField Name="ltId" />
                         <ext:ModelField Name="date" />
                         <ext:ModelField Name="effectiveDate" />
+                        <ext:ModelField Name="branchId" />
+                        <ext:ModelField Name="branchName" />
                         <ext:ModelField Name="purpose" />
                         <ext:ModelField Name="status" />
                         <ext:ModelField Name="currencyId" />
@@ -135,9 +138,9 @@
                             
 
 
-                                 <ext:ComboBox runat="server" ValueField="recordId" DisplayField="name" ID="branchId" Name="branchId" EmptyText="<%$ Resources:FilterBranch%>" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" >
+                                 <ext:ComboBox runat="server" ValueField="recordId" DisplayField="name" ID="branchIdFilter" Name="branchIdFilter" EmptyText="<%$ Resources:FilterBranch%>" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" >
                                     <Store>
-                                        <ext:Store runat="server" ID="branchStore">
+                                        <ext:Store runat="server" ID="branchFilterStore">
                                             <Model>
                                                 <ext:Model runat="server">
                                                     <Fields>
@@ -205,7 +208,7 @@
                                 </ext:ComboBox>
                                   <ext:Button runat="server" Text="<%$ Resources: ButtonClear%>" MarginSpec="0 0 0 0"  Width="100">
                                     <Listeners>
-                                        <Click Handler="#{departmentId}.clear();#{branchId}.clear(); #{divisionId}.clear(); #{Store1}.reload();">
+                                        <Click Handler="#{departmentId}.clear();#{branchIdFilter}.clear(); #{divisionId}.clear(); #{Store1}.reload();">
 
                                         </Click>
                                     </Listeners>
@@ -224,7 +227,9 @@
                                  <Renderer Handler=" return record.data['employeeName'].fullName; ">
                                 </Renderer>
                             </ext:Column>
+                            <ext:Column ID="Column5" DataIndex="loanRef" Text="<%$ Resources: FieldReference%>" runat="server"  />
                             <ext:Column ID="Column7" DataIndex="ltName" Text="<%$ Resources: FieldLtName%>" runat="server" Flex="1" />
+                            <ext:Column ID="Column6" DataIndex="branchName" Text="<%$ Resources: FieldBranch%>" runat="server" Flex="1" />
 
                             <ext:DateColumn ID="c"  DataIndex="date" Text="<%$ Resources: FieldDate%>" runat="server" Width="100" />
 
@@ -409,7 +414,39 @@
 
                                     </Store>
                                 </ext:ComboBox>
+                                <ext:TextField runat="server" ID="loanRef" Name="loanRef" FieldLabel="<%$ Resources: FieldReference %>" />
 
+                                <ext:ComboBox Enabled="false" runat="server" AllowBlank="true" ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" ID="branchId" Name="branchId" FieldLabel="<%$ Resources:FieldBranch%>" SimpleSubmit="true">
+                                                    <Store>
+                                                        <ext:Store runat="server" ID="branchStore">
+                                                            <Model>
+                                                                <ext:Model runat="server">
+                                                                    <Fields>
+                                                                        <ext:ModelField Name="recordId" />
+                                                                        <ext:ModelField Name="name" />
+                                                                    </Fields>
+                                                                </ext:Model>
+                                                            </Model>
+                                                        </ext:Store>
+                                                    </Store>
+                                                  <RightButtons>
+                                                        <ext:Button ID="Button3" runat="server" Icon="Add" Hidden="true" >
+                                                            <Listeners>
+                                                                <Click Handler="CheckSession();" />
+                                                            </Listeners>
+                                                            <DirectEvents>
+
+                                                                <Click OnEvent="addBranch">
+                                                                 
+                                                                </Click>
+                                                            </DirectEvents>
+                                                        </ext:Button>
+                                                    </RightButtons>
+                                                    <Listeners>
+                                                        <FocusEnter Handler="if(!this.readOnly) this.rightButtons[0].setHidden(false);" />
+                                                        <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
+                                                    </Listeners>
+                                                </ext:ComboBox>
 
                                 <ext:ComboBox runat="server" ID="ltId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1"
                                     DisplayField="name"

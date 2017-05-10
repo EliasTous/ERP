@@ -1843,6 +1843,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Loans History.
+        /// </summary>
+        internal static string RT401 {
+            get {
+                return ResourceManager.GetString("RT401", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Sign-in Trail.
         /// </summary>
         internal static string RT801 {

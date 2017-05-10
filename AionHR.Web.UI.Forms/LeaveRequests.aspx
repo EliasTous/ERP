@@ -258,8 +258,8 @@
                             <ext:Column ID="ColName" DataIndex="employeeName.fullName" Text="<%$ Resources: FieldEmployeeName%>" runat="server" Flex="6">
                                 <Renderer Handler=" return  record.data['employeeName'].fullName" />
                             </ext:Column>
-                            <ext:DateColumn Format="dd-MM-yyyy" ID="Column1" DataIndex="startDate" Text="<%$ Resources: FieldStartDate%>" runat="server" Flex="2" />
-                            <ext:DateColumn Format="dd-MM-yyyy" ID="Column2" DataIndex="endDate" Text="<%$ Resources: FieldEndDate%>" runat="server" Flex="2" />
+                            <ext:DateColumn  ID="Column1" DataIndex="startDate" Text="<%$ Resources: FieldStartDate%>" runat="server" Flex="2" />
+                            <ext:DateColumn ID="Column2" DataIndex="endDate" Text="<%$ Resources: FieldEndDate%>" runat="server" Flex="2" />
                             <ext:Column ID="Column3" DataIndex="status" Text="<%$ Resources: FieldStatus%>" runat="server" Flex="2">
                                 <Renderer Handler="return GetStatusName(record.data['status']);" />
                             </ext:Column>
@@ -412,7 +412,7 @@
                                 <ext:TextField ID="recordId" runat="server" Name="recordId" Hidden="true" />
                                 <ext:DateField ID="startDate" runat="server" FieldLabel="<%$ Resources:FieldStartDate%>" Name="startDate" AllowBlank="false" >
                                     <Listeners>
-                                        <Change Handler="App.direct.MarkLeaveChanged(); CalcSum();" />
+                                        <Change Handler="alert(this.value);App.direct.MarkLeaveChanged(); CalcSum();" />
                                     </Listeners>
                                     </ext:DateField>
                                 <ext:DateField ID="endDate" runat="server" FieldLabel="<%$ Resources:FieldEndDate%>" Name="endDate" AllowBlank="false" >

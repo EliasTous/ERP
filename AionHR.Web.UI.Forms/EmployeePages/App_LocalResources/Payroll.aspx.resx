@@ -264,4 +264,7 @@
   <data name="pctof2" xml:space="preserve">
     <value>Basic Salary +Entitlmenets</value>
   </data>
+  <data name="ErrorWithPCTOf" xml:space="preserve">
+    <value>PCTOF value is invalid, the PCTOF will be set to Percentage of basic salary</value>
+  </data>
 </root>
