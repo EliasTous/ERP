@@ -229,6 +229,15 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Store payrollsStore;
         
         /// <summary>
+        /// c1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Column c1;
+        
+        /// <summary>
         /// periodFrom control.
         /// </summary>
         /// <remarks>
@@ -245,6 +254,15 @@ namespace AionHR.Web.UI.Forms {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.DateColumn periodTo;
+        
+        /// <summary>
+        /// Column2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Column Column2;
         
         /// <summary>
         /// colEdit control.

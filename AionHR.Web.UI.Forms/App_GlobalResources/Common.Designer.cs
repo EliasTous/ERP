@@ -1852,6 +1852,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Monthly Payroll.
+        /// </summary>
+        internal static string RT501 {
+            get {
+                return ResourceManager.GetString("RT501", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Sign-in Trail.
         /// </summary>
         internal static string RT801 {
@@ -1866,6 +1875,15 @@ namespace Resources {
         internal static string RT802 {
             get {
                 return ResourceManager.GetString("RT802", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Salary.
+        /// </summary>
+        internal static string Salary {
+            get {
+                return ResourceManager.GetString("Salary", resourceCulture);
             }
         }
         

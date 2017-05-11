@@ -122,8 +122,8 @@ namespace AionHR.Web.UI.Forms
                 FillBranch();
                 includeOpen.Select(3);
                 DateFormat.Text = _systemService.SessionHelper.GetDateformat().ToUpper();
-             startDate.Format = endDate.Format = _systemService.SessionHelper.GetDateformat();
-                Column2.Format= Column1.Format= _systemService.SessionHelper.GetDateformat();
+                startDate.Format = endDate.Format = _systemService.SessionHelper.GetDateformat();
+                Column2.Format = Column1.Format = _systemService.SessionHelper.GetDateformat();
             }
 
         }
@@ -192,8 +192,8 @@ namespace AionHR.Web.UI.Forms
                     }
                     //Step 2 : call setvalues with the retrieved object
                     this.BasicInfoTab.SetValues(response.result);
-                    
-                    
+
+
                     FillLeaveType();
                     ltId.Select(response.result.ltId.ToString());
                     StoredLeaveChanged.Text = "0";
@@ -218,7 +218,7 @@ namespace AionHR.Web.UI.Forms
                     {
 
                     }
-                    
+
                     leaveDaysStore.DataSource = resp.Items;
                     resp.Items.ForEach(x => x.dow = (short)DateTime.ParseExact(x.dayId, "yyyyMMdd", new CultureInfo("en")).DayOfWeek);
                     leaveDaysStore.DataBind();
@@ -533,10 +533,10 @@ namespace AionHR.Web.UI.Forms
                 b.ltName = ltId.SelectedItem.Text;
 
             List<LeaveDay> days = GenerateLeaveDays(e.ExtraParams["days"]);
-            
+
             if (string.IsNullOrEmpty(id))
             {
-                if(days.Count==0)
+                if (days.Count == 0)
                 {
                     days = GenerateDefaultLeaveDays();
                 }
@@ -600,7 +600,7 @@ namespace AionHR.Web.UI.Forms
 
                 try
                 {
-                    
+
                     //getting the id of the record
                     PostRequest<LeaveRequest> request = new PostRequest<LeaveRequest>();
                     request.entity = b;
@@ -661,7 +661,7 @@ namespace AionHR.Web.UI.Forms
 
             }
 
-            
+
             resp.Items.ForEach(x => x.dow = (short)DateTime.ParseExact(x.dayId, "yyyyMMdd", new CultureInfo("en")).DayOfWeek);
             return resp.Items;
         }
@@ -675,10 +675,10 @@ namespace AionHR.Web.UI.Forms
             req.EndDayId = endDay;
             req.IsWorkingDay = true;
             int bulk;
-            
+
             req.CaId = GetEmployeeCalendar(employeeId.Value.ToString()).ToString();
             ListResponse<LeaveCalendarDay> days = _timeAttendanceService.ChildGetAll<LeaveCalendarDay>(req);
-            
+
             List<LeaveDay> leaveDays = new List<LeaveDay>();
             days.Items.ForEach(x => leaveDays.Add(new LeaveDay() { dow = (short)DateTime.ParseExact(x.dayId, "yyyyMMdd", new CultureInfo("en")).DayOfWeek, dayId = x.dayId, workingHours = x.workingHours, leaveHours = x.workingHours }));
             return leaveDays;
@@ -776,7 +776,7 @@ namespace AionHR.Web.UI.Forms
             LeaveChanged.Text = "1";
             if (startDate.SelectedDate == DateTime.MinValue || endDate.SelectedDate == DateTime.MinValue)
             {
-                
+
                 return;
             }
             string startDay = startDate.SelectedDate.ToString("yyyyMMdd");
@@ -789,7 +789,7 @@ namespace AionHR.Web.UI.Forms
             int bulk;
             if (string.IsNullOrEmpty(employeeId.Value.ToString()) || !int.TryParse(employeeId.Value.ToString(), out bulk))
             {
-                
+
                 return;
             }
             req.CaId = GetEmployeeCalendar(employeeId.Value.ToString()).ToString();
@@ -809,7 +809,7 @@ namespace AionHR.Web.UI.Forms
         {
             if (panelRecordDetails.ActiveTabIndex == 1)
             {
-                
+
 
                 if (startDate.SelectedDate == DateTime.MinValue || endDate.SelectedDate == DateTime.MinValue)
                 {
@@ -824,7 +824,7 @@ namespace AionHR.Web.UI.Forms
                     panelRecordDetails.ActiveTabIndex = 0;
                     return;
                 }
-              
+
             }
         }
 
@@ -839,6 +839,55 @@ namespace AionHR.Web.UI.Forms
                 return false;
             }
             return true;
+        }
+
+        protected void ReturnLeave(object sender, DirectEventArgs e)
+        {
+            leaveReturnForm.Reset();
+            leaveReturnWindow.Show();
+        }
+
+        [DirectMethod]
+
+        public void FillLeave()
+        {
+            LeaveRequestListRequest req = new LeaveRequestListRequest();
+
+            if (!string.IsNullOrEmpty(returnedEmployee.Text) && returnedEmployee.Value.ToString() != "0")
+            {
+                req.EmployeeId = Convert.ToInt32(returnedEmployee.Value);
+
+
+            }
+            else
+            {
+                return;
+
+            }
+            req.BranchId = req.DepartmentId = 0;
+            req.OpenRequests = 3;
+            req.StartAt = "1";
+            req.Size = "1";
+            req.SortBy = "endDate";
+
+            ListResponse<LeaveRequest> resp = _leaveManagementService.ChildGetAll<LeaveRequest>(req);
+            if (!resp.Success)
+            {
+
+            }
+            if (resp.Items.Count == 0)
+                return;
+            if (resp.Items[0].returnDate.HasValue)
+                return;
+
+            leaveId.Text = resp.Items[0].recordId;
+            X.Call("FillReturnInfo", resp.Items[0].recordId, resp.Items[0].startDate, resp.Items[0].endDate);
+        }
+        protected void SaveLeaveReturn(object sender, DirectEventArgs e)
+        {
+
+
+            
         }
     }
 }

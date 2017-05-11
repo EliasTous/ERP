@@ -18,6 +18,7 @@ namespace AionHR.Services.Messaging.Reports
         protected Dictionary<string, string> parameters;
         public override Dictionary<string, string> Parameters
         {
+
             get
             {
                 parameters = new Dictionary<string, string>();

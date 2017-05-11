@@ -134,12 +134,13 @@
                                             <Fields>
                                                 <ext:ModelField Name="recordId" />
                                                 <ext:ModelField Name="fiscalYear" />
-
+                                                <ext:ModelField Name="payRef" />
                                                 <ext:ModelField Name="salaryType" />
                                                 <ext:ModelField Name="periodId" />
                                                 <ext:ModelField Name="status" />
                                                 <ext:ModelField Name="startDate" />
                                                 <ext:ModelField Name="endDate" />
+                                                <ext:ModelField Name="notes" />
                                             </Fields>
                                         </ext:Model>
                                     </Model>
@@ -147,7 +148,7 @@
                             </Store>
                             <ColumnModel>
                                 <Columns>
-
+                                    <ext:Column runat="server" ID="c1" Text="<%$ Resources: FieldRef%>" DataIndex="payRef" Width="200" />
                                     <ext:DateColumn runat="server" ID="periodFrom" Text="<%$ Resources: FieldFrom%>" DataIndex="startDate" Width="150" />
 
                                     <ext:DateColumn runat="server" ID="periodTo" Text="<%$ Resources: FieldTo%>" DataIndex="endDate" Width="150" />
@@ -155,6 +156,7 @@
                                     <ext:Column runat="server" DataIndex="status" Text="<%$ Resources: FieldStatus%>" Flex="1">
                                         <Renderer Handler="return getStatusText(record.data['status']);" />
                                     </ext:Column>
+                                       <ext:Column runat="server" ID="Column2" Text="<%$ Resources: FieldNotes%>" DataIndex="notes"  Flex="2" />
                                     <ext:Column runat="server"
                                         ID="colEdit" Visible="true"
                                         Text=""
@@ -169,6 +171,7 @@
                                         <Renderer Handler="var d= (record.data['status']==1)?'&nbsp;&nbsp;&nbsp;&nbsp;':editRender()+ '&nbsp;&nbsp;'+ deleteRender(); return d+ '&nbsp;&nbsp;'+ attachRender(); " />
 
                                     </ext:Column>
+                                 
                                 </Columns>
                             </ColumnModel>
                             <Listeners>

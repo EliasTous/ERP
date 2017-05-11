@@ -274,7 +274,7 @@ namespace AionHR.Web.UI.Forms.Utilities
             Ext.Net.Node rt105 = BuildLeafNode("report_rt105", Resources.Common.RT105, "Group", true, rt1);
             Ext.Net.Node rt106 = BuildLeafNode("report_rt106", Resources.Common.RT106, "Group", true, rt1);
 
-            Ext.Net.Node rt2 = BuildParentNode("report_rt2", Resources.Common.Payroll,  true, timeAt);
+            Ext.Net.Node rt2 = BuildParentNode("report_rt2", Resources.Common.Salary,  true, timeAt);
             Ext.Net.Node rt201 = BuildLeafNode("report_rt201", Resources.Common.RT201, "Group", true, rt2);
             Ext.Net.Node rt202 = BuildLeafNode("report_rt202", Resources.Common.RT202, "Group", true, rt2);
             Ext.Net.Node rt203 = BuildLeafNode("report_rt203", Resources.Common.RT203, "Group", true, rt2);
@@ -285,6 +285,9 @@ namespace AionHR.Web.UI.Forms.Utilities
 
             Ext.Net.Node rt4 = BuildParentNode("report_rt4", Resources.Common.Loans, true, timeAt);
             Ext.Net.Node rt401 = BuildLeafNode("report_rt401", Resources.Common.RT401, "Group", true, rt4);
+
+            Ext.Net.Node rt5 = BuildParentNode("report_rt5", Resources.Common.Payroll, true, timeAt);
+            Ext.Net.Node rt501 = BuildLeafNode("report_rt501", Resources.Common.RT501, "Group", true, rt5);
 
             Ext.Net.Node rt8 = BuildParentNode("report_rt8", Resources.Common.SystemSettings, true, timeAt);
             Ext.Net.Node rt801 = BuildLeafNode("report_rt801", Resources.Common.RT801, "Group", true, rt8);
@@ -305,6 +308,8 @@ namespace AionHR.Web.UI.Forms.Utilities
             FillConfigItem(rt301B, "rt301b", "Reports/RT301B.aspx", Resources.Common.RT301B, "icon-Employees", "1");
 
             FillConfigItem(rt401, "rt401", "Reports/RT401.aspx", Resources.Common.RT401, "icon-Employees", "1");
+
+            FillConfigItem(rt501, "rt501", "Reports/RT501.aspx", Resources.Common.RT501, "icon-Employees", "1");
 
 
             FillConfigItem(rt801, "rt801", "Reports/RT801.aspx", Resources.Common.RT801, "icon-Employees", "1");

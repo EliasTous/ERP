@@ -20,6 +20,7 @@ namespace AionHR.Model.LeaveManagement
 
         public string ltName { get; set; }
 
+        public DateTime? returnDate { get; set; }
 
         public string destination { get; set; }
         public string justification { get; set; }

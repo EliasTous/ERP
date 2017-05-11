@@ -240,7 +240,7 @@ var openModule = function (id) {
     failure: function (errorMsg) {
         Ext.net.Mask.hide();
         Ext.Msg.buttonText.ok = App.lblOk.getValue();
-        Ext.Msg.alert(App.lblError.getValue(), App.lblErrorOperation.getValue(), function () {
+        Ext.Msg.alert(App.lblError.getValue(), errorMsg, function () {
         });
     }
 });

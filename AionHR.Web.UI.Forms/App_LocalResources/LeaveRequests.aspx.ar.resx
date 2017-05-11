@@ -159,6 +159,9 @@
   <data name="FieldRefused" xml:space="preserve">
     <value>مرفوضة</value>
   </data>
+  <data name="FieldReturnInfo" xml:space="preserve">
+    <value>معلومات العودة من الإجازة</value>
+  </data>
   <data name="FieldStartDate" xml:space="preserve">
     <value>تاريخ البداية</value>
   </data>

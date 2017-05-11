@@ -117,127 +117,13 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Deductions" xml:space="preserve">
-    <value>Deductions</value>
+  <data name="dAmount" xml:space="preserve">
+    <value>إجمالي الحسومات</value>
   </data>
-  <data name="Entitlements" xml:space="preserve">
-    <value>Entitlements</value>
+  <data name="eAmount" xml:space="preserve">
+    <value>إجمالي الاستحقاقات</value>
   </data>
-  <data name="FieldAmount" xml:space="preserve">
-    <value>Amount</value>
-  </data>
-  <data name="FieldBasicAmount" xml:space="preserve">
-    <value>Basic Amount</value>
-  </data>
-  <data name="FieldBranch" xml:space="preserve">
-    <value>Select a Branch</value>
-  </data>
-  <data name="FieldCalDays" xml:space="preserve">
-    <value>Cal Days</value>
-  </data>
-  <data name="FieldCalMinutes" xml:space="preserve">
-    <value>Cal Minutes</value>
-  </data>
-  <data name="FieldDays" xml:space="preserve">
-    <value>Days</value>
-  </data>
-  <data name="FieldDeduction" xml:space="preserve">
-    <value>Deduction</value>
-  </data>
-  <data name="FieldDepartment" xml:space="preserve">
-    <value>Select a Department</value>
-  </data>
-  <data name="FieldEDAmount" xml:space="preserve">
-    <value>ED</value>
-  </data>
-  <data name="FieldEmployee" xml:space="preserve">
-    <value>Select an Employee</value>
-  </data>
-  <data name="FieldEntitlement" xml:space="preserve">
-    <value>Entitlement</value>
-  </data>
-  <data name="FieldFrom" xml:space="preserve">
-    <value>From</value>
-  </data>
-  <data name="FieldMinutes" xml:space="preserve">
-    <value>Minutes</value>
-  </data>
-  <data name="FieldNetSalary" xml:space="preserve">
-    <value>Net</value>
-  </data>
-  <data name="FieldNotes" xml:space="preserve">
-    <value>Notes</value>
-  </data>
-  <data name="FieldPayDate" xml:space="preserve">
-    <value>PayDate</value>
-  </data>
-  <data name="FieldPayRef" xml:space="preserve">
-    <value>Ref</value>
-  </data>
-  <data name="FieldPeriod" xml:space="preserve">
-    <value>Period</value>
-  </data>
-  <data name="FieldPeriodType" xml:space="preserve">
-    <value>Period Type</value>
-  </data>
-  <data name="FieldRef" xml:space="preserve">
-    <value>Ref</value>
-  </data>
-  <data name="FieldStatus" xml:space="preserve">
-    <value>Status</value>
-  </data>
-  <data name="FieldTaxAmount" xml:space="preserve">
-    <value>Tax Amount</value>
-  </data>
-  <data name="FieldTo" xml:space="preserve">
-    <value>To</value>
-  </data>
-  <data name="FieldYear" xml:space="preserve">
-    <value>Year</value>
-  </data>
-  <data name="Month" xml:space="preserve">
-    <value>Month</value>
-  </data>
-  <data name="SalaryBiWeekly" xml:space="preserve">
-    <value>Bi-weekly</value>
-  </data>
-  <data name="SalaryDaily" xml:space="preserve">
-    <value>Daily</value>
-  </data>
-  <data name="SalaryFourWeekly" xml:space="preserve">
-    <value>Four Weekly</value>
-  </data>
-  <data name="SalaryMonthly" xml:space="preserve">
-    <value>Monthly</value>
-  </data>
-  <data name="SalaryWeekly" xml:space="preserve">
-    <value>Weekly</value>
-  </data>
-  <data name="SelectFilters" xml:space="preserve">
-    <value>Please Select a year and a period type first</value>
-  </data>
-  <data name="Status0" xml:space="preserve">
-    <value>In process</value>
-  </data>
-  <data name="Status1" xml:space="preserve">
-    <value>Posted</value>
-  </data>
-  <data name="Status2" xml:space="preserve">
-    <value>All</value>
-  </data>
-  <data name="StatusInProcess" xml:space="preserve">
-    <value>In Process</value>
-  </data>
-  <data name="StatusPosted" xml:space="preserve">
-    <value>Posted</value>
-  </data>
-  <data name="TotalText" xml:space="preserve">
-    <value>Total</value>
-  </data>
-  <data name="Week" xml:space="preserve">
-    <value>Week</value>
-  </data>
-  <data name="Weeks" xml:space="preserve">
-    <value>Weeks</value>
+  <data name="netSalary" xml:space="preserve">
+    <value>صافي الراتب</value>
   </data>
 </root>

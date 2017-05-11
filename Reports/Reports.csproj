@@ -70,6 +70,9 @@
     <Compile Include="LoansReport.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="MonthlyPayroll.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="PointInTimeSalary.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -151,6 +154,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="LoansReport.resx">
       <DependentUpon>LoansReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MonthlyPayroll.ar.resx">
+      <DependentUpon>MonthlyPayroll.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MonthlyPayroll.resx">
+      <DependentUpon>MonthlyPayroll.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PointInTimeSalary.ar.resx">
       <DependentUpon>PointInTimeSalary.cs</DependentUpon>

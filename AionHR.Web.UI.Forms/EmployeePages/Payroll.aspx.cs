@@ -1125,8 +1125,10 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     bool oldInclude = Convert.ToBoolean(e.ExtraParams["oldInclude"]);
                     ModelProxy record = this.deductionStore.GetById(id);
 
-                    record.Set("edName", b.edName);
+                    
                     DEForm.UpdateRecord(record);
+                    record.Set("edName", b.edName);
+                    record.Set("edId", b.edId);
                     record.Set("fixedAmount", b.fixedAmount);
                     record.Set("pct", b.pct);
                     record.Commit();

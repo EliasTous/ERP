@@ -858,4 +858,10 @@
   <data name="RT401" xml:space="preserve">
     <value>تاريخ السلف</value>
   </data>
+  <data name="RT501" xml:space="preserve">
+    <value>كشف الرواتب الشهري</value>
+  </data>
+  <data name="Salary" xml:space="preserve">
+    <value>الرواتب</value>
+  </data>
 </root>

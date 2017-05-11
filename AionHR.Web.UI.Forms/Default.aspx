@@ -8,7 +8,7 @@
     <link rel="stylesheet" type="text/css" href="CSS/Tools.css" />
 
     <script type="text/javascript" src="Scripts/jquery.min.js"></script>
-    <script type="text/javascript" src="Scripts/app.js?id=1"></script>
+    <script type="text/javascript" src="Scripts/app.js?id=2"></script>
     <script type="text/javascript" src="Scripts/Common.js"></script>
     <script type="text/javascript" src="Scripts/default.js?id=13"></script>
 

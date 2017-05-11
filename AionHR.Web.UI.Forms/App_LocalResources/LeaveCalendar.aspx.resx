@@ -327,4 +327,10 @@
   <data name="WindowTitle" xml:space="preserve">
     <value>Employees</value>
   </data>
+  <data name="FieldReturnDate" xml:space="preserve">
+    <value>Return Date</value>
+  </data>
+  <data name="FieldReturnInfo" xml:space="preserve">
+    <value>Return Info</value>
+  </data>
 </root>

@@ -855,4 +855,10 @@
   <data name="RT401" xml:space="preserve">
     <value>Loans History</value>
   </data>
+  <data name="RT501" xml:space="preserve">
+    <value>Monthly Payroll</value>
+  </data>
+  <data name="Salary" xml:space="preserve">
+    <value>Salary</value>
+  </data>
 </root>

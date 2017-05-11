@@ -213,4 +213,13 @@
   <data name="FieldBranch" xml:space="preserve">
     <value>Branch</value>
   </data>
+  <data name="FieldReturnDate" xml:space="preserve">
+    <value>Return Date</value>
+  </data>
+  <data name="LeaveInfo" xml:space="preserve">
+    <value>Leave Info</value>
+  </data>
+  <data name="ReturnInfo" xml:space="preserve">
+    <value>Return Info</value>
+  </data>
 </root>
