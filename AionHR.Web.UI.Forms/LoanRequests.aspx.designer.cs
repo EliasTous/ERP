@@ -265,6 +265,24 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.ComboBox statusPref;
         
         /// <summary>
+        /// employeeFilter control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.ComboBox employeeFilter;
+        
+        /// <summary>
+        /// Store2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Store Store2;
+        
+        /// <summary>
         /// ColRecordId control.
         /// </summary>
         /// <remarks>

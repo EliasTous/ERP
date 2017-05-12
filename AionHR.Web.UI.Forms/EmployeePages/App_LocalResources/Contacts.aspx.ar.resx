@@ -117,46 +117,79 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="CGridTitle" xml:space="preserve">
+    <value>معلومات الاتصال</value>
+  </data>
+  <data name="ECGridTitle" xml:space="preserve">
+    <value>معلومات اتصال الطوارئ</value>
+  </data>
   <data name="EditContactWindowTitle" xml:space="preserve">
     <value>معلومات الاتصال</value>
   </data>
-  <data name="FieldAddressName" xml:space="preserve">
-    <value>العنوان</value>
+  <data name="EditEmergencyContactWindowTitle" xml:space="preserve">
+    <value>معلومات اتصال الطوارئ</value>
   </data>
-  <data name="FieldCellPhone" xml:space="preserve">
-    <value>الهاتف الجوّال</value>
+  <data name="FieldCCellPhone" xml:space="preserve">
+    <value>الهاتف المحمول</value>
   </data>
-  <data name="FieldCity" xml:space="preserve">
+  <data name="FieldCCity" xml:space="preserve">
     <value>المدينة</value>
   </data>
-  <data name="FieldCountryId" xml:space="preserve">
-    <value>رقم الدولة</value>
+  <data name="FieldCCountryId" xml:space="preserve">
+    <value>الدولة</value>
   </data>
-  <data name="FieldCountryName" xml:space="preserve">
-    <value>اسم الدولة</value>
+  <data name="FieldCCountryName" xml:space="preserve">
+    <value>الدولة</value>
   </data>
-  <data name="FieldEmail" xml:space="preserve">
-    <value>البريد الالكتروني</value>
-  </data>
-  <data name="FieldHomePhone" xml:space="preserve">
-    <value>هاتف المنزل</value>
-  </data>
-  <data name="FieldInst" xml:space="preserve">
-    <value>Institution</value>
-  </data>
-  <data name="FieldPostalCode" xml:space="preserve">
+  <data name="FieldCPostalCode" xml:space="preserve">
     <value>الرمز البريدي</value>
   </data>
-  <data name="FieldRTName" xml:space="preserve">
+  <data name="FieldCStreet1" xml:space="preserve">
+    <value>شارع 1</value>
+  </data>
+  <data name="FieldCStreet2" xml:space="preserve">
+    <value>شارع 2</value>
+  </data>
+  <data name="FieldEMAddressName" xml:space="preserve">
+    <value>العنوان</value>
+  </data>
+  <data name="FieldEMCellPhone" xml:space="preserve">
+    <value>الهاتف المحمول</value>
+  </data>
+  <data name="FieldEMCity" xml:space="preserve">
+    <value>المدينة</value>
+  </data>
+  <data name="FieldEMCountryId" xml:space="preserve">
+    <value>الدولة</value>
+  </data>
+  <data name="FieldEMCountryName" xml:space="preserve">
+    <value>الدولة</value>
+  </data>
+  <data name="FieldEMEmail" xml:space="preserve">
+    <value>الإيميل</value>
+  </data>
+  <data name="FieldEMHomePhone" xml:space="preserve">
+    <value>الهاتف</value>
+  </data>
+  <data name="FieldEMInst" xml:space="preserve">
+    <value>الاسم</value>
+  </data>
+  <data name="FieldEMPostalCode" xml:space="preserve">
+    <value>الرمز البريدي </value>
+  </data>
+  <data name="FieldEMRTName" xml:space="preserve">
     <value>الصلة</value>
   </data>
-  <data name="FieldStreet1" xml:space="preserve">
-    <value>الحي 1</value>
+  <data name="FieldEMStreet1" xml:space="preserve">
+    <value>شارع 1</value>
   </data>
-  <data name="FieldStreet2" xml:space="preserve">
-    <value>الحي 2</value>
+  <data name="FieldEMStreet2" xml:space="preserve">
+    <value>شارع 2</value>
   </data>
-  <data name="FieldWorkPhone" xml:space="preserve">
+  <data name="FieldEMWorkPhone" xml:space="preserve">
     <value>هاتف العمل</value>
+  </data>
+  <data name="FieldState" xml:space="preserve">
+    <value>المنطقة</value>
   </data>
 </root>

@@ -117,58 +117,19 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AddressPage" xml:space="preserve">
-    <value>Address</value>
-  </data>
   <data name="BasicInfoTabEditWindowTitle" xml:space="preserve">
-    <value>Branch Info</value>
+    <value>معلومات المحافظة</value>
   </data>
   <data name="EditWindowsTitle" xml:space="preserve">
-    <value>Edit Branch</value>
-  </data>
-  <data name="ErrorAddressMissing" xml:space="preserve">
-    <value>Missing Fields in Address</value>
-  </data>
-  <data name="FieldCCity" xml:space="preserve">
-    <value>City</value>
-  </data>
-  <data name="FieldCCountryId" xml:space="preserve">
-    <value>Country Id</value>
-  </data>
-  <data name="FieldCCountryName" xml:space="preserve">
-    <value>Country Name</value>
-  </data>
-  <data name="FieldCPostalCode" xml:space="preserve">
-    <value>Postal Code</value>
-  </data>
-  <data name="FieldCStreet1" xml:space="preserve">
-    <value>Street 1</value>
-  </data>
-  <data name="FieldCStreet2" xml:space="preserve">
-    <value>Street 2</value>
-  </data>
-  <data name="FieldIsInactive" xml:space="preserve">
-    <value>Is Inactive?</value>
+    <value>تعديل المحافظة</value>
   </data>
   <data name="FieldName" xml:space="preserve">
-    <value>Name</value>
+    <value>الاسم</value>
   </data>
   <data name="FieldRecordId" xml:space="preserve">
-    <value>Record ID</value>
-  </data>
-  <data name="FieldReference" xml:space="preserve">
-    <value>Reference</value>
-  </data>
-  <data name="FieldSegmentCode" xml:space="preserve">
-    <value>Segment</value>
-  </data>
-  <data name="FieldState" xml:space="preserve">
-    <value>State</value>
-  </data>
-  <data name="FieldTimeZone" xml:space="preserve">
-    <value>Time Zone</value>
+    <value>الرقم</value>
   </data>
   <data name="WindowTitle" xml:space="preserve">
-    <value>Branches</value>
+    <value>المحافظات</value>
   </data>
 </root>

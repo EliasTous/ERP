@@ -679,7 +679,7 @@
                                         </ext:ComboBox>
                                         <ext:DateField
                                             runat="server"
-                                            Name="birthDate"
+                                            Name="birthDate" ID="birthDate"
                                             FieldLabel="<%$ Resources:FieldDateOfBirth%>"
                                             MsgTarget="Side"
                                             AllowBlank="false" />
@@ -872,13 +872,14 @@
                                             </Store>
 
                                         </ext:ComboBox>
-                                        <ext:TextField ID="birthPlace" runat="server" FieldLabel="<%$ Resources:FieldBirthPlace%>" Name="placeOfBirth" AllowBlank="true" />
+                                        <ext:TextField ID="birthPlace" Visible="false" runat="server" FieldLabel="<%$ Resources:FieldBirthPlace%>" Name="placeOfBirth" AllowBlank="true" />
 
 
 
                                         <ext:DateField
                                             runat="server"
                                             Name="hireDate"
+                                            ID="hireDate"
                                             FieldLabel="<%$ Resources:FieldHireDate%>"
                                             MsgTarget="Side"
                                             AllowBlank="false" />

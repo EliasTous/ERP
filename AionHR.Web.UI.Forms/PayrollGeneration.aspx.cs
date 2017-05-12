@@ -633,12 +633,16 @@ namespace AionHR.Web.UI.Forms
             }
             catch { }
         }
-        [DirectMethod]
-        public void UpdateStartEndDate()
+ 
+        public void UpdateStartEndDate(object sender, DirectEventArgs e)
         {
-            string s = periodId.SelectedItem.Text;
-            string d = s.Split('(')[1].Split(')')[0];
-            X.Call("setStartEnd", d.Split('-')[0], d.Split('-')[1]);
+            string s = e.ExtraParams["period"];
+            try
+            {
+                string d = s.Split('(')[1].Split(')')[0];
+                X.Call("setStartEnd", d.Split('-')[0], d.Split('-')[1]);
+            }
+            catch { }
         }
 
         protected void Store1_ReadData(object sender, StoreReadDataEventArgs e)
@@ -718,6 +722,7 @@ namespace AionHR.Web.UI.Forms
         [DirectMethod]
         public void AddPayroll()
         {
+            BasicInfoTab.Reset();
             fiscalyearStore.DataSource = GetYears();
             fiscalyearStore.DataBind();
             Viewport1.ActiveIndex = 1;

@@ -649,7 +649,7 @@
     <value>Your Reset password email has been sent successfully</value>
   </data>
   <data name="ToMonths" xml:space="preserve">
-    <value>من(أشهر)</value>
+    <value>إلى(أشهر)</value>
   </data>
   <data name="TransactionLogTitle" xml:space="preserve">
     <value>العنوان</value>
@@ -859,9 +859,12 @@
     <value>تاريخ السلف</value>
   </data>
   <data name="RT501" xml:space="preserve">
-    <value>كشف الرواتب الشهري</value>
+    <value>تقرير الرواتب</value>
   </data>
   <data name="Salary" xml:space="preserve">
     <value>الرواتب</value>
+  </data>
+  <data name="GeneratePayroll" xml:space="preserve">
+    <value>تسديد الرواتب</value>
   </data>
 </root>

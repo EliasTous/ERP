@@ -198,10 +198,10 @@ namespace AionHR.Web.UI.Forms.Reports
                 return;
             }
 
-            SignInTrail h = new SignInTrail();
+            resp.Items.ForEach(x => x.DateString = x.eventDT.ToString(_systemService.SessionHelper.GetDateformat())); SignInTrail h = new SignInTrail();
             h.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;
             h.RightToLeftLayout = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeftLayout.Yes : DevExpress.XtraReports.UI.RightToLeftLayout.No;
-
+           
             h.DataSource = resp.Items;
 
 
@@ -217,7 +217,7 @@ namespace AionHR.Web.UI.Forms.Reports
 
             if (pageIndex == 1)
             {
-                FillReport();
+                //FillReport();
             }
         }
 

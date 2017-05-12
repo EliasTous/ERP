@@ -117,58 +117,46 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AddressPage" xml:space="preserve">
-    <value>Address</value>
+  <data name="FieldFrom" xml:space="preserve">
+    <value>من </value>
   </data>
-  <data name="BasicInfoTabEditWindowTitle" xml:space="preserve">
-    <value>Branch Info</value>
+  <data name="FieldPeriodType" xml:space="preserve">
+    <value>نوع الفترة</value>
   </data>
-  <data name="EditWindowsTitle" xml:space="preserve">
-    <value>Edit Branch</value>
+  <data name="FieldStatus" xml:space="preserve">
+    <value>الحالة</value>
   </data>
-  <data name="ErrorAddressMissing" xml:space="preserve">
-    <value>Missing Fields in Address</value>
+  <data name="FieldTo" xml:space="preserve">
+    <value>إلى</value>
   </data>
-  <data name="FieldCCity" xml:space="preserve">
-    <value>City</value>
+  <data name="FieldYear" xml:space="preserve">
+    <value>السنة</value>
   </data>
-  <data name="FieldCCountryId" xml:space="preserve">
-    <value>Country Id</value>
+  <data name="SalaryBiWeekly" xml:space="preserve">
+    <value>كل أسبوعين</value>
   </data>
-  <data name="FieldCCountryName" xml:space="preserve">
-    <value>Country Name</value>
+  <data name="SalaryDaily" xml:space="preserve">
+    <value>كل يوم</value>
   </data>
-  <data name="FieldCPostalCode" xml:space="preserve">
-    <value>Postal Code</value>
+  <data name="SalaryFourWeekly" xml:space="preserve">
+    <value>كل أربعة أسابيع</value>
   </data>
-  <data name="FieldCStreet1" xml:space="preserve">
-    <value>Street 1</value>
+  <data name="SalaryMonthly" xml:space="preserve">
+    <value>شهري</value>
   </data>
-  <data name="FieldCStreet2" xml:space="preserve">
-    <value>Street 2</value>
+  <data name="SalaryWeekly" xml:space="preserve">
+    <value>أسبوعي</value>
   </data>
-  <data name="FieldIsInactive" xml:space="preserve">
-    <value>Is Inactive?</value>
+  <data name="StatusAll" xml:space="preserve">
+    <value>الكل</value>
   </data>
-  <data name="FieldName" xml:space="preserve">
-    <value>Name</value>
+  <data name="StatusInProcess" xml:space="preserve">
+    <value>قيد المعالجة</value>
   </data>
-  <data name="FieldRecordId" xml:space="preserve">
-    <value>Record ID</value>
+  <data name="StatusPosted" xml:space="preserve">
+    <value>مثبت</value>
   </data>
-  <data name="FieldReference" xml:space="preserve">
-    <value>Reference</value>
-  </data>
-  <data name="FieldSegmentCode" xml:space="preserve">
-    <value>Segment</value>
-  </data>
-  <data name="FieldState" xml:space="preserve">
-    <value>State</value>
-  </data>
-  <data name="FieldTimeZone" xml:space="preserve">
-    <value>Time Zone</value>
-  </data>
-  <data name="WindowTitle" xml:space="preserve">
-    <value>Branches</value>
+  <data name="StatusUnProcessed" xml:space="preserve">
+    <value>غير معالج</value>
   </data>
 </root>

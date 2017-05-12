@@ -191,6 +191,7 @@
     <Content Include="DocumentTypes.aspx" />
     <Content Include="EmployeeComplaints.aspx" />
     <Content Include="EmployeePages\Contacts.aspx" />
+    <Content Include="EmployeePages\Dependants.aspx" />
     <Content Include="EmployeePages\Documents.aspx" />
     <Content Include="EmployeePages\Hire.aspx" />
     <Content Include="EmployeePages\JobInformation.aspx" />
@@ -560,6 +561,13 @@
     </Compile>
     <Compile Include="CompanyRightToWorks.aspx.designer.cs">
       <DependentUpon>CompanyRightToWorks.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EmployeePages\Dependants.aspx.cs">
+      <DependentUpon>Dependants.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EmployeePages\Dependants.aspx.designer.cs">
+      <DependentUpon>Dependants.aspx</DependentUpon>
     </Compile>
     <Compile Include="EmployeePages\Hire.aspx.cs">
       <DependentUpon>Hire.aspx</DependentUpon>
@@ -1506,6 +1514,10 @@
     <Content Include="App_LocalResources\PayrollGeneration.aspx.resx" />
     <Content Include="App_LocalResources\LoanOverrides.aspx.resx" />
     <Content Include="App_LocalResources\States.aspx.resx" />
+    <Content Include="App_LocalResources\LoanOverrides.aspx.ar.resx" />
+    <Content Include="App_LocalResources\FiscalYears.aspx.ar.resx" />
+    <Content Include="App_LocalResources\Branches.aspx.ar.resx" />
+    <Content Include="App_LocalResources\States.aspx.ar.resx" />
     <EmbeddedResource Include="Properties\licenses.licx" />
     <Content Include="Reports\App_LocalResources\RT202.aspx.resx" />
     <Content Include="Reports\App_LocalResources\RT01.aspx.ar.resx" />

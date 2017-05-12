@@ -65,6 +65,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                 CurrentEmployee.Text = Request.QueryString["employeeId"];
                 CurrentHireDate.Text = Request.QueryString["hireDate"];
             }
+            Column2.Format = ColDate.Format = ehDate.Format = date.Format = _systemService.SessionHelper.GetDateformat();
 
         }
 

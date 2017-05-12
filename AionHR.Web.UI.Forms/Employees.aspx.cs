@@ -78,6 +78,7 @@ namespace AionHR.Web.UI.Forms
                 CurrentClassId.Text = ClassId.EPEM.ToString();
                 InitFilters();
                 BuildQuickViewTemplate();
+                hireDate.Format = birthDate.Format = _systemService.SessionHelper.GetDateformat();
             }
 
 
@@ -165,7 +166,7 @@ namespace AionHR.Web.UI.Forms
                     FillProfileInfo(id.ToString());
                     CurrentEmployee.Text = id.ToString();
                     FillLeftPanel();
-
+                   
                     
                     //employeePanel.Loader.Url = "EmployeePages/EmployeeProfile.aspx?employeeId="+CurrentEmployee.Text;
                     //employeePanel.Loader.LoadContent();

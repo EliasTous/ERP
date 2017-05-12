@@ -206,9 +206,38 @@
                                         <Change Handler="App.Store1.reload()" />
                                     </Listeners>
                                 </ext:ComboBox>
+                                <ext:ComboBox runat="server" ID="employeeFilter" Width="130" LabelAlign="Top"
+                                    DisplayField="fullName"
+                                    ValueField="recordId" AllowBlank="true"
+                                    TypeAhead="false"
+                                    HideTrigger="true" SubmitValue="true"
+                                    MinChars="3" EmptyText="<%$ Resources: FieldEmployeeName%>"
+                                    TriggerAction="Query" ForceSelection="false">
+                                    <Store>
+                                        <ext:Store runat="server" ID="Store2" AutoLoad="false">
+                                            <Model>
+                                                <ext:Model runat="server">
+                                                    <Fields>
+                                                        <ext:ModelField Name="recordId" />
+                                                        <ext:ModelField Name="fullName" />
+                                                    </Fields>
+                                                </ext:Model>
+                                            </Model>
+                                            <Proxy>
+                                                <ext:PageProxy DirectFn="App.direct.FillEmployee"></ext:PageProxy>
+                                            </Proxy>
+                                        </ext:Store>
+                                    </Store>
+                                    <Listeners>
+                                        <Select Handler="#{Store1}.reload()" />
+                                    </Listeners>
+                                    <Items>
+                                        <ext:ListItem Text="-----All-----" Value="0" />
+                                    </Items>
+                                </ext:ComboBox>
                                 <ext:Button runat="server" Text="<%$ Resources: ButtonClear%>" MarginSpec="0 0 0 0" Width="100">
                                     <Listeners>
-                                        <Click Handler="#{departmentId}.clear();#{branchIdFilter}.clear(); #{divisionId}.clear(); #{Store1}.reload();">
+                                        <Click Handler="#{departmentId}.clear();#{branchIdFilter}.clear(); #{divisionId}.clear();#{employeeFilter}.clear(); #{Store1}.reload();">
                                         </Click>
                                     </Listeners>
                                 </ext:Button>

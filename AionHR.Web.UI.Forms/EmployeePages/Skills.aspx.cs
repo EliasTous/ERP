@@ -63,8 +63,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                 if (string.IsNullOrEmpty(Request.QueryString["employeeId"]))
                     X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorOperation).Show();
                 CurrentEmployee.Text = Request.QueryString["employeeId"];
-                dateToColumn.Format = _systemService.SessionHelper.GetDateformat();
-                dateFromColumn.Format = _systemService.SessionHelper.GetDateformat();
+                dateFrom.Format = dateTo.Format = dateToColumn.Format = dateFromColumn.Format = _systemService.SessionHelper.GetDateformat();
 
             }
 

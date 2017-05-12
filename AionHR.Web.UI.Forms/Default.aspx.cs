@@ -54,11 +54,11 @@ namespace AionHR.Web.UI.Forms
                     Response.Redirect("Login.aspx?timeout=yes", true);
             }
 
-            if (!X.IsAjaxRequest)
-            {
-                this.ResourceManager1.DirectEventUrl = this.Request.Url.AbsoluteUri;
-            }
-
+            //if (!X.IsAjaxRequest)
+            //{
+            //    this.ResourceManager1.DirectEventUrl = this.Request.Url.AbsoluteUri;
+            //}
+            //this.ResourceManager1.DirectEventUrl = this.ResourceManager1.DirectEventUrl.Replace("http", "https");
             if (!IsPostBack && !X.IsAjaxRequest)
             {
                 SetExtLanguage();
@@ -264,7 +264,7 @@ namespace AionHR.Web.UI.Forms
         protected void TransactionLog_RefreshData(object sender, StoreReadDataEventArgs e)
         {
             List<Ext.Net.Parameter> l = e.Parameters.ToList<Ext.Net.Parameter>();
-            
+
             //GEtting the filter from the page
             TransactionLogListRequest request = new TransactionLogListRequest();
             request.ClassId = Convert.ToInt32(l[0].Value);
@@ -279,7 +279,7 @@ namespace AionHR.Web.UI.Forms
             {
                 return;
             }
-            
+
             e.Total = logs.count;
             transactionLogStore.DataSource = logs.Items;
             transactionLogStore.DataBind();
@@ -315,7 +315,7 @@ namespace AionHR.Web.UI.Forms
                     logBodyScreen.Show();
                     break;
                 default:
-                    
+
                     break;
 
 
@@ -333,7 +333,7 @@ namespace AionHR.Web.UI.Forms
             col.Add(new Ext.Net.Parameter() { Name = "ClassId", Value = classRef.ToString() });
             col.Add(new Ext.Net.Parameter() { Name = "PrimaryKey", Value = recordId.ToString() });
             transactionLogStore.Reload(col);
-          
+
         }
     }
 }

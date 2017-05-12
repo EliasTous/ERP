@@ -74,8 +74,8 @@ namespace AionHR.Web.UI.Forms
                 HideShowButtons();
                 HideShowColumns();
 
-               
-                dateCol.Format = _systemService.SessionHelper.GetDateformat() + ": hh:mm:ss";
+
+                dateCol.Format = _systemService.SessionHelper.GetDateformat();
                 CompanyFilesClassId.Text = ClassId.DMDO.ToString();
          
             }

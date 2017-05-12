@@ -237,7 +237,7 @@
                             <ext:Column CellCls="cellLink" Visible="true" ID="ColEHName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDocumentRef%>" DataIndex="fileName" Flex="2" Hideable="false" />
                             <ext:Column CellCls="cellLink" ID="Column1" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldFolderName%>" DataIndex="folderName" Flex="2" Hideable="false" />
                             <ext:DateColumn ID="dateCol" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDate%>" DataIndex="date" Flex="2" Hideable="false">
-                                <Renderer Handler="var s = moment(record.data['date']);   return s.calendar();" />
+                                
                             </ext:DateColumn>
 
 

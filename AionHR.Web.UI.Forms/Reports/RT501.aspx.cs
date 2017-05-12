@@ -196,17 +196,18 @@ namespace AionHR.Web.UI.Forms.Reports
             MonthlyPayrollCollection s = new MonthlyPayrollCollection();
             if (lines.Count > 0)
             {
-                MonthlyPayrollSet p = new MonthlyPayrollSet();
-
+                MonthlyPayrollSet p = new MonthlyPayrollSet(GetLocalResourceObject("Entitlements").ToString(),GetLocalResourceObject("Deductions").ToString());
+                p.PayPeriodString = resp.Items[0].startDate.ToString(_systemService.SessionHelper.GetDateformat()) + " - " + resp.Items[0].endDate.ToString(_systemService.SessionHelper.GetDateformat());
+                p.PayDate = GetLocalResourceObject("PaidAt")+" "+ resp.Items[0].payDate.ToString(_systemService.SessionHelper.GetDateformat());
                 p.Names = (lines[0] as PayrollLine).Entitlements;
-
+                p.DIndex = ens.Count;
                 p.Payrolls = lines;
                 s.Add(p);
             }
 
             MonthlyPayroll h = new MonthlyPayroll();
             h.DataSource = s;
-
+            
             h.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;
             h.RightToLeftLayout = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeftLayout.Yes : DevExpress.XtraReports.UI.RightToLeftLayout.No;
 

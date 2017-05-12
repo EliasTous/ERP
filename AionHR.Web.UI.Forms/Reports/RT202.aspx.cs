@@ -199,7 +199,7 @@ namespace AionHR.Web.UI.Forms.Reports
             }
             //resp.Items.ForEach(x => { x.PaymentFrequencyString = GetGlobalResourceObject("Common", ((PaymentFrequency)x.paymentFrequency).ToString()).ToString(); });
             resp.Items.ForEach(x => { x.SalaryTypeString = x.salaryType.HasValue ? GetGlobalResourceObject("Common", ((SalaryType)x.salaryType).ToString()).ToString() : ""; });
-            resp.Items.ForEach(x => { x.PrevSalaryTypeString = x.prevSalaryType.HasValue? GetGlobalResourceObject("Common", ((SalaryType)x.prevSalaryType).ToString()).ToString():""; });
+            resp.Items.ForEach(x => { x.PrevSalaryTypeString = x.prevSalaryType.HasValue? GetGlobalResourceObject("Common", ((SalaryType)x.prevSalaryType).ToString()).ToString():""; x.DateString = x.effectiveDate.ToString(_systemService.SessionHelper.GetDateformat()); });
             SalaryChanges h = new SalaryChanges();
             h.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;
             h.RightToLeftLayout = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeftLayout.Yes : DevExpress.XtraReports.UI.RightToLeftLayout.No;
@@ -225,7 +225,7 @@ namespace AionHR.Web.UI.Forms.Reports
             if (pageIndex == 1)
             {
 
-                FillReport();
+                //FillReport();
             }
         }
 

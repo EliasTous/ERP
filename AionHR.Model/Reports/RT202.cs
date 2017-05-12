@@ -78,5 +78,7 @@ namespace AionHR.Model.Reports
                 prevSalaryTypeString = value;
             }
         }
+
+        public String DateString { get; set; }
     }
 }

@@ -719,6 +719,14 @@ namespace AionHR.Web.UI.Forms
             {
                 req.DivisionId = 0;
             }
+            if (!string.IsNullOrEmpty(employeeFilter.Text) && employeeFilter.Value.ToString() != "0")
+            {
+                req.EmployeeId = Convert.ToInt32(employeeFilter.Value);
+            }
+            else
+            {
+                req.EmployeeId = 0;
+            }
             if (!string.IsNullOrEmpty(statusPref.Text) && statusPref.Value.ToString() != "")
             {
                 req.Status = Convert.ToInt32(statusPref.Value);
@@ -731,7 +739,7 @@ namespace AionHR.Web.UI.Forms
             req.StartAt = "1";
             req.Filter = "";
             req.SortBy = "employeeId";
-            req.EmployeeId = 0;
+           
             return req;
         }
 
@@ -751,7 +759,7 @@ namespace AionHR.Web.UI.Forms
             //ListRequest request = new ListRequest();
             LoanManagementListRequest request = GetLoanManagementRequest();
             request.Filter = "";
-            request.EmployeeId = 0;
+            
             request.SortBy = e.Sort[0].Property;
             if (e.Sort[0].Property == "employeeName.fullName")
                 request.SortBy = _systemService.SessionHelper.GetNameformat();

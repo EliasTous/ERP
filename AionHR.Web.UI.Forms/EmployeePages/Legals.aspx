@@ -206,8 +206,8 @@
                             </ext:Column>--%>
                             <ext:Column ID="dtName" DataIndex="dtName" Text="<%$ Resources: FieldRWDtName%>" runat="server" Flex="4" />
                             <ext:Column ID="documentRef1" DataIndex="documentRef" Text="<%$ Resources: FieldRWDocumentRef%>" runat="server" Flex="2" />
-                            <ext:Column  ID="validFrom" DataIndex="issueDateFormatted" Text="<%$ Resources: FieldRWIssueDate%>" runat="server" Width="100" />
-                            <ext:Column   ID="validTo" DataIndex="expireDateFormatted" Text="<%$ Resources: FieldRWExpiryDate%>" runat="server" Width="100" />
+                            <ext:DateColumn  ID="validFrom" DataIndex="issueDateFormatted" Text="<%$ Resources: FieldRWIssueDate%>" runat="server" Width="100" />
+                            <ext:DateColumn   ID="validTo" DataIndex="expireDateFormatted" Text="<%$ Resources: FieldRWExpiryDate%>" runat="server" Width="100" />
                             <ext:Column ID="remarks" DataIndex="remarks" Text="<%$ Resources: FieldRWRemarks%>" runat="server" Flex="2" Visible="false" />
 
 
@@ -384,8 +384,8 @@
                                 <Renderer Handler=" return '<u>'+ record.data['employeeName'].fullName+'</u>'" />
                             </ext:Column>--%>
                             <ext:Column ID="Column3" DataIndex="ctName" Text="<%$ Resources: FieldBCCTName%>" runat="server" Flex="1" />
-                            <ext:DateColumn Format="dd-MM-yyyy" ID="DateColumn1" DataIndex="date" Text="<%$ Resources: FieldBCIssueDate%>" runat="server" Width="100" />
-                            <ext:DateColumn Format="dd-MM-yyyy" ID="DateColumn2" DataIndex="expiryDate" Text="<%$ Resources: FieldBCExpiryDate%>" runat="server" Width="100" />
+                            <ext:DateColumn  ID="DateColumn1" DataIndex="date" Text="<%$ Resources: FieldBCIssueDate%>" runat="server" Width="100" />
+                            <ext:DateColumn  ID="DateColumn2" DataIndex="expiryDate" Text="<%$ Resources: FieldBCExpiryDate%>" runat="server" Width="100" />
                             <%--<ext:Column  Visible="false" ID="Column4" DataIndex="remarks" Text="<%$ Resources: FieldBCRemarks%>" runat="server" Flex="1" />--%>
 
 

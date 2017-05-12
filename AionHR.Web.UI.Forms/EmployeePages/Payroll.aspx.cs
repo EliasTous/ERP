@@ -64,9 +64,8 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorOperation).Show();
                 CurrentEmployee.Text = Request.QueryString["employeeId"];
 
-                cc.Format = _systemService.SessionHelper.GetDateformat();
-                ccc.Format = _systemService.SessionHelper.GetDateformat();
-
+                
+                 date.Format = effectiveDate.Format = cc.Format= ccc.Format = _systemService.SessionHelper.GetDateformat();
 
             }
 

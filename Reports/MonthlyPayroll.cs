@@ -29,7 +29,6 @@ public class MonthlyPayroll : DevExpress.XtraReports.UI.XtraReport
     private DetailBand Detail2;
     private DetailReportBand DetailReport2;
     private DetailBand Detail3;
-    private XRLabel xrLabel5;
     private XRLabel xrLabel4;
     private XRLabel xrLabel2;
     private XRLabel xrLabel3;
@@ -46,6 +45,12 @@ public class MonthlyPayroll : DevExpress.XtraReports.UI.XtraReport
     private XRLabel xrLabel14;
     private XRLabel xrLabel13;
     private XRControlStyle header;
+    private DetailReportBand DetailReport4;
+    private DetailBand Detail5;
+    private XRLabel xrLabel16;
+    private XRLabel xrLabel5;
+    private XRLabel xrLabel18;
+    private XRLabel xrLabel17;
 
     /// <summary>
     /// Required designer variable.
@@ -98,6 +103,7 @@ public class MonthlyPayroll : DevExpress.XtraReports.UI.XtraReport
             this.DataField = new DevExpress.XtraReports.UI.XRControlStyle();
             this.DetailReport = new DevExpress.XtraReports.UI.DetailReportBand();
             this.Detail1 = new DevExpress.XtraReports.UI.DetailBand();
+            this.xrLabel14 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel8 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel7 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel6 = new DevExpress.XtraReports.UI.XRLabel();
@@ -106,7 +112,7 @@ public class MonthlyPayroll : DevExpress.XtraReports.UI.XtraReport
             this.Detail2 = new DevExpress.XtraReports.UI.DetailBand();
             this.DetailReport2 = new DevExpress.XtraReports.UI.DetailReportBand();
             this.Detail3 = new DevExpress.XtraReports.UI.DetailBand();
-            this.xrLabel5 = new DevExpress.XtraReports.UI.XRLabel();
+            this.xrLabel13 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel4 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel2 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel3 = new DevExpress.XtraReports.UI.XRLabel();
@@ -116,10 +122,14 @@ public class MonthlyPayroll : DevExpress.XtraReports.UI.XtraReport
             this.xrLabel10 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel9 = new DevExpress.XtraReports.UI.XRLabel();
             this.Money = new DevExpress.XtraReports.UI.XRControlStyle();
-            this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
-            this.xrLabel13 = new DevExpress.XtraReports.UI.XRLabel();
-            this.xrLabel14 = new DevExpress.XtraReports.UI.XRLabel();
             this.header = new DevExpress.XtraReports.UI.XRControlStyle();
+            this.DetailReport4 = new DevExpress.XtraReports.UI.DetailReportBand();
+            this.Detail5 = new DevExpress.XtraReports.UI.DetailBand();
+            this.xrLabel16 = new DevExpress.XtraReports.UI.XRLabel();
+            this.xrLabel5 = new DevExpress.XtraReports.UI.XRLabel();
+            this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
+            this.xrLabel17 = new DevExpress.XtraReports.UI.XRLabel();
+            this.xrLabel18 = new DevExpress.XtraReports.UI.XRLabel();
             ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             // 
@@ -177,6 +187,8 @@ public class MonthlyPayroll : DevExpress.XtraReports.UI.XtraReport
             // reportHeaderBand1
             // 
             this.reportHeaderBand1.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
+            this.xrLabel18,
+            this.xrLabel17,
             this.xrLabel15});
             resources.ApplyResources(this.reportHeaderBand1, "reportHeaderBand1");
             this.reportHeaderBand1.Name = "reportHeaderBand1";
@@ -237,7 +249,7 @@ public class MonthlyPayroll : DevExpress.XtraReports.UI.XtraReport
             this.DetailReport.DataMember = "Names";
             this.DetailReport.DataSource = this.objectDataSource1;
             resources.ApplyResources(this.DetailReport, "DetailReport");
-            this.DetailReport.Level = 0;
+            this.DetailReport.Level = 1;
             this.DetailReport.Name = "DetailReport";
             this.DetailReport.BeforePrint += new System.Drawing.Printing.PrintEventHandler(this.DetailReport_BeforePrint);
             // 
@@ -255,6 +267,16 @@ public class MonthlyPayroll : DevExpress.XtraReports.UI.XtraReport
             this.Detail1.MultiColumn.Mode = DevExpress.XtraReports.UI.MultiColumnMode.UseColumnCount;
             this.Detail1.Name = "Detail1";
             this.Detail1.StylePriority.UseBackColor = false;
+            // 
+            // xrLabel14
+            // 
+            resources.ApplyResources(this.xrLabel14, "xrLabel14");
+            this.xrLabel14.Name = "xrLabel14";
+            this.xrLabel14.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel14.ProcessDuplicatesMode = DevExpress.XtraReports.UI.ProcessDuplicatesMode.Suppress;
+            this.xrLabel14.StyleName = "header";
+            this.xrLabel14.StylePriority.UseBackColor = false;
+            this.xrLabel14.StylePriority.UseFont = false;
             // 
             // xrLabel8
             // 
@@ -305,7 +327,7 @@ public class MonthlyPayroll : DevExpress.XtraReports.UI.XtraReport
             this.DetailReport1.DataMember = "Payrolls";
             this.DetailReport1.DataSource = this.objectDataSource1;
             resources.ApplyResources(this.DetailReport1, "DetailReport1");
-            this.DetailReport1.Level = 1;
+            this.DetailReport1.Level = 2;
             this.DetailReport1.Name = "DetailReport1";
             this.DetailReport1.BeforePrint += new System.Drawing.Printing.PrintEventHandler(this.DetailReport1_BeforePrint);
             // 
@@ -327,8 +349,8 @@ public class MonthlyPayroll : DevExpress.XtraReports.UI.XtraReport
             // Detail3
             // 
             this.Detail3.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
-            this.xrLabel13,
             this.xrLabel5,
+            this.xrLabel13,
             this.xrLabel4,
             this.xrLabel2,
             this.xrLabel3});
@@ -338,19 +360,19 @@ public class MonthlyPayroll : DevExpress.XtraReports.UI.XtraReport
             this.Detail3.MultiColumn.Mode = DevExpress.XtraReports.UI.MultiColumnMode.UseColumnCount;
             this.Detail3.Name = "Detail3";
             // 
-            // xrLabel5
+            // xrLabel13
             // 
-            this.xrLabel5.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding("Text", null, "Payrolls.Entitlements.amount", "{0:#,#}")});
-            resources.ApplyResources(this.xrLabel5, "xrLabel5");
-            this.xrLabel5.Name = "xrLabel5";
-            this.xrLabel5.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel5.StyleName = "Money";
+            this.xrLabel13.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "Payrolls.calendarDays")});
+            resources.ApplyResources(this.xrLabel13, "xrLabel13");
+            this.xrLabel13.Name = "xrLabel13";
+            this.xrLabel13.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel13.ProcessDuplicatesMode = DevExpress.XtraReports.UI.ProcessDuplicatesMode.Suppress;
             // 
             // xrLabel4
             // 
             this.xrLabel4.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding("Text", null, "Payrolls.basicAmount", "{0:#,#}")});
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "Payrolls.BasicAmountString", "{0:#,#}")});
             resources.ApplyResources(this.xrLabel4, "xrLabel4");
             this.xrLabel4.Name = "xrLabel4";
             this.xrLabel4.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
@@ -383,7 +405,7 @@ public class MonthlyPayroll : DevExpress.XtraReports.UI.XtraReport
             this.DetailReport3.DataMember = "Totals";
             this.DetailReport3.DataSource = this.objectDataSource1;
             resources.ApplyResources(this.DetailReport3, "DetailReport3");
-            this.DetailReport3.Level = 2;
+            this.DetailReport3.Level = 3;
             this.DetailReport3.Name = "DetailReport3";
             this.DetailReport3.BeforePrint += new System.Drawing.Printing.PrintEventHandler(this.DetailReport3_BeforePrint);
             // 
@@ -430,34 +452,70 @@ public class MonthlyPayroll : DevExpress.XtraReports.UI.XtraReport
             this.Money.Name = "Money";
             this.Money.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight;
             // 
+            // header
+            // 
+            this.header.Name = "header";
+            this.header.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleJustify;
+            // 
+            // DetailReport4
+            // 
+            this.DetailReport4.Bands.AddRange(new DevExpress.XtraReports.UI.Band[] {
+            this.Detail5});
+            this.DetailReport4.DataMember = "Headers";
+            this.DetailReport4.DataSource = this.objectDataSource1;
+            resources.ApplyResources(this.DetailReport4, "DetailReport4");
+            this.DetailReport4.Level = 0;
+            this.DetailReport4.Name = "DetailReport4";
+            // 
+            // Detail5
+            // 
+            this.Detail5.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
+            this.xrLabel16});
+            resources.ApplyResources(this.Detail5, "Detail5");
+            this.Detail5.MultiColumn.ColumnCount = 15;
+            this.Detail5.MultiColumn.Layout = DevExpress.XtraPrinting.ColumnLayout.AcrossThenDown;
+            this.Detail5.MultiColumn.Mode = DevExpress.XtraReports.UI.MultiColumnMode.UseColumnCount;
+            this.Detail5.Name = "Detail5";
+            // 
+            // xrLabel16
+            // 
+            this.xrLabel16.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "Headers.name")});
+            resources.ApplyResources(this.xrLabel16, "xrLabel16");
+            this.xrLabel16.Name = "xrLabel16";
+            this.xrLabel16.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            // 
+            // xrLabel5
+            // 
+            this.xrLabel5.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "Payrolls.Entitlements.AmountString")});
+            resources.ApplyResources(this.xrLabel5, "xrLabel5");
+            this.xrLabel5.Name = "xrLabel5";
+            this.xrLabel5.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel5.StyleName = "Money";
+            // 
             // objectDataSource1
             // 
             this.objectDataSource1.DataSource = typeof(AionHR.Model.Reports.MonthlyPayrollCollection);
             this.objectDataSource1.Name = "objectDataSource1";
             // 
-            // xrLabel13
+            // xrLabel17
             // 
-            this.xrLabel13.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding("Text", null, "Payrolls.calendarDays")});
-            resources.ApplyResources(this.xrLabel13, "xrLabel13");
-            this.xrLabel13.Name = "xrLabel13";
-            this.xrLabel13.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96F);
-            this.xrLabel13.ProcessDuplicatesMode = DevExpress.XtraReports.UI.ProcessDuplicatesMode.Suppress;
+            resources.ApplyResources(this.xrLabel17, "xrLabel17");
+            this.xrLabel17.Multiline = true;
+            this.xrLabel17.Name = "xrLabel17";
+            this.xrLabel17.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96F);
+            this.xrLabel17.StylePriority.UseFont = false;
+            this.xrLabel17.BeforePrint += new System.Drawing.Printing.PrintEventHandler(this.xrLabel17_BeforePrint);
             // 
-            // xrLabel14
+            // xrLabel18
             // 
-            resources.ApplyResources(this.xrLabel14, "xrLabel14");
-            this.xrLabel14.Name = "xrLabel14";
-            this.xrLabel14.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96F);
-            this.xrLabel14.ProcessDuplicatesMode = DevExpress.XtraReports.UI.ProcessDuplicatesMode.Suppress;
-            this.xrLabel14.StyleName = "header";
-            this.xrLabel14.StylePriority.UseBackColor = false;
-            this.xrLabel14.StylePriority.UseFont = false;
-            // 
-            // header
-            // 
-            this.header.Name = "header";
-            this.header.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleJustify;
+            this.xrLabel18.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "PayDate")});
+            resources.ApplyResources(this.xrLabel18, "xrLabel18");
+            this.xrLabel18.Name = "xrLabel18";
+            this.xrLabel18.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96F);
+            this.xrLabel18.StylePriority.UseFont = false;
             // 
             // MonthlyPayroll
             // 
@@ -469,7 +527,8 @@ public class MonthlyPayroll : DevExpress.XtraReports.UI.XtraReport
             this.reportHeaderBand1,
             this.DetailReport,
             this.DetailReport1,
-            this.DetailReport3});
+            this.DetailReport3,
+            this.DetailReport4});
             this.ComponentStorage.AddRange(new System.ComponentModel.IComponent[] {
             this.objectDataSource1});
             this.DataSource = this.objectDataSource1;
@@ -505,6 +564,11 @@ public class MonthlyPayroll : DevExpress.XtraReports.UI.XtraReport
     }
 
     private void DetailReport3_BeforePrint(object sender, System.Drawing.Printing.PrintEventArgs e)
+    {
+        e.Cancel = RowCount == 0;
+    }
+
+    private void xrLabel17_BeforePrint(object sender, System.Drawing.Printing.PrintEventArgs e)
     {
         e.Cancel = RowCount == 0;
     }

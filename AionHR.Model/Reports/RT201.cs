@@ -53,5 +53,7 @@ namespace AionHR.Model.Reports
                 salaryTypeString = value;
             }
         }
+
+        public String EffectiveDateString { get; set; }
     }
 }

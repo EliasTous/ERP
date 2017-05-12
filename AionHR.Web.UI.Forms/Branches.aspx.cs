@@ -357,8 +357,23 @@ namespace AionHR.Web.UI.Forms
             JsonSerializerSettings settings = new JsonSerializerSettings();
             settings.ContractResolver = res;
          
-            b.addressId = JsonConvert.DeserializeObject<AddressBook>(addr,settings);
-            b.addressId.recordId = addressId.Text;
+            AddressBook add = JsonConvert.DeserializeObject<AddressBook>(addr, settings);
+            if(string.IsNullOrEmpty(add.city)  && string.IsNullOrEmpty(add.countryId)&& string.IsNullOrEmpty(add.street1) && string.IsNullOrEmpty(add.stateId))
+            {
+                b.addressId = null;
+            }
+            else
+            {
+                if (string.IsNullOrEmpty(add.city) || string.IsNullOrEmpty(add.countryId) || string.IsNullOrEmpty(add.street1) || string.IsNullOrEmpty(add.stateId))
+                {
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    X.Msg.Alert(Resources.Common.Error, GetLocalResourceObject("ErrorAddressMissing")).Show();
+                    return;
+                }
+                b.addressId = JsonConvert.DeserializeObject<AddressBook>(addr, settings);
+                b.addressId.recordId = addressId.Text;
+            }
+         
             if (string.IsNullOrEmpty(id))
             {
 
@@ -428,7 +443,7 @@ namespace AionHR.Web.UI.Forms
                     if (!r.Success)//it maybe another check
                     {
                         X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                        X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorUpdatingRecord).Show();
+                        X.Msg.Alert(Resources.Common.Error, r.Summary).Show();
                         return;
                     }
                     else

@@ -67,6 +67,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                 CurrentEmployee.Text = Request.QueryString["employeeId"];
                 CurrentDateFormat.Text = _systemService.SessionHelper.GetDateformat();
                 EmployeeClassId.Text = ClassId.EPDO.ToString();
+                dateCol.Format = _systemService.SessionHelper.GetDateformat();
             }
 
         }

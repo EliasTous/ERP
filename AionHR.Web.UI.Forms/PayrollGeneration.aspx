@@ -176,8 +176,9 @@
                             </ColumnModel>
                             <Listeners>
                                 <Render Handler="this.on('cellclick', cellClick);" />
-                                <AfterRender Handler="App.year.setValue(new Date().getFullYear()); App.salaryTypeFilter.setValue(5); App.status.setValue(2); App.payrollsStore.reload()" />
+                                <AfterRender Handler="App.year.setValue(new Date().getFullYear()); App.salaryTypeFilter.setValue(5); App.status.setValue(2); App.payrollsStore.reload();" />
                                 <%--<AfterLayout Handler="App.year.setValue(new Date().getFullYear()); App.salaryTypeFilter.setValue(5); App.status.setValue(2); App.payrollsStore.reload()" />--%>
+                                <AfterLayout Handler="App.payrollsStore.reload();" />
                             </Listeners>
                             <DirectEvents>
                                 <CellClick OnEvent="PoPuPHeader">
@@ -248,9 +249,16 @@
                                         </ext:Store>
                                     </Store>
                                     <Listeners>
-                                        <Select Handler="App.fiscalPeriodsStore.reload();">
+                                        <Select Handler="App.fiscalPeriodsStore.reload(); ">
                                         </Select>
                                     </Listeners>
+                                    <DirectEvents>
+                                        <Select OnEvent="UpdateStartEndDate">
+                                            <ExtraParams>
+                                                <ext:Parameter Name="period" Value="#{periodId}.getRawValue()" Mode="Raw" />
+                                            </ExtraParams>
+                                        </Select>
+                                    </DirectEvents>
                                 </ext:ComboBox>
                                 <ext:ComboBox ID="salaryType" Name="salaryType" runat="server" FieldLabel="<%$ Resources:FieldPeriodType%>" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1">
                                     <Items>
@@ -261,9 +269,16 @@
                                         <ext:ListItem Text="<%$ Resources: SalaryMonthly%>" Value="5"></ext:ListItem>
                                     </Items>
                                     <Listeners>
-                                        <Select Handler="App.fiscalPeriodsStore.reload();">
+                                        <Select Handler="App.fiscalPeriodsStore.reload(); ">
                                         </Select>
                                     </Listeners>
+                                       <DirectEvents>
+                                        <Select OnEvent="UpdateStartEndDate">
+                                            <ExtraParams>
+                                                <ext:Parameter Name="period" Value="#{periodId}.getRawValue()" Mode="Raw" />
+                                            </ExtraParams>
+                                        </Select>
+                                    </DirectEvents>
                                 </ext:ComboBox>
                                 <ext:ComboBox QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: FieldPeriod %>" Name="periodId" DisplayField="name" ValueField="recordId" runat="server" ID="periodId">
                                     <Store>
@@ -278,10 +293,17 @@
                                             </Model>
                                         </ext:Store>
                                     </Store>
-                                    <Listeners>
+                                   <%-- <Listeners>
                                         <Select Handler="App.direct.UpdateStartEndDate();">
                                         </Select>
-                                    </Listeners>
+                                    </Listeners>--%>
+                                       <DirectEvents>
+                                        <Select OnEvent="UpdateStartEndDate">
+                                            <ExtraParams>
+                                                <ext:Parameter Name="period" Value="#{periodId}.getRawValue()" Mode="Raw" />
+                                            </ExtraParams>
+                                        </Select>
+                                    </DirectEvents>
                                 </ext:ComboBox>
                                 <ext:TextField runat="server" ReadOnly="true" ID="startDate" Name="startDate" FieldLabel="<%$ Resources: FieldFrom %>" AllowBlank="false" />
                                 <ext:TextField runat="server" ReadOnly="true" ID="endDate" Name="endDate" FieldLabel="<%$ Resources: FieldTo %>" AllowBlank="false" />

@@ -222,4 +222,7 @@
   <data name="ReturnInfo" xml:space="preserve">
     <value>Return Info</value>
   </data>
+  <data name="LeaveEndWindowTitle" xml:space="preserve">
+    <value>Leave Return</value>
+  </data>
 </root>

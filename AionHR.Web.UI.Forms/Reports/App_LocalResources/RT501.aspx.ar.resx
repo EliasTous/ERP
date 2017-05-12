@@ -120,10 +120,19 @@
   <data name="dAmount" xml:space="preserve">
     <value>إجمالي الحسومات</value>
   </data>
+  <data name="Deductions" xml:space="preserve">
+    <value>الخصومات</value>
+  </data>
   <data name="eAmount" xml:space="preserve">
     <value>إجمالي الاستحقاقات</value>
   </data>
+  <data name="Entitlements" xml:space="preserve">
+    <value>الاستحقاقات</value>
+  </data>
   <data name="netSalary" xml:space="preserve">
     <value>صافي الراتب</value>
+  </data>
+  <data name="PaidAt" xml:space="preserve">
+    <value>دفع في</value>
   </data>
 </root>

@@ -31,6 +31,6 @@ namespace AionHR.Model.Reports
         {
             get; set;
         }
-
+        public String DateString { get; set; }
     }
 }

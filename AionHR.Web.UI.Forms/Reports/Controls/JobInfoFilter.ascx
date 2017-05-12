@@ -37,7 +37,7 @@
 
         </ext:ComboBox>
          <ext:Panel runat="server" Width="10" />
-         <ext:ComboBox runat="server" QueryMode="Local" Width="120"  ForceSelection="true" TypeAhead="true" MinChars="1" ValueField="recordId" DisplayField="name" ID="divisionId" Name="divisionId" EmptyText="Division">
+         <ext:ComboBox runat="server" QueryMode="Local" Width="120"  ForceSelection="true" TypeAhead="true" MinChars="1" ValueField="recordId" DisplayField="name" ID="divisionId" Name="divisionId" EmptyText="<%$ Resources:FieldDivision%>" >
             <Store>
                 <ext:Store runat="server" ID="divisionStore">
                     <Model>

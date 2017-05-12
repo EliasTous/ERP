@@ -76,6 +76,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     hireInfoForm.SetValues(resp.result);
                     npId.Select(resp.result.npId.ToString());
                 }
+                probationEndDate.Format = nextReviewDate.Format = termEndDate.Format = _systemService.SessionHelper.GetDateformat();
             }
 
         }

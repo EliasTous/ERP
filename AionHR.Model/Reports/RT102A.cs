@@ -21,5 +21,6 @@ namespace AionHR.Model.Reports
         public DateTime date { get; set; }
 
         public string esName { get; set; }
+        public string DateString { get; set; }
     }
 }

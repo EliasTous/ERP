@@ -12,5 +12,6 @@ namespace AionHR.Model.Reports
         public string userName { get; set; }
 
         public DateTime eventDT { get; set; }
+        public String DateString { get; set; }
     }
 }

@@ -118,57 +118,51 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AddressPage" xml:space="preserve">
-    <value>Address</value>
+    <value>العنوان</value>
   </data>
   <data name="BasicInfoTabEditWindowTitle" xml:space="preserve">
-    <value>Branch Info</value>
+    <value>معلومات الفرع</value>
   </data>
   <data name="EditWindowsTitle" xml:space="preserve">
-    <value>Edit Branch</value>
+    <value>تعديل الفرع</value>
   </data>
   <data name="ErrorAddressMissing" xml:space="preserve">
-    <value>Missing Fields in Address</value>
+    <value>يجب ملئ الخانات المطلوبة في العنوان</value>
   </data>
   <data name="FieldCCity" xml:space="preserve">
-    <value>City</value>
+    <value>المدينة</value>
   </data>
   <data name="FieldCCountryId" xml:space="preserve">
-    <value>Country Id</value>
+    <value>الدولة</value>
   </data>
   <data name="FieldCCountryName" xml:space="preserve">
-    <value>Country Name</value>
+    <value>الدولة</value>
   </data>
   <data name="FieldCPostalCode" xml:space="preserve">
-    <value>Postal Code</value>
-  </data>
-  <data name="FieldCStreet1" xml:space="preserve">
-    <value>Street 1</value>
-  </data>
-  <data name="FieldCStreet2" xml:space="preserve">
-    <value>Street 2</value>
+    <value>الرمز البريدي</value>
   </data>
   <data name="FieldIsInactive" xml:space="preserve">
-    <value>Is Inactive?</value>
+    <value>غير نشط؟</value>
   </data>
   <data name="FieldName" xml:space="preserve">
-    <value>Name</value>
+    <value>الاسم</value>
   </data>
   <data name="FieldRecordId" xml:space="preserve">
-    <value>Record ID</value>
+    <value>الرقم</value>
   </data>
   <data name="FieldReference" xml:space="preserve">
-    <value>Reference</value>
+    <value>الرمز</value>
   </data>
   <data name="FieldSegmentCode" xml:space="preserve">
-    <value>Segment</value>
+    <value>رقم الحساب</value>
   </data>
   <data name="FieldState" xml:space="preserve">
-    <value>State</value>
+    <value>المنطقة</value>
   </data>
   <data name="FieldTimeZone" xml:space="preserve">
-    <value>Time Zone</value>
+    <value>المنطقة الزمنية</value>
   </data>
   <data name="WindowTitle" xml:space="preserve">
-    <value>Branches</value>
+    <value>الفروع</value>
   </data>
 </root>

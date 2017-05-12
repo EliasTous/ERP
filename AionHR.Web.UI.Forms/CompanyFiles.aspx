@@ -250,8 +250,7 @@
                                  <ext:Column    CellCls="cellLink" ID="Column1" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldFolderName%>" DataIndex="folderName" Flex="2" Hideable="false">
                         </ext:Column>
                               <ext:DateColumn  ID="dateCol" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDate%>" DataIndex="date" Flex="2" Hideable="false" >
-                                <Renderer Handler="var s = moment(record.data['date']);   return s.calendar();" />
-                                </ext:DateColumn>
+                            </ext:DateColumn> 
                             <%--<ext:Column ID="Column1" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldReference%>" DataIndex="reference" Width ="300" Hideable="false" />--%>
                              
                         

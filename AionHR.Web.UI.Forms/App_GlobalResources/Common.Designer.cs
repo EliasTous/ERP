@@ -1852,7 +1852,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Monthly Payroll.
+        ///   Looks up a localized string similar to Payroll Report.
         /// </summary>
         internal static string RT501 {
             get {

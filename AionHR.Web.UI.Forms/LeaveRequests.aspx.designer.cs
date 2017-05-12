@@ -409,6 +409,15 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.DateColumn Column2;
         
         /// <summary>
+        /// DateColumn3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.DateColumn DateColumn3;
+        
+        /// <summary>
         /// Column3 control.
         /// </summary>
         /// <remarks>
@@ -643,6 +652,15 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.ComboBox status;
         
         /// <summary>
+        /// returnDate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.DateField returnDate;
+        
+        /// <summary>
         /// LeaveDays control.
         /// </summary>
         /// <remarks>
@@ -850,13 +868,13 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.TextField leaveId;
         
         /// <summary>
-        /// returnDate control.
+        /// DateField3 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.DateField returnDate;
+        protected global::Ext.Net.DateField DateField3;
         
         /// <summary>
         /// Button1 control.

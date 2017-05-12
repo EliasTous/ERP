@@ -120,10 +120,19 @@
   <data name="dAmount" xml:space="preserve">
     <value>Deductions</value>
   </data>
+  <data name="Deductions" xml:space="preserve">
+    <value>Deductions</value>
+  </data>
   <data name="eAmount" xml:space="preserve">
+    <value>Entitlements</value>
+  </data>
+  <data name="Entitlements" xml:space="preserve">
     <value>Entitlements</value>
   </data>
   <data name="netSalary" xml:space="preserve">
     <value>Net </value>
+  </data>
+  <data name="PaidAt" xml:space="preserve">
+    <value>Paid at</value>
   </data>
 </root>

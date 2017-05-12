@@ -14,6 +14,8 @@ namespace AionHR.Model.Reports
 
         public double amount { get; set; }
 
+        public string AmountString { get; set; }
+
         public override Boolean Equals(Object obj)
         {
             return (obj as EntitlementDeduction).name.ToLower() == name.ToLower();
@@ -46,6 +48,12 @@ namespace AionHR.Model.Reports
 
         public double basicAmount { get; set; }
 
+        public string BasicAmountString { get
+            {
+                return currencyRef + String.Format("{0:n0}", basicAmount);
+            }
+        }
+
         private List<EntitlementDeduction> entitlements;
         private List<EntitlementDeduction> deductions;
 
@@ -55,11 +63,11 @@ namespace AionHR.Model.Reports
             {
                 List<EntitlementDeduction> all = new List<EntitlementDeduction>();
                 all.AddRange(entitlements);
-                all.Add(new EntitlementDeduction() { name = eAmountString, amount = EntitlementsTotal });
+                all.Add(new EntitlementDeduction() { name = eAmountString, amount = EntitlementsTotal, AmountString= currencyRef+ String.Format("{0:n0}", EntitlementsTotal) });
 
                 all.AddRange(deductions);
-                all.Add(new EntitlementDeduction() { name = dAmountString, amount = DeductionsTotal });
-                all.Add(new EntitlementDeduction() { name = netSalary, amount = NetSalary });
+                all.Add(new EntitlementDeduction() { name = dAmountString, amount = DeductionsTotal, AmountString = currencyRef + String.Format("{0:n0}", DeductionsTotal) });
+                all.Add(new EntitlementDeduction() { name = netSalary, amount = NetSalary, AmountString = currencyRef + String.Format("{0:n0}", NetSalary) });
                 return new EntitlementDeductionCollection(all);
             }
         }
@@ -67,7 +75,9 @@ namespace AionHR.Model.Reports
         private string eAmountString;
         private string dAmountString;
         private string netSalary;
-            
+
+        public string currencyRef { get; set; }
+
         public double EntitlementsTotal { get { return entitlements.Sum(x => x.amount); } }
 
         public EntitlementDeductionCollection Deductions { get { return new EntitlementDeductionCollection(deductions); } }
@@ -79,13 +89,15 @@ namespace AionHR.Model.Reports
         public void AddEn(EntitlementDeduction en)
         {
             entitlements[entitlements.IndexOf(en)].amount = en.amount;
+            entitlements[entitlements.IndexOf(en)].AmountString = currencyRef+ String.Format("{0:n0}", en.amount);
         }
 
         public void AddDe(EntitlementDeduction de)
         {
             deductions[deductions.IndexOf(de)].amount = de.amount;
+            deductions[deductions.IndexOf(de)].AmountString = currencyRef + String.Format("{0:n0}", de.amount);
         }
-        public PayrollLine(HashSet<EntitlementDeduction> en, HashSet<EntitlementDeduction> de, List<RT501> details,string eString, string dString, string netString)
+        public PayrollLine(HashSet<EntitlementDeduction> en, HashSet<EntitlementDeduction> de, List<RT501> details, string eString, string dString, string netString)
         {
             entitlements = new List<EntitlementDeduction>();
             deductions = new List<EntitlementDeduction>();
@@ -97,6 +109,7 @@ namespace AionHR.Model.Reports
                 basicAmount = details[0].basicAmount;
                 name = details[0].employeeName.fullName;
                 days = details[0].days;
+                currencyRef = details[0].currencyRef;
                 calendarDays = details[0].calendarDays;
             }
             foreach (var item in details)
@@ -182,6 +195,8 @@ namespace AionHR.Model.Reports
         public int paymentMethod { get; set; }
         public double edAmount { get; set; }
 
+        public string currencyRef { get; set; }
+
         public int edType { get; set; }
     }
 
@@ -199,18 +214,37 @@ namespace AionHR.Model.Reports
                     return new EntitlementDeductionCollection(new List<EntitlementDeduction>());
                 List<EntitlementDeduction> totals = new List<EntitlementDeduction>();
                 List<PayrollLine> lines = Payrolls.Cast<PayrollLine>().ToList();
-               
+
                 for (int i = 0; i < lines[0].Entitlements.Count; i++)
                 {
                     totals.Add(new EntitlementDeduction() { amount = lines.Sum(x => (x.Entitlements[i] as EntitlementDeduction).amount) });
                 }
 
                 return new EntitlementDeductionCollection(totals);
-                
-                
+
+
+            }
+        }
+        public EntitlementDeductionCollection Headers
+        {
+            get
+            {
+                List<EntitlementDeduction> l = new List<EntitlementDeduction>();
+                l.Add(new EntitlementDeduction() { name = EnString });
+                for (int i = 0; i < Names.Count; i++)
+                {
+                    if (i == DIndex)
+                        l.Add(new EntitlementDeduction() { name = DeString });
+
+                    else
+                        l.Add(new EntitlementDeduction());
+
+                }
+                return new EntitlementDeductionCollection(l);
             }
         }
 
+        public int DIndex { get; set; }
         public double TotalBasics
         {
             get
@@ -219,6 +253,18 @@ namespace AionHR.Model.Reports
                 return lines.Sum(x => x.basicAmount);
             }
         }
+        private string EnString;
+        private string DeString;
+        public MonthlyPayrollSet(string entitlementsString, string deductionsString)
+        {
+            EnString = entitlementsString;
+            DeString = deductionsString;
+
+        }
+         
+        public string PayPeriodString { get; set; }
+
+        public string PayDate { get; set; }
     }
 
     public class MonthlyPayrollCollection : ArrayList, ITypedList

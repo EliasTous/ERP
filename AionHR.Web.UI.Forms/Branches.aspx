@@ -25,6 +25,13 @@
             App.direct.StoreTimeZone(s);
             
         }
+        function setNullable(d)
+        {
+            App.city.allowBlank = d;
+            App.costreet1.allowBlank = d;
+            App.stId.allowBlank=d;
+            App.naId.allowBlank=d;
+        }
     </script>
 
  
@@ -322,11 +329,19 @@
                             DefaultAnchor="100%" 
                             BodyPadding="5"> 
                             <Items>
-                                <ext:TextField runat="server" Name="ddressId" ID="addressId" Hidden="true" Disabled="true" />
-                                        <ext:TextField runat="server" Name="street1" AllowBlank="true" ID="costreet1" FieldLabel="<%$ Resources:FieldCStreet1%>" />
+                                <ext:TextField runat="server" Name="addressId" ID="addressId" Hidden="true" Disabled="true" />
+                                        <ext:TextField runat="server" Name="street1" AllowBlank="true" ID="costreet1" FieldLabel="<%$ Resources:FieldCStreet1%>" >
+                                            <Listeners>
+                                                <Change Handler="if(this.value=='') setNullable(true); else setNullable(false);" />
+                                            </Listeners>
+                                            </ext:TextField>
                                              
                                         <ext:TextField runat="server" Name="street2" AllowBlank="true" ID="street2" FieldLabel="<%$ Resources:FieldCStreet2%>" />
-                                        <ext:TextField runat="server" Name="city" AllowBlank="true" ID="city" FieldLabel="<%$ Resources:FieldCCity%>" />
+                                        <ext:TextField runat="server" Name="city" AllowBlank="true" ID="city" FieldLabel="<%$ Resources:FieldCCity%>" >
+                                            <Listeners>
+                                                <Change Handler="if(this.value=='') setNullable(true); else setNullable(false);" />
+                                            </Listeners>
+                                            </ext:TextField>
                                         <ext:TextField runat="server" Name="postalCode" AllowBlank="true" MaxLength="6" ID="postalCode" FieldLabel="<%$ Resources:FieldCPostalCode%>" />
                                         <%--<ext:TextField  runat="server" Name="countryName" AllowBlank="false"  ID="countryName"  FieldLabel="<%$ Resources:FieldCountryName%>" />--%>
                                          <ext:ComboBox ValueField="recordId" AllowBlank="true" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1"
@@ -359,6 +374,7 @@
                                             </RightButtons>
                                             <Listeners>
                                                 <FocusEnter Handler="this.rightButtons[0].setHidden(false);" />
+                                                <Select Handler="if(this.value=='') setNullable(true); else setNullable(false);" />
                                                 <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
                                             </Listeners>
                                         </ext:ComboBox>
@@ -392,6 +408,7 @@
                                             </RightButtons>
                                             <Listeners>
                                                 <FocusEnter Handler="this.rightButtons[0].setHidden(false);" />
+                                                 <Select Handler="if(this.value=='') setNullable(true); else setNullable(false);" />
                                                 <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
                                             </Listeners>
                                         </ext:ComboBox>
