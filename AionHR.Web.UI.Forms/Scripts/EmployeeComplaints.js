@@ -72,10 +72,10 @@ var enterKeyPressSearchHandler = function (el, event) {
 
 function GetStatusName(index) {
     switch (index) {
-        case "0": case 0:
+        case "1": case 1:
             return document.getElementById("StatusOpen").value;
             break;
-        case "1": case 1:
+        case "2": case 1:
             return document.getElementById("StatusPending").value;
             break;
         case "2": case 2:

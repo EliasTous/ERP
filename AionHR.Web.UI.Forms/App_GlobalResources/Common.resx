@@ -649,7 +649,7 @@
     <value>Details</value>
   </data>
   <data name="Days" xml:space="preserve">
-    <value>Vacation(Days)</value>
+    <value>Vacation(Hours)</value>
   </data>
   <data name="FromMonths" xml:space="preserve">
     <value>From(Months)</value>
@@ -860,5 +860,14 @@
   </data>
   <data name="Salary" xml:space="preserve">
     <value>Salary</value>
+  </data>
+  <data name="LeaveReports" xml:space="preserve">
+    <value>Leave Reports</value>
+  </data>
+  <data name="RT602" xml:space="preserve">
+    <value>Leave Balance</value>
+  </data>
+  <data name="RT601" xml:space="preserve">
+    <value>Leave List</value>
   </data>
 </root>

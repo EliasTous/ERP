@@ -104,6 +104,8 @@
     <Compile Include="Reports\RT301.cs" />
     <Compile Include="Reports\RT401.cs" />
     <Compile Include="Reports\RT501.cs" />
+    <Compile Include="Reports\RT601.cs" />
+    <Compile Include="Reports\RT602.cs" />
     <Compile Include="Reports\RT801.cs" />
     <Compile Include="Reports\RT802.cs" />
     <Compile Include="System\CompanyDocumentType.cs" />

@@ -82,6 +82,8 @@
                             </div>
                             <div class="title">
                                 <asp:Literal ID="Literal3" runat="server" Text="<%$ Resources:Common ,ApplicationModule%>" /><asp:Literal ID="CompanyNameLiteral" runat="server" Text="" /></span>
+                                <br />
+                                <asp:Literal ID="username" runat="server" Text="" />
                             </div>
                             <div class="buttons">
 

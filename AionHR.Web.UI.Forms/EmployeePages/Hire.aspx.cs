@@ -138,7 +138,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             {
                 Title = Resources.Common.Notification,
                 Icon = Icon.Information,
-                Html = Resources.Common.RecordDeletedSucc
+                Html = Resources.Common.RecordUpdatedSucc
             });
 
 

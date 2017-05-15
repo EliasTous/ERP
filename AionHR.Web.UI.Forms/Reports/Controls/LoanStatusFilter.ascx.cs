@@ -13,7 +13,7 @@ namespace AionHR.Web.UI.Forms.Reports.Controls
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
-                statusPref.Select("4");
+                statusPref.Select("0");
         }
 
         public LoanRequestStatusParameterSet GetStatus()

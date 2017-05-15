@@ -157,7 +157,7 @@ namespace AionHR.Web.UI.Forms.Reports
 
             req.Add(paymentMethodCombo.GetPaymentMethod());
             req.Add(payRefFilter.GetPayRef());
-            req.Add(deptBranchCombo.GetJobInfo());
+            req.Add(jobInfo1.GetJobInfo());
 
             return req;
         }

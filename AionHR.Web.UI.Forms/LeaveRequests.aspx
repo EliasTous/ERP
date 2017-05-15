@@ -10,7 +10,7 @@
     <title></title>
     <link rel="stylesheet" type="text/css" href="CSS/Common.css" />
     <link rel="stylesheet" href="CSS/LiveSearch.css" />
-    <script type="text/javascript" src="Scripts/LeaveRequests.js?id=4"></script>
+    <script type="text/javascript" src="Scripts/LeaveRequests.js?id=6"></script>
     <script type="text/javascript" src="Scripts/common.js"></script>
     <script type="text/javascript" src="Scripts/moment.js"></script>
     <script type="text/javascript">
@@ -36,7 +36,7 @@
             App.Button1.setDisabled(false);
         }
         function SetReturnDateState() {
-            if (App.status.value == 1)
+            if (App.status.value == 2)
                 App.returnDate.setDisabled(false);
             else
                 App.returnDate.setDisabled(true);
@@ -54,6 +54,7 @@
         <ext:Hidden ID="StatusPending" runat="server" Text="<%$ Resources:FieldPending %>" />
         <ext:Hidden ID="StatusApproved" runat="server" Text="<%$ Resources: FieldApproved %>" />
         <ext:Hidden ID="StatusRefused" runat="server" Text="<%$ Resources: FieldRefused %>" />
+        <ext:Hidden ID="StatusUsed" runat="server" Text="<%$ Resources: FieldUsed %>" />
         <ext:Hidden ID="SundayText" runat="server" Text="<%$ Resources:Common , SundayText %>" />
         <ext:Hidden ID="MondayText" runat="server" Text="<%$ Resources:Common , MondayText %>" />
         <ext:Hidden ID="TuesdayText" runat="server" Text="<%$ Resources:Common , TuesdayText %>" />
@@ -234,10 +235,11 @@
                                     EmptyText="<%$ Resources: FilterStatus %>">
                                     <Items>
 
-                                        <ext:ListItem Text="<%$ Resources: FieldPending %>" Value="0" />
-                                        <ext:ListItem Text="<%$ Resources: FieldApproved %>" Value="1" />
-                                        <ext:ListItem Text="<%$ Resources: FieldRefused %>" Value="2" />
-                                        <ext:ListItem Text="<%$ Resources: FieldAll %>" Value="3" />
+                                        <ext:ListItem Text="<%$ Resources: FieldPending %>" Value="1" />
+                                        <ext:ListItem Text="<%$ Resources: FieldApproved %>" Value="2" />
+                                        <ext:ListItem Text="<%$ Resources: FieldRefused %>" Value="-1" />
+                                        <ext:ListItem Text="<%$ Resources: FieldUsed %>" Value="3" />
+                                        <ext:ListItem Text="<%$ Resources: FieldAll %>" Value="0" />
                                     </Items>
                                     <Listeners>
                                         <Select Handler="#{Store1}.reload()" />
@@ -245,7 +247,7 @@
                                 </ext:ComboBox>
                                 <ext:Button runat="server" Text="<%$ Resources: ButtonClear%>" MarginSpec="0 0 0 0" Width="100">
                                     <Listeners>
-                                        <Click Handler="#{departmentId}.clear(); #{branchId}.clear(); #{divisionId}.clear(); #{Store1}.reload(); #{employeeFilter}.clear(); #{includeOpen}.setValue(3);">
+                                        <Click Handler="#{departmentId}.clear(); #{branchId}.clear(); #{divisionId}.clear();  #{employeeFilter}.clear(); #{includeOpen}.setValue(0);#{Store1}.reload();">
                                         </Click>
                                     </Listeners>
                                 </ext:Button>
@@ -467,13 +469,6 @@
                                         <Change Handler="App.direct.MarkLeaveChanged(); CalcSum(); " />
                                     </Listeners>--%>
                                 </ext:DateField>
-                                <ext:TextField runat="server" ID="sumHours" ReadOnly="true" FieldLabel="<%$ Resources:TotalText%>" />
-                                <ext:TextArea ID="justification" runat="server" FieldLabel="<%$ Resources:FieldJustification%>" Name="justification" />
-                                <ext:TextField ID="destination" runat="server" FieldLabel="<%$ Resources:FieldDestination%>" Name="destination" AllowBlank="false" />
-
-
-                                <ext:Checkbox runat="server" Name="isPaid" InputValue="true" ID="isPaid" DataIndex="isPaid" FieldLabel="<%$ Resources:FieldIsPaid%>" />
-
                                 <ext:ComboBox runat="server" ID="employeeId" AllowBlank="false"
                                     DisplayField="fullName"
                                     ValueField="recordId"
@@ -499,10 +494,24 @@
                                         </ext:Store>
 
                                     </Store>
-                                    <Listeners>
-                                        <Select Handler="App.direct.MarkLeaveChanged();" />
-                                    </Listeners>
+                                    <DirectEvents>
+                                        <Select OnEvent="MarkLeaveChanged">
+                                            <ExtraParams>
+                                                 <ext:Parameter Name="startDate" Value="#{startDate}.getValue()" Mode="Raw" />
+                                                <ext:Parameter Name="endDate" Value="#{endDate}.getValue()" Mode="Raw" />
+                                            </ExtraParams>
+                                        </Select>
+                                    </DirectEvents>
+                                 
                                 </ext:ComboBox>
+                                <ext:TextField runat="server" ID="sumHours" ReadOnly="true" FieldLabel="<%$ Resources:TotalText%>" />
+                                <ext:TextArea ID="justification" runat="server" FieldLabel="<%$ Resources:FieldJustification%>" Name="justification" />
+                                <ext:TextField ID="destination" runat="server" FieldLabel="<%$ Resources:FieldDestination%>" Name="destination" AllowBlank="false" />
+
+
+                                <ext:Checkbox runat="server" Name="isPaid" InputValue="true" ID="isPaid" DataIndex="isPaid" FieldLabel="<%$ Resources:FieldIsPaid%>" />
+
+                                
 
 
                                 <ext:ComboBox runat="server" ID="ltId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1"
@@ -547,9 +556,10 @@
                                     FieldLabel="<%$ Resources: FieldStatus %>">
                                     <Items>
 
-                                        <ext:ListItem Text="<%$ Resources: FieldPending %>" Value="0" />
-                                        <ext:ListItem Text="<%$ Resources: FieldApproved %>" Value="1" />
-                                        <ext:ListItem Text="<%$ Resources: FieldRefused %>" Value="2" />
+                                        <ext:ListItem Text="<%$ Resources: FieldPending %>" Value="1" />
+                                        <ext:ListItem Text="<%$ Resources: FieldApproved %>" Value="2" />
+                                        <ext:ListItem Text="<%$ Resources: FieldUsed %>" Value="3" />
+                                        <ext:ListItem Text="<%$ Resources: FieldRefused %>" Value="-1" />
                                     </Items>
                                     <Listeners>
                                         <Change Handler="SetReturnDateState();" />
@@ -557,7 +567,7 @@
                                 </ext:ComboBox>
                                  <ext:FieldSet runat="server" Title="<%$ Resources:ReturnInfo%>">
                             <Items>
-                                <ext:DateField runat="server" Name="returnDate" ID="returnDate" FieldLabel="<%$ Resources: FieldReturnDate %>" />
+                                <ext:DateField Disabled="true" runat="server" Name="returnDate" ID="returnDate" FieldLabel="<%$ Resources: FieldReturnDate %>" />
                                 </Items>
                                 </ext:FieldSet>
                             </Items>

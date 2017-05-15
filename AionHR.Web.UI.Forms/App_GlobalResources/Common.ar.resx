@@ -613,7 +613,7 @@
     <value>أنواع التحقق من الخلفية</value>
   </data>
   <data name="Days" xml:space="preserve">
-    <value>الإجازة( أيام)</value>
+    <value>الإجازة(ساعات)</value>
   </data>
   <data name="EmailNotFound" xml:space="preserve">
     <value>لم يتم العثور على بريد الكتروني لإرسال رابط استعادة كلمة السر</value>
@@ -866,5 +866,14 @@
   </data>
   <data name="GeneratePayroll" xml:space="preserve">
     <value>تسديد الرواتب</value>
+  </data>
+  <data name="LeaveReports" xml:space="preserve">
+    <value>تقارير الإجازات</value>
+  </data>
+  <data name="RT602" xml:space="preserve">
+    <value>رصيد الإجازات</value>
+  </data>
+  <data name="RT601" xml:space="preserve">
+    <value>تقرير الإجازات</value>
   </data>
 </root>

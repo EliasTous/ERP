@@ -70,14 +70,17 @@ var enterKeyPressSearchHandler = function (el, event) {
 function GetStatusName(index)
 {
     switch(index){
-        case "0" :case 0:
+        case "1" :case 1:
             return document.getElementById("StatusPending").value;
             break;
-        case "1" :case 1:
+        case "2" :case 2:
             return document.getElementById("StatusApproved").value;
             break;
-        case"2" :case 2:
+        case"-1" :case -1:
             return document.getElementById("StatusRefused").value;
+            break;
+        case "3": case 3:
+            return document.getElementById("StatusUsed").value;
             break;
 
          default:break;

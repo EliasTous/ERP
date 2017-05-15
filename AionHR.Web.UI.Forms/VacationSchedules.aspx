@@ -322,7 +322,7 @@
                                                 runat="server"
                                                 Text="<%$ Resources:Common , FromMonths %>" 
                                                 DataIndex="from"
-                                                
+                                                 Flex="1"
                                                 Align="Center">
                                                 <Editor>
                                                      <%-- Vtype="numberrange"
@@ -340,7 +340,7 @@
                                                 runat="server"
                                                 Text="<%$ Resources:Common , ToMonths %>" 
                                                 DataIndex="to"
-                                                
+                                                 Flex="1"
                                                 Align="Center">
                                                 <Editor>
                                                        <%--   StartNumberField="fromField"
@@ -364,14 +364,14 @@
                                                 runat="server"
                                                 Text="<%$ Resources:Common , Days %>" 
                                                 DataIndex="days"
-                                                
+                                                 Flex="1"
                                                 Align="Center">
                                                 <Editor>
                                                     <ext:NumberField
                                                         runat="server"
                                                         AllowBlank="false"
                                                         MinValue="0"
-                                                        MaxValue="150" />
+                                                        MaxValue="200" />
                                                 </Editor>
                                             </ext:NumberColumn>
                                             

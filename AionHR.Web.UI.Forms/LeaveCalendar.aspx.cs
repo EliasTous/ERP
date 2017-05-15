@@ -27,6 +27,7 @@ using AionHR.Model.Employees.Leaves;
 using AionHR.Model.Attendance;
 using AionHR.Model.LeaveManagement;
 using AionHR.Model.TimeAttendance;
+using AionHR.Infrastructure.JSON;
 
 namespace AionHR.Web.UI.Forms
 {
@@ -81,15 +82,15 @@ namespace AionHR.Web.UI.Forms
             DateTime endDate = new DateTime(Convert.ToInt32(year), Convert.ToInt32(month), DateTime.DaysInMonth(Convert.ToInt32(year), Convert.ToInt32(month)));
             foreach (var item in resp.Items)
             {
-                
-                
+
+
                 if (item.startDate > endDate || item.endDate < startDate)
                     continue;
                 DayPilotScheduler1.Resources.Add(new DayPilot.Web.Ui.Resource(item.employeeName.fullName, item.employeeId.ToString()));
                 dr = dt.NewRow();
                 dr["id"] = item.recordId;
                 dr["start"] = item.startDate;
-                dr["end"] = item.endDate.AddDays(1) ;
+                dr["end"] = item.endDate.AddDays(1);
                 dr["name"] = item.employeeName.fullName;
                 dr["resource"] = item.employeeId;
                 switch (item.status)
@@ -139,6 +140,8 @@ namespace AionHR.Web.UI.Forms
                 DayPilotScheduler1.DataResourceField = "resource";
                 DateFormat.Text = _systemService.SessionHelper.GetDateformat().ToUpper();
                 UpdateCal(CurrentMonth.Text, CurrentYear.Text, Viewport1.Width.Value.ToString());
+                DateFormat.Text = _systemService.SessionHelper.GetDateformat().ToUpper();
+                startDate.Format = endDate.Format = _systemService.SessionHelper.GetDateformat();
 
             }
 
@@ -326,7 +329,7 @@ namespace AionHR.Web.UI.Forms
         }
 
         [DirectMethod]
-        public void UpdateCal(string month, string year,string parentWidth)
+        public void UpdateCal(string month, string year, string parentWidth)
         {
             try
             {
@@ -338,16 +341,16 @@ namespace AionHR.Web.UI.Forms
                 DayPilotScheduler1.DataTextField = "name";
                 DayPilotScheduler1.DataResourceField = "resource";
                 DayPilotScheduler1.DataSource = getData(month, year);
-                
+
                 DayPilotScheduler1.DataBind();
                 int widthInt = Convert.ToInt32(parentWidth);
 
-                DayPilotScheduler1.CellWidth = ((int)widthInt / DayPilotScheduler1.Days -3);
-                
+                DayPilotScheduler1.CellWidth = ((int)widthInt / DayPilotScheduler1.Days - 3);
+
                 DayPilotScheduler1.Update();
-                
+
                 schedulerHolder.UpdateLayout();
-          
+
 
             }
             catch (Exception exp) { }
@@ -557,7 +560,7 @@ namespace AionHR.Web.UI.Forms
                 b.ltName = ltId.SelectedItem.Text;
 
             List<LeaveDay> days = GenerateLeaveDays(e.ExtraParams["days"]);
-            if(days.Count==0)
+            if (days.Count == 0)
             {
                 days = GenerateDefaultLeaveDays();
             }
@@ -677,6 +680,13 @@ namespace AionHR.Web.UI.Forms
             int bulk;
 
             req.CaId = GetEmployeeCalendar(employeeId.Value.ToString()).ToString();
+            if (req.CaId == "0")
+            {
+
+                X.Msg.Alert(Resources.Common.Error, GetLocalResourceObject("ErrorNoCalendar").ToString()).Show();
+                return new List<LeaveDay>();
+
+            }
             ListResponse<LeaveCalendarDay> days = _timeAttendanceService.ChildGetAll<LeaveCalendarDay>(req);
 
             List<LeaveDay> leaveDays = new List<LeaveDay>();
@@ -694,7 +704,7 @@ namespace AionHR.Web.UI.Forms
         {
             int widthInt = Convert.ToInt32(width);
 
-            DayPilotScheduler1.CellWidth = ((int)widthInt / 40)+20;
+            DayPilotScheduler1.CellWidth = ((int)widthInt / 40) + 20;
             DayPilotScheduler1.Update();
         }
 
@@ -706,21 +716,34 @@ namespace AionHR.Web.UI.Forms
             RecordResponse<Employee> resp = _employeeService.Get<Employee>(req);
             if (!resp.Success)
             {
-
+                X.Msg.Alert(Resources.Common.Error, resp.Summary).Show();
+                return 0;
             }
+            if (!resp.result.caId.HasValue)
+                return _systemService.SessionHelper.GetCalendarId();
             return resp.result.caId.Value;
         }
         [DirectMethod]
-        public void MarkLeaveChanged()
+        public void MarkLeaveChanged(object sender, DirectEventArgs e)
         {
-            LeaveChanged.Text = "1";
-            if (startDate.SelectedDate == DateTime.MinValue || endDate.SelectedDate == DateTime.MinValue)
+            DateTime startDate, endDate;
+            try
+            {
+                startDate = DateTime.Parse(e.ExtraParams["startDate"]);
+                endDate = DateTime.Parse(e.ExtraParams["endDate"]);
+                LeaveChanged.Text = "1";
+            }
+            catch
+            {
+                return;
+            }
+            if (startDate == DateTime.MinValue || endDate == DateTime.MinValue)
             {
 
                 return;
             }
-            string startDay = startDate.SelectedDate.ToString("yyyyMMdd");
-            string endDay = endDate.SelectedDate.ToString("yyyyMMdd");
+            string startDay = startDate.ToString("yyyyMMdd");
+            string endDay = endDate.ToString("yyyyMMdd");
 
             LeaveCalendarDayListRequest req = new LeaveCalendarDayListRequest();
             req.StartDayId = startDay;
@@ -733,6 +756,13 @@ namespace AionHR.Web.UI.Forms
                 return;
             }
             req.CaId = GetEmployeeCalendar(employeeId.Value.ToString()).ToString();
+            if (req.CaId == "0")
+            {
+
+                X.Msg.Alert(Resources.Common.Error, GetLocalResourceObject("ErrorNoCalendar").ToString()).Show();
+                return;
+
+            }
             ListResponse<LeaveCalendarDay> days = _timeAttendanceService.ChildGetAll<LeaveCalendarDay>(req);
             if (!days.Success)
             {
@@ -742,15 +772,18 @@ namespace AionHR.Web.UI.Forms
             days.Items.ForEach(x => leaveDays.Add(new LeaveDay() { dow = (short)DateTime.ParseExact(x.dayId, "yyyyMMdd", new CultureInfo("en")).DayOfWeek, dayId = x.dayId, workingHours = x.workingHours, leaveHours = x.workingHours }));
             leaveDaysStore.DataSource = leaveDays;
             leaveDaysStore.DataBind();
+            X.Call("CalcSum");
         }
         [DirectMethod]
-        public void Unnamed_Event()
+        public void Unnamed_Event(object sender, DirectEventArgs e)
         {
+            DateTime startDate = DateTime.Parse(e.ExtraParams["startDate"]);
+            DateTime endDate = DateTime.Parse(e.ExtraParams["endDate"]);
             if (panelRecordDetails.ActiveTabIndex == 1)
             {
 
 
-                if (startDate.SelectedDate == DateTime.MinValue || endDate.SelectedDate == DateTime.MinValue)
+                if (startDate == DateTime.MinValue || endDate == DateTime.MinValue)
                 {
                     X.Msg.Alert(Resources.Common.Error, GetLocalResourceObject("ErrorSelectDate")).Show();
                     panelRecordDetails.ActiveTabIndex = 0;
@@ -778,6 +811,93 @@ namespace AionHR.Web.UI.Forms
                 return false;
             }
             return true;
+        }
+
+        protected void ReturnLeave(object sender, DirectEventArgs e)
+        {
+            leaveReturnForm.Reset();
+            leaveReturnWindow.Show();
+        }
+
+        [DirectMethod]
+
+        public void FillLeave()
+        {
+            LeaveRequestListRequest req = new LeaveRequestListRequest();
+
+            if (!string.IsNullOrEmpty(returnedEmployee.Text) && returnedEmployee.Value.ToString() != "0")
+            {
+                req.EmployeeId = Convert.ToInt32(returnedEmployee.Value);
+
+
+            }
+            else
+            {
+                return;
+
+            }
+            req.BranchId = req.DepartmentId = 0;
+            req.OpenRequests = 0;
+            req.StartAt = "1";
+            req.Size = "1";
+            req.SortBy = "endDate";
+
+            ListResponse<LeaveRequest> resp = _leaveManagementService.ChildGetAll<LeaveRequest>(req);
+            if (!resp.Success)
+            {
+                X.Msg.Alert(Resources.Common.Error, resp.Summary).Show();
+                return;
+            }
+            if (resp.Items.Count == 0)
+                return;
+            if (resp.Items[0].returnDate.HasValue || resp.Items[0].status != 2)
+                return;
+
+            leaveId.Text = resp.Items[0].recordId;
+            X.Call("FillReturnInfo", resp.Items[0].recordId, resp.Items[0].startDate, resp.Items[0].endDate);
+        }
+        protected void SaveLeaveReturn(object sender, DirectEventArgs e)
+        {
+            string id = e.ExtraParams["id"];
+            string values = e.ExtraParams["values"];
+
+            RecordRequest r = new RecordRequest();
+            r.RecordID = id;
+            RecordResponse<LeaveRequest> recordResponse = _leaveManagementService.ChildGetRecord<LeaveRequest>(r);
+            if (!recordResponse.Success)
+            {
+                X.Msg.Alert(Resources.Common.Error, recordResponse.Summary).Show();
+                return;
+            }
+            CustomResolver res = new CustomResolver();
+            res.AddRule("DateField3", "returnDate");
+            JsonSerializerSettings settings = new JsonSerializerSettings();
+            settings.ContractResolver = res;
+            LeaveRequest temp = JsonConvert.DeserializeObject<LeaveRequest>(values, settings);
+
+
+            PostRequest<LeaveRequest> req = new PostRequest<LeaveRequest>();
+            req.entity = recordResponse.result;
+            req.entity.returnDate = temp.returnDate;
+            PostResponse<LeaveRequest> resp = _leaveManagementService.ChildAddOrUpdate<LeaveRequest>(req);
+            if (!resp.Success)
+            {
+                X.Msg.Alert(Resources.Common.Error, resp.Summary).Show();
+                return;
+            }
+            Notification.Show(new NotificationConfig
+            {
+                Title = Resources.Common.Notification,
+                Icon = Icon.Information,
+                Html = Resources.Common.RecordUpdatedSucc
+            });
+            this.leaveReturnWindow.Close();
+            var d = Store1.GetById(id);
+            d.Set("returnDate", temp.returnDate);
+            d.Set("status", temp.status);
+            d.Commit();
+
+
         }
     }
 }

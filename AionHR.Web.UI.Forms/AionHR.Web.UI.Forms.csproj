@@ -265,13 +265,13 @@
     <Content Include="Reports\Controls\App_LocalResources\JobInfoFilter.ascx.resx" />
     <Content Include="Reports\Controls\App_LocalResources\UserComboFilter.ascx.ar.resx" />
     <Content Include="Reports\Controls\App_LocalResources\UserComboFilter.ascx.resx" />
-    <Content Include="Reports\Controls\BranchFilter.ascx" />
     <Content Include="Reports\Controls\DateFilter.ascx" />
     <Content Include="Reports\Controls\DateRangeFilter.ascx" />
-    <Content Include="Reports\Controls\DepartmentBranchFilter.ascx" />
     <Content Include="Reports\Controls\DepartmentFilter.ascx" />
     <Content Include="Reports\Controls\EmployeeFilter.ascx" />
     <Content Include="Reports\Controls\JobInfoFilter.ascx" />
+    <Content Include="Reports\Controls\LeaveStatusFilter.ascx" />
+    <Content Include="Reports\Controls\LeaveTypeFilter.ascx" />
     <Content Include="Reports\Controls\LoanStatusFilter.ascx" />
     <Content Include="Reports\Controls\MonthSelector.ascx" />
     <Content Include="Reports\Controls\MoudleFilter.ascx" />
@@ -293,6 +293,8 @@
     <Content Include="Reports\RT301B.aspx" />
     <Content Include="Reports\RT401.aspx" />
     <Content Include="Reports\RT501.aspx" />
+    <Content Include="Reports\RT601.aspx" />
+    <Content Include="Reports\RT602.aspx" />
     <Content Include="Reports\RT801.aspx" />
     <Content Include="Reports\RT802.aspx" />
     <Content Include="ReportTest.aspx" />
@@ -656,13 +658,6 @@
     <Compile Include="Reports\Controls\ActiveStatusFilter.ascx.designer.cs">
       <DependentUpon>ActiveStatusFilter.ascx</DependentUpon>
     </Compile>
-    <Compile Include="Reports\Controls\BranchFilter.ascx.cs">
-      <DependentUpon>BranchFilter.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Reports\Controls\BranchFilter.ascx.designer.cs">
-      <DependentUpon>BranchFilter.ascx</DependentUpon>
-    </Compile>
     <Compile Include="Reports\Controls\DateFilter.ascx.cs">
       <DependentUpon>DateFilter.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -676,13 +671,6 @@
     </Compile>
     <Compile Include="Reports\Controls\DateRangeFilter.ascx.designer.cs">
       <DependentUpon>DateRangeFilter.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="Reports\Controls\DepartmentBranchFilter.ascx.cs">
-      <DependentUpon>DepartmentBranchFilter.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Reports\Controls\DepartmentBranchFilter.ascx.designer.cs">
-      <DependentUpon>DepartmentBranchFilter.ascx</DependentUpon>
     </Compile>
     <Compile Include="Reports\Controls\DepartmentFilter.ascx.cs">
       <DependentUpon>DepartmentFilter.ascx</DependentUpon>
@@ -704,6 +692,20 @@
     </Compile>
     <Compile Include="Reports\Controls\JobInfoFilter.ascx.designer.cs">
       <DependentUpon>JobInfoFilter.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Controls\LeaveStatusFilter.ascx.cs">
+      <DependentUpon>LeaveStatusFilter.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reports\Controls\LeaveStatusFilter.ascx.designer.cs">
+      <DependentUpon>LeaveStatusFilter.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Controls\LeaveTypeFilter.ascx.cs">
+      <DependentUpon>LeaveTypeFilter.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reports\Controls\LeaveTypeFilter.ascx.designer.cs">
+      <DependentUpon>LeaveTypeFilter.ascx</DependentUpon>
     </Compile>
     <Compile Include="Reports\Controls\LoanStatusFilter.ascx.cs">
       <DependentUpon>LoanStatusFilter.ascx</DependentUpon>
@@ -856,6 +858,20 @@
     </Compile>
     <Compile Include="Reports\RT501.aspx.designer.cs">
       <DependentUpon>RT501.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\RT601.aspx.cs">
+      <DependentUpon>RT601.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reports\RT601.aspx.designer.cs">
+      <DependentUpon>RT601.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\RT602.aspx.cs">
+      <DependentUpon>RT602.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reports\RT602.aspx.designer.cs">
+      <DependentUpon>RT602.aspx</DependentUpon>
     </Compile>
     <Compile Include="Reports\RT801.aspx.cs">
       <DependentUpon>RT801.aspx</DependentUpon>
@@ -1518,6 +1534,9 @@
     <Content Include="App_LocalResources\FiscalYears.aspx.ar.resx" />
     <Content Include="App_LocalResources\Branches.aspx.ar.resx" />
     <Content Include="App_LocalResources\States.aspx.ar.resx" />
+    <Content Include="App_LocalResources\VacationSchedules.aspx.ar.resx" />
+    <Content Include="EmployeePages\App_LocalResources\Dependants.aspx.resx" />
+    <Content Include="EmployeePages\App_LocalResources\Dependants.aspx.ar.resx" />
     <EmbeddedResource Include="Properties\licenses.licx" />
     <Content Include="Reports\App_LocalResources\RT202.aspx.resx" />
     <Content Include="Reports\App_LocalResources\RT01.aspx.ar.resx" />
@@ -1540,6 +1559,13 @@
     <Content Include="Reports\Controls\App_LocalResources\PayRefFilter.ascx.ar.resx" />
     <Content Include="Reports\App_LocalResources\RT501.aspx.resx" />
     <Content Include="Reports\App_LocalResources\RT501.aspx.ar.resx" />
+    <Content Include="Reports\Controls\App_LocalResources\LeaveTypeFilter.ascx.resx" />
+    <Content Include="Reports\Controls\App_LocalResources\LeaveTypeFilter.ascx.ar.resx" />
+    <Content Include="Reports\App_LocalResources\LeaveStatusFilter.ascx.resx" />
+    <Content Include="Reports\Controls\App_LocalResources\LeaveStatusFilter.ascx.ar.resx" />
+    <Content Include="Reports\App_LocalResources\RT601.aspx.resx" />
+    <Content Include="Reports\App_LocalResources\RT601.aspx.ar.resx" />
+    <Content Include="Reports\Controls\App_LocalResources\LeaveStatusFilter.ascx.resx" />
     <EmbeddedResource Include="Reports\RT201.aspx.resx">
       <DependentUpon>RT201.aspx.cs</DependentUpon>
       <Generator>ResXFileCodeGenerator</Generator>

@@ -243,7 +243,7 @@ namespace AionHR.Web.UI.Forms
         {
             string s = e.ExtraParams["values"];
             GenerationHeader h = JsonConvert.DeserializeObject<GenerationHeader>(s);
-            h.status = "0";
+            h.status = "1";
             PostRequest<GenerationHeader> req = new PostRequest<GenerationHeader>();
             req.entity = h;
 
@@ -619,7 +619,7 @@ namespace AionHR.Web.UI.Forms
             {
                 req.Year = fiscalYear.Value.ToString();
                 req.PeriodType = (SalaryType)Convert.ToInt32(salaryType.Value.ToString());
-                req.Status = "0";
+                req.Status = "1";
 
                 ListResponse<FiscalPeriod> resp = _payrollService.ChildGetAll<FiscalPeriod>(req);
                 if (!resp.Success)

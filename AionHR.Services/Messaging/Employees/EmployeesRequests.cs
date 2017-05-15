@@ -429,3 +429,24 @@ public class HireInfoRecordRequest:RecordRequest
 
 
 }
+public class GetDependantRequest : RecordRequest
+{
+    public string EmployeeId { get; set; }
+
+    public string SeqNo { get; set; }
+
+    private Dictionary<string, string> parameters;
+
+    public override Dictionary<string, string> Parameters
+    {
+        get
+        {
+            parameters = new Dictionary<string, string>();
+            parameters.Add("_employeeId", EmployeeId);
+            parameters.Add("_seqNo", SeqNo);
+            return parameters;
+        }
+    }
+
+
+}

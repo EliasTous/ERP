@@ -13,7 +13,7 @@ namespace AionHR.Infrastructure.Session
     /// </summary>
     public class SessionHelper
     {
-       
+
         ISessionStorage _sessionStorage;
         ITokenGenerator _tokenGenerator;
         public SessionHelper(ISessionStorage sessionStorage, ITokenGenerator tokenGenerator)
@@ -29,7 +29,7 @@ namespace AionHR.Infrastructure.Session
         /// <returns></returns>
         public bool CheckUserLoggedIn()
         {
-            if (Get("key") == null || Get("AccountId") == null ||Get("UserId") == null)
+            if (Get("key") == null || Get("AccountId") == null || Get("UserId") == null)
                 return false;
             else return true;
         }
@@ -40,10 +40,10 @@ namespace AionHR.Infrastructure.Session
         /// <returns></returns>
         public bool CheckIfArabicSession()
         {
-            if (Get("Language") != null )
-                if(Get("Language").ToString()=="ar")
+            if (Get("Language") != null)
+                if (Get("Language").ToString() == "ar")
                     return true;
-             return false;
+            return false;
         }
 
         /// <summary>
@@ -75,6 +75,18 @@ namespace AionHR.Infrastructure.Session
             Set("currencyId", value);
         }
 
+        public void SetCalendarId(string value)
+        {
+            if (string.IsNullOrEmpty(value))
+                value = "0";
+            Set("caId", value);
+        }
+        public void SetVacationScheduleId(string value)
+        {
+            if (string.IsNullOrEmpty(value))
+                value = "0";
+            Set("vsId", value);
+        }
         public void SetDefaultTimeZone(int value)
         {
             Set("timeZone", value);
@@ -116,13 +128,20 @@ namespace AionHR.Infrastructure.Session
 
         public int GetDefaultTimeZone()
         {
-            return  Convert.ToInt32(Get("timeZone").ToString());
+            return Convert.ToInt32(Get("timeZone").ToString());
         }
         public DateTime GetStartDate()
         {
-            return DateTime.ParseExact(Get("StartDate").ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture); 
+            return DateTime.ParseExact(Get("StartDate").ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
         }
-
+        public int GetCalendarId()
+        {
+            return Convert.ToInt32(Get("caId").ToString());
+        }
+        public int GetVacationScheduleId()
+        {
+            return Convert.ToInt32(Get("vsId").ToString());
+        }
         public string GetDefaultCountry()
         {
             object nameFormat = Get("countryId");
@@ -186,7 +205,7 @@ namespace AionHR.Infrastructure.Session
             return _tokenGenerator.GetUserToken(accountID, userID);
         }
 
-     
+
 
         //public void AddTimeZone(string timeZone)
         //{

@@ -578,7 +578,7 @@
                                                 <Select Handler="TogglePaymentMethod(this.value)" />
                                             </Listeners>
                                         </ext:ComboBox>
-                                        <ext:TextField LabelWidth="130" Width="275" ID="bankName" runat="server" FieldLabel="<%$ Resources:FieldBankName%>" Name="bankName" AllowBlank="false" />
+                                        <ext:TextField LabelWidth="130" Disabled="true" Width="275" ID="bankName" runat="server" FieldLabel="<%$ Resources:FieldBankName%>" Name="bankName" AllowBlank="false" />
                                     </Items>
                                 </ext:Panel>
                                 
@@ -586,7 +586,7 @@
                                     <Items>
                                         
 
-                                        <ext:TextField LabelWidth="130" Width="275"  ID="accountNumber" runat="server" FieldLabel="<%$ Resources:FieldAccountNumber%>" Name="accountNumber" AllowBlank="false" />
+                                        <ext:TextField LabelWidth="130" Width="275" Disabled="true"  ID="accountNumber" runat="server" FieldLabel="<%$ Resources:FieldAccountNumber%>" Name="accountNumber" AllowBlank="false" />
                                         <ext:TextField LabelWidth="130" Width="275" ID="comments" runat="server" FieldLabel="<%$ Resources:FieldComments%>" Name="comments" />
                                         <ext:TextField LabelWidth="130" Width="275" ID="basicAmount" AllowBlank="false" runat="server" FieldLabel="<%$ Resources:FieldBasicAmount%>" Name="basicAmount">
                                             <Listeners>

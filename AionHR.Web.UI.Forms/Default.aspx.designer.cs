@@ -517,6 +517,15 @@ namespace AionHR.Web.UI.Forms {
         protected global::System.Web.UI.WebControls.Literal CompanyNameLiteral;
         
         /// <summary>
+        /// username control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal username;
+        
+        /// <summary>
         /// Literal8 control.
         /// </summary>
         /// <remarks>

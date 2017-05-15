@@ -103,13 +103,13 @@ namespace AionHR.Web.UI.Forms.Reports {
         protected global::Ext.Net.Panel Center;
         
         /// <summary>
-        /// deptBranchCombo control.
+        /// jobInfo1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected AionHR.Web.UI.Forms.Reports.Controls.DepartmentBranchFilter deptBranchCombo;
+        protected global::AionHR.Web.UI.Forms.Reports.JobInfoFilter jobInfo1;
         
         /// <summary>
         /// paymentMethodCombo control.

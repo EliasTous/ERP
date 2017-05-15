@@ -10,24 +10,15 @@
 namespace AionHR.Web.UI.Forms.Reports.Controls {
     
     
-    public partial class BranchFilter {
+    public partial class LeaveStatusFilter {
         
         /// <summary>
-        /// branchId control.
+        /// statusPref control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.ComboBox branchId;
-        
-        /// <summary>
-        /// branchStore control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Store branchStore;
+        protected global::Ext.Net.ComboBox statusPref;
     }
 }

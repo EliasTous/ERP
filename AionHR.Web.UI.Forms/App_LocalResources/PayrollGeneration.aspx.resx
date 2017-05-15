@@ -217,13 +217,13 @@
     <value>Please Select a year and a period type first</value>
   </data>
   <data name="Status0" xml:space="preserve">
-    <value>In process</value>
+    <value>All</value>
   </data>
   <data name="Status1" xml:space="preserve">
-    <value>Posted</value>
+    <value>In Process</value>
   </data>
   <data name="Status2" xml:space="preserve">
-    <value>All</value>
+    <value>Posted</value>
   </data>
   <data name="StatusInProcess" xml:space="preserve">
     <value>In Process</value>

@@ -196,11 +196,11 @@
                                 </ext:ComboBox>
                                 <ext:ComboBox runat="server" ID="statusPref" Editable="false" EmptyText="<%$ Resources: FilterStatus %>">
                                     <Items>
-                                        <ext:ListItem Text="<%$ Resources: All %>" Value="4" />
-                                        <ext:ListItem Text="<%$ Resources: FieldNew %>" Value="0" />
-                                        <ext:ListItem Text="<%$ Resources: FieldInProcess %>" Value="1" />
-                                        <ext:ListItem Text="<%$ Resources: FieldApproved %>" Value="2" />
-                                        <ext:ListItem Text="<%$ Resources: FieldRejected %>" Value="3" />
+                                        <ext:ListItem Text="<%$ Resources: All %>" Value="0" />
+                                        <ext:ListItem Text="<%$ Resources: FieldNew %>" Value="1" />
+                                        <ext:ListItem Text="<%$ Resources: FieldInProcess %>" Value="2" />
+                                        <ext:ListItem Text="<%$ Resources: FieldApproved %>" Value="3" />
+                                        <ext:ListItem Text="<%$ Resources: FieldRejected %>" Value="-1" />
                                     </Items>
                                     <Listeners>
                                         <Change Handler="App.Store1.reload()" />
@@ -237,7 +237,7 @@
                                 </ext:ComboBox>
                                 <ext:Button runat="server" Text="<%$ Resources: ButtonClear%>" MarginSpec="0 0 0 0" Width="100">
                                     <Listeners>
-                                        <Click Handler="#{departmentId}.clear();#{branchIdFilter}.clear(); #{divisionId}.clear();#{employeeFilter}.clear(); #{Store1}.reload();">
+                                        <Click Handler="#{departmentId}.clear();#{branchIdFilter}.clear(); #{divisionId}.clear();#{employeeFilter}.clear();#{statusPref}.select(0); #{Store1}.reload();">
                                         </Click>
                                     </Listeners>
                                 </ext:Button>
@@ -547,11 +547,11 @@
                                     </Listeners>
                                 </ext:ComboBox>
 
-                                <ext:TextField ID="amount" AllowBlank="false" runat="server" FieldLabel="<%$ Resources:FieldAmount%>" Name="amount">
+                                <ext:NumberField MinValue="0" ID="amount" AllowBlank="false" runat="server" FieldLabel="<%$ Resources:FieldAmount%>" Name="amount">
                                     <%-- <Listeners>
                                                 <Change Handler="document.getElementById('amount').value=this.getValue(); this.next().setValue(this.value);" />
                                             </Listeners>--%>
-                                </ext:TextField>
+                                </ext:NumberField>
 
 
                                 <ext:TextArea ID="purpose" runat="server" FieldLabel="<%$ Resources:FieldPurpose%>" Name="purpose" AllowBlank="false" />
@@ -559,10 +559,10 @@
                                 <ext:ComboBox runat="server" ID="status" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1"
                                     FieldLabel="<%$ Resources: FieldStatus %>" AllowBlank="false">
                                     <Items>
-                                        <ext:ListItem Text="<%$ Resources: FieldNew %>" Value="0" />
-                                        <ext:ListItem Text="<%$ Resources: FieldInProcess %>" Value="1" />
-                                        <ext:ListItem Text="<%$ Resources: FieldApproved %>" Value="2" />
-                                        <ext:ListItem Text="<%$ Resources: FieldRejected %>" Value="3" />
+                                        <ext:ListItem Text="<%$ Resources: FieldNew %>" Value="1" />
+                                        <ext:ListItem Text="<%$ Resources: FieldInProcess %>" Value="2" />
+                                        <ext:ListItem Text="<%$ Resources: FieldApproved %>" Value="3" />
+                                        <ext:ListItem Text="<%$ Resources: FieldRejected %>" Value="-1" />
                                     </Items>
                                     <Listeners>
                                         <Change Handler="if(this.value==2) this.next().setDisabled(false); else this.next().setDisabled(true);">
@@ -570,7 +570,7 @@
                                     </Listeners>
                                 </ext:ComboBox>
 
-                                <ext:DateField AllowBlank="false" runat="server" ID="effectiveDate" Name="effectiveDate" FieldLabel="<%$ Resources:FieldEffectiveDate%>" />
+                                <ext:DateField AllowBlank="false"  runat="server" ID="effectiveDate" Name="effectiveDate" FieldLabel="<%$ Resources:FieldEffectiveDate%>" />
 
 
                             </Items>

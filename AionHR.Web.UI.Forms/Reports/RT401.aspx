@@ -68,7 +68,7 @@
                                  <ext:Container runat="server" Layout="FitLayout">
                                     <Content>
                                         <%--<uc:dateRange runat="server" ID="dateRange1" />--%>
-                                        <uc:branchCombo runat="server" ID="branchFilter" />
+                                        <uc:jobInfo runat="server" ID="jobInfo1" EnableDepartment="false" EnablePosition="false" EnableDivision="false" />
                                     </Content>
                                 </ext:Container>
                                  <ext:Container runat="server" Layout="FitLayout">

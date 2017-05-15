@@ -176,10 +176,10 @@
                                 </ext:ComboBox>--%>
                                 <ext:ComboBox runat="server" ID="statusPref" Editable="false" EmptyText="<%$ Resources: FilterStatus %>"  >
                                     <Items>
-                                        <ext:ListItem Text="<%$ Resources: All %>" Value="3"  />
+                                        <ext:ListItem Text="<%$ Resources: All %>" Value="0"  />
                                         <ext:ListItem Text="<%$ Resources: FieldPending %>" Value="1" />
-                                        <ext:ListItem Text="<%$ Resources: FieldOpen %>" Value="0" />
-                                        <ext:ListItem Text="<%$ Resources: FieldClosed %>" Value="2" />
+                                        <ext:ListItem Text="<%$ Resources: FieldOpen %>" Value="2" />
+                                        <ext:ListItem Text="<%$ Resources: FieldClosed %>" Value="3" />
                                     </Items>
                                     <Listeners>
                                         <Change Handler="App.Store1.reload()" />
@@ -386,9 +386,10 @@
                                 <ext:ComboBox runat="server" ID="status" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1"
                                     FieldLabel="<%$ Resources: FieldStatus %>" AllowBlank="false">
                                     <Items>
-                                        <ext:ListItem Text="<%$ Resources: FieldOpen %>" Value="0" />
+                                        
                                         <ext:ListItem Text="<%$ Resources: FieldPending %>" Value="1" />
-                                        <ext:ListItem Text="<%$ Resources: FieldClosed %>" Value="2" />
+                                        <ext:ListItem Text="<%$ Resources: FieldOpen %>" Value="2" />
+                                        <ext:ListItem Text="<%$ Resources: FieldClosed %>" Value="3" />
                                     </Items>
                                     
                                 </ext:ComboBox>

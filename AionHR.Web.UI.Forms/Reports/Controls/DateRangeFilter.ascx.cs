@@ -18,16 +18,20 @@ namespace AionHR.Web.UI.Forms.Reports
         {
             if (!IsPostBack)
             {
-                dateFrom.SelectedDate = _systemService.SessionHelper.GetStartDate();
-                dateTo.SelectedDate = DateTime.Today;
+                if (_DefaultStartDate == DateTime.MinValue)
+                    dateFrom.SelectedDate = _systemService.SessionHelper.GetStartDate();
+                if (_DefaultEndDate == DateTime.MinValue)
+                    dateTo.SelectedDate = DateTime.Today;
             }
         }
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                dateFrom.SelectedDate = _systemService.SessionHelper.GetStartDate();
-                dateTo.SelectedDate = DateTime.Today;
+                if (_DefaultStartDate == DateTime.MinValue)
+                    dateFrom.SelectedDate = _systemService.SessionHelper.GetStartDate();
+                if (_DefaultEndDate == DateTime.MinValue)
+                    dateTo.SelectedDate = DateTime.Today;
             }
         }
 
@@ -49,6 +53,34 @@ namespace AionHR.Web.UI.Forms.Reports
         {
             dateFrom.SelectedDate = DateTime.Today;
             dateTo.SelectedDate = DateTime.Today;
+        }
+
+        private DateTime _DefaultStartDate;
+        public DateTime DefaultStartDate
+        {
+            get
+            {
+                return _DefaultStartDate;
+            }
+            set
+            {
+                _DefaultStartDate = value;
+                dateFrom.SelectedDate = _DefaultStartDate;
+            }
+
+        }
+        private DateTime _DefaultEndDate;
+        public DateTime DefaultEndDate
+        {
+            get
+            {
+                return _DefaultEndDate;
+            }
+            set
+            {
+                _DefaultEndDate = value;
+                dateTo.SelectedDate = _DefaultEndDate;
+            }
         }
     }
 }

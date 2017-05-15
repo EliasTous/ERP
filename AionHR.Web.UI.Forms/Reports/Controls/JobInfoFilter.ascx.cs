@@ -18,8 +18,12 @@ namespace AionHR.Web.UI.Forms.Reports
         ICompanyStructureService _companyStructureService = ServiceLocator.Current.GetInstance<ICompanyStructureService>();
         protected void Page_Load(object sender, EventArgs e)
         {
-            FillJobInfo();
-           
+            if (!IsPostBack)
+            {
+                X.Call("setStatus", EnableDepartment, EnableBranch, EnablePosition, EnableDivision);
+                FillJobInfo();
+            }
+
         }
         private void FillJobInfo()
         {
@@ -33,53 +37,75 @@ namespace AionHR.Web.UI.Forms.Reports
         public JobInfoParameterSet GetJobInfo()
         {
             JobInfoParameterSet p = new JobInfoParameterSet();
-            if (!string.IsNullOrEmpty(branchId.Text) && branchId.Value.ToString() != "0")
+            if (!EnableBranch)
+                p.BranchId = null;
+            else
             {
-                p.BranchId = Convert.ToInt32(branchId.Value);
+                if (!string.IsNullOrEmpty(branchId.Text) && branchId.Value.ToString() != "0")
+                {
+                    p.BranchId = Convert.ToInt32(branchId.Value);
 
 
 
+                }
+                else
+                {
+                    p.BranchId = 0;
+
+                }
+            }
+            if (!EnableDepartment)
+                p.DepartmentId = null;
+            else
+            {
+                if (!string.IsNullOrEmpty(departmentId.Text) && departmentId.Value.ToString() != "0")
+                {
+                    p.DepartmentId = Convert.ToInt32(departmentId.Value);
+
+
+                }
+                else
+                {
+                    p.DepartmentId = 0;
+
+                }
+            }
+            if (!EnablePosition)
+            {
+                p.PositionId = null;
             }
             else
             {
-                p.BranchId = 0;
+                if (!string.IsNullOrEmpty(positionId.Text) && positionId.Value.ToString() != "0")
+                {
+                    p.PositionId = Convert.ToInt32(positionId.Value);
 
+
+                }
+                else
+                {
+                    p.PositionId = 0;
+
+                }
             }
-
-            if (!string.IsNullOrEmpty(departmentId.Text) && departmentId.Value.ToString() != "0")
+            if (!EnablePosition)
             {
-                p.DepartmentId = Convert.ToInt32(departmentId.Value);
-
-
+                p.DivisionId = null;
             }
             else
             {
-                p.DepartmentId = 0;
+                if (!string.IsNullOrEmpty(divisionId.Text) && divisionId.Value.ToString() != "0")
+                {
+                    p.DivisionId = Convert.ToInt32(divisionId.Value);
 
+
+                }
+                else
+                {
+                    p.DivisionId = 0;
+
+                }
             }
-            if (!string.IsNullOrEmpty(positionId.Text) && positionId.Value.ToString() != "0")
-            {
-                p.PositionId = Convert.ToInt32(positionId.Value);
-
-
-            }
-            else
-            {
-                p.PositionId = 0;
-
-            }
-            if (!string.IsNullOrEmpty(divisionId.Text) && divisionId.Value.ToString() != "0")
-            {
-                p.DivisionId = Convert.ToInt32(divisionId.Value);
-
-
-            }
-            else
-            {
-                p.DivisionId = 0;
-
-            }
-
             return p;
         }
         private void FillDepartment()

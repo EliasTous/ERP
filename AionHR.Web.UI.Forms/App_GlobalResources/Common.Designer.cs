@@ -484,7 +484,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Vacation(Days).
+        ///   Looks up a localized string similar to Vacation(Hours).
         /// </summary>
         internal static string Days {
             get {
@@ -1101,6 +1101,15 @@ namespace Resources {
         internal static string LeaveManagement {
             get {
                 return ResourceManager.GetString("LeaveManagement", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Leave Reports.
+        /// </summary>
+        internal static string LeaveReports {
+            get {
+                return ResourceManager.GetString("LeaveReports", resourceCulture);
             }
         }
         
@@ -1857,6 +1866,24 @@ namespace Resources {
         internal static string RT501 {
             get {
                 return ResourceManager.GetString("RT501", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Leave List.
+        /// </summary>
+        internal static string RT601 {
+            get {
+                return ResourceManager.GetString("RT601", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Leave Balance.
+        /// </summary>
+        internal static string RT602 {
+            get {
+                return ResourceManager.GetString("RT602", resourceCulture);
             }
         }
         

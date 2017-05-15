@@ -168,7 +168,7 @@
                                         MenuDisabled="true"
                                         Resizable="false">
 
-                                        <Renderer Handler="var d= (record.data['status']==1)?'&nbsp;&nbsp;&nbsp;&nbsp;':editRender()+ '&nbsp;&nbsp;'+ deleteRender(); return d+ '&nbsp;&nbsp;'+ attachRender(); " />
+                                        <Renderer Handler="var d= (record.data['status']==2)?'&nbsp;&nbsp;&nbsp;&nbsp;':editRender()+ '&nbsp;&nbsp;'+ deleteRender(); return d+ '&nbsp;&nbsp;'+ attachRender(); " />
 
                                     </ext:Column>
                                  
@@ -478,7 +478,7 @@
                                         MenuDisabled="true"
                                         Resizable="false">
 
-                                        <Renderer Handler="var d = (#{IsPayrollPosted}.value=='1')?'&nbsp;&nbsp;&nbsp;&nbsp;':editRender();return d+'&nbsp;&nbsp;' +attachRender(); " />
+                                        <Renderer Handler="var d = (#{IsPayrollPosted}.value=='2')?'&nbsp;&nbsp;&nbsp;&nbsp;':editRender();return d+'&nbsp;&nbsp;' +attachRender(); " />
 
                                     </ext:Column>
                                 </Columns>
@@ -944,8 +944,8 @@
                          <ext:ComboBox ID="statusCombo" Name="statusCombo" runat="server" FieldLabel="<%$ Resources:FieldStatus%>" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1">
                                     <Items>
 
-                                        <ext:ListItem Text="<%$ Resources: Status0%>" Value="0"></ext:ListItem>
                                         <ext:ListItem Text="<%$ Resources: Status1%>" Value="1"></ext:ListItem>
+                                        <ext:ListItem Text="<%$ Resources: Status2%>" Value="2"></ext:ListItem>
                                         
 
                                     </Items>

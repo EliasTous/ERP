@@ -225,4 +225,10 @@
   <data name="LeaveEndWindowTitle" xml:space="preserve">
     <value>العودة من الإجازة</value>
   </data>
+  <data name="FieldUsed" xml:space="preserve">
+    <value>مستخدمة</value>
+  </data>
+  <data name="ErrorNoCalendar" xml:space="preserve">
+    <value>لايمكن إنشاء إجازة قبل إضافة تقويم واحد على الأقل</value>
+  </data>
 </root>

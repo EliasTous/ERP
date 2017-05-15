@@ -1,6 +1,14 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="JobInfoFilter.ascx.cs" Inherits="AionHR.Web.UI.Forms.Reports.JobInfoFilter" %>
-
-<ext:Panel runat="server" Layout="HBoxLayout" Width="510">
+<script type="text/javascript" >
+    function setStatus(de,br,po,di)
+    {
+        App.jobInfo1_departmentId.setHidden(!de);
+        App.jobInfo1_branchId.setHidden(!br);
+        App.jobInfo1_positionId.setHidden(!po);
+        App.jobInfo1_divisionId.setHidden(!di);
+    }
+</script>
+<ext:Panel runat="server" Layout="HBoxLayout" >
     <Items>
         <ext:ComboBox runat="server" QueryMode="Local"  Width="120" ForceSelection="true" TypeAhead="true" MinChars="1" ValueField="recordId" DisplayField="name" ID="departmentId" Name="departmentId" EmptyText="<%$ Resources:FieldDepartment%>">
             <Store>
@@ -15,7 +23,7 @@
                     </Model>
                 </ext:Store>
             </Store>
-
+            
 
 
         </ext:ComboBox>

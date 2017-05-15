@@ -94,6 +94,15 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Hidden StatusRefused;
         
         /// <summary>
+        /// StatusUsed control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Hidden StatusUsed;
+        
+        /// <summary>
         /// SundayText control.
         /// </summary>
         /// <remarks>
@@ -562,6 +571,24 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.DateField endDate;
         
         /// <summary>
+        /// employeeId control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.ComboBox employeeId;
+        
+        /// <summary>
+        /// employeeStore control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Store employeeStore;
+        
+        /// <summary>
         /// sumHours control.
         /// </summary>
         /// <remarks>
@@ -596,24 +623,6 @@ namespace AionHR.Web.UI.Forms {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.Checkbox isPaid;
-        
-        /// <summary>
-        /// employeeId control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.ComboBox employeeId;
-        
-        /// <summary>
-        /// employeeStore control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Store employeeStore;
         
         /// <summary>
         /// ltId control.

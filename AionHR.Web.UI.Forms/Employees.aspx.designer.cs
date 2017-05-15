@@ -1102,6 +1102,15 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Panel Panel6;
         
         /// <summary>
+        /// Panel8 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Panel Panel8;
+        
+        /// <summary>
         /// terminationWindow control.
         /// </summary>
         /// <remarks>

@@ -1,4 +1,5 @@
-﻿using AionHR.Model.MasterModule;
+﻿using AionHR.Model.Employees.Profile;
+using AionHR.Model.MasterModule;
 using AionHR.Services.Implementations;
 using AionHR.Services.Interfaces;
 using AionHR.Services.Messaging;
@@ -27,6 +28,7 @@ namespace AionHR.Web.UI.Forms
 
         ISystemService _systemService = ServiceLocator.Current.GetInstance<ISystemService>();
         IMasterService _masterService = ServiceLocator.Current.GetInstance<IMasterService>();
+        IEmployeeService _employeeService = ServiceLocator.Current.GetInstance<IEmployeeService>();
 
         protected override void InitializeCulture()
         {
@@ -165,7 +167,63 @@ namespace AionHR.Web.UI.Forms
             }
             catch
             {
-                _systemService.SessionHelper.SetDateformat("{firstName}{lastName} ");
+                _systemService.SessionHelper.SetNameFormat("{firstName}{lastName} ");
+            }
+            try
+            {
+                _systemService.SessionHelper.SetCurrencyId(defaults.Items.Where(s => s.Key == "currencyId").First().Value);
+            }
+            catch
+            {
+                _systemService.SessionHelper.SetCurrencyId("0");
+            }
+            try
+            {
+                _systemService.SessionHelper.SetHijriSupport(Convert.ToBoolean(defaults.Items.Where(s => s.Key == "enableHijri").First().Value));
+            }
+            catch
+            {
+                _systemService.SessionHelper.SetHijriSupport(false);
+            }
+            try
+            {
+                _systemService.SessionHelper.SetDefaultTimeZone(Convert.ToInt32(defaults.Items.Where(s => s.Key == "timeZone").First().Value));
+            }
+            catch
+            {
+                _systemService.SessionHelper.SetDefaultTimeZone(0);
+            }
+            try
+            {
+                _systemService.SessionHelper.SetCalendarId(defaults.Items.Where(s => s.Key == "caId").First().Value);
+            }
+            catch
+            {
+                _systemService.SessionHelper.SetCalendarId("0");
+            }
+            try
+            {
+                _systemService.SessionHelper.SetVacationScheduleId(defaults.Items.Where(s => s.Key == "vsId").First().Value);
+            }
+            catch
+            {
+                _systemService.SessionHelper.SetVacationScheduleId("0");
+            }
+            try
+            {
+                EmployeeListRequest request = new EmployeeListRequest();
+                request.BranchId = request.DepartmentId = request.PositionId = "0";
+                request.StartAt = "1";
+                request.SortBy = "hireDate";
+                request.Size = "1";
+                request.IncludeIsInactive = 2;
+                var resp = _employeeService.GetAll<Employee>(request);
+
+                _systemService.SessionHelper.SetStartDate(resp.Items[0].hireDate.Value);
+            }
+            catch (Exception exp)
+            {
+                _systemService.SessionHelper.SetStartDate(DateTime.Now);
             }
 
         }

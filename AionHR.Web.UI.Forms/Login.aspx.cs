@@ -117,6 +117,7 @@ namespace AionHR.Web.UI.Forms
                     _systemService.SessionHelper.SetLanguage("en");
 
                 _systemService.SessionHelper.Set("CompanyName", getACResponse.result.companyName);
+                _systemService.SessionHelper.Set("CurrentUserName", userName);
 
                 StoreSystemDefaults();
                 return "1";//Succeded
@@ -179,6 +180,22 @@ namespace AionHR.Web.UI.Forms
             catch
             {
                 _systemService.SessionHelper.SetDefaultTimeZone(0);
+            }
+            try
+            {
+                _systemService.SessionHelper.SetCalendarId(defaults.Items.Where(s => s.Key == "caId").First().Value);
+            }
+            catch
+            {
+                _systemService.SessionHelper.SetCalendarId("0");
+            }
+            try
+            {
+                _systemService.SessionHelper.SetVacationScheduleId(defaults.Items.Where(s => s.Key == "vsId").First().Value);
+            }
+            catch
+            {
+                _systemService.SessionHelper.SetVacationScheduleId("0");
             }
             try
             {

@@ -14,12 +14,16 @@ namespace AionHR.Model.Employees.Profile
         public string firstName { get; set; }
         public string middleName { get; set; }
         public string lastName { get; set; }
-        public string birthDate { get; set; }
+        public DateTime birthDate { get; set; }
         public string gender { get; set; }
         public string phoneNumber { get; set; }
-        public string isStudent { get; set; }
-        public string isCitizen { get; set; }
+        public bool? isStudent { get; set; }
+        public bool? isCitizen { get; set; }
 
         public AddressBook addressId { get; set; }
+
+        public string naId { get; set; }
+
+        public string stateId { get; set; }
     }
 }

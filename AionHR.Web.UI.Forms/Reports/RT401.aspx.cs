@@ -161,7 +161,7 @@ namespace AionHR.Web.UI.Forms.Reports
             req.Add(dateRange1.GetRange());
             req.Add(employeeFilter.GetEmployee());
             req.Add(loanStatusFilter.GetStatus());
-            req.Add(branchFilter.GetJobInfo());
+            req.Add(jobInfo1.GetJobInfo());
             return req;
         }
 

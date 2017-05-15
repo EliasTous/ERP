@@ -225,4 +225,10 @@
   <data name="LeaveEndWindowTitle" xml:space="preserve">
     <value>Leave Return</value>
   </data>
+  <data name="FieldUsed" xml:space="preserve">
+    <value>Used</value>
+  </data>
+  <data name="ErrorNoCalendar" xml:space="preserve">
+    <value>Error: You can't create a leave without having at least one calendar</value>
+  </data>
 </root>
