@@ -168,7 +168,15 @@ namespace AionHR.Web.UI.Forms
         }
 
 
-
+        private void setApproved(bool disabled)
+        {
+            LeaveDaysGrid.Disabled = disabled;
+            startDate.Disabled = disabled;
+            endDate.Disabled = employeeId.Disabled = justification.Disabled = destination.Disabled = isPaid.Disabled = ltId.Disabled = status.Disabled = TotalText.Disabled = disabled;
+            returnDate.Disabled = !disabled;
+            approved.Text = disabled.ToString();
+            sumHours.Disabled = disabled;
+        }
         protected void PoPuP(object sender, DirectEventArgs e)
         {
 
@@ -227,9 +235,15 @@ namespace AionHR.Web.UI.Forms
                     X.Call("CalcSum");
                     panelRecordDetails.ActiveTabIndex = 0;
 
-                    SaveButton.Disabled = response.result.returnDate.HasValue||response.result.status==2;
+                    setNormal();
+                    if (response.result.status == 2)
 
-                    LeaveDaysGrid.Disabled = response.result.returnDate.HasValue || response.result.status == 2;
+                        setApproved(true);
+
+                    else if (response.result.status == 3 || response.result.status==-1)
+                        setUsed(true);
+                    else
+                    { setNormal(); }
 
 
                     this.EditRecordWindow.Title = Resources.Common.EditWindowsTitle;
@@ -262,6 +276,27 @@ namespace AionHR.Web.UI.Forms
             }
 
 
+        }
+
+        private void setNormal()
+        {
+            LeaveDaysGrid.Disabled = false;
+            startDate.Disabled = false;
+            endDate.Disabled = employeeId.Disabled = justification.Disabled = destination.Disabled = isPaid.Disabled = ltId.Disabled = status.Disabled = TotalText.Disabled = false;
+            returnDate.Disabled = true;
+            sumHours.Disabled = false;
+            approved.Text = "False";
+            SaveButton.Disabled = false;
+        }
+
+        private void setUsed(bool disabled)
+        {
+            LeaveDaysGrid.Disabled = disabled;
+            startDate.Disabled = disabled;
+            endDate.Disabled = employeeId.Disabled = justification.Disabled = destination.Disabled = isPaid.Disabled = ltId.Disabled = status.Disabled = TotalText.Disabled = disabled;
+            returnDate.Disabled = disabled;
+            SaveButton.Disabled = disabled;
+            sumHours.Disabled = disabled;
         }
 
         /// <summary>
@@ -405,6 +440,7 @@ namespace AionHR.Web.UI.Forms
             CurrentLeave.Text = "";
             FillLeaveType();
             StoredLeaveChanged.Text = "1";
+            setNormal();
             this.EditRecordWindow.Title = Resources.Common.AddNewRecord;
             //SetTabPanelEnabled(false);
             panelRecordDetails.ActiveTabIndex = 0;
@@ -498,7 +534,7 @@ namespace AionHR.Web.UI.Forms
                 X.Msg.Alert(Resources.Common.Error, routers.Summary).Show();
                 return;
             }
-                
+
             this.Store1.DataSource = routers.Items;
             e.Total = routers.Items.Count; ;
 
@@ -611,7 +647,42 @@ namespace AionHR.Web.UI.Forms
 
                 try
                 {
+                    if (approved.Text == "True")
+                    {
 
+
+                        RecordRequest rec = new RecordRequest();
+                        rec.RecordID = id;
+                        RecordResponse<LeaveRequest> recordResponse = _leaveManagementService.ChildGetRecord<LeaveRequest>(rec);
+                        if (!recordResponse.Success)
+                        {
+                            X.Msg.Alert(Resources.Common.Error, recordResponse.Summary).Show();
+                            return;
+                        }
+                        PostRequest<LeaveRequest> postReq = new PostRequest<LeaveRequest>();
+                        postReq.entity = recordResponse.result;
+                        postReq.entity.returnDate = b.returnDate;
+                        postReq.entity.status = 3;
+                        PostResponse<LeaveRequest> resp = _leaveManagementService.ChildAddOrUpdate<LeaveRequest>(postReq);
+                        if (!resp.Success)
+                        {
+                            X.Msg.Alert(Resources.Common.Error, resp.Summary).Show();
+                            return;
+                        }
+                        Notification.Show(new NotificationConfig
+                        {
+                            Title = Resources.Common.Notification,
+                            Icon = Icon.Information,
+                            Html = Resources.Common.RecordUpdatedSucc
+                        });
+                        this.leaveReturnWindow.Close();
+                        var d = Store1.GetById(id);
+                        d.Set("returnDate", postReq.entity.returnDate);
+                        d.Set("status", postReq.entity.status);
+                        d.Commit();
+                        EditRecordWindow.Close();
+                        return;
+                    }
                     //getting the id of the record
                     PostRequest<LeaveRequest> request = new PostRequest<LeaveRequest>();
                     request.entity = b;
@@ -626,6 +697,7 @@ namespace AionHR.Web.UI.Forms
                         X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorUpdatingRecord).Show();
                         return;
                     }
+
                     else
                     {
                         var deleteDesponse = _leaveManagementService.DeleteLeaveDays(Convert.ToInt32(b.recordId));
@@ -791,7 +863,14 @@ namespace AionHR.Web.UI.Forms
                 return 0;
             }
             if (!resp.result.caId.HasValue)
+            {
+                if (_systemService.SessionHelper.GetCalendarId() == 0)
+                {
+                    X.Msg.Alert(Resources.Common.Error, resp.Summary).Show();
+                    return 0;
+                }
                 return _systemService.SessionHelper.GetCalendarId();
+            }
             return resp.result.caId.Value;
         }
         [DirectMethod]
@@ -804,7 +883,12 @@ namespace AionHR.Web.UI.Forms
                 endDate = DateTime.Parse(e.ExtraParams["endDate"]);
                 LeaveChanged.Text = "1";
             }
-            catch { return; }
+            catch
+            {
+                
+                panelRecordDetails.ActiveTabIndex = 0;
+                return;
+            }
             if (startDate == DateTime.MinValue || endDate == DateTime.MinValue)
             {
 
@@ -845,8 +929,19 @@ namespace AionHR.Web.UI.Forms
         [DirectMethod]
         public void Unnamed_Event(object sender, DirectEventArgs e)
         {
-            DateTime startDate = DateTime.Parse(e.ExtraParams["startDate"]);
-            DateTime endDate = DateTime.Parse(e.ExtraParams["endDate"]);
+            DateTime startDate, endDate;
+            try
+            {
+                startDate = DateTime.Parse(e.ExtraParams["startDate"]);
+                endDate = DateTime.Parse(e.ExtraParams["endDate"]);
+                LeaveChanged.Text = "1";
+            }
+            catch
+            {
+                X.Msg.Alert(Resources.Common.Error, GetLocalResourceObject("ErrorSelectDate")).Show();
+                panelRecordDetails.ActiveTabIndex = 0;
+                return;
+            }
             if (panelRecordDetails.ActiveTabIndex == 1)
             {
 

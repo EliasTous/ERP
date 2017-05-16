@@ -14,5 +14,20 @@ namespace AionHR.Model.Attendance
         public string lastOut { get; set; }
 
         public string dayTypeId { get; set; }
+
+        public string duration { get; set; }
+
+        public string durationFormatted
+        {
+            get
+            {
+                int hours;
+                int mins;
+                int durationMins = Convert.ToInt32(duration);
+                hours = durationMins / 60;
+                mins = durationMins % 60;
+                return string.Format(hours.ToString().PadLeft(2, '0') + ":" + mins.ToString().PadLeft(2, '0'));
+            }
+        }
     }
 }

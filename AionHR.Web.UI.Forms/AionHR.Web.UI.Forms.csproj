@@ -1537,6 +1537,7 @@
     <Content Include="App_LocalResources\VacationSchedules.aspx.ar.resx" />
     <Content Include="EmployeePages\App_LocalResources\Dependants.aspx.resx" />
     <Content Include="EmployeePages\App_LocalResources\Dependants.aspx.ar.resx" />
+    <Content Include="App_LocalResources\Schedules.aspx.ar.resx" />
     <EmbeddedResource Include="Properties\licenses.licx" />
     <Content Include="Reports\App_LocalResources\RT202.aspx.resx" />
     <Content Include="Reports\App_LocalResources\RT01.aspx.ar.resx" />

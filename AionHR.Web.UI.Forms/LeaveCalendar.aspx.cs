@@ -95,6 +95,9 @@ namespace AionHR.Web.UI.Forms
                 dr["resource"] = item.employeeId;
                 switch (item.status)
                 {
+                    case -1:
+                        dr["backColor"] = "#ccff00";
+                        break;
                     case 0:
                         dr["backColor"] = "#00ff00";
                         break;
@@ -103,6 +106,9 @@ namespace AionHR.Web.UI.Forms
                         break;
                     case 2:
                         dr["backColor"] = "#0000ff";
+                        break;
+                    case 3:
+                        dr["backColor"] = "#00cccf";
                         break;
                 }
 
@@ -166,8 +172,11 @@ namespace AionHR.Web.UI.Forms
 
             FillLeaveType();
             this.EditRecordWindow.Title = Resources.Common.AddNewRecord;
-
-
+            setNormal();
+            panelRecordDetails.ActiveTabIndex = 0;
+            leaveDaysStore.DataSource = new List<LeaveDay>();
+            leaveDaysStore.DataBind();
+            status.Select(0);
             this.EditRecordWindow.Show();
         }
 
@@ -247,7 +256,7 @@ namespace AionHR.Web.UI.Forms
             }
             else
             {
-                req.OpenRequests = 3;
+                req.OpenRequests = 0;
 
             }
 
@@ -400,7 +409,136 @@ namespace AionHR.Web.UI.Forms
         {
             return _systemService.SessionHelper.Get("nameFormat").ToString();
         }
+        private void setApproved(bool disabled)
+        {
+            LeaveDaysGrid.Disabled = disabled;
+            startDate.Disabled = disabled;
+            endDate.Disabled = employeeId.Disabled = justification.Disabled = destination.Disabled = isPaid.Disabled = ltId.Disabled = status.Disabled = disabled;
+            returnDate.Disabled = !disabled;
+            approved.Text = disabled.ToString();
+            sumHours.Disabled = disabled;
+        }
+        protected void PoPuP(object sender, DirectEventArgs e)
+        {
 
+
+            string id = e.ExtraParams["id"];
+            string type = e.ExtraParams["type"];
+
+            switch (type)
+            {
+                case "imgEdit":
+                    //Step 1 : get the object from the Web Service 
+                    RecordRequest r = new RecordRequest();
+                    r.RecordID = id;
+                    CurrentLeave.Text = r.RecordID;
+
+                    RecordResponse<LeaveRequest> response = _leaveManagementService.ChildGetRecord<LeaveRequest>(r);
+                    if (!response.Success)
+                    {
+                        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                        X.Msg.Alert(Resources.Common.Error, response.Summary).Show();
+                        return;
+                    }
+                    //Step 2 : call setvalues with the retrieved object
+                    this.BasicInfoTab.SetValues(response.result);
+
+
+                    FillLeaveType();
+                    ltId.Select(response.result.ltId.ToString());
+                    StoredLeaveChanged.Text = "0";
+                    if (response.result.employeeId != 0)
+                    {
+
+                        employeeId.GetStore().Add(new object[]
+                           {
+                                new
+                                {
+                                    recordId = response.result.employeeId,
+                                    fullName =response.result.employeeName.fullName
+                                }
+                           });
+                        employeeId.SetValue(response.result.employeeId);
+
+                    }
+                    LeaveDayListRequest req = new LeaveDayListRequest();
+                    req.LeaveId = CurrentLeave.Text;
+                    ListResponse<LeaveDay> resp = _leaveManagementService.ChildGetAll<LeaveDay>(req);
+                    if (!resp.Success)
+                    {
+
+                    }
+
+                    leaveDaysStore.DataSource = resp.Items;
+                    resp.Items.ForEach(x => x.dow = (short)DateTime.ParseExact(x.dayId, "yyyyMMdd", new CultureInfo("en")).DayOfWeek);
+                    leaveDaysStore.DataBind();
+                    LeaveChanged.Text = "0";
+                    X.Call("CalcSum");
+                    panelRecordDetails.ActiveTabIndex = 0;
+
+                    setNormal();
+                    if (response.result.status == 2)
+
+                        setApproved(true);
+
+                    else if (response.result.status == 3)
+                        setUsed(true);
+                    else
+                    { setNormal(); }
+
+
+                    this.EditRecordWindow.Title = Resources.Common.EditWindowsTitle;
+                    this.EditRecordWindow.Show();
+                    break;
+
+                case "imgDelete":
+                    X.Msg.Confirm(Resources.Common.Confirmation, Resources.Common.DeleteOneRecord, new MessageBoxButtonsConfig
+                    {
+                        Yes = new MessageBoxButtonConfig
+                        {
+                            //We are call a direct request metho for deleting a record
+                            Handler = String.Format("App.direct.DeleteRecord({0})", id),
+                            Text = Resources.Common.Yes
+                        },
+                        No = new MessageBoxButtonConfig
+                        {
+                            Text = Resources.Common.No
+                        }
+
+                    }).Show();
+                    break;
+
+                case "colAttach":
+
+                    //Here will show up a winow relatice to attachement depending on the case we are working on
+                    break;
+                default:
+                    break;
+            }
+
+
+        }
+
+        private void setNormal()
+        {
+            LeaveDaysGrid.Disabled = false;
+            startDate.Disabled = false;
+            endDate.Disabled = employeeId.Disabled = justification.Disabled = destination.Disabled = isPaid.Disabled = ltId.Disabled = status.Disabled = false;
+            returnDate.Disabled = true;
+            sumHours.Disabled = false;
+            approved.Text = "False";
+            SaveButton.Disabled = false;
+        }
+
+        private void setUsed(bool disabled)
+        {
+            LeaveDaysGrid.Disabled = disabled;
+            startDate.Disabled = disabled;
+            endDate.Disabled = employeeId.Disabled = justification.Disabled = destination.Disabled = isPaid.Disabled = ltId.Disabled = status.Disabled = disabled;
+            returnDate.Disabled = disabled;
+            SaveButton.Disabled = disabled;
+            sumHours.Disabled = disabled;
+        }
         [DirectMethod]
         public void HandleClick(string id)
         {
@@ -448,8 +586,20 @@ namespace AionHR.Web.UI.Forms
             resp.Items.ForEach(x => x.dow = (short)DateTime.ParseExact(x.dayId, "yyyyMMdd", new CultureInfo("en")).DayOfWeek);
             leaveDaysStore.DataBind();
             LeaveChanged.Text = "0";
-
+            X.Call("CalcSum");
             panelRecordDetails.ActiveTabIndex = 0;
+
+            setNormal();
+            if (response.result.status == 2)
+
+                setApproved(true);
+
+            else if (response.result.status == 3||response.result.status == -1)
+                setUsed(true);
+            else
+            { setNormal(); }
+
+
             this.EditRecordWindow.Title = Resources.Common.EditWindowsTitle;
             this.EditRecordWindow.Show();
         }
@@ -621,6 +771,39 @@ namespace AionHR.Web.UI.Forms
 
                 try
                 {
+                    if (approved.Text == "True")
+                    {
+
+
+                        RecordRequest rec = new RecordRequest();
+                        rec.RecordID = id;
+                        RecordResponse<LeaveRequest> recordResponse = _leaveManagementService.ChildGetRecord<LeaveRequest>(rec);
+                        if (!recordResponse.Success)
+                        {
+                            X.Msg.Alert(Resources.Common.Error, recordResponse.Summary).Show();
+                            return;
+                        }
+                        PostRequest<LeaveRequest> postReq = new PostRequest<LeaveRequest>();
+                        postReq.entity = recordResponse.result;
+                        postReq.entity.returnDate = b.returnDate;
+                        postReq.entity.status = 3;
+                        PostResponse<LeaveRequest> resp = _leaveManagementService.ChildAddOrUpdate<LeaveRequest>(postReq);
+                        if (!resp.Success)
+                        {
+                            X.Msg.Alert(Resources.Common.Error, resp.Summary).Show();
+                            return;
+                        }
+                        Notification.Show(new NotificationConfig
+                        {
+                            Title = Resources.Common.Notification,
+                            Icon = Icon.Information,
+                            Html = Resources.Common.RecordUpdatedSucc
+                        });
+                        
+                        UpdateCal(CurrentMonth.Text, CurrentYear.Text, Viewport1.Width.ToString());
+                        this.EditRecordWindow.Close();
+                        return;
+                    }
                     //getting the id of the record
                     PostRequest<LeaveRequest> request = new PostRequest<LeaveRequest>();
                     request.entity = b;
@@ -777,8 +960,19 @@ namespace AionHR.Web.UI.Forms
         [DirectMethod]
         public void Unnamed_Event(object sender, DirectEventArgs e)
         {
-            DateTime startDate = DateTime.Parse(e.ExtraParams["startDate"]);
-            DateTime endDate = DateTime.Parse(e.ExtraParams["endDate"]);
+            DateTime startDate, endDate;
+            try
+            {
+                startDate = DateTime.Parse(e.ExtraParams["startDate"]);
+                endDate = DateTime.Parse(e.ExtraParams["endDate"]);
+                LeaveChanged.Text = "1";
+            }
+            catch
+            {
+                X.Msg.Alert(Resources.Common.Error, GetLocalResourceObject("ErrorSelectDate")).Show();
+                panelRecordDetails.ActiveTabIndex = 0;
+                return;
+            }
             if (panelRecordDetails.ActiveTabIndex == 1)
             {
 

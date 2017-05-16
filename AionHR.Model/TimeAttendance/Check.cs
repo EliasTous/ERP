@@ -8,15 +8,15 @@ namespace AionHR.Model.Attendance
 {
     public class Check
     {
-        public int? recordId;
-        public DateTime clockStamp;
-        public short authMode;
-        public int employeeId;
-        public short checkStatus;
-        public double lat;
-        public double lon;
-        public string udid;
-        public string routerRef;
-        public string ip;
+        public int authMode { get; set; }
+        public int employeeId { get; set; }
+        public int checkStatus { get; set; }
+        public string ip { get; set; }
+        public string serialNo { get; set; }
+
+        public string clockStamp { get; set; }
+
+        public string udId { get; set; }
+
     }
 }

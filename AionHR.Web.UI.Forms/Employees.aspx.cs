@@ -166,8 +166,8 @@ namespace AionHR.Web.UI.Forms
                     FillProfileInfo(id.ToString());
                     CurrentEmployee.Text = id.ToString();
                     FillLeftPanel();
-                   
-                    
+
+
                     //employeePanel.Loader.Url = "EmployeePages/EmployeeProfile.aspx?employeeId="+CurrentEmployee.Text;
                     //employeePanel.Loader.LoadContent();
 
@@ -217,12 +217,12 @@ namespace AionHR.Web.UI.Forms
             }
         }
 
-        private void FixLoaderUrls(string employeeId,string hireDate)
+        private void FixLoaderUrls(string employeeId, string hireDate)
         {
             foreach (var item in panelRecordDetails.Items)
             {
                 if (item.Loader != null)
-                    item.Loader.Url = item.Loader.Url + "?employeeId=" + employeeId+"&hireDate="+hireDate;
+                    item.Loader.Url = item.Loader.Url + "?employeeId=" + employeeId + "&hireDate=" + hireDate;
             }
         }
 
@@ -258,21 +258,21 @@ namespace AionHR.Web.UI.Forms
         }
         private void InitCombos(bool isAdd)
         {
-          // // FillBranch();
-          //  branchId.Enabled = isAdd;
-          //  branchId.ReadOnly = !isAdd;
+            // // FillBranch();
+            //  branchId.Enabled = isAdd;
+            //  branchId.ReadOnly = !isAdd;
 
-          // // FillDepartment();
+            // // FillDepartment();
 
-          //  departmentId.Enabled = isAdd;
-          //  departmentId.ReadOnly = !isAdd;
-          // // FillPosition();
+            //  departmentId.Enabled = isAdd;
+            //  departmentId.ReadOnly = !isAdd;
+            // // FillPosition();
 
-          //  positionId.Enabled = isAdd;
-          //  positionId.ReadOnly = !isAdd;
-          /////  FillDivision();
-          //  divisionId.Enabled = isAdd;
-          //  divisionId.ReadOnly = !isAdd;
+            //  positionId.Enabled = isAdd;
+            //  positionId.ReadOnly = !isAdd;
+            /////  FillDivision();
+            //  divisionId.Enabled = isAdd;
+            //  divisionId.ReadOnly = !isAdd;
             FillNationality();
 
 
@@ -663,7 +663,9 @@ namespace AionHR.Web.UI.Forms
             //string id = e.ExtraParams["id"];
             string id = CurrentEmployee.Text;
             string obj = e.ExtraParams["values"];
-            Employee b = JsonConvert.DeserializeObject<Employee>(obj);
+            JsonSerializerSettings settings = new JsonSerializerSettings();
+            settings.NullValueHandling = NullValueHandling.Ignore;
+            Employee b = JsonConvert.DeserializeObject<Employee>(obj, settings);
             b.name = new EmployeeName() { firstName = firstName.Text, lastName = lastName.Text, familyName = familyName.Text, middleName = middleName.Text, reference = reference.Text };
 
             b.recordId = id;
@@ -677,7 +679,8 @@ namespace AionHR.Web.UI.Forms
             if (divisionId.SelectedItem != null)
                 b.divisionName = divisionId.SelectedItem.Text;
             b.name.fullName = b.name.firstName + " " + b.name.middleName + " " + b.name.lastName + " ";
-            b.birthDate = new DateTime(b.birthDate.Value.Year, b.birthDate.Value.Month, b.birthDate.Value.Day, 14, 0, 0);
+            if (b.birthDate.HasValue)
+                b.birthDate = new DateTime(b.birthDate.Value.Year, b.birthDate.Value.Month, b.birthDate.Value.Day, 14, 0, 0);
             b.hireDate = new DateTime(b.hireDate.Value.Year, b.hireDate.Value.Month, b.hireDate.Value.Day, 14, 0, 0);
 
             if (string.IsNullOrEmpty(id))
@@ -698,10 +701,10 @@ namespace AionHR.Web.UI.Forms
                         //}
                         fileData = new byte[FileUploadField1.PostedFile.ContentLength];
                         fileData = FileUploadField1.FileBytes;
-                  
+
 
                     }
-                 
+
                     request.entity = b;
 
 
@@ -749,7 +752,7 @@ namespace AionHR.Web.UI.Forms
 
                         CurrentEmployee.Text = req.RecordID.ToString();
                         FillLeftPanel();
-                        
+
                         FillLeftPanel();
                         InitCombos(false);
                         FillProfileInfo(b.recordId);
@@ -786,8 +789,8 @@ namespace AionHR.Web.UI.Forms
                     int index = Convert.ToInt32(id);//getting the id of the record
                     PostRequest<Employee> request = new PostRequest<Employee>();
 
-                    
-                    
+
+
                     request.entity = b;
 
 
@@ -855,7 +858,7 @@ namespace AionHR.Web.UI.Forms
             string obj = e.ExtraParams["values"];
             JsonSerializerSettings setting = new JsonSerializerSettings();
             setting.DateFormatString = "dd/MM/yyyy";
-            EmployeeTermination t = JsonConvert.DeserializeObject<EmployeeTermination>(obj,setting);
+            EmployeeTermination t = JsonConvert.DeserializeObject<EmployeeTermination>(obj, setting);
             t.employeeId = Convert.ToInt32(CurrentEmployee.Text);
             PostRequest<EmployeeTermination> request = new PostRequest<EmployeeTermination>();
             request.entity = t;
@@ -935,7 +938,7 @@ namespace AionHR.Web.UI.Forms
                 return;
             }
             EmployeeQuickView forSummary = qv.result;
-            
+
             if (string.IsNullOrEmpty(forSummary.pictureUrl))
                 forSummary.pictureUrl = "Images/empPhoto.jpg";
             X.Call("FillLeftPanel",
@@ -951,21 +954,21 @@ namespace AionHR.Web.UI.Forms
                forSummary.leavesBalance + "<br />",
                forSummary.allowedLeaveYtd + "<br />",
                forSummary.esName,
-               forSummary.serviceDuractionFriendly(GetGlobalResourceObject("Common","Day").ToString(), GetGlobalResourceObject("Common", "Month").ToString(), GetGlobalResourceObject("Common", "Year").ToString())
+               forSummary.serviceDuractionFriendly(GetGlobalResourceObject("Common", "Day").ToString(), GetGlobalResourceObject("Common", "Month").ToString(), GetGlobalResourceObject("Common", "Year").ToString())
             );
             //            fullNameLbl.Html = forSummary.name.fullName + "<br />";
             departmentLbl.Html = forSummary.departmentName + "<br />";
             branchLbl.Html = forSummary.branchName + "<br />";
             positionLbl.Html = forSummary.positionName + "<br />";
-            esName.Html = forSummary.esName+ "<br /><br />";
+            esName.Html = forSummary.esName + "<br /><br />";
             eosBalanceLbl.Html = forSummary.eosBalance + "<br />";
             serviceDuration.Html = forSummary.serviceDuration + "<br />";// Friendly(GetGlobalResourceObject("Common", "Day").ToString(), GetGlobalResourceObject("Common", "Month").ToString(), GetGlobalResourceObject("Common", "Year").ToString())+"<br />";
 
             paidLeavesYTDLbl.Html = forSummary.paidLeavesYTD + "<br/>";
-            lastLeaveStartDateLbl.Html =  forSummary.LastLeave(_systemService.SessionHelper.GetDateformat()) + "<br />";
+            lastLeaveStartDateLbl.Html = forSummary.LastLeave(_systemService.SessionHelper.GetDateformat()) + "<br />";
             leavesBalance.Html = forSummary.leavesBalance + "<br />";
             allowedLeaveYtd.Html = forSummary.allowedLeaveYtd + "<br />";
-            if (forSummary.reportToName != null&& !string.IsNullOrEmpty(forSummary.reportToName.fullName.Trim()))
+            if (forSummary.reportToName != null && !string.IsNullOrEmpty(forSummary.reportToName.fullName.Trim()))
             {
                 reportsToLbl.Html = GetLocalResourceObject("FieldReportsTo").ToString() + " :<br/ >" + forSummary.reportToName.fullName + "<br />";
             }
@@ -976,10 +979,10 @@ namespace AionHR.Web.UI.Forms
             //employeeName.Text = resp.result.name.firstName + resp.result.name.lastName;
 
             imgControl.ImageUrl = forSummary.pictureUrl + "?x=" + DateTime.Now.Ticks;
-            employeePhoto.ImageUrl = forSummary.pictureUrl+ "?x=" + DateTime.Now.Ticks; ;
+            employeePhoto.ImageUrl = forSummary.pictureUrl + "?x=" + DateTime.Now.Ticks; ;
 
             //here
-            X.Call("initCropper", forSummary.pictureUrl );
+            X.Call("initCropper", forSummary.pictureUrl);
 
             CurrentEmployeePhotoName.Text = forSummary.pictureUrl;
             ModelProxy record = Store1.GetById(CurrentEmployee.Text);
@@ -1166,12 +1169,12 @@ namespace AionHR.Web.UI.Forms
         }
 
         [DirectMethod]
-        public  object GetQuickView(Dictionary<string, string> parameters)
+        public object GetQuickView(Dictionary<string, string> parameters)
         {
             RecordRequest req = new RecordRequest();
             req.RecordID = parameters["id"];
             RecordResponse<EmployeeQuickView> qv = _employeeService.ChildGetRecord<EmployeeQuickView>(req);
-            if(!qv.Success)
+            if (!qv.Success)
             {
                 X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
                 X.Msg.Alert(Resources.Common.Error, qv.Summary).Show();
@@ -1184,10 +1187,10 @@ namespace AionHR.Web.UI.Forms
                 paidLeavesYTD = qv.result.paidLeavesYTD,
                 leavesBalance = qv.result.leavesBalance,
                 allowedLeaveYtd = qv.result.allowedLeaveYtd,
-                lastleave=qv.result.LastLeave(_systemService.SessionHelper.GetDateformat())
-                
+                lastleave = qv.result.LastLeave(_systemService.SessionHelper.GetDateformat())
 
-        };
+
+            };
 
         }
 
@@ -1385,8 +1388,8 @@ namespace AionHR.Web.UI.Forms
                 X.Msg.Alert(Resources.Common.Error, response.Summary).Show();
                 return;
             }
-            
-            employeePhoto.ImageUrl = response.result.pictureUrl+ "?x=" + DateTime.Now.Ticks;
+
+            employeePhoto.ImageUrl = response.result.pictureUrl + "?x=" + DateTime.Now.Ticks;
         }
 
         protected void DisplayTeam(object sender, DirectEventArgs e)

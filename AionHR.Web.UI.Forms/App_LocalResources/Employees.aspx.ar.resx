@@ -342,4 +342,7 @@
   <data name="FieldIdRef" xml:space="preserve">
     <value>رقم الهوية</value>
   </data>
+  <data name="Dependants" xml:space="preserve">
+    <value>المعالون</value>
+  </data>
 </root>

@@ -291,6 +291,7 @@
                                         <ext:ModelField Name="firstIn" />
                                         <ext:ModelField Name="lastOut" />
                                         <ext:ModelField Name="dayTypeId" />
+                                        <ext:ModelField Name="durationFormatted" />
                                     </Fields>
                                 </ext:Model>
                             </Model>
@@ -332,6 +333,7 @@
                             </ext:Column>
                             <ext:Column runat="server" ID="firstInCol" Text="<%$ Resources: FieldFirstIn %>" DataIndex="firstIn" Width="100" />
                             <ext:Column runat="server" ID="lastOutCol" Text="<%$ Resources: FieldLastOut %>" DataIndex="lastOut" Width="100" />
+                            <ext:Column runat="server" ID="Column2" Text="<%$ Resources: FieldDuration %>" DataIndex="durationFormatted" Width="100" />
                             <ext:Column runat="server" 
                                 ID="Column1" Visible="true"
                                 Text="<%$ Resources:Common, Edit %>"

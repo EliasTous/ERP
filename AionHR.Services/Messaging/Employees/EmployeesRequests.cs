@@ -450,3 +450,20 @@ public class GetDependantRequest : RecordRequest
 
 
 }
+
+public class EmployeeByReference:RecordRequest
+{
+    public string Reference { get; set; }
+    private Dictionary<string, string> parameters;
+
+    public override Dictionary<string, string> Parameters
+    {
+        get
+        {
+            parameters = new Dictionary<string, string>();
+            parameters.Add("_reference", Reference);
+            
+            return parameters;
+        }
+    }
+}

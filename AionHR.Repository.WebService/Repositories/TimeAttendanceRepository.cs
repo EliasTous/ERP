@@ -62,6 +62,7 @@ namespace AionHR.Repository.WebService.Repositories
             ChildAddOrUpdateLookup.Add(typeof(Router), "setRO");
             ChildAddOrUpdateLookup.Add(typeof(Geofence), "setGF");
             ChildAddOrUpdateLookup.Add(typeof(AttendanceShift), "setAS");
+            ChildAddOrUpdateLookup.Add(typeof(Check), "setCH");
 
             ChildDeleteLookup.Add(typeof(AttendanceBreak), "delSB");
             ChildDeleteLookup.Add(typeof(AttendanceSchedule), "delSC");

@@ -697,6 +697,24 @@ namespace AionHR.Web.UI.Forms
             }
         }
 
+        private void ReloadDays()
+        {
+            AttendanceScheduleDayListRequest daysRequest = new AttendanceScheduleDayListRequest();
+            daysRequest.ScheduleId = CurrentSchedule.Text;
+
+            ListResponse<AttendanceScheduleDay> daysResponse = _branchService.ChildGetAll<AttendanceScheduleDay>(daysRequest);
+            if (!daysResponse.Success)
+            {
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, daysResponse.Summary).Show();
+                return;
+            }
+
+            //Step 2 : call setvalues with the retrieved object
+            scheduleDays.Store[0].DataSource = daysResponse.Items;
+            scheduleDays.Store[0].DataBind();
+        }
+
         protected void SaveDayBreaks(object sender, DirectEventArgs e)
         {
 
@@ -761,15 +779,15 @@ namespace AionHR.Web.UI.Forms
                 }
 
 
-
-                ModelProxy record = this.scheduleStore.GetById(day.dow);
-                dayBreaksForm.UpdateRecord(record);
-                if (!workingDay)
-                {
-                    record.Set("firstIn", "00:00");
-                    record.Set("lastOut", "00:00");
-                }
-                record.Commit();
+                ReloadDays();
+                //ModelProxy record = this.scheduleStore.GetById(day.dow);
+                //dayBreaksForm.UpdateRecord(record);
+                //if (!workingDay)
+                //{
+                //    record.Set("firstIn", "00:00");
+                //    record.Set("lastOut", "00:00");
+                //}
+                //record.Commit();
                 Notification.Show(new NotificationConfig
                 {
                     Title = Resources.Common.Notification,

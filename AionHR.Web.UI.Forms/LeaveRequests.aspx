@@ -10,7 +10,7 @@
     <title></title>
     <link rel="stylesheet" type="text/css" href="CSS/Common.css" />
     <link rel="stylesheet" href="CSS/LiveSearch.css" />
-    <script type="text/javascript" src="Scripts/LeaveRequests.js?id=6"></script>
+    <script type="text/javascript" src="Scripts/LeaveRequests.js?id=7"></script>
     <script type="text/javascript" src="Scripts/common.js"></script>
     <script type="text/javascript" src="Scripts/moment.js"></script>
     <script type="text/javascript">
@@ -21,8 +21,8 @@
                 sum += record.data['leaveHours'];
             });
 
-            App.sumHours.setValue(sum);
-            App.sumHours2.setValue(sum);
+            App.sumHours.setValue(sum.toFixed(2));
+            App.sumHours2.setValue(sum.toFixed(2));
 
 
         }
@@ -64,6 +64,7 @@
         <ext:Hidden ID="SaturdayText" runat="server" Text="<%$ Resources:Common , SaturdayText %>" />
         <ext:Hidden ID="CurrentLeave" runat="server" />
         <ext:Hidden ID="DateFormat" runat="server" />
+        <ext:Hidden ID="approved" runat="server" />
         <ext:Hidden ID="LeaveChanged" runat="server" Text="1" EnableViewState="true" />
         <ext:Hidden ID="TotalText" runat="server" Text="<%$ Resources: TotalText %>" />
         <ext:Hidden ID="StoredLeaveChanged" runat="server" Text="0" EnableViewState="true" />

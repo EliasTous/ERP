@@ -50,7 +50,7 @@ namespace AionHR.Web.UI.Forms
             }
 
         }
-    
+
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -63,7 +63,7 @@ namespace AionHR.Web.UI.Forms
                 SetExtLanguage();
                 HideShowButtons();
                 HideShowColumns();
-                
+
 
             }
 
@@ -107,7 +107,7 @@ namespace AionHR.Web.UI.Forms
 
             }
         }
-   
+
 
         protected void Prev_Click(object sender, DirectEventArgs e)
         {
@@ -183,7 +183,7 @@ namespace AionHR.Web.UI.Forms
                     calendarYears.Store[0].DataSource = daysResponse.Items;
                     calendarYears.Store[0].DataBind();
                     CurrentCalendar.Text = id.ToString();
-                    
+
                     Viewport1.ActiveIndex = 1;
                     // InitCombos(response.result);
                     break;
@@ -204,13 +204,13 @@ namespace AionHR.Web.UI.Forms
                     {
                         LoadDays();
                     }
-                    catch(Exception exp)
+                    catch (Exception exp)
                     {
-                        
-                            X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                            X.Msg.Alert(Resources.Common.Error, exp.Message).Show();
-                            return;
-                        
+
+                        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                        X.Msg.Alert(Resources.Common.Error, exp.Message).Show();
+                        return;
+
                     }
                     Viewport1.ActiveIndex = 2;
                     // InitCombos(response.result);
@@ -253,7 +253,7 @@ namespace AionHR.Web.UI.Forms
             string type = e.ExtraParams["type"];
             switch (type)
             {
-                
+
                 case "imgAttach":
                     //panelRecordDetails.ActiveIndex = 0;
 
@@ -322,7 +322,7 @@ namespace AionHR.Web.UI.Forms
             req.Year = CurrentYear.Text;
             if ((Convert.ToInt32(CurrentYear.Text) - 2016) % 4 != 0)
                 X.Call("setLeapDay");
-            ListResponse <Model.Attendance.CalendarDay> daysResponse = _branchService.ChildGetAll<Model.Attendance.CalendarDay>(req);
+            ListResponse<Model.Attendance.CalendarDay> daysResponse = _branchService.ChildGetAll<Model.Attendance.CalendarDay>(req);
             if (!daysResponse.Success)
                 throw new Exception(daysResponse.Summary);
             X.Call("init");
@@ -331,13 +331,13 @@ namespace AionHR.Web.UI.Forms
                 string dayId = item.dayId;
                 string Month = dayId[4].ToString() + dayId[5].ToString();
                 string Day = dayId[6].ToString() + dayId[7].ToString();
-                
 
 
-                
+
+
                 string color = dtypes.Where(x => x.recordId == item.dayTypeId.ToString()).First().color;
                 X.Call("colorify", "td" + Month + Day, "#" + color.Trim());
-                
+
 
 
 
@@ -364,6 +364,7 @@ namespace AionHR.Web.UI.Forms
                 c.recordId = index;
                 PostRequest<WorkingCalendar> req = new PostRequest<WorkingCalendar>();
                 req.entity = c;
+
                 PostResponse<WorkingCalendar> response = _branchService.ChildDelete<WorkingCalendar>(req);
                 if (!response.Success)
                 {
@@ -377,9 +378,23 @@ namespace AionHR.Web.UI.Forms
 
 
                     //Step 1 Code to delete the object from the database 
-
-                    //Step 2 :  remove the object from the store
-                    Store1.Remove(index);
+                    if (_systemService.SessionHelper.GetCalendarId().ToString() == index)
+                    {
+                        List<KeyValuePair<string, string>> submittedValues = new List<KeyValuePair<string, string>>();
+                        submittedValues.Add(new KeyValuePair<string, string>("caId", index));
+                        KeyValuePair<string, string>[] valArr = submittedValues.ToArray();
+                        PostRequest<KeyValuePair<string, string>[]> reqDef = new PostRequest<KeyValuePair<string, string>[]>();
+                        reqDef.entity = valArr;
+                        PostResponse<KeyValuePair<string, string>[]> resp = _systemService.ChildAddOrUpdate<KeyValuePair<string, string>[]>(reqDef);
+                        if (!resp.Success)
+                        {
+                            X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                            X.Msg.Alert(Resources.Common.Error, resp.Summary).Show();
+                            return;
+                        }
+                    }
+                        //Step 2 :  remove the object from the store
+                        Store1.Remove(index);
 
                     //Step 3 : Showing a notification for the user 
                     Notification.Show(new NotificationConfig
@@ -430,7 +445,7 @@ namespace AionHR.Web.UI.Forms
 
             List<Employee> data = GetEmployeesFiltered(prms.Query);
 
-            
+
             //  return new
             // {
             return data;
@@ -601,7 +616,7 @@ namespace AionHR.Web.UI.Forms
 
             string obj = e.ExtraParams["calendar"];
             WorkingCalendar b = JsonConvert.DeserializeObject<WorkingCalendar>(obj);
-            
+
             b.recordId = id;
             // Define the object to add or edit as null
 
@@ -813,15 +828,15 @@ namespace AionHR.Web.UI.Forms
 
         protected void SaveDayConfig(object sender, DirectEventArgs e)
         {
-           
+
 
             string day = e.ExtraParams["day"];
             Model.Attendance.CalendarDay b = JsonConvert.DeserializeObject<Model.Attendance.CalendarDay>(day);
 
             b.caId = Convert.ToInt32(CurrentCalendar.Text);
-            b.dayId =  dayId.Text;
+            b.dayId = dayId.Text;
             b.year = Convert.ToInt32(CurrentYear.Text);
-            
+
             PostRequest<Model.Attendance.CalendarDay> request = new PostRequest<Model.Attendance.CalendarDay>();
             request.entity = b;
             PostResponse<Model.Attendance.CalendarDay> response = _branchService.ChildAddOrUpdate<Model.Attendance.CalendarDay>(request);
@@ -829,7 +844,7 @@ namespace AionHR.Web.UI.Forms
             if (!response.Success)//it maybe another check
             {
                 X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.ErrorUpdatingRecord,response.Summary).Show();
+                X.Msg.Alert(Resources.Common.ErrorUpdatingRecord, response.Summary).Show();
                 return;
             }
 
@@ -843,7 +858,7 @@ namespace AionHR.Web.UI.Forms
                 r.RecordID = b.dayTypeId.ToString();
                 RecordResponse<DayType> dayType = _branchService.ChildGetRecord<DayType>(r);
                 string color = dayType.result.color;
-                X.Call("colorify", "td" +b.dayId.Substring(4,4), "#" + color.Trim());
+                X.Call("colorify", "td" + b.dayId.Substring(4, 4), "#" + color.Trim());
 
                 //Display successful notification
                 Notification.Show(new NotificationConfig
@@ -854,7 +869,7 @@ namespace AionHR.Web.UI.Forms
                 });
 
                 this.dayConfigWindow.Close();
-               
+
 
 
             }
@@ -874,7 +889,7 @@ namespace AionHR.Web.UI.Forms
             request.DayId = dayId.Text;
             request.year = CurrentYear.Text;
             RecordResponse<Model.Attendance.CalendarDay> dayObj = _branchService.ChildGetRecord<Model.Attendance.CalendarDay>(request);
-            if(!dayObj.Success)
+            if (!dayObj.Success)
             {
                 X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
                 X.Msg.Alert(Resources.Common.ErrorUpdatingRecord, dayObj.Summary).Show();
@@ -886,7 +901,7 @@ namespace AionHR.Web.UI.Forms
             dayTypesStore.DataSource = LoadDayTypes();
             dayTypesStore.DataBind();
 
-            if (dayObj.result!=null)
+            if (dayObj.result != null)
             {
                 scId.Select(dayObj.result.scId.ToString());
                 dayTypeId.Select(dayObj.result.dayTypeId.ToString());
@@ -897,7 +912,7 @@ namespace AionHR.Web.UI.Forms
         {
             ListRequest req = new ListRequest();
             ListResponse<AttendanceSchedule> schedules = _branchService.ChildGetAll<AttendanceSchedule>(req);
-            if(!schedules.Success)
+            if (!schedules.Success)
                 X.Msg.Alert(Resources.Common.Error, schedules.Summary).Show();
             return schedules.Items;
         }
@@ -905,7 +920,7 @@ namespace AionHR.Web.UI.Forms
         {
             ListRequest req = new ListRequest();
             ListResponse<DayType> schedules = _branchService.ChildGetAll<DayType>(req);
-            if(!schedules.Success)
+            if (!schedules.Success)
                 X.Msg.Alert(Resources.Common.Error, schedules.Summary).Show();
             colorsStore.DataSource = schedules.Items;
             colorsStore.DataBind();
@@ -924,8 +939,8 @@ namespace AionHR.Web.UI.Forms
             patternFormPanel.Reset();
             patternScheduleStore.DataBind();
             dateTo.MinDate = dateFrom.MinDate = new DateTime(Convert.ToInt32(CurrentYear.Text), 1, 1);
-            dateTo.MaxDate= dateFrom.MaxDate = new DateTime(Convert.ToInt32(CurrentYear.Text), 12, 31);
-            
+            dateTo.MaxDate = dateFrom.MaxDate = new DateTime(Convert.ToInt32(CurrentYear.Text), 12, 31);
+
             patternWindow.Show();
         }
         protected void SavePattern(object sender, DirectEventArgs e)
@@ -939,7 +954,7 @@ namespace AionHR.Web.UI.Forms
 
             b.year = CurrentYear.Text;
 
-           
+
             PostRequest<CalendarPattern> request = new PostRequest<CalendarPattern>();
             request.entity = b;
             PostResponse<CalendarPattern> response = _branchService.ChildAddOrUpdate<CalendarPattern>(request);

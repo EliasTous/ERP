@@ -157,7 +157,10 @@ namespace AionHR.Web.UI.Forms.Reports
             req.StartAt = "1";
 
             req.Add(employeeFilter.GetEmployee());
+
+
             req.Add(dateRange1.GetRange());
+
             req.Add(jobInfo1.GetJobInfo());
 
             return req;
@@ -214,5 +217,7 @@ namespace AionHR.Web.UI.Forms.Reports
             ASPxWebDocumentViewer1.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.Utils.DefaultBoolean.True : DevExpress.Utils.DefaultBoolean.False;
             FillReport(true);
         }
+
+ 
     }
 }

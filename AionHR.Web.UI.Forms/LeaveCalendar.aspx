@@ -119,6 +119,7 @@
         <ext:Hidden ID="SaturdayText" runat="server" Text="<%$ Resources:Common , SaturdayText %>" />
          <ext:Hidden ID="CurrentLeave" runat="server" />
         <ext:Hidden ID="DateFormat" runat="server" />
+        <ext:Hidden ID="approved" runat="server" />
         <ext:Hidden ID="LeaveChanged" runat="server" Text="1" EnableViewState="true" />
         <ext:Hidden ID="StoredLeaveChanged" runat="server" Text="0" EnableViewState="true" />
         <ext:Store
@@ -189,7 +190,7 @@
                                     </Listeners>
                                     <DirectEvents>
                                         <Click OnEvent="ReturnLeave">
-                                            <EventMask ShowMask="true" CustomTarget="={#{GridPanel1}.body}" />
+                                            <EventMask ShowMask="true" />
                                         </Click>
                                     </DirectEvents>
                                 </ext:Button>

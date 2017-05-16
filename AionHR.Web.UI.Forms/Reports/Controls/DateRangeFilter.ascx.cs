@@ -22,6 +22,8 @@ namespace AionHR.Web.UI.Forms.Reports
                     dateFrom.SelectedDate = _systemService.SessionHelper.GetStartDate();
                 if (_DefaultEndDate == DateTime.MinValue)
                     dateTo.SelectedDate = DateTime.Today;
+
+                
             }
         }
         protected void Page_Load(object sender, EventArgs e)

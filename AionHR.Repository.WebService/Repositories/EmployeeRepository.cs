@@ -91,7 +91,7 @@ namespace AionHR.Repository.WebService.Repositories
             ChildGetLookup.Add(typeof(EmployeeQuickView), "getQV");
             ChildGetLookup.Add(typeof(EmployeeContact), "getCO");
             ChildGetLookup.Add(typeof(HireInfo), "getRE");
-
+            ChildGetLookup.Add(typeof(Employee), "getEM2");
 
 
 
