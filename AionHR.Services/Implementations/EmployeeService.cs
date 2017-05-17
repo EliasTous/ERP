@@ -17,7 +17,7 @@ namespace AionHR.Services.Implementations
     public class EmployeeService : BaseService, IEmployeeService
     {
         private IEmployeeRepository _employeeRepository;
-        
+
         public EmployeeService(IEmployeeRepository employeeRepository, SessionHelper sessionHelper) : base(sessionHelper)
         {
             _employeeRepository = employeeRepository;
@@ -30,7 +30,7 @@ namespace AionHR.Services.Implementations
             PostResponse<SalaryDetail> response;
             var headers = SessionHelper.GetAuthorizationHeadersForUser();
 
-            SalaryDetail breaks = new SalaryDetail() { salaryId = SalaryId, comments="", edId=0, edName="", includeInTotal=false, fixedAmount=0, pct=0 , seqNo = 0 };
+            SalaryDetail breaks = new SalaryDetail() { salaryId = SalaryId, comments = "", edId = 0, edName = "", includeInTotal = false, fixedAmount = 0, pct = 0, seqNo = 0 };
             var webResponse = GetRepository().ChildDelete<SalaryDetail>(breaks, headers);
             response = CreateServiceResponse<PostResponse<SalaryDetail>>(webResponse);
 
@@ -39,17 +39,18 @@ namespace AionHR.Services.Implementations
 
         public override RecordResponse<T> Get<T>(RecordRequest request)
         {
-            RecordResponse<T> f= base.Get<T>(request);
-            if (string.IsNullOrEmpty(((f.result)as Employee).pictureUrl))
-                ((f.result) as Employee).pictureUrl = "images/empPhoto.jpg";
+            RecordResponse<T> f = base.Get<T>(request);
+            if (f != null && f.result != null)
+                if (string.IsNullOrEmpty(((f.result) as Employee).pictureUrl))
+                    ((f.result) as Employee).pictureUrl = "images/empPhoto.jpg";
             return f;
 
-            
+
         }
 
         public override ListResponse<T> GetAll<T>(ListRequest request)
         {
-            ListResponse<T> list= base.GetAll<T>(request);
+            ListResponse<T> list = base.GetAll<T>(request);
             list.Items.ForEach(t => { if (string.IsNullOrEmpty((t as Employee).pictureUrl)) (t as Employee).pictureUrl = "images/empPhoto.jpg"; });
             return list;
         }

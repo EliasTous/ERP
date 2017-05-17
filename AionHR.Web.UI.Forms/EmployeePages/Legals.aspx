@@ -206,8 +206,8 @@
                             </ext:Column>--%>
                             <ext:Column ID="dtName" DataIndex="dtName" Text="<%$ Resources: FieldRWDtName%>" runat="server" Flex="4" />
                             <ext:Column ID="documentRef1" DataIndex="documentRef" Text="<%$ Resources: FieldRWDocumentRef%>" runat="server" Flex="2" />
-                            <ext:DateColumn  ID="validFrom" DataIndex="issueDateFormatted" Text="<%$ Resources: FieldRWIssueDate%>" runat="server" Width="100" />
-                            <ext:DateColumn   ID="validTo" DataIndex="expireDateFormatted" Text="<%$ Resources: FieldRWExpiryDate%>" runat="server" Width="100" />
+                            <ext:DateColumn  ID="validFrom" DataIndex="issueDate" Text="<%$ Resources: FieldRWIssueDate%>" runat="server" Width="100" />
+                            <ext:DateColumn   ID="validTo" DataIndex="expiryDate" Text="<%$ Resources: FieldRWExpiryDate%>" runat="server" Width="100" />
                             <ext:Column ID="remarks" DataIndex="remarks" Text="<%$ Resources: FieldRWRemarks%>" runat="server" Flex="2" Visible="false" />
 
 

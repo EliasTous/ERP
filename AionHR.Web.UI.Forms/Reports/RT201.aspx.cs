@@ -73,7 +73,7 @@ namespace AionHR.Web.UI.Forms.Reports
 
                     format.Text = _systemService.SessionHelper.GetDateformat();
                     ASPxWebDocumentViewer1.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.Utils.DefaultBoolean.True : DevExpress.Utils.DefaultBoolean.False;
-                    FillReport();
+                    FillReport(false);
 
                     
 
@@ -181,15 +181,20 @@ namespace AionHR.Web.UI.Forms.Reports
         }
 
       
-        public void FillReport()
+        public void FillReport(bool throwException=true)
         {
             ReportCompositeRequest req = GetRequest();
             ListResponse<AionHR.Model.Reports.RT201> resp = _reportsService.ChildGetAll<AionHR.Model.Reports.RT201>(req);
             if (!resp.Success)
             {
-                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, resp.Summary).Show();
-                return;
+                if (throwException)
+                    throw new Exception(resp.Summary);
+                else
+                {
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    X.Msg.Alert(Resources.Common.Error, resp.Summary).Show();
+                    return;
+                }
             }
            
             SalaryHistory h = new SalaryHistory();
@@ -215,14 +220,14 @@ namespace AionHR.Web.UI.Forms.Reports
 
             if (pageIndex == 1)
             {
-               // FillReport();
+               FillReport();
             }
         }
 
         protected void ASPxCallbackPanel1_Load(object sender, EventArgs e)
         {
-            ASPxWebDocumentViewer1.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.Utils.DefaultBoolean.True : DevExpress.Utils.DefaultBoolean.False;
-            FillReport();
+            //ASPxWebDocumentViewer1.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.Utils.DefaultBoolean.True : DevExpress.Utils.DefaultBoolean.False;
+            //FillReport();
         }
     }
 }

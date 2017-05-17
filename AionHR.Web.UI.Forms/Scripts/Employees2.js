@@ -23,7 +23,7 @@ var cellClick = function (view, cell, columnIndex, record, row, rowIndex, e) {
     if (columnIndex == 0)
         return false;
     var t = e.getTarget();
-    // columnId = App.GridPanel1.columns[columnIndex].id; // Get column id
+    // columnId = App.employeeControl1_GridPanel1.columns[columnIndex].id; // Get column id
 
     if (t.className == "imgEdit") {
         //the ajax call is allowed
@@ -42,7 +42,7 @@ var cellClick = function (view, cell, columnIndex, record, row, rowIndex, e) {
         return true;
     }
 
-    App.RowExpander1.toggleRow(rowIndex, record);
+    App.employeeControl1_RowExpander1.toggleRow(rowIndex, record);
 
     //forbidden
     return false;
@@ -87,14 +87,14 @@ var showImagePreview = function (id) {
             alert('File Format is not allowed');
             $("#" + $('#imgControl')).attr('src', '');
 
-            App.picturePath.reset();
+            App.employeeControl1_picturePath.reset();
             //Alert the user and clear the input file
         }
     }
     else {
         $("#" + $('#imgControl')[0].firstChild.id).attr('src', '');
-        App.picturePath.reset();
-        App.picturePath.Clear();
+        App.employeeControl1_picturePath.reset();
+        App.employeeControl1_picturePath.Clear();
     }
 }
 var showImagePreview2 = function (id) {
@@ -117,34 +117,34 @@ var showImagePreview2 = function (id) {
 
             }
             filerdr.readAsDataURL(input.files[0]);
-            App.uploadPhotoButton.setDisabled(false);
+            App.employeeControl1_employeeControl1_uploadPhotoButton.setDisabled(false);
         }
         else {
             alert('File Format is not allowed');
             //$("#" + $('#employeePhoto')[0].firstChild.id).attr('src', '');
-            App.FileUploadField1.reset();
+            App.employeeControl1_FileUploadField1.reset();
            
             //Alert the user and clear the input file
         }
     }
     else {
         //$("#" + $('#employeePhoto')[0].firstChild.id).attr('src', '');
-        App.FileUploadField1.reset();
-        App.FileUploadField1.Clear();
+        App.employeeControl1_FileUploadField1.reset();
+        App.employeeControl1_FileUploadField1.Clear();
     }
 }
 var ClearImage = function () {
-    App.picturePath.reset();
+    App.employeeControl1_picturePath.reset();
     $("#" + $('#imgControl')[0].firstChild.id).attr('src', '');
 
 }
 var ClearImage2 = function () {
-    App.FileUploadField1.reset();
+    App.employeeControl1_FileUploadField1.reset();
    // $("#" + $('#employeePhoto')[0].firstChild.id).attr('src', 'images/empPhoto.jpg');
    // $('#image').attr('src', 'images/empPhoto.jpg');
     //InitCropper('images/empPhoto.jpg');
     ClearCropper();
-    //App.uploadPhotoButton.setDisabled(true);
+    //App.employeeControl1_uploadPhotoButton.setDisabled(true);
 }
 
 
@@ -186,7 +186,7 @@ var onEmployeeTreeItemClick = function (record, e) {
 var openNewTabEmployee = function (id, url, title, iconCls) {
 
 
-    var tab = App.employeesTabPanel.getComponent(id);
+    var tab = App.employeeControl1_employeesTabPanel.getComponent(id);
     // if (id != 'dashboard') {
     //alert(interval);
     //  clearInterval(interval);
@@ -198,7 +198,7 @@ var openNewTabEmployee = function (id, url, title, iconCls) {
     if (!tab) {
 
 
-        tab = App.employeesTabPanel.add({
+        tab = App.employeeControl1_employeesTabPanel.add({
             id: id,
             title: title,
             iconCls: iconCls,
@@ -208,15 +208,15 @@ var openNewTabEmployee = function (id, url, title, iconCls) {
                 renderer: "frame",
                 loadMask: {
                     showMask: true,
-                    msg: App.lblLoading.getValue()
+                    msg: App.employeeControl1_lblLoading.getValue()
                 }
             }
         });
 
     }
     else {
-        App.employeesTabPanel.closeTab(tab);
-        tab = App.employeesTabPanel.add({
+        App.employeeControl1_employeesTabPanel.closeTab(tab);
+        tab = App.employeeControl1_employeesTabPanel.add({
             id: id,
             title: title,
             iconCls: iconCls,
@@ -226,12 +226,12 @@ var openNewTabEmployee = function (id, url, title, iconCls) {
                 renderer: "frame",
                 loadMask: {
                     showMask: true,
-                    msg: App.lblLoading.getValue()
+                    msg: App.employeeControl1_lblLoading.getValue()
                 }
             }
         });
     }
-    App.employeesTabPanel.setActiveTab(tab);
+    App.employeeControl1_employeesTabPanel.setActiveTab(tab);
 }
 function dump(obj) {
     var out = '';
@@ -247,14 +247,14 @@ function FillLeftPanel(departmentName, branchName, positionName, reportToName, b
 
 
 
-    App.reportsToLbl.setText(reportToName);
-    App.eosBalanceTitle.setText(balance);
-    App.lastLeaveStartDateTitle.setText(lastLeave);
-    App.paidLeavesYTDTitle.setText(paid);
-    App.leavesBalanceTitle.setText(leaveBalance);
-    App.allowedLeaveYtdTitle.setText(allowedLeaves);
-    App.esName = esName;
-    App.serviceDuration = serviceDuration;
+    App.employeeControl1_reportsToLbl.setText(reportToName);
+    App.employeeControl1_eosBalanceTitle.setText(balance);
+    App.employeeControl1_lastLeaveStartDateTitle.setText(lastLeave);
+    App.employeeControl1_paidLeavesYTDTitle.setText(paid);
+    App.employeeControl1_leavesBalanceTitle.setText(leaveBalance);
+    App.employeeControl1_allowedLeaveYtdTitle.setText(allowedLeaves);
+    App.employeeControl1_esName = esName;
+    App.employeeControl1_serviceDuration = serviceDuration;
     FillLeftPanel(dep, branchName, positionName);
 
 }
@@ -263,29 +263,29 @@ function FillLeftPanel(departmentName, branchName, positionName, reportToName) {
 
 
 
-    App.reportsToLbl.setText(reportToName);
+    App.employeeControl1_reportsToLbl.setText(reportToName);
     FillLeftPanel(dep, branchName, positionName);
 
 }
 
 function FillFullName(fullName) {
-    App.fullNameLbl.Html = fullName;
+    App.employeeControl1_fullNameLbl.Html = fullName;
 }
 function FillLeftPanel(departmentName, branchName, positionName) {
 
 
 
-    App.departmentLbl.setText(departmentName, false);
-    App.branchLbl.setText(branchName, false);
-    App.positionLbl.setText(positionName, false);
+    App.employeeControl1_departmentLbl.setText(departmentName, false);
+    App.employeeControl1_branchLbl.setText(branchName, false);
+    App.employeeControl1_positionLbl.setText(positionName, false);
 
 
 }
 function SelectJICombos(deptId, bId, pId, dId) {
-    App.departmentId.select(deptId);
-    App.branchId.select(bId);
-    App.positionId.select(pId);
-    App.divisionId.select(dId);
+    App.employeeControl1_departmentId.select(deptId);
+    App.employeeControl1_branchId.select(bId);
+    App.employeeControl1_positionId.select(pId);
+    App.employeeControl1_divisionId.select(dId);
 }
 
 
@@ -298,7 +298,7 @@ var enterKeyPressSearchHandler = function (el, event) {
     }
 
     if (enter === true) {
-        App.Store1.reload();
+        App.employeeControl1_Store1.reload();
     }
 };
 function initCropper(path) {
@@ -315,5 +315,5 @@ function initCropper(path) {
 }
 
 function refreshQV() {
-    App.direct.FillLeftPanel(true);
+    App.employeeControl1_direct.FillLeftPanel(true);
 }

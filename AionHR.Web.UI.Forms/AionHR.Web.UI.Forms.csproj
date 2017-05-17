@@ -164,6 +164,7 @@
     <Content Include="CompanyFiles.aspx" />
     <Content Include="CompanyNews.aspx" />
     <Content Include="CompanyRightToWorks.aspx" />
+    <Content Include="Controls\LeaveRequestControl.ascx" />
     <Content Include="CSS\cal.css" />
     <Content Include="CSS\MainDashboard.css" />
     <Content Include="CSS\Dashboard.css" />
@@ -199,6 +200,7 @@
     <Content Include="EmployeePages\Notes.aspx" />
     <Content Include="EmployeePages\Payroll.aspx" />
     <Content Include="EmployeePages\Skills.aspx" />
+    <Content Include="Controls\EmployeeProfileControl.ascx" />
     <Content Include="EmployeeRoot.aspx" />
     <Content Include="Employees.aspx" />
     <Content Include="EmployeesOrgChart.aspx" />
@@ -306,8 +308,10 @@
     <Content Include="Scripts\CompanyNews.js" />
     <Content Include="Scripts\Contacts.js" />
     <Content Include="Scripts\EmployeeComplaints.js" />
+    <Content Include="Scripts\Employees2.js" />
     <Content Include="Scripts\EmployeesOrgChart.js" />
     <Content Include="Scripts\jquery-new.js" />
+    <Content Include="Scripts\LeaveRequests2.js" />
     <Content Include="Scripts\LoanOverrides.js" />
     <Content Include="Scripts\PayrollGeneration.js" />
     <Content Include="Scripts\Folders.js" />
@@ -564,6 +568,13 @@
     <Compile Include="CompanyRightToWorks.aspx.designer.cs">
       <DependentUpon>CompanyRightToWorks.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Controls\LeaveRequestControl.ascx.cs">
+      <DependentUpon>LeaveRequestControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\LeaveRequestControl.ascx.designer.cs">
+      <DependentUpon>LeaveRequestControl.ascx</DependentUpon>
+    </Compile>
     <Compile Include="EmployeePages\Dependants.aspx.cs">
       <DependentUpon>Dependants.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -580,6 +591,13 @@
     </Compile>
     <Compile Include="EmployeePhotoUploaderHandler.ashx.cs">
       <DependentUpon>EmployeePhotoUploaderHandler.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\EmployeeProfileControl.ascx.cs">
+      <DependentUpon>EmployeeProfileControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\EmployeeProfileControl.ascx.designer.cs">
+      <DependentUpon>EmployeeProfileControl.ascx</DependentUpon>
     </Compile>
     <Compile Include="FiscalYears.aspx.cs">
       <DependentUpon>FiscalYears.aspx</DependentUpon>
@@ -1538,6 +1556,8 @@
     <Content Include="EmployeePages\App_LocalResources\Dependants.aspx.resx" />
     <Content Include="EmployeePages\App_LocalResources\Dependants.aspx.ar.resx" />
     <Content Include="App_LocalResources\Schedules.aspx.ar.resx" />
+    <Content Include="Controls\App_LocalResources\EmployeeProfileControl.ascx.resx" />
+    <Content Include="Controls\App_LocalResources\EmployeeProfileControl.ascx.ar.resx" />
     <EmbeddedResource Include="Properties\licenses.licx" />
     <Content Include="Reports\App_LocalResources\RT202.aspx.resx" />
     <Content Include="Reports\App_LocalResources\RT01.aspx.ar.resx" />

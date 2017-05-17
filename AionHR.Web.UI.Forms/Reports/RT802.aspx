@@ -24,6 +24,11 @@
     <script type="text/javascript" src="../Scripts/moment.js"></script>
     <script type="text/javascript" src="../Scripts/RT201.js?id=18"></script>
     <script type="text/javascript">
+        function alertNow(s, e) {
+
+            Ext.MessageBox.alert('Error', e.message);
+            e.handled = true;
+        }
         var prev = '';
         function printGrid(grid, window) {
             window.show();
@@ -101,7 +106,7 @@
                     </TopBar>
                     <Content>
                         
-                        <dx:ASPxCallbackPanel ID="ASPxCallbackPanel1" runat="server" ClientInstanceName="callbackPanel" OnLoad="ASPxCallbackPanel1_Load"
+                        <dx:ASPxCallbackPanel ID="ASPxCallbackPanel1" runat="server" ClientInstanceName="callbackPanel" ClientSideEvents-CallbackError="alertNow" OnLoad="ASPxCallbackPanel1_Load"
                             Width="100%" OnCallback="ASPxCallbackPanel1_Callback">
                             <panelcollection>
                                 <dx:PanelContent runat="server">

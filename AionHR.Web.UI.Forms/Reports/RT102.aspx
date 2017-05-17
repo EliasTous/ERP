@@ -24,7 +24,11 @@
     <script type="text/javascript" src="../Scripts/moment.js"></script>
     <script type="text/javascript" src="../Scripts/RT101.js?id=18"></script>
     <script type="text/javascript">
-    
+        function alertNow(s, e) {
+
+            Ext.MessageBox.alert('Error', e.message);
+            e.handled = true;
+        }
     </script>
 </head>
 <body style="background: url(Images/bg.png) repeat;">
@@ -82,7 +86,7 @@
                     <Content>
 
                         <dx:ASPxCallbackPanel ID="ASPxCallbackPanel1" runat="server" ClientInstanceName="callbackPanel"
-                            Width="100%" OnCallback="ASPxCallbackPanel1_Callback" OnLoad="ASPxCallbackPanel1_Load" >
+                            Width="100%" OnCallback="ASPxCallbackPanel1_Callback" OnLoad="ASPxCallbackPanel1_Load"  ClientSideEvents-CallbackError="alertNow" >
                             <PanelCollection>
                                 <dx:PanelContent runat="server">
                                     <dx:ASPxWebDocumentViewer ID="ASPxWebDocumentViewer1" runat="server" ></dx:ASPxWebDocumentViewer>

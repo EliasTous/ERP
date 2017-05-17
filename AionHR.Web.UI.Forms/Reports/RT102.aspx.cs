@@ -71,7 +71,7 @@ namespace AionHR.Web.UI.Forms.Reports
 
                     format.Text = _systemService.SessionHelper.GetDateformat().ToUpper();
                     ASPxWebDocumentViewer1.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.Utils.DefaultBoolean.True : DevExpress.Utils.DefaultBoolean.False;
-
+                    FillReport(false, false);
                 }
                 catch { }
             }
@@ -159,7 +159,7 @@ namespace AionHR.Web.UI.Forms.Reports
             return req;
         }
         
-        private void FillReport(bool isInitial=false)
+        private void FillReport(bool isInitial=false,bool throwException=true)
         {
             
             ReportCompositeRequest req = GetRequest();
@@ -167,9 +167,14 @@ namespace AionHR.Web.UI.Forms.Reports
             ListResponse<AionHR.Model.Reports.RT102A> resp = _reportsService.ChildGetAll<AionHR.Model.Reports.RT102A>(req);
             if (!resp.Success)
             {
-                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, resp.Summary).Show();
-                return;
+                if (throwException)
+                    throw new Exception(resp.Summary);
+                else
+                {
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    X.Msg.Alert(Resources.Common.Error, resp.Summary).Show();
+                    return;
+                }
             }
             resp.Items.ForEach(x => x.DateString = x.date.ToString(_systemService.SessionHelper.GetDateformat()));
             Hirings h = new Hirings();
@@ -211,7 +216,7 @@ namespace AionHR.Web.UI.Forms.Reports
 
             if (pageIndex == 1)
             {
-                //FillReport();
+               FillReport();
              
             }
 
@@ -225,8 +230,8 @@ namespace AionHR.Web.UI.Forms.Reports
 
         protected void ASPxCallbackPanel1_Load(object sender, EventArgs e)
         {
-            ASPxWebDocumentViewer1.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.Utils.DefaultBoolean.True : DevExpress.Utils.DefaultBoolean.False;
-            FillReport(true);
+            //ASPxWebDocumentViewer1.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.Utils.DefaultBoolean.True : DevExpress.Utils.DefaultBoolean.False;
+            //FillReport(true);
         }
 
      

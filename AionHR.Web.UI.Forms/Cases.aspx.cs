@@ -184,11 +184,13 @@ namespace AionHR.Web.UI.Forms
             SetTabPanelEnable(true);
             string id = e.ExtraParams["id"];
             string type = e.ExtraParams["type"];
-            
+            string empId = e.ExtraParams["empId"];
+
             switch (type)
             {
                 case "imgEdit":
                     //Step 1 : get the object from the Web Service 
+                    
                     RecordRequest r = new RecordRequest();
                     r.RecordID = id;
 

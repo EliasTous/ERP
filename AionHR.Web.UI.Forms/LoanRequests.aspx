@@ -400,7 +400,7 @@
             Hidden="true"
             Maximizable="false"
             Resizable="false"
-            Draggable="false"
+            Draggable="True"
             Layout="Fit">
 
             <Items>

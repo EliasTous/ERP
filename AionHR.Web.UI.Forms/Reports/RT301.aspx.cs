@@ -72,7 +72,7 @@ namespace AionHR.Web.UI.Forms.Reports
 
                     format.Text = _systemService.SessionHelper.GetDateformat().ToUpper();
                     ASPxWebDocumentViewer1.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.Utils.DefaultBoolean.True : DevExpress.Utils.DefaultBoolean.False;
-
+                    FillReport(false, false);
                 }
                 catch { }
             }
@@ -155,14 +155,12 @@ namespace AionHR.Web.UI.Forms.Reports
             req.Size = "1000";
             req.StartAt = "1";
 
-            DateRangeParameterSet s = new DateRangeParameterSet();
-            s.DateFrom = new DateTime(2017, 2, 1);
-            s.DateTo = new DateTime(2017, 5, 1);
-            req.Add(s);
+            
+            req.Add(dateRange1.GetRange());
             return req;
         }
 
-        private void FillReport(bool isInitial = false)
+        private void FillReport(bool isInitial = false, bool throwException=true)
         {
 
             ReportCompositeRequest req = GetRequest();
@@ -170,9 +168,14 @@ namespace AionHR.Web.UI.Forms.Reports
             ListResponse<AionHR.Model.Reports.RT301> resp = _reportsService.ChildGetAll<AionHR.Model.Reports.RT301>(req);
             if (!resp.Success)
             {
-                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, resp.Summary).Show();
-                return;
+                if (throwException)
+                    throw new Exception(resp.Summary);
+                else
+                {
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    X.Msg.Alert(Resources.Common.Error, resp.Summary).Show();
+                    return;
+                }
             }
 
             var monthlyGrouped = resp.Items.GroupBy(x => x.month);
@@ -232,7 +235,7 @@ namespace AionHR.Web.UI.Forms.Reports
 
             if (pageIndex == 1)
             {
-                //FillReport();
+                FillReport();
 
             }
 
@@ -246,8 +249,8 @@ namespace AionHR.Web.UI.Forms.Reports
 
         protected void ASPxCallbackPanel1_Load(object sender, EventArgs e)
         {
-            ASPxWebDocumentViewer1.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.Utils.DefaultBoolean.True : DevExpress.Utils.DefaultBoolean.False;
-            FillReport(true);
+            //ASPxWebDocumentViewer1.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.Utils.DefaultBoolean.True : DevExpress.Utils.DefaultBoolean.False;
+            //FillReport(true);
         }
     }
 }

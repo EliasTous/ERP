@@ -70,10 +70,10 @@ namespace AionHR.Web.UI.Forms.Reports
                 {
 
 
-                    dateRange1.Clear();
+                    dateRange1.DefaultStartDate = DateTime.Today;
                     format.Text = _systemService.SessionHelper.GetDateformat();
                     ASPxWebDocumentViewer1.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.Utils.DefaultBoolean.True : DevExpress.Utils.DefaultBoolean.False;
-
+                    FillReport(false);
 
                 }
                 catch { }
@@ -186,16 +186,21 @@ namespace AionHR.Web.UI.Forms.Reports
             return users.Items;
         }
 
-        private void FillReport()
+        private void FillReport(bool throwException = true)
         {
 
             ReportCompositeRequest req = GetRequest();
             ListResponse<AionHR.Model.Reports.RT801> resp = _reportsService.ChildGetAll<AionHR.Model.Reports.RT801>(req);
             if (!resp.Success)
             {
-                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, resp.Summary).Show();
-                return;
+                if (throwException)
+                    throw new Exception(resp.Summary);
+                else
+                {
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    X.Msg.Alert(Resources.Common.Error, resp.Summary).Show();
+                    return;
+                }
             }
 
             resp.Items.ForEach(x => x.DateString = x.eventDT.ToString(_systemService.SessionHelper.GetDateformat(), new CultureInfo("en"))); SignInTrail h = new SignInTrail();
@@ -217,14 +222,14 @@ namespace AionHR.Web.UI.Forms.Reports
 
             if (pageIndex == 1)
             {
-                //FillReport();
+                FillReport();
             }
         }
 
         protected void ASPxCallbackPanel1_Load(object sender, EventArgs e)
         {
-            ASPxWebDocumentViewer1.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.Utils.DefaultBoolean.True : DevExpress.Utils.DefaultBoolean.False;
-            FillReport();
+            //ASPxWebDocumentViewer1.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.Utils.DefaultBoolean.True : DevExpress.Utils.DefaultBoolean.False;
+            //FillReport();
         }
     }
 }

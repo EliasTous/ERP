@@ -33,6 +33,11 @@
             //bd.document.getElementById(grid.view.scroller.id).style.height = "auto";
 
         }
+        function alertNow(s, e) {
+
+            Ext.MessageBox.alert('Error', e.message);
+            e.handled = true;
+        }
     </script>
 </head>
 <body style="background: url(Images/bg.png) repeat;">
@@ -93,7 +98,7 @@
                     </TopBar>
                     <Content>
 
-                        <dx:ASPxCallbackPanel ID="ASPxCallbackPanel1" runat="server" ClientInstanceName="callbackPanel" OnLoad="ASPxCallbackPanel1_Load"
+                        <dx:ASPxCallbackPanel ID="ASPxCallbackPanel1" runat="server" ClientInstanceName="callbackPanel" OnLoad="ASPxCallbackPanel1_Load" ClientSideEvents-CallbackError="alertNow"
                             Width="100%" OnCallback="ASPxCallbackPanel1_Callback">
                             <PanelCollection>
                                 <dx:PanelContent runat="server">

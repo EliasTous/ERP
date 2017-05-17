@@ -24,7 +24,24 @@
     <script type="text/javascript" src="../Scripts/moment.js"></script>
     <script type="text/javascript" src="../Scripts/RT101.js?id=18"></script>
     <script type="text/javascript">
-    
+        function Fill()
+        {
+            callbackPanel.PerformCallback('1');
+        }
+        function dump(obj) {
+            var out = '';
+            for (var i in obj) {
+                out += i + ": " + obj[i] + "\n";
+
+
+            }
+            return out;
+        }
+        function alertNow(s,e) {
+            
+            Ext.MessageBox.alert('Error', e.message);
+            e.handled = true;
+        }
     </script>
 </head>
 <body style="background: url(Images/bg.png) repeat;">
@@ -35,7 +52,7 @@
         <ext:Hidden ID="textLoadFailed" runat="server" Text="<%$ Resources:Common , LoadFailed %>" />
         <ext:Hidden ID="titleSavingError" runat="server" Text="<%$ Resources:Common , TitleSavingError %>" />
         <ext:Hidden ID="titleSavingErrorMessage" runat="server" Text="<%$ Resources:Common , TitleSavingErrorMessage %>" />
-
+        <ext:Hidden ID="errorMSG" runat="server" />
         <ext:Hidden ID="rtl" runat="server" />
         <ext:Hidden ID="format" runat="server" />
 
@@ -55,51 +72,51 @@
                         <ext:Toolbar runat="server" Height="60">
 
                             <Items>
-                             
-                                        <ext:Container runat="server"  Layout="FitLayout">
-                                            <Content>
-                                                <%--<uc:dateRange runat="server" ID="dateRange1" />--%>
-                                                <uc:dateRange runat="server" ID="dateRange1" />
-                                            </Content>
-                                        </ext:Container>
-                                   <ext:Container runat="server"  Layout="FitLayout">
-                                            <Content>
-                                                <%--<uc:dateRange runat="server" ID="dateRange1" />--%>
-                                                <uc:jobInfo runat="server" ID="jobInfo1" EnableDivision="false" EnablePosition="false" />
-                                            </Content>
-                                        </ext:Container>
 
-                                    <ext:Container runat="server"  Layout="FitLayout">
-                                            <Content>
-                                                <%--<uc:dateRange runat="server" ID="dateRange1" />--%>
-                                                <uc:employeeCombo runat="server" ID="employeeFilter" />
-                                            </Content>
-                                        </ext:Container>
-
-                                 <ext:Container runat="server"  Layout="FitLayout">
-                                            <Content>
-                                                <%--<uc:dateRange runat="server" ID="dateRange1" />--%>
-                                                <uc:leaveTypeCombo runat="server" ID="leaveTypeFilter" />
-                                            </Content>
-                                        </ext:Container>
-
-                                 <ext:Container runat="server"  Layout="FitLayout">
-                                            <Content>
-                                                <%--<uc:dateRange runat="server" ID="dateRange1" />--%>
-                                                <uc:leaveStatusCombo runat="server" ID="leaveStatusFilter" />
-                                            </Content>
-                                        </ext:Container>
                                 <ext:Container runat="server" Layout="FitLayout">
                                     <Content>
-                                         <ext:Button runat="server" Text="<%$Resources:Common, Go %>" >
+                                        <%--<uc:dateRange runat="server" ID="dateRange1" />--%>
+                                        <uc:dateRange runat="server" ID="dateRange1" />
+                                    </Content>
+                                </ext:Container>
+                                <ext:Container runat="server" Layout="FitLayout">
+                                    <Content>
+                                        <%--<uc:dateRange runat="server" ID="dateRange1" />--%>
+                                        <uc:jobInfo runat="server" ID="jobInfo1" EnableDivision="false" EnablePosition="false" />
+                                    </Content>
+                                </ext:Container>
+
+                                <ext:Container runat="server" Layout="FitLayout">
+                                    <Content>
+                                        <%--<uc:dateRange runat="server" ID="dateRange1" />--%>
+                                        <uc:employeeCombo runat="server" ID="employeeFilter" />
+                                    </Content>
+                                </ext:Container>
+
+                                <ext:Container runat="server" Layout="FitLayout">
+                                    <Content>
+                                        <%--<uc:dateRange runat="server" ID="dateRange1" />--%>
+                                        <uc:leaveTypeCombo runat="server" ID="leaveTypeFilter" />
+                                    </Content>
+                                </ext:Container>
+
+                                <ext:Container runat="server" Layout="FitLayout">
+                                    <Content>
+                                        <%--<uc:dateRange runat="server" ID="dateRange1" />--%>
+                                        <uc:leaveStatusCombo runat="server" ID="leaveStatusFilter" />
+                                    </Content>
+                                </ext:Container>
+                                <ext:Container runat="server" Layout="FitLayout">
+                                    <Content>
+                                        <ext:Button runat="server" Text="<%$Resources:Common, Go %>">
                                             <Listeners>
                                                 <Click Handler="callbackPanel.PerformCallback('1');" />
                                             </Listeners>
                                         </ext:Button>
                                     </Content>
                                 </ext:Container>
-                                       
-                        
+
+
 
                             </Items>
                         </ext:Toolbar>
@@ -108,13 +125,14 @@
                     <Content>
 
                         <dx:ASPxCallbackPanel ID="ASPxCallbackPanel1" runat="server" ClientInstanceName="callbackPanel"
-                            Width="100%" OnCallback="ASPxCallbackPanel1_Callback" OnLoad="ASPxCallbackPanel1_Load" >
+                            Width="100%" OnCallback="ASPxCallbackPanel1_Callback"  OnLoad="ASPxCallbackPanel1_Load"   ClientSideEvents-CallbackError="alertNow">
                             <PanelCollection>
                                 <dx:PanelContent runat="server">
                                     <dx:ASPxWebDocumentViewer ID="ASPxWebDocumentViewer1" runat="server" ></dx:ASPxWebDocumentViewer>
                                 </dx:PanelContent>
                             </PanelCollection>
                         </dx:ASPxCallbackPanel>
+                       
                     </Content>
                     <Items>
                         <ext:Label runat="server" Text="fff" Hidden="true" />

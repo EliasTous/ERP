@@ -14,6 +14,8 @@ namespace AionHR.Model.Employees.Profile
             get; set;
         }
 
+        public string pictureFileName { get; set; }
+
         public string esName { get; set; }
         public EmployeeName name { get; set; }
         public string positionName { get; set; }

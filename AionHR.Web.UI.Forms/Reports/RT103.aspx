@@ -20,7 +20,11 @@
     <script type="text/javascript" src="../Scripts/moment.js"></script>
     <script type="text/javascript" src="../Scripts/RT101.js?id=18"></script>
     <script type="text/javascript">
-    
+        function alertNow(s, e) {
+
+            Ext.MessageBox.alert('Error', e.message);
+            e.handled = true;
+        }
     </script>
 </head>
 <body style="background: url(Images/bg.png) repeat;">

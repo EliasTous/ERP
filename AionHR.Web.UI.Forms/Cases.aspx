@@ -363,7 +363,7 @@
                                 Hideable="false"
                                 MenuDisabled="true"
                                 Resizable="false">
-                                <Renderer handler="return editRender()+ '&nbsp&nbsp'+ deleteRender();" />
+                                <Renderer handler="alert(App.employeeControl1_fullNameLbl); return editRender()+ '&nbsp&nbsp'+ deleteRender();" />
                               
                             </ext:Column>
                             <ext:Column runat="server"
@@ -427,6 +427,7 @@
                             <EventMask ShowMask="true" />
                             <ExtraParams>
                                 <ext:Parameter Name="id" Value="record.getId()" Mode="Raw" />
+                                <ext:Parameter Name="empId" Value="record.data['employeeId']" Mode="Raw" />
                                 <ext:Parameter Name="type" Value="getCellType( this, rowIndex, cellIndex)" Mode="Raw" />
                             </ExtraParams>
 
@@ -1007,6 +1008,7 @@
                 </ext:Button>
             </Buttons>
         </ext:Window>
+  
     </form>
 </body>
 </html>

@@ -27,12 +27,10 @@ using AionHR.Model.Employees.Leaves;
 using AionHR.Model.Attendance;
 using AionHR.Services.Messaging.System;
 using AionHR.Infrastructure.Domain;
-
 namespace AionHR.Web.UI.Forms
 {
-    public partial class Employees : System.Web.UI.Page
+    public partial class EmployeeProfileControl : System.Web.UI.UserControl
     {
-
         ISystemService _systemService = ServiceLocator.Current.GetInstance<ISystemService>();
         IEmployeeService _employeeService = ServiceLocator.Current.GetInstance<IEmployeeService>();
         ICompanyStructureService _companyStructureService = ServiceLocator.Current.GetInstance<ICompanyStructureService>();
@@ -40,27 +38,58 @@ namespace AionHR.Web.UI.Forms
         ITimeAttendanceService _timeAttendanceService = ServiceLocator.Current.GetInstance<ITimeAttendanceService>();
 
 
-        protected override void InitializeCulture()
+        //protected override void InitializeCulture()
+        //{
+
+        //    bool rtl = true;
+        //    if (!_systemService.SessionHelper.CheckIfArabicSession())
+        //    {
+        //        rtl = false;
+        //        base.InitializeCulture();
+        //        LocalisationManager.Instance.SetEnglishLocalisation();
+        //        Culture = "en";
+        //    }
+
+        //    if (rtl)
+        //    {
+        //        base.InitializeCulture();
+        //        LocalisationManager.Instance.SetArabicLocalisation();
+        //        Culture = "ar-eg";
+        //    }
+
+        //}
+
+            public void Add()
         {
+            BasicInfoTab.Reset();
+            panelRecordDetails.ActiveIndex = 0;
+            picturePath.Clear();
+            imgControl.ImageUrl = "";
+            InitCombos(true);
+            CurrentEmployeePhotoName.Text = "Images/empPhoto.jpg";
+            CurrentEmployee.Text = "";
+            this.EditRecordWindow.Title = Resources.Common.AddNewRecord;
 
-            bool rtl = true;
-            if (!_systemService.SessionHelper.CheckIfArabicSession())
-            {
-                rtl = false;
-                base.InitializeCulture();
-                LocalisationManager.Instance.SetEnglishLocalisation();
-                Culture = "en";
-            }
-
-            if (rtl)
-            {
-                base.InitializeCulture();
-                LocalisationManager.Instance.SetArabicLocalisation();
-                Culture = "ar-eg";
-            }
-
+            // timeZoneCombo.Select(_systemService.SessionHelper.GetTimeZone());
+            this.EditRecordWindow.Show();
         }
+        public void Update(string id)
+        {
+            imgControl.Src = "Images\\empPhoto.jpg";
+            //Step 1 : get the object from the Web Service 
+            FillProfileInfo(id.ToString());
+            CurrentEmployee.Text = id.ToString();
+            FillLeftPanel();
 
+
+            //employeePanel.Loader.Url = "EmployeePages/EmployeeProfile.aspx?employeeId="+CurrentEmployee.Text;
+            //employeePanel.Loader.LoadContent();
+
+            panelRecordDetails.ActiveIndex = 0;
+            //timeZoneCombo.Select(response.result.timeZone.ToString());
+            this.EditRecordWindow.Title = Resources.Common.EditWindowsTitle;
+            this.EditRecordWindow.Show();
+        }
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -69,45 +98,16 @@ namespace AionHR.Web.UI.Forms
             if (!X.IsAjaxRequest && !IsPostBack)
             {
 
-                SetExtLanguage();
+                //SetExtLanguage();
                 HideShowButtons();
-                HideShowColumns();
-                ColHireDate.Format = _systemService.SessionHelper.GetDateformat();
+                //HideShowColumns();
 
-                inactivePref.Select("0");
                 CurrentClassId.Text = ClassId.EPEM.ToString();
-                InitFilters();
-                BuildQuickViewTemplate();
+
                 hireDate.Format = _systemService.SessionHelper.GetDateformat();
             }
 
 
-        }
-
-        private void BuildQuickViewTemplate()
-        {
-            string html = "<table width='50%' style='font-weight:bold;'><tr><td> ";
-            html += GetLocalResourceObject("FieldReportsTo").ToString() + " {reportsTo}</td><td>";
-            html += GetLocalResourceObject("eosBalanceTitle").ToString() + " {eosBalance}</td></tr><tr><td>";
-
-            html += GetLocalResourceObject("lastLeaveStartDateTitle").ToString() + " {lastLeave}</td><td>";
-            html += GetLocalResourceObject("paidLeavesYTDTitle").ToString() + " {paidLeavesYTD}</td></tr><tr><td>";
-
-            html += GetLocalResourceObject("leavesBalanceTitle").ToString() + " {leavesBalance}</td><td>";
-            html += GetLocalResourceObject("allowedLeaveYtdTitle").ToString() + " {allowedLeaveYtd}</td></tr></table>";
-            RowExpander1.Template.Html = html;
-        }
-
-        private void InitFilters()
-        {
-            filterBranchStore.DataSource = GetBranches();
-            filterBranchStore.DataBind();
-            filterDepartmentStore.DataSource = GetDepartments();
-            filterDepartmentStore.DataBind();
-            filterPositionStore.DataSource = GetPositions();
-            filterPositionStore.DataBind();
-            filterDivisionStore.DataSource = GetDivisions();
-            filterDivisionStore.DataBind();
         }
 
 
@@ -131,23 +131,20 @@ namespace AionHR.Web.UI.Forms
         /// <summary>
         /// hiding uncessary column in the grid. 
         /// </summary>
-        private void HideShowColumns()
-        {
-            this.colAttach.Visible = false;
-        }
 
 
-        private void SetExtLanguage()
-        {
-            bool rtl = _systemService.SessionHelper.CheckIfArabicSession();
-            if (rtl)
-            {
-                this.ResourceManager1.RTL = true;
-                this.Viewport1.RTL = true;
-                BuildQuickViewTemplate();
-            }
-            pRTL.Text = rtl.ToString();
-        }
+
+        //private void SetExtLanguage()
+        //{
+        //    bool rtl = _systemService.SessionHelper.CheckIfArabicSession();
+        //    if (rtl)
+        //    {
+        //        this.ResourceManager1.RTL = true;
+        //        this.Viewport1.RTL = true;
+        //        BuildQuickViewTemplate();
+        //    }
+        //    pRTL.Text = rtl.ToString();
+        //}
 
 
 
@@ -157,12 +154,10 @@ namespace AionHR.Web.UI.Forms
 
             int id = Convert.ToInt32(e.ExtraParams["id"]);
             string type = e.ExtraParams["type"];
-            
+
             switch (type)
             {
                 case "imgEdit":
-                   
-                    
                     imgControl.Src = "Images\\empPhoto.jpg";
                     //Step 1 : get the object from the Web Service 
                     FillProfileInfo(id.ToString());
@@ -337,7 +332,7 @@ namespace AionHR.Web.UI.Forms
                     X.Msg.Alert(Resources.Common.Error, post.Summary).Show();
                     return;
                 }
-                Store1.Remove(index);
+                //Store1.Remove(index);
 
                 //Step 3 : Showing a notification for the user 
                 Notification.Show(new NotificationConfig
@@ -377,70 +372,11 @@ namespace AionHR.Web.UI.Forms
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        protected void btnDeleteAll(object sender, DirectEventArgs e)
-        {
-
-
-            RowSelectionModel sm = this.GridPanel1.GetSelectionModel() as RowSelectionModel;
-            if (sm.SelectedRows.Count() <= 0)
-                return;
-            X.Msg.Confirm(Resources.Common.Confirmation, Resources.Common.DeleteManyRecord, new MessageBoxButtonsConfig
-            {
-                //Calling DoYes the direct method for removing selecte record
-                Yes = new MessageBoxButtonConfig
-                {
-                    Handler = "App.direct.DoYes()",
-                    Text = Resources.Common.Yes
-                },
-                No = new MessageBoxButtonConfig
-                {
-                    Text = Resources.Common.No
-                }
-
-            }).Show();
-        }
-
+  
         /// <summary>
         /// Direct method for removing multiple records
         /// </summary>
-        [DirectMethod(ShowMask = true)]
-        public void DoYes()
-        {
-            try
-            {
-                RowSelectionModel sm = this.GridPanel1.GetSelectionModel() as RowSelectionModel;
-
-                foreach (SelectedRow row in sm.SelectedRows)
-                {
-                    //Step 1 :Getting the id of the selected record: it maybe string 
-                    int id = int.Parse(row.RecordID);
-
-
-                    //Step 2 : removing the record from the store
-                    //To do add code here 
-
-                    //Step 3 :  remove the record from the store
-                    Store1.Remove(id);
-
-                }
-                //Showing successful notification
-                Notification.Show(new NotificationConfig
-                {
-                    Title = Resources.Common.Notification,
-                    Icon = Icon.Information,
-                    Html = Resources.Common.ManyRecordDeletedSucc
-                });
-
-            }
-            catch (Exception ex)
-            {
-                //Alert in case of any failure
-                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorDeletingRecord).Show();
-
-            }
-        }
-
+        
         /// <summary>
         /// Adding new record
         /// </summary>
@@ -463,81 +399,9 @@ namespace AionHR.Web.UI.Forms
             this.EditRecordWindow.Show();
         }
 
-        private EmployeeListRequest GetListRequest(StoreReadDataEventArgs e)
-        {
-            EmployeeListRequest empRequest = new EmployeeListRequest();
-            if (!string.IsNullOrEmpty(inactivePref.Text) && inactivePref.Value.ToString() != "")
-            {
-                empRequest.IncludeIsInactive = Convert.ToInt32(inactivePref.Value);
-            }
-            else
-            {
-                empRequest.IncludeIsInactive = 2;
-            }
-
-            if (!string.IsNullOrEmpty(filterDepartment.Text) && filterDepartment.Value.ToString() != "")
-            {
-                empRequest.DepartmentId = (filterDepartment.Value).ToString();
-            }
-            else
-            {
-                empRequest.DepartmentId = "0";
-            }
-            if (!string.IsNullOrEmpty(filterBranch.Text) && filterBranch.Value.ToString() != "")
-            {
-                empRequest.BranchId = (filterBranch.Value).ToString();
-            }
-            else
-            {
-                empRequest.BranchId = "0";
-            }
-
-            if (!string.IsNullOrEmpty(filterPosition.Text) && filterPosition.Value.ToString() != "")
-            {
-                empRequest.PositionId = (filterPosition.Value).ToString();
-            }
-            else
-            {
-                empRequest.PositionId = "0";
-            }
-
-            if (e.Sort[0].Property == "name.fullName")
-                empRequest.SortBy = GetNameFormat();
-            else if (e.Sort[0].Property == "name.reference")
-                empRequest.SortBy = "reference";
-            else
-                empRequest.SortBy = e.Sort[0].Property;
-            empRequest.Size = e.Limit.ToString();
-            empRequest.StartAt = e.Start.ToString();
-            empRequest.Filter = searchTrigger.Text;
-
-            return empRequest;
-        }
-
-        protected void Store1_RefreshData(object sender, StoreReadDataEventArgs e)
-        {
-
-            //GEtting the filter from the page
-
-            EmployeeListRequest empRequest = GetListRequest(e);
 
 
 
-
-
-            ListResponse<Employee> emps = _employeeService.GetAll<Employee>(empRequest);
-            if (!emps.Success)
-            {
-                X.Msg.Alert(Resources.Common.Error, emps.Summary).Show();
-                return;
-            }
-            e.Total = emps.count;
-            if (emps.Items != null)
-            {
-                this.Store1.DataSource = emps.Items;
-                this.Store1.DataBind();
-            }
-        }
 
         private void FillNationality()
         {
@@ -751,7 +615,7 @@ namespace AionHR.Web.UI.Forms
                             b.name = response.result.name;
                         }
                         //Add this record to the store 
-                        this.Store1.Insert(0, b);
+                        //this.Store1.Insert(0, b);
 
 
                         CurrentEmployee.Text = req.RecordID.ToString();
@@ -761,9 +625,9 @@ namespace AionHR.Web.UI.Forms
                         InitCombos(false);
                         FillProfileInfo(b.recordId);
                         recordId.Text = b.recordId;
-                        RowSelectionModel sm = this.GridPanel1.GetSelectionModel() as RowSelectionModel;
-                        sm.DeselectAll();
-                        sm.Select(b.recordId.ToString());
+                        //RowSelectionModel sm = this.GridPanel1.GetSelectionModel() as RowSelectionModel;
+                        //sm.DeselectAll();
+                        //sm.Select(b.recordId.ToString());
 
                         //Display successful notification
                         Notification.Show(new NotificationConfig
@@ -821,18 +685,18 @@ namespace AionHR.Web.UI.Forms
                             b.pictureUrl = response.result.pictureUrl + "?x=" + DateTime.Now;
                             b.name = response.result.name;
                         }
-                        ModelProxy record = this.Store1.GetById(index);
+                        //ModelProxy record = this.Store1.GetById(index);
                         //BasicInfoTab.UpdateRecord(record);
                         //record.Set("branchName", b.branchName);
                         //record.Set("departmentName", b.departmentName);
                         //record.Set("positionName", b.positionName);
                         //record.Set("divisionName", b.divisionName);
-                        record.Set("name", b.name);
-                        record.Set("reference", b.reference);
-                        record.Set("pictureUrl", b.pictureUrl);
-                        record.Set("hireDate", b.hireDate.Value.ToShortDateString());
+                        //record.Set("name", b.name);
+                        //record.Set("reference", b.reference);
+                        //record.Set("pictureUrl", b.pictureUrl);
+                        //record.Set("hireDate", b.hireDate.Value.ToShortDateString());
 
-                        record.Commit();
+                        //record.Commit();
                         Notification.Show(new NotificationConfig
                         {
                             Title = Resources.Common.Notification,
@@ -879,7 +743,7 @@ namespace AionHR.Web.UI.Forms
             else
             {
                 terminationWindow.Close();
-                Store1.Reload();
+                //Store1.Reload();
             }
 
 
@@ -987,15 +851,15 @@ namespace AionHR.Web.UI.Forms
 
             //here
             X.Call("InitCropper", forSummary.pictureUrl + "?x=" + DateTime.Now.Ticks);
-            
+
             CurrentEmployeePhotoName.Text = forSummary.pictureUrl;
-            ModelProxy record = Store1.GetById(CurrentEmployee.Text);
-            record.Set("pictureUrl", imgControl.ImageUrl);
-            record.Set("departmentName", forSummary.departmentName);
-            record.Set("branchName", forSummary.branchName);
-            record.Set("divisionName", forSummary.divisionName);
-            record.Set("positionName", forSummary.positionName);
-            record.Commit();
+            //ModelProxy record = Store1.GetById(CurrentEmployee.Text);
+            //record.Set("pictureUrl", imgControl.ImageUrl);
+            //record.Set("departmentName", forSummary.departmentName);
+            //record.Set("branchName", forSummary.branchName);
+            //record.Set("divisionName", forSummary.divisionName);
+            //record.Set("positionName", forSummary.positionName);
+            //record.Commit();
             img.Visible = true;
         }
 
@@ -1209,7 +1073,7 @@ namespace AionHR.Web.UI.Forms
             }
             trStore.DataSource = resp.Items;
             trStore.DataBind();
-            
+
         }
 
         [DirectMethod]
@@ -1252,7 +1116,7 @@ namespace AionHR.Web.UI.Forms
                     X.Msg.Alert(Resources.Common.Error, post.Summary).Show();
                     return;
                 }
-                Store1.Remove(index);
+               // Store1.Remove(index);
 
                 //Step 3 : Showing a notification for the user 
                 Notification.Show(new NotificationConfig
