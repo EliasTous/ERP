@@ -117,31 +117,118 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="xrLabel1.Text" xml:space="preserve">
-    <value>المستخدم</value>
+  <data name="BasicInfoTabEditWindowTitle" xml:space="preserve">
+    <value>Leave Info</value>
   </data>
-  <data name="xrLabel11.Text" xml:space="preserve">
-    <value>النوع</value>
+  <data name="ButtonClear" xml:space="preserve">
+    <value>Clear</value>
   </data>
-  <data name="xrLabel19.Text" xml:space="preserve">
-    <value>سجل المراقبة</value>
+  <data name="EditWindowsTitle" xml:space="preserve">
+    <value>Edit Leave Request</value>
   </data>
-  <data name="xrLabel3.Text" xml:space="preserve">
-    <value>النوع</value>
+  <data name="ErrorNoCalendar" xml:space="preserve">
+    <value>Error: You can't create a leave without having at least one calendar</value>
   </data>
-  <data name="xrLabel4.Text" xml:space="preserve">
-    <value>لم يتم العثور على سجلات</value>
+  <data name="ErrorSelectDate" xml:space="preserve">
+    <value>Please Select a Valid Date Range First</value>
   </data>
-  <data name="xrLabel5.Text" xml:space="preserve">
-    <value>المفتاح</value>
+  <data name="ErrorSelectEmployee" xml:space="preserve">
+    <value>Please Select an Employee First</value>
   </data>
-  <data name="xrLabel6.Text" xml:space="preserve">
-    <value>التاريخ</value>
+  <data name="FieldAll" xml:space="preserve">
+    <value>All</value>
   </data>
-  <data name="xrLabel8.Text" xml:space="preserve">
-    <value>الجدول</value>
+  <data name="FieldApproved" xml:space="preserve">
+    <value>Approved</value>
   </data>
-  <data name="xrLabel9.Text" xml:space="preserve">
-    <value>الجدول</value>
+  <data name="FieldBranch" xml:space="preserve">
+    <value>Branch</value>
+  </data>
+  <data name="FieldDayId" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="FieldDestination" xml:space="preserve">
+    <value>Destination</value>
+  </data>
+  <data name="FieldDOW" xml:space="preserve">
+    <value>Day</value>
+  </data>
+  <data name="FieldEmployeeName" xml:space="preserve">
+    <value>Employee Name</value>
+  </data>
+  <data name="FieldEndDate" xml:space="preserve">
+    <value>End Date</value>
+  </data>
+  <data name="FieldIsPaid" xml:space="preserve">
+    <value>Is Paid?</value>
+  </data>
+  <data name="FieldJustification" xml:space="preserve">
+    <value>Justification</value>
+  </data>
+  <data name="FieldLeaveHours" xml:space="preserve">
+    <value>Leave Hours</value>
+  </data>
+  <data name="FieldLtName" xml:space="preserve">
+    <value>Leave Type Name</value>
+  </data>
+  <data name="FieldPending" xml:space="preserve">
+    <value>Pending</value>
+  </data>
+  <data name="FieldRecordId" xml:space="preserve">
+    <value>Record ID</value>
+  </data>
+  <data name="FieldRefused" xml:space="preserve">
+    <value>Refused</value>
+  </data>
+  <data name="FieldReturnDate" xml:space="preserve">
+    <value>Return Date</value>
+  </data>
+  <data name="FieldStartDate" xml:space="preserve">
+    <value>Start Date</value>
+  </data>
+  <data name="FieldStatus" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="FieldUsed" xml:space="preserve">
+    <value>Used</value>
+  </data>
+  <data name="FieldWorkingHours" xml:space="preserve">
+    <value>Working Hours</value>
+  </data>
+  <data name="FilterBranch" xml:space="preserve">
+    <value>Select a Branch</value>
+  </data>
+  <data name="FilterDepartment" xml:space="preserve">
+    <value>Select a Department</value>
+  </data>
+  <data name="FilterDivision" xml:space="preserve">
+    <value>Select a Division</value>
+  </data>
+  <data name="FilterEmployee" xml:space="preserve">
+    <value>Select an Employee</value>
+  </data>
+  <data name="FilterOpen" xml:space="preserve">
+    <value>Show Open Requests</value>
+  </data>
+  <data name="FilterStatus" xml:space="preserve">
+    <value>Select a Status</value>
+  </data>
+  <data name="LeaveDaysWindowTitle" xml:space="preserve">
+    <value>Leave Days</value>
+  </data>
+  <data name="LeaveEndWindowTitle" xml:space="preserve">
+    <value>Leave Return</value>
+  </data>
+  <data name="LeaveInfo" xml:space="preserve">
+    <value>Leave Info</value>
+  </data>
+  <data name="ReturnInfo" xml:space="preserve">
+    <value>Return Info</value>
+  </data>
+  <data name="TotalText" xml:space="preserve">
+    <value>Total</value>
+  </data>
+  <data name="WindowTitle" xml:space="preserve">
+    <value>Leave Requests</value>
   </data>
 </root>

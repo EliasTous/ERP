@@ -10,18 +10,22 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <script type="text/javascript">
-        
-    </script>
+    <link href='http://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
 
     <link rel="stylesheet" type="text/css" href="CSS/Header.css" />
     <link rel="stylesheet" type="text/css" href="CSS/Common.css" />
-
+   <%-- <script src="Scripts/jquery-new.js"></script>
+    <link href="CSS/PasswordStrength.css?id=3" rel="stylesheet" />
+    <script src="Scripts/strength.js"></script>--%>
     <style type="text/css">
         .error {
             color: red;
         }
     </style>
+    
+    <script type="text/javascript">
+       
+    </script>
     <title>
         <asp:Literal ID="Literal4" runat="server" Text="<%$ Resources:Common , ApplicationTitle%>" /></title>
 </head>

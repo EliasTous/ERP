@@ -144,17 +144,19 @@ namespace AionHR.Web.UI.Forms
                 DayPilotScheduler1.DataIdField = "id";
                 DayPilotScheduler1.DataTextField = "name";
                 DayPilotScheduler1.DataResourceField = "resource";
-                DateFormat.Text = _systemService.SessionHelper.GetDateformat().ToUpper();
                 UpdateCal(CurrentMonth.Text, CurrentYear.Text, Viewport1.Width.Value.ToString());
-                DateFormat.Text = _systemService.SessionHelper.GetDateformat().ToUpper();
-                startDate.Format = endDate.Format = _systemService.SessionHelper.GetDateformat();
 
             }
 
 
         }
 
-
+        protected void Page_Init(object sender, EventArgs e)
+        {
+            leaveRequest1.RefreshLeaveCalendarCallBack = new Forms.Controls.LeaveRequestControl.RefreshParent(RefreshCalendar);
+            leaveRequest1.Store1 = null;
+            leaveRequest1.GrigPanel1 = null;
+        }
 
         /// <summary>
         /// the detailed tabs for the edit form. I put two tabs by default so hide unecessary or add addional
@@ -168,16 +170,7 @@ namespace AionHR.Web.UI.Forms
         {
 
             //Reset all values of the relative object
-            BasicInfoTab.Reset();
-
-            FillLeaveType();
-            this.EditRecordWindow.Title = Resources.Common.AddNewRecord;
-            setNormal();
-            panelRecordDetails.ActiveTabIndex = 0;
-            leaveDaysStore.DataSource = new List<LeaveDay>();
-            leaveDaysStore.DataBind();
-            status.Select(0);
-            this.EditRecordWindow.Show();
+            leaveRequest1.Add();
         }
 
         private void HideShowButtons()
@@ -325,7 +318,11 @@ namespace AionHR.Web.UI.Forms
             branchStore.DataBind();
         }
 
+        private void RefreshCalendar()
+        {
 
+            X.Call("refresh");
+        }
 
         [DirectMethod]
         public string CheckSession()
@@ -409,15 +406,7 @@ namespace AionHR.Web.UI.Forms
         {
             return _systemService.SessionHelper.Get("nameFormat").ToString();
         }
-        private void setApproved(bool disabled)
-        {
-            LeaveDaysGrid.Disabled = disabled;
-            startDate.Disabled = disabled;
-            endDate.Disabled = employeeId.Disabled = justification.Disabled = destination.Disabled = isPaid.Disabled = ltId.Disabled = status.Disabled = disabled;
-            returnDate.Disabled = !disabled;
-            approved.Text = disabled.ToString();
-            sumHours.Disabled = disabled;
-        }
+       
         protected void PoPuP(object sender, DirectEventArgs e)
         {
 
@@ -428,67 +417,7 @@ namespace AionHR.Web.UI.Forms
             switch (type)
             {
                 case "imgEdit":
-                    //Step 1 : get the object from the Web Service 
-                    RecordRequest r = new RecordRequest();
-                    r.RecordID = id;
-                    CurrentLeave.Text = r.RecordID;
-
-                    RecordResponse<LeaveRequest> response = _leaveManagementService.ChildGetRecord<LeaveRequest>(r);
-                    if (!response.Success)
-                    {
-                        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                        X.Msg.Alert(Resources.Common.Error, response.Summary).Show();
-                        return;
-                    }
-                    //Step 2 : call setvalues with the retrieved object
-                    this.BasicInfoTab.SetValues(response.result);
-
-
-                    FillLeaveType();
-                    ltId.Select(response.result.ltId.ToString());
-                    StoredLeaveChanged.Text = "0";
-                    if (response.result.employeeId != 0)
-                    {
-
-                        employeeId.GetStore().Add(new object[]
-                           {
-                                new
-                                {
-                                    recordId = response.result.employeeId,
-                                    fullName =response.result.employeeName.fullName
-                                }
-                           });
-                        employeeId.SetValue(response.result.employeeId);
-
-                    }
-                    LeaveDayListRequest req = new LeaveDayListRequest();
-                    req.LeaveId = CurrentLeave.Text;
-                    ListResponse<LeaveDay> resp = _leaveManagementService.ChildGetAll<LeaveDay>(req);
-                    if (!resp.Success)
-                    {
-
-                    }
-
-                    leaveDaysStore.DataSource = resp.Items;
-                    resp.Items.ForEach(x => x.dow = (short)DateTime.ParseExact(x.dayId, "yyyyMMdd", new CultureInfo("en")).DayOfWeek);
-                    leaveDaysStore.DataBind();
-                    LeaveChanged.Text = "0";
-                    X.Call("CalcSum");
-                    panelRecordDetails.ActiveTabIndex = 0;
-
-                    setNormal();
-                    if (response.result.status == 2)
-
-                        setApproved(true);
-
-                    else if (response.result.status == 3)
-                        setUsed(true);
-                    else
-                    { setNormal(); }
-
-
-                    this.EditRecordWindow.Title = Resources.Common.EditWindowsTitle;
-                    this.EditRecordWindow.Show();
+                    leaveRequest1.Update(id);
                     break;
 
                 case "imgDelete":
@@ -519,89 +448,11 @@ namespace AionHR.Web.UI.Forms
 
         }
 
-        private void setNormal()
-        {
-            LeaveDaysGrid.Disabled = false;
-            startDate.Disabled = false;
-            endDate.Disabled = employeeId.Disabled = justification.Disabled = destination.Disabled = isPaid.Disabled = ltId.Disabled = status.Disabled = false;
-            returnDate.Disabled = true;
-            sumHours.Disabled = false;
-            approved.Text = "False";
-            SaveButton.Disabled = false;
-        }
-
-        private void setUsed(bool disabled)
-        {
-            LeaveDaysGrid.Disabled = disabled;
-            startDate.Disabled = disabled;
-            endDate.Disabled = employeeId.Disabled = justification.Disabled = destination.Disabled = isPaid.Disabled = ltId.Disabled = status.Disabled = disabled;
-            returnDate.Disabled = disabled;
-            SaveButton.Disabled = disabled;
-            sumHours.Disabled = disabled;
-        }
+       
         [DirectMethod]
         public void HandleClick(string id)
         {
-            RecordRequest r = new RecordRequest();
-            r.RecordID = id;
-            CurrentLeave.Text = r.RecordID;
-
-            RecordResponse<LeaveRequest> response = _leaveManagementService.ChildGetRecord<LeaveRequest>(r);
-            if (!response.Success)
-            {
-                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, response.Summary).Show();
-                return;
-            }
-            //Step 2 : call setvalues with the retrieved object
-            this.BasicInfoTab.SetValues(response.result);
-
-
-            FillLeaveType();
-            ltId.Select(response.result.ltId.ToString());
-            StoredLeaveChanged.Text = "0";
-            if (response.result.employeeId != 0)
-            {
-
-                employeeId.GetStore().Add(new object[]
-                   {
-                                new
-                                {
-                                    recordId = response.result.employeeId,
-                                    fullName =response.result.employeeName.fullName
-                                }
-                   });
-                employeeId.SetValue(response.result.employeeId);
-
-            }
-            LeaveDayListRequest req = new LeaveDayListRequest();
-            req.LeaveId = CurrentLeave.Text;
-            ListResponse<LeaveDay> resp = _leaveManagementService.ChildGetAll<LeaveDay>(req);
-            if (!resp.Success)
-            {
-
-            }
-
-            leaveDaysStore.DataSource = resp.Items;
-            resp.Items.ForEach(x => x.dow = (short)DateTime.ParseExact(x.dayId, "yyyyMMdd", new CultureInfo("en")).DayOfWeek);
-            leaveDaysStore.DataBind();
-            LeaveChanged.Text = "0";
-            X.Call("CalcSum");
-            panelRecordDetails.ActiveTabIndex = 0;
-
-            setNormal();
-            if (response.result.status == 2)
-
-                setApproved(true);
-
-            else if (response.result.status == 3||response.result.status == -1)
-                setUsed(true);
-            else
-            { setNormal(); }
-
-
-            this.EditRecordWindow.Title = Resources.Common.EditWindowsTitle;
-            this.EditRecordWindow.Show();
+            leaveRequest1.Update(id);
         }
         protected void DayPilotScheduler1_EventClick(object sender, DayPilot.Web.Ui.Events.EventClickEventArgs e)
         {
@@ -609,273 +460,12 @@ namespace AionHR.Web.UI.Forms
             r.RecordID = e.Id;
 
 
-            RecordResponse<LeaveRequest> response = _leaveManagementService.ChildGetRecord<LeaveRequest>(r);
-            if (!response.Success)
-            {
-                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, response.Summary).Show();
-                return;
-            }
-            //Step 2 : call setvalues with the retrieved object
-            this.BasicInfoTab.SetValues(response.result);
-
-            FillLeaveType();
-            ltId.Select(response.result.ltId.ToString());
-            if (response.result.employeeId != 0)
-            {
-
-                employeeId.GetStore().Add(new object[]
-                   {
-                                new
-                                {
-                                    recordId = response.result.employeeId,
-                                    fullName =response.result.employeeName.fullName
-                                }
-                   });
-                employeeId.SetValue(response.result.employeeId);
-
-            }
-
-            this.EditRecordWindow.Title = Resources.Common.EditWindowsTitle;
-            this.EditRecordWindow.Show();
+            leaveRequest1.Update(e.Id);
 
 
         }
 
-        public void FillLeaveType()
-        {
-
-            ListRequest req = new ListRequest();
-
-            ListResponse<LeaveType> response = _leaveManagementService.ChildGetAll<LeaveType>(req);
-            if (!response.Success)
-            {
-                X.Msg.Alert(Resources.Common.Error, response.Summary).Show();
-                return;
-            }
-            ltStore.DataSource = response.Items;
-            ltStore.DataBind();
-
-        }
-
-        protected void addLeaveType(object sender, DirectEventArgs e)
-        {
-            if (string.IsNullOrEmpty(ltId.Text))
-                return;
-            LeaveType dept = new LeaveType();
-            dept.name = ltId.Text;
-
-            PostRequest<LeaveType> depReq = new PostRequest<LeaveType>();
-            depReq.entity = dept;
-            PostResponse<LeaveType> response = _leaveManagementService.ChildAddOrUpdate<LeaveType>(depReq);
-            if (response.Success)
-            {
-                dept.recordId = response.recordId;
-                FillLeaveType();
-                ltId.Select(dept.recordId);
-            }
-            else
-            {
-                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, response.Summary).Show();
-                return;
-            }
-
-        }
-        private List<LeaveDay> GenerateLeaveDays(string encoded)
-        {
-            List<LeaveDay> days = JsonConvert.DeserializeObject<List<LeaveDay>>(encoded);
-
-            return days;
-        }
-        protected void SaveNewRecord(object sender, DirectEventArgs e)
-        {
-
-
-            //Getting the id to check if it is an Add or an edit as they are managed within the same form.
-
-            string obj = e.ExtraParams["values"];
-            LeaveRequest b = JsonConvert.DeserializeObject<LeaveRequest>(obj);
-
-            string id = e.ExtraParams["id"];
-            // Define the object to add or edit as null
-            if (!b.isPaid.HasValue)
-                b.isPaid = false;
-            b.employeeName = new EmployeeName();
-            if (employeeId.SelectedItem != null)
-
-                b.employeeName.fullName = employeeId.SelectedItem.Text;
-            if (ltId.SelectedItem != null)
-
-                b.ltName = ltId.SelectedItem.Text;
-
-            List<LeaveDay> days = GenerateLeaveDays(e.ExtraParams["days"]);
-            if (days.Count == 0)
-            {
-                days = GenerateDefaultLeaveDays();
-            }
-            if (string.IsNullOrEmpty(id))
-            {
-
-                try
-                {
-                    //New Mode
-                    //Step 1 : Fill The object and insert in the store 
-                    PostRequest<LeaveRequest> request = new PostRequest<LeaveRequest>();
-
-                    request.entity = b;
-                    PostResponse<LeaveRequest> r = _leaveManagementService.ChildAddOrUpdate<LeaveRequest>(request);
-
-
-                    //check if the insert failed
-                    if (!r.Success)//it maybe be another condition
-                    {
-                        //Show an error saving...
-                        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                        X.Msg.Alert(Resources.Common.Error, r.Summary).Show();
-                        return;
-                    }
-                    else
-                    {
-                        days.ForEach(d => d.leaveId = Convert.ToInt32(b.recordId));
-                        AddDays(days);
-
-                        //Display successful notification
-                        Notification.Show(new NotificationConfig
-                        {
-                            Title = Resources.Common.Notification,
-                            Icon = Icon.Information,
-                            Html = Resources.Common.RecordSavingSucc
-                        });
-
-                        UpdateCal(CurrentMonth.Text, CurrentYear.Text, Viewport1.Width.Value.ToString());
-                        this.EditRecordWindow.Close();
-
-
-
-
-                    }
-                }
-                catch (Exception ex)
-                {
-                    //Error exception displaying a messsage box
-                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorSavingRecord).Show();
-                }
-
-
-            }
-            else
-            {
-                //Update Mode
-
-                try
-                {
-                    if (approved.Text == "True")
-                    {
-
-
-                        RecordRequest rec = new RecordRequest();
-                        rec.RecordID = id;
-                        RecordResponse<LeaveRequest> recordResponse = _leaveManagementService.ChildGetRecord<LeaveRequest>(rec);
-                        if (!recordResponse.Success)
-                        {
-                            X.Msg.Alert(Resources.Common.Error, recordResponse.Summary).Show();
-                            return;
-                        }
-                        PostRequest<LeaveRequest> postReq = new PostRequest<LeaveRequest>();
-                        postReq.entity = recordResponse.result;
-                        postReq.entity.returnDate = b.returnDate;
-                        postReq.entity.status = 3;
-                        PostResponse<LeaveRequest> resp = _leaveManagementService.ChildAddOrUpdate<LeaveRequest>(postReq);
-                        if (!resp.Success)
-                        {
-                            X.Msg.Alert(Resources.Common.Error, resp.Summary).Show();
-                            return;
-                        }
-                        Notification.Show(new NotificationConfig
-                        {
-                            Title = Resources.Common.Notification,
-                            Icon = Icon.Information,
-                            Html = Resources.Common.RecordUpdatedSucc
-                        });
-                        
-                        UpdateCal(CurrentMonth.Text, CurrentYear.Text, Viewport1.Width.ToString());
-                        this.EditRecordWindow.Close();
-                        return;
-                    }
-                    //getting the id of the record
-                    PostRequest<LeaveRequest> request = new PostRequest<LeaveRequest>();
-                    request.entity = b;
-                    PostResponse<LeaveRequest> r = _leaveManagementService.ChildAddOrUpdate<LeaveRequest>(request);                      //Step 1 Selecting the object or building up the object for update purpose
-
-                    //Step 2 : saving to store
-
-                    //Step 3 :  Check if request fails
-                    if (!r.Success)//it maybe another check
-                    {
-                        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                        X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorUpdatingRecord).Show();
-                        return;
-                    }
-                    else
-                    {
-
-
-                        var deleteDesponse = _leaveManagementService.DeleteLeaveDays(Convert.ToInt32(b.recordId));
-                        if (!deleteDesponse.Success)//it maybe another check
-                        {
-                            X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                            X.Msg.Alert(Resources.Common.Error, deleteDesponse.Summary).Show();
-                            return;
-                        }
-                        days.ForEach(x => x.leaveId = Convert.ToInt32(b.recordId));
-                        AddDays(days);
-                        Notification.Show(new NotificationConfig
-                        {
-                            Title = Resources.Common.Notification,
-                            Icon = Icon.Information,
-                            Html = Resources.Common.RecordUpdatedSucc
-                        });
-                        UpdateCal(CurrentMonth.Text, CurrentYear.Text, Viewport1.Width.ToString());
-                        this.EditRecordWindow.Close();
-
-
-                    }
-
-                }
-                catch (Exception ex)
-                {
-                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorUpdatingRecord).Show();
-                }
-            }
-        }
-        private List<LeaveDay> GenerateDefaultLeaveDays()
-        {
-            string startDay = startDate.SelectedDate.ToString("yyyyMMdd");
-            string endDay = endDate.SelectedDate.ToString("yyyyMMdd");
-
-            LeaveCalendarDayListRequest req = new LeaveCalendarDayListRequest();
-            req.StartDayId = startDay;
-            req.EndDayId = endDay;
-            req.IsWorkingDay = true;
-            int bulk;
-
-            req.CaId = GetEmployeeCalendar(employeeId.Value.ToString()).ToString();
-            if (req.CaId == "0")
-            {
-
-                X.Msg.Alert(Resources.Common.Error, GetLocalResourceObject("ErrorNoCalendar").ToString()).Show();
-                return new List<LeaveDay>();
-
-            }
-            ListResponse<LeaveCalendarDay> days = _timeAttendanceService.ChildGetAll<LeaveCalendarDay>(req);
-
-            List<LeaveDay> leaveDays = new List<LeaveDay>();
-            days.Items.ForEach(x => leaveDays.Add(new LeaveDay() { dow = (short)DateTime.ParseExact(x.dayId, "yyyyMMdd", new CultureInfo("en")).DayOfWeek, dayId = x.dayId, workingHours = x.workingHours, leaveHours = x.workingHours }));
-            return leaveDays;
-        }
+ 
         protected void DayPilotScheduler1_BeforeEventRender(object sender, DayPilot.Web.Ui.Events.Scheduler.BeforeEventRenderEventArgs e)
         {
             e.BackgroundColor = (string)e.DataItem["backColor"];
@@ -892,206 +482,12 @@ namespace AionHR.Web.UI.Forms
         }
 
 
-        private int GetEmployeeCalendar(string empId)
-        {
-            RecordRequest req = new RecordRequest();
-            req.RecordID = empId;
-            RecordResponse<Employee> resp = _employeeService.Get<Employee>(req);
-            if (!resp.Success)
-            {
-                X.Msg.Alert(Resources.Common.Error, resp.Summary).Show();
-                return 0;
-            }
-            if (!resp.result.caId.HasValue)
-                return _systemService.SessionHelper.GetCalendarId();
-            return resp.result.caId.Value;
-        }
-        [DirectMethod]
-        public void MarkLeaveChanged(object sender, DirectEventArgs e)
-        {
-            DateTime startDate, endDate;
-            try
-            {
-                startDate = DateTime.Parse(e.ExtraParams["startDate"]);
-                endDate = DateTime.Parse(e.ExtraParams["endDate"]);
-                LeaveChanged.Text = "1";
-            }
-            catch
-            {
-                return;
-            }
-            if (startDate == DateTime.MinValue || endDate == DateTime.MinValue)
-            {
-
-                return;
-            }
-            string startDay = startDate.ToString("yyyyMMdd");
-            string endDay = endDate.ToString("yyyyMMdd");
-
-            LeaveCalendarDayListRequest req = new LeaveCalendarDayListRequest();
-            req.StartDayId = startDay;
-            req.EndDayId = endDay;
-            req.IsWorkingDay = true;
-            int bulk;
-            if (string.IsNullOrEmpty(employeeId.Value.ToString()) || !int.TryParse(employeeId.Value.ToString(), out bulk))
-            {
-
-                return;
-            }
-            req.CaId = GetEmployeeCalendar(employeeId.Value.ToString()).ToString();
-            if (req.CaId == "0")
-            {
-
-                X.Msg.Alert(Resources.Common.Error, GetLocalResourceObject("ErrorNoCalendar").ToString()).Show();
-                return;
-
-            }
-            ListResponse<LeaveCalendarDay> days = _timeAttendanceService.ChildGetAll<LeaveCalendarDay>(req);
-            if (!days.Success)
-            {
-
-            }
-            List<LeaveDay> leaveDays = new List<LeaveDay>();
-            days.Items.ForEach(x => leaveDays.Add(new LeaveDay() { dow = (short)DateTime.ParseExact(x.dayId, "yyyyMMdd", new CultureInfo("en")).DayOfWeek, dayId = x.dayId, workingHours = x.workingHours, leaveHours = x.workingHours }));
-            leaveDaysStore.DataSource = leaveDays;
-            leaveDaysStore.DataBind();
-            X.Call("CalcSum");
-        }
-        [DirectMethod]
-        public void Unnamed_Event(object sender, DirectEventArgs e)
-        {
-            DateTime startDate, endDate;
-            try
-            {
-                startDate = DateTime.Parse(e.ExtraParams["startDate"]);
-                endDate = DateTime.Parse(e.ExtraParams["endDate"]);
-                LeaveChanged.Text = "1";
-            }
-            catch
-            {
-                X.Msg.Alert(Resources.Common.Error, GetLocalResourceObject("ErrorSelectDate")).Show();
-                panelRecordDetails.ActiveTabIndex = 0;
-                return;
-            }
-            if (panelRecordDetails.ActiveTabIndex == 1)
-            {
-
-
-                if (startDate == DateTime.MinValue || endDate == DateTime.MinValue)
-                {
-                    X.Msg.Alert(Resources.Common.Error, GetLocalResourceObject("ErrorSelectDate")).Show();
-                    panelRecordDetails.ActiveTabIndex = 0;
-                    return;
-                }
-                int bulk;
-                if (string.IsNullOrEmpty(employeeId.Value.ToString()) || !int.TryParse(employeeId.Value.ToString(), out bulk))
-                {
-                    X.Msg.Alert(Resources.Common.Error, GetLocalResourceObject("ErrorSelectEmployee")).Show();
-                    panelRecordDetails.ActiveTabIndex = 0;
-                    return;
-                }
-
-            }
-        }
-
-        private bool AddDays(List<LeaveDay> days)
-        {
-            PostRequest<LeaveDay[]> req = new PostRequest<LeaveDay[]>();
-            req.entity = days.ToArray();
-            PostResponse<LeaveDay[]> resp = _leaveManagementService.ChildAddOrUpdate<LeaveDay[]>(req);
-            if (!resp.Success)
-            {
-
-                return false;
-            }
-            return true;
-        }
 
         protected void ReturnLeave(object sender, DirectEventArgs e)
         {
-            leaveReturnForm.Reset();
-            leaveReturnWindow.Show();
+            leaveRequest1.Return();
         }
 
-        [DirectMethod]
-
-        public void FillLeave()
-        {
-            LeaveRequestListRequest req = new LeaveRequestListRequest();
-
-            if (!string.IsNullOrEmpty(returnedEmployee.Text) && returnedEmployee.Value.ToString() != "0")
-            {
-                req.EmployeeId = Convert.ToInt32(returnedEmployee.Value);
-
-
-            }
-            else
-            {
-                return;
-
-            }
-            req.BranchId = req.DepartmentId = 0;
-            req.OpenRequests = 0;
-            req.StartAt = "1";
-            req.Size = "1";
-            req.SortBy = "endDate";
-
-            ListResponse<LeaveRequest> resp = _leaveManagementService.ChildGetAll<LeaveRequest>(req);
-            if (!resp.Success)
-            {
-                X.Msg.Alert(Resources.Common.Error, resp.Summary).Show();
-                return;
-            }
-            if (resp.Items.Count == 0)
-                return;
-            if (resp.Items[0].returnDate.HasValue || resp.Items[0].status != 2)
-                return;
-
-            leaveId.Text = resp.Items[0].recordId;
-            X.Call("FillReturnInfo", resp.Items[0].recordId, resp.Items[0].startDate, resp.Items[0].endDate);
-        }
-        protected void SaveLeaveReturn(object sender, DirectEventArgs e)
-        {
-            string id = e.ExtraParams["id"];
-            string values = e.ExtraParams["values"];
-
-            RecordRequest r = new RecordRequest();
-            r.RecordID = id;
-            RecordResponse<LeaveRequest> recordResponse = _leaveManagementService.ChildGetRecord<LeaveRequest>(r);
-            if (!recordResponse.Success)
-            {
-                X.Msg.Alert(Resources.Common.Error, recordResponse.Summary).Show();
-                return;
-            }
-            CustomResolver res = new CustomResolver();
-            res.AddRule("DateField3", "returnDate");
-            JsonSerializerSettings settings = new JsonSerializerSettings();
-            settings.ContractResolver = res;
-            LeaveRequest temp = JsonConvert.DeserializeObject<LeaveRequest>(values, settings);
-
-
-            PostRequest<LeaveRequest> req = new PostRequest<LeaveRequest>();
-            req.entity = recordResponse.result;
-            req.entity.returnDate = temp.returnDate;
-            PostResponse<LeaveRequest> resp = _leaveManagementService.ChildAddOrUpdate<LeaveRequest>(req);
-            if (!resp.Success)
-            {
-                X.Msg.Alert(Resources.Common.Error, resp.Summary).Show();
-                return;
-            }
-            Notification.Show(new NotificationConfig
-            {
-                Title = Resources.Common.Notification,
-                Icon = Icon.Information,
-                Html = Resources.Common.RecordUpdatedSucc
-            });
-            this.leaveReturnWindow.Close();
-            var d = Store1.GetById(id);
-            d.Set("returnDate", temp.returnDate);
-            d.Set("status", temp.status);
-            d.Commit();
-
-
-        }
+        
     }
 }

@@ -180,6 +180,7 @@
     <Content Include="CSS\Home.css" />
     <Content Include="CSS\LiveSearch.css" />
     <Content Include="CSS\OrganizationChart.css" />
+    <Content Include="CSS\PasswordStrength.css" />
     <Content Include="CSS\RT101.css" />
     <Content Include="CSS\Tools.css" />
     <Content Include="Currencies.aspx" />
@@ -332,6 +333,7 @@
     <Content Include="Scripts\MainDashboard.js" />
     <Content Include="Scripts\MediaItems.js" />
     <Content Include="Scripts\FiscalYears.js" />
+    <Content Include="Scripts\strength.js" />
     <Content Include="Scripts\SystemAlerts.js" />
     <Content Include="Scripts\RelationshipTypes.js" />
     <Content Include="Scripts\Routers.js" />
@@ -1558,6 +1560,7 @@
     <Content Include="App_LocalResources\Schedules.aspx.ar.resx" />
     <Content Include="Controls\App_LocalResources\EmployeeProfileControl.ascx.resx" />
     <Content Include="Controls\App_LocalResources\EmployeeProfileControl.ascx.ar.resx" />
+    <Content Include="Controls\App_LocalResources\LeaveRequestControl.ascx.resx" />
     <EmbeddedResource Include="Properties\licenses.licx" />
     <Content Include="Reports\App_LocalResources\RT202.aspx.resx" />
     <Content Include="Reports\App_LocalResources\RT01.aspx.ar.resx" />

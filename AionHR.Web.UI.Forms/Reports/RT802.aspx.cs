@@ -188,7 +188,7 @@ namespace AionHR.Web.UI.Forms.Reports
             return users.Items;
         }
 
-        private void FillReport(bool throwException=true)
+        private void FillReport(bool throwException = true)
         {
             ReportCompositeRequest req = GetRequest();
             ListResponse<AionHR.Model.Reports.RT802> resp = _reportsService.ChildGetAll<AionHR.Model.Reports.RT802>(req);
@@ -207,7 +207,14 @@ namespace AionHR.Web.UI.Forms.Reports
             AuditTrail h = new AuditTrail();
             h.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;
             h.RightToLeftLayout = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeftLayout.Yes : DevExpress.XtraReports.UI.RightToLeftLayout.No;
-            
+
+            h.Parameters["username"].Value = _systemService.SessionHelper.Get("CurrentUserName");
+            h.Parameters["From"].Value = DateTime.Parse(req.Parameters["_fromDate"]).ToString(_systemService.SessionHelper.GetDateformat());
+            h.Parameters["To"].Value = DateTime.Parse(req.Parameters["_toDate"]).ToString(_systemService.SessionHelper.GetDateformat());
+            if (!string.IsNullOrEmpty(req.Parameters["_trxType"]))
+                h.Parameters["TrType"].Value = GetGlobalResourceObject("Common", "TrType" + req.Parameters["_trxType"]);
+            if (!string.IsNullOrEmpty(req.Parameters["_moduleId"]))
+                h.Parameters["Module"].Value = GetGlobalResourceObject("Classes", "Class" + req.Parameters["_moduleId"]);
             h.DataSource = resp.Items;
 
 
@@ -221,10 +228,10 @@ namespace AionHR.Web.UI.Forms.Reports
             string[] parameters = e.Parameter.Split('|');
             int pageIndex = Convert.ToInt32(parameters[0]);
 
-            if (pageIndex == 1) 
+            if (pageIndex == 1)
             {
                 FillReport();
-             
+
             }
         }
 

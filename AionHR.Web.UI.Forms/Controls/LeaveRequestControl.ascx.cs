@@ -56,7 +56,7 @@ namespace AionHR.Web.UI.Forms.Controls
         IEmployeeService _employeeService = ServiceLocator.Current.GetInstance<IEmployeeService>();
         ICompanyStructureService _companyStructureService = ServiceLocator.Current.GetInstance<ICompanyStructureService>();
         ITimeAttendanceService _timeAttendanceService = ServiceLocator.Current.GetInstance<ITimeAttendanceService>();
-       
+
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -64,20 +64,21 @@ namespace AionHR.Web.UI.Forms.Controls
             if (!X.IsAjaxRequest && !IsPostBack)
             {
 
-               
+
                 HideShowButtons();
-                
+
                 //////FillDepartment();
                 //////FillDivision();
                 //////FillBranch();
-               
+
                 DateFormat.Text = _systemService.SessionHelper.GetDateformat().ToUpper();
                 startDate.Format = endDate.Format = _systemService.SessionHelper.GetDateformat();
-               
+
             }
 
         }
 
+        #region public interface
         public void Update(string id)
         {
             RecordRequest r = new RecordRequest();
@@ -96,7 +97,9 @@ namespace AionHR.Web.UI.Forms.Controls
 
 
             FillLeaveType();
+
             ltId.Select(response.result.ltId.ToString());
+            status.Select(response.result.status.ToString());
             StoredLeaveChanged.Text = "0";
             if (response.result.employeeId != 0)
             {
@@ -144,13 +147,37 @@ namespace AionHR.Web.UI.Forms.Controls
 
         public void Add()
         {
-
+            BasicInfoTab.Reset();
+            CurrentLeave.Text = "";
+            FillLeaveType();
+            StoredLeaveChanged.Text = "1";
+            setNormal();
+            this.EditRecordWindow.Title = Resources.Common.AddNewRecord;
+            //SetTabPanelEnabled(false);
+            panelRecordDetails.ActiveTabIndex = 0;
+            leaveDaysStore.DataSource = new List<LeaveDay>();
+            leaveDaysStore.DataBind();
+            status.Select(0);
+            this.EditRecordWindow.Show();
         }
 
         public void Return()
         {
-
+            leaveReturnForm.Reset();
+            leaveReturnWindow.Show();
         }
+
+        public Store Store1 { get; set; }
+
+        public GridPanel GrigPanel1 { get; set; }
+        public RefreshParent RefreshLeaveCalendarCallBack { get; set; }
+
+        public delegate void RefreshParent();
+
+
+        #endregion
+
+
 
         /// <summary>
         /// the detailed tabs for the edit form. I put two tabs by default so hide unecessary or add addional
@@ -181,106 +208,7 @@ namespace AionHR.Web.UI.Forms.Controls
             approved.Text = disabled.ToString();
             sumHours.Disabled = disabled;
         }
-        protected void PoPuP(object sender, DirectEventArgs e)
-        {
 
-
-            string id = e.ExtraParams["id"];
-            string type = e.ExtraParams["type"];
-
-            switch (type)
-            {
-                case "imgEdit":
-                    //Step 1 : get the object from the Web Service 
-                    RecordRequest r = new RecordRequest();
-                    r.RecordID = id;
-                    CurrentLeave.Text = r.RecordID;
-
-                    RecordResponse<LeaveRequest> response = _leaveManagementService.ChildGetRecord<LeaveRequest>(r);
-                    if (!response.Success)
-                    {
-                        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                        X.Msg.Alert(Resources.Common.Error, response.Summary).Show();
-                        return;
-                    }
-                    //Step 2 : call setvalues with the retrieved object
-                    this.BasicInfoTab.SetValues(response.result);
-
-
-                    FillLeaveType();
-                    ltId.Select(response.result.ltId.ToString());
-                    StoredLeaveChanged.Text = "0";
-                    if (response.result.employeeId != 0)
-                    {
-
-                        employeeId.GetStore().Add(new object[]
-                           {
-                                new
-                                {
-                                    recordId = response.result.employeeId,
-                                    fullName =response.result.employeeName.fullName
-                                }
-                           });
-                        employeeId.SetValue(response.result.employeeId);
-
-                    }
-                    LeaveDayListRequest req = new LeaveDayListRequest();
-                    req.LeaveId = CurrentLeave.Text;
-                    ListResponse<LeaveDay> resp = _leaveManagementService.ChildGetAll<LeaveDay>(req);
-                    if (!resp.Success)
-                    {
-
-                    }
-
-                    leaveDaysStore.DataSource = resp.Items;
-                    resp.Items.ForEach(x => x.dow = (short)DateTime.ParseExact(x.dayId, "yyyyMMdd", new CultureInfo("en")).DayOfWeek);
-                    leaveDaysStore.DataBind();
-                    LeaveChanged.Text = "0";
-                    X.Call("CalcSum");
-                    panelRecordDetails.ActiveTabIndex = 0;
-
-                    setNormal();
-                    if (response.result.status == 2)
-
-                        setApproved(true);
-
-                    else if (response.result.status == 3 || response.result.status == -1)
-                        setUsed(true);
-                    else
-                    { setNormal(); }
-
-
-                    this.EditRecordWindow.Title = Resources.Common.EditWindowsTitle;
-                    this.EditRecordWindow.Show();
-                    break;
-
-                case "imgDelete":
-                    X.Msg.Confirm(Resources.Common.Confirmation, Resources.Common.DeleteOneRecord, new MessageBoxButtonsConfig
-                    {
-                        Yes = new MessageBoxButtonConfig
-                        {
-                            //We are call a direct request metho for deleting a record
-                            Handler = String.Format("App.direct.DeleteRecord({0})", id),
-                            Text = Resources.Common.Yes
-                        },
-                        No = new MessageBoxButtonConfig
-                        {
-                            Text = Resources.Common.No
-                        }
-
-                    }).Show();
-                    break;
-
-                case "colAttach":
-
-                    //Here will show up a winow relatice to attachement depending on the case we are working on
-                    break;
-                default:
-                    break;
-            }
-
-
-        }
 
         private void setNormal()
         {
@@ -307,57 +235,6 @@ namespace AionHR.Web.UI.Forms.Controls
         /// This direct method will be called after confirming the delete
         /// </summary>
         /// <param name="index">the ID of the object to delete</param>
-        [DirectMethod]
-        public void DeleteRecord(string index)
-        {
-            try
-            {
-                //Step 1 Code to delete the object from the database 
-                LeaveRequest s = new LeaveRequest();
-                s.recordId = index;
-                s.destination = "";
-                s.employeeId = 0;
-                s.endDate = DateTime.Now;
-                s.startDate = DateTime.Now;
-                s.status = 0;
-                s.isPaid = false;
-                s.justification = "";
-                s.ltId = 0;
-
-                PostRequest<LeaveRequest> req = new PostRequest<LeaveRequest>();
-                req.entity = s;
-                PostResponse<LeaveRequest> r = _leaveManagementService.ChildDelete<LeaveRequest>(req);
-                if (!r.Success)
-                {
-                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.Error, r.Summary).Show();
-                    return;
-                }
-                else
-                {
-                    //Step 2 :  remove the object from the store
-                   ///// Store1.Remove(index);
-
-                    //Step 3 : Showing a notification for the user 
-                    Notification.Show(new NotificationConfig
-                    {
-                        Title = Resources.Common.Notification,
-                        Icon = Icon.Information,
-                        Html = Resources.Common.RecordDeletedSucc
-                    });
-                }
-
-            }
-            catch (Exception ex)
-            {
-                //In case of error, showing a message box to the user
-                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorDeletingRecord).Show();
-
-            }
-
-        }
-
 
 
 
@@ -367,36 +244,19 @@ namespace AionHR.Web.UI.Forms.Controls
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-       
+
         /// <summary>
         /// Direct method for removing multiple records
         /// </summary>
-       
+
 
         /// <summary>
         /// Adding new record
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        protected void ADDNewRecord(object sender, DirectEventArgs e)
-        {
 
-            //Reset all values of the relative object
-            BasicInfoTab.Reset();
-            CurrentLeave.Text = "";
-            FillLeaveType();
-            StoredLeaveChanged.Text = "1";
-            setNormal();
-            this.EditRecordWindow.Title = Resources.Common.AddNewRecord;
-            //SetTabPanelEnabled(false);
-            panelRecordDetails.ActiveTabIndex = 0;
-            leaveDaysStore.DataSource = new List<LeaveDay>();
-            leaveDaysStore.DataBind();
-            status.Select(0);
-            this.EditRecordWindow.Show();
-        }
 
-   
 
         private void SetTabPanelEnabled(bool enabled)
         {
@@ -421,7 +281,14 @@ namespace AionHR.Web.UI.Forms.Controls
 
 
             string obj = e.ExtraParams["values"];
-            LeaveRequest b = JsonConvert.DeserializeObject<LeaveRequest>(obj);
+            JsonSerializerSettings settings = new JsonSerializerSettings();
+            CustomResolver res = new CustomResolver();
+            res.AddRule("leaveRequest1_employeeId", "employeeId");
+            res.AddRule("leaveRequest1_ltId", "ltId");
+            res.AddRule("leaveRequest1_status", "status");
+
+            settings.ContractResolver = res;
+            LeaveRequest b = JsonConvert.DeserializeObject<LeaveRequest>(obj, settings);
 
             string id = e.ExtraParams["id"];
             // Define the object to add or edit as null
@@ -468,8 +335,12 @@ namespace AionHR.Web.UI.Forms.Controls
                         //Add this record to the store 
                         days.ForEach(d => d.leaveId = Convert.ToInt32(b.recordId));
                         AddDays(days);
-                        ////this.Store1.Insert(0, b);
-
+                        if (Store1 != null)
+                            this.Store1.Insert(0, b);
+                        else
+                        {
+                            RefreshLeaveCalendarCallBack();
+                        }
                         //Display successful notification
                         Notification.Show(new NotificationConfig
                         {
@@ -532,10 +403,17 @@ namespace AionHR.Web.UI.Forms.Controls
                             Html = Resources.Common.RecordUpdatedSucc
                         });
                         this.leaveReturnWindow.Close();
-                        //////var d = Store1.GetById(id);
-                        //////d.Set("returnDate", postReq.entity.returnDate);
-                        //////d.Set("status", postReq.entity.status);
-                        //////d.Commit();
+                        if (Store1 != null)
+                        {
+                            var d = Store1.GetById(id);
+                            d.Set("returnDate", postReq.entity.returnDate);
+                            d.Set("status", postReq.entity.status);
+                            d.Commit();
+                        }
+                        else
+                        {
+                            RefreshLeaveCalendarCallBack();
+                        }
                         EditRecordWindow.Close();
                         return;
                     }
@@ -565,11 +443,20 @@ namespace AionHR.Web.UI.Forms.Controls
                         }
                         days.ForEach(x => x.leaveId = Convert.ToInt32(b.recordId));
                         AddDays(days);
-                        //////ModelProxy record = this.Store1.GetById(id);
-                        //////BasicInfoTab.UpdateRecord(record);
-                        //////// record.Set("employeeName", b.employeeName.fullName);
-                        //////record.Set("ltName", b.ltName);
-                        //////record.Commit();
+                        if(Store1!= null)
+                        {
+                            ModelProxy record = this.Store1.GetById(id);
+                            BasicInfoTab.UpdateRecord(record);
+                            // record.Set("employeeName", b.employeeName.fullName);
+                            record.Set("ltName", b.ltName);
+                            record.Set("status", b.status);
+                            record.Commit();
+                        }
+                        else
+                        {
+                            RefreshLeaveCalendarCallBack();
+                        }
+                      
                         Notification.Show(new NotificationConfig
                         {
                             Title = Resources.Common.Notification,
@@ -671,7 +558,7 @@ namespace AionHR.Web.UI.Forms.Controls
         }
 
 
-    
+
         protected void LeaveDays_Load(object sender, EventArgs e)
         {
 
@@ -825,7 +712,7 @@ namespace AionHR.Web.UI.Forms.Controls
 
             }
             req.BranchId = req.DepartmentId = 0;
-            req.OpenRequests = 3;
+            req.OpenRequests = 0;
             req.StartAt = "1";
             req.Size = "1";
             req.SortBy = "endDate";
@@ -881,10 +768,17 @@ namespace AionHR.Web.UI.Forms.Controls
                 Html = Resources.Common.RecordUpdatedSucc
             });
             this.leaveReturnWindow.Close();
-            //////var d = Store1.GetById(id);
-            //////d.Set("returnDate", temp.returnDate);
-            //////d.Set("status", temp.status);
-            //////d.Commit();
+            if (Store1 != null)
+            {
+                var d = Store1.GetById(id);
+                d.Set("returnDate", temp.returnDate);
+                d.Set("status", temp.status);
+                d.Commit();
+            }
+            else
+            {
+                RefreshLeaveCalendarCallBack();
+            }
 
 
         }

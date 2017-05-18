@@ -1,7 +1,7 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="LeaveRequestControl.ascx.cs" Inherits="AionHR.Web.UI.Forms.Controls.LeaveRequestControl" %>
 <link rel="stylesheet" type="text/css" href="CSS/Common.css" />
     <link rel="stylesheet" href="CSS/LiveSearch.css" />
-    <script type="text/javascript" src="../Scripts/LeaveRequests2.js?id=7"></script>
+    <script type="text/javascript" src="../Scripts/LeaveRequests2.js?id=9"></script>
     <script type="text/javascript" src="../Scripts/common.js"></script>
     <script type="text/javascript" src="../Scripts/moment.js"></script>
  <script type="text/javascript">
@@ -9,15 +9,16 @@
 
             var sum = 0;
             App.leaveRequest1_LeaveDaysGrid.getStore().each(function (record) {
+               
                 sum += record.data['leaveHours'];
             });
-
+            
             App.leaveRequest1_sumHours.setValue(sum.toFixed(2));
             App.leaveRequest1_sumHours2.setValue(sum.toFixed(2));
 
 
         }
-
+     
         function FillReturnInfo(id, d1, d2) {
 
             App.leaveRequest1_leaveId.setValue(id);
@@ -262,7 +263,7 @@
                                             <ext:Column ID="Column7" Visible="false" DataIndex="leaveId" runat="server">
                                             </ext:Column>
                                             <ext:Column ID="Column6" DataIndex="dayId" Text="<%$ Resources: FieldDayId%>" runat="server" Width="85">
-                                                <Renderer Handler="var friendlydate = moment(record.data['dayId'], 'YYYYMMDD');  return friendlydate.format(document.getElementById('DateFormat').value);">
+                                                <Renderer Handler="var friendlydate = moment(record.data['dayId'], 'YYYYMMDD');  return friendlydate.format(document.getElementById('leaveRequest1_DateFormat').value);">
                                                 </Renderer>
                                             </ext:Column>
                                             <ext:Column ID="DateColumn1" DataIndex="dow" Text="<%$ Resources: FieldDOW%>" runat="server" Width="100">
@@ -276,8 +277,9 @@
 
                                                     <ext:NumberField runat="server" MinValue="1" DataIndex="leaveHours">
                                                         <Listeners>
-                                                            <Change Handler="var rec = this.getWidgetRecord(); if(rec.data['workingHours']<this.value){this.setValue(rec.data['workingHours']); }if(1>this.value){this.setValue(1);}  rec.set('leaveHours',this.value); rec.commit(); CalcSum(); " />
+                                                            <Change Handler="var rec = this.getWidgetRecord();  if(rec.data['workingHours']<this.value){this.setValue(rec.data['workingHours']); }if(1>this.value){this.setValue(1);}  rec.set('leaveHours',this.value); rec.commit(); CalcSum(); " />
                                                             <AfterRender Handler=" this.maxValue=this.getWidgetRecord().data['workingHours'];" />
+                                                            <AfterLayoutAnimation Handler=" this.maxValue=this.getWidgetRecord().data['workingHours'];" />
                                                         </Listeners>
                                                     </ext:NumberField>
 
@@ -403,7 +405,7 @@
                                             </Store>
 
                                             <Listeners>
-                                                <Select Handler="App.leaveRequest1_Button1.setDisabled(true); App.leaveRequest1_DateField1.clear(); App.leaveRequest1_DateField2.clear();  App.leaveRequest1_direct.FillLeave();" />
+                                                <Select Handler="App.leaveRequest1_Button1.setDisabled(true); App.leaveRequest1_DateField1.clear(); App.leaveRequest1_DateField2.clear();  App.direct.leaveRequest1.FillLeave();" />
                                             </Listeners>
                                         </ext:ComboBox>
                                     </Content>
