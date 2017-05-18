@@ -109,6 +109,11 @@ namespace AionHR.Infrastructure.Session
         #endregion
 
         #region Gets
+
+        public string GetCurrentUser()
+        {
+            return Get("CurrentUserName").ToString();
+        }
         public string GetDateformat()
         {
             object dateFormat = Get("dateFormat");

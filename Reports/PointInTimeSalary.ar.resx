@@ -120,6 +120,9 @@
   <data name="xrLabel1.Text" xml:space="preserve">
     <value>لم يتم العثور على نتائج</value>
   </data>
+  <data name="xrLabel12.Text" xml:space="preserve">
+    <value>التاريخ</value>
+  </data>
   <data name="xrLabel13.Text" xml:space="preserve">
     <value>رواتب في يوم محدد</value>
   </data>
@@ -132,8 +135,20 @@
   <data name="xrLabel4.Text" xml:space="preserve">
     <value>القسم</value>
   </data>
+  <data name="xrLabel5.Text" xml:space="preserve">
+    <value>القسم</value>
+  </data>
   <data name="xrLabel6.Text" xml:space="preserve">
     <value>الراتب</value>
+  </data>
+  <data name="xrLabel7.Text" xml:space="preserve">
+    <value>الفرع</value>
+  </data>
+  <data name="xrLabel8.Text" xml:space="preserve">
+    <value>الوظيفة</value>
+  </data>
+  <data name="xrLabel9.Text" xml:space="preserve">
+    <value>الإدارة</value>
   </data>
   <data name="xrPageInfo2.Format" xml:space="preserve">
     <value>صفحة {0} من {1}</value>

@@ -190,7 +190,27 @@ namespace AionHR.Web.UI.Forms.Reports
             h.RightToLeftLayout = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeftLayout.Yes : DevExpress.XtraReports.UI.RightToLeftLayout.No;
             resp.Items.ForEach(x => { x.SalaryTypeString = x.salaryType.HasValue ? GetGlobalResourceObject("Common", ((SalaryType)x.salaryType).ToString()).ToString() : ""; });
 
+
             h.DataSource = resp.Items;
+
+            string from = DateTime.Parse(req.Parameters["_asOfDate"]).ToString(_systemService.SessionHelper.GetDateformat());
+            
+            string user = _systemService.SessionHelper.GetCurrentUser();
+
+            h.Parameters["Date"].Value = from;
+           
+            h.Parameters["User"].Value = user;
+            if (resp.Items.Count > 0)
+            {
+                if (req.Parameters["_departmentId"] != "0")
+                    h.Parameters["Department"].Value = resp.Items[0].departmentName;
+                if (req.Parameters["_branchId"] != "0")
+                    h.Parameters["Branch"].Value = jobInfo1.GetBranch();
+                if (req.Parameters["_positionId"] != "0")
+                    h.Parameters["Position"].Value = resp.Items[0].positionName;
+                if (req.Parameters["_divisionId"] != "0")
+                    h.Parameters["Division"].Value = jobInfo1.GetDivision();
+            }
 
 
             h.CreateDocument();

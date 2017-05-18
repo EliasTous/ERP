@@ -37,6 +37,14 @@ public class Hirings : DevExpress.XtraReports.UI.XtraReport
     private XRControlStyle DataField;
     private GroupHeaderBand GroupHeader1;
     private XRLabel xrLabel3;
+    private PageHeaderBand PageHeader;
+    private DevExpress.XtraReports.Parameters.Parameter From;
+    private DevExpress.XtraReports.Parameters.Parameter To;
+    private DevExpress.XtraReports.Parameters.Parameter User;
+    private XRLabel xrLabel16;
+    private XRLabel xrLabel10;
+    private XRRichText xrRichText1;
+    private XRLine xrLine1;
 
     /// <summary>
     /// Required designer variable.
@@ -102,7 +110,16 @@ public class Hirings : DevExpress.XtraReports.UI.XtraReport
             this.GroupHeader1 = new DevExpress.XtraReports.UI.GroupHeaderBand();
             this.xrLabel3 = new DevExpress.XtraReports.UI.XRLabel();
             this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
+            this.PageHeader = new DevExpress.XtraReports.UI.PageHeaderBand();
+            this.From = new DevExpress.XtraReports.Parameters.Parameter();
+            this.To = new DevExpress.XtraReports.Parameters.Parameter();
+            this.User = new DevExpress.XtraReports.Parameters.Parameter();
+            this.xrRichText1 = new DevExpress.XtraReports.UI.XRRichText();
+            this.xrLabel10 = new DevExpress.XtraReports.UI.XRLabel();
+            this.xrLabel16 = new DevExpress.XtraReports.UI.XRLabel();
+            this.xrLine1 = new DevExpress.XtraReports.UI.XRLine();
             ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.xrRichText1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             // 
             // Detail
@@ -244,6 +261,8 @@ public class Hirings : DevExpress.XtraReports.UI.XtraReport
             // pageFooterBand1
             // 
             this.pageFooterBand1.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
+            this.xrLabel16,
+            this.xrLabel10,
             this.xrPageInfo1,
             this.xrPageInfo2});
             resources.ApplyResources(this.pageFooterBand1, "pageFooterBand1");
@@ -339,6 +358,59 @@ public class Hirings : DevExpress.XtraReports.UI.XtraReport
             this.objectDataSource1.DataSource = typeof(AionHR.Model.Reports.RT102A);
             this.objectDataSource1.Name = "objectDataSource1";
             // 
+            // PageHeader
+            // 
+            this.PageHeader.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
+            this.xrLine1,
+            this.xrRichText1});
+            resources.ApplyResources(this.PageHeader, "PageHeader");
+            this.PageHeader.Name = "PageHeader";
+            this.PageHeader.StyleName = "PageInfo";
+            this.PageHeader.BeforePrint += new System.Drawing.Printing.PrintEventHandler(this.PageHeader_BeforePrint);
+            // 
+            // From
+            // 
+            resources.ApplyResources(this.From, "From");
+            this.From.Name = "From";
+            // 
+            // To
+            // 
+            resources.ApplyResources(this.To, "To");
+            this.To.Name = "To";
+            // 
+            // User
+            // 
+            resources.ApplyResources(this.User, "User");
+            this.User.Name = "User";
+            // 
+            // xrRichText1
+            // 
+            resources.ApplyResources(this.xrRichText1, "xrRichText1");
+            this.xrRichText1.Name = "xrRichText1";
+            this.xrRichText1.SerializableRtfString = resources.GetString("xrRichText1.SerializableRtfString");
+            this.xrRichText1.StyleName = "PageInfo";
+            // 
+            // xrLabel10
+            // 
+            resources.ApplyResources(this.xrLabel10, "xrLabel10");
+            this.xrLabel10.Name = "xrLabel10";
+            this.xrLabel10.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96F);
+            this.xrLabel10.StyleName = "PageInfo";
+            // 
+            // xrLabel16
+            // 
+            this.xrLabel16.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
+            new DevExpress.XtraReports.UI.XRBinding(this.User, "Text", "")});
+            resources.ApplyResources(this.xrLabel16, "xrLabel16");
+            this.xrLabel16.Name = "xrLabel16";
+            this.xrLabel16.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96F);
+            this.xrLabel16.StyleName = "PageInfo";
+            // 
+            // xrLine1
+            // 
+            resources.ApplyResources(this.xrLine1, "xrLine1");
+            this.xrLine1.Name = "xrLine1";
+            // 
             // Hirings
             // 
             this.Bands.AddRange(new DevExpress.XtraReports.UI.Band[] {
@@ -348,10 +420,16 @@ public class Hirings : DevExpress.XtraReports.UI.XtraReport
             this.groupHeaderBand1,
             this.pageFooterBand1,
             this.reportHeaderBand1,
-            this.GroupHeader1});
+            this.GroupHeader1,
+            this.PageHeader});
             this.ComponentStorage.AddRange(new System.ComponentModel.IComponent[] {
             this.objectDataSource1});
             this.DataSource = this.objectDataSource1;
+            resources.ApplyResources(this, "$this");
+            this.Parameters.AddRange(new DevExpress.XtraReports.Parameters.Parameter[] {
+            this.From,
+            this.To,
+            this.User});
             this.StyleSheet.AddRange(new DevExpress.XtraReports.UI.XRControlStyle[] {
             this.Title,
             this.FieldCaption,
@@ -359,6 +437,7 @@ public class Hirings : DevExpress.XtraReports.UI.XtraReport
             this.DataField});
             this.Version = "16.2";
             ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.xrRichText1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
 
     }
@@ -373,5 +452,10 @@ public class Hirings : DevExpress.XtraReports.UI.XtraReport
     private void groupHeaderBand1_BeforePrint(object sender, System.Drawing.Printing.PrintEventArgs e)
     {
         e.Cancel = this.RowCount == 0;
+    }
+
+    private void PageHeader_BeforePrint(object sender, System.Drawing.Printing.PrintEventArgs e)
+    {
+        e.Cancel = RowCount == 0;
     }
 }

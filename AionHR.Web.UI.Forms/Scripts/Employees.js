@@ -67,85 +67,85 @@ var triggierImageClick = function (id) {
 
 var imageData;
 
-var showImagePreview = function (id) {
+//var showImagePreview = function (id) {
 
-    var input = $("#" + id)[0];
-    if (input.files && input.files[0]) {
+//    var input = $("#" + id)[0];
+//    if (input.files && input.files[0]) {
 
-        //Check the extension and if not ok clear and notify the user
+//        //Check the extension and if not ok clear and notify the user
 
-        if (checkExtension(input.files[0].name)) {
+//        if (checkExtension(input.files[0].name)) {
 
-            var filerdr = new FileReader();
-            filerdr.onload = function (e) {
-                $("#" + $('#imgControl')[0].firstChild.id).attr('src', e.target.result);
+//            var filerdr = new FileReader();
+//            filerdr.onload = function (e) {
+//                $("#" + $('#imgControl')[0].firstChild.id).attr('src', e.target.result);
                
-            }
-            filerdr.readAsDataURL(input.files[0]);
-        }
-        else {
-            alert('File Format is not allowed');
-            $("#" + $('#imgControl')).attr('src', '');
+//            }
+//            filerdr.readAsDataURL(input.files[0]);
+//        }
+//        else {
+//            alert('File Format is not allowed');
+//            $("#" + $('#imgControl')).attr('src', '');
 
-            App.picturePath.reset();
-            //Alert the user and clear the input file
-        }
-    }
-    else {
-        $("#" + $('#imgControl')[0].firstChild.id).attr('src', '');
-        App.picturePath.reset();
-        App.picturePath.Clear();
-    }
-}
-var showImagePreview2 = function (id) {
+//            App.picturePath.reset();
+//            //Alert the user and clear the input file
+//        }
+//    }
+//    else {
+//        $("#" + $('#imgControl')[0].firstChild.id).attr('src', '');
+//        App.picturePath.reset();
+//        App.picturePath.Clear();
+//    }
+//}
+//var showImagePreview2 = function (id) {
 
-    var input = $("#" + id)[0];
-    if (input.files && input.files[0]) {
+//    var input = $("#" + id)[0];
+//    if (input.files && input.files[0]) {
 
-        //Check the extension and if not ok clear and notify the user
+//        //Check the extension and if not ok clear and notify the user
 
-        if (checkExtension(input.files[0].name)) {
+//        if (checkExtension(input.files[0].name)) {
 
-            var filerdr = new FileReader();
-            filerdr.onload = function (e) {
-                //$("#" + $('#employeePhoto')[0].firstChild.id).attr('src', e.target.result);
-                //$('#image').attr('src', e.target.result);
-                InitCropper(e.target.result);
-               //$('#image').attr('src', e.target.result);
-                //options.imgSrc = e.target.result;
+//            var filerdr = new FileReader();
+//            filerdr.onload = function (e) {
+//                //$("#" + $('#employeePhoto')[0].firstChild.id).attr('src', e.target.result);
+//                //$('#image').attr('src', e.target.result);
+//                InitCropper(e.target.result);
+//               //$('#image').attr('src', e.target.result);
+//                //options.imgSrc = e.target.result;
                 
 
-            }
-            filerdr.readAsDataURL(input.files[0]);
-            App.uploadPhotoButton.setDisabled(false);
-        }
-        else {
-            alert('File Format is not allowed');
-            //$("#" + $('#employeePhoto')[0].firstChild.id).attr('src', '');
-            App.FileUploadField1.reset();
+//            }
+//            filerdr.readAsDataURL(input.files[0]);
+//            App.uploadPhotoButton.setDisabled(false);
+//        }
+//        else {
+//            alert('File Format is not allowed');
+//            //$("#" + $('#employeePhoto')[0].firstChild.id).attr('src', '');
+//            App.FileUploadField1.reset();
            
-            //Alert the user and clear the input file
-        }
-    }
-    else {
-        //$("#" + $('#employeePhoto')[0].firstChild.id).attr('src', '');
-        App.FileUploadField1.reset();
-        App.FileUploadField1.Clear();
-    }
-}
-var ClearImage = function () {
-    App.picturePath.reset();
-    $("#" + $('#imgControl')[0].firstChild.id).attr('src', '');
+//            //Alert the user and clear the input file
+//        }
+//    }
+//    else {
+//        //$("#" + $('#employeePhoto')[0].firstChild.id).attr('src', '');
+//        App.FileUploadField1.reset();
+//        App.FileUploadField1.Clear();
+//    }
+//}
+//var ClearImage = function () {
+//    App.picturePath.reset();
+//    $("#" + $('#imgControl')[0].firstChild.id).attr('src', '');
 
-}
-var ClearImage2 = function () {
-    App.FileUploadField1.reset();
-   // $("#" + $('#employeePhoto')[0].firstChild.id).attr('src', 'images/empPhoto.jpg');
-   // $('#image').attr('src', 'images/empPhoto.jpg');
-    //InitCropper('images/empPhoto.jpg');
-    ClearCropper();
-    //App.uploadPhotoButton.setDisabled(true);
-}
+//}
+//var ClearImage2 = function () {
+//    App.FileUploadField1.reset();
+//   // $("#" + $('#employeePhoto')[0].firstChild.id).attr('src', 'images/empPhoto.jpg');
+//   // $('#image').attr('src', 'images/empPhoto.jpg');
+//    //InitCropper('images/empPhoto.jpg');
+//    ClearCropper();
+//    //App.uploadPhotoButton.setDisabled(true);
+//}
 
 
 var checkExtension = function (file) {
@@ -242,53 +242,70 @@ function dump(obj) {
     }
     return out;
 }
-function FillLeftPanel(departmentName, branchName, positionName, reportToName, balance, lastLeave, paid, leaveBalance, allowedLeaves, esName, serviceDuration) {
+//function FillLeftPanel(departmentName, branchName, positionName, reportToName, balance, lastLeave, paid, leaveBalance, allowedLeaves, esName, serviceDuration) {
 
 
 
 
-    App.reportsToLbl.setText(reportToName);
-    App.eosBalanceTitle.setText(balance);
-    App.lastLeaveStartDateTitle.setText(lastLeave);
-    App.paidLeavesYTDTitle.setText(paid);
-    App.leavesBalanceTitle.setText(leaveBalance);
-    App.allowedLeaveYtdTitle.setText(allowedLeaves);
-    App.esName = esName;
-    App.serviceDuration = serviceDuration;
-    FillLeftPanel(dep, branchName, positionName);
+//    App.reportsToLbl.setText(reportToName);
+//    App.eosBalanceTitle.setText(balance);
+//    App.lastLeaveStartDateTitle.setText(lastLeave);
+//    App.paidLeavesYTDTitle.setText(paid);
+//    App.leavesBalanceTitle.setText(leaveBalance);
+//    App.allowedLeaveYtdTitle.setText(allowedLeaves);
+//    App.esName = esName;
+//    App.serviceDuration = serviceDuration;
+//    FillLeftPanel(dep, branchName, positionName);
 
-}
-function FillLeftPanel(departmentName, branchName, positionName, reportToName) {
-
-
-
-
-    App.reportsToLbl.setText(reportToName);
-    FillLeftPanel(dep, branchName, positionName);
-
-}
-
-function FillFullName(fullName) {
-    App.fullNameLbl.Html = fullName;
-}
-function FillLeftPanel(departmentName, branchName, positionName) {
+//}
+//function FillLeftPanel(departmentName, branchName, positionName, reportToName) {
 
 
 
-    App.departmentLbl.setText(departmentName, false);
-    App.branchLbl.setText(branchName, false);
-    App.positionLbl.setText(positionName, false);
+
+//    App.reportsToLbl.setText(reportToName);
+//    FillLeftPanel(dep, branchName, positionName);
+
+//}
+
+//function FillFullName(fullName) {
+//    App.fullNameLbl.Html = fullName;
+//}
+//function FillLeftPanel(departmentName, branchName, positionName) {
 
 
-}
-function SelectJICombos(deptId, bId, pId, dId) {
-    App.departmentId.select(deptId);
-    App.branchId.select(bId);
-    App.positionId.select(pId);
-    App.divisionId.select(dId);
-}
+
+//    App.departmentLbl.setText(departmentName, false);
+//    App.branchLbl.setText(branchName, false);
+//    App.positionLbl.setText(positionName, false);
 
 
+//}
+//function SelectJICombos(deptId, bId, pId, dId) {
+//    App.departmentId.select(deptId);
+//    App.branchId.select(bId);
+//    App.positionId.select(pId);
+//    App.divisionId.select(dId);
+//}
+
+
+
+//function initCropper(path) {
+//    //options =
+//    //    {
+//    //        imageBox: '.imageBox',
+//    //        thumbBox: '.thumbBox',
+//    //        spinner: '.spinner',
+//    //        imgSrc: path
+//    //    };
+//    //cropper = new cropbox(options);
+//   // alert(path);
+//    $('#image').attr('src', path);
+//}
+
+//function refreshQV() {
+//    App.direct.FillLeftPanel(true);
+//}
 var enterKeyPressSearchHandler = function (el, event) {
 
     var enter = false;
@@ -301,19 +318,3 @@ var enterKeyPressSearchHandler = function (el, event) {
         App.Store1.reload();
     }
 };
-function initCropper(path) {
-    //options =
-    //    {
-    //        imageBox: '.imageBox',
-    //        thumbBox: '.thumbBox',
-    //        spinner: '.spinner',
-    //        imgSrc: path
-    //    };
-    //cropper = new cropbox(options);
-   // alert(path);
-    $('#image').attr('src', path);
-}
-
-function refreshQV() {
-    App.direct.FillLeftPanel(true);
-}

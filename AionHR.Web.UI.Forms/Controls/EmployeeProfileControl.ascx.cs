@@ -110,7 +110,9 @@ namespace AionHR.Web.UI.Forms
 
         }
 
+        public Store Store1 { get; set; }
 
+        
 
         /// <summary>
         /// the detailed tabs for the edit form. I put two tabs by default so hide unecessary or add addional
@@ -148,62 +150,6 @@ namespace AionHR.Web.UI.Forms
 
 
 
-        protected void PoPuP(object sender, DirectEventArgs e)
-        {
-
-
-            int id = Convert.ToInt32(e.ExtraParams["id"]);
-            string type = e.ExtraParams["type"];
-
-            switch (type)
-            {
-                case "imgEdit":
-                    imgControl.Src = "Images\\empPhoto.jpg";
-                    //Step 1 : get the object from the Web Service 
-                    FillProfileInfo(id.ToString());
-                    CurrentEmployee.Text = id.ToString();
-                    FillLeftPanel();
-
-
-                    //employeePanel.Loader.Url = "EmployeePages/EmployeeProfile.aspx?employeeId="+CurrentEmployee.Text;
-                    //employeePanel.Loader.LoadContent();
-
-                    panelRecordDetails.ActiveIndex = 0;
-                    //timeZoneCombo.Select(response.result.timeZone.ToString());
-                    this.EditRecordWindow.Title = Resources.Common.EditWindowsTitle;
-                    this.EditRecordWindow.Show();
-
-                    break;
-
-                case "imgDelete":
-                    X.Msg.Confirm(Resources.Common.Confirmation, Resources.Common.DeleteOneRecord, new MessageBoxButtonsConfig
-                    {
-                        Yes = new MessageBoxButtonConfig
-                        {
-                            //We are call a direct request metho for deleting a record
-                            Handler = String.Format("App.direct.DeleteRecord({0})", id),
-                            Text = Resources.Common.Yes
-                        },
-                        No = new MessageBoxButtonConfig
-                        {
-                            Text = Resources.Common.No
-                        }
-
-                    }).Show();
-                    break;
-
-                case "colAttach":
-
-                    //Here will show up a winow relatice to attachement depending on the case we are working on
-                    break;
-
-
-                default:
-                    break;
-            }
-
-
-        }
 
         private void FixLoaderUrls(string v)
         {
@@ -434,6 +380,13 @@ namespace AionHR.Web.UI.Forms
             positionStore.DataSource = GetPositions();
             positionStore.DataBind();
         }
+       
+        private void FillDepartment()
+        {
+
+            departmentStore.DataSource = GetDepartments();
+            departmentStore.DataBind();
+        }
         private List<Department> GetDepartments()
         {
             ListRequest departmentsRequest = new ListRequest();
@@ -445,11 +398,16 @@ namespace AionHR.Web.UI.Forms
             }
             return resp.Items;
         }
-        private void FillDepartment()
+        private List<Division> GetDivisions()
         {
-
-            departmentStore.DataSource = GetDepartments();
-            departmentStore.DataBind();
+            ListRequest branchesRequest = new ListRequest();
+            ListResponse<Division> resp = _companyStructureService.ChildGetAll<Division>(branchesRequest);
+            if (!resp.Success)
+            {
+                X.Msg.Alert(Resources.Common.Error, resp.Summary).Show();
+                return new List<Division>();
+            }
+            return resp.Items;
         }
         private List<Branch> GetBranches()
         {
@@ -469,17 +427,7 @@ namespace AionHR.Web.UI.Forms
             BranchStore.DataSource = GetBranches();
             BranchStore.DataBind();
         }
-        private List<Division> GetDivisions()
-        {
-            ListRequest branchesRequest = new ListRequest();
-            ListResponse<Division> resp = _companyStructureService.ChildGetAll<Division>(branchesRequest);
-            if (!resp.Success)
-            {
-                X.Msg.Alert(Resources.Common.Error, resp.Summary).Show();
-                return new List<Division>();
-            }
-            return resp.Items;
-        }
+       
         private void FillDivision()
         {
 
@@ -615,7 +563,7 @@ namespace AionHR.Web.UI.Forms
                             b.name = response.result.name;
                         }
                         //Add this record to the store 
-                        //this.Store1.Insert(0, b);
+                        this.Store1.Insert(0, b);
 
 
                         CurrentEmployee.Text = req.RecordID.ToString();
@@ -685,16 +633,16 @@ namespace AionHR.Web.UI.Forms
                             b.pictureUrl = response.result.pictureUrl + "?x=" + DateTime.Now;
                             b.name = response.result.name;
                         }
-                        //ModelProxy record = this.Store1.GetById(index);
-                        //BasicInfoTab.UpdateRecord(record);
-                        //record.Set("branchName", b.branchName);
-                        //record.Set("departmentName", b.departmentName);
-                        //record.Set("positionName", b.positionName);
-                        //record.Set("divisionName", b.divisionName);
-                        //record.Set("name", b.name);
-                        //record.Set("reference", b.reference);
-                        //record.Set("pictureUrl", b.pictureUrl);
-                        //record.Set("hireDate", b.hireDate.Value.ToShortDateString());
+                        ModelProxy record = this.Store1.GetById(index);
+                        BasicInfoTab.UpdateRecord(record);
+                        record.Set("branchName", b.branchName);
+                        record.Set("departmentName", b.departmentName);
+                        record.Set("positionName", b.positionName);
+                        record.Set("divisionName", b.divisionName);
+                        record.Set("name", b.name);
+                        record.Set("reference", b.reference);
+                        record.Set("pictureUrl", b.pictureUrl);
+                        record.Set("hireDate", b.hireDate.Value.ToShortDateString());
 
                         //record.Commit();
                         Notification.Show(new NotificationConfig
@@ -853,13 +801,13 @@ namespace AionHR.Web.UI.Forms
             X.Call("InitCropper", forSummary.pictureUrl + "?x=" + DateTime.Now.Ticks);
 
             CurrentEmployeePhotoName.Text = forSummary.pictureUrl;
-            //ModelProxy record = Store1.GetById(CurrentEmployee.Text);
-            //record.Set("pictureUrl", imgControl.ImageUrl);
-            //record.Set("departmentName", forSummary.departmentName);
-            //record.Set("branchName", forSummary.branchName);
-            //record.Set("divisionName", forSummary.divisionName);
-            //record.Set("positionName", forSummary.positionName);
-            //record.Commit();
+            ModelProxy record = Store1.GetById(CurrentEmployee.Text);
+            record.Set("pictureUrl", imgControl.ImageUrl);
+            record.Set("departmentName", forSummary.departmentName);
+            record.Set("branchName", forSummary.branchName);
+            record.Set("divisionName", forSummary.divisionName);
+            record.Set("positionName", forSummary.positionName);
+            record.Commit();
             img.Visible = true;
         }
 
@@ -1116,7 +1064,7 @@ namespace AionHR.Web.UI.Forms
                     X.Msg.Alert(Resources.Common.Error, post.Summary).Show();
                     return;
                 }
-               // Store1.Remove(index);
+                 Store1.Remove(index);
 
                 //Step 3 : Showing a notification for the user 
                 Notification.Show(new NotificationConfig

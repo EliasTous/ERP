@@ -51,6 +51,23 @@ public class MonthlyPayroll : DevExpress.XtraReports.UI.XtraReport
     private XRLabel xrLabel5;
     private XRLabel xrLabel18;
     private XRLabel xrLabel17;
+    private PageHeaderBand PageHeader;
+    private XRLabel xrLabel22;
+    private XRLabel xrLabel21;
+    private XRLabel xrLabel20;
+    private XRLabel xrLabel19;
+    private DevExpress.XtraReports.Parameters.Parameter Department;
+    private DevExpress.XtraReports.Parameters.Parameter Branch;
+    private DevExpress.XtraReports.Parameters.Parameter Payment;
+    private DevExpress.XtraReports.Parameters.Parameter Ref;
+    private DevExpress.XtraReports.Parameters.Parameter User;
+    private XRLabel xrLabel24;
+    private XRLabel xrLabel23;
+    private XRLine xrLine1;
+    private XRLabel xrLabel28;
+    private XRLabel xrLabel27;
+    private XRLabel xrLabel26;
+    private XRLabel xrLabel25;
 
     /// <summary>
     /// Required designer variable.
@@ -96,6 +113,8 @@ public class MonthlyPayroll : DevExpress.XtraReports.UI.XtraReport
             this.xrPageInfo1 = new DevExpress.XtraReports.UI.XRPageInfo();
             this.xrPageInfo2 = new DevExpress.XtraReports.UI.XRPageInfo();
             this.reportHeaderBand1 = new DevExpress.XtraReports.UI.ReportHeaderBand();
+            this.xrLabel18 = new DevExpress.XtraReports.UI.XRLabel();
+            this.xrLabel17 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel15 = new DevExpress.XtraReports.UI.XRLabel();
             this.Title = new DevExpress.XtraReports.UI.XRControlStyle();
             this.FieldCaption = new DevExpress.XtraReports.UI.XRControlStyle();
@@ -108,10 +127,12 @@ public class MonthlyPayroll : DevExpress.XtraReports.UI.XtraReport
             this.xrLabel7 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel6 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel1 = new DevExpress.XtraReports.UI.XRLabel();
+            this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
             this.DetailReport1 = new DevExpress.XtraReports.UI.DetailReportBand();
             this.Detail2 = new DevExpress.XtraReports.UI.DetailBand();
             this.DetailReport2 = new DevExpress.XtraReports.UI.DetailReportBand();
             this.Detail3 = new DevExpress.XtraReports.UI.DetailBand();
+            this.xrLabel5 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel13 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel4 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel2 = new DevExpress.XtraReports.UI.XRLabel();
@@ -126,10 +147,23 @@ public class MonthlyPayroll : DevExpress.XtraReports.UI.XtraReport
             this.DetailReport4 = new DevExpress.XtraReports.UI.DetailReportBand();
             this.Detail5 = new DevExpress.XtraReports.UI.DetailBand();
             this.xrLabel16 = new DevExpress.XtraReports.UI.XRLabel();
-            this.xrLabel5 = new DevExpress.XtraReports.UI.XRLabel();
-            this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
-            this.xrLabel17 = new DevExpress.XtraReports.UI.XRLabel();
-            this.xrLabel18 = new DevExpress.XtraReports.UI.XRLabel();
+            this.PageHeader = new DevExpress.XtraReports.UI.PageHeaderBand();
+            this.xrLabel19 = new DevExpress.XtraReports.UI.XRLabel();
+            this.xrLabel20 = new DevExpress.XtraReports.UI.XRLabel();
+            this.xrLabel21 = new DevExpress.XtraReports.UI.XRLabel();
+            this.xrLabel22 = new DevExpress.XtraReports.UI.XRLabel();
+            this.Department = new DevExpress.XtraReports.Parameters.Parameter();
+            this.Branch = new DevExpress.XtraReports.Parameters.Parameter();
+            this.Payment = new DevExpress.XtraReports.Parameters.Parameter();
+            this.Ref = new DevExpress.XtraReports.Parameters.Parameter();
+            this.User = new DevExpress.XtraReports.Parameters.Parameter();
+            this.xrLabel23 = new DevExpress.XtraReports.UI.XRLabel();
+            this.xrLabel24 = new DevExpress.XtraReports.UI.XRLabel();
+            this.xrLine1 = new DevExpress.XtraReports.UI.XRLine();
+            this.xrLabel25 = new DevExpress.XtraReports.UI.XRLabel();
+            this.xrLabel26 = new DevExpress.XtraReports.UI.XRLabel();
+            this.xrLabel27 = new DevExpress.XtraReports.UI.XRLabel();
+            this.xrLabel28 = new DevExpress.XtraReports.UI.XRLabel();
             ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             // 
@@ -164,6 +198,8 @@ public class MonthlyPayroll : DevExpress.XtraReports.UI.XtraReport
             // pageFooterBand1
             // 
             this.pageFooterBand1.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
+            this.xrLabel24,
+            this.xrLabel23,
             this.xrPageInfo1,
             this.xrPageInfo2});
             resources.ApplyResources(this.pageFooterBand1, "pageFooterBand1");
@@ -192,6 +228,24 @@ public class MonthlyPayroll : DevExpress.XtraReports.UI.XtraReport
             this.xrLabel15});
             resources.ApplyResources(this.reportHeaderBand1, "reportHeaderBand1");
             this.reportHeaderBand1.Name = "reportHeaderBand1";
+            // 
+            // xrLabel18
+            // 
+            this.xrLabel18.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "PayDate")});
+            resources.ApplyResources(this.xrLabel18, "xrLabel18");
+            this.xrLabel18.Name = "xrLabel18";
+            this.xrLabel18.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel18.StylePriority.UseFont = false;
+            // 
+            // xrLabel17
+            // 
+            resources.ApplyResources(this.xrLabel17, "xrLabel17");
+            this.xrLabel17.Multiline = true;
+            this.xrLabel17.Name = "xrLabel17";
+            this.xrLabel17.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel17.StylePriority.UseFont = false;
+            this.xrLabel17.BeforePrint += new System.Drawing.Printing.PrintEventHandler(this.xrLabel17_BeforePrint);
             // 
             // xrLabel15
             // 
@@ -319,6 +373,11 @@ public class MonthlyPayroll : DevExpress.XtraReports.UI.XtraReport
             this.xrLabel1.StylePriority.UseBackColor = false;
             this.xrLabel1.StylePriority.UseFont = false;
             // 
+            // objectDataSource1
+            // 
+            this.objectDataSource1.DataSource = typeof(AionHR.Model.Reports.MonthlyPayrollCollection);
+            this.objectDataSource1.Name = "objectDataSource1";
+            // 
             // DetailReport1
             // 
             this.DetailReport1.Bands.AddRange(new DevExpress.XtraReports.UI.Band[] {
@@ -359,6 +418,15 @@ public class MonthlyPayroll : DevExpress.XtraReports.UI.XtraReport
             this.Detail3.MultiColumn.Layout = DevExpress.XtraPrinting.ColumnLayout.AcrossThenDown;
             this.Detail3.MultiColumn.Mode = DevExpress.XtraReports.UI.MultiColumnMode.UseColumnCount;
             this.Detail3.Name = "Detail3";
+            // 
+            // xrLabel5
+            // 
+            this.xrLabel5.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "Payrolls.Entitlements.AmountString")});
+            resources.ApplyResources(this.xrLabel5, "xrLabel5");
+            this.xrLabel5.Name = "xrLabel5";
+            this.xrLabel5.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel5.StyleName = "Money";
             // 
             // xrLabel13
             // 
@@ -485,37 +553,120 @@ public class MonthlyPayroll : DevExpress.XtraReports.UI.XtraReport
             this.xrLabel16.Name = "xrLabel16";
             this.xrLabel16.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             // 
-            // xrLabel5
+            // PageHeader
             // 
-            this.xrLabel5.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding("Text", null, "Payrolls.Entitlements.AmountString")});
-            resources.ApplyResources(this.xrLabel5, "xrLabel5");
-            this.xrLabel5.Name = "xrLabel5";
-            this.xrLabel5.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel5.StyleName = "Money";
+            this.PageHeader.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
+            this.xrLabel28,
+            this.xrLabel27,
+            this.xrLabel26,
+            this.xrLabel25,
+            this.xrLine1,
+            this.xrLabel22,
+            this.xrLabel21,
+            this.xrLabel20,
+            this.xrLabel19});
+            resources.ApplyResources(this.PageHeader, "PageHeader");
+            this.PageHeader.Name = "PageHeader";
             // 
-            // objectDataSource1
+            // xrLabel19
             // 
-            this.objectDataSource1.DataSource = typeof(AionHR.Model.Reports.MonthlyPayrollCollection);
-            this.objectDataSource1.Name = "objectDataSource1";
+            resources.ApplyResources(this.xrLabel19, "xrLabel19");
+            this.xrLabel19.Name = "xrLabel19";
+            this.xrLabel19.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96F);
             // 
-            // xrLabel17
+            // xrLabel20
             // 
-            resources.ApplyResources(this.xrLabel17, "xrLabel17");
-            this.xrLabel17.Multiline = true;
-            this.xrLabel17.Name = "xrLabel17";
-            this.xrLabel17.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96F);
-            this.xrLabel17.StylePriority.UseFont = false;
-            this.xrLabel17.BeforePrint += new System.Drawing.Printing.PrintEventHandler(this.xrLabel17_BeforePrint);
+            resources.ApplyResources(this.xrLabel20, "xrLabel20");
+            this.xrLabel20.Name = "xrLabel20";
+            this.xrLabel20.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96F);
             // 
-            // xrLabel18
+            // xrLabel21
             // 
-            this.xrLabel18.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding("Text", null, "PayDate")});
-            resources.ApplyResources(this.xrLabel18, "xrLabel18");
-            this.xrLabel18.Name = "xrLabel18";
-            this.xrLabel18.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96F);
-            this.xrLabel18.StylePriority.UseFont = false;
+            resources.ApplyResources(this.xrLabel21, "xrLabel21");
+            this.xrLabel21.Name = "xrLabel21";
+            this.xrLabel21.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96F);
+            // 
+            // xrLabel22
+            // 
+            resources.ApplyResources(this.xrLabel22, "xrLabel22");
+            this.xrLabel22.Name = "xrLabel22";
+            this.xrLabel22.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96F);
+            // 
+            // Department
+            // 
+            resources.ApplyResources(this.Department, "Department");
+            this.Department.Name = "Department";
+            // 
+            // Branch
+            // 
+            resources.ApplyResources(this.Branch, "Branch");
+            this.Branch.Name = "Branch";
+            // 
+            // Payment
+            // 
+            resources.ApplyResources(this.Payment, "Payment");
+            this.Payment.Name = "Payment";
+            // 
+            // Ref
+            // 
+            resources.ApplyResources(this.Ref, "Ref");
+            this.Ref.Name = "Ref";
+            // 
+            // User
+            // 
+            resources.ApplyResources(this.User, "User");
+            this.User.Name = "User";
+            // 
+            // xrLabel23
+            // 
+            resources.ApplyResources(this.xrLabel23, "xrLabel23");
+            this.xrLabel23.Name = "xrLabel23";
+            this.xrLabel23.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96F);
+            // 
+            // xrLabel24
+            // 
+            this.xrLabel24.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
+            new DevExpress.XtraReports.UI.XRBinding(this.User, "Text", "")});
+            resources.ApplyResources(this.xrLabel24, "xrLabel24");
+            this.xrLabel24.Name = "xrLabel24";
+            this.xrLabel24.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96F);
+            // 
+            // xrLine1
+            // 
+            resources.ApplyResources(this.xrLine1, "xrLine1");
+            this.xrLine1.Name = "xrLine1";
+            // 
+            // xrLabel25
+            // 
+            this.xrLabel25.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
+            new DevExpress.XtraReports.UI.XRBinding(this.Department, "Text", "")});
+            resources.ApplyResources(this.xrLabel25, "xrLabel25");
+            this.xrLabel25.Name = "xrLabel25";
+            this.xrLabel25.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96F);
+            // 
+            // xrLabel26
+            // 
+            this.xrLabel26.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
+            new DevExpress.XtraReports.UI.XRBinding(this.Payment, "Text", "")});
+            resources.ApplyResources(this.xrLabel26, "xrLabel26");
+            this.xrLabel26.Name = "xrLabel26";
+            this.xrLabel26.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96F);
+            // 
+            // xrLabel27
+            // 
+            this.xrLabel27.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
+            new DevExpress.XtraReports.UI.XRBinding(this.Ref, "Text", "")});
+            resources.ApplyResources(this.xrLabel27, "xrLabel27");
+            this.xrLabel27.Name = "xrLabel27";
+            this.xrLabel27.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96F);
+            // 
+            // xrLabel28
+            // 
+            this.xrLabel28.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
+            new DevExpress.XtraReports.UI.XRBinding(this.Branch, "Text", "")});
+            resources.ApplyResources(this.xrLabel28, "xrLabel28");
+            this.xrLabel28.Name = "xrLabel28";
+            this.xrLabel28.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96F);
             // 
             // MonthlyPayroll
             // 
@@ -528,11 +679,18 @@ public class MonthlyPayroll : DevExpress.XtraReports.UI.XtraReport
             this.DetailReport,
             this.DetailReport1,
             this.DetailReport3,
-            this.DetailReport4});
+            this.DetailReport4,
+            this.PageHeader});
             this.ComponentStorage.AddRange(new System.ComponentModel.IComponent[] {
             this.objectDataSource1});
             this.DataSource = this.objectDataSource1;
             resources.ApplyResources(this, "$this");
+            this.Parameters.AddRange(new DevExpress.XtraReports.Parameters.Parameter[] {
+            this.Department,
+            this.Branch,
+            this.Payment,
+            this.Ref,
+            this.User});
             this.StyleSheet.AddRange(new DevExpress.XtraReports.UI.XRControlStyle[] {
             this.Title,
             this.FieldCaption,

@@ -870,4 +870,22 @@
   <data name="RT601" xml:space="preserve">
     <value>Leave List</value>
   </data>
+  <data name="All" xml:space="preserve">
+    <value>All</value>
+  </data>
+  <data name="Mediocre" xml:space="preserve">
+    <value>Mediocre</value>
+  </data>
+  <data name="Strong" xml:space="preserve">
+    <value>Strong</value>
+  </data>
+  <data name="VeryStrong" xml:space="preserve">
+    <value>Very Strong</value>
+  </data>
+  <data name="VeryWeak" xml:space="preserve">
+    <value>Very Weak</value>
+  </data>
+  <data name="Weak" xml:space="preserve">
+    <value>Weak</value>
+  </data>
 </root>

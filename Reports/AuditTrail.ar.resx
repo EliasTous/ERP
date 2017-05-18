@@ -123,6 +123,9 @@
   <data name="xrLabel11.Text" xml:space="preserve">
     <value>النوع</value>
   </data>
+  <data name="xrLabel18.Text" xml:space="preserve">
+    <value>المستخدم</value>
+  </data>
   <data name="xrLabel19.Text" xml:space="preserve">
     <value>سجل المراقبة</value>
   </data>

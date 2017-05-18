@@ -205,7 +205,18 @@ namespace AionHR.Web.UI.Forms.Reports
             JobHistory h = new JobHistory();
             h.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;
             h.RightToLeftLayout = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeftLayout.Yes : DevExpress.XtraReports.UI.RightToLeftLayout.No;
-
+            if (resp.Items.Count > 0)
+            {
+                if (req.Parameters["_departmentId"] != "0")
+                    h.Parameters["Department"].Value = resp.Items[0].departmentName;
+                if (req.Parameters["_branchId"] != "0")
+                    h.Parameters["Branch"].Value = resp.Items[0].branchName;
+                if (req.Parameters["_positionId"] != "0")
+                    h.Parameters["Position"].Value = resp.Items[0].positionName;
+                if (req.Parameters["_divisionId"] != "0")
+                    h.Parameters["Division"].Value = resp.Items[0].divisionName;
+            }
+            h.Parameters["User"].Value = _systemService.SessionHelper.GetCurrentUser();
             h.DataSource = resp.Items;
           
 

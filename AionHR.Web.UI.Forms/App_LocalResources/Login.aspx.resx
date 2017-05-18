@@ -141,6 +141,9 @@
   <data name="Login" xml:space="preserve">
     <value>Login</value>
   </data>
+  <data name="Mediocre" xml:space="preserve">
+    <value>Mediocre</value>
+  </data>
   <data name="Password" xml:space="preserve">
     <value>Password</value>
   </data>
@@ -150,10 +153,22 @@
   <data name="RequestError" xml:space="preserve">
     <value>Error in request, Try Again Later.</value>
   </data>
+  <data name="Strong" xml:space="preserve">
+    <value>Strong</value>
+  </data>
   <data name="UserID" xml:space="preserve">
     <value>Username | Email</value>
   </data>
   <data name="ValidAccount" xml:space="preserve">
     <value>Valid Account Name</value>
+  </data>
+  <data name="VeryStrong" xml:space="preserve">
+    <value>Very Strong</value>
+  </data>
+  <data name="VeryWeak" xml:space="preserve">
+    <value>Very Weak</value>
+  </data>
+  <data name="Weak" xml:space="preserve">
+    <value>Weak</value>
   </data>
 </root>

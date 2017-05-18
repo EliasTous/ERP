@@ -67,16 +67,8 @@ var enterKeyPressSearchHandler = function (el, event) {
         App.Store1.reload();
     }
 };
-
-function getDay(dow) {
-
-    switch (dow) {
-        case 1: return document.getElementById('leaveRequest1_MondayText').value;
-        case 2: return document.getElementById('leaveRequest1_TuesdayText').value;
-        case 3: return document.getElementById('leaveRequest1_WednesdayText').value;
-        case 4: return document.getElementById('leaveRequest1_ThursdayText').value;
-        case 5: return document.getElementById('leaveRequest1_FridayText').value;
-        case 6: return document.getElementById('leaveRequest1_SaturdayText').value;
-        case 0: return document.getElementById('leaveRequest1_SundayText').value;
-    }
+function ss()
+{
+    alert('ss');
 }
+

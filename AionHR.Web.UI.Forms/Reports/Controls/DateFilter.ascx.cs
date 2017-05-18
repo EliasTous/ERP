@@ -17,7 +17,7 @@ namespace AionHR.Web.UI.Forms.Reports.Controls
         {
             if (!IsPostBack)
             {
-                date.Format = _systemService.SessionHelper.GetDateformat();
+              
                 date.SelectedDate = DateTime.Now;
             }
            

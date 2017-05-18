@@ -2,7 +2,7 @@
 <ext:Panel runat="server" Layout="HBoxLayout" Width="120"  ><Items>
 <ext:ComboBox runat="server" ID="trxType" Editable="false" Width="120" FieldLabel="">
     <Items>
-        
+        <ext:ListItem Text="<%$ Resources: Common,All  %>" Value="0" />
         <ext:ListItem Text="<%$ Resources: Common,TrType1  %>" Value="1" />
         <ext:ListItem Text="<%$ Resources:  Common,TrType2 %>" Value="2" />
          <ext:ListItem Text="<%$ Resources:  Common,TrType3 %>" Value="3" />

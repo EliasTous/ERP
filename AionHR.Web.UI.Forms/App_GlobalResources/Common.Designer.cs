@@ -106,6 +106,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to All.
+        /// </summary>
+        internal static string All {
+            get {
+                return ResourceManager.GetString("All", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Allowance Types.
         /// </summary>
         internal static string AllowanceTypes {
@@ -1276,6 +1285,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Mediocre.
+        /// </summary>
+        internal static string Mediocre {
+            get {
+                return ResourceManager.GetString("Mediocre", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to System.
         /// </summary>
         internal static string Mod20 {
@@ -2032,6 +2050,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Strong.
+        /// </summary>
+        internal static string Strong {
+            get {
+                return ResourceManager.GetString("Strong", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Sunday.
         /// </summary>
         internal static string SundayText {
@@ -2253,6 +2280,33 @@ namespace Resources {
         internal static string VacationSchedules {
             get {
                 return ResourceManager.GetString("VacationSchedules", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Very Strong.
+        /// </summary>
+        internal static string VeryStrong {
+            get {
+                return ResourceManager.GetString("VeryStrong", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Very Weak.
+        /// </summary>
+        internal static string VeryWeak {
+            get {
+                return ResourceManager.GetString("VeryWeak", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Weak.
+        /// </summary>
+        internal static string Weak {
+            get {
+                return ResourceManager.GetString("Weak", resourceCulture);
             }
         }
         

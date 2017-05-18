@@ -195,11 +195,19 @@ namespace AionHR.Web.UI.Forms.Reports
             }
             resp2.Items.ForEach(x => x.DateString = x.date.ToString(_systemService.SessionHelper.GetDateformat()));
             //h.PrintingSystem.ContinuousPageNumbering = true;
+            string from = DateTime.Parse(req.Parameters["_fromDate"]).ToString(_systemService.SessionHelper.GetDateformat());
+            string to = DateTime.Parse(req.Parameters["_toDate"]).ToString(_systemService.SessionHelper.GetDateformat());
+            string user = _systemService.SessionHelper.GetCurrentUser();
+            h.Parameters["From"].Value = from;
+            h.Parameters["To"].Value = to;
+            h.Parameters["User"].Value = user;
             h.CreateDocument();
             Terminations t = new Terminations();
             t.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;
             t.RightToLeftLayout = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeftLayout.Yes : DevExpress.XtraReports.UI.RightToLeftLayout.No;
-
+            t.Parameters["From"].Value = from;
+            t.Parameters["To"].Value = to;
+            t.Parameters["User"].Value = user;
             t.DataSource = resp2.Items;
             t.CreateDocument();
 

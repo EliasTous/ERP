@@ -876,4 +876,22 @@
   <data name="RT601" xml:space="preserve">
     <value>تقرير الإجازات</value>
   </data>
+  <data name="All" xml:space="preserve">
+    <value>الكل</value>
+  </data>
+  <data name="Mediocre" xml:space="preserve">
+    <value>متوسطة</value>
+  </data>
+  <data name="Strong" xml:space="preserve">
+    <value>جيدة</value>
+  </data>
+  <data name="VeryStrong" xml:space="preserve">
+    <value>قوية</value>
+  </data>
+  <data name="VeryWeak" xml:space="preserve">
+    <value>ضعيفة جداً</value>
+  </data>
+  <data name="Weak" xml:space="preserve">
+    <value>ضعيفة</value>
+  </data>
 </root>

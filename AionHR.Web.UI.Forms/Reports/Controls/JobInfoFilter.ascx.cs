@@ -203,5 +203,34 @@ namespace AionHR.Web.UI.Forms.Reports
                 enableDivision = value;
             }
         }
+
+        public string GetDepartment()
+        {
+            if (departmentId.SelectedItem != null)
+                return departmentId.SelectedItem.Text;
+            else
+                return "";
+        }
+        public string GetBranch()
+        {
+            if (branchId.SelectedItem != null)
+                return branchId.SelectedItem.Text;
+            else
+                return "";
+        }
+        public string GetDivision()
+        {
+            if (divisionId.SelectedItem != null)
+                return divisionId.SelectedItem.Text;
+            else
+                return "";
+        }
+        public string GetPosition()
+        {
+            if (positionId.SelectedItem != null)
+                return positionId.SelectedItem.Text;
+            else
+                return "";
+        }
     }
 }

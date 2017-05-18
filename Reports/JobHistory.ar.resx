@@ -120,6 +120,18 @@
   <data name="xrLabel1.Text" xml:space="preserve">
     <value>المدير</value>
   </data>
+  <data name="xrLabel10.Text" xml:space="preserve">
+    <value>القسم</value>
+  </data>
+  <data name="xrLabel11.Text" xml:space="preserve">
+    <value>الفرع</value>
+  </data>
+  <data name="xrLabel12.Text" xml:space="preserve">
+    <value>المنصب</value>
+  </data>
+  <data name="xrLabel13.Text" xml:space="preserve">
+    <value>الادارة العليا</value>
+  </data>
   <data name="xrLabel17.Text" xml:space="preserve">
     <value>تاريخ الوظيفة</value>
   </data>

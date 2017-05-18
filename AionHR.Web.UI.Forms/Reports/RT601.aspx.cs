@@ -242,6 +242,27 @@ namespace AionHR.Web.UI.Forms.Reports
             h.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;
             h.RightToLeftLayout = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeftLayout.Yes : DevExpress.XtraReports.UI.RightToLeftLayout.No;
 
+            string from = DateTime.Parse(req.Parameters["_fromDate"]).ToString(_systemService.SessionHelper.GetDateformat());
+            string to = DateTime.Parse(req.Parameters["_toDate"]).ToString(_systemService.SessionHelper.GetDateformat());
+            string user = _systemService.SessionHelper.GetCurrentUser();
+
+            h.Parameters["From"].Value = from;
+            h.Parameters["To"].Value = to;
+            h.Parameters["User"].Value = user;
+            if (resp.Items.Count > 0)
+            {
+                if (req.Parameters["_departmentId"] != "0")
+                    h.Parameters["Department"].Value = jobInfo1.GetDepartment();
+                if (req.Parameters["_branchId"] != "0")
+                    h.Parameters["Branch"].Value = jobInfo1.GetBranch();
+                if (req.Parameters["_ltId"] != "0")
+                    h.Parameters["LeaveType"].Value = resp.Items[0].ltName;
+                if (req.Parameters["_employeeId"] != "0")
+                    h.Parameters["Employee"].Value = resp.Items[0].employeeName.fullName;
+                if (req.Parameters["_status"] != "0")
+                    h.Parameters["Status"].Value = resp.Items[0].statusString;
+            }
+
             h.CreateDocument();
 
 

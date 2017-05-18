@@ -196,7 +196,9 @@ namespace AionHR.Web.UI.Forms.Reports
             h.DataSource = atts;
 
 
-
+            h.Parameters["From"].Value = DateTime.Parse(req.Parameters["_fromDate"]).ToString(_systemService.SessionHelper.GetDateformat());
+            h.Parameters["To"].Value = DateTime.Parse(req.Parameters["_toDate"]).ToString(_systemService.SessionHelper.GetDateformat());
+            h.Parameters["User"].Value = _systemService.SessionHelper.GetCurrentUser();
 
             h.CreateDocument();
 

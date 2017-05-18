@@ -214,7 +214,9 @@ namespace AionHR.Web.UI.Forms.Reports
             if (!string.IsNullOrEmpty(req.Parameters["_trxType"]))
                 h.Parameters["TrType"].Value = GetGlobalResourceObject("Common", "TrType" + req.Parameters["_trxType"]);
             if (!string.IsNullOrEmpty(req.Parameters["_moduleId"]))
-                h.Parameters["Module"].Value = GetGlobalResourceObject("Classes", "Class" + req.Parameters["_moduleId"]);
+                h.Parameters["Module"].Value = GetGlobalResourceObject("Common", "Mod" + req.Parameters["_moduleId"]);
+            if (resp.Items.Count > 0&&req.Parameters["_userId"]!="0")
+                h.Parameters["User"].Value = resp.Items[0].userName;
             h.DataSource = resp.Items;
 
 

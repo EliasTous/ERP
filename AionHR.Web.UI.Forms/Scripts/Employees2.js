@@ -12,42 +12,6 @@ var attachRender = function () {
 
 var options;
 var commandName;
-var cellClick = function (view, cell, columnIndex, record, row, rowIndex, e) {
-
-    commandName = "";
-    CheckSession();
-
-
-    // in case 
-
-    if (columnIndex == 0)
-        return false;
-    var t = e.getTarget();
-    // columnId = App.employeeControl1_GridPanel1.columns[columnIndex].id; // Get column id
-
-    if (t.className == "imgEdit") {
-        //the ajax call is allowed
-        commandName = t.className;
-        return true;
-    }
-
-    if (t.className == "imgDelete") {
-        //the ajax call is allowed
-        commandName = t.className;
-        return true;
-    }
-    if (t.className == "imgAttach") {
-        //the ajax call is allowed
-        commandName = t.className;
-        return true;
-    }
-
-    App.employeeControl1_RowExpander1.toggleRow(rowIndex, record);
-
-    //forbidden
-    return false;
-};
-
 
 var getCellType = function (grid, rowIndex, cellIndex) {
 
@@ -117,7 +81,7 @@ var showImagePreview2 = function (id) {
 
             }
             filerdr.readAsDataURL(input.files[0]);
-            App.employeeControl1_employeeControl1_uploadPhotoButton.setDisabled(false);
+            App.employeeControl1_uploadPhotoButton.setDisabled(false);
         }
         else {
             alert('File Format is not allowed');
@@ -315,5 +279,5 @@ function initCropper(path) {
 }
 
 function refreshQV() {
-    App.employeeControl1_direct.FillLeftPanel(true);
+    App.direct.employeeControl1.FillLeftPanel(true);
 }

@@ -41,7 +41,6 @@ public class DailyAttendance : DevExpress.XtraReports.UI.XtraReport
     private XRLabel xrLabel12;
     private XRLabel xrLabel11;
     private XRLabel xrLabel10;
-    private XRLine xrLine2;
     private GroupFooterBand GroupFooter1;
     private XRLine xrLine1;
     private XRLabel xrLabel21;
@@ -58,6 +57,14 @@ public class DailyAttendance : DevExpress.XtraReports.UI.XtraReport
     private XRLabel xrLabel28;
     private GroupHeaderBand GroupHeader1;
     private XRLine xrLine4;
+    private GroupHeaderBand GroupHeader2;
+    private XRRichText xrRichText1;
+    private DevExpress.XtraReports.Parameters.Parameter From;
+    private DevExpress.XtraReports.Parameters.Parameter To;
+    private XRLabel xrLabel30;
+    private DevExpress.XtraReports.Parameters.Parameter User;
+    private XRLabel xrLabel29;
+    private XRLine xrLine2;
 
     /// <summary>
     /// Required designer variable.
@@ -119,7 +126,6 @@ public class DailyAttendance : DevExpress.XtraReports.UI.XtraReport
             this.xrPageInfo1 = new DevExpress.XtraReports.UI.XRPageInfo();
             this.xrPageInfo2 = new DevExpress.XtraReports.UI.XRPageInfo();
             this.reportHeaderBand1 = new DevExpress.XtraReports.UI.ReportHeaderBand();
-            this.xrLine2 = new DevExpress.XtraReports.UI.XRLine();
             this.xrLabel27 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel18 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel17 = new DevExpress.XtraReports.UI.XRLabel();
@@ -140,7 +146,6 @@ public class DailyAttendance : DevExpress.XtraReports.UI.XtraReport
             this.xrLabel20 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel19 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLine1 = new DevExpress.XtraReports.UI.XRLine();
-            this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
             this.ReportFooter = new DevExpress.XtraReports.UI.ReportFooterBand();
             this.xrLabel26 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLine3 = new DevExpress.XtraReports.UI.XRLine();
@@ -151,6 +156,16 @@ public class DailyAttendance : DevExpress.XtraReports.UI.XtraReport
             this.xrLabel28 = new DevExpress.XtraReports.UI.XRLabel();
             this.GroupHeader1 = new DevExpress.XtraReports.UI.GroupHeaderBand();
             this.xrLine4 = new DevExpress.XtraReports.UI.XRLine();
+            this.GroupHeader2 = new DevExpress.XtraReports.UI.GroupHeaderBand();
+            this.From = new DevExpress.XtraReports.Parameters.Parameter();
+            this.To = new DevExpress.XtraReports.Parameters.Parameter();
+            this.xrRichText1 = new DevExpress.XtraReports.UI.XRRichText();
+            this.User = new DevExpress.XtraReports.Parameters.Parameter();
+            this.xrLabel29 = new DevExpress.XtraReports.UI.XRLabel();
+            this.xrLabel30 = new DevExpress.XtraReports.UI.XRLabel();
+            this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
+            this.xrLine2 = new DevExpress.XtraReports.UI.XRLine();
+            ((System.ComponentModel.ISupportInitialize)(this.xrRichText1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             // 
@@ -278,6 +293,8 @@ public class DailyAttendance : DevExpress.XtraReports.UI.XtraReport
             // pageFooterBand1
             // 
             this.pageFooterBand1.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
+            this.xrLabel30,
+            this.xrLabel29,
             this.xrPageInfo1,
             this.xrPageInfo2});
             resources.ApplyResources(this.pageFooterBand1, "pageFooterBand1");
@@ -301,15 +318,9 @@ public class DailyAttendance : DevExpress.XtraReports.UI.XtraReport
             // reportHeaderBand1
             // 
             this.reportHeaderBand1.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
-            this.xrLine2,
             this.xrLabel27});
             resources.ApplyResources(this.reportHeaderBand1, "reportHeaderBand1");
             this.reportHeaderBand1.Name = "reportHeaderBand1";
-            // 
-            // xrLine2
-            // 
-            resources.ApplyResources(this.xrLine2, "xrLine2");
-            this.xrLine2.Name = "xrLine2";
             // 
             // xrLabel27
             // 
@@ -477,11 +488,6 @@ public class DailyAttendance : DevExpress.XtraReports.UI.XtraReport
             this.xrLine1.LineStyle = System.Drawing.Drawing2D.DashStyle.Dash;
             this.xrLine1.Name = "xrLine1";
             // 
-            // objectDataSource1
-            // 
-            this.objectDataSource1.DataSource = typeof(AionHR.Model.Reports.DailyAttendance);
-            this.objectDataSource1.Name = "objectDataSource1";
-            // 
             // ReportFooter
             // 
             this.ReportFooter.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
@@ -582,6 +588,64 @@ public class DailyAttendance : DevExpress.XtraReports.UI.XtraReport
             resources.ApplyResources(this.xrLine4, "xrLine4");
             this.xrLine4.Name = "xrLine4";
             // 
+            // GroupHeader2
+            // 
+            this.GroupHeader2.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
+            this.xrLine2,
+            this.xrRichText1});
+            resources.ApplyResources(this.GroupHeader2, "GroupHeader2");
+            this.GroupHeader2.Level = 2;
+            this.GroupHeader2.Name = "GroupHeader2";
+            this.GroupHeader2.RepeatEveryPage = true;
+            // 
+            // From
+            // 
+            resources.ApplyResources(this.From, "From");
+            this.From.Name = "From";
+            // 
+            // To
+            // 
+            resources.ApplyResources(this.To, "To");
+            this.To.Name = "To";
+            // 
+            // xrRichText1
+            // 
+            resources.ApplyResources(this.xrRichText1, "xrRichText1");
+            this.xrRichText1.Name = "xrRichText1";
+            this.xrRichText1.SerializableRtfString = resources.GetString("xrRichText1.SerializableRtfString");
+            this.xrRichText1.StyleName = "PageInfo";
+            // 
+            // User
+            // 
+            resources.ApplyResources(this.User, "User");
+            this.User.Name = "User";
+            // 
+            // xrLabel29
+            // 
+            resources.ApplyResources(this.xrLabel29, "xrLabel29");
+            this.xrLabel29.Name = "xrLabel29";
+            this.xrLabel29.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel29.StyleName = "PageInfo";
+            // 
+            // xrLabel30
+            // 
+            this.xrLabel30.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
+            new DevExpress.XtraReports.UI.XRBinding(this.User, "Text", "")});
+            resources.ApplyResources(this.xrLabel30, "xrLabel30");
+            this.xrLabel30.Name = "xrLabel30";
+            this.xrLabel30.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel30.StyleName = "PageInfo";
+            // 
+            // objectDataSource1
+            // 
+            this.objectDataSource1.DataSource = typeof(AionHR.Model.Reports.DailyAttendance);
+            this.objectDataSource1.Name = "objectDataSource1";
+            // 
+            // xrLine2
+            // 
+            resources.ApplyResources(this.xrLine2, "xrLine2");
+            this.xrLine2.Name = "xrLine2";
+            // 
             // DailyAttendance
             // 
             this.Bands.AddRange(new DevExpress.XtraReports.UI.Band[] {
@@ -594,17 +658,23 @@ public class DailyAttendance : DevExpress.XtraReports.UI.XtraReport
             this.GroupFooter1,
             this.ReportFooter,
             this.PageHeader,
-            this.GroupHeader1});
+            this.GroupHeader1,
+            this.GroupHeader2});
             this.ComponentStorage.AddRange(new System.ComponentModel.IComponent[] {
             this.objectDataSource1});
             this.DataSource = this.objectDataSource1;
             resources.ApplyResources(this, "$this");
+            this.Parameters.AddRange(new DevExpress.XtraReports.Parameters.Parameter[] {
+            this.From,
+            this.To,
+            this.User});
             this.StyleSheet.AddRange(new DevExpress.XtraReports.UI.XRControlStyle[] {
             this.Title,
             this.FieldCaption,
             this.PageInfo,
             this.DataField});
             this.Version = "16.2";
+            ((System.ComponentModel.ISupportInitialize)(this.xrRichText1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
 

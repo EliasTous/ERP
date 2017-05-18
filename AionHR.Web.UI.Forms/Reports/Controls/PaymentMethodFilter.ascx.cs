@@ -35,5 +35,11 @@ namespace AionHR.Web.UI.Forms.Reports.Controls
             return p;
         }
 
+        public string GetPaymentMethodString()
+        {
+            if (paymentMethod.SelectedItem != null)
+                return paymentMethod.SelectedItem.Text;
+            else return "";
+        }
     }
 }

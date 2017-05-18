@@ -22,5 +22,10 @@ namespace Reports
         {
             e.Cancel = this.RowCount == 0;
         }
+
+        private void PageHeader_BeforePrint(object sender, System.Drawing.Printing.PrintEventArgs e)
+        {
+            e.Cancel = RowCount == 0;
+        }
     }
 }

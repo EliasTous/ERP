@@ -363,7 +363,7 @@
                                 Hideable="false"
                                 MenuDisabled="true"
                                 Resizable="false">
-                                <Renderer handler="alert(App.employeeControl1_fullNameLbl); return editRender()+ '&nbsp&nbsp'+ deleteRender();" />
+                                <Renderer handler=" return editRender()+ '&nbsp&nbsp'+ deleteRender();" />
                               
                             </ext:Column>
                             <ext:Column runat="server"

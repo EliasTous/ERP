@@ -1,7 +1,7 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="LeaveRequestControl.ascx.cs" Inherits="AionHR.Web.UI.Forms.Controls.LeaveRequestControl" %>
 <link rel="stylesheet" type="text/css" href="CSS/Common.css" />
     <link rel="stylesheet" href="CSS/LiveSearch.css" />
-    <script type="text/javascript" src="../Scripts/LeaveRequests2.js?id=9"></script>
+    <script type="text/javascript" src="../Scripts/LeaveRequests2.js?id=10"></script>
     <script type="text/javascript" src="../Scripts/common.js"></script>
     <script type="text/javascript" src="../Scripts/moment.js"></script>
  <script type="text/javascript">
@@ -18,7 +18,18 @@
 
 
         }
-     
+        function getDay(dow) {
+            
+            switch (dow) {
+                case 1: return document.getElementById('leaveRequest1_MondayText').value;
+                case 2: return document.getElementById('leaveRequest1_TuesdayText').value;
+                case 3: return document.getElementById('leaveRequest1_WednesdayText').value;
+                case 4: return document.getElementById('leaveRequest1_ThursdayText').value;
+                case 5: return document.getElementById('leaveRequest1_FridayText').value;
+                case 6: return document.getElementById('leaveRequest1_SaturdayText').value;
+                case 0: return document.getElementById('leaveRequest1_SundayText').value;
+            }
+        }
         function FillReturnInfo(id, d1, d2) {
 
             App.leaveRequest1_leaveId.setValue(id);

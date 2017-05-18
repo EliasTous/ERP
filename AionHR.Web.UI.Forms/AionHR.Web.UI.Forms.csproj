@@ -1561,6 +1561,7 @@
     <Content Include="Controls\App_LocalResources\EmployeeProfileControl.ascx.resx" />
     <Content Include="Controls\App_LocalResources\EmployeeProfileControl.ascx.ar.resx" />
     <Content Include="Controls\App_LocalResources\LeaveRequestControl.ascx.resx" />
+    <Content Include="Controls\App_LocalResources\LeaveRequestControl.ascx.ar.resx" />
     <EmbeddedResource Include="Properties\licenses.licx" />
     <Content Include="Reports\App_LocalResources\RT202.aspx.resx" />
     <Content Include="Reports\App_LocalResources\RT01.aspx.ar.resx" />
