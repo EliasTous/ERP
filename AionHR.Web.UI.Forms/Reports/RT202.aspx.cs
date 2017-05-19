@@ -210,7 +210,37 @@ namespace AionHR.Web.UI.Forms.Reports
             h.RightToLeftLayout = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeftLayout.Yes : DevExpress.XtraReports.UI.RightToLeftLayout.No;
 
             h.DataSource = resp.Items;
+            string user = _systemService.SessionHelper.GetCurrentUser();
+            h.Parameters["User"].Value = user;
+            if (resp.Items.Count > 0)
+            {
+                if (req.Parameters["_branchId"] != "0")
+                    h.Parameters["Branch"].Value = jobInfo1.GetBranch(); 
+                else
+                    h.Parameters["Branch"].Value = GetGlobalResourceObject("Common", "All");
 
+                if (req.Parameters["_activeStatus"] != "0")
+                    h.Parameters["Status"].Value = activeStatus1.GetStatusString();
+                else
+                    h.Parameters["Status"].Value = GetGlobalResourceObject("Common", "All");
+
+                if (req.Parameters["_departmentId"] != "0")
+                    h.Parameters["Department"].Value = resp.Items[0].departmentName;
+                else
+                    h.Parameters["Department"].Value = GetGlobalResourceObject("Common", "All");
+
+
+                if (req.Parameters["_positionId"] != "0")
+                    h.Parameters["Position"].Value = resp.Items[0].positionName;
+                else
+                    h.Parameters["Position"].Value = GetGlobalResourceObject("Common", "All");
+
+                if (req.Parameters["_divisionId"] != "0")
+                    h.Parameters["Division"].Value = jobInfo1.GetDivision();
+                else
+                    h.Parameters["Division"].Value = GetGlobalResourceObject("Common", "All");
+
+            }
 
             h.CreateDocument();
             ASPxWebDocumentViewer1.OpenReport(h);

@@ -211,12 +211,24 @@ namespace AionHR.Web.UI.Forms.Reports
             h.Parameters["username"].Value = _systemService.SessionHelper.Get("CurrentUserName");
             h.Parameters["From"].Value = DateTime.Parse(req.Parameters["_fromDate"]).ToString(_systemService.SessionHelper.GetDateformat());
             h.Parameters["To"].Value = DateTime.Parse(req.Parameters["_toDate"]).ToString(_systemService.SessionHelper.GetDateformat());
-            if (!string.IsNullOrEmpty(req.Parameters["_trxType"]))
-                h.Parameters["TrType"].Value = GetGlobalResourceObject("Common", "TrType" + req.Parameters["_trxType"]);
-            if (!string.IsNullOrEmpty(req.Parameters["_moduleId"]))
-                h.Parameters["Module"].Value = GetGlobalResourceObject("Common", "Mod" + req.Parameters["_moduleId"]);
-            if (resp.Items.Count > 0&&req.Parameters["_userId"]!="0")
-                h.Parameters["User"].Value = resp.Items[0].userName;
+            if (resp.Items.Count > 0)
+            {
+                if (!string.IsNullOrEmpty(req.Parameters["_trxType"]))
+                    h.Parameters["TrType"].Value = GetGlobalResourceObject("Common", "TrType" + req.Parameters["_trxType"]);
+                else
+                    h.Parameters["TrType"].Value = GetGlobalResourceObject("Common", "All");
+
+                if (!string.IsNullOrEmpty(req.Parameters["_moduleId"]))
+                    h.Parameters["Module"].Value = GetGlobalResourceObject("Common", "Mod" + req.Parameters["_moduleId"]);
+                else
+                    h.Parameters["Module"].Value = GetGlobalResourceObject("Common", "All");
+
+                if (resp.Items.Count > 0 && req.Parameters["_userId"] != "0")
+                    h.Parameters["User"].Value = resp.Items[0].userName;
+                else
+                    h.Parameters["User"].Value = GetGlobalResourceObject("Common", "All");
+
+            }
             h.DataSource = resp.Items;
 
 

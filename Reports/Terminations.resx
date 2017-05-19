@@ -168,7 +168,7 @@
     <value>xrTableCell10</value>
   </data>
   <data name="xrTableCell10.Weight" type="System.Double, mscorlib">
-    <value>0.294518439405199</value>
+    <value>0.65427225235019248</value>
   </data>
   <data name="xrTableRow2.Dpi" type="System.Single, mscorlib">
     <value>100</value>
@@ -178,7 +178,7 @@
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="xrTable2.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>650, 25.00001</value>
+    <value>729, 25.00001</value>
   </data>
   <data name="Detail.Dpi" type="System.Single, mscorlib">
     <value>100</value>
@@ -262,16 +262,16 @@
     <value>585.3254, 0</value>
   </data>
   <data name="xrLabel5.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>64.67462, 36.00001</value>
+    <value>143.674561, 36.0000153</value>
   </data>
   <data name="xrLabel5.Text" xml:space="preserve">
-    <value>Hire Date</value>
+    <value>Termination Date</value>
   </data>
   <data name="groupHeaderBand1.Dpi" type="System.Single, mscorlib">
     <value>100</value>
   </data>
   <data name="groupHeaderBand1.HeightF" type="System.Single, mscorlib">
-    <value>36.00001</value>
+    <value>36.0000153</value>
   </data>
   <data name="User.Description" xml:space="preserve">
     <value>Parameter1</value>
@@ -316,7 +316,7 @@
     <value>Page {0} of {1}</value>
   </data>
   <data name="xrPageInfo2.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v16.2">
-    <value>569.2917, 68.91664</value>
+    <value>648.2917, 68.91664</value>
   </data>
   <data name="xrPageInfo2.SizeF" type="System.Drawing.SizeF, System.Drawing">
     <value>80.70831, 23</value>
@@ -382,7 +382,7 @@
     <value>0, 22.9999866</value>
   </data>
   <data name="xrLine1.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>644, 10.4166965</value>
+    <value>728.9999, 10.4166965</value>
   </data>
   <data name="xrRichText1.Dpi" type="System.Single, mscorlib">
     <value>100</value>
@@ -410,5 +410,14 @@
   </metadata>
   <data name="$this.Margins" type="System.Drawing.Printing.Margins, System.Drawing">
     <value>100, 100, 100, 22</value>
+  </data>
+  <data name="$this.PageHeight" type="System.Int32, mscorlib">
+    <value>1268</value>
+  </data>
+  <data name="$this.PageWidth" type="System.Int32, mscorlib">
+    <value>929</value>
+  </data>
+  <data name="$this.PaperKind" type="System.Drawing.Printing.PaperKind, System.Drawing">
+    <value>A4Extra</value>
   </data>
 </root>

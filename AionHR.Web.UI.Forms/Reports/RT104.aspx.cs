@@ -174,8 +174,30 @@ namespace AionHR.Web.UI.Forms.Reports
             reordered.AddRange(resp.Items.Where(x => x.hiredMonth < DateTime.Now.Month).OrderBy(h => h.hiredMonth).ToList());
             reordered.ForEach(x => x.HiredMonthString = GetGlobalResourceObject("Common", new CultureInfo("en-US").DateTimeFormat.GetMonthName(x.hiredMonth)).ToString());
             y.DataSource = reordered;
+            string user = _systemService.SessionHelper.GetCurrentUser();
+            y.Parameters["User"].Value = user;
+            if (resp.Items.Count > 0)
+            {
+                if (req.Parameters["_departmentId"] != "0")
+                    y.Parameters["Department"].Value = jobInfoFilter1.GetDepartment();
+                else
+                    y.Parameters["Department"].Value = GetGlobalResourceObject("Common", "All");
 
+                if (req.Parameters["_branchId"] != "0")
+                    y.Parameters["Branch"].Value = jobInfoFilter1.GetBranch();
+                else
+                    y.Parameters["Branch"].Value = GetGlobalResourceObject("Common", "All");
 
+                if (req.Parameters["_positionId"] != "0")
+                    y.Parameters["Position"].Value = jobInfoFilter1.GetPosition();
+                else
+                    y.Parameters["Position"].Value = GetGlobalResourceObject("Common", "All");
+
+                if (req.Parameters["_divisionId"] != "0")
+                    y.Parameters["Division"].Value = jobInfoFilter1.GetDivision();
+                else
+                    y.Parameters["Division"].Value = GetGlobalResourceObject("Common", "All");
+            }
             ASPxWebDocumentViewer1.DataBind();
             ASPxWebDocumentViewer1.OpenReport(y);
         }

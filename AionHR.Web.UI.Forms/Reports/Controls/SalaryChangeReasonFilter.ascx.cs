@@ -55,5 +55,12 @@ namespace AionHR.Web.UI.Forms.Reports.Controls
             }
             return p;
         }
+
+        public string GetChangeReason()
+        {
+            if (scrId.SelectedItem == null)
+                return "";
+            else return scrId.SelectedItem.Text;
+        }
     }
 }

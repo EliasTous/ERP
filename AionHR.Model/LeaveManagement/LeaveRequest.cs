@@ -25,5 +25,7 @@ namespace AionHR.Model.LeaveManagement
         public string destination { get; set; }
         public string justification { get; set; }
         public bool? isPaid { get; set; }
-    }
+
+        public string leavePeriod { get; set; }
+    }   
 }

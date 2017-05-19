@@ -30,5 +30,12 @@ namespace AionHR.Web.UI.Forms.Reports
 
             return s;
         }
+
+        public string GetStatusString()
+        {
+            if (inactivePref.SelectedItem == null)
+                return "";
+            else return inactivePref.SelectedItem.Text;
+        }
     }
 }

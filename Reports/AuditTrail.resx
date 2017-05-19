@@ -375,9 +375,9 @@
   <data name="GroupHeader1.HeightF" type="System.Single, mscorlib">
     <value>28.1250229</value>
   </data>
-  <metadata name="objectDataSource1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="objectDataSource1.TrayLocation" type="System.Drawing.Point, System.Drawing">
     <value>17, 17</value>
-  </metadata>
+  </data>
   <data name="From.Description" xml:space="preserve">
     <value>Parameter1</value>
   </data>
@@ -495,7 +495,25 @@
   <data name="PageHeader.HeightF" type="System.Single, mscorlib">
     <value>51.3990974</value>
   </data>
-  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <data name="$this.Localizable" type="System.Boolean, mscorlib">
     <value>True</value>
-  </metadata>
+  </data>
+  <data name="From.Value" xml:space="preserve">
+    <value>All</value>
+  </data>
+  <data name="Module.Value" xml:space="preserve">
+    <value>All</value>
+  </data>
+  <data name="To.Value" xml:space="preserve">
+    <value>All</value>
+  </data>
+  <data name="TrType.Value" xml:space="preserve">
+    <value>All</value>
+  </data>
+  <data name="User.Value" xml:space="preserve">
+    <value>All</value>
+  </data>
+  <data name="username.Value" xml:space="preserve">
+    <value>All</value>
+  </data>
 </root>

@@ -894,4 +894,7 @@
   <data name="Weak" xml:space="preserve">
     <value>ضعيفة</value>
   </data>
+  <data name="RT107" xml:space="preserve">
+    <value>معلومات الموظفين الناقصة</value>
+  </data>
 </root>

@@ -76,7 +76,7 @@ namespace AionHR.Web.UI.Forms.Reports
                     format.Text = _systemService.SessionHelper.GetDateformat().ToUpper();
                     ASPxWebDocumentViewer1.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.Utils.DefaultBoolean.True : DevExpress.Utils.DefaultBoolean.False;
                     dateRange1.DefaultStartDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
-                    FillReport(false,false);
+                    FillReport(false, false);
                 }
                 catch { }
             }
@@ -162,7 +162,7 @@ namespace AionHR.Web.UI.Forms.Reports
             req.Add(employeeFilter.GetEmployee());
             req.Add(dateRange1.GetRange());
             req.Add(jobInfo1.GetJobInfo());
-           req.Add(leaveStatusFilter.GetStatus());
+            req.Add(leaveStatusFilter.GetStatus());
             req.Add(leaveTypeFilter.GetLeaveType());
 
             return req;
@@ -253,14 +253,24 @@ namespace AionHR.Web.UI.Forms.Reports
             {
                 if (req.Parameters["_departmentId"] != "0")
                     h.Parameters["Department"].Value = jobInfo1.GetDepartment();
+                else
+                    h.Parameters["Department"].Value = GetGlobalResourceObject("Common", "All");
                 if (req.Parameters["_branchId"] != "0")
                     h.Parameters["Branch"].Value = jobInfo1.GetBranch();
+                else
+                    h.Parameters["Branch"].Value = GetGlobalResourceObject("Common", "All");
                 if (req.Parameters["_ltId"] != "0")
                     h.Parameters["LeaveType"].Value = resp.Items[0].ltName;
+                else
+                    h.Parameters["LeaveType"].Value = GetGlobalResourceObject("Common", "All");
                 if (req.Parameters["_employeeId"] != "0")
                     h.Parameters["Employee"].Value = resp.Items[0].employeeName.fullName;
+                else
+                    h.Parameters["Employee"].Value = GetGlobalResourceObject("Common", "All");
                 if (req.Parameters["_status"] != "0")
                     h.Parameters["Status"].Value = resp.Items[0].statusString;
+                else
+                    h.Parameters["Status"].Value = GetGlobalResourceObject("Common", "All");
             }
 
             h.CreateDocument();
@@ -293,7 +303,7 @@ namespace AionHR.Web.UI.Forms.Reports
         protected void ASPxCallbackPanel1_Load(object sender, EventArgs e)
         {
             //ASPxWebDocumentViewer1.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.Utils.DefaultBoolean.True : DevExpress.Utils.DefaultBoolean.False;
-           
+
         }
     }
 }

@@ -125,7 +125,7 @@ namespace AionHR.Web.UI.Forms
                 FillBranchFilter();
                 FillDepartment();
                 FillDivision();
-                statusPref.Select(4);
+                statusPref.Select("0");
                 c.Format = cc.Format = date.Format= effectiveDate.Format= _systemService.SessionHelper.GetDateformat();
                 //if (string.IsNullOrEmpty(Request.QueryString["employeeId"]))
                 //    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorOperation).Show();

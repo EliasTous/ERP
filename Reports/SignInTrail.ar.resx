@@ -129,6 +129,9 @@
   <data name="xrLabel6.Text" xml:space="preserve">
     <value>لم يتم العثور على نتائج</value>
   </data>
+  <data name="xrLabel9.Text" xml:space="preserve">
+    <value>المستخدم</value>
+  </data>
   <data name="xrPageInfo2.Format" xml:space="preserve">
     <value>صفحة {0} من {1}</value>
   </data>

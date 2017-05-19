@@ -289,6 +289,7 @@
     <Content Include="Reports\RT104.aspx" />
     <Content Include="Reports\RT105.aspx" />
     <Content Include="Reports\RT106.aspx" />
+    <Content Include="Reports\RT107.aspx" />
     <Content Include="Reports\RT201.aspx" />
     <Content Include="Reports\RT202.aspx" />
     <Content Include="Reports\RT203.aspx" />
@@ -824,6 +825,13 @@
     </Compile>
     <Compile Include="Reports\RT106.aspx.designer.cs">
       <DependentUpon>RT106.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\RT107.aspx.cs">
+      <DependentUpon>RT107.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reports\RT107.aspx.designer.cs">
+      <DependentUpon>RT107.aspx</DependentUpon>
     </Compile>
     <Compile Include="Reports\RT201.aspx.cs">
       <DependentUpon>RT201.aspx</DependentUpon>
@@ -1591,6 +1599,7 @@
     <Content Include="Reports\App_LocalResources\RT601.aspx.resx" />
     <Content Include="Reports\App_LocalResources\RT601.aspx.ar.resx" />
     <Content Include="Reports\Controls\App_LocalResources\LeaveStatusFilter.ascx.resx" />
+    <Content Include="Reports\App_LocalResources\RT107.aspx.resx" />
     <EmbeddedResource Include="Reports\RT201.aspx.resx">
       <DependentUpon>RT201.aspx.cs</DependentUpon>
       <Generator>ResXFileCodeGenerator</Generator>

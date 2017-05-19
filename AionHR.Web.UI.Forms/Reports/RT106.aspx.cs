@@ -185,7 +185,8 @@ namespace AionHR.Web.UI.Forms.Reports
 
             resp.Items.ForEach(x => { x.MonthString = CultureInfo.CurrentUICulture.DateTimeFormat.GetMonthName(x.month); x.month = x.month - 1; x.rate = x.rate / 100; });
             y.DataSource = resp.Items;
-
+            string user = _systemService.SessionHelper.GetCurrentUser();
+            y.Parameters["User"].Value = user;
 
             ASPxWebDocumentViewer1.DataBind();
             ASPxWebDocumentViewer1.OpenReport(y);

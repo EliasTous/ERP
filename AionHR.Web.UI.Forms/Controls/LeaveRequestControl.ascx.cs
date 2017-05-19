@@ -84,6 +84,7 @@ namespace AionHR.Web.UI.Forms.Controls
             RecordRequest r = new RecordRequest();
             r.RecordID = id;
             CurrentLeave.Text = r.RecordID;
+            shouldDisableLastDay.Text = "0";
 
             RecordResponse<LeaveRequest> response = _leaveManagementService.ChildGetRecord<LeaveRequest>(r);
             if (!response.Success)
@@ -158,6 +159,7 @@ namespace AionHR.Web.UI.Forms.Controls
             leaveDaysStore.DataSource = new List<LeaveDay>();
             leaveDaysStore.DataBind();
             status.Select(0);
+            shouldDisableLastDay.Text = "0";
             this.EditRecordWindow.Show();
         }
 
@@ -201,12 +203,12 @@ namespace AionHR.Web.UI.Forms.Controls
 
         private void setApproved(bool disabled)
         {
-            LeaveDaysGrid.Disabled = disabled;
+            //LeaveDaysGrid.Disabled = disabled;
             startDate.Disabled = disabled;
             endDate.Disabled = employeeId.Disabled = justification.Disabled = destination.Disabled = isPaid.Disabled = ltId.Disabled = status.Disabled = TotalText.Disabled = disabled;
             returnDate.Disabled = !disabled;
             approved.Text = disabled.ToString();
-            sumHours.Disabled = disabled;
+            leavePeriod.Disabled = disabled;
         }
 
 
@@ -216,7 +218,7 @@ namespace AionHR.Web.UI.Forms.Controls
             startDate.Disabled = false;
             endDate.Disabled = employeeId.Disabled = justification.Disabled = destination.Disabled = isPaid.Disabled = ltId.Disabled = status.Disabled = TotalText.Disabled = false;
             returnDate.Disabled = true;
-            sumHours.Disabled = false;
+            leavePeriod.Disabled = false;
             approved.Text = "False";
             SaveButton.Disabled = false;
         }
@@ -228,7 +230,7 @@ namespace AionHR.Web.UI.Forms.Controls
             endDate.Disabled = employeeId.Disabled = justification.Disabled = destination.Disabled = isPaid.Disabled = ltId.Disabled = status.Disabled = TotalText.Disabled = disabled;
             returnDate.Disabled = disabled;
             SaveButton.Disabled = disabled;
-            sumHours.Disabled = disabled;
+            leavePeriod.Disabled = disabled;
         }
 
         /// <summary>
@@ -428,7 +430,7 @@ namespace AionHR.Web.UI.Forms.Controls
                     if (!r.Success)//it maybe another check
                     {
                         X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                        X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorUpdatingRecord).Show();
+                        X.Msg.Alert(Resources.Common.Error, r.Summary).Show();
                         return;
                     }
 
@@ -675,6 +677,67 @@ namespace AionHR.Web.UI.Forms.Controls
             }
         }
 
+        [DirectMethod]
+        public void CalcReturnDate(object sender, DirectEventArgs e)
+        {
+            DateTime startDate, endDate,returnDate;
+            try
+            {
+                startDate = DateTime.Parse(e.ExtraParams["startDate"]);
+                endDate = DateTime.Parse(e.ExtraParams["endDate"]);
+                returnDate = DateTime.Parse(e.ExtraParams["returnDate"]);
+                LeaveChanged.Text = "1";
+            }
+            catch
+            {
+
+                panelRecordDetails.ActiveTabIndex = 0;
+                return;
+            }
+            if (startDate == DateTime.MinValue || endDate == DateTime.MinValue)
+            {
+
+                return;
+            }
+            string startDay = startDate.ToString("yyyyMMdd");
+            string returnDay = returnDate.ToString("yyyyMMdd");
+
+            LeaveCalendarDayListRequest req = new LeaveCalendarDayListRequest();
+            req.StartDayId = startDay;
+            req.EndDayId = returnDay;
+            req.IsWorkingDay = true;
+            int bulk;
+            if (string.IsNullOrEmpty(employeeId.Value.ToString()) || !int.TryParse(employeeId.Value.ToString(), out bulk))
+            {
+
+                return;
+            }
+            req.CaId = GetEmployeeCalendar(employeeId.Value.ToString()).ToString();
+            if (req.CaId == "0")
+            {
+
+                X.Msg.Alert(Resources.Common.Error, GetLocalResourceObject("ErrorNoCalendar").ToString()).Show();
+                return;
+
+            }
+            
+            ListResponse<LeaveCalendarDay> days = _timeAttendanceService.ChildGetAll<LeaveCalendarDay>(req);
+            if (!days.Success)
+            {
+                X.Msg.Alert(Resources.Common.Error, days.Summary).Show();
+                return ;
+            }
+            List<LeaveDay> leaveDays = new List<LeaveDay>();
+            days.Items.ForEach(x => leaveDays.Add(new LeaveDay() { dow = (short)DateTime.ParseExact(x.dayId, "yyyyMMdd", new CultureInfo("en")).DayOfWeek, dayId = x.dayId, workingHours = x.workingHours, leaveHours = x.workingHours }));
+            leaveDaysStore.DataSource = leaveDays;
+            leaveDaysStore.DataBind();
+            X.Call("CalcSum");
+            if(returnDate>endDate)
+            {
+                X.Call("EnableLast");
+            }
+        }
+
         private bool AddDays(List<LeaveDay> days)
         {
             PostRequest<LeaveDay[]> req = new PostRequest<LeaveDay[]>();
@@ -781,6 +844,12 @@ namespace AionHR.Web.UI.Forms.Controls
             }
 
 
+        }
+
+        protected void closing(object sender, DirectEventArgs e)
+        {
+            leaveDaysStore.DataSource = new List<LeaveDay>();
+            leaveDaysStore.DataBind();
         }
     }
 }

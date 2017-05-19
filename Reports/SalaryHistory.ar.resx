@@ -117,6 +117,15 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="xrLabel10.Text" xml:space="preserve">
+    <value>الإدارة</value>
+  </data>
+  <data name="xrLabel11.Text" xml:space="preserve">
+    <value>سبب التغيير</value>
+  </data>
+  <data name="xrLabel12.Text" xml:space="preserve">
+    <value>الحالة</value>
+  </data>
   <data name="xrLabel13.Text" xml:space="preserve">
     <value>تاريخ الراتب</value>
   </data>
@@ -134,6 +143,15 @@
   </data>
   <data name="xrLabel6.Text" xml:space="preserve">
     <value>لم يتم العثور على نتائج</value>
+  </data>
+  <data name="xrLabel7.Text" xml:space="preserve">
+    <value>القسم</value>
+  </data>
+  <data name="xrLabel8.Text" xml:space="preserve">
+    <value>الوظيفة</value>
+  </data>
+  <data name="xrLabel9.Text" xml:space="preserve">
+    <value>الفرع</value>
   </data>
   <data name="xrPageInfo2.Format" xml:space="preserve">
     <value>صفحة {0} من {1}</value>

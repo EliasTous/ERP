@@ -208,9 +208,22 @@ namespace AionHR.Web.UI.Forms.Reports
             h.RightToLeftLayout = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeftLayout.Yes : DevExpress.XtraReports.UI.RightToLeftLayout.No;
            
             h.DataSource = resp.Items;
+            string from = DateTime.Parse(req.Parameters["_fromDate"]).ToString(_systemService.SessionHelper.GetDateformat());
+            string to = DateTime.Parse(req.Parameters["_toDate"]).ToString(_systemService.SessionHelper.GetDateformat());
+            string user = _systemService.SessionHelper.GetCurrentUser();
 
+            h.Parameters["From"].Value = from;
+            h.Parameters["To"].Value = to;
+            h.Parameters["User"].Value = user;
+            if (resp.Items.Count > 0)
+            {
+                if (req.Parameters["_userId"] != "0")
+                    h.Parameters["UserId"].Value = resp.Items[0].userName;
+                else
+                    h.Parameters["UserId"].Value = GetGlobalResourceObject("Common", "All");
+            }
 
-            h.CreateDocument();
+                h.CreateDocument();
             ASPxWebDocumentViewer1.OpenReport(h);
             ASPxWebDocumentViewer1.DataBind();
         }

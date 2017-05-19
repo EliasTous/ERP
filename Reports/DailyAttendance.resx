@@ -645,12 +645,12 @@
   <data name="To.Description" xml:space="preserve">
     <value>Parameter1</value>
   </data>
-  <metadata name="objectDataSource1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="objectDataSource1.TrayLocation" type="System.Drawing.Point, System.Drawing">
     <value>17, 17</value>
-  </metadata>
-  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  </data>
+  <data name="$this.Localizable" type="System.Boolean, mscorlib">
     <value>True</value>
-  </metadata>
+  </data>
   <data name="$this.Margins" type="System.Drawing.Printing.Margins, System.Drawing">
     <value>100, 100, 100, 25</value>
   </data>
@@ -662,5 +662,14 @@
   </data>
   <data name="$this.PaperKind" type="System.Drawing.Printing.PaperKind, System.Drawing">
     <value>A3</value>
+  </data>
+  <data name="From.Value" xml:space="preserve">
+    <value>All</value>
+  </data>
+  <data name="To.Value" xml:space="preserve">
+    <value>All</value>
+  </data>
+  <data name="User.Value" xml:space="preserve">
+    <value>All</value>
   </data>
 </root>

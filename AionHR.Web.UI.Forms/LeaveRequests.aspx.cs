@@ -441,6 +441,57 @@ namespace AionHR.Web.UI.Forms
             divisionStore.DataBind();
         }
 
-     
+        [DirectMethod]
+        public void DeleteRecord(string index)
+        {
+            try
+            {
+                //Step 1 Code to delete the object from the database 
+                LeaveRequest s = new LeaveRequest();
+                s.recordId = index;
+                s.destination = "";
+                s.employeeId = 0;
+                s.endDate = DateTime.Now;
+                s.startDate = DateTime.Now;
+                s.status = 0;
+                s.isPaid = false;
+                s.justification = "";
+                s.ltId = 0;
+
+                PostRequest<LeaveRequest> req = new PostRequest<LeaveRequest>();
+                req.entity = s;
+                PostResponse<LeaveRequest> r = _leaveManagementService.ChildDelete<LeaveRequest>(req);
+                if (!r.Success)
+                {
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    X.Msg.Alert(Resources.Common.Error, r.Summary).Show();
+                    return;
+                }
+                else
+                {
+                    //Step 2 :  remove the object from the store
+                    Store1.Remove(index);
+
+                    //Step 3 : Showing a notification for the user 
+                    Notification.Show(new NotificationConfig
+                    {
+                        Title = Resources.Common.Notification,
+                        Icon = Icon.Information,
+                        Html = Resources.Common.RecordDeletedSucc
+                    });
+                }
+
+            }
+            catch (Exception ex)
+            {
+                //In case of error, showing a message box to the user
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorDeletingRecord).Show();
+
+            }
+
+        }
+
+
     }
 }

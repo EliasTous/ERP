@@ -202,12 +202,24 @@ namespace AionHR.Web.UI.Forms.Reports
             {
                 if (req.Parameters["_departmentId"] != "0")
                     h.Parameters["Department"].Value = jobInfo1.GetDepartment();
+                else
+                    h.Parameters["Department"].Value = GetGlobalResourceObject("Common", "All");
+
                 if (req.Parameters["_branchId"] != "0")
                     h.Parameters["Branch"].Value = resp.Items[0].branchName;
+                else
+                    h.Parameters["Branch"].Value = GetGlobalResourceObject("Common", "All");
+
                 if (req.Parameters["_employeeId"] != "0")
                     h.Parameters["Employee"].Value = resp.Items[0].name.fullName;
+                else
+                    h.Parameters["Employee"].Value = GetGlobalResourceObject("Common", "All");
+
                 if (req.Parameters["_status"] != "0")
                     h.Parameters["Status"].Value = resp.Items[0].StatusString;
+                else
+                    h.Parameters["Status"].Value = GetGlobalResourceObject("Common", "All");
+
             }
 
 

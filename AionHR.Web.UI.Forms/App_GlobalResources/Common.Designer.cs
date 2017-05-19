@@ -1825,6 +1825,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Employee Missing Details.
+        /// </summary>
+        internal static string RT107 {
+            get {
+                return ResourceManager.GetString("RT107", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Salary History.
         /// </summary>
         internal static string RT201 {

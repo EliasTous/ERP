@@ -155,12 +155,12 @@ namespace AionHR.Web.UI.Forms.Reports
             req.Size = "1000";
             req.StartAt = "1";
 
-            
+
             req.Add(dateRange1.GetRange());
             return req;
         }
 
-        private void FillReport(bool isInitial = false, bool throwException=true)
+        private void FillReport(bool isInitial = false, bool throwException = true)
         {
 
             ReportCompositeRequest req = GetRequest();
@@ -189,7 +189,7 @@ namespace AionHR.Web.UI.Forms.Reports
 
             //var grouped = resp.Items.GroupBy(x => x.name.fullName);
 
-         
+
             //EmployeeAttendanceCollection ats = new EmployeeAttendanceCollection();
             //foreach (var item in grouped)
             //{
@@ -207,7 +207,7 @@ namespace AionHR.Web.UI.Forms.Reports
             //    foreach (var subItem in item.ToList())
             //    {
             //        at.Add(new Attendance() { workingTime=subItem.workingTime, day = subItem.day, year=subItem.year, month = subItem.month, timeIn = subItem.checkIn, timeOut = subItem.checkOut });
-                    
+
             //    }
             //    ats.Add(at);
             //}
@@ -217,12 +217,13 @@ namespace AionHR.Web.UI.Forms.Reports
             h.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;
             h.RightToLeftLayout = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeftLayout.Yes : DevExpress.XtraReports.UI.RightToLeftLayout.No;
             h.DataSource = monthlyAtts;
+            string user = _systemService.SessionHelper.GetCurrentUser();
+            DateTime date = DateTime.Parse(req.Parameters["_fromDate"]);
+            h.Parameters["User"].Value = user;
+            h.Parameters["Month"].Value = date.ToString("MMM/yyyy");
 
-
-
-            
             h.CreateDocument();
-           
+
 
             ASPxWebDocumentViewer1.DataBind();
             ASPxWebDocumentViewer1.OpenReport(h);

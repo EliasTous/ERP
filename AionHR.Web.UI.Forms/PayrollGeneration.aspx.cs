@@ -623,8 +623,12 @@ namespace AionHR.Web.UI.Forms
 
                 ListResponse<FiscalPeriod> resp = _payrollService.ChildGetAll<FiscalPeriod>(req);
                 if (!resp.Success)
+                {
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    X.Msg.Alert(Resources.Common.Error, resp.Summary).Show();
                     return;
-                List<object> obs = new List<Object>();
+                }
+                    List<object> obs = new List<Object>();
                 resp.Items.ForEach(x => obs.Add(new { recordId = x.periodId, name = x.GetFriendlyName(GetLocalResourceObject("Month").ToString(), GetLocalResourceObject("Week").ToString(), GetLocalResourceObject("Weeks").ToString(), _systemService.SessionHelper.GetDateformat()) }));
                 fiscalPeriodsStore.DataSource = obs;
                 fiscalPeriodsStore.DataBind();

@@ -99,6 +99,7 @@
     <Compile Include="Messaging\Reports\LeaveStatusParameterSet.cs" />
     <Compile Include="Messaging\Reports\LeaveTypeParameterSet.cs" />
     <Compile Include="Messaging\Reports\LoanRequestStatusParameterSet.cs" />
+    <Compile Include="Messaging\Reports\MissingFieldParameterSet.cs" />
     <Compile Include="Messaging\Reports\MonthParameterSet.cs" />
     <Compile Include="Messaging\Reports\PaymentMethodParameterSet.cs" />
     <Compile Include="Messaging\Reports\PayRefParameterSet.cs" />

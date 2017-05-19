@@ -135,6 +135,9 @@
   <data name="xrLabel19.Text" xml:space="preserve">
     <value>الأيام</value>
   </data>
+  <data name="xrLabel21.Text" xml:space="preserve">
+    <value>الشهر</value>
+  </data>
   <data name="xrLabel3.Text" xml:space="preserve">
     <value>الاسم</value>
   </data>

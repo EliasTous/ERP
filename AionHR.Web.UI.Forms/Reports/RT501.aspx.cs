@@ -221,12 +221,24 @@ namespace AionHR.Web.UI.Forms.Reports
             {
                 if (req.Parameters["_departmentId"] != "0")
                     h.Parameters["Department"].Value = jobInfo1.GetDepartment();
+                else
+                    h.Parameters["Department"].Value = GetGlobalResourceObject("Common", "All");
+
                 if (req.Parameters["_branchId"] != "0")
                     h.Parameters["Branch"].Value = jobInfo1.GetBranch();
+                else
+                    h.Parameters["Branch"].Value = GetGlobalResourceObject("Common", "All");
+
                 if (req.Parameters["_paymentMethod"] != "0")
                     h.Parameters["Payment"].Value = paymentMethodCombo.GetPaymentMethodString();
+                else
+                    h.Parameters["Payment"].Value = GetGlobalResourceObject("Common", "All");
+
                 if (req.Parameters["_payRef"] != "0")
                     h.Parameters["Ref"].Value = req.Parameters["_payRef"];
+                else
+                    h.Parameters["Ref"].Value = GetGlobalResourceObject("Common", "All");
+
             }
 
 

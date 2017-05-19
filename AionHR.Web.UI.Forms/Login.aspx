@@ -23,129 +23,7 @@
         }
     </style>
     
-    <script type="text/javascript">
-        Ext.define("Ext.plugin.extjs.form.PasswordStrength", {
-            extend: "Ext.AbstractPlugin",
-            alias: "plugin.passwordstrength",
-            colors: ["C11B17", "FDD017", "4AA02C", "6AFB92", "00FF00"],
-
-            init: function (cmp) {
-                var me = this;
-
-                cmp.on("change", me.onFieldChange, me);
-            },
-
-            onFieldChange: function (field, newVal, oldVal) {
-                if (newVal === "") {
-                    field.inputEl.setStyle({
-                        "background-color": null,
-                        "background-image": null
-                    });
-                    field.rightButtons[0].setStyle({
-                        "background-color": null,
-                        "background-image": null
-                    });
-                    field.rightButtons[0].setText('');
-                    field.score = 0;
-                    return;
-                }
-                var me = this,
-                    score = me.scorePassword(newVal);
-
-                field.score = score;
-
-                me.processValue(field, score);
-            },
-
-            processValue: function (field, score) {
-                var me = this,
-                    colors = me.colors,
-                    color;
-                var i;
-                
-                if (score < 16) {
-                    i = 1;
-                    color = colors[0]; //very weak
-                } else if (score > 15 && score < 25) {
-                    i = 2;
-                    color = colors[1]; //weak
-                } else if (score > 24 && score < 35) {
-                    i = 3;
-
-                    color = colors[2]; //mediocre
-                } else if (score > 34 && score < 45) {
-                    i = 4;
-                    color = colors[3]; //strong
-                } else {
-                    i = 5;
-
-                    color = colors[4]; //very strong
-                }
-
-                field.inputEl.setStyle({
-                    "background-color": "#" + color,
-                    "background-image": "none"
-                });
-                field.rightButtons[0].setStyle({
-                    "background-color": "#" + color,
-                    "background-image": "none"
-                });
-                field.rightButtons[0].setText(document.getElementById("level"+i).value);
-            },
-
-            scorePassword: function (passwd) {
-                var score = 0;
-
-                if (passwd.length < 5) {
-                    score += 3;
-                } else if (passwd.length > 4 && passwd.length < 8) {
-                    score += 6;
-                } else if (passwd.length > 7 && passwd.length < 16) {
-                    score += 12;
-                } else if (passwd.length > 15) {
-                    score += 18;
-                }
-
-                if (passwd.match(/[a-z]/)) {
-                    score += 1;
-                }
-
-                if (passwd.match(/[A-Z]/)) {
-                    score += 5;
-                }
-
-                if (passwd.match(/\d+/)) {
-                    score += 5;
-                }
-
-                if (passwd.match(/(.*[0-9].*[0-9].*[0-9])/)) {
-                    score += 5;
-                }
-
-                if (passwd.match(/.[!,@,#,$,%,^,&,*,?,_,~]/)) {
-                    score += 5;
-                }
-
-                if (passwd.match(/(.*[!,@,#,$,%,^,&,*,?,_,~].*[!,@,#,$,%,^,&,*,?,_,~])/)) {
-                    score += 5;
-                }
-
-                if (passwd.match(/([a-z].*[A-Z])|([A-Z].*[a-z])/)) {
-                    score += 2;
-                }
-
-                if (passwd.match(/([a-zA-Z])/) && passwd.match(/([0-9])/)) {
-                    score += 2;
-                }
-
-                if (passwd.match(/([a-zA-Z0-9].*[!,@,#,$,%,^,&,*,?,_,~])|([!,@,#,$,%,^,&,*,?,_,~].*[a-zA-Z0-9])/)) {
-                    score += 2;
-                }
-
-                return score;
-            }
-        });
-    </script>
+  
     <title>
         <asp:Literal ID="Literal4" runat="server" Text="<%$ Resources:Common , ApplicationTitle%>" /></title>
 </head>
@@ -191,11 +69,7 @@
     </div>
     <ext:Hidden runat="server" ID="lblLoading" Text="<%$Resources:Common , Loading %>" />
     <form id="Form1" runat="server">
-        <ext:Hidden runat="server" ID="level1" Text="<%$ Resources:VeryWeak %>" />
-        <ext:Hidden runat="server" ID="level2" Text="<%$ Resources:Weak %>" />
-        <ext:Hidden runat="server" ID="level3" Text="<%$ Resources:Mediocre %>" />
-        <ext:Hidden runat="server" ID="level4"  Text="<%$ Resources:Strong %>"/>
-        <ext:Hidden runat="server" ID="level5"  Text="<%$ Resources:VeryStrong %>"/>
+       
         <ext:ResourceManager ID="ResourceManager1" runat="server" Theme="Neptune" AjaxTimeout="12000" />
 
         <ext:Viewport ID="Viewport1" runat="server">
@@ -278,12 +152,7 @@
                             FieldLabel="<%$ Resources: Password %>"
                             EmptyText="<%$ Resources: EnterYourPassword %>"
                             InputType="Password"  >
-                            <Plugins>
-                                <ext:GenericPlugin TypeName="passwordstrength" />
-                            </Plugins>
-                            <RightButtons>
-                                <ext:HyperlinkButton runat="server" ID="rightLink"  PaddingSpec="3 10 0 0" />
-                            </RightButtons>
+                        
                             </ext:TextField>
                         <ext:Checkbox ID="rememberMeCheck" runat="server" FieldLabel="<%$ Resources: RememberMe %>" InputValue="True" />
                         <ext:FieldContainer runat="server" ID="lblErroContainer" FieldLabel="">

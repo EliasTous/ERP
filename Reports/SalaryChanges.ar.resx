@@ -129,6 +129,9 @@
   <data name="xrLabel23.Text" xml:space="preserve">
     <value>تغيرات الرواتب</value>
   </data>
+  <data name="xrLabel3.Text" xml:space="preserve">
+    <value>الفرع</value>
+  </data>
   <data name="xrLabel4.Text" xml:space="preserve">
     <value>الراتب السابق</value>
   </data>

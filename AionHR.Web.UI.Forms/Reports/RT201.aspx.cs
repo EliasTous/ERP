@@ -203,8 +203,41 @@ namespace AionHR.Web.UI.Forms.Reports
             resp.Items.ForEach(x => { x.PaymentFrequencyString = x.paymentFrequency.HasValue? GetGlobalResourceObject("Common", ((PaymentFrequency)x.paymentFrequency).ToString()).ToString():""; });
             resp.Items.ForEach(x => { x.SalaryTypeString = x.salaryType.HasValue? GetGlobalResourceObject("Common",((SalaryType)x.salaryType).ToString()).ToString():"";  x.EffectiveDateString = x.effectiveDate.ToString(_systemService.SessionHelper.GetDateformat()); });
             h.DataSource = resp.Items;
+            string user = _systemService.SessionHelper.GetCurrentUser();
+            h.Parameters["User"].Value = user;
+            if (resp.Items.Count > 0)
+            {
+                if (req.Parameters["_departmentId"] != "0")
+                    h.Parameters["Department"].Value = jobInfo1.GetDepartment();
+                else
+                    h.Parameters["Department"].Value = GetGlobalResourceObject("Common", "All");
 
+                if (req.Parameters["_branchId"] != "0")
+                    h.Parameters["Branch"].Value = jobInfo1.GetBranch();
+                else
+                    h.Parameters["Branch"].Value = GetGlobalResourceObject("Common", "All");
 
+                if (req.Parameters["_positionId"] != "0")
+                    h.Parameters["Position"].Value = jobInfo1.GetPosition();
+                else
+                    h.Parameters["Position"].Value = GetGlobalResourceObject("Common", "All");
+
+                if (req.Parameters["_divisionId"] != "0")
+                    h.Parameters["Division"].Value = jobInfo1.GetDivision();
+                else
+                    h.Parameters["Division"].Value = GetGlobalResourceObject("Common", "All");
+
+                if (req.Parameters["_scrId"] != "0")
+                    h.Parameters["ChangeReason"].Value = scrFilter.GetChangeReason();
+                else
+                    h.Parameters["ChangeReason"].Value = GetGlobalResourceObject("Common", "All");
+
+                if (req.Parameters["_activeStatus"] != "0")
+                    h.Parameters["Status"].Value = activeStatus.GetStatusString();
+                else
+                    h.Parameters["Status"].Value = GetGlobalResourceObject("Common", "All");
+
+            }
 
             h.CreateDocument();
             ASPxWebDocumentViewer1.OpenReport(h);
