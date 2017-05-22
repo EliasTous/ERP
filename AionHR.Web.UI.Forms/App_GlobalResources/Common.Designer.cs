@@ -1177,7 +1177,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Loan Deductions.
+        ///   Looks up a localized string similar to Employee Loan Setup.
         /// </summary>
         internal static string LoanOverrides {
             get {
@@ -1191,6 +1191,24 @@ namespace Resources {
         internal static string Loans {
             get {
                 return ResourceManager.GetString("Loans", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sync Loan Deductions.
+        /// </summary>
+        internal static string LoanSync {
+            get {
+                return ResourceManager.GetString("LoanSync", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Loan Deductions Synced Successfully.
+        /// </summary>
+        internal static string LoanSyncSucc {
+            get {
+                return ResourceManager.GetString("LoanSyncSucc", resourceCulture);
             }
         }
         

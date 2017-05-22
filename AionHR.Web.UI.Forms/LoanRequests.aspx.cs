@@ -274,7 +274,7 @@ namespace AionHR.Web.UI.Forms
                     //Step 1 : get the object from the Web Service 
                     RecordRequest r = new RecordRequest();
                     r.RecordID = id;
-
+                    
                     RecordResponse<Loan> response = _loanService.Get<Loan>(r);
                     if (!response.Success)
                     {
@@ -294,7 +294,7 @@ namespace AionHR.Web.UI.Forms
                                 }
                        });
                     employeeId.SetValue(response.result.employeeId);
-
+                    effectiveDate.Disabled = response.result.status != 3;
                     //FillFilesStore(Convert.ToInt32(id));
 
                     //Step 2 : call setvalues with the retrieved object
@@ -637,6 +637,7 @@ namespace AionHR.Web.UI.Forms
             FillLoanType();
             FillBranchField();
             FillCurrency();
+            effectiveDate.Disabled = true;
             this.EditRecordWindow.Show();
         }
 

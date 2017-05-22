@@ -13,6 +13,15 @@
     <script type="text/javascript" src="Scripts/Users.js?id=1"></script>
     <script type="text/javascript" src="Scripts/common.js"></script>
     <script type="text/javascript">
+        function setRTL(rtl)
+        {
+           
+            App.progress.rightButtons[0].setHidden(rtl == '1');
+            App.rtl.value = rtl;
+
+            App.progress.leftButtons[0].setHidden(rtl =='0');
+
+        }
         function SetNameEnabled( status,name)
         {
             
@@ -23,8 +32,199 @@
            
 
         }
-    </script>
+        function dump(obj) {
+            var out = '';
+            for (var i in obj) {
+                out += i + ": " + obj[i] + "\n";
 
+
+            }
+            return out;
+        }
+    </script>
+    <script type="text/javascript">
+        Ext.define("Ext.plugin.extjs.form.PasswordStrength", {
+            extend: "Ext.AbstractPlugin",
+            alias: "plugin.passwordstrength",
+            colors: ["C11B17", "FDD017", "4AA02C", "6AFB92", "00FF00"],
+
+            init: function (cmp) {
+                var me = this;
+
+                App.PasswordField.on("change", me.onFieldChange, me);
+                
+               
+            },
+
+            onFieldChange: function (field, newVal, oldVal) {
+                if (newVal === "") {
+                    App.progress.inputEl.setStyle({
+                        "background-color": null,
+                        "background-image": null
+                    });
+                   
+                    App.progress.rightButtons[0].setStyle({
+                        "background-color": null,
+                        "background-image": null
+                    });
+                    App.progress.leftButtons[0].setStyle({
+                        "background-color": null,
+                        "background-image": null
+                    });
+                    App.progress.rightButtons[0].setText('');
+                    App.progress.leftButtons[0].setText('');
+                    App.progress.setValue('');
+                    App.progress.score = 0;
+                    if (App.rtl.value=='1') {
+                        App.progress.leftButtons[0].setStyle({
+
+                            "padding-right": "320px"
+                        });
+                    }
+                    else
+                    {
+                        App.progress.rightButtons[0].setStyle({
+
+                            "padding-right": "320px"
+                        });
+                    }
+                    return;
+                }
+                var me = this,
+                    score = me.scorePassword(App.PasswordField.value);
+
+                App.progress.score = score;
+
+                me.processValue(field, score);
+
+                
+            },
+
+            processValue: function (field, score) {
+                
+                var me = this,
+                    colors = me.colors,
+                    color;
+                var i;
+                
+                if (score < 16) {
+                    i = 1;
+                    color = colors[0]; //very weak
+                } else if (score > 15 && score < 25) {
+                    i = 2;
+                    color = colors[1]; //weak
+                } else if (score > 24 && score < 35) {
+                    i = 3;
+
+                    color = colors[2]; //mediocre
+                } else if (score > 34 && score < 45) {
+                    i = 4;
+                    color = colors[3]; //strong
+                } else {
+                    i = 5;
+
+                    color = colors[4]; //very strong
+                }
+                if (App.rtl.value=='0') {
+                    App.progress.inputEl.setStyle({
+                        "background-color": "#" + color,
+                        "background-image": "none"
+                    });
+
+                    App.progress.rightButtons[0].setStyle({
+
+                        "background-color": "#" + color,
+                        "padding-right": "100px"
+                    });
+
+                    App.progress.rightButtons[0].setStyle({
+
+                        "padding-right": ((5 - i) * 60) + "px"
+                    });
+                }
+                else
+                {
+                    App.progress.inputEl.setStyle({
+                        "background-color": "#" + color,
+                        "background-image": "none"
+                    });
+
+                    App.progress.leftButtons[0].setStyle({
+
+                        "background-color": "#" + color,
+                        "padding-right": "100px"
+                    });
+
+                    App.progress.leftButtons[0].setStyle({
+
+                        "padding-right": ((5 - i) * 60) + "px"
+                    });
+                }
+                if (i == 5)
+                {
+                    App.progress.rightButtons[0].setWidth(0);
+
+                }
+                
+               
+             
+                App.progress.setValue(document.getElementById("level" + i).value);
+               
+            },
+
+            scorePassword: function (passwd) {
+                var score = 0;
+
+                if (passwd.length < 5) {
+                    score += 3;
+                } else if (passwd.length > 4 && passwd.length < 8) {
+                    score += 6;
+                } else if (passwd.length > 7 && passwd.length < 16) {
+                    score += 12;
+                } else if (passwd.length > 15) {
+                    score += 18;
+                }
+
+                if (passwd.match(/[a-z]/)) {
+                    score += 1;
+                }
+
+                if (passwd.match(/[A-Z]/)) {
+                    score += 5;
+                }
+
+                if (passwd.match(/\d+/)) {
+                    score += 5;
+                }
+
+                if (passwd.match(/(.*[0-9].*[0-9].*[0-9])/)) {
+                    score += 5;
+                }
+
+                if (passwd.match(/.[!,@,#,$,%,^,&,*,?,_,~]/)) {
+                    score += 5;
+                }
+
+                if (passwd.match(/(.*[!,@,#,$,%,^,&,*,?,_,~].*[!,@,#,$,%,^,&,*,?,_,~])/)) {
+                    score += 5;
+                }
+
+                if (passwd.match(/([a-z].*[A-Z])|([A-Z].*[a-z])/)) {
+                    score += 2;
+                }
+
+                if (passwd.match(/([a-zA-Z])/) && passwd.match(/([0-9])/)) {
+                    score += 2;
+                }
+
+                if (passwd.match(/([a-zA-Z0-9].*[!,@,#,$,%,^,&,*,?,_,~])|([!,@,#,$,%,^,&,*,?,_,~].*[a-zA-Z0-9])/)) {
+                    score += 2;
+                }
+
+                return score;
+            }
+        });
+    </script>
 </head>
 <body style="background: url(Images/bg.png) repeat;" >
     <form id="Form1" runat="server">
@@ -35,6 +235,12 @@
         <ext:Hidden ID="titleSavingError" runat="server" Text="<%$ Resources:Common , TitleSavingError %>" />
         <ext:Hidden ID="titleSavingErrorMessage" runat="server" Text="<%$ Resources:Common , TitleSavingErrorMessage %>" />
         <ext:Hidden ID="timeZoneOffset" runat="server" EnableViewState="true" />
+        <ext:Hidden ID="rtl" runat="server"  />
+            <ext:Hidden runat="server" ID="level1" Text="<%$ Resources:VeryWeak %>" />
+        <ext:Hidden runat="server" ID="level2" Text="<%$ Resources:Weak %>" />
+        <ext:Hidden runat="server" ID="level3" Text="<%$ Resources:Mediocre %>" />
+        <ext:Hidden runat="server" ID="level4"  Text="<%$ Resources:Strong %>"/>
+        <ext:Hidden runat="server" ID="level5"  Text="<%$ Resources:VeryStrong %>"/>
         <ext:Store
             ID="Store1"
             runat="server"
@@ -266,7 +472,7 @@
             Icon="PageEdit"
             Title="<%$ Resources:EditWindowsTitle %>"
             Width="450"
-            Height="350"
+            Height="400"
             AutoShow="false"
             Modal="true"
             Hidden="true"
@@ -283,14 +489,14 @@
                             DefaultAnchor="100%" OnLoad="BasicInfoTab_Load"
                             BodyPadding="5">
                             <Items>
-                                <ext:TextField ID="fullName" runat="server" FieldLabel="<%$ Resources: FieldFullName %>" DataIndex="fullName" AllowBlank="false" />
-                                <ext:TextField ID="email" runat="server" FieldLabel="<%$ Resources: FieldEmail %>" DataIndex="email" InputType="Email" Vtype="email" AllowBlank="false" />
-                                <ext:TextField ID="recordId" Disabled="true" Hidden="true" runat="server" DataIndex="recordId" AllowBlank="false" />
+                                <ext:TextField ID="fullName" TabIndex="1" runat="server" FieldLabel="<%$ Resources: FieldFullName %>" DataIndex="fullName" AllowBlank="false" />
+                                <ext:TextField ID="email" TabIndex="2" runat="server" FieldLabel="<%$ Resources: FieldEmail %>" DataIndex="email" InputType="Email" Vtype="email" AllowBlank="false" />
+                                <ext:TextField ID="recordId" TabIndex="3" Disabled="true" Hidden="true" runat="server" DataIndex="recordId" AllowBlank="false" />
 
 
-                                <ext:Checkbox ID="isInactiveCheck" runat="server" FieldLabel="<%$ Resources: FieldIsInActive%>" DataIndex="isInactive" Name="isInactive" InputValue="true" />
-                                <ext:Checkbox ID="isAdminCheck" runat="server" FieldLabel="<%$ Resources: FieldIsAdmin%>" DataIndex="isAdmin" Name="isAdmin" InputValue="true" />
-                                <ext:ComboBox runat="server" ID="employeeId"
+                                <ext:Checkbox ID="isInactiveCheck" TabIndex="4" runat="server" FieldLabel="<%$ Resources: FieldIsInActive%>" DataIndex="isInactive" Name="isInactive" InputValue="true" />
+                                <ext:Checkbox ID="isAdminCheck" TabIndex="5" runat="server" FieldLabel="<%$ Resources: FieldIsAdmin%>" DataIndex="isAdmin" Name="isAdmin" InputValue="true" />
+                                <ext:ComboBox runat="server" ID="employeeId" TabIndex="6"
                                     DisplayField="fullName"
                                     ValueField="recordId"
                                     TypeAhead="false"
@@ -321,7 +527,7 @@
                                         <FocusLeave Handler=" if(this.value==null|| isNaN(this.value) )SetNameEnabled(true,'');  if(isNaN(this.value)) this.setValue(null);" />
                                     </Listeners>
                                 </ext:ComboBox>
-                                <ext:ComboBox runat="server" ID="languageId" AllowBlank="false"
+                                <ext:ComboBox runat="server" ID="languageId" AllowBlank="false" TabIndex="7"
                                     SubmitValue="true"
                                     TypeAhead="false"
                                     FieldLabel="<%$ Resources: FieldLanguageId%>">
@@ -331,9 +537,9 @@
 
                                     </Items>
                                 </ext:ComboBox>
-
+                               
                                 <ext:TextField
-                                    ID="PasswordField"
+                                    ID="PasswordField" TabIndex="8"
                                     runat="server"
                                     FieldLabel="<%$ Resources: FieldPassword%>"
                                     InputType="Password"
@@ -342,22 +548,49 @@
                                     AllowBlank="false"
                                     AnchorHorizontal="100%">
                                     <Listeners>
-                                        <ValidityChange Handler="this.next().validate();" />
-                                        <Blur Handler="this.next().validate();" />
+                                        <ValidityChange Handler="this.next().next().validate();" />
+                                        <Blur Handler="this.next().next().validate();" />
+                                    </Listeners>
+                                    </ext:TextField>
+                                     <%--<Plugins>
+                               <%-- <ext:GenericPlugin TypeName="passwordstrength" />
+                            </Plugins>
+                            <RightButtons>
+                                <ext:HyperlinkButton runat="server" ID="rightLink"   />
+                            </RightButtons>--%>
+                                <ext:TextField runat="server" ReadOnly="true" Height="10" ID="progress" FieldLabel="Strength" TabIndex="12" >
+                                         <Plugins>
+                                <ext:GenericPlugin TypeName="passwordstrength" />
+                            </Plugins>
+                            <RightButtons>
+                                <ext:Button runat="server" ID="sep"  />
+                                <ext:HyperlinkButton runat="server" ID="rightLink"  Width="0" Disabled="true" />
+                            </RightButtons>
+                                        <LeftButtons>
+                                <ext:Button runat="server" ID="sepLeft" Disabled="true" />
+                                <ext:HyperlinkButton runat="server" ID="leftLink"  Width="0"  />
+                            </LeftButtons>
+                                   
+                                    <Listeners>
+                                        <Focus Handler="this.blur()" />
                                     </Listeners>
                                 </ext:TextField>
                                 <ext:TextField
-                                    ID="PasswordConfirmation" 
+                                    ID="PasswordConfirmation"  TabIndex="9"
                                     runat="server"
                                     Vtype="password"
                                     FieldLabel="<%$ Resources: FieldConfirmPassword%>"
                                     InputType="Password"
-                                    MsgTarget="Side"
+                                    
                                     AnchorHorizontal="100%">
+                                    <Validator Handler="if(this.value!= this.prev().prev().value) return false; else return true;">
+                                    
+                            </Validator>
                                     <CustomConfig>
                                         <ext:ConfigItem Name="initialPassField" Value="PasswordField" Mode="Value" />
                                     </CustomConfig>
                                 </ext:TextField>
+                                
                             </Items>
 
                         </ext:FormPanel>
@@ -366,7 +599,7 @@
                 </ext:TabPanel>
             </Items>
             <Buttons>
-                <ext:Button ID="SaveButton" runat="server" Text="<%$ Resources:Common, Save %>" Icon="Disk">
+                <ext:Button ID="SaveButton" runat="server" Text="<%$ Resources:Common, Save %>" Icon="Disk" TabIndex="10">
 
                     <Listeners>
                         <Click Handler="CheckSession(); if (!#{BasicInfoTab}.getForm().isValid()) { return false;}" />
@@ -381,7 +614,7 @@
                         </Click>
                     </DirectEvents>
                 </ext:Button>
-                <ext:Button ID="CancelButton" runat="server" Text="<%$ Resources:Common , Cancel %>" Icon="Cancel">
+                <ext:Button ID="CancelButton" runat="server" Text="<%$ Resources:Common , Cancel %>" Icon="Cancel" TabIndex="11">
                     <Listeners>
                         <Click Handler="this.up('window').hide();" />
                     </Listeners>

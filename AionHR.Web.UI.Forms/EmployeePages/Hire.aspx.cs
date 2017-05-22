@@ -77,6 +77,12 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     npId.Select(resp.result.npId.ToString());
                 }
                 probationEndDate.Format = nextReviewDate.Format = termEndDate.Format = _systemService.SessionHelper.GetDateformat();
+
+                EmployeeTerminated.Text = Request.QueryString["terminated"];
+
+                bool disabled = EmployeeTerminated.Text == "1";
+
+                saveButton.Disabled = disabled;
             }
 
         }

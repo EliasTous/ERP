@@ -32,7 +32,7 @@
     <div class="header">
         <div class="left">
             <div class="logoImage">
-                <img src="Images/logo2.png" width="90" height="82" />
+                <img src="Images/logo2.png"  width="80" height="57"  />
             </div>
             <div class="title">
                 <div style="width: 400px">
@@ -154,6 +154,7 @@
                             InputType="Password"  >
                         
                             </ext:TextField>
+                        
                         <ext:Checkbox ID="rememberMeCheck" runat="server" FieldLabel="<%$ Resources: RememberMe %>" InputValue="True" />
                         <ext:FieldContainer runat="server" ID="lblErroContainer" FieldLabel="">
                             <Items>

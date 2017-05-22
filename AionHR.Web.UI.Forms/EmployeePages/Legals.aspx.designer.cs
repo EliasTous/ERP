@@ -94,6 +94,15 @@ namespace AionHR.Web.UI.Forms.EmployeePages {
         protected global::Ext.Net.Hidden hijriSelected;
         
         /// <summary>
+        /// EmployeeTerminated control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Hidden EmployeeTerminated;
+        
+        /// <summary>
         /// Viewport11 control.
         /// </summary>
         /// <remarks>

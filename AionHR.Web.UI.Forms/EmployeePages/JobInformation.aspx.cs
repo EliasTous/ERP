@@ -64,6 +64,11 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorOperation).Show();
                 CurrentEmployee.Text = Request.QueryString["employeeId"];
                 CurrentHireDate.Text = Request.QueryString["hireDate"];
+                EmployeeTerminated.Text = Request.QueryString["terminated"];
+
+                bool disabled = EmployeeTerminated.Text == "1";
+                btnAdd.Disabled = Button1.Disabled = SaveEHButton.Disabled = SaveJIButton.Disabled = disabled;
+
             }
             Column2.Format = ColDate.Format = ehDate.Format = date.Format = _systemService.SessionHelper.GetDateformat();
 

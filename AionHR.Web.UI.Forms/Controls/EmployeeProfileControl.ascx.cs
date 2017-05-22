@@ -105,6 +105,7 @@ namespace AionHR.Web.UI.Forms
                 CurrentClassId.Text = ClassId.EPEM.ToString();
 
                 hireDate.Format = _systemService.SessionHelper.GetDateformat();
+                pRTL.Text = _systemService.SessionHelper.CheckIfArabicSession().ToString();
             }
 
 
@@ -168,7 +169,14 @@ namespace AionHR.Web.UI.Forms
                     item.Loader.Url = item.Loader.Url + "?employeeId=" + employeeId + "&hireDate=" + hireDate;
             }
         }
-
+        private void FixLoaderUrls(string employeeId, string hireDate,bool terminated)
+        {
+            foreach (var item in panelRecordDetails.Items)
+            {
+                if (item.Loader != null)
+                    item.Loader.Url = item.Loader.Url + "?employeeId=" + employeeId + "&hireDate=" + hireDate + "&terminated="+ (terminated?"1":"0");
+            }
+        }
         private void FillNameFields(EmployeeName name)
         {
             firstName.Text = name.firstName;
@@ -304,10 +312,13 @@ namespace AionHR.Web.UI.Forms
         private void SetActivated(bool active)
         {
             BasicInfoTab.Enabled = active;
-            SetTabPanelActivated(active);
-            SaveButton.Hidden = !active;
+            //SetTabPanelActivated(active);
+           
 
             DeleteButton.Hidden = !active;
+            terminationGear.Disabled = !active;
+            resetPasswordGear.Disabled = !active;
+            terminated.Text = active ? "0" : "1";
 
         }
 
@@ -691,7 +702,15 @@ namespace AionHR.Web.UI.Forms
             else
             {
                 terminationWindow.Close();
-                //Store1.Reload();
+                Notification.Show(new NotificationConfig
+                {
+                    Title = Resources.Common.Notification,
+                    Icon = Icon.Information,
+                    Html = Resources.Common.RecordSavingSucc
+                });
+                EditRecordWindow.Close();
+                Store1.Reload();
+
             }
 
 
@@ -736,7 +755,7 @@ namespace AionHR.Web.UI.Forms
             InitCombos(false);
             SelectCombos(response.result);
             SetActivated(!response.result.isInactive);
-            FixLoaderUrls(r.RecordID, response.result.hireDate.Value.ToShortDateString());
+            FixLoaderUrls(r.RecordID, response.result.hireDate.Value.ToShortDateString(),response.result.isInactive);
 
         }
 

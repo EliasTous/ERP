@@ -28,6 +28,7 @@ namespace AionHR.Repository.WebService.Repositories
             ChildAddOrUpdateLookup.Add(typeof(EmployeePayroll), "setEM");
             ChildAddOrUpdateLookup.Add(typeof(PayrollEntitlementDeduction[]), "arrED");
             ChildAddOrUpdateLookup.Add(typeof(PayrollEntitlementDeduction), "setED");
+            ChildAddOrUpdateLookup.Add(typeof(SyncED), "syncED");
 
             ChildDeleteLookup.Add(typeof(FiscalYear), "delYE");
             ChildDeleteLookup.Add(typeof(PayrollEntitlementDeduction), "delED");

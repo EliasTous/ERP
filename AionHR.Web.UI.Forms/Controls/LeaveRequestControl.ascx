@@ -79,6 +79,7 @@
 <ext:Hidden ID="DateFormat" runat="server" />
 <ext:Hidden ID="approved" runat="server" />
 <ext:Hidden ID="shouldDisableLastDay" runat="server" />
+<ext:Hidden ID="GridDisabled" runat="server" />
 <ext:Hidden ID="LeaveChanged" runat="server" Text="1" EnableViewState="true" />
 <ext:Hidden ID="TotalText" runat="server" Text="<%$ Resources: TotalText %>" />
 <ext:Hidden ID="StoredLeaveChanged" runat="server" Text="0" EnableViewState="true" />
@@ -257,7 +258,7 @@
                                         </Change>
                                     </DirectEvents>
                                     <Listeners>
-                                        <Change Handler="if(App.leaveRequest1_returnDate.getValue()>App.leaveRequest1_endDate.getValue()) App.leaveRequest1_shouldDisableLastDay.value='1'; else App.leaveRequest1_shouldDisableLastDay.value='0';" />
+                                        <FocusLeave Handler="if(App.leaveRequest1_returnDate.getValue()>App.leaveRequest1_endDate.getValue()) App.leaveRequest1_shouldDisableLastDay.value='1'; else App.leaveRequest1_shouldDisableLastDay.value='0';" />
                                     </Listeners>
                                 </ext:DateField>
                             </Items>
@@ -271,13 +272,14 @@
                             ID="LeaveDaysGrid"
                             runat="server"
                             PaddingSpec="0 0 1 0"
-                            Header="false" BufferedRenderer="false"
+                            Header="false" 
                             MaxHeight="350"
                             Layout="FitLayout"
                             Scroll="Vertical"
                             Border="false"
                             Icon="User"
                             ColumnLines="True" IDMode="Explicit" RenderXType="True">
+                   
                             <Store>
                                 <ext:Store runat="server" ID="leaveDaysStore">
                                     <Model>
@@ -312,14 +314,14 @@
                                     </ext:Column>
                                     <ext:Column ID="DateColumn2" DataIndex="workingHours" Text="<%$ Resources: FieldWorkingHours%>" runat="server" Flex="2">
                                     </ext:Column>
-                                    <ext:WidgetColumn  ID="WidgetColumn2" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldLeaveHours %>" DataIndex="leaveHours" Hideable="false" Width="125" Align="Center">
+                          <%--          <ext:WidgetColumn  ID="WidgetColumn2" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldLeaveHours %>" DataIndex="leaveHours" Hideable="false" Width="125" Align="Center">
                                         
                                         <Widget>
 
                                             <ext:NumberField ID="leaveHours" runat="server" MinValue="1" DataIndex="leaveHours">
                                                 <Listeners>
                                                     <Change Handler="var rec = this.getWidgetRecord();  if(rec.data['workingHours']<this.value){this.setValue(rec.data['workingHours']); }if(1>this.value){this.setValue(1);}  rec.set('leaveHours',this.value); rec.commit(); CalcSum(); " />
-                                                    <AfterRender Handler="if(App.leaveRequest1_shouldDisableLastDay.value=='1') this.setDisabled(true);else this.setDisabled(false); this.maxValue=this.getWidgetRecord().data['workingHours'];" />
+                                                    <AfterRender Handler=" if(App.leaveRequest1_shouldDisableLastDay.value=='1') this.setDisabled(true);else this.setDisabled(false); this.maxValue=this.getWidgetRecord().data['workingHours'];" />
                                                     <AfterLayoutAnimation Handler=" this.maxValue=this.getWidgetRecord().data['workingHours'];" />
                                                     
                                                 </Listeners>
@@ -330,8 +332,26 @@
                                              
                                         </Listeners>
                                         
-                                    </ext:WidgetColumn>
-                                
+                                    </ext:WidgetColumn>--%>
+                                <ext:ComponentColumn Text="<%$ Resources: FieldLeaveHours %>" runat="server" DataIndex="leaveHours" ItemID="comp" >
+                                    <Component>
+                                         <ext:NumberField ID="NumberField1" runat="server" MinValue="1" DataIndex="leaveHours">
+                                                <Listeners>
+                                                 <%--<Change Handler="var rec = this.column.record; rec.set('leaveHours',this.value); rec.commit(); CalcSum(); " />--%>
+                                                   <%--    <AfterRender Handler="  if(App.leaveRequest1_shouldDisableLastDay.value=='1') this.setDisabled(true);else this.setDisabled(false); this.maxValue=this.getWidgetRecord().data['workingHours'];" />
+                                                    <AfterLayoutAnimation Handler=" this.maxValue=this.getWidgetRecord().data['workingHours'];" />
+                                             --%>       
+                                                    <%--<DirtyChange Handler="var rec = this.column.record; rec.set('leaveHours',this.value); rec.commit(); CalcSum(); " />--%>
+                                                    <FocusLeave Handler=" var rec = this.column.record;  if(rec.data['workingHours']<this.value){this.setValue(rec.data['workingHours']); }if(1>this.value){this.setValue(1);}  rec.set('leaveHours',this.value); rec.commit(); CalcSum();" />
+                                                </Listeners>
+                                            </ext:NumberField>
+                                    </Component>
+                                    <Listeners>
+                                        <Bind Handler=" if(App.leaveRequest1_shouldDisableLastDay.value=='1'){var s =App.leaveRequest1_LeaveDaysGrid.getRowsValues();  if(record.data['dayId'] == s[s.length-1].dayId) cmp.setDisabled(false); else cmp.setDisabled(true);}else {if(App.leaveRequest1_GridDisabled.value=='True') cmp.setDisabled(true); else cmp.setDisabled(false);} cmp.maxValue=record.data['workingHours']; cmp.setValue(record.data['leaveHours']);" />
+                                        
+                                        
+                                    </Listeners>
+                                </ext:ComponentColumn>
 
 
 

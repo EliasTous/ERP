@@ -56,6 +56,7 @@
     <ext:Hidden runat="server" ID="ltltTitle" Text="<%$Resources:Common , LoanTypes %>" />
     <ext:Hidden runat="server" ID="cdtTitle" Text="<%$Resources:Common , CompanyDocumentTypes %>" />
     <ext:Hidden runat="server" ID="systTitle" Text="<%$Resources:Common , States %>" />
+    <ext:Hidden runat="server" ID="loansync" Text="<%$Resources:Common , LoanSync %>" />
    
     <ext:Hidden runat="server" ID="aaTitle" Text="<%$Resources:Common , SystemAlerts %>" />
     <ext:Hidden runat="server" ID="ttTitle" Text="<%$Resources:Common , TaskTypes %>" />
@@ -367,6 +368,11 @@
                                                             <Listeners>
                                                                 <Click Handler="openNewTab('fiscalYears', 'FiscalYears.aspx', #{pyye}.value, 'icon-Employees')" />
                                                             </Listeners>
+                                                        </ext:MenuItem>
+                                                           <ext:MenuItem runat="server" Text="<%$Resources: Common , LoanSync%>">
+                                                            <DirectEvents>
+                                                                <Click OnEvent="SyncLoanDeductions" />
+                                                            </DirectEvents>
                                                         </ext:MenuItem>
                                                     </Items>
                                                 </ext:Menu>

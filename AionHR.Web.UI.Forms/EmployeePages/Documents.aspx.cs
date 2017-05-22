@@ -68,6 +68,10 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                 CurrentDateFormat.Text = _systemService.SessionHelper.GetDateformat();
                 EmployeeClassId.Text = ClassId.EPDO.ToString();
                 dateCol.Format = _systemService.SessionHelper.GetDateformat();
+                EmployeeTerminated.Text = Request.QueryString["terminated"];
+
+                bool disabled = EmployeeTerminated.Text == "1";
+                btnAdd.Disabled = disabled;
             }
 
         }

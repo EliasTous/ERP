@@ -184,6 +184,15 @@ namespace AionHR.Web.UI.Forms.Controls {
         protected global::Ext.Net.Hidden shouldDisableLastDay;
         
         /// <summary>
+        /// GridDisabled control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Hidden GridDisabled;
+        
+        /// <summary>
         /// LeaveChanged control.
         /// </summary>
         /// <remarks>
@@ -436,22 +445,13 @@ namespace AionHR.Web.UI.Forms.Controls {
         protected global::Ext.Net.Column DateColumn2;
         
         /// <summary>
-        /// WidgetColumn2 control.
+        /// NumberField1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.WidgetColumn WidgetColumn2;
-        
-        /// <summary>
-        /// leaveHours control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.NumberField leaveHours;
+        protected global::Ext.Net.NumberField NumberField1;
         
         /// <summary>
         /// Toolbar4 control.

@@ -106,6 +106,7 @@
         <ext:Hidden ID="CurrentEmployee" runat="server" />
         <ext:Hidden ID="CurrentLang" runat="server" />
         <ext:Hidden ID="hijriSelected" runat="server" />
+        <ext:Hidden ID="EmployeeTerminated" runat="server" />
         <ext:Viewport ID="Viewport11" runat="server" Layout="VBoxLayout" Padding="10">
             <LayoutConfig>
                 <ext:VBoxLayoutConfig Align="Stretch" />
@@ -223,7 +224,7 @@
                                 MenuDisabled="true"
                                 Resizable="false">
 
-                                <Renderer Handler="var att ='&nbsp;'; if(record.data['fileUrl']!='') att = attachRender(); return att+'&nbsp;&nbsp;' +editRender()+'&nbsp;&nbsp;' +deleteRender();" />
+                                <Renderer Handler="var d =(App.EmployeeTerminated.value=='0')?deleteRender():' '; var att ='&nbsp;'; if(record.data['fileUrl']!='') att = attachRender(); return att+'&nbsp;&nbsp;' +editRender()+'&nbsp;&nbsp;' +d;" />
 
                             </ext:Column>
                             <ext:Column runat="server"
@@ -402,7 +403,7 @@
                                 MenuDisabled="true"
                                 Resizable="false">
 
-                                <Renderer Handler="var att ='&nbsp;'; if(record.data['fileUrl']!='') att = attachRender(); return att+'&nbsp;&nbsp;'+editRender()+'&nbsp;&nbsp;'+deleteRender(); " />
+                                <Renderer Handler="var d =(App.EmployeeTerminated.value=='0')?deleteRender():' '; var att ='&nbsp;'; if(record.data['fileUrl']!='') att = attachRender(); return att+'&nbsp;&nbsp;'+editRender()+'&nbsp;&nbsp;'+d; " />
 
                             </ext:Column>
                             <ext:Column runat="server"

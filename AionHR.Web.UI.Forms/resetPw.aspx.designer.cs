@@ -148,13 +148,31 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.TextField tbPassword;
         
         /// <summary>
-        /// rightLink control.
+        /// progress control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.HyperlinkButton rightLink;
+        protected global::Ext.Net.TextField progress;
+        
+        /// <summary>
+        /// Button1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Button Button1;
+        
+        /// <summary>
+        /// HyperlinkButton1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.HyperlinkButton HyperlinkButton1;
         
         /// <summary>
         /// tbPasswordConfirm control.

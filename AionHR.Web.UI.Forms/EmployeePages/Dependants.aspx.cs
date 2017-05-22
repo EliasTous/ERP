@@ -66,6 +66,10 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                 CurrentEmployee.Text = Request.QueryString["employeeId"];
 
                 birthDate.Format = birthDateCol.Format = _systemService.SessionHelper.GetDateformat();
+                EmployeeTerminated.Text = Request.QueryString["terminated"];
+
+                bool disabled = EmployeeTerminated.Text == "1";
+                Button2.Disabled = Button7.Disabled = disabled;
             }
 
         }

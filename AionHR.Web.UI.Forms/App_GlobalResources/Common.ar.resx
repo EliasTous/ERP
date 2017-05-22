@@ -897,4 +897,10 @@
   <data name="RT107" xml:space="preserve">
     <value>معلومات الموظفين الناقصة</value>
   </data>
+  <data name="LoanSyncSucc" xml:space="preserve">
+    <value>تم تحديث مقطوعات السلف بنجاح</value>
+  </data>
+  <data name="LoanSync" xml:space="preserve">
+    <value>تحديث خصومات السلف</value>
+  </data>
 </root>

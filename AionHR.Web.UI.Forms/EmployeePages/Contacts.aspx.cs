@@ -64,6 +64,11 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                 if (string.IsNullOrEmpty(Request.QueryString["employeeId"]))
                     X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorOperation).Show();
                 CurrentEmployee.Text = Request.QueryString["employeeId"];
+                EmployeeTerminated.Text = Request.QueryString["terminated"];
+
+                bool disabled = EmployeeTerminated.Text == "1";
+
+                Button7.Disabled = Button2.Disabled = btnAdd.Disabled = SaveEmergencyContactButton.Disabled = disabled;
 
             }
 
@@ -148,7 +153,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
 
             int id = Convert.ToInt32(e.ExtraParams["id"]);
             string type = e.ExtraParams["type"];
-            
+
             switch (type)
             {
                 case "imgEdit":
@@ -204,7 +209,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
 
             int id = Convert.ToInt32(e.ExtraParams["id"]);
             string type = e.ExtraParams["type"];
-           
+
             switch (type)
             {
                 case "imgEdit":
@@ -219,7 +224,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     coaddressId.Text = entity.addressId.recordId;
                     FillCOState();
                     costId.Select(entity.addressId.stateId);
-                    
+
 
                     FillCONationality();
                     conaId.Select(entity.addressId.countryId);
@@ -329,7 +334,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             //Reset all values of the relative object
             ContactsForm.Reset();
             this.EditContactWindow.Title = Resources.Common.AddNewRecord;
-           
+
             FillCONationality();
             FillCOState();
 
@@ -372,7 +377,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             }
             this.contactStore.DataSource = documents.Items;
             e.Total = documents.count;
-            
+
             this.contactStore.DataBind();
         }
         protected void emergencyContactsStore_RefreshData(object sender, StoreReadDataEventArgs e)
@@ -417,14 +422,14 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             res.AddRule("costId", "stateId");
             res.AddRule("costreet1", "addressId.street1");
             settings.ContractResolver = res;
-            EmployeeContact b = JsonConvert.DeserializeObject<EmployeeContact>(obj,settings);
+            EmployeeContact b = JsonConvert.DeserializeObject<EmployeeContact>(obj, settings);
             b.employeeId = Convert.ToInt32(CurrentEmployee.Text);
             b.recordId = id;
-           
+
             // Define the object to add or edit as null
             b.rtName = rtId.SelectedItem.Text;
 
-            b.addressId = new AddressBook() { street1 = costreet1.Text, street2 = costreet2.Text, city = cocity.Text, postalCode = copostalCode.Text, countryId = b.naId , stateId=b.stateId ,countryName = conaId.SelectedItem.Text};
+            b.addressId = new AddressBook() { street1 = costreet1.Text, street2 = costreet2.Text, city = cocity.Text, postalCode = copostalCode.Text, countryId = b.naId, stateId = b.stateId, countryName = conaId.SelectedItem.Text };
             b.addressId.recordId = coaddressId.Text;
             b.employeeId = Convert.ToInt32(CurrentEmployee.Text);
             if (string.IsNullOrEmpty(id))
@@ -542,12 +547,12 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             res.AddRule("ecnaId", "naId");
             res.AddRule("ecstId", "stateId");
             settings.ContractResolver = res;
-            EmployeeEmergencyContact b = JsonConvert.DeserializeObject<EmployeeEmergencyContact>(obj,settings);
+            EmployeeEmergencyContact b = JsonConvert.DeserializeObject<EmployeeEmergencyContact>(obj, settings);
             b.employeeId = Convert.ToInt32(CurrentEmployee.Text);
             b.recordId = id;
             // Define the object to add or edit as null
             b.rtName = rtId.SelectedItem.Text;
-            b.addressId = new AddressBook() { street1 = street1.Text, street2 = street2.Text, city = city.Text, postalCode = postalCode.Text, countryId = b.naId, countryName = ecnaId.SelectedItem.Text, stateId=b.stateId };
+            b.addressId = new AddressBook() { street1 = street1.Text, street2 = street2.Text, city = city.Text, postalCode = postalCode.Text, countryId = b.naId, countryName = ecnaId.SelectedItem.Text, stateId = b.stateId };
             b.employeeId = Convert.ToInt32(CurrentEmployee.Text);
             b.addressId.recordId = ecaddressId.Text;
             if (string.IsNullOrEmpty(id))
@@ -636,8 +641,9 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                             Title = Resources.Common.Notification,
                             Icon = Icon.Information,
                             Html = Resources.Common.RecordUpdatedSucc
-                            , HideDelay=250
-                       
+                            ,
+                            HideDelay = 250
+
                         });
                         this.EditEmergencyContactWindow.Close();
 
@@ -746,7 +752,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             Nationality dept = new Nationality();
             dept.name = ecnaId.Text;
 
-            
+
 
             PostRequest<Nationality> depReq = new PostRequest<Nationality>();
             depReq.entity = dept;
@@ -855,7 +861,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                 //Step 1 Code to delete the object from the database 
                 EmployeeContact n = new EmployeeContact();
                 n.recordId = index;
-              
+
                 PostRequest<EmployeeContact> req = new PostRequest<EmployeeContact>();
                 req.entity = n;
                 PostResponse<EmployeeContact> res = _employeeService.ChildDelete<EmployeeContact>(req);
@@ -899,7 +905,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                 //Step 1 Code to delete the object from the database 
                 EmployeeEmergencyContact n = new EmployeeEmergencyContact();
                 n.recordId = index;
-               
+
                 PostRequest<EmployeeEmergencyContact> req = new PostRequest<EmployeeEmergencyContact>();
                 req.entity = n;
                 PostResponse<EmployeeEmergencyContact> res = _employeeService.ChildDelete<EmployeeEmergencyContact>(req);

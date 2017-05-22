@@ -116,8 +116,10 @@ namespace AionHR.Web.UI.Forms
 
         protected void Page_Init(object sender, EventArgs e)
         {
+            
             leaveRequest1.Store1 = this.Store1;
             leaveRequest1.GrigPanel1 = this.GridPanel1;
+            
         }
 
         /// <summary>

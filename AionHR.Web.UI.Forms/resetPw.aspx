@@ -14,7 +14,7 @@
 
     <link rel="stylesheet" type="text/css" href="CSS/Header.css" />
     <link rel="stylesheet" type="text/css" href="CSS/Common.css" />
-       <script type="text/javascript">
+        <script type="text/javascript">
         Ext.define("Ext.plugin.extjs.form.PasswordStrength", {
             extend: "Ext.AbstractPlugin",
             alias: "plugin.passwordstrength",
@@ -23,32 +23,39 @@
             init: function (cmp) {
                 var me = this;
 
-                cmp.on("change", me.onFieldChange, me);
+                App.tbPassword.on("change", me.onFieldChange, me);
+                
+               
             },
 
             onFieldChange: function (field, newVal, oldVal) {
                 if (newVal === "") {
-                    field.inputEl.setStyle({
+                    App.progress.inputEl.setStyle({
                         "background-color": null,
                         "background-image": null
                     });
-                    field.rightButtons[0].setStyle({
+                   
+                    App.progress.rightButtons[0].setStyle({
                         "background-color": null,
                         "background-image": null
                     });
-                    field.rightButtons[0].setText('');
-                    field.score = 0;
+                    App.progress.rightButtons[0].setText('');
+                    App.progress.score = 0;
+                    App.progress.setValue('');
                     return;
                 }
                 var me = this,
-                    score = me.scorePassword(newVal);
+                    score = me.scorePassword(App.tbPassword.value);
 
-                field.score = score;
+                App.progress.score = score;
 
                 me.processValue(field, score);
+
+                
             },
 
             processValue: function (field, score) {
+                
                 var me = this,
                     colors = me.colors,
                     color;
@@ -73,15 +80,30 @@
                     color = colors[4]; //very strong
                 }
 
-                field.inputEl.setStyle({
+                App.progress.inputEl.setStyle({
                     "background-color": "#" + color,
                     "background-image": "none"
                 });
-                field.rightButtons[0].setStyle({
+                App.progress.rightButtons[0].setStyle({
+                    
                     "background-color": "#" + color,
-                    "background-image": "none"
+                    "padding-right":"100px"
                 });
-                field.rightButtons[0].setText(document.getElementById("level"+i).value);
+                
+                App.progress.rightButtons[0].setStyle({
+
+                    "padding-right": ((5 - i) * 50) + "px"
+                });
+                if (i == 5)
+                {
+                    App.progress.rightButtons[0].setWidth(0);
+
+                }
+                
+               
+             
+                App.progress.setValue(document.getElementById("level" + i).value);
+               
             },
 
             scorePassword: function (passwd) {
@@ -137,6 +159,7 @@
             }
         });
     </script>
+   
     <style type="text/css">
         .error {
             color: red;
@@ -209,7 +232,7 @@
                     Icon="LockGo"
                     Title="<%$ Resources:ResetPassword%>"
                     Draggable="false"
-                    Width="400"
+                    Width="500"
                     Modal="false"
                     Frame="true"
                     BodyPadding="20"
@@ -217,7 +240,7 @@
                     DefaultButton="btnLogin" Border="false" Shadow="true">
 
                     <Items>
-                        <ext:TextField
+                        <ext:TextField TabIndex="1"
                             ID="tbPassword"
                             runat="server" Anchor="-5" 
                             AutoFocus="true"
@@ -225,22 +248,29 @@
                             FieldLabel="<%$ Resources:NewPassword%>"
                             AllowBlank="false"  
                             BlankText=""
-                            
+                             MaxWidth="200"
                             EmptyText=""  >
                             <Listeners>
-                            <ValidityChange Handler="this.next().validate();" />
-                            <Blur Handler="this.next().validate();" />
+                            <ValidityChange Handler="this.next().next().validate();" />
+                            <Blur Handler="this.next().next().validate();" />
                         </Listeners>
-                            <Plugins>
+                            
+                            </ext:TextField>
+                         
+                       <ext:TextField runat="server" ReadOnly="true" Height="10" ID="progress" FieldLabel="Strength"  TabIndex="4">
+                                         <Plugins>
                                 <ext:GenericPlugin TypeName="passwordstrength" />
                             </Plugins>
                             <RightButtons>
-                                <ext:HyperlinkButton runat="server" ID="rightLink"  PaddingSpec="3 10 0 0" />
+                                <ext:Button runat="server" ID="Button1" />
+                                <ext:HyperlinkButton runat="server" ID="HyperlinkButton1"   />
                             </RightButtons>
-                            </ext:TextField>
-                         
-
-                        <ext:TextField ID="tbPasswordConfirm"
+                                   
+                                    <Listeners>
+                                        <Focus Handler="this.blur()" />
+                                    </Listeners>
+                                </ext:TextField>
+                        <ext:TextField ID="tbPasswordConfirm" TabIndex="2"
                             runat="server"
                             BlankText=""
                             InputType="Password"
@@ -248,7 +278,7 @@
                             FieldLabel="<%$ Resources:PasswordConfirm%>"
                             
                             EmptyText="" >
-                            <Validator Handler="if(this.value!= this.prev().value) return false; else return true;">
+                            <Validator Handler="if(this.value!= this.prev().prev().value) return false; else return true;">
                                 
                             </Validator>
                              <CustomConfig>
@@ -267,7 +297,7 @@
                         </ext:FieldContainer>
                     </Items>
                     <Buttons>
-                        <ext:Button ID="btnLogin" runat="server" Text="<%$ Resources:ResetPassword%>">
+                        <ext:Button ID="btnLogin" runat="server" Text="<%$ Resources:ResetPassword%>" TabIndex="3">
                             <Listeners>
                                 <Click Handler="
                             if (!#{panelLogin}.validate()) {                                

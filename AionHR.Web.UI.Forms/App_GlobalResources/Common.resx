@@ -847,7 +847,7 @@
     <value>Generate Payroll</value>
   </data>
   <data name="LoanOverrides" xml:space="preserve">
-    <value>Loan Deductions</value>
+    <value>Employee Loan Setup</value>
   </data>
   <data name="States" xml:space="preserve">
     <value>States</value>
@@ -890,5 +890,11 @@
   </data>
   <data name="RT107" xml:space="preserve">
     <value>Employee Missing Details</value>
+  </data>
+  <data name="LoanSync" xml:space="preserve">
+    <value>Sync Loan Deductions</value>
+  </data>
+  <data name="LoanSyncSucc" xml:space="preserve">
+    <value>Loan Deductions Synced Successfully</value>
   </data>
 </root>

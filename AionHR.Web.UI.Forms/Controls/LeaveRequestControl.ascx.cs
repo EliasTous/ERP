@@ -78,6 +78,12 @@ namespace AionHR.Web.UI.Forms.Controls
 
         }
 
+        protected void Page_Init(object sender, EventArgs e)
+        {
+            LeaveDaysGrid = new GridPanel();
+            
+        }
+
         #region public interface
         public void Update(string id)
         {
@@ -203,18 +209,19 @@ namespace AionHR.Web.UI.Forms.Controls
 
         private void setApproved(bool disabled)
         {
-            //LeaveDaysGrid.Disabled = disabled;
+            GridDisabled.Text = disabled.ToString();
             startDate.Disabled = disabled;
             endDate.Disabled = employeeId.Disabled = justification.Disabled = destination.Disabled = isPaid.Disabled = ltId.Disabled = status.Disabled = TotalText.Disabled = disabled;
             returnDate.Disabled = !disabled;
             approved.Text = disabled.ToString();
             leavePeriod.Disabled = disabled;
+            
         }
 
 
         private void setNormal()
         {
-            LeaveDaysGrid.Disabled = false;
+            GridDisabled.Text = "False";
             startDate.Disabled = false;
             endDate.Disabled = employeeId.Disabled = justification.Disabled = destination.Disabled = isPaid.Disabled = ltId.Disabled = status.Disabled = TotalText.Disabled = false;
             returnDate.Disabled = true;
@@ -225,12 +232,13 @@ namespace AionHR.Web.UI.Forms.Controls
 
         private void setUsed(bool disabled)
         {
-            LeaveDaysGrid.Disabled = disabled;
+            GridDisabled.Text = disabled.ToString();
             startDate.Disabled = disabled;
             endDate.Disabled = employeeId.Disabled = justification.Disabled = destination.Disabled = isPaid.Disabled = ltId.Disabled = status.Disabled = TotalText.Disabled = disabled;
             returnDate.Disabled = disabled;
             SaveButton.Disabled = disabled;
             leavePeriod.Disabled = disabled;
+            
         }
 
         /// <summary>
@@ -389,35 +397,40 @@ namespace AionHR.Web.UI.Forms.Controls
                             return;
                         }
                         PostRequest<LeaveRequest> postReq = new PostRequest<LeaveRequest>();
-                        postReq.entity = recordResponse.result;
-                        postReq.entity.returnDate = b.returnDate;
-                        postReq.entity.status = 3;
-                        PostResponse<LeaveRequest> resp = _leaveManagementService.ChildAddOrUpdate<LeaveRequest>(postReq);
-                        if (!resp.Success)
-                        {
-                            X.Msg.Alert(Resources.Common.Error, resp.Summary).Show();
-                            return;
-                        }
-                        Notification.Show(new NotificationConfig
-                        {
-                            Title = Resources.Common.Notification,
-                            Icon = Icon.Information,
-                            Html = Resources.Common.RecordUpdatedSucc
-                        });
-                        this.leaveReturnWindow.Close();
-                        if (Store1 != null)
-                        {
-                            var d = Store1.GetById(id);
-                            d.Set("returnDate", postReq.entity.returnDate);
-                            d.Set("status", postReq.entity.status);
-                            d.Commit();
-                        }
-                        else
-                        {
-                            RefreshLeaveCalendarCallBack();
-                        }
-                        EditRecordWindow.Close();
-                        return;
+                        recordResponse.result.returnDate = b.returnDate;
+                        recordResponse.result.leavePeriod = leavePeriod.Text;
+                        b = recordResponse.result;
+                        b.status = 3;
+                       
+                        //postReq.entity = recordResponse.result;
+                        //postReq.entity.returnDate = b.returnDate;
+                        //postReq.entity.status = 3;
+                        //PostResponse<LeaveRequest> resp = _leaveManagementService.ChildAddOrUpdate<LeaveRequest>(postReq);
+                        //if (!resp.Success)
+                        //{
+                        //    X.Msg.Alert(Resources.Common.Error, resp.Summary).Show();
+                        //    return;
+                        //}
+                        //Notification.Show(new NotificationConfig
+                        //{
+                        //    Title = Resources.Common.Notification,
+                        //    Icon = Icon.Information,
+                        //    Html = Resources.Common.RecordUpdatedSucc
+                        //});
+                        //this.leaveReturnWindow.Close();
+                        //if (Store1 != null)
+                        //{
+                        //    var d = Store1.GetById(id);
+                        //    d.Set("returnDate", postReq.entity.returnDate);
+                        //    d.Set("status", postReq.entity.status);
+                        //    d.Commit();
+                        //}
+                        //else
+                        //{
+                        //    RefreshLeaveCalendarCallBack();
+                        //}
+                        //EditRecordWindow.Close();
+                        //return;
                     }
                     //getting the id of the record
                     PostRequest<LeaveRequest> request = new PostRequest<LeaveRequest>();

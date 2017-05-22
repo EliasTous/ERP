@@ -112,6 +112,15 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Hidden imageData;
         
         /// <summary>
+        /// terminated control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Hidden terminated;
+        
+        /// <summary>
         /// EditRecordWindow control.
         /// </summary>
         /// <remarks>
@@ -128,6 +137,42 @@ namespace AionHR.Web.UI.Forms {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.Button gearButton;
+        
+        /// <summary>
+        /// resetPasswordGear control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.MenuItem resetPasswordGear;
+        
+        /// <summary>
+        /// terminationGear control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.MenuItem terminationGear;
+        
+        /// <summary>
+        /// deleteGear control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.MenuItem deleteGear;
+        
+        /// <summary>
+        /// historyGear control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.MenuItem historyGear;
         
         /// <summary>
         /// leftPanel control.

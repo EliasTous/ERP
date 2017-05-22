@@ -20,11 +20,160 @@
             color: red;
         }
     </style>
+       <script type="text/javascript">
+        Ext.define("Ext.plugin.extjs.form.PasswordStrength", {
+            extend: "Ext.AbstractPlugin",
+            alias: "plugin.passwordstrength",
+            colors: ["C11B17", "FDD017", "4AA02C", "6AFB92", "00FF00"],
+
+            init: function (cmp) {
+                var me = this;
+
+                App.tbPassword.on("change", me.onFieldChange, me);
+                
+               
+            },
+
+            onFieldChange: function (field, newVal, oldVal) {
+                if (newVal === "") {
+                    App.progress.inputEl.setStyle({
+                        "background-color": null,
+                        "background-image": null
+                    });
+                   
+                    App.progress.leftButtons[0].setStyle({
+                        "background-color": null,
+                        "background-image": null
+                    });
+                    App.progress.rightButtons[0].setText('');
+                    App.progress.score = 0;
+                    App.progress.setValue('');
+                    return;
+                }
+                var me = this,
+                    score = me.scorePassword(App.tbPassword.value);
+
+                App.progress.score = score;
+
+                me.processValue(field, score);
+
+                
+            },
+
+            processValue: function (field, score) {
+                
+                var me = this,
+                    colors = me.colors,
+                    color;
+                var i;
+                
+                if (score < 16) {
+                    i = 1;
+                    color = colors[0]; //very weak
+                } else if (score > 15 && score < 25) {
+                    i = 2;
+                    color = colors[1]; //weak
+                } else if (score > 24 && score < 35) {
+                    i = 3;
+
+                    color = colors[2]; //mediocre
+                } else if (score > 34 && score < 45) {
+                    i = 4;
+                    color = colors[3]; //strong
+                } else {
+                    i = 5;
+
+                    color = colors[4]; //very strong
+                }
+
+                App.progress.inputEl.setStyle({
+                    "background-color": "#" + color,
+                    "background-image": "none"
+                });
+                App.progress.leftButtons[0].setStyle({
+                    
+                    "background-color": "#" + color,
+                    "padding-right":"100px"
+                });
+                
+                App.progress.leftButtons[0].setStyle({
+
+                    "padding-right": ((5 - i) * 50) + "px"
+                });
+                if (i == 5)
+                {
+                    App.progress.leftButtons[0].setWidth(0);
+
+                }
+                
+               
+             
+                App.progress.setValue(document.getElementById("level" + i).value);
+               
+            },
+
+            scorePassword: function (passwd) {
+                var score = 0;
+
+                if (passwd.length < 5) {
+                    score += 3;
+                } else if (passwd.length > 4 && passwd.length < 8) {
+                    score += 6;
+                } else if (passwd.length > 7 && passwd.length < 16) {
+                    score += 12;
+                } else if (passwd.length > 15) {
+                    score += 18;
+                }
+
+                if (passwd.match(/[a-z]/)) {
+                    score += 1;
+                }
+
+                if (passwd.match(/[A-Z]/)) {
+                    score += 5;
+                }
+
+                if (passwd.match(/\d+/)) {
+                    score += 5;
+                }
+
+                if (passwd.match(/(.*[0-9].*[0-9].*[0-9])/)) {
+                    score += 5;
+                }
+
+                if (passwd.match(/.[!,@,#,$,%,^,&,*,?,_,~]/)) {
+                    score += 5;
+                }
+
+                if (passwd.match(/(.*[!,@,#,$,%,^,&,*,?,_,~].*[!,@,#,$,%,^,&,*,?,_,~])/)) {
+                    score += 5;
+                }
+
+                if (passwd.match(/([a-z].*[A-Z])|([A-Z].*[a-z])/)) {
+                    score += 2;
+                }
+
+                if (passwd.match(/([a-zA-Z])/) && passwd.match(/([0-9])/)) {
+                    score += 2;
+                }
+
+                if (passwd.match(/([a-zA-Z0-9].*[!,@,#,$,%,^,&,*,?,_,~])|([!,@,#,$,%,^,&,*,?,_,~].*[a-zA-Z0-9])/)) {
+                    score += 2;
+                }
+
+                return score;
+            }
+        });
+    </script>
     <title>
         <asp:Literal ID="Literal4" runat="server" Text="<%$ Resources:Common , ApplicationTitle%>" /></title>
 </head>
 <body style="background: url(Images/bg.png)">
-
+         <ext:Hidden runat="server" ID="level1" Text="<%$ Resources:VeryWeak %>" />
+        <ext:Hidden runat="server" ID="level2" Text="<%$ Resources:Weak %>" />
+        <ext:Hidden runat="server" ID="level3" Text="<%$ Resources:Mediocre %>" />
+        <ext:Hidden runat="server" ID="level4"  Text="<%$ Resources:Strong %>"/>
+        <ext:Hidden runat="server" ID="level5"  Text="<%$ Resources:VeryStrong %>"/>
     <div class="header">
         <div class="left">
             <div class="logoImage">
@@ -91,7 +240,7 @@
                     DefaultButton="btnLogin" Border="false" Shadow="true">
 
                     <Items>
-                        <ext:TextField
+                         <ext:TextField TabIndex="1"
                             ID="tbPassword"
                             runat="server" Anchor="-5" 
                             AutoFocus="true"
@@ -99,16 +248,29 @@
                             FieldLabel="<%$ Resources:NewPassword%>"
                             AllowBlank="false"  
                             BlankText=""
-                            
+                             MaxWidth="200"
                             EmptyText=""  >
                             <Listeners>
-                            <ValidityChange Handler="this.next().validate();" />
-                            <Blur Handler="this.next().validate();" />
+                            <ValidityChange Handler="this.next().next().validate();" />
+                            <Blur Handler="this.next().next().validate();" />
                         </Listeners>
-                           
+                            
                             </ext:TextField>
-
-                        <ext:TextField ID="tbPasswordConfirm"
+                         
+                       <ext:TextField runat="server" ReadOnly="true" Height="10" ID="progress" FieldLabel="صعوبة كلمة المرور"  TabIndex="4">
+                                         <Plugins>
+                                <ext:GenericPlugin TypeName="passwordstrength" />
+                            </Plugins>
+                            <LeftButtons>
+                                <ext:Button runat="server" ID="Button1" />
+                                <ext:HyperlinkButton runat="server" ID="HyperlinkButton1"   />
+                            </LeftButtons>
+                                   
+                                    <Listeners>
+                                        <Focus Handler="this.blur()" />
+                                    </Listeners>
+                                </ext:TextField>
+                        <ext:TextField ID="tbPasswordConfirm" TabIndex="2"
                             runat="server"
                             BlankText=""
                             InputType="Password"
@@ -116,11 +278,13 @@
                             FieldLabel="<%$ Resources:PasswordConfirm%>"
                             
                             EmptyText="" >
+                            <Validator Handler="if(this.value!= this.prev().prev().value) return false; else return true;">
+                                
+                            </Validator>
                              <CustomConfig>
                         <ext:ConfigItem Name="initialPassField" Value="tbPassword" Mode="Value" />
                     </CustomConfig>
                             </ext:TextField>
-                        
                         <ext:FieldContainer runat="server" ID="lblErroContainer" FieldLabel="">
                             <Items>
                                 <ext:Label ID="lblError"

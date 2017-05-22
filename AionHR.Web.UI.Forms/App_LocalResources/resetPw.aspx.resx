@@ -129,6 +129,9 @@
   <data name="ResetPassword" xml:space="preserve">
     <value>Reset Password</value>
   </data>
+  <data name="Strength" xml:space="preserve">
+    <value>Strength</value>
+  </data>
   <data name="Strong" xml:space="preserve">
     <value>Strong</value>
   </data>

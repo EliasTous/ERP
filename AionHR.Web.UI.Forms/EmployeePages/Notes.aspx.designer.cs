@@ -76,6 +76,15 @@ namespace AionHR.Web.UI.Forms.EmployeePages {
         protected global::Ext.Net.Hidden CurrentEmployee;
         
         /// <summary>
+        /// EmployeeTerminated control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Hidden EmployeeTerminated;
+        
+        /// <summary>
         /// CurrentEmployeeName control.
         /// </summary>
         /// <remarks>

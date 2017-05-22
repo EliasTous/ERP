@@ -34,6 +34,7 @@
         <ext:Hidden ID="BasicSalary" runat="server" Text="" />
         <ext:Hidden ID="ENSeq" runat="server" Text="" />
         <ext:Hidden ID="DESeq" runat="server" Text="" />
+        <ext:Hidden ID="EmployeeTerminated" runat="server" />
  <%--       <ext:Hidden ID="eAmount" runat="server" Text="" />
         <ext:Hidden ID="dAmount" runat="server" Text="" />--%>
         <ext:Hidden ID="currentGrossSalary" runat="server"  />
@@ -214,7 +215,7 @@
                                 Hideable="false"
                                 MenuDisabled="true"
                                 Resizable="false">
-                                <Renderer handler="return editRender()+'&nbsp;&nbsp;'+deleteRender(); " />
+                                <Renderer handler="var d =(App.EmployeeTerminated.value=='0')?deleteRender():' '; return editRender()+'&nbsp;&nbsp;' +d; " />
 
                             </ext:Column>
                             <ext:Column runat="server" Visible="false"
@@ -398,7 +399,7 @@
                                 Hideable="false"
                                 MenuDisabled="true"
                                 Resizable="false">
-                                <Renderer handler="return editRender()+'&nbsp;&nbsp;'+deleteRender(); " />
+                                <Renderer handler="var d =(App.EmployeeTerminated.value=='0')?deleteRender():' '; return editRender()+'&nbsp;&nbsp;' +d;" />
 
                             </ext:Column>
                             <ext:Column runat="server" Visible="false"
@@ -766,7 +767,7 @@
                                                 Hideable="false"
                                                 MenuDisabled="true"
                                                 Resizable="false">
-                                                <Renderer handler="return editRender()+'&nbsp;&nbsp;'+deleteRender(); " />
+                                                <Renderer handler="var d =(App.EmployeeTerminated.value=='0')?deleteRender():' '; return editRender()+'&nbsp;&nbsp;' +d;" />
                                             </ext:Column>
                                         </Columns>
                                     </ColumnModel>
@@ -960,7 +961,7 @@
                                                 Hideable="false"
                                                 MenuDisabled="true"
                                                 Resizable="false">
-                                               <Renderer handler="return editRender()+'&nbsp;&nbsp;'+deleteRender(); " />
+                                               <Renderer handler="var d =(App.EmployeeTerminated.value=='0')?deleteRender():' '; return editRender()+'&nbsp;&nbsp;' +d;" />
                                             </ext:Column>
 
                                         </Columns>

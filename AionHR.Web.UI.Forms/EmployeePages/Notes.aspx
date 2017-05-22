@@ -24,7 +24,7 @@
         <ext:Hidden ID="titleSavingError" runat="server" Text="<%$ Resources:Common , TitleSavingError %>" />
         <ext:Hidden ID="titleSavingErrorMessage" runat="server" Text="<%$ Resources:Common , TitleSavingErrorMessage %>" />
         <ext:Hidden ID="CurrentEmployee" runat="server"  />
-
+        <ext:Hidden ID="EmployeeTerminated" runat="server" />
         <ext:Hidden ID="CurrentEmployeeName" runat="server" />
           <ext:Viewport ID="Viewport11" runat="server" Layout="VBoxLayout" Padding="10">
             <LayoutConfig>
@@ -154,7 +154,7 @@
                                 Hideable="false"
                                 MenuDisabled="true"
                                 Resizable="false">
-                                <Renderer Handler="return editRender() + '&nbsp;&nbsp;'+ deleteRender();" >
+                                <Renderer Handler="if(App.EmployeeTerminated.value=='0') return editRender() + '&nbsp;&nbsp;'+ deleteRender();" >
                                     </Renderer>
 
                             </ext:Column>

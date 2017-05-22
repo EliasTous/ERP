@@ -67,6 +67,11 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                 
                  date.Format = effectiveDate.Format = cc.Format= ccc.Format = _systemService.SessionHelper.GetDateformat();
 
+                EmployeeTerminated.Text = Request.QueryString["terminated"];
+
+                bool disabled = EmployeeTerminated.Text == "1";
+
+                Button6.Disabled = Button1.Disabled = Button11.Disabled = Button14.Disabled = Button12.Disabled = Button4.Disabled = SaveENButton.Disabled = Button15.Disabled = disabled;
             }
 
         }

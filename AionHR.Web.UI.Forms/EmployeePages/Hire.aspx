@@ -24,7 +24,7 @@
         <ext:Hidden ID="titleSavingError" runat="server" Text="<%$ Resources:Common , TitleSavingError %>" />
         <ext:Hidden ID="titleSavingErrorMessage" runat="server" Text="<%$ Resources:Common , TitleSavingErrorMessage %>" />
         <ext:Hidden ID="CurrentEmployee" runat="server" />
-
+        <ext:Hidden ID="EmployeeTerminated" runat="server" />
         <ext:Hidden ID="CurrentEmployeeName" runat="server" />
         <ext:Viewport ID="Viewport11" runat="server" Layout="VBoxLayout" Padding="10">
             <LayoutConfig>
@@ -82,7 +82,7 @@
                             >
                             <Items>
                                 <ext:ToolbarFill runat="server" />
-                                    <ext:Button runat="server" Text ="<%$ Resources:Common , Save %>">
+                                    <ext:Button runat="server" Text ="<%$ Resources:Common , Save %>" ID="saveButton">
                             <Listeners>
                         <Click Handler="CheckSession(); if (!#{hireInfoForm}.getForm().isValid()) {return false;} " />
                     </Listeners>

@@ -144,7 +144,7 @@
         <ext:Hidden ID="CurrentDateFormat" runat="server" />
         <ext:Hidden ID="EmployeeClassId" runat="server" />
         <ext:Hidden ID="CurrentLanguage" runat="server" />
-
+        <ext:Hidden ID="EmployeeTerminated" runat="server" />
         <ext:Viewport ID="Viewport11" runat="server" Layout="VBoxLayout" Padding="10">
             <LayoutConfig>
                 <ext:VBoxLayoutConfig Align="Stretch" />
@@ -253,7 +253,7 @@
                                 MenuDisabled="true"
                                 Resizable="false">
 
-                                <Renderer Handler="return editRender()+ '&nbsp;&nbsp;'+ attachRender()+'&nbsp;&nbsp;' +deleteRender(); " />
+                                <Renderer Handler="var d =(App.EmployeeTerminated.value=='0')?editRender()+'&nbsp;&nbsp;' +deleteRender():' '; return attachRender()+'&nbsp;&nbsp;' +d;" />
 
                             </ext:Column>
                             <ext:Column runat="server"

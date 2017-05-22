@@ -1,4 +1,5 @@
 ﻿using AionHR.Model.MasterModule;
+using AionHR.Model.Payroll;
 using AionHR.Model.System;
 using AionHR.Services.Interfaces;
 using AionHR.Services.Messaging;
@@ -23,6 +24,7 @@ namespace AionHR.Web.UI.Forms
 
         ISystemService _systemService = ServiceLocator.Current.GetInstance<ISystemService>();
         IMasterService _masterService = ServiceLocator.Current.GetInstance<IMasterService>();
+        IPayrollService _payrollService = ServiceLocator.Current.GetInstance<IPayrollService>();
         /// <summary>
         /// Could be added in a base page, but we keep it here in order to control the page UI. This method should be copied to each page
         /// </summary>
@@ -64,7 +66,7 @@ namespace AionHR.Web.UI.Forms
                 SetExtLanguage();
                 SetHeaderStyle();
                 CompanyNameLiteral.Text = "- " + _systemService.SessionHelper.Get("CompanyName").ToString();
-                username.Text =  _systemService.SessionHelper.Get("CurrentUserName").ToString();
+                username.Text = _systemService.SessionHelper.Get("CurrentUserName").ToString();
                 //Building the tree
                 _systemService.SessionHelper.Set("ActiveModule", "-1");
                 BuildTree(1);
@@ -335,6 +337,24 @@ namespace AionHR.Web.UI.Forms
             col.Add(new Ext.Net.Parameter() { Name = "PrimaryKey", Value = recordId.ToString() });
             transactionLogStore.Reload(col);
 
+        }
+
+        protected void SyncLoanDeductions(object sender, DirectEventArgs e)
+        {
+            PostRequest<SyncED> req = new PostRequest<SyncED>();
+            PostResponse<SyncED> resp = _payrollService.ChildAddOrUpdate<SyncED>(req);
+            if (!resp.Success)
+            { //Show an error saving...
+
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, resp.Summary).Show();
+                return;
+
+            }
+            else
+            {
+                X.Msg.Alert("", GetGlobalResourceObject("Common","LoanSyncSucc").ToString()).Show();
+            }
         }
     }
 }

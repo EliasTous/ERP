@@ -150,6 +150,24 @@
   <data name="FieldRecordId" xml:space="preserve">
     <value>Record ID</value>
   </data>
+  <data name="Mediocre" xml:space="preserve">
+    <value>Mediocre</value>
+  </data>
+  <data name="Strength" xml:space="preserve">
+    <value>Strength</value>
+  </data>
+  <data name="Strong" xml:space="preserve">
+    <value>Strong</value>
+  </data>
+  <data name="VeryStrong" xml:space="preserve">
+    <value>Very Strong</value>
+  </data>
+  <data name="VeryWeak" xml:space="preserve">
+    <value>Very Weak</value>
+  </data>
+  <data name="Weak" xml:space="preserve">
+    <value>Weak</value>
+  </data>
   <data name="WindowTitle" xml:space="preserve">
     <value>Users</value>
   </data>
