@@ -81,7 +81,7 @@
 
             App.rwIssueDate.setHidden(hijri);
             App.rwIssueDate.allowBlank = hijri;
-
+            alert('ok');
 
         }
     </script>
@@ -564,7 +564,7 @@
                                 <ext:TextArea runat="server" Name="remarks" FieldLabel="<%$ Resources:FieldRWRemarks%>" />
                                
                            
-                                <ext:FileUploadField runat="server" ID="rwFile" FieldLabel="<%$ Resources:FieldFile%>" />
+                                <ext:FileUploadField runat="server" ID="rwFile" FieldLabel="<%$ Resources:FieldFile%>" AllowBlank="false" />
                             </Items>
 
                         </ext:FormPanel>
@@ -576,7 +576,7 @@
                 <ext:Button ID="SaveRWButton" runat="server" Text="<%$ Resources:Common, Save %>" Icon="Disk">
 
                     <Listeners>
-                        <Click Handler="CheckSession(); if (!#{EditRWForm}.getForm().isValid()) {return false;} " />
+                        <Click Handler=" CheckSession(); if (!#{EditRWForm}.getForm().isValid()) {return false;} " />
                     </Listeners>
                     <DirectEvents>
                         <Click OnEvent="SaveRW" Failure="Ext.MessageBox.alert('#{titleSavingError}.value', '#{titleSavingErrorMessage}.value');">
@@ -655,7 +655,7 @@
                                 <ext:DateField ID="DateField1" runat="server" Name="date" FieldLabel="<%$ Resources:FieldBCIssueDate%>" AllowBlank="false" />
                                 <ext:DateField ID="DateField2" runat="server" Name="expiryDate" FieldLabel="<%$ Resources:FieldBCExpiryDate%>" AllowBlank="false" />
                                 <ext:TextArea runat="server" Name="remarks" FieldLabel="<%$ Resources:FieldBCRemarks%>" />
-                                <ext:FileUploadField runat="server" ID="bcFile" FieldLabel="<%$ Resources:FieldFile%>" />
+                                <ext:FileUploadField runat="server" ID="bcFile" FieldLabel="<%$ Resources:FieldFile%>" AllowBlank="false" />
 
                             </Items>
 

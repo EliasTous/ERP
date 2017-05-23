@@ -160,7 +160,7 @@ namespace AionHR.Web.UI.Forms.Reports
             return req;
         }
 
-        private void FillReport(bool isInitial = false , bool throwException=true)
+        private void FillReport(bool isInitial = false, bool throwException = true)
         {
 
             ReportCompositeRequest req = GetRequest();
@@ -177,19 +177,25 @@ namespace AionHR.Web.UI.Forms.Reports
                     return;
                 }
             }
-            
-            
+
+
             List<AionHR.Model.Reports.DailyAttendance> atts = new List<AionHR.Model.Reports.DailyAttendance>();
-            resp.Items.ForEach(x => atts.Add(new AionHR.Model.Reports.DailyAttendance() {
-                                        name = x.name.fullName, branchName=x.branchName, departmentName = x.departmentName,
-                                        Date = DateTime.ParseExact(x.dayId,"yyyyMMdd",new CultureInfo("en")),
-                                        lateness = x.OL_A_SIGN[0]=='-'?(new TimeSpan(-Convert.ToInt32(x.OL_A.Substring(0, 2)),- Convert.ToInt32(x.OL_A.Substring(3, 2)),0)):(new TimeSpan(Convert.ToInt32(x.OL_A.Substring(0, 2)), Convert.ToInt32(x.OL_A.Substring(3, 2)), 0)),
-                                        early = x.OL_D_SIGN[0] == '-' ? (new TimeSpan(-Convert.ToInt32(x.OL_D.Substring(0, 2)), -Convert.ToInt32(x.OL_D.Substring(3, 2)), 0)) : (new TimeSpan(Convert.ToInt32(x.OL_D.Substring(0, 2)), Convert.ToInt32(x.OL_D.Substring(3, 2)), 0)),
-                workingHours = new TimeSpan(Convert.ToInt32(x.workingTime.Substring(0,2)), Convert.ToInt32(x.workingTime.Substring(3, 2)),0)
-                                    }));
+            resp.Items.ForEach(x => atts.Add(new AionHR.Model.Reports.DailyAttendance()
+            {
+                name = x.name.fullName,
+                branchName = x.branchName,
+                departmentName = x.departmentName,
+                Date = DateTime.ParseExact(x.dayId, "yyyyMMdd", new CultureInfo("en")),
+                lateness = x.OL_A_SIGN[0] == '-' ? (new TimeSpan(-Convert.ToInt32(x.OL_A.Substring(0, 2)), -Convert.ToInt32(x.OL_A.Substring(3, 2)), 0)) : (new TimeSpan(Convert.ToInt32(x.OL_A.Substring(0, 2)), Convert.ToInt32(x.OL_A.Substring(3, 2)), 0)),
+                early = x.OL_D_SIGN[0] == '-' ? (new TimeSpan(-Convert.ToInt32(x.OL_D.Substring(0, 2)), -Convert.ToInt32(x.OL_D.Substring(3, 2)), 0)) : (new TimeSpan(Convert.ToInt32(x.OL_D.Substring(0, 2)), Convert.ToInt32(x.OL_D.Substring(3, 2)), 0)),
+                workingHours = new TimeSpan(Convert.ToInt32(x.workingTime.Substring(0, 2)), Convert.ToInt32(x.workingTime.Substring(3, 2)), 0),
+                workingHoursString = x.workingTime,
+                earlyString = x.OL_D_SIGN[0] == '-' ? "-" + x.OL_D : x.OL_D,
+                latenessString = x.OL_A_SIGN[0] == '-' ? "-" + x.OL_A : x.OL_A
+            }));
             atts.ForEach(x => { x.DOW = GetGlobalResourceObject("Common", x.Date.DayOfWeek.ToString() + "Text").ToString(); x.DateString = x.Date.ToString(_systemService.SessionHelper.GetDateformat()); });
-            
-            
+
+
             DailyAttendance h = new DailyAttendance();
             h.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;
             h.RightToLeftLayout = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeftLayout.Yes : DevExpress.XtraReports.UI.RightToLeftLayout.No;

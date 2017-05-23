@@ -124,7 +124,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to AION.
+        ///   Looks up a localized string similar to .
         /// </summary>
         internal static string ApplicationModule {
             get {

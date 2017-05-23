@@ -400,8 +400,18 @@ namespace AionHR.Web.UI.Forms
                 X.Msg.Alert(Resources.Common.Error, daysResponse.Summary).Show();
                 return;
             }
-            int total = daysResponse.Items.Sum(s => s.netOL);
-            X.Call("setTotal", total);
+            int total = daysResponse.Items.Sum(x => x.netOL);
+            string totalWorked, totalBreaks;
+            int hoursWorked=0, minsWorked = 0,hoursBreak=0,minsBrea=0;
+            daysResponse.Items.ForEach(x => { hoursWorked += Convert.ToInt32(x.workingTime.Substring(0, 2)); minsWorked += Convert.ToInt32(x.workingTime.Substring(3, 2)); hoursBreak += Convert.ToInt32(x.breaks.Substring(0, 2)); minsBrea += Convert.ToInt32(x.breaks.Substring(3, 2)); });
+            hoursWorked += minsWorked / 60;
+            minsWorked = minsWorked % 60;
+
+            hoursBreak += minsBrea / 60;
+            minsBrea = minsBrea % 60;
+            totalWorked = hoursWorked.ToString() + ":" + minsWorked.ToString();
+            totalBreaks = hoursBreak.ToString() + ":" + minsBrea.ToString();
+            X.Call("setTotal", totalWorked,totalBreaks);
             this.total.Text= total.ToString();
             var data = daysResponse.Items;
             if (daysResponse.Items != null)

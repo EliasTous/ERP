@@ -755,7 +755,7 @@ namespace AionHR.Web.UI.Forms
             InitCombos(false);
             SelectCombos(response.result);
             SetActivated(!response.result.isInactive);
-            FixLoaderUrls(r.RecordID, response.result.hireDate.Value.ToShortDateString(),response.result.isInactive);
+            FixLoaderUrls(r.RecordID, response.result.hireDate.Value.ToString("yyyy/MM/dd"),response.result.isInactive);
 
         }
 

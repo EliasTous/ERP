@@ -237,6 +237,9 @@
   <data name="FieldWorkingCalendar" xml:space="preserve">
     <value>Calendar</value>
   </data>
+  <data name="TotalBreaks" xml:space="preserve">
+    <value>Total Breaks</value>
+  </data>
   <data name="TotalText" xml:space="preserve">
     <value>Total</value>
   </data>

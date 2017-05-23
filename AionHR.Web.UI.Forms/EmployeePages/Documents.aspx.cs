@@ -109,7 +109,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             if (rtl)
             {
                 this.ResourceManager1.RTL = true;
-
+                this.Viewport11.RTL = true;
                 CurrentLanguage.Text = "ar";
             }
             else

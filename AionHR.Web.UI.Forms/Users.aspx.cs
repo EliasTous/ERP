@@ -104,12 +104,12 @@ namespace AionHR.Web.UI.Forms
                 this.ResourceManager1.RTL = true;
                 this.Viewport1.RTL = true;
                 this.rtl.Text = "1";
-                X.Call("setRTL", "1");
+                
             }
             else
             {
                 this.rtl.Text = "0";
-                X.Call("setRTL", "0");
+               
             }
         }
 
@@ -133,7 +133,7 @@ namespace AionHR.Web.UI.Forms
                     //Step 1 : get the object from the Web Service 
                     RecordRequest r = new RecordRequest();
                     r.RecordID = id.ToString();
-                    progress.Hidden = true;
+                    
                     RecordResponse<UserInfo> response = _systemService.ChildGetRecord<UserInfo>(r);
                     if (!response.Success)
                     {
@@ -415,7 +415,7 @@ namespace AionHR.Web.UI.Forms
             //Reset all values of the relative object
             BasicInfoTab.Reset();
             fullName.Disabled = false;
-            progress.Hidden = false;
+            
             this.EditRecordWindow.Title = Resources.Common.AddNewRecord;
             DeactivatePassword(false);
             this.EditRecordWindow.Show();

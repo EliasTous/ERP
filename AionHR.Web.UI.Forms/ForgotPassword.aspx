@@ -94,7 +94,7 @@
                             runat="server"
                             AutoFocus="true"
                             IsRemoteValidation="true"
-                            MsgTarget="Side"
+                            ValidateBlank="false" ValidateOnBlur="true"
                             FieldLabel="<%$ Resources:  Account %>"
                             AllowBlank="false"
                             BlankText="<%$ Resources: Common, MandatoryField %>"
@@ -113,7 +113,7 @@
 
                         <ext:TextField ID="tbUsername"
                             runat="server"
-                            MsgTarget="Side" Vtype="email"
+                             Vtype="email" ValidateBlank="false" ValidateOnBlur="true"
                             BlankText="<%$ Resources:Common, MandatoryField %>"
                             AllowBlank="false"
                             FieldLabel="<%$ Resources:  UserID %>"

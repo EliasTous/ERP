@@ -148,8 +148,16 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                         else
                         {
                             gregCal.Checked = true;
-                            rwIssueDateMulti.Text = response.result.issueDate.ToString("MM/dd/yyyy", new CultureInfo("en"));
-                            rwExpiryDateMulti.Text = response.result.expiryDate.ToString("MM/dd/yyyy", new CultureInfo("en"));
+                            if (_systemService.SessionHelper.CheckIfArabicSession())
+                            {
+                                rwIssueDateMulti.Text = response.result.issueDate.ToString("dd/MM/yyyy", new CultureInfo("en"));
+                                rwExpiryDateMulti.Text = response.result.expiryDate.ToString("dd/MM/yyyy", new CultureInfo("en"));
+                            }
+                            else
+                            {
+                                rwIssueDateMulti.Text = response.result.issueDate.ToString("MM/dd/yyyy", new CultureInfo("en"));
+                                rwExpiryDateMulti.Text = response.result.expiryDate.ToString("MM/dd/yyyy", new CultureInfo("en"));
+                            }
                             hijriSelected.Text = "false";
                         }
                         X.Call("handleInputRender");
@@ -159,9 +167,9 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     RWID.Text = response.result.recordId;
                     this.EditRWwindow.Title = Resources.Common.EditWindowsTitle;
                     this.EditRWwindow.Show();
-                  
+
                     break;
-              
+
 
                 case "imgDelete":
                     X.Msg.Confirm(Resources.Common.Confirmation, Resources.Common.DeleteOneRecord, new MessageBoxButtonsConfig
@@ -169,7 +177,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                         Yes = new MessageBoxButtonConfig
                         {
                             //We are call a direct request metho for deleting a record
-                            Handler = String.Format("App.direct.DeleteRW({0},'{1}')", id,path),
+                            Handler = String.Format("App.direct.DeleteRW({0},'{1}')", id, path),
                             Text = Resources.Common.Yes
                         },
                         No = new MessageBoxButtonConfig
@@ -226,7 +234,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                         Yes = new MessageBoxButtonConfig
                         {
                             //We are call a direct request metho for deleting a record
-                            Handler = String.Format("App.direct.DeleteBC({0},'{1}')", id,path),
+                            Handler = String.Format("App.direct.DeleteBC({0},'{1}')", id, path),
                             Text = Resources.Common.Yes
                         },
                         No = new MessageBoxButtonConfig
@@ -254,7 +262,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
         }
 
         [DirectMethod]
-        public void DeleteRW(string index,string path)
+        public void DeleteRW(string index, string path)
         {
             try
             {
@@ -303,7 +311,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
 
         }
         [DirectMethod]
-        public void DeleteBC(string index,string path)
+        public void DeleteBC(string index, string path)
         {
             try
             {
@@ -388,9 +396,9 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             {
                 SetHijriInputState(false);
             }
-            
-            
-            
+
+
+
             this.EditRWwindow.Show();
         }
         protected void ADDNewBC(object sender, DirectEventArgs e)
@@ -446,12 +454,12 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             EmployeeRightToWorkListRequest request = new EmployeeRightToWorkListRequest();
 
             request.EmployeeId = CurrentEmployee.Text;
-            
+
             ListResponse<EmployeeRightToWork> currencies = _employeeService.ChildGetAll<EmployeeRightToWork>(request);
             if (!currencies.Success)
                 X.Msg.Alert(Resources.Common.Error, currencies.Summary).Show();
             this.rightToWorkStore.DataSource = currencies.Items;
-           
+
 
             this.rightToWorkStore.DataBind();
         }
@@ -474,14 +482,14 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             if (!currencies.Success)
                 X.Msg.Alert(Resources.Common.Error, currencies.Summary).Show();
             this.BCStore.DataSource = currencies.Items;
-            
+
 
             this.BCStore.DataBind();
         }
 
         protected void SaveRW(object sender, DirectEventArgs e)
         {
-       
+
             //Getting the id to check if it is an Add or an edit as they are managed within the same form.
             string id = e.ExtraParams["id"];
 
@@ -489,7 +497,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             JsonSerializerSettings settings = new JsonSerializerSettings();
             settings.NullValueHandling = NullValueHandling.Ignore;
 
-            EmployeeRightToWork b = JsonConvert.DeserializeObject<EmployeeRightToWork>(obj,settings);
+            EmployeeRightToWork b = JsonConvert.DeserializeObject<EmployeeRightToWork>(obj, settings);
             b.employeeId = Convert.ToInt32(CurrentEmployee.Text);
             b.recordId = id;
             bool hijriSupported = _systemService.SessionHelper.GetHijriSupport();
@@ -510,7 +518,15 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     else
                     {
                         c = new CultureInfo("en");
-                        format = "MM/dd/yyyy";
+                        if (_systemService.SessionHelper.CheckIfArabicSession())
+                        {
+
+                            format = "dd/MM/yyyy";
+                        }
+                        else
+                        {
+                            format = "MM/dd/yyyy";
+                        }
                     }
 
                     b.issueDate = DateTime.ParseExact(rwIssueDateMulti.Text, format, c);
@@ -520,6 +536,9 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             }
             catch (Exception exp)
             {
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, "Invalid Format").Show();
+
                 return;
             }
             //b.remarks = 
@@ -542,14 +561,14 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                         //}
                         fileData = new byte[rwFile.PostedFile.ContentLength];
                         fileData = rwFile.FileBytes;
-                        
+
 
                     }
                     else
                     {
                         fileData = null;
                     }
-                        PostResponse<EmployeeRightToWork> r = _employeeService.ChildAddOrUpdate<EmployeeRightToWork>(request);
+                    PostResponse<EmployeeRightToWork> r = _employeeService.ChildAddOrUpdate<EmployeeRightToWork>(request);
                     b.recordId = r.recordId;
 
                     //check if the insert failed
@@ -627,12 +646,12 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                         //}
                         fileData = new byte[rwFile.PostedFile.ContentLength];
                         fileData = rwFile.FileBytes;
-             
+
 
                     }
-               
-                        PostResponse<EmployeeRightToWork> r = _employeeService.ChildAddOrUpdate<EmployeeRightToWork>(request);                      //Step 1 Selecting the object or building up the object for update purpose
-                    
+
+                    PostResponse<EmployeeRightToWork> r = _employeeService.ChildAddOrUpdate<EmployeeRightToWork>(request);                      //Step 1 Selecting the object or building up the object for update purpose
+
                     //Step 2 : saving to store
 
                     //Step 3 :  Check if request fails
@@ -644,7 +663,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     }
                     else
                     {
-                          if (fileData != null)
+                        if (fileData != null)
                         {
                             SystemAttachmentsPostRequest req = new SystemAttachmentsPostRequest();
                             req.entity = new Model.System.Attachement() { date = DateTime.Now, classId = ClassId.EPRW, recordId = Convert.ToInt32(b.recordId), fileName = rwFile.PostedFile.FileName, seqNo = 0 };
@@ -703,10 +722,10 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             b.recordId = id;
             b.date = new DateTime(b.date.Year, b.date.Month, b.date.Day, 14, 0, 0);
             b.expiryDate = new DateTime(b.expiryDate.Year, b.expiryDate.Month, b.expiryDate.Day, 14, 0, 0);
-            
+
             if (ctId.SelectedItem != null)
                 b.ctName = ctId.SelectedItem.Text;
-           
+
             if (string.IsNullOrEmpty(id))
             {
 
@@ -725,14 +744,14 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                         //}
                         fileData = new byte[bcFile.PostedFile.ContentLength];
                         fileData = bcFile.FileBytes;
-                        
+
 
                     }
                     else
                     {
                         fileData = null;
                     }
-                        PostResponse<EmployeeBackgroundCheck> r = _employeeService.ChildAddOrUpdate<EmployeeBackgroundCheck>(request);
+                    PostResponse<EmployeeBackgroundCheck> r = _employeeService.ChildAddOrUpdate<EmployeeBackgroundCheck>(request);
                     b.recordId = r.recordId;
 
                     //check if the insert failed
@@ -808,11 +827,11 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                         //}
                         fileData = new byte[bcFile.PostedFile.ContentLength];
                         fileData = bcFile.FileBytes;
-                       
+
 
                     }
-                    
-                        PostResponse<EmployeeBackgroundCheck> r = _employeeService.ChildAddOrUpdate<EmployeeBackgroundCheck>(request);                      //Step 1 Selecting the object or building up the object for update purpose
+
+                    PostResponse<EmployeeBackgroundCheck> r = _employeeService.ChildAddOrUpdate<EmployeeBackgroundCheck>(request);                      //Step 1 Selecting the object or building up the object for update purpose
 
                     //Step 2 : saving to store
 
@@ -843,9 +862,9 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                         EmployeeBackgroundCheck BC = GetBCById(b.recordId);
                         ModelProxy record = this.BCStore.GetById(id);
                         record.Set("expiryDate", BC.expiryDate);
-                       
+
                         record.Set("fileUrl", BC.fileUrl);
-                       
+
                         record.Set("ctId", BC.ctId);
                         record.Set("ctName", BC.ctName);
                         record.Set("remarks", BC.remarks);

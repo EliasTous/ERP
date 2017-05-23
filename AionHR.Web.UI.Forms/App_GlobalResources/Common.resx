@@ -121,7 +121,7 @@
     <value>Active Module</value>
   </data>
   <data name="ApplicationModule" xml:space="preserve">
-    <value>AION</value>
+    <value />
   </data>
   <data name="ApplicationTitle" xml:space="preserve">
     <value>AionHR</value>

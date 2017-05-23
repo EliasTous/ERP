@@ -132,6 +132,8 @@ namespace AionHR.Web.UI.Forms
                 else
                     _systemService.SessionHelper.SetLanguage("en");
                 _systemService.SessionHelper.Set("CompanyName", getACResponse.result.companyName);
+                
+                _systemService.SessionHelper.Set("CurrentUserName", userName);
                 StoreSystemDefaults();
                 return "1";//Succeded
 

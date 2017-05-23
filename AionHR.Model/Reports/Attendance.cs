@@ -93,6 +93,7 @@ namespace AionHR.Model.Reports
         public string month { get; set; }
 
         public string year { get; set; }
+        public string workingHoursString { get; set; }
 
         public string workingTime { get; set; }
 
@@ -123,8 +124,18 @@ namespace AionHR.Model.Reports
 
         public TimeSpan workingHours { get; set; }
 
+        public string workingHoursString { get; set; }
+
         public TimeSpan lateness { get; set; }
 
         public TimeSpan early { get; set; }
+
+        public string latenessString {
+            get; set;
+        }
+
+        public string earlyString {
+            get; set;
+        }
     }
 }

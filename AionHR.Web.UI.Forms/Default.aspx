@@ -79,7 +79,7 @@
                     <ext:Container runat="server">
                         <Content>
                             <div class="logoImage">
-                                <img src="Images/logo2.png" width="80" height="57" />
+                                <img src="Images/logo-light.png" style="margin-top:20px;margin-left:5px;margin-right:5px;"  width="73" height="20" />
                             </div>
                             <div class="title">
                                 <asp:Literal ID="Literal3" runat="server" Text="<%$ Resources:Common ,ApplicationModule%>" /><asp:Literal ID="CompanyNameLiteral" runat="server" Text="" /></span>

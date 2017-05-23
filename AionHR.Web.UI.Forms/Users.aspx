@@ -12,37 +12,16 @@
     <link rel="stylesheet" href="CSS/LiveSearch.css" />
     <script type="text/javascript" src="Scripts/Users.js?id=1"></script>
     <script type="text/javascript" src="Scripts/common.js"></script>
-    <script type="text/javascript">
-        function setRTL(rtl)
-        {
-           
-            App.progress.rightButtons[0].setHidden(rtl == '1');
-            App.rtl.value = rtl;
-
-            App.progress.leftButtons[0].setHidden(rtl =='0');
-
-        }
-        function SetNameEnabled( status,name)
-        {
-            
-            
-            App.fullName.setDisabled(!status);
-            if (!status)
-                App.fullName.setValue(name);
-           
-
-        }
-        function dump(obj) {
-            var out = '';
-            for (var i in obj) {
-                out += i + ": " + obj[i] + "\n";
+     <script src="Scripts/jquery-new.js"></script>  
+      <script type="text/javascript">function dump(obj) {
+    var out = '';
+    for (var i in obj) {
+        out += i + ": " + obj[i] + "\n";
 
 
-            }
-            return out;
-        }
-    </script>
-    <script type="text/javascript">
+    }
+    return out;
+}
         Ext.define("Ext.plugin.extjs.form.PasswordStrength", {
             extend: "Ext.AbstractPlugin",
             alias: "plugin.passwordstrength",
@@ -58,42 +37,17 @@
 
             onFieldChange: function (field, newVal, oldVal) {
                 if (newVal === "") {
-                    App.progress.inputEl.setStyle({
-                        "background-color": null,
-                        "background-image": null
-                    });
                    
-                    App.progress.rightButtons[0].setStyle({
-                        "background-color": null,
-                        "background-image": null
-                    });
-                    App.progress.leftButtons[0].setStyle({
-                        "background-color": null,
-                        "background-image": null
-                    });
-                    App.progress.rightButtons[0].setText('');
-                    App.progress.leftButtons[0].setText('');
-                    App.progress.setValue('');
-                    App.progress.score = 0;
-                    if (App.rtl.value=='1') {
-                        App.progress.leftButtons[0].setStyle({
-
-                            "padding-right": "320px"
-                        });
-                    }
-                    else
-                    {
-                        App.progress.rightButtons[0].setStyle({
-
-                            "padding-right": "320px"
-                        });
-                    }
+               
+                    App.pro.updateText('');
+                    $("#pro-bar")[0].style.backgroundColor = "white";
+                    App.pro.setStyle({ "background-color": "white" });
                     return;
                 }
                 var me = this,
-                    score = me.scorePassword(App.PasswordField.value);
+                    score = me.scorePassword(field.value);
 
-                App.progress.score = score;
+                
 
                 me.processValue(field, score);
 
@@ -125,51 +79,20 @@
 
                     color = colors[4]; //very strong
                 }
-                if (App.rtl.value=='0') {
-                    App.progress.inputEl.setStyle({
-                        "background-color": "#" + color,
-                        "background-image": "none"
-                    });
 
-                    App.progress.rightButtons[0].setStyle({
-
-                        "background-color": "#" + color,
-                        "padding-right": "100px"
-                    });
-
-                    App.progress.rightButtons[0].setStyle({
-
-                        "padding-right": ((5 - i) * 60) + "px"
-                    });
-                }
-                else
-                {
-                    App.progress.inputEl.setStyle({
-                        "background-color": "#" + color,
-                        "background-image": "none"
-                    });
-
-                    App.progress.leftButtons[0].setStyle({
-
-                        "background-color": "#" + color,
-                        "padding-right": "100px"
-                    });
-
-                    App.progress.leftButtons[0].setStyle({
-
-                        "padding-right": ((5 - i) * 60) + "px"
-                    });
-                }
-                if (i == 5)
-                {
-                    App.progress.rightButtons[0].setWidth(0);
-
-                }
+              
+                
+                App.pro.setValue(i / 5);
+              
                 
                
              
-                App.progress.setValue(document.getElementById("level" + i).value);
                
+                App.pro.updateText(document.getElementById("level" + i).value);
+             
+                
+                $("#pro-bar")[0].style.backgroundColor="#"+colors[i];
+                
             },
 
             scorePassword: function (passwd) {
@@ -225,6 +148,7 @@
             }
         });
     </script>
+   
 </head>
 <body style="background: url(Images/bg.png) repeat;" >
     <form id="Form1" runat="server">
@@ -551,6 +475,9 @@
                                         <ValidityChange Handler="this.next().next().validate();" />
                                         <Blur Handler="this.next().next().validate();" />
                                     </Listeners>
+                                      <Plugins>
+                                <ext:GenericPlugin TypeName="passwordstrength" />
+                            </Plugins>
                                     </ext:TextField>
                                      <%--<Plugins>
                                <%-- <ext:GenericPlugin TypeName="passwordstrength" />
@@ -558,23 +485,12 @@
                             <RightButtons>
                                 <ext:HyperlinkButton runat="server" ID="rightLink"   />
                             </RightButtons>--%>
-                                <ext:TextField runat="server" ReadOnly="true" Height="10" ID="progress" FieldLabel="Strength" TabIndex="12" >
-                                         <Plugins>
-                                <ext:GenericPlugin TypeName="passwordstrength" />
-                            </Plugins>
-                            <RightButtons>
-                                <ext:Button runat="server" ID="sep"  />
-                                <ext:HyperlinkButton runat="server" ID="rightLink"  Width="0" Disabled="true" />
-                            </RightButtons>
-                                        <LeftButtons>
-                                <ext:Button runat="server" ID="sepLeft" Disabled="true" />
-                                <ext:HyperlinkButton runat="server" ID="leftLink"  Width="0"  />
-                            </LeftButtons>
-                                   
-                                    <Listeners>
-                                        <Focus Handler="this.blur()" />
-                                    </Listeners>
-                                </ext:TextField>
+                               <ext:ProgressBar runat="server" ID="pro" Width="295" MarginSpec="0 0 0 105" >
+                             <Listeners>
+                                <Render Handler="this.updateText('');" />
+                             </Listeners>
+                             </ext:ProgressBar>
+                                
                                 <ext:TextField
                                     ID="PasswordConfirmation"  TabIndex="9"
                                     runat="server"

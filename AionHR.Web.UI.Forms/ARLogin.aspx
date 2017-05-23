@@ -28,7 +28,7 @@
     <div class="header">
         <div class="left">
             <div class="logoImage">
-                <img src="Images/logo2.png" width="90" height="82" />
+                <img src="Images/logo-light.png" style="margin-top:20px;margin-left:5px;margin-right:15px;"  width="73" height="20" />
             </div>
             <div class="title">
                 <div>
@@ -130,7 +130,9 @@
 
                         <ext:TextField ID="tbUsername"
                             runat="server"
-                            MsgTarget="Side" Vtype="email"
+                             vtype="email"
+                             ValidateOnChange="false"
+                             ValidateOnBlur="true"
                             BlankText="<%$ Resources:Common, MandatoryField %>"
                             AllowBlank="false"
                             FieldLabel="<%$ Resources:  UserID %>"
@@ -138,7 +140,7 @@
                         <ext:TextField ID="tbPassword"
                             runat="server"
                             AllowBlank="false"
-                            MsgTarget="Side"
+                           
                             BlankText="<%$ Resources:Common , MandatoryField %>"
                             FieldLabel="<%$ Resources: Password %>"
                             EmptyText="<%$ Resources: EnterYourPassword %>"

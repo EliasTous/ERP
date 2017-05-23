@@ -157,6 +157,6 @@
     <value>نسبة مئوية من السلفة</value>
   </data>
   <data name="PFromNetSalary" xml:space="preserve">
-    <value>نسبة مئوية من الراتب النهائي</value>
+    <value>نسبة مئوية من الراتب الأساسي +الاستحقاقات</value>
   </data>
 </root>

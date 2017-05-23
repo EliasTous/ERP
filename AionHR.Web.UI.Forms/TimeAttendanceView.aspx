@@ -13,11 +13,12 @@
     <script type="text/javascript" src="Scripts/common.js"></script>
     <script type="text/javascript" src="Scripts/moment.js"></script>
     <script type="text/javascript">
-        function setTotal(t) {
+        function setTotal(t,b) {
             // alert(t);
             // alert(document.getElementById("total"));
 
             document.getElementById("total").innerHTML = t;
+            document.getElementById("totalBreaks").innerHTML = b;
             Ext.defer(function () {
                 App.GridPanel1.view.refresh();
             }, 10);
@@ -79,6 +80,7 @@
         <ext:Hidden ID="titleSavingErrorMessage" runat="server" Text="<%$ Resources:Common , TitleSavingErrorMessage %>" />
         <ext:Hidden ID="TotalText" runat="server" Text="<%$ Resources: TotalText %>" />
         <ext:Hidden ID="HoursWorked" runat="server" Text="<%$ Resources: FieldHoursWorked %>" />
+        <ext:Hidden ID="TotalBreaksText" runat="server" Text="<%$ Resources: TotalBreaks %>" />
         <ext:Hidden ID="CurrentEmployee" runat="server"  />
         <ext:Hidden ID="CurrentDay" runat="server"  />
         <ext:Store
@@ -316,6 +318,7 @@
 
                             <ext:Column ID="Column2" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldBreaks%>" DataIndex="breaks" Flex="2" Hideable="false">
                                 <Renderer Handler="var olB = ''; if(record.data['OL_B']=='00:00') olB=''; else olB= record.data['OL_B'];var cssClass='';if(record.data['OL_B_SIGN']<0) cssClass='color:red;'; var result = ' <div style= ' + cssClass +' > ' + record.data['breaks'] + '<br/>' + olB + '</div>'; return result;" />
+                                <SummaryRenderer Handler="return document.getElementById('totalBreaks').innerHTML+ ' ' + #{TotalBreaksText}.value;" />
                             </ext:Column>
 
 
@@ -323,7 +326,7 @@
                             <ext:Column runat="server"
                                 ID="colEdit" Visible="true"
                                 Text="<%$ Resources:Common, FieldDetails %>"
-                                Width="60"
+                                Width="80"
                                 Hideable="false"
                                 Align="Center"
                                 Fixed="true"
@@ -425,6 +428,7 @@
 
                 </ext:GridPanel>
                 <ext:Label runat="server" ID="total" />
+                <ext:Label runat="server" ID="totalBreaks" />
             </Items>
         </ext:Viewport>
 

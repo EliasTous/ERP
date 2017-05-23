@@ -419,7 +419,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             this.EditEHwindow.Title = Resources.Common.AddNewRecord;
             FillEHStatus();
             if (EHCount.Text == "0")
-                ehDate.SelectedDate = Convert.ToDateTime(CurrentHireDate.Text);
+                ehDate.SelectedDate = DateTime.ParseExact(CurrentHireDate.Text, "yyyy/MM/dd", new CultureInfo("en"));
             else
                 ehDate.SelectedDate = DateTime.Today;
 

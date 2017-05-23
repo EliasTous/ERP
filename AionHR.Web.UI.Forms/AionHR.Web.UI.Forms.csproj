@@ -1600,6 +1600,7 @@
     <Content Include="Reports\App_LocalResources\RT601.aspx.ar.resx" />
     <Content Include="Reports\Controls\App_LocalResources\LeaveStatusFilter.ascx.resx" />
     <Content Include="Reports\App_LocalResources\RT107.aspx.resx" />
+    <Content Include="Reports\App_LocalResources\RT107.aspx.ar.resx" />
     <EmbeddedResource Include="Reports\RT201.aspx.resx">
       <DependentUpon>RT201.aspx.cs</DependentUpon>
       <Generator>ResXFileCodeGenerator</Generator>

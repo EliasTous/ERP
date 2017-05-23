@@ -117,46 +117,172 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="EditWindowsTitle" xml:space="preserve">
-    <value>Payroll Defaults</value>
+  <data name="ActiveOnly" xml:space="preserve">
+    <value>الفعال فقط</value>
   </data>
-  <data name="FieldLoan" xml:space="preserve">
-    <value>Loan Deduction Id</value>
+  <data name="All" xml:space="preserve">
+    <value>الكل</value>
   </data>
-  <data name="FieldOT" xml:space="preserve">
-    <value>Over Time Entitlement</value>
+  <data name="Count" xml:space="preserve">
+    <value>العدد</value>
   </data>
-  <data name="FieldPE" xml:space="preserve">
-    <value>Penalty Deduction</value>
+  <data name="Details" xml:space="preserve">
+    <value>تفاصيل</value>
   </data>
-  <data name="FieldSS" xml:space="preserve">
-    <value>Social Security Deduction</value>
+  <data name="EmployeesGrid" xml:space="preserve">
+    <value>الموظفين</value>
   </data>
-  <data name="FieldUL" xml:space="preserve">
-    <value>Unpaid Leave Deduction</value>
+  <data name="Field1" xml:space="preserve">
+    <value>الجنسية</value>
   </data>
-  <data name="FixedAmount" xml:space="preserve">
-    <value>Fixed Amount</value>
+  <data name="Field10" xml:space="preserve">
+    <value>الجنس</value>
   </data>
-  <data name="FixedPayment" xml:space="preserve">
-    <value>Fixed Payment</value>
+  <data name="Field11" xml:space="preserve">
+    <value>تاريخ الميلاد</value>
   </data>
-  <data name="LoanCoverageType" xml:space="preserve">
-    <value>Loan Coverage</value>
+  <data name="Field12" xml:space="preserve">
+    <value>رقم الهوية</value>
   </data>
-  <data name="PaymentValue" xml:space="preserve">
-    <value>Payment Value</value>
+  <data name="Field13" xml:space="preserve">
+    <value>الاسم الأوسط</value>
   </data>
-  <data name="PaymentValueP" xml:space="preserve">
-    <value>Payment Value %</value>
+  <data name="Field14" xml:space="preserve">
+    <value>إيميل العمل</value>
   </data>
-  <data name="PFromBasicSalary" xml:space="preserve">
-    <value>Percentage of Basic Salary</value>
+  <data name="Field15" xml:space="preserve">
+    <value>الحالة الوظيفية</value>
   </data>
-  <data name="PFromLoan" xml:space="preserve">
-    <value>Percentage of Loan</value>
+  <data name="Field2" xml:space="preserve">
+    <value>رقم الهاتف</value>
   </data>
-  <data name="PFromNetSalary" xml:space="preserve">
-    <value>Percentage of Basic Salary +Entitlements</value>
+  <data name="Field3" xml:space="preserve">
+    <value>تاريخ التوظيف</value>
+  </data>
+  <data name="Field4" xml:space="preserve">
+    <value>القسم</value>
+  </data>
+  <data name="Field5" xml:space="preserve">
+    <value>الفرع</value>
+  </data>
+  <data name="Field6" xml:space="preserve">
+    <value>الوظيفة</value>
+  </data>
+  <data name="Field7" xml:space="preserve">
+    <value>الإدارة</value>
+  </data>
+  <data name="Field8" xml:space="preserve">
+    <value>المير</value>
+  </data>
+  <data name="Field9" xml:space="preserve">
+    <value>الراتب</value>
+  </data>
+  <data name="FieldBirthPlace" xml:space="preserve">
+    <value>مكان الولادة</value>
+  </data>
+  <data name="FieldBranch" xml:space="preserve">
+    <value>الفرع</value>
+  </data>
+  <data name="FieldDateOfBirth" xml:space="preserve">
+    <value>تاريخ الميلاد</value>
+  </data>
+  <data name="FieldDepartment" xml:space="preserve">
+    <value>القسم</value>
+  </data>
+  <data name="FieldDivision" xml:space="preserve">
+    <value>الإدارة العليا</value>
+  </data>
+  <data name="FieldFamilyName" xml:space="preserve">
+    <value>اسم العائلة</value>
+  </data>
+  <data name="FieldFirstName" xml:space="preserve">
+    <value>الاسم الأول</value>
+  </data>
+  <data name="FieldFullName" xml:space="preserve">
+    <value>الاسم</value>
+  </data>
+  <data name="FieldGender" xml:space="preserve">
+    <value>الجنس</value>
+  </data>
+  <data name="FieldHireDate" xml:space="preserve">
+    <value>تاريخ التوظيف</value>
+  </data>
+  <data name="FieldHomeEmail" xml:space="preserve">
+    <value>البريد الالكتروني الشخصي</value>
+  </data>
+  <data name="FieldIdRef" xml:space="preserve">
+    <value>رقم الهوية</value>
+  </data>
+  <data name="FieldIsInactive" xml:space="preserve">
+    <value>غير نشط؟</value>
+  </data>
+  <data name="FieldLastName" xml:space="preserve">
+    <value>الاسم الأخير</value>
+  </data>
+  <data name="FieldLastTACheck" xml:space="preserve">
+    <value>آخر دخول/خروج</value>
+  </data>
+  <data name="FieldLastTACheckStatus" xml:space="preserve">
+    <value>حالة الدخول/الخروج</value>
+  </data>
+  <data name="FieldMiddleName" xml:space="preserve">
+    <value>الاسم الأوسط</value>
+  </data>
+  <data name="FieldMobile" xml:space="preserve">
+    <value>رقم الجوّال</value>
+  </data>
+  <data name="FieldNationality" xml:space="preserve">
+    <value>الجنسية</value>
+  </data>
+  <data name="FieldPicturePath" xml:space="preserve">
+    <value>الصورة</value>
+  </data>
+  <data name="FieldPosition" xml:space="preserve">
+    <value>الوظيفة</value>
+  </data>
+  <data name="FieldRecordId" xml:space="preserve">
+    <value>الرقم</value>
+  </data>
+  <data name="FieldReference" xml:space="preserve">
+    <value>الرمز</value>
+  </data>
+  <data name="FieldReligion" xml:space="preserve">
+    <value>الدين</value>
+  </data>
+  <data name="FieldReportsTo" xml:space="preserve">
+    <value>المدير: </value>
+  </data>
+  <data name="FieldSponsor" xml:space="preserve">
+    <value>الكفيل</value>
+  </data>
+  <data name="FieldTerminationDate" xml:space="preserve">
+    <value>التاريخ</value>
+  </data>
+  <data name="FieldTerminationReason" xml:space="preserve">
+    <value>السبب</value>
+  </data>
+  <data name="FieldTerminationType" xml:space="preserve">
+    <value>النوع</value>
+  </data>
+  <data name="FieldVacationSchedule" xml:space="preserve">
+    <value>جدول الإجازات</value>
+  </data>
+  <data name="FieldWorkEmail" xml:space="preserve">
+    <value>البريد الالكتروني</value>
+  </data>
+  <data name="FieldWorkingCalendar" xml:space="preserve">
+    <value>تقويم العمل</value>
+  </data>
+  <data name="InactiveOnly" xml:space="preserve">
+    <value>غير الفعال فقط</value>
+  </data>
+  <data name="MissingField" xml:space="preserve">
+    <value>النقص</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>الحالة</value>
+  </data>
+  <data name="WindowTitle" xml:space="preserve">
+    <value>المعلومات الناقصة</value>
   </data>
 </root>

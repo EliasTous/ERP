@@ -45,12 +45,10 @@ public class DailyAttendance : DevExpress.XtraReports.UI.XtraReport
     private XRLine xrLine1;
     private XRLabel xrLabel21;
     private XRLabel xrLabel20;
-    private XRLabel xrLabel19;
     private XRLabel xrLabel25;
     private ReportFooterBand ReportFooter;
     private XRLabel xrLabel26;
     private XRLine xrLine3;
-    private XRLabel xrLabel22;
     private XRLabel xrLabel23;
     private XRLabel xrLabel24;
     private PageHeaderBand PageHeader;
@@ -65,6 +63,8 @@ public class DailyAttendance : DevExpress.XtraReports.UI.XtraReport
     private DevExpress.XtraReports.Parameters.Parameter User;
     private XRLabel xrLabel29;
     private XRLine xrLine2;
+    private XRLabel xrLabel19;
+    private XRLabel xrLabel22;
 
     /// <summary>
     /// Required designer variable.
@@ -190,7 +190,7 @@ public class DailyAttendance : DevExpress.XtraReports.UI.XtraReport
             // xrLabel9
             // 
             this.xrLabel9.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding("Text", null, "early", "{0}")});
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "earlyString", "{0}")});
             resources.ApplyResources(this.xrLabel9, "xrLabel9");
             this.xrLabel9.Name = "xrLabel9";
             this.xrLabel9.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
@@ -199,7 +199,7 @@ public class DailyAttendance : DevExpress.XtraReports.UI.XtraReport
             // xrLabel8
             // 
             this.xrLabel8.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding("Text", null, "lateness", "{0}")});
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "latenessString", "{0}")});
             resources.ApplyResources(this.xrLabel8, "xrLabel8");
             this.xrLabel8.Name = "xrLabel8";
             this.xrLabel8.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
@@ -217,7 +217,7 @@ public class DailyAttendance : DevExpress.XtraReports.UI.XtraReport
             // xrLabel6
             // 
             this.xrLabel6.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding("Text", null, "workingHours", "{0}")});
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "workingHoursString", "{0}")});
             resources.ApplyResources(this.xrLabel6, "xrLabel6");
             this.xrLabel6.Name = "xrLabel6";
             this.xrLabel6.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
@@ -469,40 +469,50 @@ public class DailyAttendance : DevExpress.XtraReports.UI.XtraReport
             // xrLabel21
             // 
             this.xrLabel21.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding("Text", null, "early")});
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "earlyString")});
             resources.ApplyResources(this.xrLabel21, "xrLabel21");
             this.xrLabel21.Name = "xrLabel21";
             this.xrLabel21.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel21.StylePriority.UseFont = false;
+            xrSummary2.Func = DevExpress.XtraReports.UI.SummaryFunc.Custom;
             xrSummary2.Running = DevExpress.XtraReports.UI.SummaryRunning.Group;
             this.xrLabel21.Summary = xrSummary2;
-            this.xrLabel21.SummaryCalculated += new DevExpress.XtraReports.UI.TextFormatEventHandler(this.xrLabel21_SummaryCalculated);
+            this.xrLabel21.SummaryGetResult += new DevExpress.XtraReports.UI.SummaryGetResultHandler(this.xrLabel21_SummaryGetResult);
+            this.xrLabel21.SummaryReset += new System.EventHandler(this.xrLabel21_SummaryReset);
+            this.xrLabel21.SummaryRowChanged += new System.EventHandler(this.xrLabel21_SummaryRowChanged);
             this.xrLabel21.BeforePrint += new System.Drawing.Printing.PrintEventHandler(this.xrLabel6_BeforePrint);
             // 
             // xrLabel20
             // 
             this.xrLabel20.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding("Text", null, "lateness")});
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "latenessString")});
             resources.ApplyResources(this.xrLabel20, "xrLabel20");
             this.xrLabel20.Name = "xrLabel20";
             this.xrLabel20.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel20.StylePriority.UseFont = false;
+            xrSummary3.Func = DevExpress.XtraReports.UI.SummaryFunc.Custom;
             xrSummary3.Running = DevExpress.XtraReports.UI.SummaryRunning.Group;
             this.xrLabel20.Summary = xrSummary3;
-            this.xrLabel20.SummaryCalculated += new DevExpress.XtraReports.UI.TextFormatEventHandler(this.xrLabel21_SummaryCalculated);
+            this.xrLabel20.SummaryGetResult += new DevExpress.XtraReports.UI.SummaryGetResultHandler(this.xrLabel20_SummaryGetResult);
+            this.xrLabel20.SummaryReset += new System.EventHandler(this.xrLabel20_SummaryReset);
+            this.xrLabel20.SummaryRowChanged += new System.EventHandler(this.xrLabel20_SummaryRowChanged);
             this.xrLabel20.BeforePrint += new System.Drawing.Printing.PrintEventHandler(this.xrLabel6_BeforePrint);
             // 
             // xrLabel19
             // 
             this.xrLabel19.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding("Text", null, "workingHours")});
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "workingHoursString")});
             resources.ApplyResources(this.xrLabel19, "xrLabel19");
             this.xrLabel19.Name = "xrLabel19";
             this.xrLabel19.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel19.StylePriority.UseFont = false;
+            resources.ApplyResources(xrSummary4, "xrSummary4");
+            xrSummary4.Func = DevExpress.XtraReports.UI.SummaryFunc.Custom;
             xrSummary4.Running = DevExpress.XtraReports.UI.SummaryRunning.Group;
             this.xrLabel19.Summary = xrSummary4;
-            this.xrLabel19.SummaryCalculated += new DevExpress.XtraReports.UI.TextFormatEventHandler(this.xrLabel21_SummaryCalculated);
+            this.xrLabel19.SummaryGetResult += new DevExpress.XtraReports.UI.SummaryGetResultHandler(this.xrLabel19_SummaryGetResult);
+            this.xrLabel19.SummaryReset += new System.EventHandler(this.xrLabel19_SummaryReset);
+            this.xrLabel19.SummaryRowChanged += new System.EventHandler(this.xrLabel19_SummaryRowChanged);
             this.xrLabel19.BeforePrint += new System.Drawing.Printing.PrintEventHandler(this.xrLabel6_BeforePrint);
             // 
             // xrLine1
@@ -538,40 +548,49 @@ public class DailyAttendance : DevExpress.XtraReports.UI.XtraReport
             // xrLabel22
             // 
             this.xrLabel22.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding("Text", null, "workingHours")});
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "workingHoursString")});
             resources.ApplyResources(this.xrLabel22, "xrLabel22");
             this.xrLabel22.Name = "xrLabel22";
             this.xrLabel22.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel22.StylePriority.UseFont = false;
+            xrSummary5.Func = DevExpress.XtraReports.UI.SummaryFunc.Custom;
             xrSummary5.Running = DevExpress.XtraReports.UI.SummaryRunning.Report;
             this.xrLabel22.Summary = xrSummary5;
-            this.xrLabel22.SummaryCalculated += new DevExpress.XtraReports.UI.TextFormatEventHandler(this.xrLabel21_SummaryCalculated);
+            this.xrLabel22.SummaryGetResult += new DevExpress.XtraReports.UI.SummaryGetResultHandler(this.xrLabel22_SummaryGetResult);
+            this.xrLabel22.SummaryReset += new System.EventHandler(this.xrLabel22_SummaryReset);
+            this.xrLabel22.SummaryRowChanged += new System.EventHandler(this.xrLabel22_SummaryRowChanged);
             this.xrLabel22.BeforePrint += new System.Drawing.Printing.PrintEventHandler(this.xrLabel6_BeforePrint);
             // 
             // xrLabel23
             // 
             this.xrLabel23.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding("Text", null, "lateness")});
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "latenessString")});
             resources.ApplyResources(this.xrLabel23, "xrLabel23");
             this.xrLabel23.Name = "xrLabel23";
             this.xrLabel23.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel23.StylePriority.UseFont = false;
+            xrSummary6.Func = DevExpress.XtraReports.UI.SummaryFunc.Custom;
             xrSummary6.Running = DevExpress.XtraReports.UI.SummaryRunning.Report;
             this.xrLabel23.Summary = xrSummary6;
-            this.xrLabel23.SummaryCalculated += new DevExpress.XtraReports.UI.TextFormatEventHandler(this.xrLabel21_SummaryCalculated);
+            this.xrLabel23.SummaryGetResult += new DevExpress.XtraReports.UI.SummaryGetResultHandler(this.xrLabel23_SummaryGetResult);
+            this.xrLabel23.SummaryReset += new System.EventHandler(this.xrLabel23_SummaryReset);
+            this.xrLabel23.SummaryRowChanged += new System.EventHandler(this.xrLabel23_SummaryRowChanged);
             this.xrLabel23.BeforePrint += new System.Drawing.Printing.PrintEventHandler(this.xrLabel6_BeforePrint);
             // 
             // xrLabel24
             // 
             this.xrLabel24.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding("Text", null, "early")});
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "earlyString")});
             resources.ApplyResources(this.xrLabel24, "xrLabel24");
             this.xrLabel24.Name = "xrLabel24";
             this.xrLabel24.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel24.StylePriority.UseFont = false;
+            xrSummary7.Func = DevExpress.XtraReports.UI.SummaryFunc.Custom;
             xrSummary7.Running = DevExpress.XtraReports.UI.SummaryRunning.Report;
             this.xrLabel24.Summary = xrSummary7;
-            this.xrLabel24.SummaryCalculated += new DevExpress.XtraReports.UI.TextFormatEventHandler(this.xrLabel21_SummaryCalculated);
+            this.xrLabel24.SummaryGetResult += new DevExpress.XtraReports.UI.SummaryGetResultHandler(this.xrLabel24_SummaryGetResult);
+            this.xrLabel24.SummaryReset += new System.EventHandler(this.xrLabel24_SummaryReset);
+            this.xrLabel24.SummaryRowChanged += new System.EventHandler(this.xrLabel24_SummaryRowChanged);
             this.xrLabel24.BeforePrint += new System.Drawing.Printing.PrintEventHandler(this.xrLabel6_BeforePrint);
             // 
             // PageHeader
@@ -695,9 +714,7 @@ public class DailyAttendance : DevExpress.XtraReports.UI.XtraReport
 
     private void xrLabel6_BeforePrint(object sender, System.Drawing.Printing.PrintEventArgs e)
     {
-        XRLabel l = (sender as XRLabel);
-        if (l.Text.Length > 4)
-            l.Text = l.Text.Remove(l.Text.Length - 3, 3);
+   
     }
 
     private void xrLabel21_SummaryCalculated(object sender, TextFormatEventArgs e)
@@ -716,5 +733,183 @@ public class DailyAttendance : DevExpress.XtraReports.UI.XtraReport
     private void GroupHeader1_BeforePrint(object sender, System.Drawing.Printing.PrintEventArgs e)
     {
         e.Cancel = RowCount == 0;
+    }
+    int hoursWorked, minsWorked, hoursLateness, minsLateness,hoursLeave,minsLeave;
+    int totalHoursWorked, totalMinsWorked,totalHoursLeave,toalMinsLeave,totalHoursLatenss,totalMinsLateness;
+
+    private void xrLabel21_SummaryReset(object sender, EventArgs e)
+    {
+        hoursLeave = minsLeave = 0;
+    }
+
+    private void xrLabel21_SummaryRowChanged(object sender, EventArgs e)
+    {
+        string lateness = GetCurrentColumnValue("earlyString").ToString();
+        if (lateness[0] == '-')
+        {
+            hoursLeave -= Convert.ToInt32(GetCurrentColumnValue("earlyString").ToString().Substring(1, 2));
+            minsLeave -= Convert.ToInt32(GetCurrentColumnValue("earlyString").ToString().Substring(4, 2));
+        }
+        else
+        {
+            hoursLeave += Convert.ToInt32(GetCurrentColumnValue("earlyString").ToString().Substring(0, 2));
+            minsLeave += Convert.ToInt32(GetCurrentColumnValue("earlyString").ToString().Substring(3, 2));
+        }
+    }
+
+    private void xrLabel23_SummaryGetResult(object sender, SummaryGetResultEventArgs e)
+    {
+        char sign = ' ';
+        if (totalHoursLatenss < 0 || totalMinsLateness < 0)
+            sign = '-';
+        totalHoursLatenss += totalMinsLateness / 60;
+        totalMinsLateness = totalMinsLateness % 60;
+        e.Result = sign + (Math.Abs(totalHoursLatenss).ToString().PadLeft(2, '0') + ":" + Math.Abs(totalMinsLateness).ToString().PadLeft(2, '0'));
+        e.Handled = true;
+
+        totalHoursLatenss = totalMinsLateness = 0;
+    }
+
+    private void xrLabel23_SummaryReset(object sender, EventArgs e)
+    {
+        totalHoursLatenss = totalMinsLateness = 0;
+    }
+
+    private void xrLabel23_SummaryRowChanged(object sender, EventArgs e)
+    {
+        string lateness = GetCurrentColumnValue("latenessString").ToString();
+
+        if (lateness[0] == '-')
+        {
+            totalHoursLatenss -= Convert.ToInt32(GetCurrentColumnValue("latenessString").ToString().Substring(1, 2));
+            totalMinsLateness -= Convert.ToInt32(GetCurrentColumnValue("latenessString").ToString().Substring(4, 2));
+        }
+        else
+        {
+            totalHoursLatenss += Convert.ToInt32(GetCurrentColumnValue("latenessString").ToString().Substring(0, 2));
+            totalMinsLateness += Convert.ToInt32(GetCurrentColumnValue("latenessString").ToString().Substring(3, 2));
+        }
+    }
+
+    private void xrLabel24_SummaryGetResult(object sender, SummaryGetResultEventArgs e)
+    {
+        char sign = ' ';
+        if (totalHoursLeave < 0 || toalMinsLeave < 0)
+            sign = '-';
+        totalHoursLeave += toalMinsLeave / 60;
+        toalMinsLeave = toalMinsLeave % 60;
+        e.Result = sign + (Math.Abs(totalHoursLeave).ToString().PadLeft(2, '0') + ":" + Math.Abs(toalMinsLeave).ToString().PadLeft(2, '0'));
+        e.Handled = true;
+
+        totalHoursLeave = toalMinsLeave = 0;
+    }
+
+    private void xrLabel24_SummaryReset(object sender, EventArgs e)
+    {
+        totalHoursLeave = toalMinsLeave = 0;
+    }
+
+    private void xrLabel24_SummaryRowChanged(object sender, EventArgs e)
+    {
+        string lateness = GetCurrentColumnValue("earlyString").ToString();
+        if (lateness[0] == '-')
+        {
+            totalHoursLeave -= Convert.ToInt32(GetCurrentColumnValue("earlyString").ToString().Substring(1, 2));
+            toalMinsLeave -= Convert.ToInt32(GetCurrentColumnValue("earlyString").ToString().Substring(4, 2));
+        }
+        else
+        {
+            totalHoursLeave += Convert.ToInt32(GetCurrentColumnValue("earlyString").ToString().Substring(0, 2));
+            toalMinsLeave += Convert.ToInt32(GetCurrentColumnValue("earlyString").ToString().Substring(3, 2));
+        }
+    }
+
+    private void xrLabel21_SummaryGetResult(object sender, SummaryGetResultEventArgs e)
+    {
+        char sign = ' ';
+        if (hoursLeave < 0 || minsLeave < 0)
+            sign = '-';
+        hoursLeave += minsLeave / 60;
+        minsLeave = minsLeave % 60;
+        e.Result = sign + (Math.Abs(hoursLeave).ToString().PadLeft(2, '0') + ":" + Math.Abs(minsLeave).ToString().PadLeft(2, '0'));
+        e.Handled = true;
+
+        hoursLeave = minsLeave = 0;
+    }
+
+    private void xrLabel20_SummaryRowChanged(object sender, EventArgs e)
+    {
+        string lateness = GetCurrentColumnValue("latenessString").ToString();
+        if (lateness[0] == '-')
+        {
+            hoursLateness -= Convert.ToInt32(GetCurrentColumnValue("latenessString").ToString().Substring(1, 2));
+            minsLateness -= Convert.ToInt32(GetCurrentColumnValue("latenessString").ToString().Substring(4, 2));
+        }
+        else
+        {
+            hoursLateness += Convert.ToInt32(GetCurrentColumnValue("latenessString").ToString().Substring(0, 2));
+            minsLateness += Convert.ToInt32(GetCurrentColumnValue("latenessString").ToString().Substring(3, 2));
+        }
+
+    }
+
+    private void xrLabel20_SummaryReset(object sender, EventArgs e)
+    {
+        hoursLateness = minsLateness = 0;
+    }
+
+    private void xrLabel20_SummaryGetResult(object sender, SummaryGetResultEventArgs e)
+    {
+        char sign = ' ';
+        if (hoursLateness < 0 || minsLateness < 0)
+            sign = '-';
+        hoursLateness += minsLateness / 60;
+        minsLateness = minsLateness % 60;
+        e.Result = sign+(Math.Abs(hoursLateness).ToString().PadLeft(2, '0') + ":" + Math.Abs(minsLateness).ToString().PadLeft(2, '0'));
+        e.Handled = true;
+
+        hoursLateness = minsLateness = 0;
+    }
+
+    private void xrLabel22_SummaryRowChanged(object sender, EventArgs e)
+    {
+        totalHoursWorked += Convert.ToInt32(GetCurrentColumnValue("workingHoursString").ToString().Substring(0, 2));
+        totalMinsWorked += Convert.ToInt32(GetCurrentColumnValue("workingHoursString").ToString().Substring(3, 2));
+    }
+
+    private void xrLabel22_SummaryReset(object sender, EventArgs e)
+    {
+        totalHoursWorked = totalMinsWorked = 0;
+    }
+
+    private void xrLabel22_SummaryGetResult(object sender, SummaryGetResultEventArgs e)
+    {
+        totalHoursWorked += totalMinsWorked / 60;
+        totalMinsWorked = totalMinsWorked % 60;
+        e.Result = (totalHoursWorked.ToString().PadLeft(2, '0') + ":" + totalMinsWorked.ToString().PadLeft(2, '0'));
+        e.Handled = true;
+
+        totalHoursWorked = totalMinsWorked = 0;
+    }
+
+    private void xrLabel19_SummaryGetResult(object sender, SummaryGetResultEventArgs e)
+    {
+        hoursWorked += minsWorked / 60;
+        minsWorked = minsWorked % 60;
+        e.Result = (hoursWorked.ToString().PadLeft(2, '0') + ":" + minsWorked.ToString().PadLeft(2,'0'));
+        e.Handled = true;
+        
+        hoursWorked = minsWorked = 0;
+    }
+
+    private void xrLabel19_SummaryRowChanged(object sender, EventArgs e)
+    {
+        hoursWorked += Convert.ToInt32(GetCurrentColumnValue("workingHoursString").ToString().Substring(0, 2));
+        minsWorked += Convert.ToInt32(GetCurrentColumnValue("workingHoursString").ToString().Substring(3, 2));
+    }
+
+    private void xrLabel19_SummaryReset(object sender, EventArgs e)
+    {
+        hoursWorked = minsWorked  = 0;
     }
 }

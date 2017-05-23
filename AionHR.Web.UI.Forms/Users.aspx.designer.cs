@@ -454,49 +454,13 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.TextField PasswordField;
         
         /// <summary>
-        /// progress control.
+        /// pro control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.TextField progress;
-        
-        /// <summary>
-        /// sep control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Button sep;
-        
-        /// <summary>
-        /// rightLink control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.HyperlinkButton rightLink;
-        
-        /// <summary>
-        /// sepLeft control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Button sepLeft;
-        
-        /// <summary>
-        /// leftLink control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.HyperlinkButton leftLink;
+        protected global::Ext.Net.ProgressBar pro;
         
         /// <summary>
         /// PasswordConfirmation control.
