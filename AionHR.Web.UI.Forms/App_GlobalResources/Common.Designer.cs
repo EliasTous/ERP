@@ -1042,6 +1042,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Import Attendance.
+        /// </summary>
+        internal static string ImportAttendance {
+            get {
+                return ResourceManager.GetString("ImportAttendance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to January.
         /// </summary>
         internal static string January {

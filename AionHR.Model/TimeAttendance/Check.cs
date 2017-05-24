@@ -9,7 +9,9 @@ namespace AionHR.Model.Attendance
     public class Check
     {
         public int authMode { get; set; }
-        public int employeeId { get; set; }
+        public int? employeeId { get; set; }
+
+        public string employeeRef { get; set; }
         public int checkStatus { get; set; }
         public string ip { get; set; }
         public string serialNo { get; set; }

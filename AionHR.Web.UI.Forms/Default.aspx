@@ -57,6 +57,8 @@
     <ext:Hidden runat="server" ID="cdtTitle" Text="<%$Resources:Common , CompanyDocumentTypes %>" />
     <ext:Hidden runat="server" ID="systTitle" Text="<%$Resources:Common , States %>" />
     <ext:Hidden runat="server" ID="loansync" Text="<%$Resources:Common , LoanSync %>" />
+    <ext:Hidden runat="server" ID="importAt" Text="<%$Resources:Common , ImportAttendance %>" />
+
    
     <ext:Hidden runat="server" ID="aaTitle" Text="<%$Resources:Common , SystemAlerts %>" />
     <ext:Hidden runat="server" ID="ttTitle" Text="<%$Resources:Common , TaskTypes %>" />
@@ -318,9 +320,14 @@
                                                                                 <Click Handler="openNewTab('dayTypes', 'DayTypes.aspx', #{tadtTitle}.value, 'icon-Employees')" />
                                                                             </Listeners>
                                                                         </ext:MenuItem>
-                                                                        <ext:MenuItem runat="server" Text="<%$Resources: Common , Geofences%>">
+                                                                        <ext:MenuItem runat="server" Icon="UserGo" Text="<%$Resources: Common , Geofences%>">
                                                                             <Listeners>
                                                                                 <Click Handler="openNewTab('Geofences', 'Geofences.aspx', #{gfTitle}.value, 'icon-Employees')" />
+                                                                            </Listeners>
+                                                                        </ext:MenuItem>
+                                                                            <ext:MenuItem runat="server" Icon="UserGo" Text="<%$Resources: Common , Geofences%>">
+                                                                            <Listeners>
+                                                                                <Click Handler="openNewTab('Import', 'ImportAttendance.aspx','#{importAt}.value' , 'icon-Employees')" />
                                                                             </Listeners>
                                                                         </ext:MenuItem>
                                                                     </Items>
@@ -331,7 +338,7 @@
                                                             <Menu>
                                                                 <ext:Menu runat="server">
                                                                     <Items>
-                                                                        <ext:MenuItem runat="server" Text="<%$Resources: Common , VacationSchedules%>">
+                                                                        <ext:MenuItem   runat="server" Text="<%$Resources: Common , VacationSchedules%>">
                                                                             <Listeners>
                                                                                 <Click Handler="openNewTab('VacationSchedules', 'VacationSchedules.aspx', #{vsTitle}.value, 'icon-Employees')" />
                                                                             </Listeners>
@@ -354,7 +361,7 @@
                                             <Menu>
                                                 <ext:Menu runat="server">
                                                     <Items>
-                                                        <ext:MenuItem runat="server" Text="<%$Resources: Common , PayrollDefaults%>">
+                                                        <ext:MenuItem runat="server"  Text="<%$Resources: Common , PayrollDefaults%>">
                                                             <Listeners>
                                                                 <Click Handler="openNewTab('payrollDefaults', 'PayrollDefaults.aspx', #{pyde}.value, 'icon-Employees')" />
                                                             </Listeners>
@@ -369,7 +376,7 @@
                                                                 <Click Handler="openNewTab('fiscalYears', 'FiscalYears.aspx', #{pyye}.value, 'icon-Employees')" />
                                                             </Listeners>
                                                         </ext:MenuItem>
-                                                           <ext:MenuItem runat="server" Text="<%$Resources: Common , LoanSync%>">
+                                                           <ext:MenuItem runat="server" Text="<%$Resources: Common , LoanSync%>" >
                                                             <DirectEvents>
                                                                 <Click OnEvent="SyncLoanDeductions" />
                                                             </DirectEvents>

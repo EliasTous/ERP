@@ -27,8 +27,8 @@
 
      <div class="header">
         <div class="left">
-            <div class="logoImage">
-                <img src="Images/logo.png" width="90" height="82" />
+             <div class="logoImage">
+                <img src="Images/logo-light.png" style="margin-top:20px;margin-left:5px;margin-right:5px;"  width="73" height="20" />
             </div>
             <div class="title">
                 <div>
@@ -131,7 +131,7 @@
                         </ext:FieldContainer>
                     </Items>
                     <Buttons>
-                        <ext:Button ID="btnLogin" runat="server" Text="Reset">
+                        <ext:Button ID="btnLogin" runat="server" Text="<%$ Resources: Reset %>">
                             <Listeners>
                                 <Click Handler="
                             if (!#{panelLogin}.validate()) {                                

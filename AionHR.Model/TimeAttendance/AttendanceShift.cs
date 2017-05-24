@@ -12,6 +12,7 @@ namespace AionHR.Model.TimeAttendance
 
         public string recordId { get; set; }
 
+        public string employeeRef { get; set; }
         public string employeeId { get; set; }
 
         public string checkIn { get; set; }

@@ -44,13 +44,11 @@ public class TimeAttendanceSummary : DevExpress.XtraReports.UI.XtraReport
     private XRLabel xrLabel5;
     private XRLabel xrLabel18;
     private XRLabel xrLabel1;
-    private XRPanel xrPanel1;
     private XRLabel xrLabel10;
     private XRLabel xrLabel14;
     private XRLabel xrLabel13;
     private XRLabel xrLabel11;
     private XRLabel xrLabel19;
-    private XRLine xrLine1;
     private XRLabel xrLabel20;
     private DevExpress.XtraReports.Parameters.Parameter User;
     private XRLabel xrLabel12;
@@ -59,6 +57,8 @@ public class TimeAttendanceSummary : DevExpress.XtraReports.UI.XtraReport
     private XRLabel xrLabel23;
     private DevExpress.XtraReports.Parameters.Parameter Month;
     private XRLabel xrLabel21;
+    private XRLine xrLine3;
+    private XRLine xrLine1;
 
     /// <summary>
     /// Required designer variable.
@@ -118,11 +118,9 @@ public class TimeAttendanceSummary : DevExpress.XtraReports.UI.XtraReport
             this.Detail1 = new DevExpress.XtraReports.UI.DetailBand();
             this.DetailReport2 = new DevExpress.XtraReports.UI.DetailReportBand();
             this.Detail3 = new DevExpress.XtraReports.UI.DetailBand();
-            this.xrLine1 = new DevExpress.XtraReports.UI.XRLine();
             this.xrLabel14 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel13 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel11 = new DevExpress.XtraReports.UI.XRLabel();
-            this.xrPanel1 = new DevExpress.XtraReports.UI.XRPanel();
             this.xrLabel6 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel22 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel17 = new DevExpress.XtraReports.UI.XRLabel();
@@ -145,6 +143,8 @@ public class TimeAttendanceSummary : DevExpress.XtraReports.UI.XtraReport
             this.xrLabel23 = new DevExpress.XtraReports.UI.XRLabel();
             this.Month = new DevExpress.XtraReports.Parameters.Parameter();
             this.xrLabel21 = new DevExpress.XtraReports.UI.XRLabel();
+            this.xrLine1 = new DevExpress.XtraReports.UI.XRLine();
+            this.xrLine3 = new DevExpress.XtraReports.UI.XRLine();
             ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             // 
@@ -184,7 +184,6 @@ public class TimeAttendanceSummary : DevExpress.XtraReports.UI.XtraReport
             // groupHeaderBand1
             // 
             resources.ApplyResources(this.groupHeaderBand1, "groupHeaderBand1");
-            this.groupHeaderBand1.Expanded = false;
             this.groupHeaderBand1.Name = "groupHeaderBand1";
             // 
             // pageFooterBand1
@@ -306,7 +305,6 @@ public class TimeAttendanceSummary : DevExpress.XtraReports.UI.XtraReport
             this.DetailReport.DataMember = "EmployeeAttendances";
             this.DetailReport.DataSource = this.objectDataSource1;
             resources.ApplyResources(this.DetailReport, "DetailReport");
-            this.DetailReport.Expanded = false;
             this.DetailReport.Level = 1;
             this.DetailReport.Name = "DetailReport";
             this.DetailReport.BeforePrint += new System.Drawing.Printing.PrintEventHandler(this.DetailReport_BeforePrint);
@@ -329,28 +327,26 @@ public class TimeAttendanceSummary : DevExpress.XtraReports.UI.XtraReport
             // Detail3
             // 
             this.Detail3.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
+            this.xrLine3,
+            this.xrLabel6,
+            this.xrLabel17,
+            this.xrLabel22,
             this.xrLine1,
             this.xrLabel14,
             this.xrLabel13,
             this.xrLabel11,
-            this.xrPanel1,
             this.xrLabel7,
             this.xrLabel8,
             this.xrLabel15,
             this.xrLabel16});
             resources.ApplyResources(this.Detail3, "Detail3");
             this.Detail3.KeepTogether = true;
-            this.Detail3.MultiColumn.ColumnCount = 20;
-            this.Detail3.MultiColumn.ColumnWidth = 40F;
+            this.Detail3.MultiColumn.ColumnCount = 50;
+            this.Detail3.MultiColumn.ColumnWidth = 20F;
             this.Detail3.MultiColumn.Layout = DevExpress.XtraPrinting.ColumnLayout.AcrossThenDown;
-            this.Detail3.MultiColumn.Mode = DevExpress.XtraReports.UI.MultiColumnMode.UseColumnCount;
+            this.Detail3.MultiColumn.Mode = DevExpress.XtraReports.UI.MultiColumnMode.UseColumnWidth;
             this.Detail3.Name = "Detail3";
             this.Detail3.BeforePrint += new System.Drawing.Printing.PrintEventHandler(this.Detail3_BeforePrint);
-            // 
-            // xrLine1
-            // 
-            resources.ApplyResources(this.xrLine1, "xrLine1");
-            this.xrLine1.Name = "xrLine1";
             // 
             // xrLabel14
             // 
@@ -378,15 +374,6 @@ public class TimeAttendanceSummary : DevExpress.XtraReports.UI.XtraReport
             this.xrLabel11.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel11.ProcessDuplicatesMode = DevExpress.XtraReports.UI.ProcessDuplicatesMode.Suppress;
             this.xrLabel11.StylePriority.UseBorders = false;
-            // 
-            // xrPanel1
-            // 
-            this.xrPanel1.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
-            this.xrLabel6,
-            this.xrLabel22,
-            this.xrLabel17});
-            resources.ApplyResources(this.xrPanel1, "xrPanel1");
-            this.xrPanel1.Name = "xrPanel1";
             // 
             // xrLabel6
             // 
@@ -517,6 +504,9 @@ public class TimeAttendanceSummary : DevExpress.XtraReports.UI.XtraReport
             this.xrLabel5,
             this.xrLabel18});
             resources.ApplyResources(this.Detail2, "Detail2");
+            this.Detail2.MultiColumn.ColumnCount = 50;
+            this.Detail2.MultiColumn.ColumnSpacing = 1F;
+            this.Detail2.MultiColumn.ColumnWidth = 20F;
             this.Detail2.MultiColumn.Layout = DevExpress.XtraPrinting.ColumnLayout.AcrossThenDown;
             this.Detail2.MultiColumn.Mode = DevExpress.XtraReports.UI.MultiColumnMode.UseColumnCount;
             this.Detail2.Name = "Detail2";
@@ -631,6 +621,16 @@ public class TimeAttendanceSummary : DevExpress.XtraReports.UI.XtraReport
             this.xrLabel21.Name = "xrLabel21";
             this.xrLabel21.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             // 
+            // xrLine1
+            // 
+            resources.ApplyResources(this.xrLine1, "xrLine1");
+            this.xrLine1.Name = "xrLine1";
+            // 
+            // xrLine3
+            // 
+            resources.ApplyResources(this.xrLine3, "xrLine3");
+            this.xrLine3.Name = "xrLine3";
+            // 
             // TimeAttendanceSummary
             // 
             this.Bands.AddRange(new DevExpress.XtraReports.UI.Band[] {
@@ -676,8 +676,8 @@ public class TimeAttendanceSummary : DevExpress.XtraReports.UI.XtraReport
         {
 
 
-            Detail2.MultiColumn.ColumnCount = at.Days.Count;
-            Detail3.MultiColumn.ColumnCount = at.Days.Count;
+            Detail2.MultiColumn.ColumnCount = at.Days.Count+5;
+            Detail3.MultiColumn.ColumnCount = at.Days.Count+5;
          
         }
     }

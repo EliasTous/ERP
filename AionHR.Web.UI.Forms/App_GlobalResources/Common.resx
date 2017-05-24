@@ -897,4 +897,7 @@
   <data name="LoanSyncSucc" xml:space="preserve">
     <value>Loan Deductions Synced Successfully</value>
   </data>
+  <data name="ImportAttendance" xml:space="preserve">
+    <value>Import Attendance</value>
+  </data>
 </root>

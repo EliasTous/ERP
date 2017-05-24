@@ -338,7 +338,9 @@ namespace AionHR.Web.UI.Forms
 
         protected void forgotpw_Event(object sender, EventArgs e)
         {
-            Response.Redirect("~/ForgotPassword.aspx");
+
+
+            Response.Redirect("~/ARForgotPassword.aspx");
 
         }
     }

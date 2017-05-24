@@ -45,6 +45,7 @@
     <Compile Include="Enumerations\EmployeeErrors.cs" />
     <Compile Include="Enumerations\MasterModulesErrors.cs" />
     <Compile Include="Enumerations\SystemErrors.cs" />
+    <Compile Include="Implementations\AttendanceImportingService.cs" />
     <Compile Include="Implementations\BaseService.cs" />
     <Compile Include="Implementations\CaseService.cs" />
     <Compile Include="Implementations\CommonErrors.cs" />
@@ -52,6 +53,7 @@
     <Compile Include="Implementations\CompanyStructureService.cs" />
     <Compile Include="Implementations\ComplaintsService.cs" />
     <Compile Include="Implementations\EmployeeService.cs" />
+    <Compile Include="Implementations\ImportedRecord.cs" />
     <Compile Include="Implementations\LeaveManagementService.cs" />
     <Compile Include="Implementations\LoanTrackingServicecs.cs" />
     <Compile Include="Implementations\MasterService.cs" />
@@ -66,9 +68,11 @@
     <Compile Include="Interfaces\ICaseService.cs" />
     <Compile Include="Interfaces\ICompanyStructureService.cs" />
     <Compile Include="Interfaces\IEmployeeService.cs" />
+    <Compile Include="Interfaces\IImportaingService.cs" />
     <Compile Include="Interfaces\ILeaveManagementService.cs" />
     <Compile Include="Interfaces\ILoanTrackingService.cs" />
     <Compile Include="Interfaces\IMediaGalleryService.cs" />
+    <Compile Include="Interfaces\ImportingServiceBase.cs" />
     <Compile Include="Interfaces\IPayrollService.cs" />
     <Compile Include="Interfaces\IReportsService.cs" />
     <Compile Include="Interfaces\ISystemService.cs" />

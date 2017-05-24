@@ -35,10 +35,10 @@
                     <span class="title-sub">
                         <asp:Literal ID="Literal5" runat="server" Text="<%$ Resources:Common ,ApplicationTitle%>" /></span>
                 </div>
-                <div class="SubTitles">
+            <%--    <div class="SubTitles">
                     <span class="subTitleSpan">
                         <asp:Literal ID="Literal3" runat="server" Text="<%$ Resources:Common ,ApplicationModule%>" /></span>
-                </div>
+                </div>--%>
             </div>
         </div>
         <div class="right">
