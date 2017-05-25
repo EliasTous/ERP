@@ -112,6 +112,15 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.GridPanel attendanceShiftGrid;
         
         /// <summary>
+        /// Button1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Button Button1;
+        
+        /// <summary>
         /// attendanceShiftStore control.
         /// </summary>
         /// <remarks>
@@ -128,6 +137,15 @@ namespace AionHR.Web.UI.Forms {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.Column Column3;
+        
+        /// <summary>
+        /// UploadAttendancesButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Button UploadAttendancesButton;
         
         /// <summary>
         /// EditShiftWindow control.
@@ -157,22 +175,22 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.TextField recordId;
         
         /// <summary>
-        /// shiftDayId control.
+        /// dayId control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.TextField shiftDayId;
+        protected global::Ext.Net.TextField dayId;
         
         /// <summary>
-        /// shiftEmpId control.
+        /// employeeRef control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.TextField shiftEmpId;
+        protected global::Ext.Net.TextField employeeRef;
         
         /// <summary>
         /// checkIn control.
@@ -209,5 +227,23 @@ namespace AionHR.Web.UI.Forms {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.Button CancelButton;
+        
+        /// <summary>
+        /// loadingWindow control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Window loadingWindow;
+        
+        /// <summary>
+        /// progressBar control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.ProgressBar progressBar;
     }
 }

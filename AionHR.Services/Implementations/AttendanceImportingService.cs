@@ -24,28 +24,49 @@ namespace AionHR.Services.Implementations
         Dictionary<string, string> dict;
 
 
-        public override AttendanceShift GetItem(DataRow row)
+        public override List<AttendanceShift> GetItem(DataRow row)
         {
-            AttendanceShift c = new AttendanceShift();
-            c.dayId = row[0].ToString();
-            c.checkIn = row[1].ToString();
-            c.checkOut = row[2].ToString();
-            //if (!dict.ContainsKey(row[3].ToString()))
-            //{
+            List<AttendanceShift> shifts = new List<AttendanceShift>();
+            try
+            {
+                string employeeRef = row[0].ToString();
+                DateTime s;
+                string dayId = "";
+                if (DateTime.TryParse(row[1].ToString(), out s))
+                    dayId = s.ToString("yyyyMMdd");
+                else
+                    dayId = row[1].ToString();
+                for (int i = 0; i < (row.Table.Columns.Count - 2); i += 2)
+                {
+                    string cIn = row[2 + i].ToString();
+                    string cOut = row[2 + i + 1].ToString();
+                    if (string.IsNullOrEmpty(cIn) || string.IsNullOrEmpty(cOut))
+                        continue;
+                    if (cIn.Length < 5)
+                    {
+                        cIn = PadTime(cIn);
+                    }
+                    if (cOut.Length < 5)
+                    {
+                        cOut = PadTime(cOut);
+                    }
 
-            //    EmployeeByReference req2 = new EmployeeByReference();
-            //    req2.Reference = row[3].ToString();
-            //    RecordResponse<Employee> resp = service.ChildGetRecord<Employee>(req2);
-            //    if (!resp.Success || resp.result == null)
-            //        dict.Add(row[3].ToString(), "0");
-            //    else
-            //        dict.Add(row[3].ToString(), resp.result.recordId);
-            //}
-            //c.employeeId = dict[row[3].ToString()].ToString();
-            c.employeeRef = row[3].ToString();
+                    shifts.Add(new AttendanceShift() { checkIn = cIn, checkOut = cOut, dayId = dayId, employeeRef = employeeRef });
+                }
 
-            return c;
+
+            }
+            catch { }
+
+            return shifts;
         }
 
+        private string PadTime(string cOut)
+        {
+            string[] parts = cOut.Split(':');
+            if (parts.Length < 2)
+                return cOut;
+            return parts[0].PadLeft(2, '0') + ":" + parts[1].PadLeft(2, '0');
+        }
     }
 }

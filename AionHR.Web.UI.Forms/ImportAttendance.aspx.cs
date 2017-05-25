@@ -71,7 +71,7 @@ namespace AionHR.Web.UI.Forms
 
 
 
-               
+
             }
 
 
@@ -79,7 +79,7 @@ namespace AionHR.Web.UI.Forms
 
         protected void Page_Init(object sender, EventArgs e)
         {
-           
+
         }
 
         /// <summary>
@@ -121,191 +121,241 @@ namespace AionHR.Web.UI.Forms
 
             if ((index - 1) >= 0)
             {
-                this.Viewport1.ActiveIndex = index - 1;
-            
+                ResetPage();
+
             }
 
 
         }
- 
+
         protected void SaveShift(object sender, DirectEventArgs e)
         {
 
 
             //Getting the id to check if it is an Add or an edit as they are managed within the same form.
             string id = e.ExtraParams["recordId"];
-            string day = e.ExtraParams["dayId"];
-            string emp = e.ExtraParams["EmployeeId"];
 
 
             string obj = e.ExtraParams["values"];
             AttendanceShift b = JsonConvert.DeserializeObject<AttendanceShift>(obj);
 
-            b.recordId = id;
-            b.dayId = day;
-            b.employeeId = emp;
-            // Define the object to add or edit as null
-
-            if (string.IsNullOrEmpty(id))
-            {
-
-                try
-                {
-                    //New Mode
-                    //Step 1 : Fill The object and insert in the store 
-                    PostRequest<AttendanceShift> request = new PostRequest<AttendanceShift>();
-                    request.entity = b;
-                    PostResponse<AttendanceShift> r = _timeAttendanceService.ChildAddOrUpdate<AttendanceShift>(request);
-                    b.recordId = r.recordId;
-
-                    //check if the insert failed
-                    if (!r.Success)//it maybe be another condition
-                    {
-                        //Show an error saving...
-                        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                        X.Msg.Alert(Resources.Common.Error, r.Summary).Show();
-                        return;
-                    }
-                    else
-                    {
-
-                        //Add this record to the store 
-                        this.attendanceShiftStore.Insert(0, b);
-
-                        //Display successful notification
-                        Notification.Show(new NotificationConfig
-                        {
-                            Title = Resources.Common.Notification,
-                            Icon = Icon.Information,
-                            Html = Resources.Common.RecordSavingSucc
-                        });
-
-                        this.EditShiftWindow.Close();
-                        RowSelectionModel sm = this.attendanceShiftGrid.GetSelectionModel() as RowSelectionModel;
-                        sm.DeselectAll();
-                        sm.Select(b.recordId.ToString());
-
-
-
-                    }
-                }
-                catch (Exception ex)
-                {
-                    //Error exception displaying a messsage box
-                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorSavingRecord).Show();
-                }
-
-
-            }
+            DateTime s;
+            string dayId = "";
+            if (DateTime.TryParse(b.dayId.ToString(), out s))
+                dayId = s.ToString("ddMMyyyy");
             else
+                dayId = b.dayId;
+
+            b.dayId = dayId;
+            // Define the object to add or edit as null
+            b.employeeId = GetEmployeeId(b.employeeRef);
+
+
+            //Update Mode
+
+
+
+
+            ModelProxy record = this.attendanceShiftStore.GetById(id);
+
+            EditShiftForm.UpdateRecord(record);
+            record.Set("dayId", b.dayId);
+            record.Set("employeeId", b.employeeId);
+            record.Commit();
+            Notification.Show(new NotificationConfig
             {
-                //Update Mode
-
-                try
-                {
-                    int index = Convert.ToInt32(id);//getting the id of the record
-                    PostRequest<AttendanceShift> request = new PostRequest<AttendanceShift>();
-                    request.entity = b;
-                    PostResponse<AttendanceShift> r = _timeAttendanceService.ChildAddOrUpdate<AttendanceShift>(request);                      //Step 1 Selecting the object or building up the object for update purpose
-
-                    //Step 2 : saving to store
-
-                    //Step 3 :  Check if request fails
-                    if (!r.Success)//it maybe another check
-                    {
-                        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                        X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorUpdatingRecord).Show();
-                        return;
-                    }
-                    else
-                    {
+                Title = Resources.Common.Notification,
+                Icon = Icon.Information,
+                Html = Resources.Common.RecordUpdatedSucc
+            });
+            this.EditShiftWindow.Close();
 
 
-                        ModelProxy record = this.attendanceShiftStore.GetById(index);
-
-                        EditShiftForm.UpdateRecord(record);
-                        record.Commit();
-                        Notification.Show(new NotificationConfig
-                        {
-                            Title = Resources.Common.Notification,
-                            Icon = Icon.Information,
-                            Html = Resources.Common.RecordUpdatedSucc
-                        });
-                        this.EditShiftWindow.Close();
+            X.Call("setDisable");
 
 
-                    }
 
-                }
-                catch (Exception ex)
-                {
-                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorUpdatingRecord).Show();
-                }
-
-                attendanceShiftStore.Reload();
-            }
         }
         protected void SubmitFile(object sender, DirectEventArgs e)
 
         {
-            string path = MapPath("~/Temp/" + fileUpload.FileName);
-            fileUpload.PostedFile.SaveAs(path);
-            AttendanceImportingService service = new AttendanceImportingService(new ExcelImporter(path), _employeeService);
-            attendanceShiftStore.DataSource = service.ImportUnvalidated(path);
+            AttendanceImportingService service = null;
+            try
+            {
+
+
+                string path = MapPath("~/Temp/" + fileUpload.FileName);
+                fileUpload.PostedFile.SaveAs(path);
+                service = new AttendanceImportingService(new CSVImporter(path), _employeeService);
+            }
+            catch(Exception exp)
+
+            {
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, exp.Message).Show();
+                return;
+            }
+            try
+            {
+                List<AttendanceShift> shifts= service.ImportUnvalidated(service.FileName);
+
+
+                Dictionary<string, string> ids = new Dictionary<string, string>();
+                foreach (var item in shifts)
+                {
+                    if (string.IsNullOrEmpty(item.employeeRef))
+                        continue;
+                    if (!ids.ContainsKey(item.employeeRef))
+                        ids.Add(item.employeeRef, GetEmployeeId(item.employeeRef));
+                    item.employeeId = ids[item.employeeRef];
+                }
+                foreach (var item in shifts)
+                {
+                    PostRequest<AttendanceShift> req = new PostRequest<AttendanceShift>();
+                    req.entity = item;
+                    PostResponse<AttendanceShift> resp = _timeAttendanceService.ChildAddOrUpdate<AttendanceShift>(req);
+                    if (!resp.Success)
+                    {
+                        
+                        
+                        //X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                        //X.Msg.Alert(Resources.Common.Error, resp.Summary).Show();
+                        //loadingWindow.Close();
+                        //return;
+                    }
+                 
+                }
+                attendanceShiftStore.DataSource = shifts;
+                attendanceShiftStore.DataBind();
+                Viewport1.ActiveIndex = 1;
+                X.Call("setDisable");
+            }
+            catch
+            {
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, GetLocalResourceObject("ErrorImporting").ToString()).Show();
+
+                return;
+            }
+        }
+        
+        private string GetEmployeeId(string employeeRef)
+        {
+            EmployeeByReference req = new EmployeeByReference();
+            req.Reference = employeeRef;
+            RecordResponse<Employee> resp = _employeeService.ChildGetRecord<Employee>(req);
+            if (resp == null || resp.result == null)
+                return "";
+            else
+                return resp.result.recordId;
+        }
+
+        private void ResetPage()
+        {
+            Viewport1.ActiveIndex = 0;
+            attendanceShiftStore.DataSource = new List<AttendanceShift>();
             attendanceShiftStore.DataBind();
-            Viewport1.ActiveIndex = 1;
+            fileUpload.Reset();
         }
         protected void PoPuPShift(object sender, DirectEventArgs e)
         {
 
 
-            int id = Convert.ToInt32(e.ExtraParams["id"]);
+            string id = e.ExtraParams["id"];
+            string dayId = e.ExtraParams["dayId"];
+            string checkIn = e.ExtraParams["checkIn"];
+            string checkOut = e.ExtraParams["checkOut"];
             string type = e.ExtraParams["type"];
+            string employeeRef = e.ExtraParams["employeeId"];
             switch (type)
             {
                 case "imgEdit":
-                    ////Step 1 : get the object from the Web Service 
-                    //panelRecordDetails.ActiveIndex = 0;
+                    recordId.Text = id;
+                    this.dayId.Text = dayId;
+                    this.checkIn.Text = checkIn;
+                    this.checkOut.Text = checkOut;
+                    this.employeeRef.Text = employeeRef;
+                    EditShiftWindow.Show();
 
-                    //FillDow("1");
-                    
 
 
+                    break;
+                case "imgDelete":
+                    X.Msg.Confirm(Resources.Common.Confirmation, Resources.Common.DeleteOneRecord, new MessageBoxButtonsConfig
+                    {
+                        Yes = new MessageBoxButtonConfig
+                        {
+                            //We are call a direct request metho for deleting a record
+                            Handler = String.Format("App.direct.DeleteRecord('{0}')", id),
+                            Text = Resources.Common.Yes
+                        },
+                        No = new MessageBoxButtonConfig
+                        {
+                            Text = Resources.Common.No
+                        }
+
+                    }).Show();
                     break;
                 default: break;
             }
 
 
         }
+        [DirectMethod]
+        public void DeleteRecord(string index)
+        {
+
+            //Step 1 Code to delete the object from the database 
+
+            //Step 2 :  remove the object from the store
+            attendanceShiftStore.Remove(index);
+
+            //Step 3 : Showing a notification for the user 
+            Notification.Show(new NotificationConfig
+            {
+                Title = Resources.Common.Notification,
+                Icon = Icon.Information,
+                Html = Resources.Common.RecordDeletedSucc
+            });
+
+            X.Call("setDisable");
 
 
 
-        /// <summary>
-        /// This direct method will be called after confirming the delete
-        /// </summary>
-        /// <param name="index">the ID of the object to delete</param>
+        }
+        protected void UploadAttendances(object sender, DirectEventArgs e)
+        {
+            string atts = e.ExtraParams["attendances"];
+            List<AttendanceShift> periods = JsonConvert.DeserializeObject<List<AttendanceShift>>(atts);
+
+            
+            int steps = periods.Count;
+            int current = 0;
+            int failed = 0;
+            foreach (var item in periods)
+            {
+                PostRequest<AttendanceShift> req = new PostRequest<AttendanceShift>();
+                req.entity = item;
+                PostResponse<AttendanceShift> resp = _timeAttendanceService.ChildAddOrUpdate<AttendanceShift>(req);
+                if (!resp.Success)
+                {
+                    failed++;
+                    //X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    //X.Msg.Alert(Resources.Common.Error, resp.Summary).Show();
+                    //loadingWindow.Close();
+                    //return;
+                }
+                progressBar.UpdateProgress((current++) / steps);
+            }
+
+            loadingWindow.Close();
+            string msg = string.Format(GetLocalResourceObject("saved").ToString(), periods.Count-failed, failed);
+            X.Msg.Alert(Resources.Common.Error, msg).Show();
+            ResetPage();
 
 
+        }
 
-
-
-        /// <summary>
-        /// Deleting all selected record
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-
-
-        /// <summary>
-        /// Direct method for removing multiple records
-        /// </summary>
-
-        /// Adding new record
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
 
 
 

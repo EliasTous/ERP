@@ -320,14 +320,14 @@
                                                                                 <Click Handler="openNewTab('dayTypes', 'DayTypes.aspx', #{tadtTitle}.value, 'icon-Employees')" />
                                                                             </Listeners>
                                                                         </ext:MenuItem>
-                                                                        <ext:MenuItem runat="server" Icon="UserGo" Text="<%$Resources: Common , Geofences%>">
+                                                                        <ext:MenuItem runat="server" Text="<%$Resources: Common , Geofences%>">
                                                                             <Listeners>
                                                                                 <Click Handler="openNewTab('Geofences', 'Geofences.aspx', #{gfTitle}.value, 'icon-Employees')" />
                                                                             </Listeners>
                                                                         </ext:MenuItem>
-                                                                            <ext:MenuItem runat="server" Icon="UserGo" Text="<%$Resources: Common , Geofences%>">
+                                                                            <ext:MenuItem runat="server"   Text="<%$Resources: Common , ImportAttendance%>">
                                                                             <Listeners>
-                                                                                <Click Handler="openNewTab('Import', 'ImportAttendance.aspx','#{importAt}.value' , 'icon-Employees')" />
+                                                                                <Click Handler="openNewTab('Import', 'ImportAttendance.aspx',#{importAt}.value , 'icon-Employees')" />
                                                                             </Listeners>
                                                                         </ext:MenuItem>
                                                                     </Items>

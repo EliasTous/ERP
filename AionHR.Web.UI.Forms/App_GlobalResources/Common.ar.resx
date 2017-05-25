@@ -903,4 +903,7 @@
   <data name="LoanSync" xml:space="preserve">
     <value>تحديث خصومات السلف</value>
   </data>
+  <data name="ImportAttendance" xml:space="preserve">
+    <value>استيراد الحضور من ملف</value>
+  </data>
 </root>

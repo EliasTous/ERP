@@ -9,7 +9,9 @@ var deleteRender = function () {
 var attachRender = function () {
     return '<img class="imgAttach"  style="cursor:pointer;" src="Images/Tools/attach.png" />';
 };
-
+var errorRender = function () {
+    return '<img class="imgAttach" src="Images/Tools/error.png" />';
+};
 
 
 
@@ -95,4 +97,35 @@ function validateTo(curr, prev) {
     if (currHours == prevHours && currMins <= prevMins)
         return false;
     return true;
+}
+var validateFile = function (id) {
+
+    var input = $("#" + id)[0];
+    if (input.files && input.files[0]) {
+
+        //Check the extension and if not ok clear and notify the user
+
+        if (!checkExtension(input.files[0].name)) {
+            alert('Please Select a csv file');
+        }
+    }
+}
+var checkExtension = function (file) {
+
+    try {
+
+        if (file == null || file == '') {
+            return true;
+        }
+        var dot = file.lastIndexOf('.');
+        if (dot >= 0) {
+            var ext = file.substr(dot + 1, file.length).toLowerCase();
+            if (ext in { 'csv': ''}) { return true; }
+        }
+
+        return false;
+    }
+    catch (e) {
+        return false;
+    }
 }

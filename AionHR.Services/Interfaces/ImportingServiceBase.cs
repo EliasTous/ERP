@@ -20,19 +20,29 @@ namespace AionHR.Services.Interfaces
             importer = imp;
         }
 
-        public List<ImportedRecord<T>> ImportWithValidation(string fileName)
+        //public List<ImportedRecord<T>> ImportWithValidation(string fileName)
+        //{
+        //    DataTable t = new DataTable();
+        //    List<ImportedRecord<T>> items = new List<ImportedRecord<T>>();
+        //    for (int i = 0; i < t.Rows.Count; i++)
+        //    {
+        //        List<T> item = GetItem(t.Rows[i]);
+        //        item.ForEach(x=>items.Add(new ImportedRecord<T>() { Record = x, IsValid = ValidateRecord(x) }));
+        //    }
+
+        //    return items;
+        //}
+        public DataTable ImportWithValidation(string fileName)
         {
-            DataTable t = new DataTable();
-            List<ImportedRecord<T>> items = new List<ImportedRecord<T>>();
-            for (int i = 0; i < t.Rows.Count; i++)
-            {
-                T item = GetItem(t.Rows[i]);
-                items.Add(new ImportedRecord<T>() { Record = item, IsValid = ValidateRecord(item) });
-            }
+            DataTable t = importer.GetRows();
+            t.Columns[0].ColumnName = "employeeRef";
+            t.Columns[1].ColumnName = "dayId";
+            t.Columns[2].ColumnName = "checkIn";
+            t.Columns[3].ColumnName = "checkOut";
+            t.Rows[0].SetColumnError(t.Columns[0], "errrrror");
 
-            return items;
+            return t;
         }
-
         public List<T> ImportUnvalidated(string fileName)
         {
             DataTable t = importer.GetRows();
@@ -40,7 +50,7 @@ namespace AionHR.Services.Interfaces
             for (int i = 0; i < t.Rows.Count; i++)
             {
 
-                items.Add(GetItem(t.Rows[i]));
+                items.AddRange(GetItem(t.Rows[i]));
             }
 
             return items;
@@ -51,9 +61,9 @@ namespace AionHR.Services.Interfaces
             return true;
         }
 
-        virtual public T GetItem(DataRow row)
+        virtual public List<T> GetItem(DataRow row)
         {
-            return new T();
+            return new List<T>();
         }
     }
 }
