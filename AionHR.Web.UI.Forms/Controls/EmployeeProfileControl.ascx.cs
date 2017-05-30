@@ -238,6 +238,7 @@ namespace AionHR.Web.UI.Forms
             FillWorkingCalendar();
 
             SetTabPanelActivated(!isAdd);
+           
 
         }
 
@@ -639,21 +640,23 @@ namespace AionHR.Web.UI.Forms
                         RecordRequest req = new RecordRequest();
                         req.RecordID = b.recordId.ToString();
                         RecordResponse<Employee> response = _employeeService.Get<Employee>(req);
+                        
                         if (response.Success)
                         {
                             b.pictureUrl = response.result.pictureUrl + "?x=" + DateTime.Now;
                             b.name = response.result.name;
                         }
+                        Employee n = response.result;
                         ModelProxy record = this.Store1.GetById(index);
                         BasicInfoTab.UpdateRecord(record);
-                        record.Set("branchName", b.branchName);
-                        record.Set("departmentName", b.departmentName);
-                        record.Set("positionName", b.positionName);
-                        record.Set("divisionName", b.divisionName);
-                        record.Set("name", b.name);
-                        record.Set("reference", b.reference);
-                        record.Set("pictureUrl", b.pictureUrl);
-                        record.Set("hireDate", b.hireDate.Value.ToShortDateString());
+                        record.Set("branchName", n.branchName);
+                        record.Set("departmentName", n.departmentName);
+                        record.Set("positionName", n.positionName);
+                        record.Set("divisionName", n.divisionName);
+                        record.Set("name", n.name);
+                        record.Set("reference", n.reference);
+                        record.Set("pictureUrl", n.pictureUrl);
+                        record.Set("hireDate", n.hireDate.Value.ToShortDateString());
 
                         //record.Commit();
                         Notification.Show(new NotificationConfig

@@ -264,4 +264,10 @@
   <data name="working" xml:space="preserve">
     <value>Working</value>
   </data>
+  <data name="ResultReady" xml:space="preserve">
+    <value>Your Result is ready, click to download</value>
+  </data>
+  <data name="Download" xml:space="preserve">
+    <value>Download</value>
+  </data>
 </root>

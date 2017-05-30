@@ -67,6 +67,15 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Hidden titleSavingErrorMessage;
         
         /// <summary>
+        /// CurrentPath control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Hidden CurrentPath;
+        
+        /// <summary>
         /// Viewport1 control.
         /// </summary>
         /// <remarks>
@@ -94,6 +103,15 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.FileUploadField fileUpload;
         
         /// <summary>
+        /// SubmitFileButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Button SubmitFileButton;
+        
+        /// <summary>
         /// Progress1 control.
         /// </summary>
         /// <remarks>
@@ -103,13 +121,13 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.ProgressBar Progress1;
         
         /// <summary>
-        /// SubmitFileButton control.
+        /// beginOperation control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Button SubmitFileButton;
+        protected global::Ext.Net.Button beginOperation;
         
         /// <summary>
         /// attendanceShiftGrid control.

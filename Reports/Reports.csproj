@@ -182,6 +182,9 @@
     <EmbeddedResource Include="MonthlyPayroll.resx">
       <DependentUpon>MonthlyPayroll.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="PeriodSummary.ar.resx">
+      <DependentUpon>PeriodSummary.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PeriodSummary.resx">
       <DependentUpon>PeriodSummary.cs</DependentUpon>
     </EmbeddedResource>

@@ -214,25 +214,40 @@ namespace AionHR.Web.UI.Forms.Reports
                 }
             }
 
-          
+
 
             PeriodSummary h = new PeriodSummary();
             h.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;
             h.RightToLeftLayout = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeftLayout.Yes : DevExpress.XtraReports.UI.RightToLeftLayout.No;
             h.DataSource = resp.Items;
+
+            string from = DateTime.Parse(req.Parameters["_fromDate"]).ToString(_systemService.SessionHelper.GetDateformat());
+            string to = DateTime.Parse(req.Parameters["_toDate"]).ToString(_systemService.SessionHelper.GetDateformat());
             string user = _systemService.SessionHelper.GetCurrentUser();
-            DateTime date = DateTime.Parse(req.Parameters["_fromDate"]);
-            //h.Parameters["User"].Value = user;
-            //h.Parameters["Month"].Value = date.ToString("MMM/yyyy");
 
-            //if (resp.Items.Count > 0)
-            //{
+            h.Parameters["DateFrom"].Value = from;
+            h.Parameters["DateTo"].Value = to;
+            h.Parameters["User"].Value = user;
 
-            //    if (req.Parameters["_employeeId"] != "0")
-            //        h.Parameters["Employee"].Value = resp.Items[0].name.fullName;
-            //    else
-            //        h.Parameters["Employee"].Value = GetGlobalResourceObject("Common", "All");
-            //}
+
+
+
+            if (resp.Items.Count > 0)
+            {
+                if (req.Parameters["_departmentId"] != "0")
+                    h.Parameters["Department"].Value = resp.Items[0].departmentName;
+                else
+                    h.Parameters["Department"].Value = GetGlobalResourceObject("Common", "All");
+                if (req.Parameters["_branchId"] != "0")
+                    h.Parameters["Branch"].Value = resp.Items[0].branchName;
+                else
+                    h.Parameters["Branch"].Value = GetGlobalResourceObject("Common", "All");
+                if (req.Parameters["_employeeId"] != "0")
+                    h.Parameters["Employee"].Value = resp.Items[0].name.fullName;
+                else
+                    h.Parameters["Employee"].Value = GetGlobalResourceObject("Common", "All");
+            }
+
             h.CreateDocument();
 
 

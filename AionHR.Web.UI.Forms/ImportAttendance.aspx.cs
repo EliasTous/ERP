@@ -32,6 +32,9 @@ using System.Threading;
 using AionHR.Infrastructure.Session;
 using AionHR.Infrastructure.Tokens;
 using AionHR.Repository.WebService.Repositories;
+using AionHR.Services.Messaging.System;
+using AionHR.Infrastructure.Domain;
+using AionHR.Model.System;
 
 namespace AionHR.Web.UI.Forms
 {
@@ -73,7 +76,29 @@ namespace AionHR.Web.UI.Forms
                 SetExtLanguage();
                 HideShowButtons();
 
+                BatchStatusRequest req = new BatchStatusRequest();
+                req.classId = ClassId.TAAS;
+                RecordResponse<BatchOperationStatus> resp = _systemService.ChildGetRecord<BatchOperationStatus>(req);
+                if (!resp.Success || resp.result == null)
+                {
+                    return;
+                }
+                switch (resp.result.status)
+                {
+                    case 0:
+                        Viewport1.ActiveIndex = 0;
+                        break;
+                    case 1:
 
+
+                        Viewport1.ActiveIndex = 1;
+                        this.ResourceManager1.AddScript("{0}.startTask('longactionprogress');", this.TaskManager1.ClientID); break;
+                    case 2:
+                        Viewport1.ActiveIndex = 2;
+                        break;
+                    default: Viewport1.ActiveIndex = 0; break;
+
+                }
 
 
             }
@@ -152,7 +177,7 @@ namespace AionHR.Web.UI.Forms
 
             b.dayId = dayId;
             // Define the object to add or edit as null
-            b.employeeId = GetEmployeeId((EmployeeService)this._employeeService,b.employeeRef);
+            b.employeeId = GetEmployeeId((EmployeeService)this._employeeService, b.employeeRef);
 
 
             //Update Mode
@@ -253,8 +278,10 @@ namespace AionHR.Web.UI.Forms
 
 
                 path = MapPath("~/Temp/" + fileUpload.FileName);
+
                 fileUpload.PostedFile.SaveAs(path);
                 service = new AttendanceImportingService(new CSVImporter(path), _employeeService);
+                fileUpload.Reset();
             }
             catch (Exception exp)
 
@@ -263,30 +290,50 @@ namespace AionHR.Web.UI.Forms
                 X.Msg.Alert(Resources.Common.Error, exp.Message).Show();
                 return;
             }
+            CurrentPath.Text = path;
+            Viewport1.ActiveIndex = 1;
+            X.Call("importButton", true);
+
+        }
+
+        protected void ProcessData(object sender, DirectEventArgs e)
+        {
             try
             {
-                List<AttendanceShift> shifts = service.ImportUnvalidated(service.FileName);
 
-                File.Delete(path);
+                AttendanceImportingService service = null;
+                service = new AttendanceImportingService(new CSVImporter(CurrentPath.Text), _employeeService);
+                List<AttendanceShift> shifts = service.ImportUnvalidated(CurrentPath.Text);
+
+                File.Delete(CurrentPath.Text);
 
 
-                Session.Add("LongActionProgress", null);
-                
+
+
 
                 DictionarySessionStorage storage = new DictionarySessionStorage();
                 storage.Save("AccountId", _systemService.SessionHelper.Get("AccountId"));
                 storage.Save("UserId", _systemService.SessionHelper.Get("UserId"));
                 storage.Save("key", _systemService.SessionHelper.Get("Key"));
-                BackgroundWork<AttendanceShift> bw = new BackgroundWork<AttendanceShift>();
-                bw.SessionStorage = storage;
-                bw.Items = shifts;
-                ThreadPool.QueueUserWorkItem(LongAction, bw);
+                SessionHelper h = new SessionHelper(storage, new APIKeyBasedTokenGenerator());
+                EmployeeService emp = new EmployeeService(new EmployeeRepository(), h);
+                TimeAttendanceService _timeAtt = new TimeAttendanceService(h, new TimeAttendanceRepository());
+                SystemService _system = new SystemService(new SystemRepository(), h);
+                AttendanceBatchRunner runner = new AttendanceBatchRunner(storage, _timeAtt, _system, emp) { Items = shifts };
+                runner.Process();
                 this.ResourceManager1.AddScript("{0}.startTask('longactionprogress');", this.TaskManager1.ClientID);
 
 
             }
-            catch { }
+            catch
+            {
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorOperation).Show();
+                this.ResourceManager1.AddScript("{0}.stopTask('longactionprogress');", this.TaskManager1.ClientID);
+
+            }
         }
+
         private string GetEmployeeId(EmployeeService serv, string employeeRef)
         {
             EmployeeByReference req = new EmployeeByReference();
@@ -438,7 +485,7 @@ namespace AionHR.Web.UI.Forms
                 PostRequest<AttendanceShift> req = new PostRequest<AttendanceShift>();
                 req.entity = item;
                 //Thread.Sleep(10);
-                PostResponse<AttendanceShift> resp = service.ChildAddOrUpdate<AttendanceShift>(req);
+                PostResponse<AttendanceShift> resp = _timeAttendanceService.ChildAddOrUpdate<AttendanceShift>(req);
                 if (!resp.Success)
                 {
                     errors.Add(item);
@@ -462,48 +509,68 @@ namespace AionHR.Web.UI.Forms
         }
         protected void RefreshProgress(object sender, DirectEventArgs e)
         {
-            object progress = _systemService.SessionHelper.Get("LongActionProgress");
-            object prep = _systemService.SessionHelper.Get("Preporcessing");
-            if (prep != null)
-            {
-                string prog = (float.Parse(prep.ToString()) * 100).ToString();
-                this.Progress1.UpdateProgress(float.Parse(prep.ToString()), string.Format(GetLocalResourceObject("preprocessing").ToString()+" {0}%", (int)(float.Parse(prep.ToString()) * 100)));
-            }
-            else
-            if (progress != null)
-            {
-                string prog = (float.Parse(progress.ToString()) * 100).ToString();
-                this.Progress1.UpdateProgress(float.Parse(progress.ToString()), string.Format(GetLocalResourceObject("working").ToString()+" {0}%", (int)(float.Parse(progress.ToString()) * 100)));
-            }
-            else if (Session["result"] != null)
-            {
+            //object progress = _systemService.SessionHelper.Get("LongActionProgress");
+            double progress = 0;
 
-                string attachment = "attachment; filename=MyCsvLol.csv";
-                //HttpContext.Current.Response.Clear();
-                //HttpContext.Current.Response.ClearHeaders();
-                //HttpContext.Current.Response.ClearContent();
-                HttpContext.Current.Response.AddHeader("content-disposition", attachment);
-                HttpContext.Current.Response.ContentType = "application/octet-stream";
-                HttpContext.Current.Response.AddHeader("Pragma", "public");
-                string content = this.Session["result"].ToString();
-                HttpContext.Current.Response.ClearContent();
-                HttpContext.Current.Response.Write(content);
-                this.Session["result"] = null;
-                HttpContext.Current.Response.Flush();
-                Session.Add("errors", content.Split('\n').Length.ToString());
-                Response.Close();
-                
+            //object prep = _systemService.SessionHelper.Get("Preporcessing");
+            BatchStatusRequest req = new BatchStatusRequest();
+            req.classId = ClassId.TAAS;
+            RecordResponse<BatchOperationStatus> resp = _systemService.ChildGetRecord<BatchOperationStatus>(req);
+            if (resp.result == null)
+                return;
+            if (resp.result.status == 1)
+            {
+                if (resp.result.tableSize == 0)
+                    progress = 0;
+                else
+                    progress = (double)resp.result.processed / resp.result.tableSize;
+                string prog = (float.Parse(progress.ToString()) * 100).ToString();
+                this.Progress1.UpdateProgress(float.Parse(progress.ToString()), string.Format(GetLocalResourceObject("working").ToString() + " {0}%", (int)(float.Parse(progress.ToString()) * 100)));
+
             }
-            else 
+
+
+
+            else
             {
                 this.ResourceManager1.AddScript("{0}.stopTask('longactionprogress');", this.TaskManager1.ClientID);
-                this.Progress1.UpdateProgress(100, "All finished!");
-                fileUpload.Clear();
-                X.Msg.Alert("", "total of " + Session["errors"].ToString() + " were found");
+                Viewport1.ActiveIndex = 2;
+
+
             }
         }
 
+        protected void DownloadResult(object sender, DirectEventArgs e)
+        {
+            string attachment = "attachment; filename=MyCsvLol.csv";
+            //HttpContext.Current.Response.Clear();
+            //HttpContext.Current.Response.ClearHeaders();
+            //HttpContext.Current.Response.ClearContent();
+            HttpContext.Current.Response.AddHeader("content-disposition", attachment);
+            HttpContext.Current.Response.ContentType = "application/octet-stream";
+            HttpContext.Current.Response.AddHeader("Pragma", "public");
+            string content = File.ReadAllText("C:/BatchOutput/" + ClassId.TAAS.ToString() + ".csv");
+            HttpContext.Current.Response.ClearContent();
+            HttpContext.Current.Response.Write(content);
+            PostRequest<BatchOperationStatus> req = new PostRequest<BatchOperationStatus>();
+            BatchOperationStatus batch = new BatchOperationStatus();
+            batch.classId = ClassId.TAAS;
+            batch.status = 0;
+            batch.processed = 0;
+            batch.tableSize = 0;
+            req.entity = batch;
+            PostResponse<BatchOperationStatus> resp = _systemService.ChildAddOrUpdate<BatchOperationStatus>(req);
+            if (!resp.Success)
+            {
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, resp.Summary).Show();
+                return;
+            }
+            Viewport1.ActiveIndex = 0;
+            HttpContext.Current.Response.Flush();
 
+            Response.Close();
+        }
 
 
         [DirectMethod]
@@ -514,6 +581,24 @@ namespace AionHR.Web.UI.Forms
                 return "0";
             }
             else return "1";
+        }
+
+        protected void Unnamed_Event(object sender, DirectEventArgs e)
+        {
+            PostRequest<BatchOperationStatus> req = new PostRequest<BatchOperationStatus>();
+            BatchOperationStatus batch = new BatchOperationStatus();
+            batch.classId = ClassId.TAAS;
+            batch.status = 0;
+            batch.processed = 0;
+            batch.tableSize = 0;
+            req.entity = batch;
+            PostResponse<BatchOperationStatus> resp = _systemService.ChildAddOrUpdate<BatchOperationStatus>(req);
+            if (!resp.Success)
+            {
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, resp.Summary).Show();
+                return;
+            }
         }
     }
 }

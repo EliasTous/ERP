@@ -42,7 +42,7 @@
         $("#" + id).click();
     }
 
-
+  
     var imageData;
 
     var showImagePreview = function (id) {

@@ -33,13 +33,16 @@
             //App.attendanceShiftGrid.getStore().each(function (record) {
 
             //    if (!validateRecord(record)) {
-                 
+
             //        App.UploadAttendancesButton.setDisabled(true);
             //        return;
             //    }
 
             //});
-           
+
+        }
+        function importButton(f) {
+            App.beginOperation.setDisabled(false);
         }
     </script>
 
@@ -52,31 +55,31 @@
         <ext:Hidden ID="textLoadFailed" runat="server" Text="<%$ Resources:Common , LoadFailed %>" />
         <ext:Hidden ID="titleSavingError" runat="server" Text="<%$ Resources:Common , TitleSavingError %>" />
         <ext:Hidden ID="titleSavingErrorMessage" runat="server" Text="<%$ Resources:Common , TitleSavingErrorMessage %>" />
-
+        <ext:Hidden ID="CurrentPath" runat="server" />
 
 
 
 
 
         <ext:Viewport ID="Viewport1" runat="server" Layout="CardLayout" ActiveIndex="0">
+
             <Items>
                 <ext:FormPanel runat="server" ID="uploadFileForm"
-                    Icon="ApplicationSideList" Header="false" Layout="HBoxLayout"
-                    >
+                    Icon="ApplicationSideList" Header="false" Layout="HBoxLayout">
                     <Items>
-                        <ext:Panel runat="server" flex="1"/>
+                        <ext:Panel runat="server" Flex="1" />
                         <ext:Panel runat="server" Flex="2">
                             <Items>
-                                 <ext:Label MarginSpec="0 0 0 0" runat="server" Text="<%$ Resources: Pick %>" Width="400" />
-                        <ext:FileUploadField runat="server" ID="fileUpload" Width="400" ButtonText="<%$ Resources: Pick %>" >
-                            <Listeners>
-                                <Change Handler="validateFile(App.fileUpload.fileInputEl.id);" />
-                            </Listeners>
-                            </ext:FileUploadField>
-                                <ext:ProgressBar ID="Progress1" runat="server" Width="300" Visible="true" />
+                                <ext:Label MarginSpec="0 0 0 0" runat="server" Text="<%$ Resources: Pick %>" Width="400" />
+                                <ext:FileUploadField runat="server" ID="fileUpload" Width="400" ButtonText="<%$ Resources: Pick %>">
+                                    <Listeners>
+                                        <Change Handler="validateFile(App.fileUpload.fileInputEl.id);" />
+                                    </Listeners>
+                                </ext:FileUploadField>
+
                             </Items>
                         </ext:Panel>
-                       
+
 
                     </Items>
                     <Buttons>
@@ -89,15 +92,64 @@
                                 <Click OnEvent="SubmitFile" Failure="Ext.MessageBox.alert('#{titleSavingError}.value', '#{titleSavingErrorMessage}.value');">
                                     <EventMask ShowMask="true" />
                                     <ExtraParams>
-
-                                        <ext:Parameter Name="file" Value="#{uploadFileForm}.getForm().getValues()" Mode="Raw" Encode="true" />
-
                                     </ExtraParams>
                                 </Click>
                             </DirectEvents>
                         </ext:Button>
                     </Buttons>
                 </ext:FormPanel>
+
+                <ext:Panel runat="server" Layout="HBoxLayout">
+                    <TopBar>
+                        <ext:Toolbar runat="server">
+                            <Items>
+
+                                <ext:Button runat="server" Icon="Delete">
+                                    <DirectEvents>
+                                        <Click OnEvent="Unnamed_Event"></Click>
+                                    </DirectEvents>
+                                </ext:Button>
+
+
+                            </Items>
+                        </ext:Toolbar>
+                    </TopBar>
+                    <Items>
+                        <ext:Panel runat="server" Flex="1" />
+                        <ext:Panel runat="server" Flex="2">
+                            <Items>
+
+                                <ext:ProgressBar ID="Progress1" runat="server" Width="300" Visible="true" />
+                                <ext:Button runat="server" Text="<%$Resources:Import %>" ID="beginOperation" Disabled="true" MarginSpec="0 0 0 120">
+                                    <Listeners>
+                                        <Click Handler="this.setDisabled(true);" />
+                                    </Listeners>
+                                    <DirectEvents>
+                                        <Click OnEvent="ProcessData" />
+                                    </DirectEvents>
+                                </ext:Button>
+                            </Items>
+                        </ext:Panel>
+                    </Items>
+                </ext:Panel>
+                <ext:Panel runat="server" Layout="HBoxLayout">
+
+                    <Items>
+                        <ext:Panel runat="server" Flex="1" />
+                        <ext:Panel runat="server" Flex="2">
+                            <Items>
+                                <ext:Label runat="server" Text="<%$Resources:ResultReady %>" />
+                                <ext:Button runat="server" Icon="DiskDownload" Text="<%$Resources:Download %>">
+                                    <DirectEvents>
+                                        <Click OnEvent="DownloadResult" />
+                                    </DirectEvents>
+                                </ext:Button>
+                            </Items>
+                        </ext:Panel>
+
+                    </Items>
+                </ext:Panel>
+
 
                 <ext:GridPanel runat="server"
                     ID="attendanceShiftGrid"
@@ -206,20 +258,19 @@
 
                             <Listeners>
                                 <Click Handler="CheckSession();  App.loadingWindow.show();" />
-                                
+
                             </Listeners>
                             <DirectEvents>
                                 <Click OnEvent="UploadAttendances" Failure="Ext.MessageBox.alert('#{titleSavingError}.value', '#{titleSavingErrorMessage}.value');">
                                     <EventMask ShowMask="true" />
                                     <ExtraParams>
-                                        <ext:Parameter Name="attendances" Value="Ext.encode(#{attendanceShiftGrid}.getRowsValues({selectedOnly : false}))" Mode="Raw" />
                                     </ExtraParams>
                                 </Click>
                             </DirectEvents>
                         </ext:Button>
 
                     </Buttons>
-                    
+
                 </ext:GridPanel>
             </Items>
         </ext:Viewport>
@@ -296,7 +347,7 @@
             </Buttons>
 
         </ext:Window>
-        
+
 
         <ext:TaskManager ID="TaskManager1" runat="server">
             <Tasks>
@@ -309,12 +360,12 @@
                     OnStop="
                         #{Progress1}.setVisible(false);">
                     <DirectEvents>
-                        <Update OnEvent="RefreshProgress" IsUpload="true" />
+                        <Update OnEvent="RefreshProgress" />
                     </DirectEvents>
                 </ext:Task>
             </Tasks>
         </ext:TaskManager>
-                <ext:Window
+        <ext:Window
             ID="loadingWindow"
             runat="server"
             Icon="PageEdit"
@@ -331,11 +382,11 @@
 
             <Items>
 
-             <ext:ProgressBar runat="server" ID="progressBar" />
+                <ext:ProgressBar runat="server" ID="progressBar" />
 
 
             </Items>
-            
+
         </ext:Window>
 
 

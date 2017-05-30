@@ -31,6 +31,7 @@ namespace AionHR.Repository.WebService.Repositories
             ChildAddOrUpdateLookup.Add(typeof(CompanyRightToWork), "setRW");
             ChildAddOrUpdateLookup.Add(typeof(Attachement), "setAT");
             ChildAddOrUpdateLookup.Add(typeof(State), "setST");
+            ChildAddOrUpdateLookup.Add(typeof(BatchOperationStatus), "setIM");
 
 
 
@@ -43,6 +44,7 @@ namespace AionHR.Repository.WebService.Repositories
             ChildGetLookup.Add(typeof(CompanyDocumentType), "getDT");
             ChildGetLookup.Add(typeof(CompanyRightToWork), "getRW");
             ChildGetLookup.Add(typeof(State), "getST");
+            ChildGetLookup.Add(typeof(BatchOperationStatus), "getIM");
 
 
             ChildDeleteLookup.Add(typeof(Nationality) ,"delNA");

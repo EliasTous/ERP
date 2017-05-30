@@ -200,11 +200,7 @@ namespace AionHR.Web.UI.Forms.Reports
 
             if (resp.Items.Count > 0)
             {
-                if (req.Parameters["_departmentId"] != "0")
-                    h.Parameters["Department"].Value = jobInfo1.GetDepartment();
-                else
-                    h.Parameters["Department"].Value = GetGlobalResourceObject("Common", "All");
-
+                
                 if (req.Parameters["_branchId"] != "0")
                     h.Parameters["Branch"].Value = resp.Items[0].branchName;
                 else

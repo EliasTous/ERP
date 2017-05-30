@@ -34,7 +34,7 @@
 
 
         <Items>
-             <ext:Button Region="East" ID="btnAdd" Height="30" Width="40" MaxWidth="40"  runat="server" Text="<%$ Resources:Common , Add %>" Icon="Add">
+             <ext:Button Region="East" ID="btnAdd" Disabled="true" Height="30" Width="40" MaxWidth="40"  runat="server" Text="<%$ Resources:Common , Add %>" Icon="Add">
                                   <Listeners>
                                         <Click Handler="CheckSession();" />
                                     </Listeners>                           
@@ -43,13 +43,20 @@
                                             <ExtraParams >
                                                 <ext:Parameter Name="noteText" Value="#{newNoteText}.getValue()"   Mode="Raw" />
                                             </ExtraParams>
-                                            <EventMask ShowMask="true" CustomTarget="={#{employeementHistoryGrid}.body}" />
+                                            <EventMask ShowMask="true" CustomTarget="{#{employeementHistoryGrid}.body}" />
                                         </Click>
                                     </DirectEvents>
+                 <Listeners>
+                     <AfterRender Handler="this.setDisabled(true);" />
+                 </Listeners>
                                 </ext:Button>
             <ext:Panel runat="server"  Layout="FitLayout" DefaultAnchor="100%" >
                                     <Items>
-                                          <ext:TextArea runat="server" ID="newNoteText" Region="North" Width="400" DefaultAnchor="100%" />
+                                          <ext:TextArea runat="server" ID="newNoteText" Region="North" Width="400" DefaultAnchor="100%" >
+                                              <Listeners>
+                                                  <Change Handler="App.btnAdd.setDisabled(this.value=='');" />
+                                              </Listeners>
+                                              </ext:TextArea>
                                 
                                     </Items>
                                 </ext:Panel>

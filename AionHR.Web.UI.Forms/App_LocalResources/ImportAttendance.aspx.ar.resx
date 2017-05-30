@@ -261,4 +261,10 @@
   <data name="working" xml:space="preserve">
     <value>جاري الحفظ</value>
   </data>
+  <data name="ResultReady" xml:space="preserve">
+    <value>تم الانتهاء من عملية الاستيراد ،انقر لتحميل الأخطاء</value>
+  </data>
+  <data name="Download" xml:space="preserve">
+    <value>تنزيل</value>
+  </data>
 </root>

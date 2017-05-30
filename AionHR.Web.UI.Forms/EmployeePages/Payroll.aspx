@@ -465,7 +465,7 @@
             runat="server"
             Icon="PageEdit"
             Title="<%$ Resources:EditSAWindowTitle %>"
-            Width="630"
+            Width="700"
             Height="340"
             AutoShow="false"
             Modal="true"
@@ -587,16 +587,16 @@
                                     <Items>
                                         
 
-                                        <ext:TextField LabelWidth="130" Width="275" Disabled="true"  ID="accountNumber" runat="server" FieldLabel="<%$ Resources:FieldAccountNumber%>" Name="accountNumber" AllowBlank="false" />
-                                        <ext:TextField LabelWidth="130" Width="275" ID="comments" runat="server" FieldLabel="<%$ Resources:FieldComments%>" Name="comments" />
-                                        <ext:TextField LabelWidth="130" Width="275" ID="basicAmount" AllowBlank="false" runat="server" FieldLabel="<%$ Resources:FieldBasicAmount%>" Name="basicAmount">
+                                        <ext:TextField LabelWidth="130" Width="350" Disabled="true"  ID="accountNumber" runat="server" FieldLabel="<%$ Resources:FieldAccountNumber%>" Name="accountNumber" AllowBlank="false" />
+                                        <ext:TextField LabelWidth="130" Width="350" ID="comments" runat="server" FieldLabel="<%$ Resources:FieldComments%>" Name="comments" />
+                                        <ext:TextField LabelWidth="130" Width="350" ID="basicAmount" AllowBlank="false" runat="server" FieldLabel="<%$ Resources:FieldBasicAmount%>" Name="basicAmount">
                                             <Listeners>
                                                 <Change Handler="document.getElementById('BasicSalary').value=this.getValue(); this.next().setValue(this.value); ChangeEntitlementsAmount(0); ChangeDeductionsAmount();" />
                                             </Listeners>
                                         </ext:TextField>
-                                        <ext:TextField LabelWidth="130" Width="275" ID="finalAmount"  ReadOnly="true" AllowBlank="true" runat="server" FieldLabel="<%$ Resources:FieldFinalAmount%>" Name="finalAmount" />
-                                        <ext:TextField LabelWidth="130" Width="275" ID="eAmount"  ReadOnly="true" AllowBlank="true" runat="server" FieldLabel="<%$ Resources:Entitlements%>" Name="eAmount" />
-                                        <ext:TextField LabelWidth="130" Width="275" ID="dAmount"  ReadOnly="true" AllowBlank="true" runat="server" FieldLabel="<%$ Resources:Deductions%>" Name="dAmount" />
+                                        <ext:TextField LabelWidth="130" Width="350" ID="finalAmount"  ReadOnly="true" AllowBlank="true" runat="server" FieldLabel="<%$ Resources:FieldFinalAmount%>" Name="finalAmount" />
+                                        <ext:TextField LabelWidth="130" Width="350" ID="eAmount"  ReadOnly="true" AllowBlank="true" runat="server" FieldLabel="<%$ Resources:Entitlements%>" Name="eAmount" />
+                                        <ext:TextField LabelWidth="130" Width="350" ID="dAmount"  ReadOnly="true" AllowBlank="true" runat="server" FieldLabel="<%$ Resources:Deductions%>" Name="dAmount" />
                                         
                                     </Items>
                                 </ext:Panel>

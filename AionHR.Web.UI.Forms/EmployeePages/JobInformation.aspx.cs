@@ -137,7 +137,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     this.EditEHForm.SetValues(response.result);
                     FillEHStatus();
                     statusId.Select(response.result.statusId.ToString());
-
+                   
                     this.EditEHwindow.Title = Resources.Common.EditWindowsTitle;
                     this.EditEHwindow.Show();
                     break;
@@ -424,6 +424,8 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                 ehDate.SelectedDate = DateTime.Today;
 
             this.EditEHwindow.Show();
+
+            
         }
         protected void ADDNewJI(object sender, DirectEventArgs e)
         {
