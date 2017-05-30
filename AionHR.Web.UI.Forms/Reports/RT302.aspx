@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="RT301B.aspx.cs" Inherits="AionHR.Web.UI.Forms.Reports.RT301B" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="RT302.aspx.cs" Inherits="AionHR.Web.UI.Forms.Reports.RT302" %>
 
 <%@ Register Assembly="DevExpress.Web.v16.2, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web" TagPrefix="dx" %>
 
@@ -24,7 +24,6 @@
     <script type="text/javascript" src="../Scripts/moment.js"></script>
     <script type="text/javascript" src="../Scripts/RT101.js?id=18"></script>
     <script type="text/javascript">
-
         function alertNow(s, e) {
 
             Ext.MessageBox.alert('Error', e.message);
@@ -67,10 +66,16 @@
                                                 <uc:dateRange runat="server" ID="dateRange1" />
                                             </Content>
                                         </ext:Container>
-                                   <ext:Container runat="server"  Layout="FitLayout">
+                                <ext:Container runat="server"  Layout="FitLayout">
                                             <Content>
                                                 <%--<uc:dateRange runat="server" ID="dateRange1" />--%>
                                                 <uc:employeeCombo runat="server" ID="employeeCombo1" />
+                                            </Content>
+                                        </ext:Container>
+                                 <ext:Container runat="server"  Layout="FitLayout">
+                                            <Content>
+                                                <%--<uc:dateRange runat="server" ID="dateRange1" />--%>
+                                                <uc:jobInfo runat="server" ID="jobInfo1" EnableDivision="false" EnablePosition="false" />
                                             </Content>
                                         </ext:Container>
                                 
@@ -92,7 +97,7 @@
                     </TopBar>
                     <Content>
 
-                        <dx:ASPxCallbackPanel ID="ASPxCallbackPanel1" runat="server" ClientInstanceName="callbackPanel"  ClientSideEvents-CallbackError="alertNow"
+                        <dx:ASPxCallbackPanel ID="ASPxCallbackPanel1" runat="server"  ClientSideEvents-CallbackError="alertNow" ClientInstanceName="callbackPanel"
                             Width="100%" OnCallback="ASPxCallbackPanel1_Callback" OnLoad="ASPxCallbackPanel1_Load" >
                             <PanelCollection>
                                 <dx:PanelContent runat="server">

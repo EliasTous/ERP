@@ -571,7 +571,7 @@ namespace AionHR.Web.UI.Forms
                         sm.Select(b.recordId.ToString());
 
 
-
+                        Store1.Reload();
                     }
                 }
                 catch (Exception ex)

@@ -117,58 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="From.Value" xml:space="preserve">
-    <value>الكل</value>
-  </data>
-  <data name="To.Value" xml:space="preserve">
-    <value>الكل</value>
-  </data>
-  <data name="User.Value" xml:space="preserve">
-    <value>الكل</value>
-  </data>
-  <data name="xrLabel10.Text" xml:space="preserve">
-    <value>الاسم</value>
-  </data>
-  <data name="xrLabel11.Text" xml:space="preserve">
-    <value>الفرع</value>
-  </data>
-  <data name="xrLabel12.Text" xml:space="preserve">
-    <value>القسم</value>
-  </data>
-  <data name="xrLabel13.Text" xml:space="preserve">
-    <value>الإدارة</value>
-  </data>
-  <data name="xrLabel14.Text" xml:space="preserve">
-    <value>التاريخ</value>
-  </data>
-  <data name="xrLabel15.Text" xml:space="preserve">
-    <value>اليوم</value>
-  </data>
-  <data name="xrLabel16.Text" xml:space="preserve">
-    <value>ساعات العمل</value>
-  </data>
-  <data name="xrLabel17.Text" xml:space="preserve">
-    <value>التأخير الصباحي</value>
-  </data>
-  <data name="xrLabel18.Text" xml:space="preserve">
-    <value>الخروج المبكر</value>
-  </data>
-  <data name="xrLabel25.Text" xml:space="preserve">
-    <value>مجموع الموظف</value>
-  </data>
-  <data name="xrLabel26.Text" xml:space="preserve">
-    <value>مجموع الكل</value>
-  </data>
-  <data name="xrLabel27.Text" xml:space="preserve">
-    <value>الدوام اليومي</value>
-  </data>
-  <data name="xrLabel28.Text" xml:space="preserve">
-    <value>لم يتم العثور على نتائج</value>
-  </data>
-  <data name="xrLabel31.Text" xml:space="preserve">
-    <value>الموظف</value>
-  </data>
-  <data name="xrPageInfo2.Format" xml:space="preserve">
-    <value>صفحة {0} من {1}</value>
-  </data>
+  <metadata name="objectDataSource1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
 </root>

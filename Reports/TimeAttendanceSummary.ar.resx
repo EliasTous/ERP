@@ -138,6 +138,9 @@
   <data name="xrLabel21.Text" xml:space="preserve">
     <value>الشهر</value>
   </data>
+  <data name="xrLabel24.Text" xml:space="preserve">
+    <value>الموظف</value>
+  </data>
   <data name="xrLabel3.Text" xml:space="preserve">
     <value>الاسم</value>
   </data>

@@ -30,7 +30,7 @@ using AionHR.Model.Employees.Profile;
 
 namespace AionHR.Web.UI.Forms.Reports
 {
-    public partial class RT301 : System.Web.UI.Page
+    public partial class RT302 : System.Web.UI.Page
     {
         ISystemService _systemService = ServiceLocator.Current.GetInstance<ISystemService>();
         ITimeAttendanceService _timeAttendanceService = ServiceLocator.Current.GetInstance<ITimeAttendanceService>();
@@ -160,6 +160,7 @@ namespace AionHR.Web.UI.Forms.Reports
 
             req.Add(dateRange1.GetRange());
             req.Add(employeeCombo1.GetEmployee());
+            req.Add(jobInfo1.GetJobInfo());
             return req;
         }
 
@@ -200,7 +201,7 @@ namespace AionHR.Web.UI.Forms.Reports
 
             ReportCompositeRequest req = GetRequest();
 
-            ListResponse<AionHR.Model.Reports.RT301> resp = _reportsService.ChildGetAll<AionHR.Model.Reports.RT301>(req);
+            ListResponse<AionHR.Model.Reports.RT302> resp = _reportsService.ChildGetAll<AionHR.Model.Reports.RT302>(req);
             if (!resp.Success)
             {
                 if (throwException)
@@ -213,58 +214,25 @@ namespace AionHR.Web.UI.Forms.Reports
                 }
             }
 
-            var monthlyGrouped = resp.Items.GroupBy(x => x.month);
-            MonthlyEmployeeAttendanceCollection monthlyAtts = new MonthlyEmployeeAttendanceCollection();
+          
 
-            foreach (var item in monthlyGrouped)
-            {
-                MonthAttendance at = new MonthAttendance(item.Key, item.ToList());
-                monthlyAtts.Add(at);
-            }
-
-            //var grouped = resp.Items.GroupBy(x => x.name.fullName);
-
-
-            //EmployeeAttendanceCollection ats = new EmployeeAttendanceCollection();
-            //foreach (var item in grouped)
-            //{
-            //    EmployeeAttendances at = new EmployeeAttendances();
-            //    at.name = item.Key;
-
-            //    var details = item.ToList();
-            //    if (details.Count != 0)
-            //    {
-            //        at.departmentName = details[0].departmentName;
-            //        at.branchName = details[0].branchName;
-            //        at.positionName = details[0].positionName;
-            //    }
-
-            //    foreach (var subItem in item.ToList())
-            //    {
-            //        at.Add(new Attendance() { workingTime=subItem.workingTime, day = subItem.day, year=subItem.year, month = subItem.month, timeIn = subItem.checkIn, timeOut = subItem.checkOut });
-
-            //    }
-            //    ats.Add(at);
-            //}
-
-
-            TimeAttendanceSummary h = new TimeAttendanceSummary();
+            PeriodSummary h = new PeriodSummary();
             h.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;
             h.RightToLeftLayout = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeftLayout.Yes : DevExpress.XtraReports.UI.RightToLeftLayout.No;
-            h.DataSource = monthlyAtts;
+            h.DataSource = resp.Items;
             string user = _systemService.SessionHelper.GetCurrentUser();
             DateTime date = DateTime.Parse(req.Parameters["_fromDate"]);
-            h.Parameters["User"].Value = user;
-            h.Parameters["Month"].Value = date.ToString("MMM/yyyy");
+            //h.Parameters["User"].Value = user;
+            //h.Parameters["Month"].Value = date.ToString("MMM/yyyy");
 
-            if (resp.Items.Count > 0)
-            {
+            //if (resp.Items.Count > 0)
+            //{
 
-                if (req.Parameters["_employeeId"] != "0")
-                    h.Parameters["Employee"].Value = resp.Items[0].name.fullName;
-                else
-                    h.Parameters["Employee"].Value = GetGlobalResourceObject("Common", "All");
-            }
+            //    if (req.Parameters["_employeeId"] != "0")
+            //        h.Parameters["Employee"].Value = resp.Items[0].name.fullName;
+            //    else
+            //        h.Parameters["Employee"].Value = GetGlobalResourceObject("Common", "All");
+            //}
             h.CreateDocument();
 
 

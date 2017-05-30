@@ -237,6 +237,7 @@ namespace Reports
             new DevExpress.XtraReports.UI.GroupField("year", DevExpress.XtraReports.UI.XRColumnSortOrder.Descending)});
             this.groupHeaderBand1.Level = 1;
             this.groupHeaderBand1.Name = "groupHeaderBand1";
+            this.groupHeaderBand1.RepeatEveryPage = true;
             // 
             // groupHeaderBand2
             // 

@@ -900,4 +900,7 @@
   <data name="ImportAttendance" xml:space="preserve">
     <value>Import Attendance</value>
   </data>
+  <data name="RT302" xml:space="preserve">
+    <value>Period Summary</value>
+  </data>
 </root>

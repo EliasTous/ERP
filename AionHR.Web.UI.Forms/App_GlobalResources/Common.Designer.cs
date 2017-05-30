@@ -1906,6 +1906,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Period Summary.
+        /// </summary>
+        internal static string RT302 {
+            get {
+                return ResourceManager.GetString("RT302", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Loans History.
         /// </summary>
         internal static string RT401 {

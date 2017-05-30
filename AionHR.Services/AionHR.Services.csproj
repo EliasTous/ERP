@@ -46,6 +46,7 @@
     <Compile Include="Enumerations\MasterModulesErrors.cs" />
     <Compile Include="Enumerations\SystemErrors.cs" />
     <Compile Include="Implementations\AttendanceImportingService.cs" />
+    <Compile Include="Implementations\BackgroundWork.cs" />
     <Compile Include="Implementations\BaseService.cs" />
     <Compile Include="Implementations\CaseService.cs" />
     <Compile Include="Implementations\CommonErrors.cs" />

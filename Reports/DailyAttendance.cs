@@ -65,6 +65,9 @@ public class DailyAttendance : DevExpress.XtraReports.UI.XtraReport
     private XRLine xrLine2;
     private XRLabel xrLabel19;
     private XRLabel xrLabel22;
+    private XRLabel xrLabel32;
+    private DevExpress.XtraReports.Parameters.Parameter Employee;
+    private XRLabel xrLabel31;
 
     /// <summary>
     /// Required designer variable.
@@ -165,6 +168,9 @@ public class DailyAttendance : DevExpress.XtraReports.UI.XtraReport
             this.From = new DevExpress.XtraReports.Parameters.Parameter();
             this.To = new DevExpress.XtraReports.Parameters.Parameter();
             this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
+            this.xrLabel31 = new DevExpress.XtraReports.UI.XRLabel();
+            this.Employee = new DevExpress.XtraReports.Parameters.Parameter();
+            this.xrLabel32 = new DevExpress.XtraReports.UI.XRLabel();
             ((System.ComponentModel.ISupportInitialize)(this.xrRichText1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
@@ -623,6 +629,7 @@ public class DailyAttendance : DevExpress.XtraReports.UI.XtraReport
             resources.ApplyResources(this.GroupHeader1, "GroupHeader1");
             this.GroupHeader1.Level = 1;
             this.GroupHeader1.Name = "GroupHeader1";
+            this.GroupHeader1.RepeatEveryPage = true;
             this.GroupHeader1.BeforePrint += new System.Drawing.Printing.PrintEventHandler(this.GroupHeader1_BeforePrint);
             // 
             // xrLine4
@@ -633,6 +640,8 @@ public class DailyAttendance : DevExpress.XtraReports.UI.XtraReport
             // GroupHeader2
             // 
             this.GroupHeader2.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
+            this.xrLabel32,
+            this.xrLabel31,
             this.xrLine2,
             this.xrRichText1});
             resources.ApplyResources(this.GroupHeader2, "GroupHeader2");
@@ -671,6 +680,25 @@ public class DailyAttendance : DevExpress.XtraReports.UI.XtraReport
             this.objectDataSource1.DataSource = typeof(AionHR.Model.Reports.DailyAttendance);
             this.objectDataSource1.Name = "objectDataSource1";
             // 
+            // xrLabel31
+            // 
+            resources.ApplyResources(this.xrLabel31, "xrLabel31");
+            this.xrLabel31.Name = "xrLabel31";
+            this.xrLabel31.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96F);
+            // 
+            // Employee
+            // 
+            resources.ApplyResources(this.Employee, "Employee");
+            this.Employee.Name = "Employee";
+            // 
+            // xrLabel32
+            // 
+            this.xrLabel32.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
+            new DevExpress.XtraReports.UI.XRBinding(this.Employee, "Text", "")});
+            resources.ApplyResources(this.xrLabel32, "xrLabel32");
+            this.xrLabel32.Name = "xrLabel32";
+            this.xrLabel32.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96F);
+            // 
             // DailyAttendance
             // 
             this.Bands.AddRange(new DevExpress.XtraReports.UI.Band[] {
@@ -692,7 +720,8 @@ public class DailyAttendance : DevExpress.XtraReports.UI.XtraReport
             this.Parameters.AddRange(new DevExpress.XtraReports.Parameters.Parameter[] {
             this.From,
             this.To,
-            this.User});
+            this.User,
+            this.Employee});
             this.StyleSheet.AddRange(new DevExpress.XtraReports.UI.XRControlStyle[] {
             this.Title,
             this.FieldCaption,

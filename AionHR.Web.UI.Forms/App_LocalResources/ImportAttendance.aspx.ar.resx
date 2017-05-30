@@ -246,6 +246,9 @@
   <data name="Pick" xml:space="preserve">
     <value>اختر ملف</value>
   </data>
+  <data name="preprocessing" xml:space="preserve">
+    <value>جاري التهيئة</value>
+  </data>
   <data name="TotalBreaks" xml:space="preserve">
     <value>Total Breaks</value>
   </data>
@@ -254,5 +257,8 @@
   </data>
   <data name="WindowTitle" xml:space="preserve">
     <value>Employees</value>
+  </data>
+  <data name="working" xml:space="preserve">
+    <value>جاري الحفظ</value>
   </data>
 </root>

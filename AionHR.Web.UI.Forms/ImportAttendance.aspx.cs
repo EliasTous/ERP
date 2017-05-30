@@ -28,6 +28,10 @@ using AionHR.Services.Messaging.Reports;
 using AionHR.Model.Reports;
 using AionHR.Services.Implementations;
 using AionHR.Infrastructure.Importers;
+using System.Threading;
+using AionHR.Infrastructure.Session;
+using AionHR.Infrastructure.Tokens;
+using AionHR.Repository.WebService.Repositories;
 
 namespace AionHR.Web.UI.Forms
 {
@@ -148,7 +152,7 @@ namespace AionHR.Web.UI.Forms
 
             b.dayId = dayId;
             // Define the object to add or edit as null
-            b.employeeId = GetEmployeeId(b.employeeRef);
+            b.employeeId = GetEmployeeId((EmployeeService)this._employeeService,b.employeeRef);
 
 
             //Update Mode
@@ -176,19 +180,83 @@ namespace AionHR.Web.UI.Forms
 
 
         }
+        //protected void SubmitFile(object sender, DirectEventArgs e)
+
+        //{
+        //    AttendanceImportingService service = null;
+        //    try
+        //    {
+
+
+        //        string path = MapPath("~/Temp/" + fileUpload.FileName);
+        //        fileUpload.PostedFile.SaveAs(path);
+        //        service = new AttendanceImportingService(new CSVImporter(path), _employeeService);
+        //    }
+        //    catch(Exception exp)
+
+        //    {
+        //        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+        //        X.Msg.Alert(Resources.Common.Error, exp.Message).Show();
+        //        return;
+        //    }
+        //    try
+        //    {
+        //        List<AttendanceShift> shifts= service.ImportUnvalidated(service.FileName);
+
+
+        //        Dictionary<string, string> ids = new Dictionary<string, string>();
+        //        foreach (var item in shifts)
+        //        {
+        //            if (string.IsNullOrEmpty(item.employeeRef))
+        //                continue;
+        //            if (!ids.ContainsKey(item.employeeRef))
+        //                ids.Add(item.employeeRef, GetEmployeeId(item.employeeRef));
+        //            item.employeeId = ids[item.employeeRef];
+        //        }
+        //        foreach (var item in shifts)
+        //        {
+        //            PostRequest<AttendanceShift> req = new PostRequest<AttendanceShift>();
+        //            req.entity = item;
+        //            PostResponse<AttendanceShift> resp = _timeAttendanceService.ChildAddOrUpdate<AttendanceShift>(req);
+        //            if (!resp.Success)
+        //            {
+
+
+        //                //X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+        //                //X.Msg.Alert(Resources.Common.Error, resp.Summary).Show();
+        //                //loadingWindow.Close();
+        //                //return;
+        //            }
+
+        //        }
+        //        attendanceShiftStore.DataSource = shifts;
+        //        attendanceShiftStore.DataBind();
+        //        Viewport1.ActiveIndex = 1;
+        //        X.Call("setDisable");
+        //    }
+        //    catch
+        //    {
+        //        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+        //        X.Msg.Alert(Resources.Common.Error, GetLocalResourceObject("ErrorImporting").ToString()).Show();
+
+        //        return;
+        //    }
+        //}
+
         protected void SubmitFile(object sender, DirectEventArgs e)
 
         {
             AttendanceImportingService service = null;
+            string path = "";
             try
             {
 
 
-                string path = MapPath("~/Temp/" + fileUpload.FileName);
+                path = MapPath("~/Temp/" + fileUpload.FileName);
                 fileUpload.PostedFile.SaveAs(path);
                 service = new AttendanceImportingService(new CSVImporter(path), _employeeService);
             }
-            catch(Exception exp)
+            catch (Exception exp)
 
             {
                 X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
@@ -197,53 +265,33 @@ namespace AionHR.Web.UI.Forms
             }
             try
             {
-                List<AttendanceShift> shifts= service.ImportUnvalidated(service.FileName);
+                List<AttendanceShift> shifts = service.ImportUnvalidated(service.FileName);
+
+                File.Delete(path);
 
 
-                Dictionary<string, string> ids = new Dictionary<string, string>();
-                foreach (var item in shifts)
-                {
-                    if (string.IsNullOrEmpty(item.employeeRef))
-                        continue;
-                    if (!ids.ContainsKey(item.employeeRef))
-                        ids.Add(item.employeeRef, GetEmployeeId(item.employeeRef));
-                    item.employeeId = ids[item.employeeRef];
-                }
-                foreach (var item in shifts)
-                {
-                    PostRequest<AttendanceShift> req = new PostRequest<AttendanceShift>();
-                    req.entity = item;
-                    PostResponse<AttendanceShift> resp = _timeAttendanceService.ChildAddOrUpdate<AttendanceShift>(req);
-                    if (!resp.Success)
-                    {
-                        
-                        
-                        //X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                        //X.Msg.Alert(Resources.Common.Error, resp.Summary).Show();
-                        //loadingWindow.Close();
-                        //return;
-                    }
-                 
-                }
-                attendanceShiftStore.DataSource = shifts;
-                attendanceShiftStore.DataBind();
-                Viewport1.ActiveIndex = 1;
-                X.Call("setDisable");
+                Session.Add("LongActionProgress", null);
+                
+
+                DictionarySessionStorage storage = new DictionarySessionStorage();
+                storage.Save("AccountId", _systemService.SessionHelper.Get("AccountId"));
+                storage.Save("UserId", _systemService.SessionHelper.Get("UserId"));
+                storage.Save("key", _systemService.SessionHelper.Get("Key"));
+                BackgroundWork<AttendanceShift> bw = new BackgroundWork<AttendanceShift>();
+                bw.SessionStorage = storage;
+                bw.Items = shifts;
+                ThreadPool.QueueUserWorkItem(LongAction, bw);
+                this.ResourceManager1.AddScript("{0}.startTask('longactionprogress');", this.TaskManager1.ClientID);
+
+
             }
-            catch
-            {
-                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, GetLocalResourceObject("ErrorImporting").ToString()).Show();
-
-                return;
-            }
+            catch { }
         }
-        
-        private string GetEmployeeId(string employeeRef)
+        private string GetEmployeeId(EmployeeService serv, string employeeRef)
         {
             EmployeeByReference req = new EmployeeByReference();
             req.Reference = employeeRef;
-            RecordResponse<Employee> resp = _employeeService.ChildGetRecord<Employee>(req);
+            RecordResponse<Employee> resp = serv.ChildGetRecord<Employee>(req);
             if (resp == null || resp.result == null)
                 return "";
             else
@@ -328,7 +376,7 @@ namespace AionHR.Web.UI.Forms
             string atts = e.ExtraParams["attendances"];
             List<AttendanceShift> periods = JsonConvert.DeserializeObject<List<AttendanceShift>>(atts);
 
-            
+
             int steps = periods.Count;
             int current = 0;
             int failed = 0;
@@ -349,7 +397,7 @@ namespace AionHR.Web.UI.Forms
             }
 
             loadingWindow.Close();
-            string msg = string.Format(GetLocalResourceObject("saved").ToString(), periods.Count-failed, failed);
+            string msg = string.Format(GetLocalResourceObject("saved").ToString(), periods.Count - failed, failed);
             X.Msg.Alert(Resources.Common.Error, msg).Show();
             ResetPage();
 
@@ -357,7 +405,103 @@ namespace AionHR.Web.UI.Forms
         }
 
 
+        private void LongAction(object state)
+        {
+            BackgroundWork<AttendanceShift> bw = (BackgroundWork<AttendanceShift>)state;
+            List<AttendanceShift> shifts = bw.Items;
+            if (shifts == null)
+                return;
+            int i = 0;
+            SessionHelper h = new SessionHelper(bw.SessionStorage, new APIKeyBasedTokenGenerator());
+            EmployeeService emp = new EmployeeService(new EmployeeRepository(), h);
+            Dictionary<string, string> ids = new Dictionary<string, string>();
+            Session.Add("Preporcessing", 0);
+            foreach (var item in shifts)
+            {
+                if (string.IsNullOrEmpty(item.employeeRef))
+                    continue;
+                if (!ids.ContainsKey(item.employeeRef))
+                    ids.Add(item.employeeRef, GetEmployeeId(emp, item.employeeRef));
+                item.employeeId = ids[item.employeeRef];
+                i++;
+                float percentage = ((float)i / shifts.Count);
 
+                this.Session["Preporcessing"] = (percentage);
+            }
+            this.Session["Preporcessing"] = null;
+            this.Session["LongActionProgress"] = 0;
+            List<AttendanceShift> errors = new List<AttendanceShift>();
+            TimeAttendanceService service = new TimeAttendanceService(h, new TimeAttendanceRepository());
+            i = 0;
+            foreach (var item in shifts)
+            {
+                PostRequest<AttendanceShift> req = new PostRequest<AttendanceShift>();
+                req.entity = item;
+                //Thread.Sleep(10);
+                PostResponse<AttendanceShift> resp = service.ChildAddOrUpdate<AttendanceShift>(req);
+                if (!resp.Success)
+                {
+                    errors.Add(item);
+                }
+                i++;
+                float percentage = ((float)i / shifts.Count);
+
+                this.Session["LongActionProgress"] = (percentage);
+
+            }
+            StringBuilder b = new StringBuilder();
+            foreach (var error in errors)
+            {
+                b.Append(error.employeeRef + "," + error.dayId + "," + error.checkIn + "," + error.checkOut + "\n");
+
+            }
+            string csv = b.ToString();
+            this.Session.Add("result", csv);
+            this.Session.Remove("LongActionProgress");
+
+        }
+        protected void RefreshProgress(object sender, DirectEventArgs e)
+        {
+            object progress = _systemService.SessionHelper.Get("LongActionProgress");
+            object prep = _systemService.SessionHelper.Get("Preporcessing");
+            if (prep != null)
+            {
+                string prog = (float.Parse(prep.ToString()) * 100).ToString();
+                this.Progress1.UpdateProgress(float.Parse(prep.ToString()), string.Format(GetLocalResourceObject("preprocessing").ToString()+" {0}%", (int)(float.Parse(prep.ToString()) * 100)));
+            }
+            else
+            if (progress != null)
+            {
+                string prog = (float.Parse(progress.ToString()) * 100).ToString();
+                this.Progress1.UpdateProgress(float.Parse(progress.ToString()), string.Format(GetLocalResourceObject("working").ToString()+" {0}%", (int)(float.Parse(progress.ToString()) * 100)));
+            }
+            else if (Session["result"] != null)
+            {
+
+                string attachment = "attachment; filename=MyCsvLol.csv";
+                //HttpContext.Current.Response.Clear();
+                //HttpContext.Current.Response.ClearHeaders();
+                //HttpContext.Current.Response.ClearContent();
+                HttpContext.Current.Response.AddHeader("content-disposition", attachment);
+                HttpContext.Current.Response.ContentType = "application/octet-stream";
+                HttpContext.Current.Response.AddHeader("Pragma", "public");
+                string content = this.Session["result"].ToString();
+                HttpContext.Current.Response.ClearContent();
+                HttpContext.Current.Response.Write(content);
+                this.Session["result"] = null;
+                HttpContext.Current.Response.Flush();
+                Session.Add("errors", content.Split('\n').Length.ToString());
+                Response.Close();
+                
+            }
+            else 
+            {
+                this.ResourceManager1.AddScript("{0}.stopTask('longactionprogress');", this.TaskManager1.ClientID);
+                this.Progress1.UpdateProgress(100, "All finished!");
+                fileUpload.Clear();
+                X.Msg.Alert("", "total of " + Session["errors"].ToString() + " were found");
+            }
+        }
 
 
 

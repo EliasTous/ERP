@@ -31,6 +31,7 @@ namespace AionHR.Repository.WebService.Repositories
             ChildGetAllLookup.Add(typeof(RT203), "RT203");
 
             ChildGetAllLookup.Add(typeof(RT301), "RT301");
+            ChildGetAllLookup.Add(typeof(RT302), "RT302");
 
             ChildGetAllLookup.Add(typeof(RT401), "RT401");
 

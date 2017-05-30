@@ -340,6 +340,7 @@ namespace Reports
             this.xrLine2});
             resources.ApplyResources(this.groupHeaderBand2, "groupHeaderBand2");
             this.groupHeaderBand2.Name = "groupHeaderBand2";
+            this.groupHeaderBand2.RepeatEveryPage = true;
             this.groupHeaderBand2.StyleName = "FieldCaption";
             this.groupHeaderBand2.BeforePrint += new System.Drawing.Printing.PrintEventHandler(this.groupHeaderBand1_BeforePrint);
             // 

@@ -68,11 +68,12 @@
                         <ext:Panel runat="server" Flex="2">
                             <Items>
                                  <ext:Label MarginSpec="0 0 0 0" runat="server" Text="<%$ Resources: Pick %>" Width="400" />
-                        <ext:FileUploadField runat="server" ID="fileUpload" Width="400" >
+                        <ext:FileUploadField runat="server" ID="fileUpload" Width="400" ButtonText="<%$ Resources: Pick %>" >
                             <Listeners>
                                 <Change Handler="validateFile(App.fileUpload.fileInputEl.id);" />
                             </Listeners>
                             </ext:FileUploadField>
+                                <ext:ProgressBar ID="Progress1" runat="server" Width="300" Visible="true" />
                             </Items>
                         </ext:Panel>
                        
@@ -293,7 +294,26 @@
                     </Listeners>
                 </ext:Button>
             </Buttons>
+
         </ext:Window>
+        
+
+        <ext:TaskManager ID="TaskManager1" runat="server">
+            <Tasks>
+                <ext:Task
+                    TaskID="longactionprogress"
+                    Interval="1000"
+                    AutoRun="false"
+                    OnStart="
+                        #{Progress1}.setVisible(true);"
+                    OnStop="
+                        #{Progress1}.setVisible(false);">
+                    <DirectEvents>
+                        <Update OnEvent="RefreshProgress" IsUpload="true" />
+                    </DirectEvents>
+                </ext:Task>
+            </Tasks>
+        </ext:TaskManager>
                 <ext:Window
             ID="loadingWindow"
             runat="server"

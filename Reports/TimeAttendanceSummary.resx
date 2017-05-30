@@ -256,7 +256,7 @@
     <value>0.8273918, 0</value>
   </data>
   <data name="xrLine3.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>3399.17, 2</value>
+    <value>530.17, 2</value>
   </data>
   <data name="xrLabel6.Dpi" type="System.Single, mscorlib">
     <value>100</value>
@@ -301,7 +301,7 @@
     <value>0.8275031, 94.9011</value>
   </data>
   <data name="xrLine1.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>3399.17, 2</value>
+    <value>530.17, 2</value>
   </data>
   <data name="xrLabel14.Dpi" type="System.Single, mscorlib">
     <value>100</value>
@@ -394,7 +394,7 @@
     <value>100</value>
   </data>
   <data name="Detail3.HeightF" type="System.Single, mscorlib">
-    <value>96.9011154</value>
+    <value>96.984436</value>
   </data>
   <metadata name="objectDataSource1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
@@ -510,6 +510,33 @@
   <data name="DetailReport3.Dpi" type="System.Single, mscorlib">
     <value>100</value>
   </data>
+  <data name="Employee.Description" xml:space="preserve">
+    <value>Parameter1</value>
+  </data>
+  <data name="xrLabel25.Dpi" type="System.Single, mscorlib">
+    <value>100</value>
+  </data>
+  <data name="xrLabel25.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v16.2">
+    <value>483.333344, 0</value>
+  </data>
+  <data name="xrLabel25.SizeF" type="System.Drawing.SizeF, System.Drawing">
+    <value>258.3334, 23</value>
+  </data>
+  <data name="xrLabel25.Text" xml:space="preserve">
+    <value>xrLabel25</value>
+  </data>
+  <data name="xrLabel24.Dpi" type="System.Single, mscorlib">
+    <value>100</value>
+  </data>
+  <data name="xrLabel24.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v16.2">
+    <value>400.827454, 0</value>
+  </data>
+  <data name="xrLabel24.SizeF" type="System.Drawing.SizeF, System.Drawing">
+    <value>82.50589, 23</value>
+  </data>
+  <data name="xrLabel24.Text" xml:space="preserve">
+    <value>Employee</value>
+  </data>
   <data name="xrLine2.Dpi" type="System.Single, mscorlib">
     <value>100</value>
   </data>
@@ -517,7 +544,7 @@
     <value>0.827407837, 22.9999866</value>
   </data>
   <data name="xrLine2.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>3399.17261, 11.3750134</value>
+    <value>3399.17261, 11.3799992</value>
   </data>
   <data name="Month.Description" xml:space="preserve">
     <value>Parameter1</value>
@@ -550,7 +577,7 @@
     <value>100</value>
   </data>
   <data name="PageHeader.HeightF" type="System.Single, mscorlib">
-    <value>34.3750153</value>
+    <value>34.3799858</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>

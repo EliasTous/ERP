@@ -26,6 +26,7 @@ using AionHR.Services.Messaging.Reports;
 using System.Threading;
 using Reports;
 using AionHR.Model.Reports;
+using AionHR.Model.Employees.Profile;
 
 namespace AionHR.Web.UI.Forms.Reports
 {
@@ -35,6 +36,7 @@ namespace AionHR.Web.UI.Forms.Reports
         ITimeAttendanceService _timeAttendanceService = ServiceLocator.Current.GetInstance<ITimeAttendanceService>();
         ICompanyStructureService _companyStructureService = ServiceLocator.Current.GetInstance<ICompanyStructureService>();
         IReportsService _reportsService = ServiceLocator.Current.GetInstance<IReportsService>();
+        IEmployeeService _employeeService = ServiceLocator.Current.GetInstance<IEmployeeService>();
         protected override void InitializeCulture()
         {
 
@@ -146,7 +148,38 @@ namespace AionHR.Web.UI.Forms.Reports
             }
             else return "1";
         }
+        [DirectMethod]
+        public object FillEmployee(string action, Dictionary<string, object> extraParams)
+        {
+            StoreRequestParameters prms = new StoreRequestParameters(extraParams);
+            List<Employee> data = GetEmployeesFiltered(prms.Query);
+            data.ForEach(s => { s.fullName = s.name.fullName; });
+            //  return new
+            // {
+            return data;
+        }
 
+        private List<Employee> GetEmployeesFiltered(string query)
+        {
+
+            EmployeeListRequest req = new EmployeeListRequest();
+            req.DepartmentId = "0";
+            req.BranchId = "0";
+            req.IncludeIsInactive = 2;
+            req.SortBy = GetNameFormat();
+
+            req.StartAt = "1";
+            req.Size = "20";
+            req.Filter = query;
+
+            ListResponse<Employee> response = _employeeService.GetAll<Employee>(req);
+            return response.Items;
+        }
+
+        private string GetNameFormat()
+        {
+            return _systemService.SessionHelper.Get("nameFormat").ToString();
+        }
 
         private ReportCompositeRequest GetRequest()
         {
@@ -157,6 +190,7 @@ namespace AionHR.Web.UI.Forms.Reports
 
 
             req.Add(dateRange1.GetRange());
+            req.Add(employeeCombo1.GetEmployee());
             return req;
         }
 
@@ -205,7 +239,14 @@ namespace AionHR.Web.UI.Forms.Reports
             h.Parameters["From"].Value = DateTime.Parse(req.Parameters["_fromDate"]).ToString(_systemService.SessionHelper.GetDateformat());
             h.Parameters["To"].Value = DateTime.Parse(req.Parameters["_toDate"]).ToString(_systemService.SessionHelper.GetDateformat());
             h.Parameters["User"].Value = _systemService.SessionHelper.GetCurrentUser();
+            if (resp.Items.Count > 0)
+            {
 
+                if (req.Parameters["_employeeId"] != "0")
+                    h.Parameters["Employee"].Value = resp.Items[0].name.fullName;
+                else
+                    h.Parameters["Employee"].Value = GetGlobalResourceObject("Common", "All");
+            }
             h.CreateDocument();
 
 
