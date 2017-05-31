@@ -226,7 +226,7 @@
     <value>معلومات نهاية الإجازة</value>
   </data>
   <data name="TotalText" xml:space="preserve">
-    <value>المجموع</value>
+    <value>مجموع الساعات</value>
   </data>
   <data name="WindowTitle" xml:space="preserve">
     <value>طلبات الإجازة</value>

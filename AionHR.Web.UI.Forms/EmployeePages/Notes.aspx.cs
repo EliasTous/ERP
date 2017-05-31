@@ -95,7 +95,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             PostRequest<EmployeeNote> req = new PostRequest<EmployeeNote>();
             EmployeeNote note = new EmployeeNote();
             //note.recordId = id;
-            note.employeeId = Convert.ToInt32(CurrentEmployee.Text);
+            note.employeeId =CurrentEmployee.Text;
             note.note = noteText;
             note.recordId = "";
             note.date = DateTime.Now;
@@ -192,7 +192,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                 n.recordId = index;
                 n.note = "";
                 n.date = DateTime.Now;
-                n.employeeId = Convert.ToInt32(CurrentEmployee.Text);
+                n.employeeId =CurrentEmployee.Text;
                 
                 PostRequest<EmployeeNote> req = new PostRequest<EmployeeNote>();
                 req.entity = n;
@@ -282,7 +282,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             PostRequest<EmployeeNote> req = new PostRequest<EmployeeNote>();
             EmployeeNote note = JsonConvert.DeserializeObject<List<EmployeeNote>>(obj)[0];
             //note.recordId = id;
-            note.employeeId = Convert.ToInt32(CurrentEmployee.Text);
+            note.employeeId = CurrentEmployee.Text;
             note.note = values["note"].ToString();
             int bulk;
           

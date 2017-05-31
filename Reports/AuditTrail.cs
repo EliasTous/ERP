@@ -239,6 +239,7 @@ public class AuditTrail : DevExpress.XtraReports.UI.XtraReport
             // 
             resources.ApplyResources(this.username, "username");
             this.username.Name = "username";
+            this.username.ValueInfo = "All";
             this.username.Visible = false;
             // 
             // xrPageInfo1
@@ -389,30 +390,35 @@ public class AuditTrail : DevExpress.XtraReports.UI.XtraReport
             // 
             resources.ApplyResources(this.From, "From");
             this.From.Name = "From";
+            this.From.ValueInfo = "All";
             this.From.Visible = false;
             // 
             // To
             // 
             resources.ApplyResources(this.To, "To");
             this.To.Name = "To";
+            this.To.ValueInfo = "All";
             this.To.Visible = false;
             // 
             // User
             // 
             resources.ApplyResources(this.User, "User");
             this.User.Name = "User";
+            this.User.ValueInfo = "All";
             this.User.Visible = false;
             // 
             // Module
             // 
             resources.ApplyResources(this.Module, "Module");
             this.Module.Name = "Module";
+            this.Module.ValueInfo = "All";
             this.Module.Visible = false;
             // 
             // TrType
             // 
             resources.ApplyResources(this.TrType, "TrType");
             this.TrType.Name = "TrType";
+            this.TrType.ValueInfo = "All";
             this.TrType.Visible = false;
             // 
             // PageHeader

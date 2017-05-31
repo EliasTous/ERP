@@ -159,6 +159,12 @@
   <data name="FieldState" xml:space="preserve">
     <value>المنطقة</value>
   </data>
+  <data name="FieldStreet1" xml:space="preserve">
+    <value>شارع 1</value>
+  </data>
+  <data name="FieldStreet2" xml:space="preserve">
+    <value>شارع 2</value>
+  </data>
   <data name="FieldTimeZone" xml:space="preserve">
     <value>المنطقة الزمنية</value>
   </data>

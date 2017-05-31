@@ -15,20 +15,20 @@ using System.Threading.Tasks;
 
 namespace AionHR.Services.Implementations
 {
-    public class AttendanceBatchRunner : BatchRunner<AttendanceShift>
+    public class AttendanceBatchRunner : ImportBatchRunner<AttendanceShift>
 
     {
-        ITimeAttendanceService _timeAttendanceService;
+ 
        
         IEmployeeService _employeeService;
 
-        private List<AttendanceShift> errors;
+        
 
-        public AttendanceBatchRunner(ISessionStorage store, ITimeAttendanceService attendance, ISystemService system, IEmployeeService employee):base(system)
+        public AttendanceBatchRunner(ISessionStorage store, ITimeAttendanceService attendance, ISystemService system, IEmployeeService employee):base(system,attendance)
         {
             this.SessionStore = store;
             SessionHelper h = new SessionHelper(store, new APIKeyBasedTokenGenerator());
-            this._timeAttendanceService = attendance;
+            
             
             this._employeeService = employee;
             BatchStatus = new BatchOperationStatus() { classId = ClassId.TAAS, processed = 0, tableSize = 0, status = 0 };
@@ -52,28 +52,18 @@ namespace AionHR.Services.Implementations
         protected override void PostProcessElements()
         {
             StringBuilder b = new StringBuilder();
-            foreach (var error in errors)
+            foreach (var error in  errors)
             {
                 b.Append(error.employeeRef + "," + error.dayId + "," + error.checkIn + "," + error.checkOut + "\n");
 
             }
             string csv = b.ToString();
-            string path = "C:/BatchOutput/" + BatchStatus.classId.ToString() + ".csv";
+            string path = OutputPath + BatchStatus.classId.ToString() + ".csv";
           
             
             File.WriteAllText(path, csv.ToString());
         }
-        protected override void ProcessElement(AttendanceShift item)
-        {
-            PostRequest<AttendanceShift> req = new PostRequest<AttendanceShift>();
-            req.entity = item;
-            //Thread.Sleep(10);
-            PostResponse<AttendanceShift> resp = _timeAttendanceService.ChildAddOrUpdate<AttendanceShift>(req);
-            if (!resp.Success)
-            {
-                errors.Add(item);
-            }
-        }
+      
         private string GetEmployeeId( string employeeRef)
         {
             EmployeeByReference req = new EmployeeByReference();

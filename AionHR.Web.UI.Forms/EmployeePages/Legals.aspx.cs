@@ -70,6 +70,8 @@ namespace AionHR.Web.UI.Forms.EmployeePages
 
                 bool disabled = EmployeeTerminated.Text == "1";
                 btnAdd.Disabled = Button1.Disabled = SaveBCButton.Disabled = SaveRWButton.Disabled = disabled;
+
+           
             }
         }
 
@@ -680,8 +682,8 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                         }
                         EmployeeRightToWork rw = GetRWById(b.recordId);
                         ModelProxy record = this.rightToWorkStore.GetById(id);
-                        record.Set("expiryDate", rw.expiryDate);
-                        record.Set("issueDate", rw.issueDate);
+                        record.Set("expireDateFormatted", rw.expireDateFormatted);
+                        record.Set("issueDateFormatted", rw.issueDateFormatted);
                         record.Set("fileUrl", rw.fileUrl);
                         record.Set("documentRef", rw.documentRef);
                         record.Set("dtId", rw.dtId);

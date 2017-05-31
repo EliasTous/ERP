@@ -330,13 +330,13 @@
                             BodyPadding="5"> 
                             <Items>
                                 <ext:TextField runat="server" Name="addressId" ID="addressId" Hidden="true" Disabled="true" />
-                                        <ext:TextField runat="server" Name="street1" AllowBlank="true" ID="costreet1" FieldLabel="<%$ Resources:FieldCStreet1%>" >
+                                        <ext:TextField runat="server" Name="street1" AllowBlank="true" ID="costreet1" FieldLabel="<%$ Resources:FieldStreet1%>" >
                                             <Listeners>
                                                 <Change Handler="if(this.value=='') setNullable(true); else setNullable(false);" />
                                             </Listeners>
                                             </ext:TextField>
                                              
-                                        <ext:TextField runat="server" Name="street2" AllowBlank="true" ID="street2" FieldLabel="<%$ Resources:FieldCStreet2%>" />
+                                        <ext:TextField runat="server" Name="street2" AllowBlank="true" ID="street2" FieldLabel="<%$ Resources:FieldStreet2%>" />
                                         <ext:TextField runat="server" Name="city" AllowBlank="true" ID="city" FieldLabel="<%$ Resources:FieldCCity%>" >
                                             <Listeners>
                                                 <Change Handler="if(this.value=='') setNullable(true); else setNullable(false);" />

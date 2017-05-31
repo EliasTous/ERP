@@ -58,8 +58,11 @@
     <ext:Hidden runat="server" ID="systTitle" Text="<%$Resources:Common , States %>" />
     <ext:Hidden runat="server" ID="loansync" Text="<%$Resources:Common , LoanSync %>" />
     <ext:Hidden runat="server" ID="importAt" Text="<%$Resources:Common , ImportAttendance %>" />
+    <ext:Hidden runat="server" ID="importLoansTitle" Text="<%$Resources:Common , ImportLoans %>" />
+    <ext:Hidden runat="server" ID="importLeavesTitle" Text="<%$Resources:Common , ImportLeaves %>" />
+    <ext:Hidden runat="server" ID="importNotesTitle" Text="<%$Resources:Common , ImportNotes %>" />
 
-   
+
     <ext:Hidden runat="server" ID="aaTitle" Text="<%$Resources:Common , SystemAlerts %>" />
     <ext:Hidden runat="server" ID="ttTitle" Text="<%$Resources:Common , TaskTypes %>" />
     <ext:Hidden runat="server" ID="TrType1" Text="<%$Resources:Common , TrType1 %>" />
@@ -81,7 +84,7 @@
                     <ext:Container runat="server">
                         <Content>
                             <div class="logoImage">
-                                <img src="Images/logo-light.png" style="margin-top:20px;margin-left:5px;margin-right:5px;"  width="73" height="20" />
+                                <img src="Images/logo-light.png" style="margin-top: 20px; margin-left: 5px; margin-right: 5px;" width="73" height="20" />
                             </div>
                             <div class="title">
                                 <asp:Literal ID="Literal3" runat="server" Text="<%$ Resources:Common ,ApplicationModule%>" /><asp:Literal ID="CompanyNameLiteral" runat="server" Text="" /></span>
@@ -174,13 +177,27 @@
                                                                 <Click Handler="openNewTab('loanTypes', 'LoanTypes.aspx', #{ltltTitle}.value, 'icon-Employees')" />
                                                             </Listeners>
                                                         </ext:MenuItem>
-                                                       
+
                                                         <ext:MenuItem runat="server" Text="<%$Resources: Common , TaskTypes%>">
                                                             <Listeners>
                                                                 <Click Handler="openNewTab('taskTypes', 'TaskTypes.aspx', #{ttTitle}.value, 'icon-Employees')" />
                                                             </Listeners>
                                                         </ext:MenuItem>
-
+                                                        <ext:MenuItem runat="server" Text="<%$Resources: Common , ImportLoans %>">
+                                                            <Listeners>
+                                                                <Click Handler="openNewTab('importLoans', 'ImportLoans.aspx', #{importLoansTitle}.value, 'icon-Employees')" />
+                                                            </Listeners>
+                                                        </ext:MenuItem>
+                                                        <ext:MenuItem runat="server" Text="<%$Resources: Common , ImportLeaves%>">
+                                                            <Listeners>
+                                                                <Click Handler="openNewTab('importLeaves', 'ImportLeaves.aspx', #{importLeavesTitle}.value, 'icon-Employees')" />
+                                                            </Listeners>
+                                                        </ext:MenuItem>
+                                                        <ext:MenuItem runat="server" Text="<%$Resources: Common , ImportNotes%>">
+                                                            <Listeners>
+                                                                <Click Handler="openNewTab('importNotes', 'ImportEmployeeNotes.aspx', #{importNotesTitle}.value, 'icon-Employees')" />
+                                                            </Listeners>
+                                                        </ext:MenuItem>
                                                     </Items>
                                                 </ext:Menu>
                                             </Menu>
@@ -325,7 +342,7 @@
                                                                                 <Click Handler="openNewTab('Geofences', 'Geofences.aspx', #{gfTitle}.value, 'icon-Employees')" />
                                                                             </Listeners>
                                                                         </ext:MenuItem>
-                                                                            <ext:MenuItem runat="server"   Text="<%$Resources: Common , ImportAttendance%>">
+                                                                        <ext:MenuItem runat="server" Text="<%$Resources: Common , ImportAttendance%>">
                                                                             <Listeners>
                                                                                 <Click Handler="openNewTab('Import', 'ImportAttendance.aspx',#{importAt}.value , 'icon-Employees')" />
                                                                             </Listeners>
@@ -338,7 +355,7 @@
                                                             <Menu>
                                                                 <ext:Menu runat="server">
                                                                     <Items>
-                                                                        <ext:MenuItem   runat="server" Text="<%$Resources: Common , VacationSchedules%>">
+                                                                        <ext:MenuItem runat="server" Text="<%$Resources: Common , VacationSchedules%>">
                                                                             <Listeners>
                                                                                 <Click Handler="openNewTab('VacationSchedules', 'VacationSchedules.aspx', #{vsTitle}.value, 'icon-Employees')" />
                                                                             </Listeners>
@@ -357,30 +374,31 @@
                                                 </ext:Menu>
                                             </Menu>
                                         </ext:MenuItem>
-                                        <ext:MenuItem runat="server" Text="<%$ Resources:Common , Payroll %>" >
+                                        <ext:MenuItem runat="server" Text="<%$ Resources:Common , Payroll %>">
                                             <Menu>
                                                 <ext:Menu runat="server">
                                                     <Items>
-                                                        <ext:MenuItem runat="server"  Text="<%$Resources: Common , PayrollDefaults%>">
+                                                        <ext:MenuItem runat="server" Text="<%$Resources: Common , PayrollDefaults%>">
                                                             <Listeners>
                                                                 <Click Handler="openNewTab('payrollDefaults', 'PayrollDefaults.aspx', #{pyde}.value, 'icon-Employees')" />
                                                             </Listeners>
                                                         </ext:MenuItem>
-                                                         <ext:MenuItem runat="server" Text="<%$Resources: Common , LoanOverrides%>">
+                                                        <ext:MenuItem runat="server" Text="<%$Resources: Common , LoanOverrides%>">
                                                             <Listeners>
                                                                 <Click Handler="openNewTab('loanOverrides', 'LoanOverrides.aspx', #{loTitle}.value, 'icon-Employees')" />
                                                             </Listeners>
                                                         </ext:MenuItem>
-                                                         <ext:MenuItem runat="server" Text="<%$Resources: Common , FiscalYears%>">
+                                                        <ext:MenuItem runat="server" Text="<%$Resources: Common , FiscalYears%>">
                                                             <Listeners>
                                                                 <Click Handler="openNewTab('fiscalYears', 'FiscalYears.aspx', #{pyye}.value, 'icon-Employees')" />
                                                             </Listeners>
                                                         </ext:MenuItem>
-                                                           <ext:MenuItem runat="server" Text="<%$Resources: Common , LoanSync%>" >
+                                                        <ext:MenuItem runat="server" Text="<%$Resources: Common , LoanSync%>">
                                                             <DirectEvents>
                                                                 <Click OnEvent="SyncLoanDeductions" />
                                                             </DirectEvents>
                                                         </ext:MenuItem>
+
                                                     </Items>
                                                 </ext:Menu>
                                             </Menu>

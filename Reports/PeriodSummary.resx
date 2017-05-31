@@ -487,7 +487,7 @@
     <value>100</value>
   </data>
   <data name="xrPageInfo1.Format" xml:space="preserve">
-    <value>{0:yyyy-MM-dd H:mm}</value>
+    <value>{0:MM/dd/yyyy - h:mm tt}</value>
   </data>
   <data name="xrPageInfo1.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v16.2">
     <value>8.08334351, 164.749969</value>

@@ -10,8 +10,10 @@ namespace AionHR.Model.LoadTracking
 {
     public class Loan:ModelBase,IEntity
     {
-        public int employeeId { get; set; }
-        public int ltId { get; set; }
+        public string employeeId { get; set; }
+
+        public string employeeRef { get; set; }
+        public int? ltId { get; set; }
         public string loanRef { get; set; }
         public DateTime date { get; set; }
         public int currencyId { get; set; }

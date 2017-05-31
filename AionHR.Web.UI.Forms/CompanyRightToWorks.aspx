@@ -207,8 +207,8 @@
                             
                             <ext:Column ID="Column2" Visible="true" DataIndex="documentRef" Text="<%$ Resources: FieldDocumentRef%>" runat="server"  Flex="1"/>
                             <ext:Column ID="Column3" Visible="true" DataIndex="remarks" Text="<%$ Resources: FieldRemarks%>" runat="server"  Flex="1"/>
-                            <ext:DateColumn  Visible="true" ID="DateColumn1" DataIndex="issueDateFormatted" Text="<%$ Resources: FieldIssueDate%>" runat="server" width="100"/>
-                            <ext:DateColumn Visible="true" ID="DateColumn2" DataIndex="expireDateFormatted" Text="<%$ Resources: FieldExpiryDate%>" runat="server" width="100"/>
+                            <ext:Column  Visible="true" ID="DateColumn1" DataIndex="issueDateFormatted" Text="<%$ Resources: FieldIssueDate%>" runat="server" width="100"/>
+                            <ext:Column Visible="true" ID="DateColumn2" DataIndex="expireDateFormatted" Text="<%$ Resources: FieldExpiryDate%>" runat="server" width="100"/>
                                                        
 
                            <ext:Column runat="server"
@@ -452,7 +452,7 @@
                                 <ext:DateField ID="expiryDate" runat="server" FieldLabel="<%$ Resources:FieldExpiryDate%>" Name="expiryDate"  />                               
 
 
-                                <ext:FileUploadField runat="server" ID="rwFile" FieldLabel="<%$ Resources:FieldFile%>" />
+                                <ext:FileUploadField runat="server" ID="rwFile" FieldLabel="<%$ Resources:FieldFile%>" AllowBlank="false"    />
 
 
                             </Items>

@@ -141,12 +141,6 @@
   <data name="FieldCPostalCode" xml:space="preserve">
     <value>Postal Code</value>
   </data>
-  <data name="FieldCStreet1" xml:space="preserve">
-    <value>Street 1</value>
-  </data>
-  <data name="FieldCStreet2" xml:space="preserve">
-    <value>Street 2</value>
-  </data>
   <data name="FieldIsInactive" xml:space="preserve">
     <value>Is Inactive?</value>
   </data>
@@ -164,6 +158,12 @@
   </data>
   <data name="FieldState" xml:space="preserve">
     <value>State</value>
+  </data>
+  <data name="FieldStreet1" xml:space="preserve">
+    <value>Street 1</value>
+  </data>
+  <data name="FieldStreet2" xml:space="preserve">
+    <value>Street 2</value>
   </data>
   <data name="FieldTimeZone" xml:space="preserve">
     <value>Time Zone</value>

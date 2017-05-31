@@ -277,8 +277,8 @@ namespace AionHR.Web.UI.Forms
             {
 
 
-                path = MapPath("~/Temp/" + fileUpload.FileName);
-
+                path = MapPath("~/Imports/" + _systemService.SessionHelper.Get("AccountId") + "/" + fileUpload.FileName);
+                Directory.CreateDirectory(MapPath("~/Imports/" + _systemService.SessionHelper.Get("AccountId") + "/"));
                 fileUpload.PostedFile.SaveAs(path);
                 service = new AttendanceImportingService(new CSVImporter(path), _employeeService);
                 fileUpload.Reset();
@@ -319,7 +319,7 @@ namespace AionHR.Web.UI.Forms
                 EmployeeService emp = new EmployeeService(new EmployeeRepository(), h);
                 TimeAttendanceService _timeAtt = new TimeAttendanceService(h, new TimeAttendanceRepository());
                 SystemService _system = new SystemService(new SystemRepository(), h);
-                AttendanceBatchRunner runner = new AttendanceBatchRunner(storage, _timeAtt, _system, emp) { Items = shifts };
+                AttendanceBatchRunner runner = new AttendanceBatchRunner(storage, _timeAtt, _system, emp) { Items = shifts, OutputPath= MapPath("~/Imports/" + _systemService.SessionHelper.Get("AccountId") + "/") };
                 runner.Process();
                 this.ResourceManager1.AddScript("{0}.startTask('longactionprogress');", this.TaskManager1.ClientID);
 
@@ -549,7 +549,7 @@ namespace AionHR.Web.UI.Forms
             HttpContext.Current.Response.AddHeader("content-disposition", attachment);
             HttpContext.Current.Response.ContentType = "application/octet-stream";
             HttpContext.Current.Response.AddHeader("Pragma", "public");
-            string content = File.ReadAllText("C:/BatchOutput/" + ClassId.TAAS.ToString() + ".csv");
+            string content = File.ReadAllText(MapPath("~/Imports/" + _systemService.SessionHelper.Get("AccountId") + "/" + ClassId.TAAS.ToString() + ".csv"));
             HttpContext.Current.Response.ClearContent();
             HttpContext.Current.Response.Write(content);
             PostRequest<BatchOperationStatus> req = new PostRequest<BatchOperationStatus>();

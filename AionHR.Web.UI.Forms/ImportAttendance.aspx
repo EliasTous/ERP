@@ -9,7 +9,7 @@
     <title></title>
     <link rel="stylesheet" type="text/css" href="CSS/Common.css" />
     <link rel="stylesheet" href="CSS/LiveSearch.css" />
-    <script src="../Scripts/jquery-new.js"></script>
+    <script src="Scripts/jquery-new.js"></script>
     <script type="text/javascript" src="Scripts/moment.js"></script>
 
     <script type="text/javascript" src="Scripts/common.js"></script>
@@ -70,6 +70,7 @@
                         <ext:Panel runat="server" Flex="1" />
                         <ext:Panel runat="server" Flex="2">
                             <Items>
+                                <ext:Panel  runat="server" Flex="1" Height="200" />
                                 <ext:Label MarginSpec="0 0 0 0" runat="server" Text="<%$ Resources: Pick %>" Width="400" />
                                 <ext:FileUploadField runat="server" ID="fileUpload" Width="400" ButtonText="<%$ Resources: Pick %>">
                                     <Listeners>
@@ -118,7 +119,7 @@
                         <ext:Panel runat="server" Flex="1" />
                         <ext:Panel runat="server" Flex="2">
                             <Items>
-
+                                 <ext:Panel  runat="server" Flex="1" Height="200" />
                                 <ext:ProgressBar ID="Progress1" runat="server" Width="300" Visible="true" />
                                 <ext:Button runat="server" Text="<%$Resources:Import %>" ID="beginOperation" Disabled="true" MarginSpec="0 0 0 120">
                                     <Listeners>
@@ -136,14 +137,20 @@
 
                     <Items>
                         <ext:Panel runat="server" Flex="1" />
-                        <ext:Panel runat="server" Flex="2">
+                        <ext:Panel runat="server" Flex="2" Layout="VBoxLayout">
                             <Items>
-                                <ext:Label runat="server" Text="<%$Resources:ResultReady %>" />
-                                <ext:Button runat="server" Icon="DiskDownload" Text="<%$Resources:Download %>">
+                                <ext:Panel  runat="server" Flex="1" Height="200" />
+                                <ext:Panel  runat="server" Flex="2" ><Items>
+                                     <ext:Label runat="server" Text="<%$Resources:ResultReady %>" />
+                                    <ext:Panel runat="server" Height="20" />
+                                    <ext:Button runat="server" Icon="DiskDownload" Text="<%$Resources:Download %>"  MarginSpec="0 0 0 90" >
                                     <DirectEvents>
                                         <Click OnEvent="DownloadResult" />
                                     </DirectEvents>
-                                </ext:Button>
+                                </ext:Button></Items></ext:Panel>
+                               
+                                
+                                
                             </Items>
                         </ext:Panel>
 

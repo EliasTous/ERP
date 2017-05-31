@@ -382,6 +382,33 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Hidden importAt;
         
         /// <summary>
+        /// importLoansTitle control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Hidden importLoansTitle;
+        
+        /// <summary>
+        /// importLeavesTitle control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Hidden importLeavesTitle;
+        
+        /// <summary>
+        /// importNotesTitle control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Hidden importNotesTitle;
+        
+        /// <summary>
         /// aaTitle control.
         /// </summary>
         /// <remarks>

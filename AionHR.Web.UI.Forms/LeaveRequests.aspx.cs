@@ -361,7 +361,7 @@ namespace AionHR.Web.UI.Forms
             //in this test will take a list of News
             LeaveRequestListRequest request = GetFilteredRequest();
 
-            request.Size = "50";
+            request.Size = "2000";
             request.StartAt = "1";
             request.SortBy = "firstName";
 
@@ -452,7 +452,7 @@ namespace AionHR.Web.UI.Forms
                 LeaveRequest s = new LeaveRequest();
                 s.recordId = index;
                 s.destination = "";
-                s.employeeId = 0;
+                s.employeeId = "0";
                 s.endDate = DateTime.Now;
                 s.startDate = DateTime.Now;
                 s.status = 0;

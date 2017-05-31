@@ -108,7 +108,7 @@ namespace AionHR.Web.UI.Forms.Controls
             ltId.Select(response.result.ltId.ToString());
             status.Select(response.result.status.ToString());
             StoredLeaveChanged.Text = "0";
-            if (response.result.employeeId != 0)
+            if (response.result.employeeId != "0"  )
             {
 
                 employeeId.GetStore().Add(new object[]

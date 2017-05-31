@@ -235,6 +235,9 @@
     <Content Include="Images\Tools\expand-all.gif" />
     <Content Include="Images\Tools\group.png" />
     <Content Include="ImportAttendance.aspx" />
+    <Content Include="ImportEmployeeNotes.aspx" />
+    <Content Include="ImportLeaves.aspx" />
+    <Content Include="ImportLoans.aspx" />
     <Content Include="LeaveCalendar.aspx" />
     <Content Include="LeaveRequests.aspx" />
     <Content Include="LeaveTypes.aspx" />
@@ -632,6 +635,27 @@
     </Compile>
     <Compile Include="ImportAttendance.aspx.designer.cs">
       <DependentUpon>ImportAttendance.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ImportEmployeeNotes.aspx.cs">
+      <DependentUpon>ImportEmployeeNotes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ImportEmployeeNotes.aspx.designer.cs">
+      <DependentUpon>ImportEmployeeNotes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ImportLeaves.aspx.cs">
+      <DependentUpon>ImportLeaves.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ImportLeaves.aspx.designer.cs">
+      <DependentUpon>ImportLeaves.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ImportLoans.aspx.cs">
+      <DependentUpon>ImportLoans.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ImportLoans.aspx.designer.cs">
+      <DependentUpon>ImportLoans.aspx</DependentUpon>
     </Compile>
     <Compile Include="LoanOverrides.aspx.cs">
       <DependentUpon>LoanOverrides.aspx</DependentUpon>
@@ -1590,6 +1614,12 @@
     <Content Include="Controls\App_LocalResources\LeaveRequestControl.ascx.ar.resx" />
     <Content Include="App_LocalResources\ImportAttendance.aspx.resx" />
     <Content Include="App_LocalResources\ImportAttendance.aspx.ar.resx" />
+    <Content Include="App_LocalResources\ImportLoans.aspx.resx" />
+    <Content Include="App_LocalResources\ImportLoans.aspx.ar.resx" />
+    <Content Include="App_LocalResources\ImportLeaves.aspx.resx" />
+    <Content Include="App_LocalResources\ImportLeaves.aspx.ar.resx" />
+    <Content Include="App_LocalResources\ImportEmployeeNotes.aspx.resx" />
+    <Content Include="App_LocalResources\ImportEmployeeNotes.aspx.ar.resx" />
     <EmbeddedResource Include="Properties\licenses.licx" />
     <Content Include="Reports\App_LocalResources\RT202.aspx.resx" />
     <Content Include="Reports\App_LocalResources\RT01.aspx.ar.resx" />

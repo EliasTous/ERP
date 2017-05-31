@@ -65,7 +65,7 @@ namespace AionHR.Web.UI.Forms
                 SetExtLanguage();
                 HideShowButtons();
                 HideShowColumns();
-                DateColumn1.Format = DateColumn2.Format = issueDate.Format = expiryDate.Format = _systemService.SessionHelper.GetDateformat();
+                issueDate.Format = expiryDate.Format = _systemService.SessionHelper.GetDateformat();
             }
         }
 
@@ -717,7 +717,9 @@ namespace AionHR.Web.UI.Forms
                         BasicInfoTab.UpdateRecord(record);
                         record.Set("dtName", b.dtName);
                         record.Set("branchName", b.branchName);
-                        recordId.Set("fileUrl", m.fileUrl);
+                        record.Set("fileUrl", m.fileUrl);
+                        record.Set("issueDateFormatted", m.issueDateFormatted);
+                        record.Set("expireDateFormatted", m.expireDateFormatted);
                         record.Commit();
                         Notification.Show(new NotificationConfig
                         {

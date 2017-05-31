@@ -909,4 +909,13 @@
   <data name="RT302" xml:space="preserve">
     <value>ملخص الفترة</value>
   </data>
+  <data name="ImportLoans" xml:space="preserve">
+    <value>استيراد معلومات السلف</value>
+  </data>
+  <data name="ImportLeaves" xml:space="preserve">
+    <value>استيراد معلومات الإجازات</value>
+  </data>
+  <data name="ImportNotes" xml:space="preserve">
+    <value>استيراد ملاحظات الموظفين</value>
+  </data>
 </root>

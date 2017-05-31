@@ -395,7 +395,7 @@ namespace AionHR.Web.UI.Forms
                 //Step 1 Code to delete the object from the database 
                 Loan s = new Loan();
                 s.recordId = index;
-                s.employeeId = 0;
+                s.employeeId = "0";
                 s.purpose = "";
                 s.date = DateTime.Now;
                 s.effectiveDate = DateTime.Now;
@@ -736,7 +736,7 @@ namespace AionHR.Web.UI.Forms
             {
                 req.Status = 0;
             }
-            req.Size = "30";
+            req.Size = "2000";
             req.StartAt = "1";
             req.Filter = "";
             req.SortBy = "employeeId";
@@ -767,7 +767,7 @@ namespace AionHR.Web.UI.Forms
             
             
             request.Filter = "";
-            request.Size = "50";
+            request.Size = "2000";
             request.StartAt = "1";
 
             ListResponse<Loan> routers = _loanService.GetAll<Loan>(request);

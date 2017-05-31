@@ -226,7 +226,7 @@
     <value>Return Info</value>
   </data>
   <data name="TotalText" xml:space="preserve">
-    <value>Total</value>
+    <value>Total Hours</value>
   </data>
   <data name="WindowTitle" xml:space="preserve">
     <value>Leave Requests</value>

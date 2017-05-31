@@ -10,12 +10,13 @@ namespace AionHR.Model.LeaveManagement
 {
     public class LeaveRequest:ModelBase
     {
-        public int employeeId { get; set; }
+        public string employeeId { get; set; }
 
+        public string employeeRef { get; set; }
         public EmployeeName employeeName { get; set; }
         public DateTime startDate { get; set; }
         public DateTime endDate { get; set; }
-        public int ltId { get; set; }
+        public int? ltId { get; set; }
         public short status { get; set; }
 
         public string ltName { get; set; }

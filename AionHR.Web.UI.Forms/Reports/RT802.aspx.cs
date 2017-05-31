@@ -203,7 +203,7 @@ namespace AionHR.Web.UI.Forms.Reports
                     return;
                 }
             }
-            resp.Items.ForEach(x => { x.TypeString = GetGlobalResourceObject("Common", "TrType" + x.type.ToString()).ToString(); x.ClassIdString = GetGlobalResourceObject("Classes", "Class" + x.classId.ToString()).ToString(); x.DateString = x.eventDt.ToString(_systemService.SessionHelper.GetDateformat(), new CultureInfo("en")); });
+            resp.Items.ForEach(x => { x.TypeString = GetGlobalResourceObject("Common", "TrType" + x.type.ToString()).ToString(); x.ClassIdString = GetGlobalResourceObject("Classes", "Class" + x.classId.ToString())!=null? GetGlobalResourceObject("Classes", "Class" + x.classId.ToString()).ToString():"NA"; x.DateString = x.eventDt.ToString(_systemService.SessionHelper.GetDateformat(), new CultureInfo("en")); });
             AuditTrail h = new AuditTrail();
             h.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;
             h.RightToLeftLayout = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeftLayout.Yes : DevExpress.XtraReports.UI.RightToLeftLayout.No;

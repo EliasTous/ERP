@@ -201,7 +201,7 @@ namespace AionHR.Web.UI.Forms.Reports
             h.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;
             h.RightToLeftLayout = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeftLayout.Yes : DevExpress.XtraReports.UI.RightToLeftLayout.No;
             resp.Items.ForEach(x => { x.PaymentFrequencyString = x.paymentFrequency.HasValue? GetGlobalResourceObject("Common", ((PaymentFrequency)x.paymentFrequency).ToString()).ToString():""; });
-            resp.Items.ForEach(x => { x.SalaryTypeString = x.salaryType.HasValue? GetGlobalResourceObject("Common",((SalaryType)x.salaryType).ToString()).ToString():"";  x.EffectiveDateString = x.effectiveDate.ToString(_systemService.SessionHelper.GetDateformat()); });
+            resp.Items.ForEach(x => { x.SalaryTypeString = x.salaryType.HasValue? GetGlobalResourceObject("Common",((SalaryType)x.salaryType).ToString()).ToString():"";  x.EffectiveDateString = x.effectiveDate.ToString(_systemService.SessionHelper.GetDateformat(),new CultureInfo("en")); });
             h.DataSource = resp.Items;
             string user = _systemService.SessionHelper.GetCurrentUser();
             h.Parameters["User"].Value = user;

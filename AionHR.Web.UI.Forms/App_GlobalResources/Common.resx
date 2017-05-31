@@ -903,4 +903,13 @@
   <data name="RT302" xml:space="preserve">
     <value>Period Summary</value>
   </data>
+  <data name="ImportLoans" xml:space="preserve">
+    <value>Import Loans Details</value>
+  </data>
+  <data name="ImportLeaves" xml:space="preserve">
+    <value>Import Leaves</value>
+  </data>
+  <data name="ImportNotes" xml:space="preserve">
+    <value>Import Employee Notes</value>
+  </data>
 </root>

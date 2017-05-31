@@ -11,16 +11,24 @@ using System.Threading.Tasks;
 
 namespace AionHR.Services.Implementations
 {
-    public abstract class BatchRunner<T>
+    public abstract class ImportBatchRunner<T>
     {
 
         ISystemService _systemService;
 
-        public BatchRunner(ISystemService systemService)
+        protected IBaseService service;
+
+        public ImportBatchRunner(ISystemService systemService,IBaseService mainService)
         {
             _systemService = systemService;
+            service = mainService;
+            errors = new List<T>();
         }
         public List<T> Items { get; set; }
+
+        protected List<T> errors { get; set; }
+
+        public string OutputPath { get; set; }
 
         public ISessionStorage SessionStore { get; set; }
 
@@ -30,7 +38,9 @@ namespace AionHR.Services.Implementations
             SetStarted();
             PreProcessElements();
             int i = 0;
-            int stepSize = Items.Count / 100;
+            
+            int stepSize =Items.Count>100? Items.Count / 100:1;
+            
             foreach (var item in Items)
             {
                 ProcessElement(item);
@@ -63,17 +73,27 @@ namespace AionHR.Services.Implementations
 
         }
 
-        protected void ReportProgress(int total, int processed)
+        protected virtual void ReportProgress(int total, int processed)
         {
             BatchStatus.tableSize = total;
             BatchStatus.processed = processed;
-
+            
             PostRequest<BatchOperationStatus> req = new PostRequest<BatchOperationStatus>();
             req.entity = BatchStatus;
             _systemService.ChildAddOrUpdate<BatchOperationStatus>(req);
         }
 
-        protected abstract void ProcessElement(T item);
+        protected virtual void ProcessElement(T item)
+        {
+            PostRequest<T> req = new PostRequest<T>();
+            req.entity = item;
+            
+            PostResponse<T> resp = service.ChildAddOrUpdate<T>(req);
+            if (!resp.Success)
+            {
+                errors.Add(item);
+            }
+        }
 
         protected abstract void PreProcessElements();
         protected abstract void PostProcessElements();

@@ -208,7 +208,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.DateColumn validFrom;
+        protected global::Ext.Net.Column validFrom;
         
         /// <summary>
         /// validTo control.
@@ -217,7 +217,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.DateColumn validTo;
+        protected global::Ext.Net.Column validTo;
         
         /// <summary>
         /// remarks control.

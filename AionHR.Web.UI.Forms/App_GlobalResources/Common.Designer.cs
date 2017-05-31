@@ -1051,6 +1051,33 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Import Leaves.
+        /// </summary>
+        internal static string ImportLeaves {
+            get {
+                return ResourceManager.GetString("ImportLeaves", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Import Loans Details.
+        /// </summary>
+        internal static string ImportLoans {
+            get {
+                return ResourceManager.GetString("ImportLoans", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Import Employee Notes.
+        /// </summary>
+        internal static string ImportNotes {
+            get {
+                return ResourceManager.GetString("ImportNotes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to January.
         /// </summary>
         internal static string January {

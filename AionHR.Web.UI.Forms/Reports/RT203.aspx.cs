@@ -72,7 +72,7 @@ namespace AionHR.Web.UI.Forms.Reports
 
 
 
-                    format.Text = _systemService.SessionHelper.GetDateformat();
+                    //format.Text = _systemService.SessionHelper.GetDateformat();
                     ASPxWebDocumentViewer1.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.Utils.DefaultBoolean.True : DevExpress.Utils.DefaultBoolean.False;
                     FillReport(false);
 

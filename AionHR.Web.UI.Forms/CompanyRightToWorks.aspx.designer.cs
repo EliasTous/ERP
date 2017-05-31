@@ -217,7 +217,7 @@ namespace AionHR.Web.UI.Forms {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.DateColumn DateColumn1;
+        protected global::Ext.Net.Column DateColumn1;
         
         /// <summary>
         /// DateColumn2 control.
@@ -226,7 +226,7 @@ namespace AionHR.Web.UI.Forms {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.DateColumn DateColumn2;
+        protected global::Ext.Net.Column DateColumn2;
         
         /// <summary>
         /// colEdit control.

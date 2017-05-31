@@ -227,7 +227,7 @@ namespace AionHR.Web.UI.Forms.Reports
                 earlyString = x.OL_D_SIGN[0] == '-' ? "-" + x.OL_D : x.OL_D,
                 latenessString = x.OL_A_SIGN[0] == '-' ? "-" + x.OL_A : x.OL_A
             }));
-            atts.ForEach(x => { x.DOW = GetGlobalResourceObject("Common", x.Date.DayOfWeek.ToString() + "Text").ToString(); x.DateString = x.Date.ToString(_systemService.SessionHelper.GetDateformat()); });
+            atts.ForEach(x => { x.DOW = GetGlobalResourceObject("Common", x.Date.DayOfWeek.ToString() + "Text").ToString(); x.DateString = x.Date.ToString(_systemService.SessionHelper.GetDateformat(), new CultureInfo("en")); });
 
 
             DailyAttendance h = new DailyAttendance();

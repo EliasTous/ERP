@@ -49,7 +49,9 @@
     <Compile Include="Implementations\AttendanceImportingService.cs" />
     <Compile Include="Implementations\BackgroundWork.cs" />
     <Compile Include="Implementations\BaseService.cs" />
-    <Compile Include="Implementations\BatchRunner.cs" />
+    <Compile Include="Implementations\EmployeeNotesBatchRunner.cs" />
+    <Compile Include="Implementations\EmployeeNotesImportingService.cs" />
+    <Compile Include="Implementations\ImportBatchRunner.cs" />
     <Compile Include="Implementations\CaseService.cs" />
     <Compile Include="Implementations\CommonErrors.cs" />
     <Compile Include="Implementations\CompanyNewsService.cs" />
@@ -57,7 +59,11 @@
     <Compile Include="Implementations\ComplaintsService.cs" />
     <Compile Include="Implementations\EmployeeService.cs" />
     <Compile Include="Implementations\ImportedRecord.cs" />
+    <Compile Include="Implementations\LeaveBatchRunner.cs" />
+    <Compile Include="Implementations\LeaveImportingService.cs" />
     <Compile Include="Implementations\LeaveManagementService.cs" />
+    <Compile Include="Implementations\LoanImportingService.cs" />
+    <Compile Include="Implementations\LoansBatchRunner.cs" />
     <Compile Include="Implementations\LoanTrackingServicecs.cs" />
     <Compile Include="Implementations\MasterService.cs" />
     <Compile Include="Implementations\MediaGalleryService.cs" />
