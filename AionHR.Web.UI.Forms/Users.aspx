@@ -226,6 +226,7 @@
                     <TopBar>
                         <ext:Toolbar ID="Toolbar1" runat="server" ClassicButtonStyle="false">
                             <Items>
+                                
                                 <ext:Button ID="btnAdd" runat="server" Text="<%$ Resources:Common , Add %>" Icon="Add">
                                     <Listeners>
                                         <Click Handler="CheckSession();" />
@@ -235,6 +236,18 @@
                                             <EventMask ShowMask="true" CustomTarget="={#{GridPanel1}.body}" />
                                         </Click>
                                     </DirectEvents>
+                                </ext:Button>
+                                <ext:Container runat="server" Layout="FitLayout">
+                                    <Content>
+                                        <uc:jobInfo runat="server" ID="jobInfo1" EnableBranch="false" EnableDivision="false" />
+
+                                    </Content>
+
+                                </ext:Container>
+                                <ext:Button runat="server" Text="Go">
+                                    <Listeners>
+                                        <Click Handler="App.Store1.reload();" />
+                                    </Listeners>
                                 </ext:Button>
                                 <ext:ToolbarSeparator></ext:ToolbarSeparator>
                                 <ext:Button Visible="false" ID="btnDeleteSelected" runat="server" Text="<%$ Resources:Common , DeleteAll %>" Icon="Delete">

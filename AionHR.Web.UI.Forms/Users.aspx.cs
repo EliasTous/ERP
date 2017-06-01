@@ -435,9 +435,16 @@ namespace AionHR.Web.UI.Forms
             //in this test will take a list of News
             ListRequest request = new ListRequest();
             request.Filter = "";
-            ListResponse<UserInfo> branches = _systemService.ChildGetAll<UserInfo>(request);
+            var s= jobInfo1.GetJobInfo();
+            UsersListRequest req = new UsersListRequest();
+            req.DepartmentId = s.DepartmentId.HasValue ? s.DepartmentId.Value.ToString() : "0";
+            req.PositionId = s.PositionId.HasValue ? s.PositionId.Value.ToString() : "0";
+            ListResponse<UserInfo> branches = _systemService.ChildGetAll<UserInfo>(req);
             if (!branches.Success)
+            {
                 X.Msg.Alert(Resources.Common.Error, branches.Summary).Show();
+                return;
+            }
             this.Store1.DataSource = branches.Items;
             e.Total = branches.count;
 

@@ -20,13 +20,14 @@ namespace AionHR.Services.Implementations
     {
         IEmployeeService _employeeService;
 
-        private List<Loan> errors;
+        
+        Dictionary<string, string> ids;
         public LoansBatchRunner(ISessionStorage store, ISystemService system,ILoanTrackingService main, IEmployeeService employeeService) :base(system,main)
         {
             this.SessionStore = store;
             SessionHelper h = new SessionHelper(store, new APIKeyBasedTokenGenerator());
 
-
+            ids = new Dictionary<string, string>();
             this._employeeService = employeeService;
             BatchStatus = new BatchOperationStatus() { classId = ClassId.LTLR, processed = 0, tableSize = 0, status = 0 };
             errors = new List<Loan>();
@@ -49,6 +50,7 @@ namespace AionHR.Services.Implementations
                     );
 
             }
+           
             string csv = b.ToString();
             string path = OutputPath + BatchStatus.classId.ToString() + ".csv";
 
@@ -56,19 +58,15 @@ namespace AionHR.Services.Implementations
             File.WriteAllText(path, csv.ToString());
         }
 
-        protected override void PreProcessElements()
+      
+
+        protected override void PreProcessElement(Loan item)
         {
-            Dictionary<string, string> ids = new Dictionary<string, string>();
-            foreach (var item in Items)
-            {
-                if (string.IsNullOrEmpty(item.employeeRef))
-                    continue;
-                if (!ids.ContainsKey(item.employeeRef))
-                    ids.Add(item.employeeRef, GetEmployeeId(item.employeeRef));
-                item.employeeId = ids[item.employeeRef];
-
-
-            }
+            if (string.IsNullOrEmpty(item.employeeRef))
+                return;
+            if (!ids.ContainsKey(item.employeeRef))
+                ids.Add(item.employeeRef, GetEmployeeId(item.employeeRef));
+            item.employeeId = ids[item.employeeRef];
         }
         private string GetEmployeeId(string employeeRef)
         {

@@ -14,15 +14,17 @@ var options;
 var commandName;
 var cellClick = function (view, cell, columnIndex, record, row, rowIndex, e) {
 
+    
     commandName = "";
     CheckSession();
 
 
     // in case 
-
+    
     if (columnIndex == 0)
         return false;
     var t = e.getTarget();
+   
     // columnId = App.GridPanel1.columns[columnIndex].id; // Get column id
 
     if (t.className == "imgEdit") {

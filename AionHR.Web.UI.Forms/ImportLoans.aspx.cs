@@ -95,6 +95,9 @@ namespace AionHR.Web.UI.Forms
                         Viewport1.ActiveIndex = 1;
                         this.ResourceManager1.AddScript("{0}.startTask('longactionprogress');", this.TaskManager1.ClientID); break;
                     case 2:
+                        Viewport1.ActiveIndex = 1;
+                        this.ResourceManager1.AddScript("{0}.startTask('longactionprogress');", this.TaskManager1.ClientID); break;
+                    case 3:
                         Viewport1.ActiveIndex = 2;
                         break;
                     default: Viewport1.ActiveIndex = 0; break;
@@ -291,14 +294,15 @@ namespace AionHR.Web.UI.Forms
             RecordResponse<BatchOperationStatus> resp = _systemService.ChildGetRecord<BatchOperationStatus>(req);
             if (resp.result == null)
                 return;
-            if (resp.result.status == 1)
+            if (resp.result.status == 1 || resp.result.status == 2)
             {
                 if (resp.result.tableSize == 0)
                     progress = 0;
                 else
                     progress = (double)resp.result.processed / resp.result.tableSize;
                 string prog = (float.Parse(progress.ToString()) * 100).ToString();
-                this.Progress1.UpdateProgress(float.Parse(progress.ToString()), string.Format(GetLocalResourceObject("working").ToString() + " {0}%", (int)(float.Parse(progress.ToString()) * 100)));
+                string message = resp.result.status == 2 ? GetLocalResourceObject("working").ToString() : GetLocalResourceObject("preprocessing").ToString();
+                this.Progress1.UpdateProgress(float.Parse(progress.ToString()), string.Format(message + " {0}%", (int)(float.Parse(progress.ToString()) * 100)));
 
             }
 

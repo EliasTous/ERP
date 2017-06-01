@@ -21,34 +21,29 @@ namespace AionHR.Services.Implementations
  
        
         IEmployeeService _employeeService;
+        Dictionary<string, string> ids;
 
-        
 
         public AttendanceBatchRunner(ISessionStorage store, ITimeAttendanceService attendance, ISystemService system, IEmployeeService employee):base(system,attendance)
         {
             this.SessionStore = store;
             SessionHelper h = new SessionHelper(store, new APIKeyBasedTokenGenerator());
-            
-            
+
+            ids = new Dictionary<string, string>();
             this._employeeService = employee;
             BatchStatus = new BatchOperationStatus() { classId = ClassId.TAAS, processed = 0, tableSize = 0, status = 0 };
             errors = new List<AttendanceShift>();
         }
-        protected override void PreProcessElements()
+       
+
+        protected override void PreProcessElement(AttendanceShift item)
         {
-            Dictionary<string, string> ids = new Dictionary<string, string>();
-            foreach (var item in Items)
-            {
-                if (string.IsNullOrEmpty(item.employeeRef))
-                    continue;
-                if (!ids.ContainsKey(item.employeeRef))
-                    ids.Add(item.employeeRef, GetEmployeeId(item.employeeRef));
-                item.employeeId = ids[item.employeeRef];
-
-
-            }
+            if (string.IsNullOrEmpty(item.employeeRef))
+                return;
+            if (!ids.ContainsKey(item.employeeRef))
+                ids.Add(item.employeeRef, GetEmployeeId(item.employeeRef));
+            item.employeeId = ids[item.employeeRef];
         }
-
         protected override void PostProcessElements()
         {
             StringBuilder b = new StringBuilder();

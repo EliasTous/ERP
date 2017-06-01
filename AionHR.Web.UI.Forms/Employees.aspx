@@ -11,7 +11,7 @@
     
     <link rel="stylesheet" type="text/css" href="CSS/Common.css?id=11" />
      <script src="Scripts.js" type="text/javascript"></script>
-    <link rel="stylesheet" type="text/css" href="CSS/Employees.css?id=15" />
+    <link rel="stylesheet" type="text/css" href="CSS/Employees.css?id=16" />
     <link rel="stylesheet" href="CSS/LiveSearch.css" />
     <script src="Scripts/jquery-new.js"></script>
     <link rel="stylesheet" type="text/css" href="CSS/cropper.css">
@@ -20,7 +20,7 @@
 
     <script type="text/javascript" src="Scripts/common.js?id=1"></script>
 
-    <script type="text/javascript" src="Scripts/Employees.js?id=17"></script>
+    <script type="text/javascript" src="Scripts/Employees.js?id=20"></script>
     
      
       

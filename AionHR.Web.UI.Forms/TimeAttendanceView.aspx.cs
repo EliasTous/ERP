@@ -393,7 +393,7 @@ namespace AionHR.Web.UI.Forms
             //GEtting the filter from the page
 
             AttendnanceDayListRequest req = GetAttendanceDayRequest();
-
+            req.StartAt = e.Start.ToString();
             ListResponse<AttendanceDay> daysResponse = _timeAttendanceService.ChildGetAll<AttendanceDay>(req);
             if(!daysResponse.Success)
             {

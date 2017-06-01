@@ -61,6 +61,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Access Control.
+        /// </summary>
+        internal static string AccessControl {
+            get {
+                return ResourceManager.GetString("AccessControl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Active Module.
         /// </summary>
         internal static string ActiveModule {
@@ -2037,6 +2046,15 @@ namespace Resources {
         internal static string Scheduler {
             get {
                 return ResourceManager.GetString("Scheduler", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Security Groups.
+        /// </summary>
+        internal static string SecurityGroups {
+            get {
+                return ResourceManager.GetString("SecurityGroups", resourceCulture);
             }
         }
         

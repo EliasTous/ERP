@@ -23,6 +23,8 @@ namespace AionHR.Repository.WebService.Repositories
         {            
             base.ServiceURL = ApplicationSettingsFactory.GetApplicationSettings().BaseURL + serviceName ;
 
+            base.GetRecordMethodName = "getUS2";
+
             ChildAddOrUpdateLookup.Add(typeof(Nationality), "setNA");
             ChildAddOrUpdateLookup.Add(typeof(Currency), "setCU");
             ChildAddOrUpdateLookup.Add(typeof(UserInfo), "setUS");

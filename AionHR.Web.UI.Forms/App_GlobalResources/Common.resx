@@ -912,4 +912,10 @@
   <data name="ImportNotes" xml:space="preserve">
     <value>Import Employee Notes</value>
   </data>
+  <data name="AccessControl" xml:space="preserve">
+    <value>Access Control</value>
+  </data>
+  <data name="SecurityGroups" xml:space="preserve">
+    <value>Security Groups</value>
+  </data>
 </root>

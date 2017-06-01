@@ -19,7 +19,7 @@ namespace AionHR.Services.Implementations
     {
         IEmployeeService _employeeService;
 
-       
+        Dictionary<string, string> ids;
         public LeaveBatchRunner(ISessionStorage store, ISystemService system, ILeaveManagementService main, IEmployeeService employeeService) :base(system,main)
         {
             this.SessionStore = store;
@@ -28,7 +28,7 @@ namespace AionHR.Services.Implementations
 
             this._employeeService = employeeService;
             BatchStatus = new BatchOperationStatus() { classId = ClassId.LMLR, processed = 0, tableSize = 0, status = 0 };
-           
+           ids = new Dictionary<string, string>();
         }
         protected override void PostProcessElements()
         {
@@ -53,20 +53,7 @@ namespace AionHR.Services.Implementations
             File.WriteAllText(path, csv.ToString());
         }
 
-        protected override void PreProcessElements()
-        {
-            Dictionary<string, string> ids = new Dictionary<string, string>();
-            foreach (var item in Items)
-            {
-                if (string.IsNullOrEmpty(item.employeeRef))
-                    continue;
-                if (!ids.ContainsKey(item.employeeRef))
-                    ids.Add(item.employeeRef, GetEmployeeId(item.employeeRef));
-                item.employeeId = ids[item.employeeRef];
-
-
-            }
-        }
+       
         private string GetEmployeeId(string employeeRef)
         {
             EmployeeByReference req = new EmployeeByReference();
@@ -76,6 +63,15 @@ namespace AionHR.Services.Implementations
                 return "";
             else
                 return resp.result.recordId;
+        }
+
+        protected override void PreProcessElement(LeaveRequest item)
+        {
+            if (string.IsNullOrEmpty(item.employeeRef))
+                return;
+            if (!ids.ContainsKey(item.employeeRef))
+                ids.Add(item.employeeRef, GetEmployeeId(item.employeeRef));
+            item.employeeId = ids[item.employeeRef];
         }
     }
 }

@@ -14,7 +14,7 @@ namespace AionHR.Services.Implementations
     public abstract class ImportBatchRunner<T>
     {
 
-        ISystemService _systemService;
+       protected ISystemService _systemService;
 
         protected IBaseService service;
 
@@ -35,8 +35,10 @@ namespace AionHR.Services.Implementations
         protected BatchOperationStatus BatchStatus { get; set; }
         private void handle(object state)
         {
-            SetStarted();
+            SetPreprocessingStarted();
             PreProcessElements();
+            SetStarted();
+            
             int i = 0;
             
             int stepSize =Items.Count>100? Items.Count / 100:1;
@@ -58,15 +60,23 @@ namespace AionHR.Services.Implementations
 
         protected void SetStarted()
         {
+            BatchStatus.status = 2;
+            PostRequest<BatchOperationStatus> req = new PostRequest<BatchOperationStatus>();
+            req.entity = BatchStatus;
+            _systemService.ChildAddOrUpdate<BatchOperationStatus>(req);
+        }
+        protected void SetPreprocessingStarted()
+        {
             BatchStatus.status = 1;
             PostRequest<BatchOperationStatus> req = new PostRequest<BatchOperationStatus>();
             req.entity = BatchStatus;
             _systemService.ChildAddOrUpdate<BatchOperationStatus>(req);
         }
+    
 
         protected void SetFinished()
         {
-            BatchStatus.status = 2;
+            BatchStatus.status = 3;
             PostRequest<BatchOperationStatus> req = new PostRequest<BatchOperationStatus>();
             req.entity = BatchStatus;
             _systemService.ChildAddOrUpdate<BatchOperationStatus>(req);
@@ -95,7 +105,20 @@ namespace AionHR.Services.Implementations
             }
         }
 
-        protected abstract void PreProcessElements();
+        protected  void PreProcessElements()
+        {
+            int stepSize = Items.Count > 100 ? Items.Count / 100 : 1;
+            
+            int i = 0;
+            foreach (var item in Items)
+            {
+                PreProcessElement(item);
+                if ((i++) % stepSize == 0)
+                    ReportProgress(Items.Count, i);
+            }
+        }
+
+        protected abstract void PreProcessElement(T item);
         protected abstract void PostProcessElements();
 
 

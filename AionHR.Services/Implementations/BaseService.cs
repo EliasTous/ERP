@@ -56,7 +56,7 @@ namespace AionHR.Services.Implementations
             Dictionary<string, string> queryParams = new Dictionary<string, string>();
             queryParams.Add("_recordId", request.RecordID);
 
-            RecordWebServiceResponse<T> webResponse = GetRepository().GetRecord(headers, queryParams);
+            RecordWebServiceResponse<T> webResponse = GetRepository().GetRecord(headers, request.Parameters);
             response = CreateServiceResponse<RecordResponse<T>>(webResponse);
             if (response.Success)
                 response.result = webResponse.record;

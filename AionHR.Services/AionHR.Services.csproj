@@ -45,6 +45,7 @@
     <Compile Include="Enumerations\EmployeeErrors.cs" />
     <Compile Include="Enumerations\MasterModulesErrors.cs" />
     <Compile Include="Enumerations\SystemErrors.cs" />
+    <Compile Include="Implementations\AccessControlService.cs" />
     <Compile Include="Implementations\AttendanceBatchRunner.cs" />
     <Compile Include="Implementations\AttendanceImportingService.cs" />
     <Compile Include="Implementations\BackgroundWork.cs" />
@@ -71,6 +72,7 @@
     <Compile Include="Implementations\ReportsService.cs" />
     <Compile Include="Implementations\TaskManagementService.cs" />
     <Compile Include="Implementations\TimeAttendanceService.cs" />
+    <Compile Include="Interfaces\IAccessControlService.cs" />
     <Compile Include="Interfaces\ICompanyNewsService.cs" />
     <Compile Include="Interfaces\IComplaintsService.cs" />
     <Compile Include="Interfaces\IBaseService.cs" />
@@ -89,6 +91,7 @@
     <Compile Include="Interfaces\IMasterService.cs" />
     <Compile Include="Interfaces\ITaskManagementService.cs" />
     <Compile Include="Interfaces\ITimeAttendanceService.cs" />
+    <Compile Include="Messaging\AccessControl\AccessControlRequests.cs" />
     <Compile Include="Messaging\CaseManagement\CaseManagementRequest.cs" />
     <Compile Include="Messaging\CompanyStructure\CompanyStructureRequests.cs" />
     <Compile Include="Messaging\Employees\EmployeesRequests.cs" />
@@ -135,6 +138,8 @@
     <Compile Include="Messaging\System\SystemAttachmentsListRequest.cs" />
     <Compile Include="Messaging\System\SystemDefaultRecordRequest.cs" />
     <Compile Include="Messaging\System\TransactionLogListRequest.cs" />
+    <Compile Include="Messaging\System\UserByEmailRequest.cs" />
+    <Compile Include="Messaging\System\UsersListRequest.cs" />
     <Compile Include="Messaging\TaskManagement\TaskManagmentRequest.cs" />
     <Compile Include="Messaging\TimeAttendance\TimeAttendanceRequests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

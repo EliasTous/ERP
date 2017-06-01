@@ -361,8 +361,8 @@ namespace AionHR.Web.UI.Forms
             //in this test will take a list of News
             LeaveRequestListRequest request = GetFilteredRequest();
 
-            request.Size = "2000";
-            request.StartAt = "1";
+            request.Size = "50";
+            request.StartAt = e.Start.ToString();
             request.SortBy = "firstName";
 
             request.Filter = "";
@@ -374,7 +374,7 @@ namespace AionHR.Web.UI.Forms
             }
 
             this.Store1.DataSource = routers.Items;
-            e.Total = routers.Items.Count; ;
+            e.Total = routers.count ;
 
             this.Store1.DataBind();
         }

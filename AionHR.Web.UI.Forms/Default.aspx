@@ -61,6 +61,7 @@
     <ext:Hidden runat="server" ID="importLoansTitle" Text="<%$Resources:Common , ImportLoans %>" />
     <ext:Hidden runat="server" ID="importLeavesTitle" Text="<%$Resources:Common , ImportLeaves %>" />
     <ext:Hidden runat="server" ID="importNotesTitle" Text="<%$Resources:Common , ImportNotes %>" />
+    <ext:Hidden runat="server" ID="alsgTitle" Text="<%$Resources:Common , SecurityGroups %>" />
 
 
     <ext:Hidden runat="server" ID="aaTitle" Text="<%$Resources:Common , SystemAlerts %>" />
@@ -268,6 +269,19 @@
                                                                             <Listeners>
                                                                                 <Click Handler="openNewTab('users', 'Users.aspx', #{usTitle}.value, 'icon-Employees')" />
                                                                             </Listeners>
+                                                                        </ext:MenuItem>
+                                                                        <ext:MenuItem runat="server" Text="<%$Resources:Common,AccessControl %>">
+                                                                            <Menu>
+                                                                                <ext:Menu runat="server">
+                                                                                    <Items>
+                                                                                        <ext:MenuItem runat="server" Text="<%$Resources: Common , SecurityGroups%>">
+                                                                                            <Listeners>
+                                                                                                <Click Handler="openNewTab('sg', 'SecurityGroups.aspx', #{alsgTitle}.value, 'icon-Employees')" />
+                                                                                            </Listeners>
+                                                                                        </ext:MenuItem>
+                                                                                    </Items>
+                                                                                </ext:Menu>
+                                                                            </Menu>
                                                                         </ext:MenuItem>
                                                                     </Items>
                                                                 </ext:Menu>

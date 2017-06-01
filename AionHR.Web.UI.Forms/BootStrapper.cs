@@ -22,6 +22,7 @@ using StructureMap;
 using StructureMap.Configuration.DSL;
 using AionHR.Model.TaskManagement;
 using AionHR.Model.Payroll;
+using AionHR.Model.Access_Control;
 
 namespace AionHR.Web.UI.Forms
 {
@@ -66,6 +67,7 @@ namespace AionHR.Web.UI.Forms
                 For<IReportsRepository>().Use<ReportsRepository>();
                 For<ITaskManagementRepository>().Use<TaskManagementRepository>();
                 For<IPayrollRepository>().Use<PayrollRepository>();
+                For<IAccessControlRepository>().Use<AccessControlRepository>();
 
                 //Services
                 For<ISystemService>().Use<SystemService>();
@@ -82,6 +84,7 @@ namespace AionHR.Web.UI.Forms
                 For<IReportsService>().Use<ReportsService>();
                 For<ITaskManagementService>().Use<TaskManagementService>();
                 For<IPayrollService>().Use<PayrollService>();
+                For<IAccessControlService>().Use<AccessControlService>();
             }
         }
     }

@@ -918,4 +918,10 @@
   <data name="ImportNotes" xml:space="preserve">
     <value>استيراد ملاحظات الموظفين</value>
   </data>
+  <data name="AccessControl" xml:space="preserve">
+    <value>التحكم بالوصول</value>
+  </data>
+  <data name="SecurityGroups" xml:space="preserve">
+    <value>المجموعات الأمنية</value>
+  </data>
 </root>

@@ -15,7 +15,7 @@ namespace AionHR.Infrastructure.WebService
         /// the stutus of the response
         /// </summary>
         public string statusId { get; set; }
-
+        
         /// <summary>
         /// the message returned
         /// </summary>

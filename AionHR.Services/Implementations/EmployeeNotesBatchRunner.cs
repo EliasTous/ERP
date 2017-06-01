@@ -5,6 +5,7 @@ using AionHR.Model.Employees.Profile;
 using AionHR.Model.System;
 using AionHR.Services.Interfaces;
 using AionHR.Services.Messaging;
+using AionHR.Services.Messaging.System;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -17,39 +18,36 @@ namespace AionHR.Services.Implementations
     public class EmployeeNotesBatchRunner : ImportBatchRunner<EmployeeNote>
     {
         private IEmployeeService main;
+        Dictionary<string, string> ids;
+        Dictionary<string, string> userids;
         public EmployeeNotesBatchRunner(ISessionStorage store, IEmployeeService attendance, ISystemService system, IEmployeeService employee) : base(system, attendance)
         {
             this.SessionStore = store;
             SessionHelper h = new SessionHelper(store, new APIKeyBasedTokenGenerator());
-
-
+            ids = new Dictionary<string, string>();
+            userids = new Dictionary<string, string>();
             this.main = employee;
             BatchStatus = new BatchOperationStatus() { classId = ClassId.EPNO, processed = 0, tableSize = 0, status = 0 };
 
         }
-        protected override void PreProcessElements()
+       
+
+        protected override void PreProcessElement(EmployeeNote item)
         {
-            Dictionary<string, string> ids = new Dictionary<string, string>();
-            Dictionary<string, string> userids = new Dictionary<string, string>();
-            foreach (var item in Items)
+            if (!string.IsNullOrEmpty(item.employeeRef))
             {
-                if (!string.IsNullOrEmpty(item.employeeRef))
-                {
-                    if (!ids.ContainsKey(item.employeeRef))
-                        ids.Add(item.employeeRef, GetEmployeeId(item.employeeRef));
-                    item.employeeId = ids[item.employeeRef];
-                }
-                if(!string.IsNullOrEmpty(item.userName))
-                {
-                    if (!userids.ContainsKey(item.userName))
-                        userids.Add(item.userName, GetUserByEmail(item.userName));
-                    item.userId = userids[item.userName];
-                }
-                
-
+                if (!ids.ContainsKey(item.employeeRef))
+                    ids.Add(item.employeeRef, GetEmployeeId(item.employeeRef));
+                item.employeeId = ids[item.employeeRef];
             }
-        }
+            if (!string.IsNullOrEmpty(item.userName))
+            {
+                if (!userids.ContainsKey(item.userName))
+                    userids.Add(item.userName, GetUserByEmail(item.userName));
+                item.userId = userids[item.userName];
+            }
 
+        }
         protected override void PostProcessElements()
         {
             StringBuilder b = new StringBuilder();
@@ -77,7 +75,13 @@ namespace AionHR.Services.Implementations
 
         private string GetUserByEmail(string email)
         {
-            return "";
+            UserByEmailRequest req = new UserByEmailRequest();
+            req.Email = email;
+            RecordResponse<UserInfo> resp = base._systemService.Get<UserInfo>(req);
+            if (resp == null || resp.result == null)
+                return "";
+            else
+                return resp.result.recordId;
         }
     }
 }

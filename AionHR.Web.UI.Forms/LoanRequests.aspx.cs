@@ -767,9 +767,9 @@ namespace AionHR.Web.UI.Forms
             
             
             request.Filter = "";
-            request.Size = "2000";
-            request.StartAt = "1";
-
+            
+            request.Size = e.Limit.ToString();
+            request.StartAt = e.Start.ToString();
             ListResponse<Loan> routers = _loanService.GetAll<Loan>(request);
             if (!routers.Success)
             {
@@ -777,7 +777,7 @@ namespace AionHR.Web.UI.Forms
                 return;
             }
             this.Store1.DataSource = routers.Items;
-            e.Total = routers.Items.Count;
+            e.Total = routers.count;
 
             this.Store1.DataBind();
         }

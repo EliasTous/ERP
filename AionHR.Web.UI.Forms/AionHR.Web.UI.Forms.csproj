@@ -314,6 +314,7 @@
     <Content Include="Scripts\CompanyFiles.js" />
     <Content Include="Scripts\CompanyNews.js" />
     <Content Include="Scripts\Contacts.js" />
+    <Content Include="Scripts\SecurityGroups.js" />
     <Content Include="Scripts\ImportAttendance.js" />
     <Content Include="Scripts\EmployeeComplaints.js" />
     <Content Include="Scripts\Employees2.js" />
@@ -420,6 +421,7 @@
     <Content Include="Scripts\Skills.js" />
     <Content Include="Scripts\Sponsors.js" />
     <Content Include="Scripts\TrainingTypes.js" />
+    <Content Include="SecurityGroups.aspx" />
     <Content Include="Sponsors.aspx" />
     <Content Include="States.aspx" />
     <Content Include="SystemAlerts.aspx" />
@@ -962,6 +964,13 @@
     </Compile>
     <Compile Include="ReportTest.aspx.designer.cs">
       <DependentUpon>ReportTest.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SecurityGroups.aspx.cs">
+      <DependentUpon>SecurityGroups.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SecurityGroups.aspx.designer.cs">
+      <DependentUpon>SecurityGroups.aspx</DependentUpon>
     </Compile>
     <Compile Include="States.aspx.cs">
       <DependentUpon>States.aspx</DependentUpon>
@@ -1620,6 +1629,8 @@
     <Content Include="App_LocalResources\ImportLeaves.aspx.ar.resx" />
     <Content Include="App_LocalResources\ImportEmployeeNotes.aspx.resx" />
     <Content Include="App_LocalResources\ImportEmployeeNotes.aspx.ar.resx" />
+    <Content Include="App_LocalResources\SecurityGroups.aspx.resx" />
+    <Content Include="App_LocalResources\SecurityGroups.aspx.ar.resx" />
     <EmbeddedResource Include="Properties\licenses.licx" />
     <Content Include="Reports\App_LocalResources\RT202.aspx.resx" />
     <Content Include="Reports\App_LocalResources\RT01.aspx.ar.resx" />

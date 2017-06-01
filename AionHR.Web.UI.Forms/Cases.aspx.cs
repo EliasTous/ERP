@@ -603,7 +603,8 @@ namespace AionHR.Web.UI.Forms
             //in this test will take a list of News
             //ListRequest request = new ListRequest();
             CaseManagementListRequest request = GetCaseManagementRequest();
-
+            request.StartAt = e.Start.ToString();
+            request.Size = e.Limit.ToString();
             ListResponse<Case> routers = _caseService.GetAll<Case>(request);
             if (!routers.Success)
             {
@@ -611,7 +612,7 @@ namespace AionHR.Web.UI.Forms
                 return;
             }
             this.Store1.DataSource = routers.Items;
-            e.Total = routers.Items.Count; 
+            e.Total = routers.count; 
 
             this.Store1.DataBind();
         }
