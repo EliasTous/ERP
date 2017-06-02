@@ -117,11 +117,20 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AccessLevel" xml:space="preserve">
+    <value>Access Level</value>
+  </data>
+  <data name="AccessLevels" xml:space="preserve">
+    <value>Access Levels</value>
+  </data>
   <data name="Add" xml:space="preserve">
     <value>Add</value>
   </data>
   <data name="All" xml:space="preserve">
     <value>All</value>
+  </data>
+  <data name="Class" xml:space="preserve">
+    <value>Class</value>
   </data>
   <data name="EditGroup" xml:space="preserve">
     <value>Edit Group</value>
@@ -135,8 +144,20 @@
   <data name="FieldName" xml:space="preserve">
     <value>Name</value>
   </data>
+  <data name="Filter" xml:space="preserve">
+    <value>Filter</value>
+  </data>
+  <data name="GroupInfo" xml:space="preserve">
+    <value>Group Info</value>
+  </data>
   <data name="Groups" xml:space="preserve">
     <value>Groups</value>
+  </data>
+  <data name="Property" xml:space="preserve">
+    <value>Property</value>
+  </data>
+  <data name="Read" xml:space="preserve">
+    <value>View</value>
   </data>
   <data name="Remove" xml:space="preserve">
     <value>Remove</value>
@@ -146,5 +167,11 @@
   </data>
   <data name="Users" xml:space="preserve">
     <value>Users</value>
+  </data>
+  <data name="View" xml:space="preserve">
+    <value>No access</value>
+  </data>
+  <data name="Write" xml:space="preserve">
+    <value>Edit</value>
   </data>
 </root>

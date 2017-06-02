@@ -19,6 +19,9 @@
     float: left;
     color: #222222;
 }
+.myReadOnly{
+    background-color:silver!important;
+}
 .linkClass{cursor:pointer; text-decoration:underline;}
 /*.x-header{
     background-color: #15b4f0; /*400C24*/

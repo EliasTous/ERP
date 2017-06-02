@@ -23,6 +23,8 @@ using AionHR.Model.Company.Structure;
 using AionHR.Model.Employees.Profile;
 using AionHR.Model.System;
 using AionHR.Services.Messaging.System;
+using AionHR.Infrastructure.Domain;
+using AionHR.Model.Access_Control;
 
 namespace AionHR.Web.UI.Forms
 {
@@ -31,6 +33,7 @@ namespace AionHR.Web.UI.Forms
 
         ISystemService _systemService = ServiceLocator.Current.GetInstance<ISystemService>();
         IEmployeeService _employeeService = ServiceLocator.Current.GetInstance<IEmployeeService>();
+        IAccessControlService _accessControlService = ServiceLocator.Current.GetInstance<IAccessControlService>();
         protected override void InitializeCulture()
         {
 
@@ -63,9 +66,41 @@ namespace AionHR.Web.UI.Forms
                 HideShowButtons();
                 HideShowColumns();
                 this.rtl.Text = _systemService.SessionHelper.CheckIfArabicSession() ? "True" : "False";
-
+                ApplyAccessControl();
             }
 
+
+        }
+
+        private void ApplyAccessControl()
+        {
+            UserPropertiesPermissions req = new UserPropertiesPermissions();
+            req.ClassId = ((int)ClassId.SYUS).ToString();
+            req.UserId = _systemService.SessionHelper.GetCurrentUserId();
+            ListResponse<UC> resp = _accessControlService.ChildGetAll<UC>(req);
+            if(!resp.Success)
+            {
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, resp.Summary).Show();
+                return;
+            }
+
+            fullName.ReadOnly = resp.Items[0].accessLevel < 2;
+            hide1.Text= (resp.Items[0].accessLevel < 1).ToString();
+            email.ReadOnly = resp.Items[1].accessLevel < 2;
+            hide2.Text = (resp.Items[1].accessLevel < 1).ToString();
+            isInactiveCheck.ReadOnly = resp.Items[2].accessLevel < 2;
+            hide3.Text = (resp.Items[2].accessLevel < 1).ToString();
+            isAdminCheck.ReadOnly = resp.Items[3].accessLevel < 2;
+            hide4.Text = (resp.Items[3].accessLevel < 1).ToString();
+            employeeId.ReadOnly = resp.Items[4].accessLevel < 2;
+            hide5.Text = (resp.Items[4].accessLevel < 1).ToString();
+            languageId.ReadOnly = resp.Items[5].accessLevel < 2;
+            hide6.Text = (resp.Items[5].accessLevel < 1).ToString();
+           
+
+            PasswordField.ReadOnly = PasswordConfirmation.ReadOnly = resp.Items[6].accessLevel < 2;
+            hide7.Text = (resp.Items[6].accessLevel < 1).ToString();
 
         }
 
@@ -145,6 +180,9 @@ namespace AionHR.Web.UI.Forms
 
                     PasswordConfirmation.Text = response.result.password;
                     this.BasicInfoTab.SetValues(response.result);
+                    
+                    
+
                     if (!String.IsNullOrEmpty(response.result.employeeId))
                     {
 
@@ -166,11 +204,24 @@ namespace AionHR.Web.UI.Forms
 
                         X.Call("SetNameEnabled", false, empResponse.result.name.fullName);
                     }
-
+                    pro.Hidden = true;
 
                     // InitCombos(response.result);
                     this.EditRecordWindow.Title = Resources.Common.EditWindowsTitle;
                     this.EditRecordWindow.Show();
+                    if (hide1.Text == "True")
+                        fullName.Text = "*****";
+                    if (hide2.Text == "True")
+                        email.Text = "*****";
+
+
+                    if (hide5.Text == "True")
+                        languageId.Text = "*****";
+
+                    if (hide6.Text == "True")
+                        employeeId.Text = "*****";
+                    if (hide7.Text == "True")
+                        PasswordField.Text = "*****";
                     break;
 
                 case "imgDelete":
@@ -419,6 +470,7 @@ namespace AionHR.Web.UI.Forms
             this.EditRecordWindow.Title = Resources.Common.AddNewRecord;
             DeactivatePassword(false);
             this.EditRecordWindow.Show();
+            pro.Hidden = false;
         }
 
         protected void Store1_RefreshData(object sender, StoreReadDataEventArgs e)
@@ -555,7 +607,7 @@ namespace AionHR.Web.UI.Forms
                     if (!r.Success)//it maybe another check
                     {
                         X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                        X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorUpdatingRecord).Show();
+                        X.Msg.Alert(Resources.Common.Error, r.Summary).Show();
                         return;
                     }
                     else

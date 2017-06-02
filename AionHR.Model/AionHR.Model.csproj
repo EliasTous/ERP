@@ -41,7 +41,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Access Control\AccessLevel.cs" />
     <Compile Include="Access Control\IAccessControlRepository.cs" />
     <Compile Include="Company\Cases\ICasesRepository.cs" />
     <Compile Include="Company\News\ICompanyNewsRepository.cs" />

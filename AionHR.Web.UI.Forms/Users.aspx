@@ -8,12 +8,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title></title>
-    <link rel="stylesheet" type="text/css" href="CSS/Common.css" />
+    <link rel="stylesheet" type="text/css" href="CSS/Common.css?id=2" />
     <link rel="stylesheet" href="CSS/LiveSearch.css" />
     <script type="text/javascript" src="Scripts/Users.js?id=1"></script>
     <script type="text/javascript" src="Scripts/common.js"></script>
      <script src="Scripts/jquery-new.js"></script>  
-      <script type="text/javascript">function dump(obj) {
+      <script type="text/javascript">
+          function dump(obj) {
     var out = '';
     for (var i in obj) {
         out += i + ": " + obj[i] + "\n";
@@ -147,6 +148,14 @@
                 return score;
             }
         });
+        function SetNameEnabled(status, name) {
+
+
+            App.fullName.setDisabled(!status);
+            if (!status)
+                App.fullName.setValue(name);
+
+        }
     </script>
    
 </head>
@@ -160,6 +169,14 @@
         <ext:Hidden ID="titleSavingErrorMessage" runat="server" Text="<%$ Resources:Common , TitleSavingErrorMessage %>" />
         <ext:Hidden ID="timeZoneOffset" runat="server" EnableViewState="true" />
         <ext:Hidden ID="rtl" runat="server"  />
+        <ext:Hidden ID="hide1" runat="server"  />
+        <ext:Hidden ID="hide2" runat="server"  />
+        <ext:Hidden ID="hide3" runat="server"  />
+        <ext:Hidden ID="hide4" runat="server"  />
+        <ext:Hidden ID="hide5" runat="server"  />
+        <ext:Hidden ID="hide6" runat="server"  />
+        <ext:Hidden ID="hide7" runat="server"  />
+        <ext:Hidden ID="hide8" runat="server"  />
             <ext:Hidden runat="server" ID="level1" Text="<%$ Resources:VeryWeak %>" />
         <ext:Hidden runat="server" ID="level2" Text="<%$ Resources:Weak %>" />
         <ext:Hidden runat="server" ID="level3" Text="<%$ Resources:Mediocre %>" />
@@ -284,11 +301,13 @@
                             <ext:Column Visible="false" ID="ColPassword" MenuDisabled="true" runat="server" DataIndex="password" Hideable="false" Width="75" Align="Center" />
                             
                             <ext:Column ID="ColFullName" MenuDisabled="true" Sortable="true" runat="server" Text="<%$ Resources: FieldFullName%>" DataIndex="fullName" Flex="1" Hideable="false">
-                                <Renderer Handler="return  record.data['fullName'];">
+                                <Renderer Handler="if(App.hide1.value=='True') return '****'; return  record.data['fullName'];">
                                 </Renderer>
                             </ext:Column>
 
-                            <ext:Column Sortable="true" ID="ColEmail" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEmail%>" DataIndex="email" Flex="1" Hideable="false" />
+                            <ext:Column Sortable="true" ID="ColEmail" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEmail%>" DataIndex="email" Flex="1" Hideable="false" >
+                                <Renderer Handler="if(App.hide2.value=='True') return '****'; return record.data['email'];" />
+                                </ext:Column>
 
                             <ext:CheckColumn ID="ColIsInactive" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldIsInactive %>" DataIndex="isInactive" Hideable="false" />
                             <ext:CheckColumn ID="ColIsAdmin" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldIsAdmin %>" DataIndex="isAdmin" Hideable="false" />
@@ -427,6 +446,7 @@
                             BodyPadding="5">
                             <Items>
                                 <ext:TextField ID="fullName" TabIndex="1" runat="server" FieldLabel="<%$ Resources: FieldFullName %>" DataIndex="fullName" AllowBlank="false" />
+                                    
                                 <ext:TextField ID="email" TabIndex="2" runat="server" FieldLabel="<%$ Resources: FieldEmail %>" DataIndex="email" InputType="Email" Vtype="email" AllowBlank="false" />
                                 <ext:TextField ID="recordId" TabIndex="3" Disabled="true" Hidden="true" runat="server" DataIndex="recordId" AllowBlank="false" />
 

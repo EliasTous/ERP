@@ -109,7 +109,7 @@ namespace AionHR.Web.UI.Forms
                 FillBranch();
                 includeOpen.Select("0");
                
-                Column2.Format = Column1.Format = _systemService.SessionHelper.GetDateformat();
+                DateColumn3.Format= Column2.Format = Column1.Format = _systemService.SessionHelper.GetDateformat();
             }
 
         }

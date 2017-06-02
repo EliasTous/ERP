@@ -432,6 +432,7 @@
     <Content Include="TimeAttendanceView.aspx" />
     <Content Include="TrainingTypes.aspx" />
     <Content Include="Utilities\alerts.txt" />
+    <Content Include="Utilities\modules.txt" />
     <Content Include="WorkingCalendars.aspx" />
     <Content Include="SystemAttachmentsUploader.ashx" />
     <Content Include="EmployeePhotoUploaderHandler.ashx" />

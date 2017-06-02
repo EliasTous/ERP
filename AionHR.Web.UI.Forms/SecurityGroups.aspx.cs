@@ -29,6 +29,7 @@ using AionHR.Model.Reports;
 using AionHR.Model.Access_Control;
 using AionHR.Model.System;
 using AionHR.Services.Messaging.System;
+using AionHR.Infrastructure.Domain;
 
 namespace AionHR.Web.UI.Forms
 {
@@ -149,7 +150,8 @@ namespace AionHR.Web.UI.Forms
                         sm.Select(b.recordId.ToString());
                         SetTabPanelActivated(true);
                         CurrentGroup.Text = b.recordId;
-
+                        recordId.Text = b.recordId;
+                        this.GroupWindow.Title = b.name;
                     }
                 }
                 catch (Exception ex)
@@ -252,6 +254,78 @@ namespace AionHR.Web.UI.Forms
             usersStore.Reload();
             
           
+        }
+
+        protected void SaveClassLevel(object sender, DirectEventArgs e)
+        {
+
+
+            //Getting the id to check if it is an Add or an edit as they are managed within the same form.
+            string classId = e.ExtraParams["classId"];
+
+            ModuleClass m = JsonConvert.DeserializeObject< ModuleClass>(e.ExtraParams["values"]);
+
+            PostRequest<ModuleClass> req = new PostRequest<ModuleClass>();
+            req.entity = m;
+            m.classId = CurrentClass.Text;;
+            m.sgId = CurrentGroup.Text;
+            PostResponse<ModuleClass> resp = _accessControlService.ChildAddOrUpdate<ModuleClass>(req);
+            
+            if (!resp.Success)
+            {
+                X.Msg.Alert(Resources.Common.Error, resp.Summary).Show();
+                return;
+            }
+            
+
+            
+            Notification.Show(new NotificationConfig
+            {
+                Title = Resources.Common.Notification,
+                Icon = Icon.Information,
+                Html = Resources.Common.RecordSavingSucc
+            });
+            classesStore.Reload();
+            EditClassLevelWindow.Close();
+
+        }
+
+        protected void SaveClassProperties(object sender, DirectEventArgs e)
+        {
+
+
+            //Getting the id to check if it is an Add or an edit as they are managed within the same form.
+            string classId = e.ExtraParams["classId"];
+
+            List<ClassProperty> properties = JsonConvert.DeserializeObject<List<ClassProperty>>(e.ExtraParams["values"]);
+            PostRequest<ClassProperty> req = new PostRequest<ClassProperty>();
+            PostResponse<ClassProperty> resp = null;
+            foreach (var item in properties)
+            {
+                item.classId = CurrentClass.Text;
+                item.sgId = CurrentGroup.Text;
+                req.entity = item;
+                resp = _accessControlService.ChildAddOrUpdate<ClassProperty>(req);
+                if (!resp.Success)
+                {
+                    X.Msg.Alert(Resources.Common.Error, resp.Summary).Show();
+                    return;
+                }
+            }
+           
+            
+
+
+
+            Notification.Show(new NotificationConfig
+            {
+                Title = Resources.Common.Notification,
+                Icon = Icon.Information,
+                Html = Resources.Common.RecordSavingSucc
+            });
+            classesStore.Reload();
+            EditClassPropertiesWindow.Close();
+
         }
 
         private void SetTabPanelActivated(bool isActive)
@@ -375,7 +449,7 @@ namespace AionHR.Web.UI.Forms
                     //Step 2 : call setvalues with the retrieved object
                     this.GroupForm.SetValues(response.result);
 
-                    this.GroupWindow.Title = Resources.Common.EditWindowsTitle;
+                    this.GroupWindow.Title = response.result.name;
                     this.GroupWindow.Show();
                     SetTabPanelActivated(true);
                     break;
@@ -405,6 +479,39 @@ namespace AionHR.Web.UI.Forms
 
         }
 
+        protected void PoPuPClass(object sender, DirectEventArgs e)
+        {
+
+
+            int id = Convert.ToInt32(e.ExtraParams["id"]);
+            string type = e.ExtraParams["type"];
+            CurrentClass.Text = id.ToString();
+            
+            switch (type)
+            {
+
+
+                case "imgAttach":
+                    EditClassPropertiesWindow.Show();
+                    propertiesStore.Reload();
+
+
+
+                    break;
+
+
+                case "imgEdit":
+                    EditClassLevelForm.Reset();
+                    accessLevel.Select(e.ExtraParams["access"]);
+                    EditClassLevelWindow.Show();
+                    break;
+
+                default:
+                    break;
+            }
+
+
+        }
         protected void PoPuPUser(object sender, DirectEventArgs e)
         {
 
@@ -664,5 +771,58 @@ namespace AionHR.Web.UI.Forms
             X.Call("AddSource", all);
 
         }
+
+        protected void modulesStore_ReadData(object sender, StoreReadDataEventArgs e)
+        {
+            string s = File.ReadAllText(MapPath("~/Utilities/modules.txt"));
+            List<Module> preDefined = JsonConvert.DeserializeObject<List<Module>>(s);
+            preDefined.ForEach(x => x.name = GetGlobalResourceObject("Common", x.name).ToString());
+            modulesStore.DataSource = preDefined;
+            modulesStore.DataBind();
+        }
+
+        protected void classesStore_ReadData(object sender, StoreReadDataEventArgs e)
+        {
+            string s = File.ReadAllText(MapPath("~/Utilities/modules.txt"));
+            List<Module> preDefined = JsonConvert.DeserializeObject<List<Module>>(s);
+            List<ModuleClass> classes = preDefined.Where(x => x.id == modulesCombo.SelectedItem.Value).ToList()[0].classes;
+
+            classes.ForEach(x => { x.name = GetGlobalResourceObject("Classes", x.name).ToString();x.classId = x.id; });
+            AccessControlListRequest req = new AccessControlListRequest();
+            req.GroupId = CurrentGroup.Text;
+            ListResponse<ModuleClass> stored = _accessControlService.ChildGetAll<ModuleClass>(req);
+            if(!stored.Success)
+            {
+                X.Msg.Alert(Resources.Common.Error, stored.Summary).Show();
+                return;
+            }
+
+            classes.ForEach(x => { List<ModuleClass> match = stored.Items.Where(y => y.classId == x.classId).ToList(); if (match.Count > 0) x.accessLevel = match[0].accessLevel; });
+            classesStore.DataSource = classes;
+            classesStore.DataBind();
+        }
+
+        protected void propertyStore_ReadData(object sender, StoreReadDataEventArgs e)
+        {
+            string s = File.ReadAllText(MapPath("~/Utilities/modules.txt"));
+            List<Module> preDefined = JsonConvert.DeserializeObject<List<Module>>(s);
+            List<ModuleClass> classes = preDefined.Where(x => x.id == modulesCombo.SelectedItem.Value).ToList()[0].classes;
+            List<ClassProperty> properites = classes.Where(x => x.id == CurrentClass.Text).ToList()[0].properties;
+
+            PropertiesListRequest req = new PropertiesListRequest();
+            req.GroupId = CurrentGroup.Text;
+            req.ClassId = CurrentClass.Text;
+            ListResponse<ClassProperty> stored = _accessControlService.ChildGetAll<ClassProperty>(req);
+            if (!stored.Success)
+            {
+                X.Msg.Alert(Resources.Common.Error, stored.Summary).Show();
+                return;
+            }
+
+            stored.Items.ForEach(x => properites.Where(y => y.propertyId == x.propertyId).ToList()[0].accessLevel = x.accessLevel);
+            propertiesStore.DataSource = properites;
+            propertiesStore.DataBind();
+        }
+ 
     }
 }

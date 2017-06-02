@@ -1474,11 +1474,29 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Payroll.
+        /// </summary>
+        internal static string Mod51 {
+            get {
+                return ResourceManager.GetString("Mod51", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Reports.
         /// </summary>
         internal static string Mod80 {
             get {
                 return ResourceManager.GetString("Mod80", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dashboard.
+        /// </summary>
+        internal static string Mod81 {
+            get {
+                return ResourceManager.GetString("Mod81", resourceCulture);
             }
         }
         

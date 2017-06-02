@@ -14,6 +14,10 @@
     <script src="Scripts/SecurityGroups.js?id=1" type="text/javascript"></script>
     <script type="text/javascript" src="Scripts/common.js"></script>
     <script type="text/javascript">
+
+        function getAccessLevelText(index) {
+            return document.getElementById("accessLevel" + index).value;
+        }
         function dump(obj) {
             var out = '';
             for (var i in obj) {
@@ -54,11 +58,11 @@
 
 
             for (i = 0; i < items.length ; i++) {
-                if (fromStore.getById(items[i].userId) == null && toStore.getById(items[i].userId)==null) {
-                    
+                if (fromStore.getById(items[i].userId) == null && toStore.getById(items[i].userId) == null) {
+
                     fromStore.add(items[i]);
                 }
-                    
+
             }
         }
     </script>
@@ -73,6 +77,11 @@
         <ext:Hidden ID="titleSavingError" runat="server" Text="<%$ Resources:Common , TitleSavingError %>" />
         <ext:Hidden ID="titleSavingErrorMessage" runat="server" Text="<%$ Resources:Common , TitleSavingErrorMessage %>" />
         <ext:Hidden ID="CurrentGroup" runat="server" />
+        <ext:Hidden ID="CurrentModule" runat="server" />
+        <ext:Hidden ID="CurrentClass" runat="server" />
+        <ext:Hidden ID="accessLevel0" Text="<%$ Resources: View %>" runat="server" />
+        <ext:Hidden ID="accessLevel1" Text="<%$ Resources: Read %>" runat="server" />
+        <ext:Hidden ID="accessLevel2" Text="<%$ Resources: Write %>" runat="server" />
 
         <ext:Store
             ID="groupsStore"
@@ -159,7 +168,7 @@
                                 MenuDisabled="true"
                                 Resizable="false">
 
-                                <Renderer Handler="return attachRender()+'&nbsp;&nbsp;'+ editRender()+'&nbsp;&nbsp;' +deleteRender(); " />
+                                <Renderer Handler="return  editRender()+'&nbsp;&nbsp;' +deleteRender(); " />
                             </ext:Column>
 
                         </Columns>
@@ -233,8 +242,8 @@
             runat="server"
             Icon="PageEdit"
             Title="<%$ Resources:EditGroup %>"
-            Width="450"
-            Height="330"
+            Width="600"
+            Height="500"
             AutoShow="false"
             Modal="true"
             Hidden="true"
@@ -246,7 +255,7 @@
                         <ext:FormPanel
                             ID="GroupForm" DefaultButton="SaveButton"
                             runat="server"
-                            Icon="ApplicationSideList"
+                            Icon="ApplicationSideList"  Title="<%$ Resources:GroupInfo%>"
                             DefaultAnchor="100%"
                             BodyPadding="5">
                             <Items>
@@ -256,7 +265,28 @@
 
 
                             </Items>
+                               <Buttons>
+                <ext:Button ID="SaveGroupButton" runat="server" Text="<%$ Resources:Common, Save %>" Icon="Disk">
 
+                    <Listeners>
+                        <Click Handler="CheckSession(); if (!#{GroupForm}.getForm().isValid()) {return false;} " />
+                    </Listeners>
+                    <DirectEvents>
+                        <Click OnEvent="SaveGroup" Failure="Ext.MessageBox.alert('#{titleSavingError}.value', '#{titleSavingErrorMessage}.value');">
+                            <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="={#{GroupWindow}.body}" />
+                            <ExtraParams>
+                                <ext:Parameter Name="id" Value="#{recordId}.getValue()" Mode="Raw" />
+                                <ext:Parameter Name="values" Value="#{GroupForm}.getForm().getValues(false, false, false, true)" Mode="Raw" Encode="true" />
+                            </ExtraParams>
+                        </Click>
+                    </DirectEvents>
+                </ext:Button>
+                <ext:Button ID="CancelButton" runat="server" Text="<%$ Resources:Common , Cancel %>" Icon="Cancel">
+                    <Listeners>
+                        <Click Handler="this.up('window').hide();" />
+                    </Listeners>
+                </ext:Button>
+                                   </Buttons>
                         </ext:FormPanel>
 
                         <ext:GridPanel
@@ -302,18 +332,7 @@
                             <TopBar>
                                 <ext:Toolbar runat="server">
                                     <Items>
-                                        <ext:Button ID="Button2" runat="server" Text="<%$ Resources:Common , Back %>" Icon="PageWhiteGo">
-                                            <Listeners>
-                                                <Click Handler="CheckSession();" />
-                                            </Listeners>
-                                            <DirectEvents>
-                                                <Click OnEvent="Prev_Click">
-                                                    <ExtraParams>
-                                                        <ext:Parameter Name="index" Value="#{viewport1}.items.indexOf(#{viewport1}.layout.activeItem)" Mode="Raw" />
-                                                    </ExtraParams>
-                                                </Click>
-                                            </DirectEvents>
-                                        </ext:Button>
+                                     
                                         <ext:Button ID="Button1" runat="server" Text="<%$ Resources:Common , Add %>" Icon="Add">
                                             <Listeners>
                                                 <Click Handler="CheckSession();" />
@@ -417,31 +436,129 @@
                                 <%--<ext:CheckboxSelectionModel ID="CheckboxSelectionModel1" runat="server" Mode="Multi" StopIDModeInheritance="true" />--%>
                             </SelectionModel>
                         </ext:GridPanel>
+
+                        <ext:FormPanel runat="server" ID="AccessLevelsForm" Title="<%$ Resources:AccessLevels%>">
+                            <TopBar>
+                                <ext:Toolbar runat="server">
+                                    <Items>
+                                        <ext:ComboBox runat="server" ID="modulesCombo" ValueField="id" DisplayField="name">
+                                            <Listeners>
+                                                <AfterRender Handler="App.modulesStore.reload();" />
+                                                <Select Handler="App.CurrentModule.value = this.value; App.classesStore.reload(); " />
+                                            </Listeners>
+                                            <Store>
+                                                <ext:Store runat="server" ID="modulesStore" OnReadData="modulesStore_ReadData" AutoLoad="true">
+                                                    <Model>
+                                                        <ext:Model runat="server" IDProperty="id">
+                                                            <Fields>
+                                                                <ext:ModelField Name="id" />
+                                                                <ext:ModelField Name="name" />
+                                                            </Fields>
+                                                        </ext:Model>
+                                                    </Model>
+                                                </ext:Store>
+                                            </Store>
+
+                                        </ext:ComboBox>
+
+                                    </Items>
+                                </ext:Toolbar>
+                            </TopBar>
+                            <Items>
+                                <ext:GridPanel
+                                    ID="classesGrid"
+                                    runat="server"
+                                    PaddingSpec="0 0 1 0"
+                                    Header="false"
+                                    Layout="FitLayout"
+                                    Scroll="Vertical"
+                                    Border="false"
+                                    Icon="User" MaxHeight="400"
+                                    ColumnLines="True" IDMode="Explicit" RenderXType="True">
+                                    <Store>
+                                        <ext:Store runat="server" ID="classesStore" OnReadData="classesStore_ReadData" AutoLoad="true">
+                                            <Model>
+                                                <ext:Model runat="server" IDProperty="id">
+                                                    <Fields>
+                                                        <ext:ModelField Name="id" />
+                                                        <ext:ModelField Name="name" />
+                                                        <ext:ModelField Name="accessLevel" />
+                                                    </Fields>
+                                                </ext:Model>
+                                            </Model>
+                                        </ext:Store>
+                                    </Store>
+
+
+
+                                    <ColumnModel ID="ColumnModel3" runat="server" SortAscText="<%$ Resources:Common , SortAscText %>" SortDescText="<%$ Resources:Common ,SortDescText  %>" SortClearText="<%$ Resources:Common ,SortClearText  %>" ColumnsText="<%$ Resources:Common ,ColumnsText  %>" EnableColumnHide="false" Sortable="false">
+                                        <Columns>
+
+                                            <ext:Column Visible="false" ID="Column3" MenuDisabled="true" runat="server" DataIndex="classId" Hideable="false" Width="75" />
+                                            <ext:Column ID="Column5" MenuDisabled="true" runat="server" Text="<%$ Resources:Class%>" DataIndex="name" Hideable="false"  Flex="1" />
+                                            <ext:Column ID="Column6" MenuDisabled="true" runat="server" Text="<%$ Resources:AccessLevel%>"  DataIndex="accessLevel" Hideable="false" Width="150">
+                                                <Renderer Handler="return getAccessLevelText(record.data['accessLevel']);" />
+                                            </ext:Column>
+                                            <ext:Column runat="server"
+                                                ID="Column7" Visible="true"
+                                                Text=""
+                                                Width="100"
+                                                Hideable="false"
+                                                Align="Center"
+                                                Fixed="true"
+                                                Filterable="false"
+                                                MenuDisabled="true"
+                                                Resizable="false">
+
+                                                <Renderer Handler="return attachRender()+'&nbsp;&nbsp;'+ editRender(); " />
+                                            </ext:Column>
+
+                                        </Columns>
+                                    </ColumnModel>
+                                    <DockedItems>
+
+                                        <ext:Toolbar ID="Toolbar3" runat="server" Dock="Bottom">
+                                            <Items>
+                                                <ext:StatusBar ID="StatusBar3" runat="server" />
+                                                <ext:ToolbarFill />
+
+                                            </Items>
+                                        </ext:Toolbar>
+
+                                    </DockedItems>
+                                    <Listeners>
+                                        <Render Handler="this.on('cellclick', cellClick);" />
+                                    </Listeners>
+                                    <DirectEvents>
+                                        <CellClick OnEvent="PoPuPClass">
+                                            <EventMask ShowMask="true" />
+                                            <ExtraParams>
+                                                <ext:Parameter Name="id" Value="record.getId()" Mode="Raw" />
+                                                <ext:Parameter Name="type" Value="getCellType( this, rowIndex, cellIndex)" Mode="Raw" />
+                                                <ext:Parameter Name="access" Value="record.data['accessLevel']" Mode="Raw" />
+                                            </ExtraParams>
+
+                                        </CellClick>
+                                    </DirectEvents>
+
+                                    <View>
+                                        <ext:GridView ID="GridView3" runat="server" />
+                                    </View>
+
+
+                                    <SelectionModel>
+                                        <ext:RowSelectionModel ID="rowSelectionModel2" runat="server" Mode="Single" StopIDModeInheritance="true" />
+                                        <%--<ext:CheckboxSelectionModel ID="CheckboxSelectionModel1" runat="server" Mode="Multi" StopIDModeInheritance="true" />--%>
+                                    </SelectionModel>
+
+                                </ext:GridPanel>
+                            </Items>
+                        </ext:FormPanel>
                     </Items>
                 </ext:TabPanel>
             </Items>
-            <Buttons>
-                <ext:Button ID="SaveGroupButton" runat="server" Text="<%$ Resources:Common, Save %>" Icon="Disk">
-
-                    <Listeners>
-                        <Click Handler="CheckSession(); if (!#{GroupForm}.getForm().isValid()) {return false;} " />
-                    </Listeners>
-                    <DirectEvents>
-                        <Click OnEvent="SaveGroup" Failure="Ext.MessageBox.alert('#{titleSavingError}.value', '#{titleSavingErrorMessage}.value');">
-                            <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="={#{GroupWindow}.body}" />
-                            <ExtraParams>
-                                <ext:Parameter Name="id" Value="#{recordId}.getValue()" Mode="Raw" />
-                                <ext:Parameter Name="values" Value="#{GroupForm}.getForm().getValues(false, false, false, true)" Mode="Raw" Encode="true" />
-                            </ExtraParams>
-                        </Click>
-                    </DirectEvents>
-                </ext:Button>
-                <ext:Button ID="CancelButton" runat="server" Text="<%$ Resources:Common , Cancel %>" Icon="Cancel">
-                    <Listeners>
-                        <Click Handler="this.up('window').hide();" />
-                    </Listeners>
-                </ext:Button>
-            </Buttons>
+         
+            
         </ext:Window>
 
         <ext:Window
@@ -457,11 +574,10 @@
             Layout="Fit">
 
             <Items>
-                <ext:TabPanel ID="TabPanel1" runat="server" ActiveTabIndex="0" Border="false" DeferredRender="false">
-                    <Items>
+                
                         <ext:FormPanel
                             ID="groupUsersForm" DefaultButton="SaveButton"
-                            runat="server"
+                            runat="server" Header="false"
                             Icon="ApplicationSideList"
                             DefaultAnchor="100%"
                             BodyPadding="5">
@@ -475,7 +591,7 @@
                                             </Content>
 
                                         </ext:Container>
-                                        <ext:Button runat="server" Text="Go">
+                                        <ext:Button runat="server" Text="<%$Resources:Filter %>">
                                             <Listeners>
                                                 <Click Handler="App.direct.GetFilteredUsers();" />
                                             </Listeners>
@@ -500,17 +616,16 @@
                                         </ext:Store>
                                     </Store>
                                     <Listeners>
-                                        
+
                                         <Change Handler="App.direct.GetFilteredUsers();" />
                                     </Listeners>
                                 </ext:ItemSelector>
-                                
+
                             </Items>
 
                         </ext:FormPanel>
 
-                    </Items>
-                </ext:TabPanel>
+              
             </Items>
             <Buttons>
                 <ext:Button ID="Button3" runat="server" Text="<%$ Resources:Common, Save %>" Icon="Disk">
@@ -536,7 +651,193 @@
             </Buttons>
         </ext:Window>
 
+        <ext:Window
+            ID="EditClassLevelWindow"
+            runat="server"
+            Icon="PageEdit"
+            Draggable="false"
+            Maximizable="false" Resizable="false"
+            Width="400"
+            Height="120"
+            AutoShow="false"
+            Modal="true"
+            Hidden="true"
+            Layout="Fit">
 
+            <Items>
+                <ext:FormPanel
+                    ID="EditClassLevelForm"
+                    runat="server"
+                    Header="false"
+                    DefaultAnchor="100%"
+                    BodyPadding="5">
+                    <Items>
+                        <ext:TextField runat="server" Name="classId" ID="classId" Hidden="true" Disabled="true" />
+
+                        <ext:ComboBox runat="server" FieldLabel="<%$ Resources:AccessLevel%>"  Editable="false" ID="accessLevel" Name="accessLevel">
+                            <Items>
+
+                                <ext:ListItem Text="<%$ Resources: View %>" Value="0" />
+                                <ext:ListItem Text="<%$ Resources: Read %>" Value="1" />
+                                <ext:ListItem Text="<%$ Resources: Write %>" Value="2" />
+                            </Items>
+
+
+                        </ext:ComboBox>
+                    </Items>
+
+                </ext:FormPanel>
+            </Items>
+            <Buttons>
+                <ext:Button ID="SaveClassLevelButton" runat="server" Text="<%$ Resources:Common, Save %>" Icon="Disk">
+
+                    <Listeners>
+                        <Click Handler="CheckSession(); if (!#{EditClassLevelForm}.getForm().isValid()) {return false;} " />
+                    </Listeners>
+                    <DirectEvents>
+                        <Click OnEvent="SaveClassLevel" Failure="Ext.MessageBox.alert('#{titleSavingError}.value', '#{titleSavingErrorMessage}.value');">
+                            <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="={#{EditClassLevelWindow}.body}" />
+                            <ExtraParams>
+                                <ext:Parameter Name="classId" Value="#{classId}.getValue()" Mode="Raw" />
+
+                                <ext:Parameter Name="values" Value="#{EditClassLevelForm}.getForm().getValues(false, false, false, true)" Mode="Raw" Encode="true" />
+                            </ExtraParams>
+                        </Click>
+                    </DirectEvents>
+                </ext:Button>
+                <ext:Button ID="Button5" runat="server" Text="<%$ Resources:Common , Cancel %>" Icon="Cancel">
+                    <Listeners>
+                        <Click Handler="this.up('window').hide();" />
+                    </Listeners>
+                </ext:Button>
+            </Buttons>
+        </ext:Window>
+
+        <ext:Window
+            ID="EditClassPropertiesWindow"
+            runat="server"
+            Icon="PageEdit"
+            Draggable="false"
+            Maximizable="false" Resizable="false"
+            Width="500"
+            Height="350 "
+            AutoShow="false"
+            Modal="true"
+            Hidden="true"
+            Layout="Fit">
+
+            <Items>
+                <ext:FormPanel
+                    ID="EditClassPropertiesForm"
+                    runat="server"
+                    Header="false"
+                    DefaultAnchor="100%"
+                    BodyPadding="5">
+                    <Items>
+                        <ext:GridPanel
+                            ID="propertiesGrid"
+                            runat="server"
+                            PaddingSpec="0 0 1 0"
+                            Header="false" Height="300"
+                            Layout="FitLayout"
+                            Scroll="Vertical"
+                            Border="false"
+                            Icon="User"
+                            ColumnLines="True" IDMode="Explicit" RenderXType="True">
+                            <Store>
+                                <ext:Store runat="server" ID="propertiesStore" OnReadData="propertyStore_ReadData" AutoLoad="true">
+                                    <Model>
+                                        <ext:Model runat="server" IDProperty="propertyId">
+                                            <Fields>
+                                                <ext:ModelField Name="propertyId" />
+                                                <ext:ModelField Name="name" />
+                                                <ext:ModelField Name="accessLevel" />
+                                            </Fields>
+                                        </ext:Model>
+                                    </Model>
+                                </ext:Store>
+                            </Store>
+
+
+
+                            <ColumnModel ID="ColumnModel4" runat="server" SortAscText="<%$ Resources:Common , SortAscText %>" SortDescText="<%$ Resources:Common ,SortDescText  %>" SortClearText="<%$ Resources:Common ,SortClearText  %>" ColumnsText="<%$ Resources:Common ,ColumnsText  %>" EnableColumnHide="false" Sortable="false">
+                                <Columns>
+
+                                    <ext:Column Visible="false" ID="Column8" MenuDisabled="true" runat="server" DataIndex="propertyId" Hideable="false" Width="75" />
+                                    <ext:Column ID="Column9" MenuDisabled="true" runat="server" DataIndex="name" Text="<%$ Resources:Property%>"  Hideable="false" Flex="1" />
+                                    <ext:WidgetColumn ID="WidgetColumn1" MenuDisabled="true" runat="server" Text="<%$ Resources:AccessLevel%>" DataIndex="accessLevel" Hideable="false" Width="150" Align="Center">
+                                        <Widget>
+                                            <ext:ComboBox runat="server" Editable="false" >
+                                                <Items>
+                                                    <ext:ListItem Text="<%$ Resources: Write %>" Value="2" />
+                                                    <ext:ListItem Text="<%$ Resources: View %>" Value="0" />
+                                                    <ext:ListItem Text="<%$ Resources: Read %>" Value="1" />
+                                                </Items>
+                                                <Listeners>
+                                                    <Select Handler="var rec = this.getWidgetRecord(); rec.set('accessLevel',this.value); rec.commit();" />
+                                                </Listeners>
+                                            </ext:ComboBox>
+
+                                        </Widget>
+
+                                    </ext:WidgetColumn>
+
+
+                                </Columns>
+                            </ColumnModel>
+                            <DockedItems>
+
+                                <ext:Toolbar ID="Toolbar4" runat="server" Dock="Bottom">
+                                    <Items>
+                                        <ext:StatusBar ID="StatusBar4" runat="server" />
+                                        <ext:ToolbarFill />
+
+                                    </Items>
+                                </ext:Toolbar>
+
+                            </DockedItems>
+                          
+                          
+
+                            <View>
+                                <ext:GridView ID="GridView4" runat="server" />
+                            </View>
+
+
+                            <SelectionModel>
+                                <ext:RowSelectionModel ID="rowSelectionModel3" runat="server" Mode="Single" StopIDModeInheritance="true" />
+                                <%--<ext:CheckboxSelectionModel ID="CheckboxSelectionModel1" runat="server" Mode="Multi" StopIDModeInheritance="true" />--%>
+                            </SelectionModel>
+
+                        </ext:GridPanel>
+                    </Items>
+
+                </ext:FormPanel>
+            </Items>
+            <Buttons>
+                <ext:Button ID="Button6" runat="server" Text="<%$ Resources:Common, Save %>" Icon="Disk">
+
+                    <Listeners>
+                        <Click Handler="CheckSession(); if (!#{EditClassPropertiesForm}.getForm().isValid()) {return false;} " />
+                    </Listeners>
+                    <DirectEvents>
+                        <Click OnEvent="SaveClassProperties" Failure="Ext.MessageBox.alert('#{titleSavingError}.value', '#{titleSavingErrorMessage}.value');">
+                            <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="={#{EditClassPropertiesWindow}.body}" />
+                            <ExtraParams>
+
+
+                                <ext:Parameter Name="values" Value="Ext.encode(#{propertiesGrid}.getRowsValues({selectedOnly : false}))" Mode="Raw"  />
+                            </ExtraParams>
+                        </Click>
+                    </DirectEvents>
+                </ext:Button>
+                <ext:Button ID="Button7" runat="server" Text="<%$ Resources:Common , Cancel %>" Icon="Cancel">
+                    <Listeners>
+                        <Click Handler="this.up('window').hide();" />
+                    </Listeners>
+                </ext:Button>
+            </Buttons>
+        </ext:Window>
     </form>
 </body>
 </html>

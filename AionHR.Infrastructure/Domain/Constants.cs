@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace AionHR.Infrastructure.Domain
 {
 
-    public static class ClassId
+    public  static partial class ClassId
     {
         public const int SYFO = 20000;  // folders
         public const int SYUS = 20010;  // users
@@ -221,5 +221,7 @@ namespace AionHR.Infrastructure.Domain
         public const short MAIL = 21;
 
     }
+
+   
 
 }

@@ -1,0 +1,190 @@
+[
+	{
+	"id":20 ,
+	"name":"Mod20",
+	"classes":[
+			{
+			"id":20000, "name":"Class20000","properties":
+				[
+				{"propertyId":2000001,"name":"Property2000001"},
+				{"propertyId":2000002,"name":"Property2000002"},
+				{"propertyId":2000003,"name":"Property2000003"},
+				{"propertyId":2000004,"name":"Property2000004"},
+				{"propertyId":2000005,"name":"Property2000005"},
+				]
+			},
+			{"id":20010,"name":"Class20010","properties":
+				[
+				{"propertyId":2001001,"name":"Property2001001"},
+				{"propertyId":2001002,"name":"Property2001002"},
+				{"propertyId":2001003,"name":"Property2001003"},
+				{"propertyId":2001004,"name":"Property2001004"},
+				{"propertyId":2001005,"name":"Property2001005"},
+				{"propertyId":2001006,"name":"Property2001006"},
+				{"propertyId":2001007,"name":"Property2001007"},
+				{"propertyId":2001008,"name":"Property2001008"},
+				]
+			},
+			{"id":20020,"name":"Class20020","properties":[]},
+			{"id":20030,"name":"Class20030","properties":[]},
+			{"id":20040,"name":"Class20040","properties":[]},
+			{"id":20050,"name":"Class20050","properties":[]},
+			{"id":20060,"name":"Class20060","properties":[]},
+			{"id":20070,"name":"Class20070","properties":[]},
+			{"id":20080,"name":"Class20080","properties":[]},
+			{"id":20081,"name":"Class20081","properties":[]},
+			{"id":20090,"name":"Class20090","properties":[]}
+		]	
+	},
+	{
+	"id":21 ,
+	"name":"Mod21",
+	"classes":[
+			{
+			"id":21010, "name":"Class21010","properties":
+				[
+				{"propertyId":2100011,"name":"Proerty2100011"},
+				{"propertyId":2100012,"name":"Proerty2100012"},
+				{"propertyId":2100013,"name":"Proerty2100013"},
+				
+				]
+			},
+			{"id":21020,"name":"Class21020","properties":[]},
+			{"id":21030,"name":"Class21030","properties":[]},
+			{"id":21040,"name":"Class21040","properties":[]}
+		]
+			
+	},
+	{
+	"id":22 ,
+	"name":"Mod22",
+	"classes":[
+			{"id":22010, "name":"Class22010","properties":[]},
+			{"id":22020,"name":"Class22020","properties":[]},
+			]
+	},
+	{
+	"id":23 ,
+	"name":"Mod23",
+	"classes":[
+			{"id":23010, "name":"Class23010","properties":[]},
+			{"id":23020,"name":"Class23020","properties":[]},
+			]
+	},
+	{
+	"id":24 ,
+	"name":"Mod24",
+	"classes":[
+			{"id":24010, "name":"Class24010","properties":[]},
+			
+			]
+	},
+	{
+	"id":30 ,
+	"name":"Mod30",
+	"classes":[
+			{"id":24010, "name":"Class24010","properties":[]},
+			
+			]
+	},
+	{
+	"id":31 ,
+	"name":"Mod31",
+	"classes":[
+			{"id":31011, "name":"Class31011","properties":[]},
+			{"id":31020, "name":"Class31020","properties":[]},
+			{"id":31021, "name":"Class31021","properties":[]},
+			{"id":31030, "name":"Class31030","properties":[]},
+			{"id":31031, "name":"Class31031","properties":[]},
+			{"id":31040, "name":"Class31040","properties":[]},
+			{"id":31041, "name":"Class31041","properties":[]},
+			{"id":31050, "name":"Class31050","properties":[]},
+			{"id":31051, "name":"Class31051","properties":[]},
+			{"id":31060, "name":"Class31060","properties":[]},
+			{"id":31061, "name":"Class31061","properties":[]},
+			{"id":31062, "name":"Class31062","properties":[]},
+			{"id":31063, "name":"Class31063","properties":[]},
+			{"id":31070, "name":"Class31070","properties":[]},
+			{"id":31071, "name":"Class31071","properties":[]},
+			{"id":31080, "name":"Class31080","properties":[]},
+			{"id":31090, "name":"Class31090","properties":[]},
+			{"id":31100, "name":"Class31100","properties":[]},
+			{"id":31110, "name":"Class31110","properties":[]},
+			{"id":31111, "name":"Class31111","properties":[]},
+			{"id":31120, "name":"Class31120","properties":[]},
+			{"id":31121, "name":"Class31121","properties":[]},
+			{"id":31122, "name":"Class31122","properties":[]},
+			{"id":31130, "name":"Class31130","properties":[]},
+			{"id":31131, "name":"Class31131","properties":[]},
+			{"id":31140, "name":"Class31140","properties":[]},
+			{"id":31141, "name":"Class31141","properties":[]},
+			
+			]
+	},
+
+	{
+	"id":41 ,
+	"name":"Mod41",
+	"classes":[
+			{"id":24010, "name":"Class24010","properties":[]},
+			
+			]
+	},
+	{
+	"id":42 ,
+	"name":"Mod42",
+	"classes":[
+			{"id":24010, "name":"Class24010","properties":[]},
+			
+			]
+	},
+	{
+	"id":43 ,
+	"name":"Mod43",
+	"classes":[
+			{"id":24010, "name":"Class24010","properties":[]},
+			
+			]
+	},
+	{
+	"id":44 ,
+	"name":"Mod44",
+	"classes":[
+			{"id":24010, "name":"Class24010","properties":[]},
+			
+			]
+	},
+	{
+	"id":45 ,
+	"name":"Mod45",
+	"classes":[
+			{"id":24010, "name":"Class24010","properties":[]},
+			
+			]
+	},
+	{
+	"id":51 ,
+	"name":"Mod51",
+	"classes":[
+			{"id":24010, "name":"Class24010","properties":[]},
+			
+			]
+	},
+	{
+	"id":80 ,
+	"name":"Mod80",
+	"classes":[
+			{"id":24010, "name":"Class24010","properties":[]},
+			
+			]
+	},
+	{
+	"id":81 ,
+	"name":"Mod81",
+	"classes":[
+			{"id":24010, "name":"Class24010","properties":[]},
+			
+			]
+	},
+
+]

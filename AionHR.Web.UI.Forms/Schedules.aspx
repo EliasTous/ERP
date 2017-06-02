@@ -471,14 +471,14 @@
                                         <Change Handler="CheckSession();" />
                                     </Listeners>
                                 </ext:ComboBox>
-                                <ext:TextField ID="firstIn" FieldLabel="First In" runat="server" DataIndex="firstIn" AllowBlank="false">
+                                <ext:TextField ID="firstIn" FieldLabel="<%$Resources: FieldFirstIn %>" runat="server" DataIndex="firstIn" AllowBlank="false">
                                     <Plugins>
                                         <ext:InputMask Mask="99:99" />
 
                                     </Plugins>
                                     <Validator Handler="return validateFrom(this.getValue());" />
                                 </ext:TextField>
-                                <ext:TextField ID="lastOut" runat="server" FieldLabel="Last Out" DataIndex="lastOut" AllowBlank="false" BlankText="<%$ Resources:Common, MandatoryField%>">
+                                <ext:TextField ID="lastOut" runat="server" FieldLabel="<%$Resources: FieldLastOut %>" DataIndex="lastOut" AllowBlank="false" BlankText="<%$ Resources:Common, MandatoryField%>">
                                     <Plugins>
                                         <ext:InputMask Mask="99:99" />
                                     </Plugins>

@@ -114,6 +114,11 @@ namespace AionHR.Infrastructure.Session
         {
             return Get("CurrentUserName").ToString();
         }
+
+        public string GetCurrentUserId()
+        {
+            return Get("UserId").ToString();
+        }
         public string GetDateformat()
         {
             object dateFormat = Get("dateFormat");
