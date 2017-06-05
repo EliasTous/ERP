@@ -8,7 +8,7 @@ namespace AionHR.Model.Employees.Profile
 {
     public class EmployeeBackgroundCheck:ModelBase
     {
-        public int employeeId { get; set; }
+       
         public EmployeeName employeeName { get; set; }
         public int ctId { get; set; }
 
@@ -19,5 +19,7 @@ namespace AionHR.Model.Employees.Profile
         public DateTime expiryDate { get; set; }
 
         public string fileUrl { get; set; }
+
+        public int employeeId { get; set; }
     }
 }

@@ -64,46 +64,15 @@ namespace AionHR.Web.UI.Forms
 
                 SetExtLanguage();
                 HideShowButtons();
-                HideShowColumns();
+               
                 this.rtl.Text = _systemService.SessionHelper.CheckIfArabicSession() ? "True" : "False";
-                ApplyAccessControl();
+                AccessControlApplier.ApplyAccessGeneric(MapPath("~/Utilities/modules.txt"), ((int)ClassId.SYUS).ToString(), "20", BasicInfoTab, GridPanel1);
             }
 
 
         }
 
-        private void ApplyAccessControl()
-        {
-            UserPropertiesPermissions req = new UserPropertiesPermissions();
-            req.ClassId = ((int)ClassId.SYUS).ToString();
-            req.UserId = _systemService.SessionHelper.GetCurrentUserId();
-            ListResponse<UC> resp = _accessControlService.ChildGetAll<UC>(req);
-            if(!resp.Success)
-            {
-                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, resp.Summary).Show();
-                return;
-            }
-
-            fullName.ReadOnly = resp.Items[0].accessLevel < 2;
-            hide1.Text= (resp.Items[0].accessLevel < 1).ToString();
-            email.ReadOnly = resp.Items[1].accessLevel < 2;
-            hide2.Text = (resp.Items[1].accessLevel < 1).ToString();
-            isInactiveCheck.ReadOnly = resp.Items[2].accessLevel < 2;
-            hide3.Text = (resp.Items[2].accessLevel < 1).ToString();
-            isAdminCheck.ReadOnly = resp.Items[3].accessLevel < 2;
-            hide4.Text = (resp.Items[3].accessLevel < 1).ToString();
-            employeeId.ReadOnly = resp.Items[4].accessLevel < 2;
-            hide5.Text = (resp.Items[4].accessLevel < 1).ToString();
-            languageId.ReadOnly = resp.Items[5].accessLevel < 2;
-            hide6.Text = (resp.Items[5].accessLevel < 1).ToString();
-           
-
-            PasswordField.ReadOnly = PasswordConfirmation.ReadOnly = resp.Items[6].accessLevel < 2;
-            hide7.Text = (resp.Items[6].accessLevel < 1).ToString();
-
-        }
-
+       
 
 
         /// <summary>
@@ -125,11 +94,7 @@ namespace AionHR.Web.UI.Forms
         /// <summary>
         /// hiding uncessary column in the grid. 
         /// </summary>
-        private void HideShowColumns()
-        {
-            this.colAttach.Visible = false;
-        }
-
+        
 
         private void SetExtLanguage()
         {

@@ -21,12 +21,15 @@ using AionHR.Model.Company.News;
 using AionHR.Services.Messaging;
 using AionHR.Model.Company.Structure;
 using AionHR.Model.System;
+using AionHR.Infrastructure.Domain;
+using AionHR.Model.Access_Control;
 
 namespace AionHR.Web.UI.Forms
 {
     public partial class Currencies : System.Web.UI.Page
     {
         ISystemService _systemService = ServiceLocator.Current.GetInstance<ISystemService>();
+        IAccessControlService _accessControlService = ServiceLocator.Current.GetInstance<IAccessControlService>();
         protected override void InitializeCulture()
         {
 
@@ -56,9 +59,9 @@ namespace AionHR.Web.UI.Forms
                 SetExtLanguage();
                 HideShowButtons();
                 HideShowColumns();
+                AccessControlApplier.ApplyAccessGeneric(MapPath("~/Utilities/modules.txt"), ((int)ClassId.SYCU).ToString(), "20", BasicInfoTab, GridPanel1);
 
-
-
+                
             }
 
         }
@@ -73,9 +76,8 @@ namespace AionHR.Web.UI.Forms
             //this.OtherInfoTab.Visible = false;
         }
 
-
-
-        private void HideShowButtons()
+      
+      private void HideShowButtons()
         {
 
         }
@@ -86,7 +88,7 @@ namespace AionHR.Web.UI.Forms
         /// </summary>
         private void HideShowColumns()
         {
-            this.colAttach.Visible = false;
+           
         }
 
 

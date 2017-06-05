@@ -9,6 +9,12 @@ var deleteRender = function () {
 var attachRender = function () {
     return '<img class="imgAttach"  style="cursor:pointer;" src="Images/Tools/group.png" />';
 };
+var classRender = function () {
+    return '<img class="imgEdit"  style="cursor:pointer;" src="Images/Tools/application_edit.png" />';
+};
+var propertiesRender = function () {
+    return '<img class="imgAttach"  style="cursor:pointer;" src="Images/Tools/expand-all.gif" />';
+};
 
 
 

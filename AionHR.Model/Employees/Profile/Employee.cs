@@ -54,14 +54,14 @@ namespace AionHR.Model.Employees.Profile
         public bool isInactive { get; set; }
 
         public string pictureUrl { get; set; }
-    
+
 
         public string reportToId { get; set; }
 
         public EmployeeName reportToName { get; set; }
     }
 
-    public class EmployeeName:IComparable
+    public class EmployeeName : IComparable
     {
         public string fullName { get; set; }
         public string firstName { get; set; }
@@ -77,10 +77,10 @@ namespace AionHR.Model.Employees.Profile
     }
 
 
-    public class AddressBook
+    public class AddressBook : ModelBase
     {
 
-        public string recordId { get; set; }
+
 
         public string street1 { get; set; }
 
@@ -89,12 +89,13 @@ namespace AionHR.Model.Employees.Profile
         public string city { get; set; }
 
         public string postalCode { get; set; }
+        public string stateId { get; set; }
 
         public string countryId { get; set; }
 
         public string countryName { get; set; }
 
-        public string stateId { get; set; }
+
 
     }
 }

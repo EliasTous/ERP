@@ -20,5 +20,10 @@ namespace AionHR.Services.Interfaces
 
         PostResponse<Registration> AddRegistration(Registration r);
 
+        Dictionary<string, Type> ClassLookup
+        {
+            get; set;
+        }
+
     }
 }

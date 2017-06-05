@@ -1,0 +1,1029 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Property2000001" xml:space="preserve">
+    <value>Name </value>
+  </data>
+  <data name="Property2001001" xml:space="preserve">
+    <value>Name </value>
+  </data>
+  <data name="Property2001002" xml:space="preserve">
+    <value>Email </value>
+  </data>
+  <data name="Property2001003" xml:space="preserve">
+    <value>Is inactve </value>
+  </data>
+  <data name="Property2001004" xml:space="preserve">
+    <value>Is Admin </value>
+  </data>
+  <data name="Property2001005" xml:space="preserve">
+    <value>Employee</value>
+  </data>
+  <data name="Property2001006" xml:space="preserve">
+    <value>Language </value>
+  </data>
+  <data name="Property2001007" xml:space="preserve">
+    <value>Strong</value>
+  </data>
+  <data name="Property2001008" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="Property2001009" xml:space="preserve">
+    <value>Confirm Password</value>
+  </data>
+  <data name="Property2002001" xml:space="preserve">
+    <value>Name </value>
+  </data>
+  <data name="Property2002002" xml:space="preserve">
+    <value>Reference </value>
+  </data>
+  <data name="Property2003001" xml:space="preserve">
+    <value>Default Country</value>
+  </data>
+  <data name="Property20030010" xml:space="preserve">
+    <value>Enable Hijri Calendar</value>
+  </data>
+  <data name="Property2003002" xml:space="preserve">
+    <value>Default Currency</value>
+  </data>
+  <data name="Property2003003" xml:space="preserve">
+    <value>Default Calendar</value>
+  </data>
+  <data name="Property2003004" xml:space="preserve">
+    <value>Default Calendar vacation</value>
+  </data>
+  <data name="Property2003005" xml:space="preserve">
+    <value>Date Format</value>
+  </data>
+  <data name="Property2003006" xml:space="preserve">
+    <value>Default Date Format</value>
+  </data>
+  <data name="Property2003007" xml:space="preserve">
+    <value>First Day Of The Week</value>
+  </data>
+  <data name="Property2003008" xml:space="preserve">
+    <value>Default Time Zone</value>
+  </data>
+  <data name="Property2003009" xml:space="preserve">
+    <value>Enable Camera</value>
+  </data>
+  <data name="Property2004001" xml:space="preserve">
+    <value>Name </value>
+  </data>
+  <data name="Property2006001" xml:space="preserve">
+    <value>Date </value>
+  </data>
+  <data name="Property2006002" xml:space="preserve">
+    <value>User</value>
+  </data>
+  <data name="Property2006003" xml:space="preserve">
+    <value>Activity</value>
+  </data>
+  <data name="Property2007001" xml:space="preserve">
+    <value>Street 1</value>
+  </data>
+  <data name="Property2007002" xml:space="preserve">
+    <value>Street 2 </value>
+  </data>
+  <data name="Property2007003" xml:space="preserve">
+    <value>City</value>
+  </data>
+  <data name="Property2007004" xml:space="preserve">
+    <value>Postal Code</value>
+  </data>
+  <data name="Property2007005" xml:space="preserve">
+    <value>State</value>
+  </data>
+  <data name="Property2007006" xml:space="preserve">
+    <value>Country Name</value>
+  </data>
+  <data name="Property2008001" xml:space="preserve">
+    <value>Name </value>
+  </data>
+  <data name="Property2008101" xml:space="preserve">
+    <value>Branch</value>
+  </data>
+  <data name="Property20081010" xml:space="preserve">
+    <value>Attachment</value>
+  </data>
+  <data name="Property2008102" xml:space="preserve">
+    <value>Document Type</value>
+  </data>
+  <data name="Property2008103" xml:space="preserve">
+    <value>Document Ref</value>
+  </data>
+  <data name="Property2008104" xml:space="preserve">
+    <value>Remarks</value>
+  </data>
+  <data name="Property2008105" xml:space="preserve">
+    <value>Canlendar</value>
+  </data>
+  <data name="Property2008106" xml:space="preserve">
+    <value>Gregorian</value>
+  </data>
+  <data name="Property2008107" xml:space="preserve">
+    <value>Hijri</value>
+  </data>
+  <data name="Property2008108" xml:space="preserve">
+    <value>Issue Date</value>
+  </data>
+  <data name="Property2008109" xml:space="preserve">
+    <value>Expiry Date</value>
+  </data>
+  <data name="Property2009001" xml:space="preserve">
+    <value>Active </value>
+  </data>
+  <data name="Property2009002" xml:space="preserve">
+    <value>Name </value>
+  </data>
+  <data name="Property2009003" xml:space="preserve">
+    <value>To</value>
+  </data>
+  <data name="Property2009004" xml:space="preserve">
+    <value>Days</value>
+  </data>
+  <data name="Property2009005" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="Property2101001" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="Property2101002" xml:space="preserve">
+    <value>Time Zone</value>
+  </data>
+  <data name="Property2101003" xml:space="preserve">
+    <value>Is Inactive</value>
+  </data>
+  <data name="Property2102001" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="Property21020010" xml:space="preserve">
+    <value>Country Name</value>
+  </data>
+  <data name="Property2102002" xml:space="preserve">
+    <value>Reference </value>
+  </data>
+  <data name="Property2102003" xml:space="preserve">
+    <value>Time Zone</value>
+  </data>
+  <data name="Property2102004" xml:space="preserve">
+    <value>Is Inactive </value>
+  </data>
+  <data name="Property2102005" xml:space="preserve">
+    <value>Street 1</value>
+  </data>
+  <data name="Property2102006" xml:space="preserve">
+    <value>Street 2</value>
+  </data>
+  <data name="Property2102007" xml:space="preserve">
+    <value>City </value>
+  </data>
+  <data name="Property2102008" xml:space="preserve">
+    <value>Postal Code</value>
+  </data>
+  <data name="Property2102009" xml:space="preserve">
+    <value>State </value>
+  </data>
+  <data name="Property2103001" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="Property2103002" xml:space="preserve">
+    <value>Reference</value>
+  </data>
+  <data name="Property2103003" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="Property2103004" xml:space="preserve">
+    <value>Referrer Name</value>
+  </data>
+  <data name="Property2104001" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="Property2104002" xml:space="preserve">
+    <value>Reference </value>
+  </data>
+  <data name="Property2104003" xml:space="preserve">
+    <value>Is Inactive </value>
+  </data>
+  <data name="Property2104004" xml:space="preserve">
+    <value>Supervisor</value>
+  </data>
+  <data name="Property2104005" xml:space="preserve">
+    <value>Parent</value>
+  </data>
+  <data name="Property2201001" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="Property2301001" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="Property2302001" xml:space="preserve">
+    <value>Department </value>
+  </data>
+  <data name="Property2302002" xml:space="preserve">
+    <value>Gategory</value>
+  </data>
+  <data name="Property2302003" xml:space="preserve">
+    <value>Type</value>
+  </data>
+  <data name="Property2302004" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="Property2302005" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="Property2302006" xml:space="preserve">
+    <value>Attachment</value>
+  </data>
+  <data name="Property2401001" xml:space="preserve">
+    <value>Subject</value>
+  </data>
+  <data name="Property2401002" xml:space="preserve">
+    <value>News text</value>
+  </data>
+  <data name="Property2401003" xml:space="preserve">
+    <value>Notify Via Email</value>
+  </data>
+  <data name="Property2401004" xml:space="preserve">
+    <value>Allow Comments </value>
+  </data>
+  <data name="Property2401005" xml:space="preserve">
+    <value>Is Published</value>
+  </data>
+  <data name="Property3100001" xml:space="preserve">
+    <value>Reference </value>
+  </data>
+  <data name="Property31000010" xml:space="preserve">
+    <value>Mobile</value>
+  </data>
+  <data name="Property31000011" xml:space="preserve">
+    <value>Religion</value>
+  </data>
+  <data name="Property31000012" xml:space="preserve">
+    <value>Birth Date</value>
+  </data>
+  <data name="Property31000013" xml:space="preserve">
+    <value>Nationality</value>
+  </data>
+  <data name="Property31000014" xml:space="preserve">
+    <value>Vacation</value>
+  </data>
+  <data name="Property31000015" xml:space="preserve">
+    <value>Calendar</value>
+  </data>
+  <data name="Property31000016" xml:space="preserve">
+    <value>Place of Birth</value>
+  </data>
+  <data name="Property31000017" xml:space="preserve">
+    <value>Hire date</value>
+  </data>
+  <data name="Property3100002" xml:space="preserve">
+    <value>Fisrt Name </value>
+  </data>
+  <data name="Property3100003" xml:space="preserve">
+    <value>Middle Name</value>
+  </data>
+  <data name="Property3100004" xml:space="preserve">
+    <value>Last Name </value>
+  </data>
+  <data name="Property3100005" xml:space="preserve">
+    <value>Family Name</value>
+  </data>
+  <data name="Property3100006" xml:space="preserve">
+    <value>ID Ref</value>
+  </data>
+  <data name="Property3100007" xml:space="preserve">
+    <value>Home Email</value>
+  </data>
+  <data name="Property3100008" xml:space="preserve">
+    <value>Work Email</value>
+  </data>
+  <data name="Property3100009" xml:space="preserve">
+    <value>Gender</value>
+  </data>
+  <data name="Property3101001" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="Property3101101" xml:space="preserve">
+    <value>Employee Name </value>
+  </data>
+  <data name="Property3101102" xml:space="preserve">
+    <value>Asset Gategory Name</value>
+  </data>
+  <data name="Property3101103" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="Property3101104" xml:space="preserve">
+    <value>Serial No</value>
+  </data>
+  <data name="Property3101105" xml:space="preserve">
+    <value>Comment</value>
+  </data>
+  <data name="Property3101106" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="Property3101107" xml:space="preserve">
+    <value>Returned date</value>
+  </data>
+  <data name="Property3102001" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="Property3102101" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="Property3103001" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="Property3103101" xml:space="preserve">
+    <value>Currency</value>
+  </data>
+  <data name="Property3103102" xml:space="preserve">
+    <value>Bonus Type</value>
+  </data>
+  <data name="Property3103103" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="Property3103104" xml:space="preserve">
+    <value>Amount</value>
+  </data>
+  <data name="Property3103105" xml:space="preserve">
+    <value>Comment</value>
+  </data>
+  <data name="Property3104001" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="Property3104101" xml:space="preserve">
+    <value>Institution</value>
+  </data>
+  <data name="Property3104102" xml:space="preserve">
+    <value>Level</value>
+  </data>
+  <data name="Property3104103" xml:space="preserve">
+    <value>From </value>
+  </data>
+  <data name="Property3104104" xml:space="preserve">
+    <value>To</value>
+  </data>
+  <data name="Property3104105" xml:space="preserve">
+    <value>Remakrs</value>
+  </data>
+  <data name="Property3104106" xml:space="preserve">
+    <value>Grade</value>
+  </data>
+  <data name="Property3104107" xml:space="preserve">
+    <value>Major</value>
+  </data>
+  <data name="Property3105001" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="Property3106001" xml:space="preserve">
+    <value>Name </value>
+  </data>
+  <data name="Property3106101" xml:space="preserve">
+    <value>Name </value>
+  </data>
+  <data name="Property3106102" xml:space="preserve">
+    <value>Type</value>
+  </data>
+  <data name="Property3106201" xml:space="preserve">
+    <value>Currency</value>
+  </data>
+  <data name="Property31062010" xml:space="preserve">
+    <value>Basic Amount </value>
+  </data>
+  <data name="Property31062011" xml:space="preserve">
+    <value>Final Amount</value>
+  </data>
+  <data name="Property31062012" xml:space="preserve">
+    <value>Entiltements</value>
+  </data>
+  <data name="Property31062013" xml:space="preserve">
+    <value>Deductions</value>
+  </data>
+  <data name="Property3106202" xml:space="preserve">
+    <value>Change Reason</value>
+  </data>
+  <data name="Property3106203" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="Property3106204" xml:space="preserve">
+    <value>Salary Type</value>
+  </data>
+  <data name="Property3106205" xml:space="preserve">
+    <value>Payment Frequency</value>
+  </data>
+  <data name="Property3106206" xml:space="preserve">
+    <value>Payment Method</value>
+  </data>
+  <data name="Property3106207" xml:space="preserve">
+    <value>Bank</value>
+  </data>
+  <data name="Property3106208" xml:space="preserve">
+    <value>Account Number</value>
+  </data>
+  <data name="Property3106209" xml:space="preserve">
+    <value>Comments </value>
+  </data>
+  <data name="Property3106301" xml:space="preserve">
+    <value>Entiltement</value>
+  </data>
+  <data name="Property31063010" xml:space="preserve">
+    <value>PCT of</value>
+  </data>
+  <data name="Property31063011" xml:space="preserve">
+    <value>Percentage</value>
+  </data>
+  <data name="Property31063012" xml:space="preserve">
+    <value>Amount</value>
+  </data>
+  <data name="Property31063013" xml:space="preserve">
+    <value>Comment</value>
+  </data>
+  <data name="Property3106302" xml:space="preserve">
+    <value>Include In Total </value>
+  </data>
+  <data name="Property3106303" xml:space="preserve">
+    <value>Is Percentage</value>
+  </data>
+  <data name="Property3106304" xml:space="preserve">
+    <value>Percentage</value>
+  </data>
+  <data name="Property3106305" xml:space="preserve">
+    <value>Amount </value>
+  </data>
+  <data name="Property3106306" xml:space="preserve">
+    <value>Comment</value>
+  </data>
+  <data name="Property3106307" xml:space="preserve">
+    <value>Deduction</value>
+  </data>
+  <data name="Property3106308" xml:space="preserve">
+    <value>Include In Total</value>
+  </data>
+  <data name="Property3106309" xml:space="preserve">
+    <value>Is Percentage</value>
+  </data>
+  <data name="Property3107001" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="Property3107101" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="Property3107102" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="Property3107103" xml:space="preserve">
+    <value>Comment</value>
+  </data>
+  <data name="Property3108001" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="Property3108002" xml:space="preserve">
+    <value>Department</value>
+  </data>
+  <data name="Property3108003" xml:space="preserve">
+    <value>Branch</value>
+  </data>
+  <data name="Property3108004" xml:space="preserve">
+    <value>Division</value>
+  </data>
+  <data name="Property3108005" xml:space="preserve">
+    <value>Position</value>
+  </data>
+  <data name="Property3108006" xml:space="preserve">
+    <value>Reports To</value>
+  </data>
+  <data name="Property3109001" xml:space="preserve">
+    <value>From </value>
+  </data>
+  <data name="Property3109002" xml:space="preserve">
+    <value>To</value>
+  </data>
+  <data name="Property3109003" xml:space="preserve">
+    <value>Comment</value>
+  </data>
+  <data name="Property3110001" xml:space="preserve">
+    <value>Branch</value>
+  </data>
+  <data name="Property3110002" xml:space="preserve">
+    <value>Doucment Type</value>
+  </data>
+  <data name="Property3110003" xml:space="preserve">
+    <value>Document Ref</value>
+  </data>
+  <data name="Property3110004" xml:space="preserve">
+    <value>Remarks</value>
+  </data>
+  <data name="Property3110005" xml:space="preserve">
+    <value>Calendar</value>
+  </data>
+  <data name="Property3110006" xml:space="preserve">
+    <value>Isuue Date </value>
+  </data>
+  <data name="Property3110007" xml:space="preserve">
+    <value>Expiry Date</value>
+  </data>
+  <data name="Property3110008" xml:space="preserve">
+    <value>Attachment</value>
+  </data>
+  <data name="Property3111101" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="Property3111102" xml:space="preserve">
+    <value>Ref</value>
+  </data>
+  <data name="Property3111103" xml:space="preserve">
+    <value>Right to Work Ref</value>
+  </data>
+  <data name="Property3111104" xml:space="preserve">
+    <value>Address</value>
+  </data>
+  <data name="Property3111105" xml:space="preserve">
+    <value>City</value>
+  </data>
+  <data name="Property3111106" xml:space="preserve">
+    <value>Mobile</value>
+  </data>
+  <data name="Property3111107" xml:space="preserve">
+    <value>Phone</value>
+  </data>
+  <data name="Property3111108" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="Property3111109" xml:space="preserve">
+    <value>Fax</value>
+  </data>
+  <data name="Property3112001" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="Property3112101" xml:space="preserve">
+    <value>Name </value>
+  </data>
+  <data name="Property31121010" xml:space="preserve">
+    <value>Postal Code</value>
+  </data>
+  <data name="Property31121011" xml:space="preserve">
+    <value>State</value>
+  </data>
+  <data name="Property31121012" xml:space="preserve">
+    <value>Country name </value>
+  </data>
+  <data name="Property3112102" xml:space="preserve">
+    <value>Relationship</value>
+  </data>
+  <data name="Property3112103" xml:space="preserve">
+    <value>Work phone</value>
+  </data>
+  <data name="Property3112104" xml:space="preserve">
+    <value>Home work</value>
+  </data>
+  <data name="Property3112105" xml:space="preserve">
+    <value>Cell phone </value>
+  </data>
+  <data name="Property3112106" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="Property3112107" xml:space="preserve">
+    <value>Street 1</value>
+  </data>
+  <data name="Property3112108" xml:space="preserve">
+    <value>Street 2</value>
+  </data>
+  <data name="Property3112109" xml:space="preserve">
+    <value>City</value>
+  </data>
+  <data name="Property3112201" xml:space="preserve">
+    <value>Cell phone</value>
+  </data>
+  <data name="Property3112202" xml:space="preserve">
+    <value>Street 1</value>
+  </data>
+  <data name="Property3112203" xml:space="preserve">
+    <value>Street 2</value>
+  </data>
+  <data name="Property3112204" xml:space="preserve">
+    <value>City</value>
+  </data>
+  <data name="Property3112205" xml:space="preserve">
+    <value>Postal Code</value>
+  </data>
+  <data name="Property3112206" xml:space="preserve">
+    <value>State</value>
+  </data>
+  <data name="Property3112207" xml:space="preserve">
+    <value>Country name</value>
+  </data>
+  <data name="Property3113001" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="Property3113101" xml:space="preserve">
+    <value>Date </value>
+  </data>
+  <data name="Property3113102" xml:space="preserve">
+    <value>Type</value>
+  </data>
+  <data name="Property3113103" xml:space="preserve">
+    <value>Reason</value>
+  </data>
+  <data name="Property3113104" xml:space="preserve">
+    <value>Rehire</value>
+  </data>
+  <data name="Property3114001" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="Property3200001" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="Property3201001" xml:space="preserve">
+    <value>Name </value>
+  </data>
+  <data name="Property3201002" xml:space="preserve">
+    <value>Assign To Name </value>
+  </data>
+  <data name="Property3201003" xml:space="preserve">
+    <value>In Relation To Name</value>
+  </data>
+  <data name="Property3201004" xml:space="preserve">
+    <value>Task Type</value>
+  </data>
+  <data name="Property3201005" xml:space="preserve">
+    <value>Due Date</value>
+  </data>
+  <data name="Property3201006" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="Property3201007" xml:space="preserve">
+    <value>Completed</value>
+  </data>
+  <data name="Property3202001" xml:space="preserve">
+    <value>User</value>
+  </data>
+  <data name="Property3202002" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="Property3202003" xml:space="preserve">
+    <value>comment</value>
+  </data>
+  <data name="Property4100001" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="Property4100002" xml:space="preserve">
+    <value>Reference</value>
+  </data>
+  <data name="Property4100003" xml:space="preserve">
+    <value>Division</value>
+  </data>
+  <data name="Property4101001" xml:space="preserve">
+    <value>Reference</value>
+  </data>
+  <data name="Property4101002" xml:space="preserve">
+    <value>Is Inactive</value>
+  </data>
+  <data name="Property4101003" xml:space="preserve">
+    <value>Branch</value>
+  </data>
+  <data name="Property4102001" xml:space="preserve">
+    <value>Name </value>
+  </data>
+  <data name="Property4102002" xml:space="preserve">
+    <value>Branch</value>
+  </data>
+  <data name="Property4103001" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="Property4103002" xml:space="preserve">
+    <value>Is working day</value>
+  </data>
+  <data name="Property4103003" xml:space="preserve">
+    <value>Color</value>
+  </data>
+  <data name="Property4104001" xml:space="preserve">
+    <value>Employee Name</value>
+  </data>
+  <data name="Property4104002" xml:space="preserve">
+    <value>Date Reccived</value>
+  </data>
+  <data name="Property4104003" xml:space="preserve">
+    <value>Action Taken</value>
+  </data>
+  <data name="Property4104004" xml:space="preserve">
+    <value>Action Required</value>
+  </data>
+  <data name="Property4104005" xml:space="preserve">
+    <value>Complaint Details</value>
+  </data>
+  <data name="Property4104006" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="Property4105001" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="Property4105002" xml:space="preserve">
+    <value>First check in minimum over time</value>
+  </data>
+  <data name="Property4105003" xml:space="preserve">
+    <value>First check in maximum latneness</value>
+  </data>
+  <data name="Property4105004" xml:space="preserve">
+    <value>Last check out maximum early leave </value>
+  </data>
+  <data name="Property4105005" xml:space="preserve">
+    <value>Last check out minimum early leave</value>
+  </data>
+  <data name="Property4105006" xml:space="preserve">
+    <value>Last check out maximum over time</value>
+  </data>
+  <data name="Property4105101" xml:space="preserve">
+    <value>Day type</value>
+  </data>
+  <data name="Property4105102" xml:space="preserve">
+    <value>First in</value>
+  </data>
+  <data name="Property4105103" xml:space="preserve">
+    <value>Last out</value>
+  </data>
+  <data name="property4105201" xml:space="preserve">
+    <value>Break</value>
+  </data>
+  <data name="property4105202" xml:space="preserve">
+    <value>From time</value>
+  </data>
+  <data name="property4105203" xml:space="preserve">
+    <value>To time</value>
+  </data>
+  <data name="property4105204" xml:space="preserve">
+    <value>Is benfit overtime</value>
+  </data>
+  <data name="Property4106101" xml:space="preserve">
+    <value>From</value>
+  </data>
+  <data name="Property4106102" xml:space="preserve">
+    <value>To</value>
+  </data>
+  <data name="Property4106201" xml:space="preserve">
+    <value>Name </value>
+  </data>
+  <data name="Property4106202" xml:space="preserve">
+    <value>Select a Branch</value>
+  </data>
+  <data name="Property4106203" xml:space="preserve">
+    <value>Select a Department</value>
+  </data>
+  <data name="Property4106204" xml:space="preserve">
+    <value>Check in</value>
+  </data>
+  <data name="Property4106205" xml:space="preserve">
+    <value>Check out</value>
+  </data>
+  <data name="Property4106206" xml:space="preserve">
+    <value>Houres Worked</value>
+  </data>
+  <data name="Property4106207" xml:space="preserve">
+    <value>Breaks</value>
+  </data>
+  <data name="Property4107001" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="Property4107101" xml:space="preserve">
+    <value>year</value>
+  </data>
+  <data name="Property4107201" xml:space="preserve">
+    <value>Schedule</value>
+  </data>
+  <data name="Property4107202" xml:space="preserve">
+    <value>Day Type</value>
+  </data>
+  <data name="Property4200001" xml:space="preserve">
+    <value>Name </value>
+  </data>
+  <data name="Property4200002" xml:space="preserve">
+    <value>Reference </value>
+  </data>
+  <data name="Property4200003" xml:space="preserve">
+    <value>Require Approval</value>
+  </data>
+  <data name="Property4201001" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="Property4201201" xml:space="preserve">
+    <value>From </value>
+  </data>
+  <data name="Property4201202" xml:space="preserve">
+    <value>To</value>
+  </data>
+  <data name="Property4201203" xml:space="preserve">
+    <value>Vacation</value>
+  </data>
+  <data name="Property4202001" xml:space="preserve">
+    <value>Start date </value>
+  </data>
+  <data name="Property42020010" xml:space="preserve">
+    <value>Return Date</value>
+  </data>
+  <data name="Property4202002" xml:space="preserve">
+    <value>End day</value>
+  </data>
+  <data name="Property4202003" xml:space="preserve">
+    <value>Employee Name </value>
+  </data>
+  <data name="Property4202004" xml:space="preserve">
+    <value>Total Hours</value>
+  </data>
+  <data name="Property4202005" xml:space="preserve">
+    <value>Justification</value>
+  </data>
+  <data name="Property4202006" xml:space="preserve">
+    <value>Destination</value>
+  </data>
+  <data name="Property4202007" xml:space="preserve">
+    <value>Is paid </value>
+  </data>
+  <data name="Property4202008" xml:space="preserve">
+    <value>Leave Type Name </value>
+  </data>
+  <data name="Property4202009" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="Property4300001" xml:space="preserve">
+    <value>Employee Name </value>
+  </data>
+  <data name="Property4300002" xml:space="preserve">
+    <value>Date </value>
+  </data>
+  <data name="Property4300003" xml:space="preserve">
+    <value>Details </value>
+  </data>
+  <data name="Property4300004" xml:space="preserve">
+    <value>Statue</value>
+  </data>
+  <data name="Property4300005" xml:space="preserve">
+    <value>Closed Date</value>
+  </data>
+  <data name="Property4300101" xml:space="preserve">
+    <value>User</value>
+  </data>
+  <data name="Property4300102" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="Property4300103" xml:space="preserve">
+    <value>Comment</value>
+  </data>
+  <data name="Property4500001" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="Property4501001" xml:space="preserve">
+    <value>Employee Name</value>
+  </data>
+  <data name="Property45010010" xml:space="preserve">
+    <value>Effective Date</value>
+  </data>
+  <data name="Property4501002" xml:space="preserve">
+    <value>Ref</value>
+  </data>
+  <data name="Property4501003" xml:space="preserve">
+    <value>Branch</value>
+  </data>
+  <data name="Property4501004" xml:space="preserve">
+    <value>Loan Type</value>
+  </data>
+  <data name="Property4501005" xml:space="preserve">
+    <value>Date </value>
+  </data>
+  <data name="Property4501006" xml:space="preserve">
+    <value>Currency</value>
+  </data>
+  <data name="Property4501007" xml:space="preserve">
+    <value>Amount </value>
+  </data>
+  <data name="Property4501008" xml:space="preserve">
+    <value>Purpose</value>
+  </data>
+  <data name="Property4501009" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="Property4501101" xml:space="preserve">
+    <value>User </value>
+  </data>
+  <data name="Property4501102" xml:space="preserve">
+    <value>Date </value>
+  </data>
+  <data name="Property4501103" xml:space="preserve">
+    <value>Comment</value>
+  </data>
+</root>

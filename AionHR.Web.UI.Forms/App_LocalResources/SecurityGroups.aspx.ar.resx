@@ -165,6 +165,9 @@
   <data name="Selected" xml:space="preserve">
     <value>في المجموعة</value>
   </data>
+  <data name="SelectModule" xml:space="preserve">
+    <value>اختر مكون</value>
+  </data>
   <data name="Users" xml:space="preserve">
     <value>المستخدمين</value>
   </data>

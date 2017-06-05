@@ -465,12 +465,18 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Utilities\AccessControlApplier.cs" />
     <Compile Include="AllowanceTypes.aspx.cs">
       <DependentUpon>AllowanceTypes.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="AllowanceTypes.aspx.designer.cs">
       <DependentUpon>AllowanceTypes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="App_GlobalResources\AccessControl.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AccessControl.resx</DependentUpon>
     </Compile>
     <Compile Include="App_GlobalResources\Classes.ar.designer.cs">
       <AutoGen>True</AutoGen>
@@ -1632,6 +1638,10 @@
     <Content Include="App_LocalResources\ImportEmployeeNotes.aspx.ar.resx" />
     <Content Include="App_LocalResources\SecurityGroups.aspx.resx" />
     <Content Include="App_LocalResources\SecurityGroups.aspx.ar.resx" />
+    <Content Include="App_GlobalResources\AccessControl.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>AccessControl.designer.cs</LastGenOutput>
+    </Content>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <Content Include="Reports\App_LocalResources\RT202.aspx.resx" />
     <Content Include="Reports\App_LocalResources\RT01.aspx.ar.resx" />

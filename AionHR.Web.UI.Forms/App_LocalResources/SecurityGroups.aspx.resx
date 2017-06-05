@@ -165,6 +165,9 @@
   <data name="Selected" xml:space="preserve">
     <value>In Group</value>
   </data>
+  <data name="SelectModule" xml:space="preserve">
+    <value>Select a Module</value>
+  </data>
   <data name="Users" xml:space="preserve">
     <value>Users</value>
   </data>

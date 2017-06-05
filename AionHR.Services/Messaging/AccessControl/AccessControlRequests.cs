@@ -93,4 +93,25 @@ public class UserPropertiesPermissions : ListRequest
             return parameters;
         }
     }
+
+    
+}
+
+public class ClassPermissionRecordRequest : RecordRequest
+{
+    public string GroupId { get; set; }
+
+    public string ClassId { get; set; }
+
+    private Dictionary<string, string> parameters;
+    public override Dictionary<string, string> Parameters
+    {
+        get
+        {
+            parameters = new Dictionary<string, string>();
+            parameters.Add("_sgId", GroupId);
+            parameters.Add("_classId", ClassId);
+            return parameters;
+        }
+    }
 }

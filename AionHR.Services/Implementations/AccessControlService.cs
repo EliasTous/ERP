@@ -1,5 +1,9 @@
-﻿using AionHR.Infrastructure.Session;
+﻿using AionHR.Infrastructure.Domain;
+using AionHR.Infrastructure.Session;
 using AionHR.Model.Access_Control;
+using AionHR.Model.Company.Structure;
+using AionHR.Model.Employees.Profile;
+using AionHR.Model.System;
 using AionHR.Services.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -12,13 +16,20 @@ namespace AionHR.Services.Implementations
     public class AccessControlService : BaseService, IAccessControlService
     {
         private IAccessControlRepository repository;
+      
         public AccessControlService(SessionHelper helper,IAccessControlRepository repository):base(helper)
         {
             this.repository = repository;
+          
+
+
         }
         protected override dynamic GetRepository()
         {
             return repository;
         }
+
+
+
     }
 }

@@ -7,10 +7,13 @@ using System.Threading.Tasks;
 namespace AionHR.Model.System
 {
    public class SystemAlert
+
     {
-        public int alertId { get; set; }
 
         public bool isActive { get; set; }
+        public int alertId { get; set; }
+
+        
 
         public short sendTo { get; set; }
 

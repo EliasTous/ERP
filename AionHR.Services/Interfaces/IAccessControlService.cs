@@ -8,5 +8,6 @@ namespace AionHR.Services.Interfaces
 {
    public interface IAccessControlService:IBaseService
     {
+      
     }
 }

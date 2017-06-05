@@ -8,7 +8,7 @@ namespace AionHR.Model.Employees.Profile
 {
     public class AssetAllowance:ModelBase
     {
-        public int employeeId { get; set; }
+        
         public EmployeeName employeeName { get; set; }
         public int acId { get; set; }
 
@@ -21,6 +21,8 @@ namespace AionHR.Model.Employees.Profile
 
         public DateTime date { get; set; }
         public DateTime returnedDate { get; set; }
-        
+
+        public int employeeId { get; set; }
+
     }
 }

@@ -18,6 +18,16 @@ namespace AionHR.Model.Access_Control
         public string propertyId { get; set; }
 
         public int accessLevel { get; set; }
+
+        public string index { get; set; }
+    }
+
+    public class ClassPropertyDefinition
+    {
+        public string propertyId { get; set; }
+        public string name { get; set; }
+        public string index { set; get; }
+
     }
     public class ClassProperty
     {
@@ -29,8 +39,32 @@ namespace AionHR.Model.Access_Control
 
         public string name { get; set; }
         public int accessLevel { get; set; }
+
+        public string index { set; get; }
+
+        public ClassProperty() { }
+        public ClassProperty(ClassPropertyDefinition def)
+        {
+            propertyId = def.propertyId;
+            name = def.name;
+            index = def.index;
+        }
     }
 
+    public partial class ModuleClassDefinition
+    {
+        public string id { get; set; }
+
+        public string classId { get; set; }
+
+       
+
+        public string name { get; set; }
+
+        
+
+        public List<ClassPropertyDefinition> properties { get; set; }
+    }
     public partial class ModuleClass
     {
         public string id { get; set; }
@@ -43,6 +77,16 @@ namespace AionHR.Model.Access_Control
 
         public string sgId { get; set; }
 
+
+        public ModuleClass() { }
+        public ModuleClass(ModuleClassDefinition def)
+        {
+            name = def.name;
+            classId = def.classId;
+            id = def.id;
+
+        }
+
         public List<ClassProperty> properties { get; set; }
     }
 
@@ -52,6 +96,6 @@ namespace AionHR.Model.Access_Control
 
         public string name { get; set; }
 
-        public List<ModuleClass> classes { get; set; }
+        public List<ModuleClassDefinition> classes { get; set; }
     }
 }

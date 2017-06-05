@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="CSS/LiveSearch.css" />
 
     <script type="text/javascript" src="Scripts/moment.js"></script>
-    <script src="Scripts/SecurityGroups.js?id=1" type="text/javascript"></script>
+    <script src="Scripts/SecurityGroups.js?id=3" type="text/javascript"></script>
     <script type="text/javascript" src="Scripts/common.js"></script>
     <script type="text/javascript">
 
@@ -441,7 +441,7 @@
                             <TopBar>
                                 <ext:Toolbar runat="server">
                                     <Items>
-                                        <ext:ComboBox runat="server" ID="modulesCombo" ValueField="id" DisplayField="name">
+                                        <ext:ComboBox runat="server" ID="modulesCombo" ValueField="id" DisplayField="name" FieldLabel="<%$ Resources:SelectModule%>">
                                             <Listeners>
                                                 <AfterRender Handler="App.modulesStore.reload();" />
                                                 <Select Handler="App.CurrentModule.value = this.value; App.classesStore.reload(); " />
@@ -510,7 +510,7 @@
                                                 MenuDisabled="true"
                                                 Resizable="false">
 
-                                                <Renderer Handler="return attachRender()+'&nbsp;&nbsp;'+ editRender(); " />
+                                                <Renderer Handler="return classRender()+'&nbsp;&nbsp;'+ propertiesRender(); " />
                                             </ext:Column>
 
                                         </Columns>

@@ -21,6 +21,7 @@ using AionHR.Model.Company.News;
 using AionHR.Services.Messaging;
 using AionHR.Model.Company.Structure;
 using AionHR.Model.System;
+using AionHR.Infrastructure.Domain;
 
 namespace AionHR.Web.UI.Forms
 {
@@ -57,7 +58,7 @@ namespace AionHR.Web.UI.Forms
                 SetExtLanguage();
                 HideShowButtons();
                 HideShowColumns();
-                
+                AccessControlApplier.ApplyAccessGeneric(MapPath("~/Utilities/modules.txt"), ((int)ClassId.SYNA).ToString(), "20", BasicInfoTab, GridPanel1);
 
 
             }

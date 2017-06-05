@@ -1,4 +1,5 @@
-﻿using AionHR.Model.MasterModule;
+﻿using AionHR.Model.Access_Control;
+using AionHR.Model.MasterModule;
 using AionHR.Model.Payroll;
 using AionHR.Model.System;
 using AionHR.Services.Interfaces;
@@ -7,9 +8,11 @@ using AionHR.Services.Messaging.System;
 using AionHR.Web.UI.Forms.Utilities;
 using Ext.Net;
 using Microsoft.Practices.ServiceLocation;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -25,6 +28,7 @@ namespace AionHR.Web.UI.Forms
         ISystemService _systemService = ServiceLocator.Current.GetInstance<ISystemService>();
         IMasterService _masterService = ServiceLocator.Current.GetInstance<IMasterService>();
         IPayrollService _payrollService = ServiceLocator.Current.GetInstance<IPayrollService>();
+        IAccessControlService _accessControlService = ServiceLocator.Current.GetInstance<IAccessControlService>();
         /// <summary>
         /// Could be added in a base page, but we keep it here in order to control the page UI. This method should be copied to each page
         /// </summary>
@@ -354,6 +358,53 @@ namespace AionHR.Web.UI.Forms
             else
             {
                 X.Msg.Alert("", GetGlobalResourceObject("Common","LoanSyncSucc").ToString()).Show();
+            }
+        }
+
+        public  void ApplyRule(string classId, string moduleId, FormPanel form, GridPanel g)
+        {
+            UserPropertiesPermissions req = new UserPropertiesPermissions();
+            req.ClassId = classId;
+            req.UserId = _systemService.SessionHelper.GetCurrentUserId();
+            ListResponse<UC> resp = _accessControlService.ChildGetAll<UC>(req);
+            if (!resp.Success)
+            {
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, resp.Summary).Show();
+                return;
+            }
+            string s = File.ReadAllText(MapPath("~/Utilities/modules.txt"));
+            List<Module> preDefined = JsonConvert.DeserializeObject<List<Module>>(s);
+            List<ModuleClassDefinition> classes = preDefined.Where(x => x.id == moduleId).ToList()[0].classes;
+            List<ClassPropertyDefinition> properites = classes.Where(x => x.id == classId).ToList()[0].properties;
+            properites.ForEach(x => { var results = resp.Items.Where(d => d.propertyId == x.propertyId).ToList(); if (results.Count > 0) results[0].index = x.index; });
+
+            foreach (var item in form.Items)
+            {
+                if (item is Field)
+                {
+                    var results = resp.Items.Where(x => x.index == (item as Field).Name).ToList();
+                    if (results.Count > 0)
+                    {
+                        switch (results[0].accessLevel)
+                        {
+                            case 0:
+
+                                (item as Field).Hidden = true; break;
+                            case 1: (item as Field).ReadOnly = true; break;
+                            default: break;
+
+                        }
+                    }
+                }
+            }
+            foreach (var item in g.ColumnModel.Columns)
+            {
+
+                var results = resp.Items.Where(x => x.index == item.DataIndex).ToList();
+                if (results.Count > 0 && results[0].accessLevel < 1)
+                    item.Renderer.Handler = "return '*****';";
+
             }
         }
     }

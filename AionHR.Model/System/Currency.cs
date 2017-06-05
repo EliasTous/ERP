@@ -9,7 +9,8 @@ namespace AionHR.Model.System
 {
     public class Currency:ModelBase
     {
-        public string reference { get; set; }
         public string name { get; set; }
+        public string reference { get; set; }
+        
     }
 }

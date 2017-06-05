@@ -315,7 +315,7 @@
 
 
                            <ext:Column runat="server"
-                                ID="colEdit"  Visible="true"
+                                ID="colAttach"  Visible="true"
                                 Text=""
                                 Width="100"
                                 Hideable="false"
@@ -328,32 +328,7 @@
                                 <Renderer handler="return editRender()+'&nbsp;&nbsp;' +deleteRender(); " />
 
                             </ext:Column>
-                            <ext:Column runat="server"
-                                ID="colDelete" Visible="false"
-                                Text="<%$ Resources: Common , Delete %>"
-                                Width="100"
-                                Align="Center"
-                                Fixed="true"
-                                Filterable="false"
-                                Hideable="false"
-                                MenuDisabled="true"
-                                Resizable="false">
-                                <Renderer Fn="deleteRender" />
-
-
-                            </ext:Column>
-                            <ext:Column runat="server"
-                                ID="colAttach"
-                                Text="<%$ Resources:Common, Attach %>"
-                                Hideable="false"
-                                Width="60"
-                                Align="Center"
-                                Fixed="true"
-                                Filterable="false"
-                                MenuDisabled="true"
-                                Resizable="false">
-                                <Renderer Fn="attachRender" />
-                            </ext:Column>
+                            
 
 
 
@@ -445,15 +420,15 @@
                             DefaultAnchor="100%" OnLoad="BasicInfoTab_Load"
                             BodyPadding="5">
                             <Items>
-                                <ext:TextField ID="fullName" TabIndex="1" runat="server" FieldLabel="<%$ Resources: FieldFullName %>" DataIndex="fullName" AllowBlank="false" />
+                                <ext:TextField ID="fullName" TabIndex="1" runat="server" FieldLabel="<%$ Resources: FieldFullName %>" DataIndex="fullName" Name="fullName" AllowBlank="false" />
                                     
-                                <ext:TextField ID="email" TabIndex="2" runat="server" FieldLabel="<%$ Resources: FieldEmail %>" DataIndex="email" InputType="Email" Vtype="email" AllowBlank="false" />
+                                <ext:TextField ID="email" TabIndex="2" runat="server" FieldLabel="<%$ Resources: FieldEmail %>" DataIndex="email" Name="email" InputType="Email" Vtype="email" AllowBlank="false" />
                                 <ext:TextField ID="recordId" TabIndex="3" Disabled="true" Hidden="true" runat="server" DataIndex="recordId" AllowBlank="false" />
 
 
                                 <ext:Checkbox ID="isInactiveCheck" TabIndex="4" runat="server" FieldLabel="<%$ Resources: FieldIsInActive%>" DataIndex="isInactive" Name="isInactive" InputValue="true" />
                                 <ext:Checkbox ID="isAdminCheck" TabIndex="5" runat="server" FieldLabel="<%$ Resources: FieldIsAdmin%>" DataIndex="isAdmin" Name="isAdmin" InputValue="true" />
-                                <ext:ComboBox runat="server" ID="employeeId" TabIndex="6"
+                                <ext:ComboBox runat="server" ID="employeeId" TabIndex="6" Name="employeeId"
                                     DisplayField="fullName"
                                     ValueField="recordId"
                                     TypeAhead="false"
@@ -484,7 +459,7 @@
                                         <FocusLeave Handler=" if(this.value==null|| isNaN(this.value) )SetNameEnabled(true,'');  if(isNaN(this.value)) this.setValue(null);" />
                                     </Listeners>
                                 </ext:ComboBox>
-                                <ext:ComboBox runat="server" ID="languageId" AllowBlank="false" TabIndex="7"
+                                <ext:ComboBox runat="server" ID="languageId" AllowBlank="false" TabIndex="7" Name="languageId"
                                     SubmitValue="true"
                                     TypeAhead="false"
                                     FieldLabel="<%$ Resources: FieldLanguageId%>">
