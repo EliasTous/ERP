@@ -8,17 +8,19 @@ namespace AionHR.Model.Employees.Profile
 {
     public class EmploymentHistory :ModelBase
     {
-        public int employeeId { get; set; }
-
-        public EmployeeName employeeName { get; set; }
+    
 
         public int statusId { get; set; }
 
-        public string statusName { get; set; }
+ 
 
         public DateTime date { get; set; }
 
         public string comment { get; set; }
+        public int employeeId { get; set; }
+
+        public EmployeeName employeeName { get; set; }
+        public string statusName { get; set; }
     }
     public  class EmploymentStatus : ModelBase
 

@@ -19,7 +19,7 @@ namespace AionHR.Model.System
 
         public short days { get; set; }
 
-        
+        public string description { get; set; }
         public bool predefined { get; set; }
 
     }

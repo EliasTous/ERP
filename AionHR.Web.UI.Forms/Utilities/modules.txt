@@ -11,111 +11,6 @@
           {
             "propertyId": "2000001",
             "name": "Property2000001",
-            "index": null
-          },
-          {
-            "propertyId": "2000002",
-            "name": "Property2000002",
-            "index": null
-          },
-          {
-            "propertyId": "2000003",
-            "name": "Property2000003",
-            "index": null
-          },
-          {
-            "propertyId": "2000004",
-            "name": "Property2000004",
-            "index": null
-          },
-          {
-            "propertyId": "2000005",
-            "name": "Property2000005",
-            "index": null
-          },
-          {
-            "propertyId": "2000001",
-            "name": "Property2000001",
-            "index": "name"
-          },
-          {
-            "propertyId": "2000002",
-            "name": "Property2000002",
-            "index": "recordId"
-          },
-          {
-            "propertyId": "2000001",
-            "name": "Property2000001",
-            "index": "name"
-          },
-          {
-            "propertyId": "2000002",
-            "name": "Property2000002",
-            "index": "recordId"
-          },
-          {
-            "propertyId": "2000001",
-            "name": "Property2000001",
-            "index": "name"
-          },
-          {
-            "propertyId": "2000002",
-            "name": "Property2000002",
-            "index": "recordId"
-          },
-          {
-            "propertyId": "2000001",
-            "name": "Property2000001",
-            "index": "name"
-          },
-          {
-            "propertyId": "2000002",
-            "name": "Property2000002",
-            "index": "recordId"
-          },
-          {
-            "propertyId": "2000001",
-            "name": "Property2000001",
-            "index": "name"
-          },
-          {
-            "propertyId": "2000002",
-            "name": "Property2000002",
-            "index": "recordId"
-          },
-          {
-            "propertyId": "2000001",
-            "name": "Property2000001",
-            "index": "name"
-          },
-          {
-            "propertyId": "2000002",
-            "name": "Property2000002",
-            "index": "recordId"
-          },
-          {
-            "propertyId": "2000001",
-            "name": "Property2000001",
-            "index": "name"
-          },
-          {
-            "propertyId": "2000002",
-            "name": "Property2000002",
-            "index": "recordId"
-          },
-          {
-            "propertyId": "2000001",
-            "name": "Property2000001",
-            "index": "name"
-          },
-          {
-            "propertyId": "2000002",
-            "name": "Property2000002",
-            "index": "recordId"
-          },
-          {
-            "propertyId": "2000001",
-            "name": "Property2000001",
             "index": "name"
           },
           {
@@ -163,17 +58,17 @@
           {
             "propertyId": "2001007",
             "name": "Property2001007",
-            "index": "accountId"
+            "index": "password"
           },
           {
             "propertyId": "2001008",
             "name": "Property2001008",
-            "index": "password"
+            "index": "recordId"
           },
           {
             "propertyId": "2001009",
             "name": "Property2001009",
-            "index": "recordId"
+            "index": "accountId"
           },
           {
             "propertyId": "2001010",
@@ -393,42 +288,42 @@
           {
             "propertyId": "2008101",
             "name": "Property2008101",
-            "index": "dtId"
+            "index": "branchId"
           },
           {
             "propertyId": "2008102",
             "name": "Property2008102",
-            "index": "branchId"
+            "index": "dtId"
           },
           {
             "propertyId": "2008103",
             "name": "Property2008103",
-            "index": "dtName"
+            "index": "documentRef"
           },
           {
             "propertyId": "2008104",
             "name": "Property2008104",
-            "index": "branchName"
+            "index": "remarks"
           },
           {
             "propertyId": "2008105",
             "name": "Property2008105",
-            "index": "documentRef"
+            "index": "hijriCal"
           },
           {
             "propertyId": "2008106",
             "name": "Property2008106",
-            "index": "remarks"
+            "index": "issueDate"
           },
           {
             "propertyId": "2008107",
             "name": "Property2008107",
-            "index": "issueDate"
+            "index": "expiryDate"
           },
           {
             "propertyId": "2008108",
             "name": "Property2008108",
-            "index": "expiryDate"
+            "index": "fileUrl"
           },
           {
             "propertyId": "2008109",
@@ -443,12 +338,12 @@
           {
             "propertyId": "2008111",
             "name": "Property2008111",
-            "index": "hijriCal"
+            "index": "dtName"
           },
           {
             "propertyId": "2008112",
             "name": "Property2008112",
-            "index": "fileUrl"
+            "index": "branchName"
           },
           {
             "propertyId": "2008113",
@@ -461,7 +356,38 @@
         "id": "20090",
         "classId": null,
         "name": "Class20090",
-        "properties": []
+        "properties": [
+          {
+            "propertyId": "2009001",
+            "name": "Property2009001",
+            "index": "isActive"
+          },
+          {
+            "propertyId": "2009002",
+            "name": "Property2009002",
+            "index": "alertId"
+          },
+          {
+            "propertyId": "2009003",
+            "name": "Property2009003",
+            "index": "sendTo"
+          },
+          {
+            "propertyId": "2009004",
+            "name": "Property2009004",
+            "index": "days"
+          },
+          {
+            "propertyId": "2009005",
+            "name": "Property2009005",
+            "index": "description"
+          },
+          {
+            "propertyId": "2009006",
+            "name": "Property2009006",
+            "index": "predefined"
+          }
+        ]
       }
     ]
   },
@@ -473,25 +399,159 @@
         "id": "21010",
         "classId": null,
         "name": "Class21010",
-        "properties": []
+        "properties": [
+          {
+            "propertyId": "2101001",
+            "name": "Property2101001",
+            "index": "name"
+          },
+          {
+            "propertyId": "2101002",
+            "name": "Property2101002",
+            "index": "timeZone"
+          },
+          {
+            "propertyId": "2101003",
+            "name": "Property2101003",
+            "index": "isInactive"
+          },
+          {
+            "propertyId": "2101004",
+            "name": "Property2101004",
+            "index": "recordId"
+          }
+        ]
       },
       {
         "id": "21020",
         "classId": null,
         "name": "Class21020",
-        "properties": []
+        "properties": [
+          {
+            "propertyId": "2102001",
+            "name": "Property2102001",
+            "index": "name"
+          },
+          {
+            "propertyId": "2102002",
+            "name": "Property2102002",
+            "index": "reference"
+          },
+          {
+            "propertyId": "2102003",
+            "name": "Property2102003",
+            "index": "timeZone"
+          },
+          {
+            "propertyId": "2102004",
+            "name": "Property2102004",
+            "index": "isInactive"
+          },
+          {
+            "propertyId": "2102005",
+            "name": "Property2102005",
+            "index": "addressId"
+          },
+          {
+            "propertyId": "2102006",
+            "name": "Property2102006",
+            "index": "naId"
+          },
+          {
+            "propertyId": "2102007",
+            "name": "Property2102007",
+            "index": "stId"
+          },
+          {
+            "propertyId": "2102008",
+            "name": "Property2102008",
+            "index": "recordId"
+          }
+        ]
       },
       {
         "id": "21030",
         "classId": null,
         "name": "Class21030",
-        "properties": []
+        "properties": [
+          {
+            "propertyId": "2103001",
+            "name": "Property2103001",
+            "index": "name"
+          },
+          {
+            "propertyId": "2103002",
+            "name": "Property2103002",
+            "index": "positionRef"
+          },
+          {
+            "propertyId": "2103003",
+            "name": "Property2103003",
+            "index": "description"
+          },
+          {
+            "propertyId": "2103004",
+            "name": "Property2103004",
+            "index": "referToPositionId"
+          },
+          {
+            "propertyId": "2103005",
+            "name": "Property2103005",
+            "index": "referToPositionName"
+          },
+          {
+            "propertyId": "2103006",
+            "name": "Property2103006",
+            "index": "recordId"
+          }
+        ]
       },
       {
         "id": "21040",
         "classId": null,
         "name": "Class21040",
-        "properties": []
+        "properties": [
+          {
+            "propertyId": "2104001",
+            "name": "Property2104001",
+            "index": "name"
+          },
+          {
+            "propertyId": "2104002",
+            "name": "Property2104002",
+            "index": "departmentRef"
+          },
+          {
+            "propertyId": "2104003",
+            "name": "Property2104003",
+            "index": "isInactive"
+          },
+          {
+            "propertyId": "2104004",
+            "name": "Property2104004",
+            "index": "parentName"
+          },
+          {
+            "propertyId": "2104005",
+            "name": "Property2104005",
+            "index": "supervisorId"
+          },
+          {
+            "propertyId": "2104006",
+            "name": "Property2104006",
+            "index": "parentId"
+          },
+          {
+            "propertyId": "2104007",
+            "name": "Property2104007",
+            "index": "supervisorName"
+          },
+          {
+            "propertyId": "2104008",
+            "name": "Property2104008",
+            "index": "recordId"
+          }
+        ]
       }
     ]
   },
@@ -503,7 +563,18 @@
         "id": "22010",
         "classId": null,
         "name": "Class22010",
-        "properties": []
+        "properties": [
+          {
+            "propertyId": "2201001",
+            "name": "Property2201001",
+            "index": "name"
+          },
+          {
+            "propertyId": "2201002",
+            "name": "Property2201002",
+            "index": "recordId"
+          }
+        ]
       },
       {
         "id": "22020",
@@ -527,7 +598,53 @@
         "id": "23020",
         "classId": null,
         "name": "Class23020",
-        "properties": []
+        "properties": [
+          {
+            "propertyId": "2302001",
+            "name": "Property2302001",
+            "index": "departmentId"
+          },
+          {
+            "propertyId": "2302002",
+            "name": "Property2302002",
+            "index": "mcId"
+          },
+          {
+            "propertyId": "2302003",
+            "name": "Property2302003",
+            "index": "type"
+          },
+          {
+            "propertyId": "2302004",
+            "name": "Property2302004",
+            "index": "description"
+          },
+          {
+            "propertyId": "2302005",
+            "name": "Property2302005",
+            "index": "date"
+          },
+          {
+            "propertyId": "2302006",
+            "name": "Property2302006",
+            "index": "pictureUrl"
+          },
+          {
+            "propertyId": "2302007",
+            "name": "Property2302007",
+            "index": "mcName"
+          },
+          {
+            "propertyId": "2302008",
+            "name": "Property2302008",
+            "index": "departmentName"
+          },
+          {
+            "propertyId": "2302009",
+            "name": "Property2302009",
+            "index": "recordId"
+          }
+        ]
       }
     ]
   },
@@ -539,7 +656,38 @@
         "id": "24010",
         "classId": null,
         "name": "Class24010",
-        "properties": []
+        "properties": [
+          {
+            "propertyId": "2401001",
+            "name": "Property2401001",
+            "index": "subject"
+          },
+          {
+            "propertyId": "2401002",
+            "name": "Property2401002",
+            "index": "newsText"
+          },
+          {
+            "propertyId": "2401003",
+            "name": "Property2401003",
+            "index": "notifyViaEmail"
+          },
+          {
+            "propertyId": "2401004",
+            "name": "Property2401004",
+            "index": "allowComments"
+          },
+          {
+            "propertyId": "2401005",
+            "name": "Property2401005",
+            "index": "isPublished"
+          },
+          {
+            "propertyId": "2401006",
+            "name": "Property2401006",
+            "index": "recordId"
+          }
+        ]
       }
     ]
   },
@@ -560,52 +708,512 @@
     "name": "Mod31",
     "classes": [
       {
+        "id": "31000",
+        "classId": null,
+        "name": "Class31000",
+        "properties": [
+          {
+            "propertyId": "3100001",
+            "name": "Property3100001",
+            "index": "reference"
+          },
+          {
+            "propertyId": "3100002",
+            "name": "Property3100002",
+            "index": "name"
+          },
+          {
+            "propertyId": "3100003",
+            "name": "Property3100003",
+            "index": "firstName"
+          },
+          {
+            "propertyId": "3100004",
+            "name": "Property3100004",
+            "index": "middleName"
+          },
+          {
+            "propertyId": "3100005",
+            "name": "Property3100005",
+            "index": "lastName"
+          },
+          {
+            "propertyId": "3100006",
+            "name": "Property3100006",
+            "index": "familyName"
+          },
+          {
+            "propertyId": "3100007",
+            "name": "Property3100007",
+            "index": "idRef"
+          },
+          {
+            "propertyId": "3100008",
+            "name": "Property3100008",
+            "index": "homeMail"
+          },
+          {
+            "propertyId": "3100009",
+            "name": "Property3100009",
+            "index": "workMail"
+          },
+          {
+            "propertyId": "3100010",
+            "name": "Property3100010",
+            "index": "gender"
+          },
+          {
+            "propertyId": "3100011",
+            "name": "Property3100011",
+            "index": "mobile"
+          },
+          {
+            "propertyId": "3100012",
+            "name": "Property3100012",
+            "index": "religion"
+          },
+          {
+            "propertyId": "3100013",
+            "name": "Property3100013",
+            "index": "birthDate"
+          },
+          {
+            "propertyId": "3100014",
+            "name": "Property3100014",
+            "index": "nationalityId"
+          },
+          {
+            "propertyId": "3100015",
+            "name": "Property3100015",
+            "index": "vsId"
+          },
+          {
+            "propertyId": "3100016",
+            "name": "Property3100016",
+            "index": "caId"
+          },
+          {
+            "propertyId": "3100017",
+            "name": "Property3100017",
+            "index": "placeOfBirth"
+          },
+          {
+            "propertyId": "3100018",
+            "name": "Property3100018",
+            "index": "hireDate"
+          },
+          {
+            "propertyId": "3100019",
+            "name": "Property3100019",
+            "index": "countryName"
+          },
+          {
+            "propertyId": "3100020",
+            "name": "Property3100020",
+            "index": "DateTime"
+          },
+          {
+            "propertyId": "3100021",
+            "name": "Property3100021",
+            "index": "positionId"
+          },
+          {
+            "propertyId": "3100022",
+            "name": "Property3100022",
+            "index": "positionName"
+          },
+          {
+            "propertyId": "3100023",
+            "name": "Property3100023",
+            "index": "departmentId"
+          },
+          {
+            "propertyId": "3100024",
+            "name": "Property3100024",
+            "index": "departmentName"
+          },
+          {
+            "propertyId": "3100025",
+            "name": "Property3100025",
+            "index": "mainDept"
+          },
+          {
+            "propertyId": "3100026",
+            "name": "Property3100026",
+            "index": "branchId"
+          },
+          {
+            "propertyId": "3100027",
+            "name": "Property3100027",
+            "index": "divisionId"
+          },
+          {
+            "propertyId": "3100028",
+            "name": "Property3100028",
+            "index": "divisionName"
+          },
+          {
+            "propertyId": "3100029",
+            "name": "Property3100029",
+            "index": "branchName"
+          },
+          {
+            "propertyId": "3100030",
+            "name": "Property3100030",
+            "index": "lastDayWork"
+          },
+          {
+            "propertyId": "3100031",
+            "name": "Property3100031",
+            "index": "contractEndingDate"
+          },
+          {
+            "propertyId": "3100032",
+            "name": "Property3100032",
+            "index": "lengthOfService"
+          },
+          {
+            "propertyId": "3100033",
+            "name": "Property3100033",
+            "index": "sponsorId"
+          },
+          {
+            "propertyId": "3100034",
+            "name": "Property3100034",
+            "index": "sponsorName"
+          },
+          {
+            "propertyId": "3100035",
+            "name": "Property3100035",
+            "index": "vsName"
+          },
+          {
+            "propertyId": "3100036",
+            "name": "Property3100036",
+            "index": "caName"
+          },
+          {
+            "propertyId": "3100037",
+            "name": "Property3100037",
+            "index": "isInactive"
+          },
+          {
+            "propertyId": "3100038",
+            "name": "Property3100038",
+            "index": "pictureUrl"
+          },
+          {
+            "propertyId": "3100039",
+            "name": "Property3100039",
+            "index": "reportToId"
+          },
+          {
+            "propertyId": "3100040",
+            "name": "Property3100040",
+            "index": "fullName"
+          },
+          {
+            "propertyId": "3100041",
+            "name": "Property3100041",
+            "index": "reportToName"
+          },
+          {
+            "propertyId": "3100042",
+            "name": "Property3100042",
+            "index": "recordId"
+          }
+        ]
+      },
+      {
         "id": "31011",
         "classId": null,
         "name": "Class31011",
-        "properties": []
+        "properties": [
+          {
+            "propertyId": "3101101",
+            "name": "Property3101101",
+            "index": "employeeName"
+          },
+          {
+            "propertyId": "3101102",
+            "name": "Property3101102",
+            "index": "acId"
+          },
+          {
+            "propertyId": "3101103",
+            "name": "Property3101103",
+            "index": "description"
+          },
+          {
+            "propertyId": "3101104",
+            "name": "Property3101104",
+            "index": "serialNo"
+          },
+          {
+            "propertyId": "3101105",
+            "name": "Property3101105",
+            "index": "comment"
+          },
+          {
+            "propertyId": "3101106",
+            "name": "Property3101106",
+            "index": "date"
+          },
+          {
+            "propertyId": "3101107",
+            "name": "Property3101107",
+            "index": "returnedDate"
+          },
+          {
+            "propertyId": "3101108",
+            "name": "Property3101108",
+            "index": "employeeId"
+          },
+          {
+            "propertyId": "3101109",
+            "name": "Property3101109",
+            "index": "acName"
+          },
+          {
+            "propertyId": "3101110",
+            "name": "Property3101110",
+            "index": "recordId"
+          }
+        ]
       },
       {
         "id": "31020",
         "classId": null,
         "name": "Class31020",
-        "properties": []
+        "properties": [
+          {
+            "propertyId": "3102001",
+            "name": "Property3102001",
+            "index": "employeeName"
+          },
+          {
+            "propertyId": "3102002",
+            "name": "Property3102002",
+            "index": "ctId"
+          },
+          {
+            "propertyId": "3102003",
+            "name": "Property3102003",
+            "index": "ctName"
+          },
+          {
+            "propertyId": "3102004",
+            "name": "Property3102004",
+            "index": "remarks"
+          },
+          {
+            "propertyId": "3102005",
+            "name": "Property3102005",
+            "index": "date"
+          },
+          {
+            "propertyId": "3102006",
+            "name": "Property3102006",
+            "index": "expiryDate"
+          },
+          {
+            "propertyId": "3102007",
+            "name": "Property3102007",
+            "index": "fileUrl"
+          },
+          {
+            "propertyId": "3102008",
+            "name": "Property3102008",
+            "index": "employeeId"
+          },
+          {
+            "propertyId": "3102009",
+            "name": "Property3102009",
+            "index": "recordId"
+          }
+        ]
       },
       {
         "id": "31021",
         "classId": null,
         "name": "Class31021",
-        "properties": []
+        "properties": [
+          {
+            "propertyId": "3102101",
+            "name": "Property3102101",
+            "index": "name"
+          },
+          {
+            "propertyId": "3102102",
+            "name": "Property3102102",
+            "index": "recordId"
+          }
+        ]
       },
       {
         "id": "31030",
         "classId": null,
         "name": "Class31030",
-        "properties": []
+        "properties": [
+          {
+            "propertyId": "3103001",
+            "name": "Property3103001",
+            "index": "name"
+          },
+          {
+            "propertyId": "3103002",
+            "name": "Property3103002",
+            "index": "recordId"
+          }
+        ]
       },
       {
         "id": "31031",
         "classId": null,
         "name": "Class31031",
-        "properties": []
+        "properties": [
+          {
+            "propertyId": "3103101",
+            "name": "Property3103101",
+            "index": "currencyId"
+          },
+          {
+            "propertyId": "3103102",
+            "name": "Property3103102",
+            "index": "btId"
+          },
+          {
+            "propertyId": "3103103",
+            "name": "Property3103103",
+            "index": "date"
+          },
+          {
+            "propertyId": "3103104",
+            "name": "Property3103104",
+            "index": "amount"
+          },
+          {
+            "propertyId": "3103105",
+            "name": "Property3103105",
+            "index": "comment"
+          },
+          {
+            "propertyId": "3103106",
+            "name": "Property3103106",
+            "index": "currencyRef"
+          },
+          {
+            "propertyId": "3103107",
+            "name": "Property3103107",
+            "index": "employeeId"
+          },
+          {
+            "propertyId": "3103108",
+            "name": "Property3103108",
+            "index": "employeeName"
+          },
+          {
+            "propertyId": "3103109",
+            "name": "Property3103109",
+            "index": "btName"
+          },
+          {
+            "propertyId": "3103110",
+            "name": "Property3103110",
+            "index": "recordId"
+          }
+        ]
       },
       {
         "id": "31040",
         "classId": null,
         "name": "Class31040",
-        "properties": []
+        "properties": [
+          {
+            "propertyId": "3104001",
+            "name": "Property3104001",
+            "index": "name"
+          },
+          {
+            "propertyId": "3104002",
+            "name": "Property3104002",
+            "index": "recordId"
+          }
+        ]
       },
       {
         "id": "31041",
         "classId": null,
         "name": "Class31041",
-        "properties": []
+        "properties": [
+          {
+            "propertyId": "3104101",
+            "name": "Property3104101",
+            "index": "institution"
+          },
+          {
+            "propertyId": "3104102",
+            "name": "Property3104102",
+            "index": "clId"
+          },
+          {
+            "propertyId": "3104103",
+            "name": "Property3104103",
+            "index": "dateFrom"
+          },
+          {
+            "propertyId": "3104104",
+            "name": "Property3104104",
+            "index": "dateTo"
+          },
+          {
+            "propertyId": "3104105",
+            "name": "Property3104105",
+            "index": "grade"
+          },
+          {
+            "propertyId": "3104106",
+            "name": "Property3104106",
+            "index": "major"
+          },
+          {
+            "propertyId": "3104107",
+            "name": "Property3104107",
+            "index": "employeeId"
+          },
+          {
+            "propertyId": "3104108",
+            "name": "Property3104108",
+            "index": "employeeName"
+          },
+          {
+            "propertyId": "3104109",
+            "name": "Property3104109",
+            "index": "clName"
+          },
+          {
+            "propertyId": "3104110",
+            "name": "Property3104110",
+            "index": "recordId"
+          }
+        ]
       },
       {
         "id": "31050",
         "classId": null,
         "name": "Class31050",
-        "properties": []
+        "properties": [
+          {
+            "propertyId": "3105001",
+            "name": "Property3105001",
+            "index": "name"
+          },
+          {
+            "propertyId": "3105002",
+            "name": "Property3105002",
+            "index": "recordId"
+          }
+        ]
       },
       {
         "id": "31051",
@@ -617,103 +1225,780 @@
         "id": "31060",
         "classId": null,
         "name": "Class31060",
-        "properties": []
+        "properties": [
+          {
+            "propertyId": "3106001",
+            "name": "Property3106001",
+            "index": "name"
+          },
+          {
+            "propertyId": "3106002",
+            "name": "Property3106002",
+            "index": "recordId"
+          }
+        ]
       },
       {
         "id": "31061",
         "classId": null,
         "name": "Class31061",
-        "properties": []
+        "properties": [
+          {
+            "propertyId": "3106101",
+            "name": "Property3106101",
+            "index": "name"
+          },
+          {
+            "propertyId": "3106102",
+            "name": "Property3106102",
+            "index": "type"
+          },
+          {
+            "propertyId": "3106103",
+            "name": "Property3106103",
+            "index": "recordId"
+          }
+        ]
       },
       {
         "id": "31062",
         "classId": null,
         "name": "Class31062",
-        "properties": []
+        "properties": [
+          {
+            "propertyId": "3106201",
+            "name": "Property3106201",
+            "index": "currencyId"
+          },
+          {
+            "propertyId": "3106202",
+            "name": "Property3106202",
+            "index": "scrId"
+          },
+          {
+            "propertyId": "3106203",
+            "name": "Property3106203",
+            "index": "effectiveDate"
+          },
+          {
+            "propertyId": "3106204",
+            "name": "Property3106204",
+            "index": "salaryType"
+          },
+          {
+            "propertyId": "3106205",
+            "name": "Property3106205",
+            "index": "paymentFrequency"
+          },
+          {
+            "propertyId": "3106206",
+            "name": "Property3106206",
+            "index": "paymentMethod"
+          },
+          {
+            "propertyId": "3106207",
+            "name": "Property3106207",
+            "index": "bankName"
+          },
+          {
+            "propertyId": "3106208",
+            "name": "Property3106208",
+            "index": "accountNumber"
+          },
+          {
+            "propertyId": "3106209",
+            "name": "Property3106209",
+            "index": "comments"
+          },
+          {
+            "propertyId": "3106210",
+            "name": "Property3106210",
+            "index": "basicAmount"
+          },
+          {
+            "propertyId": "3106211",
+            "name": "Property3106211",
+            "index": "finalAmount"
+          },
+          {
+            "propertyId": "3106212",
+            "name": "Property3106212",
+            "index": "eAmount"
+          },
+          {
+            "propertyId": "3106213",
+            "name": "Property3106213",
+            "index": "dAmount"
+          },
+          {
+            "propertyId": "3106214",
+            "name": "Property3106214",
+            "index": "employeeId"
+          },
+          {
+            "propertyId": "3106215",
+            "name": "Property3106215",
+            "index": "scrName"
+          },
+          {
+            "propertyId": "3106216",
+            "name": "Property3106216",
+            "index": "currencyRef"
+          },
+          {
+            "propertyId": "3106217",
+            "name": "Property3106217",
+            "index": "isTaxable"
+          },
+          {
+            "propertyId": "3106218",
+            "name": "Property3106218",
+            "index": "recordId"
+          }
+        ]
       },
       {
         "id": "31063",
         "classId": null,
         "name": "Class31063",
-        "properties": []
+        "properties": [
+          {
+            "propertyId": "3106301",
+            "name": "Property3106301",
+            "index": "edId"
+          },
+          {
+            "propertyId": "3106302",
+            "name": "Property3106302",
+            "index": "includeInTotal"
+          },
+          {
+            "propertyId": "3106303",
+            "name": "Property3106303",
+            "index": "pct"
+          },
+          {
+            "propertyId": "3106304",
+            "name": "Property3106304",
+            "index": "fixedAmount"
+          },
+          {
+            "propertyId": "3106305",
+            "name": "Property3106305",
+            "index": "comments"
+          },
+          {
+            "propertyId": "3106306",
+            "name": "Property3106306",
+            "index": "pctOf"
+          },
+          {
+            "propertyId": "3106307",
+            "name": "Property3106307",
+            "index": "type"
+          },
+          {
+            "propertyId": "3106308",
+            "name": "Property3106308",
+            "index": "salaryId"
+          },
+          {
+            "propertyId": "3106309",
+            "name": "Property3106309",
+            "index": "seqNo"
+          },
+          {
+            "propertyId": "3106310",
+            "name": "Property3106310",
+            "index": "edName"
+          },
+          {
+            "propertyId": "3106311",
+            "name": "Property3106311",
+            "index": "isTaxable"
+          }
+        ]
       },
       {
         "id": "31070",
         "classId": null,
         "name": "Class31070",
-        "properties": []
+        "properties": [
+          {
+            "propertyId": "3107001",
+            "name": "Property3107001",
+            "index": "name"
+          },
+          {
+            "propertyId": "3107002",
+            "name": "Property3107002",
+            "index": "recordId"
+          }
+        ]
       },
       {
         "id": "31071",
         "classId": null,
         "name": "Class31071",
-        "properties": []
+        "properties": [
+          {
+            "propertyId": "3107101",
+            "name": "Property3107101",
+            "index": "statusId"
+          },
+          {
+            "propertyId": "3107102",
+            "name": "Property3107102",
+            "index": "date"
+          },
+          {
+            "propertyId": "3107103",
+            "name": "Property3107103",
+            "index": "comment"
+          },
+          {
+            "propertyId": "3107104",
+            "name": "Property3107104",
+            "index": "employeeId"
+          },
+          {
+            "propertyId": "3107105",
+            "name": "Property3107105",
+            "index": "employeeName"
+          },
+          {
+            "propertyId": "3107106",
+            "name": "Property3107106",
+            "index": "statusName"
+          },
+          {
+            "propertyId": "3107107",
+            "name": "Property3107107",
+            "index": "recordId"
+          }
+        ]
       },
       {
         "id": "31080",
         "classId": null,
         "name": "Class31080",
-        "properties": []
+        "properties": [
+          {
+            "propertyId": "3108001",
+            "name": "Property3108001",
+            "index": "date"
+          },
+          {
+            "propertyId": "3108002",
+            "name": "Property3108002",
+            "index": "departmentId"
+          },
+          {
+            "propertyId": "3108003",
+            "name": "Property3108003",
+            "index": "branchId"
+          },
+          {
+            "propertyId": "3108004",
+            "name": "Property3108004",
+            "index": "divisionId"
+          },
+          {
+            "propertyId": "3108005",
+            "name": "Property3108005",
+            "index": "positionId"
+          },
+          {
+            "propertyId": "3108006",
+            "name": "Property3108006",
+            "index": "reportToId"
+          },
+          {
+            "propertyId": "3108007",
+            "name": "Property3108007",
+            "index": "notes"
+          },
+          {
+            "propertyId": "3108008",
+            "name": "Property3108008",
+            "index": "departmentName"
+          },
+          {
+            "propertyId": "3108009",
+            "name": "Property3108009",
+            "index": "branchName"
+          },
+          {
+            "propertyId": "3108010",
+            "name": "Property3108010",
+            "index": "positionName"
+          },
+          {
+            "propertyId": "3108011",
+            "name": "Property3108011",
+            "index": "divisionName"
+          },
+          {
+            "propertyId": "3108012",
+            "name": "Property3108012",
+            "index": "reportToName"
+          },
+          {
+            "propertyId": "3108013",
+            "name": "Property3108013",
+            "index": "employeeId"
+          },
+          {
+            "propertyId": "3108014",
+            "name": "Property3108014",
+            "index": "recordId"
+          }
+        ]
       },
       {
         "id": "31090",
         "classId": null,
         "name": "Class31090",
-        "properties": []
+        "properties": [
+          {
+            "propertyId": "3109001",
+            "name": "Property3109001",
+            "index": "userId"
+          },
+          {
+            "propertyId": "3109002",
+            "name": "Property3109002",
+            "index": "date"
+          },
+          {
+            "propertyId": "3109003",
+            "name": "Property3109003",
+            "index": "note"
+          },
+          {
+            "propertyId": "3109004",
+            "name": "Property3109004",
+            "index": "userName"
+          },
+          {
+            "propertyId": "3109005",
+            "name": "Property3109005",
+            "index": "employeeId"
+          },
+          {
+            "propertyId": "3109006",
+            "name": "Property3109006",
+            "index": "employeeRef"
+          },
+          {
+            "propertyId": "3109007",
+            "name": "Property3109007",
+            "index": "recordId"
+          }
+        ]
       },
       {
         "id": "31100",
         "classId": null,
         "name": "Class31100",
-        "properties": []
+        "properties": [
+          {
+            "propertyId": "3110001",
+            "name": "Property3110001",
+            "index": "dtId"
+          },
+          {
+            "propertyId": "3110002",
+            "name": "Property3110002",
+            "index": "documentRef"
+          },
+          {
+            "propertyId": "3110003",
+            "name": "Property3110003",
+            "index": "remarks"
+          },
+          {
+            "propertyId": "3110004",
+            "name": "Property3110004",
+            "index": "hijriCal"
+          },
+          {
+            "propertyId": "3110005",
+            "name": "Property3110005",
+            "index": "issueDate"
+          },
+          {
+            "propertyId": "3110006",
+            "name": "Property3110006",
+            "index": "expiryDate"
+          },
+          {
+            "propertyId": "3110007",
+            "name": "Property3110007",
+            "index": "fileUrl"
+          },
+          {
+            "propertyId": "3110008",
+            "name": "Property3110008",
+            "index": "employeeId"
+          },
+          {
+            "propertyId": "3110009",
+            "name": "Property3110009",
+            "index": "employeeName"
+          },
+          {
+            "propertyId": "3110010",
+            "name": "Property3110010",
+            "index": "dtName"
+          },
+          {
+            "propertyId": "3110011",
+            "name": "Property3110011",
+            "index": "issueDateFormatted"
+          },
+          {
+            "propertyId": "3110012",
+            "name": "Property3110012",
+            "index": "expireDateFormatted"
+          },
+          {
+            "propertyId": "3110013",
+            "name": "Property3110013",
+            "index": "recordId"
+          }
+        ]
       },
       {
         "id": "31110",
         "classId": null,
         "name": "Class31110",
-        "properties": []
+        "properties": [
+          {
+            "propertyId": "3111001",
+            "name": "Property3111001",
+            "index": "street1"
+          },
+          {
+            "propertyId": "3111002",
+            "name": "Property3111002",
+            "index": "street2"
+          },
+          {
+            "propertyId": "3111003",
+            "name": "Property3111003",
+            "index": "city"
+          },
+          {
+            "propertyId": "3111004",
+            "name": "Property3111004",
+            "index": "postalCode"
+          },
+          {
+            "propertyId": "3111005",
+            "name": "Property3111005",
+            "index": "stateId"
+          },
+          {
+            "propertyId": "3111006",
+            "name": "Property3111006",
+            "index": "countryId"
+          },
+          {
+            "propertyId": "3111007",
+            "name": "Property3111007",
+            "index": "countryName"
+          },
+          {
+            "propertyId": "3111008",
+            "name": "Property3111008",
+            "index": "recordId"
+          }
+        ]
       },
       {
         "id": "31111",
         "classId": null,
         "name": "Class31111",
-        "properties": []
+        "properties": [
+          {
+            "propertyId": "3111101",
+            "name": "Property3111101",
+            "index": "name"
+          },
+          {
+            "propertyId": "3111102",
+            "name": "Property3111102",
+            "index": "idRef"
+          },
+          {
+            "propertyId": "3111103",
+            "name": "Property3111103",
+            "index": "rtwRef"
+          },
+          {
+            "propertyId": "3111104",
+            "name": "Property3111104",
+            "index": "address"
+          },
+          {
+            "propertyId": "3111105",
+            "name": "Property3111105",
+            "index": "city"
+          },
+          {
+            "propertyId": "3111106",
+            "name": "Property3111106",
+            "index": "mobile"
+          },
+          {
+            "propertyId": "3111107",
+            "name": "Property3111107",
+            "index": "phone"
+          },
+          {
+            "propertyId": "3111108",
+            "name": "Property3111108",
+            "index": "email"
+          },
+          {
+            "propertyId": "3111109",
+            "name": "Property3111109",
+            "index": "fax"
+          },
+          {
+            "propertyId": "3111110",
+            "name": "Property3111110",
+            "index": "recordId"
+          }
+        ]
       },
       {
         "id": "31120",
         "classId": null,
         "name": "Class31120",
-        "properties": []
+        "properties": [
+          {
+            "propertyId": "3112001",
+            "name": "Property3112001",
+            "index": "name"
+          },
+          {
+            "propertyId": "3112002",
+            "name": "Property3112002",
+            "index": "recordId"
+          }
+        ]
       },
       {
         "id": "31121",
         "classId": null,
         "name": "Class31121",
-        "properties": []
+        "properties": [
+          {
+            "propertyId": "3112101",
+            "name": "Property3112101",
+            "index": "name"
+          },
+          {
+            "propertyId": "3112102",
+            "name": "Property3112102",
+            "index": "rtId"
+          },
+          {
+            "propertyId": "3112103",
+            "name": "Property3112103",
+            "index": "rtName"
+          },
+          {
+            "propertyId": "3112104",
+            "name": "Property3112104",
+            "index": "workPhone"
+          },
+          {
+            "propertyId": "3112105",
+            "name": "Property3112105",
+            "index": "homePhone"
+          },
+          {
+            "propertyId": "3112106",
+            "name": "Property3112106",
+            "index": "cellPhone"
+          },
+          {
+            "propertyId": "3112107",
+            "name": "Property3112107",
+            "index": "email"
+          },
+          {
+            "propertyId": "3112108",
+            "name": "Property3112108",
+            "index": "addressId"
+          },
+          {
+            "propertyId": "3112109",
+            "name": "Property3112109",
+            "index": "naId"
+          },
+          {
+            "propertyId": "3112110",
+            "name": "Property3112110",
+            "index": "stateId"
+          },
+          {
+            "propertyId": "3112111",
+            "name": "Property3112111",
+            "index": "employeeId"
+          },
+          {
+            "propertyId": "3112112",
+            "name": "Property3112112",
+            "index": "recordId"
+          }
+        ]
       },
       {
         "id": "31122",
         "classId": null,
         "name": "Class31122",
-        "properties": []
+        "properties": [
+          {
+            "propertyId": "3112201",
+            "name": "Property3112201",
+            "index": "phone"
+          },
+          {
+            "propertyId": "3112202",
+            "name": "Property3112202",
+            "index": "street1"
+          },
+          {
+            "propertyId": "3112203",
+            "name": "Property3112203",
+            "index": "street2"
+          },
+          {
+            "propertyId": "3112204",
+            "name": "Property3112204",
+            "index": "city"
+          },
+          {
+            "propertyId": "3112205",
+            "name": "Property3112205",
+            "index": "stateId"
+          },
+          {
+            "propertyId": "3112206",
+            "name": "Property3112206",
+            "index": "postalCode"
+          },
+          {
+            "propertyId": "3112207",
+            "name": "Property3112207",
+            "index": "addressId"
+          },
+          {
+            "propertyId": "3112208",
+            "name": "Property3112208",
+            "index": "naId"
+          },
+          {
+            "propertyId": "3112209",
+            "name": "Property3112209",
+            "index": "naName"
+          },
+          {
+            "propertyId": "3112210",
+            "name": "Property3112210",
+            "index": "rtId"
+          },
+          {
+            "propertyId": "3112211",
+            "name": "Property3112211",
+            "index": "rtName"
+          },
+          {
+            "propertyId": "3112212",
+            "name": "Property3112212",
+            "index": "employeeId"
+          },
+          {
+            "propertyId": "3112213",
+            "name": "Property3112213",
+            "index": "recordId"
+          }
+        ]
       },
       {
         "id": "31130",
         "classId": null,
         "name": "Class31130",
-        "properties": []
+        "properties": [
+          {
+            "propertyId": "3113001",
+            "name": "Property3113001",
+            "index": "name"
+          },
+          {
+            "propertyId": "3113002",
+            "name": "Property3113002",
+            "index": "recordId"
+          }
+        ]
       },
       {
         "id": "31131",
         "classId": null,
         "name": "Class31131",
-        "properties": []
+        "properties": [
+          {
+            "propertyId": "3113101",
+            "name": "Property3113101",
+            "index": "date"
+          },
+          {
+            "propertyId": "3113102",
+            "name": "Property3113102",
+            "index": "ttId"
+          },
+          {
+            "propertyId": "3113103",
+            "name": "Property3113103",
+            "index": "trId"
+          },
+          {
+            "propertyId": "3113104",
+            "name": "Property3113104",
+            "index": "rehire"
+          },
+          {
+            "propertyId": "3113105",
+            "name": "Property3113105",
+            "index": "employeeId"
+          },
+          {
+            "propertyId": "3113106",
+            "name": "Property3113106",
+            "index": "recordId"
+          }
+        ]
       },
       {
         "id": "31140",
         "classId": null,
         "name": "Class31140",
-        "properties": []
+        "properties": [
+          {
+            "propertyId": "3114001",
+            "name": "Property3114001",
+            "index": "name"
+          },
+          {
+            "propertyId": "3114002",
+            "name": "Property3114002",
+            "index": "recordId"
+          }
+        ]
       },
       {
         "id": "31141",
@@ -728,10 +2013,546 @@
     "name": "Mod41",
     "classes": [
       {
-        "id": "24010",
+        "id": "41000",
         "classId": null,
-        "name": "Class24010",
+        "name": "Class41000",
+        "properties": [
+          {
+            "propertyId": "4100001",
+            "name": "Property4100001",
+            "index": "name"
+          },
+          {
+            "propertyId": "4100002",
+            "name": "Property4100002",
+            "index": "reference"
+          },
+          {
+            "propertyId": "4100003",
+            "name": "Property4100003",
+            "index": "divisionId"
+          },
+          {
+            "propertyId": "4100004",
+            "name": "Property4100004",
+            "index": "recordId"
+          }
+        ]
+      },
+      {
+        "id": "41010",
+        "classId": null,
+        "name": "Class41010",
+        "properties": [
+          {
+            "propertyId": "4101001",
+            "name": "Property4101001",
+            "index": "routerRef"
+          },
+          {
+            "propertyId": "4101002",
+            "name": "Property4101002",
+            "index": "isInactive"
+          },
+          {
+            "propertyId": "4101003",
+            "name": "Property4101003",
+            "index": "branchId"
+          },
+          {
+            "propertyId": "4101004",
+            "name": "Property4101004",
+            "index": "branchName"
+          },
+          {
+            "propertyId": "4101005",
+            "name": "Property4101005",
+            "index": "recordId"
+          }
+        ]
+      },
+      {
+        "id": "41020",
+        "classId": null,
+        "name": "Class41020",
+        "properties": [
+          {
+            "propertyId": "4102001",
+            "name": "Property4102001",
+            "index": "name"
+          },
+          {
+            "propertyId": "4102002",
+            "name": "Property4102002",
+            "index": "branchId"
+          },
+          {
+            "propertyId": "4102003",
+            "name": "Property4102003",
+            "index": "branchName"
+          },
+          {
+            "propertyId": "4102004",
+            "name": "Property4102004",
+            "index": "lat"
+          },
+          {
+            "propertyId": "4102005",
+            "name": "Property4102005",
+            "index": "lon"
+          },
+          {
+            "propertyId": "4102006",
+            "name": "Property4102006",
+            "index": "lat2"
+          },
+          {
+            "propertyId": "4102007",
+            "name": "Property4102007",
+            "index": "lon2"
+          },
+          {
+            "propertyId": "4102008",
+            "name": "Property4102008",
+            "index": "shape"
+          },
+          {
+            "propertyId": "4102009",
+            "name": "Property4102009",
+            "index": "radius"
+          },
+          {
+            "propertyId": "4102010",
+            "name": "Property4102010",
+            "index": "recordId"
+          }
+        ]
+      },
+      {
+        "id": "41030",
+        "classId": null,
+        "name": "Class41030",
+        "properties": [
+          {
+            "propertyId": "4103001",
+            "name": "Property4103001",
+            "index": "name"
+          },
+          {
+            "propertyId": "4103002",
+            "name": "Property4103002",
+            "index": "isWorkingDay"
+          },
+          {
+            "propertyId": "4103003",
+            "name": "Property4103003",
+            "index": "color"
+          },
+          {
+            "propertyId": "4103004",
+            "name": "Property4103004",
+            "index": "recordId"
+          }
+        ]
+      },
+      {
+        "id": "41040",
+        "classId": null,
+        "name": "Class41040",
         "properties": []
+      },
+      {
+        "id": "41050",
+        "classId": null,
+        "name": "Class41050",
+        "properties": [
+          {
+            "propertyId": "4105001",
+            "name": "Property4105001",
+            "index": "name"
+          },
+          {
+            "propertyId": "4105002",
+            "name": "Property4105002",
+            "index": "fci_min_ot"
+          },
+          {
+            "propertyId": "4105003",
+            "name": "Property4105003",
+            "index": "fci_max_lt"
+          },
+          {
+            "propertyId": "4105004",
+            "name": "Property4105004",
+            "index": "lco_max_el"
+          },
+          {
+            "propertyId": "4105005",
+            "name": "Property4105005",
+            "index": "lco_min_ot"
+          },
+          {
+            "propertyId": "4105006",
+            "name": "Property4105006",
+            "index": "lco_max_ot"
+          },
+          {
+            "propertyId": "4105007",
+            "name": "Property4105007",
+            "index": "recordId"
+          }
+        ]
+      },
+      {
+        "id": "41051",
+        "classId": null,
+        "name": "Class41051",
+        "properties": [
+          {
+            "propertyId": "4105101",
+            "name": "Property4105101",
+            "index": "dayTypeId"
+          },
+          {
+            "propertyId": "4105102",
+            "name": "Property4105102",
+            "index": "firstIn"
+          },
+          {
+            "propertyId": "4105103",
+            "name": "Property4105103",
+            "index": "lastOut"
+          },
+          {
+            "propertyId": "4105104",
+            "name": "Property4105104",
+            "index": "scId"
+          },
+          {
+            "propertyId": "4105105",
+            "name": "Property4105105",
+            "index": "dow"
+          },
+          {
+            "propertyId": "4105106",
+            "name": "Property4105106",
+            "index": "duration"
+          },
+          {
+            "propertyId": "4105107",
+            "name": "Property4105107",
+            "index": "durationFormatted"
+          }
+        ]
+      },
+      {
+        "id": "41052",
+        "classId": null,
+        "name": "Class41052",
+        "properties": [
+          {
+            "propertyId": "4105201",
+            "name": "Property4105201",
+            "index": "name"
+          },
+          {
+            "propertyId": "4105202",
+            "name": "Property4105202",
+            "index": "start"
+          },
+          {
+            "propertyId": "4105203",
+            "name": "Property4105203",
+            "index": "end"
+          },
+          {
+            "propertyId": "4105204",
+            "name": "Property4105204",
+            "index": "isBenefitOT"
+          },
+          {
+            "propertyId": "4105205",
+            "name": "Property4105205",
+            "index": "scId"
+          },
+          {
+            "propertyId": "4105206",
+            "name": "Property4105206",
+            "index": "dow"
+          },
+          {
+            "propertyId": "4105207",
+            "name": "Property4105207",
+            "index": "seqNo"
+          }
+        ]
+      },
+      {
+        "id": "41060",
+        "classId": null,
+        "name": "Class41060",
+        "properties": [
+          {
+            "propertyId": "4106001",
+            "name": "Property4106001",
+            "index": "authMode"
+          },
+          {
+            "propertyId": "4106002",
+            "name": "Property4106002",
+            "index": "employeeId"
+          },
+          {
+            "propertyId": "4106003",
+            "name": "Property4106003",
+            "index": "employeeRef"
+          },
+          {
+            "propertyId": "4106004",
+            "name": "Property4106004",
+            "index": "checkStatus"
+          },
+          {
+            "propertyId": "4106005",
+            "name": "Property4106005",
+            "index": "ip"
+          },
+          {
+            "propertyId": "4106006",
+            "name": "Property4106006",
+            "index": "serialNo"
+          },
+          {
+            "propertyId": "4106007",
+            "name": "Property4106007",
+            "index": "clockStamp"
+          },
+          {
+            "propertyId": "4106008",
+            "name": "Property4106008",
+            "index": "udId"
+          }
+        ]
+      },
+      {
+        "id": "41061",
+        "classId": null,
+        "name": "Class41061",
+        "properties": [
+          {
+            "propertyId": "4106101",
+            "name": "Property4106101",
+            "index": "checkIn"
+          },
+          {
+            "propertyId": "4106102",
+            "name": "Property4106102",
+            "index": "checkOut"
+          },
+          {
+            "propertyId": "4106103",
+            "name": "Property4106103",
+            "index": "dayId"
+          },
+          {
+            "propertyId": "4106104",
+            "name": "Property4106104",
+            "index": "recordId"
+          },
+          {
+            "propertyId": "4106105",
+            "name": "Property4106105",
+            "index": "employeeRef"
+          },
+          {
+            "propertyId": "4106106",
+            "name": "Property4106106",
+            "index": "employeeId"
+          },
+          {
+            "propertyId": "4106107",
+            "name": "Property4106107",
+            "index": "duration"
+          }
+        ]
+      },
+      {
+        "id": "41062",
+        "classId": null,
+        "name": "Class41062",
+        "properties": [
+          {
+            "propertyId": "4106201",
+            "name": "Property4106201",
+            "index": "employeeName"
+          },
+          {
+            "propertyId": "4106202",
+            "name": "Property4106202",
+            "index": "branchId"
+          },
+          {
+            "propertyId": "4106203",
+            "name": "Property4106203",
+            "index": "departmentId"
+          },
+          {
+            "propertyId": "4106204",
+            "name": "Property4106204",
+            "index": "departmentName"
+          },
+          {
+            "propertyId": "4106205",
+            "name": "Property4106205",
+            "index": "checkIn"
+          },
+          {
+            "propertyId": "4106206",
+            "name": "Property4106206",
+            "index": "checkOut"
+          },
+          {
+            "propertyId": "4106207",
+            "name": "Property4106207",
+            "index": "workingTime"
+          },
+          {
+            "propertyId": "4106208",
+            "name": "Property4106208",
+            "index": "breaks"
+          },
+          {
+            "propertyId": "4106209",
+            "name": "Property4106209",
+            "index": "branchName"
+          },
+          {
+            "propertyId": "4106210",
+            "name": "Property4106210",
+            "index": "dayId"
+          },
+          {
+            "propertyId": "4106211",
+            "name": "Property4106211",
+            "index": "employeeId"
+          },
+          {
+            "propertyId": "4106212",
+            "name": "Property4106212",
+            "index": "netOL"
+          },
+          {
+            "propertyId": "4106213",
+            "name": "Property4106213",
+            "index": "OL_A"
+          },
+          {
+            "propertyId": "4106214",
+            "name": "Property4106214",
+            "index": "OL_B"
+          },
+          {
+            "propertyId": "4106215",
+            "name": "Property4106215",
+            "index": "OL_D"
+          },
+          {
+            "propertyId": "4106216",
+            "name": "Property4106216",
+            "index": "OL_N"
+          },
+          {
+            "propertyId": "4106217",
+            "name": "Property4106217",
+            "index": "OL_A_SIGN"
+          },
+          {
+            "propertyId": "4106218",
+            "name": "Property4106218",
+            "index": "OL_B_SIGN"
+          },
+          {
+            "propertyId": "4106219",
+            "name": "Property4106219",
+            "index": "OL_D_SIGN"
+          },
+          {
+            "propertyId": "4106220",
+            "name": "Property4106220",
+            "index": "OL_N_SIGN"
+          }
+        ]
+      },
+      {
+        "id": "41070",
+        "classId": null,
+        "name": "Class41070",
+        "properties": [
+          {
+            "propertyId": "4107001",
+            "name": "Property4107001",
+            "index": "name"
+          },
+          {
+            "propertyId": "4107002",
+            "name": "Property4107002",
+            "index": "recordId"
+          }
+        ]
+      },
+      {
+        "id": "41071",
+        "classId": null,
+        "name": "Class41071",
+        "properties": [
+          {
+            "propertyId": "4107101",
+            "name": "Property4107101",
+            "index": "caId"
+          },
+          {
+            "propertyId": "4107102",
+            "name": "Property4107102",
+            "index": "year"
+          }
+        ]
+      },
+      {
+        "id": "41072",
+        "classId": null,
+        "name": "Class41072",
+        "properties": [
+          {
+            "propertyId": "4107201",
+            "name": "Property4107201",
+            "index": "scId"
+          },
+          {
+            "propertyId": "4107202",
+            "name": "Property4107202",
+            "index": "dayTypeId"
+          },
+          {
+            "propertyId": "4107203",
+            "name": "Property4107203",
+            "index": "caId"
+          },
+          {
+            "propertyId": "4107204",
+            "name": "Property4107204",
+            "index": "year"
+          },
+          {
+            "propertyId": "4107205",
+            "name": "Property4107205",
+            "index": "dayId"
+          },
+          {
+            "propertyId": "4107206",
+            "name": "Property4107206",
+            "index": "dow"
+          }
+        ]
       }
     ]
   },
@@ -740,10 +2561,194 @@
     "name": "Mod42",
     "classes": [
       {
-        "id": "24010",
+        "id": "42000",
         "classId": null,
-        "name": "Class24010",
-        "properties": []
+        "name": "Class42000",
+        "properties": [
+          {
+            "propertyId": "4200001",
+            "name": "Property4200001",
+            "index": "name"
+          },
+          {
+            "propertyId": "4200002",
+            "name": "Property4200002",
+            "index": "reference"
+          },
+          {
+            "propertyId": "4200003",
+            "name": "Property4200003",
+            "index": "requireApproval"
+          },
+          {
+            "propertyId": "4200004",
+            "name": "Property4200004",
+            "index": "recordId"
+          }
+        ]
+      },
+      {
+        "id": "42010",
+        "classId": null,
+        "name": "Class42010",
+        "properties": [
+          {
+            "propertyId": "4201001",
+            "name": "Property4201001",
+            "index": "name"
+          },
+          {
+            "propertyId": "4201002",
+            "name": "Property4201002",
+            "index": "recordId"
+          }
+        ]
+      },
+      {
+        "id": "42012",
+        "classId": null,
+        "name": "Class42012",
+        "properties": [
+          {
+            "propertyId": "4201201",
+            "name": "Property4201201",
+            "index": "from"
+          },
+          {
+            "propertyId": "4201202",
+            "name": "Property4201202",
+            "index": "to"
+          },
+          {
+            "propertyId": "4201203",
+            "name": "Property4201203",
+            "index": "days"
+          },
+          {
+            "propertyId": "4201204",
+            "name": "Property4201204",
+            "index": "vsId"
+          },
+          {
+            "propertyId": "4201205",
+            "name": "Property4201205",
+            "index": "seqNo"
+          }
+        ]
+      },
+      {
+        "id": "42020",
+        "classId": null,
+        "name": "Class42020",
+        "properties": [
+          {
+            "propertyId": "4202001",
+            "name": "Property4202001",
+            "index": "startDate"
+          },
+          {
+            "propertyId": "4202002",
+            "name": "Property4202002",
+            "index": "endDate"
+          },
+          {
+            "propertyId": "4202003",
+            "name": "Property4202003",
+            "index": "employeeId"
+          },
+          {
+            "propertyId": "4202004",
+            "name": "Property4202004",
+            "index": "justification"
+          },
+          {
+            "propertyId": "4202005",
+            "name": "Property4202005",
+            "index": "destination"
+          },
+          {
+            "propertyId": "4202006",
+            "name": "Property4202006",
+            "index": "isPaid"
+          },
+          {
+            "propertyId": "4202007",
+            "name": "Property4202007",
+            "index": "ltId"
+          },
+          {
+            "propertyId": "4202008",
+            "name": "Property4202008",
+            "index": "status"
+          },
+          {
+            "propertyId": "4202009",
+            "name": "Property4202009",
+            "index": "returnDate"
+          },
+          {
+            "propertyId": "4202010",
+            "name": "Property4202010",
+            "index": "leavePeriod"
+          },
+          {
+            "propertyId": "4202011",
+            "name": "Property4202011",
+            "index": "employeeRef"
+          },
+          {
+            "propertyId": "4202012",
+            "name": "Property4202012",
+            "index": "employeeName"
+          },
+          {
+            "propertyId": "4202013",
+            "name": "Property4202013",
+            "index": "ltName"
+          },
+          {
+            "propertyId": "4202014",
+            "name": "Property4202014",
+            "index": "recordId"
+          }
+        ]
+      },
+      {
+        "id": "42021",
+        "classId": null,
+        "name": "Class42021",
+        "properties": [
+          {
+            "propertyId": "4202101",
+            "name": "Property4202101",
+            "index": "leaveId"
+          },
+          {
+            "propertyId": "4202102",
+            "name": "Property4202102",
+            "index": "dayId"
+          },
+          {
+            "propertyId": "4202103",
+            "name": "Property4202103",
+            "index": "workingHours"
+          },
+          {
+            "propertyId": "4202104",
+            "name": "Property4202104",
+            "index": "leaveHours"
+          },
+          {
+            "propertyId": "4202105",
+            "name": "Property4202105",
+            "index": "dow"
+          },
+          {
+            "propertyId": "4202106",
+            "name": "Property4202106",
+            "index": "recordId"
+          }
+        ]
       }
     ]
   },
@@ -752,9 +2757,15 @@
     "name": "Mod43",
     "classes": [
       {
-        "id": "24010",
+        "id": "43000",
         "classId": null,
-        "name": "Class24010",
+        "name": "Class43000",
+        "properties": []
+      },
+      {
+        "id": "43001",
+        "classId": null,
+        "name": "Class43001",
         "properties": []
       }
     ]
@@ -764,9 +2775,9 @@
     "name": "Mod44",
     "classes": [
       {
-        "id": "24010",
+        "id": "44000",
         "classId": null,
-        "name": "Class24010",
+        "name": "Class44000",
         "properties": []
       }
     ]
@@ -776,9 +2787,21 @@
     "name": "Mod45",
     "classes": [
       {
-        "id": "24010",
+        "id": "45000",
         "classId": null,
-        "name": "Class24010",
+        "name": "Class45000",
+        "properties": []
+      },
+      {
+        "id": "45010",
+        "classId": null,
+        "name": "Class45010",
+        "properties": []
+      },
+      {
+        "id": "45011",
+        "classId": null,
+        "name": "Class45011",
         "properties": []
       }
     ]
@@ -788,10 +2811,244 @@
     "name": "Mod51",
     "classes": [
       {
-        "id": "24010",
+        "id": "51010",
         "classId": null,
-        "name": "Class24010",
-        "properties": []
+        "name": "Class51010",
+        "properties": [
+          {
+            "propertyId": "5101001",
+            "name": "Property5101001",
+            "index": "fiscalYear"
+          },
+          {
+            "propertyId": "5101002",
+            "name": "Property5101002",
+            "index": "startDate"
+          },
+          {
+            "propertyId": "5101003",
+            "name": "Property5101003",
+            "index": "endDate"
+          }
+        ]
+      },
+      {
+        "id": "51011",
+        "classId": null,
+        "name": "Class51011",
+        "properties": [
+          {
+            "propertyId": "5101101",
+            "name": "Property5101101",
+            "index": "fiscalYear"
+          },
+          {
+            "propertyId": "5101102",
+            "name": "Property5101102",
+            "index": "startDate"
+          },
+          {
+            "propertyId": "5101103",
+            "name": "Property5101103",
+            "index": "endDate"
+          },
+          {
+            "propertyId": "5101104",
+            "name": "Property5101104",
+            "index": "salaryType"
+          },
+          {
+            "propertyId": "5101105",
+            "name": "Property5101105",
+            "index": "periodId"
+          },
+          {
+            "propertyId": "5101106",
+            "name": "Property5101106",
+            "index": "status"
+          }
+        ]
+      },
+      {
+        "id": "51020",
+        "classId": null,
+        "name": "Class51020",
+        "properties": [
+          {
+            "propertyId": "5102001",
+            "name": "Property5102001",
+            "index": "payRef"
+          },
+          {
+            "propertyId": "5102002",
+            "name": "Property5102002",
+            "index": "fiscalYear"
+          },
+          {
+            "propertyId": "5102003",
+            "name": "Property5102003",
+            "index": "salaryType"
+          },
+          {
+            "propertyId": "5102004",
+            "name": "Property5102004",
+            "index": "periodId"
+          },
+          {
+            "propertyId": "5102005",
+            "name": "Property5102005",
+            "index": "payDate"
+          },
+          {
+            "propertyId": "5102006",
+            "name": "Property5102006",
+            "index": "status"
+          },
+          {
+            "propertyId": "5102007",
+            "name": "Property5102007",
+            "index": "startDate"
+          },
+          {
+            "propertyId": "5102008",
+            "name": "Property5102008",
+            "index": "endDate"
+          },
+          {
+            "propertyId": "5102009",
+            "name": "Property5102009",
+            "index": "notes"
+          },
+          {
+            "propertyId": "5102010",
+            "name": "Property5102010",
+            "index": "recordId"
+          }
+        ]
+      },
+      {
+        "id": "51021",
+        "classId": null,
+        "name": "Class51021",
+        "properties": [
+          {
+            "propertyId": "5102101",
+            "name": "Property5102101",
+            "index": "name"
+          },
+          {
+            "propertyId": "5102102",
+            "name": "Property5102102",
+            "index": "branchName"
+          },
+          {
+            "propertyId": "5102103",
+            "name": "Property5102103",
+            "index": "departmentName"
+          },
+          {
+            "propertyId": "5102104",
+            "name": "Property5102104",
+            "index": "currencyName"
+          },
+          {
+            "propertyId": "5102105",
+            "name": "Property5102105",
+            "index": "currencyRef"
+          },
+          {
+            "propertyId": "5102106",
+            "name": "Property5102106",
+            "index": "seqNo"
+          },
+          {
+            "propertyId": "5102107",
+            "name": "Property5102107",
+            "index": "calendarDays"
+          },
+          {
+            "propertyId": "5102108",
+            "name": "Property5102108",
+            "index": "calendarMinutes"
+          },
+          {
+            "propertyId": "5102109",
+            "name": "Property5102109",
+            "index": "workingDays"
+          },
+          {
+            "propertyId": "5102110",
+            "name": "Property5102110",
+            "index": "workingMinutes"
+          },
+          {
+            "propertyId": "5102111",
+            "name": "Property5102111",
+            "index": "basicAmount"
+          },
+          {
+            "propertyId": "5102112",
+            "name": "Property5102112",
+            "index": "taxAmount"
+          },
+          {
+            "propertyId": "5102113",
+            "name": "Property5102113",
+            "index": "netSalary"
+          },
+          {
+            "propertyId": "5102114",
+            "name": "Property5102114",
+            "index": "eAmount"
+          },
+          {
+            "propertyId": "5102115",
+            "name": "Property5102115",
+            "index": "dAmount"
+          },
+          {
+            "propertyId": "5102116",
+            "name": "Property5102116",
+            "index": "payId"
+          }
+        ]
+      },
+      {
+        "id": "51022",
+        "classId": null,
+        "name": "Class51022",
+        "properties": [
+          {
+            "propertyId": "5102201",
+            "name": "Property5102201",
+            "index": "edName"
+          },
+          {
+            "propertyId": "5102202",
+            "name": "Property5102202",
+            "index": "type"
+          },
+          {
+            "propertyId": "5102203",
+            "name": "Property5102203",
+            "index": "seqNo"
+          },
+          {
+            "propertyId": "5102204",
+            "name": "Property5102204",
+            "index": "payId"
+          },
+          {
+            "propertyId": "5102205",
+            "name": "Property5102205",
+            "index": "edId"
+          },
+          {
+            "propertyId": "5102206",
+            "name": "Property5102206",
+            "index": "amount"
+          }
+        ]
       }
     ]
   },

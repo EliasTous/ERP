@@ -475,6 +475,7 @@
                                     runat="server"
                                     FieldLabel="<%$ Resources: FieldPassword%>"
                                     InputType="Password"
+                                    
                                     Name="password"
                                     DataIndex ="password"
                                     AllowBlank="false"

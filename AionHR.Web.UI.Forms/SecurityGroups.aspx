@@ -79,9 +79,11 @@
         <ext:Hidden ID="CurrentGroup" runat="server" />
         <ext:Hidden ID="CurrentModule" runat="server" />
         <ext:Hidden ID="CurrentClass" runat="server" />
-        <ext:Hidden ID="accessLevel0" Text="<%$ Resources: View %>" runat="server" />
+        <ext:Hidden ID="CurrentClassLevel" runat="server" />
+        <ext:Hidden ID="accessLevel0" Text="<%$ Resources: NoAccess %>" runat="server" />
         <ext:Hidden ID="accessLevel1" Text="<%$ Resources: Read %>" runat="server" />
         <ext:Hidden ID="accessLevel2" Text="<%$ Resources: Write %>" runat="server" />
+        <ext:Hidden ID="accessLevel3" Text="<%$ Resources: FullControl %>" runat="server" />
 
         <ext:Store
             ID="groupsStore"
@@ -255,7 +257,7 @@
                         <ext:FormPanel
                             ID="GroupForm" DefaultButton="SaveButton"
                             runat="server"
-                            Icon="ApplicationSideList"  Title="<%$ Resources:GroupInfo%>"
+                            Icon="ApplicationSideList" Title="<%$ Resources:GroupInfo%>"
                             DefaultAnchor="100%"
                             BodyPadding="5">
                             <Items>
@@ -265,28 +267,28 @@
 
 
                             </Items>
-                               <Buttons>
-                <ext:Button ID="SaveGroupButton" runat="server" Text="<%$ Resources:Common, Save %>" Icon="Disk">
+                            <Buttons>
+                                <ext:Button ID="SaveGroupButton" runat="server" Text="<%$ Resources:Common, Save %>" Icon="Disk">
 
-                    <Listeners>
-                        <Click Handler="CheckSession(); if (!#{GroupForm}.getForm().isValid()) {return false;} " />
-                    </Listeners>
-                    <DirectEvents>
-                        <Click OnEvent="SaveGroup" Failure="Ext.MessageBox.alert('#{titleSavingError}.value', '#{titleSavingErrorMessage}.value');">
-                            <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="={#{GroupWindow}.body}" />
-                            <ExtraParams>
-                                <ext:Parameter Name="id" Value="#{recordId}.getValue()" Mode="Raw" />
-                                <ext:Parameter Name="values" Value="#{GroupForm}.getForm().getValues(false, false, false, true)" Mode="Raw" Encode="true" />
-                            </ExtraParams>
-                        </Click>
-                    </DirectEvents>
-                </ext:Button>
-                <ext:Button ID="CancelButton" runat="server" Text="<%$ Resources:Common , Cancel %>" Icon="Cancel">
-                    <Listeners>
-                        <Click Handler="this.up('window').hide();" />
-                    </Listeners>
-                </ext:Button>
-                                   </Buttons>
+                                    <Listeners>
+                                        <Click Handler="CheckSession(); if (!#{GroupForm}.getForm().isValid()) {return false;} " />
+                                    </Listeners>
+                                    <DirectEvents>
+                                        <Click OnEvent="SaveGroup" Failure="Ext.MessageBox.alert('#{titleSavingError}.value', '#{titleSavingErrorMessage}.value');">
+                                            <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="={#{GroupWindow}.body}" />
+                                            <ExtraParams>
+                                                <ext:Parameter Name="id" Value="#{recordId}.getValue()" Mode="Raw" />
+                                                <ext:Parameter Name="values" Value="#{GroupForm}.getForm().getValues(false, false, false, true)" Mode="Raw" Encode="true" />
+                                            </ExtraParams>
+                                        </Click>
+                                    </DirectEvents>
+                                </ext:Button>
+                                <ext:Button ID="CancelButton" runat="server" Text="<%$ Resources:Common , Cancel %>" Icon="Cancel">
+                                    <Listeners>
+                                        <Click Handler="this.up('window').hide();" />
+                                    </Listeners>
+                                </ext:Button>
+                            </Buttons>
                         </ext:FormPanel>
 
                         <ext:GridPanel
@@ -332,7 +334,7 @@
                             <TopBar>
                                 <ext:Toolbar runat="server">
                                     <Items>
-                                     
+
                                         <ext:Button ID="Button1" runat="server" Text="<%$ Resources:Common , Add %>" Icon="Add">
                                             <Listeners>
                                                 <Click Handler="CheckSession();" />
@@ -495,8 +497,8 @@
                                         <Columns>
 
                                             <ext:Column Visible="false" ID="Column3" MenuDisabled="true" runat="server" DataIndex="classId" Hideable="false" Width="75" />
-                                            <ext:Column ID="Column5" MenuDisabled="true" runat="server" Text="<%$ Resources:Class%>" DataIndex="name" Hideable="false"  Flex="1" />
-                                            <ext:Column ID="Column6" MenuDisabled="true" runat="server" Text="<%$ Resources:AccessLevel%>"  DataIndex="accessLevel" Hideable="false" Width="150">
+                                            <ext:Column ID="Column5" MenuDisabled="true" runat="server" Text="<%$ Resources:Class%>" DataIndex="name" Hideable="false" Flex="1" />
+                                            <ext:Column ID="Column6" MenuDisabled="true" runat="server" Text="<%$ Resources:AccessLevel%>" DataIndex="accessLevel" Hideable="false" Width="150">
                                                 <Renderer Handler="return getAccessLevelText(record.data['accessLevel']);" />
                                             </ext:Column>
                                             <ext:Column runat="server"
@@ -510,7 +512,7 @@
                                                 MenuDisabled="true"
                                                 Resizable="false">
 
-                                                <Renderer Handler="return classRender()+'&nbsp;&nbsp;'+ propertiesRender(); " />
+                                                <Renderer Handler="var r = record.data['accessLevel']<1?'':propertiesRender();return classRender()+'&nbsp;&nbsp;'+ r; " />
                                             </ext:Column>
 
                                         </Columns>
@@ -535,7 +537,7 @@
                                             <ExtraParams>
                                                 <ext:Parameter Name="id" Value="record.getId()" Mode="Raw" />
                                                 <ext:Parameter Name="type" Value="getCellType( this, rowIndex, cellIndex)" Mode="Raw" />
-                                                <ext:Parameter Name="access" Value="record.data['accessLevel']" Mode="Raw" />
+                                                <ext:Parameter Name="accessLevel" Value="record.data['accessLevel']" Mode="Raw" />
                                             </ExtraParams>
 
                                         </CellClick>
@@ -557,8 +559,8 @@
                     </Items>
                 </ext:TabPanel>
             </Items>
-         
-            
+
+
         </ext:Window>
 
         <ext:Window
@@ -566,7 +568,7 @@
             runat="server"
             Icon="PageEdit"
             Title="<%$ Resources:EditGroupUsers %>"
-            Width="450"
+            Width="550"
             Height="450"
             AutoShow="false"
             Modal="true"
@@ -574,58 +576,58 @@
             Layout="Fit">
 
             <Items>
-                
-                        <ext:FormPanel
-                            ID="groupUsersForm" DefaultButton="SaveButton"
-                            runat="server" Header="false"
-                            Icon="ApplicationSideList"
-                            DefaultAnchor="100%"
-                            BodyPadding="5">
-                            <TopBar>
-                                <ext:Toolbar runat="server">
-                                    <Items>
-                                        <ext:Container runat="server" Layout="FitLayout">
-                                            <Content>
-                                                <uc:jobInfo runat="server" ID="jobInfo1" EnableBranch="false" EnableDivision="false" />
 
-                                            </Content>
-
-                                        </ext:Container>
-                                        <ext:Button runat="server" Text="<%$Resources:Filter %>">
-                                            <Listeners>
-                                                <Click Handler="App.direct.GetFilteredUsers();" />
-                                            </Listeners>
-                                        </ext:Button>
-                                    </Items>
-                                </ext:Toolbar>
-                            </TopBar>
+                <ext:FormPanel
+                    ID="groupUsersForm" DefaultButton="SaveButton"
+                    runat="server" Header="false"
+                    Icon="ApplicationSideList"
+                    DefaultAnchor="100%"
+                    BodyPadding="5">
+                    <TopBar>
+                        <ext:Toolbar runat="server">
                             <Items>
-                                <ext:ItemSelector runat="server" MaxHeight="300" MinHeight="300" AutoScroll="true" ID="userSelector" FromTitle="<%$Resources:All %>" DisplayField="fullName" ValueField="userId"
-                                    ToTitle="<%$Resources:Selected %>">
+                                <ext:Container runat="server" Layout="FitLayout">
+                                    <Content>
+                                        <uc:jobInfo runat="server" FieldWidth="160" ID="jobInfo1" EnableBranch="false" EnableDivision="false" />
 
-                                    <Store>
-                                        <ext:Store runat="server" ID="userSelectorStore" OnReadData="userSelectorStore_ReadData">
-                                            <Model>
-                                                <ext:Model runat="server" IDProperty="userId">
-                                                    <Fields>
-                                                        <ext:ModelField Name="fullName" />
-                                                        <ext:ModelField Name="userId" />
-                                                    </Fields>
-                                                </ext:Model>
-                                            </Model>
-                                        </ext:Store>
-                                    </Store>
+                                    </Content>
+
+                                </ext:Container>
+                                <ext:Button runat="server" Text="<%$Resources:Filter %>">
                                     <Listeners>
-
-                                        <Change Handler="App.direct.GetFilteredUsers();" />
+                                        <Click Handler="App.direct.GetFilteredUsers();" />
                                     </Listeners>
-                                </ext:ItemSelector>
-
+                                </ext:Button>
                             </Items>
+                        </ext:Toolbar>
+                    </TopBar>
+                    <Items>
+                        <ext:ItemSelector runat="server" MaxHeight="300" MinHeight="300" AutoScroll="true" ID="userSelector" FromTitle="<%$Resources:All %>" DisplayField="fullName" ValueField="userId"
+                            ToTitle="<%$Resources:Selected %>">
 
-                        </ext:FormPanel>
+                            <Store>
+                                <ext:Store runat="server" ID="userSelectorStore" OnReadData="userSelectorStore_ReadData">
+                                    <Model>
+                                        <ext:Model runat="server" IDProperty="userId">
+                                            <Fields>
+                                                <ext:ModelField Name="fullName" />
+                                                <ext:ModelField Name="userId" />
+                                            </Fields>
+                                        </ext:Model>
+                                    </Model>
+                                </ext:Store>
+                            </Store>
+                            <Listeners>
 
-              
+                                <Change Handler="App.direct.GetFilteredUsers();" />
+                            </Listeners>
+                        </ext:ItemSelector>
+
+                    </Items>
+
+                </ext:FormPanel>
+
+
             </Items>
             <Buttons>
                 <ext:Button ID="Button3" runat="server" Text="<%$ Resources:Common, Save %>" Icon="Disk">
@@ -674,12 +676,13 @@
                     <Items>
                         <ext:TextField runat="server" Name="classId" ID="classId" Hidden="true" Disabled="true" />
 
-                        <ext:ComboBox runat="server" FieldLabel="<%$ Resources:AccessLevel%>"  Editable="false" ID="accessLevel" Name="accessLevel">
+                        <ext:ComboBox runat="server" FieldLabel="<%$ Resources:AccessLevel%>" Editable="false" ID="accessLevel" Name="accessLevel">
                             <Items>
 
-                                <ext:ListItem Text="<%$ Resources: View %>" Value="0" />
+                                <ext:ListItem Text="<%$ Resources: NoAccess %>" Value="0" />
                                 <ext:ListItem Text="<%$ Resources: Read %>" Value="1" />
-                                <ext:ListItem Text="<%$ Resources: Write %>" Value="2" />
+                                <ext:ListItem Text="<%$ Resources: Write %>"  Value="2" />
+                                <ext:ListItem Text="<%$ Resources: FullControl %>" Value="3" />
                             </Items>
 
 
@@ -764,17 +767,17 @@
                                 <Columns>
 
                                     <ext:Column Visible="false" ID="Column8" MenuDisabled="true" runat="server" DataIndex="propertyId" Hideable="false" Width="75" />
-                                    <ext:Column ID="Column9" MenuDisabled="true" runat="server" DataIndex="name" Text="<%$ Resources:Property%>"  Hideable="false" Flex="1" />
+                                    <ext:Column ID="Column9" MenuDisabled="true" runat="server" DataIndex="name" Text="<%$ Resources:Property%>" Hideable="false" Flex="1" />
                                     <ext:WidgetColumn ID="WidgetColumn1" MenuDisabled="true" runat="server" Text="<%$ Resources:AccessLevel%>" DataIndex="accessLevel" Hideable="false" Width="150" Align="Center">
                                         <Widget>
-                                            <ext:ComboBox runat="server" Editable="false" >
+                                            <ext:ComboBox runat="server" Editable="false">
                                                 <Items>
                                                     <ext:ListItem Text="<%$ Resources: Write %>" Value="2" />
-                                                    <ext:ListItem Text="<%$ Resources: View %>" Value="0" />
+                                                    <ext:ListItem Text="<%$ Resources: NoAccess %>" Value="0"  />
                                                     <ext:ListItem Text="<%$ Resources: Read %>" Value="1" />
                                                 </Items>
                                                 <Listeners>
-                                                    <Select Handler="var rec = this.getWidgetRecord(); rec.set('accessLevel',this.value); rec.commit();" />
+                                                    <Select Handler="var rec = this.getWidgetRecord(); rec.set('accessLevel',Math.min(this.value,App.CurrentClassLevel.value)); rec.commit();" />
                                                 </Listeners>
                                             </ext:ComboBox>
 
@@ -796,8 +799,8 @@
                                 </ext:Toolbar>
 
                             </DockedItems>
-                          
-                          
+
+
 
                             <View>
                                 <ext:GridView ID="GridView4" runat="server" />
@@ -826,7 +829,7 @@
                             <ExtraParams>
 
 
-                                <ext:Parameter Name="values" Value="Ext.encode(#{propertiesGrid}.getRowsValues({selectedOnly : false}))" Mode="Raw"  />
+                                <ext:Parameter Name="values" Value="Ext.encode(#{propertiesGrid}.getRowsValues({selectedOnly : false}))" Mode="Raw" />
                             </ExtraParams>
                         </Click>
                     </DirectEvents>

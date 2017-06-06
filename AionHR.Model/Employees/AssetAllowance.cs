@@ -12,7 +12,7 @@ namespace AionHR.Model.Employees.Profile
         public EmployeeName employeeName { get; set; }
         public int acId { get; set; }
 
-        public string acName { get; set; }
+        
         public string description { get; set; }
 
         public string serialNo { get; set; }
@@ -23,6 +23,7 @@ namespace AionHR.Model.Employees.Profile
         public DateTime returnedDate { get; set; }
 
         public int employeeId { get; set; }
+        public string acName { get; set; }
 
     }
 }

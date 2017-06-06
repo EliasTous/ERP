@@ -492,8 +492,9 @@ namespace AionHR.Web.UI.Forms
 
             int id = Convert.ToInt32(e.ExtraParams["id"]);
             string type = e.ExtraParams["type"];
+            string level = e.ExtraParams["accessLevel"];
             CurrentClass.Text = id.ToString();
-
+            CurrentClassLevel.Text = level; 
             switch (type)
             {
 
@@ -505,11 +506,14 @@ namespace AionHR.Web.UI.Forms
                     if (modClass.result == null)
                     {
                         PostRequest<ModuleClass> req = new PostRequest<ModuleClass>();
-                        req.entity = new ModuleClass() { accessLevel = 2, classId = id.ToString(), sgId = CurrentGroup.Text, id = id.ToString() };
+                        req.entity = new ModuleClass() { accessLevel = 3, classId = id.ToString(), sgId = CurrentGroup.Text, id = id.ToString() };
                        
                         PostResponse<ModuleClass> resp = _accessControlService.ChildAddOrUpdate<ModuleClass>(req);
+                        
                     }
-                        EditClassPropertiesWindow.Show();
+
+
+                    EditClassPropertiesWindow.Show();
                     propertiesStore.Reload();
 
 
@@ -520,6 +524,7 @@ namespace AionHR.Web.UI.Forms
                 case "imgEdit":
                     EditClassLevelForm.Reset();
                     accessLevel.Select(e.ExtraParams["access"]);
+
                     EditClassLevelWindow.Show();
                     break;
 
@@ -814,7 +819,7 @@ namespace AionHR.Web.UI.Forms
                 return;
             }
             List<ModuleClass> finalClasses = new List<ModuleClass>();
-            classes.ForEach(x => { List<ModuleClass> match = stored.Items.Where(y => y.classId == x.classId).ToList(); ModuleClass temp = new ModuleClass(x); if (match.Count > 0) temp.accessLevel = match[0].accessLevel; else temp.accessLevel = 2; finalClasses.Add(temp); });
+            classes.ForEach(x => { List<ModuleClass> match = stored.Items.Where(y => y.classId == x.classId).ToList(); ModuleClass temp = new ModuleClass(x); if (match.Count > 0) temp.accessLevel = match[0].accessLevel; else temp.accessLevel = 3; finalClasses.Add(temp); });
 
 
             classesStore.DataSource = finalClasses;
@@ -833,11 +838,12 @@ namespace AionHR.Web.UI.Forms
                 for (int i = 0; i < props.Length; i++)
                 {
                     properites.Add(new ClassPropertyDefinition() { index = props[i].Name, propertyId = CurrentClass.Text + (i + 1).ToString().PadLeft(2, '0'), name = "Property" + CurrentClass.Text + (i + 1).ToString().PadLeft(2, '0') });
+                    
                 }
                 string x = JsonConvert.SerializeObject(preDefined);
                 JArray obj = JArray.Parse(x);
                 string formatted = obj.ToString();
-                File.WriteAllText(MapPath("~/Utilities/modules.txt"), JsonConvert.SerializeObject(preDefined));
+                File.WriteAllText(MapPath("~/Utilities/modules.txt"),formatted);
             }
 
 
@@ -865,7 +871,7 @@ namespace AionHR.Web.UI.Forms
             }
             JsonSerializerSettings settings = new JsonSerializerSettings();
 
-            stored.Items.ForEach(x => { final.Where(y => y.propertyId == x.propertyId).ToList()[0].accessLevel = x.accessLevel; });
+            stored.Items.ForEach(x => { final.Where(y => y.propertyId == x.propertyId).ToList()[0].accessLevel = Math.Min(x.accessLevel,Convert.ToInt32(CurrentClassLevel.Text)); });
             properites.Clear();
 
 

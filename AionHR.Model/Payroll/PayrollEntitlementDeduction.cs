@@ -8,14 +8,16 @@ namespace AionHR.Model.Payroll
 {
     public class PayrollEntitlementDeduction
     {
+        
+        public string edId { get; set; }
+        public double amount { get; set; }
+        public int type { get; set; }
+        
+        public string payId { get; set; }
+
         public string edName { get; set; }
 
-        public int type { get; set; }
         public string seqNo { get; set; }
-        public string payId { get; set; }
-        public string edId { get; set; }
-
-        public double amount { get; set; }
 
     }
 }

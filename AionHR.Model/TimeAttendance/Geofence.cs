@@ -9,15 +9,16 @@ namespace AionHR.Model.Attendance
 {
    public class Geofence:ModelBase
     {
+        public string name
+        {
+            get; set;
+        }
         public int branchId
         {
             get; set;
         }
            
-        public string name
-        {
-            get; set;
-        }
+       
         public string branchName
         {
             get; set;

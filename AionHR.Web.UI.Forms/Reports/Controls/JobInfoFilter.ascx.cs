@@ -21,6 +21,7 @@ namespace AionHR.Web.UI.Forms.Reports
             if (!IsPostBack)
             {
                 X.Call("setStatus", EnableDepartment, EnableBranch, EnablePosition, EnableDivision);
+                X.Call("setWidth", FieldWidth);
                 FillJobInfo();
             }
 
@@ -152,6 +153,7 @@ namespace AionHR.Web.UI.Forms.Reports
         private bool enablePosition = true;
         private bool enableDivision = true;
 
+        private int fieldWidth = 120;
         public bool EnableBranch
         {
             get
@@ -201,6 +203,18 @@ namespace AionHR.Web.UI.Forms.Reports
             set
             {
                 enableDivision = value;
+            }
+        }
+
+        public int FieldWidth
+        {
+            get
+            {
+                return fieldWidth;
+            }
+            set
+            {
+                fieldWidth = value;
             }
         }
 

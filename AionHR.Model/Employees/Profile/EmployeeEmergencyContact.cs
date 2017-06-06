@@ -8,7 +8,7 @@ namespace AionHR.Model.Employees.Profile
 {
     public class EmployeeEmergencyContact:ModelBase
     {
-        public int employeeId { get; set; }
+       
 
         public string name { get; set; }
         public int rtId { get; set; }
@@ -28,5 +28,6 @@ namespace AionHR.Model.Employees.Profile
         public string naId { get; set; }
 
         public string stateId { get; set; }
+        public int employeeId { get; set; }
     }
 }

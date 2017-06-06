@@ -166,52 +166,52 @@
     <value>Departments</value>
   </data>
   <data name="Class22010" xml:space="preserve">
-    <value>DMDT</value>
+    <value>Document Type</value>
   </data>
   <data name="Class22020" xml:space="preserve">
-    <value>DMDO</value>
+    <value>Document</value>
   </data>
   <data name="Class23010" xml:space="preserve">
-    <value>MGMC</value>
+    <value>Media Category</value>
   </data>
   <data name="Class23020" xml:space="preserve">
-    <value>MGME</value>
+    <value>Media Item</value>
   </data>
   <data name="Class24010" xml:space="preserve">
-    <value>CNNW</value>
+    <value>Company News</value>
   </data>
   <data name="Class31000" xml:space="preserve">
-    <value>EPEM</value>
+    <value>Employee Profile</value>
   </data>
   <data name="Class31010" xml:space="preserve">
-    <value>EPAC</value>
+    <value>Asset Category</value>
   </data>
   <data name="Class31011" xml:space="preserve">
-    <value>EPAA</value>
+    <value>Asset Allowance</value>
   </data>
   <data name="Class31020" xml:space="preserve">
-    <value>EPBC</value>
+    <value>Background Check</value>
   </data>
   <data name="Class31021" xml:space="preserve">
-    <value>EPCT</value>
+    <value>Check Type</value>
   </data>
   <data name="Class31030" xml:space="preserve">
-    <value>EPBT</value>
+    <value>Bonus Type</value>
   </data>
   <data name="Class31031" xml:space="preserve">
-    <value>EPBO</value>
+    <value>Bonus</value>
   </data>
   <data name="Class31040" xml:space="preserve">
-    <value>EPCL</value>
+    <value>Certificate Level</value>
   </data>
   <data name="Class31041" xml:space="preserve">
-    <value>EPCE</value>
+    <value>Certificate</value>
   </data>
   <data name="Class31050" xml:space="preserve">
-    <value>EPDT</value>
+    <value>Employee Document Type</value>
   </data>
   <data name="Class31051" xml:space="preserve">
-    <value>EPDO</value>
+    <value>Employee Document</value>
   </data>
   <data name="Class31060" xml:space="preserve">
     <value>Salary Change Reason</value>
@@ -232,13 +232,13 @@
     <value>Employment</value>
   </data>
   <data name="Class31080" xml:space="preserve">
-    <value>EPJI</value>
+    <value>Job Info</value>
   </data>
   <data name="Class31090" xml:space="preserve">
-    <value>EPNO</value>
+    <value>Notes</value>
   </data>
   <data name="Class31100" xml:space="preserve">
-    <value>EPRW</value>
+    <value>Right To Work</value>
   </data>
   <data name="Class31110" xml:space="preserve">
     <value>Sponsor Address</value>
@@ -277,16 +277,16 @@
     <value>Task Comments</value>
   </data>
   <data name="Class41000" xml:space="preserve">
-    <value>TABM</value>
+    <value>Biometric Device</value>
   </data>
   <data name="Class41010" xml:space="preserve">
-    <value>TARO</value>
+    <value>Router</value>
   </data>
   <data name="Class41020" xml:space="preserve">
-    <value>TAGF</value>
+    <value>Geofence</value>
   </data>
   <data name="Class41030" xml:space="preserve">
-    <value>TADT</value>
+    <value>Day Type</value>
   </data>
   <data name="Class41040" xml:space="preserve">
     <value>TADE</value>
@@ -330,6 +330,9 @@
   <data name="Class42020" xml:space="preserve">
     <value>Leave</value>
   </data>
+  <data name="Class42021" xml:space="preserve">
+    <value>Leave Day</value>
+  </data>
   <data name="Class43000" xml:space="preserve">
     <value>Case</value>
   </data>
@@ -347,6 +350,21 @@
   </data>
   <data name="Class45011" xml:space="preserve">
     <value>Comments</value>
+  </data>
+  <data name="Class51010" xml:space="preserve">
+    <value>Fiscal Year</value>
+  </data>
+  <data name="Class51011" xml:space="preserve">
+    <value>Fiscal Period</value>
+  </data>
+  <data name="Class51020" xml:space="preserve">
+    <value>Payroll Header</value>
+  </data>
+  <data name="Class51021" xml:space="preserve">
+    <value>Payroll Employee</value>
+  </data>
+  <data name="Class51022" xml:space="preserve">
+    <value>Payroll Entitlements and Deductions</value>
   </data>
   <data name="Class80101" xml:space="preserve">
     <value>Age Breakdown</value>

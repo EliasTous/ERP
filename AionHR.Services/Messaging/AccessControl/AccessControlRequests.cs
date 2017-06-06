@@ -99,7 +99,7 @@ public class UserPropertiesPermissions : ListRequest
 
 public class ClassPermissionRecordRequest : RecordRequest
 {
-    public string GroupId { get; set; }
+    public string UserId { get; set; }
 
     public string ClassId { get; set; }
 
@@ -109,7 +109,7 @@ public class ClassPermissionRecordRequest : RecordRequest
         get
         {
             parameters = new Dictionary<string, string>();
-            parameters.Add("_sgId", GroupId);
+            parameters.Add("_userId", UserId);
             parameters.Add("_classId", ClassId);
             return parameters;
         }

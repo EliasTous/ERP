@@ -17,7 +17,7 @@ namespace AionHR.Repository.WebService.Repositories
             base.ServiceURL = ApplicationSettingsFactory.GetApplicationSettings().BaseURL + serviceName;
            
             ChildGetLookup.Add(typeof(SecurityGroup), "getSG");
-            ChildGetLookup.Add(typeof(ModuleClass), "getCL");
+            ChildGetLookup.Add(typeof(ModuleClass), "getUC");
             ChildGetAllLookup.Add(typeof(SecurityGroup), "qrySG");
             ChildAddOrUpdateLookup.Add(typeof(SecurityGroup), "setSG");
            
@@ -25,7 +25,7 @@ namespace AionHR.Repository.WebService.Repositories
 
 
             ChildGetAllLookup.Add(typeof(ModuleClass), "qryCL");
-            ChildGetAllLookup.Add(typeof(UC), "qryUC");
+            ChildGetAllLookup.Add(typeof(UC), "qryUP");
             ChildGetAllLookup.Add(typeof(ClassProperty), "qryCP");
             ChildAddOrUpdateLookup.Add(typeof(ClassProperty), "setCP");
             ChildGetAllLookup.Add(typeof(SecurityGroupUser), "qryUS");

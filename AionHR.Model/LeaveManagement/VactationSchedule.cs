@@ -13,10 +13,12 @@ namespace AionHR.Model.Employees.Leaves
     }
     public  class VacationSchedulePeriod 
     {
-        public int vsId { get; set; }
-        public short seqNo { get; set; }
+        
         public short from { get; set; }
         public short to { get; set; }
         public short days { get; set; }
+
+        public int vsId { get; set; }
+        public short seqNo { get; set; }
     }
 }

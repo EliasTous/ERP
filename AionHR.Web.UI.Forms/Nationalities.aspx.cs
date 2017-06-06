@@ -58,7 +58,7 @@ namespace AionHR.Web.UI.Forms
                 SetExtLanguage();
                 HideShowButtons();
                 HideShowColumns();
-                AccessControlApplier.ApplyAccessGeneric(MapPath("~/Utilities/modules.txt"), ((int)ClassId.SYNA).ToString(), "20", BasicInfoTab, GridPanel1);
+                AccessControlApplier.ApplyAccessControlOnForm(MapPath("~/Utilities/modules.txt"), ((int)ClassId.SYNA).ToString(), "20", BasicInfoTab, GridPanel1);
 
 
             }

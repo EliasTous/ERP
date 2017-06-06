@@ -23,6 +23,7 @@ using StructureMap.Configuration.DSL;
 using AionHR.Model.TaskManagement;
 using AionHR.Model.Payroll;
 using AionHR.Model.Access_Control;
+using AionHR.Web.UI.Forms.Utilities;
 
 namespace AionHR.Web.UI.Forms
 {
@@ -85,6 +86,7 @@ namespace AionHR.Web.UI.Forms
                 For<ITaskManagementService>().Use<TaskManagementService>();
                 For<IPayrollService>().Use<PayrollService>();
                 For<IAccessControlService>().Use<AccessControlService>();
+                ModulesFileWrapper.Store();
             }
         }
     }

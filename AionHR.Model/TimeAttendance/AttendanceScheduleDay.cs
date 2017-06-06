@@ -8,12 +8,15 @@ namespace AionHR.Model.Attendance
 {
    public class AttendanceScheduleDay
     {
-        public int scId { get; set; }
-        public short dow { get; set; }
-        public string firstIn { get; set; }
-        public string lastOut { get; set; }
 
         public string dayTypeId { get; set; }
+        public string firstIn { get; set; }
+        public string lastOut { get; set; }
+        public int scId { get; set; }
+        public short dow { get; set; }
+   
+
+        
 
         public string duration { get; set; }
 

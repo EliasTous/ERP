@@ -10,12 +10,13 @@ namespace AionHR.Model.TaskManagement
 {
     public class Task:ModelBase,IEntity
     {
+        public string name { get; set; }
         public int assignToId { get; set; }
         public int inRelationToId { get; set; }
         public int ttId { get; set; }
         public DateTime dueDate { get; set; }
         public string description { get; set; }
-        public string name { get; set; }
+        
         public bool completed { get; set; }
 
         // get

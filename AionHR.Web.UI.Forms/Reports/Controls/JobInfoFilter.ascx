@@ -6,6 +6,15 @@
         App.jobInfo1_branchId.setHidden(!br);
         App.jobInfo1_positionId.setHidden(!po);
         App.jobInfo1_divisionId.setHidden(!di);
+
+
+    }
+
+    function setWidth(width) {
+        App.jobInfo1_departmentId.setWidth(width);
+        App.jobInfo1_branchId.setWidth(width);
+        App.jobInfo1_positionId.setWidth(width);
+        App.jobInfo1_divisionId.setWidth(width);
     }
 </script>
 <ext:Panel runat="server" Layout="HBoxLayout" >

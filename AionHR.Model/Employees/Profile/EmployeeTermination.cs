@@ -9,10 +9,14 @@ namespace AionHR.Model.Employees.Profile
     public class EmployeeTermination:ModelBase
     {
 
-        public int employeeId { get; set; }
+        public DateTime date { get; set; }
         public int ttId { get; set; }
         public int trId { get; set; }
+       
+        
         public int rehire { get; set; }
-        public DateTime date { get; set; }
+        
+
+        public int employeeId { get; set; }
     }
 }

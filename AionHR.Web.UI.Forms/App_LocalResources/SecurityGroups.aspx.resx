@@ -171,10 +171,13 @@
   <data name="Users" xml:space="preserve">
     <value>Users</value>
   </data>
-  <data name="View" xml:space="preserve">
+  <data name="NoAccess" xml:space="preserve">
     <value>No access</value>
   </data>
   <data name="Write" xml:space="preserve">
     <value>Edit</value>
+  </data>
+  <data name="FullControl" xml:space="preserve">
+    <value>Full Control</value>
   </data>
 </root>

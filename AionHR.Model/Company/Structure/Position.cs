@@ -9,8 +9,10 @@ namespace AionHR.Model.Company.Structure
 {
    public class Position : ModelBase
     {
-        public string positionRef { get; set; }
+        
         public string name { get; set; }
+
+        public string positionRef { get; set; }
         public string description { get; set; }
         public int? referToPositionId { get; set; }
         public string referToPositionName { get; set; }

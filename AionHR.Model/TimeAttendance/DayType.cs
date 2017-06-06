@@ -10,7 +10,8 @@ namespace AionHR.Model.Attendance
     public class DayType:ModelBase
     {
         public string name { get; set; }
-        public string color { get; set; }
+       
         public bool isWorkingDay { get; set; }
+        public string color { get; set; }
     }
 }

@@ -42,6 +42,7 @@
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Caching" />
     <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -54,6 +55,7 @@
     <Compile Include="Configuration\ApplicationSettingsFactory.cs" />
     <Compile Include="Configuration\IApplicationSettings.cs" />
     <Compile Include="Configuration\WebConfigApplicationSettings.cs" />
+    <Compile Include="Domain\Cache.cs" />
     <Compile Include="Domain\Constants.cs" />
     <Compile Include="Domain\ICommonRepository.cs" />
     <Compile Include="Domain\IEntity.cs" />

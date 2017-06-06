@@ -403,7 +403,7 @@ namespace AionHR.Web.UI.Forms
                 s.ltId = 0;
                 s.ltName = "";
                 s.amount = 0;
-                s.payments = 0;
+                
                 s.currencyId = 0;
 
                 PostRequest<Loan> req = new PostRequest<Loan>();

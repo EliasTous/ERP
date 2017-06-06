@@ -1,4 +1,5 @@
 ﻿using AionHR.Infrastructure.Domain;
+using AionHR.Model.Attributes;
 using AionHR.Model.Employees.Profile;
 using System;
 using System.Collections.Generic;
@@ -10,7 +11,9 @@ namespace AionHR.Model.Company.Cases
 {
     public  class Case : ModelBase,IEntity
     {
+        
         public int employeeId { get; set; }
+        
         public DateTime date { get; set; }
         public string details { get; set; }
         public short status { get; set; }

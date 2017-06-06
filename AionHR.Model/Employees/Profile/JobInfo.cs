@@ -8,14 +8,15 @@ namespace AionHR.Model.Employees.Profile
 {
     public class JobInfo:ModelBase
     {
-        public int employeeId { get; set; }
+        
         public DateTime date { get; set; }
         public int departmentId { get; set; }
         public int branchId { get; set; }
+        public int? divisionId { get; set; }
         public int positionId { get; set; }
 
         public int? reportToId { get; set; }
-        public int? divisionId { get; set; }
+        
         public string notes { get; set; }
         // qry
         public EmployeeName employeeName;
@@ -25,6 +26,7 @@ namespace AionHR.Model.Employees.Profile
         public string divisionName { get; set; }
 
         public EmployeeName reportToName { get; set; }
+        public int employeeId { get; set; }
 
     }
 }

@@ -8,14 +8,14 @@ namespace AionHR.Model.Employees.Profile
 {
     public class EmployeeContact:ModelBase
     {
-        public int employeeId { get; set; }
 
+        public string phone { get; set; }
         public string street1 { get; set; }
 
         public string street2 { get; set; }
 
         public string city { get; set; }
-        public string phone { get; set; }
+        public string stateId { get; set; }
 
         public string postalCode { get; set; }
 
@@ -29,6 +29,7 @@ namespace AionHR.Model.Employees.Profile
 
         public string rtName { get; set; }
 
-        public string stateId { get; set; }
+        
+        public int employeeId { get; set; }
     }
 }

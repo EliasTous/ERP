@@ -16,10 +16,10 @@ namespace AionHR.Model.Payroll
         public string periodId { get; set; }
         public string payDate { get; set; }
         public string status { get; set; }
-
+        public string notes { get; set; }
         public DateTime startDate { get; set; }
 
         public DateTime endDate { get; set; }
-        public string notes { get; set; }
+       
     }
 }

@@ -105,6 +105,7 @@
         <ext:Hidden ID="titleSavingErrorMessage" runat="server" Text="<%$ Resources:Common , TitleSavingErrorMessage %>" />
         <ext:Hidden ID="CurrentEmployee" runat="server" />
         <ext:Hidden ID="CurrentLang" runat="server" />
+        
         <ext:Hidden ID="hijriSelected" runat="server" />
         <ext:Hidden ID="EmployeeTerminated" runat="server" />
         <ext:Viewport ID="Viewport11" runat="server" Layout="VBoxLayout" Padding="10">
@@ -564,7 +565,7 @@
                                 <ext:TextArea runat="server" Name="remarks" FieldLabel="<%$ Resources:FieldRWRemarks%>" />
                                
                            
-                                <ext:FileUploadField runat="server" ID="rwFile" FieldLabel="<%$ Resources:FieldFile%>" AllowBlank="false" />
+                                <ext:FileUploadField runat="server" ID="rwFile" FieldLabel="<%$ Resources:FieldFile%>" AllowBlank="true" />
                             </Items>
 
                         </ext:FormPanel>

@@ -1345,6 +1345,7 @@
       <DependentUpon>Users.aspx</DependentUpon>
     </Compile>
     <Compile Include="Utilities\LocalisationManager.cs" />
+    <Compile Include="Utilities\ModulesFileWrapper.cs" />
     <Compile Include="Utilities\TreeBuilder.cs" />
     <Compile Include="VacationSchedules.aspx.cs">
       <DependentUpon>VacationSchedules.aspx</DependentUpon>

@@ -94,6 +94,15 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Hidden CurrentClass;
         
         /// <summary>
+        /// CurrentClassLevel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Hidden CurrentClassLevel;
+        
+        /// <summary>
         /// accessLevel0 control.
         /// </summary>
         /// <remarks>
@@ -119,6 +128,15 @@ namespace AionHR.Web.UI.Forms {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.Hidden accessLevel2;
+        
+        /// <summary>
+        /// accessLevel3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Hidden accessLevel3;
         
         /// <summary>
         /// groupsStore control.

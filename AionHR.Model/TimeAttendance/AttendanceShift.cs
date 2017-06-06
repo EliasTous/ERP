@@ -9,6 +9,9 @@ namespace AionHR.Model.TimeAttendance
 {
     public class AttendanceShift
     {
+
+        public string checkIn { get; set; }
+        public string checkOut { get; set; }
         public string dayId { get; set; }
 
         public string recordId { get; set; }
@@ -16,8 +19,7 @@ namespace AionHR.Model.TimeAttendance
         public string employeeRef { get; set; }
         public string employeeId { get; set; }
 
-        public string checkIn { get; set; }
-        public string checkOut { get; set; }
+       
         public string duration { get; set; }
     }
 }

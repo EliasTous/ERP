@@ -21,6 +21,7 @@ using AionHR.Model.TimeAttendance;
 using AionHR.Model.LeaveManagement;
 using AionHR.Model.Employees.Leaves;
 using AionHR.Model.Payroll;
+using AionHR.Model.LoadTracking;
 
 namespace AionHR.Services.Implementations
 {
@@ -117,6 +118,11 @@ namespace AionHR.Services.Implementations
             ClassLookup.Add(((int)ClassId.LMLT).ToString(), typeof(LeaveType));
             ClassLookup.Add(((int)ClassId.LMVP).ToString(), typeof(VacationSchedulePeriod));
             ClassLookup.Add(((int)ClassId.LMVS).ToString(), typeof(VacationSchedule));
+
+            ClassLookup.Add(((int)ClassId.LTLC).ToString(), typeof(LoanComment));
+            ClassLookup.Add(((int)ClassId.LTLR).ToString(), typeof(Loan));
+            ClassLookup.Add(((int)ClassId.LTLT).ToString(), typeof(LoanType));
+
 
             ClassLookup.Add(((int)ClassId.PYED).ToString(), typeof(PayrollEntitlementDeduction));
             ClassLookup.Add(((int)ClassId.PYEM).ToString(), typeof(EmployeePayroll));

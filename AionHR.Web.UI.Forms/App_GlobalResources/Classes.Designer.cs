@@ -205,7 +205,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to DMDT.
+        ///   Looks up a localized string similar to Document Type.
         /// </summary>
         internal static string Class22010 {
             get {
@@ -214,7 +214,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to DMDO.
+        ///   Looks up a localized string similar to Document.
         /// </summary>
         internal static string Class22020 {
             get {
@@ -223,7 +223,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to MGMC.
+        ///   Looks up a localized string similar to Media Category.
         /// </summary>
         internal static string Class23010 {
             get {
@@ -232,7 +232,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to MGME.
+        ///   Looks up a localized string similar to Media Item.
         /// </summary>
         internal static string Class23020 {
             get {
@@ -241,7 +241,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to CNNW.
+        ///   Looks up a localized string similar to Company News.
         /// </summary>
         internal static string Class24010 {
             get {
@@ -250,7 +250,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to EPEM.
+        ///   Looks up a localized string similar to Employee Profile.
         /// </summary>
         internal static string Class31000 {
             get {
@@ -259,7 +259,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to EPAC.
+        ///   Looks up a localized string similar to Asset Category.
         /// </summary>
         internal static string Class31010 {
             get {
@@ -268,7 +268,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to EPAA.
+        ///   Looks up a localized string similar to Asset Allowance.
         /// </summary>
         internal static string Class31011 {
             get {
@@ -277,7 +277,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to EPBC.
+        ///   Looks up a localized string similar to Background Check.
         /// </summary>
         internal static string Class31020 {
             get {
@@ -286,7 +286,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to EPCT.
+        ///   Looks up a localized string similar to Check Type.
         /// </summary>
         internal static string Class31021 {
             get {
@@ -295,7 +295,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to EPBT.
+        ///   Looks up a localized string similar to Bonus Type.
         /// </summary>
         internal static string Class31030 {
             get {
@@ -304,7 +304,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to EPBO.
+        ///   Looks up a localized string similar to Bonus.
         /// </summary>
         internal static string Class31031 {
             get {
@@ -313,7 +313,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to EPCL.
+        ///   Looks up a localized string similar to Certificate Level.
         /// </summary>
         internal static string Class31040 {
             get {
@@ -322,7 +322,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to EPCE.
+        ///   Looks up a localized string similar to Certificate.
         /// </summary>
         internal static string Class31041 {
             get {
@@ -331,7 +331,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to EPDT.
+        ///   Looks up a localized string similar to Employee Document Type.
         /// </summary>
         internal static string Class31050 {
             get {
@@ -340,7 +340,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to EPDO.
+        ///   Looks up a localized string similar to Employee Document.
         /// </summary>
         internal static string Class31051 {
             get {
@@ -403,7 +403,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to EPJI.
+        ///   Looks up a localized string similar to Job Info.
         /// </summary>
         internal static string Class31080 {
             get {
@@ -412,7 +412,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to EPNO.
+        ///   Looks up a localized string similar to Notes.
         /// </summary>
         internal static string Class31090 {
             get {
@@ -421,7 +421,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to EPRW.
+        ///   Looks up a localized string similar to Right To Work.
         /// </summary>
         internal static string Class31100 {
             get {
@@ -538,7 +538,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TABM.
+        ///   Looks up a localized string similar to Biometric Device.
         /// </summary>
         internal static string Class41000 {
             get {
@@ -547,7 +547,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TARO.
+        ///   Looks up a localized string similar to Router.
         /// </summary>
         internal static string Class41010 {
             get {
@@ -556,7 +556,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TAGF.
+        ///   Looks up a localized string similar to Geofence.
         /// </summary>
         internal static string Class41020 {
             get {
@@ -565,7 +565,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TADT.
+        ///   Looks up a localized string similar to Day Type.
         /// </summary>
         internal static string Class41030 {
             get {
@@ -700,6 +700,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Leave Day.
+        /// </summary>
+        internal static string Class42021 {
+            get {
+                return ResourceManager.GetString("Class42021", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Case.
         /// </summary>
         internal static string Class43000 {
@@ -750,6 +759,51 @@ namespace Resources {
         internal static string Class45011 {
             get {
                 return ResourceManager.GetString("Class45011", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fiscal Year.
+        /// </summary>
+        internal static string Class51010 {
+            get {
+                return ResourceManager.GetString("Class51010", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fiscal Period.
+        /// </summary>
+        internal static string Class51011 {
+            get {
+                return ResourceManager.GetString("Class51011", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Payroll Header.
+        /// </summary>
+        internal static string Class51020 {
+            get {
+                return ResourceManager.GetString("Class51020", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Payroll Employee.
+        /// </summary>
+        internal static string Class51021 {
+            get {
+                return ResourceManager.GetString("Class51021", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Payroll Entitlements and Deductions.
+        /// </summary>
+        internal static string Class51022 {
+            get {
+                return ResourceManager.GetString("Class51022", resourceCulture);
             }
         }
         

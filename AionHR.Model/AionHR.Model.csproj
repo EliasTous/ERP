@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Access Control\IAccessControlRepository.cs" />
+    <Compile Include="Attributes\PropertyID.cs" />
     <Compile Include="Company\Cases\ICasesRepository.cs" />
     <Compile Include="Company\News\ICompanyNewsRepository.cs" />
     <Compile Include="Company\Structure\Division.cs" />

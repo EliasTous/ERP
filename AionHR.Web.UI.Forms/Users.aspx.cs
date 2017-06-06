@@ -66,7 +66,7 @@ namespace AionHR.Web.UI.Forms
                 HideShowButtons();
                
                 this.rtl.Text = _systemService.SessionHelper.CheckIfArabicSession() ? "True" : "False";
-                AccessControlApplier.ApplyAccessGeneric(MapPath("~/Utilities/modules.txt"), ((int)ClassId.SYUS).ToString(), "20", BasicInfoTab, GridPanel1);
+                AccessControlApplier.ApplyAccessControlOnPage(((int)ClassId.SYUS).ToString(), "20", BasicInfoTab, GridPanel1,btnAdd,SaveButton);
             }
 
 
