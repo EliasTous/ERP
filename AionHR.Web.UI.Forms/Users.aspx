@@ -10,19 +10,19 @@
     <title></title>
     <link rel="stylesheet" type="text/css" href="CSS/Common.css?id=2" />
     <link rel="stylesheet" href="CSS/LiveSearch.css" />
-    <script type="text/javascript" src="Scripts/Users.js?id=1"></script>
+    <script type="text/javascript" src="Scripts/Users.js?id=2"></script>
     <script type="text/javascript" src="Scripts/common.js"></script>
-     <script src="Scripts/jquery-new.js"></script>  
-      <script type="text/javascript">
-          function dump(obj) {
-    var out = '';
-    for (var i in obj) {
-        out += i + ": " + obj[i] + "\n";
+    <script src="Scripts/jquery-new.js"></script>
+    <script type="text/javascript">
+        function dump(obj) {
+            var out = '';
+            for (var i in obj) {
+                out += i + ": " + obj[i] + "\n";
 
 
-    }
-    return out;
-}
+            }
+            return out;
+        }
         Ext.define("Ext.plugin.extjs.form.PasswordStrength", {
             extend: "Ext.AbstractPlugin",
             alias: "plugin.passwordstrength",
@@ -32,14 +32,14 @@
                 var me = this;
 
                 App.PasswordField.on("change", me.onFieldChange, me);
-                
-               
+
+
             },
 
             onFieldChange: function (field, newVal, oldVal) {
                 if (newVal === "") {
-                   
-               
+
+
                     App.pro.updateText('');
                     $("#pro-bar")[0].style.backgroundColor = "white";
                     App.pro.setStyle({ "background-color": "white" });
@@ -48,20 +48,20 @@
                 var me = this,
                     score = me.scorePassword(field.value);
 
-                
+
 
                 me.processValue(field, score);
 
-                
+
             },
 
             processValue: function (field, score) {
-                
+
                 var me = this,
                     colors = me.colors,
                     color;
                 var i;
-                
+
                 if (score < 16) {
                     i = 1;
                     color = colors[0]; //very weak
@@ -81,19 +81,19 @@
                     color = colors[4]; //very strong
                 }
 
-              
-                
+
+
                 App.pro.setValue(i / 5);
-              
-                
-               
-             
-               
+
+
+
+
+
                 App.pro.updateText(document.getElementById("level" + i).value);
-             
-                
-                $("#pro-bar")[0].style.backgroundColor="#"+colors[i];
-                
+
+
+                $("#pro-bar")[0].style.backgroundColor = "#" + colors[i];
+
             },
 
             scorePassword: function (passwd) {
@@ -157,9 +157,9 @@
 
         }
     </script>
-   
+
 </head>
-<body style="background: url(Images/bg.png) repeat;" >
+<body style="background: url(Images/bg.png) repeat;">
     <form id="Form1" runat="server">
         <ext:ResourceManager ID="ResourceManager1" runat="server" Theme="Neptune" AjaxTimeout="1200000" />
 
@@ -168,20 +168,21 @@
         <ext:Hidden ID="titleSavingError" runat="server" Text="<%$ Resources:Common , TitleSavingError %>" />
         <ext:Hidden ID="titleSavingErrorMessage" runat="server" Text="<%$ Resources:Common , TitleSavingErrorMessage %>" />
         <ext:Hidden ID="timeZoneOffset" runat="server" EnableViewState="true" />
-        <ext:Hidden ID="rtl" runat="server"  />
-        <ext:Hidden ID="hide1" runat="server"  />
-        <ext:Hidden ID="hide2" runat="server"  />
-        <ext:Hidden ID="hide3" runat="server"  />
-        <ext:Hidden ID="hide4" runat="server"  />
-        <ext:Hidden ID="hide5" runat="server"  />
-        <ext:Hidden ID="hide6" runat="server"  />
-        <ext:Hidden ID="hide7" runat="server"  />
-        <ext:Hidden ID="hide8" runat="server"  />
-            <ext:Hidden runat="server" ID="level1" Text="<%$ Resources:VeryWeak %>" />
+        <ext:Hidden ID="rtl" runat="server" />
+        <ext:Hidden ID="hide1" runat="server" />
+        <ext:Hidden ID="hide2" runat="server" />
+        <ext:Hidden ID="hide3" runat="server" />
+        <ext:Hidden ID="hide4" runat="server" />
+        <ext:Hidden ID="hide5" runat="server" />
+        <ext:Hidden ID="hide6" runat="server" />
+        <ext:Hidden ID="hide7" runat="server" />
+        <ext:Hidden ID="hide8" runat="server" />
+        <ext:Hidden ID="CurrentUser" runat="server" />
+        <ext:Hidden runat="server" ID="level1" Text="<%$ Resources:VeryWeak %>" />
         <ext:Hidden runat="server" ID="level2" Text="<%$ Resources:Weak %>" />
         <ext:Hidden runat="server" ID="level3" Text="<%$ Resources:Mediocre %>" />
-        <ext:Hidden runat="server" ID="level4"  Text="<%$ Resources:Strong %>"/>
-        <ext:Hidden runat="server" ID="level5"  Text="<%$ Resources:VeryStrong %>"/>
+        <ext:Hidden runat="server" ID="level4" Text="<%$ Resources:Strong %>" />
+        <ext:Hidden runat="server" ID="level5" Text="<%$ Resources:VeryStrong %>" />
         <ext:Store
             ID="Store1"
             runat="server"
@@ -243,7 +244,7 @@
                     <TopBar>
                         <ext:Toolbar ID="Toolbar1" runat="server" ClassicButtonStyle="false">
                             <Items>
-                                
+
                                 <ext:Button ID="btnAdd" runat="server" Text="<%$ Resources:Common , Add %>" Icon="Add">
                                     <Listeners>
                                         <Click Handler="CheckSession();" />
@@ -299,23 +300,23 @@
                             <ext:Column Visible="false" ID="ColrecordId" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldrecordId %>" DataIndex="recordId" Hideable="false" Width="75" Align="Center" />
                             <ext:Column Visible="false" ID="ColEmployeeId" MenuDisabled="true" runat="server" DataIndex="employeeId" Hideable="false" Width="75" Align="Center" />
                             <ext:Column Visible="false" ID="ColPassword" MenuDisabled="true" runat="server" DataIndex="password" Hideable="false" Width="75" Align="Center" />
-                            
+
                             <ext:Column ID="ColFullName" MenuDisabled="true" Sortable="true" runat="server" Text="<%$ Resources: FieldFullName%>" DataIndex="fullName" Flex="1" Hideable="false">
                                 <Renderer Handler="if(App.hide1.value=='True') return '****'; return  record.data['fullName'];">
                                 </Renderer>
                             </ext:Column>
 
-                            <ext:Column Sortable="true" ID="ColEmail" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEmail%>" DataIndex="email" Flex="1" Hideable="false" >
+                            <ext:Column Sortable="true" ID="ColEmail" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEmail%>" DataIndex="email" Flex="1" Hideable="false">
                                 <Renderer Handler="if(App.hide2.value=='True') return '****'; return record.data['email'];" />
-                                </ext:Column>
+                            </ext:Column>
 
                             <ext:CheckColumn ID="ColIsInactive" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldIsInactive %>" DataIndex="isInactive" Hideable="false" />
                             <ext:CheckColumn ID="ColIsAdmin" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldIsAdmin %>" DataIndex="isAdmin" Hideable="false" />
 
 
 
-                           <ext:Column runat="server"
-                                ID="colAttach"  Visible="true"
+                            <ext:Column runat="server"
+                                ID="colAttach" Visible="true"
                                 Text=""
                                 Width="100"
                                 Hideable="false"
@@ -325,10 +326,10 @@
                                 MenuDisabled="true"
                                 Resizable="false">
 
-                                <Renderer handler="return editRender()+'&nbsp;&nbsp;' +deleteRender(); " />
+                                <Renderer Handler="return editRender()+'&nbsp;&nbsp;' +deleteRender(); " />
 
                             </ext:Column>
-                            
+
 
 
 
@@ -341,7 +342,7 @@
                             <Items>
                                 <ext:StatusBar ID="StatusBar1" runat="server" />
                                 <ext:ToolbarFill />
-                                
+
                             </Items>
                         </ext:Toolbar>
 
@@ -386,7 +387,7 @@
                         <ext:GridView ID="GridView1" runat="server" />
                     </View>
 
-                 
+
                     <SelectionModel>
                         <ext:RowSelectionModel ID="rowSelectionModel" runat="server" Mode="Single" StopIDModeInheritance="true" />
                         <%--<ext:CheckboxSelectionModel ID="CheckboxSelectionModel1" runat="server" Mode="Multi" StopIDModeInheritance="true" />--%>
@@ -412,7 +413,7 @@
             <Items>
                 <ext:TabPanel ID="panelRecordDetails" runat="server" ActiveTabIndex="0" Border="false" DeferredRender="false">
                     <Items>
-                       <ext:FormPanel DefaultButton="SaveButton"
+                        <ext:FormPanel DefaultButton="SaveButton"
                             ID="BasicInfoTab"
                             runat="server"
                             Title="<%$ Resources: BasicInfoTabEditWindowTitle %>"
@@ -421,7 +422,7 @@
                             BodyPadding="5">
                             <Items>
                                 <ext:TextField ID="fullName" TabIndex="1" runat="server" FieldLabel="<%$ Resources: FieldFullName %>" DataIndex="fullName" Name="fullName" AllowBlank="false" />
-                                    
+
                                 <ext:TextField ID="email" TabIndex="2" runat="server" FieldLabel="<%$ Resources: FieldEmail %>" DataIndex="email" Name="email" InputType="Email" Vtype="email" AllowBlank="false" />
                                 <ext:TextField ID="recordId" TabIndex="3" Disabled="true" Hidden="true" runat="server" DataIndex="recordId" AllowBlank="false" />
 
@@ -469,57 +470,145 @@
 
                                     </Items>
                                 </ext:ComboBox>
-                               
+
                                 <ext:TextField
                                     ID="PasswordField" TabIndex="8"
                                     runat="server"
                                     FieldLabel="<%$ Resources: FieldPassword%>"
                                     InputType="Password"
-                                    
                                     Name="password"
-                                    DataIndex ="password"
+                                    DataIndex="password"
                                     AllowBlank="false"
                                     AnchorHorizontal="100%">
                                     <Listeners>
                                         <ValidityChange Handler="this.next().next().validate();" />
                                         <Blur Handler="this.next().next().validate();" />
                                     </Listeners>
-                                      <Plugins>
-                                <ext:GenericPlugin TypeName="passwordstrength" />
-                            </Plugins>
-                                    </ext:TextField>
-                                     <%--<Plugins>
+                                    <Plugins>
+                                        <ext:GenericPlugin TypeName="passwordstrength" />
+                                    </Plugins>
+                                </ext:TextField>
+                                <%--<Plugins>
                                <%-- <ext:GenericPlugin TypeName="passwordstrength" />
                             </Plugins>
                             <RightButtons>
                                 <ext:HyperlinkButton runat="server" ID="rightLink"   />
                             </RightButtons>--%>
-                               <ext:ProgressBar runat="server" ID="pro" Width="295" MarginSpec="0 0 0 105" >
-                             <Listeners>
-                                <Render Handler="this.updateText('');" />
-                             </Listeners>
-                             </ext:ProgressBar>
-                                
+                                <ext:ProgressBar runat="server" ID="pro" Width="295" MarginSpec="0 0 0 105">
+                                    <Listeners>
+                                        <Render Handler="this.updateText('');" />
+                                    </Listeners>
+                                </ext:ProgressBar>
+
                                 <ext:TextField
-                                    ID="PasswordConfirmation"  TabIndex="9"
+                                    ID="PasswordConfirmation" TabIndex="9"
                                     runat="server"
                                     Vtype="password"
                                     FieldLabel="<%$ Resources: FieldConfirmPassword%>"
                                     InputType="Password"
-                                    
                                     AnchorHorizontal="100%">
                                     <Validator Handler="if(this.value!= this.prev().prev().value) return false; else return true;">
-                                    
-                            </Validator>
+                                    </Validator>
                                     <CustomConfig>
                                         <ext:ConfigItem Name="initialPassField" Value="PasswordField" Mode="Value" />
                                     </CustomConfig>
                                 </ext:TextField>
-                                
+
                             </Items>
 
                         </ext:FormPanel>
+                        <ext:FormPanel ID="userGroups" runat="server" Title="<%$ Resources: Groups %>">
+                            <Items>
+                                <ext:GridPanel runat="server" ID="groupsGrid" Layout="FitLayout">
+                                    <TopBar>
+                                        <ext:Toolbar runat="server">
+                                            <Items>
+                                                <ext:ComboBox runat="server" ID="GroupsCombo" DisplayField="name" ValueField="recordId" QueryMode="Local" Width="120" ForceSelection="true" TypeAhead="true" MinChars="1">
+                                                    <Store>
+                                                        <ext:Store runat="server" ID="AllGroupsStore" OnReadData="AllGroupsStore_ReadData">
+                                                            <Model>
+                                                                <ext:Model ID="Model2" runat="server" IDProperty="recordId">
+                                                                    <Fields>
 
+                                                                        <ext:ModelField Name="recordId" />
+                                                                        <ext:ModelField Name="name" />
+
+                                                                    </Fields>
+                                                                </ext:Model>
+                                                            </Model>
+                                                        </ext:Store>
+                                                    </Store>
+                                                </ext:ComboBox>
+                                                <ext:Button runat="server" ID="addToGroupButton" Icon="BulletPlus" >
+                                                    <DirectEvents>
+                                                        <Click OnEvent="addUserToGroup" />
+                                                    </DirectEvents>
+                                                    </ext:Button>
+                                            </Items>
+                                        </ext:Toolbar>
+                                    </TopBar>
+                                    <Store>
+                                        <ext:Store runat="server" ID="UserGroupsStore" >
+                                            <Model>
+                                                <ext:Model ID="Model3" runat="server" IDProperty="sgId">
+                                                    <Fields>
+
+                                                        <ext:ModelField Name="sgId" />
+                                                        <ext:ModelField Name="sgName" />
+
+                                                    </Fields>
+                                                </ext:Model>
+                                            </Model>
+                                        </ext:Store>
+                                    </Store>
+                                    <ColumnModel ID="ColumnModel2" runat="server" SortAscText="<%$ Resources:Common , SortAscText %>" SortDescText="<%$ Resources:Common ,SortDescText  %>" SortClearText="<%$ Resources:Common ,SortClearText  %>" ColumnsText="<%$ Resources:Common ,ColumnsText  %>" EnableColumnHide="false" Sortable="true">
+                                        <Columns>
+
+
+
+                                            <ext:Column Visible="false" ID="Column1" MenuDisabled="true" runat="server" DataIndex="recordId" Hideable="false" Width="75" Align="Center" />
+                                            <ext:Column CellCls="cellLink" ID="Column2" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldGroup%>" DataIndex="sgName" Flex="2" Hideable="false">
+                                            </ext:Column>
+
+
+
+
+                                            <ext:Column runat="server"
+                                                ID="Column4" Visible="true"
+                                                Text=""
+                                                Width="100"
+                                                Hideable="false"
+                                                Align="Center"
+                                                Fixed="true"
+                                                Filterable="false"
+                                                MenuDisabled="true"
+                                                Resizable="false">
+
+                                                <Renderer Handler="return leaveRender(); " />
+                                            </ext:Column>
+
+                                        </Columns>
+                                    </ColumnModel>
+
+                                    <BottomBar>
+                                    </BottomBar>
+                                    <Listeners>
+                                        <Render Handler="this.on('cellclick', cellClick);" />
+                                    </Listeners>
+                                    <DirectEvents>
+                                        <CellClick OnEvent="PoPuPGroup">
+                                            <EventMask ShowMask="true" />
+                                            <ExtraParams>
+                                                <ext:Parameter Name="id" Value="record.getId()" Mode="Raw" />
+                                                <ext:Parameter Name="type" Value="getCellType( this, rowIndex, cellIndex)" Mode="Raw" />
+                                            </ExtraParams>
+
+                                        </CellClick>
+                                    </DirectEvents>
+                                </ext:GridPanel>
+
+                            </Items>
+                        </ext:FormPanel>
                     </Items>
                 </ext:TabPanel>
             </Items>

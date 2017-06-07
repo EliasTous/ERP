@@ -5,14 +5,23 @@ public class GroupUsersListRequest : ListRequest
 {
     public string GroupId { get; set; }
 
+    public string UserId { get; set; }
+
     private Dictionary<string, string> parameters;
 
+
+    public GroupUsersListRequest()
+    {
+        GroupId = "0";
+        UserId = "0";
+    }
     public override Dictionary<string, string> Parameters
     {
         get
         {
             parameters = new Dictionary<string, string>();
             parameters.Add("_sgId", GroupId);
+            parameters.Add("_userId", UserId);
             return parameters;
         }
     }
@@ -111,6 +120,24 @@ public class ClassPermissionRecordRequest : RecordRequest
             parameters = new Dictionary<string, string>();
             parameters.Add("_userId", UserId);
             parameters.Add("_classId", ClassId);
+            return parameters;
+        }
+    }
+}
+
+public class SecurityGroupsListRequest : ListRequest
+{
+    public string UserId { get; set; }
+
+    private Dictionary<string, string> parameters;
+
+    public override Dictionary<string, string> Parameters
+    {
+        get
+        {
+            parameters = new Dictionary<string, string>();
+            parameters = new Dictionary<string, string>();
+            parameters.Add("_userId", UserId);
             return parameters;
         }
     }

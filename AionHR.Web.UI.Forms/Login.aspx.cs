@@ -119,6 +119,7 @@ namespace AionHR.Web.UI.Forms
                 _systemService.SessionHelper.Set("CompanyName", getACResponse.result.companyName);
                 _systemService.SessionHelper.Set("CurrentUserName", userName);
 
+                _systemService.SessionHelper.Set("IsAdmin", response.User.isAdmin);
                 StoreSystemDefaults();
                 return "1";//Succeded
 

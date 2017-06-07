@@ -13,7 +13,11 @@ namespace AionHR.Web.UI.Forms.Reports.Controls
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
+            {
                 moduleId.Select(0);
+                if (!string.IsNullOrEmpty(selectHandler))
+                    moduleId.AddListener("Select", selectHandler);
+            }
         }
 
         public ClassIdParameterSet GetModule()
@@ -26,6 +30,31 @@ namespace AionHR.Web.UI.Forms.Reports.Controls
                 s.ClassId = bulk;
 
             return s;
+        }
+
+        public string GetModuleId()
+        {
+            int bulk;
+            if (moduleId.Value == null || !int.TryParse(moduleId.Value.ToString(), out bulk))
+                return "20";
+            else
+                return moduleId.Value.ToString();
+
+        }
+
+        private string selectHandler;
+
+        public string SelectHandler
+        {
+            get
+            {
+                return selectHandler;
+            }
+
+            set
+            {
+                selectHandler = value;
+            }
         }
     }
 }

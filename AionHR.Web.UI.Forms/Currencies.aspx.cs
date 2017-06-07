@@ -59,7 +59,7 @@ namespace AionHR.Web.UI.Forms
                 SetExtLanguage();
                 HideShowButtons();
                 HideShowColumns();
-                AccessControlApplier.ApplyAccessControlOnForm(MapPath("~/Utilities/modules.txt"), ((int)ClassId.SYCU).ToString(), "20", BasicInfoTab, GridPanel1);
+                
 
                 
             }

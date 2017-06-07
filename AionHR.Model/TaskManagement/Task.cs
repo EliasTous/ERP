@@ -1,4 +1,5 @@
 ﻿using AionHR.Infrastructure.Domain;
+using AionHR.Model.Attributes;
 using AionHR.Model.Employees.Profile;
 using System;
 using System.Collections.Generic;
@@ -8,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace AionHR.Model.TaskManagement
 {
+    [ClassIdentifier("32010", "32")]
     public class Task:ModelBase,IEntity
     {
         public string name { get; set; }

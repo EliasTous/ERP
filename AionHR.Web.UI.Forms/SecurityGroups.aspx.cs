@@ -32,6 +32,7 @@ using AionHR.Services.Messaging.System;
 using AionHR.Infrastructure.Domain;
 using System.Reflection;
 using Newtonsoft.Json.Linq;
+using AionHR.Model.Attributes;
 
 namespace AionHR.Web.UI.Forms
 {
@@ -138,7 +139,18 @@ namespace AionHR.Web.UI.Forms
 
                         //Add this record to the store 
                         this.groupsStore.Insert(0, b);
-
+                        int level = Convert.ToInt32(defaultAccessLevel.SelectedItem.Value);
+                        PostRequest<ModuleClass[]> batch = new PostRequest<ModuleClass[]>();
+                        List<ModuleClass> allClasses = new List<ModuleClass>();
+                        _masterService.ClassLookup.Keys.ToList().ForEach(x => allClasses.Add(new ModuleClass() { classId = x, accessLevel = level, id = x, sgId = b.recordId }));
+                        batch.entity = allClasses.ToArray();
+                        PostResponse<ModuleClass[]> batResp = _accessControlService.ChildAddOrUpdate<ModuleClass[]>(batch);
+                        if (!batResp.Success)
+                        {
+                            X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                            X.Msg.Alert(Resources.Common.Error, r.Summary).Show();
+                            return;
+                        }
                         //Display successful notification
                         Notification.Show(new NotificationConfig
                         {
@@ -155,6 +167,8 @@ namespace AionHR.Web.UI.Forms
                         CurrentGroup.Text = b.recordId;
                         recordId.Text = b.recordId;
                         this.GroupWindow.Title = b.name;
+                        modulesCombo.Select(0);
+                        classesStore.Reload();
                     }
                 }
                 catch (Exception ex)
@@ -293,6 +307,43 @@ namespace AionHR.Web.UI.Forms
 
         }
 
+        protected void SaveModuleLevel(object sender, DirectEventArgs e)
+        {
+
+
+            //Getting the id to check if it is an Add or an edit as they are managed within the same form.
+            string moduleId = modulesCombo.SelectedItem.Value;
+            List<Type> types = AppDomain.CurrentDomain.GetAssemblies().Where(x => x.FullName.Contains("AionHR.Model")).ToList()[0].GetTypes().Where(x => { var d = x.GetCustomAttribute<ClassIdentifier>(); if (d != null && d.ModuleId == moduleId) return true; else return false; }).ToList();
+
+            int level = Convert.ToInt32(moduleAccessLevel.SelectedItem.Value);
+            PostRequest<ModuleClass[]> batch = new PostRequest<ModuleClass[]>();
+            List<ModuleClass> allClasses = new List<ModuleClass>();
+            types.ForEach(x => { allClasses.Add(new ModuleClass() { classId = x.GetCustomAttribute<ClassIdentifier>().ClassID, accessLevel = level, id = x.GetCustomAttribute<ClassIdentifier>().ClassID, sgId = CurrentGroup.Text }); });
+
+            batch.entity = allClasses.ToArray();
+            PostResponse<ModuleClass[]> batResp = _accessControlService.ChildAddOrUpdate<ModuleClass[]>(batch);
+            if (!batResp.Success)
+            {
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, batResp.Summary).Show();
+                return;
+            }
+
+
+
+
+
+            Notification.Show(new NotificationConfig
+            {
+                Title = Resources.Common.Notification,
+                Icon = Icon.Information,
+                Html = Resources.Common.RecordSavingSucc
+            });
+            classesStore.Reload();
+            ApplyModuleLevelWindow.Close();
+
+        }
+
         protected void SaveClassProperties(object sender, DirectEventArgs e)
         {
 
@@ -352,6 +403,8 @@ namespace AionHR.Web.UI.Forms
             SetTabPanelActivated(false);
             this.GroupWindow.Show();
             panelRecordDetails.ActiveIndex = 0;
+            defaultAccessLevel.Hidden = false;
+            defaultAccessLevel.Select(0);
         }
 
         protected void ADDUsers(object sender, DirectEventArgs e)
@@ -428,6 +481,7 @@ namespace AionHR.Web.UI.Forms
             string type = e.ExtraParams["type"];
             CurrentGroup.Text = id.ToString();
             usersStore.Reload();
+            defaultAccessLevel.Hidden = true;
             switch (type)
             {
 
@@ -494,24 +548,26 @@ namespace AionHR.Web.UI.Forms
             string type = e.ExtraParams["type"];
             string level = e.ExtraParams["accessLevel"];
             CurrentClass.Text = id.ToString();
-            CurrentClassLevel.Text = level; 
+            CurrentClassLevel.Text = level;
             switch (type)
             {
 
 
                 case "imgAttach":
-                    ClassPermissionRecordRequest classReq = new ClassPermissionRecordRequest();
-                    classReq.ClassId = id.ToString();
-                    RecordResponse<ModuleClass> modClass = _accessControlService.ChildGetRecord<ModuleClass>(classReq);
-                    if (modClass.result == null)
-                    {
-                        PostRequest<ModuleClass> req = new PostRequest<ModuleClass>();
-                        req.entity = new ModuleClass() { accessLevel = 3, classId = id.ToString(), sgId = CurrentGroup.Text, id = id.ToString() };
-                       
-                        PostResponse<ModuleClass> resp = _accessControlService.ChildAddOrUpdate<ModuleClass>(req);
-                        
-                    }
 
+                    PostRequest<ModuleClass> req = new PostRequest<ModuleClass>();
+                    req.entity = new ModuleClass() { accessLevel = Convert.ToInt32(level), classId = id.ToString(), sgId = CurrentGroup.Text, id = id.ToString() };
+
+                    PostResponse<ModuleClass> resp = _accessControlService.ChildAddOrUpdate<ModuleClass>(req);
+
+                    List<PropertyAccessLevel> levels = new List<PropertyAccessLevel>();
+                    levels.Add(new PropertyAccessLevel(GetLocalResourceObject("NoAccess").ToString(), "0"));
+                    levels.Add(new PropertyAccessLevel(GetLocalResourceObject("Read").ToString(), "1"));
+                    if (level == "2" || level == "3")
+                        levels.Add(new PropertyAccessLevel(GetLocalResourceObject("WriteProperty").ToString(), "2"));
+
+                    accessLevelsStore.DataSource = levels;
+                    accessLevelsStore.DataBind();
 
                     EditClassPropertiesWindow.Show();
                     propertiesStore.Reload();
@@ -523,7 +579,7 @@ namespace AionHR.Web.UI.Forms
 
                 case "imgEdit":
                     EditClassLevelForm.Reset();
-                    accessLevel.Select(e.ExtraParams["access"]);
+                    accessLevel.Select(level);
 
                     EditClassLevelWindow.Show();
                     break;
@@ -796,18 +852,23 @@ namespace AionHR.Web.UI.Forms
 
         protected void modulesStore_ReadData(object sender, StoreReadDataEventArgs e)
         {
-            string s = File.ReadAllText(MapPath("~/Utilities/modules.txt"));
-            List<Model.Access_Control.Module> preDefined = JsonConvert.DeserializeObject<List<Model.Access_Control.Module>>(s);
-            preDefined.ForEach(x => x.name = GetGlobalResourceObject("Common", x.name).ToString());
-            modulesStore.DataSource = preDefined;
-            modulesStore.DataBind();
+            //List<Type> types = AppDomain.CurrentDomain.GetAssemblies().Where(x => x.FullName.Contains("AionHR.Model")).ToList()[0].GetTypes().ToList();
+            //HashSet<string> mods = new HashSet<string>();
+            //types.ForEach(x => { var d = x.GetCustomAttribute<ClassIdentifier>(); if(d!= null) mods.Add(x.GetCustomAttribute<ClassIdentifier>().ModuleId); });
+            //List<Model.Access_Control.Module> modules = new List<Model.Access_Control.Module>();
+
+            //mods.ToList().ForEach(x => modules.Add(new Model.Access_Control.Module() { id = x, name = GetGlobalResourceObject("Common", "Mod" + x).ToString() }));
+            ////preDefined.ForEach(x => x.name = GetGlobalResourceObject("Common", x.name).ToString());
+            //modulesStore.DataSource = modules;
+            //modulesStore.DataBind();
         }
 
         protected void classesStore_ReadData(object sender, StoreReadDataEventArgs e)
         {
-            string s = File.ReadAllText(MapPath("~/Utilities/modules.txt"));
-            List<Model.Access_Control.Module> preDefined = JsonConvert.DeserializeObject<List<Model.Access_Control.Module>>(s);
-            List<ModuleClassDefinition> classes = preDefined.Where(x => x.id == modulesCombo.SelectedItem.Value).ToList()[0].classes;
+            List<ModuleClassDefinition> classes = new List<ModuleClassDefinition>();
+            List<Type> types = AppDomain.CurrentDomain.GetAssemblies().Where(x => x.FullName.Contains("AionHR.Model")).ToList()[0].GetTypes().Where(x => { var d = x.GetCustomAttribute<ClassIdentifier>(); if (d != null && d.ModuleId == modulesCombo.SelectedItem.Value) return true; else return false; }).ToList();
+            
+            types.ForEach(x => classes.Add(new ModuleClassDefinition() { classId = x.GetCustomAttribute<ClassIdentifier>().ClassID, id = x.GetCustomAttribute<ClassIdentifier>().ClassID, name = "Class" + x.GetCustomAttribute<ClassIdentifier>().ClassID }));
 
             classes.ForEach(x => { x.name = GetGlobalResourceObject("Classes", x.name).ToString(); x.classId = x.id; });
             AccessControlListRequest req = new AccessControlListRequest();
@@ -828,25 +889,11 @@ namespace AionHR.Web.UI.Forms
 
         protected void propertyStore_ReadData(object sender, StoreReadDataEventArgs e)
         {
-            string s = File.ReadAllText(MapPath("~/Utilities/modules.txt"));
-            List<Model.Access_Control.Module> preDefined = JsonConvert.DeserializeObject<List<Model.Access_Control.Module>>(s);
-            List<ModuleClassDefinition> classes = preDefined.Where(x => x.id == modulesCombo.SelectedItem.Value).ToList()[0].classes;
-            List<ClassPropertyDefinition> properites = classes.Where(x => x.id == CurrentClass.Text).ToList()[0].properties;
-            PropertyInfo[] props = _masterService.ClassLookup[CurrentClass.Text].GetProperties();
-            if (props.Length != properites.Count)
-            {
-                for (int i = 0; i < props.Length; i++)
-                {
-                    properites.Add(new ClassPropertyDefinition() { index = props[i].Name, propertyId = CurrentClass.Text + (i + 1).ToString().PadLeft(2, '0'), name = "Property" + CurrentClass.Text + (i + 1).ToString().PadLeft(2, '0') });
-                    
-                }
-                string x = JsonConvert.SerializeObject(preDefined);
-                JArray obj = JArray.Parse(x);
-                string formatted = obj.ToString();
-                File.WriteAllText(MapPath("~/Utilities/modules.txt"),formatted);
-            }
-
-
+            Type t = AppDomain.CurrentDomain.GetAssemblies().Where(x => x.FullName.Contains("AionHR.Model")).ToList()[0].GetTypes().Where(x => { var d = x.GetCustomAttribute<ClassIdentifier>();   return (d != null && d.ClassID == CurrentClass.Text);  }).ToList()[0];
+            PropertyInfo[] props = t.GetProperties();
+            
+            List<ClassPropertyDefinition> properites = new List<ClassPropertyDefinition>();
+            props.ToList().ForEach(x => { var d = x.GetCustomAttribute<PropertyID>(); if (d != null) properites.Add(new ClassPropertyDefinition() { propertyId = d.ID, index = x.Name, name = "Property" + d.ID }); });
             PropertiesListRequest req = new PropertiesListRequest();
             req.GroupId = CurrentGroup.Text;
             req.ClassId = CurrentClass.Text;
@@ -866,14 +913,14 @@ namespace AionHR.Web.UI.Forms
                 else
                 {
                     item.name = GetGlobalResourceObject("AccessControl", item.name).ToString();
-                    final.Add(new ClassProperty() { index = item.index, propertyId = item.propertyId, name = item.name,accessLevel=2 });
+                    final.Add(new ClassProperty() { index = item.index, propertyId = item.propertyId, name = item.name, accessLevel = 2 });
                 }
             }
             JsonSerializerSettings settings = new JsonSerializerSettings();
 
-            stored.Items.ForEach(x => { final.Where(y => y.propertyId == x.propertyId).ToList()[0].accessLevel = Math.Min(x.accessLevel,Convert.ToInt32(CurrentClassLevel.Text)); });
+            stored.Items.ForEach(y => { final.Where(f => y.propertyId == f.propertyId).ToList()[0].accessLevel = Math.Min(y.accessLevel, Convert.ToInt32(CurrentClassLevel.Text)); });
             properites.Clear();
-
+            final.ForEach(z => z.accessLevel = Math.Min(z.accessLevel, Convert.ToInt32(CurrentClassLevel.Text)));
 
             propertiesStore.DataSource = final;
             propertiesStore.DataBind();

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AionHR.Model.Attributes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,8 @@ using System.Threading.Tasks;
 
 namespace AionHR.Model.Employees.Profile
 {
-   public class Bonus:ModelBase
+    [ClassIdentifier("31031", "31")]
+    public class Bonus:ModelBase
     {
         public int currencyId { get; set; }
 

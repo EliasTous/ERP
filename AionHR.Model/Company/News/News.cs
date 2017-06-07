@@ -1,4 +1,5 @@
 ﻿using AionHR.Infrastructure.Domain;
+using AionHR.Model.Attributes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,8 @@ using System.Threading.Tasks;
 
 namespace AionHR.Model.Company.News
 {
-   public class News : ModelBase,IEntity
+    [ClassIdentifier("24010", "24")]
+    public class News : ModelBase,IEntity
     {
         public string subject { get; set; }
         public string newsText { get; set; }

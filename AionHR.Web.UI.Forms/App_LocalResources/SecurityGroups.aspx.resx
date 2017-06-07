@@ -174,10 +174,16 @@
   <data name="NoAccess" xml:space="preserve">
     <value>No access</value>
   </data>
-  <data name="Write" xml:space="preserve">
-    <value>Edit</value>
+  <data name="WriteClass" xml:space="preserve">
+    <value>Add, Edit</value>
   </data>
   <data name="FullControl" xml:space="preserve">
     <value>Full Control</value>
+  </data>
+  <data name="DefaultAccessLevel" xml:space="preserve">
+    <value>Default Access Level</value>
+  </data>
+  <data name="WriteProperty" xml:space="preserve">
+    <value>Edit</value>
   </data>
 </root>

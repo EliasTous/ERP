@@ -1344,6 +1344,7 @@
     <Compile Include="Users.aspx.designer.cs">
       <DependentUpon>Users.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Utilities\AccessDeniedException.cs" />
     <Compile Include="Utilities\LocalisationManager.cs" />
     <Compile Include="Utilities\ModulesFileWrapper.cs" />
     <Compile Include="Utilities\TreeBuilder.cs" />

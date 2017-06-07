@@ -31,6 +31,7 @@ namespace AionHR.Repository.WebService.Repositories
             ChildGetAllLookup.Add(typeof(SecurityGroupUser), "qryUS");
             ChildAddOrUpdateLookup.Add(typeof(SecurityGroupUser), "setUS");
             ChildAddOrUpdateLookup.Add(typeof(ModuleClass), "setCL");
+            ChildAddOrUpdateLookup.Add(typeof(ModuleClass[]), "arrCL");
             ChildDeleteLookup.Add(typeof(SecurityGroupUser), "delUS");
 
         }

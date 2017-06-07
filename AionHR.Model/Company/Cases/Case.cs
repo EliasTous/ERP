@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace AionHR.Model.Company.Cases
 {
+    [ClassIdentifier("43000", "43")]
     public  class Case : ModelBase,IEntity
     {
         

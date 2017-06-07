@@ -1,4 +1,5 @@
-﻿using AionHR.Model.Employees;
+﻿using AionHR.Model.Attributes;
+using AionHR.Model.Employees;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace AionHR.Model.TimeAttendance
 {
+    [ClassIdentifier("41061", "41")]
     public class AttendanceShift
     {
 

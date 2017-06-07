@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AionHR.Model.Attributes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace AionHR.Model.LeaveManagement
 {
+    [ClassIdentifier("42021", "42")]
     public class LeaveDay:ModelBase
     {
         public int leaveId { get; set; }

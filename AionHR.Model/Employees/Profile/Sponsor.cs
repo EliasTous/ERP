@@ -1,4 +1,5 @@
 ﻿using AionHR.Infrastructure.Domain;
+using AionHR.Model.Attributes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,8 @@ using System.Threading.Tasks;
 
 namespace AionHR.Model.Employees.Profile
 {
-   public class Sponsor : ModelBase
+    [ClassIdentifier("31110", "31")]
+    public class Sponsor : ModelBase
     {
         public string name { get; set; }
 

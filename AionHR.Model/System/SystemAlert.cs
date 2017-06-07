@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AionHR.Model.Attributes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,8 @@ using System.Threading.Tasks;
 
 namespace AionHR.Model.System
 {
-   public class SystemAlert
+    [ClassIdentifier("20090", "20")]
+    public class SystemAlert
 
     {
 

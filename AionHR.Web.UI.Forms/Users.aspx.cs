@@ -64,15 +64,25 @@ namespace AionHR.Web.UI.Forms
 
                 SetExtLanguage();
                 HideShowButtons();
-               
+
                 this.rtl.Text = _systemService.SessionHelper.CheckIfArabicSession() ? "True" : "False";
-                AccessControlApplier.ApplyAccessControlOnPage(((int)ClassId.SYUS).ToString(), "20", BasicInfoTab, GridPanel1,btnAdd,SaveButton);
+                try
+                {
+                    AccessControlApplier.ApplyAccessControlOnPage(typeof(UserInfo), "20", BasicInfoTab, GridPanel1, btnAdd, SaveButton);
+                }
+                catch (AccessDeniedException exp)
+                {
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorAccessDenied).Show();
+                    Viewport1.Hidden = true;
+                    return;
+                }
             }
 
 
         }
 
-       
+
 
 
         /// <summary>
@@ -94,7 +104,7 @@ namespace AionHR.Web.UI.Forms
         /// <summary>
         /// hiding uncessary column in the grid. 
         /// </summary>
-        
+
 
         private void SetExtLanguage()
         {
@@ -104,12 +114,12 @@ namespace AionHR.Web.UI.Forms
                 this.ResourceManager1.RTL = true;
                 this.Viewport1.RTL = true;
                 this.rtl.Text = "1";
-                
+
             }
             else
             {
                 this.rtl.Text = "0";
-               
+
             }
         }
 
@@ -127,13 +137,14 @@ namespace AionHR.Web.UI.Forms
             DeactivatePassword(true);
             int id = Convert.ToInt32(e.ExtraParams["id"]);
             string type = e.ExtraParams["type"];
+            CurrentUser.Text = id.ToString();
             switch (type)
             {
                 case "imgEdit":
                     //Step 1 : get the object from the Web Service 
                     RecordRequest r = new RecordRequest();
                     r.RecordID = id.ToString();
-                    
+
                     RecordResponse<UserInfo> response = _systemService.ChildGetRecord<UserInfo>(r);
                     if (!response.Success)
                     {
@@ -145,8 +156,8 @@ namespace AionHR.Web.UI.Forms
 
                     PasswordConfirmation.Text = response.result.password;
                     this.BasicInfoTab.SetValues(response.result);
-                    
-                    
+
+
 
                     if (!String.IsNullOrEmpty(response.result.employeeId))
                     {
@@ -174,19 +185,9 @@ namespace AionHR.Web.UI.Forms
                     // InitCombos(response.result);
                     this.EditRecordWindow.Title = Resources.Common.EditWindowsTitle;
                     this.EditRecordWindow.Show();
-                    if (hide1.Text == "True")
-                        fullName.Text = "*****";
-                    if (hide2.Text == "True")
-                        email.Text = "*****";
 
 
-                    if (hide5.Text == "True")
-                        languageId.Text = "*****";
-
-                    if (hide6.Text == "True")
-                        employeeId.Text = "*****";
-                    if (hide7.Text == "True")
-                        PasswordField.Text = "*****";
+                    AllGroupsStore.Reload();
                     break;
 
                 case "imgDelete":
@@ -217,7 +218,42 @@ namespace AionHR.Web.UI.Forms
 
         }
 
+        protected void PoPuPGroup(object sender, DirectEventArgs e)
+        {
 
+            
+            string id =e.ExtraParams["id"];
+            string type = e.ExtraParams["type"];
+            switch (type)
+            {
+
+                case "imgDelete":
+                    X.Msg.Confirm(Resources.Common.Confirmation, Resources.Common.DeleteOneRecord, new MessageBoxButtonsConfig
+                    {
+                        Yes = new MessageBoxButtonConfig
+                        {
+                            //We are call a direct request metho for deleting a record
+                            Handler = String.Format("App.direct.LeaveGroup({0})", id),
+                            Text = Resources.Common.Yes
+                        },
+                        No = new MessageBoxButtonConfig
+                        {
+                            Text = Resources.Common.No
+                        }
+
+                    }).Show();
+                    break;
+
+                case "imgAttach":
+
+                    //Here will show up a winow relatice to attachement depending on the case we are working on
+                    break;
+                default:
+                    break;
+            }
+
+
+        }
 
         /// <summary>
         /// This direct method will be called after confirming the delete
@@ -250,6 +286,51 @@ namespace AionHR.Web.UI.Forms
                 {
                     //Step 2 :  remove the object from the store
                     Store1.Remove(index);
+
+                    //Step 3 : Showing a notification for the user 
+                    Notification.Show(new NotificationConfig
+                    {
+                        Title = Resources.Common.Notification,
+                        Icon = Icon.Information,
+                        Html = Resources.Common.RecordDeletedSucc
+                    });
+                }
+
+            }
+            catch (Exception ex)
+            {
+                //In case of error, showing a message box to the user
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorDeletingRecord).Show();
+
+            }
+
+        }
+
+
+        [DirectMethod]
+        public void LeaveGroup(string index)
+        {
+            try
+            {
+                //Step 1 Code to delete the object from the database 
+                SecurityGroupUser user = new SecurityGroupUser();
+                user.userId = CurrentUser.Text;
+                user.sgId = index;
+                PostRequest<SecurityGroupUser> req = new PostRequest<SecurityGroupUser>();
+                req.entity = user;
+                PostResponse<SecurityGroupUser> r = _accessControlService.ChildDelete<SecurityGroupUser>(req);
+                if (!r.Success)
+                {
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    X.Msg.Alert(Resources.Common.Error, r.Summary).Show();
+                    return;
+                }
+                else
+                {
+                    //Step 2 :  remove the object from the store
+                    UserGroupsStore.Reload();
+                    AllGroupsStore.Reload();
 
                     //Step 3 : Showing a notification for the user 
                     Notification.Show(new NotificationConfig
@@ -431,7 +512,7 @@ namespace AionHR.Web.UI.Forms
             //Reset all values of the relative object
             BasicInfoTab.Reset();
             fullName.Disabled = false;
-            
+
             this.EditRecordWindow.Title = Resources.Common.AddNewRecord;
             DeactivatePassword(false);
             this.EditRecordWindow.Show();
@@ -452,7 +533,7 @@ namespace AionHR.Web.UI.Forms
             //in this test will take a list of News
             ListRequest request = new ListRequest();
             request.Filter = "";
-            var s= jobInfo1.GetJobInfo();
+            var s = jobInfo1.GetJobInfo();
             UsersListRequest req = new UsersListRequest();
             req.DepartmentId = s.DepartmentId.HasValue ? s.DepartmentId.Value.ToString() : "0";
             req.PositionId = s.PositionId.HasValue ? s.PositionId.Value.ToString() : "0";
@@ -497,7 +578,7 @@ namespace AionHR.Web.UI.Forms
                     //New Mode
                     //Step 1 : Fill The object and insert in the store 
                     PostRequest<UserInfo> request = new PostRequest<UserInfo>();
-                    
+
                     request.entity = b;
                     PostResponse<UserInfo> r = _systemService.ChildAddOrUpdate<UserInfo>(request);
                     if (!r.Success)
@@ -626,5 +707,64 @@ namespace AionHR.Web.UI.Forms
         }
 
 
+        protected void AllGroupsStore_ReadData(object sender, StoreReadDataEventArgs e)
+        {
+            ListRequest groupsReq = new ListRequest();
+            groupsReq.Size = "100";
+            groupsReq.StartAt = "1";
+            groupsReq.Filter = "";
+
+            //Fetching the corresponding list
+
+            //in this test will take a list of News
+
+
+            ListResponse<SecurityGroup> groups = _accessControlService.ChildGetAll<SecurityGroup>(groupsReq);
+            if (!groups.Success)
+            {
+                X.Msg.Alert(Resources.Common.Error, groups.Summary).Show();
+                return;
+            }
+
+            GroupUsersListRequest request = new GroupUsersListRequest();
+            request.UserId = CurrentUser.Text;
+            ListResponse<SecurityGroupUser> userGroups = _accessControlService.ChildGetAll<SecurityGroupUser>(request);
+            if (!groups.Success)
+            {
+                X.Msg.Alert(Resources.Common.Error, groups.Summary).Show();
+                return;
+            }
+            UserGroupsStore.DataSource = userGroups.Items;
+            UserGroupsStore.DataBind();
+
+            List<SecurityGroup> availableGroups = new List<SecurityGroup>();
+            groups.Items.ForEach(x => { if (userGroups.Items.Where(y => y.sgId == x.recordId).Count() == 0) availableGroups.Add(x); });
+
+            AllGroupsStore.DataSource = availableGroups;
+            AllGroupsStore.DataBind();
+            GroupsCombo.Select(0);
+        }
+
+        protected void addUserToGroup(object sender, DirectEventArgs e)
+        {
+            PostRequest<SecurityGroupUser> user = new PostRequest<SecurityGroupUser>();
+            SecurityGroupUser en = new SecurityGroupUser();
+            en.userId = CurrentUser.Text;
+            if (GroupsCombo.SelectedItem == null)
+            {
+                X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorSavingRecord).Show();
+                return;
+            }
+            en.sgId = GroupsCombo.SelectedItem.Value;
+            user.entity = en;
+            PostResponse<SecurityGroupUser> resp = _accessControlService.ChildAddOrUpdate<SecurityGroupUser>(user);
+            if(!resp.Success)
+            {
+                X.Msg.Alert(Resources.Common.Error, resp.Summary).Show();
+                return;
+            }
+
+            AllGroupsStore.Reload();
+        }
     }
 }

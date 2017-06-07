@@ -10,6 +10,8 @@ namespace AionHR.Model.Access_Control
     {
         public string sgId { get; set; }
 
+        public string sgName { get; set; }
+
         public string userId { get; set; }
 
         public string fullName { get; set; }

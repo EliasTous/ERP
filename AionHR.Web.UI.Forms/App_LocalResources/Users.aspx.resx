@@ -135,6 +135,9 @@
   <data name="FieldFullName" xml:space="preserve">
     <value>Name</value>
   </data>
+  <data name="FieldGroup" xml:space="preserve">
+    <value>Group</value>
+  </data>
   <data name="FieldIsAdmin" xml:space="preserve">
     <value>Is Admin?</value>
   </data>
@@ -149,6 +152,9 @@
   </data>
   <data name="FieldRecordId" xml:space="preserve">
     <value>Record ID</value>
+  </data>
+  <data name="Groups" xml:space="preserve">
+    <value>Security Groups</value>
   </data>
   <data name="Mediocre" xml:space="preserve">
     <value>Mediocre</value>

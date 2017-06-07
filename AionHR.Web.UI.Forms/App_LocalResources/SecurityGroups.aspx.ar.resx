@@ -157,7 +157,7 @@
     <value>القيمة</value>
   </data>
   <data name="Read" xml:space="preserve">
-    <value>قراءة</value>
+    <value>عرض</value>
   </data>
   <data name="Remove" xml:space="preserve">
     <value>حذف</value>
@@ -175,6 +175,15 @@
     <value>محجوب</value>
   </data>
   <data name="Write" xml:space="preserve">
-    <value>تعديل</value>
+    <value>إضافة،تعديل</value>
+  </data>
+  <data name="FullControl" xml:space="preserve">
+    <value>صلاحيات كاملة</value>
+  </data>
+  <data name="GroupInfo" xml:space="preserve">
+    <value>معلومات المجموعة</value>
+  </data>
+  <data name="NoAccess" xml:space="preserve">
+    <value>وصول ممنوع</value>
   </data>
 </root>

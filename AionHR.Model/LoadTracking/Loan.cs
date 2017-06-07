@@ -1,4 +1,5 @@
 ﻿using AionHR.Infrastructure.Domain;
+using AionHR.Model.Attributes;
 using AionHR.Model.Employees.Profile;
 using System;
 using System.Collections.Generic;
@@ -8,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace AionHR.Model.LoadTracking
 {
+    [ClassIdentifier("45010", "45")]
     public class Loan:ModelBase,IEntity
     {
         public string employeeId { get; set; }

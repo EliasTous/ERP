@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AionHR.Model.Attributes;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -7,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace AionHR.Model.System
 {
+    [ClassIdentifier("20081", "20")]
     public class CompanyRightToWork : ModelBase
     {
         

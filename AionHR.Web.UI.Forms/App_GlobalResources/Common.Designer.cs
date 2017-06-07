@@ -772,6 +772,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You don&apos;t have access to view this resource, please contact your administrator for more information.
+        /// </summary>
+        internal static string ErrorAccessDenied {
+            get {
+                return ResourceManager.GetString("ErrorAccessDenied", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Error Deleting Record,try again later..
         /// </summary>
         internal static string ErrorDeletingRecord {

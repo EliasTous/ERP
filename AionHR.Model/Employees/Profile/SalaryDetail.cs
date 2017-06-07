@@ -1,4 +1,5 @@
 ﻿using AionHR.Infrastructure.Domain;
+using AionHR.Model.Attributes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,6 +32,7 @@ namespace AionHR.Model.Employees.Profile
         Month = 5
 
     }
+    [ClassIdentifier("31063", "31")]
     public class SalaryDetail
     {
         

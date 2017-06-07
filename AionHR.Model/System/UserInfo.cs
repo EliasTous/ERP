@@ -10,22 +10,25 @@ namespace AionHR.Model.System
     /// <summary>
     /// User Entity
     /// </summary>
+    /// 
+    [ClassIdentifier("20010","20")]
     public class UserInfo : IEntity
     {
-        [PropertyID("2001001")]
+        [PropertyID("20010_01")]
         public string fullName { get; set; }
-        [PropertyID("2001002")]
+        [PropertyID("20010_02")]
         public string email { get; set; }
-        [PropertyID("2001003")]
+        [PropertyID("20010_03")]
         public bool isInactive { get; set; }
-        [PropertyID("2001004")]
+
+        [PropertyID("20010_04")]
         public bool isAdmin { get; set; }
-        [PropertyID("2001005")]
+        [PropertyID("20010_05")]
         public string employeeId { get; set; }
-        [PropertyID("2001006")]
+        [PropertyID("20010_06")]
         public int languageId { get; set; }
-        
-        [PropertyID("2001007")]
+
+        [PropertyID("20010_07")]
         public string password { get; set; }
 
         public string recordId { get; set; }

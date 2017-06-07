@@ -1,4 +1,5 @@
 ﻿using AionHR.Infrastructure.Domain;
+using AionHR.Model.Attributes;
 using AionHR.Model.Employees.Profile;
 using System;
 using System.Collections.Generic;
@@ -8,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace AionHR.Model.Company.Structure
 {
+    [ClassIdentifier("21040", "21")]
     public class Department : ModelBase, IEntity
     {
         public string name { get; set; }

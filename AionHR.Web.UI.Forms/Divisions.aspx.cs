@@ -60,61 +60,16 @@ namespace AionHR.Web.UI.Forms
                 HideShowButtons();
                 HideShowColumns();
 
-                ApplyAccessControl();
+                
 
             }
 
 
         }
 
-        IAccessControlService _accessControlService = ServiceLocator.Current.GetInstance<IAccessControlService>();
+      
 
-        private void ApplyAccessControl()
-        {
-            UserPropertiesPermissions req = new UserPropertiesPermissions();
-            req.ClassId = ((int)ClassId.CSDI).ToString();
-            req.UserId = _systemService.SessionHelper.GetCurrentUserId();
-            ListResponse<UC> resp = _accessControlService.ChildGetAll<UC>(req);
-            if (!resp.Success)
-            {
-                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, resp.Summary).Show();
-                return;
-            }
-            string s = File.ReadAllText(MapPath("~/Utilities/modules.txt"));
-            List<Module> preDefined = JsonConvert.DeserializeObject<List<Module>>(s);
-            List<ModuleClassDefinition> classes = preDefined.Where(x => x.id == "21").ToList()[0].classes;
-            List<ClassPropertyDefinition> properites = classes.Where(x => x.id == ((int)ClassId.CSDI).ToString()).ToList()[0].properties;
-            properites.ForEach(x => { resp.Items.Where(d => d.propertyId == x.propertyId).ToList()[0].index = x.index; });
-
-            foreach (var item in BasicInfoTab.Items)
-            {
-                if (item is Field)
-                {
-                    var results = resp.Items.Where(x => x.index == (item as Field).Name).ToList();
-                    if (results.Count > 0)
-                        (item as Field).Disabled = results[0].accessLevel < 2;
-                }
-            }
-            //fullName.ReadOnly = resp.Items[0].accessLevel < 2;
-
-            //hide1.Text= (resp.Items[0].accessLevel < 1).ToString();
-            //email.ReadOnly = resp.Items[1].accessLevel < 2;
-            //hide2.Text = (resp.Items[1].accessLevel < 1).ToString();
-            //isInactiveCheck.ReadOnly = resp.Items[2].accessLevel < 2;
-            //hide3.Text = (resp.Items[2].accessLevel < 1).ToString();
-            //isAdminCheck.ReadOnly = resp.Items[3].accessLevel < 2;
-            //hide4.Text = (resp.Items[3].accessLevel < 1).ToString();
-            //employeeId.ReadOnly = resp.Items[4].accessLevel < 2;
-            //hide5.Text = (resp.Items[4].accessLevel < 1).ToString();
-            //languageId.ReadOnly = resp.Items[5].accessLevel < 2;
-            //hide6.Text = (resp.Items[5].accessLevel < 1).ToString();
-
-
-            //PasswordField.ReadOnly = PasswordConfirmation.ReadOnly = resp.Items[6].accessLevel < 2;
-            //hide7.Text = (resp.Items[6].accessLevel < 1).ToString();
-
-        }
+     
         /// <summary>
         /// the detailed tabs for the edit form. I put two tabs by default so hide unecessary or add addional
         /// </summary>

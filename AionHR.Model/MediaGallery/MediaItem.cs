@@ -1,4 +1,5 @@
 ﻿using AionHR.Infrastructure.Domain;
+using AionHR.Model.Attributes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace AionHR.Model.MediaGallery
 {
+    [ClassIdentifier("23020", "23")]
     public class MediaItem : ModelBase
     {
         //public string departmentId { get; set; }

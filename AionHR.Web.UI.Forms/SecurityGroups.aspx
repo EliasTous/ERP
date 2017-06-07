@@ -14,7 +14,13 @@
     <script src="Scripts/SecurityGroups.js?id=3" type="text/javascript"></script>
     <script type="text/javascript" src="Scripts/common.js"></script>
     <script type="text/javascript">
+        function ResetPropertiesAccessLevels() {
+            App.propertiesStore.each(function (record) {
 
+                record.set("accessLevel", Math.min(2, App.CurrentClassLevel.value));
+                record.commit();
+            });
+        }
         function getAccessLevelText(index) {
             return document.getElementById("accessLevel" + index).value;
         }
@@ -82,7 +88,7 @@
         <ext:Hidden ID="CurrentClassLevel" runat="server" />
         <ext:Hidden ID="accessLevel0" Text="<%$ Resources: NoAccess %>" runat="server" />
         <ext:Hidden ID="accessLevel1" Text="<%$ Resources: Read %>" runat="server" />
-        <ext:Hidden ID="accessLevel2" Text="<%$ Resources: Write %>" runat="server" />
+        <ext:Hidden ID="accessLevel2" Text="<%$ Resources: WriteClass %>" runat="server" />
         <ext:Hidden ID="accessLevel3" Text="<%$ Resources: FullControl %>" runat="server" />
 
         <ext:Store
@@ -111,7 +117,16 @@
             </Model>
 
         </ext:Store>
-
+        <ext:Store runat="server" ID="accessLevelsStore">
+            <Model>
+                <ext:Model runat="server">
+                    <Fields>
+                        <ext:ModelField Name="text" />
+                        <ext:ModelField Name="value" />
+                    </Fields>
+                </ext:Model>
+            </Model>
+        </ext:Store>
 
 
         <ext:Viewport ID="Viewport1" runat="server" Layout="CardLayout" ActiveIndex="0">
@@ -261,10 +276,20 @@
                             DefaultAnchor="100%"
                             BodyPadding="5">
                             <Items>
-                                <ext:TextField ID="recordId" Hidden="true" runat="server" Disabled="true" Name="recordId" />
-                                <ext:TextField ID="name" runat="server" FieldLabel="<%$ Resources:FieldName%>" Name="name" AllowBlank="false" BlankText="<%$ Resources:Common, MandatoryField%>" />
-                                <ext:TextArea ID="description" runat="server" FieldLabel="<%$ Resources:FieldDescription%>" Name="description" />
+                                <ext:TextField LabelWidth="150" ID="recordId" Hidden="true" runat="server" Disabled="true" Name="recordId" />
+                                <ext:TextField LabelWidth="150" ID="name" runat="server" FieldLabel="<%$ Resources:FieldName%>" Name="name" AllowBlank="false" BlankText="<%$ Resources:Common, MandatoryField%>" />
+                                <ext:TextArea ID="description" LabelWidth="150" runat="server" FieldLabel="<%$ Resources:FieldDescription%>" Name="description" />
+                                <ext:ComboBox LabelWidth="150" runat="server" FieldLabel="<%$ Resources:DefaultAccessLevel%>" Editable="false" ID="defaultAccessLevel" Name="defaultAccessLevel">
+                                    <Items>
 
+                                        <ext:ListItem Text="<%$ Resources: NoAccess %>" Value="0" />
+                                        <ext:ListItem Text="<%$ Resources: Read %>" Value="1" />
+                                        <ext:ListItem Text="<%$ Resources: WriteClass %>" Value="2" />
+                                        <ext:ListItem Text="<%$ Resources: FullControl %>" Value="3" />
+                                    </Items>
+
+
+                                </ext:ComboBox>
 
                             </Items>
                             <Buttons>
@@ -443,27 +468,39 @@
                             <TopBar>
                                 <ext:Toolbar runat="server">
                                     <Items>
-                                        <ext:ComboBox runat="server" ID="modulesCombo" ValueField="id" DisplayField="name" FieldLabel="<%$ Resources:SelectModule%>">
+                                        <ext:ComboBox runat="server" Editable="false" ID="modulesCombo" ValueField="id" DisplayField="name" FieldLabel="<%$ Resources:SelectModule%>">
                                             <Listeners>
-                                                <AfterRender Handler="App.modulesStore.reload();" />
+                                                
                                                 <Select Handler="App.CurrentModule.value = this.value; App.classesStore.reload(); " />
                                             </Listeners>
-                                            <Store>
-                                                <ext:Store runat="server" ID="modulesStore" OnReadData="modulesStore_ReadData" AutoLoad="true">
-                                                    <Model>
-                                                        <ext:Model runat="server" IDProperty="id">
-                                                            <Fields>
-                                                                <ext:ModelField Name="id" />
-                                                                <ext:ModelField Name="name" />
-                                                            </Fields>
-                                                        </ext:Model>
-                                                    </Model>
-                                                </ext:Store>
-                                            </Store>
+                                            <Items>
+
+                                                <ext:ListItem Text="<%$ Resources: Common,Mod20  %>" Value="20" />
+                                                <ext:ListItem Text="<%$ Resources:  Common,Mod21  %>" Value="21" />
+                                                <ext:ListItem Text="<%$ Resources:  Common,Mod22  %>" Value="22" />
+                                                <ext:ListItem Text="<%$ Resources:  Common,Mod23 %>" Value="23" />
+                                                <ext:ListItem Text="<%$ Resources:  Common,Mod24  %>" Value="24" />
+                                                <ext:ListItem Text="<%$ Resources: Common,Mod30  %>" Value="30" />
+                                                <ext:ListItem Text="<%$ Resources:  Common,Mod31 %>" Value="31" />
+                                                <ext:ListItem Text="<%$ Resources:  Common,Mod32  %>" Value="32" />
+                                                <ext:ListItem Text="<%$ Resources: Common,Mod41  %>" Value="41" />
+                                                <ext:ListItem Text="<%$ Resources:  Common,Mod42  %>" Value="42" />
+                                                <ext:ListItem Text="<%$ Resources:  Common,Mod43  %>" Value="43" />
+                                                <ext:ListItem Text="<%$ Resources:  Common,Mod44 %>" Value="44" />
+                                                <ext:ListItem Text="<%$ Resources:  Common,Mod45  %>" Value="45" />
+                                                <ext:ListItem Text="<%$ Resources: Common,Mod80  %>" Value="80" />
+
+                                            </Items>
 
                                         </ext:ComboBox>
 
+                                        <ext:Button runat="server" Icon="GroupGo">
+                                            <Listeners>
+                                                <Click Handler="App.ApplyModuleLevelWindow.show();" />
+                                            </Listeners>
+                                        </ext:Button>
                                     </Items>
+
                                 </ext:Toolbar>
                             </TopBar>
                             <Items>
@@ -477,6 +514,7 @@
                                     Border="false"
                                     Icon="User" MaxHeight="400"
                                     ColumnLines="True" IDMode="Explicit" RenderXType="True">
+
                                     <Store>
                                         <ext:Store runat="server" ID="classesStore" OnReadData="classesStore_ReadData" AutoLoad="true">
                                             <Model>
@@ -512,7 +550,7 @@
                                                 MenuDisabled="true"
                                                 Resizable="false">
 
-                                                <Renderer Handler="var r = record.data['accessLevel']<1?'':propertiesRender();return classRender()+'&nbsp;&nbsp;'+ r; " />
+                                                <Renderer Handler="var r = record.data['accessLevel']<1?'&nbsp;&nbsp;&nbsp;&nbsp;':propertiesRender();return classRender()+'&nbsp;&nbsp;'+ r; " />
                                             </ext:Column>
 
                                         </Columns>
@@ -681,7 +719,7 @@
 
                                 <ext:ListItem Text="<%$ Resources: NoAccess %>" Value="0" />
                                 <ext:ListItem Text="<%$ Resources: Read %>" Value="1" />
-                                <ext:ListItem Text="<%$ Resources: Write %>"  Value="2" />
+                                <ext:ListItem Text="<%$ Resources: WriteClass %>" Value="2" />
                                 <ext:ListItem Text="<%$ Resources: FullControl %>" Value="3" />
                             </Items>
 
@@ -715,7 +753,68 @@
                 </ext:Button>
             </Buttons>
         </ext:Window>
+        <ext:Window
+            ID="ApplyModuleLevelWindow"
+            runat="server"
+            Icon="PageEdit"
+            Draggable="false"
+            Maximizable="false" Resizable="false"
+            Width="400"
+            Height="120"
+            AutoShow="false"
+            Modal="true"
+            Hidden="true"
+            Layout="Fit">
 
+            <Items>
+                <ext:FormPanel
+                    ID="ApplyModuleLevelForm"
+                    runat="server"
+                    Header="false"
+                    DefaultAnchor="100%"
+                    BodyPadding="5">
+                    <Items>
+
+                        <ext:TextField runat="server" Name="moduleId" ID="moduleId" Hidden="true" Disabled="true" />
+                        <ext:ComboBox runat="server" FieldLabel="<%$ Resources:AccessLevel%>" Editable="false" ID="moduleAccessLevel" Name="moduleAccessLevel">
+                            <Items>
+
+                                <ext:ListItem Text="<%$ Resources: NoAccess %>" Value="0" />
+                                <ext:ListItem Text="<%$ Resources: Read %>" Value="1" />
+                                <ext:ListItem Text="<%$ Resources: WriteClass %>" Value="2" />
+                                <ext:ListItem Text="<%$ Resources: FullControl %>" Value="3" />
+                            </Items>
+
+
+                        </ext:ComboBox>
+                    </Items>
+
+                </ext:FormPanel>
+            </Items>
+            <Buttons>
+                <ext:Button ID="ApplyModuleButton" runat="server" Text="<%$ Resources:Common, Save %>" Icon="Disk">
+
+                    <Listeners>
+                        <Click Handler="CheckSession(); if (!#{ApplyModuleLevelForm}.getForm().isValid()) {return false;} " />
+                    </Listeners>
+                    <DirectEvents>
+                        <Click OnEvent="SaveModuleLevel" Failure="Ext.MessageBox.alert('#{titleSavingError}.value', '#{titleSavingErrorMessage}.value');">
+                            <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="={#{ApplyModuleLevelWindow}.body}" />
+                            <ExtraParams>
+                                <ext:Parameter Name="moduleId" Value="#{moduleId}.getValue()" Mode="Raw" />
+
+                                <ext:Parameter Name="values" Value="#{ApplyModuleLevelForm}.getForm().getValues(false, false, false, true)" Mode="Raw" Encode="true" />
+                            </ExtraParams>
+                        </Click>
+                    </DirectEvents>
+                </ext:Button>
+                <ext:Button ID="Button8" runat="server" Text="<%$ Resources:Common , Cancel %>" Icon="Cancel">
+                    <Listeners>
+                        <Click Handler="this.up('window').hide();" />
+                    </Listeners>
+                </ext:Button>
+            </Buttons>
+        </ext:Window>
         <ext:Window
             ID="EditClassPropertiesWindow"
             runat="server"
@@ -737,6 +836,7 @@
                     DefaultAnchor="100%"
                     BodyPadding="5">
                     <Items>
+
                         <ext:GridPanel
                             ID="propertiesGrid"
                             runat="server"
@@ -747,6 +847,17 @@
                             Border="false"
                             Icon="User"
                             ColumnLines="True" IDMode="Explicit" RenderXType="True">
+                            <TopBar>
+                                <ext:Toolbar runat="server">
+                                    <Items>
+                                        <ext:Button runat="server" Icon="Cancel">
+                                            <Listeners>
+                                                <Click Handler="ResetPropertiesAccessLevels();" />
+                                            </Listeners>
+                                        </ext:Button>
+                                    </Items>
+                                </ext:Toolbar>
+                            </TopBar>
                             <Store>
                                 <ext:Store runat="server" ID="propertiesStore" OnReadData="propertyStore_ReadData" AutoLoad="true">
                                     <Model>
@@ -770,12 +881,13 @@
                                     <ext:Column ID="Column9" MenuDisabled="true" runat="server" DataIndex="name" Text="<%$ Resources:Property%>" Hideable="false" Flex="1" />
                                     <ext:WidgetColumn ID="WidgetColumn1" MenuDisabled="true" runat="server" Text="<%$ Resources:AccessLevel%>" DataIndex="accessLevel" Hideable="false" Width="150" Align="Center">
                                         <Widget>
-                                            <ext:ComboBox runat="server" Editable="false">
-                                                <Items>
+                                            <ext:ComboBox runat="server" Editable="false" DisplayField="text" ValueField="value" StoreID="accessLevelsStore">
+
+                                                <%--<Items>
                                                     <ext:ListItem Text="<%$ Resources: Write %>" Value="2" />
                                                     <ext:ListItem Text="<%$ Resources: NoAccess %>" Value="0"  />
                                                     <ext:ListItem Text="<%$ Resources: Read %>" Value="1" />
-                                                </Items>
+                                                </Items>--%>
                                                 <Listeners>
                                                     <Select Handler="var rec = this.getWidgetRecord(); rec.set('accessLevel',Math.min(this.value,App.CurrentClassLevel.value)); rec.commit();" />
                                                 </Listeners>

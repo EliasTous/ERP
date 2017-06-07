@@ -48,7 +48,6 @@
     <Compile Include="Implementations\AccessControlService.cs" />
     <Compile Include="Implementations\AttendanceBatchRunner.cs" />
     <Compile Include="Implementations\AttendanceImportingService.cs" />
-    <Compile Include="Implementations\BackgroundWork.cs" />
     <Compile Include="Implementations\BaseService.cs" />
     <Compile Include="Implementations\EmployeeNotesBatchRunner.cs" />
     <Compile Include="Implementations\EmployeeNotesImportingService.cs" />

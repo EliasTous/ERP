@@ -1,4 +1,5 @@
 ﻿using AionHR.Infrastructure.Domain;
+using AionHR.Model.Attributes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,8 @@ using System.Threading.Tasks;
 
 namespace AionHR.Model.Company.Structure
 {
-   public class Position : ModelBase
+    [ClassIdentifier("21030", "21")]
+    public class Position : ModelBase
     {
         
         public string name { get; set; }
