@@ -186,4 +186,10 @@
   <data name="WriteProperty" xml:space="preserve">
     <value>Edit</value>
   </data>
+  <data name="ApplyModule" xml:space="preserve">
+    <value>Apply Module</value>
+  </data>
+  <data name="ResetProperties" xml:space="preserve">
+    <value>Reset</value>
+  </data>
 </root>

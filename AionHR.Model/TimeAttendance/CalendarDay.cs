@@ -10,7 +10,11 @@ namespace AionHR.Model.Attendance
     [ClassIdentifier("41072", "41")]
     public class CalendarDay
     {
+        [PropertyID("41072_01")]
+        [ApplySecurity]
         public int scId { get; set; }
+        [PropertyID("41072_02")]
+        [ApplySecurity]
         public int dayTypeId { get; set; }
         public int caId { get; set; }
         public int year { get; set; }

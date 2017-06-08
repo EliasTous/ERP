@@ -12,6 +12,8 @@ namespace AionHR.Model.Employees.Profile
     public class CertificateLevel : ModelBase
     {
         //public string reference { get; set; }
+        [PropertyID("31040_01")]
+        [ApplySecurity]
         public string name { get; set; }
     }
 }

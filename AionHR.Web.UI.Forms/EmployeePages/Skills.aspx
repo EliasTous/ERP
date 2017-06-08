@@ -125,20 +125,7 @@
                             <ext:Column CellCls="cellLink" ID="Column2" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldMajor%>" DataIndex="major" Flex="2" Hideable="false" />
 
 
-                            <ext:Column runat="server"
-                                ID="colEdit" Visible="true"
-                                Text="<%$ Resources:Common, Edit %>"
-                                Width="100"
-                                Hideable="false"
-                                Align="Center"
-                                Fixed="true"
-                                Filterable="false"
-                                MenuDisabled="true"
-                                Resizable="false">
-
-                                <Renderer handler="var d =(App.EmployeeTerminated.value=='0')?deleteRender():' '; return editRender()+'&nbsp;&nbsp;' +d; " />
-
-                            </ext:Column>
+                         
                             <ext:Column runat="server"
                                 ID="ColEHDelete" Flex="1" Visible="false"
                                 Text="<%$ Resources: Common , Delete %>"
@@ -164,7 +151,20 @@
                                 Resizable="false">
                                 <Renderer Fn="attachRender" />
                             </ext:Column>
+                               <ext:Column runat="server"
+                                ID="colEdit" Visible="true"
+                                Text="<%$ Resources:Common, Edit %>"
+                                Width="100"
+                                Hideable="false"
+                                Align="Center"
+                                Fixed="true"
+                                Filterable="false"
+                                MenuDisabled="true"
+                                Resizable="false">
 
+                                <Renderer handler="var d =(App.EmployeeTerminated.value=='0')?deleteRender():' '; return editRender()+'&nbsp;&nbsp;' +d; " />
+
+                            </ext:Column>
 
 
 

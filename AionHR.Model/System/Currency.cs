@@ -11,7 +11,11 @@ namespace AionHR.Model.System
     [ClassIdentifier("20020", "20")]
     public class Currency:ModelBase
     {
+        [PropertyID("20020_01")]
+        [ApplySecurity]
         public string name { get; set; }
+        [PropertyID("20020_02")]
+        [ApplySecurity]
         public string reference { get; set; }
         
     }

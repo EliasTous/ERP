@@ -324,7 +324,7 @@
                     <ColumnModel ID="ColumnModel1" runat="server" SortAscText="<%$ Resources:Common , SortAscText %>" SortDescText="<%$ Resources:Common ,SortDescText  %>" SortClearText="<%$ Resources:Common ,SortClearText  %>" ColumnsText="<%$ Resources:Common ,ColumnsText  %>" EnableColumnHide="false" Sortable="false" >
                         <Columns>
                             <ext:Column ID="ColRecordId" Visible="false" DataIndex="recordId" runat="server" />
-                            <ext:Column ID="ColName" DataIndex="employeeName.fullName" Text="<%$ Resources: FieldEmployeeName%>" runat="server" Flex="4">
+                            <ext:Column ID="ColName" DataIndex="employeeName" Text="<%$ Resources: FieldEmployeeName%>" runat="server" Flex="4">
                                  <Renderer Handler="return  record.data['employeeName'].fullName ">
                                 </Renderer>
                             </ext:Column>
@@ -353,6 +353,19 @@
                                 <Renderer Fn="editRender" />
 
                             </ext:Column>
+                            
+                            <ext:Column runat="server"
+                                ID="colAttach"
+                                Text="<%$ Resources:Common, Attach %>"
+                                Hideable="false"
+                                Width="60"
+                                Align="Center"
+                                Fixed="true"
+                                Filterable="false"
+                                MenuDisabled="true"
+                                Resizable="false">
+                                <Renderer Fn="attachRender" />
+                            </ext:Column>
                             <ext:Column runat="server"
                                 ID="colDelete" Flex="1" Visible="true"
                                 Text="<%$ Resources: Common , Delete %>"
@@ -366,19 +379,6 @@
                                 <Renderer handler=" return editRender()+ '&nbsp&nbsp'+ deleteRender();" />
                               
                             </ext:Column>
-                            <ext:Column runat="server"
-                                ID="colAttach"
-                                Text="<%$ Resources:Common, Attach %>"
-                                Hideable="false"
-                                Width="60"
-                                Align="Center"
-                                Fixed="true"
-                                Filterable="false"
-                                MenuDisabled="true"
-                                Resizable="false">
-                                <Renderer Fn="attachRender" />
-                            </ext:Column>
-
 
 
 
@@ -475,7 +475,7 @@
                             BodyPadding="5">
                             <Items>
                                 <ext:TextField ID="recordId" runat="server"  Name="recordId"  Hidden="true"/>
-                                <ext:ComboBox runat="server" ID="employeeId"
+                                <ext:ComboBox runat="server" ID="employeeId" Name="employeeId"
                                     DisplayField="fullName"
                                     ValueField="recordId"
                                     TypeAhead="false" AllowBlank="false"
@@ -640,20 +640,6 @@
 
 
                             <ext:Column runat="server"
-                                ID="Column2" Visible="false"
-                                Text="<%$ Resources:Common, Edit %>"
-                                Width="60"
-                                Hideable="false"
-                                Align="Center"
-                                Fixed="true"
-                                Filterable="false"
-                                MenuDisabled="true"
-                                Resizable="false">
-
-                                <Renderer Fn="editRender" />
-
-                            </ext:Column>
-                            <ext:Column runat="server"
                                 ID="ColEHDelete" Flex="1" Visible="true"
                                 Text=""
                                 Width="60"
@@ -666,18 +652,7 @@
                                 <Renderer handler="return editRender() + '  '+ deleteRender()" />
 
                             </ext:Column>
-                            <ext:Column runat="server"
-                                ID="Column3" Visible="false"
-                                Text="<%$ Resources:Common, Attach %>"
-                                Hideable="false"
-                                Width="60"
-                                Align="Center"
-                                Fixed="true"
-                                Filterable="false"
-                                MenuDisabled="true"
-                                Resizable="false">
-                                <Renderer Fn="attachRender" />
-                            </ext:Column>
+                          
 
 
 
@@ -814,32 +789,7 @@
                                 <Renderer handler="return editRender()+'&nbsp&nbsp'+attachRender() + '&nbsp&nbsp' + deleteRender(); " />
 
                             </ext:Column>
-                            <ext:Column runat="server"
-                                ID="Column9" Flex="1" Visible="false"
-                                Text="  "
-                                Width="60"
-                                Align="Center"
-                                Fixed="true"
-                                Filterable="false"
-                                Hideable="false"
-                                MenuDisabled="true"
-                                Resizable="false">
-                                <Renderer Fn="deleteRender" />
-
-                            </ext:Column>
-                            <ext:Column runat="server"
-                                ID="Column10" Visible="false"
-                                Text="<%$ Resources:Common, Attach %>"
-                                Hideable="false"
-                                Width="60"
-                                Align="Center"
-                                Fixed="true"
-                                Filterable="false"
-                                MenuDisabled="true"
-                                Resizable="false">
-                                <Renderer Fn="attachRender" />
-                            </ext:Column>
-
+                            
 
 
 

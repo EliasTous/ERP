@@ -137,6 +137,19 @@
                                 <Renderer Fn="editRender" />
 
                             </ext:Column>
+                            
+                            <ext:Column runat="server"
+                                ID="colAttach" Visible="false"
+                                Text="<%$ Resources:Common, Attach %>"
+                                Hideable="false"
+                                Width="60"
+                                Align="Center"
+                                Fixed="true"
+                                Filterable="false"
+                                MenuDisabled="true"
+                                Resizable="false">
+                                <Renderer Fn="attachRender" />
+                            </ext:Column>
                             <ext:Column runat="server"
                                 ID="ColEHDelete" Flex="1" Visible="true"
                                 Text="<%$ Resources: Common , Delete %>"
@@ -150,19 +163,6 @@
                                  <Renderer handler="var d =(App.EmployeeTerminated.value=='0')?deleteRender():' '; return editRender()+'&nbsp;&nbsp;' +d; " />
 
                             </ext:Column>
-                            <ext:Column runat="server"
-                                ID="colAttach" Visible="false"
-                                Text="<%$ Resources:Common, Attach %>"
-                                Hideable="false"
-                                Width="60"
-                                Align="Center"
-                                Fixed="true"
-                                Filterable="false"
-                                MenuDisabled="true"
-                                Resizable="false">
-                                <Renderer Fn="attachRender" />
-                            </ext:Column>
-
 
 
 
@@ -300,20 +300,7 @@
 
 
 
-                            <ext:Column runat="server"
-                                ID="ColJIName" Visible="true"
-                                Text="<%$ Resources:Common, Edit %>"
-                                Width="80"
-                                Hideable="false"
-                                Align="Center"
-                                Fixed="true"
-                                Filterable="false"
-                                MenuDisabled="true"
-                                Resizable="false">
-
-                                <Renderer handler="var d =(App.EmployeeTerminated.value=='0')?deleteRender():' '; return editRender()+'&nbsp;&nbsp;' +d; " />
-
-                            </ext:Column>
+                          
                             <ext:Column runat="server"
                                 ID="ColJIDelete" Flex="1" Visible="false"
                                 Text="<%$ Resources: Common , Delete %>"
@@ -339,7 +326,20 @@
                                 Resizable="false">
                                 <Renderer Fn="attachRender" />
                             </ext:Column>
+                              <ext:Column runat="server"
+                                ID="ColJIName" Visible="true"
+                                Text="<%$ Resources:Common, Edit %>"
+                                Width="80"
+                                Hideable="false"
+                                Align="Center"
+                                Fixed="true"
+                                Filterable="false"
+                                MenuDisabled="true"
+                                Resizable="false">
 
+                                <Renderer handler="var d =(App.EmployeeTerminated.value=='0')?deleteRender():' '; return editRender()+'&nbsp;&nbsp;' +d; " />
+
+                            </ext:Column>
 
 
 

@@ -10,6 +10,8 @@ namespace AionHR.Model.LoadTracking
     [ClassIdentifier("45000", "45")]
     public class LoanType: ModelBase
     {
+        [PropertyID("45000_01")]
+        [ApplySecurity]
         public string name { get; set; }
     }
 }

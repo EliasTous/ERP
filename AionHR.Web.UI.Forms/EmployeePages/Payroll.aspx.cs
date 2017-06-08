@@ -72,6 +72,50 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                 bool disabled = EmployeeTerminated.Text == "1";
 
                 Button6.Disabled = Button1.Disabled = Button11.Disabled = Button14.Disabled = Button12.Disabled = Button4.Disabled = SaveENButton.Disabled = Button15.Disabled = disabled;
+                try
+                {
+                    AccessControlApplier.ApplyAccessControlOnPage(typeof(Bonus), EditSAForm, SalaryGrid, Button6 , Button12);
+                }
+                catch (AccessDeniedException exp)
+                {
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorAccessDenied).Show();
+                    SalaryGrid.Hidden = true;
+                    
+                }
+                try
+                {
+                    AccessControlApplier.ApplyAccessControlOnPage(typeof(EmployeeSalary), BOForm, BonusGrid, Button1, Button4);
+                }
+                catch (AccessDeniedException exp)
+                {
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorAccessDenied).Show();
+                    BonusGrid.Hidden = true;
+                    
+                }
+                try
+                {
+                    AccessControlApplier.ApplyAccessControlOnPage(typeof(SalaryDetail),  entitlementsForm, entitlementsGrid, Button11, SaveENButton);
+                }
+                catch (AccessDeniedException exp)
+                {
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorAccessDenied).Show();
+                    ENForm.Hidden = true;
+                    
+                }
+                try
+                {
+                    AccessControlApplier.ApplyAccessControlOnPage(typeof(SalaryDetail), DeductionForm, deductionGrid, Button14, Button15);
+                }
+                catch (AccessDeniedException exp)
+                {
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorAccessDenied).Show();
+                    DEForm.Hidden = true;
+                   
+                }
             }
 
         }

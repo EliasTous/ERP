@@ -918,7 +918,7 @@ namespace AionHR.Web.UI.Forms
             }
             JsonSerializerSettings settings = new JsonSerializerSettings();
 
-            stored.Items.ForEach(y => { final.Where(f => y.propertyId == f.propertyId).ToList()[0].accessLevel = Math.Min(y.accessLevel, Convert.ToInt32(CurrentClassLevel.Text)); });
+            stored.Items.ForEach(y => { final.Where(f => y.propertyId == f.propertyId).ToList().ForEach(x=>x.accessLevel = Math.Min(y.accessLevel, Convert.ToInt32(CurrentClassLevel.Text))); });
             properites.Clear();
             final.ForEach(z => z.accessLevel = Math.Min(z.accessLevel, Convert.ToInt32(CurrentClassLevel.Text)));
 

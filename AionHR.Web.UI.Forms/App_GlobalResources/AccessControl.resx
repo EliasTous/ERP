@@ -261,9 +261,6 @@
   <data name="Property2102001" xml:space="preserve">
     <value>Name</value>
   </data>
-  <data name="Property21020010" xml:space="preserve">
-    <value>Country Name</value>
-  </data>
   <data name="Property2102002" xml:space="preserve">
     <value>Reference </value>
   </data>
@@ -274,19 +271,7 @@
     <value>Is Inactive </value>
   </data>
   <data name="Property2102005" xml:space="preserve">
-    <value>Street 1</value>
-  </data>
-  <data name="Property2102006" xml:space="preserve">
-    <value>Street 2</value>
-  </data>
-  <data name="Property2102007" xml:space="preserve">
-    <value>City </value>
-  </data>
-  <data name="Property2102008" xml:space="preserve">
-    <value>Postal Code</value>
-  </data>
-  <data name="Property2102009" xml:space="preserve">
-    <value>State </value>
+    <value>Address</value>
   </data>
   <data name="Property2103001" xml:space="preserve">
     <value>Name</value>
@@ -357,28 +342,28 @@
   <data name="Property3100001" xml:space="preserve">
     <value>Reference </value>
   </data>
-  <data name="Property31000010" xml:space="preserve">
+  <data name="Property3100010" xml:space="preserve">
     <value>Mobile</value>
   </data>
-  <data name="Property31000011" xml:space="preserve">
+  <data name="Property3100011" xml:space="preserve">
     <value>Religion</value>
   </data>
-  <data name="Property31000012" xml:space="preserve">
+  <data name="Property3100012" xml:space="preserve">
     <value>Birth Date</value>
   </data>
-  <data name="Property31000013" xml:space="preserve">
+  <data name="Property3100013" xml:space="preserve">
     <value>Nationality</value>
   </data>
-  <data name="Property31000014" xml:space="preserve">
+  <data name="Property3100014" xml:space="preserve">
     <value>Vacation</value>
   </data>
-  <data name="Property31000015" xml:space="preserve">
+  <data name="Property3100015" xml:space="preserve">
     <value>Calendar</value>
   </data>
-  <data name="Property31000016" xml:space="preserve">
+  <data name="Property3100016" xml:space="preserve">
     <value>Place of Birth</value>
   </data>
-  <data name="Property31000017" xml:space="preserve">
+  <data name="Property3100017" xml:space="preserve">
     <value>Hire date</value>
   </data>
   <data name="Property3100002" xml:space="preserve">
@@ -430,7 +415,7 @@
     <value>Returned date</value>
   </data>
   <data name="Property3102001" xml:space="preserve">
-    <value>Name</value>
+    <value>Check Type</value>
   </data>
   <data name="Property3102101" xml:space="preserve">
     <value>Name</value>
@@ -633,15 +618,6 @@
   <data name="Property3112101" xml:space="preserve">
     <value>Name </value>
   </data>
-  <data name="Property31121010" xml:space="preserve">
-    <value>Postal Code</value>
-  </data>
-  <data name="Property31121011" xml:space="preserve">
-    <value>State</value>
-  </data>
-  <data name="Property31121012" xml:space="preserve">
-    <value>Country name </value>
-  </data>
   <data name="Property3112102" xml:space="preserve">
     <value>Relationship</value>
   </data>
@@ -658,34 +634,13 @@
     <value>Email</value>
   </data>
   <data name="Property3112107" xml:space="preserve">
-    <value>Street 1</value>
-  </data>
-  <data name="Property3112108" xml:space="preserve">
-    <value>Street 2</value>
-  </data>
-  <data name="Property3112109" xml:space="preserve">
-    <value>City</value>
+    <value>Address</value>
   </data>
   <data name="Property3112201" xml:space="preserve">
     <value>Cell phone</value>
   </data>
   <data name="Property3112202" xml:space="preserve">
-    <value>Street 1</value>
-  </data>
-  <data name="Property3112203" xml:space="preserve">
-    <value>Street 2</value>
-  </data>
-  <data name="Property3112204" xml:space="preserve">
-    <value>City</value>
-  </data>
-  <data name="Property3112205" xml:space="preserve">
-    <value>Postal Code</value>
-  </data>
-  <data name="Property3112206" xml:space="preserve">
-    <value>State</value>
-  </data>
-  <data name="Property3112207" xml:space="preserve">
-    <value>Country name</value>
+    <value>Address</value>
   </data>
   <data name="Property3113001" xml:space="preserve">
     <value>Name</value>
@@ -945,9 +900,6 @@
   <data name="Property4501001" xml:space="preserve">
     <value>Employee Name</value>
   </data>
-  <data name="Property45010010" xml:space="preserve">
-    <value>Effective Date</value>
-  </data>
   <data name="Property4501002" xml:space="preserve">
     <value>Ref</value>
   </data>
@@ -1062,9 +1014,6 @@
   <data name="Property5102113" xml:space="preserve">
     <value>Entitlements Amount</value>
   </data>
-  <data name="Property5102114" xml:space="preserve">
-    <value>Currency Name</value>
-  </data>
   <data name="Property5102201" xml:space="preserve">
     <value>Entitlement/Deduction</value>
   </data>
@@ -1073,5 +1022,68 @@
   </data>
   <data name="Property5102203" xml:space="preserve">
     <value>Type</value>
+  </data>
+  <data name="Property4202101" xml:space="preserve">
+    <value>Day</value>
+  </data>
+  <data name="Property4202102" xml:space="preserve">
+    <value>Working Hours</value>
+  </data>
+  <data name="Property4202103" xml:space="preserve">
+    <value>Leave Hours</value>
+  </data>
+  <data name="Property4501010" xml:space="preserve">
+    <value>Effective Date</value>
+  </data>
+  <data name="Property4501011" xml:space="preserve">
+    <value>Deducted Amount</value>
+  </data>
+  <data name="Property3100018" xml:space="preserve">
+    <value>Position</value>
+  </data>
+  <data name="Property3100019" xml:space="preserve">
+    <value>Department</value>
+  </data>
+  <data name="Property3100020" xml:space="preserve">
+    <value>Branch</value>
+  </data>
+  <data name="Property3100021" xml:space="preserve">
+    <value>Division</value>
+  </data>
+  <data name="Property3100022" xml:space="preserve">
+    <value>Manager</value>
+  </data>
+  <data name="Property3100023" xml:space="preserve">
+    <value>Picture</value>
+  </data>
+  <data name="Property3100024" xml:space="preserve">
+    <value>Full Name</value>
+  </data>
+  <data name="Property3108007" xml:space="preserve">
+    <value>Notes</value>
+  </data>
+  <data name="Property3112002" xml:space="preserve">
+    <value>Remarks</value>
+  </data>
+  <data name="Property3112003" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="Property3112004" xml:space="preserve">
+    <value>Exipry Date</value>
+  </data>
+  <data name="Property3112005" xml:space="preserve">
+    <value>File</value>
+  </data>
+  <data name="Property4102003" xml:space="preserve">
+    <value>Location</value>
+  </data>
+  <data name="Property4105104" xml:space="preserve">
+    <value>Duration</value>
+  </data>
+  <data name="Property4106103" xml:space="preserve">
+    <value>Duration</value>
+  </data>
+  <data name="Property4106208" xml:space="preserve">
+    <value>Day</value>
   </data>
 </root>

@@ -11,6 +11,8 @@ namespace AionHR.Model.Attendance
     [ClassIdentifier("41070", "41")]
     public class WorkingCalendar:ModelBase
     {
+        [PropertyID("41070_01")]
+        [ApplySecurity]
         public string name { get; set; }
     }
 }

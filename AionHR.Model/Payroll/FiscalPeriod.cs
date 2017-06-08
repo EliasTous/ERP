@@ -11,14 +11,22 @@ namespace AionHR.Model.Payroll
     [ClassIdentifier("51011", "51")]
     public class FiscalPeriod
     {
-        
+        [PropertyID("51011_01")]
+        [ApplySecurity]
+
         public DateTime startDate { get; set; }
+        [PropertyID("51011_02")]
+        [ApplySecurity]
 
         public DateTime endDate { get; set; }
+        [PropertyID("51011_03")]
+        [ApplySecurity]
 
         public short salaryType { get; set; }
 
-        
+
+        [PropertyID("51011_04")]
+        [ApplySecurity]
 
         public short status { get; set; }
         public string periodId { get; set; }

@@ -11,6 +11,8 @@ namespace AionHR.Model.MediaGallery
     [ClassIdentifier("23010", "23")]
     public class MediaCategory:ModelBase
     {
+        [PropertyID("23010_01")]
+        [ApplySecurity]
         public string name { get; set; }
     }
 }

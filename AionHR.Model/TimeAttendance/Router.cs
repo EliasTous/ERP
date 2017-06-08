@@ -10,11 +10,18 @@ namespace AionHR.Model.Attendance
     [ClassIdentifier("41010", "41")]
     public class Router:ModelBase
     {
+        [PropertyID("41010_01")]
+        [ApplySecurity]
         public string routerRef { get; set; }
+        [PropertyID("41010_02")]
+        [ApplySecurity]
         public bool isInactive { get; set; }
+        [PropertyID("41010_03")]
+        [ApplySecurity]
         public int branchId { get; set; }
-        
 
+        [PropertyID("41010_03")]
+        [ApplySecurity]
         public string branchName { get; set; }
     }
 }

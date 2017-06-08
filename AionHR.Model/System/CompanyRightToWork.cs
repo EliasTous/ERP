@@ -11,16 +11,30 @@ namespace AionHR.Model.System
     [ClassIdentifier("20081", "20")]
     public class CompanyRightToWork : ModelBase
     {
-        
+        [PropertyID("20081_01")]
+        [ApplySecurity]
         public int branchId { get; set; }
+        [PropertyID("20081_02")]
+        [ApplySecurity]
         public int dtId { get; set; }
-        
-        
+
+        [PropertyID("20081_03")]
+        [ApplySecurity]
         public string documentRef { get; set; }
+        [PropertyID("20081_04")]
+        [ApplySecurity]
         public string remarks { get; set; }
+        [PropertyID("20081_05")]
+        [ApplySecurity]
         public bool hijriCal { get; set; }
+        [PropertyID("20081_06")]
+        [ApplySecurity]
         public DateTime issueDate { get; set; }
+        [PropertyID("20081_07")]
+        [ApplySecurity]
         public DateTime expiryDate { get; set; }
+        [ApplySecurity]
+        [PropertyID("20081_08")]
         public string fileUrl { get; set; }
 
         public string issueDateFormatted

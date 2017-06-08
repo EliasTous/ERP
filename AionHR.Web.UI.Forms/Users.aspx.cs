@@ -68,7 +68,7 @@ namespace AionHR.Web.UI.Forms
                 this.rtl.Text = _systemService.SessionHelper.CheckIfArabicSession() ? "True" : "False";
                 try
                 {
-                    AccessControlApplier.ApplyAccessControlOnPage(typeof(UserInfo), "20", BasicInfoTab, GridPanel1, btnAdd, SaveButton);
+                    AccessControlApplier.ApplyAccessControlOnPage(typeof(UserInfo), BasicInfoTab, GridPanel1, btnAdd, SaveButton);
                 }
                 catch (AccessDeniedException exp)
                 {

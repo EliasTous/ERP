@@ -10,7 +10,8 @@ namespace AionHR.Model.Employees.Profile
     [ClassIdentifier("31122", "31")]
     public class EmployeeContact:ModelBase
     {
-
+        [PropertyID("31122_01")]
+        [ApplySecurity]
         public string phone { get; set; }
         public string street1 { get; set; }
 
@@ -20,7 +21,8 @@ namespace AionHR.Model.Employees.Profile
         public string stateId { get; set; }
 
         public string postalCode { get; set; }
-
+        [PropertyID("31122_02")]
+        [ApplySecurity]
         public AddressBook addressId { get; set; }
 
         public string naId { get; set; }

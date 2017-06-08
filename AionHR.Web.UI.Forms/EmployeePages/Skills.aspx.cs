@@ -68,6 +68,17 @@ namespace AionHR.Web.UI.Forms.EmployeePages
 
                 bool disabled = EmployeeTerminated.Text == "1";
                 btnAdd.Disabled = SaveSkillButton.Disabled = disabled;
+                try
+                {
+                    AccessControlApplier.ApplyAccessControlOnPage(typeof(EmployeeCertificate), SkillsForm, skillsGrid, btnAdd, SaveSkillButton);
+                }
+                catch (AccessDeniedException exp)
+                {
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorAccessDenied).Show();
+                    Viewport11.Hidden = true;
+                    return;
+                }
             }
 
         }

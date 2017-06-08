@@ -11,6 +11,8 @@ namespace AionHR.Model.Employees.Profile
     [ClassIdentifier("31010", "31")]
     public class AssetCategory : ModelBase
     {
+        [PropertyID("31010_01")]
+        [ApplySecurity]
         public string name { get; set; }
     }
 }

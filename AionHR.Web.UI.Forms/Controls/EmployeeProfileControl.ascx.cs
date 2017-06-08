@@ -104,8 +104,20 @@ namespace AionHR.Web.UI.Forms
 
                 CurrentClassId.Text = ClassId.EPEM.ToString();
 
-                hireDate.Format = _systemService.SessionHelper.GetDateformat();
+                birthDate.Format = hireDate.Format = _systemService.SessionHelper.GetDateformat();
+                
                 pRTL.Text = _systemService.SessionHelper.CheckIfArabicSession().ToString();
+                try
+                {
+                    AccessControlApplier.ApplyAccessControlOnPage(typeof(Employee), BasicInfoTab, null, null, SaveButton);
+                }
+                catch (AccessDeniedException exp)
+                {
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorAccessDenied).Show();
+                    BasicInfoTab.Hidden = true;
+                    return;
+                }
             }
 
 

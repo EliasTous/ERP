@@ -49,7 +49,7 @@
     <Compile Include="Company\Structure\ICompanyStructureRepository.cs" />
     <Compile Include="Company\Structure\IDepartmentRepository.cs" />
     <Compile Include="EmployeeComplaints\IComplaintsRepository.cs" />
-    <Compile Include="Employees\AssetAllowance.cs" />
+    <Compile Include="Employees\Profile\AssetAllowance.cs" />
     <Compile Include="Employees\Profile\AssetCategory.cs" />
     <Compile Include="Employees\Profile\Bonus.cs" />
     <Compile Include="Employees\Profile\BonusType.cs" />
@@ -153,7 +153,6 @@
     <Compile Include="Company\Structure\Department.cs" />
     <Compile Include="Company\Structure\Position.cs" />
     <Compile Include="EmployeeComplaints\Complaint.cs" />
-    <Compile Include="LeaveManagement\Leave.cs" />
     <Compile Include="LeaveManagement\LeaveType.cs" />
     <Compile Include="LeaveManagement\VactationSchedule.cs" />
     <Compile Include="Employees\Profile\AllowanceType.cs" />
@@ -161,7 +160,6 @@
     <Compile Include="Employees\Profile\CertificateLevel.cs" />
     <Compile Include="Employees\Profile\DocumentType.cs" />
     <Compile Include="Employees\IEmployeeRepository.cs" />
-    <Compile Include="Employees\Profile\EmployeeAllowance.cs" />
     <Compile Include="Employees\Profile\EmployeeDocument.cs" />
     <Compile Include="Employees\Profile\EmployeeQuickView.cs" />
     <Compile Include="Employees\Profile\EmployeeSalary.cs" />

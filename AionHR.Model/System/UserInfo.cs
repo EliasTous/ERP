@@ -14,21 +14,29 @@ namespace AionHR.Model.System
     [ClassIdentifier("20010","20")]
     public class UserInfo : IEntity
     {
+        
         [PropertyID("20010_01")]
+        [ApplySecurity(false)]
         public string fullName { get; set; }
         [PropertyID("20010_02")]
+        [ApplySecurity]
         public string email { get; set; }
         [PropertyID("20010_03")]
+        [ApplySecurity]
         public bool isInactive { get; set; }
 
         [PropertyID("20010_04")]
+        [ApplySecurity]
         public bool isAdmin { get; set; }
-        [PropertyID("20010_05")]
+        [PropertyID("20010_01")]
+        [ApplySecurity]
         public string employeeId { get; set; }
         [PropertyID("20010_06")]
+        [ApplySecurity]
         public int languageId { get; set; }
 
         [PropertyID("20010_07")]
+        [ApplySecurity]
         public string password { get; set; }
 
         public string recordId { get; set; }

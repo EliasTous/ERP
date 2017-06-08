@@ -45,7 +45,7 @@
                         <ext:ModelField Name="name" />
                         <ext:ModelField Name="departmentRef" />
                         <ext:ModelField Name="supervisorId" />
-                        <ext:ModelField Name="svFullName" ServerMapping="supervisorName.fullName" />
+                        <ext:ModelField Name="supervisorName" ServerMapping="supervisorName.fullName" />
 
                         <ext:ModelField Name="parentName" />
                         <ext:ModelField Name="parentId" />
@@ -132,7 +132,7 @@
                             <ext:Column Visible="false" ID="ColparentId" MenuDisabled="true" runat="server" DataIndex="parentId" Flex="2" Hideable="false" />
                             <ext:Column Visible="false" ID="ColsupervisorId" MenuDisabled="true" runat="server" DataIndex="supervisorId" Flex="1" Hideable="false" />
                             <ext:Column ID="ColParentName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldParentName%>" DataIndex="parentName" Flex="1" Hideable="false" />
-                            <ext:Column ID="ColSvName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldSvFullName%>" DataIndex="svFullName" Flex="1" Hideable="false" />
+                            <ext:Column ID="ColSvName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldSvFullName%>" DataIndex="supervisorName" Flex="1" Hideable="false" />
 
 
 
@@ -275,7 +275,7 @@
                                 <ext:ComboBox runat="server" ID="supervisorId"
                                     DisplayField="fullName"
                                     ValueField="recordId"
-                                    TypeAhead="false"
+                                    TypeAhead="false" Name="supervisorId"
                                     FieldLabel="<%$ Resources: FieldSvFullName%>"
                                     HideTrigger="true" SubmitValue="true"
                                     MinChars="3"

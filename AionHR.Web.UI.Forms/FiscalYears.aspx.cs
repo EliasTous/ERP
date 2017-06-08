@@ -66,7 +66,17 @@ namespace AionHR.Web.UI.Forms
                 HideShowButtons();
                 HideShowColumns();
                 yearFrom.Format = yearTo.Format = periodFrom.Format = periodTo.Format = _systemService.SessionHelper.GetDateformat();
-
+                try
+                {
+                    AccessControlApplier.ApplyAccessControlOnPage(typeof(FiscalYear), BasicInfoTab, GridPanel1, btnAdd, SaveButton);
+                }
+                catch (AccessDeniedException exp)
+                {
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorAccessDenied).Show();
+                    Viewport1.Hidden = true;
+                    return;
+                }
             }
 
 

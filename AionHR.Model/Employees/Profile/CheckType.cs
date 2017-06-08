@@ -10,6 +10,8 @@ namespace AionHR.Model.Employees.Profile
     [ClassIdentifier("31021", "31")]
     public class CheckType:ModelBase
     {
+        [PropertyID("31021_01")]
+        [ApplySecurity]
         public string name { get; set; }
     }
 }

@@ -10,18 +10,23 @@ namespace AionHR.Model.Employees.Profile
     [ClassIdentifier("31071", "31")]
     public class EmploymentHistory :ModelBase
     {
-    
 
+        [PropertyID("31071_01")]
+        [ApplySecurity]
         public int statusId { get; set; }
 
- 
 
+        [PropertyID("31071_02")]
+        [ApplySecurity]
         public DateTime date { get; set; }
-
+        [PropertyID("31071_03")]
+        [ApplySecurity]
         public string comment { get; set; }
         public int employeeId { get; set; }
 
         public EmployeeName employeeName { get; set; }
+        [PropertyID("31071_01")]
+        [ApplySecurity]
         public string statusName { get; set; }
     }
 
@@ -29,6 +34,8 @@ namespace AionHR.Model.Employees.Profile
     public  class EmploymentStatus : ModelBase
 
     {
+        [PropertyID("31070_01")]
+        [ApplySecurity]
         public string name { get; set; }
     }
 }

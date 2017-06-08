@@ -488,13 +488,14 @@
                                                 <ext:ListItem Text="<%$ Resources:  Common,Mod43  %>" Value="43" />
                                                 <ext:ListItem Text="<%$ Resources:  Common,Mod44 %>" Value="44" />
                                                 <ext:ListItem Text="<%$ Resources:  Common,Mod45  %>" Value="45" />
+                                                <ext:ListItem Text="<%$ Resources:  Common,Mod51  %>" Value="51" />
                                                 <ext:ListItem Text="<%$ Resources: Common,Mod80  %>" Value="80" />
 
                                             </Items>
 
                                         </ext:ComboBox>
 
-                                        <ext:Button runat="server" Icon="GroupGo">
+                                        <ext:Button runat="server" Icon="ApplicationSideExpand" ToolTip="<%$ Resources:ApplyModule%>">
                                             <Listeners>
                                                 <Click Handler="App.ApplyModuleLevelWindow.show();" />
                                             </Listeners>
@@ -841,7 +842,7 @@
                             ID="propertiesGrid"
                             runat="server"
                             PaddingSpec="0 0 1 0"
-                            Header="false" Height="300"
+                            Header="false" Height="300" MinHeight="300" MaxHeight="300"
                             Layout="FitLayout"
                             Scroll="Vertical"
                             Border="false"
@@ -850,7 +851,7 @@
                             <TopBar>
                                 <ext:Toolbar runat="server">
                                     <Items>
-                                        <ext:Button runat="server" Icon="Cancel">
+                                        <ext:Button runat="server" Icon="Cancel" ToolTip="<%$ Resources:ResetProperties%>" >
                                             <Listeners>
                                                 <Click Handler="ResetPropertiesAccessLevels();" />
                                             </Listeners>

@@ -131,7 +131,7 @@
                               
 
                                 </ext:ComboBox>
-                                 <ext:ComboBox EmptyText="<%$ Resources: FilterAssetCateg%>" runat="server" Width="130"  LabelAlign="Top" ValueField="recordId" DisplayField="name" ID="assetCatId" Name="acId"  QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" >
+                                 <ext:ComboBox EmptyText="<%$ Resources: FilterAssetCateg%>" runat="server" Width="130"  LabelAlign="Top" ValueField="recordId" DisplayField="name" ID="assetCatId"   QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" >
                                     <Store>
                                         <ext:Store runat="server" ID="assetCategoryStore">
                                             <Model>
@@ -217,7 +217,7 @@
                     <ColumnModel ID="ColumnModel1" runat="server" SortAscText="<%$ Resources:Common , SortAscText %>" SortDescText="<%$ Resources:Common ,SortDescText  %>" SortClearText="<%$ Resources:Common ,SortClearText  %>" ColumnsText="<%$ Resources:Common ,ColumnsText  %>" EnableColumnHide="false" Sortable="false">
                         <Columns>
                             <ext:Column ID="ColRecordId" Visible="false" DataIndex="recordId" runat="server" />
-                            <ext:Column ID="ColName" DataIndex="employeeName.fullName" Text="<%$ Resources: FieldEmployeeName%>" runat="server" Flex="6">
+                            <ext:Column ID="ColName" DataIndex="employeeName" Text="<%$ Resources: FieldEmployeeName%>" runat="server" Flex="6">
                                 <Renderer Handler=" return  record.data['employeeName'].fullName" />
                             </ext:Column>
                             
@@ -243,19 +243,7 @@
                                 <Renderer Fn="editRender" />
 
                             </ext:Column>
-                            <ext:Column runat="server"
-                                ID="colDelete" Visible="true"
-                                Text="<%$ Resources: Common , Delete %>"
-                                Width="80"
-                                Align="Center"
-                                Fixed="true"
-                                Filterable="false"
-                                Hideable="false"
-                                MenuDisabled="true"
-                                Resizable="false">
-                                <Renderer handler="return editRender()+'&nbsp;&nbsp;' +deleteRender(); " />
-
-                            </ext:Column>
+                            
                             <ext:Column runat="server"
                                 ID="colAttach"
                                 Text="<%$ Resources:Common, Attach %>"
@@ -269,7 +257,19 @@
                                 <Renderer Fn="attachRender" />
                             </ext:Column>
 
+                            <ext:Column runat="server"
+                                ID="colDelete" Visible="true"
+                                Text="<%$ Resources: Common , Delete %>"
+                                Width="80"
+                                Align="Center"
+                                Fixed="true"
+                                Filterable="false"
+                                Hideable="false"
+                                MenuDisabled="true"
+                                Resizable="false">
+                                <Renderer handler="return editRender()+'&nbsp;&nbsp;' +deleteRender(); " />
 
+                            </ext:Column>
 
 
                         </Columns>
@@ -363,7 +363,7 @@
 
                                 <ext:TextField ID="recordId" runat="server" Name="recordId" Hidden="true" />
 
-                                <ext:ComboBox runat="server" ID="employeeId"
+                                <ext:ComboBox runat="server" ID="employeeId" name="employeeId"
                                     DisplayField="fullName"
                                     ValueField="recordId"
                                     TypeAhead="false"
@@ -392,7 +392,7 @@
                                 </ext:ComboBox>
 
 
-                                <ext:ComboBox runat="server" ID="aacId" Name="aacId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1"
+                                <ext:ComboBox runat="server" ID="acId" Name="acId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1"
                                     DisplayField="name" AllowBlank="false"
                                     ValueField="recordId"
                                     FieldLabel="<%$ Resources: FieldAcName %>">

@@ -724,7 +724,7 @@
                                     </Items>
                                 </ext:ComboBox>
                                 <ext:DateField
-                                    runat="server"
+                                    runat="server" ID="birthDate"
                                     Name="birthDate"
                                     FieldLabel="<%$ Resources:FieldDateOfBirth%>"
                                     MsgTarget="Side"

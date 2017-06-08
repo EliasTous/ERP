@@ -11,20 +11,27 @@ namespace AionHR.Model.Attendance
     [ClassIdentifier("41020", "41")]
     public class Geofence:ModelBase
     {
+        [PropertyID("41020_01")]
+        [ApplySecurity]
         public string name
         {
             get; set;
         }
+        [PropertyID("41020_02")]
+        [ApplySecurity]
         public int branchId
         {
             get; set;
         }
-           
-       
+
+        [PropertyID("41020_02")]
+        [ApplySecurity]
         public string branchName
         {
             get; set;
         }
+        [PropertyID("41020_03")]
+        [ApplySecurity]
         public double lat
         {
             get; set;

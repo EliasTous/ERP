@@ -29,6 +29,8 @@ using AionHR.Services.Messaging.System;
 using AionHR.Model.Company.Cases;
 using System.Net;
 using AionHR.Infrastructure.Domain;
+using AionHR.Model.Attributes;
+using AionHR.Model.Access_Control;
 
 namespace AionHR.Web.UI.Forms
 {
@@ -87,7 +89,7 @@ namespace AionHR.Web.UI.Forms
         IEmployeeService _employeeService = ServiceLocator.Current.GetInstance<IEmployeeService>();
 
         ICaseService _caseService = ServiceLocator.Current.GetInstance<ICaseService>();
-
+        IAccessControlService _accessControlService = ServiceLocator.Current.GetInstance<IAccessControlService>();
 
 
         ICompanyStructureService _companyStructureService = ServiceLocator.Current.GetInstance<ICompanyStructureService>();
@@ -127,12 +129,69 @@ namespace AionHR.Web.UI.Forms
                 statusPref.Select(0);
                 dateCol.Format = _systemService.SessionHelper.GetDateformat() + ": hh:mm:ss";
                 CasesClassId.Text = ClassId.CMCA.ToString();
-                
-                date.Format= colDate.Format= colClosedDate.Format= closedDate.Format= _systemService.SessionHelper.GetDateformat();
+
+                date.Format = colDate.Format = colClosedDate.Format = closedDate.Format = _systemService.SessionHelper.GetDateformat();
+
+                try
+                {
+                    AccessControlApplier.ApplyAccessControlOnPage(typeof(Case), BasicInfoTab, GridPanel1, btnAdd, SaveButton);
+                    AccessControlApplier.ApplyAccessControlOnPage(typeof(CaseComment), null, caseCommentGrid, null, Button1);
+                    //AccessControlApplier.ApplyAccessControlOnPage(typeof(CaseComment), null, caseCommentGrid, null, Button1);
+                    ApplyAccessControlOnCaseComments();
+                }
+                catch (AccessDeniedException exp)
+                {
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorAccessDenied).Show();
+                    Viewport1.Hidden = true;
+                    return;
+                }
             }
 
         }
 
+        private void ApplyAccessControlOnCaseComments()
+        {
+            UserPropertiesPermissions req = new UserPropertiesPermissions();
+            req.ClassId = (typeof(CaseComment).GetCustomAttributes(typeof(ClassIdentifier), false).ToList()[0] as ClassIdentifier).ClassID;
+            req.UserId = _systemService.SessionHelper.GetCurrentUserId();
+            ListResponse<UC> resp = _accessControlService.ChildGetAll<UC>(req);
+
+            foreach (var item in resp.Items)
+            {
+                if (item.propertyId == "4300103")
+                {
+                    if (item.accessLevel < 2)
+                        caseCommentGrid.ColumnModel.Columns[caseCommentGrid.ColumnModel.Columns.Count - 1].Renderer.Handler = " return '';";
+                }
+
+                if (item.accessLevel == 0)
+                {
+                    if (item.propertyId == "4300102")
+                    {
+                        caseCommentGrid.ColumnModel.Columns[1].Renderer.Handler = caseCommentGrid.ColumnModel.Columns[1].Renderer.Handler.Replace("s.calendar()", "'***** '");
+                    }
+                    else
+                    {
+                        var indices = typeof(CaseComment).GetProperties().Where(x =>
+                        {
+                            var d = x.GetCustomAttributes(typeof(PropertyID), false);
+                            if (d.Count() == 0)
+                                return false;
+                            return (x.GetCustomAttributes(typeof(PropertyID), false).ToList()[0] as PropertyID).ID == item.propertyId;
+                        }).ToList();
+
+                        indices.ForEach(x =>
+                        {
+                            caseCommentGrid.ColumnModel.Columns[1].Renderer.Handler = caseCommentGrid.ColumnModel.Columns[1].Renderer.Handler.Replace("record.data['" + x.Name + "']", "'***** '");
+                        });
+                    }
+
+                }
+            }
+
+        }
+        
 
 
         /// <summary>
@@ -190,7 +249,7 @@ namespace AionHR.Web.UI.Forms
             {
                 case "imgEdit":
                     //Step 1 : get the object from the Web Service 
-                    
+
                     RecordRequest r = new RecordRequest();
                     r.RecordID = id;
 
@@ -204,14 +263,14 @@ namespace AionHR.Web.UI.Forms
 
                     currentCase.Text = id;
 
-                        employeeId.GetStore().Add(new object[]
-                           {
+                    employeeId.GetStore().Add(new object[]
+                       {
                                 new
                                 {
                                     recordId = response.result.employeeId,
                                     fullName =response.result.employeeName.fullName
                                 }
-                           });
+                       });
                     employeeId.SetValue(response.result.employeeId);
 
                     FillFilesStore(Convert.ToInt32(id));
@@ -266,7 +325,7 @@ namespace AionHR.Web.UI.Forms
                     //Step 1 : get the object from the Web Service 
                     X.Call("App.caseCommentGrid.editingPlugin.startEdit", Convert.ToInt32(index), 0);
                     break;
-                   
+
 
                 case "imgDelete":
                     X.Msg.Confirm(Resources.Common.Confirmation, Resources.Common.DeleteOneRecord, new MessageBoxButtonsConfig
@@ -363,7 +422,7 @@ namespace AionHR.Web.UI.Forms
                 s.userId = 0;
                 s.userName = "";
                 s.date = DateTime.Now;
-               
+
 
 
                 PostRequest<CaseComment> req = new PostRequest<CaseComment>();
@@ -483,7 +542,7 @@ namespace AionHR.Web.UI.Forms
             //Reset all values of the relative object
             BasicInfoTab.Reset();
             closedDate.SelectedDate = DateTime.Now;
-           
+
             panelRecordDetails.ActiveIndex = 0;
             SetTabPanelEnable(false);
             this.EditRecordWindow.Title = Resources.Common.AddNewRecord;
@@ -510,10 +569,10 @@ namespace AionHR.Web.UI.Forms
             ListResponse<CaseComment> notes = _caseService.ChildGetAll<CaseComment>(req);
             if (!notes.Success)
             {
-             //   X.Msg.Alert(Resources.Common.Error, notes.Summary).Show();
+                //   X.Msg.Alert(Resources.Common.Error, notes.Summary).Show();
             }
             this.caseCommentStore.DataSource = notes.Items;
-            
+
 
             this.caseCommentStore.DataBind();
         }
@@ -529,7 +588,7 @@ namespace AionHR.Web.UI.Forms
             note.date = DateTime.Now;
             note.caseId = Convert.ToInt32(currentCase.Text);
             req.entity = note;
-            
+
 
             PostResponse<CaseComment> resp = _caseService.ChildAddOrUpdate<CaseComment>(req);
             if (!resp.Success)
@@ -553,12 +612,12 @@ namespace AionHR.Web.UI.Forms
             }
             else
             {
-                req.BranchId = 0;            
+                req.BranchId = 0;
             }
 
             if (!string.IsNullOrEmpty(departmentId.Text) && departmentId.Value.ToString() != "0")
             {
-                req.DepartmentId = Convert.ToInt32(departmentId.Value); 
+                req.DepartmentId = Convert.ToInt32(departmentId.Value);
             }
             else
             {
@@ -612,7 +671,7 @@ namespace AionHR.Web.UI.Forms
                 return;
             }
             this.Store1.DataSource = routers.Items;
-            e.Total = routers.count; 
+            e.Total = routers.count;
 
             this.Store1.DataBind();
         }
@@ -635,7 +694,7 @@ namespace AionHR.Web.UI.Forms
 
             b.employeeName = new EmployeeName();
             if (employeeId.SelectedItem != null)
-               
+
                 b.employeeName.fullName = employeeId.SelectedItem.Text;
 
             if (closedDate.ReadOnly)
@@ -650,7 +709,7 @@ namespace AionHR.Web.UI.Forms
                     PostRequest<Case> request = new PostRequest<Case>();
 
                     request.entity = b;
-                    
+
                     PostResponse<Case> r = _caseService.AddOrUpdate<Case>(request);
 
 
@@ -665,7 +724,7 @@ namespace AionHR.Web.UI.Forms
                     else
                     {
                         b.recordId = r.recordId;
-                        
+
                         //Add this record to the store 
                         this.Store1.Insert(0, b);
 
@@ -829,12 +888,12 @@ namespace AionHR.Web.UI.Forms
                     continue;
                 item.Disabled = !isEnable;
             }
-            
+
         }
 
         #region AttachmentManagement
         [DirectMethod]
-        public void FillFilesStore( int caseId)
+        public void FillFilesStore(int caseId)
         {
             //ListRequest request = new ListRequest();
             CaseAttachmentsListRequest request = new CaseAttachmentsListRequest();
@@ -847,7 +906,7 @@ namespace AionHR.Web.UI.Forms
                 return;
             }
             this.filesStore.DataSource = routers.Items;
-            
+
 
             this.filesStore.DataBind();
         }
@@ -862,9 +921,9 @@ namespace AionHR.Web.UI.Forms
         {
             ListRequest req = new ListRequest();
             ListResponse<SystemFolder> docs = _systemService.ChildGetAll<SystemFolder>(req);
-            if(!docs.Success)
+            if (!docs.Success)
             {
-                X.Msg.Alert(Resources.Common.Error, docs.Summary ).Show();
+                X.Msg.Alert(Resources.Common.Error, docs.Summary).Show();
                 return;
             }
             List<object> options = new List<object>();
@@ -902,7 +961,7 @@ namespace AionHR.Web.UI.Forms
                         Yes = new MessageBoxButtonConfig
                         {
                             //We are call a direct request metho for deleting a record
-                            Handler = String.Format("App.direct.DeleteAttachment({0},'{1}')", id,path),
+                            Handler = String.Format("App.direct.DeleteAttachment({0},'{1}')", id, path),
                             Text = Resources.Common.Yes
                         },
                         No = new MessageBoxButtonConfig
@@ -1049,9 +1108,9 @@ namespace AionHR.Web.UI.Forms
                 stream = fileResp.GetResponseStream();
 
                 // prepare the response to the client. resp is the client Response
-                
+
                 var resp = HttpContext.Current.Response;
-                
+
                 //Indicate the type of data being sent
                 resp.ContentType = "application/octet-stream";
                 string[] segments = url.Split('/');
@@ -1086,9 +1145,9 @@ namespace AionHR.Web.UI.Forms
                 } while (length > 0); //Repeat until no data is read
                 resp.Flush();
             }
-            catch(Exception exp)
+            catch (Exception exp)
             {
-                X.Msg.Alert(Resources.Common.Error, exp.Message+"<br />"+exp.StackTrace).Show();
+                X.Msg.Alert(Resources.Common.Error, exp.Message + "<br />" + exp.StackTrace).Show();
                 return;
             }
             finally
@@ -1108,7 +1167,7 @@ namespace AionHR.Web.UI.Forms
         /// </summary>
         /// <param name="index">the ID of the object to delete</param>
         [DirectMethod]
-        public void DeleteAttachment(string index,string path)
+        public void DeleteAttachment(string index, string path)
         {
             try
             {
@@ -1140,7 +1199,7 @@ namespace AionHR.Web.UI.Forms
                         Title = Resources.Common.Notification,
                         Icon = Icon.Information,
                         Html = Resources.Common.RecordDeletedSucc
-                        
+
                     });
                 }
 

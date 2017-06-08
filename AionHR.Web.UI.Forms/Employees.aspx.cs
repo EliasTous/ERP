@@ -84,6 +84,17 @@ namespace AionHR.Web.UI.Forms
                 CurrentClassId.Text = ClassId.EPEM.ToString();
                 InitFilters();
                 BuildQuickViewTemplate();
+                try
+                {
+                    AccessControlApplier.ApplyAccessControlOnPage(typeof(Employee), null, GridPanel1, btnAdd, null);
+                }
+                catch (AccessDeniedException exp)
+                {
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorAccessDenied).Show();
+                    Viewport1.Hidden = true;
+                    return;
+                }
             }
 
 

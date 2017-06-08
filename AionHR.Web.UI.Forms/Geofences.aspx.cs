@@ -22,6 +22,8 @@ using AionHR.Services.Messaging;
 using AionHR.Model.Company.Structure;
 using AionHR.Model.System;
 using AionHR.Model.Attendance;
+using AionHR.Model.Attributes;
+using AionHR.Model.Access_Control;
 
 namespace AionHR.Web.UI.Forms
 {
@@ -30,6 +32,8 @@ namespace AionHR.Web.UI.Forms
         ISystemService _systemService = ServiceLocator.Current.GetInstance<ISystemService>();
         ITimeAttendanceService _timeAttendanceService = ServiceLocator.Current.GetInstance<ITimeAttendanceService>();
         ICompanyStructureService _companyStructureService = ServiceLocator.Current.GetInstance<ICompanyStructureService>();
+        IAccessControlService _accessControlService = ServiceLocator.Current.GetInstance<IAccessControlService>();
+
         protected override void InitializeCulture()
         {
 
@@ -57,9 +61,40 @@ namespace AionHR.Web.UI.Forms
                 HideShowButtons();
                 HideShowColumns();
                 CurrentCountry.Text = "Lebanon";
+
+                try
+                {
+                    AccessControlApplier.ApplyAccessControlOnPage(typeof(Geofence), BasicInfoTab, GridPanel1, btnAdd, SaveButton);
+                    ApplyLocationAccessControl();
+                }
+                catch (AccessDeniedException exp)
+                {
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorAccessDenied).Show();
+                    Viewport1.Hidden = true;
+                    return;
+                }
             }
         }
 
+        private void ApplyLocationAccessControl()
+        {
+            UserPropertiesPermissions req = new UserPropertiesPermissions();
+            req.ClassId = (typeof(Geofence).GetCustomAttributes(typeof(ClassIdentifier), false).ToList()[0] as ClassIdentifier).ClassID;
+            req.UserId = _systemService.SessionHelper.GetCurrentUserId();
+            ListResponse<UC> resp = _accessControlService.ChildGetAll<UC>(req);
+            var d = resp.Items.Where(x => x.propertyId == "4102003");
+            if(d.Count()>0)
+            {
+                switch(d.ToList()[0].accessLevel)
+                {
+                    case 1:  break;
+                    case 2: break;
+                    case 0:break;
+                }
+            }
+
+        }
 
         private void HideShowTabs()
         {

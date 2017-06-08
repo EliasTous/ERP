@@ -123,7 +123,17 @@ namespace AionHR.Web.UI.Forms
                 FillAssetCateg();
                 FillBranch();
                 Column1.Format = Column2.Format = date.Format = returnedDate.Format = _systemService.SessionHelper.GetDateformat();
-
+                try
+                {
+                    AccessControlApplier.ApplyAccessControlOnPage(typeof(AssetAllowance), BasicInfoTab, GridPanel1, btnAdd, SaveButton);
+                }
+                catch (AccessDeniedException exp)
+                {
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorAccessDenied).Show();
+                    Viewport1.Hidden = true;
+                    return;
+                }
             }
 
         }
@@ -222,7 +232,7 @@ namespace AionHR.Web.UI.Forms
                     this.BasicInfoTab.SetValues(response.result);
 
                     FillAssetCategory();
-                    aacId.Select(response.result.acId.ToString());
+                    acId.Select(response.result.acId.ToString());
                     if (response.result.employeeId != 0)
                     {
 
@@ -429,9 +439,9 @@ namespace AionHR.Web.UI.Forms
             {
                 req.DepartmentId = 0;
             }
-            if (!string.IsNullOrEmpty(aacId.Text) && aacId.Value.ToString() != "0")
+            if (!string.IsNullOrEmpty(assetCatId.Text) && assetCatId.Value.ToString() != "0")
             {
-                req.AcId = Convert.ToInt32(aacId.Value);
+                req.AcId = Convert.ToInt32(assetCatId.Value);
 
 
             }
@@ -508,7 +518,7 @@ namespace AionHR.Web.UI.Forms
             string obj = e.ExtraParams["values"];
             JsonSerializerSettings settings = new JsonSerializerSettings();
             CustomResolver res = new CustomResolver();
-            res.AddRule("aacId", "acId");
+            
             settings.ContractResolver = res;
             AssetAllowance b = JsonConvert.DeserializeObject<AssetAllowance>(obj,settings);
 
@@ -519,8 +529,8 @@ namespace AionHR.Web.UI.Forms
             if (employeeId.SelectedItem != null)
                 b.employeeName.fullName = employeeId.SelectedItem.Text;
 
-            if (aacId.SelectedItem != null)
-                b.acName = aacId.SelectedItem.Text;
+            if (acId.SelectedItem != null)
+                b.acName = acId.SelectedItem.Text;
 
 
             if (string.IsNullOrEmpty(id))
@@ -644,10 +654,10 @@ namespace AionHR.Web.UI.Forms
 
         protected void addAssetCategory(object sender, DirectEventArgs e)
         {
-            if (string.IsNullOrEmpty(aacId.Text))
+            if (string.IsNullOrEmpty(acId.Text))
                 return;
             AssetCategory dept = new AssetCategory();
-            dept.name = aacId.Text;
+            dept.name = acId.Text;
 
             PostRequest<AssetCategory> depReq = new PostRequest<AssetCategory>();
             depReq.entity = dept;
@@ -656,7 +666,7 @@ namespace AionHR.Web.UI.Forms
             {
                 dept.recordId = response.recordId;
                 FillAssetCategory();
-                aacId.Select(dept.recordId);
+                acId.Select(dept.recordId);
             }
             else
             {

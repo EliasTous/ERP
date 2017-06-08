@@ -24,6 +24,8 @@ using AionHR.Infrastructure.Session;
 using AionHR.Model.System;
 using AionHR.Model.Employees.Profile;
 using AionHR.Infrastructure.JSON;
+using AionHR.Model.Attributes;
+using AionHR.Model.Access_Control;
 
 namespace AionHR.Web.UI.Forms
 {
@@ -31,6 +33,7 @@ namespace AionHR.Web.UI.Forms
     {
         ICompanyStructureService _branchService = ServiceLocator.Current.GetInstance<ICompanyStructureService>();
         ISystemService _systemService = ServiceLocator.Current.GetInstance<ISystemService>();
+        IAccessControlService _accessControlService = ServiceLocator.Current.GetInstance<IAccessControlService>();
         protected override void InitializeCulture()
         {
 
@@ -61,14 +64,57 @@ namespace AionHR.Web.UI.Forms
                 HideShowButtons();
                 HideShowColumns();
 
-
+                try
+                {
+                    AccessControlApplier.ApplyAccessControlOnPage(typeof(Branch), BasicInfoTab, GridPanel1, btnAdd, SaveButton);
+                    ApplyAccessControlOnAddress();
+                }
+                catch (AccessDeniedException exp)
+                {
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorAccessDenied).Show();
+                    Viewport1.Hidden = true;
+                    return;
+                }
 
             }
 
-           
+
         }
 
+        private void ApplyAccessControlOnAddress()
+        {
+            UserPropertiesPermissions req = new UserPropertiesPermissions();
+            req.ClassId = (typeof(Branch).GetCustomAttributes(typeof(ClassIdentifier), false).ToList()[0] as ClassIdentifier).ClassID;
+            req.UserId = _systemService.SessionHelper.GetCurrentUserId();
+            ListResponse<UC> resp = _accessControlService.ChildGetAll<UC>(req);
 
+            var att = resp.Items.Where(x =>
+            
+                x.propertyId == "2102005"
+           );
+            int level = 0;
+            if (att.Count() == 0|| att.ToList()[0].accessLevel==2)
+                return;
+            level = att.ToList()[0].accessLevel;
+            switch(level)
+            {
+                case 0:
+                    addressForm.Items.ForEach(x =>
+                    {
+                        (x as Field).InputType = InputType.Password;
+                            (x as Field).ReadOnly = true;
+                    });
+                    break;
+                case 1:
+                    addressForm.Items.ForEach(x =>
+                    {
+                        
+                        (x as Field).ReadOnly = true;
+                    }); break;
+            }
+                
+        }
 
         /// <summary>
         /// the detailed tabs for the edit form. I put two tabs by default so hide unecessary or add addional
@@ -183,7 +229,7 @@ namespace AionHR.Web.UI.Forms
                 n.name = "";
                 n.reference = "";
                 n.timeZone = 0;
-                
+
                 PostRequest<Branch> req = new PostRequest<Branch>();
                 req.entity = n;
                 PostResponse<Branch> res = _branchService.ChildDelete<Branch>(req);
@@ -327,8 +373,10 @@ namespace AionHR.Web.UI.Forms
             request.Filter = "";
             ListResponse<Branch> branches = _branchService.ChildGetAll<Branch>(request);
             if (!branches.Success)
-            { X.Msg.Alert(Resources.Common.Error, branches.Summary).Show(); 
-                return; }
+            {
+                X.Msg.Alert(Resources.Common.Error, branches.Summary).Show();
+                return;
+            }
             this.Store1.DataSource = branches.Items;
             e.Total = branches.count;
 
@@ -356,9 +404,9 @@ namespace AionHR.Web.UI.Forms
             res.AddRule("stId", "stateId");
             JsonSerializerSettings settings = new JsonSerializerSettings();
             settings.ContractResolver = res;
-         
+
             AddressBook add = JsonConvert.DeserializeObject<AddressBook>(addr, settings);
-            if(string.IsNullOrEmpty(add.city)  && string.IsNullOrEmpty(add.countryId)&& string.IsNullOrEmpty(add.street1) && string.IsNullOrEmpty(add.stateId))
+            if (string.IsNullOrEmpty(add.city) && string.IsNullOrEmpty(add.countryId) && string.IsNullOrEmpty(add.street1) && string.IsNullOrEmpty(add.stateId))
             {
                 b.addressId = null;
             }
@@ -373,7 +421,7 @@ namespace AionHR.Web.UI.Forms
                 b.addressId = JsonConvert.DeserializeObject<AddressBook>(addr, settings);
                 b.addressId.recordId = addressId.Text;
             }
-         
+
             if (string.IsNullOrEmpty(id))
             {
 

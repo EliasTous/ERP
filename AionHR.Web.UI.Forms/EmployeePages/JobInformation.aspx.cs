@@ -68,7 +68,28 @@ namespace AionHR.Web.UI.Forms.EmployeePages
 
                 bool disabled = EmployeeTerminated.Text == "1";
                 btnAdd.Disabled = Button1.Disabled = SaveEHButton.Disabled = SaveJIButton.Disabled = disabled;
-
+                try
+                {
+                    AccessControlApplier.ApplyAccessControlOnPage(typeof(JobInfo), EditJobInfoTab, JobInfoGrid, Button1, SaveJIButton);
+                }
+                catch (AccessDeniedException exp)
+                {
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorAccessDenied).Show();
+                    JobInfoGrid.Hidden = true;
+                   
+                }
+                try
+                {
+                    AccessControlApplier.ApplyAccessControlOnPage(typeof(EmploymentHistory), EditEHForm, employeementHistoryGrid, btnAdd,SaveEHButton );
+                }
+                catch (AccessDeniedException exp)
+                {
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorAccessDenied).Show();
+                    employeementHistoryGrid.Hidden = true;
+                    
+                }
             }
             Column2.Format = ColDate.Format = ehDate.Format = date.Format = _systemService.SessionHelper.GetDateformat();
 

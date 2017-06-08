@@ -62,7 +62,7 @@ namespace AionHR.Web.UI.Forms
                 SetExtLanguage();
                 HideShowButtons();
                 HideShowColumns();
-
+                AccessControlApplier.ApplyAccessControlOnPage(typeof(Department),  BasicInfoTab, GridPanel1, btnAdd, SaveButton);
 
             }
 

@@ -11,15 +11,21 @@ namespace AionHR.Model.Employees.Profile
 
     public class EmployeeNote:ModelBase
     {
-
+        [PropertyID("31090_01")]
+        [ApplySecurity]
         public string userId { get; set; }
+        [PropertyID("31090_02")]
+        [ApplySecurity]
         public DateTime date { get; set; }
+        [PropertyID("31090_03")]
+        [ApplySecurity]
         public string note { get; set; }
 
-        
-        
-       
 
+
+
+        [PropertyID("31090_01")]
+        [ApplySecurity]
         public string userName { get; set; }
 
         public string employeeId { get; set; }

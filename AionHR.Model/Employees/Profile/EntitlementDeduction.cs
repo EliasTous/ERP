@@ -11,7 +11,11 @@ namespace AionHR.Model.Employees.Profile
     [ClassIdentifier("31061", "31")]
     public class EntitlementDeduction:ModelBase
     {
+        [PropertyID("31061_01")]
+        [ApplySecurity]
         public string name { get; set; }
+        [PropertyID("31061_02")]
+        [ApplySecurity]
         public short type { get; set; }
     }
 }

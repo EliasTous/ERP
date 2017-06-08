@@ -10,16 +10,22 @@ namespace AionHR.Model.Attendance
     [ClassIdentifier("41051", "41")]
     public class AttendanceScheduleDay
     {
-
+        [PropertyID("41051_01")]
+        [ApplySecurity]
         public string dayTypeId { get; set; }
+        [PropertyID("41051_02")]
+        [ApplySecurity]
         public string firstIn { get; set; }
+        [PropertyID("41051_03")]
+        [ApplySecurity]
         public string lastOut { get; set; }
         public int scId { get; set; }
         public short dow { get; set; }
-   
 
-        
 
+
+        [PropertyID("41051_04")]
+        [ApplySecurity]
         public string duration { get; set; }
 
         public string durationFormatted

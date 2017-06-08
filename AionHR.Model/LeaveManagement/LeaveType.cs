@@ -11,9 +11,14 @@ namespace AionHR.Model.Employees.Leaves
     [ClassIdentifier("42000", "42")]
     public class LeaveType:ModelBase
     {
+        [PropertyID("42000_01")]
+        [ApplySecurity]
         public string name { get; set; }
+        [PropertyID("42000_02")]
+        [ApplySecurity]
         public string reference { get; set; }
-       
+        [PropertyID("42000_03")]
+        [ApplySecurity]
         public bool requireApproval { get; set; }
     }
 }

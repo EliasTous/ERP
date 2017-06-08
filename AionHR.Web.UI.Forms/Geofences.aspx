@@ -127,7 +127,21 @@
                         
                            
 
+                           
                             <ext:Column runat="server"
+                                ID="colAttach"
+                                Text="<%$ Resources:Common, Attach %>"
+                                Hideable="false"
+                                Width="60"
+                                Align="Center"
+                                Fixed="true"
+                                Filterable="false"
+                                MenuDisabled="true"
+                                Resizable="false">
+                                <Renderer Fn="attachRender" />
+                            </ext:Column>
+
+                             <ext:Column runat="server"
                                 ID="colEdit"  Visible="false"
                                 Text="<%$ Resources:Common, Edit %>"
                                 Width="60"
@@ -154,20 +168,6 @@
                                 <Renderer handler="return editRender()+'&nbsp;&nbsp;' +deleteRender(); " />
                               
                             </ext:Column>
-                            <ext:Column runat="server"
-                                ID="colAttach"
-                                Text="<%$ Resources:Common, Attach %>"
-                                Hideable="false"
-                                Width="60"
-                                Align="Center"
-                                Fixed="true"
-                                Filterable="false"
-                                MenuDisabled="true"
-                                Resizable="false">
-                                <Renderer Fn="attachRender" />
-                            </ext:Column>
-
-
 
 
                         </Columns>

@@ -10,6 +10,8 @@ namespace AionHR.Model.TaskManagement
     [ClassIdentifier("32000", "32")]
     public class TaskType : ModelBase
     {
+        [PropertyID("32000_01")]
+        [ApplySecurity]
         public string name { get; set; }
     }
 }

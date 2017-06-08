@@ -11,18 +11,32 @@ namespace AionHR.Model.Employees.Profile
     [ClassIdentifier("31100", "31")]
     public class EmployeeRightToWork:ModelBase
     {
-        
+        [PropertyID("31100_01")]
+        [ApplySecurity]
         public int dtId { get; set; }
 
-        
+        [PropertyID("31100_02")]
+        [ApplySecurity]
         public string documentRef { get; set; }
+        [PropertyID("31100_03")]
+        [ApplySecurity]
         public string remarks { get; set; }
+        [PropertyID("31100_04")]
+        [ApplySecurity]
         public bool hijriCal { get; set; }
+        [PropertyID("31100_05")]
+        [ApplySecurity]
         public DateTime issueDate { get; set; }
+        [PropertyID("31100_06")]
+        [ApplySecurity]
         public DateTime expiryDate { get; set; }
+        [PropertyID("31100_07")]
+        [ApplySecurity]
         public string fileUrl { get; set; }
         public int employeeId { get; set; }
         public EmployeeName employeeName { get; set; }
+        [PropertyID("31100_01")]
+        [ApplySecurity]
         public string dtName { get; set; }
 
         public string issueDateFormatted

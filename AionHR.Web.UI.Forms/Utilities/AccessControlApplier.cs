@@ -23,7 +23,7 @@ namespace AionHR.Web.UI.Forms
         static IAccessControlService _accessControlService = ServiceLocator.Current.GetInstance<IAccessControlService>();
 
 
-        public static void ApplyAccessControlOnPage(Type type, string moduleId, FormPanel form, GridPanel g, Button addButton, Button saveButton)
+        public static void ApplyAccessControlOnPage(Type type, FormPanel form, GridPanel g, Button addButton, Button saveButton)
         {
             #region old
             //RecordRequest userReq = new RecordRequest();
@@ -115,69 +115,96 @@ namespace AionHR.Web.UI.Forms
             classReq.ClassId = type.GetCustomAttribute<ClassIdentifier>().ClassID;
             classReq.UserId = _systemService.SessionHelper.GetCurrentUserId();
             RecordResponse<ModuleClass> modClass = _accessControlService.ChildGetRecord<ModuleClass>(classReq);
-            switch (modClass.result.accessLevel)
+            if (modClass == null || modClass.result == null)
             {
-                case 0: throw new AccessDeniedException();
-                case 1: g.ColumnModel.Columns[g.ColumnModel.Columns.Count - 1].Renderer.Handler = g.ColumnModel.Columns[g.ColumnModel.Columns.Count - 1].Renderer.Handler.Replace("deleteRender()", "' ' "); addButton.Disabled = true; saveButton.Disabled = true;
-                    foreach(var item in form.Items)
-                    {
-                        item.Disabled = true;
-                    }
-                    break ;
-                case 2: g.ColumnModel.Columns[g.ColumnModel.Columns.Count - 1].Renderer.Handler = g.ColumnModel.Columns[g.ColumnModel.Columns.Count - 1].Renderer.Handler.Replace("deleteRender()", "' ' "); break;
-                default: break;
+                //throw new AccessDeniedException();
             }
-
+            else
+            {
+                switch (modClass.result.accessLevel)
+                {
+                    case 0: throw new AccessDeniedException();
+                    case 1:
+                        g.ColumnModel.Columns[g.ColumnModel.Columns.Count - 1].Renderer.Handler = g.ColumnModel.Columns[g.ColumnModel.Columns.Count - 1].Renderer.Handler.Replace("deleteRender()", "' ' "); if (addButton != null) addButton.Disabled = true; if (saveButton != null) saveButton.Disabled = true;
+                        foreach (var item in form.Items)
+                        {
+                            item.Disabled = true;
+                        }
+                        break;
+                    case 2: g.ColumnModel.Columns[g.ColumnModel.Columns.Count - 1].Renderer.Handler = g.ColumnModel.Columns[g.ColumnModel.Columns.Count - 1].Renderer.Handler.Replace("deleteRender()", "' ' "); break;
+                    default: break;
+                }
+            }
             UserPropertiesPermissions req = new UserPropertiesPermissions();
             req.ClassId = type.GetCustomAttribute<ClassIdentifier>().ClassID;
             req.UserId = _systemService.SessionHelper.GetCurrentUserId();
             ListResponse<UC> resp = _accessControlService.ChildGetAll<UC>(req);
-            List<ClassPropertyDefinition> properites = new List<ClassPropertyDefinition>();
-            properites.ForEach(x => { var results = resp.Items.Where(d => d.propertyId == x.propertyId).ToList(); if (results.Count > 0) results[0].index = x.index; });
+            List<UC> properites = new List<UC>();
 
-            
 
-            type.GetProperties().ToList<PropertyInfo>().ForEach(x => { if (x.GetCustomAttribute<PropertyID>() != null) { var results = resp.Items.Where(d => d.propertyId == x.GetCustomAttribute<PropertyID>().ID).ToList(); if (results.Count > 0) results[0].index = x.Name; } });
-            int level = 2;
-            foreach (var item in form.Items)
+
+            type.GetProperties().ToList<PropertyInfo>().ForEach(x =>
             {
-                if (item is Field)
+                if (x.GetCustomAttribute<PropertyID>() != null)
                 {
+                    properites.Add(new UC() { index = x.Name, propertyId = x.GetCustomAttribute<PropertyID>().ID });
+                }
+            });
 
-                    var results = resp.Items.Where(x => x.index == (item as Field).Name || x.index == (item as Field).DataIndex).ToList();
-
-                    if (results.Count > 0)
+            resp.Items.ForEach(x =>
+            {
+                properites.ForEach(y =>
+                {
+                    if (x.propertyId == y.propertyId)
+                        y.accessLevel = x.accessLevel;
+                });
+            });
+            // type.GetProperties().ToList<PropertyInfo>().ForEach(x => { if (x.GetCustomAttribute<PropertyID>() != null) { resp.Items.Where(d => d.propertyId == x.GetCustomAttribute<PropertyID>().ID).ToList().ForEach(y=>y.index = x.Name); } });
+            int level = 2;
+            if (form != null)
+            {
+                foreach (var item in form.Items)
+                {
+                    if (item is Field)
                     {
-                        level = results[0].accessLevel;
-                    }
-                    else
-                        continue;
 
-                    switch (level)
-                    {
-                        case 0:
+                        var results = properites.Where(x => x.index == (item as Field).Name || x.index == (item as Field).DataIndex).ToList();
 
-                            (item as Field).InputType = InputType.Password;
-                            (item as Field).ReadOnly = true; break;
-                        case 1:
-                            (item as Field).ReadOnly = true;  break;
-                        case 2:
-                            break;
-                        default:
-                            break;
+                        if (results.Count > 0)
+                        {
+                            level = results[0].accessLevel;
+                        }
+                        else
+                            continue;
 
+                        switch (level)
+                        {
+                            case 0:
+
+                                (item as Field).InputType = InputType.Password;
+                                (item as Field).ReadOnly = true; break;
+                            case 1:
+                                (item as Field).ReadOnly = true; break;
+                            case 2:
+                                break;
+                            default:
+                                break;
+
+                        }
                     }
                 }
             }
-            foreach (var item in g.ColumnModel.Columns)
+            if (g != null)
             {
+                foreach (var item in g.ColumnModel.Columns)
+                {
 
-                var results = resp.Items.Where(x => x.index == item.DataIndex).ToList();
-                if (results.Count > 0 && results[0].accessLevel < 1)
-                    item.Renderer.Handler = "return '*****';";
+                    var results = properites.Where(x => x.index == item.DataIndex).ToList();
+                    if (results.Count > 0 && results[0].accessLevel < 1)
+                        item.Renderer.Handler = "return '*****';";
 
+                }
             }
-
         }
 
 

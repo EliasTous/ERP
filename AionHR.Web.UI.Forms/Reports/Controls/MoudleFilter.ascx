@@ -16,6 +16,7 @@
          <ext:ListItem Text="<%$ Resources:  Common,Mod43  %>" Value="43" />
         <ext:ListItem Text="<%$ Resources:  Common,Mod44 %>" Value="44" />
         <ext:ListItem Text="<%$ Resources:  Common,Mod45  %>" Value="45" />
+        <ext:ListItem Text="<%$ Resources:  Common,Mod51  %>" Value="51" />
          <ext:ListItem Text="<%$ Resources: Common,Mod80  %>" Value="80" />
     
     </Items>

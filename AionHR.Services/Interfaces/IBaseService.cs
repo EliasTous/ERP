@@ -13,6 +13,7 @@ namespace AionHR.Services.Interfaces
     {
         SessionHelper SessionHelper { get; set; }
 
+        
 
         RecordResponse<T> Get<T>(RecordRequest request);
 

@@ -43,4 +43,15 @@ namespace AionHR.Model.Attributes
             ModuleId = mod;
         }
     }
+
+    public class ApplySecurity:Attribute
+    {
+        public bool SecurityEnabled { get; set; }
+        public ApplySecurity(bool enabled=true)
+        {
+
+            this.SecurityEnabled = enabled;
+        }
+
+    }
 }

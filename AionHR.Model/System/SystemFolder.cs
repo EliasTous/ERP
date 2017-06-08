@@ -10,6 +10,8 @@ namespace AionHR.Model.System
     [ClassIdentifier("20000", "20")]
     public class SystemFolder:ModelBase
     {
+        [ApplySecurity]
+        [PropertyID("20000_01")]
         public string name { get; set; }
     }
 }
