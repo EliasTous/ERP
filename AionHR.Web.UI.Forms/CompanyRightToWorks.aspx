@@ -211,20 +211,7 @@
                             <ext:Column Visible="true" ID="DateColumn2" DataIndex="expireDateFormatted" Text="<%$ Resources: FieldExpiryDate%>" runat="server" width="100"/>
                                                        
 
-                           <ext:Column runat="server"
-                                ID="colEdit"  Visible="true"
-                                Text=""
-                                Width="120"
-                                Hideable="false"
-                                Align="Center"
-                                Fixed="true"
-                                Filterable="false"
-                                MenuDisabled="true"
-                                Resizable="false">
-
-                                <Renderer handler="var att ='&nbsp;'; if(record.data['fileUrl']!='') att = attachRender(); return att+'&nbsp;&nbsp;' +editRender()+'&nbsp;&nbsp;' +deleteRender();" />
-
-                            </ext:Column>
+                         
                             <ext:Column runat="server"
                                 ID="colDelete" Visible="false"
                                 Text="<%$ Resources: Common , Delete %>"
@@ -250,7 +237,20 @@
                                 Resizable="false">
                                 <Renderer Fn="attachRender" />
                             </ext:Column>
+                              <ext:Column runat="server"
+                                ID="colEdit"  Visible="true"
+                                Text=""
+                                Width="120"
+                                Hideable="false"
+                                Align="Center"
+                                Fixed="true"
+                                Filterable="false"
+                                MenuDisabled="true"
+                                Resizable="false">
 
+                                <Renderer handler="var att ='&nbsp;'; if(record.data['fileUrl']!='') att = attachRender(); return att+'&nbsp;&nbsp;' +editRender()+'&nbsp;&nbsp;' +deleteRender();" />
+
+                            </ext:Column>
 
 
 

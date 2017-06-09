@@ -55,6 +55,7 @@
         <ext:Hidden ID="StatusApproved" runat="server" Text="<%$ Resources: FieldApproved %>" />
         <ext:Hidden ID="StatusRefused" runat="server" Text="<%$ Resources: FieldRefused %>" />
         <ext:Hidden ID="StatusUsed" runat="server" Text="<%$ Resources: FieldUsed %>" />
+        
 <%--        <ext:Hidden ID="SundayText" runat="server" Text="<%$ Resources:Common , SundayText %>" />
         <ext:Hidden ID="MondayText" runat="server" Text="<%$ Resources:Common , MondayText %>" />
         <ext:Hidden ID="TuesdayText" runat="server" Text="<%$ Resources:Common , TuesdayText %>" />
@@ -313,19 +314,7 @@
                                 <Renderer Fn="editRender" />
 
                             </ext:Column>
-                            <ext:Column runat="server"
-                                ID="colDelete" Visible="true"
-                                Text="<%$ Resources: Common , Delete %>"
-                                Width="80"
-                                Align="Center"
-                                Fixed="true"
-                                Filterable="false"
-                                Hideable="false"
-                                MenuDisabled="true"
-                                Resizable="false">
-                                <Renderer Handler="return editRender()+'&nbsp;&nbsp;' +deleteRender(); " />
-
-                            </ext:Column>
+                           
                             <ext:Column runat="server"
                                 ID="colAttach"
                                 Text="<%$ Resources:Common, Attach %>"
@@ -338,7 +327,19 @@
                                 Resizable="false">
                                 <Renderer Fn="attachRender" />
                             </ext:Column>
+                             <ext:Column runat="server"
+                                ID="colDelete" Visible="true"
+                                Text="<%$ Resources: Common , Delete %>"
+                                Width="80"
+                                Align="Center"
+                                Fixed="true"
+                                Filterable="false"
+                                Hideable="false"
+                                MenuDisabled="true"
+                                Resizable="false">
+                                <Renderer Handler="return editRender()+'&nbsp;&nbsp;' +deleteRender(); " />
 
+                            </ext:Column>
 
 
 

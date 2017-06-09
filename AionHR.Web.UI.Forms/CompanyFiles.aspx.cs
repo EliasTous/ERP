@@ -77,7 +77,18 @@ namespace AionHR.Web.UI.Forms
 
                 dateCol.Format = _systemService.SessionHelper.GetDateformat();
                 CompanyFilesClassId.Text = ClassId.DMDO.ToString();
-         
+                try
+                {
+                    AccessControlApplier.ApplyAccessControlOnPage(typeof(Attachement), EditDocumentForm,GridPanel1, btnAdd, SaveDocumentButton);
+                    
+                }
+                catch (AccessDeniedException exp)
+                {
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorAccessDenied).Show();
+                    Viewport1.Hidden = true;
+                    return;
+                }
             }
 
         }

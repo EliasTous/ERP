@@ -205,19 +205,7 @@
                                 <Renderer Fn="editRender" />
 
                             </ext:Column>
-                            <ext:Column runat="server"
-                                ID="ColSADelete"  Visible="true"
-                                Text=""
-                                Width="80"
-                                Align="Center"
-                                Fixed="true"
-                                Filterable="false"
-                                Hideable="false"
-                                MenuDisabled="true"
-                                Resizable="false">
-                                <Renderer handler="var d =(App.EmployeeTerminated.value=='0')?deleteRender():' '; return editRender()+'&nbsp;&nbsp;' +d; " />
-
-                            </ext:Column>
+                        
                             <ext:Column runat="server" Visible="false"
                                 ID="Column18"
                                 Text="<%$ Resources:Common, Attach %>"
@@ -230,7 +218,19 @@
                                 Resizable="false">
                                 <Renderer Fn="attachRender" />
                             </ext:Column>
+                                <ext:Column runat="server"
+                                ID="ColSADelete"  Visible="true"
+                                Text=""
+                                Width="80"
+                                Align="Center"
+                                Fixed="true"
+                                Filterable="false"
+                                Hideable="false"
+                                MenuDisabled="true"
+                                Resizable="false">
+                                <Renderer handler="var d =(App.EmployeeTerminated.value=='0')?deleteRender():' '; return editRender()+'&nbsp;&nbsp;' +d; " />
 
+                            </ext:Column>
 
 
 
@@ -389,6 +389,19 @@
                                 <Renderer Fn="editRender" />
 
                             </ext:Column>
+                            
+                            <ext:Column runat="server" Visible="false"
+                                ID="Column12"
+                                Text="<%$ Resources:Common, Attach %>"
+                                Hideable="false"
+                                Width="60"
+                                Align="Center"
+                                Fixed="true"
+                                Filterable="false"
+                                MenuDisabled="true"
+                                Resizable="false">
+                                <Renderer Fn="attachRender" />
+                            </ext:Column>
                             <ext:Column runat="server"
                                 ID="ColBODelete"  Visible="true"
                                 Text=""
@@ -402,19 +415,6 @@
                                 <Renderer handler="var d =(App.EmployeeTerminated.value=='0')?deleteRender():' '; return editRender()+'&nbsp;&nbsp;' +d;" />
 
                             </ext:Column>
-                            <ext:Column runat="server" Visible="false"
-                                ID="Column12"
-                                Text="<%$ Resources:Common, Attach %>"
-                                Hideable="false"
-                                Width="60"
-                                Align="Center"
-                                Fixed="true"
-                                Filterable="false"
-                                MenuDisabled="true"
-                                Resizable="false">
-                                <Renderer Fn="attachRender" />
-                            </ext:Column>
-
 
 
 
@@ -483,7 +483,7 @@
                             DefaultAnchor="100%" Layout="ColumnLayout"
                             BodyPadding="5">
                             <Items>
-                                <ext:Panel runat="server">
+                                <ext:Panel runat="server" ID="firstPanel">
                                     <Items>
                                         <ext:TextField ID="SAId" Hidden="true" runat="server" LabelWidth="130" Width="275" FieldLabel="<%$ Resources:FieldrecordId%>" Disabled="true" Name="recordId" />
 
@@ -583,7 +583,7 @@
                                     </Items>
                                 </ext:Panel>
                                 
-                                <ext:Panel runat="server" PaddingSpec="0 0 0 20">
+                                <ext:Panel runat="server" PaddingSpec="0 0 0 20" ID="secondPanel">
                                     <Items>
                                         
 

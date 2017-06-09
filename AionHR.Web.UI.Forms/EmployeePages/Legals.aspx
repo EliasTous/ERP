@@ -214,20 +214,7 @@
 
 
 
-                            <ext:Column runat="server"
-                                ID="colEdit" Visible="true"
-                                Text=""
-                                Width="120"
-                                Hideable="false"
-                                Align="Center"
-                                Fixed="true"
-                                Filterable="false"
-                                MenuDisabled="true"
-                                Resizable="false">
-
-                                <Renderer Handler="var d =(App.EmployeeTerminated.value=='0')?deleteRender():' '; var att ='&nbsp;'; if(record.data['fileUrl']!='') att = attachRender(); return att+'&nbsp;&nbsp;' +editRender()+'&nbsp;&nbsp;' +d;" />
-
-                            </ext:Column>
+                          
                             <ext:Column runat="server"
                                 ID="colDelete" Flex="1" Visible="false"
                                 Text="<%$ Resources: Common , Delete %>"
@@ -252,6 +239,20 @@
                                 MenuDisabled="true"
                                 Resizable="false">
                                 <Renderer Fn="attachRender" />
+                            </ext:Column>
+                              <ext:Column runat="server"
+                                ID="colEdit" Visible="true"
+                                Text=""
+                                Width="120"
+                                Hideable="false"
+                                Align="Center"
+                                Fixed="true"
+                                Filterable="false"
+                                MenuDisabled="true"
+                                Resizable="false">
+
+                                <Renderer Handler="var d =(App.EmployeeTerminated.value=='0')?deleteRender():' '; var att ='&nbsp;'; if(record.data['fileUrl']!='') att = attachRender(); return att+'&nbsp;&nbsp;' +editRender()+'&nbsp;&nbsp;' +d;" />
+
                             </ext:Column>
 
 
@@ -393,20 +394,7 @@
 
 
 
-                            <ext:Column runat="server"
-                                ID="ColBCName" Visible="true"
-                                Text=""
-                                Width="100"
-                                Hideable="false"
-                                Align="Center"
-                                Fixed="true"
-                                Filterable="false"
-                                MenuDisabled="true"
-                                Resizable="false">
-
-                                <Renderer Handler="var d =(App.EmployeeTerminated.value=='0')?deleteRender():' '; var att ='&nbsp;'; if(record.data['fileUrl']!='') att = attachRender(); return att+'&nbsp;&nbsp;'+editRender()+'&nbsp;&nbsp;'+d; " />
-
-                            </ext:Column>
+                           
                             <ext:Column runat="server"
                                 ID="ColBCDelete" Flex="1" Visible="false"
                                 Text="<%$ Resources: Common , Delete %>"
@@ -432,7 +420,20 @@
                                 Resizable="false">
                                 <Renderer Fn="attachRender" />
                             </ext:Column>
+                             <ext:Column runat="server"
+                                ID="ColBCName" Visible="true"
+                                Text=""
+                                Width="100"
+                                Hideable="false"
+                                Align="Center"
+                                Fixed="true"
+                                Filterable="false"
+                                MenuDisabled="true"
+                                Resizable="false">
 
+                                <Renderer Handler="var d =(App.EmployeeTerminated.value=='0')?deleteRender():' '; var att ='&nbsp;'; if(record.data['fileUrl']!='') att = attachRender(); return att+'&nbsp;&nbsp;'+editRender()+'&nbsp;&nbsp;'+d; " />
+
+                            </ext:Column>
 
 
 

@@ -22,6 +22,8 @@ using AionHR.Services.Messaging;
 using AionHR.Model.Company.Structure;
 using AionHR.Model.System;
 using AionHR.Model.Employees.Profile;
+using AionHR.Model.Attributes;
+using AionHR.Model.Access_Control;
 
 namespace AionHR.Web.UI.Forms.EmployeePages
 {
@@ -30,6 +32,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
         ISystemService _systemService = ServiceLocator.Current.GetInstance<ISystemService>();
         IEmployeeService _employeeService = ServiceLocator.Current.GetInstance<IEmployeeService>();
         ICompanyStructureService _companyStructureService = ServiceLocator.Current.GetInstance<ICompanyStructureService>();
+        IAccessControlService _accessControlService = ServiceLocator.Current.GetInstance<IAccessControlService>();
         protected override void InitializeCulture()
         {
 
@@ -66,11 +69,71 @@ namespace AionHR.Web.UI.Forms.EmployeePages
 
                 bool disabled = EmployeeTerminated.Text == "1";
                 btnAdd.Disabled = disabled;
-                
+                if ((bool)_systemService.SessionHelper.Get("IsAdmin"))
+                    return;
+                try
+                {
+                    AccessControlApplier.ApplyAccessControlOnPage(typeof(EmployeeNote), null, employeementHistoryGrid, null, btnAdd);
+                    ApplyAccessControlOnCaseComments();
+                    //AccessControlApplier.ApplyAccessControlOnPage(typeof(CaseComment), null, caseCommentGrid, null, Button1);
+                   
+                }
+                catch (AccessDeniedException exp)
+                {
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorAccessDenied).Show();
+                    Viewport11.Hidden = true;
+                    return;
+                }
+               
             }
 
         }
+        private void ApplyAccessControlOnCaseComments()
+        {
+            UserPropertiesPermissions req = new UserPropertiesPermissions();
+            req.ClassId = (typeof(EmployeeNote).GetCustomAttributes(typeof(ClassIdentifier), false).ToList()[0] as ClassIdentifier).ClassID;
+            req.UserId = _systemService.SessionHelper.GetCurrentUserId();
+            ListResponse<UC> resp = _accessControlService.ChildGetAll<UC>(req);
 
+            foreach (var item in resp.Items)
+            {
+                if (item.propertyId == "3109003")
+                {
+                    if (item.accessLevel < 2)
+                    {
+                        employeementHistoryGrid.ColumnModel.Columns[employeementHistoryGrid.ColumnModel.Columns.Count - 1].Renderer.Handler = " return '';";
+                        newNoteText.ReadOnly = true;
+                    }
+
+                }
+
+                if (item.accessLevel == 0)
+                {
+                    if (item.propertyId == "3109002")
+                    {
+                        employeementHistoryGrid.ColumnModel.Columns[1].Renderer.Handler = employeementHistoryGrid.ColumnModel.Columns[1].Renderer.Handler.Replace("s.calendar()", "'***** '");
+                    }
+                    else
+                    {
+                        var indices = typeof(EmployeeNote).GetProperties().Where(x =>
+                        {
+                            var d = x.GetCustomAttributes(typeof(PropertyID), false);
+                            if (d.Count() == 0)
+                                return false;
+                            return (x.GetCustomAttributes(typeof(PropertyID), false).ToList()[0] as PropertyID).ID == item.propertyId;
+                        }).ToList();
+
+                        indices.ForEach(x =>
+                        {
+                            employeementHistoryGrid.ColumnModel.Columns[1].Renderer.Handler = employeementHistoryGrid.ColumnModel.Columns[1].Renderer.Handler.Replace("record.data['" + x.Name + "']", "'***** '");
+                        });
+                    }
+
+                }
+            }
+
+        }
 
 
         /// <summary>

@@ -23,6 +23,8 @@ using AionHR.Model.Company.Structure;
 using AionHR.Model.System;
 using AionHR.Model.Employees.Profile;
 using AionHR.Infrastructure.JSON;
+using AionHR.Model.Attributes;
+using AionHR.Model.Access_Control;
 
 namespace AionHR.Web.UI.Forms.EmployeePages
 {
@@ -31,6 +33,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
         ISystemService _systemService = ServiceLocator.Current.GetInstance<ISystemService>();
         IEmployeeService _employeeService = ServiceLocator.Current.GetInstance<IEmployeeService>();
         ICompanyStructureService _companyStructureService = ServiceLocator.Current.GetInstance<ICompanyStructureService>();
+        IAccessControlService _accessControlService = ServiceLocator.Current.GetInstance<IAccessControlService>();
         protected override void InitializeCulture()
         {
 
@@ -72,9 +75,11 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                 bool disabled = EmployeeTerminated.Text == "1";
 
                 Button6.Disabled = Button1.Disabled = Button11.Disabled = Button14.Disabled = Button12.Disabled = Button4.Disabled = SaveENButton.Disabled = Button15.Disabled = disabled;
+                if ((bool)_systemService.SessionHelper.Get("IsAdmin"))
+                    return;
                 try
                 {
-                    AccessControlApplier.ApplyAccessControlOnPage(typeof(Bonus), EditSAForm, SalaryGrid, Button6 , Button12);
+                    AccessControlApplier.ApplyAccessControlOnPage(typeof(EmployeeSalary), firstPanel, SalaryGrid, Button6 , Button12);
                 }
                 catch (AccessDeniedException exp)
                 {
@@ -85,7 +90,18 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                 }
                 try
                 {
-                    AccessControlApplier.ApplyAccessControlOnPage(typeof(EmployeeSalary), BOForm, BonusGrid, Button1, Button4);
+                    AccessControlApplier.ApplyAccessControlOnPage(typeof(EmployeeSalary), firstPanel, SalaryGrid, Button6, Button12);
+                }
+                catch (AccessDeniedException exp)
+                {
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorAccessDenied).Show();
+                    SalaryGrid.Hidden = true;
+
+                }
+                try
+                {
+                    AccessControlApplier.ApplyAccessControlOnPage(typeof(Bonus), BOForm, BonusGrid, Button1, Button4);
                 }
                 catch (AccessDeniedException exp)
                 {
@@ -96,31 +112,67 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                 }
                 try
                 {
-                    AccessControlApplier.ApplyAccessControlOnPage(typeof(SalaryDetail),  entitlementsForm, entitlementsGrid, Button11, SaveENButton);
+                    AccessControlApplier.ApplyAccessControlOnPage(typeof(SalaryDetail),  ENForm, entitlementsGrid, Button11, SaveENButton);
+                    ApplyAccessControlEntitlements();
                 }
                 catch (AccessDeniedException exp)
                 {
                     X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
                     X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorAccessDenied).Show();
-                    ENForm.Hidden = true;
+                    entitlementsForm.Hidden = true;
                     
                 }
                 try
                 {
-                    AccessControlApplier.ApplyAccessControlOnPage(typeof(SalaryDetail), DeductionForm, deductionGrid, Button14, Button15);
+                    AccessControlApplier.ApplyAccessControlOnPage(typeof(SalaryDetail), DEForm, deductionGrid, Button14, Button15);
+                    ApplyAccessControlDeductions();
                 }
                 catch (AccessDeniedException exp)
                 {
                     X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
                     X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorAccessDenied).Show();
-                    DEForm.Hidden = true;
+                    DeductionForm.Hidden = true;
                    
                 }
             }
 
         }
 
+        private void ApplyAccessControlEntitlements()
+        {
+            
+            
+            UserPropertiesPermissions req = new UserPropertiesPermissions();
+            req.ClassId = (typeof(SalaryDetail).GetCustomAttributes(typeof(ClassIdentifier), false).ToList()[0] as ClassIdentifier).ClassID;
+            req.UserId = _systemService.SessionHelper.GetCurrentUserId();
+            ListResponse<UC> resp = _accessControlService.ChildGetAll<UC>(req);
 
+            resp.Items.ForEach(property => {
+                switch (property.propertyId)
+                {
+                    case "3106301": entEdId.Disabled = property.accessLevel < 1; entEdId.InputType = property.accessLevel < 1 ? InputType.Password : InputType.Text; entEdId.ReadOnly = property.accessLevel < 2 ? true : false; break;
+                    default: break;
+                }
+            });
+
+        }
+
+        private void ApplyAccessControlDeductions()
+        {
+            UserPropertiesPermissions req = new UserPropertiesPermissions();
+            req.ClassId = (typeof(SalaryDetail).GetCustomAttributes(typeof(ClassIdentifier), false).ToList()[0] as ClassIdentifier).ClassID;
+            req.UserId = _systemService.SessionHelper.GetCurrentUserId();
+            ListResponse<UC> resp = _accessControlService.ChildGetAll<UC>(req);
+
+            resp.Items.ForEach(property => {
+                switch (property.propertyId)
+                {
+                    case "3106301": dedEdId.Disabled = property.accessLevel < 1; dedEdId.InputType = property.accessLevel < 1 ? InputType.Password : InputType.Text; dedEdId.ReadOnly = property.accessLevel < 2 ? true : false; break;
+                    default: break;
+                }
+            });
+
+        }
 
         /// <summary>
         /// the detailed tabs for the edit form. I put two tabs by default so hide unecessary or add addional

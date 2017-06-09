@@ -131,11 +131,14 @@ namespace AionHR.Web.UI.Forms
                 CasesClassId.Text = ClassId.CMCA.ToString();
 
                 date.Format = colDate.Format = colClosedDate.Format = closedDate.Format = _systemService.SessionHelper.GetDateformat();
-
+                if ((bool)_systemService.SessionHelper.Get("IsAdmin"))
+                    return;
+            
                 try
                 {
                     AccessControlApplier.ApplyAccessControlOnPage(typeof(Case), BasicInfoTab, GridPanel1, btnAdd, SaveButton);
                     AccessControlApplier.ApplyAccessControlOnPage(typeof(CaseComment), null, caseCommentGrid, null, Button1);
+                    AccessControlApplier.ApplyAccessControlOnPage(typeof(Attachement), EditDocumentForm, filesGrid, Button2, SaveDocumentButton);
                     //AccessControlApplier.ApplyAccessControlOnPage(typeof(CaseComment), null, caseCommentGrid, null, Button1);
                     ApplyAccessControlOnCaseComments();
                 }

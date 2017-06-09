@@ -24,6 +24,8 @@ using AionHR.Model.System;
 using AionHR.Model.Employees.Profile;
 using System.Net;
 using AionHR.Infrastructure.JSON;
+using AionHR.Model.Attributes;
+using AionHR.Model.Access_Control;
 
 namespace AionHR.Web.UI.Forms.EmployeePages
 {
@@ -32,6 +34,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
         ISystemService _systemService = ServiceLocator.Current.GetInstance<ISystemService>();
         IEmployeeService _employeeService = ServiceLocator.Current.GetInstance<IEmployeeService>();
         ICompanyStructureService _companyStructureService = ServiceLocator.Current.GetInstance<ICompanyStructureService>();
+        IAccessControlService _accessControlService = ServiceLocator.Current.GetInstance<IAccessControlService>();
         protected override void InitializeCulture()
         {
 
@@ -70,10 +73,57 @@ namespace AionHR.Web.UI.Forms.EmployeePages
 
                 bool disabled = EmployeeTerminated.Text == "1";
                 Button2.Disabled = Button7.Disabled = disabled;
+                if ((bool)_systemService.SessionHelper.Get("IsAdmin"))
+                    return;
+                try
+                {
+                    AccessControlApplier.ApplyAccessControlOnPage(typeof(Dependant), infoForm, dependandtsGrid, Button2, Button7);
+                    AccessControlApplier.ApplyAccessControlOnPage(typeof(Dependant), addressForm, dependandtsGrid, Button2, Button7);
+                }
+                catch (AccessDeniedException exp)
+                {
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorAccessDenied).Show();
+                    Viewport11.Hidden = true;
+                    return;
+                }
+                ApplyAccessControlOnAddress();
             }
 
         }
+        private void ApplyAccessControlOnAddress()
+        {
+            UserPropertiesPermissions req = new UserPropertiesPermissions();
+            req.ClassId = (typeof(Dependant).GetCustomAttributes(typeof(ClassIdentifier), false).ToList()[0] as ClassIdentifier).ClassID;
+            req.UserId = _systemService.SessionHelper.GetCurrentUserId();
+            ListResponse<UC> resp = _accessControlService.ChildGetAll<UC>(req);
 
+            var att = resp.Items.Where(x =>
+
+                x.propertyId == "3115010"
+           );
+            int level = 0;
+            if (att.Count() == 0 || att.ToList()[0].accessLevel == 2)
+                return;
+            level = att.ToList()[0].accessLevel;
+            switch (level)
+            {
+                case 0:
+                    addressForm.Items.ForEach(x =>
+                    {
+                        (x as Field).InputType = InputType.Password;
+                        (x as Field).ReadOnly = true;
+                    });
+                    break;
+                case 1:
+                    addressForm.Items.ForEach(x =>
+                    {
+
+                        (x as Field).ReadOnly = true;
+                    }); break;
+            }
+
+        }
         private void HideShowTabs()
         {
             //this.OtherInfoTab.Visible = false;
@@ -143,8 +193,11 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     addressId.Text = entity.addressId.recordId;
                     FillState();
                    stateId.Select(entity.addressId.stateId);
-                 
 
+                    if (entity.gender == "0")
+                        gender0.Checked = true;
+                    else
+                        gender1.Checked = true;
                     FillNationality();
                     countryId.Select(entity.addressId.countryId);
                     dependencyType.Select(entity.dependencyType);

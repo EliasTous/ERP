@@ -23,7 +23,7 @@ namespace AionHR.Web.UI.Forms
         static IAccessControlService _accessControlService = ServiceLocator.Current.GetInstance<IAccessControlService>();
 
 
-        public static void ApplyAccessControlOnPage(Type type, FormPanel form, GridPanel g, Button addButton, Button saveButton)
+        public static void ApplyAccessControlOnPage(Type type, AbstractPanel form, GridPanel g, Button addButton, Button saveButton)
         {
             #region old
             //RecordRequest userReq = new RecordRequest();
@@ -125,13 +125,22 @@ namespace AionHR.Web.UI.Forms
                 {
                     case 0: throw new AccessDeniedException();
                     case 1:
-                        g.ColumnModel.Columns[g.ColumnModel.Columns.Count - 1].Renderer.Handler = g.ColumnModel.Columns[g.ColumnModel.Columns.Count - 1].Renderer.Handler.Replace("deleteRender()", "' ' "); if (addButton != null) addButton.Disabled = true; if (saveButton != null) saveButton.Disabled = true;
-                        foreach (var item in form.Items)
-                        {
-                            item.Disabled = true;
-                        }
+                        if (g != null)
+                            g.ColumnModel.Columns[g.ColumnModel.Columns.Count - 1].Renderer.Handler = g.ColumnModel.Columns[g.ColumnModel.Columns.Count - 1].Renderer.Handler.Replace("deleteRender()", "' ' ");
+                        if (addButton != null)
+                            addButton.Disabled = true;
+                        if (saveButton != null)
+                            saveButton.Disabled = true;
+                        if (form != null)
+                            foreach (var item in form.Items)
+                            {
+                                item.Disabled = true;
+                            }
                         break;
-                    case 2: g.ColumnModel.Columns[g.ColumnModel.Columns.Count - 1].Renderer.Handler = g.ColumnModel.Columns[g.ColumnModel.Columns.Count - 1].Renderer.Handler.Replace("deleteRender()", "' ' "); break;
+                    case 2:
+                        if(g!=null)
+                            g.ColumnModel.Columns[g.ColumnModel.Columns.Count - 1].Renderer.Handler = g.ColumnModel.Columns[g.ColumnModel.Columns.Count - 1].Renderer.Handler.Replace("deleteRender()", "' ' ");
+                        break;
                     default: break;
                 }
             }
@@ -181,7 +190,7 @@ namespace AionHR.Web.UI.Forms
                         {
                             case 0:
 
-                                (item as Field).InputType = InputType.Password;
+                                (item as Field).InputType = InputType.Password; 
                                 (item as Field).ReadOnly = true; break;
                             case 1:
                                 (item as Field).ReadOnly = true; break;
@@ -191,6 +200,27 @@ namespace AionHR.Web.UI.Forms
                                 break;
 
                         }
+                    }
+                    else if (item is RadioGroup)
+                    {
+                        var results = properites.Where(x => x.index == (item as RadioGroup).GroupName).ToList();
+
+                        if (results.Count > 0)
+                        {
+                            level = results[0].accessLevel;
+                        }
+
+                        switch (level)
+                        {
+                            case 0:
+                                item.LazyItems.ForEach(x => (x as Radio).Disabled = true);
+                                break;
+                            case 1:
+                                item.LazyItems.ForEach(x => (x as Radio).ReadOnly = true);
+                                break;
+                            default: break;
+                        }
+
                     }
                 }
             }

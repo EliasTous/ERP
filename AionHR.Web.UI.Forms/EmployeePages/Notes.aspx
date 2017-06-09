@@ -26,6 +26,7 @@
         <ext:Hidden ID="CurrentEmployee" runat="server"  />
         <ext:Hidden ID="EmployeeTerminated" runat="server" />
         <ext:Hidden ID="CurrentEmployeeName" runat="server" />
+        <ext:Hidden ID="DisabledAdd" runat="server" />
           <ext:Viewport ID="Viewport11" runat="server" Layout="VBoxLayout" Padding="10">
             <LayoutConfig>
                 <ext:VBoxLayoutConfig Align="Stretch" />
@@ -54,7 +55,7 @@
                                     <Items>
                                           <ext:TextArea runat="server" ID="newNoteText" Region="North" Width="400" DefaultAnchor="100%" >
                                               <Listeners>
-                                                  <Change Handler="App.btnAdd.setDisabled(this.value=='');" />
+                                                  <Change Handler="App.btnAdd.setDisabled(this.value==''); " />
                                               </Listeners>
                                               </ext:TextArea>
                                 
@@ -151,6 +152,19 @@
                                 <Renderer Fn="editRender" />
 
                             </ext:Column>
+                            
+                            <ext:Column runat="server"
+                                ID="colAttach"
+                                Text="<%$ Resources:Common, Attach %>"
+                                Hideable="false"
+                                Width="60"
+                                Align="Center"
+                                Fixed="true"
+                                Filterable="false"
+                                MenuDisabled="true"
+                                Resizable="false">
+                                <Renderer Fn="attachRender" />
+                            </ext:Column>
                             <ext:Column runat="server"
                                 ID="ColEHDelete" Flex="1" Visible="true"
                                 Text="<%$ Resources: Common , Delete %>"
@@ -165,19 +179,6 @@
                                     </Renderer>
 
                             </ext:Column>
-                            <ext:Column runat="server"
-                                ID="colAttach"
-                                Text="<%$ Resources:Common, Attach %>"
-                                Hideable="false"
-                                Width="60"
-                                Align="Center"
-                                Fixed="true"
-                                Filterable="false"
-                                MenuDisabled="true"
-                                Resizable="false">
-                                <Renderer Fn="attachRender" />
-                            </ext:Column>
-
 
 
 

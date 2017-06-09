@@ -135,20 +135,7 @@
                             <ext:CheckColumn ID="ColIsWorkingDay" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldIsWorkingDay%>" DataIndex="isWorkingDay" Width="100" Hideable="false" />
 
 
-                           <ext:Column runat="server"
-                                ID="colEdit"  Visible="true"
-                                Text=""
-                                Width="100"
-                                Hideable="false"
-                                Align="Center"
-                                Fixed="true"
-                                Filterable="false"
-                                MenuDisabled="true"
-                                Resizable="false">
-
-                                <Renderer handler="return editRender()+'&nbsp;&nbsp;' +deleteRender(); " />
-
-                            </ext:Column>
+                          
                             <ext:Column runat="server"
                                 ID="colDelete" Visible="false"
                                 Text="<%$ Resources: Common , Delete %>"
@@ -174,7 +161,20 @@
                                 Resizable="false">
                                 <Renderer Fn="attachRender" />
                             </ext:Column>
+                             <ext:Column runat="server"
+                                ID="colEdit"  Visible="true"
+                                Text=""
+                                Width="100"
+                                Hideable="false"
+                                Align="Center"
+                                Fixed="true"
+                                Filterable="false"
+                                MenuDisabled="true"
+                                Resizable="false">
 
+                                <Renderer handler="return editRender()+'&nbsp;&nbsp;' +deleteRender(); " />
+
+                            </ext:Column>
 
 
 

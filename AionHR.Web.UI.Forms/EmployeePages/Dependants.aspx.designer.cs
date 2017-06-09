@@ -157,13 +157,13 @@ namespace AionHR.Web.UI.Forms.EmployeePages {
         protected global::Ext.Net.DateColumn birthDateCol;
         
         /// <summary>
-        /// ColCName control.
+        /// Column7 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Column ColCName;
+        protected global::Ext.Net.Column Column7;
         
         /// <summary>
         /// ColCDelete control.
@@ -175,13 +175,13 @@ namespace AionHR.Web.UI.Forms.EmployeePages {
         protected global::Ext.Net.Column ColCDelete;
         
         /// <summary>
-        /// Column7 control.
+        /// ColCName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Column Column7;
+        protected global::Ext.Net.Column ColCName;
         
         /// <summary>
         /// Toolbar4 control.

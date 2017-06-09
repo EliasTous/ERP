@@ -28,6 +28,8 @@ using AionHR.Model.LeaveManagement;
 using AionHR.Services.Messaging.System;
 using AionHR.Model.TimeAttendance;
 using AionHR.Infrastructure.JSON;
+using AionHR.Model.Access_Control;
+using AionHR.Model.Attributes;
 
 namespace AionHR.Web.UI.Forms.Controls
 {
@@ -56,6 +58,7 @@ namespace AionHR.Web.UI.Forms.Controls
         IEmployeeService _employeeService = ServiceLocator.Current.GetInstance<IEmployeeService>();
         ICompanyStructureService _companyStructureService = ServiceLocator.Current.GetInstance<ICompanyStructureService>();
         ITimeAttendanceService _timeAttendanceService = ServiceLocator.Current.GetInstance<ITimeAttendanceService>();
+        IAccessControlService _accessControlService = ServiceLocator.Current.GetInstance<IAccessControlService>();
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -73,6 +76,25 @@ namespace AionHR.Web.UI.Forms.Controls
 
                 DateFormat.Text = _systemService.SessionHelper.GetDateformat().ToUpper();
                 startDate.Format = endDate.Format = _systemService.SessionHelper.GetDateformat();
+                try
+                {
+                    AccessControlApplier.ApplyAccessControlOnPage(typeof(LeaveRequest), BasicInfoTab, null, null, SaveButton);
+                    ClassPermissionRecordRequest classReq = new ClassPermissionRecordRequest();
+                    classReq.ClassId = (typeof(LeaveRequest).GetCustomAttributes(typeof(ClassIdentifier), false).ToList()[0]as ClassIdentifier).ClassID;
+                    classReq.UserId = _systemService.SessionHelper.GetCurrentUserId();
+                    RecordResponse<ModuleClass> modClass = _accessControlService.ChildGetRecord<ModuleClass>(classReq);
+                    if (modClass != null && modClass.result != null && modClass.result.accessLevel<2 )
+                    {
+                        ViewOnly.Text = "1";
+                    }
+                }
+                catch (AccessDeniedException exp)
+                {
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorAccessDenied).Show();
+                    EditRecordWindow.Close();
+                    return;
+                }
 
             }
 
@@ -146,7 +168,8 @@ namespace AionHR.Web.UI.Forms.Controls
                 setUsed(true);
             else
             { setNormal(); }
-
+            if (ViewOnly.Text=="1")
+                SaveButton.Disabled = true;
 
             this.EditRecordWindow.Title = Resources.Common.EditWindowsTitle;
             this.EditRecordWindow.Show();
@@ -249,22 +272,7 @@ namespace AionHR.Web.UI.Forms.Controls
 
 
 
-        /// <summary>
-        /// Deleting all selected record
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-
-        /// <summary>
-        /// Direct method for removing multiple records
-        /// </summary>
-
-
-        /// <summary>
-        /// Adding new record
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+  
 
 
 

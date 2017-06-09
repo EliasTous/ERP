@@ -664,7 +664,7 @@
                                                 MenuDisabled="true"
                                                 Resizable="false">
                                                 <SummaryRenderer Handler="if(App.entitlementsGrid.getStore().getCount()>0) return '<hr />'" />
-                                                <Renderer Handler="if(#{IsPayrollPosted}.value=='0') return editRender()+'&nbsp;&nbsp;'+deleteRender(); " />
+                                                <Renderer Handler="if(#{IsPayrollPosted}.value=='1') return editRender()+'&nbsp;&nbsp;'+deleteRender(); " />
                                             </ext:Column>
                                         </Columns>
                                     </ColumnModel>
@@ -779,7 +779,7 @@
                                                 Hideable="false"
                                                 MenuDisabled="true"
                                                 Resizable="false">
-                                                <Renderer Handler="if(#{IsPayrollPosted}.value=='0') return editRender()+'&nbsp;&nbsp;'+deleteRender(); " />
+                                                <Renderer Handler="if(#{IsPayrollPosted}.value=='1') return editRender()+'&nbsp;&nbsp;'+deleteRender(); " />
                                                 <SummaryRenderer Handler=" if(App.deductionGrid.getStore().getCount()>0) return '<hr />';" />
                                             </ext:Column>
 

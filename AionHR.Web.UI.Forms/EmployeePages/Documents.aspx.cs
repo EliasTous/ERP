@@ -72,6 +72,18 @@ namespace AionHR.Web.UI.Forms.EmployeePages
 
                 bool disabled = EmployeeTerminated.Text == "1";
                 btnAdd.Disabled = disabled;
+                try
+                {
+                    AccessControlApplier.ApplyAccessControlOnPage(typeof(Attachement), EditDocumentForm, employeeDocumentsGrid, btnAdd, SaveDocumentButton);
+
+                }
+                catch (AccessDeniedException exp)
+                {
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorAccessDenied).Show();
+                    employeeDocumentsGrid.Hidden = true;
+                    return;
+                }
             }
 
         }

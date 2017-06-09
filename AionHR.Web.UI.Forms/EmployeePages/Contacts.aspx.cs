@@ -24,6 +24,8 @@ using AionHR.Model.System;
 using AionHR.Model.Employees.Profile;
 using System.Net;
 using AionHR.Infrastructure.JSON;
+using AionHR.Model.Attributes;
+using AionHR.Model.Access_Control;
 
 namespace AionHR.Web.UI.Forms.EmployeePages
 {
@@ -32,6 +34,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
         ISystemService _systemService = ServiceLocator.Current.GetInstance<ISystemService>();
         IEmployeeService _employeeService = ServiceLocator.Current.GetInstance<IEmployeeService>();
         ICompanyStructureService _companyStructureService = ServiceLocator.Current.GetInstance<ICompanyStructureService>();
+        IAccessControlService _accessControlService = ServiceLocator.Current.GetInstance<IAccessControlService>();
         protected override void InitializeCulture()
         {
 
@@ -69,9 +72,102 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                 bool disabled = EmployeeTerminated.Text == "1";
 
                 Button7.Disabled = Button2.Disabled = btnAdd.Disabled = SaveEmergencyContactButton.Disabled = disabled;
+                if ((bool)_systemService.SessionHelper.Get("IsAdmin"))
+                    return;
+                ApplySecurityContacts();
 
+                ApplySecurityEmergencyContacts();
             }
 
+        }
+
+        private void ApplySecurityEmergencyContacts()
+        {
+            try
+            {
+                AccessControlApplier.ApplyAccessControlOnPage(typeof(EmployeeEmergencyContact), ecbasicInfo, emergencyContactsGrid, btnAdd, SaveEmergencyContactButton);
+            }
+            catch (AccessDeniedException exp)
+            {
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorAccessDenied).Show();
+                contactGrid.Hidden = true;
+
+            }
+            UserPropertiesPermissions req = new UserPropertiesPermissions();
+            req.ClassId = (typeof(EmployeeEmergencyContact).GetCustomAttributes(typeof(ClassIdentifier), false).ToList()[0] as ClassIdentifier).ClassID;
+            req.UserId = _systemService.SessionHelper.GetCurrentUserId();
+            ListResponse<UC> resp = _accessControlService.ChildGetAll<UC>(req);
+
+            var att = resp.Items.Where(x =>
+
+                x.propertyId == "3112107"
+           );
+            if(att.Count()>0)
+            {
+                switch(att.ToList()[0].accessLevel)
+                {
+                    case 0:
+                        LimitEmergencyContactAddress(true); break;
+                    case 1: LimitEmergencyContactAddress(false); break;
+                    case 2:
+                    default: break;
+
+                }
+            }
+        }
+        private void LimitContactAddress(bool isNoAccess)//true no access, false view only
+        {
+            //No Access
+            cocity.Disabled = costId.Disabled = costreet1.Disabled = costreet2.Disabled = conaId.Disabled = copostalCode.Disabled = isNoAccess;
+            cocity.InputType = costId.InputType = costreet1.InputType = costreet2.InputType = conaId.InputType = copostalCode.InputType = isNoAccess ? InputType.Password : InputType.Text;
+            //View Only
+            cocity.ReadOnly = costId.ReadOnly = costreet1.ReadOnly = costreet2.ReadOnly = conaId.ReadOnly = copostalCode.ReadOnly = !isNoAccess;
+        }
+
+        private void LimitEmergencyContactAddress(bool isNoAccess)//true no access, false view only
+        {
+            //No Access
+            city.Disabled = ecstId.Disabled = street1.Disabled = street2.Disabled = ecnaId.Disabled = postalCode.Disabled = isNoAccess;
+            city.InputType = ecstId.InputType = street1.InputType = street2.InputType = ecnaId.InputType = postalCode.InputType = isNoAccess ? InputType.Password : InputType.Text; ;
+            //View Only
+            city.ReadOnly = ecstId.ReadOnly = street1.ReadOnly = street2.ReadOnly = ecnaId.ReadOnly = postalCode.ReadOnly = !isNoAccess;
+
+        }
+        private void ApplySecurityContacts()
+        {
+            try
+            {
+                AccessControlApplier.ApplyAccessControlOnPage(typeof(EmployeeContact), ContactsForm, contactGrid, Button2, Button7);
+            }
+            catch (AccessDeniedException exp)
+            {
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorAccessDenied).Show();
+                contactGrid.Hidden = true;
+
+            }
+            UserPropertiesPermissions req = new UserPropertiesPermissions();
+            req.ClassId = (typeof(EmployeeContact).GetCustomAttributes(typeof(ClassIdentifier), false).ToList()[0] as ClassIdentifier).ClassID;
+            req.UserId = _systemService.SessionHelper.GetCurrentUserId();
+            ListResponse<UC> resp = _accessControlService.ChildGetAll<UC>(req);
+
+            var att = resp.Items.Where(x =>
+
+                x.propertyId == "3112202"
+           );
+            if (att.Count() > 0)
+            {
+                switch (att.ToList()[0].accessLevel)
+                {
+                    case 0:
+                        LimitContactAddress(true); break;
+                    case 1: LimitContactAddress(false); break;
+                    case 2:
+                    default: break;
+
+                }
+            }
         }
 
         private void HideShowTabs()

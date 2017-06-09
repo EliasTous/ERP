@@ -250,6 +250,42 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to File Name.
+        /// </summary>
+        internal static string Property2005001 {
+            get {
+                return ResourceManager.GetString("Property2005001", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Url.
+        /// </summary>
+        internal static string Property2005002 {
+            get {
+                return ResourceManager.GetString("Property2005002", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Folder.
+        /// </summary>
+        internal static string Property2005003 {
+            get {
+                return ResourceManager.GetString("Property2005003", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Date.
+        /// </summary>
+        internal static string Property2005004 {
+            get {
+                return ResourceManager.GetString("Property2005004", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Date .
         /// </summary>
         internal static string Property2006001 {
@@ -736,78 +772,6 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Mobile.
-        /// </summary>
-        internal static string Property31000010 {
-            get {
-                return ResourceManager.GetString("Property31000010", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Religion.
-        /// </summary>
-        internal static string Property31000011 {
-            get {
-                return ResourceManager.GetString("Property31000011", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Birth Date.
-        /// </summary>
-        internal static string Property31000012 {
-            get {
-                return ResourceManager.GetString("Property31000012", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Nationality.
-        /// </summary>
-        internal static string Property31000013 {
-            get {
-                return ResourceManager.GetString("Property31000013", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Vacation.
-        /// </summary>
-        internal static string Property31000014 {
-            get {
-                return ResourceManager.GetString("Property31000014", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Calendar.
-        /// </summary>
-        internal static string Property31000015 {
-            get {
-                return ResourceManager.GetString("Property31000015", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Place of Birth.
-        /// </summary>
-        internal static string Property31000016 {
-            get {
-                return ResourceManager.GetString("Property31000016", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Hire date.
-        /// </summary>
-        internal static string Property31000017 {
-            get {
-                return ResourceManager.GetString("Property31000017", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Fisrt Name .
         /// </summary>
         internal static string Property3100002 {
@@ -876,6 +840,141 @@ namespace Resources {
         internal static string Property3100009 {
             get {
                 return ResourceManager.GetString("Property3100009", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mobile.
+        /// </summary>
+        internal static string Property3100010 {
+            get {
+                return ResourceManager.GetString("Property3100010", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Religion.
+        /// </summary>
+        internal static string Property3100011 {
+            get {
+                return ResourceManager.GetString("Property3100011", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Birth Date.
+        /// </summary>
+        internal static string Property3100012 {
+            get {
+                return ResourceManager.GetString("Property3100012", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nationality.
+        /// </summary>
+        internal static string Property3100013 {
+            get {
+                return ResourceManager.GetString("Property3100013", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vacation.
+        /// </summary>
+        internal static string Property3100014 {
+            get {
+                return ResourceManager.GetString("Property3100014", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Calendar.
+        /// </summary>
+        internal static string Property3100015 {
+            get {
+                return ResourceManager.GetString("Property3100015", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Place of Birth.
+        /// </summary>
+        internal static string Property3100016 {
+            get {
+                return ResourceManager.GetString("Property3100016", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hire date.
+        /// </summary>
+        internal static string Property3100017 {
+            get {
+                return ResourceManager.GetString("Property3100017", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Position.
+        /// </summary>
+        internal static string Property3100018 {
+            get {
+                return ResourceManager.GetString("Property3100018", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Department.
+        /// </summary>
+        internal static string Property3100019 {
+            get {
+                return ResourceManager.GetString("Property3100019", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Branch.
+        /// </summary>
+        internal static string Property3100020 {
+            get {
+                return ResourceManager.GetString("Property3100020", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Division.
+        /// </summary>
+        internal static string Property3100021 {
+            get {
+                return ResourceManager.GetString("Property3100021", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Manager.
+        /// </summary>
+        internal static string Property3100022 {
+            get {
+                return ResourceManager.GetString("Property3100022", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Picture.
+        /// </summary>
+        internal static string Property3100023 {
+            get {
+                return ResourceManager.GetString("Property3100023", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Full Name.
+        /// </summary>
+        internal static string Property3100024 {
+            get {
+                return ResourceManager.GetString("Property3100024", resourceCulture);
             }
         }
         
@@ -952,11 +1051,47 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Name.
+        ///   Looks up a localized string similar to Check Type.
         /// </summary>
         internal static string Property3102001 {
             get {
                 return ResourceManager.GetString("Property3102001", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remarks.
+        /// </summary>
+        internal static string Property3102002 {
+            get {
+                return ResourceManager.GetString("Property3102002", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Date.
+        /// </summary>
+        internal static string Property3102003 {
+            get {
+                return ResourceManager.GetString("Property3102003", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Expiry Date.
+        /// </summary>
+        internal static string Property3102004 {
+            get {
+                return ResourceManager.GetString("Property3102004", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Attachment.
+        /// </summary>
+        internal static string Property3102005 {
+            get {
+                return ResourceManager.GetString("Property3102005", resourceCulture);
             }
         }
         
@@ -1375,6 +1510,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Notes.
+        /// </summary>
+        internal static string Property3108007 {
+            get {
+                return ResourceManager.GetString("Property3108007", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to User.
         /// </summary>
         internal static string Property3109001 {
@@ -1555,38 +1699,47 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Remarks.
+        /// </summary>
+        internal static string Property3112002 {
+            get {
+                return ResourceManager.GetString("Property3112002", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Date.
+        /// </summary>
+        internal static string Property3112003 {
+            get {
+                return ResourceManager.GetString("Property3112003", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Exipry Date.
+        /// </summary>
+        internal static string Property3112004 {
+            get {
+                return ResourceManager.GetString("Property3112004", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to File.
+        /// </summary>
+        internal static string Property3112005 {
+            get {
+                return ResourceManager.GetString("Property3112005", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Name .
         /// </summary>
         internal static string Property3112101 {
             get {
                 return ResourceManager.GetString("Property3112101", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Postal Code.
-        /// </summary>
-        internal static string Property31121010 {
-            get {
-                return ResourceManager.GetString("Property31121010", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to State.
-        /// </summary>
-        internal static string Property31121011 {
-            get {
-                return ResourceManager.GetString("Property31121011", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Country name .
-        /// </summary>
-        internal static string Property31121012 {
-            get {
-                return ResourceManager.GetString("Property31121012", resourceCulture);
             }
         }
         
@@ -1636,29 +1789,11 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Street 1.
+        ///   Looks up a localized string similar to Address.
         /// </summary>
         internal static string Property3112107 {
             get {
                 return ResourceManager.GetString("Property3112107", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Street 2.
-        /// </summary>
-        internal static string Property3112108 {
-            get {
-                return ResourceManager.GetString("Property3112108", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to City.
-        /// </summary>
-        internal static string Property3112109 {
-            get {
-                return ResourceManager.GetString("Property3112109", resourceCulture);
             }
         }
         
@@ -1672,56 +1807,11 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Street 1.
+        ///   Looks up a localized string similar to Address.
         /// </summary>
         internal static string Property3112202 {
             get {
                 return ResourceManager.GetString("Property3112202", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Street 2.
-        /// </summary>
-        internal static string Property3112203 {
-            get {
-                return ResourceManager.GetString("Property3112203", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to City.
-        /// </summary>
-        internal static string Property3112204 {
-            get {
-                return ResourceManager.GetString("Property3112204", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Postal Code.
-        /// </summary>
-        internal static string Property3112205 {
-            get {
-                return ResourceManager.GetString("Property3112205", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to State.
-        /// </summary>
-        internal static string Property3112206 {
-            get {
-                return ResourceManager.GetString("Property3112206", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Country name.
-        /// </summary>
-        internal static string Property3112207 {
-            get {
-                return ResourceManager.GetString("Property3112207", resourceCulture);
             }
         }
         
@@ -1776,6 +1866,150 @@ namespace Resources {
         internal static string Property3114001 {
             get {
                 return ResourceManager.GetString("Property3114001", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Notice Period.
+        /// </summary>
+        internal static string Property3114101 {
+            get {
+                return ResourceManager.GetString("Property3114101", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Probation End Date.
+        /// </summary>
+        internal static string Property3114102 {
+            get {
+                return ResourceManager.GetString("Property3114102", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Next Review Date.
+        /// </summary>
+        internal static string Property3114103 {
+            get {
+                return ResourceManager.GetString("Property3114103", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Term End Date.
+        /// </summary>
+        internal static string Property3114104 {
+            get {
+                return ResourceManager.GetString("Property3114104", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Recruitment Info.
+        /// </summary>
+        internal static string Property3114105 {
+            get {
+                return ResourceManager.GetString("Property3114105", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Recruitment Cost.
+        /// </summary>
+        internal static string Property3114106 {
+            get {
+                return ResourceManager.GetString("Property3114106", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dependency Type.
+        /// </summary>
+        internal static string Property3115001 {
+            get {
+                return ResourceManager.GetString("Property3115001", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to First Name.
+        /// </summary>
+        internal static string Property3115002 {
+            get {
+                return ResourceManager.GetString("Property3115002", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Middle Name.
+        /// </summary>
+        internal static string Property3115003 {
+            get {
+                return ResourceManager.GetString("Property3115003", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Last Name.
+        /// </summary>
+        internal static string Property3115004 {
+            get {
+                return ResourceManager.GetString("Property3115004", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Birth Date.
+        /// </summary>
+        internal static string Property3115005 {
+            get {
+                return ResourceManager.GetString("Property3115005", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Gender.
+        /// </summary>
+        internal static string Property3115006 {
+            get {
+                return ResourceManager.GetString("Property3115006", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Phone Number.
+        /// </summary>
+        internal static string Property3115007 {
+            get {
+                return ResourceManager.GetString("Property3115007", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Is Student.
+        /// </summary>
+        internal static string Property3115008 {
+            get {
+                return ResourceManager.GetString("Property3115008", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Is Citizen.
+        /// </summary>
+        internal static string Property3115009 {
+            get {
+                return ResourceManager.GetString("Property3115009", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Address.
+        /// </summary>
+        internal static string Property3115010 {
+            get {
+                return ResourceManager.GetString("Property3115010", resourceCulture);
             }
         }
         
@@ -1951,6 +2185,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Location.
+        /// </summary>
+        internal static string Property4102003 {
+            get {
+                return ResourceManager.GetString("Property4102003", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Name.
         /// </summary>
         internal static string Property4103001 {
@@ -2113,6 +2356,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Duration.
+        /// </summary>
+        internal static string Property4105104 {
+            get {
+                return ResourceManager.GetString("Property4105104", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Break.
         /// </summary>
         internal static string property4105201 {
@@ -2163,6 +2415,15 @@ namespace Resources {
         internal static string Property4106102 {
             get {
                 return ResourceManager.GetString("Property4106102", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Duration.
+        /// </summary>
+        internal static string Property4106103 {
+            get {
+                return ResourceManager.GetString("Property4106103", resourceCulture);
             }
         }
         
@@ -2226,6 +2487,15 @@ namespace Resources {
         internal static string Property4106207 {
             get {
                 return ResourceManager.GetString("Property4106207", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Day.
+        /// </summary>
+        internal static string Property4106208 {
+            get {
+                return ResourceManager.GetString("Property4106208", resourceCulture);
             }
         }
         
@@ -2883,15 +3153,6 @@ namespace Resources {
         internal static string Property5102113 {
             get {
                 return ResourceManager.GetString("Property5102113", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Currency Name.
-        /// </summary>
-        internal static string Property5102114 {
-            get {
-                return ResourceManager.GetString("Property5102114", resourceCulture);
             }
         }
         

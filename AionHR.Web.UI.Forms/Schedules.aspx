@@ -12,7 +12,7 @@
     <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
     <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
     <script type="text/javascript" src="Scripts/moment.js"></script>
-    <script type="text/javascript" src="Scripts/Schedules.js?id=7"></script>
+    <script type="text/javascript" src="Scripts/Schedules.js?id=10"></script>
     <script type="text/javascript" src="Scripts/common.js"></script>
 
     <script type="text/javascript">
@@ -42,6 +42,8 @@
         <ext:Hidden ID="CurrentSchedule" runat="server" />
         <ext:Hidden ID="CurrentDow" runat="server" />
         <ext:Hidden ID="IsWorkingDay" runat="server" />
+        <ext:Hidden ID="editDisabled" runat="server" />
+        <ext:Hidden ID="deleteDisabled" runat="server" />
         <ext:Store
             ID="Store1"
             runat="server"
@@ -145,7 +147,6 @@
                             <ext:Column Visible="false" ID="ColrecordId" MenuDisabled="true" runat="server" DataIndex="recordId" Hideable="false" Width="75" Align="Center" />
 
                             <ext:Column CellCls="cellLink" Sortable="true" ID="ColName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldName%>" DataIndex="name" Flex="2" Hideable="false">
-                               
                             </ext:Column>
 
                             <ext:Column ID="Colfci_min_ot" MenuDisabled="true" runat="server" Text="<%$ Resources: Fieldfci_min_ot%>" DataIndex="fci_min_ot" Hideable="false" Width="75" Align="Center" Flex="1" />
@@ -194,7 +195,7 @@
                                 Resizable="false">
                                 <Renderer Fn="attachRender" />
                             </ext:Column>
-                            <ext:Column runat="server" 
+                            <ext:Column runat="server"
                                 ID="colDetails"
                                 Text="<%$ Resources:EditDaysButton %>"
                                 Hideable="false"
@@ -204,7 +205,7 @@
                                 Filterable="false"
                                 MenuDisabled="true"
                                 Resizable="false">
-                                <Renderer handler="return editRender()+'&nbsp;&nbsp;'+attachRender()+'&nbsp;&nbsp;'+deleteRender(); " />
+                                <Renderer Handler="return editRender()+'&nbsp;&nbsp;'+attachRender()+'&nbsp;&nbsp;'+deleteRender(); " />
                             </ext:Column>
 
 
@@ -279,7 +280,7 @@
 
                         </CellClick>
                     </DirectEvents>
-                      <Listeners>
+                    <Listeners>
                         <Render Handler="this.on('cellclick', cellClick);" />
                     </Listeners>
                     <Store>
@@ -334,7 +335,7 @@
                             <ext:Column runat="server" ID="firstInCol" Text="<%$ Resources: FieldFirstIn %>" DataIndex="firstIn" Width="100" />
                             <ext:Column runat="server" ID="lastOutCol" Text="<%$ Resources: FieldLastOut %>" DataIndex="lastOut" Width="100" />
                             <ext:Column runat="server" ID="Column2" Text="<%$ Resources: FieldDuration %>" DataIndex="durationFormatted" Width="100" />
-                            <ext:Column runat="server" 
+                            <ext:Column runat="server"
                                 ID="Column1" Visible="true"
                                 Text="<%$ Resources:Common, Edit %>"
                                 Width="60"
@@ -346,7 +347,7 @@
                                 Resizable="false">
 
                                 <Renderer Fn="editRender" />
-                                </ext:Column>
+                            </ext:Column>
                         </Columns>
                     </ColumnModel>
                 </ext:GridPanel>
@@ -471,17 +472,17 @@
                                         <Change Handler="CheckSession();" />
                                     </Listeners>
                                 </ext:ComboBox>
-                                <ext:TextField ID="firstIn" FieldLabel="<%$Resources: FieldFirstIn %>" runat="server" DataIndex="firstIn" AllowBlank="false">
-                                    <Plugins>
+                                <ext:TextField ID="firstIn" FieldLabel="<%$Resources: FieldFirstIn %>" runat="server" Name="firstIn" DataIndex="firstIn" AllowBlank="false">
+                             <%--       <Plugins>
                                         <ext:InputMask Mask="99:99" />
 
-                                    </Plugins>
+                                    </Plugins>--%>
                                     <Validator Handler="return validateFrom(this.getValue());" />
                                 </ext:TextField>
-                                <ext:TextField ID="lastOut" runat="server" FieldLabel="<%$Resources: FieldLastOut %>" DataIndex="lastOut" AllowBlank="false" BlankText="<%$ Resources:Common, MandatoryField%>">
-                                    <Plugins>
+                                <ext:TextField ID="lastOut" runat="server" FieldLabel="<%$Resources: FieldLastOut %>" Name="lastOut" DataIndex="lastOut" AllowBlank="false" BlankText="<%$ Resources:Common, MandatoryField%>">
+                                    <%--<Plugins>
                                         <ext:InputMask Mask="99:99" />
-                                    </Plugins>
+                                    </Plugins>--%>
                                     <Validator Handler="return validateTo(this.getValue(),this.prev().getValue());" />
                                 </ext:TextField>
 
@@ -508,12 +509,17 @@
                                         </ext:Store>
                                     </Store>
                                     <Plugins>
-                                        <ext:RowEditing runat="server" ClicksToMoveEditor="1" AutoCancel="false" SaveBtnText="<%$ Resources:Common , Save %>" CancelBtnText="<%$ Resources:Common , Cancel %>"  ErrorsText="" />
+                                        <ext:RowEditing runat="server" ClicksToMoveEditor="1" AutoCancel="false" SaveBtnText="<%$ Resources:Common , Save %>" CancelBtnText="<%$ Resources:Common , Cancel %>" ErrorsText="" ValidateRequestMode="Enabled">
+                                            <Listeners>
+                                                <BeforeEdit Handler="if (App.editDisabled.value == '1')
+        return false;" />
+                                            </Listeners>
+                                        </ext:RowEditing>
                                     </Plugins>
                                     <TopBar>
                                         <ext:Toolbar runat="server">
                                             <Items>
-                                                <ext:Button runat="server" Text="<%$ Resources:BtnAddPeriod %>" Icon="UserAdd">
+                                                <ext:Button runat="server" Text="<%$ Resources:BtnAddPeriod %>" Icon="UserAdd" ID="AddBreakButton">
                                                     <Listeners>
                                                         <Click Fn="addBreak" />
                                                     </Listeners>
@@ -552,9 +558,9 @@
                                                         EndNumberField="toField"--%>
                                                     <ext:TextField runat="server" ID="fromField" InvalidText="<%$ Resources:Common,TimeFieldError %>">
 
-                                                        <Plugins>
+                                                 <%--       <Plugins>
                                                             <ext:InputMask Mask="99:99"></ext:InputMask>
-                                                        </Plugins>
+                                                        </Plugins>--%>
                                                         <Validator Handler="return validateFrom(this.getValue());"></Validator>
 
                                                     </ext:TextField>
@@ -572,13 +578,13 @@
                                                          Vtype="numberrange"--%>
                                                     <ext:TextField
                                                         runat="server"
-                                                        ID="toField"  InvalidText="<%$ Resources:Common,TimeFieldError %>"
+                                                        ID="toField" InvalidText="<%$ Resources:Common,TimeFieldError %>"
                                                         AllowBlank="false">
-                                                        <Plugins>
+                                                     <%--   <Plugins>
                                                             <ext:InputMask runat="server" Mask="99:99">
                                                             </ext:InputMask>
 
-                                                        </Plugins>
+                                                        </Plugins>--%>
                                                         <Validator Handler="return validateTo(this.getValue(),this.prev().getValue());" />
 
                                                     </ext:TextField>
@@ -592,13 +598,14 @@
 
                                                 </Editor>
                                             </ext:CheckColumn>
-
+                                            <ext:Column runat="server" Visible="false"></ext:Column>
 
 
                                         </Columns>
                                     </ColumnModel>
                                     <Listeners>
-                                        <SelectionChange Handler="App.Button2.setDisabled(!selected.length);" />
+                                        <SelectionChange Handler="if (App.deleteDisabled.value == '1')
+        return; App.Button2.setDisabled(!selected.length);" />
                                     </Listeners>
                                 </ext:GridPanel>
                             </Items>
@@ -679,7 +686,7 @@
                             </Plugins>
                             <Validator Handler="return validateTo(this.getValue(),this.prev().getValue());" />
                         </ext:TextField>
-                         <ext:TextField ID="TextField3" FieldLabel="<%$ Resources: BreakTimeFrom %>" runat="server" DataIndex="breakFrom" Name="breakFrom" AllowBlank="false">
+                        <ext:TextField ID="TextField3" FieldLabel="<%$ Resources: BreakTimeFrom %>" runat="server" DataIndex="breakFrom" Name="breakFrom" AllowBlank="false">
                             <Plugins>
                                 <ext:InputMask Mask="99:99" />
 
@@ -692,42 +699,42 @@
                             </Plugins>
                             <Validator Handler="return validateTo(this.getValue(),this.prev().getValue());" />
                         </ext:TextField>
-                         <ext:ComboBox QueryMode="Local" ForceSelection="true" AllowBlank="false"  TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: FieldworkingDays %>" Name="workingDays" runat="server" ID="ComboBox1">
+                        <ext:ComboBox QueryMode="Local" ForceSelection="true" AllowBlank="false" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: FieldworkingDays %>" Name="workingDays" runat="server" ID="ComboBox1">
                             <Items>
-                                
+
                                 <ext:ListItem Text="5" Value="5" />
                                 <ext:ListItem Text="6" Value="6" />
                                 <ext:ListItem Text="7" Value="7" />
                             </Items>
                         </ext:ComboBox>
-                         <ext:ComboBox runat="server" QueryMode="Local" ForceSelection="true" AllowBlank="false" TypeAhead="true" MinChars="1" DisplayField="name" ValueField="recordId" ID="workingDayTypeId" FieldLabel="<%$ Resources:WorkingDayType %>" SubmitValue="true">
-                                   <Store>
-                                       <ext:Store runat="server" ID="workDTStore" >
-                                           <Model>
-                                               <ext:Model runat="server" IDProperty="recordId">
-                                                   <Fields>
-                                                       <ext:ModelField Name="recordId" />
-                                                       <ext:ModelField Name="name" />
-                                                   </Fields>
-                                               </ext:Model>
-                                           </Model>
-                                       </ext:Store>
-                                   </Store>
-                               </ext:ComboBox>
+                        <ext:ComboBox runat="server" QueryMode="Local" ForceSelection="true" AllowBlank="false" TypeAhead="true" MinChars="1" DisplayField="name" ValueField="recordId" ID="workingDayTypeId" FieldLabel="<%$ Resources:WorkingDayType %>" SubmitValue="true">
+                            <Store>
+                                <ext:Store runat="server" ID="workDTStore">
+                                    <Model>
+                                        <ext:Model runat="server" IDProperty="recordId">
+                                            <Fields>
+                                                <ext:ModelField Name="recordId" />
+                                                <ext:ModelField Name="name" />
+                                            </Fields>
+                                        </ext:Model>
+                                    </Model>
+                                </ext:Store>
+                            </Store>
+                        </ext:ComboBox>
                         <ext:ComboBox runat="server" QueryMode="Local" ForceSelection="true" AllowBlank="false" TypeAhead="true" MinChars="1" DisplayField="name" ValueField="recordId" ID="weekendDayTypeId" FieldLabel="<%$ Resources:WeekendDayType %>" SubmitValue="true">
-                                   <Store>
-                                       <ext:Store runat="server" ID="WeekendDTStore" >
-                                           <Model>
-                                               <ext:Model runat="server" IDProperty="recordId">
-                                                   <Fields>
-                                                       <ext:ModelField Name="recordId" />
-                                                       <ext:ModelField Name="name" />
-                                                   </Fields>
-                                               </ext:Model>
-                                           </Model>
-                                       </ext:Store>
-                                   </Store>
-                               </ext:ComboBox>
+                            <Store>
+                                <ext:Store runat="server" ID="WeekendDTStore">
+                                    <Model>
+                                        <ext:Model runat="server" IDProperty="recordId">
+                                            <Fields>
+                                                <ext:ModelField Name="recordId" />
+                                                <ext:ModelField Name="name" />
+                                            </Fields>
+                                        </ext:Model>
+                                    </Model>
+                                </ext:Store>
+                            </Store>
+                        </ext:ComboBox>
                     </Items>
 
                 </ext:FormPanel>
@@ -745,7 +752,7 @@
                         <Click OnEvent="SavePattern" Failure="Ext.MessageBox.alert('#{titleSavingError}.value', '#{titleSavingErrorMessage}.value');">
                             <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="={#{patternFormPanel}.body}" />
                             <ExtraParams>
-                                
+
 
                                 <ext:Parameter Name="pattern" Value="#{patternFormPanel}.getForm().getValues()" Mode="Raw" Encode="true" />
 

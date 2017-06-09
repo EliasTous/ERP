@@ -134,19 +134,7 @@
                                 <Renderer Fn="editRender" />
 
                             </ext:Column>
-                            <ext:Column runat="server"
-                                ID="colDelete" Flex="1" Visible="true"
-                                Text="<%$ Resources: Common , Delete %>"
-                                Width="60"
-                                Align="Center"
-                                Fixed="true"
-                                Filterable="false"
-                                Hideable="false"
-                                MenuDisabled="true"
-                                Resizable="false">
-                                <Renderer Fn="deleteRender" />
-                              
-                            </ext:Column>
+                            
                             <ext:Column runat="server"
                                 ID="colAttach"
                                 Text="<%$ Resources:Common, Attach %>"
@@ -160,7 +148,19 @@
                                 <Renderer Fn="attachRender" />
                             </ext:Column>
 
-
+                            <ext:Column runat="server"
+                                ID="colDelete" Flex="1" Visible="true"
+                                Text="<%$ Resources: Common , Delete %>"
+                                Width="60"
+                                Align="Center"
+                                Fixed="true"
+                                Filterable="false"
+                                Hideable="false"
+                                MenuDisabled="true"
+                                Resizable="false">
+                                <Renderer Fn="deleteRender" />
+                              
+                            </ext:Column>
 
 
                         </Columns>

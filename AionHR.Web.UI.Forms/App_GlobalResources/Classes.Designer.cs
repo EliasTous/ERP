@@ -511,6 +511,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Dependants.
+        /// </summary>
+        internal static string Class31150 {
+            get {
+                return ResourceManager.GetString("Class31150", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Task Type.
         /// </summary>
         internal static string Class32000 {

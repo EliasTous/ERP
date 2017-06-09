@@ -83,6 +83,7 @@
 <ext:Hidden ID="LeaveChanged" runat="server" Text="1" EnableViewState="true" />
 <ext:Hidden ID="TotalText" runat="server" Text="<%$ Resources: TotalText %>" />
 <ext:Hidden ID="StoredLeaveChanged" runat="server" Text="0" EnableViewState="true" />
+<ext:Hidden ID="ViewOnly" runat="server"  />
 <ext:Window
     ID="EditRecordWindow"
     runat="server"
@@ -150,7 +151,7 @@
                                     </Listeners>--%>
                         </ext:DateField>
                         <ext:ComboBox runat="server" ID="employeeId" AllowBlank="false"
-                            DisplayField="fullName"
+                            DisplayField="fullName" Name="employeeId"
                             ValueField="recordId"
                             TypeAhead="false"
                             FieldLabel="<%$ Resources: FieldEmployeeName%>"
@@ -232,7 +233,7 @@
                         </ext:ComboBox>
 
 
-                        <ext:ComboBox runat="server" ID="status" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" AllowBlank="false"
+                        <ext:ComboBox runat="server" ID="status" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" AllowBlank="false" Name="status"
                             FieldLabel="<%$ Resources: FieldStatus %>">
                             <Items>
 

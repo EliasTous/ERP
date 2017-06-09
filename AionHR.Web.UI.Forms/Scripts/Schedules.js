@@ -57,7 +57,8 @@ function addEmployee() {
     breaksGrid.editingPlugin.startEdit(0, 0);
 }
 function addBreak() {
-
+    if (App.editDisabled.value == '1')
+        return;
     var periodsGrid = App.periodsGrid,
         store = periodsGrid.getStore();
 
@@ -79,6 +80,8 @@ function addBreak() {
 
 function removeBreak() {
 
+    if (App.editDisabled.value == '1')
+        return;
     var periodsGrid = App.periodsGrid,
         sm = periodsGrid.getSelectionModel(),
         store = periodsGrid.getStore();
@@ -174,13 +177,16 @@ function getDay(dow) {
     }
 }
 function validateFrom(s) {
-    
+    if (s.length != 5)
+        return false;
     d = s.split(':'); if (d[0] > 23) return false; if (d[1] > 59) return false; return true ;
 }
 
 function validateTo(curr,prev)
 
 {
+    if (curr.length != 5)
+        return false;
     if (!validateFrom(curr))
         return false;
     var currHours = curr.split(':')[0];

@@ -24,6 +24,8 @@ using AionHR.Model.Employees.Profile;
 using AionHR.Model.Employees.Leaves;
 using AionHR.Model.Attendance;
 using AionHR.Model.TimeAttendance;
+using AionHR.Model.Attributes;
+using AionHR.Model.Access_Control;
 
 namespace AionHR.Web.UI.Forms
 {
@@ -32,6 +34,8 @@ namespace AionHR.Web.UI.Forms
         ITimeAttendanceService _branchService = ServiceLocator.Current.GetInstance<ITimeAttendanceService>();
         ISystemService _systemService = ServiceLocator.Current.GetInstance<ISystemService>();
         IEmployeeService _employeeService = ServiceLocator.Current.GetInstance<IEmployeeService>();
+        IAccessControlService _accessControlService = ServiceLocator.Current.GetInstance<IAccessControlService>();
+
         protected override void InitializeCulture()
         {
 
@@ -63,8 +67,74 @@ namespace AionHR.Web.UI.Forms
                 SetExtLanguage();
                 HideShowButtons();
                 HideShowColumns();
+                try
+                {
+                    AccessControlApplier.ApplyAccessControlOnPage(typeof(AttendanceSchedule), BasicInfoTab, GridPanel1, btnAdd, SaveButton);
+                }
+                catch (AccessDeniedException exp)
+                {
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorAccessDenied).Show();
+                    Viewport1.Hidden = true;
+                    
+                }
+                try
+                {
+                    AccessControlApplier.ApplyAccessControlOnPage(typeof(AttendanceScheduleDay), dayBreaksForm, scheduleDays, null, Button3);
+                }
+                catch (AccessDeniedException exp)
+                {
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorAccessDenied).Show();
+                    Viewport1.Hidden = true;
+                    
+                }
+                try
+                {
+                    AccessControlApplier.ApplyAccessControlOnPage(typeof(AttendanceBreak), null, periodsGrid, AddBreakButton, null);
+                }
+                catch (AccessDeniedException exp)
+                {
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorAccessDenied).Show();
+                    Viewport1.Hidden = true;
+                    return;
+                }
+                if ((bool)_systemService.SessionHelper.Get("IsAdmin"))
+                    return;
+                ApplyAccessControlOnBreaks();
+
+            }
 
 
+        }
+
+        private void ApplyAccessControlOnBreaks()
+        {
+            ClassPermissionRecordRequest classReq = new ClassPermissionRecordRequest();
+            classReq.ClassId = (typeof(AttendanceBreak).GetCustomAttributes(typeof(ClassIdentifier), false).ToList()[0] as ClassIdentifier).ClassID;
+            classReq.UserId = _systemService.SessionHelper.GetCurrentUserId();
+            RecordResponse<ModuleClass> modClass = _accessControlService.ChildGetRecord<ModuleClass>(classReq);
+            switch(modClass.result.accessLevel)
+            {
+                case 1: AddBreakButton.Disabled = true; editDisabled.Text = "1"; deleteDisabled.Value = "1"; break;
+                case 2: AddBreakButton.Disabled = true; deleteDisabled.Value = "1"; break;
+                default: break;
+            }
+            UserPropertiesPermissions req = new UserPropertiesPermissions();
+            req.ClassId = (typeof(AttendanceBreak).GetCustomAttributes(typeof(ClassIdentifier), false).ToList()[0] as ClassIdentifier).ClassID;
+            req.UserId = _systemService.SessionHelper.GetCurrentUserId();
+            ListResponse<UC> resp = _accessControlService.ChildGetAll<UC>(req);
+
+            int i = 1;
+            foreach (var item in resp.Items)
+            {
+                if (item.accessLevel < 2 && periodsGrid.ColumnModel.Columns[i].Editor.Count>0)
+                    periodsGrid.ColumnModel.Columns[i].Editor[0].ReadOnly = true;
+                if (item.accessLevel < 1 && periodsGrid.ColumnModel.Columns[i].Editor.Count > 0)
+                    periodsGrid.ColumnModel.Columns[i].Editor[0].InputType = InputType.Password;
+
+                i++;
             }
 
 

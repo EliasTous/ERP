@@ -69,6 +69,18 @@ namespace AionHR.Web.UI.Forms
                 HideShowColumns();
                 date.Format = DateColumn1.Format = _systemService.SessionHelper.GetDateformat();
             }
+
+            try
+            {
+                AccessControlApplier.ApplyAccessControlOnPage(typeof(MediaItem), BasicInfoTab, GridPanel1, btnAdd, SaveButton);
+            }
+            catch (AccessDeniedException exp)
+            {
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorAccessDenied).Show();
+                Viewport1.Hidden = true;
+                return;
+            }
         }
 
 

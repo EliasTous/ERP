@@ -70,8 +70,36 @@ namespace AionHR.Web.UI.Forms.EmployeePages
 
                 bool disabled = EmployeeTerminated.Text == "1";
                 btnAdd.Disabled = Button1.Disabled = SaveBCButton.Disabled = SaveRWButton.Disabled = disabled;
+                try
+                {
+                    AccessControlApplier.ApplyAccessControlOnPage(typeof(EmployeeRightToWork), EditRWForm, rightToWorkGrid, btnAdd, SaveRWButton);
+                }
+                catch (AccessDeniedException exp)
+                {
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorAccessDenied).Show();
+                    rightToWorkGrid.Hidden = true;
 
-           
+                }
+                try
+                {
+                    AccessControlApplier.ApplyAccessControlOnPage(typeof(EmployeeBackgroundCheck), EditBCTab, BackgroundCheckGrid, Button1, SaveBCButton);
+                }
+                catch (AccessDeniedException exp)
+                {
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorAccessDenied).Show();
+                    BackgroundCheckGrid.Hidden = true;
+
+                }
+
+                rwIssueDateMulti.InputType = rwIssueDate.InputType;
+                rwIssueDateMulti.Disabled = rwIssueDate.Disabled;
+                rwIssueDateMulti.ReadOnly = rwIssueDate.ReadOnly;
+
+                rwExpiryDateMulti.InputType = rwExpiryDate.InputType;
+                rwExpiryDateMulti.Disabled = rwExpiryDate.Disabled;
+                rwExpiryDateMulti.ReadOnly = rwExpiryDate.ReadOnly;
             }
         }
 

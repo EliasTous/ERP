@@ -130,20 +130,7 @@
 
 
 
-                            <ext:Column runat="server"
-                                ID="ColCName" Visible="true"
-                                Text=""
-                                Width="100"
-                                Hideable="false"
-                                Align="Center"
-                                Fixed="true"
-                                Filterable="false"
-                                MenuDisabled="true"
-                                Resizable="false">
-
-                                <Renderer Handler="var d =(App.EmployeeTerminated.value=='0')?deleteRender():' '; return editRender()+'&nbsp;&nbsp;' +d; " />
-
-                            </ext:Column>
+                           
                             <ext:Column runat="server"
                                 ID="ColCDelete" Flex="1" Visible="false"
                                 Text=""
@@ -169,7 +156,20 @@
                                 Resizable="false">
                                 <Renderer Fn="attachRender" />
                             </ext:Column>
+                             <ext:Column runat="server"
+                                ID="ColCName" Visible="true"
+                                Text=""
+                                Width="100"
+                                Hideable="false"
+                                Align="Center"
+                                Fixed="true"
+                                Filterable="false"
+                                MenuDisabled="true"
+                                Resizable="false">
 
+                                <Renderer Handler="var d =(App.EmployeeTerminated.value=='0')?deleteRender():' '; return editRender()+'&nbsp;&nbsp;' +d; " />
+
+                            </ext:Column>
 
 
 
@@ -308,20 +308,7 @@
                                 <Renderer Handler=" return  record.data['addressId'].street1  + '&nbsp' + record.data['addressId'].countryName " />
                                 </ext:Column>--%>
 
-                            <ext:Column runat="server"
-                                ID="colEdit" Visible="true"
-                                Text=""
-                                Width="80"
-                                Hideable="false"
-                                Align="Center"
-                                Fixed="true"
-                                Filterable="false"
-                                MenuDisabled="true"
-                                Resizable="false">
-
-                                <Renderer Handler="var d =(App.EmployeeTerminated.value=='0')?deleteRender():' '; return editRender()+'&nbsp;&nbsp;' +d; " />
-
-                            </ext:Column>
+                           
                             <ext:Column runat="server"
                                 ID="ColEHDelete" Flex="1" Visible="false"
                                 Text=""
@@ -347,7 +334,20 @@
                                 Resizable="false">
                                 <Renderer Fn="attachRender" />
                             </ext:Column>
+                             <ext:Column runat="server"
+                                ID="colEdit" Visible="true"
+                                Text=""
+                                Width="80"
+                                Hideable="false"
+                                Align="Center"
+                                Fixed="true"
+                                Filterable="false"
+                                MenuDisabled="true"
+                                Resizable="false">
 
+                                <Renderer Handler="var d =(App.EmployeeTerminated.value=='0')?deleteRender():' '; return editRender()+'&nbsp;&nbsp;' +d; " />
+
+                            </ext:Column>   
 
 
 
@@ -569,7 +569,7 @@
                             DefaultAnchor="100%"
                             BodyPadding="5">
                             <Items>
-                                <ext:Panel runat="server" MarginSpec="0 10 0 0">
+                                <ext:Panel ID="ecbasicInfo" runat="server" MarginSpec="0 10 0 0">
                                     <Items>
                                         <ext:TextField runat="server" Name="recordId" ID="ecId" Hidden="true" Disabled="true" />
                                         <ext:TextField runat="server" Name="name" AllowBlank="false" ID="name" FieldLabel="<%$ Resources:FieldEMInst%>" />

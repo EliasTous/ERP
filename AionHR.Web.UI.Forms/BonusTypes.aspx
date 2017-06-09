@@ -158,7 +158,7 @@
                                 Resizable="false">
 
                                 <Renderer handler="return editRender()+'&nbsp;&nbsp;' +deleteRender(); " />
-
+                                  </ext:Column>
 
 
                         </Columns>

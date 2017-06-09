@@ -157,6 +157,24 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Hidden IsWorkingDay;
         
         /// <summary>
+        /// editDisabled control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Hidden editDisabled;
+        
+        /// <summary>
+        /// deleteDisabled control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Hidden deleteDisabled;
+        
+        /// <summary>
         /// Store1 control.
         /// </summary>
         /// <remarks>
@@ -677,6 +695,15 @@ namespace AionHR.Web.UI.Forms {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.Store periodsStore;
+        
+        /// <summary>
+        /// AddBreakButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Button AddBreakButton;
         
         /// <summary>
         /// Button2 control.

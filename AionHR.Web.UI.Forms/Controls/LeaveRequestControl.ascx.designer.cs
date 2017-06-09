@@ -220,6 +220,15 @@ namespace AionHR.Web.UI.Forms.Controls {
         protected global::Ext.Net.Hidden StoredLeaveChanged;
         
         /// <summary>
+        /// ViewOnly control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Hidden ViewOnly;
+        
+        /// <summary>
         /// EditRecordWindow control.
         /// </summary>
         /// <remarks>

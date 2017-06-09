@@ -90,6 +90,7 @@ namespace AionHR.Web.UI.Forms
 
         ICompanyStructureService _companyStructureService = ServiceLocator.Current.GetInstance<ICompanyStructureService>();
 
+        IAccessControlService _accessControlService = ServiceLocator.Current.GetInstance<IAccessControlService>();
 
 
         protected override void InitializeCulture()
@@ -132,6 +133,18 @@ namespace AionHR.Web.UI.Forms
                 //CurrentEmployee.Text = Request.QueryString["employeeId"];
 
                 //cc.Format = _systemService.SessionHelper.GetDateformat();
+                try
+                {
+                    AccessControlApplier.ApplyAccessControlOnPage(typeof(Loan), BasicInfoTab, GridPanel1, btnAdd, SaveButton);
+
+                }
+                catch (AccessDeniedException exp)
+                {
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorAccessDenied).Show();
+                    Viewport1.Hidden = true;
+                    return;
+                }
             }
 
         }

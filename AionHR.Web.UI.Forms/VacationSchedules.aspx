@@ -22,6 +22,9 @@
         <ext:Hidden ID="textLoadFailed" runat="server" Text="<%$ Resources:Common , LoadFailed %>" />
         <ext:Hidden ID="titleSavingError" runat="server" Text="<%$ Resources:Common , TitleSavingError %>" />
         <ext:Hidden ID="titleSavingErrorMessage" runat="server" Text="<%$ Resources:Common , TitleSavingErrorMessage %>" />
+        
+        <ext:Hidden runat="server" ID="deleteDisabled" />
+        <ext:Hidden runat="server" ID="editDisabled" />
 
         <ext:Store
             ID="Store1"
@@ -126,20 +129,7 @@
 
 
 
-                            <ext:Column runat="server"
-                                ID="colEdit"  Visible="true"
-                                Text=""
-                                Width="100"
-                                Hideable="false"
-                                Align="Center"
-                                Fixed="true"
-                                Filterable="false"
-                                MenuDisabled="true"
-                                Resizable="false">
-
-                                <Renderer handler="return editRender()+'&nbsp;&nbsp;' +deleteRender(); " />
-
-                            </ext:Column>
+                           
                             <ext:Column runat="server"
                                 ID="colDelete" Visible="false"
                                 Text="<%$ Resources: Common , Delete %>"
@@ -166,7 +156,20 @@
                                 <Renderer Fn="attachRender" />
                             </ext:Column>
 
+                             <ext:Column runat="server"
+                                ID="colEdit"  Visible="true"
+                                Text=""
+                                Width="100"
+                                Hideable="false"
+                                Align="Center"
+                                Fixed="true"
+                                Filterable="false"
+                                MenuDisabled="true"
+                                Resizable="false">
 
+                                <Renderer handler="return editRender()+'&nbsp;&nbsp;' +deleteRender(); " />
+
+                            </ext:Column>
 
 
                         </Columns>
@@ -292,12 +295,16 @@
                                         </ext:Store>
                                     </Store>
                                     <Plugins>
-                                        <ext:RowEditing runat="server" ClicksToMoveEditor="1" AutoCancel="false" SaveBtnText="<%$ Resources:Common , Save %>" CancelBtnText="<%$ Resources:Common , Cancel %>" />
+                                        <ext:RowEditing runat="server" ClicksToMoveEditor="1" AutoCancel="false" SaveBtnText="<%$ Resources:Common , Save %>" CancelBtnText="<%$ Resources:Common , Cancel %>" >
+                                            <Listeners>
+                                                <BeforeEdit Handler="if(App.editDisabled.value=='1') return false;" />
+                                            </Listeners>
+                                            </ext:RowEditing>
                                     </Plugins>
                                     <TopBar>
                                         <ext:Toolbar runat="server">
                                             <Items>
-                                                <ext:Button runat="server" Text="<%$ Resources: BtnAddPeriod %>" Icon="UserAdd">
+                                                <ext:Button runat="server" Text="<%$ Resources: BtnAddPeriod %>" Icon="UserAdd" ID="addPeriod">
                                                     <Listeners>
                                                         <Click Fn="addEmployee" />
                                                     </Listeners>
@@ -327,13 +334,16 @@
                                                 <Editor>
                                                      <%-- Vtype="numberrange"
                                                         EndNumberField="toField"--%>
-                                                    <ext:NumberField
+                                                    <ext:TextField
                                                         runat="server"
                                                          ID="fromField"
                                                         AllowBlank="false"
                                                         InvalidText="<%$Resources:MonthsFieldError %>"
-                                                        MinValue="0"
-                                                        MaxValue="5000" />
+                                                         >
+                                                        <Validator Handler="if(isNaN(this.value)) return false; return true;">
+                                                            
+                                                        </Validator>
+                                                        </ext:TextField>
                                                 </Editor>
                                             </ext:NumberColumn>
                                             <ext:NumberColumn
@@ -345,15 +355,15 @@
                                                 <Editor>
                                                        <%--   StartNumberField="fromField"
                                                          Vtype="numberrange"--%>
-                                                    <ext:NumberField
+                                                    <ext:TextField
                                                         runat="server"
                                                         ID="toField"
                                                         AllowBlank="false"
-                                                        MinValue="0"
+                                                        
                                                          InvalidText="<%$Resources:MonthsFieldError %>"
-                                                        MaxValue="5000" >
-                                                       
-                                                        </ext:NumberField>
+                                                        >
+                                                        <Validator Handler="if(isNaN(this.value)) return false; return true;"/>
+                                                        </ext:TextField>
 
                                                 </Editor>
                                                 
@@ -367,18 +377,19 @@
                                                  Flex="1"
                                                 Align="Center">
                                                 <Editor>
-                                                    <ext:NumberField
+                                                    <ext:TextField
                                                         runat="server"
                                                         AllowBlank="false"
-                                                        MinValue="0"
-                                                        MaxValue="200" />
+                                                         >
+                                                         <Validator Handler="if(isNaN(this.value)) return false; return true;"/>
+                                                        </ext:TextField>
                                                 </Editor>
                                             </ext:NumberColumn>
                                             
                                         </Columns>
                                     </ColumnModel>
                                     <Listeners>
-                                        <SelectionChange Handler="App.btnRemoveEmployee.setDisabled(!selected.length);" />
+                                        <SelectionChange Handler="if(App.deleteDisabled.value=='1') return; App.btnRemoveEmployee.setDisabled(!selected.length);" />
                                     </Listeners>
                                 </ext:GridPanel>
                             </Items>

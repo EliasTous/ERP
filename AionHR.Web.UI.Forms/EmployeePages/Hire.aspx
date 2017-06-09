@@ -37,7 +37,7 @@
                 <ext:FormPanel runat="server" ID="hireInfoForm" Region="Center" Layout="HBoxLayout" >
                     <Items>
                         <ext:Panel runat="server"  flex="2"><Items></Items></ext:Panel>
-                        <ext:Panel runat="server" Flex="5"><Items>
+                        <ext:Panel ID="actualPanel" runat="server" Flex="5"><Items>
                             <ext:ComboBox runat="server" AllowBlank="false" ValueField="recordId" QueryMode="Local"  LabelWidth="200" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" ID="npId" Name="npId" FieldLabel="<%$ Resources:FieldNP%>" SimpleSubmit="true">
                             <Store>
                                 <ext:Store runat="server" ID="npStore">
@@ -73,7 +73,12 @@
                         
                         <ext:DateField  LabelWidth="200" runat="server" AllowBlank="true" ID="termEndDate" Name="termEndDate" FieldLabel="<%$ Resources:FieldTermEndDate %>"></ext:DateField>
                         <ext:TextArea  LabelWidth="200"  runat="server" ID="recruitmentInfo" Name="recruitmentInfo" FieldLabel="<%$ Resources:FieldRecruitmentInfo %>" />
-                        <ext:NumberField runat="server"  LabelWidth="200" ID="recruitmentCost" Name="recruitmentCost" FieldLabel="<%$ Resources:FieldRecruitmentCost %>" />
+                        <ext:TextField runat="server"  LabelWidth="200" ID="recruitmentCost" Name="recruitmentCost" FieldLabel="<%$ Resources:FieldRecruitmentCost %>" >
+                         
+                            <Validator Handler="if(isNaN(this.value)) return false; return true;">
+                                
+                            </Validator>
+                            </ext:TextField>
                             </Items></ext:Panel>
                          <ext:Panel runat="server"  flex="2"><Items></Items></ext:Panel>
                     </Items>
