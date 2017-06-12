@@ -96,6 +96,11 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     Viewport11.Hidden = true;
                     return;
                 }
+                if (recruitmentInfo.InputType == InputType.Password)
+                {
+                    recruitmentInfo.Visible = false;
+                    infoField.Visible = true;
+                }
             }
 
         }

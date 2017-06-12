@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace AionHR.Model.System
 {
-
+    [ClassIdentifier("20071","20")]
     public class State:ModelBase
     {
-        [PropertyID("20020_01")]
+        [PropertyID("20071_01")]
         [ApplySecurity]
         public string name { get; set; }
     }

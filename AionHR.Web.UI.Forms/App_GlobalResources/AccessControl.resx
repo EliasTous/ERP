@@ -1158,4 +1158,49 @@
   <data name="Property2005004" xml:space="preserve">
     <value>Date</value>
   </data>
+  <data name="Property9010101" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="Property9010102" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="Property9010201" xml:space="preserve">
+    <value>Group</value>
+  </data>
+  <data name="Property9010202" xml:space="preserve">
+    <value>User</value>
+  </data>
+  <data name="Property9010301" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="Property9010302" xml:space="preserve">
+    <value>Level</value>
+  </data>
+  <data name="Property9010401" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="Property9010402" xml:space="preserve">
+    <value>Level</value>
+  </data>
+  <data name="Property2007101" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="Property4400001" xml:space="preserve">
+    <value>Employee</value>
+  </data>
+  <data name="Property4400002" xml:space="preserve">
+    <value>Date Received</value>
+  </data>
+  <data name="Property4400003" xml:space="preserve">
+    <value>Action Taken</value>
+  </data>
+  <data name="Property4400004" xml:space="preserve">
+    <value>Action Required</value>
+  </data>
+  <data name="Property4400005" xml:space="preserve">
+    <value>Details</value>
+  </data>
+  <data name="Property4400006" xml:space="preserve">
+    <value>Status</value>
+  </data>
 </root>

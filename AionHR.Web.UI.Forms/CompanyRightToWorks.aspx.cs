@@ -77,6 +77,18 @@ namespace AionHR.Web.UI.Forms
                     Viewport1.Hidden = true;
                     return;
                 }
+                issueDateMulti.InputType = issueDate.InputType;
+                issueDateMulti.Disabled = issueDate.Disabled;
+                issueDateMulti.ReadOnly = issueDate.ReadOnly;
+                issueDateDisabled.Text = issueDate.ReadOnly.ToString();
+                
+
+                expiryDateMulti.InputType = expiryDate.InputType;
+                expiryDateMulti.Disabled = expiryDate.Disabled;
+                expiryDateMulti.ReadOnly = expiryDate.ReadOnly;
+                expiryDateDisabled.Text = expiryDate.ReadOnly.ToString();
+
+                hijriCal.LazyItems.ForEach(x => (x as Field).ReadOnly = expiryDate.ReadOnly || issueDate.ReadOnly);
             }
         }
 

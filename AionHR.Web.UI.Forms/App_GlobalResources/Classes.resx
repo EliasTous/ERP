@@ -144,6 +144,9 @@
   <data name="Class20070" xml:space="preserve">
     <value>Address Book</value>
   </data>
+  <data name="Class20071" xml:space="preserve">
+    <value>States</value>
+  </data>
   <data name="Class20080" xml:space="preserve">
     <value>Document Type</value>
   </data>
@@ -343,7 +346,7 @@
     <value>Case Comments</value>
   </data>
   <data name="Class44000" xml:space="preserve">
-    <value>ECCO</value>
+    <value>Employee Complaints</value>
   </data>
   <data name="Class45000" xml:space="preserve">
     <value>Loan Type</value>
@@ -410,5 +413,17 @@
   </data>
   <data name="Class81100" xml:space="preserve">
     <value>Dashboard</value>
+  </data>
+  <data name="Class90101" xml:space="preserve">
+    <value>Security Groups</value>
+  </data>
+  <data name="Class90102" xml:space="preserve">
+    <value>Group Users</value>
+  </data>
+  <data name="Class90103" xml:space="preserve">
+    <value>Class</value>
+  </data>
+  <data name="Class90104" xml:space="preserve">
+    <value>Property</value>
   </data>
 </root>

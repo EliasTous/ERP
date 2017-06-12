@@ -73,6 +73,7 @@
                         
                         <ext:DateField  LabelWidth="200" runat="server" AllowBlank="true" ID="termEndDate" Name="termEndDate" FieldLabel="<%$ Resources:FieldTermEndDate %>"></ext:DateField>
                         <ext:TextArea  LabelWidth="200"  runat="server" ID="recruitmentInfo" Name="recruitmentInfo" FieldLabel="<%$ Resources:FieldRecruitmentInfo %>" />
+                            <ext:TextField InputType="Password" Visible="false"  LabelWidth="200"  runat="server" ID="infoField" Name="recruitmentInfo" FieldLabel="<%$ Resources:FieldRecruitmentInfo %>" />
                         <ext:TextField runat="server"  LabelWidth="200" ID="recruitmentCost" Name="recruitmentCost" FieldLabel="<%$ Resources:FieldRecruitmentCost %>" >
                          
                             <Validator Handler="if(isNaN(this.value)) return false; return true;">

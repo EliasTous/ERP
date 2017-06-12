@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="CSS/LiveSearch.css" />
      <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCRQ7sZoJrjEBuIBret1gCccSwicDusM3w&libraries=drawing"></script>
    
-    <script type="text/javascript" src="Scripts/Geofences.js?id=15" ></script>
+    <script type="text/javascript" src="Scripts/Geofences.js?id=21" ></script>
     <script type="text/javascript" src="Scripts/common.js" ></script>
     <script type="text/javascript">
     
@@ -29,6 +29,14 @@
         <ext:Hidden ID="titleSavingError" runat="server" Text="<%$ Resources:Common , TitleSavingError %>" />
         <ext:Hidden ID="titleSavingErrorMessage" runat="server" Text="<%$ Resources:Common , TitleSavingErrorMessage %>" />
         <ext:Hidden ID="CurrentCountry" runat="server" />
+        <ext:Hidden ID="viewOnly" runat="server" />
+        <ext:Hidden ID="noAccess" runat="server" />
+        <ext:Hidden ID="lat1" runat="server" />
+        <ext:Hidden ID="lat2" runat="server" />
+        <ext:Hidden ID="lon1" runat="server" />
+        <ext:Hidden ID="lon2" runat="server" />
+        <ext:Hidden ID="radius" runat="server" />
+        
         <ext:Store
             ID="Store1"
             runat="server"
@@ -265,7 +273,7 @@
                             <Items>
                                 <ext:TextField ID="recordId" runat="server"  Name="recordId"  Hidden="true"/>
                                 <ext:TextField ID="name" runat="server" FieldLabel="<%$ Resources:FieldName%>" Name="name"   AllowBlank="false"/>
-
+                                   <ext:TextField ID="lat" runat="server"  Name="lat"  Hidden="true"/>
                                 <ext:ComboBox Enabled="false" runat="server" AllowBlank="false" ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" ID="branchId" Name="branchId" FieldLabel="<%$ Resources:FieldBranchId%>" SimpleSubmit="true">
                                                     <Store>
                                                         <ext:Store runat="server" ID="BranchStore">
@@ -298,11 +306,11 @@
                                                     </Listeners>
                                                 </ext:ComboBox>
 
-                                <ext:Panel ID="mapHolder" runat="server" Layout="FitLayout"  Flex="1" >
+                                <ext:Panel ID="mapHolder" runat="server" Layout="FitLayout"  Flex="1"  >
                                     <Items>
                                         <ext:Container runat="server"  >
                                         <Content>
-                                        <div id="map" style="height:300px;width:790px;" ></div>
+                                        <div id="map" style="height:300px;width:790px;"  ></div>
                                             <input type="button" id="delete" value="Clear" disabled="disabled"/>
                                     </Content>
                                             
@@ -326,7 +334,7 @@
                 <ext:Button ID="SaveButton" runat="server" Text="<%$ Resources:Common, Save %>" Icon="Disk">
 
                     <Listeners>
-                        <Click Handler="CheckSession(); if (!#{BasicInfoTab}.getForm().isValid() ||(circle==null&& rectangle==null)) {return false;}  " />
+                        <Click Handler="CheckSession(); if (!#{BasicInfoTab}.getForm().isValid() ||(circle==null&& rectangle==null&&!(App.viewOnly.value=='True'|| App.noAccess.value=='True'))) {return false;}  " />
                     </Listeners>
                     <DirectEvents>
                         <Click OnEvent="SaveNewRecord" Failure="Ext.MessageBox.alert('#{titleSavingError}.value', '#{titleSavingErrorMessage}.value');">

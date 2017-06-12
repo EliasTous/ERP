@@ -613,7 +613,7 @@ namespace AionHR.Web.UI.Forms {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.NumberField amount;
+        protected global::Ext.Net.TextField amount;
         
         /// <summary>
         /// purpose control.
@@ -623,6 +623,15 @@ namespace AionHR.Web.UI.Forms {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.TextArea purpose;
+        
+        /// <summary>
+        /// purposeField control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.TextField purposeField;
         
         /// <summary>
         /// status control.

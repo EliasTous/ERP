@@ -927,4 +927,7 @@
   <data name="ErrorAccessDenied" xml:space="preserve">
     <value>You don't have access to view this resource, please contact your administrator for more information</value>
   </data>
+  <data name="Mod90" xml:space="preserve">
+    <value>Access Control</value>
+  </data>
 </root>

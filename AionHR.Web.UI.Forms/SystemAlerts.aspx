@@ -115,7 +115,7 @@
                                     <ext:Checkbox runat="server" Name="isActive" ID="chk">
                                         <Listeners>
                                             
-                                            <Change Handler="var rec = this.getWidgetRecord(); rec.set('isActive',this.value); rec.commit();"  >
+                                            <Change Handler="var rec = this.getWidgetRecord(); rec.set('isActive',this.value); "  >
                                                 
                                             </Change>
                                         </Listeners>
@@ -136,7 +136,7 @@
                                             <ext:ListItem Text="<%$ Resources: User %>" Value="1" />
                                         </Items>
                                         <Listeners>
-                                            <Select Handler="var rec = this.getWidgetRecord(); rec.set('sendTo',this.value); rec.commit();" />
+                                            <Select Handler="var rec = this.getWidgetRecord(); rec.set('sendTo',this.value); " />
                                         </Listeners>
                                     </ext:ComboBox>
 
@@ -148,7 +148,7 @@
                                    
                                     <ext:NumberField runat="server" MinValue="0" >
                                         <Listeners>
-                                            <Change Handler="var rec = this.getWidgetRecord(); rec.set('days',this.value); rec.commit();" />
+                                            <Change Handler="var rec = this.getWidgetRecord(); rec.set('days',this.value);" />
                                         </Listeners>
                                         </ext:NumberField>
 
@@ -196,7 +196,7 @@
                             <DirectEvents>
                                 <Click OnEvent="SaveAlerts" >
                                     <ExtraParams>
-                                         <ext:Parameter Name="values" Value="Ext.encode(#{GridPanel1}.getRowsValues({selectedOnly : false}))" Mode="Raw"  />
+                                         <ext:Parameter Name="values" Value="Ext.encode(#{GridPanel1}.getRowsValues({dirtyRowsOnly : true}))" Mode="Raw"  />
                                     </ExtraParams>
                                     </Click>
                                 

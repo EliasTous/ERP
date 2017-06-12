@@ -131,10 +131,17 @@ namespace AionHR.Web.UI.Forms
                 return;
             }
             List<SystemAlert> union = new List<SystemAlert>();
+
             foreach (var item in preDefined)
             {
                 if (stored.Items.Where(f => f.alertId == item.alertId).Count() > 0)
-                    union.Add(stored.Items.Where(f => f.alertId == item.alertId).First());
+                {
+
+                    SystemAlert added = stored.Items.Where(f => f.alertId == item.alertId).First();
+                    added.predefined = true;
+                    union.Add(added);
+                    item.predefined = true;
+                }
                 else
                     union.Add(item);
             }
@@ -163,9 +170,9 @@ namespace AionHR.Web.UI.Forms
             string values = e.ExtraParams["values"];
 
             List<SystemAlert> alerts = JsonConvert.DeserializeObject<List<SystemAlert>>(values);
-            List<SystemAlert> considerd= alerts.Where(s => !s.predefined||(s.predefined && s.isActive)).ToList();
+
             PostRequest<SystemAlert[]> req = new PostRequest<SystemAlert[]>();
-            req.entity = considerd.ToArray();
+            req.entity = alerts.ToArray();
 
             PostResponse<SystemAlert[]> resp = _systemService.ChildAddOrUpdate<SystemAlert[]>(req);
 

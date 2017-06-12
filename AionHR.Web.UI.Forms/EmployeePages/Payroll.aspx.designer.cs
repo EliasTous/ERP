@@ -1144,7 +1144,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.NumberField enPCT;
+        protected global::Ext.Net.TextField enPCT;
         
         /// <summary>
         /// enFixedAmount control.
@@ -1153,7 +1153,25 @@ namespace AionHR.Web.UI.Forms.EmployeePages {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.NumberField enFixedAmount;
+        protected global::Ext.Net.TextField enFixedAmount;
+        
+        /// <summary>
+        /// enComment control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.TextArea enComment;
+        
+        /// <summary>
+        /// enCommentField control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.TextField enCommentField;
         
         /// <summary>
         /// SaveENButton control.
@@ -1279,7 +1297,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.NumberField dePCT;
+        protected global::Ext.Net.TextField dePCT;
         
         /// <summary>
         /// deFixedAmount control.
@@ -1288,7 +1306,25 @@ namespace AionHR.Web.UI.Forms.EmployeePages {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.NumberField deFixedAmount;
+        protected global::Ext.Net.TextField deFixedAmount;
+        
+        /// <summary>
+        /// deComment control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.TextArea deComment;
+        
+        /// <summary>
+        /// deCommentField control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.TextField deCommentField;
         
         /// <summary>
         /// Button15 control.

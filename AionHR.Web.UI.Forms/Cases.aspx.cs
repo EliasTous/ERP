@@ -149,6 +149,11 @@ namespace AionHR.Web.UI.Forms
                     Viewport1.Hidden = true;
                     return;
                 }
+                if (details.InputType == InputType.Password)
+                {
+                    details.Visible = false;
+                    detailsField.Visible = true;
+                }
             }
 
         }

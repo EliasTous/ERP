@@ -47,8 +47,10 @@
                     jQuery('.showCal').calendarsPicker('destroy');
                     jQuery('.showCal2').calendarsPicker('destroy');
 
-                    jQuery('.showCal').calendarsPicker({ calendar: calendar });
-                    jQuery('.showCal2').calendarsPicker({ calendar: calendar });
+                    if (App.issueDateDisabled.value != "True")
+                        jQuery('.showCal').calendarsPicker({ calendar: calendar });
+                    if (App.expiryDateDisabled.value != "True")
+                        jQuery('.showCal2').calendarsPicker({ calendar: calendar });
                 });
             }
             else {
@@ -59,8 +61,10 @@
                     jQuery('.showCal').calendarsPicker('destroy');
                     jQuery('.showCal2').calendarsPicker('destroy');
 
-                    jQuery('.showCal').calendarsPicker({ calendar: calendar });
-                    jQuery('.showCal2').calendarsPicker({ calendar: calendar });
+                    if (App.issueDateDisabled.value != "True")
+                        jQuery('.showCal').calendarsPicker({ calendar: calendar });
+                    if (App.expiryDateDisabled.value != "True")
+                        jQuery('.showCal2').calendarsPicker({ calendar: calendar });
                 });
             }
             
@@ -108,12 +112,14 @@
         
         <ext:Hidden ID="hijriSelected" runat="server" />
         <ext:Hidden ID="EmployeeTerminated" runat="server" />
+            <ext:Hidden ID="issueDateDisabled" runat="server" />
+        <ext:Hidden ID="expiryDateDisabled" runat="server" />
         <ext:Viewport ID="Viewport11" runat="server" Layout="VBoxLayout" Padding="10">
             <LayoutConfig>
                 <ext:VBoxLayoutConfig Align="Stretch" />
             </LayoutConfig>
 
-
+          
 
             <Items>
 
@@ -210,7 +216,7 @@
                             <ext:Column ID="documentRef1" DataIndex="documentRef" Text="<%$ Resources: FieldRWDocumentRef%>" runat="server" Flex="2" />
                             <ext:Column   ID="validFrom" DataIndex="issueDateFormatted" Text="<%$ Resources: FieldRWIssueDate%>" runat="server" Width="100" />
                             <ext:Column   ID="validTo" DataIndex="expireDateFormatted" Text="<%$ Resources: FieldRWExpiryDate%>" runat="server" Width="100" />
-                            <ext:Column ID="remarks" DataIndex="remarks" Text="<%$ Resources: FieldRWRemarks%>" runat="server" Flex="2" Visible="false" />
+                            <ext:Column ID="remarksCol" DataIndex="remarks" Text="<%$ Resources: FieldRWRemarks%>" runat="server" Flex="2" Visible="false" />
 
 
 
@@ -563,7 +569,8 @@
                                 </ext:TextField>
                                 <ext:DateField ID="rwIssueDate" runat="server" Name="issueDate" FieldLabel="<%$ Resources:FieldRWIssueDate%>" AllowBlank="false" />
                                <ext:DateField ID="rwExpiryDate" runat="server" Name="expiryDate" FieldLabel="<%$ Resources:FieldRWExpiryDate%>" AllowBlank="false" />
-                                <ext:TextArea runat="server" Name="remarks" FieldLabel="<%$ Resources:FieldRWRemarks%>" />
+                                <ext:TextArea runat="server" Name="remarks" ID="remarks" FieldLabel="<%$ Resources:FieldRWRemarks%>" />
+                                <ext:TextField InputType="Password" runat="server" Name="remarks" Visible="false" ID="remarksField" FieldLabel="<%$ Resources:FieldRWRemarks%>" />
                                
                            
                                 <ext:FileUploadField runat="server" ID="rwFile" FieldLabel="<%$ Resources:FieldFile%>" AllowBlank="true" />
@@ -656,7 +663,8 @@
 
                                 <ext:DateField ID="DateField1" runat="server" Name="date" FieldLabel="<%$ Resources:FieldBCIssueDate%>" AllowBlank="false" />
                                 <ext:DateField ID="DateField2" runat="server" Name="expiryDate" FieldLabel="<%$ Resources:FieldBCExpiryDate%>" AllowBlank="false" />
-                                <ext:TextArea runat="server" Name="remarks" FieldLabel="<%$ Resources:FieldBCRemarks%>" />
+                                <ext:TextArea runat="server" Name="remarks" ID="bcRemarks" FieldLabel="<%$ Resources:FieldBCRemarks%>" />
+                                <ext:TextField Visible="false" InputType="Password" runat="server" Name="remarks" ID="bcRemarksField" FieldLabel="<%$ Resources:FieldBCRemarks%>" />
                                 <ext:FileUploadField runat="server" ID="bcFile" FieldLabel="<%$ Resources:FieldFile%>" AllowBlank="false" />
 
                             </Items>

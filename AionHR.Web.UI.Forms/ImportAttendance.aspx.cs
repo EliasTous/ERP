@@ -147,19 +147,7 @@ namespace AionHR.Web.UI.Forms
         }
 
 
-        protected void Prev_Click(object sender, DirectEventArgs e)
-        {
-            int index = int.Parse(e.ExtraParams["index"]);
-
-            if ((index - 1) >= 0)
-            {
-                ResetPage();
-
-            }
-
-
-        }
-
+        
       
         protected void SubmitFile(object sender, DirectEventArgs e)
 
@@ -228,14 +216,7 @@ namespace AionHR.Web.UI.Forms
         }
 
        
-        private void ResetPage()
-        {
-            Viewport1.ActiveIndex = 0;
-            attendanceShiftStore.DataSource = new List<AttendanceShift>();
-            attendanceShiftStore.DataBind();
-            fileUpload.Reset();
-        }
-        
+       
  
 
         protected void RefreshProgress(object sender, DirectEventArgs e)

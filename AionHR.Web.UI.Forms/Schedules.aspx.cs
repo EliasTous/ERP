@@ -515,6 +515,7 @@ namespace AionHR.Web.UI.Forms
             this.EditRecordWindow.Title = Resources.Common.AddNewRecord;
 
             this.EditRecordWindow.Show();
+            fci_max_lt.Text = fci_min_ot.Text = lco_max_el.Text = lco_max_ot.Text = lco_min_ot.Text = "0";
         }
         protected void AddNewDay(object sender, DirectEventArgs e)
         {

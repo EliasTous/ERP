@@ -464,7 +464,7 @@
                             </SelectionModel>
                         </ext:GridPanel>
 
-                        <ext:FormPanel runat="server" ID="AccessLevelsForm" Title="<%$ Resources:AccessLevels%>">
+                        <ext:FormPanel runat="server" ID="AccessLevelsForm" Layout="FitLayout" Title="<%$ Resources:AccessLevels%>">
                             <TopBar>
                                 <ext:Toolbar runat="server">
                                     <Items>
@@ -490,12 +490,13 @@
                                                 <ext:ListItem Text="<%$ Resources:  Common,Mod45  %>" Value="45" />
                                                 <ext:ListItem Text="<%$ Resources:  Common,Mod51  %>" Value="51" />
                                                 <ext:ListItem Text="<%$ Resources: Common,Mod80  %>" Value="80" />
+                                                <ext:ListItem Text="<%$ Resources: Common,Mod90  %>" Value="90" />
 
                                             </Items>
 
                                         </ext:ComboBox>
 
-                                        <ext:Button runat="server" Icon="ApplicationSideExpand" ToolTip="<%$ Resources:ApplyModule%>">
+                                        <ext:Button runat="server" Icon="ApplicationSideExpand" ToolTip="<%$ Resources:ApplyModule%>" ID="openModuleLevelForm">
                                             <Listeners>
                                                 <Click Handler="App.ApplyModuleLevelWindow.show();" />
                                             </Listeners>
@@ -513,7 +514,7 @@
                                     Layout="FitLayout"
                                     Scroll="Vertical"
                                     Border="false"
-                                    Icon="User" MaxHeight="400"
+                                    Icon="User" 
                                     ColumnLines="True" IDMode="Explicit" RenderXType="True">
 
                                     <Store>

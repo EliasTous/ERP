@@ -382,13 +382,22 @@ namespace AionHR.Web.UI.Forms.EmployeePages {
         protected global::Ext.Net.TextArea remarks;
         
         /// <summary>
+        /// remarksField control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.TextField remarksField;
+        
+        /// <summary>
         /// grade control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.NumberField grade;
+        protected global::Ext.Net.TextField grade;
         
         /// <summary>
         /// major control.

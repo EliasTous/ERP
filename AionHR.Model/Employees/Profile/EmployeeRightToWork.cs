@@ -21,8 +21,8 @@ namespace AionHR.Model.Employees.Profile
         [PropertyID("31100_03")]
         [ApplySecurity]
         public string remarks { get; set; }
-        [PropertyID("31100_04")]
-        [ApplySecurity]
+        //[PropertyID("31100_04")]
+        //[ApplySecurity]
         public bool hijriCal { get; set; }
         [PropertyID("31100_05")]
         [ApplySecurity]

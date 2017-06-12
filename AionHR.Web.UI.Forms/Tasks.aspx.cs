@@ -31,6 +31,8 @@ using System.Net;
 using AionHR.Infrastructure.Domain;
 using AionHR.Model.TaskManagement;
 using AionHR.Services.Messaging.TaskManagement;
+using AionHR.Model.Attributes;
+using AionHR.Model.Access_Control;
 
 namespace AionHR.Web.UI.Forms
 {
@@ -89,6 +91,7 @@ namespace AionHR.Web.UI.Forms
         ITaskManagementService _taskService = ServiceLocator.Current.GetInstance<ITaskManagementService>();
 
         ICompanyStructureService _companyStructureService = ServiceLocator.Current.GetInstance<ICompanyStructureService>();
+        IAccessControlService _accessControlService = ServiceLocator.Current.GetInstance<IAccessControlService>();
 
         protected override void InitializeCulture()
         {
@@ -155,11 +158,75 @@ namespace AionHR.Web.UI.Forms
                 colDueDate.Format = dateCol.Format = dueDate.Format = _systemService.SessionHelper.GetDateformat();
                 dateCol.Format = _systemService.SessionHelper.GetDateformat() + ": hh:mm:ss";
                 CasesClassId.Text = ClassId.TMTA.ToString();
+                if ((bool)_systemService.SessionHelper.Get("IsAdmin"))
+                    return;
+
+                try
+                {
+                    AccessControlApplier.ApplyAccessControlOnPage(typeof(Model.TaskManagement.Task), BasicInfoTab, GridPanel1, btnAdd, SaveButton);
+                    AccessControlApplier.ApplyAccessControlOnPage(typeof(TaskComment), null, caseCommentGrid, null, Button1);
+                    AccessControlApplier.ApplyAccessControlOnPage(typeof(Attachement), EditDocumentForm, filesGrid, Button2, SaveDocumentButton);
+                    //AccessControlApplier.ApplyAccessControlOnPage(typeof(CaseComment), null, caseCommentGrid, null, Button1);
+                    ApplyAccessControlOnCaseComments();
+                }
+                catch (AccessDeniedException exp)
+                {
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorAccessDenied).Show();
+                    Viewport1.Hidden = true;
+                    return;
+                }
+
+                if (description.InputType == InputType.Password)
+                {
+                    description.Visible = false;
+                    descriptionField.Visible = true;
+                }
             }
 
         }
 
+        private void ApplyAccessControlOnCaseComments()
+        {
+            UserPropertiesPermissions req = new UserPropertiesPermissions();
+            req.ClassId = (typeof(TaskComment).GetCustomAttributes(typeof(ClassIdentifier), false).ToList()[0] as ClassIdentifier).ClassID;
+            req.UserId = _systemService.SessionHelper.GetCurrentUserId();
+            ListResponse<UC> resp = _accessControlService.ChildGetAll<UC>(req);
 
+            foreach (var item in resp.Items)
+            {
+                if (item.propertyId == "3202003")
+                {
+                    if (item.accessLevel < 2)
+                        caseCommentGrid.ColumnModel.Columns[caseCommentGrid.ColumnModel.Columns.Count - 1].Renderer.Handler = " return '';";
+                }
+
+                if (item.accessLevel == 0)
+                {
+                    if (item.propertyId == "3202002")
+                    {
+                        caseCommentGrid.ColumnModel.Columns[1].Renderer.Handler = caseCommentGrid.ColumnModel.Columns[1].Renderer.Handler.Replace("s.calendar()", "'***** '");
+                    }
+                    else
+                    {
+                        var indices = typeof(TaskComment).GetProperties().Where(x =>
+                        {
+                            var d = x.GetCustomAttributes(typeof(PropertyID), false);
+                            if (d.Count() == 0)
+                                return false;
+                            return (x.GetCustomAttributes(typeof(PropertyID), false).ToList()[0] as PropertyID).ID == item.propertyId;
+                        }).ToList();
+
+                        indices.ForEach(x =>
+                        {
+                            caseCommentGrid.ColumnModel.Columns[1].Renderer.Handler = caseCommentGrid.ColumnModel.Columns[1].Renderer.Handler.Replace("record.data['" + x.Name + "']", "'***** '");
+                        });
+                    }
+
+                }
+            }
+
+        }
 
         /// <summary>
         /// the detailed tabs for the edit form. I put two tabs by default so hide unecessary or add addional
@@ -201,6 +268,7 @@ namespace AionHR.Web.UI.Forms
             }
         }
 
+        [DirectMethod]
         public void FillFilesStore(int caseId)
         {
             //ListRequest request = new ListRequest();
@@ -214,8 +282,12 @@ namespace AionHR.Web.UI.Forms
                 return;
             }
             this.filesStore.DataSource = routers.Items;
+
+
             this.filesStore.DataBind();
         }
+
+
 
 
 
@@ -810,7 +882,7 @@ namespace AionHR.Web.UI.Forms
 
         }
 
-
+        [DirectMethod]
         public object ValidateSave(bool isPhantom, string obj, JsonObject values)
         {
 
@@ -867,10 +939,20 @@ namespace AionHR.Web.UI.Forms
             int id = Convert.ToInt32(e.ExtraParams["id"]);
             string type = e.ExtraParams["type"];
             string path = e.ExtraParams["path"];
+            string folder = e.ExtraParams["folderId"];
+            string file = e.ExtraParams["fileName"];
             switch (type)
             {
 
-
+                case "imgEdit":
+                    dtStore.DataSource = GetFolders();
+                    dtStore.DataBind();
+                    folderId.Select(folder);
+                    seqNo.Text = id.ToString();
+                    fileName.Text = file;
+                    this.EditDocumentWindow.Title = Resources.Common.EditWindowsTitle;
+                    this.EditDocumentWindow.Show();
+                    break;
                 case "imgDelete":
                     X.Msg.Confirm(Resources.Common.Confirmation, Resources.Common.DeleteOneRecord, new MessageBoxButtonsConfig
                     {
@@ -1071,11 +1153,117 @@ namespace AionHR.Web.UI.Forms
         }
 
 
+        private List<SystemFolder> GetFolders()
+        {
+            ListRequest req = new ListRequest();
+            ListResponse<SystemFolder> docs = _systemService.ChildGetAll<SystemFolder>(req);
+            return docs.Items;
+        }
+
+        protected void addFolder(object sender, DirectEventArgs e)
+        {
+            SystemFolder dept = new SystemFolder();
+            dept.name = folderId.Text;
+
+            PostRequest<SystemFolder> depReq = new PostRequest<SystemFolder>();
+            depReq.entity = dept;
+
+            PostResponse<SystemFolder> response = _systemService.ChildAddOrUpdate<SystemFolder>(depReq);
+            if (response.Success)
+            {
+                dept.recordId = response.recordId;
+                dtStore.DataSource = GetFolders();
+
+                folderId.Select(response.recordId);
+            }
+            else
+            {
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, response.Summary).Show();
+                return;
+            }
+
+        }
+
+        protected void SaveFolder(object sender, DirectEventArgs e)
+        {
+
+
+            //Getting the id to check if it is an Add or an edit as they are managed within the same form.
+            string id = e.ExtraParams["id"];
+
+            string obj = e.ExtraParams["values"];
+            Attachement b = JsonConvert.DeserializeObject<Attachement>(obj);
+            b.recordId = Convert.ToInt32(currentCase.Text);
+            b.seqNo = Convert.ToInt16(id);
+            b.fileName = e.ExtraParams["fileName"];
+            b.classId = ClassId.TMTA;
+            // Define the object to add or edit as null
+            b.folderName = folderId.SelectedItem.Text;
+
+
+            try
+            {
+                //New Mode
+                PostRequest<Attachement> req = new PostRequest<Attachement>();
+                req.entity = b;
 
 
 
+                PostResponse<Attachement> r = _systemService.ChildAddOrUpdate<Attachement>(req);
 
 
+
+                //check if the insert failed
+                if (!r.Success)//it maybe be another condition
+                {
+                    //Show an error saving...
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    X.Msg.Alert(Resources.Common.Error, r.Summary).Show();
+                    return;
+                }
+                else
+                {
+
+
+                    ModelProxy record = this.filesStore.GetById(id);
+
+                    EditDocumentForm.UpdateRecord(record);
+                    record.Set("folderName", b.folderName);
+
+
+                    record.Commit();
+                    Notification.Show(new NotificationConfig
+                    {
+                        Title = Resources.Common.Notification,
+                        Icon = Icon.Information,
+                        Html = Resources.Common.RecordUpdatedSucc
+                    });
+                    this.EditDocumentWindow.Close();
+
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+                //Error exception displaying a messsage box
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorSavingRecord).Show();
+            }
+
+
+
+        }
+ 
+
+
+
+        /// <summary>
+        /// This direct method will be called after confirming the delete
+        /// </summary>
+        /// <param name="index">the ID of the object to delete</param>
+        
 
 
 

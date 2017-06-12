@@ -515,7 +515,28 @@
                                 </ext:TextField>
 
                             </Items>
+                            <Buttons>
+                                <ext:Button ID="SaveButton" runat="server" Text="<%$ Resources:Common, Save %>" Icon="Disk" TabIndex="10">
 
+                                    <Listeners>
+                                        <Click Handler="CheckSession(); if (!#{BasicInfoTab}.getForm().isValid()) { return false;}" />
+                                    </Listeners>
+                                    <DirectEvents>
+                                        <Click OnEvent="SaveNewRecord" Failure="Ext.MessageBox.alert('#{titleSavingError}.value', '#{titleSavingErrorMessage}.value');">
+                                            <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="={#{EditRecordWindow}.body}" />
+                                            <ExtraParams>
+                                                <ext:Parameter Name="id" Value="#{recordId}.getValue()" Mode="Raw" />
+                                                <ext:Parameter Name="values" Value="#{BasicInfoTab}.getForm().getValues()" Mode="Raw" Encode="true" />
+                                            </ExtraParams>
+                                        </Click>
+                                    </DirectEvents>
+                                </ext:Button>
+                                <ext:Button ID="CancelButton" runat="server" Text="<%$ Resources:Common , Cancel %>" Icon="Cancel" TabIndex="11">
+                                    <Listeners>
+                                        <Click Handler="this.up('window').hide();" />
+                                    </Listeners>
+                                </ext:Button>
+                            </Buttons>
                         </ext:FormPanel>
                         <ext:FormPanel ID="userGroups" runat="server" Title="<%$ Resources: Groups %>">
                             <Items>
@@ -539,16 +560,16 @@
                                                         </ext:Store>
                                                     </Store>
                                                 </ext:ComboBox>
-                                                <ext:Button runat="server" ID="addToGroupButton" Icon="BulletPlus" >
+                                                <ext:Button runat="server" ID="addToGroupButton" Icon="BulletPlus">
                                                     <DirectEvents>
                                                         <Click OnEvent="addUserToGroup" />
                                                     </DirectEvents>
-                                                    </ext:Button>
+                                                </ext:Button>
                                             </Items>
                                         </ext:Toolbar>
                                     </TopBar>
                                     <Store>
-                                        <ext:Store runat="server" ID="UserGroupsStore" >
+                                        <ext:Store runat="server" ID="UserGroupsStore">
                                             <Model>
                                                 <ext:Model ID="Model3" runat="server" IDProperty="sgId">
                                                     <Fields>
@@ -584,7 +605,7 @@
                                                 MenuDisabled="true"
                                                 Resizable="false">
 
-                                                <Renderer Handler="return leaveRender(); " />
+                                                <Renderer Handler="return deleteRender(); " />
                                             </ext:Column>
 
                                         </Columns>
@@ -612,28 +633,7 @@
                     </Items>
                 </ext:TabPanel>
             </Items>
-            <Buttons>
-                <ext:Button ID="SaveButton" runat="server" Text="<%$ Resources:Common, Save %>" Icon="Disk" TabIndex="10">
 
-                    <Listeners>
-                        <Click Handler="CheckSession(); if (!#{BasicInfoTab}.getForm().isValid()) { return false;}" />
-                    </Listeners>
-                    <DirectEvents>
-                        <Click OnEvent="SaveNewRecord" Failure="Ext.MessageBox.alert('#{titleSavingError}.value', '#{titleSavingErrorMessage}.value');">
-                            <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="={#{EditRecordWindow}.body}" />
-                            <ExtraParams>
-                                <ext:Parameter Name="id" Value="#{recordId}.getValue()" Mode="Raw" />
-                                <ext:Parameter Name="values" Value="#{BasicInfoTab}.getForm().getValues()" Mode="Raw" Encode="true" />
-                            </ExtraParams>
-                        </Click>
-                    </DirectEvents>
-                </ext:Button>
-                <ext:Button ID="CancelButton" runat="server" Text="<%$ Resources:Common , Cancel %>" Icon="Cancel" TabIndex="11">
-                    <Listeners>
-                        <Click Handler="this.up('window').hide();" />
-                    </Listeners>
-                </ext:Button>
-            </Buttons>
         </ext:Window>
 
 

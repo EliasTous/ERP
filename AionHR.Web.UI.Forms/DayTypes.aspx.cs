@@ -67,7 +67,11 @@ namespace AionHR.Web.UI.Forms
                     X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorAccessDenied).Show();
                     Viewport1.Hidden = true;
                     return;
+
+
                 }
+
+                colorDisabled.Text = (colorDay.InputType == InputType.Password).ToString();
 
 
             }

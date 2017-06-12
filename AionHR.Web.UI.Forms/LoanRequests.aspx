@@ -547,15 +547,16 @@
                                     </Listeners>
                                 </ext:ComboBox>
 
-                                <ext:NumberField MinValue="0" ID="amount" AllowBlank="false" runat="server" FieldLabel="<%$ Resources:FieldAmount%>" Name="amount">
+                                <ext:TextField  ID="amount" AllowBlank="false" runat="server" FieldLabel="<%$ Resources:FieldAmount%>" Name="amount">
                                     <%-- <Listeners>
                                                 <Change Handler="document.getElementById('amount').value=this.getValue(); this.next().setValue(this.value);" />
                                             </Listeners>--%>
-                                </ext:NumberField>
+                                    <Validator Handler="return !isNaN(this.value)&& this.Value>0;" />
+                                </ext:TextField>
 
 
                                 <ext:TextArea ID="purpose" runat="server" FieldLabel="<%$ Resources:FieldPurpose%>" Name="purpose" AllowBlank="false" />
-
+                                 <ext:TextField ID="purposeField" InputType="Password" Visible="false" runat="server" FieldLabel="<%$ Resources:FieldPurpose%>" Name="purpose" AllowBlank="false" />
                                 <ext:ComboBox runat="server" ID="status" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1"
                                     FieldLabel="<%$ Resources: FieldStatus %>" AllowBlank="false">
                                     <Items>

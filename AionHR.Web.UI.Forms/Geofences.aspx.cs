@@ -74,6 +74,15 @@ namespace AionHR.Web.UI.Forms
                     Viewport1.Hidden = true;
                     return;
                 }
+                viewOnly.Text = lat.ReadOnly.ToString();
+                noAccess.Text = (lat.InputType == InputType.Password).ToString();
+                if (noAccess.Text == "True")
+                {
+                    mapHolder.Hidden = true;
+                    EditRecordWindow.Width = 400;
+                    EditRecordWindow.Height = 250;
+                }
+  
             }
         }
 
@@ -165,6 +174,15 @@ namespace AionHR.Web.UI.Forms
 
         private void FillGeofenceOnMap(Geofence f)
         {
+            if(noAccess.Text=="True")
+            {
+                lat1.Text = f.lat.ToString();
+                lat2.Text = f.lat2.ToString();
+                lon1.Text = f.lon.ToString();
+                lon2.Text = f.lon2.ToString();
+                radius.Text = f.radius.ToString();
+            }
+           
             if (f.shape == 1)
                 X.Call("AddCircle",f.lat,f.lon,f.radius);
             else

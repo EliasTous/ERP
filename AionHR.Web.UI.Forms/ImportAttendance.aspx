@@ -61,7 +61,7 @@
 
 
 
-        <ext:Viewport ID="Viewport1" runat="server" Layout="CardLayout" ActiveIndex="0">
+        <ext:Viewport id="Viewport1" runat="server" layout="CardLayout" activeindex="0">
 
             <Items>
                 <ext:FormPanel runat="server" ID="uploadFileForm"
@@ -156,204 +156,10 @@
 
                     </Items>
                 </ext:Panel>
-
-
-                <ext:GridPanel runat="server"
-                    ID="attendanceShiftGrid"
-                    PaddingSpec="0 0 1 0"
-                    Header="false"
-                    Flex="1"
-                    Layout="FitLayout"
-                    Scroll="Vertical"
-                    Border="false"
-                    Icon="User"
-                    ColumnLines="True" IDMode="Explicit" RenderXType="True">
-                    <TopBar>
-                        <ext:Toolbar runat="server">
-                            <Items>
-                                <ext:Button ID="Button1" runat="server" Text="<%$ Resources:Common , Back %>" Icon="PageWhiteGo">
-                                    <Listeners>
-                                        <Click Handler="CheckSession();" />
-                                    </Listeners>
-                                    <DirectEvents>
-                                        <Click OnEvent="Prev_Click">
-                                            <ExtraParams>
-                                                <ext:Parameter Name="index" Value="#{viewport1}.items.indexOf(#{viewport1}.layout.activeItem)" Mode="Raw" />
-                                            </ExtraParams>
-                                        </Click>
-                                    </DirectEvents>
-                                </ext:Button>
-                            </Items>
-                        </ext:Toolbar>
-                    </TopBar>
-                    <Store>
-                        <ext:Store runat="server" ID="attendanceShiftStore" PageSize="50">
-
-                            <Model>
-                                <ext:Model runat="server">
-                                    <Fields>
-
-                                        <ext:ModelField Name="employeeId" />
-                                        <ext:ModelField Name="employeeRef" />
-                                        <ext:ModelField Name="dayId" />
-                                        <ext:ModelField Name="checkIn" />
-                                        <ext:ModelField Name="checkOut" />
-                                        <ext:ModelField Name="duration" />
-
-
-                                    </Fields>
-                                </ext:Model>
-                            </Model>
-                        </ext:Store>
-                    </Store>
-                    <ColumnModel runat="server">
-                        <Columns>
-
-                            <ext:Column runat="server" DataIndex="checkIn" Text="<%$ Resources: FieldCheckIn %>" Flex="1">
-
-                                <Renderer Handler="var d = record.data['checkIn']; var err =!validateFrom(d)?errorRender():''; return d+err; " />
-                            </ext:Column>
-                            <ext:Column runat="server" DataIndex="checkOut" Text="<%$ Resources: FieldCheckOut %>" Flex="1">
-                                <Renderer Handler="var d = record.data['checkOut']; var err =!validateFrom(d)?errorRender():''; return d+err; " />
-                            </ext:Column>
-                            <ext:Column runat="server" DataIndex="employeeRef" Text="<%$ Resources: FieldEmployee %>" Flex="1">
-                                <Renderer Handler="var d= record.data['employeeId'];  var err= (d==null||d=='')? errorRender():'' ;return record.data['employeeRef']+err;" />
-                            </ext:Column>
-                            <ext:Column runat="server" DataIndex="dayId" Flex="1" Text="<%$ Resources: FieldDay %>">
-                                <Renderer Handler="var d = record.data['dayId']; var err = moment(d, 'YYYYMMDD', true).isValid()?'':errorRender();  return d+ err;" />
-                            </ext:Column>
-                            <ext:Column runat="server"
-                                ID="Column3" Visible="true"
-                                Text="<%$ Resources:Common, Edit %>"
-                                Width="100"
-                                Hideable="false"
-                                Align="Center"
-                                Fixed="true"
-                                Filterable="false"
-                                MenuDisabled="true"
-                                Resizable="false">
-
-                                <Renderer Handler="return editRender()+'&nbsp;&nbsp;' +deleteRender()+'&nbsp;&nbsp;'" />
-                            </ext:Column>
-                        </Columns>
-
-                    </ColumnModel>
-                    <BottomBar>
-                        <ext:PagingToolbar runat="server" />
-                    </BottomBar>
-                    <Listeners>
-                        <Render Handler="this.on('cellclick', cellClick);" />
-                    </Listeners>
-                    <DirectEvents>
-                        <CellClick OnEvent="PoPuPShift">
-                            <EventMask ShowMask="true" />
-                            <ExtraParams>
-                                <ext:Parameter Name="dayId" Value="record.data['dayId']" Mode="Raw" />
-                                <ext:Parameter Name="checkOut" Value="record.data['checkOut']" Mode="Raw">
-                                </ext:Parameter>
-                                <ext:Parameter Name="employeeId" Value="record.data['employeeRef']" Mode="Raw" />
-                                <ext:Parameter Name="id" Value="record.getId()" Mode="Raw" />
-                                <ext:Parameter Name="checkIn" Value="record.data['checkIn']" Mode="Raw" />
-
-                                <ext:Parameter Name="type" Value="getCellType( this, rowIndex, cellIndex)" Mode="Raw" />
-                            </ExtraParams>
-
-                        </CellClick>
-                    </DirectEvents>
-                    <Buttons>
-                        <ext:Button ID="UploadAttendancesButton" runat="server" Text="<%$ Resources:Common, Save %>" Icon="Disk">
-
-                            <Listeners>
-                                <Click Handler="CheckSession();  App.loadingWindow.show();" />
-
-                            </Listeners>
-                            <DirectEvents>
-                                <Click OnEvent="UploadAttendances" Failure="Ext.MessageBox.alert('#{titleSavingError}.value', '#{titleSavingErrorMessage}.value');">
-                                    <EventMask ShowMask="true" />
-                                    <ExtraParams>
-                                    </ExtraParams>
-                                </Click>
-                            </DirectEvents>
-                        </ext:Button>
-
-                    </Buttons>
-
-                </ext:GridPanel>
-            </Items>
+              </Items>
         </ext:Viewport>
-        <ext:Window
-            ID="EditShiftWindow"
-            runat="server"
-            Icon="PageEdit"
-            Title="<%$ Resources:EditWindowsTitle %>"
-            Width="450"
-            Height="300"
-            AutoShow="false"
-            Modal="true"
-            Hidden="true"
-            Draggable="false"
-            Maximizable="false"
-            Resizable="false" Header="false"
-            Layout="Fit">
 
-            <Items>
-
-                <ext:FormPanel
-                    ID="EditShiftForm" DefaultButton="SaveButton"
-                    runat="server"
-                    Title="<%$ Resources: BasicInfoTabEditWindowTitle %>"
-                    Icon="ApplicationSideList"
-                    DefaultAnchor="100%"
-                    BodyPadding="5">
-                    <Items>
-                        <ext:TextField ID="recordId" runat="server" Name="recordId" Hidden="true" />
-                        <ext:TextField ID="dayId" runat="server" Name="dayId" FieldLabel="<%$ Resources: FieldDay %>" />
-                        <ext:TextField ID="employeeRef" runat="server" Name="employeeRef" FieldLabel="<%$ Resources:FieldEmployee%>" />
-                        <ext:TextField ID="checkIn" runat="server" FieldLabel="<%$ Resources:FieldCheckIn%>" Name="checkIn" AllowBlank="false">
-                            <Plugins>
-                                <ext:InputMask Mask="99:99" />
-
-                            </Plugins>
-                            <Validator Handler="return validateFrom(this.getValue());" />
-                        </ext:TextField>
-
-                        <ext:TextField ID="checkOut" runat="server" FieldLabel="<%$ Resources:FieldCheckOut%>" Name="checkOut" AllowBlank="true">
-                            <Plugins>
-                                <ext:InputMask Mask="99:99" AllowInvalid="true" />
-                            </Plugins>
-                            <Validator Handler="return validateTo(this.getValue(),this.prev().getValue());" />
-                        </ext:TextField>
-                    </Items>
-
-                </ext:FormPanel>
-
-
-            </Items>
-            <Buttons>
-                <ext:Button ID="SaveButton" runat="server" Text="<%$ Resources:Common, Save %>" Icon="Disk">
-
-                    <Listeners>
-                        <Click Handler="CheckSession(); if (!#{EditShiftForm}.getForm().isValid()) {return false;}  " />
-                    </Listeners>
-                    <DirectEvents>
-                        <Click OnEvent="SaveShift" Failure="Ext.MessageBox.alert('#{titleSavingError}.value', '#{titleSavingErrorMessage}.value');">
-                            <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="={#{EditShiftWindow}.body}" />
-                            <ExtraParams>
-                                <ext:Parameter Name="recordId" Value="#{recordId}.getValue()" Mode="Raw" />
-
-                                <ext:Parameter Name="values" Value="#{EditShiftForm}.getForm().getValues()" Mode="Raw" Encode="true" />
-                            </ExtraParams>
-                        </Click>
-                    </DirectEvents>
-                </ext:Button>
-                <ext:Button ID="CancelButton" runat="server" Text="<%$ Resources:Common , Cancel %>" Icon="Cancel">
-                    <Listeners>
-                        <Click Handler="this.up('window').hide();" />
-                    </Listeners>
-                </ext:Button>
-            </Buttons>
-
-        </ext:Window>
+                
 
 
         <ext:TaskManager ID="TaskManager1" runat="server">
@@ -395,8 +201,6 @@
             </Items>
 
         </ext:Window>
-
-
     </form>
 </body>
 </html>

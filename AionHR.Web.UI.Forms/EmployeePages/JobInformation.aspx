@@ -443,7 +443,8 @@
                                                 </Listeners>
                                 </ext:ComboBox>
                                 <ext:DateField ID="ehDate" runat="server" Name="date" FieldLabel="<%$ Resources:FieldEHDate%>" AllowBlank="false" />
-                                <ext:TextArea runat="server" Name="comment" FieldLabel="<%$ Resources:FieldEHComment%>" />
+                                <ext:TextArea runat="server" Name="comment" ID="comment" FieldLabel="<%$ Resources:FieldEHComment%>" />
+                                <ext:TextField runat="server" Name="comment" ID="commentField" InputType="Password" Visible="false" FieldLabel="<%$ Resources:FieldEHComment%>" />
                             </Items>
 
                         </ext:FormPanel>
@@ -626,7 +627,7 @@
                                             </ext:ComboBox>
                                   <ext:ComboBox runat="server" ID="reportToId"
                                     DisplayField="fullName"
-                                    ValueField="recordId"
+                                    ValueField="recordId" Name="reportToId"
                                     TypeAhead="false"
                                     FieldLabel="<%$ Resources: FieldReportsTo%>"
                                     HideTrigger="true" SubmitValue="true"

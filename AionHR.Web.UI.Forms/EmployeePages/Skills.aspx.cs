@@ -79,6 +79,11 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     Viewport11.Hidden = true;
                     return;
                 }
+                if (remarks.InputType == InputType.Password)
+                {
+                    remarks.Visible = false;
+                    remarksField.Visible = true;
+                }
             }
 
         }

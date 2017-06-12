@@ -288,20 +288,6 @@
                             </ext:DateColumn>
 
 
-                            <ext:Column runat="server"
-                                ID="colEdit" Visible="true"
-                                Text="<%$ Resources:Common, Edit %>"
-                                Width="70"
-                                Hideable="false"
-                                Align="Center"
-                                Fixed="true"
-                                Filterable="false"
-                                MenuDisabled="true"
-                                Resizable="false">
-
-                                <Renderer Handler="var x = editRender(); x=x+'&nbsp&nbsp'; return x;" />
-
-                            </ext:Column>
 
                             <ext:Column runat="server"
                                 ID="colDelete" Flex="1" Visible="false"
@@ -329,7 +315,21 @@
                                 <Renderer Fn="attachRender" />
                             </ext:Column>
 
+                            
+                            <ext:Column runat="server"
+                                ID="colEdit" Visible="true"
+                                Text="<%$ Resources:Common, Edit %>"
+                                Width="70"
+                                Hideable="false"
+                                Align="Center"
+                                Fixed="true"
+                                Filterable="false"
+                                MenuDisabled="true"
+                                Resizable="false">
 
+                                <Renderer Handler="var x = editRender(); x=x+'&nbsp&nbsp'; return x;" />
+
+                            </ext:Column>
 
 
                         </Columns>

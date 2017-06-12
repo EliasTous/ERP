@@ -22,7 +22,7 @@
         <ext:Hidden ID="textLoadFailed" runat="server" Text="<%$ Resources:Common , LoadFailed %>" />
         <ext:Hidden ID="titleSavingError" runat="server" Text="<%$ Resources:Common , TitleSavingError %>" />
         <ext:Hidden ID="titleSavingErrorMessage" runat="server" Text="<%$ Resources:Common , TitleSavingErrorMessage %>" />
-
+        <ext:Hidden ID="colorDisabled" runat="server"  />
         <ext:Store
             ID="Store1"
             runat="server"
@@ -122,10 +122,10 @@
 
                             <ext:ComponentColumn runat="server" Text="<%$ Resources: FieldColor%>" DataIndex="color" Flex="1">
                                 <Component>
-                                    <ext:ColorField runat="server" ReadOnly="true" />
+                                    <ext:ColorField runat="server" ReadOnly="true"/>
                                 </Component>
                                 <Listeners>
-                                    <Bind Handler="cmp.setValue(record.get('color'));" />
+                                    <Bind Handler="if(App.colorDisabled.value=='True') cmp.setHidden(true); else   cmp.setValue(record.get('color'));" />
                                 </Listeners>
                             </ext:ComponentColumn>
                             <%--<ext:Column    ID="ColColor" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldColor%>" DataIndex="color" Flex="1" Hideable="false">

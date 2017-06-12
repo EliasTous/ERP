@@ -134,6 +134,16 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     DeductionForm.Hidden = true;
                    
                 }
+                if (enComment.InputType == InputType.Password)
+                {
+                    enComment.Visible = false;
+                    enCommentField.Visible = true;
+                }
+                if (deComment.InputType == InputType.Password)
+                {
+                    deComment.Visible = false;
+                    deCommentField.Visible = true;
+                }
             }
 
         }

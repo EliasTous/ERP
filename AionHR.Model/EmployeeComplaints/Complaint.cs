@@ -31,6 +31,8 @@ namespace AionHR.Model.Employees
         [ApplySecurity]
         public short status { get; set; }
 
+        [PropertyID("44000_01")]
+        [ApplySecurity]
         public EmployeeName employeeName { get; set; }
     }
 }

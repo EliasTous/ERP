@@ -1510,6 +1510,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Access Control.
+        /// </summary>
+        internal static string Mod90 {
+            get {
+                return ResourceManager.GetString("Mod90", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to .
         /// </summary>
         internal static string Modules {

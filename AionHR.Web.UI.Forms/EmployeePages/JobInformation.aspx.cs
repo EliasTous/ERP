@@ -92,6 +92,11 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                 }
             }
             Column2.Format = ColDate.Format = ehDate.Format = date.Format = _systemService.SessionHelper.GetDateformat();
+            if (comment.InputType == InputType.Password)
+            {
+                comment.Visible = false;
+                commentField.Visible = true;
+            }
 
         }
 

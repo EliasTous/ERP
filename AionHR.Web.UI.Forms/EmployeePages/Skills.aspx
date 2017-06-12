@@ -275,7 +275,10 @@
                                 <ext:DateField AllowBlank="false"  ID="dateTo" runat="server" Name="dateTo" FieldLabel="<%$ Resources:FieldDateTo%>"  />
                                 
                                 <ext:TextArea runat="server" Name="remarks"  ID="remarks"  FieldLabel="<%$ Resources:FieldRemarks%>" />
-                                <ext:NumberField runat="server" Name="grade" ID="grade" FieldLabel="<%$ Resources:FieldGrade%>" />
+                                <ext:TextField runat="server" InputType="Password" Visible="false" Name="remarks"  ID="remarksField"  FieldLabel="<%$ Resources:FieldRemarks%>" />
+                                <ext:TextField runat="server" Name="grade" ID="grade" FieldLabel="<%$ Resources:FieldGrade%>" >
+                                    <Validator Handler="return !isNaN(this.value)&& this.value>0 && this.value<100" />
+                                    </ext:TextField>
                                 <ext:TextField  runat="server" Name="major" AllowBlank="false"  ID="major"  FieldLabel="<%$ Resources:FieldMajor%>" />
                             </Items>
 

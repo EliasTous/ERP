@@ -24,8 +24,8 @@ namespace AionHR.Model.System
         [PropertyID("20081_04")]
         [ApplySecurity]
         public string remarks { get; set; }
-        [PropertyID("20081_05")]
-        [ApplySecurity]
+        //[PropertyID("20081_05")]
+        //[ApplySecurity]
         public bool hijriCal { get; set; }
         [PropertyID("20081_06")]
         [ApplySecurity]

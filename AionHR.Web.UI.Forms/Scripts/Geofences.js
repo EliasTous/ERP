@@ -73,13 +73,12 @@ var circle;
 var rectangle;
 var map;
 var geocoder;
-function setWidth()
-{
+function setWidth() {
     console.log(App.mapHolder.getWidth());
     console.log(App.mapHolder.getHeight());
-    document.getElementById("map").style.width = App.mapHolder.getWidth() +4 + 'px';
-  document.getElementById("map").style.height = App.mapHolder.getHeight() - 25 + 'px';
- 
+    document.getElementById("map").style.width = App.mapHolder.getWidth() + 4 + 'px';
+    document.getElementById("map").style.height = App.mapHolder.getHeight() - 25 + 'px';
+
 }
 var drawingManager;
 function initMap(addr) {
@@ -89,7 +88,8 @@ function initMap(addr) {
         zoom: 12
     });
     geocoder = new google.maps.Geocoder();
-
+    var edit = App.viewOnly.value == "True";
+    var drag = edit;
     drawingManager = new google.maps.drawing.DrawingManager({
 
         drawingControl: true,
@@ -103,19 +103,20 @@ function initMap(addr) {
 
             strokeWeight: 2,
             clickable: false,
-            editable: true,
+            editable: !edit,
             zIndex: 1,
-            draggable: true
+            draggable: !edit
         },
         rectangleOptions: {
 
 
             strokeWeight: 2,
-            draggable: true,
-            editable: true,
+            draggable: !edit,
+            editable: !edit,
             zIndex: 1
         }
     });
+    
     drawingManager.setMap(map);
 
     google.maps.event.addListener(drawingManager, 'overlaycomplete', function (e) {
@@ -202,13 +203,14 @@ function getRectangleJson() {
 }
 function AddCircle(latitude, longitude, r) {
     rectangle = null;
+    var edit = App.viewOnly.value == "True";
     circle = new google.maps.Circle({
 
-        strokeOpacity: 1,
-        strokeWeight: 2,
-        editable: true,
-        draggable:true,
-        fillOpacity: 0.35,
+        strokeOpacity: 2,
+        strokeWeight: 0.5,
+        editable: !edit,
+        draggable: !edit,
+        fillOpacity:0.4,
 
         center: { lat: latitude, lng: longitude },
         map: map,
@@ -217,7 +219,8 @@ function AddCircle(latitude, longitude, r) {
     drawingManager.setOptions({
         drawingControl: false
     });
-    document.getElementById("delete").removeAttribute('disabled');
+    if (App.viewOnly.value != "True")
+        document.getElementById("delete").removeAttribute('disabled');
     map.setCenter(circle.center);
     map.fitBounds(circle.getBounds());
 
@@ -229,8 +232,8 @@ function AddRectangle(lat1, lon1, lat2, lon2) {
 
         strokeWeight: 2,
 
-        editable: true,
-        draggable: true,
+        editable: !edit,
+        draggable: !edit,
         map: map,
         bounds: {
             north: lat1,
@@ -242,8 +245,8 @@ function AddRectangle(lat1, lon1, lat2, lon2) {
     drawingManager.setOptions({
         drawingControl: false
     });
-    
-    document.getElementById("delete").removeAttribute('disabled');
+    if (App.viewOnly.value != "True")
+        document.getElementById("delete").removeAttribute('disabled');
     map.setCenter(rectangle.bounds.getCenter());
     map.fitBounds(rectangle.bounds);
 }
@@ -252,12 +255,16 @@ function isCircle() {
     return circle != null;
 }
 function getLat1() {
+    if (App.noAccess.value == 'True')
+        return App.lat1.value;
     if (isCircle())
         return getCircleJson().lat;
     else
         return getRectangleJson().lat1;
 }
 function getLon1() {
+    if (App.noAccess.value == 'True')
+        return App.lon1.value;
     if (isCircle())
         return getCircleJson().lon;
     else
@@ -265,16 +272,22 @@ function getLon1() {
 
 }
 function getLat2() {
+    if (App.noAccess.value == 'True')
+        return App.lat2.value;
     if (!isCircle())
         return getRectangleJson().lat2;
 }
 function getLon2() {
+    if (App.noAccess.value == 'True')
+        return App.lon2.value;
     if (!isCircle())
 
         return getRectangleJson().lon2;
 
 }
 function getRadius() {
+    if (App.noAccess.value == 'True')
+        return App.radius.value;
     if (isCircle())
 
         return getCircleJson().radius;

@@ -103,6 +103,24 @@ namespace AionHR.Web.UI.Forms.EmployeePages {
         protected global::Ext.Net.Hidden EmployeeTerminated;
         
         /// <summary>
+        /// issueDateDisabled control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Hidden issueDateDisabled;
+        
+        /// <summary>
+        /// expiryDateDisabled control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Hidden expiryDateDisabled;
+        
+        /// <summary>
         /// Viewport11 control.
         /// </summary>
         /// <remarks>
@@ -220,13 +238,13 @@ namespace AionHR.Web.UI.Forms.EmployeePages {
         protected global::Ext.Net.Column validTo;
         
         /// <summary>
-        /// remarks control.
+        /// remarksCol control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Column remarks;
+        protected global::Ext.Net.Column remarksCol;
         
         /// <summary>
         /// colDelete control.
@@ -589,6 +607,24 @@ namespace AionHR.Web.UI.Forms.EmployeePages {
         protected global::Ext.Net.DateField rwExpiryDate;
         
         /// <summary>
+        /// remarks control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.TextArea remarks;
+        
+        /// <summary>
+        /// remarksField control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.TextField remarksField;
+        
+        /// <summary>
         /// rwFile control.
         /// </summary>
         /// <remarks>
@@ -695,6 +731,24 @@ namespace AionHR.Web.UI.Forms.EmployeePages {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.DateField DateField2;
+        
+        /// <summary>
+        /// bcRemarks control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.TextArea bcRemarks;
+        
+        /// <summary>
+        /// bcRemarksField control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.TextField bcRemarksField;
         
         /// <summary>
         /// bcFile control.

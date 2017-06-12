@@ -83,6 +83,62 @@ namespace AionHR.Web.UI.Forms
                 userSelector.Buttons[0] = ItemSelectorButton.Add;
                 userSelector.Buttons[1] = ItemSelectorButton.Remove;
 
+
+                try
+                {
+                    AccessControlApplier.ApplyAccessControlOnPage(typeof(SecurityGroup), GroupForm, groupsGrid, groupAddButton, SaveGroupButton);
+                }
+                catch (AccessDeniedException exp)
+                {
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorAccessDenied).Show();
+                    Viewport1.Hidden = true;
+                    return;
+                }
+                try
+                {
+                    AccessControlApplier.ApplyAccessControlOnPage(typeof(SecurityGroupUser), null, usersGrid, Button1, null);
+                }
+                catch (AccessDeniedException exp)
+                {
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorAccessDenied).Show();
+                    Viewport1.Hidden = true;
+                    return;
+                }
+                try
+                {
+                    AccessControlApplier.ApplyAccessControlOnPage(typeof(ModuleClass), EditClassLevelForm, classesGrid, null, SaveClassLevelButton);
+                }
+                catch (AccessDeniedException exp)
+                {
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorAccessDenied).Show();
+                    Viewport1.Hidden = true;
+                    return;
+                }
+                try
+                {
+                    AccessControlApplier.ApplyAccessControlOnPage(typeof(ModuleClass), ApplyModuleLevelWindow, classesGrid, openModuleLevelForm, ApplyModuleButton);
+                }
+                catch (AccessDeniedException exp)
+                {
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorAccessDenied).Show();
+                    Viewport1.Hidden = true;
+                    return;
+                }
+                try
+                {
+                    AccessControlApplier.ApplyAccessControlOnPage(typeof(ClassProperty), EditClassPropertiesForm, propertiesGrid, null, Button6);
+                }
+                catch (AccessDeniedException exp)
+                {
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorAccessDenied).Show();
+                    Viewport1.Hidden = true;
+                    return;
+                }
             }
 
 

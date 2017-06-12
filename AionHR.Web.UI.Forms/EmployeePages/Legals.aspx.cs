@@ -65,7 +65,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorOperation).Show();
                 CurrentEmployee.Text = Request.QueryString["employeeId"];
 
-                 DateColumn1.Format = DateColumn2.Format = _systemService.SessionHelper.GetDateformat();
+                DateColumn1.Format = DateColumn2.Format = _systemService.SessionHelper.GetDateformat();
                 EmployeeTerminated.Text = Request.QueryString["terminated"];
 
                 bool disabled = EmployeeTerminated.Text == "1";
@@ -96,10 +96,26 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                 rwIssueDateMulti.InputType = rwIssueDate.InputType;
                 rwIssueDateMulti.Disabled = rwIssueDate.Disabled;
                 rwIssueDateMulti.ReadOnly = rwIssueDate.ReadOnly;
+                issueDateDisabled.Text = rwIssueDate.ReadOnly.ToString();
 
                 rwExpiryDateMulti.InputType = rwExpiryDate.InputType;
                 rwExpiryDateMulti.Disabled = rwExpiryDate.Disabled;
                 rwExpiryDateMulti.ReadOnly = rwExpiryDate.ReadOnly;
+                expiryDateDisabled.Text = rwExpiryDate.ReadOnly.ToString();
+
+                hijriCal.LazyItems.ForEach(x => (x as Field).ReadOnly = rwIssueDate.ReadOnly || rwExpiryDate.ReadOnly);
+
+
+                if (remarks.InputType == InputType.Password)
+                {
+                    remarks.Visible = false;
+                    remarksField.Visible = true;
+                }
+                if (bcRemarks.InputType == InputType.Password)
+                {
+                    bcRemarks.Visible = false;
+                    bcRemarksField.Visible = true;
+                }
             }
         }
 

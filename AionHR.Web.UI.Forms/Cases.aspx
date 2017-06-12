@@ -504,7 +504,8 @@
                                 <%--<ext:TextField ID="employeeName" runat="server" FieldLabel="<%$ Resources:FieldEmployeeName%>" Name="employeeName"   AllowBlank="false"/>--%>
                                 <ext:DateField ID="date" runat="server" FieldLabel="<%$ Resources:FieldDate%>" Name="date" AllowBlank="false" />                                
                                 <ext:TextArea ID="details" runat="server" FieldLabel="<%$ Resources:FieldDetails%>" Name="details" AllowBlank="false"/>
-                                <ext:ComboBox runat="server" ID="status" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1"
+                                <ext:TextField ID="detailsField" Visible="false" InputType="Password" runat="server" FieldLabel="<%$ Resources:FieldDetails%>" Name="details" AllowBlank="false"/>
+                                <ext:ComboBox runat="server" ID="status" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" Name="status"
                                     FieldLabel="<%$ Resources: FieldStatus %>" AllowBlank="false">
                                     <Items>
                                         <ext:ListItem Text="<%$ Resources: FieldOpen %>" Value="1" />

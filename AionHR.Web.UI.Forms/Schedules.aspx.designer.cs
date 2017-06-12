@@ -541,7 +541,7 @@ namespace AionHR.Web.UI.Forms {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.NumberField fci_min_ot;
+        protected global::Ext.Net.TextField fci_min_ot;
         
         /// <summary>
         /// fci_max_lt control.
@@ -550,7 +550,7 @@ namespace AionHR.Web.UI.Forms {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.NumberField fci_max_lt;
+        protected global::Ext.Net.TextField fci_max_lt;
         
         /// <summary>
         /// lco_max_el control.
@@ -559,7 +559,7 @@ namespace AionHR.Web.UI.Forms {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.NumberField lco_max_el;
+        protected global::Ext.Net.TextField lco_max_el;
         
         /// <summary>
         /// lco_min_ot control.
@@ -568,7 +568,7 @@ namespace AionHR.Web.UI.Forms {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.NumberField lco_min_ot;
+        protected global::Ext.Net.TextField lco_min_ot;
         
         /// <summary>
         /// lco_max_ot control.
@@ -577,7 +577,7 @@ namespace AionHR.Web.UI.Forms {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.NumberField lco_max_ot;
+        protected global::Ext.Net.TextField lco_max_ot;
         
         /// <summary>
         /// SaveButton control.

@@ -142,6 +142,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to States.
+        /// </summary>
+        internal static string Class20071 {
+            get {
+                return ResourceManager.GetString("Class20071", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Document Type.
         /// </summary>
         internal static string Class20080 {
@@ -736,7 +745,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ECCO.
+        ///   Looks up a localized string similar to Employee Complaints.
         /// </summary>
         internal static string Class44000 {
             get {
@@ -939,6 +948,42 @@ namespace Resources {
         internal static string Class81100 {
             get {
                 return ResourceManager.GetString("Class81100", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Security Groups.
+        /// </summary>
+        internal static string Class90101 {
+            get {
+                return ResourceManager.GetString("Class90101", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Group Users.
+        /// </summary>
+        internal static string Class90102 {
+            get {
+                return ResourceManager.GetString("Class90102", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Class.
+        /// </summary>
+        internal static string Class90103 {
+            get {
+                return ResourceManager.GetString("Class90103", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Property.
+        /// </summary>
+        internal static string Class90104 {
+            get {
+                return ResourceManager.GetString("Class90104", resourceCulture);
             }
         }
     }

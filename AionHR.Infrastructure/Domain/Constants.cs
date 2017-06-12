@@ -18,6 +18,7 @@ namespace AionHR.Infrastructure.Domain
         public const int SYAT = 20050;  // attachments
         public const int SYTL = 20060;  // transaction log
         public const int SYAB = 20070;  // address book
+        public const int SYST = 20071;  // address book
         public const int SYDT = 20080;  // document type
         public const int SYRW = 20081;  // right to work
         public const int SYAA = 20090;  // auto alert
@@ -203,6 +204,12 @@ namespace AionHR.Infrastructure.Domain
         public const int RT802 = 80802; // audit trail
 
         // dash board ***************************************************************************
+
+        public const int ALSG = 90101;  // security groups
+        public const int ALUS = 90102;  // security groups users 
+        public const int ALCL = 90103;  // security groups class access
+        public const int ALCP = 90104;  // security groups class property access
+        public const int ALUC = 90104;  // use / class access
 
         public const int DASH = 81100;  // dashboard
 

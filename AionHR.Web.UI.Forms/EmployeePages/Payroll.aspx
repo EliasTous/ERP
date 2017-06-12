@@ -1208,18 +1208,19 @@
                                     </Listeners>
                                 </ext:Checkbox>
 
-                                <ext:NumberField
+                                <ext:TextField
                                     runat="server"
                                     AllowBlank="false" ID="enPCT" Name="pct"
-                                    MinValue="0" Disabled="true"
+                                     Disabled="true"
                                     FieldLabel="<%$ Resources:FieldPCT%>"
-                                    MaxValue="100">
+                                    >
                                     <Listeners>
                                         <Change Handler=" if(this.prev().value==true) this.next().setValue(CalculateFixed(this.value,1));" />
                                     </Listeners>
-                                </ext:NumberField>
+                                    <Validator Handler="return !isNaN(this.value) && this.value>0 && this.value<100;" />
+                                </ext:TextField>
 
-                                <ext:NumberField
+                                <ext:TextField
                                     runat="server" Name="fixedAmount"
                                     AllowBlank="false"
                                     MinValue="0"
@@ -1228,9 +1229,10 @@
                                     <%--<Listeners>
                                         <Change Handler="if(this.prev().prev().value==false) this.prev().setValue(CalculatePct(this.value));" />
                                     </Listeners>--%>
-                                </ext:NumberField>
-                                <ext:TextArea runat="server" Name="comment" DataIndex="comments" FieldLabel="<%$ Resources:FieldComment%>" />
-
+                                    <Validator Handler="return !isNaN(this.value) && this.value>0 ;" />
+                                </ext:TextField>
+                                <ext:TextArea runat="server" ID="enComment" Name="comment" DataIndex="comments" FieldLabel="<%$ Resources:FieldComment%>" />
+                                <ext:TextField runat="server" InputType="Password" Visible="false" ID="enCommentField" Name="comment" DataIndex="comments" FieldLabel="<%$ Resources:FieldComment%>" />
                             </Items>
 
                         </ext:FormPanel>
@@ -1335,18 +1337,19 @@
                                         <Select Handler=" if(this.prev().value==true) this.next().next().setValue(CalculateFixed(this.next().value,this.value));" />
                                     </Listeners>
                                 </ext:ComboBox>
-                               <ext:NumberField
+                               <ext:TextField
                                     runat="server"
                                     AllowBlank="false" ID="dePCT" Name="pct"
-                                    MinValue="0" Disabled="true"
+                                     Disabled="true"
                                     FieldLabel="<%$ Resources:FieldPCT%>"
-                                    MaxValue="100">
+                                    >
                                     <Listeners>
                                         <Change Handler=" if(this.prev().prev().value==true) this.next().setValue(CalculateFixed(this.value,this.prev().value));" />
                                     </Listeners>
-                                </ext:NumberField>
+                                  <Validator Handler="return !isNaN(this.value) && this.value>0 && this.value<100;" />
+                                </ext:TextField>
 
-                                <ext:NumberField
+                                <ext:TextField
                                     runat="server" Name="fixedAmount"
                                     AllowBlank="false"
                                     MinValue="0"
@@ -1355,8 +1358,10 @@
                                     <Listeners>
                                         <%--<Change Handler="if(this.prev().prev().value==false) this.prev().setValue(CalculatePct(this.value));" />--%>
                                     </Listeners>
-                                </ext:NumberField>
-                                <ext:TextArea runat="server" Name="comment" DataIndex="comments" FieldLabel="<%$ Resources:FieldComment%>" />
+                                    <Validator Handler="return !isNaN(this.value) && this.value>0;" />
+                                </ext:TextField>
+                                <ext:TextArea runat="server" Name="comment" DataIndex="comment" ID="deComment" FieldLabel="<%$ Resources:FieldComment%>" />
+                                <ext:TextField InputType="Password" Visible="false" runat="server" Name="comment" DataIndex="comment" ID="deCommentField" FieldLabel="<%$ Resources:FieldComment%>" />
 
                             </Items>
 
