@@ -434,9 +434,9 @@
                                 <ext:TextField ID="comment" runat="server" FieldLabel="<%$ Resources:FieldComment%>" Name="comment" />
 
                                 <ext:DateField ID="date" runat="server" FieldLabel="<%$ Resources:FieldDate%>" Name="date" AllowBlank="false" />
-                                <ext:DateField ID="returnedDate" runat="server" FieldLabel="<%$ Resources:FieldReturnedDate%>" Name="" AllowBlank="false" />
+                                <ext:DateField ID="returnedDate" runat="server" FieldLabel="<%$ Resources:FieldReturnedDate%>" Name="returnedDate" AllowBlank="false" />
 
-
+                                
                                 
 
 

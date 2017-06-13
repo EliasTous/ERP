@@ -47,9 +47,10 @@ namespace AionHR.Services.Implementations
         protected override void PostProcessElements()
         {
             StringBuilder b = new StringBuilder();
+            int i = 0;
             foreach (var error in  errors)
             {
-                b.Append(error.employeeRef + "," + error.dayId + "," + error.checkIn + "," + error.checkOut + "\n");
+                b.Append(error.employeeRef + "," + error.dayId + "," + error.checkIn + "," + error.checkOut + ","+errorMessages[i++] +"\n");
 
             }
             string csv = b.ToString();

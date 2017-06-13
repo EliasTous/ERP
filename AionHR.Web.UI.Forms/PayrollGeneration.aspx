@@ -22,7 +22,8 @@
             App.payDate.setValue(d.toDate());
         }
         function CalcENSum() {
-
+            if (App.entitlementDisabled.value == 'True')
+                return '****';
             var enSum = 0;
             App.entitlementsGrid.getStore().each(function (record) {
                 enSum += record.data['amount'];
@@ -33,7 +34,8 @@
 
         }
         function CalcDESum() {
-
+            if (App.deductionDisabled.value == 'True')
+                return '****';
             var deSum = 0;
             App.deductionGrid.getStore().each(function (record) {
                 deSum += record.data['amount'];
@@ -64,7 +66,8 @@
         <ext:Hidden ID="PeriodStatus2" runat="server" Text="<%$ Resources: Status2 %>" />
         <ext:Hidden ID="total" runat="server" Text="<%$ Resources: TotalText %>" />
         <ext:Hidden ID="IsPayrollPosted" runat="server" />
-
+        <ext:Hidden ID="entitlementDisabled" runat="server" />
+        <ext:Hidden ID="deductionDisabled" runat="server" />
         <ext:Viewport ID="Viewport1" runat="server" Layout="CardLayout" ActiveIndex="0">
             <Items>
                 <ext:Panel runat="server" ID="payrolls" Layout="FitLayout">
@@ -443,7 +446,7 @@
                             </Store>
                             <ColumnModel>
                                 <Columns>
-                                    <ext:Column runat="server" DataIndex="name.fullName" Text="<%$ Resources: FieldEmployee%>" Flex="2">
+                                    <ext:Column runat="server" DataIndex="name" Text="<%$ Resources: FieldEmployee%>" Flex="2">
                                         <Renderer Handler="return record.data['name'].fullName;" />
                                     </ext:Column>
                                     <ext:Column runat="server" DataIndex="branchName" Text="<%$ Resources: FieldBranch%>" Flex="1" />

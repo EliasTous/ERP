@@ -288,7 +288,7 @@
 
                                 <SummaryRenderer Handler="return #{TotalText}.value;" />
                             </ext:Column>
-                            <ext:Column ID="ColName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldFullName%>" DataIndex="employeeName.fullName" Flex="3" Hideable="false">
+                            <ext:Column ID="ColName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldFullName%>" DataIndex="employeeName" Flex="3" Hideable="false">
                                 <Renderer Handler="return record.data['employeeName'].fullName;" />
                                 <SummaryRenderer Handler="return '<hr/>';" />
                             </ext:Column>

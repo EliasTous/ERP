@@ -16,18 +16,18 @@ namespace AionHR.Model.Attendance
         public string name { get; set; }
         [PropertyID("41050_02")]
         [ApplySecurity]
-        public short fci_min_ot { get; set; }
+        public short? fci_min_ot { get; set; }
         [PropertyID("41050_03")]
         [ApplySecurity]
-        public short fci_max_lt { get; set; }
+        public short? fci_max_lt { get; set; }
         [PropertyID("41050_04")]
         [ApplySecurity]
-        public short lco_max_el { get; set; }
+        public short? lco_max_el { get; set; }
         [PropertyID("41050_05")]
         [ApplySecurity]
-        public short lco_min_ot { get; set; }
+        public short? lco_min_ot { get; set; }
         [PropertyID("41050_06")]
         [ApplySecurity]
-        public short lco_max_ot { get; set; }
+        public short? lco_max_ot { get; set; }
     }
 }

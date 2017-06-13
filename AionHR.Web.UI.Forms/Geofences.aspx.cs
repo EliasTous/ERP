@@ -88,11 +88,9 @@ namespace AionHR.Web.UI.Forms
 
         private void ApplyLocationAccessControl()
         {
-            UserPropertiesPermissions req = new UserPropertiesPermissions();
-            req.ClassId = (typeof(Geofence).GetCustomAttributes(typeof(ClassIdentifier), false).ToList()[0] as ClassIdentifier).ClassID;
-            req.UserId = _systemService.SessionHelper.GetCurrentUserId();
-            ListResponse<UC> resp = _accessControlService.ChildGetAll<UC>(req);
-            var d = resp.Items.Where(x => x.propertyId == "4102003");
+            
+            var properties = AccessControlApplier.GetPropertiesLevels(typeof(Geofence));
+            var d = properties.Where(x => x.propertyId == "4102003");
             if(d.Count()>0)
             {
                 switch(d.ToList()[0].accessLevel)

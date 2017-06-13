@@ -20,7 +20,6 @@ namespace AionHR.Model.Attendance
         public string positionName { get; set; }
         public string departmentName { get; set; }
         public string branchName { get; set; }
-
     }
 
     public  class ActiveLate : ActiveCheck
@@ -39,7 +38,6 @@ namespace AionHR.Model.Attendance
         public bool missedIn { get; set; }
         public bool missedOut { get; set; }
         public string time { get; set; }
-
     }
 
     public  class ActiveAbsence : ModelBase
@@ -60,6 +58,5 @@ namespace AionHR.Model.Attendance
         public DateTime endDate { get; set; }
         public string ltName { get; set; }
         public string destination { get; set; }
-
     }
 }

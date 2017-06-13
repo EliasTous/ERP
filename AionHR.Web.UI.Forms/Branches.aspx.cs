@@ -84,36 +84,32 @@ namespace AionHR.Web.UI.Forms
 
         private void ApplyAccessControlOnAddress()
         {
-            UserPropertiesPermissions req = new UserPropertiesPermissions();
-            req.ClassId = (typeof(Branch).GetCustomAttributes(typeof(ClassIdentifier), false).ToList()[0] as ClassIdentifier).ClassID;
-            req.UserId = _systemService.SessionHelper.GetCurrentUserId();
-            ListResponse<UC> resp = _accessControlService.ChildGetAll<UC>(req);
-
-            var att = resp.Items.Where(x =>
             
+            
+            var properties = AccessControlApplier.GetPropertiesLevels(typeof(Branch));
+            var level = properties.Where(x =>
+
                 x.propertyId == "2102005"
-           );
-            int level = 0;
-            if (att.Count() == 0|| att.ToList()[0].accessLevel==2)
-                return;
-            level = att.ToList()[0].accessLevel;
-            switch(level)
+           ).ToList()[0].accessLevel;
+            
+            switch (level)
             {
                 case 0:
                     addressForm.Items.ForEach(x =>
                     {
                         (x as Field).InputType = InputType.Password;
-                            (x as Field).ReadOnly = true;
+                        (x as Field).ReadOnly = true;
                     });
                     break;
                 case 1:
                     addressForm.Items.ForEach(x =>
                     {
-                        
+
                         (x as Field).ReadOnly = true;
                     }); break;
+                default: break;
             }
-                
+
         }
 
         /// <summary>

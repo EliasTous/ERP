@@ -110,7 +110,7 @@
                             <ext:Column Visible="false" ID="ColrecordId" MenuDisabled="true" runat="server" DataIndex="alertId" Hideable="false" Width="75" Align="Center" />
                             <ext:Column Visible="false" ID="Column2" MenuDisabled="true" runat="server" DataIndex="predefined" Hideable="false" Width="75" Align="Center" />
                     
-                            <ext:WidgetColumn ID="Column1" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldActive %>" DataIndex="isActive" Hideable="false" Width="75" Align="Center">
+                            <ext:WidgetColumn ID="Column1" MenuDisabled="true"  runat="server" Text="<%$ Resources: FieldActive %>" DataIndex="isActive" Hideable="false" Width="75" Align="Center">
                                 <Widget>
                                     <ext:Checkbox runat="server" Name="isActive" ID="chk">
                                         <Listeners>

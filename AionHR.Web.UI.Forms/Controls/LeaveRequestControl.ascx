@@ -246,7 +246,7 @@
                                 <Change Handler="SetReturnDateState();" />
                             </Listeners>
                         </ext:ComboBox>
-                        <ext:FieldSet runat="server" Title="<%$ Resources:ReturnInfo%>">
+                        <ext:FieldSet runat="server" Title="<%$ Resources:ReturnInfo%>" ID="returnFieldSet">
                             <Items>
                                 <ext:DateField Disabled="true" runat="server" Name="returnDate" ID="returnDate" FieldLabel="<%$ Resources: FieldReturnDate %>">
                                     <DirectEvents>

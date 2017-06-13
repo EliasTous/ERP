@@ -35,6 +35,7 @@ namespace AionHR.Services.Implementations
         protected override void PostProcessElements()
         {
             StringBuilder b = new StringBuilder();
+            int i = 0;
             foreach (var error in errors)
             {
                 b.AppendLine(error.employeeRef + ","
@@ -46,7 +47,8 @@ namespace AionHR.Services.Implementations
                     error.status+","+
                     error.date + "," +
                     error.effectiveDate + "," +
-                    error.loanRef + "," 
+                    error.loanRef + "," +
+                    errorMessages[i++]
                     );
 
             }
@@ -88,6 +90,7 @@ namespace AionHR.Services.Implementations
             if (!resp.Success)
             {
                 errors.Add(item);
+                errorMessages.Add(resp.Summary);
             }
         }
     }

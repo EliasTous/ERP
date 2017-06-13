@@ -924,4 +924,10 @@
   <data name="SecurityGroups" xml:space="preserve">
     <value>المجموعات الأمنية</value>
   </data>
+  <data name="Mod51" xml:space="preserve">
+    <value>الرواتب</value>
+  </data>
+  <data name="Mod90" xml:space="preserve">
+    <value>التحكم بالوصول</value>
+  </data>
 </root>

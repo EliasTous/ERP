@@ -83,10 +83,9 @@ namespace AionHR.Web.UI.Forms
                 }
                 catch (AccessDeniedException exp)
                 {
-                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorAccessDenied).Show();
-                    Viewport1.Hidden = true;
-                    return;
+
+                    periodsGrid.Hidden = true;
+                    
                 }
                 if ((bool)_systemService.SessionHelper.Get("IsAdmin"))
                     return;
@@ -109,13 +108,10 @@ namespace AionHR.Web.UI.Forms
                 case 2: addPeriod.Disabled = true; deleteDisabled.Text = "1"; break;
                 default: break;
             }
-            UserPropertiesPermissions req = new UserPropertiesPermissions();
-            req.ClassId = (typeof(VacationSchedulePeriod).GetCustomAttributes(typeof(ClassIdentifier), false).ToList()[0] as ClassIdentifier).ClassID;
-            req.UserId = _systemService.SessionHelper.GetCurrentUserId();
-            ListResponse<UC> resp = _accessControlService.ChildGetAll<UC>(req);
-
+           
+            var properties = AccessControlApplier.GetPropertiesLevels(typeof(VacationSchedulePeriod));
             int i = 1;
-            foreach (var item in resp.Items)
+            foreach (var item in properties)
             {
                 if (item.accessLevel < 2 && periodsGrid.ColumnModel.Columns[i].Editor.Count > 0)
                     periodsGrid.ColumnModel.Columns[i].Editor[0].ReadOnly = true;

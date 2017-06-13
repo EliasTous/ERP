@@ -104,7 +104,16 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                 expiryDateDisabled.Text = rwExpiryDate.ReadOnly.ToString();
 
                 hijriCal.LazyItems.ForEach(x => (x as Field).ReadOnly = rwIssueDate.ReadOnly || rwExpiryDate.ReadOnly);
-
+               
+                if(rwFile.InputType== InputType.Password)
+                { var s = rightToWorkGrid.ColumnModel.Columns[rightToWorkGrid.ColumnModel.Columns.Count - 1];
+                    s.Renderer.Handler = s.Renderer.Handler.Replace("attachRender()", " ' '");
+                }
+                if (bcFile.InputType == InputType.Password)
+                {
+                    var s = BackgroundCheckGrid.ColumnModel.Columns[BackgroundCheckGrid.ColumnModel.Columns.Count - 1];
+                    s.Renderer.Handler = s.Renderer.Handler.Replace("attachRender()", " ' '");
+                }
 
                 if (remarks.InputType == InputType.Password)
                 {

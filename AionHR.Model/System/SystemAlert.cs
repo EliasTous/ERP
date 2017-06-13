@@ -11,16 +11,17 @@ namespace AionHR.Model.System
     public class SystemAlert
 
     {
-
+        [PropertyID("20090_01")]
         public bool isActive { get; set; }
+        [PropertyID("20090_02")]
         public int alertId { get; set; }
 
-        
 
+        [PropertyID("20090_03")]
         public short sendTo { get; set; }
-
+        [PropertyID("20090_04")]
         public short days { get; set; }
-
+        [PropertyID("20090_05")]
         public string description { get; set; }
         public bool predefined { get; set; }
 

@@ -95,6 +95,11 @@ namespace AionHR.Web.UI.Forms
                     Viewport1.Hidden = true;
                     return;
                 }
+               
+                if (GridPanel1.ColumnModel.Columns[1].Renderer != null && !string.IsNullOrEmpty(GridPanel1.ColumnModel.Columns[1].Renderer.Handler))
+                    imageVisible.Text = "False";
+                else
+                    imageVisible.Text = "True";
             }
 
 

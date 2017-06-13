@@ -46,6 +46,8 @@
         <ext:Hidden runat="server" ID="lblLoading" Text="<%$Resources:Common , Loading %>" />
         <ext:Hidden runat="server" ID="pRTL" />
         <ext:Hidden runat="server" ID="imageData" />
+        
+        <ext:Hidden runat="server" ID="imageVisible" />
         <ext:Viewport runat="server" Layout="BorderLayout" ID="Viewport1">
             <Items>
                 <ext:GridPanel
@@ -268,14 +270,15 @@
 
                                 </Component>
                                 <Listeners>
-                                    <Bind Handler=" cmp.setImageUrl(record.get('pictureUrl')+'?id='+new Date().getTime()); " />
+                                    <Bind Handler="if(App.imageVisible.value=='True') cmp.setImageUrl(record.get('pictureUrl')+'?id='+new Date().getTime()); else cmp.setImageUrl('../Images/empPhoto.jpg'); " />
                                 </Listeners>
+                                
                             </ext:ComponentColumn>
-                            <ext:Column ID="ColReference" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldRef%>" DataIndex="name.reference" Width="60" Hideable="false">
+                            <ext:Column ID="ColReference" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldRef%>" DataIndex="reference" Width="60" Hideable="false">
                                 <Renderer Handler=" return  record.data['name'].reference ">
                                 </Renderer>
                             </ext:Column>
-                            <ext:Column ID="ColName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldFullName%>" DataIndex="name.fullName" Flex="4" Hideable="false">
+                            <ext:Column ID="ColName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldFullName%>" DataIndex="name" Flex="4" Hideable="false">
                                 <Renderer Handler=" return  record.data['name'].fullName ">
                                 </Renderer>
                             </ext:Column>

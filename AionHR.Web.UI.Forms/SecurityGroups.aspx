@@ -127,6 +127,16 @@
                 </ext:Model>
             </Model>
         </ext:Store>
+        <ext:Store runat="server" ID="classAccessLevelsStore">
+            <Model>
+                <ext:Model runat="server">
+                    <Fields>
+                        <ext:ModelField Name="text" />
+                        <ext:ModelField Name="value" />
+                    </Fields>
+                </ext:Model>
+            </Model>
+        </ext:Store>
 
 
         <ext:Viewport ID="Viewport1" runat="server" Layout="CardLayout" ActiveIndex="0">
@@ -716,14 +726,14 @@
                     <Items>
                         <ext:TextField runat="server" Name="classId" ID="classId" Hidden="true" Disabled="true" />
 
-                        <ext:ComboBox runat="server" FieldLabel="<%$ Resources:AccessLevel%>" Editable="false" ID="accessLevel" Name="accessLevel">
-                            <Items>
+                        <ext:ComboBox runat="server" FieldLabel="<%$ Resources:AccessLevel%>" DisplayField="text" ValueField="value" Editable="false" StoreID="classAccessLevelsStore" ID="accessLevel" Name="accessLevel">
+                         <%--   <Items>
 
                                 <ext:ListItem Text="<%$ Resources: NoAccess %>" Value="0" />
                                 <ext:ListItem Text="<%$ Resources: Read %>" Value="1" />
-                                <ext:ListItem Text="<%$ Resources: WriteClass %>" Value="2" />
+                                <ext:ListItem Text="<%$ Resources: WriteClass %>" Value="2"  />
                                 <ext:ListItem Text="<%$ Resources: FullControl %>" Value="3" />
-                            </Items>
+                            </Items>--%>
 
 
                         </ext:ComboBox>

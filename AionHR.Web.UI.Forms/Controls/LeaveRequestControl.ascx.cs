@@ -100,6 +100,10 @@ namespace AionHR.Web.UI.Forms.Controls
 
         }
 
+        private void RefreshSecurityForControls()
+        {
+            AccessControlApplier.ApplyAccessControlOnPage(typeof(LeaveRequest), BasicInfoTab, null, null, SaveButton);
+        }
         protected void Page_Init(object sender, EventArgs e)
         {
             LeaveDaysGrid = new GridPanel();
@@ -170,9 +174,10 @@ namespace AionHR.Web.UI.Forms.Controls
             { setNormal(); }
             if (ViewOnly.Text=="1")
                 SaveButton.Disabled = true;
-
+            RefreshSecurityForControls();
             this.EditRecordWindow.Title = Resources.Common.EditWindowsTitle;
             this.EditRecordWindow.Show();
+            
         }
 
         public void Add()

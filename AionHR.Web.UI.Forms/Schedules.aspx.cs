@@ -84,9 +84,8 @@ namespace AionHR.Web.UI.Forms
                 }
                 catch (AccessDeniedException exp)
                 {
-                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorAccessDenied).Show();
-                    Viewport1.Hidden = true;
+                   
+                    dayBreaksForm.Hidden = true;
                     
                 }
                 try
@@ -95,9 +94,8 @@ namespace AionHR.Web.UI.Forms
                 }
                 catch (AccessDeniedException exp)
                 {
-                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorAccessDenied).Show();
-                    Viewport1.Hidden = true;
+                    
+                    periodsGrid.Hidden = true;
                     return;
                 }
                 if ((bool)_systemService.SessionHelper.Get("IsAdmin"))
@@ -121,13 +119,10 @@ namespace AionHR.Web.UI.Forms
                 case 2: AddBreakButton.Disabled = true; deleteDisabled.Value = "1"; break;
                 default: break;
             }
-            UserPropertiesPermissions req = new UserPropertiesPermissions();
-            req.ClassId = (typeof(AttendanceBreak).GetCustomAttributes(typeof(ClassIdentifier), false).ToList()[0] as ClassIdentifier).ClassID;
-            req.UserId = _systemService.SessionHelper.GetCurrentUserId();
-            ListResponse<UC> resp = _accessControlService.ChildGetAll<UC>(req);
+            var properties = AccessControlApplier.GetPropertiesLevels(typeof(AttendanceBreak));
 
             int i = 1;
-            foreach (var item in resp.Items)
+            foreach (var item in properties)
             {
                 if (item.accessLevel < 2 && periodsGrid.ColumnModel.Columns[i].Editor.Count>0)
                     periodsGrid.ColumnModel.Columns[i].Editor[0].ReadOnly = true;
@@ -515,7 +510,7 @@ namespace AionHR.Web.UI.Forms
             this.EditRecordWindow.Title = Resources.Common.AddNewRecord;
 
             this.EditRecordWindow.Show();
-            fci_max_lt.Text = fci_min_ot.Text = lco_max_el.Text = lco_max_ot.Text = lco_min_ot.Text = "0";
+            //fci_max_lt.Text = fci_min_ot.Text = lco_max_el.Text = lco_max_ot.Text = lco_min_ot.Text = "0";
         }
         protected void AddNewDay(object sender, DirectEventArgs e)
         {
@@ -563,7 +558,16 @@ namespace AionHR.Web.UI.Forms
 
             string obj = e.ExtraParams["schedule"];
             AttendanceSchedule b = JsonConvert.DeserializeObject<AttendanceSchedule>(obj);
-
+            if (!b.fci_max_lt.HasValue)
+                b.fci_max_lt = 0;
+            if (!b.fci_min_ot.HasValue)
+                b.fci_min_ot = 0;
+            if (!b.lco_max_el.HasValue)
+                b.lco_max_el = 0;
+            if (!b.lco_max_ot.HasValue)
+                b.lco_max_ot = 0;
+            if (!b.lco_min_ot.HasValue)
+                b.lco_min_ot = 0;
             b.recordId = id;
             // Define the object to add or edit as null
 

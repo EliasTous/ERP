@@ -1,4 +1,5 @@
-﻿using AionHR.Model.Employees.Profile;
+﻿using AionHR.Model.Attributes;
+using AionHR.Model.Employees.Profile;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -166,6 +167,7 @@ namespace AionHR.Model.Reports
         }
     }
 
+    [ClassIdentifier("80501", "80")]
     public class RT501
     {
         public EmployeeName employeeName { get; set; }

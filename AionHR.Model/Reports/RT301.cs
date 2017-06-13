@@ -1,4 +1,5 @@
-﻿using AionHR.Model.Employees.Profile;
+﻿using AionHR.Model.Attributes;
+using AionHR.Model.Employees.Profile;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -9,7 +10,8 @@ using System.Threading.Tasks;
 
 namespace AionHR.Model.Reports
 {
-   public class RT301
+    [ClassIdentifier("80301", "80")]
+    public class RT301
     {
         public EmployeeName name { get; set; }
         public string branchName { get; set; }

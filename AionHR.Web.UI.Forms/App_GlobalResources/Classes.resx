@@ -240,6 +240,9 @@
   <data name="Class31090" xml:space="preserve">
     <value>Notes</value>
   </data>
+  <data name="Class31099" xml:space="preserve">
+    <value>Import Notes</value>
+  </data>
   <data name="Class31100" xml:space="preserve">
     <value>Right To Work</value>
   </data>
@@ -324,6 +327,9 @@
   <data name="Class41072" xml:space="preserve">
     <value>Days</value>
   </data>
+  <data name="Class41099" xml:space="preserve">
+    <value>Import Attendance</value>
+  </data>
   <data name="Class42000" xml:space="preserve">
     <value>Leave Type</value>
   </data>
@@ -338,6 +344,9 @@
   </data>
   <data name="Class42021" xml:space="preserve">
     <value>Leave Day</value>
+  </data>
+  <data name="Class42099" xml:space="preserve">
+    <value>Import Leaves</value>
   </data>
   <data name="Class43000" xml:space="preserve">
     <value>Case</value>
@@ -356,6 +365,9 @@
   </data>
   <data name="Class45011" xml:space="preserve">
     <value>Comments</value>
+  </data>
+  <data name="Class45099" xml:space="preserve">
+    <value>Import Loans</value>
   </data>
   <data name="Class51010" xml:space="preserve">
     <value>Fiscal Year</value>
@@ -390,6 +402,9 @@
   <data name="Class80106" xml:space="preserve">
     <value>Turnover Rate</value>
   </data>
+  <data name="Class80107" xml:space="preserve">
+    <value>Employee Missing Details</value>
+  </data>
   <data name="Class80201" xml:space="preserve">
     <value>Salary History</value>
   </data>
@@ -400,10 +415,22 @@
     <value>Point-in-time Salary</value>
   </data>
   <data name="Class80301" xml:space="preserve">
-    <value>RT301</value>
+    <value>Monthly Attendance</value>
+  </data>
+  <data name="Class80302" xml:space="preserve">
+    <value>Daily Attendance</value>
+  </data>
+  <data name="Class80401" xml:space="preserve">
+    <value>Loan History</value>
+  </data>
+  <data name="Class80501" xml:space="preserve">
+    <value>Payroll Report</value>
   </data>
   <data name="Class80601" xml:space="preserve">
-    <value>RT601</value>
+    <value>Leave List</value>
+  </data>
+  <data name="Class80602" xml:space="preserve">
+    <value>Leave Balance</value>
   </data>
   <data name="Class80801" xml:space="preserve">
     <value>Sign-in Trail</value>

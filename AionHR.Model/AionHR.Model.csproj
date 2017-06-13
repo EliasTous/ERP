@@ -65,15 +65,18 @@
     <Compile Include="Employees\Profile\EmployeeTermination.cs" />
     <Compile Include="Employees\Profile\EmploymentHistory.cs" />
     <Compile Include="Employees\Profile\HireInfo.cs" />
+    <Compile Include="Employees\Profile\ImportNotes.cs" />
     <Compile Include="Employees\Profile\JobInfo.cs" />
     <Compile Include="Employees\Profile\NoticePeriod.cs" />
     <Compile Include="Employees\Profile\RelationshipType.cs" />
     <Compile Include="Employees\Profile\TeamMember.cs" />
     <Compile Include="Employees\Profile\TerminationReason.cs" />
     <Compile Include="LeaveManagement\ILeaveManagementRepository.cs" />
+    <Compile Include="LeaveManagement\ImportLeaves.cs" />
     <Compile Include="LeaveManagement\LeaveDay.cs" />
     <Compile Include="LeaveManagement\LeaveRequest.cs" />
     <Compile Include="LoadTracking\ILoanTrackingRepository.cs" />
+    <Compile Include="LoadTracking\ImportLoans.cs" />
     <Compile Include="LoadTracking\Loan.cs" />
     <Compile Include="LoadTracking\LoanComment.cs" />
     <Compile Include="LoadTracking\LoanOverride.cs" />
@@ -143,6 +146,7 @@
     <Compile Include="TimeAttendance\Check.cs" />
     <Compile Include="TimeAttendance\DayType.cs" />
     <Compile Include="TimeAttendance\Geofence.cs" />
+    <Compile Include="TimeAttendance\ImportAttendance.cs" />
     <Compile Include="TimeAttendance\ITimeAttendanceRepository.cs" />
     <Compile Include="TimeAttendance\LeaveCalendarDay.cs" />
     <Compile Include="TimeAttendance\Router.cs" />

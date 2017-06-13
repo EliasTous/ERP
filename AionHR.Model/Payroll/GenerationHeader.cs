@@ -32,8 +32,11 @@ namespace AionHR.Model.Payroll
         [PropertyID("51020_07")]
         [ApplySecurity]
         public string notes { get; set; }
+        [PropertyID("51020_08")]
+        [ApplySecurity]
         public DateTime startDate { get; set; }
-
+        [PropertyID("51020_09")]
+        [ApplySecurity]
         public DateTime endDate { get; set; }
        
     }

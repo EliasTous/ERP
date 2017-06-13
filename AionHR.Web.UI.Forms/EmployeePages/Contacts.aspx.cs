@@ -91,15 +91,12 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             {
                 X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
                 X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorAccessDenied).Show();
-                contactGrid.Hidden = true;
+                emergencyContactsGrid.Hidden = true;
 
             }
-            UserPropertiesPermissions req = new UserPropertiesPermissions();
-            req.ClassId = (typeof(EmployeeEmergencyContact).GetCustomAttributes(typeof(ClassIdentifier), false).ToList()[0] as ClassIdentifier).ClassID;
-            req.UserId = _systemService.SessionHelper.GetCurrentUserId();
-            ListResponse<UC> resp = _accessControlService.ChildGetAll<UC>(req);
+            var properties = AccessControlApplier.GetPropertiesLevels(typeof(EmployeeEmergencyContact));
 
-            var att = resp.Items.Where(x =>
+            var att = properties.Where(x =>
 
                 x.propertyId == "3112107"
            );
@@ -147,12 +144,9 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                 contactGrid.Hidden = true;
 
             }
-            UserPropertiesPermissions req = new UserPropertiesPermissions();
-            req.ClassId = (typeof(EmployeeContact).GetCustomAttributes(typeof(ClassIdentifier), false).ToList()[0] as ClassIdentifier).ClassID;
-            req.UserId = _systemService.SessionHelper.GetCurrentUserId();
-            ListResponse<UC> resp = _accessControlService.ChildGetAll<UC>(req);
+            var properties = AccessControlApplier.GetPropertiesLevels(typeof(EmployeeContact));
 
-            var att = resp.Items.Where(x =>
+            var att = properties.Where(x =>
 
                 x.propertyId == "3112202"
            );

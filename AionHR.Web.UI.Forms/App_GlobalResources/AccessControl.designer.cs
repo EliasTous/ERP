@@ -3103,6 +3103,24 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Start Date.
+        /// </summary>
+        internal static string Property5102008 {
+            get {
+                return ResourceManager.GetString("Property5102008", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to End Date.
+        /// </summary>
+        internal static string Property5102009 {
+            get {
+                return ResourceManager.GetString("Property5102009", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to name.
         /// </summary>
         internal static string Property5102101 {

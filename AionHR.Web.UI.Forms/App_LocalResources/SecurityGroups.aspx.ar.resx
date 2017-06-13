@@ -174,9 +174,6 @@
   <data name="View" xml:space="preserve">
     <value>محجوب</value>
   </data>
-  <data name="Write" xml:space="preserve">
-    <value>إضافة،تعديل</value>
-  </data>
   <data name="FullControl" xml:space="preserve">
     <value>صلاحيات كاملة</value>
   </data>
@@ -185,5 +182,11 @@
   </data>
   <data name="NoAccess" xml:space="preserve">
     <value>وصول ممنوع</value>
+  </data>
+  <data name="WriteClass" xml:space="preserve">
+    <value>إضافة ،تعديل</value>
+  </data>
+  <data name="WriteProperty" xml:space="preserve">
+    <value>تعديل</value>
   </data>
 </root>

@@ -33,6 +33,7 @@ namespace AionHR.Services.Implementations
         protected override void PostProcessElements()
         {
             StringBuilder b = new StringBuilder();
+            int i = 0;
             foreach (var error in errors)
             {
                 b.AppendLine(error.employeeRef + ","
@@ -41,7 +42,8 @@ namespace AionHR.Services.Implementations
                     error.ltId + "," +
                     error.destination + "," +
                     error.justification + "," +
-                    error.status 
+                    error.status +","+
+                    errorMessages[i++]
             
                     );
 

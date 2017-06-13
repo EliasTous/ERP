@@ -84,6 +84,13 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     employeeDocumentsGrid.Hidden = true;
                     return;
                 }
+                var properties = AccessControlApplier.GetPropertiesLevels(typeof(Attachement));
+                if (properties.Where(x => x.index == "url").ToList()[0].accessLevel == 0)
+                {
+                    var s = employeeDocumentsGrid.ColumnModel.Columns[employeeDocumentsGrid.ColumnModel.Columns.Count - 1];
+                    s.Renderer.Handler = s.Renderer.Handler.Replace("attachRender()", "' '");
+                }
+
             }
 
         }
@@ -428,13 +435,13 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                 else
                 {
 
-                    
+
                     ModelProxy record = this.employeeDocumentsStore.GetById(id);
 
                     EditDocumentForm.UpdateRecord(record);
                     record.Set("folderName", b.folderName);
-                    
-                    
+
+
                     record.Commit();
                     Notification.Show(new NotificationConfig
                     {

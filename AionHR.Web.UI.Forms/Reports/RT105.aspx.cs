@@ -69,7 +69,17 @@ namespace AionHR.Web.UI.Forms.Reports
                 try
                 {
 
-
+                    try
+                    {
+                        AccessControlApplier.ApplyAccessControlOnPage(typeof(AionHR.Model.Reports.RT105), null, null, null, null);
+                    }
+                    catch (AccessDeniedException exp)
+                    {
+                        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                        X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorAccessDenied).Show();
+                        Viewport1.Hidden = true;
+                        return;
+                    }
 
                     format.Text = _systemService.SessionHelper.GetDateformat();
 

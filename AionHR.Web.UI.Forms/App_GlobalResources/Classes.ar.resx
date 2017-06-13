@@ -144,6 +144,9 @@
   <data name="Class20070" xml:space="preserve">
     <value>دليل العناوين</value>
   </data>
+  <data name="Class20071" xml:space="preserve">
+    <value>المناطق</value>
+  </data>
   <data name="Class20080" xml:space="preserve">
     <value>أنواع الملفات</value>
   </data>
@@ -166,64 +169,64 @@
     <value>الأقسام</value>
   </data>
   <data name="Class22010" xml:space="preserve">
-    <value>DMDT</value>
+    <value>أنواع الملفات</value>
   </data>
   <data name="Class22020" xml:space="preserve">
-    <value>DMDO</value>
+    <value>الملفات</value>
   </data>
   <data name="Class23010" xml:space="preserve">
-    <value>MGMC</value>
+    <value>أنواع الوسائط</value>
   </data>
   <data name="Class23020" xml:space="preserve">
-    <value>MGME</value>
+    <value>ملفات الوسائط</value>
   </data>
   <data name="Class24010" xml:space="preserve">
-    <value>CNNW</value>
+    <value>أخبار الشركة</value>
   </data>
   <data name="Class31000" xml:space="preserve">
-    <value>EPEM</value>
+    <value>ملفات الموظفين</value>
   </data>
   <data name="Class31010" xml:space="preserve">
-    <value>EPAC</value>
+    <value>أنواع العهد</value>
   </data>
   <data name="Class31011" xml:space="preserve">
-    <value>EPAA</value>
+    <value>العهد</value>
   </data>
   <data name="Class31020" xml:space="preserve">
-    <value>EPBC</value>
+    <value>التحقق من الخلفية</value>
   </data>
   <data name="Class31021" xml:space="preserve">
-    <value>EPCT</value>
+    <value>نوع التحقق</value>
   </data>
   <data name="Class31030" xml:space="preserve">
-    <value>EPBT</value>
+    <value>أنواع الحوافز</value>
   </data>
   <data name="Class31031" xml:space="preserve">
-    <value>EPBO</value>
+    <value>الحوافز</value>
   </data>
   <data name="Class31040" xml:space="preserve">
-    <value>EPCL</value>
+    <value>مستويات الشهادة</value>
   </data>
   <data name="Class31041" xml:space="preserve">
-    <value>EPCE</value>
+    <value>المؤهلات</value>
   </data>
   <data name="Class31050" xml:space="preserve">
-    <value>EPDT</value>
+    <value>أنواع الملفات</value>
   </data>
   <data name="Class31051" xml:space="preserve">
-    <value>EPDO</value>
+    <value>الملفات</value>
   </data>
   <data name="Class31060" xml:space="preserve">
-    <value>سبب تغيير المعاش</value>
+    <value>سبب تغيير الراتب</value>
   </data>
   <data name="Class31061" xml:space="preserve">
     <value>الاستحقاقات و الخصومات</value>
   </data>
   <data name="Class31062" xml:space="preserve">
-    <value>المعاش</value>
+    <value>الراتب</value>
   </data>
   <data name="Class31063" xml:space="preserve">
-    <value>تفاصيل المعاش</value>
+    <value>تفاصيل الراتب</value>
   </data>
   <data name="Class31070" xml:space="preserve">
     <value>نوع الحالة</value>
@@ -232,13 +235,16 @@
     <value>توظيف</value>
   </data>
   <data name="Class31080" xml:space="preserve">
-    <value>EPJI</value>
+    <value>معلومات العمل</value>
   </data>
   <data name="Class31090" xml:space="preserve">
-    <value>EPNO</value>
+    <value>ملاحظات الموظفين</value>
+  </data>
+  <data name="Class31099" xml:space="preserve">
+    <value>استيراد الملاحظات</value>
   </data>
   <data name="Class31100" xml:space="preserve">
-    <value>EPRW</value>
+    <value>أذن العمل</value>
   </data>
   <data name="Class31110" xml:space="preserve">
     <value>عنوان الكفيل</value>
@@ -277,16 +283,16 @@
     <value>تعليقات المهام</value>
   </data>
   <data name="Class41000" xml:space="preserve">
-    <value>TABM</value>
+    <value>أجهزة البصمة</value>
   </data>
   <data name="Class41010" xml:space="preserve">
-    <value>TARO</value>
+    <value>الموجهات</value>
   </data>
   <data name="Class41020" xml:space="preserve">
-    <value>TAGF</value>
+    <value>المواقع الجغرافية</value>
   </data>
   <data name="Class41030" xml:space="preserve">
-    <value>TADT</value>
+    <value>أنواع الأيام</value>
   </data>
   <data name="Class41040" xml:space="preserve">
     <value>TADE</value>
@@ -318,6 +324,9 @@
   <data name="Class41072" xml:space="preserve">
     <value>أيام</value>
   </data>
+  <data name="Class41099" xml:space="preserve">
+    <value>استيراد الحضور</value>
+  </data>
   <data name="Class42000" xml:space="preserve">
     <value>نوع الاجازة</value>
   </data>
@@ -330,6 +339,9 @@
   <data name="Class42020" xml:space="preserve">
     <value>اجازة</value>
   </data>
+  <data name="Class42099" xml:space="preserve">
+    <value>استيراد الإجازات</value>
+  </data>
   <data name="Class43000" xml:space="preserve">
     <value>قضية</value>
   </data>
@@ -337,7 +349,7 @@
     <value>تعليقات القضية</value>
   </data>
   <data name="Class44000" xml:space="preserve">
-    <value>ECCO</value>
+    <value>شكاوى الموظفين</value>
   </data>
   <data name="Class45000" xml:space="preserve">
     <value>نوع السلفة</value>
@@ -347,6 +359,9 @@
   </data>
   <data name="Class45011" xml:space="preserve">
     <value>تعليقات</value>
+  </data>
+  <data name="Class45099" xml:space="preserve">
+    <value>استيراد معلومات السلف</value>
   </data>
   <data name="Class80101" xml:space="preserve">
     <value>مخطط الأعمار</value>
@@ -366,6 +381,9 @@
   <data name="Class80106" xml:space="preserve">
     <value>معدل انهاء الخدمة</value>
   </data>
+  <data name="Class80107" xml:space="preserve">
+    <value>معلومات الموظفين الناقصة</value>
+  </data>
   <data name="Class80201" xml:space="preserve">
     <value>تاريخ الاجور</value>
   </data>
@@ -376,10 +394,22 @@
     <value>رواتب فترة زمنية معينة</value>
   </data>
   <data name="Class80301" xml:space="preserve">
-    <value>RT301</value>
+    <value>الحضور الشهري</value>
+  </data>
+  <data name="Class80302" xml:space="preserve">
+    <value>ملخص الفترة</value>
+  </data>
+  <data name="Class80401" xml:space="preserve">
+    <value>تاريخ السلف</value>
+  </data>
+  <data name="Class80501" xml:space="preserve">
+    <value>تقرير الرواتب</value>
   </data>
   <data name="Class80601" xml:space="preserve">
-    <value>RT601</value>
+    <value>تقرير الإجازات</value>
+  </data>
+  <data name="Class80602" xml:space="preserve">
+    <value>رصيد الإجازات</value>
   </data>
   <data name="Class80801" xml:space="preserve">
     <value>سجل تسجيل الدخول</value>

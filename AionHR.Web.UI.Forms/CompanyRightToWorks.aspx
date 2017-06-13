@@ -138,6 +138,8 @@
                         <ext:ModelField Name="dtName" />
                         <ext:ModelField Name="branchName" />
                         <ext:ModelField Name="fileUrl" />
+                        <ext:ModelField Name="issueDate" />
+                        <ext:ModelField Name="expiryDate" />
 
                     </Fields>
                 </ext:Model>
@@ -212,8 +214,12 @@
 
                             <ext:Column ID="Column2" Visible="true" DataIndex="documentRef" Text="<%$ Resources: FieldDocumentRef%>" runat="server" Flex="1" />
                             <ext:Column ID="Column3" Visible="true" DataIndex="remarks" Text="<%$ Resources: FieldRemarks%>" runat="server" Flex="1" />
-                            <ext:Column Visible="true" ID="DateColumn1" DataIndex="issueDateFormatted" Text="<%$ Resources: FieldIssueDate%>" runat="server" Width="100" />
-                            <ext:Column Visible="true" ID="DateColumn2" DataIndex="expireDateFormatted" Text="<%$ Resources: FieldExpiryDate%>" runat="server" Width="100" />
+                            <ext:Column Visible="true" ID="DateColumn1" DataIndex="issueDate" Text="<%$ Resources: FieldIssueDate%>" runat="server" Width="100" >
+                                <Renderer Handler="return record.data['issueDateFormatted'];" />
+                                </ext:Column>
+                            <ext:Column Visible="true" ID="DateColumn2" DataIndex="expiryDate" Text="<%$ Resources: FieldExpiryDate%>" runat="server" Width="100" >
+                                <Renderer Handler="return record.data['expireDateFormatted'];" />
+                                </ext:Column>
 
 
 
@@ -452,7 +458,7 @@
                                 <ext:DateField ID="expiryDate" runat="server" FieldLabel="<%$ Resources:FieldExpiryDate%>" Name="expiryDate" />
 
 
-                                <ext:FileUploadField runat="server" ID="rwFile" FieldLabel="<%$ Resources:FieldFile%>" AllowBlank="false" />
+                                <ext:FileUploadField runat="server" ID="rwFile" FieldLabel="<%$ Resources:FieldFile%>" AllowBlank="false" Name="fileUrl" />
 
 
                             </Items>

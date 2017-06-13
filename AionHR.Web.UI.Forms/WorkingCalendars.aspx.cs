@@ -83,10 +83,9 @@ namespace AionHR.Web.UI.Forms
                 }
                 catch (AccessDeniedException exp)
                 {
-                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorAccessDenied).Show();
-                    Viewport1.Hidden = true;
-                    return;
+
+                    GridPanel2.Hidden = true;
+                    
                 }
                 try
                 {
@@ -95,10 +94,9 @@ namespace AionHR.Web.UI.Forms
                 }
                 catch (AccessDeniedException exp)
                 {
-                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorAccessDenied).Show();
-                    Viewport1.Hidden = true;
-                    return;
+                   
+                    dayConfigForm.Hidden = true;
+                    
                 }
             }
 

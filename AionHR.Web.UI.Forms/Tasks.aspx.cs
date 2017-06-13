@@ -164,10 +164,6 @@ namespace AionHR.Web.UI.Forms
                 try
                 {
                     AccessControlApplier.ApplyAccessControlOnPage(typeof(Model.TaskManagement.Task), BasicInfoTab, GridPanel1, btnAdd, SaveButton);
-                    AccessControlApplier.ApplyAccessControlOnPage(typeof(TaskComment), null, caseCommentGrid, null, Button1);
-                    AccessControlApplier.ApplyAccessControlOnPage(typeof(Attachement), EditDocumentForm, filesGrid, Button2, SaveDocumentButton);
-                    //AccessControlApplier.ApplyAccessControlOnPage(typeof(CaseComment), null, caseCommentGrid, null, Button1);
-                    ApplyAccessControlOnCaseComments();
                 }
                 catch (AccessDeniedException exp)
                 {
@@ -175,6 +171,34 @@ namespace AionHR.Web.UI.Forms
                     X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorAccessDenied).Show();
                     Viewport1.Hidden = true;
                     return;
+                }
+                try
+
+                {
+                    AccessControlApplier.ApplyAccessControlOnPage(typeof(TaskComment), null, caseCommentGrid, null, Button1);
+                    ApplyAccessControlOnCaseComments();
+                }
+                catch (AccessDeniedException exp)
+                {
+
+                    caseCommentsTab.Hidden = true;
+
+                }
+                try
+                {
+                    AccessControlApplier.ApplyAccessControlOnPage(typeof(Attachement), EditDocumentForm, filesGrid, Button2, SaveDocumentButton);
+                    var properties = AccessControlApplier.GetPropertiesLevels(typeof(Attachement));
+                    if (properties.Where(x => x.index == "url").ToList()[0].accessLevel == 0)
+                    {
+                        var s = filesGrid.ColumnModel.Columns[filesGrid.ColumnModel.Columns.Count - 1];
+                        s.Renderer.Handler = s.Renderer.Handler.Replace("attachRender()", "' '");
+                    }
+                }
+                catch (AccessDeniedException exp)
+                {
+
+                    filesGrid.Hidden = true;
+
                 }
 
                 if (description.InputType == InputType.Password)

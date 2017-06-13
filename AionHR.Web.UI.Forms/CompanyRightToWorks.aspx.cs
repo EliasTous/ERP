@@ -89,6 +89,11 @@ namespace AionHR.Web.UI.Forms
                 expiryDateDisabled.Text = expiryDate.ReadOnly.ToString();
 
                 hijriCal.LazyItems.ForEach(x => (x as Field).ReadOnly = expiryDate.ReadOnly || issueDate.ReadOnly);
+                if (rwFile.InputType == InputType.Password)
+                {
+                    var s = GridPanel1.ColumnModel.Columns[GridPanel1.ColumnModel.Columns.Count - 1];
+                    s.Renderer.Handler = s.Renderer.Handler.Replace("attachRender()", " ' '");
+                }
             }
         }
 

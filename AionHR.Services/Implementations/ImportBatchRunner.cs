@@ -23,11 +23,13 @@ namespace AionHR.Services.Implementations
             _systemService = systemService;
             service = mainService;
             errors = new List<T>();
+            errorMessages = new List<string>();
         }
         public List<T> Items { get; set; }
 
         protected List<T> errors { get; set; }
 
+        protected List<string> errorMessages { get; set; }
         public string OutputPath { get; set; }
 
         public ISessionStorage SessionStore { get; set; }
@@ -102,6 +104,7 @@ namespace AionHR.Services.Implementations
             if (!resp.Success)
             {
                 errors.Add(item);
+                errorMessages.Add(resp.Summary);
             }
         }
 

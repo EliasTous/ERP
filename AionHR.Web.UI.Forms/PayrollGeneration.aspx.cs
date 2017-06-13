@@ -86,14 +86,12 @@ namespace AionHR.Web.UI.Forms
                 }
                 try
                 {
-                    AccessControlApplier.ApplyAccessControlOnPage(typeof(EmployeePayroll), EditEMForm , employeePayrolls, null, SaveDocumentButton);
+                    AccessControlApplier.ApplyAccessControlOnPage(typeof(EmployeePayroll), EditEMForm, employeePayrolls, null, SaveDocumentButton);
                 }
                 catch (AccessDeniedException exp)
                 {
-                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorAccessDenied).Show();
-                    Viewport1.Hidden = true;
-                    return;
+                    employeePayrolls.Hidden = true;
+
                 }
                 try
                 {
@@ -101,10 +99,8 @@ namespace AionHR.Web.UI.Forms
                 }
                 catch (AccessDeniedException exp)
                 {
-                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorAccessDenied).Show();
-                    Viewport1.Hidden = true;
-                    return;
+                    entitlementsGrid.Hidden = true;
+
                 }
                 try
                 {
@@ -112,11 +108,13 @@ namespace AionHR.Web.UI.Forms
                 }
                 catch (AccessDeniedException exp)
                 {
-                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorAccessDenied).Show();
-                    Viewport1.Hidden = true;
-                    return;
+
+                    deductionGrid.Hidden = true;
+
                 }
+                var properties = AccessControlApplier.GetPropertiesLevels(typeof(PayrollEntitlementDeduction));
+
+                entitlementDisabled.Text = deductionDisabled.Text = (properties.Where(x => x.index == "amount").ToList()[0].accessLevel == 0).ToString();
             }
 
         }
@@ -308,17 +306,17 @@ namespace AionHR.Web.UI.Forms
 
         protected void SaveHE(object sender, DirectEventArgs e)
         {
-           
+
             string s = e.ExtraParams["values"];
             JsonSerializerSettings settings = new JsonSerializerSettings();
             CustomResolver res = new CustomResolver();
             settings.ContractResolver = res;
             res.AddRule("statusCombo", "status");
-            GenerationHeader h = JsonConvert.DeserializeObject<GenerationHeader>(s,settings);
+            GenerationHeader h = JsonConvert.DeserializeObject<GenerationHeader>(s, settings);
             h.recordId = recordId.Text;
             PostRequest<GenerationHeader> req = new PostRequest<GenerationHeader>();
             req.entity = h;
-            
+
             PostResponse<GenerationHeader> resp = _payrollService.ChildAddOrUpdate<GenerationHeader>(req);
             if (!resp.Success)
             {
@@ -392,7 +390,7 @@ namespace AionHR.Web.UI.Forms
                     RecordRequest req = new RecordRequest();
                     req.RecordID = id;
                     RecordResponse<GenerationHeader> resp = _payrollService.ChildGetRecord<GenerationHeader>(req);
-                    if(!resp.Success)
+                    if (!resp.Success)
                     {
                         X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
                         X.Msg.Alert(Resources.Common.Error, resp.Summary).Show();
@@ -516,7 +514,7 @@ namespace AionHR.Web.UI.Forms
                     this.type.Text = "1";
                     edId.RightButtons[0].Enabled = false;
                     edId.ReadOnly = true;
-                    edId.FieldLabel= GetLocalResourceObject("FieldEntitlement").ToString();
+                    edId.FieldLabel = GetLocalResourceObject("FieldEntitlement").ToString();
                     amount.Text = detail.amount.ToString();
 
                     EditEDWindow.Show();
@@ -622,7 +620,7 @@ namespace AionHR.Web.UI.Forms
                 entitlementsStore.Remove(index);
 
                 //Step 3 : Showing a notification for the user 
-                
+
 
             }
             catch (Exception ex)
@@ -642,7 +640,7 @@ namespace AionHR.Web.UI.Forms
                 deductionStore.Remove(index);
 
                 //Step 3 : Showing a notification for the user 
-               
+
 
             }
             catch (Exception ex)
@@ -672,7 +670,7 @@ namespace AionHR.Web.UI.Forms
                     X.Msg.Alert(Resources.Common.Error, resp.Summary).Show();
                     return;
                 }
-                    List<object> obs = new List<Object>();
+                List<object> obs = new List<Object>();
                 resp.Items.ForEach(x => obs.Add(new { recordId = x.periodId, name = x.GetFriendlyName(GetLocalResourceObject("Month").ToString(), GetLocalResourceObject("Week").ToString(), GetLocalResourceObject("Weeks").ToString(), _systemService.SessionHelper.GetDateformat()) }));
                 fiscalPeriodsStore.DataSource = obs;
                 fiscalPeriodsStore.DataBind();
@@ -681,7 +679,7 @@ namespace AionHR.Web.UI.Forms
             }
             catch { }
         }
- 
+
         public void UpdateStartEndDate(object sender, DirectEventArgs e)
         {
             string s = e.ExtraParams["period"];
@@ -893,8 +891,8 @@ namespace AionHR.Web.UI.Forms
                         record = this.deductionStore.GetById(b.edId);
 
                     record.Set("edName", b.edName);
-                    
-                        record.Set("amount", b.amount);
+
+                    record.Set("amount", b.amount);
 
                     record.Commit();
 

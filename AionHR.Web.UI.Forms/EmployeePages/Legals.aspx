@@ -214,8 +214,12 @@
                             </ext:Column>--%>
                             <ext:Column ID="dtName" DataIndex="dtName" Text="<%$ Resources: FieldRWDtName%>" runat="server" Flex="4" />
                             <ext:Column ID="documentRef1" DataIndex="documentRef" Text="<%$ Resources: FieldRWDocumentRef%>" runat="server" Flex="2" />
-                            <ext:Column   ID="validFrom" DataIndex="issueDateFormatted" Text="<%$ Resources: FieldRWIssueDate%>" runat="server" Width="100" />
-                            <ext:Column   ID="validTo" DataIndex="expireDateFormatted" Text="<%$ Resources: FieldRWExpiryDate%>" runat="server" Width="100" />
+                            <ext:Column   ID="validFrom" DataIndex="issueDate" Text="<%$ Resources: FieldRWIssueDate%>" runat="server" Width="100" >
+                                <Renderer Handler="return record.data['issueDateFormatted'];" />
+                                </ext:Column>
+                            <ext:Column   ID="validTo" DataIndex="expiryDate" Text="<%$ Resources: FieldRWExpiryDate%>" runat="server" Width="100" >
+                                <Renderer Handler="return record.data['expireDateFormatted'];" />
+                                </ext:Column>
                             <ext:Column ID="remarksCol" DataIndex="remarks" Text="<%$ Resources: FieldRWRemarks%>" runat="server" Flex="2" Visible="false" />
 
 
@@ -573,7 +577,7 @@
                                 <ext:TextField InputType="Password" runat="server" Name="remarks" Visible="false" ID="remarksField" FieldLabel="<%$ Resources:FieldRWRemarks%>" />
                                
                            
-                                <ext:FileUploadField runat="server" ID="rwFile" FieldLabel="<%$ Resources:FieldFile%>" AllowBlank="true" />
+                                <ext:FileUploadField runat="server" ID="rwFile" Name="fileUrl" FieldLabel="<%$ Resources:FieldFile%>" AllowBlank="true" />
                             </Items>
 
                         </ext:FormPanel>
@@ -665,7 +669,7 @@
                                 <ext:DateField ID="DateField2" runat="server" Name="expiryDate" FieldLabel="<%$ Resources:FieldBCExpiryDate%>" AllowBlank="false" />
                                 <ext:TextArea runat="server" Name="remarks" ID="bcRemarks" FieldLabel="<%$ Resources:FieldBCRemarks%>" />
                                 <ext:TextField Visible="false" InputType="Password" runat="server" Name="remarks" ID="bcRemarksField" FieldLabel="<%$ Resources:FieldBCRemarks%>" />
-                                <ext:FileUploadField runat="server" ID="bcFile" FieldLabel="<%$ Resources:FieldFile%>" AllowBlank="false" />
+                                <ext:FileUploadField runat="server" ID="bcFile" Name="fileUrl" FieldLabel="<%$ Resources:FieldFile%>" AllowBlank="true" />
 
                             </Items>
 

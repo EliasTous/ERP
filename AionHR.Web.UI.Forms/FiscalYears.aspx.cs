@@ -77,6 +77,17 @@ namespace AionHR.Web.UI.Forms
                     Viewport1.Hidden = true;
                     return;
                 }
+                try
+                {
+                    AccessControlApplier.ApplyAccessControlOnPage(typeof(FiscalPeriod),null, YearPeriods, null, null);
+                }
+                catch (AccessDeniedException exp)
+                {
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorAccessDenied).Show();
+                    YearPeriods.Hidden = true;
+                    return;
+                }
             }
 
 

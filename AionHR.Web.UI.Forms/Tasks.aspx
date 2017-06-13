@@ -332,12 +332,12 @@
 
                             <ext:Column CellCls="cellLink" ID="ColName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldName%>" DataIndex="name" Flex="2" Hideable="false"></ext:Column>
 
-                            <ext:Column ID="ColAssignToNam" DataIndex="assignToName.fullName" Text="<%$ Resources: FieldAssignToName%>" runat="server" Flex="2">
+                            <ext:Column ID="ColAssignToNam" DataIndex="assignToName" Text="<%$ Resources: FieldAssignToName%>" runat="server" Flex="2">
                                  <Renderer Handler="return  record.data['assignToName'].fullName ">
                                 </Renderer>
                             </ext:Column>
 
-                            <ext:Column ID="ColInRelationToName" DataIndex="inRelationToName.fullName" Text="<%$ Resources: FieldInRelationToName%>" runat="server" Flex="2">
+                            <ext:Column ID="ColInRelationToName" DataIndex="inRelationToName" Text="<%$ Resources: FieldInRelationToName%>" runat="server" Flex="2">
                                  <Renderer Handler="return  record.data['inRelationToName'].fullName ">
                                 </Renderer>
                             </ext:Column>
@@ -829,20 +829,7 @@
                                 </ext:DateColumn>
                           
 
-                            <ext:Column runat="server"
-                                ID="Column8" Visible="true"
-                                Text=""
-                                Width="100"
-                                Hideable="false"
-                                Align="Center"
-                                Fixed="true"
-                                Filterable="false"
-                                MenuDisabled="true"
-                                Resizable="false">
-
-                                <Renderer handler="return editRender()+'&nbsp&nbsp'+attachRender() + '&nbsp&nbsp' + deleteRender(); " />
-
-                            </ext:Column>
+                           
                             <ext:Column runat="server"
                                 ID="Column9" Flex="1" Visible="false"
                                 Text="  "
@@ -868,7 +855,20 @@
                                 Resizable="false">
                                 <Renderer Fn="attachRender" />
                             </ext:Column>
+                             <ext:Column runat="server"
+                                ID="Column8" Visible="true"
+                                Text=""
+                                Width="100"
+                                Hideable="false"
+                                Align="Center"
+                                Fixed="true"
+                                Filterable="false"
+                                MenuDisabled="true"
+                                Resizable="false">
 
+                                <Renderer handler="return editRender()+'&nbsp&nbsp'+attachRender() + '&nbsp&nbsp' + deleteRender(); " />
+
+                            </ext:Column>
 
 
 

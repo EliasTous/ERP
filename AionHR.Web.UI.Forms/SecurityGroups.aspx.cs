@@ -101,10 +101,9 @@ namespace AionHR.Web.UI.Forms
                 }
                 catch (AccessDeniedException exp)
                 {
-                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorAccessDenied).Show();
-                    Viewport1.Hidden = true;
-                    return;
+
+                    usersGrid.Hidden = true;
+
                 }
                 try
                 {
@@ -112,10 +111,9 @@ namespace AionHR.Web.UI.Forms
                 }
                 catch (AccessDeniedException exp)
                 {
-                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorAccessDenied).Show();
-                    Viewport1.Hidden = true;
-                    return;
+
+                    AccessLevelsForm.Hidden = true;
+
                 }
                 try
                 {
@@ -123,10 +121,9 @@ namespace AionHR.Web.UI.Forms
                 }
                 catch (AccessDeniedException exp)
                 {
-                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorAccessDenied).Show();
-                    Viewport1.Hidden = true;
-                    return;
+
+                    AccessLevelsForm.Hidden = true;
+
                 }
                 try
                 {
@@ -134,9 +131,7 @@ namespace AionHR.Web.UI.Forms
                 }
                 catch (AccessDeniedException exp)
                 {
-                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorAccessDenied).Show();
-                    Viewport1.Hidden = true;
+
                     return;
                 }
             }
@@ -198,7 +193,15 @@ namespace AionHR.Web.UI.Forms
                         int level = Convert.ToInt32(defaultAccessLevel.SelectedItem.Value);
                         PostRequest<ModuleClass[]> batch = new PostRequest<ModuleClass[]>();
                         List<ModuleClass> allClasses = new List<ModuleClass>();
-                        _masterService.ClassLookup.Keys.ToList().ForEach(x => allClasses.Add(new ModuleClass() { classId = x, accessLevel = level, id = x, sgId = b.recordId }));
+
+                        List<Type> types = AppDomain.CurrentDomain.GetAssemblies().Where(x => x.FullName.Contains("AionHR.Model")).ToList()[0].GetTypes().Where(x => x.GetCustomAttributes(typeof(ClassIdentifier), false).ToList().Count > 0).ToList();
+                        try
+                        {
+                            types.ForEach(x => allClasses.Add(new ModuleClass() { classId = (x.GetCustomAttribute(typeof(ClassIdentifier), false) as ClassIdentifier).ClassID, accessLevel = level, id = (x.GetCustomAttribute(typeof(ClassIdentifier), false) as ClassIdentifier).ClassID, sgId = b.recordId }));
+                            allClasses.Where(x => x.classId.StartsWith("80")|| x.classId.EndsWith("99")).ToList().ForEach(x => x.accessLevel = Math.Min(1, x.accessLevel));
+                        }
+                       
+                        catch { }
                         batch.entity = allClasses.ToArray();
                         PostResponse<ModuleClass[]> batResp = _accessControlService.ChildAddOrUpdate<ModuleClass[]>(batch);
                         if (!batResp.Success)
@@ -375,7 +378,7 @@ namespace AionHR.Web.UI.Forms
             PostRequest<ModuleClass[]> batch = new PostRequest<ModuleClass[]>();
             List<ModuleClass> allClasses = new List<ModuleClass>();
             types.ForEach(x => { allClasses.Add(new ModuleClass() { classId = x.GetCustomAttribute<ClassIdentifier>().ClassID, accessLevel = level, id = x.GetCustomAttribute<ClassIdentifier>().ClassID, sgId = CurrentGroup.Text }); });
-
+            allClasses.Where(x => x.classId.StartsWith("80") || x.classId.EndsWith("99")).ToList().ForEach(y => y.accessLevel = Math.Min(1, y.accessLevel));
             batch.entity = allClasses.ToArray();
             PostResponse<ModuleClass[]> batResp = _accessControlService.ChildAddOrUpdate<ModuleClass[]>(batch);
             if (!batResp.Success)
@@ -629,13 +632,28 @@ namespace AionHR.Web.UI.Forms
                     propertiesStore.Reload();
 
 
-
+                    
                     break;
 
 
                 case "imgEdit":
+                    List<PropertyAccessLevel> masterLevels = new List<PropertyAccessLevel>();
+                    masterLevels.Add(new PropertyAccessLevel(GetLocalResourceObject("NoAccess").ToString(), "0"));
+                    masterLevels.Add(new PropertyAccessLevel(GetLocalResourceObject("Read").ToString(), "1"));
+                    int maxLevel = 1;
+                    if (modulesCombo.SelectedItem.Value != "80"&& !id.ToString().EndsWith("99"))
+                    {
+
+                        masterLevels.Add(new PropertyAccessLevel(GetLocalResourceObject("WriteClass").ToString(), "2"));
+                        masterLevels.Add(new PropertyAccessLevel(GetLocalResourceObject("FullControl").ToString(), "3"));
+                        maxLevel = 3;
+                    }
+                    classAccessLevelsStore.DataSource = masterLevels;
+                    classAccessLevelsStore.DataBind();
                     EditClassLevelForm.Reset();
-                    accessLevel.Select(level);
+                    int levelInt = Convert.ToInt32(level);
+                    accessLevel.Select(Math.Min(levelInt,maxLevel).ToString());
+                       
 
                     EditClassLevelWindow.Show();
                     break;
@@ -923,7 +941,7 @@ namespace AionHR.Web.UI.Forms
         {
             List<ModuleClassDefinition> classes = new List<ModuleClassDefinition>();
             List<Type> types = AppDomain.CurrentDomain.GetAssemblies().Where(x => x.FullName.Contains("AionHR.Model")).ToList()[0].GetTypes().Where(x => { var d = x.GetCustomAttribute<ClassIdentifier>(); if (d != null && d.ModuleId == modulesCombo.SelectedItem.Value) return true; else return false; }).ToList();
-            
+
             types.ForEach(x => classes.Add(new ModuleClassDefinition() { classId = x.GetCustomAttribute<ClassIdentifier>().ClassID, id = x.GetCustomAttribute<ClassIdentifier>().ClassID, name = "Class" + x.GetCustomAttribute<ClassIdentifier>().ClassID }));
 
             classes.ForEach(x => { x.name = GetGlobalResourceObject("Classes", x.name).ToString(); x.classId = x.id; });
@@ -945,9 +963,9 @@ namespace AionHR.Web.UI.Forms
 
         protected void propertyStore_ReadData(object sender, StoreReadDataEventArgs e)
         {
-            Type t = AppDomain.CurrentDomain.GetAssemblies().Where(x => x.FullName.Contains("AionHR.Model")).ToList()[0].GetTypes().Where(x => { var d = x.GetCustomAttribute<ClassIdentifier>();   return (d != null && d.ClassID == CurrentClass.Text);  }).ToList()[0];
+            Type t = AppDomain.CurrentDomain.GetAssemblies().Where(x => x.FullName.Contains("AionHR.Model")).ToList()[0].GetTypes().Where(x => { var d = x.GetCustomAttribute<ClassIdentifier>(); return (d != null && d.ClassID == CurrentClass.Text); }).ToList()[0];
             PropertyInfo[] props = t.GetProperties();
-            
+
             List<ClassPropertyDefinition> properites = new List<ClassPropertyDefinition>();
             props.ToList().ForEach(x => { var d = x.GetCustomAttribute<PropertyID>(); if (d != null) properites.Add(new ClassPropertyDefinition() { propertyId = d.ID, index = x.Name, name = "Property" + d.ID }); });
             PropertiesListRequest req = new PropertiesListRequest();
@@ -974,7 +992,7 @@ namespace AionHR.Web.UI.Forms
             }
             JsonSerializerSettings settings = new JsonSerializerSettings();
 
-            stored.Items.ForEach(y => { final.Where(f => y.propertyId == f.propertyId).ToList().ForEach(x=>x.accessLevel = Math.Min(y.accessLevel, Convert.ToInt32(CurrentClassLevel.Text))); });
+            stored.Items.ForEach(y => { final.Where(f => y.propertyId == f.propertyId).ToList().ForEach(x => x.accessLevel = Math.Min(y.accessLevel, Convert.ToInt32(CurrentClassLevel.Text))); });
             properites.Clear();
             final.ForEach(z => z.accessLevel = Math.Min(z.accessLevel, Convert.ToInt32(CurrentClassLevel.Text)));
 

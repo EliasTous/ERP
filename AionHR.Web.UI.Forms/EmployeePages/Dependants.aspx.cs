@@ -93,12 +93,9 @@ namespace AionHR.Web.UI.Forms.EmployeePages
         }
         private void ApplyAccessControlOnAddress()
         {
-            UserPropertiesPermissions req = new UserPropertiesPermissions();
-            req.ClassId = (typeof(Dependant).GetCustomAttributes(typeof(ClassIdentifier), false).ToList()[0] as ClassIdentifier).ClassID;
-            req.UserId = _systemService.SessionHelper.GetCurrentUserId();
-            ListResponse<UC> resp = _accessControlService.ChildGetAll<UC>(req);
-
-            var att = resp.Items.Where(x =>
+           
+            var properties = AccessControlApplier.GetPropertiesLevels(typeof(Dependant));
+            var att = properties.Where(x =>
 
                 x.propertyId == "3115010"
            );

@@ -77,20 +77,21 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                 Button6.Disabled = Button1.Disabled = Button11.Disabled = Button14.Disabled = Button12.Disabled = Button4.Disabled = SaveENButton.Disabled = Button15.Disabled = disabled;
                 if ((bool)_systemService.SessionHelper.Get("IsAdmin"))
                     return;
+              
                 try
                 {
-                    AccessControlApplier.ApplyAccessControlOnPage(typeof(EmployeeSalary), firstPanel, SalaryGrid, Button6 , Button12);
+                    AccessControlApplier.ApplyAccessControlOnPage(typeof(EmployeeSalary), firstPanel, SalaryGrid, Button6, Button12);
                 }
                 catch (AccessDeniedException exp)
                 {
                     X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
                     X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorAccessDenied).Show();
                     SalaryGrid.Hidden = true;
-                    
+
                 }
                 try
                 {
-                    AccessControlApplier.ApplyAccessControlOnPage(typeof(EmployeeSalary), firstPanel, SalaryGrid, Button6, Button12);
+                    AccessControlApplier.ApplyAccessControlOnPage(typeof(EmployeeSalary), secondPanel, SalaryGrid, Button6, Button12);
                 }
                 catch (AccessDeniedException exp)
                 {
@@ -117,8 +118,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                 }
                 catch (AccessDeniedException exp)
                 {
-                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorAccessDenied).Show();
+                   
                     entitlementsForm.Hidden = true;
                     
                 }
@@ -129,8 +129,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                 }
                 catch (AccessDeniedException exp)
                 {
-                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorAccessDenied).Show();
+                    
                     DeductionForm.Hidden = true;
                    
                 }
@@ -150,14 +149,11 @@ namespace AionHR.Web.UI.Forms.EmployeePages
 
         private void ApplyAccessControlEntitlements()
         {
-            
-            
-            UserPropertiesPermissions req = new UserPropertiesPermissions();
-            req.ClassId = (typeof(SalaryDetail).GetCustomAttributes(typeof(ClassIdentifier), false).ToList()[0] as ClassIdentifier).ClassID;
-            req.UserId = _systemService.SessionHelper.GetCurrentUserId();
-            ListResponse<UC> resp = _accessControlService.ChildGetAll<UC>(req);
 
-            resp.Items.ForEach(property => {
+
+            var properties = AccessControlApplier.GetPropertiesLevels(typeof(SalaryDetail));
+
+            properties.ForEach(property => {
                 switch (property.propertyId)
                 {
                     case "3106301": entEdId.Disabled = property.accessLevel < 1; entEdId.InputType = property.accessLevel < 1 ? InputType.Password : InputType.Text; entEdId.ReadOnly = property.accessLevel < 2 ? true : false; break;
@@ -169,12 +165,8 @@ namespace AionHR.Web.UI.Forms.EmployeePages
 
         private void ApplyAccessControlDeductions()
         {
-            UserPropertiesPermissions req = new UserPropertiesPermissions();
-            req.ClassId = (typeof(SalaryDetail).GetCustomAttributes(typeof(ClassIdentifier), false).ToList()[0] as ClassIdentifier).ClassID;
-            req.UserId = _systemService.SessionHelper.GetCurrentUserId();
-            ListResponse<UC> resp = _accessControlService.ChildGetAll<UC>(req);
-
-            resp.Items.ForEach(property => {
+            var properties = AccessControlApplier.GetPropertiesLevels(typeof(SalaryDetail));
+            properties.ForEach(property => {
                 switch (property.propertyId)
                 {
                     case "3106301": dedEdId.Disabled = property.accessLevel < 1; dedEdId.InputType = property.accessLevel < 1 ? InputType.Password : InputType.Text; dedEdId.ReadOnly = property.accessLevel < 2 ? true : false; break;

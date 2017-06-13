@@ -56,9 +56,52 @@ namespace AionHR.Web.UI.Forms
                 SetExtLanguage();
                 HideShowButtons();
 
+                try
+                {
+                    AccessControlApplier.ApplyAccessControlOnPage(typeof(SystemAlert), null, GridPanel1, null, null);
+                }
+                catch (AccessDeniedException exp)
+                {
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorAccessDenied).Show();
+                    Viewport1.Hidden = true;
+                    return;
+                }
+                var properties = AccessControlApplier.GetPropertiesLevels(typeof(SystemAlert));
+                foreach (var item in properties)
+                {
+                    var result = GridPanel1.ColumnModel.Columns.Where(x => x.DataIndex == item.index).ToList();
+                    if (result.Count > 0)
+                    {
+                        switch(item.accessLevel)
+                        {
+                            case 0:
+                                result[0].Renderer = new Renderer("return '***';");
+                                result[0].Disabled = true;
+                                if (result[0] is WidgetColumn)
+                                {
+                                    ((result[0] as WidgetColumn).Widget[0] as Field).InputType = InputType.Password;
+                                    (result[0] as WidgetColumn).Widget[0].Disabled = true;
+                                }
+                                break;
+                            case 1:
+                                result[0].Disabled = true;
+                                if (result[0] is WidgetColumn)
+                                {
+
+                                    (result[0] as WidgetColumn).Widget[0].Disabled = true;
+                                }
+                                break;
+                            default: break;
+
+                        }
+                        
+                           
+
+                    }
 
 
-
+                }
             }
 
         }

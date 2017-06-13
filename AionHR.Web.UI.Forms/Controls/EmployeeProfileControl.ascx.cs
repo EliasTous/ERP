@@ -27,6 +27,8 @@ using AionHR.Model.Employees.Leaves;
 using AionHR.Model.Attendance;
 using AionHR.Services.Messaging.System;
 using AionHR.Infrastructure.Domain;
+using AionHR.Model.Access_Control;
+
 namespace AionHR.Web.UI.Forms
 {
     public partial class EmployeeProfileControl : System.Web.UI.UserControl
@@ -36,7 +38,7 @@ namespace AionHR.Web.UI.Forms
         ICompanyStructureService _companyStructureService = ServiceLocator.Current.GetInstance<ICompanyStructureService>();
         ILeaveManagementService _leaveManagementService = ServiceLocator.Current.GetInstance<ILeaveManagementService>();
         ITimeAttendanceService _timeAttendanceService = ServiceLocator.Current.GetInstance<ITimeAttendanceService>();
-
+        IAccessControlService _accessControlService = ServiceLocator.Current.GetInstance<IAccessControlService>();
 
         //protected override void InitializeCulture()
         //{
@@ -59,7 +61,7 @@ namespace AionHR.Web.UI.Forms
 
         //}
 
-            public void Add()
+        public void Add()
         {
             BasicInfoTab.Reset();
             panelRecordDetails.ActiveIndex = 0;
@@ -105,11 +107,11 @@ namespace AionHR.Web.UI.Forms
                 CurrentClassId.Text = ClassId.EPEM.ToString();
 
                 birthDate.Format = hireDate.Format = _systemService.SessionHelper.GetDateformat();
-                
+
                 pRTL.Text = _systemService.SessionHelper.CheckIfArabicSession().ToString();
                 try
                 {
-                    AccessControlApplier.ApplyAccessControlOnPage(typeof(Employee), BasicInfoTab, null, null, SaveButton);
+                    AccessControlApplier.ApplyAccessControlOnPage(typeof(Employee), left, null, null, SaveButton);
                 }
                 catch (AccessDeniedException exp)
                 {
@@ -118,6 +120,45 @@ namespace AionHR.Web.UI.Forms
                     BasicInfoTab.Hidden = true;
                     return;
                 }
+                try
+                {
+                    AccessControlApplier.ApplyAccessControlOnPage(typeof(Employee), rightPanel, null, null, SaveButton);
+                }
+                catch (AccessDeniedException exp)
+                {
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorAccessDenied).Show();
+                    BasicInfoTab.Hidden = true;
+                    return;
+                }
+                try
+                {
+                    AccessControlApplier.ApplyAccessControlOnPage(typeof(EmployeeTermination), terminationForm, null, null, Button6);
+
+                }
+                catch (AccessDeniedException exp)
+                {
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorAccessDenied).Show();
+                    terminationGear.Disabled = true;
+                    return;
+                }
+                var properties = AccessControlApplier.GetPropertiesLevels(typeof(Employee));
+                int level = properties.Where(x => x.index == "pictureUrl").ToList()[0].accessLevel;
+                if (level == 0)
+                {
+                    imgControl.Hidden = true;
+                    noImage.Hidden = false;
+                    
+                }
+
+                ClassPermissionRecordRequest classReq = new ClassPermissionRecordRequest();
+                classReq.ClassId = "31000";
+                classReq.UserId = _systemService.SessionHelper.GetCurrentUserId();
+                RecordResponse<ModuleClass> modClass = _accessControlService.ChildGetRecord<ModuleClass>(classReq);
+                if (modClass.result.accessLevel < 3)
+                    deleteGear.Disabled = terminationGear.Disabled = true;
+               
             }
 
 
@@ -125,7 +166,7 @@ namespace AionHR.Web.UI.Forms
 
         public Store Store1 { get; set; }
 
-        
+
 
         /// <summary>
         /// the detailed tabs for the edit form. I put two tabs by default so hide unecessary or add addional
@@ -181,12 +222,12 @@ namespace AionHR.Web.UI.Forms
                     item.Loader.Url = item.Loader.Url + "?employeeId=" + employeeId + "&hireDate=" + hireDate;
             }
         }
-        private void FixLoaderUrls(string employeeId, string hireDate,bool terminated)
+        private void FixLoaderUrls(string employeeId, string hireDate, bool terminated)
         {
             foreach (var item in panelRecordDetails.Items)
             {
                 if (item.Loader != null)
-                    item.Loader.Url = item.Loader.Url + "?employeeId=" + employeeId + "&hireDate=" + hireDate + "&terminated="+ (terminated?"1":"0");
+                    item.Loader.Url = item.Loader.Url + "?employeeId=" + employeeId + "&hireDate=" + hireDate + "&terminated=" + (terminated ? "1" : "0");
             }
         }
         private void FillNameFields(EmployeeName name)
@@ -250,7 +291,7 @@ namespace AionHR.Web.UI.Forms
             FillWorkingCalendar();
 
             SetTabPanelActivated(!isAdd);
-           
+
 
         }
 
@@ -326,7 +367,7 @@ namespace AionHR.Web.UI.Forms
         {
             BasicInfoTab.Enabled = active;
             //SetTabPanelActivated(active);
-           
+
 
             DeleteButton.Hidden = !active;
             terminationGear.Disabled = !active;
@@ -342,11 +383,11 @@ namespace AionHR.Web.UI.Forms
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-  
+
         /// <summary>
         /// Direct method for removing multiple records
         /// </summary>
-        
+
         /// <summary>
         /// Adding new record
         /// </summary>
@@ -404,7 +445,7 @@ namespace AionHR.Web.UI.Forms
             positionStore.DataSource = GetPositions();
             positionStore.DataBind();
         }
-       
+
         private void FillDepartment()
         {
 
@@ -451,7 +492,7 @@ namespace AionHR.Web.UI.Forms
             BranchStore.DataSource = GetBranches();
             BranchStore.DataBind();
         }
-       
+
         private void FillDivision()
         {
 
@@ -652,7 +693,7 @@ namespace AionHR.Web.UI.Forms
                         RecordRequest req = new RecordRequest();
                         req.RecordID = b.recordId.ToString();
                         RecordResponse<Employee> response = _employeeService.Get<Employee>(req);
-                        
+
                         if (response.Success)
                         {
                             b.pictureUrl = response.result.pictureUrl + "?x=" + DateTime.Now;
@@ -770,7 +811,7 @@ namespace AionHR.Web.UI.Forms
             InitCombos(false);
             SelectCombos(response.result);
             SetActivated(!response.result.isInactive);
-            FixLoaderUrls(r.RecordID, response.result.hireDate.Value.ToString("yyyy/MM/dd"),response.result.isInactive);
+            FixLoaderUrls(r.RecordID, response.result.hireDate.Value.ToString("yyyy/MM/dd"), response.result.isInactive);
 
         }
 
@@ -1098,7 +1139,7 @@ namespace AionHR.Web.UI.Forms
                     X.Msg.Alert(Resources.Common.Error, post.Summary).Show();
                     return;
                 }
-                 Store1.Remove(index);
+                Store1.Remove(index);
 
                 //Step 3 : Showing a notification for the user 
                 Notification.Show(new NotificationConfig

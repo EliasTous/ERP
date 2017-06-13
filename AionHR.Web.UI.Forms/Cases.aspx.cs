@@ -133,14 +133,10 @@ namespace AionHR.Web.UI.Forms
                 date.Format = colDate.Format = colClosedDate.Format = closedDate.Format = _systemService.SessionHelper.GetDateformat();
                 if ((bool)_systemService.SessionHelper.Get("IsAdmin"))
                     return;
-            
+
                 try
                 {
                     AccessControlApplier.ApplyAccessControlOnPage(typeof(Case), BasicInfoTab, GridPanel1, btnAdd, SaveButton);
-                    AccessControlApplier.ApplyAccessControlOnPage(typeof(CaseComment), null, caseCommentGrid, null, Button1);
-                    AccessControlApplier.ApplyAccessControlOnPage(typeof(Attachement), EditDocumentForm, filesGrid, Button2, SaveDocumentButton);
-                    //AccessControlApplier.ApplyAccessControlOnPage(typeof(CaseComment), null, caseCommentGrid, null, Button1);
-                    ApplyAccessControlOnCaseComments();
                 }
                 catch (AccessDeniedException exp)
                 {
@@ -149,6 +145,37 @@ namespace AionHR.Web.UI.Forms
                     Viewport1.Hidden = true;
                     return;
                 }
+                try
+                   
+                {
+                    AccessControlApplier.ApplyAccessControlOnPage(typeof(CaseComment), null, caseCommentGrid, null, Button1);
+                    ApplyAccessControlOnCaseComments();
+                }
+                catch (AccessDeniedException exp)
+                {
+                   
+                    caseCommentsTab.Hidden = true;
+                   
+                }
+                try
+                {
+                    AccessControlApplier.ApplyAccessControlOnPage(typeof(Attachement), EditDocumentForm, filesGrid, Button2, SaveDocumentButton);
+                    var properties = AccessControlApplier.GetPropertiesLevels(typeof(Attachement));
+                    if (properties.Where(x => x.index == "url").ToList()[0].accessLevel == 0)
+                    {
+                        var s = filesGrid.ColumnModel.Columns[filesGrid.ColumnModel.Columns.Count - 1];
+                        s.Renderer.Handler = s.Renderer.Handler.Replace("attachRender()", "' '");
+                    }
+                }
+                catch (AccessDeniedException exp)
+                {
+                    
+                    filesGrid.Hidden = true;
+                    
+                }
+               
+               
+
                 if (details.InputType == InputType.Password)
                 {
                     details.Visible = false;
@@ -160,12 +187,8 @@ namespace AionHR.Web.UI.Forms
 
         private void ApplyAccessControlOnCaseComments()
         {
-            UserPropertiesPermissions req = new UserPropertiesPermissions();
-            req.ClassId = (typeof(CaseComment).GetCustomAttributes(typeof(ClassIdentifier), false).ToList()[0] as ClassIdentifier).ClassID;
-            req.UserId = _systemService.SessionHelper.GetCurrentUserId();
-            ListResponse<UC> resp = _accessControlService.ChildGetAll<UC>(req);
-
-            foreach (var item in resp.Items)
+            var properties = AccessControlApplier.GetPropertiesLevels(typeof(CaseComment));
+            foreach (var item in properties)
             {
                 if (item.propertyId == "4300103")
                 {
@@ -199,7 +222,7 @@ namespace AionHR.Web.UI.Forms
             }
 
         }
-        
+
 
 
         /// <summary>

@@ -75,7 +75,17 @@ namespace AionHR.Web.UI.Forms
 
                 SetExtLanguage();
                 HideShowButtons();
-
+                try
+                {
+                    AccessControlApplier.ApplyAccessControlOnPage(typeof(AionHR.Model.TimeAttendance.ImportAttendance), null, null, null, null);
+                }
+                catch (AccessDeniedException exp)
+                {
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorAccessDenied).Show();
+                    Viewport1.Hidden = true;
+                    return;
+                }
                 BatchStatusRequest req = new BatchStatusRequest();
                 req.classId = ClassId.TAAS;
                 RecordResponse<BatchOperationStatus> resp = _systemService.ChildGetRecord<BatchOperationStatus>(req);

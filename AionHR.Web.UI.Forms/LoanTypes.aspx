@@ -120,7 +120,6 @@
                            
 
 
-                            </ext:Column>
                             <ext:Column runat="server"
                                 ID="colDelete" Visible="false"
                                 Text="<%$ Resources: Common , Delete %>"
@@ -160,7 +159,7 @@
 
                                 <Renderer handler="return editRender()+'&nbsp;&nbsp;' +deleteRender(); " />
 
-
+                               </ext:Column>
 
                         </Columns>
                     </ColumnModel>

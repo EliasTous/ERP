@@ -58,9 +58,12 @@ namespace AionHR.Model.System
                     return expiryDate.ToString("dd/MM/yyyy", new CultureInfo("en"));
             }
         }
-      
-        
+
+        [PropertyID("20081_02")]
+        [ApplySecurity]
         public string dtName { get; set; }
+        [PropertyID("20081_01")]
+        [ApplySecurity]
         public string branchName { get; set; }
     }
 }

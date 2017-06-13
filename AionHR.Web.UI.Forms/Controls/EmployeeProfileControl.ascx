@@ -473,6 +473,7 @@
 <ext:Hidden runat="server" ID="pRTL" Text="False" />
 <ext:Hidden runat="server" ID="imageData" />
 <ext:Hidden runat="server" ID="terminated" />
+<ext:Hidden runat="server" ID="photoReadOnly" Text="False" />
 
 <ext:Window
     ID="EditRecordWindow"
@@ -551,10 +552,11 @@
                     </Listeners>
                     <Items>
 
+                           <ext:Image runat="server" ID="noImage" Hidden="true" ImageUrl="~/Images/empPhoto.jpg" Width="100" Height="100" Align="Middle" MarginSpec="15 0 0 20 "/>
                         <ext:Image runat="server" ID="imgControl" Width="100" Height="100" Align="Middle" MarginSpec="15 0 0 20 ">
                             <Listeners>
                                 <%--<Click Handler="triggierImageClick(App.employeeControl1_picturePath.fileInputEl.id); " />--%>
-                                <Click Handler="if(App.employeeControl1_terminated.value=='0'){InitCropper(App.employeeControl1_CurrentEmployeePhotoName.value); App.employeeControl1_imageSelectionWindow.show()}" />
+                                <Click Handler="if(App.employeeControl1_terminated.value=='0'&& App.employeeControl1_photoReadOnly.value=='False'){InitCropper(App.employeeControl1_CurrentEmployeePhotoName.value); App.employeeControl1_imageSelectionWindow.show()}" />
                             </Listeners>
 
                         </ext:Image>
@@ -684,7 +686,7 @@
 
 
                     <Items>
-                        <ext:Panel runat="server" Margin="20">
+                        <ext:Panel runat="server" Margin="20" ID="left">
                             <Items>
                                 <ext:TextField ID="recordId" Hidden="true" runat="server" FieldLabel="<%$ Resources:FieldrecordId%>" Name="recordId" />
                                 <ext:TextField ID="reference" runat="server" FieldLabel="<%$ Resources:FieldReference%>" Name="reference" BlankText="<%$ Resources:Common, MandatoryField%>" />
@@ -701,7 +703,7 @@
 
                             </Items>
                         </ext:Panel>
-                        <ext:Panel runat="server" MarginSpec="0 0 0 100">
+                        <ext:Panel runat="server" MarginSpec="0 0 0 100" ID="rightPanel">
                             <Items>
                                 <ext:RadioGroup ID="gender" AllowBlank="true" runat="server" GroupName="gender" FieldLabel="<%$ Resources:FieldGender%>">
                                     <Items>

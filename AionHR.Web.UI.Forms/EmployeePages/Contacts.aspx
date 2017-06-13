@@ -114,11 +114,11 @@
 
                             <ext:Column ID="Column2" Visible="false" DataIndex="recordId" runat="server" />
 
-                            <ext:Column ID="Column4" DataIndex="addressId.street1" Text="<%$ Resources: FieldCStreet1%>" runat="server" Flex="1">
+                            <ext:Column ID="Column4" DataIndex="addressId" Text="<%$ Resources: FieldCStreet1%>" runat="server" Flex="1">
                                 <Renderer Handler="return record.data['addressId'].street1;" />
                             </ext:Column>
 
-                            <ext:Column ID="Column11" DataIndex="addressId.city" Text="<%$ Resources: FieldCCity%>" runat="server" Flex="1">
+                            <ext:Column ID="Column11" DataIndex="addressId" Text="<%$ Resources: FieldCCity%>" runat="server" Flex="1">
                                 <Renderer Handler="return record.data['addressId'].city;" />
                             </ext:Column>
 
