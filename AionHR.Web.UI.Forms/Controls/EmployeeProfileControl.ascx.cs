@@ -71,7 +71,7 @@ namespace AionHR.Web.UI.Forms
             CurrentEmployeePhotoName.Text = "Images/empPhoto.jpg";
             CurrentEmployee.Text = "";
             this.EditRecordWindow.Title = Resources.Common.AddNewRecord;
-
+            hireDate.ReadOnly = false;
             // timeZoneCombo.Select(_systemService.SessionHelper.GetTimeZone());
             this.EditRecordWindow.Show();
         }
@@ -83,6 +83,7 @@ namespace AionHR.Web.UI.Forms
             CurrentEmployee.Text = id.ToString();
             FillLeftPanel();
 
+            hireDate.ReadOnly = true;
 
             //employeePanel.Loader.Url = "EmployeePages/EmployeeProfile.aspx?employeeId="+CurrentEmployee.Text;
             //employeePanel.Loader.LoadContent();
@@ -149,7 +150,7 @@ namespace AionHR.Web.UI.Forms
                 {
                     imgControl.Hidden = true;
                     noImage.Hidden = false;
-                    
+
                 }
 
                 ClassPermissionRecordRequest classReq = new ClassPermissionRecordRequest();
@@ -158,7 +159,7 @@ namespace AionHR.Web.UI.Forms
                 RecordResponse<ModuleClass> modClass = _accessControlService.ChildGetRecord<ModuleClass>(classReq);
                 if (modClass.result.accessLevel < 3)
                     deleteGear.Disabled = terminationGear.Disabled = true;
-               
+
             }
 
 
@@ -848,6 +849,7 @@ namespace AionHR.Web.UI.Forms
                forSummary.serviceDuractionFriendly(GetGlobalResourceObject("Common", "Day").ToString(), GetGlobalResourceObject("Common", "Month").ToString(), GetGlobalResourceObject("Common", "Year").ToString())
             );
             //            fullNameLbl.Html = forSummary.name.fullName + "<br />";
+
             departmentLbl.Html = forSummary.departmentName + "<br />";
             branchLbl.Html = forSummary.branchName + "<br />";
             positionLbl.Html = forSummary.positionName + "<br />";

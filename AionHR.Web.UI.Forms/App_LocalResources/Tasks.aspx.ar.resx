@@ -163,7 +163,7 @@
     <value>تاريخ المهمة</value>
   </data>
   <data name="FieldFolderName" xml:space="preserve">
-    <value>المجلد</value>
+    <value>الملف</value>
   </data>
   <data name="FieldInRelationToId" xml:space="preserve">
     <value>In Relation To Id</value>

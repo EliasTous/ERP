@@ -458,7 +458,7 @@
                                 <ext:DateField ID="expiryDate" runat="server" FieldLabel="<%$ Resources:FieldExpiryDate%>" Name="expiryDate" />
 
 
-                                <ext:FileUploadField runat="server" ID="rwFile" FieldLabel="<%$ Resources:FieldFile%>" AllowBlank="false" Name="fileUrl" />
+                                <ext:FileUploadField runat="server" ID="rwFile" FieldLabel="<%$ Resources:FieldFile%>" AllowBlank="true" Name="fileUrl" />
 
 
                             </Items>

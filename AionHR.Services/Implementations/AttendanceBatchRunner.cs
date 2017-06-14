@@ -50,7 +50,7 @@ namespace AionHR.Services.Implementations
             int i = 0;
             foreach (var error in  errors)
             {
-                b.Append(error.employeeRef + "," + error.dayId + "," + error.checkIn + "," + error.checkOut + ","+errorMessages[i++] +"\n");
+                b.AppendLine(error.employeeRef + "," + error.dayId + "," + error.checkIn + "," + error.checkOut + ","+errorMessages[i++].Replace('\r',' ').Replace(',',';') );
 
             }
             string csv = b.ToString();
@@ -66,7 +66,7 @@ namespace AionHR.Services.Implementations
             req.Reference = employeeRef;
             RecordResponse<Employee> resp = _employeeService.ChildGetRecord<Employee>(req);
             if (resp == null || resp.result == null)
-                return "";
+                return employeeRef;
             else
                 return resp.result.recordId;
         }

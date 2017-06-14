@@ -15,19 +15,19 @@
     height: 90px;
     width: 100%;
     padding: 8px 10px 0px 10px;
-    background-color: #15b4f0; /*400C24*/
+    background-color: #157fcc; /*400C24*/
     float: left;
     color: #222222;
 }
 .x-header{
-    background-color: #15b4f0; /*400C24*/
-    border-color:#15b4f0;
+   background-color: #157fcc; /*400C24*/
+    border-color:#157fcc;
 }
 .x-header-text {
     font-size: 13px;
 }
 .x-panel{
-    border-color:#15b4f0;
+  border-color:#157fcc;
 }
 .footer {
     width: 100%;

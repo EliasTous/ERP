@@ -361,10 +361,13 @@
     <value>Loan Type</value>
   </data>
   <data name="Class45010" xml:space="preserve">
-    <value>Request</value>
+    <value>Loan Overrides</value>
   </data>
   <data name="Class45011" xml:space="preserve">
     <value>Comments</value>
+  </data>
+  <data name="Class45050" xml:space="preserve">
+    <value>Loan Requests</value>
   </data>
   <data name="Class45099" xml:space="preserve">
     <value>Import Loans</value>

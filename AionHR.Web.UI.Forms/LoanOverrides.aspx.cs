@@ -62,7 +62,17 @@ namespace AionHR.Web.UI.Forms
                 HideShowButtons();
                 HideShowColumns();
 
-
+                try
+                {
+                    AccessControlApplier.ApplyAccessControlOnPage(typeof(LoanOverride), BasicInfoTab, GridPanel1, btnAdd, SaveButton);
+                }
+                catch (AccessDeniedException exp)
+                {
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorAccessDenied).Show();
+                    Viewport1.Hidden = true;
+                    return;
+                }
 
             }
 
@@ -344,7 +354,7 @@ namespace AionHR.Web.UI.Forms
 
 
             // Define the object to add or edit as null
-
+                
             if (isNew == "1")
             {
 
@@ -367,9 +377,9 @@ namespace AionHR.Web.UI.Forms
                     }
                     else
                     {
-
+                        b.employeeId = r.recordId;
                         //Add this record to the store 
-                        this.Store1.Insert(0, b);
+                        Store1.Reload();
 
                         //Display successful notification
                         Notification.Show(new NotificationConfig
@@ -426,7 +436,9 @@ namespace AionHR.Web.UI.Forms
 
 
                         ModelProxy record = this.Store1.GetById(index);
+                        
                         BasicInfoTab.UpdateRecord(record);
+                        
                         record.Commit();
                         Notification.Show(new NotificationConfig
                         {

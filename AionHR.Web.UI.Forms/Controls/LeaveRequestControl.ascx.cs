@@ -87,6 +87,7 @@ namespace AionHR.Web.UI.Forms.Controls
                     {
                         ViewOnly.Text = "1";
                     }
+                  
                 }
                 catch (AccessDeniedException exp)
                 {
@@ -95,6 +96,8 @@ namespace AionHR.Web.UI.Forms.Controls
                     EditRecordWindow.Close();
                     return;
                 }
+
+            
 
             }
 

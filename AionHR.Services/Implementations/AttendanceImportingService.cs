@@ -50,8 +50,8 @@ namespace AionHR.Services.Implementations
                     {
                         cOut = PadTime(cOut);
                     }
-
-                    shifts.Add(new AttendanceShift() { checkIn = cIn, checkOut = cOut, dayId = dayId, employeeRef = employeeRef });
+                    if (cIn.Length == cOut.Length && cOut.Length== 5)
+                        shifts.Add(new AttendanceShift() { checkIn = cIn, checkOut = cOut, dayId = dayId, employeeRef = employeeRef });
                 }
 
 

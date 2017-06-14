@@ -273,6 +273,9 @@
   <data name="Class31141" xml:space="preserve">
     <value>معلومات التوظيف</value>
   </data>
+  <data name="Class31150" xml:space="preserve">
+    <value>المعالون</value>
+  </data>
   <data name="Class32000" xml:space="preserve">
     <value>أنواع المهام</value>
   </data>
@@ -339,6 +342,9 @@
   <data name="Class42020" xml:space="preserve">
     <value>اجازة</value>
   </data>
+  <data name="Class42021" xml:space="preserve">
+    <value>أيام الإجازة</value>
+  </data>
   <data name="Class42099" xml:space="preserve">
     <value>استيراد الإجازات</value>
   </data>
@@ -355,13 +361,31 @@
     <value>نوع السلفة</value>
   </data>
   <data name="Class45010" xml:space="preserve">
-    <value>طلب</value>
+    <value>استثناءات السلف</value>
   </data>
   <data name="Class45011" xml:space="preserve">
     <value>تعليقات</value>
   </data>
+  <data name="Class45050" xml:space="preserve">
+    <value>طلبات السلف</value>
+  </data>
   <data name="Class45099" xml:space="preserve">
     <value>استيراد معلومات السلف</value>
+  </data>
+  <data name="Class51010" xml:space="preserve">
+    <value>السنوات المالية</value>
+  </data>
+  <data name="Class51011" xml:space="preserve">
+    <value>الفترات المالية</value>
+  </data>
+  <data name="Class51020" xml:space="preserve">
+    <value>عملية الدفع</value>
+  </data>
+  <data name="Class51021" xml:space="preserve">
+    <value>رواتب الموظفين</value>
+  </data>
+  <data name="Class51022" xml:space="preserve">
+    <value>الاستحقاقات والخصومات</value>
   </data>
   <data name="Class80101" xml:space="preserve">
     <value>مخطط الأعمار</value>
@@ -419,5 +443,17 @@
   </data>
   <data name="Class81100" xml:space="preserve">
     <value>لوحة المراقبة</value>
+  </data>
+  <data name="Class90101" xml:space="preserve">
+    <value>المجموعات الأمنية</value>
+  </data>
+  <data name="Class90102" xml:space="preserve">
+    <value>المستخدمين</value>
+  </data>
+  <data name="Class90103" xml:space="preserve">
+    <value>الصفحة</value>
+  </data>
+  <data name="Class90104" xml:space="preserve">
+    <value>التفاصيل</value>
   </data>
 </root>

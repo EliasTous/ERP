@@ -9,62 +9,62 @@ using System.Threading.Tasks;
 
 namespace AionHR.Model.LoadTracking
 {
-    [ClassIdentifier("45010", "45")]
+    [ClassIdentifier("45050", "45")]
     public class Loan:ModelBase,IEntity
     {
-        [PropertyID("45010_01")]
+        [PropertyID("45050_01")]
         [ApplySecurity]
         public string employeeId { get; set; }
 
 
-        [PropertyID("45010_02")]
+        [PropertyID("45050_02")]
         [ApplySecurity]
         public string loanRef { get; set; }
-        [PropertyID("45010_03")]
+        [PropertyID("45050_03")]
         [ApplySecurity]
         public string branchId { get; set; }
-        [PropertyID("45010_04")]
+        [PropertyID("45050_04")]
         [ApplySecurity]
         public int? ltId { get; set; }
-        [PropertyID("45010_05")]
+        [PropertyID("45050_05")]
         [ApplySecurity]
         public DateTime date { get; set; }
-        [PropertyID("45010_06")]
+        [PropertyID("45050_06")]
         [ApplySecurity]
         public int currencyId { get; set; }
-        [PropertyID("45010_07")]
+        [PropertyID("45050_07")]
         [ApplySecurity]
         public double amount { get; set; }
-        [PropertyID("45010_08")]
+        [PropertyID("45050_08")]
         [ApplySecurity]
         public string purpose { get; set; }
-        [PropertyID("45010_09")]
+        [PropertyID("45050_09")]
         [ApplySecurity]
         public short status { get; set; }
 
 
-        [PropertyID("45010_10")]
+        [PropertyID("45050_10")]
         [ApplySecurity]
 
         public DateTime? effectiveDate { get; set; }
-        [PropertyID("45010_01")]
+        [PropertyID("45050_01")]
         [ApplySecurity]
         public string employeeRef { get; set; }
 
-        [PropertyID("45010_03")]
+        [PropertyID("45050_03")]
         [ApplySecurity]
         public string branchName { get; set; }
-        [PropertyID("45010_01")]
+        [PropertyID("45050_01")]
         [ApplySecurity]
         // get
         public EmployeeName employeeName { get; set; }
-        [PropertyID("45010_04")]
+        [PropertyID("45050_04")]
         [ApplySecurity]
         public string ltName { get; set; }
-        [PropertyID("45010_06")]
+        [PropertyID("45050_06")]
         [ApplySecurity]
         public string currencyRef { get; set; }
-        [PropertyID("45010_11")]
+        [PropertyID("45050_11")]
         [ApplySecurity]
         public double deductedAmount { get; set; }
     }

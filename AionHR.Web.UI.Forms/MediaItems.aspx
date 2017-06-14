@@ -363,7 +363,7 @@
                                 <ext:DateField ID="date" runat="server" FieldLabel="<%$ Resources:FieldDate%>" Name="date" AllowBlank="false" />                                
 
 
-                                <ext:FileUploadField runat="server" ID="rwFile" FieldLabel="<%$ Resources:FieldFile%>" AllowBlank="false" Name="pictureUrl" />
+                                <ext:FileUploadField runat="server" ID="rwFile" FieldLabel="<%$ Resources:FieldFile%>" AllowBlank="true" Name="pictureUrl" />
 
 
                             </Items>

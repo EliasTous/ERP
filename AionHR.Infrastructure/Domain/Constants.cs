@@ -167,7 +167,7 @@ namespace AionHR.Infrastructure.Domain
 
         // loans
         public const int LTLT = 45000;  // loan type
-        public const int LTLR = 45010;  // request
+        public const int LTLR = 45050;  // request
         public const int LTLC = 45011;  // comments
 
         // payroll ***************************************************************************

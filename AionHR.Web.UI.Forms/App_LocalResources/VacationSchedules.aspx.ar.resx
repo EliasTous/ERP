@@ -133,7 +133,7 @@
     <value>تعديل جدول الإجازات</value>
   </data>
   <data name="FieldDays" xml:space="preserve">
-    <value>عدد ساعات الإجازات</value>
+    <value>عدد أيام الإجازات</value>
   </data>
   <data name="FieldFrom" xml:space="preserve">
     <value>من عدد الأشهر</value>

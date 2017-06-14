@@ -465,6 +465,11 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_GlobalResources\AccessControl.ar.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AccessControl.ar.resx</DependentUpon>
+    </Compile>
     <Compile Include="Utilities\AccessControlApplier.cs" />
     <Compile Include="AllowanceTypes.aspx.cs">
       <DependentUpon>AllowanceTypes.aspx</DependentUpon>
@@ -1645,6 +1650,10 @@
       <LastGenOutput>AccessControl.designer.cs</LastGenOutput>
     </Content>
     <Content Include="App_LocalResources\Tasks.aspx.ar.resx" />
+    <Content Include="App_GlobalResources\AccessControl.ar.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>AccessControl.ar.designer.cs</LastGenOutput>
+    </Content>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <Content Include="Reports\App_LocalResources\RT202.aspx.resx" />
     <Content Include="Reports\App_LocalResources\RT01.aspx.ar.resx" />

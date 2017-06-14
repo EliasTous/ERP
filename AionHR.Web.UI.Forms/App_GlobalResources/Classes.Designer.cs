@@ -790,7 +790,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Request.
+        ///   Looks up a localized string similar to Loan Overrides.
         /// </summary>
         internal static string Class45010 {
             get {
@@ -804,6 +804,15 @@ namespace Resources {
         internal static string Class45011 {
             get {
                 return ResourceManager.GetString("Class45011", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Loan Requests.
+        /// </summary>
+        internal static string Class45050 {
+            get {
+                return ResourceManager.GetString("Class45050", resourceCulture);
             }
         }
         

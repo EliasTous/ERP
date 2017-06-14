@@ -133,7 +133,7 @@
     <value>Edit Vacation Schedule</value>
   </data>
   <data name="FieldDays" xml:space="preserve">
-    <value>Vacation Hours</value>
+    <value>Vacation Days</value>
   </data>
   <data name="FieldFrom" xml:space="preserve">
     <value>From Months</value>

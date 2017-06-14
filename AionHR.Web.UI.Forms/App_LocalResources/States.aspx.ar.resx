@@ -118,10 +118,10 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="BasicInfoTabEditWindowTitle" xml:space="preserve">
-    <value>معلومات المحافظة</value>
+    <value>معلومات المنطقة</value>
   </data>
   <data name="EditWindowsTitle" xml:space="preserve">
-    <value>تعديل المحافظة</value>
+    <value>تعديل المنطقة</value>
   </data>
   <data name="FieldName" xml:space="preserve">
     <value>الاسم</value>
@@ -130,6 +130,6 @@
     <value>الرقم</value>
   </data>
   <data name="WindowTitle" xml:space="preserve">
-    <value>المحافظات</value>
+    <value>المناطق</value>
   </data>
 </root>

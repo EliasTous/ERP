@@ -119,7 +119,7 @@
                     <ColumnModel ID="ColumnModel1" runat="server" SortAscText="<%$ Resources:Common , SortAscText %>" SortDescText="<%$ Resources:Common ,SortDescText  %>" SortClearText="<%$ Resources:Common ,SortClearText  %>" ColumnsText="<%$ Resources:Common ,ColumnsText  %>" EnableColumnHide="false" Sortable="false">
                         <Columns>
                             <ext:Column ID="ColRecordId" Visible="false" DataIndex="employeeId" runat="server" />
-                            <ext:Column CellCls="cellLink" ID="ColName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldName%>" DataIndex="name.fullName" Flex="2" Hideable="false">
+                            <ext:Column CellCls="cellLink" ID="ColName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldName%>" DataIndex="name" Flex="2" Hideable="false">
                                 <Renderer Handler="return record.data['name'].fullName;" />
                             </ext:Column>
 
@@ -132,20 +132,7 @@
                             </ext:Column>
                             
 
-                            <ext:Column runat="server"
-                                ID="colEdit" Visible="true"
-                                Text=""
-                                Width="100"
-                                Hideable="false"
-                                Align="Center"
-                                Fixed="true"
-                                Filterable="false"
-                                MenuDisabled="true"
-                                Resizable="false">
-
-                                <Renderer Handler="return editRender()+'&nbsp;&nbsp;' +deleteRender(); " />
-
-                            </ext:Column>
+                          
                             <ext:Column runat="server"
                                 ID="colDelete" Visible="false"
                                 Text="<%$ Resources: Common , Delete %>"
@@ -172,7 +159,20 @@
                                 <Renderer Fn="attachRender" />
                             </ext:Column>
 
+                              <ext:Column runat="server"
+                                ID="colEdit" Visible="true"
+                                Text=""
+                                Width="100"
+                                Hideable="false"
+                                Align="Center"
+                                Fixed="true"
+                                Filterable="false"
+                                MenuDisabled="true"
+                                Resizable="false">
 
+                                <Renderer Handler="return editRender()+'&nbsp;&nbsp;' +deleteRender(); " />
+
+                            </ext:Column>
 
 
                         </Columns>

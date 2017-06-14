@@ -118,1104 +118,1098 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Property2000001" xml:space="preserve">
-    <value>Name </value>
+    <value>الاسم </value>
   </data>
   <data name="Property2001001" xml:space="preserve">
-    <value>Name </value>
+    <value>الاسم </value>
   </data>
   <data name="Property2001002" xml:space="preserve">
-    <value>Email </value>
+    <value>البريد الالكتروني </value>
   </data>
   <data name="Property2001003" xml:space="preserve">
-    <value>Is inactve </value>
+    <value>غير نشط </value>
   </data>
   <data name="Property2001004" xml:space="preserve">
-    <value>Is Admin </value>
+    <value>إداري</value>
   </data>
   <data name="Property2001005" xml:space="preserve">
-    <value>Employee</value>
+    <value>الموظف</value>
   </data>
   <data name="Property2001006" xml:space="preserve">
-    <value>Language </value>
+    <value>اللغة</value>
   </data>
   <data name="Property2001008" xml:space="preserve">
-    <value>Password</value>
+    <value>كلمة السر </value>
   </data>
   <data name="Property2002001" xml:space="preserve">
-    <value>Name </value>
+    <value>الاسم </value>
   </data>
   <data name="Property2002002" xml:space="preserve">
-    <value>Reference </value>
+    <value>الرمز</value>
   </data>
   <data name="Property2003001" xml:space="preserve">
-    <value>Default Country</value>
+    <value>الدولة الإفتراضية </value>
   </data>
   <data name="Property20030010" xml:space="preserve">
-    <value>Enable Hijri Calendar</value>
+    <value>التقويم الهجري</value>
   </data>
   <data name="Property2003002" xml:space="preserve">
-    <value>Default Currency</value>
+    <value>العملة الإفتراضية </value>
   </data>
   <data name="Property2003003" xml:space="preserve">
-    <value>Default Calendar</value>
+    <value>التقويم الافتراضي</value>
   </data>
   <data name="Property2003004" xml:space="preserve">
-    <value>Default Calendar vacation</value>
+    <value>جدول الإجازات الافتراضي</value>
   </data>
   <data name="Property2003005" xml:space="preserve">
-    <value>Date Format</value>
+    <value>صيغة التاريخ </value>
   </data>
   <data name="Property2003006" xml:space="preserve">
-    <value>Default Date Format</value>
+    <value>صيغة الاسم الإفتراضية </value>
   </data>
   <data name="Property2003007" xml:space="preserve">
-    <value>First Day Of The Week</value>
+    <value>اليوم الأول من الأسبوع </value>
   </data>
   <data name="Property2003008" xml:space="preserve">
-    <value>Default Time Zone</value>
+    <value>المنطقة الزمنية الإفتراضية </value>
   </data>
   <data name="Property2003009" xml:space="preserve">
-    <value>Enable Camera</value>
+    <value>تفعيل الكاميرا </value>
   </data>
   <data name="Property2004001" xml:space="preserve">
-    <value>Name </value>
+    <value>الاسم </value>
   </data>
   <data name="Property2006001" xml:space="preserve">
-    <value>Date </value>
+    <value>التاريخ </value>
   </data>
   <data name="Property2006002" xml:space="preserve">
-    <value>User</value>
+    <value>المسخدم </value>
   </data>
   <data name="Property2006003" xml:space="preserve">
-    <value>Activity</value>
+    <value>النشاط </value>
   </data>
   <data name="Property2007001" xml:space="preserve">
-    <value>Street 1</value>
+    <value>شارع 1 </value>
   </data>
   <data name="Property2007002" xml:space="preserve">
-    <value>Street 2 </value>
+    <value>شارع 2 </value>
   </data>
   <data name="Property2007003" xml:space="preserve">
-    <value>City</value>
+    <value>المدينة </value>
   </data>
   <data name="Property2007004" xml:space="preserve">
-    <value>Postal Code</value>
+    <value>الرمز البريدي </value>
   </data>
   <data name="Property2007005" xml:space="preserve">
-    <value>State</value>
+    <value>المنطقة</value>
   </data>
   <data name="Property2007006" xml:space="preserve">
-    <value>Country Name</value>
+    <value>الدولة </value>
   </data>
   <data name="Property2008001" xml:space="preserve">
-    <value>Name </value>
+    <value>الاسم </value>
   </data>
   <data name="Property2008101" xml:space="preserve">
-    <value>Branch</value>
+    <value>الفرع </value>
   </data>
-  <data name="Property2008108" xml:space="preserve">
-    <value>Attachment</value>
+  <data name="Property20081010" xml:space="preserve">
+    <value>المرفق</value>
   </data>
   <data name="Property2008102" xml:space="preserve">
-    <value>Document Type</value>
+    <value>نوع اللملف</value>
   </data>
   <data name="Property2008103" xml:space="preserve">
-    <value>Document Ref</value>
+    <value>اسم اللملف</value>
   </data>
   <data name="Property2008104" xml:space="preserve">
-    <value>Remarks</value>
+    <value>الملاحظات</value>
   </data>
   <data name="Property2008105" xml:space="preserve">
-    <value>Canlendar</value>
+    <value>التقويم</value>
   </data>
   <data name="Property2008106" xml:space="preserve">
-    <value>Issue Date</value>
+    <value>تاريخ الاصدار</value>
   </data>
   <data name="Property2008107" xml:space="preserve">
-    <value>Expiry Date</value>
+    <value>تاريخ الانتهاء</value>
+  </data>
+  <data name="Property2008108" xml:space="preserve">
+    <value>الملف</value>
   </data>
   <data name="Property2009001" xml:space="preserve">
-    <value>Active </value>
+    <value>ناشط</value>
   </data>
   <data name="Property2009002" xml:space="preserve">
-    <value>Name </value>
+    <value>الاسم</value>
   </data>
   <data name="Property2009003" xml:space="preserve">
-    <value>To</value>
+    <value>إلى</value>
   </data>
   <data name="Property2009004" xml:space="preserve">
-    <value>Days</value>
+    <value>أيام</value>
   </data>
   <data name="Property2009005" xml:space="preserve">
-    <value>Description</value>
+    <value>وصف</value>
   </data>
   <data name="Property2101001" xml:space="preserve">
-    <value>Name</value>
+    <value>الاسم </value>
   </data>
   <data name="Property2101002" xml:space="preserve">
-    <value>Time Zone</value>
+    <value>المنطقة الزمنية</value>
   </data>
   <data name="Property2101003" xml:space="preserve">
-    <value>Is Inactive</value>
+    <value>غير نشط</value>
   </data>
   <data name="Property2102001" xml:space="preserve">
-    <value>Name</value>
+    <value>الاسم</value>
+  </data>
+  <data name="Property21020010" xml:space="preserve">
+    <value>الدولة </value>
   </data>
   <data name="Property2102002" xml:space="preserve">
-    <value>Reference </value>
+    <value>الرمز </value>
   </data>
   <data name="Property2102003" xml:space="preserve">
-    <value>Time Zone</value>
+    <value>المنطقة الزمنية </value>
   </data>
   <data name="Property2102004" xml:space="preserve">
-    <value>Is Inactive </value>
+    <value>غير نشط</value>
   </data>
   <data name="Property2102005" xml:space="preserve">
-    <value>Address</value>
+    <value>العنوان</value>
   </data>
   <data name="Property2103001" xml:space="preserve">
-    <value>Name</value>
+    <value>الاسم </value>
   </data>
   <data name="Property2103002" xml:space="preserve">
-    <value>Reference</value>
+    <value>الرمز</value>
   </data>
   <data name="Property2103003" xml:space="preserve">
-    <value>Description</value>
+    <value>الوصف</value>
   </data>
   <data name="Property2103004" xml:space="preserve">
-    <value>Referrer Name</value>
+    <value>الوظيفة الأساسية</value>
   </data>
   <data name="Property2104001" xml:space="preserve">
-    <value>Name</value>
+    <value>الاسم</value>
   </data>
   <data name="Property2104002" xml:space="preserve">
-    <value>Reference </value>
+    <value>الرمز</value>
   </data>
   <data name="Property2104003" xml:space="preserve">
-    <value>Is Inactive </value>
+    <value>غير نشط</value>
   </data>
   <data name="Property2104004" xml:space="preserve">
-    <value>Supervisor</value>
+    <value>مدير القسم</value>
   </data>
   <data name="Property2104005" xml:space="preserve">
-    <value>Parent</value>
+    <value>القسم الأساسي</value>
   </data>
   <data name="Property2201001" xml:space="preserve">
-    <value>Name</value>
+    <value>الاسم</value>
   </data>
   <data name="Property2301001" xml:space="preserve">
-    <value>Name</value>
+    <value>الاسم</value>
   </data>
   <data name="Property2302001" xml:space="preserve">
-    <value>Department </value>
+    <value>اسم القسم</value>
   </data>
   <data name="Property2302002" xml:space="preserve">
-    <value>Gategory</value>
+    <value>اسم صنف الوسائط</value>
   </data>
   <data name="Property2302003" xml:space="preserve">
-    <value>Type</value>
+    <value>النوع</value>
   </data>
   <data name="Property2302004" xml:space="preserve">
-    <value>Description</value>
+    <value>الوصف</value>
   </data>
   <data name="Property2302005" xml:space="preserve">
-    <value>Date</value>
+    <value>التاريخ</value>
   </data>
   <data name="Property2302006" xml:space="preserve">
-    <value>Attachment</value>
+    <value>المرفق</value>
   </data>
   <data name="Property2401001" xml:space="preserve">
-    <value>Subject</value>
+    <value>العنوان</value>
   </data>
   <data name="Property2401002" xml:space="preserve">
-    <value>News text</value>
+    <value>نص الخبر </value>
   </data>
   <data name="Property2401003" xml:space="preserve">
-    <value>Notify Via Email</value>
+    <value>التنبيه بالإيميل </value>
   </data>
   <data name="Property2401004" xml:space="preserve">
-    <value>Allow Comments </value>
+    <value>السماح بالتعليقات</value>
   </data>
   <data name="Property2401005" xml:space="preserve">
-    <value>Is Published</value>
+    <value>منشور</value>
   </data>
   <data name="Property3100001" xml:space="preserve">
-    <value>Reference </value>
+    <value>الرمز </value>
   </data>
-  <data name="Property3100010" xml:space="preserve">
-    <value>Mobile</value>
+  <data name="Property31000010" xml:space="preserve">
+    <value>رقم الجوال</value>
   </data>
-  <data name="Property3100011" xml:space="preserve">
-    <value>Religion</value>
+  <data name="Property31000011" xml:space="preserve">
+    <value>الدين </value>
   </data>
-  <data name="Property3100012" xml:space="preserve">
-    <value>Birth Date</value>
+  <data name="Property31000012" xml:space="preserve">
+    <value>تاريخ الميلاد</value>
   </data>
-  <data name="Property3100013" xml:space="preserve">
-    <value>Nationality</value>
+  <data name="Property31000013" xml:space="preserve">
+    <value>الجنسية</value>
   </data>
-  <data name="Property3100014" xml:space="preserve">
-    <value>Vacation</value>
+  <data name="Property31000014" xml:space="preserve">
+    <value>جدول الإجازات</value>
   </data>
-  <data name="Property3100015" xml:space="preserve">
-    <value>Calendar</value>
+  <data name="Property31000015" xml:space="preserve">
+    <value>تقويم العمل</value>
   </data>
-  <data name="Property3100016" xml:space="preserve">
-    <value>Place of Birth</value>
+  <data name="Property31000016" xml:space="preserve">
+    <value>مكان الولادة</value>
   </data>
-  <data name="Property3100017" xml:space="preserve">
-    <value>Hire date</value>
+  <data name="Property31000017" xml:space="preserve">
+    <value>تاريخ التوظيف</value>
   </data>
   <data name="Property3100002" xml:space="preserve">
-    <value>Fisrt Name </value>
+    <value>الاسم الأول</value>
   </data>
   <data name="Property3100003" xml:space="preserve">
-    <value>Middle Name</value>
+    <value>الاسم الأوسط </value>
   </data>
   <data name="Property3100004" xml:space="preserve">
-    <value>Last Name </value>
+    <value>الاسم الأخير </value>
   </data>
   <data name="Property3100005" xml:space="preserve">
-    <value>Family Name</value>
+    <value>اسم العائلة</value>
   </data>
   <data name="Property3100006" xml:space="preserve">
-    <value>ID Ref</value>
+    <value>رقم الهوية</value>
   </data>
   <data name="Property3100007" xml:space="preserve">
-    <value>Home Email</value>
+    <value>البريد الالكتروني الشخصي</value>
   </data>
   <data name="Property3100008" xml:space="preserve">
-    <value>Work Email</value>
+    <value>البريد الالكتروني</value>
   </data>
   <data name="Property3100009" xml:space="preserve">
-    <value>Gender</value>
+    <value>الجنس </value>
   </data>
   <data name="Property3101001" xml:space="preserve">
-    <value>Name</value>
+    <value>الاسم</value>
   </data>
   <data name="Property3101101" xml:space="preserve">
-    <value>Employee Name </value>
+    <value>اسم الموظف</value>
   </data>
   <data name="Property3101102" xml:space="preserve">
-    <value>Asset Gategory Name</value>
+    <value>اسم صنف العهد</value>
   </data>
   <data name="Property3101103" xml:space="preserve">
-    <value>Description</value>
+    <value>الوصف </value>
   </data>
   <data name="Property3101104" xml:space="preserve">
-    <value>Serial No</value>
+    <value>الرقم التسلسلي</value>
   </data>
   <data name="Property3101105" xml:space="preserve">
-    <value>Comment</value>
+    <value>تعليق</value>
   </data>
   <data name="Property3101106" xml:space="preserve">
-    <value>Date</value>
+    <value>التاريخ</value>
   </data>
   <data name="Property3101107" xml:space="preserve">
-    <value>Returned date</value>
+    <value>تاريخ الإعادة</value>
   </data>
   <data name="Property3102001" xml:space="preserve">
-    <value>Check Type</value>
+    <value>الاسم</value>
   </data>
   <data name="Property3102101" xml:space="preserve">
-    <value>Name</value>
+    <value>الاسم</value>
   </data>
   <data name="Property3103001" xml:space="preserve">
-    <value>Name</value>
+    <value>الاسم</value>
   </data>
   <data name="Property3103101" xml:space="preserve">
-    <value>Currency</value>
+    <value>العملة</value>
   </data>
   <data name="Property3103102" xml:space="preserve">
-    <value>Bonus Type</value>
+    <value>نوع الحافز</value>
   </data>
   <data name="Property3103103" xml:space="preserve">
-    <value>Date</value>
+    <value>التاريخ</value>
   </data>
   <data name="Property3103104" xml:space="preserve">
-    <value>Amount</value>
+    <value>المبلغ </value>
   </data>
   <data name="Property3103105" xml:space="preserve">
-    <value>Comment</value>
+    <value>التعليق</value>
   </data>
   <data name="Property3104001" xml:space="preserve">
-    <value>Name</value>
+    <value>الاسم</value>
   </data>
   <data name="Property3104101" xml:space="preserve">
-    <value>Institution</value>
+    <value>المؤسسة التعليمية</value>
   </data>
   <data name="Property3104102" xml:space="preserve">
-    <value>Level</value>
+    <value>المستوى</value>
   </data>
   <data name="Property3104103" xml:space="preserve">
-    <value>From </value>
+    <value>من</value>
   </data>
   <data name="Property3104104" xml:space="preserve">
-    <value>To</value>
+    <value>إلى</value>
   </data>
   <data name="Property3104105" xml:space="preserve">
-    <value>Grade</value>
+    <value>الدرجة </value>
   </data>
   <data name="Property3104106" xml:space="preserve">
-    <value>Major</value>
+    <value>الاختصاص</value>
   </data>
   <data name="Property3105001" xml:space="preserve">
-    <value>Name</value>
+    <value>الاسم</value>
   </data>
   <data name="Property3106001" xml:space="preserve">
-    <value>Name </value>
+    <value>الاسم</value>
   </data>
   <data name="Property3106101" xml:space="preserve">
-    <value>Name </value>
+    <value>الاسم</value>
   </data>
   <data name="Property3106102" xml:space="preserve">
-    <value>Type</value>
+    <value>النوع</value>
   </data>
   <data name="Property3106201" xml:space="preserve">
-    <value>Currency</value>
+    <value>العملة</value>
   </data>
   <data name="Property31062010" xml:space="preserve">
-    <value>Basic Amount </value>
+    <value>الراتب الأساسي</value>
   </data>
   <data name="Property31062011" xml:space="preserve">
-    <value>Final Amount</value>
+    <value>المبلغ النهائي</value>
   </data>
   <data name="Property31062012" xml:space="preserve">
-    <value>Entiltements</value>
+    <value>الاستحقاقات </value>
   </data>
   <data name="Property31062013" xml:space="preserve">
-    <value>Deductions</value>
+    <value>الخصومات </value>
   </data>
   <data name="Property3106202" xml:space="preserve">
-    <value>Change Reason</value>
+    <value>سبب تغيير الراتب</value>
   </data>
   <data name="Property3106203" xml:space="preserve">
-    <value>Date</value>
+    <value>التاريخ</value>
   </data>
   <data name="Property3106204" xml:space="preserve">
-    <value>Salary Type</value>
+    <value>نوع الراتب</value>
   </data>
   <data name="Property3106205" xml:space="preserve">
-    <value>Payment Frequency</value>
+    <value>طريقة حساب الراتب</value>
   </data>
   <data name="Property3106206" xml:space="preserve">
-    <value>Payment Method</value>
+    <value>آلية الدفع</value>
   </data>
   <data name="Property3106207" xml:space="preserve">
-    <value>Bank</value>
+    <value>اسم البنك</value>
   </data>
   <data name="Property3106208" xml:space="preserve">
-    <value>Account Number</value>
+    <value>رقم الحساب</value>
   </data>
   <data name="Property3106209" xml:space="preserve">
-    <value>Comments </value>
+    <value>التعليقات </value>
   </data>
   <data name="Property3106301" xml:space="preserve">
-    <value>Entiltement/Deduction</value>
+    <value>الاستحقاق/الخصم </value>
   </data>
   <data name="Property3106302" xml:space="preserve">
-    <value>Include In Total </value>
+    <value>يحسب ضمن الإجمالي</value>
   </data>
   <data name="Property3106303" xml:space="preserve">
-    <value>Percentage</value>
+    <value>النسبة المئوية</value>
   </data>
   <data name="Property3106304" xml:space="preserve">
-    <value>Amount </value>
+    <value>المبلغ</value>
   </data>
   <data name="Property3106305" xml:space="preserve">
-    <value>Comment</value>
+    <value>التعليق</value>
   </data>
   <data name="Property3107001" xml:space="preserve">
-    <value>Name</value>
+    <value>الاسم</value>
   </data>
   <data name="Property3107101" xml:space="preserve">
-    <value>Status</value>
+    <value>الحالة</value>
   </data>
   <data name="Property3107102" xml:space="preserve">
-    <value>Date</value>
+    <value>التاريخ</value>
   </data>
   <data name="Property3107103" xml:space="preserve">
-    <value>Comment</value>
+    <value>التعليق</value>
   </data>
   <data name="Property3108001" xml:space="preserve">
-    <value>Date</value>
+    <value>التاريخ</value>
   </data>
   <data name="Property3108002" xml:space="preserve">
-    <value>Department</value>
+    <value>القسم</value>
   </data>
   <data name="Property3108003" xml:space="preserve">
-    <value>Branch</value>
+    <value>الفرع</value>
   </data>
   <data name="Property3108004" xml:space="preserve">
-    <value>Division</value>
+    <value>الإدارة العليا</value>
   </data>
   <data name="Property3108005" xml:space="preserve">
-    <value>Position</value>
+    <value>الوظيفة</value>
   </data>
   <data name="Property3108006" xml:space="preserve">
-    <value>Reports To</value>
+    <value>المدير المباشر</value>
   </data>
   <data name="Property3109001" xml:space="preserve">
-    <value>User</value>
+    <value>المستخدم</value>
   </data>
   <data name="Property3109002" xml:space="preserve">
-    <value>Date</value>
+    <value>التاريخ</value>
   </data>
   <data name="Property3109003" xml:space="preserve">
-    <value>Note</value>
+    <value>الملاحظات</value>
   </data>
   <data name="Property3110001" xml:space="preserve">
-    <value>Doucment Type</value>
+    <value>نوع الملف</value>
   </data>
   <data name="Property3110002" xml:space="preserve">
-    <value>Document Ref</value>
+    <value>اسم الملف</value>
   </data>
   <data name="Property3110003" xml:space="preserve">
-    <value>Remarks</value>
+    <value>الملاحظات</value>
   </data>
   <data name="Property3110004" xml:space="preserve">
-    <value>Calendar</value>
+    <value>التقويم</value>
   </data>
   <data name="Property3110005" xml:space="preserve">
-    <value>Isuue Date </value>
+    <value>تاريخ الاصدار</value>
   </data>
   <data name="Property3110006" xml:space="preserve">
-    <value>Expiry Date</value>
+    <value>تاريخ الانتهاء</value>
   </data>
   <data name="Property3110007" xml:space="preserve">
-    <value>Attachment</value>
+    <value>المرفق</value>
   </data>
   <data name="Property3111101" xml:space="preserve">
-    <value>Name</value>
+    <value>الاسم</value>
   </data>
   <data name="Property3111102" xml:space="preserve">
-    <value>Ref</value>
+    <value>رقم الهوية</value>
   </data>
   <data name="Property3111103" xml:space="preserve">
-    <value>Right to Work Ref</value>
+    <value>رقم سند العمل</value>
   </data>
   <data name="Property3111104" xml:space="preserve">
-    <value>Address</value>
+    <value>العنوان </value>
   </data>
   <data name="Property3111105" xml:space="preserve">
-    <value>City</value>
+    <value>المدينة </value>
   </data>
   <data name="Property3111106" xml:space="preserve">
-    <value>Mobile</value>
+    <value>الجوال</value>
   </data>
   <data name="Property3111107" xml:space="preserve">
-    <value>Phone</value>
+    <value>الهاتف</value>
   </data>
   <data name="Property3111108" xml:space="preserve">
-    <value>Email</value>
+    <value>البريد الالكتروني</value>
   </data>
   <data name="Property3111109" xml:space="preserve">
-    <value>Fax</value>
+    <value>الفاكس</value>
   </data>
   <data name="Property3112001" xml:space="preserve">
-    <value>Name</value>
+    <value>الاسم</value>
   </data>
   <data name="Property3112101" xml:space="preserve">
-    <value>Name </value>
+    <value>الاسم </value>
   </data>
   <data name="Property3112102" xml:space="preserve">
-    <value>Relationship</value>
+    <value>الصلة</value>
   </data>
   <data name="Property3112103" xml:space="preserve">
-    <value>Work phone</value>
+    <value>هاتف العمل</value>
   </data>
   <data name="Property3112104" xml:space="preserve">
-    <value>Home work</value>
+    <value>الهاتف</value>
   </data>
   <data name="Property3112105" xml:space="preserve">
-    <value>Cell phone </value>
+    <value>الهاتف المحمول</value>
   </data>
   <data name="Property3112106" xml:space="preserve">
-    <value>Email</value>
+    <value>الإيميل</value>
   </data>
   <data name="Property3112107" xml:space="preserve">
-    <value>Address</value>
+    <value>العنوان</value>
   </data>
   <data name="Property3112201" xml:space="preserve">
-    <value>Cell phone</value>
+    <value>الهاتف المحمول</value>
   </data>
   <data name="Property3112202" xml:space="preserve">
-    <value>Address</value>
+    <value>العنوان</value>
   </data>
   <data name="Property3113001" xml:space="preserve">
-    <value>Name</value>
+    <value>الاسم</value>
   </data>
   <data name="Property3113101" xml:space="preserve">
-    <value>Date </value>
+    <value>التاريخ</value>
   </data>
   <data name="Property3113102" xml:space="preserve">
-    <value>Type</value>
+    <value>النوع</value>
   </data>
   <data name="Property3113103" xml:space="preserve">
-    <value>Reason</value>
+    <value>السبب</value>
   </data>
   <data name="Property3113104" xml:space="preserve">
-    <value>Rehire</value>
+    <value>إعادة التوظيف</value>
   </data>
   <data name="Property3114001" xml:space="preserve">
-    <value>Name</value>
+    <value>الاسم</value>
   </data>
   <data name="Property3200001" xml:space="preserve">
-    <value>Name</value>
+    <value>الاسم</value>
   </data>
   <data name="Property3201001" xml:space="preserve">
-    <value>Name </value>
+    <value>الاسم</value>
   </data>
   <data name="Property3201002" xml:space="preserve">
-    <value>Assign To Name </value>
+    <value>مسند إلى</value>
   </data>
   <data name="Property3201003" xml:space="preserve">
-    <value>In Relation To Name</value>
+    <value>مرتبط ب</value>
   </data>
   <data name="Property3201004" xml:space="preserve">
-    <value>Task Type</value>
+    <value>نوع المهمة </value>
   </data>
   <data name="Property3201005" xml:space="preserve">
-    <value>Due Date</value>
+    <value>ناريخ المهمة</value>
   </data>
   <data name="Property3201006" xml:space="preserve">
-    <value>Description</value>
+    <value>التفاصيل</value>
   </data>
   <data name="Property3201007" xml:space="preserve">
-    <value>Completed</value>
+    <value>مكتملة</value>
   </data>
   <data name="Property3202001" xml:space="preserve">
-    <value>User</value>
+    <value>المستخدم</value>
   </data>
   <data name="Property3202002" xml:space="preserve">
-    <value>Date</value>
+    <value>التاريخ</value>
   </data>
   <data name="Property3202003" xml:space="preserve">
-    <value>comment</value>
+    <value>التعليق</value>
   </data>
   <data name="Property4100001" xml:space="preserve">
-    <value>Name</value>
+    <value>الاسم</value>
   </data>
   <data name="Property4100002" xml:space="preserve">
-    <value>Reference</value>
+    <value>الرمز</value>
   </data>
   <data name="Property4100003" xml:space="preserve">
-    <value>Division</value>
+    <value>ادارة عليا</value>
   </data>
   <data name="Property4101001" xml:space="preserve">
-    <value>Reference</value>
+    <value>الرمز</value>
   </data>
   <data name="Property4101002" xml:space="preserve">
-    <value>Is Inactive</value>
+    <value>غير نشط</value>
   </data>
   <data name="Property4101003" xml:space="preserve">
-    <value>Branch</value>
+    <value>الفرع</value>
   </data>
   <data name="Property4102001" xml:space="preserve">
-    <value>Name </value>
+    <value>الاسم</value>
   </data>
   <data name="Property4102002" xml:space="preserve">
-    <value>Branch</value>
+    <value>الفرع</value>
   </data>
   <data name="Property4103001" xml:space="preserve">
-    <value>Name</value>
+    <value>الاسم</value>
   </data>
   <data name="Property4103002" xml:space="preserve">
-    <value>Is working day</value>
+    <value>يوم عمل</value>
   </data>
   <data name="Property4103003" xml:space="preserve">
-    <value>Color</value>
+    <value>اللون</value>
   </data>
   <data name="Property4104001" xml:space="preserve">
-    <value>Employee Name</value>
+    <value>اسم الموظف</value>
   </data>
   <data name="Property4104002" xml:space="preserve">
-    <value>Date Reccived</value>
+    <value>تاريخ الشكوى</value>
   </data>
   <data name="Property4104003" xml:space="preserve">
-    <value>Action Taken</value>
+    <value>القرار المتخذ</value>
   </data>
   <data name="Property4104004" xml:space="preserve">
-    <value>Action Required</value>
+    <value>الطلب</value>
   </data>
   <data name="Property4104005" xml:space="preserve">
-    <value>Complaint Details</value>
+    <value>تفاصيل الشكوى</value>
   </data>
   <data name="Property4104006" xml:space="preserve">
-    <value>Status</value>
+    <value>الحالة</value>
   </data>
   <data name="Property4105001" xml:space="preserve">
-    <value>Name</value>
+    <value>الاسم </value>
   </data>
   <data name="Property4105002" xml:space="preserve">
-    <value>First check in minimum over time</value>
+    <value>الحد الأدنى لاحتساب العمل الإضافي لدى أو لتسجيل الدخول</value>
   </data>
   <data name="Property4105003" xml:space="preserve">
-    <value>First check in maximum latneness</value>
+    <value>الحد الأقصى للتأخير المسموح به لدى أول تسجيل دخول</value>
   </data>
   <data name="Property4105004" xml:space="preserve">
-    <value>Last check out maximum early leave </value>
+    <value>الحد الأقصى للخروج المبكر المسموح به لدى إخر تسجيل خروج </value>
   </data>
   <data name="Property4105005" xml:space="preserve">
-    <value>Last check out minimum early leave</value>
+    <value>الحد الأدنى لاحتساب العمل الإضافي لدى أو لتسجيل الدخول المبكر</value>
   </data>
   <data name="Property4105006" xml:space="preserve">
-    <value>Last check out maximum over time</value>
+    <value>الحد الأدنى لاحتساب العمل الإضافي لدى آخر لتسجيل خروج</value>
   </data>
   <data name="Property4105101" xml:space="preserve">
-    <value>Day type</value>
+    <value>نوع اليوم</value>
   </data>
   <data name="Property4105102" xml:space="preserve">
-    <value>First in</value>
+    <value>بداية الدوام </value>
   </data>
   <data name="Property4105103" xml:space="preserve">
-    <value>Last out</value>
+    <value>نهاية الدوام</value>
   </data>
   <data name="property4105201" xml:space="preserve">
-    <value>Break</value>
+    <value>استراحة</value>
   </data>
   <data name="property4105202" xml:space="preserve">
-    <value>From time</value>
+    <value>من الساعة </value>
   </data>
   <data name="property4105203" xml:space="preserve">
-    <value>To time</value>
+    <value>إلى الساعة</value>
   </data>
   <data name="property4105204" xml:space="preserve">
-    <value>Is benfit overtime</value>
+    <value>تحتسب كوقت عمل إضافي</value>
   </data>
   <data name="Property4106101" xml:space="preserve">
-    <value>From</value>
+    <value>من</value>
   </data>
   <data name="Property4106102" xml:space="preserve">
-    <value>To</value>
+    <value>إلى</value>
   </data>
   <data name="Property4106201" xml:space="preserve">
-    <value>Name </value>
+    <value>الاسم</value>
   </data>
   <data name="Property4106202" xml:space="preserve">
-    <value>Branch</value>
+    <value>الفرع</value>
   </data>
   <data name="Property4106203" xml:space="preserve">
-    <value>Department</value>
+    <value>القسم</value>
   </data>
   <data name="Property4106204" xml:space="preserve">
-    <value>Check in</value>
+    <value>الدخول</value>
   </data>
   <data name="Property4106205" xml:space="preserve">
-    <value>Check out</value>
+    <value>الخروج</value>
   </data>
   <data name="Property4106206" xml:space="preserve">
-    <value>Houres Worked</value>
+    <value>عدد ساعات العمل</value>
   </data>
   <data name="Property4106207" xml:space="preserve">
-    <value>Breaks</value>
+    <value>الاستراحات</value>
   </data>
   <data name="Property4107001" xml:space="preserve">
-    <value>Name</value>
+    <value>الاسم</value>
   </data>
   <data name="Property4107101" xml:space="preserve">
-    <value>year</value>
+    <value>السنة</value>
   </data>
   <data name="Property4107201" xml:space="preserve">
-    <value>Schedule</value>
+    <value>جدول العمل</value>
   </data>
   <data name="Property4107202" xml:space="preserve">
-    <value>Day Type</value>
+    <value>نوع اليوم </value>
   </data>
   <data name="Property4200001" xml:space="preserve">
-    <value>Name </value>
+    <value>الاسم</value>
   </data>
   <data name="Property4200002" xml:space="preserve">
-    <value>Reference </value>
+    <value>الرمز </value>
   </data>
   <data name="Property4200003" xml:space="preserve">
-    <value>Require Approval</value>
+    <value>تحتاج إلى موافقة</value>
   </data>
   <data name="Property4201001" xml:space="preserve">
-    <value>Name</value>
+    <value>الاسم</value>
   </data>
   <data name="Property4201201" xml:space="preserve">
-    <value>From </value>
+    <value>من</value>
   </data>
   <data name="Property4201202" xml:space="preserve">
-    <value>To</value>
+    <value>إلى</value>
   </data>
   <data name="Property4201203" xml:space="preserve">
-    <value>Vacation</value>
+    <value>الإجازة</value>
   </data>
   <data name="Property4202001" xml:space="preserve">
-    <value>Start date </value>
+    <value>تاريخ البداية</value>
   </data>
-  <data name="Property4202009" xml:space="preserve">
-    <value>Return Date</value>
+  <data name="Property42020010" xml:space="preserve">
+    <value>تاريخ إنتهاء الإجازة</value>
   </data>
   <data name="Property4202002" xml:space="preserve">
-    <value>End day</value>
+    <value>تاريخ النهاية</value>
   </data>
   <data name="Property4202003" xml:space="preserve">
-    <value>Employee Name </value>
+    <value>اسم الموظف</value>
   </data>
   <data name="Property4202004" xml:space="preserve">
-    <value>Justification</value>
+    <value>السبب</value>
   </data>
   <data name="Property4202005" xml:space="preserve">
-    <value>Destination</value>
+    <value>الوجهة</value>
   </data>
   <data name="Property4202006" xml:space="preserve">
-    <value>Is paid </value>
+    <value>مدفوعة</value>
   </data>
   <data name="Property4202007" xml:space="preserve">
-    <value>Leave Type Name </value>
+    <value>نوع الإجازة</value>
   </data>
   <data name="Property4202008" xml:space="preserve">
-    <value>Status</value>
+    <value>الحالة</value>
+  </data>
+  <data name="Property4202009" xml:space="preserve">
+    <value>تاريخ انتهاء الإجازة</value>
   </data>
   <data name="Property4300001" xml:space="preserve">
-    <value>Employee Name </value>
+    <value>اسم الموظف</value>
   </data>
   <data name="Property4300002" xml:space="preserve">
-    <value>Date </value>
+    <value>التاريخ</value>
   </data>
   <data name="Property4300003" xml:space="preserve">
-    <value>Details </value>
+    <value>التفاصيل</value>
   </data>
   <data name="Property4300004" xml:space="preserve">
-    <value>Statue</value>
+    <value>الحالة</value>
   </data>
   <data name="Property4300005" xml:space="preserve">
-    <value>Closed Date</value>
+    <value>تاريخ الإغلاق</value>
   </data>
   <data name="Property4300101" xml:space="preserve">
-    <value>User</value>
+    <value>المستخدم</value>
   </data>
   <data name="Property4300102" xml:space="preserve">
-    <value>Date</value>
+    <value>التاريخ </value>
   </data>
   <data name="Property4300103" xml:space="preserve">
-    <value>Comment</value>
+    <value>التعليق</value>
   </data>
   <data name="Property4500001" xml:space="preserve">
-    <value>Name</value>
+    <value>الاسم</value>
   </data>
   <data name="Property4505001" xml:space="preserve">
-    <value>Employee Name</value>
-  </data>
-  <data name="Property4505002" xml:space="preserve">
-    <value>Ref</value>
-  </data>
-  <data name="Property4505003" xml:space="preserve">
-    <value>Branch</value>
-  </data>
-  <data name="Property4505004" xml:space="preserve">
-    <value>Loan Type</value>
-  </data>
-  <data name="Property4505005" xml:space="preserve">
-    <value>Date </value>
-  </data>
-  <data name="Property4505006" xml:space="preserve">
-    <value>Currency</value>
-  </data>
-  <data name="Property4505007" xml:space="preserve">
-    <value>Amount </value>
-  </data>
-  <data name="Property4505008" xml:space="preserve">
-    <value>Purpose</value>
-  </data>
-  <data name="Property4505009" xml:space="preserve">
-    <value>Status</value>
-  </data>
-  <data name="Property4501101" xml:space="preserve">
-    <value>User </value>
-  </data>
-  <data name="Property4501102" xml:space="preserve">
-    <value>Date </value>
-  </data>
-  <data name="Property4501103" xml:space="preserve">
-    <value>Comment</value>
-  </data>
-  <data name="Property5101001" xml:space="preserve">
-    <value>Year</value>
-  </data>
-  <data name="Property5101002" xml:space="preserve">
-    <value>Start Date</value>
-  </data>
-  <data name="Property5101003" xml:space="preserve">
-    <value>End Date</value>
-  </data>
-  <data name="Property5101101" xml:space="preserve">
-    <value>Start Date</value>
-  </data>
-  <data name="Property5101102" xml:space="preserve">
-    <value>End Date</value>
-  </data>
-  <data name="Property5101103" xml:space="preserve">
-    <value>Type</value>
-  </data>
-  <data name="Property5101104" xml:space="preserve">
-    <value>Status</value>
-  </data>
-  <data name="Property5102001" xml:space="preserve">
-    <value>Ref</value>
-  </data>
-  <data name="Property5102002" xml:space="preserve">
-    <value>Year</value>
-  </data>
-  <data name="Property5102003" xml:space="preserve">
-    <value>Type</value>
-  </data>
-  <data name="Property5102004" xml:space="preserve">
-    <value>Period</value>
-  </data>
-  <data name="Property5102005" xml:space="preserve">
-    <value>Pay Date</value>
-  </data>
-  <data name="Property5102006" xml:space="preserve">
-    <value>Status</value>
-  </data>
-  <data name="Property5102007" xml:space="preserve">
-    <value>Notes</value>
-  </data>
-  <data name="Property5102101" xml:space="preserve">
-    <value>name</value>
-  </data>
-  <data name="Property5102102" xml:space="preserve">
-    <value>Branch </value>
-  </data>
-  <data name="Property5102103" xml:space="preserve">
-    <value>Department</value>
-  </data>
-  <data name="Property5102104" xml:space="preserve">
-    <value>currencyRef</value>
-  </data>
-  <data name="Property5102105" xml:space="preserve">
-    <value>Calendar Days</value>
-  </data>
-  <data name="Property5102106" xml:space="preserve">
-    <value>Calendar Minutes</value>
-  </data>
-  <data name="Property5102107" xml:space="preserve">
-    <value>Working Days</value>
-  </data>
-  <data name="Property5102108" xml:space="preserve">
-    <value>Working Minutes</value>
-  </data>
-  <data name="Property5102109" xml:space="preserve">
-    <value>Basic Amount</value>
-  </data>
-  <data name="Property5102110" xml:space="preserve">
-    <value>Tax</value>
-  </data>
-  <data name="Property5102111" xml:space="preserve">
-    <value>Net Salary</value>
-  </data>
-  <data name="Property5102112" xml:space="preserve">
-    <value>Deductions Amount</value>
-  </data>
-  <data name="Property5102113" xml:space="preserve">
-    <value>Entitlements Amount</value>
-  </data>
-  <data name="Property5102201" xml:space="preserve">
-    <value>Entitlement/Deduction</value>
-  </data>
-  <data name="Property5102202" xml:space="preserve">
-    <value>Amount</value>
-  </data>
-  <data name="Property5102203" xml:space="preserve">
-    <value>Type</value>
-  </data>
-  <data name="Property4202101" xml:space="preserve">
-    <value>Day</value>
-  </data>
-  <data name="Property4202102" xml:space="preserve">
-    <value>Working Hours</value>
-  </data>
-  <data name="Property4202103" xml:space="preserve">
-    <value>Leave Hours</value>
+    <value>اسم الموظف</value>
   </data>
   <data name="Property4505010" xml:space="preserve">
-    <value>Effective Date</value>
+    <value>التاريخ</value>
   </data>
-  <data name="Property4505011" xml:space="preserve">
-    <value>Deducted Amount</value>
+  <data name="Property4505002" xml:space="preserve">
+    <value>الرمز</value>
   </data>
-  <data name="Property3100018" xml:space="preserve">
-    <value>Position</value>
+  <data name="Property4505003" xml:space="preserve">
+    <value>الفرع </value>
   </data>
-  <data name="Property3100019" xml:space="preserve">
-    <value>Department</value>
+  <data name="Property4505004" xml:space="preserve">
+    <value>نوع السلفة</value>
   </data>
-  <data name="Property3100020" xml:space="preserve">
-    <value>Branch</value>
+  <data name="Property4505005" xml:space="preserve">
+    <value>التاريخ</value>
   </data>
-  <data name="Property3100021" xml:space="preserve">
-    <value>Division</value>
+  <data name="Property4505006" xml:space="preserve">
+    <value>العملة</value>
   </data>
-  <data name="Property3100022" xml:space="preserve">
-    <value>Manager</value>
+  <data name="Property4505007" xml:space="preserve">
+    <value>القيمة</value>
   </data>
-  <data name="Property3100023" xml:space="preserve">
-    <value>Picture</value>
+  <data name="Property4505008" xml:space="preserve">
+    <value>السبب</value>
   </data>
-  <data name="Property3100024" xml:space="preserve">
-    <value>Full Name</value>
+  <data name="Property4505009" xml:space="preserve">
+    <value>الحالة</value>
   </data>
-  <data name="Property3108007" xml:space="preserve">
-    <value>Notes</value>
+  <data name="Property4501101" xml:space="preserve">
+    <value>المستخدم </value>
   </data>
-  <data name="Property3112002" xml:space="preserve">
-    <value>Remarks</value>
+  <data name="Property4501102" xml:space="preserve">
+    <value>التاريخ </value>
   </data>
-  <data name="Property3112003" xml:space="preserve">
-    <value>Date</value>
-  </data>
-  <data name="Property3112004" xml:space="preserve">
-    <value>Exipry Date</value>
-  </data>
-  <data name="Property3112005" xml:space="preserve">
-    <value>File</value>
-  </data>
-  <data name="Property4102003" xml:space="preserve">
-    <value>Location</value>
-  </data>
-  <data name="Property4105104" xml:space="preserve">
-    <value>Duration</value>
-  </data>
-  <data name="Property4106103" xml:space="preserve">
-    <value>Duration</value>
-  </data>
-  <data name="Property4106208" xml:space="preserve">
-    <value>Day</value>
-  </data>
-  <data name="Property3115001" xml:space="preserve">
-    <value>Dependency Type</value>
-  </data>
-  <data name="Property3115002" xml:space="preserve">
-    <value>First Name</value>
-  </data>
-  <data name="Property3115003" xml:space="preserve">
-    <value>Middle Name</value>
-  </data>
-  <data name="Property3115004" xml:space="preserve">
-    <value>Last Name</value>
-  </data>
-  <data name="Property3115005" xml:space="preserve">
-    <value>Birth Date</value>
-  </data>
-  <data name="Property3115006" xml:space="preserve">
-    <value>Gender</value>
-  </data>
-  <data name="Property3115007" xml:space="preserve">
-    <value>Phone Number</value>
-  </data>
-  <data name="Property3115008" xml:space="preserve">
-    <value>Is Student</value>
-  </data>
-  <data name="Property3115009" xml:space="preserve">
-    <value>Is Citizen</value>
-  </data>
-  <data name="Property3115010" xml:space="preserve">
-    <value>Address</value>
-  </data>
-  <data name="Property3102002" xml:space="preserve">
-    <value>Remarks</value>
-  </data>
-  <data name="Property3102003" xml:space="preserve">
-    <value>Date</value>
-  </data>
-  <data name="Property3102004" xml:space="preserve">
-    <value>Expiry Date</value>
-  </data>
-  <data name="Property3102005" xml:space="preserve">
-    <value>Attachment</value>
-  </data>
-  <data name="Property3114101" xml:space="preserve">
-    <value>Notice Period</value>
-  </data>
-  <data name="Property3114102" xml:space="preserve">
-    <value>Probation End Date</value>
-  </data>
-  <data name="Property3114103" xml:space="preserve">
-    <value>Next Review Date</value>
-  </data>
-  <data name="Property3114104" xml:space="preserve">
-    <value>Term End Date</value>
-  </data>
-  <data name="Property3114105" xml:space="preserve">
-    <value>Recruitment Info</value>
-  </data>
-  <data name="Property3114106" xml:space="preserve">
-    <value>Recruitment Cost</value>
+  <data name="Property4501103" xml:space="preserve">
+    <value>التعليق</value>
   </data>
   <data name="Property2005001" xml:space="preserve">
-    <value>File Name</value>
+    <value>اسم الملف</value>
   </data>
   <data name="Property2005002" xml:space="preserve">
-    <value>Url</value>
+    <value>الملف</value>
   </data>
   <data name="Property2005003" xml:space="preserve">
-    <value>Folder</value>
+    <value>المجلد</value>
   </data>
   <data name="Property2005004" xml:space="preserve">
-    <value>Date</value>
+    <value>التاريخ</value>
   </data>
-  <data name="Property9010101" xml:space="preserve">
-    <value>Name</value>
+  <data name="Property3100018" xml:space="preserve">
+    <value>الوظائف</value>
   </data>
-  <data name="Property9010102" xml:space="preserve">
-    <value>Description</value>
+  <data name="Property3100019" xml:space="preserve">
+    <value>القسم</value>
   </data>
-  <data name="Property9010201" xml:space="preserve">
-    <value>Group</value>
+  <data name="Property3100020" xml:space="preserve">
+    <value>الفرع</value>
   </data>
-  <data name="Property9010202" xml:space="preserve">
-    <value>User</value>
+  <data name="Property3100021" xml:space="preserve">
+    <value>الإدارة العليا</value>
   </data>
-  <data name="Property9010301" xml:space="preserve">
-    <value>Name</value>
+  <data name="Property3100022" xml:space="preserve">
+    <value>المدير</value>
   </data>
-  <data name="Property9010302" xml:space="preserve">
-    <value>Level</value>
+  <data name="Property3100023" xml:space="preserve">
+    <value>الصورة</value>
   </data>
-  <data name="Property9010401" xml:space="preserve">
-    <value>Name</value>
+  <data name="Property3100024" xml:space="preserve">
+    <value>الاسم الكامل</value>
   </data>
-  <data name="Property9010402" xml:space="preserve">
-    <value>Level</value>
+  <data name="Property3102002" xml:space="preserve">
+    <value>ملاحظات</value>
   </data>
-  <data name="Property2007101" xml:space="preserve">
-    <value>Name</value>
+  <data name="Property3102003" xml:space="preserve">
+    <value>التاريخ</value>
+  </data>
+  <data name="Property31063013" xml:space="preserve">
+    <value>التعليق</value>
+  </data>
+  <data name="Property3108007" xml:space="preserve">
+    <value>الملاحظات</value>
+  </data>
+  <data name="Property3112003" xml:space="preserve">
+    <value>التاريخ</value>
+  </data>
+  <data name="Property3112004" xml:space="preserve">
+    <value>تاريخ الإنتهاء</value>
+  </data>
+  <data name="Property3112005" xml:space="preserve">
+    <value>الملف</value>
+  </data>
+  <data name="Property3114102" xml:space="preserve">
+    <value>تاريخ انتهاء فترة التجربة</value>
+  </data>
+  <data name="Property3114103" xml:space="preserve">
+    <value>تاريخ التقييم التالي</value>
+  </data>
+  <data name="Property3114104" xml:space="preserve">
+    <value>نهايةالعقد</value>
+  </data>
+  <data name="Property3114105" xml:space="preserve">
+    <value>معلومات التوظيف</value>
+  </data>
+  <data name="Property3114106" xml:space="preserve">
+    <value>كلفة التوظيف</value>
+  </data>
+  <data name="Property3115001" xml:space="preserve">
+    <value>نوع القرابة</value>
+  </data>
+  <data name="Property3115002" xml:space="preserve">
+    <value>الاسم</value>
+  </data>
+  <data name="Property3115003" xml:space="preserve">
+    <value>الاسم الأوسط</value>
+  </data>
+  <data name="Property3115004" xml:space="preserve">
+    <value>الكنية </value>
+  </data>
+  <data name="Property3115005" xml:space="preserve">
+    <value>تاريخ الميلاد</value>
+  </data>
+  <data name="Property3115006" xml:space="preserve">
+    <value>الجنس</value>
+  </data>
+  <data name="Property3115007" xml:space="preserve">
+    <value>رقم الهاتف</value>
+  </data>
+  <data name="Property3115008" xml:space="preserve">
+    <value>طالب</value>
+  </data>
+  <data name="Property3115009" xml:space="preserve">
+    <value>مواطن</value>
+  </data>
+  <data name="Property3115010" xml:space="preserve">
+    <value>العنوان</value>
+  </data>
+  <data name="Property4105104" xml:space="preserve">
+    <value>المدة</value>
+  </data>
+  <data name="Property4106208" xml:space="preserve">
+    <value>اليوم</value>
+  </data>
+  <data name="Property4202103" xml:space="preserve">
+    <value>مجموع الساعات</value>
   </data>
   <data name="Property4400001" xml:space="preserve">
-    <value>Employee</value>
+    <value>الموظف</value>
   </data>
   <data name="Property4400002" xml:space="preserve">
-    <value>Date Received</value>
+    <value>تاريخ الشكوى</value>
   </data>
   <data name="Property4400003" xml:space="preserve">
-    <value>Action Taken</value>
+    <value>القرار المتخذ</value>
   </data>
   <data name="Property4400004" xml:space="preserve">
-    <value>Action Required</value>
+    <value>الطلب</value>
   </data>
   <data name="Property4400005" xml:space="preserve">
-    <value>Details</value>
+    <value>تفاصيل الشكوى</value>
   </data>
   <data name="Property4400006" xml:space="preserve">
-    <value>Status</value>
+    <value>الحالة</value>
   </data>
-  <data name="Property5102008" xml:space="preserve">
-    <value>Start Date</value>
+  <data name="Property4505011" xml:space="preserve">
+    <value>القيمة المقتطعة </value>
+  </data>
+  <data name="Property5012103" xml:space="preserve">
+    <value>القسم </value>
+  </data>
+  <data name="Property5101001" xml:space="preserve">
+    <value>السنة </value>
+  </data>
+  <data name="Property5101002" xml:space="preserve">
+    <value>تاريخ البداية</value>
+  </data>
+  <data name="Property5101003" xml:space="preserve">
+    <value>تاريخ النهاية </value>
+  </data>
+  <data name="Property5101101" xml:space="preserve">
+    <value>تاريخ البداية</value>
+  </data>
+  <data name="Property5101102" xml:space="preserve">
+    <value>تاريخ النهاية </value>
+  </data>
+  <data name="Property5101103" xml:space="preserve">
+    <value>النوع</value>
+  </data>
+  <data name="Property5101104" xml:space="preserve">
+    <value>الحالة </value>
+  </data>
+  <data name="Property5102001" xml:space="preserve">
+    <value>الرمز</value>
+  </data>
+  <data name="Property5102002" xml:space="preserve">
+    <value>السنة</value>
+  </data>
+  <data name="Property5102003" xml:space="preserve">
+    <value>النوع</value>
+  </data>
+  <data name="Property5102004" xml:space="preserve">
+    <value>الفترة</value>
+  </data>
+  <data name="Property5102005" xml:space="preserve">
+    <value>تاريخ الدفع</value>
+  </data>
+  <data name="Property5102006" xml:space="preserve">
+    <value>الحالة</value>
+  </data>
+  <data name="Property5102007" xml:space="preserve">
+    <value>الملاحظات</value>
   </data>
   <data name="Property5102009" xml:space="preserve">
-    <value>End Date</value>
+    <value>تاريخ النهاية</value>
+  </data>
+  <data name="Property5102101" xml:space="preserve">
+    <value>الاسم</value>
+  </data>
+  <data name="Property5102102" xml:space="preserve">
+    <value>الفرع</value>
+  </data>
+  <data name="Property5102104" xml:space="preserve">
+    <value>رمزالعملة</value>
+  </data>
+  <data name="Property5102105" xml:space="preserve">
+    <value>أيام التقويم</value>
+  </data>
+  <data name="Property5102106" xml:space="preserve">
+    <value>دقائق التقويم</value>
+  </data>
+  <data name="Property5102107" xml:space="preserve">
+    <value>أيام العمل</value>
+  </data>
+  <data name="Property5102108" xml:space="preserve">
+    <value>دقائق العمل</value>
+  </data>
+  <data name="Property5102109" xml:space="preserve">
+    <value>الراتب الأساسي</value>
+  </data>
+  <data name="Property5102110" xml:space="preserve">
+    <value>الضريبة</value>
+  </data>
+  <data name="Property5102111" xml:space="preserve">
+    <value>الراتب النهائي</value>
+  </data>
+  <data name="Property5102112" xml:space="preserve">
+    <value>الخصومات</value>
+  </data>
+  <data name="Property5102113" xml:space="preserve">
+    <value>الإستحقاقات</value>
+  </data>
+  <data name="Property5102201" xml:space="preserve">
+    <value>الاستحقاق/الخصم</value>
+  </data>
+  <data name="Property5102202" xml:space="preserve">
+    <value>المبلغ </value>
+  </data>
+  <data name="Property5102203" xml:space="preserve">
+    <value>النوع</value>
+  </data>
+  <data name="Property512008" xml:space="preserve">
+    <value>تاريخ البداية</value>
+  </data>
+  <data name="Property9010101" xml:space="preserve">
+    <value>الاسم</value>
+  </data>
+  <data name="Property9010102" xml:space="preserve">
+    <value>وصف</value>
+  </data>
+  <data name="Property9010201" xml:space="preserve">
+    <value>مجموعة</value>
+  </data>
+  <data name="Property9010202" xml:space="preserve">
+    <value>المستخدم </value>
+  </data>
+  <data name="Property9010301" xml:space="preserve">
+    <value>الاسم</value>
+  </data>
+  <data name="Property9010302" xml:space="preserve">
+    <value>السماحية</value>
+  </data>
+  <data name="Property9010401" xml:space="preserve">
+    <value>الاسم</value>
+  </data>
+  <data name="Property9010402" xml:space="preserve">
+    <value>السماحية</value>
+  </data>
+  <data name="Property2007101" xml:space="preserve">
+    <value>الاسم</value>
+  </data>
+  <data name="Property4202101" xml:space="preserve">
+    <value>اليوم</value>
+  </data>
+  <data name="Property4202102" xml:space="preserve">
+    <value>عدد ساعات العمل</value>
   </data>
   <data name="Property4503001" xml:space="preserve">
-    <value>Employee</value>
+    <value>الموظف</value>
   </data>
   <data name="Property4503002" xml:space="preserve">
-    <value>Loan Coverage Method</value>
+    <value>طريقة تغطية السلفة</value>
   </data>
   <data name="Property4503003" xml:space="preserve">
-    <value>Payment</value>
+    <value>قيمة الدفعة</value>
   </data>
 </root>

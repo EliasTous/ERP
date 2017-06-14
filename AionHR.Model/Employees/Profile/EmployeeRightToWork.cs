@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace AionHR.Model.Employees.Profile
 {
     [ClassIdentifier("31100", "31")]
-    public class EmployeeRightToWork:ModelBase
+    public class EmployeeRightToWork : ModelBase
     {
         [PropertyID("31100_01")]
         [ApplySecurity]
@@ -26,7 +26,7 @@ namespace AionHR.Model.Employees.Profile
         public bool hijriCal { get; set; }
         [PropertyID("31100_05")]
         [ApplySecurity]
-        public DateTime issueDate { get; set; }
+        public DateTime? issueDate { get; set; }
         [PropertyID("31100_06")]
         [ApplySecurity]
         public DateTime expiryDate { get; set; }
@@ -43,10 +43,12 @@ namespace AionHR.Model.Employees.Profile
         {
             get
             {
+                if (!issueDate.HasValue)
+                    return "";
                 if (hijriCal)
-                    return issueDate.ToString("dd/MM/yyyy", new CultureInfo("ar"));
+                    return issueDate.Value.ToString("dd/MM/yyyy", new CultureInfo("ar"));
                 else
-                    return issueDate.ToString("dd/MM/yyyy", new CultureInfo("en"));
+                    return issueDate.Value.ToString("dd/MM/yyyy", new CultureInfo("en"));
             }
         }
 
@@ -60,7 +62,7 @@ namespace AionHR.Model.Employees.Profile
                     return expiryDate.ToString("dd/MM/yyyy", new CultureInfo("en"));
             }
         }
-       
-    
+
+
     }
 }

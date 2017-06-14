@@ -115,15 +115,6 @@ namespace Resources.Sponsors {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ref.
-        /// </summary>
-        internal static string FieldIdRef {
-            get {
-                return ResourceManager.GetString("FieldIdRef", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Mobile.
         /// </summary>
         internal static string FieldMobile {
@@ -156,15 +147,6 @@ namespace Resources.Sponsors {
         internal static string FieldRecordId {
             get {
                 return ResourceManager.GetString("FieldRecordId", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Right to work Ref.
-        /// </summary>
-        internal static string FieldRTWRef {
-            get {
-                return ResourceManager.GetString("FieldRTWRef", resourceCulture);
             }
         }
         

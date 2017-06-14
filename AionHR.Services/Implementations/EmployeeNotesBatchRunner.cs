@@ -51,9 +51,10 @@ namespace AionHR.Services.Implementations
         protected override void PostProcessElements()
         {
             StringBuilder b = new StringBuilder();
+            int i = 0;
             foreach (var error in errors)
             {
-                b.AppendLine(error.employeeRef+","+ error.note+"," + error.userName);
+                b.AppendLine(error.employeeRef+","+ error.note+"," + error.userName+","+ errorMessages[i++].Replace('\r', ' ').Replace(',', ';'));
 
             }
             string csv = b.ToString();
@@ -68,7 +69,7 @@ namespace AionHR.Services.Implementations
             req.Reference = employeeRef;
             RecordResponse<Employee> resp = main.ChildGetRecord<Employee>(req);
             if (resp == null || resp.result == null)
-                return "";
+                return employeeRef;
             else
                 return resp.result.recordId;
         }
@@ -79,7 +80,7 @@ namespace AionHR.Services.Implementations
             req.Email = email;
             RecordResponse<UserInfo> resp = base._systemService.Get<UserInfo>(req);
             if (resp == null || resp.result == null)
-                return "";
+                return "0";
             else
                 return resp.result.recordId;
         }

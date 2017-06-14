@@ -104,9 +104,10 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                 expiryDateDisabled.Text = rwExpiryDate.ReadOnly.ToString();
 
                 hijriCal.LazyItems.ForEach(x => (x as Field).ReadOnly = rwIssueDate.ReadOnly || rwExpiryDate.ReadOnly);
-               
-                if(rwFile.InputType== InputType.Password)
-                { var s = rightToWorkGrid.ColumnModel.Columns[rightToWorkGrid.ColumnModel.Columns.Count - 1];
+
+                if (rwFile.InputType == InputType.Password)
+                {
+                    var s = rightToWorkGrid.ColumnModel.Columns[rightToWorkGrid.ColumnModel.Columns.Count - 1];
                     s.Renderer.Handler = s.Renderer.Handler.Replace("attachRender()", " ' '");
                 }
                 if (bcFile.InputType == InputType.Password)
@@ -196,7 +197,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                         if (response.result.hijriCal)
                         {
                             hijCal.Checked = true;
-                            rwIssueDateMulti.Text = response.result.issueDate.ToString("yyyy/MM/dd", new CultureInfo("ar"));
+                            rwIssueDateMulti.Text = response.result.issueDate.Value.ToString("yyyy/MM/dd", new CultureInfo("ar"));
                             rwExpiryDateMulti.Text = response.result.expiryDate.ToString("yyyy/MM/dd", new CultureInfo("ar"));
                             hijriSelected.Text = "true";
                         }
@@ -205,12 +206,12 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                             gregCal.Checked = true;
                             if (_systemService.SessionHelper.CheckIfArabicSession())
                             {
-                                rwIssueDateMulti.Text = response.result.issueDate.ToString("dd/MM/yyyy", new CultureInfo("en"));
+                                rwIssueDateMulti.Text = response.result.issueDate.Value.ToString("dd/MM/yyyy", new CultureInfo("en"));
                                 rwExpiryDateMulti.Text = response.result.expiryDate.ToString("dd/MM/yyyy", new CultureInfo("en"));
                             }
                             else
                             {
-                                rwIssueDateMulti.Text = response.result.issueDate.ToString("MM/dd/yyyy", new CultureInfo("en"));
+                                rwIssueDateMulti.Text = response.result.issueDate.Value.ToString("MM/dd/yyyy", new CultureInfo("en"));
                                 rwExpiryDateMulti.Text = response.result.expiryDate.ToString("MM/dd/yyyy", new CultureInfo("en"));
                             }
                             hijriSelected.Text = "false";
@@ -583,8 +584,10 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                             format = "MM/dd/yyyy";
                         }
                     }
-
-                    b.issueDate = DateTime.ParseExact(rwIssueDateMulti.Text, format, c);
+                    if (!string.IsNullOrEmpty(rwIssueDateMulti.Text))
+                        b.issueDate = DateTime.ParseExact(rwIssueDateMulti.Text, format, c);
+                    else
+                        b.issueDate = null;
                     b.expiryDate = DateTime.ParseExact(rwExpiryDateMulti.Text, format, c);
                 }
 

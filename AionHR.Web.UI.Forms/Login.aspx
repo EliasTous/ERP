@@ -12,8 +12,8 @@
 
     <link href='http://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
 
-    <link rel="stylesheet" type="text/css" href="CSS/Header.css" />
-    <link rel="stylesheet" type="text/css" href="CSS/Common.css" />
+    <link rel="stylesheet" type="text/css" href="CSS/Header.css?id=2" />
+    <link rel="stylesheet" type="text/css" href="CSS/Common.css?id=1" />
    <%-- <script src="Scripts/jquery-new.js"></script>
     <link href="CSS/PasswordStrength.css?id=3" rel="stylesheet" />
     <script src="Scripts/strength.js"></script>--%>

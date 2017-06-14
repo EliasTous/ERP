@@ -147,9 +147,6 @@
   <data name="SalaryWeekly" xml:space="preserve">
     <value>Weekly</value>
   </data>
-  <data name="StatusAll" xml:space="preserve">
-    <value>All</value>
-  </data>
   <data name="StatusInProcess" xml:space="preserve">
     <value>In Process</value>
   </data>

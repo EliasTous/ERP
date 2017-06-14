@@ -391,9 +391,9 @@ namespace AionHR.Web.UI.Forms
                 empRequest.PositionId = "0";
             }
 
-            if (e.Sort[0].Property == "name.fullName")
+            if (e.Sort[0].Property == "name")
                 empRequest.SortBy = GetNameFormat();
-            else if (e.Sort[0].Property == "name.reference")
+            else if (e.Sort[0].Property == "reference")
                 empRequest.SortBy = "reference";
             else
                 empRequest.SortBy = e.Sort[0].Property;

@@ -86,7 +86,7 @@ namespace AionHR.Web.UI.Forms
                 For<ITaskManagementService>().Use<TaskManagementService>();
                 For<IPayrollService>().Use<PayrollService>();
                 For<IAccessControlService>().Use<AccessControlService>();
-                ModulesFileWrapper.Store();
+                
             }
         }
     }

@@ -311,9 +311,12 @@ function dump(obj) {
 var enterKeyPressSearchHandler = function (el, event) {
 
     var enter = false;
-    if (event.getKey() == event.ENTER) {
+    
+    alert(event.getKey());
+    if (event.getKey() == 13) {
+        
         if (el.getValue().length > 0)
-        { enter = true; }
+        {  enter = true; }
     }
 
     if (enter === true) {

@@ -75,7 +75,7 @@
             App.hijriCal.setHidden(!hijri);
 
             App.rwIssueDateMulti.setHidden(!hijri);
-            App.rwIssueDateMulti.allowBlank = !hijri;
+           // App.rwIssueDateMulti.allowBlank = !hijri;
             App.rwExpiryDateMulti.setHidden(!hijri);
             App.rwExpiryDateMulti.allowBlank = !hijri;
 
@@ -84,7 +84,7 @@
             App.rwExpiryDate.allowBlank = hijri;
 
             App.rwIssueDate.setHidden(hijri);
-            App.rwIssueDate.allowBlank = hijri;
+          //  App.rwIssueDate.allowBlank = hijri;
            
 
         }
@@ -571,7 +571,7 @@
                                
                                    
                                 </ext:TextField>
-                                <ext:DateField ID="rwIssueDate" runat="server" Name="issueDate" FieldLabel="<%$ Resources:FieldRWIssueDate%>" AllowBlank="false" />
+                                <ext:DateField ID="rwIssueDate" runat="server" Name="issueDate" FieldLabel="<%$ Resources:FieldRWIssueDate%>" AllowBlank="true" />
                                <ext:DateField ID="rwExpiryDate" runat="server" Name="expiryDate" FieldLabel="<%$ Resources:FieldRWExpiryDate%>" AllowBlank="false" />
                                 <ext:TextArea runat="server" Name="remarks" ID="remarks" FieldLabel="<%$ Resources:FieldRWRemarks%>" />
                                 <ext:TextField InputType="Password" runat="server" Name="remarks" Visible="false" ID="remarksField" FieldLabel="<%$ Resources:FieldRWRemarks%>" />

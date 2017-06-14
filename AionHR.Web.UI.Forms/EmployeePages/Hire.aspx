@@ -76,7 +76,7 @@
                             <ext:TextField InputType="Password" Visible="false"  LabelWidth="200"  runat="server" ID="infoField" Name="recruitmentInfo" FieldLabel="<%$ Resources:FieldRecruitmentInfo %>" />
                         <ext:TextField runat="server"  LabelWidth="200" ID="recruitmentCost" Name="recruitmentCost" FieldLabel="<%$ Resources:FieldRecruitmentCost %>" >
                          
-                            <Validator Handler="if(isNaN(this.value)) return false; return true;">
+                            <Validator Handler="if(isNaN(this.value)||this.value<0) return false; return true;">
                                 
                             </Validator>
                             </ext:TextField>

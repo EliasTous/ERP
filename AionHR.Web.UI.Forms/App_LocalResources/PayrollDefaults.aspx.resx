@@ -157,6 +157,6 @@
     <value>Percentage of Loan</value>
   </data>
   <data name="PFromNetSalary" xml:space="preserve">
-    <value>Percentage of Basic Salary +Entitlements</value>
+    <value>Percentage of Net Salary</value>
   </data>
 </root>

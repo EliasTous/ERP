@@ -127,7 +127,7 @@
     <value>Name</value>
   </data>
   <data name="ldMethod1" xml:space="preserve">
-    <value>Percentage of Basic Salary +Entitlements</value>
+    <value>Percentage of Net Salary</value>
   </data>
   <data name="ldMethod2" xml:space="preserve">
     <value>Percentage of Basic Salary</value>

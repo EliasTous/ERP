@@ -43,8 +43,8 @@ namespace AionHR.Services.Implementations
                     error.destination + "," +
                     error.justification + "," +
                     error.status +","+
-                    errorMessages[i++]
-            
+                    errorMessages[i++].Replace('\r', ' ').Replace(',', ';')
+
                     );
 
             }
@@ -62,7 +62,7 @@ namespace AionHR.Services.Implementations
             req.Reference = employeeRef;
             RecordResponse<Employee> resp = _employeeService.ChildGetRecord<Employee>(req);
             if (resp == null || resp.result == null)
-                return "";
+                return employeeRef;
             else
                 return resp.result.recordId;
         }

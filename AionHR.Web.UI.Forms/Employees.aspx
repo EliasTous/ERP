@@ -20,9 +20,11 @@
 
     <script type="text/javascript" src="Scripts/common.js?id=1"></script>
 
-    <script type="text/javascript" src="Scripts/Employees.js?id=20"></script>
+    <script type="text/javascript" src="Scripts/Employees.js?id=24"></script>
     
-     
+     <script type="text/javascript">
+
+     </script>
       
  
 </head>
@@ -250,6 +252,7 @@
                                         <KeyPress Fn="enterKeyPressSearchHandler" Buffer="100" />
                                         <FocusLeave Handler="#{Store1}.reload();" />
                                         <TriggerClick Handler="#{Store1}.reload();" />
+                                        <SpecialKey   Handler="if(e.keyCode==13) #{Store1}.reload();" />
                                     </Listeners>
                                 </ext:TextField>
 

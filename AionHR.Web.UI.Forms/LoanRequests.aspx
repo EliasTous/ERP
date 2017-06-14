@@ -551,7 +551,7 @@
                                     <%-- <Listeners>
                                                 <Change Handler="document.getElementById('amount').value=this.getValue(); this.next().setValue(this.value);" />
                                             </Listeners>--%>
-                                    <Validator Handler="return !isNaN(this.value)&& this.Value>0;" />
+                                    <Validator Handler="  return !isNaN(this.value)&& this.value>0;" />
                                 </ext:TextField>
 
 
