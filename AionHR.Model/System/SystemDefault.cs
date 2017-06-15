@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace AionHR.Model.System
 {
-    [ClassIdentifier("20030","20")]
-   public class SystemDefault
+    [ClassIdentifier("20030", "20")]
+    public class SystemDefault
     {
     }
 }

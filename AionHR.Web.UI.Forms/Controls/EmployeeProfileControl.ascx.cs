@@ -109,7 +109,10 @@ namespace AionHR.Web.UI.Forms
 
                 birthDate.Format = hireDate.Format = _systemService.SessionHelper.GetDateformat();
 
+               
                 pRTL.Text = _systemService.SessionHelper.CheckIfArabicSession().ToString();
+                if (_systemService.SessionHelper.CheckIfIsAdmin())
+                    return;
                 try
                 {
                     AccessControlApplier.ApplyAccessControlOnPage(typeof(Employee), left, null, null, SaveButton);
@@ -132,18 +135,7 @@ namespace AionHR.Web.UI.Forms
                     BasicInfoTab.Hidden = true;
                     return;
                 }
-                try
-                {
-                    AccessControlApplier.ApplyAccessControlOnPage(typeof(EmployeeTermination), terminationForm, null, null, Button6);
-
-                }
-                catch (AccessDeniedException exp)
-                {
-                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorAccessDenied).Show();
-                    terminationGear.Disabled = true;
-                    return;
-                }
+               
                 var properties = AccessControlApplier.GetPropertiesLevels(typeof(Employee));
                 int level = properties.Where(x => x.index == "pictureUrl").ToList()[0].accessLevel;
                 if (level == 0)
@@ -1055,6 +1047,18 @@ namespace AionHR.Web.UI.Forms
 
         protected void ShowTermination(object sender, DirectEventArgs e)
         {
+            try
+            {
+                AccessControlApplier.ApplyAccessControlOnPage(typeof(EmployeeTermination), terminationForm, null, null, Button6);
+
+            }
+            catch (AccessDeniedException exp)
+            {
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorAccessDenied).Show();
+                
+                return;
+            }
             terminationForm.Reset();
             FillTerminationReasons();
             date.SelectedDate = DateTime.Today;

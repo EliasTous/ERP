@@ -242,6 +242,7 @@ function AddRectangle(lat1, lon1, lat2, lon2) {
             west: lon2
         }
     });
+    var edit = App.viewOnly.value == "True";
     drawingManager.setOptions({
         drawingControl: false
     });

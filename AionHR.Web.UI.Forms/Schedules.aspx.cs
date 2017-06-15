@@ -67,6 +67,8 @@ namespace AionHR.Web.UI.Forms
                 SetExtLanguage();
                 HideShowButtons();
                 HideShowColumns();
+                if ((bool)_systemService.SessionHelper.Get("IsAdmin"))
+                    return;
                 try
                 {
                     AccessControlApplier.ApplyAccessControlOnPage(typeof(AttendanceSchedule), BasicInfoTab, GridPanel1, btnAdd, SaveButton);
@@ -98,8 +100,7 @@ namespace AionHR.Web.UI.Forms
                     periodsGrid.Hidden = true;
                     return;
                 }
-                if ((bool)_systemService.SessionHelper.Get("IsAdmin"))
-                    return;
+                
                 ApplyAccessControlOnBreaks();
 
             }

@@ -515,7 +515,8 @@ namespace AionHR.Web.UI.Forms
             {
                 this.ResourceManager1.RTL = true;
                 this.Viewport1.RTL = true;
-
+                isRTL.Text = "1";
+                
             }
         }
 

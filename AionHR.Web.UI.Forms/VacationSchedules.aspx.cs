@@ -64,6 +64,8 @@ namespace AionHR.Web.UI.Forms
                 SetExtLanguage();
                 HideShowButtons();
                 HideShowColumns();
+                if (_systemService.SessionHelper.CheckIfIsAdmin())
+                    return;
                 try
                 {
                     AccessControlApplier.ApplyAccessControlOnPage(typeof(VacationSchedule), BasicInfoTab, GridPanel1, btnAdd, SaveButton);

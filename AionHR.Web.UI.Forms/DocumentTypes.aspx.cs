@@ -63,7 +63,7 @@ namespace AionHR.Web.UI.Forms
                 HideShowColumns();
                 try
                 {
-                    AccessControlApplier.ApplyAccessControlOnPage(typeof(CompanyDocumentType), BasicInfoTab, GridPanel1, btnAdd, SaveButton);
+                    AccessControlApplier.ApplyAccessControlOnPage(typeof(DocumentType), BasicInfoTab, GridPanel1, btnAdd, SaveButton);
                 }
                 catch (AccessDeniedException exp)
                 {

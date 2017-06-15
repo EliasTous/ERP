@@ -128,7 +128,7 @@
                             </ext:Column>
                             
                             <ext:Column  ID="Column2" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldLdValue%>" DataIndex="ldValue" Flex="2" Hideable="false">
-                                
+                                <Renderer Handler="var p ='%'; if(record.data['ldMethod']>3) p =' '; return record.data['ldValue']+ p; " />
                             </ext:Column>
                             
 

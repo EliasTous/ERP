@@ -61,7 +61,8 @@ namespace AionHR.Web.UI.Forms
                 HideShowButtons();
                 HideShowColumns();
                 CurrentCountry.Text = "Lebanon";
-
+                if (_systemService.SessionHelper.CheckIfIsAdmin())
+                    return;
                 try
                 {
                     AccessControlApplier.ApplyAccessControlOnPage(typeof(Geofence), BasicInfoTab, GridPanel1, btnAdd, SaveButton);
@@ -426,7 +427,9 @@ namespace AionHR.Web.UI.Forms
 
 
             string obj = e.ExtraParams["values"];
-            Geofence b = JsonConvert.DeserializeObject<Geofence>(obj);
+            JsonSerializerSettings s = new JsonSerializerSettings();
+            s.NullValueHandling = NullValueHandling.Ignore;
+            Geofence b = JsonConvert.DeserializeObject<Geofence>(obj,s);
             if (branchId.SelectedItem != null)
                 b.branchName = branchId.SelectedItem.Text;
 

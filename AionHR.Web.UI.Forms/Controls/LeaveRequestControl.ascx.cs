@@ -309,9 +309,9 @@ namespace AionHR.Web.UI.Forms.Controls
             string obj = e.ExtraParams["values"];
             JsonSerializerSettings settings = new JsonSerializerSettings();
             CustomResolver res = new CustomResolver();
-            res.AddRule("leaveRequest1_employeeId", "employeeId");
-            res.AddRule("leaveRequest1_ltId", "ltId");
-            res.AddRule("leaveRequest1_status", "status");
+          //  res.AddRule("leaveRequest1_employeeId", "employeeId");
+            //res.AddRule("leaveRequest1_ltId", "ltId");
+           // res.AddRule("leaveRequest1_status", "status");
 
             settings.ContractResolver = res;
             LeaveRequest b = JsonConvert.DeserializeObject<LeaveRequest>(obj, settings);

@@ -72,6 +72,8 @@ namespace AionHR.Web.UI.Forms.EmployeePages
 
                 bool disabled = EmployeeTerminated.Text == "1";
                 btnAdd.Disabled = disabled;
+                if (_systemService.SessionHelper.CheckIfIsAdmin())
+                    return;
                 try
                 {
                     AccessControlApplier.ApplyAccessControlOnPage(typeof(Attachement), EditDocumentForm, employeeDocumentsGrid, btnAdd, SaveDocumentButton);

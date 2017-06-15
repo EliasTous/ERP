@@ -72,7 +72,8 @@ namespace AionHR.Web.UI.Forms
                 Viewport1.ActiveIndex = 0;
                 yearStore.DataSource = GetYears();
                 yearStore.DataBind();
-
+                if (_systemService.SessionHelper.CheckIfIsAdmin())
+                    return;
                 try
                 {
                     AccessControlApplier.ApplyAccessControlOnPage(typeof(GenerationHeader), BasicInfoTab, payrollsGrid, AddButton, SaveButton);

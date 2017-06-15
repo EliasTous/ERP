@@ -74,7 +74,8 @@ namespace AionHR.Web.UI.Forms
                 HideShowButtons();
                 HideShowColumns();
 
-
+                if (_systemService.SessionHelper.CheckIfIsAdmin())
+                    return;
                 dateCol.Format = _systemService.SessionHelper.GetDateformat();
                 CompanyFilesClassId.Text = ClassId.DMDO.ToString();
                 try

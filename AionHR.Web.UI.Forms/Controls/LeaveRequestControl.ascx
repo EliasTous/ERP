@@ -196,7 +196,7 @@
 
 
                         <ext:ComboBox runat="server" ID="ltId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1"
-                            DisplayField="name"
+                            DisplayField="name" Name="ltId"
                             ValueField="recordId" AllowBlank="false"
                             FieldLabel="<%$ Resources: FieldLtName %>">
                             <Store>

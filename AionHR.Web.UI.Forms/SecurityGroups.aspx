@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title></title>
+    <script src="Scripts/jquery-new.js"></script>
     <link rel="stylesheet" type="text/css" href="CSS/Common.css" />
     <link rel="stylesheet" href="CSS/LiveSearch.css" />
 
@@ -71,6 +72,22 @@
 
             }
         }
+        function SwapRTL()
+        {
+            if(document.getElementById("isRTL").value=='1')
+            {
+                
+                $(".x-form-itemselector-add").css('background-image', 'url(/ux/resources/images/itemselector/left-gif/ext.axd)');
+                $(".x-form-itemselector-remove").css('background-image', 'url(/ux/resources/images/itemselector/right-gif/ext.axd)');
+               
+            }
+           else {
+                
+                $(".x-form-itemselector-add").css('background-image', 'url(/ux/resources/images/itemselector/right-gif/ext.axd)');
+                $(".x-form-itemselector-remove").css('background-image', 'url(/ux/resources/images/itemselector/left-gif/ext.axd)');
+
+            }
+        }
     </script>
 
 </head>
@@ -86,6 +103,7 @@
         <ext:Hidden ID="CurrentModule" runat="server" />
         <ext:Hidden ID="CurrentClass" runat="server" />
         <ext:Hidden ID="CurrentClassLevel" runat="server" />
+        <ext:Hidden ID="isRTL" runat="server" />
         <ext:Hidden ID="accessLevel0" Text="<%$ Resources: NoAccess %>" runat="server" />
         <ext:Hidden ID="accessLevel1" Text="<%$ Resources: Read %>" runat="server" />
         <ext:Hidden ID="accessLevel2" Text="<%$ Resources: WriteClass %>" runat="server" />
@@ -652,9 +670,11 @@
                         </ext:Toolbar>
                     </TopBar>
                     <Items>
-                        <ext:ItemSelector runat="server" MaxHeight="300" MinHeight="300" AutoScroll="true" ID="userSelector" FromTitle="<%$Resources:All %>" DisplayField="fullName" ValueField="userId"
-                            ToTitle="<%$Resources:Selected %>">
-
+                        <ext:ItemSelector runat="server"  MaxHeight="300" MinHeight="300" AutoScroll="true" ID="userSelector" FromTitle="<%$Resources:All %>" DisplayField="fullName" ValueField="userId"
+                            ToTitle="<%$Resources:Selected %>" >
+                            <Listeners>
+                                <AfterRender Handler="SwapRTL(); " />
+                            </Listeners>
                             <Store>
                                 <ext:Store runat="server" ID="userSelectorStore" OnReadData="userSelectorStore_ReadData">
                                     <Model>

@@ -169,6 +169,11 @@ namespace AionHR.Infrastructure.Session
             return nameFormat.ToString();
         }
 
+        public bool CheckIfIsAdmin()
+        {
+            return (bool)Get("IsAdmin");
+        }
+
         public bool GetHijriSupport()
         {
             try
