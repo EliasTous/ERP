@@ -699,19 +699,7 @@
                                                 <Renderer Fn="editRender" />
 
                                             </ext:Column>
-                                            <ext:Column runat="server"
-                                                ID="ColEHDelete" Flex="1" Visible="true"
-                                                Text=""
-                                                Width="60"
-                                                Align="Center"
-                                                Fixed="true"
-                                                Filterable="false"
-                                                Hideable="false"
-                                                MenuDisabled="true"
-                                                Resizable="false">
-                                                <Renderer Handler="return editRender() + '  '+ deleteRender()" />
-
-                                            </ext:Column>
+                                          
                                             <ext:Column runat="server"
                                                 ID="Column3" Visible="false"
                                                 Text="<%$ Resources:Common, Attach %>"
@@ -724,7 +712,19 @@
                                                 Resizable="false">
                                                 <Renderer Fn="attachRender" />
                                             </ext:Column>
+                                              <ext:Column runat="server"
+                                                ID="ColEHDelete" Flex="1" Visible="true"
+                                                Text=""
+                                                Width="60"
+                                                Align="Center"
+                                                Fixed="true"
+                                                Filterable="false"
+                                                Hideable="false"
+                                                MenuDisabled="true"
+                                                Resizable="false">
+                                                <Renderer Handler="return editRender() + '  '+ deleteRender()" />
 
+                                            </ext:Column>
 
 
 
@@ -749,8 +749,8 @@
 
                                     <Listeners>
                                         <Render Handler="this.on('cellclick', cellClick);" />
-                                        <RowBodyDblClick Handler="App.caseCommentGrid.editingPlugin.cancelEdit();" />
-                                        <RowDblClick Handler="App.caseCommentGrid.editingPlugin.cancelEdit();" />
+                                        <RowBodyDblClick Handler="App.loanCommentGrid.editingPlugin.cancelEdit();" />
+                                        <RowDblClick Handler="App.loanCommentGrid.editingPlugin.cancelEdit();" />
                                     </Listeners>
                                     <DirectEvents>
                                         <CellClick OnEvent="PoPuPCase">

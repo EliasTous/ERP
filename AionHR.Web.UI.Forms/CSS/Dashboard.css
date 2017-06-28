@@ -79,10 +79,48 @@
         }
       html *
 {
-   font-size: 8pt!important;
+   
    
    font-family: Arial !important;
 }
        .x-grid-item-alt  {
             background-color : #DAE2E8;
         }
+.withBackground{
+    background-color:#eaeaec!important;
+}
+#tabpanel-1021-body{
+    
+    top:29px!important;
+    border-radius: 0px 25px  0px 0px;
+}
+#tabpanel-1098-body{
+    top:29px!important;
+    border-radius: 0px 25px  0px 0px;
+}
+#tabpanel-1056-body{
+    top:29px!important;
+    border-radius: 0px 25px  0px 0px;
+}#tabpanel-1079-body{
+    top:29px!important;
+    border-radius: 0px 25px  0px 0px;
+}
+#tabpanel-1021-body.x-rtl{
+    
+    top:29px!important;
+    border-radius: 25px 0px 0px 0px;
+}
+#tabpanel-1098-body.x-rtl{
+    top:29px!important;
+    border-radius: 25px 0px 0px 0px;
+}
+#tabpanel-1056-body.x-rtl{
+    top:29px!important;
+    border-radius: 25px 0px 0px 0px;
+}#tabpanel-1079-body.x-rtl{
+    top:29px!important;
+    border-radius: 25px 0px 0px 0px;
+}
+ .x-tab-bar-strip{
+     display:none!important;
+ }

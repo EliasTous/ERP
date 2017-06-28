@@ -311,6 +311,7 @@
     <Content Include="SalaryChangeReasons.aspx" />
     <Content Include="Scripts\AssetAllowances.js" />
     <Content Include="Scripts\cal.js" />
+    <Content Include="Scripts\CircileProgress.js" />
     <Content Include="Scripts\CompanyFiles.js" />
     <Content Include="Scripts\CompanyNews.js" />
     <Content Include="Scripts\Contacts.js" />

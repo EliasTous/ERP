@@ -138,17 +138,44 @@
   <data name="ActiveGridTitle" xml:space="preserve">
     <value>Active</value>
   </data>
+  <data name="Alerts" xml:space="preserve">
+    <value>Alerts</value>
+  </data>
+  <data name="All" xml:space="preserve">
+    <value>All</value>
+  </data>
+  <data name="Anneversaries" xml:space="preserve">
+    <value>Anneversaries</value>
+  </data>
+  <data name="Attendance" xml:space="preserve">
+    <value>Attendance</value>
+  </data>
   <data name="BasicInfoTabEditWindowTitle" xml:space="preserve">
     <value>Profile</value>
+  </data>
+  <data name="Birthdays" xml:space="preserve">
+    <value>Birthdays</value>
   </data>
   <data name="CheckMoniterGridTitle" xml:space="preserve">
     <value>Check Monitor</value>
   </data>
+  <data name="ComapnyRightToWork" xml:space="preserve">
+    <value>Comapny Right To Work</value>
+  </data>
   <data name="ContractEndingDate" xml:space="preserve">
     <value>Contract Ending Date</value>
   </data>
+  <data name="DueToday" xml:space="preserve">
+    <value>Due Today</value>
+  </data>
   <data name="EditWindowsTitle" xml:space="preserve">
     <value>Edit Branch</value>
+  </data>
+  <data name="EmployeeRightToWork" xml:space="preserve">
+    <value>Employee Right To Work</value>
+  </data>
+  <data name="FieldAmount" xml:space="preserve">
+    <value>Amount</value>
   </data>
   <data name="FieldBirthPlace" xml:space="preserve">
     <value>Place of Birth</value>
@@ -171,8 +198,17 @@
   <data name="FieldDestination" xml:space="preserve">
     <value>Destination</value>
   </data>
+  <data name="FieldDueDate" xml:space="preserve">
+    <value>Due Date</value>
+  </data>
   <data name="FieldEmployee" xml:space="preserve">
     <value>Employee</value>
+  </data>
+  <data name="FieldEmployeeName" xml:space="preserve">
+    <value>Employee</value>
+  </data>
+  <data name="FieldEndDate" xml:space="preserve">
+    <value>End Date</value>
   </data>
   <data name="FieldFamilyName" xml:space="preserve">
     <value>Family Name</value>
@@ -207,6 +243,9 @@
   <data name="FieldLastTACheckStatus" xml:space="preserve">
     <value>Last Check In Status</value>
   </data>
+  <data name="FieldLtName" xml:space="preserve">
+    <value>Leave Type</value>
+  </data>
   <data name="FieldMiddleName" xml:space="preserve">
     <value>Middle Name</value>
   </data>
@@ -234,6 +273,9 @@
   <data name="FieldPosition" xml:space="preserve">
     <value>Position</value>
   </data>
+  <data name="FieldPurpose" xml:space="preserve">
+    <value>Purpose</value>
+  </data>
   <data name="FieldRecordId" xml:space="preserve">
     <value>Record ID</value>
   </data>
@@ -245,6 +287,12 @@
   </data>
   <data name="FieldSponsor" xml:space="preserve">
     <value>Sponsor</value>
+  </data>
+  <data name="FieldStartDate" xml:space="preserve">
+    <value>Start Date</value>
+  </data>
+  <data name="FieldTaskName" xml:space="preserve">
+    <value>Task</value>
   </data>
   <data name="FieldTime" xml:space="preserve">
     <value>Time</value>
@@ -264,17 +312,47 @@
   <data name="FieldWorkingCalendar" xml:space="preserve">
     <value>Calendar</value>
   </data>
+  <data name="In" xml:space="preserve">
+    <value>In</value>
+  </data>
   <data name="LatenessGridTitle" xml:space="preserve">
     <value>Late</value>
+  </data>
+  <data name="Leaves" xml:space="preserve">
+    <value>Leaves</value>
   </data>
   <data name="LeavesGridTitle" xml:space="preserve">
     <value>Leaves</value>
   </data>
+  <data name="Loans" xml:space="preserve">
+    <value>Loans</value>
+  </data>
   <data name="MissingPunchesGridTitle" xml:space="preserve">
     <value>Missing Punches</value>
   </data>
+  <data name="OnTime" xml:space="preserve">
+    <value>On Time</value>
+  </data>
+  <data name="Out" xml:space="preserve">
+    <value>Out</value>
+  </data>
   <data name="OutGridTitle" xml:space="preserve">
     <value>Active Out</value>
+  </data>
+  <data name="OverDue" xml:space="preserve">
+    <value>Over Due</value>
+  </data>
+  <data name="Probation" xml:space="preserve">
+    <value>Probation</value>
+  </data>
+  <data name="Requests" xml:space="preserve">
+    <value>Requests</value>
+  </data>
+  <data name="SalaryChange" xml:space="preserve">
+    <value>Salary Change</value>
+  </data>
+  <data name="Tasks" xml:space="preserve">
+    <value>Tasks</value>
   </data>
   <data name="WindowTitle" xml:space="preserve">
     <value>Employees</value>

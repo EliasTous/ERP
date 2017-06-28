@@ -168,6 +168,9 @@
   <data name="xrLabel31.Text" xml:space="preserve">
     <value>الموظف</value>
   </data>
+  <data name="xrLabel36.Text" xml:space="preserve">
+    <value>إجمالي الغياب</value>
+  </data>
   <data name="xrPageInfo2.Format" xml:space="preserve">
     <value>صفحة {0} من {1}</value>
   </data>

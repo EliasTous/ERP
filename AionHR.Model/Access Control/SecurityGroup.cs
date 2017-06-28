@@ -44,12 +44,14 @@ namespace AionHR.Model.Access_Control
         public string sgId { get; set; }
 
         public string classId { get; set; }
-
+        [PropertyID("90104_01")]
+        [ApplySecurity]
         public string name { get; set; }
         [PropertyID("90104_02")]
         [ApplySecurity]
         public int accessLevel { get; set; }
-
+        [PropertyID("90104_01")]
+        [ApplySecurity]
         public string index { set; get; }
 
         public ClassProperty() { }

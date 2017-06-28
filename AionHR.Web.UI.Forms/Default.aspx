@@ -8,7 +8,7 @@
     <link rel="stylesheet" type="text/css" href="CSS/Tools.css" />
 
     <script type="text/javascript" src="Scripts/jquery.min.js"></script>
-    <script type="text/javascript" src="Scripts/app.js?id=2"></script>
+    <script type="text/javascript" src="Scripts/app.js?id=3"></script>
     <script type="text/javascript" src="Scripts/Common.js"></script>
     <script type="text/javascript" src="Scripts/default.js?id=13"></script>
 
@@ -77,6 +77,7 @@
 
     <ext:Hidden runat="server" ID="CurrentClassRef" />
     <ext:Hidden runat="server" ID="CurrentRecordId" />
+    <ext:Hidden runat="server" ID="activeModule" />
     <ext:ResourceManager ID="ResourceManager1" runat="server" Theme="Neptune" IDMode="Explicit" AjaxTimeout="1200000" />
     <ext:Viewport ID="Viewport1" runat="server" Layout="border">
         <Items>

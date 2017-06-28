@@ -125,12 +125,24 @@ namespace AionHR.Web.UI.Forms
 
             if (!X.IsAjaxRequest && !IsPostBack)
             {
-
+                
                 SetExtLanguage();
                 HideShowButtons();
                 HideShowColumns();
                 FillBranch();
                 FillDepartment();
+
+                try
+                {
+                    AccessControlApplier.ApplyAccessControlOnPage(typeof(LeaveRequest),null,null ,btnAdd ,null);
+                }
+                catch (AccessDeniedException exp)
+                {
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorAccessDenied).Show();
+                    Viewport1.Hidden = true;
+                    return;
+                }
 
                 //dayId.SelectedDate = DateTime.Today;
                 CurrentMonth.Text = DateTime.Today.Month.ToString();

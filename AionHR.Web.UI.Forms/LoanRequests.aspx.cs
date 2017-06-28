@@ -31,6 +31,7 @@ using System.Net;
 using AionHR.Infrastructure.Domain;
 using AionHR.Model.LoadTracking;
 using AionHR.Services.Messaging.LoanManagment;
+using AionHR.Model.Attributes;
 
 namespace AionHR.Web.UI.Forms
 {
@@ -145,6 +146,18 @@ namespace AionHR.Web.UI.Forms
                     Viewport1.Hidden = true;
                     return;
                 }
+                try
+
+                {
+                    AccessControlApplier.ApplyAccessControlOnPage(typeof(LoanComment), null, loanCommentGrid, null, Button1);
+                    ApplyAccessControlOnLoanComments();
+                }
+                catch (AccessDeniedException exp)
+                {
+
+                    caseCommentsTab.Hidden = true;
+
+                }
                 if (purpose.InputType == InputType.Password)
                 {
                     purpose.Visible = false;
@@ -210,7 +223,43 @@ namespace AionHR.Web.UI.Forms
             ltStore.DataSource = resp.Items;
             ltStore.DataBind();
         }
+        private void ApplyAccessControlOnLoanComments()
+        {
+            var properties = AccessControlApplier.GetPropertiesLevels(typeof(LoanComment));
+            foreach (var item in properties)
+            {
+                if (item.propertyId == "4501103")
+                {
+                    if (item.accessLevel < 2)
+                        loanCommentGrid.ColumnModel.Columns[loanCommentGrid.ColumnModel.Columns.Count - 1].Renderer.Handler = " return '';";
+                }
 
+                if (item.accessLevel == 0)
+                {
+                    if (item.propertyId == "4501102")
+                    {
+                        loanCommentGrid.ColumnModel.Columns[1].Renderer.Handler = loanCommentGrid.ColumnModel.Columns[1].Renderer.Handler.Replace("s.calendar()", "'***** '");
+                    }
+                    else
+                    {
+                        var indices = typeof(LoanComment).GetProperties().Where(x =>
+                        {
+                            var d = x.GetCustomAttributes(typeof(PropertyID), false);
+                            if (d.Count() == 0)
+                                return false;
+                            return (x.GetCustomAttributes(typeof(PropertyID), false).ToList()[0] as PropertyID).ID == item.propertyId;
+                        }).ToList();
+
+                        indices.ForEach(x =>
+                        {
+                            loanCommentGrid.ColumnModel.Columns[1].Renderer.Handler = loanCommentGrid.ColumnModel.Columns[1].Renderer.Handler.Replace("record.data['" + x.Name + "']", "'***** '");
+                        });
+                    }
+
+                }
+            }
+
+        }
 
         protected void addSACurrency(object sender, DirectEventArgs e)
         {

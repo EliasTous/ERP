@@ -179,7 +179,7 @@ var openNewTab = function (id, url, title, iconCls) {
     App.tabPanel.setActiveTab(tab);
 }
 var openModule = function (id) {
-    
+    App.activeModule.value = id;
     Ext.net.Mask.show(App.lblLoading.getValue());
     var node = null;
     var tree = App.commonTree;

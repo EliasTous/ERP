@@ -132,8 +132,38 @@ namespace AionHR.Web.UI.Forms
                 catch (AccessDeniedException exp)
                 {
 
+                    var c = classesGrid.ColumnModel.Columns[classesGrid.ColumnModel.Columns.Count - 1];
+                    c.Renderer.Handler = c.Renderer.Handler.Replace("propertiesRender()", "' '");
                     return;
                 }
+                var properties = AccessControlApplier.GetPropertiesLevels(typeof(ClassProperty));
+
+                var result = propertiesGrid.ColumnModel.Columns[propertiesGrid.ColumnModel.Columns.Count - 1];
+                var item = properties.Where(x => x.index == "accessLevel").ToList()[0];
+                switch (item.accessLevel)
+                {
+                    case 0:
+
+                        ((result as WidgetColumn).Widget[0] as Field).InputType = InputType.Password;
+                        (result as WidgetColumn).Widget[0].Disabled = true;
+
+                        break;
+                    case 1:
+
+
+
+                        (result as WidgetColumn).Widget[0].Disabled = true;
+
+                        break;
+                    default: break;
+
+                }
+
+
+
+
+
+
             }
 
 
@@ -198,9 +228,9 @@ namespace AionHR.Web.UI.Forms
                         try
                         {
                             types.ForEach(x => allClasses.Add(new ModuleClass() { classId = (x.GetCustomAttribute(typeof(ClassIdentifier), false) as ClassIdentifier).ClassID, accessLevel = level, id = (x.GetCustomAttribute(typeof(ClassIdentifier), false) as ClassIdentifier).ClassID, sgId = b.recordId }));
-                            allClasses.Where(x => x.classId.StartsWith("80")|| x.classId.EndsWith("99")).ToList().ForEach(x => x.accessLevel = Math.Min(1, x.accessLevel));
+                            allClasses.Where(x => x.classId.StartsWith("80") || x.classId.EndsWith("99")).ToList().ForEach(x => x.accessLevel = Math.Min(1, x.accessLevel));
                         }
-                       
+
                         catch { }
                         batch.entity = allClasses.ToArray();
                         PostResponse<ModuleClass[]> batResp = _accessControlService.ChildAddOrUpdate<ModuleClass[]>(batch);
@@ -516,7 +546,7 @@ namespace AionHR.Web.UI.Forms
                 this.ResourceManager1.RTL = true;
                 this.Viewport1.RTL = true;
                 isRTL.Text = "1";
-                
+
             }
         }
 
@@ -633,7 +663,7 @@ namespace AionHR.Web.UI.Forms
                     propertiesStore.Reload();
 
 
-                    
+
                     break;
 
 
@@ -642,7 +672,7 @@ namespace AionHR.Web.UI.Forms
                     masterLevels.Add(new PropertyAccessLevel(GetLocalResourceObject("NoAccess").ToString(), "0"));
                     masterLevels.Add(new PropertyAccessLevel(GetLocalResourceObject("Read").ToString(), "1"));
                     int maxLevel = 1;
-                    if (modulesCombo.SelectedItem.Value != "80"&& !id.ToString().EndsWith("99"))
+                    if (modulesCombo.SelectedItem.Value != "80" && !id.ToString().EndsWith("99"))
                     {
 
                         masterLevels.Add(new PropertyAccessLevel(GetLocalResourceObject("WriteClass").ToString(), "2"));
@@ -653,8 +683,8 @@ namespace AionHR.Web.UI.Forms
                     classAccessLevelsStore.DataBind();
                     EditClassLevelForm.Reset();
                     int levelInt = Convert.ToInt32(level);
-                    accessLevel.Select(Math.Min(levelInt,maxLevel).ToString());
-                       
+                    accessLevel.Select(Math.Min(levelInt, maxLevel).ToString());
+
 
                     EditClassLevelWindow.Show();
                     break;
