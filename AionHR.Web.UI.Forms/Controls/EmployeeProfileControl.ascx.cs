@@ -358,7 +358,7 @@ namespace AionHR.Web.UI.Forms
 
         private void SetActivated(bool active)
         {
-            BasicInfoTab.Enabled = active;
+            SaveButton.Disabled = !active;
             //SetTabPanelActivated(active);
 
 

@@ -132,6 +132,7 @@
     <Compile Include="Messaging\Response.cs" />
     <Compile Include="Messaging\ResponseBase.cs" />
     <Compile Include="Messaging\System\BatchStatusRequest.cs" />
+    <Compile Include="Messaging\System\DashboardRequest.cs" />
     <Compile Include="Messaging\System\PasswordRecoveryRequest.cs" />
     <Compile Include="Messaging\System\PasswordRecoveryResponse.cs" />
     <Compile Include="Messaging\System\SystemAttachmentsListRequest.cs" />

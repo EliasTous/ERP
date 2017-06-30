@@ -221,9 +221,14 @@ public class ActiveAttendanceRequest:ListRequest
             parameters.Add("_departmentId", DepartmentId.ToString());
             parameters.Add("_branchId",BranchId.ToString());
             parameters.Add("_positionId", PositionId.ToString());
+            parameters.Add("_divisionId", StatusId.ToString());
+            parameters.Add("_esId", DivisionId.ToString());
             return parameters;
         }
     }
+
+    public int StatusId { get; set; }
+    public int DivisionId { get; set; }
 }
 
 public class GetRouterRequest:RecordRequest

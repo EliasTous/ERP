@@ -75,7 +75,8 @@ namespace AionHR.Web.UI.Forms
                 _systemService.SessionHelper.Set("ActiveModule", "-1");
                 BuildTree(1);
                 transactionDate.Format = _systemService.SessionHelper.GetDateformat() + ", hh:mm:ss";
-
+                if (string.IsNullOrEmpty(activeModule.Text))
+                    activeModule.Text = "1";
                 //TryRegister();
             }
         }
@@ -197,7 +198,7 @@ namespace AionHR.Web.UI.Forms
             {
                 case 1:
                     nodes = TreeBuilder.Instance.BuildEmployeeFilesTree(commonTree.Root);
-                    tabHome.Loader.Url = "MainDashboard.aspx";
+                    tabHome.Loader.Url = "Dashboard.aspx";
                     tabHome.Loader.LoadContent();
                     return nodes.ToJson();
 
@@ -218,7 +219,7 @@ namespace AionHR.Web.UI.Forms
                     return nodes.ToJson();
                 case 6:
                     nodes = TreeBuilder.Instance.BuildPayrollTree(commonTree.Root);
-                    tabHome.Loader.Url = "Dashboard.aspx";
+                    tabHome.Loader.Url = "PayrollGeneration.aspx";
                     tabHome.Loader.LoadContent();
                     return nodes.ToJson();
                 default:

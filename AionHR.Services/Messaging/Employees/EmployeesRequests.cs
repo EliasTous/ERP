@@ -467,3 +467,29 @@ public class EmployeeByReference:RecordRequest
         }
     }
 }
+
+public class EmployeeCountRequest:RecordRequest
+{
+    public int DepartmentId { get; set; }
+
+    public int BranchId { get; set; }
+
+    public int PositionId { get; set; }
+
+    public override Dictionary<string, string> Parameters
+    {
+        get
+        {
+            parameters = base.Parameters;
+            parameters.Add("_departmentId", DepartmentId.ToString());
+            parameters.Add("_branchId", BranchId.ToString());
+            parameters.Add("_positionId", PositionId.ToString());
+            parameters.Add("_divisionId", StatusId.ToString());
+            parameters.Add("_esId", DivisionId.ToString());
+            return parameters;
+        }
+    }
+
+    public int StatusId { get; set; }
+    public int DivisionId { get; set; }
+}

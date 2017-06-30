@@ -26,6 +26,8 @@ using AionHR.Services.Messaging.TaskManagement;
 using AionHR.Services.Messaging.LoanManagment;
 using AionHR.Model.LoadTracking;
 using AionHR.Model.LeaveManagement;
+using AionHR.Model.Employees.Profile;
+using AionHR.Services.Messaging.System;
 
 namespace AionHR.Web.UI.Forms
 {
@@ -37,6 +39,7 @@ namespace AionHR.Web.UI.Forms
         ITaskManagementService _taskManagementService = ServiceLocator.Current.GetInstance<ITaskManagementService>();
         ILoanTrackingService _loanService = ServiceLocator.Current.GetInstance<ILoanTrackingService>();
         ILeaveManagementService _leaveManagementService = ServiceLocator.Current.GetInstance<ILeaveManagementService>();
+        IEmployeeService _employeeService = ServiceLocator.Current.GetInstance<IEmployeeService>();
         protected override void InitializeCulture()
         {
 
@@ -75,6 +78,10 @@ namespace AionHR.Web.UI.Forms
 
                     FillPosition();
 
+                    FillDivision();
+
+                    FillStatus();
+
                     //outStore.Reload();
                     //activeStore.Reload();
                     //latenessStore.Reload();
@@ -112,6 +119,21 @@ namespace AionHR.Web.UI.Forms
             branchStore.DataBind();
         }
 
+        private void FillDivision()
+        {
+            ListRequest divisionReq = new ListRequest();
+            ListResponse<Division> resp = _companyStructureService.ChildGetAll<Division>(divisionReq);
+            divisionStore.DataSource = resp.Items;
+            divisionStore.DataBind();
+        }
+
+        private void FillStatus()
+        {
+            ListRequest statusReq = new ListRequest();
+            ListResponse<EmploymentStatus> resp = _employeeService.ChildGetAll<EmploymentStatus>(statusReq);
+            statusStore.DataSource = resp.Items;
+            statusStore.DataBind();
+        }
 
 
 
@@ -164,6 +186,8 @@ namespace AionHR.Web.UI.Forms
             ListResponse<ActiveLeave> Leaves = _timeAttendanceService.ChildGetAll<ActiveLeave>(r);
             ListResponse<MissedPunch> MPs = _timeAttendanceService.ChildGetAll<MissedPunch>(r);
             ListResponse<ActiveOut> AOs = _timeAttendanceService.ChildGetAll<ActiveOut>(r);
+            EmployeeCountRequest req = GetEmployeeCountRequest();
+            RecordResponse < EmployeeCount > count = _employeeService.ChildGetRecord<EmployeeCount>(req);
             if (!ACs.Success)
             {
                 X.Msg.Alert(Resources.Common.Error, ACs.Summary).Show();
@@ -175,14 +199,12 @@ namespace AionHR.Web.UI.Forms
             b.Add(new { Name = GetLocalResourceObject("MissingPunchesGridTitle").ToString(), Count = MPs.Items.Count });
             b.Add(new { Name = GetLocalResourceObject("LeavesGridTitle").ToString(), Count = Leaves.Items.Count });
             b.Add(new { Name = GetLocalResourceObject("LatenessGridTitle").ToString(), Count = ALs.Items.Count });
-            attendanceChartStore.DataSource = b;
-            attendanceChartStore.DataBind();
+            
 
             activeStore.DataSource = ACs.Items;
             activeStore.DataBind();
             activeCount.Text = ACs.Items.Count.ToString();
-            outStore.DataSource = AOs.Items;
-            outStore.DataBind();
+           
 
             missingPunchesStore.DataSource = MPs.Items;
             missingPunchesStore.DataBind();
@@ -193,28 +215,43 @@ namespace AionHR.Web.UI.Forms
             latenessStore.DataSource = ALs.Items;
             latenessStore.DataBind();
 
+            absenseStore.DataSource = ABs.Items;
+            absenseStore.DataBind();
 
-            List<object> ins = new List<object>();
-            ins.Add(new { Name = GetLocalResourceObject("OnTime").ToString(), Count = ACs.Items.Count });
-            ins.Add(new { Name = GetLocalResourceObject("LatenessGridTitle").ToString(), Count = ALs.Items.Count });
-            InChartStore.DataSource = ins;
-            InChartStore.DataBind();
-
-
-
-            List<object> outs = new List<object>();
-            outs.Add(new { Name = GetLocalResourceObject("LeavesGridTitle").ToString(), Count = Leaves.Items.Count });
-            outs.Add(new { Name = GetLocalResourceObject("AbsenseGridTitle").ToString(), Count = ABs.Items.Count });
-            OutChartStore.DataSource = outs;
-            OutChartStore.DataBind();
-
-
+            int x = ALs.Items.Count;
+            X.Call("lateChart", x,count.result.count);
+            int y = ABs.Items.Count;
+            X.Call("absentChart", y, count.result.count);
+            int z = ACs.Items.Count;
+            X.Call("activeChart", z, count.result.count);
+            BindAlerts();
         }
 
+        private void BindAlerts()
+        {
+            ListRequest req = new ListRequest();
+            ListResponse<DashboardItem> dashoard = _systemService.ChildGetAll<DashboardItem>(req);
+            if (!dashoard.Success)
+            {
+                X.Msg.Alert(Resources.Common.Error, dashoard.Summary).Show();
+                return;
+            }
 
+            int birth = dashoard.Items.Where(x => x.itemId == 43).ToList()[0].count;
+            int annev = dashoard.Items.Where(x => x.itemId == 32).ToList()[0].count;
+            int comp = dashoard.Items.Where(x => x.itemId == 61).ToList()[0].count;
+            int empRW = dashoard.Items.Where(x => x.itemId == 62).ToList()[0].count;
+            int scr = dashoard.Items.Where(x => x.itemId == 31).ToList()[0].count;
+            int prob = dashoard.Items.Where(x => x.itemId == 32).ToList()[0].count;
+            annversaries.Text = annev.ToString();
+            birthdays.Text = birth.ToString();
+            companyRW.Text = comp.ToString();
+            salaryChange.Text = scr.ToString();
+            probation.Text = prob.ToString();
+            employeeRW.Text = empRW.ToString();
+            //X.Call("alerts", annev, annevTotal, birthdays, birthdaysTotal, empRW, empRWTotal, compRW, compRWTotal, scr, scrTotal, prob, probTotal);
 
-
-
+        }
 
         [DirectMethod]
         public string CheckSession()
@@ -312,8 +349,8 @@ namespace AionHR.Web.UI.Forms
                 item.rate = item.rate / 100;
             }
 
-            checkMontierStore.DataSource = CMs.Items;
-            checkMontierStore.DataBind();
+            //checkMontierStore.DataSource = CMs.Items;
+            //checkMontierStore.DataBind();
 
         }
 
@@ -327,10 +364,10 @@ namespace AionHR.Web.UI.Forms
                 X.Msg.Alert(Resources.Common.Error, AOs.Summary).Show();
                 return;
             }
-            outStore.DataSource = AOs.Items;
+            //outStore.DataSource = AOs.Items;
 
-            outCount.Text = "17";
-            outStore.DataBind();
+            //outCount.Text = "17";
+            //outStore.DataBind();
  
         }
         [DirectMethod]
@@ -384,6 +421,103 @@ namespace AionHR.Web.UI.Forms
 
             }
 
+            if (!string.IsNullOrEmpty(divisionId.Text) && divisionId.Value.ToString() != "0" && int.TryParse(divisionId.Value.ToString(), out intResult))
+            {
+                req.DivisionId = intResult;
+
+
+            }
+            else
+            {
+                req.DivisionId = 0;
+
+            }
+
+            if (!string.IsNullOrEmpty(esId.Text) && esId.Value.ToString() != "0" && int.TryParse(esId.Value.ToString(), out intResult))
+            {
+                req.StatusId = intResult;
+
+
+            }
+            else
+            {
+                req.StatusId = 0;
+
+            }
+
+
+
+
+            return req;
+        }
+
+        private EmployeeCountRequest GetEmployeeCountRequest()
+
+        {
+            EmployeeCountRequest req = new EmployeeCountRequest();
+
+            int intResult;
+
+            if (!string.IsNullOrEmpty(branchId.Text) && branchId.Value.ToString() != "0" && int.TryParse(branchId.Value.ToString(), out intResult))
+            {
+                req.BranchId = intResult;
+
+
+
+            }
+            else
+            {
+                req.BranchId = 0;
+
+            }
+
+            if (!string.IsNullOrEmpty(departmentId.Text) && departmentId.Value.ToString() != "0" && int.TryParse(departmentId.Value.ToString(), out intResult))
+            {
+                req.DepartmentId = intResult;
+
+
+            }
+            else
+            {
+                req.DepartmentId = 0;
+
+            }
+            if (!string.IsNullOrEmpty(ComboBox1.Text) && ComboBox1.Value.ToString() != "0" && int.TryParse(ComboBox1.Value.ToString(), out intResult))
+            {
+                req.PositionId = intResult;
+
+
+            }
+            else
+            {
+                req.PositionId = 0;
+
+            }
+
+            if (!string.IsNullOrEmpty(divisionId.Text) && divisionId.Value.ToString() != "0" && int.TryParse(divisionId.Value.ToString(), out intResult))
+            {
+                req.DivisionId = intResult;
+
+
+            }
+            else
+            {
+                req.DivisionId = 0;
+
+            }
+
+            if (!string.IsNullOrEmpty(esId.Text) && esId.Value.ToString() != "0" && int.TryParse(esId.Value.ToString(), out intResult))
+            {
+                req.StatusId = intResult;
+
+
+            }
+            else
+            {
+                req.StatusId = 0;
+
+            }
+
 
 
 
@@ -401,6 +535,7 @@ namespace AionHR.Web.UI.Forms
             }
             List<Model.TaskManagement.Task> today = resp.Items.Where(x => x.dueDate == DateTime.Today && !x.completed).ToList();
             List<Model.TaskManagement.Task> late = resp.Items.Where(x => x.dueDate < DateTime.Today && !x.completed).ToList();
+            int count = resp.Items.Count(x => !x.completed);
            
             OverDueStore.DataSource = late;
             OverDueStore.DataBind();
@@ -408,8 +543,8 @@ namespace AionHR.Web.UI.Forms
             DueTodayStore.DataBind();
             int overDue = late.Count;
             int todays = today.Count;
-            X.Call("chart3", todays, todays + (10-(todays % 10)));
-            X.Call("chart2", overDue, overDue + (10 - (overDue % 10)));
+            X.Call("chart3", todays, count);
+            X.Call("chart2", overDue, count);
 
         }
 
@@ -525,6 +660,78 @@ namespace AionHR.Web.UI.Forms
             return req;
         }
 
+        private DashboardRequest GetDashboardRequest()
+        {
+            DashboardRequest req = new DashboardRequest();
+
+            int intResult;
+
+            if (!string.IsNullOrEmpty(branchId.Text) && branchId.Value.ToString() != "0" && int.TryParse(branchId.Value.ToString(), out intResult))
+            {
+                req.BranchId = intResult;
+
+
+
+            }
+            else
+            {
+                req.BranchId = 0;
+
+            }
+
+            if (!string.IsNullOrEmpty(departmentId.Text) && departmentId.Value.ToString() != "0" && int.TryParse(departmentId.Value.ToString(), out intResult))
+            {
+                req.DepartmentId = intResult;
+
+
+            }
+            else
+            {
+                req.DepartmentId = 0;
+
+            }
+            if (!string.IsNullOrEmpty(ComboBox1.Text) && ComboBox1.Value.ToString() != "0" && int.TryParse(ComboBox1.Value.ToString(), out intResult))
+            {
+                req.PositionId = intResult;
+
+
+            }
+            else
+            {
+                req.PositionId = 0;
+
+            }
+
+            if (!string.IsNullOrEmpty(divisionId.Text) && divisionId.Value.ToString() != "0" && int.TryParse(divisionId.Value.ToString(), out intResult))
+            {
+                req.DivisionId = intResult;
+
+
+            }
+            else
+            {
+                req.DivisionId = 0;
+
+            }
+
+            if (!string.IsNullOrEmpty(esId.Text) && esId.Value.ToString() != "0" && int.TryParse(esId.Value.ToString(), out intResult))
+            {
+                req.EsId = intResult;
+
+
+            }
+            else
+            {
+                req.EsId = 0;
+
+            }
+
+
+
+
+            return req;
+        }
+
         protected void Unnamed_DataBinding(object sender, EventArgs e)
         {
 
@@ -538,8 +745,7 @@ namespace AionHR.Web.UI.Forms
             b.Add(new { Name = "Missing Punches", Count = mpCount.Text });
             b.Add(new { Name = "Leave", Count = leaveCount.Text });
             b.Add(new { Name = "Late", Count = latensessCount.Text });
-            attendanceChartStore.DataSource = b;
-            attendanceChartStore.DataBind();
+  
         }
 
         protected void InChartStore_ReadData(object sender, StoreReadDataEventArgs e)
@@ -562,49 +768,7 @@ namespace AionHR.Web.UI.Forms
 
         protected void AlertsStore_ReadData(object sender, StoreReadDataEventArgs e)
         {
-            ListRequest req = new ListRequest();
-            ListResponse<DashboardItem> dashoard = _systemService.ChildGetAll<DashboardItem>(req);
-            if (!dashoard.Success)
-            {
-                X.Msg.Alert(Resources.Common.Error, dashoard.Summary).Show();
-                return;
-            }
-            List<object> b = new List<object>();
-            b.Add(new { Count = dashoard.Items.Where(x => x.itemId == 11).ToList()[0].itemId, Name = "Birthdays" });
-
-            List<object> c = new List<object>();
-            c.Add(new { Count = dashoard.Items.Where(x => x.itemId == 32).ToList()[0].itemId, Name = "Annviversaries" });
-            c.Add(new { Count = 50, Name = "Annviversaries" });
-            Store2.DataSource = c;
-
-            Store2.DataBind();
-
-
-
-            Store6.DataSource = c;
-            Store6.DataBind();
-            Store7.DataSource = c;
-            Store7.DataBind();
-
-            Store8.DataSource = c;
-            Store8.DataBind();
-
-
-
-
-
-            Store1.DataSource = c;
-            Store1.DataBind();
-
-
-            Store12.DataSource = c;
-            Store12.DataBind();
-
-            Store14.DataSource = c;
-            Store14.DataBind();
-
-            Store15.DataSource = c;
-            Store15.DataBind();
+            
         }
 
         protected void LoansStore_ReadData(object sender, StoreReadDataEventArgs e)
@@ -625,8 +789,57 @@ namespace AionHR.Web.UI.Forms
             List<LeaveRequest> OpenLoans = loans.Items.Where(t => t.status == 1).ToList();
             LeaveRequestsStore.DataSource = OpenLoans;
             LeaveRequestsStore.DataBind();
-            int x = OpenLoans.Count;
-            X.Call("leavesChart", x, x + (10 - (x % 10)));
+            
+        }
+
+        protected void BirthdaysStore_ReadData(object sender, StoreReadDataEventArgs e)
+        {
+            List<Employee> emps = new List<Employee>();
+            emps.Add(new Employee() { recordId = "20", name = new EmployeeName() { fullName = "Issa Mouawad" }, birthDate = new DateTime(2015, 6, 19) });
+            BirthdaysStore.DataSource = emps;
+            BirthdaysStore.DataBind();
+        }
+
+        protected void AnniversaryStore_ReadData(object sender, StoreReadDataEventArgs e)
+        {
+            List<Employee> emps = new List<Employee>();
+            emps.Add(new Employee() { recordId = "20", name = new EmployeeName() { fullName = "Issa Mouawad" }, hireDate = new DateTime(2015, 6, 19) });
+            AnniversaryStore.DataSource = emps;
+            AnniversaryStore.DataBind();
+        }
+
+        protected void CompanyRightToWorkStore_ReadData(object sender, StoreReadDataEventArgs e)
+        {
+            List<CompanyRightToWork> emps = new List<CompanyRightToWork>();
+            emps.Add(new CompanyRightToWork() { recordId = "20", documentRef = "some Document", expiryDate = new DateTime(2015, 6, 19) });
+            CompanyRightToWorkStore.DataSource = emps;
+            CompanyRightToWorkStore.DataBind();
+        }
+
+        protected void EmployeeRightToWorkStore_ReadData(object sender, StoreReadDataEventArgs e)
+        {
+            List<EmployeeRightToWork> emps = new List<EmployeeRightToWork>();
+            emps.Add(new EmployeeRightToWork() { recordId = "20", employeeName=new EmployeeName() { fullName = "Issa Mouawad" }, documentRef = "some Document", expiryDate = new DateTime(2015, 6, 19) });
+            EmployeeRightToWorkStore.DataSource = emps;
+            EmployeeRightToWorkStore.DataBind();
+        }
+
+        protected void SCRStore_ReadData(object sender, StoreReadDataEventArgs e)
+        {
+            List<EmployeeSalary> emps = new List<EmployeeSalary>();
+            emps.Add(new EmployeeSalary() { recordId = "20", employeeName = new EmployeeName() { fullName = "Issa Mouawad" }, currencyRef="$", finalAmount=1400, effectiveDate=new DateTime(2017,6,10) });
+            SCRStore.DataSource = emps;
+            SCRStore.DataBind();
+        }
+
+        protected void ProbationStore_ReadData(object sender, StoreReadDataEventArgs e)
+        {
+            List<HireInfo> emps = new List<HireInfo>();
+            emps.Add(new HireInfo() { employeeId="2",  employeeName = new EmployeeName() { fullName = "Issa Mouawad" }, probationEndDate=new DateTime(2017,6,10) });
+            ProbationStore.DataSource = emps;
+            ProbationStore.DataBind();
+
+
         }
     }
 }

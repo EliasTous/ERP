@@ -118,252 +118,249 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="1" xml:space="preserve">
-    <value>Present Today</value>
+    <value>الحضور اليوم</value>
   </data>
   <data name="2" xml:space="preserve">
-    <value>Late</value>
+    <value>التأخير</value>
   </data>
   <data name="3" xml:space="preserve">
-    <value>Absence</value>
+    <value>الغياب</value>
   </data>
   <data name="4" xml:space="preserve">
-    <value>Leave</value>
+    <value>الاجازات</value>
   </data>
   <data name="5" xml:space="preserve">
     <value>Missing Punches</value>
   </data>
+  <data name="6" xml:space="preserve">
+    <value />
+  </data>
   <data name="AbsenseGridTitle" xml:space="preserve">
-    <value>Absense</value>
+    <value>الغائبين</value>
   </data>
   <data name="ActiveGridTitle" xml:space="preserve">
-    <value>Active</value>
+    <value>الموجودين</value>
   </data>
   <data name="Alerts" xml:space="preserve">
-    <value>Alerts</value>
+    <value>التنبيهات</value>
   </data>
   <data name="All" xml:space="preserve">
-    <value>Late</value>
+    <value>الكل</value>
   </data>
   <data name="Anneversaries" xml:space="preserve">
-    <value>Anniversaries</value>
+    <value>ذكرى الانضمام إلى الشركة</value>
   </data>
   <data name="Attendance" xml:space="preserve">
-    <value>Attendance</value>
+    <value>الحضور</value>
   </data>
   <data name="BasicInfoTabEditWindowTitle" xml:space="preserve">
-    <value>Profile</value>
+    <value>الملف</value>
   </data>
   <data name="Birthdays" xml:space="preserve">
-    <value>Birthdays</value>
+    <value>أعياد الميلاد</value>
   </data>
   <data name="CheckMoniterGridTitle" xml:space="preserve">
-    <value>Check Monitor</value>
+    <value>شاشة المراقبة</value>
   </data>
   <data name="ComapnyRightToWork" xml:space="preserve">
-    <value>Comapny Right To Work</value>
+    <value>وثائق الشركة</value>
   </data>
   <data name="ContractEndingDate" xml:space="preserve">
-    <value>Contract Ending Date</value>
+    <value>تاريخ نهاية العقد</value>
   </data>
   <data name="DueToday" xml:space="preserve">
-    <value>Due Today</value>
+    <value>تستحق اليوم</value>
   </data>
   <data name="EditWindowsTitle" xml:space="preserve">
-    <value>Edit Branch</value>
+    <value>تعديل الفرع</value>
   </data>
   <data name="EmployeeRightToWork" xml:space="preserve">
-    <value>Employee Right To Work</value>
+    <value>وثائق الموظفين</value>
   </data>
   <data name="FieldAmount" xml:space="preserve">
-    <value>Amount</value>
+    <value>القيمة</value>
   </data>
   <data name="FieldBirthPlace" xml:space="preserve">
-    <value>Place of Birth</value>
+    <value>مكان الولادة</value>
   </data>
   <data name="FieldBranch" xml:space="preserve">
-    <value>Branch</value>
+    <value>الفرع</value>
   </data>
   <data name="FieldCount" xml:space="preserve">
-    <value>Count</value>
+    <value>العدد</value>
   </data>
   <data name="FieldDate" xml:space="preserve">
-    <value>Date</value>
+    <value>التاريخ</value>
   </data>
   <data name="FieldDateOfBirth" xml:space="preserve">
-    <value>Birth Date</value>
+    <value>تاريخ الولادة</value>
   </data>
   <data name="FieldDepartment" xml:space="preserve">
-    <value>Department</value>
+    <value>القسم</value>
   </data>
   <data name="FieldDestination" xml:space="preserve">
-    <value>Destination</value>
-  </data>
-  <data name="FieldDivision" xml:space="preserve">
-    <value>Division</value>
+    <value>الوجهة</value>
   </data>
   <data name="FieldDueDate" xml:space="preserve">
-    <value>Due Date</value>
-  </data>
-  <data name="FieldEHStatus" xml:space="preserve">
-    <value>Employment</value>
+    <value>تاريخ الاستحقاق</value>
   </data>
   <data name="FieldEmployee" xml:space="preserve">
-    <value>Employee</value>
+    <value>الموظف</value>
   </data>
   <data name="FieldEmployeeName" xml:space="preserve">
-    <value>Employee</value>
+    <value>الموظف</value>
   </data>
   <data name="FieldEndDate" xml:space="preserve">
-    <value>End Date</value>
+    <value>إلى</value>
   </data>
   <data name="FieldFamilyName" xml:space="preserve">
-    <value>Family Name</value>
+    <value>اسم العائلة</value>
   </data>
   <data name="FieldFirstName" xml:space="preserve">
-    <value>First Name</value>
+    <value>الاسم الاول</value>
   </data>
   <data name="FieldFrom" xml:space="preserve">
-    <value>From</value>
+    <value>من</value>
   </data>
   <data name="FieldFullName" xml:space="preserve">
-    <value>Name</value>
+    <value>الاسم</value>
   </data>
   <data name="FieldGender" xml:space="preserve">
-    <value>Gender</value>
+    <value>الجنس</value>
   </data>
   <data name="FieldHireDate" xml:space="preserve">
-    <value>Hire Date</value>
+    <value>تاريخ التوظيف</value>
   </data>
   <data name="FieldHomeEmail" xml:space="preserve">
-    <value>Home Email</value>
+    <value>البريد الالكتروني الشخصي</value>
   </data>
   <data name="FieldIsInactive" xml:space="preserve">
-    <value>Is Inactive?</value>
+    <value>غير نشط؟</value>
   </data>
   <data name="FieldLastName" xml:space="preserve">
-    <value>Last Name</value>
+    <value>الاسم الأخير</value>
   </data>
   <data name="FieldLastTACheck" xml:space="preserve">
-    <value>Last Check In</value>
+    <value>آخر تسجيل دخول</value>
   </data>
   <data name="FieldLastTACheckStatus" xml:space="preserve">
-    <value>Last Check In Status</value>
+    <value>حالة آخر تسجيل دخول</value>
   </data>
   <data name="FieldLtName" xml:space="preserve">
-    <value>Leave Type</value>
+    <value>السبب</value>
   </data>
   <data name="FieldMiddleName" xml:space="preserve">
-    <value>Middle Name</value>
+    <value>الاسم الأوسط</value>
   </data>
   <data name="FieldMissedIn" xml:space="preserve">
-    <value>In</value>
+    <value>دخول</value>
   </data>
   <data name="FieldMissedOut" xml:space="preserve">
-    <value>Out</value>
+    <value>خروج</value>
   </data>
   <data name="FieldMobile" xml:space="preserve">
-    <value>Mobile</value>
+    <value>رقم الجوال</value>
   </data>
   <data name="FieldMonitor" xml:space="preserve">
-    <value>Setting</value>
+    <value>الإعدادات</value>
   </data>
   <data name="FieldName" xml:space="preserve">
-    <value>Name</value>
+    <value>الاسم</value>
   </data>
   <data name="FieldNationality" xml:space="preserve">
-    <value>Nationality</value>
+    <value>الجنسية</value>
   </data>
   <data name="FieldPicturePath" xml:space="preserve">
-    <value>PicturePath</value>
+    <value>مسار الصورة</value>
   </data>
   <data name="FieldPosition" xml:space="preserve">
-    <value>Position</value>
+    <value>الوظيفة</value>
   </data>
   <data name="FieldPurpose" xml:space="preserve">
-    <value>Purpose</value>
+    <value>السبب</value>
   </data>
   <data name="FieldRecordId" xml:space="preserve">
-    <value>Record ID</value>
+    <value>الرقم</value>
   </data>
   <data name="FieldReference" xml:space="preserve">
-    <value>Reference</value>
+    <value>الرمز</value>
   </data>
   <data name="FieldReligion" xml:space="preserve">
-    <value>Religion</value>
+    <value>الدين</value>
   </data>
   <data name="FieldSponsor" xml:space="preserve">
-    <value>Sponsor</value>
+    <value>الكفيل</value>
   </data>
   <data name="FieldStartDate" xml:space="preserve">
-    <value>Start Date</value>
+    <value>من</value>
   </data>
   <data name="FieldTaskName" xml:space="preserve">
-    <value>Task</value>
+    <value>المهمة</value>
   </data>
   <data name="FieldTime" xml:space="preserve">
-    <value>Time</value>
+    <value>الوقت</value>
   </data>
   <data name="FieldTo" xml:space="preserve">
-    <value>To</value>
+    <value>إلى</value>
   </data>
   <data name="FieldType" xml:space="preserve">
-    <value>Type</value>
+    <value>النوع</value>
   </data>
   <data name="FieldVacationSchedule" xml:space="preserve">
-    <value>Vacation Schedule</value>
+    <value>جدول الإجازات</value>
   </data>
   <data name="FieldWorkEmail" xml:space="preserve">
-    <value>Work Email</value>
+    <value>البريد الالكتروني الرسمي</value>
   </data>
   <data name="FieldWorkingCalendar" xml:space="preserve">
-    <value>Calendar</value>
+    <value>التقويم</value>
   </data>
   <data name="In" xml:space="preserve">
-    <value>In</value>
+    <value>الحاضرين</value>
   </data>
   <data name="Late" xml:space="preserve">
-    <value>Late</value>
+    <value>المتأخرين</value>
   </data>
   <data name="LatenessGridTitle" xml:space="preserve">
-    <value>Late</value>
+    <value>التأخير</value>
   </data>
   <data name="Leaves" xml:space="preserve">
-    <value>Leaves</value>
+    <value>الإجازات</value>
   </data>
   <data name="LeavesGridTitle" xml:space="preserve">
-    <value>Leaves</value>
+    <value>الإجازات</value>
   </data>
   <data name="Loans" xml:space="preserve">
-    <value>Loans</value>
+    <value>السلف</value>
   </data>
   <data name="MissingPunchesGridTitle" xml:space="preserve">
-    <value>Missing Punches</value>
+    <value>دوام غير مسجل</value>
   </data>
   <data name="OnTime" xml:space="preserve">
-    <value>On Time</value>
+    <value>على الوقت</value>
   </data>
   <data name="Out" xml:space="preserve">
-    <value>Absent</value>
+    <value>الغائبين</value>
   </data>
   <data name="OutGridTitle" xml:space="preserve">
-    <value>Active Out</value>
+    <value>في الخارج</value>
   </data>
   <data name="OverDue" xml:space="preserve">
-    <value>Over Due</value>
+    <value>متأخرة</value>
   </data>
   <data name="Probation" xml:space="preserve">
-    <value>Probation</value>
+    <value>الفترات التجريبية</value>
   </data>
   <data name="Requests" xml:space="preserve">
-    <value>Requests</value>
+    <value>الطلبات</value>
   </data>
   <data name="SalaryChange" xml:space="preserve">
-    <value>Salary Change</value>
+    <value>تغييرات الرواتب</value>
   </data>
   <data name="Tasks" xml:space="preserve">
-    <value>Tasks</value>
+    <value>المهام</value>
   </data>
   <data name="WindowTitle" xml:space="preserve">
-    <value>Employees</value>
+    <value>الموظفين</value>
   </data>
 </root>
