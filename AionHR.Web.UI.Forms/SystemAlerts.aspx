@@ -39,6 +39,7 @@
         <ext:Hidden ID="alert305Title" runat="server" Text="<%$ Resources: Alert305Title %>" />
         <ext:Hidden ID="alert306Title" runat="server" Text="<%$ Resources: Alert306Title %>" />
         <ext:Hidden ID="alert307Title" runat="server" Text="<%$ Resources: Alert307Title %>" />
+        <ext:Hidden ID="alert309Title" runat="server" Text="<%$ Resources: Alert309Title %>" />
 
         <ext:Hidden ID="alert101Description" runat="server" Text="<%$ Resources: Alert101Description %>" />
         <ext:Hidden ID="alert301Description" runat="server" Text="<%$ Resources: Alert301Description %>" />
@@ -49,7 +50,7 @@
         <ext:Hidden ID="alert306Description" runat="server" Text="<%$ Resources: Alert306Description %>" />
         <ext:Hidden ID="alert307Description" runat="server" Text="<%$ Resources: Alert307Description %>" />
 
-
+        <ext:Hidden ID="alert309Description" runat="server" Text="<%$ Resources: Alert309Description %>" />
 
         <ext:Store
             ID="Store1"

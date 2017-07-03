@@ -160,7 +160,7 @@
     <value>Check Monitor</value>
   </data>
   <data name="ComapnyRightToWork" xml:space="preserve">
-    <value>Comapny Right To Work</value>
+    <value>Company Right To Work</value>
   </data>
   <data name="ContractEndingDate" xml:space="preserve">
     <value>Contract Ending Date</value>
@@ -191,6 +191,9 @@
   </data>
   <data name="FieldDateOfBirth" xml:space="preserve">
     <value>Birth Date</value>
+  </data>
+  <data name="FieldDaysLeft" xml:space="preserve">
+    <value>Days Left</value>
   </data>
   <data name="FieldDepartment" xml:space="preserve">
     <value>Department</value>

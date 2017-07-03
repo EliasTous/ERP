@@ -197,7 +197,8 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                         if (response.result.hijriCal)
                         {
                             hijCal.Checked = true;
-                            rwIssueDateMulti.Text = response.result.issueDate.Value.ToString("yyyy/MM/dd", new CultureInfo("ar"));
+                            
+                            rwIssueDateMulti.Text = response.result.issueDate.HasValue?response.result.issueDate.Value.ToString("yyyy/MM/dd", new CultureInfo("ar")):"";
                             rwExpiryDateMulti.Text = response.result.expiryDate.ToString("yyyy/MM/dd", new CultureInfo("ar"));
                             hijriSelected.Text = "true";
                         }
@@ -206,12 +207,12 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                             gregCal.Checked = true;
                             if (_systemService.SessionHelper.CheckIfArabicSession())
                             {
-                                rwIssueDateMulti.Text = response.result.issueDate.Value.ToString("dd/MM/yyyy", new CultureInfo("en"));
+                                rwIssueDateMulti.Text = response.result.issueDate.HasValue?response.result.issueDate.Value.ToString("dd/MM/yyyy", new CultureInfo("en")):"";
                                 rwExpiryDateMulti.Text = response.result.expiryDate.ToString("dd/MM/yyyy", new CultureInfo("en"));
                             }
                             else
                             {
-                                rwIssueDateMulti.Text = response.result.issueDate.Value.ToString("MM/dd/yyyy", new CultureInfo("en"));
+                                rwIssueDateMulti.Text = response.result.issueDate.HasValue?response.result.issueDate.Value.ToString("MM/dd/yyyy", new CultureInfo("en")):"";
                                 rwExpiryDateMulti.Text = response.result.expiryDate.ToString("MM/dd/yyyy", new CultureInfo("en"));
                             }
                             hijriSelected.Text = "false";

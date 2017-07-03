@@ -8,6 +8,8 @@ using System.Threading.Tasks;
 using AionHR.Infrastructure.WebService;
 using AionHR.Infrastructure.Domain;
 using AionHR.Model.MasterModule;
+using AionHR.Model.Employees.Profile;
+using AionHR.Model.Dashboard;
 
 namespace AionHR.Repository.WebService.Repositories
 {
@@ -72,6 +74,13 @@ namespace AionHR.Repository.WebService.Repositories
             ChildGetAllLookup.Add(typeof(CompanyRightToWork), "qryRW");
             ChildGetAllLookup.Add(typeof(SystemAlert), "qryAA");
             ChildGetAllLookup.Add(typeof(DashboardItem), "dashBoard");
+
+            ChildGetAllLookup.Add(typeof(WorkAnniversary), "qryWA");
+            ChildGetAllLookup.Add(typeof(EmployeeBirthday), "qryBD");
+            ChildGetAllLookup.Add(typeof(EmpRTW), "qryER");
+            ChildGetAllLookup.Add(typeof(CompanyRTW), "qryCR");
+            ChildGetAllLookup.Add(typeof(SalaryChange), "qrySC");
+            ChildGetAllLookup.Add(typeof(ProbationEnd), "qryPR");
 
 
 

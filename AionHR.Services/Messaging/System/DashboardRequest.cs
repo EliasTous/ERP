@@ -20,7 +20,7 @@ namespace AionHR.Services.Messaging.System
         {
             get
             {
-                parameters = base.parameters;
+                parameters = new Dictionary<string, string>();
                 parameters.Add("_departmentId", DepartmentId.ToString());
                 parameters.Add("_divisionId", DivisionId.ToString());
                 parameters.Add("_branchId", BranchId.ToString());

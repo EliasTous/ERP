@@ -322,8 +322,8 @@
         <ext:Hidden ID="outCount" runat="server" />
         <ext:Hidden ID="mpCount" runat="server" />
         <ext:Hidden ID="format" runat="server" />
-
-
+        
+        <ext:Hidden ID="daysLeft" runat="server" Text="<%$ Resources: FieldDaysLeft %>" />
         <ext:Store PageSize="30"
             ID="OverDueStore"
             runat="server" OnReadData="OverDueStore_ReadData"
@@ -1272,8 +1272,8 @@
 
             </Items>
         </ext:Viewport>
-        <ext:Window runat="server" Modal="true"
-            Hidden="true" AutoShow="false" ID="BirthdaysWindow" Width="300" Height="250" Title="<%$ Resources: Birthdays %>">
+        <ext:Window runat="server" Modal="true" Layout="FitLayout"
+            Hidden="true" AutoShow="false" ID="BirthdaysWindow" Width="400" Height="250" Title="<%$ Resources: Birthdays %>">
              <Listeners>
                 <AfterLayout Handler="App.BirthdaysStore.reload()" />
             </Listeners>
@@ -1296,12 +1296,13 @@
                             PageSize="30">
 
                             <Model>
-                                <ext:Model ID="Model6" runat="server" IDProperty="recordId">
+                                <ext:Model ID="Model6" runat="server" >
                                     <Fields>
 
-                                        <ext:ModelField Name="recordId" />
-                                        <ext:ModelField Name="name" ServerMapping="name.fullName" />
+                                       
+                                        <ext:ModelField Name="name" ServerMapping="employeeName.fullName" />
                                         <ext:ModelField Name="birthDate" />
+                                        <ext:ModelField Name="days" />
 
 
                                     </Fields>
@@ -1319,7 +1320,11 @@
                                 <Renderer Handler=" return displayBirthday(record.data);  ">
                                 </Renderer>
                             </ext:Column>
-
+                            <ext:Column  MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDaysLeft %>" DataIndex="days" Hideable="false" Width="120">
+                                 <Renderer Handler="return record.data['days'] + ' ' + document.getElementById('daysLeft').value;" />
+                              
+                             
+                            </ext:Column>
 
 
 
@@ -1344,8 +1349,8 @@
                 </ext:GridPanel>
             </Items>
         </ext:Window>
-        <ext:Window runat="server" Modal="true"
-            Hidden="true" AutoShow="false" ID="anniversaryWindow" Width="300" Height="250" Title="<%$ Resources: Anneversaries %>">
+        <ext:Window runat="server" Modal="true" Layout="FitLayout"
+            Hidden="true" AutoShow="false" ID="anniversaryWindow" Width="400" Height="250" Title="<%$ Resources: Anneversaries %>">
             <Listeners>
                 <AfterLayout Handler="App.AnniversaryStore.reload()" />
             </Listeners>
@@ -1368,13 +1373,13 @@
                             PageSize="30">
 
                             <Model>
-                                <ext:Model ID="Model7" runat="server" IDProperty="recordId">
+                                <ext:Model ID="Model7" runat="server" >
                                     <Fields>
 
-                                        <ext:ModelField Name="recordId" />
-                                        <ext:ModelField Name="name" ServerMapping="name.fullName" />
+                                        
+                                        <ext:ModelField Name="name" ServerMapping="employeeName.fullName" />
                                         <ext:ModelField Name="hireDate" />
-
+                                        <ext:ModelField Name="days" />
 
                                     </Fields>
                                 </ext:Model>
@@ -1390,6 +1395,11 @@
                             <ext:Column Flex="2" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEmployee %>" DataIndex="name" Hideable="false" Width="75">
                                 <Renderer Handler=" return displayAnniversary(record.data);  ">
                                 </Renderer>
+                            </ext:Column>
+                             <ext:Column  MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDaysLeft %>" DataIndex="days" Hideable="false" Width="120">
+                                <Renderer Handler="return record.data['days'] + ' ' + document.getElementById('daysLeft').value;" />
+                               
+                             
                             </ext:Column>
 
 
@@ -1417,7 +1427,7 @@
             </Items>
         </ext:Window>
         <ext:Window runat="server" Modal="true"
-            Hidden="true" AutoShow="false" ID="CompanyRightToWorkWindow" Width="300" Height="250" Title="<%$ Resources: ComapnyRightToWork %>">
+            Hidden="true" AutoShow="false" ID="CompanyRightToWorkWindow" Layout="FitLayout" Width="400" Height="250" Title="<%$ Resources: ComapnyRightToWork %>">
               <Listeners>
                 <AfterLayout Handler="App.CompanyRightToWorkStore.reload()" />
             </Listeners>
@@ -1440,13 +1450,13 @@
                             PageSize="30">
 
                             <Model>
-                                <ext:Model ID="Model12" runat="server" IDProperty="recordId">
+                                <ext:Model ID="Model12" runat="server" >
                                     <Fields>
 
                                         <ext:ModelField Name="recordId" />
                                         <ext:ModelField Name="documentRef" />
                                         <ext:ModelField Name="expiryDate" />
-
+                                        <ext:ModelField Name="days" />
 
                                     </Fields>
                                 </ext:Model>
@@ -1463,7 +1473,11 @@
                                 <Renderer Handler=" return displayRTW(record.data);  ">
                                 </Renderer>
                             </ext:Column>
-
+                             <ext:Column  MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDaysLeft %>" DataIndex="days" Hideable="false" Width="120">
+                                
+                               <Renderer Handler="return record.data['days'] + ' ' + document.getElementById('daysLeft').value;" />
+                             
+                            </ext:Column>
 
 
 
@@ -1488,8 +1502,8 @@
                 </ext:GridPanel>
             </Items>
         </ext:Window>
-        <ext:Window runat="server" Modal="true"
-            Hidden="true" AutoShow="false" ID="EmployeeRightToWorkWindow" Width="200" Height="200" Title="<%$ Resources: EmployeeRightToWork %>">
+        <ext:Window runat="server" Modal="true" Layout="FitLayout"
+            Hidden="true" AutoShow="false" ID="EmployeeRightToWorkWindow" Width="400" Height="200" Title="<%$ Resources: EmployeeRightToWork %>">
                  <Listeners>
                 <AfterLayout Handler="App.EmployeeRightToWorkStore.reload()" />
             </Listeners>
@@ -1512,15 +1526,14 @@
                             PageSize="30">
 
                             <Model>
-                                <ext:Model ID="Model13" runat="server" IDProperty="recordId">
+                                <ext:Model ID="Model13" runat="server"  >
                                     <Fields>
 
-                                        <ext:ModelField Name="recordId" />
-                                        <ext:ModelField Name="employeeId" />
+                                        
                                         <ext:ModelField Name="name" ServerMapping="employeeName.fullName" />
                                         <ext:ModelField Name="documentRef" />
                                         <ext:ModelField Name="expiryDate" />
-
+                                        <ext:ModelField Name="days" />
 
                                     </Fields>
                                 </ext:Model>
@@ -1537,7 +1550,11 @@
                                 <Renderer Handler=" return displayEmployeeRTW(record.data);  ">
                                 </Renderer>
                             </ext:Column>
-
+                             <ext:Column  MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDaysLeft %>" DataIndex="days" Hideable="false" Width="120">
+                                
+                               <Renderer Handler="return record.data['days'] + ' ' + document.getElementById('daysLeft').value;" />
+                             
+                            </ext:Column>
 
 
 
@@ -1562,7 +1579,7 @@
                 </ext:GridPanel>
             </Items>
         </ext:Window>
-        <ext:Window runat="server" Modal="true" Title="<%$Resources:DueToday %>"
+        <ext:Window runat="server" Modal="true" Title="<%$Resources:DueToday %>" Layout="FitLayout"
             Hidden="true" AutoShow="false" ID="DueTodayWindow" Width="400" Height="300">
             <Items>
                 <ext:GridPanel MarginSpec="0 0 0 0"
@@ -1632,8 +1649,8 @@
                 </ext:GridPanel>
             </Items>
         </ext:Window>
-        <ext:Window runat="server" Modal="true"
-            Hidden="true" AutoShow="false" ID="SCRWindow" Width="200" Height="200" Title="<%$ Resources: SalaryChange %>">
+        <ext:Window runat="server" Modal="true" Layout="FitLayout"
+            Hidden="true" AutoShow="false" ID="SCRWindow" Width="400" Height="200" Title="<%$ Resources: SalaryChange %>">
                 <Listeners>
                 <AfterLayout Handler="App.SCRStore.reload()" />
             </Listeners>
@@ -1656,15 +1673,15 @@
                             PageSize="30">
 
                             <Model>
-                                <ext:Model ID="Model14" runat="server" IDProperty="recordId">
+                                <ext:Model ID="Model14" runat="server" >
                                     <Fields>
 
-                                        <ext:ModelField Name="recordId" />
+                                        
                                         <ext:ModelField Name="name" ServerMapping="employeeName.fullName" />
                                         <ext:ModelField Name="effectiveDate" />
                                         <ext:ModelField Name="finalAmount" />
                                         <ext:ModelField Name="currencyRef" />
-
+                                        <ext:ModelField Name="days" />
 
                                     </Fields>
                                 </ext:Model>
@@ -1681,7 +1698,11 @@
                                 <Renderer Handler=" return displaySCR(record.data);  ">
                                 </Renderer>
                             </ext:Column>
-
+                             <ext:Column  MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDaysLeft %>" DataIndex="days" Hideable="false" Width="120">
+                                  <Renderer Handler="return record.data['days'] + ' ' + document.getElementById('daysLeft').value;" />
+                             
+                             
+                            </ext:Column>
 
 
 
@@ -1707,8 +1728,8 @@
             </Items>
         </ext:Window>
 
-        <ext:Window runat="server" Modal="true"
-            Hidden="true" AutoShow="false" ID="ProbationWindow" Width="200" Height="200" Title="<%$ Resources: Probation %>">
+        <ext:Window runat="server" Modal="true" Layout="FitLayout"
+            Hidden="true" AutoShow="false" ID="ProbationWindow" Width="400" Height="200" Title="<%$ Resources: Probation %>">
             <Listeners>
                 <AfterLayout Handler="App.ProbationStore.reload()" />
             </Listeners>
@@ -1731,12 +1752,13 @@
                             PageSize="30">
 
                             <Model>
-                                <ext:Model ID="Model15" runat="server" IDProperty="employeeId">
+                                <ext:Model ID="Model15" runat="server" >
                                     <Fields>
 
-                                        <ext:ModelField Name="employeeId" />
+                                        
                                         <ext:ModelField Name="name" ServerMapping="employeeName.fullName" />
                                         <ext:ModelField Name="probationEndDate" />
+                                        <ext:ModelField Name="days" />
                                      
 
                                     </Fields>
@@ -1755,7 +1777,10 @@
                                 </Renderer>
                             </ext:Column>
 
-
+                             <ext:Column  MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDaysLeft %>" DataIndex="days" Hideable="false" Width="120">
+                                <Renderer Handler="return record.data['days'] + ' ' + document.getElementById('daysLeft').value;" />
+                             
+                            </ext:Column>
 
 
 
@@ -1780,7 +1805,7 @@
             </Items>
         </ext:Window>
 
-        <ext:Window runat="server" Modal="true" Title="<%$Resources:OverDue %>"
+        <ext:Window runat="server" Modal="true" Title="<%$Resources:OverDue %>" Layout="FitLayout"
             Hidden="true" AutoShow="false" ID="overDueWindow" Width="400" Height="300">
             <Items>
                 <ext:GridPanel MarginSpec="0 0 0 0"
@@ -1828,7 +1853,7 @@
             </Items>
         </ext:Window>
 
-        <ext:Window runat="server" Modal="true" Title="<%$ Resources: LatenessGridTitle %>"
+        <ext:Window runat="server" Modal="true" Title="<%$ Resources: LatenessGridTitle %>" Layout="FitLayout"
             Hidden="true" AutoShow="false" ID="lateWindow" Width="400" Height="300">
             <Items>
                 <ext:GridPanel ExpandToolText="expand"
@@ -1958,8 +1983,8 @@
                 </ext:GridPanel>
             </Items>
         </ext:Window>
-        <ext:Window runat="server" Modal="true" Title="<%$ Resources: ActiveGridTitle %>"
-            Hidden="true" AutoShow="false" ID="activeWindow" Width="400" Height="300">
+        <ext:Window runat="server" Modal="true" Title="<%$ Resources: ActiveGridTitle %>" 
+            Hidden="true" Layout="FitLayout" AutoShow="false" ID="activeWindow" Width="400" Height="300">
             <Items>
                 <ext:GridPanel MarginSpec="0 0 0 0"
                     ID="activeGrid" Layout="FitLayout"

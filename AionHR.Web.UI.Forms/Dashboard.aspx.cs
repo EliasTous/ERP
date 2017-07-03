@@ -28,6 +28,7 @@ using AionHR.Model.LoadTracking;
 using AionHR.Model.LeaveManagement;
 using AionHR.Model.Employees.Profile;
 using AionHR.Services.Messaging.System;
+using AionHR.Model.Dashboard;
 
 namespace AionHR.Web.UI.Forms
 {
@@ -238,7 +239,7 @@ namespace AionHR.Web.UI.Forms
             }
 
             int birth = dashoard.Items.Where(x => x.itemId == 43).ToList()[0].count;
-            int annev = dashoard.Items.Where(x => x.itemId == 32).ToList()[0].count;
+            int annev = dashoard.Items.Where(x => x.itemId == 53).ToList()[0].count;
             int comp = dashoard.Items.Where(x => x.itemId == 61).ToList()[0].count;
             int empRW = dashoard.Items.Where(x => x.itemId == 62).ToList()[0].count;
             int scr = dashoard.Items.Where(x => x.itemId == 31).ToList()[0].count;
@@ -794,49 +795,80 @@ namespace AionHR.Web.UI.Forms
 
         protected void BirthdaysStore_ReadData(object sender, StoreReadDataEventArgs e)
         {
-            List<Employee> emps = new List<Employee>();
-            emps.Add(new Employee() { recordId = "20", name = new EmployeeName() { fullName = "Issa Mouawad" }, birthDate = new DateTime(2015, 6, 19) });
-            BirthdaysStore.DataSource = emps;
+            DashboardRequest req = GetDashboardRequest();
+            ListResponse<EmployeeBirthday> resp = _systemService.ChildGetAll<EmployeeBirthday>(req);
+            if(!resp.Success)
+            {
+                X.Msg.Alert(Resources.Common.Error, resp.Summary).Show();
+                return;
+            }
+            BirthdaysStore.DataSource = resp.Items;
             BirthdaysStore.DataBind();
         }
 
         protected void AnniversaryStore_ReadData(object sender, StoreReadDataEventArgs e)
         {
-            List<Employee> emps = new List<Employee>();
-            emps.Add(new Employee() { recordId = "20", name = new EmployeeName() { fullName = "Issa Mouawad" }, hireDate = new DateTime(2015, 6, 19) });
-            AnniversaryStore.DataSource = emps;
+
+            DashboardRequest req = GetDashboardRequest();
+            ListResponse<WorkAnniversary> resp = _systemService.ChildGetAll<WorkAnniversary>(req);
+            if (!resp.Success)
+            {
+                X.Msg.Alert(Resources.Common.Error, resp.Summary).Show();
+                return;
+            }
+            AnniversaryStore.DataSource = resp.Items;
             AnniversaryStore.DataBind();
         }
 
         protected void CompanyRightToWorkStore_ReadData(object sender, StoreReadDataEventArgs e)
         {
-            List<CompanyRightToWork> emps = new List<CompanyRightToWork>();
-            emps.Add(new CompanyRightToWork() { recordId = "20", documentRef = "some Document", expiryDate = new DateTime(2015, 6, 19) });
-            CompanyRightToWorkStore.DataSource = emps;
+            DashboardRequest req = GetDashboardRequest();
+            ListResponse<CompanyRTW> resp = _systemService.ChildGetAll<CompanyRTW>(req);
+            if (!resp.Success)
+            {
+                X.Msg.Alert(Resources.Common.Error, resp.Summary).Show();
+                return;
+            }
+            CompanyRightToWorkStore.DataSource = resp.Items;
             CompanyRightToWorkStore.DataBind();
         }
 
         protected void EmployeeRightToWorkStore_ReadData(object sender, StoreReadDataEventArgs e)
         {
-            List<EmployeeRightToWork> emps = new List<EmployeeRightToWork>();
-            emps.Add(new EmployeeRightToWork() { recordId = "20", employeeName=new EmployeeName() { fullName = "Issa Mouawad" }, documentRef = "some Document", expiryDate = new DateTime(2015, 6, 19) });
-            EmployeeRightToWorkStore.DataSource = emps;
+            DashboardRequest req = GetDashboardRequest();
+            ListResponse<EmpRTW> resp = _systemService.ChildGetAll<EmpRTW>(req);
+            if (!resp.Success)
+            {
+                X.Msg.Alert(Resources.Common.Error, resp.Summary).Show();
+                return;
+            }
+            EmployeeRightToWorkStore.DataSource = resp.Items;
             EmployeeRightToWorkStore.DataBind();
         }
 
         protected void SCRStore_ReadData(object sender, StoreReadDataEventArgs e)
         {
-            List<EmployeeSalary> emps = new List<EmployeeSalary>();
-            emps.Add(new EmployeeSalary() { recordId = "20", employeeName = new EmployeeName() { fullName = "Issa Mouawad" }, currencyRef="$", finalAmount=1400, effectiveDate=new DateTime(2017,6,10) });
-            SCRStore.DataSource = emps;
+            DashboardRequest req = GetDashboardRequest();
+            ListResponse<SalaryChange> resp = _systemService.ChildGetAll<SalaryChange>(req);
+            if (!resp.Success)
+            {
+                X.Msg.Alert(Resources.Common.Error, resp.Summary).Show();
+                return;
+            }
+            SCRStore.DataSource = resp.Items;
             SCRStore.DataBind();
         }
 
         protected void ProbationStore_ReadData(object sender, StoreReadDataEventArgs e)
         {
-            List<HireInfo> emps = new List<HireInfo>();
-            emps.Add(new HireInfo() { employeeId="2",  employeeName = new EmployeeName() { fullName = "Issa Mouawad" }, probationEndDate=new DateTime(2017,6,10) });
-            ProbationStore.DataSource = emps;
+            DashboardRequest req = GetDashboardRequest();
+            ListResponse<ProbationEnd> resp = _systemService.ChildGetAll<ProbationEnd>(req);
+            if (!resp.Success)
+            {
+                X.Msg.Alert(Resources.Common.Error, resp.Summary).Show();
+                return;
+            }
+            ProbationStore.DataSource = resp.Items;
             ProbationStore.DataBind();
 
 

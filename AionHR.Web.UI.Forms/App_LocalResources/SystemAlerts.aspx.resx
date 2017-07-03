@@ -168,6 +168,12 @@
   <data name="Alert307Title" xml:space="preserve">
     <value>Task Due</value>
   </data>
+  <data name="Alert309Description" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Alert309Title" xml:space="preserve">
+    <value>Work Anniversaries</value>
+  </data>
   <data name="All" xml:space="preserve">
     <value>All</value>
   </data>

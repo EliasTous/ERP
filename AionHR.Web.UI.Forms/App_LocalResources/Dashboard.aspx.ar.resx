@@ -195,6 +195,9 @@
   <data name="FieldDateOfBirth" xml:space="preserve">
     <value>تاريخ الولادة</value>
   </data>
+  <data name="FieldDaysLeft" xml:space="preserve">
+    <value>الأيام المتبقية</value>
+  </data>
   <data name="FieldDepartment" xml:space="preserve">
     <value>القسم</value>
   </data>

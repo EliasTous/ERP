@@ -48,6 +48,12 @@
     <Compile Include="Company\Structure\Division.cs" />
     <Compile Include="Company\Structure\ICompanyStructureRepository.cs" />
     <Compile Include="Company\Structure\IDepartmentRepository.cs" />
+    <Compile Include="Dashboard\CompanyRTW.cs" />
+    <Compile Include="Dashboard\EmployeeBirthday.cs" />
+    <Compile Include="Dashboard\EmpRTW.cs" />
+    <Compile Include="Dashboard\ProbationEnd.cs" />
+    <Compile Include="Dashboard\SalaryChange.cs" />
+    <Compile Include="Dashboard\WorkAnniversary.cs" />
     <Compile Include="EmployeeComplaints\IComplaintsRepository.cs" />
     <Compile Include="Employees\Profile\AssetAllowance.cs" />
     <Compile Include="Employees\Profile\AssetCategory.cs" />
