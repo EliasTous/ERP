@@ -259,7 +259,7 @@
                                         </Change>
                                     </DirectEvents>
                                     <Listeners>
-                                        <FocusLeave Handler="if(App.leaveRequest1_returnDate.getValue()>App.leaveRequest1_endDate.getValue()) App.leaveRequest1_shouldDisableLastDay.value='1'; else App.leaveRequest1_shouldDisableLastDay.value='0';" />
+                                        <FocusLeave Handler="if(App.leaveRequest1_returnDate.getValue()>=App.leaveRequest1_endDate.getValue()) App.leaveRequest1_shouldDisableLastDay.value='1'; else App.leaveRequest1_shouldDisableLastDay.value='0';" />
                                     </Listeners>
                                 </ext:DateField>
                             </Items>

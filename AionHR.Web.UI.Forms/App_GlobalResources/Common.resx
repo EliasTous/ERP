@@ -930,4 +930,7 @@
   <data name="Mod90" xml:space="preserve">
     <value>Access Control</value>
   </data>
+  <data name="RT303" xml:space="preserve">
+    <value>Detailed Attendance</value>
+  </data>
 </root>

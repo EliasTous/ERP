@@ -300,6 +300,7 @@
     <Content Include="Reports\RT301.aspx" />
     <Content Include="Reports\RT301B.aspx" />
     <Content Include="Reports\RT302.aspx" />
+    <Content Include="Reports\RT303.aspx" />
     <Content Include="Reports\RT401.aspx" />
     <Content Include="Reports\RT501.aspx" />
     <Content Include="Reports\RT601.aspx" />
@@ -470,6 +471,13 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>AccessControl.ar.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\RT303.aspx.cs">
+      <DependentUpon>RT303.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reports\RT303.aspx.designer.cs">
+      <DependentUpon>RT303.aspx</DependentUpon>
     </Compile>
     <Compile Include="Utilities\AccessControlApplier.cs" />
     <Compile Include="AllowanceTypes.aspx.cs">

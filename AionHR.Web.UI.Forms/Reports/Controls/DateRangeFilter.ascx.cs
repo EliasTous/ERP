@@ -23,7 +23,7 @@ namespace AionHR.Web.UI.Forms.Reports
                 if (_DefaultEndDate == DateTime.MinValue)
                     dateTo.SelectedDate = DateTime.Today;
 
-                
+
             }
         }
         protected void Page_Load(object sender, EventArgs e)
@@ -40,7 +40,9 @@ namespace AionHR.Web.UI.Forms.Reports
         public DateRangeParameterSet GetRange()
         {
             DateRangeParameterSet set = new DateRangeParameterSet();
-            if (dateFrom.SelectedDate != DateTime.MinValue)
+
+            set.IsDayId = IsDayIdFormat;
+            if (dateFrom.SelectedDate != DateTime.MinValue) 
                 set.DateFrom = dateFrom.SelectedDate;
             else
                 set.DateFrom = DateTime.Now;
@@ -84,5 +86,7 @@ namespace AionHR.Web.UI.Forms.Reports
                 dateTo.SelectedDate = _DefaultEndDate;
             }
         }
+
+        public bool IsDayIdFormat { get; set; }
     }
 }

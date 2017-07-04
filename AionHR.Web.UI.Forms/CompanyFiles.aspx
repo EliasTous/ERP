@@ -56,7 +56,7 @@
          $("#input-ke-1").fileinput({
            
              theme: 'explorer',
-             uploadUrl: 'SystemAttachmentsUploader.ashx?recordId=0&classId=' + document.getElementById("CompanyFilesClassId").value,
+             uploadUrl: 'SystemAttachmentsUploader.ashx?recordId=0&classId=22020',
              overwriteInitial: false,
              initialPreviewAsData: true,
              uploadAsync: true,
