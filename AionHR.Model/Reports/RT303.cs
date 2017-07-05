@@ -42,8 +42,8 @@ namespace AionHR.Model.Reports
 
         public string checkOut4 { get; set; }
 
-        public string OL_A { get; set; }
-        public string OL_D { get; set; }
+        public TimeSpan OL_A { get; set; }
+        public TimeSpan OL_D { get; set; }
 
 
 

@@ -373,22 +373,22 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Panel absense;
         
         /// <summary>
-        /// PolarChart7 control.
+        /// Chart1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.PolarChart PolarChart7;
+        protected global::Ext.Net.CartesianChart Chart1;
         
         /// <summary>
-        /// OutChartStore control.
+        /// departmentsCount control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Store OutChartStore;
+        protected global::Ext.Net.Store departmentsCount;
         
         /// <summary>
         /// PolarChart6 control.
@@ -400,13 +400,31 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.PolarChart PolarChart6;
         
         /// <summary>
-        /// InChartStore control.
+        /// barPanel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Store InChartStore;
+        protected global::Ext.Net.Panel barPanel;
+        
+        /// <summary>
+        /// CartesianChart1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.CartesianChart CartesianChart1;
+        
+        /// <summary>
+        /// Store1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Store Store1;
         
         /// <summary>
         /// leaveGrid control.

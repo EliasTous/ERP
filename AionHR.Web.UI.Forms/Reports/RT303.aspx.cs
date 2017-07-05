@@ -85,7 +85,7 @@ namespace AionHR.Web.UI.Forms.Reports
 
                     format.Text = _systemService.SessionHelper.GetDateformat().ToUpper();
                     ASPxWebDocumentViewer1.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.Utils.DefaultBoolean.True : DevExpress.Utils.DefaultBoolean.False;
-                    FillReport(false, false);
+
                 }
                 catch { }
             }
@@ -168,10 +168,10 @@ namespace AionHR.Web.UI.Forms.Reports
             req.Size = "1000";
             req.StartAt = "1";
 
-            
+
             req.Add(dateRange1.GetRange());
             req.Add(employeeCombo1.GetEmployee());
-           
+
             return req;
         }
 
@@ -211,7 +211,8 @@ namespace AionHR.Web.UI.Forms.Reports
         {
 
             ReportCompositeRequest req = GetRequest();
-
+            if (req.Parameters["_employeeId"] == "0")
+                return;
             ListResponse<AionHR.Model.Reports.RT303> resp = _reportsService.ChildGetAll<AionHR.Model.Reports.RT303>(req);
             if (!resp.Success)
             {
@@ -225,9 +226,10 @@ namespace AionHR.Web.UI.Forms.Reports
                 }
             }
 
-            resp.Items.ForEach(x => {
+            resp.Items.ForEach(x =>
+            {
                 DateTime date = DateTime.ParseExact(x.dayId, "yyyyMMdd", new CultureInfo("en"));
-                x.dateString =date.ToString(_systemService.SessionHelper.GetDateformat());
+                x.dateString = date.ToString(_systemService.SessionHelper.GetDateformat());
                 x.dowString = GetGlobalResourceObject("Common", date.DayOfWeek.ToString() + "Text").ToString();
 
             }
@@ -239,32 +241,31 @@ namespace AionHR.Web.UI.Forms.Reports
             h.RightToLeftLayout = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeftLayout.Yes : DevExpress.XtraReports.UI.RightToLeftLayout.No;
             h.DataSource = resp.Items;
 
-            //string from = DateTime.Parse(req.Parameters["_fromDate"]).ToString(_systemService.SessionHelper.GetDateformat(), new CultureInfo("en"));
-            //string to = DateTime.Parse(req.Parameters["_toDate"]).ToString(_systemService.SessionHelper.GetDateformat(), new CultureInfo("en"));
-            //string user = _systemService.SessionHelper.GetCurrentUser();
+            string from = DateTime.ParseExact(req.Parameters["_fromDayId"], "yyyyMMdd", new CultureInfo("en")).ToString(_systemService.SessionHelper.GetDateformat(), new CultureInfo("en"));
+            string to = DateTime.ParseExact(req.Parameters["_toDayId"], "yyyyMMdd", new CultureInfo("en")).ToString(_systemService.SessionHelper.GetDateformat(), new CultureInfo("en"));
+            string user = _systemService.SessionHelper.GetCurrentUser();
 
-            //h.Parameters["DateFrom"].Value = from;
-            //h.Parameters["DateTo"].Value = to;
-            //h.Parameters["User"].Value = user;
-
-
+            h.Parameters["From"].Value = from;
+            h.Parameters["To"].Value = to;
+            h.Parameters["User"].Value = user;
 
 
-            //if (resp.Items.Count > 0)
-            //{
-            //    if (req.Parameters["_departmentId"] != "0")
-            //        h.Parameters["Department"].Value = resp.Items[0].departmentName;
-            //    else
-            //        h.Parameters["Department"].Value = GetGlobalResourceObject("Common", "All");
-            //    if (req.Parameters["_branchId"] != "0")
-            //        h.Parameters["Branch"].Value = resp.Items[0].branchName;
-            //    else
-            //        h.Parameters["Branch"].Value = GetGlobalResourceObject("Common", "All");
-            //    if (req.Parameters["_employeeId"] != "0")
-            //        h.Parameters["Employee"].Value = resp.Items[0].name.fullName;
-            //    else
-            //        h.Parameters["Employee"].Value = GetGlobalResourceObject("Common", "All");
-            //}
+
+
+
+
+            if (req.Parameters["_employeeId"] != "0")
+            {
+                RecordRequest empReq = new RecordRequest();
+                empReq.RecordID = req.Parameters["_employeeId"];
+                Employee emp = _employeeService.Get<Employee>(empReq).result;
+                h.Parameters["Employee"].Value = emp.name.fullName;
+                h.Parameters["Branch"].Value = emp.branchName;
+                h.Parameters["Division"].Value = emp.divisionName;
+
+            }
+
+
 
             h.CreateDocument();
 

@@ -188,7 +188,7 @@ namespace AionHR.Web.UI.Forms
             ListResponse<MissedPunch> MPs = _timeAttendanceService.ChildGetAll<MissedPunch>(r);
             ListResponse<ActiveOut> AOs = _timeAttendanceService.ChildGetAll<ActiveOut>(r);
             EmployeeCountRequest req = GetEmployeeCountRequest();
-            RecordResponse < EmployeeCount > count = _employeeService.ChildGetRecord<EmployeeCount>(req);
+            RecordResponse<EmployeeCount> count = _employeeService.ChildGetRecord<EmployeeCount>(req);
             if (!ACs.Success)
             {
                 X.Msg.Alert(Resources.Common.Error, ACs.Summary).Show();
@@ -200,12 +200,12 @@ namespace AionHR.Web.UI.Forms
             b.Add(new { Name = GetLocalResourceObject("MissingPunchesGridTitle").ToString(), Count = MPs.Items.Count });
             b.Add(new { Name = GetLocalResourceObject("LeavesGridTitle").ToString(), Count = Leaves.Items.Count });
             b.Add(new { Name = GetLocalResourceObject("LatenessGridTitle").ToString(), Count = ALs.Items.Count });
-            
+
 
             activeStore.DataSource = ACs.Items;
             activeStore.DataBind();
             activeCount.Text = ACs.Items.Count.ToString();
-           
+
 
             missingPunchesStore.DataSource = MPs.Items;
             missingPunchesStore.DataBind();
@@ -220,7 +220,7 @@ namespace AionHR.Web.UI.Forms
             absenseStore.DataBind();
 
             int x = ALs.Items.Count;
-            X.Call("lateChart", x,count.result.count);
+            X.Call("lateChart", x, count.result.count);
             int y = ABs.Items.Count;
             X.Call("absentChart", y, count.result.count);
             int z = ACs.Items.Count;
@@ -280,7 +280,7 @@ namespace AionHR.Web.UI.Forms
             }
             absenseStore.DataSource = ABs.Items;
             absenseStore.DataBind();
-           abbsenseCount.Text = "10";
+            abbsenseCount.Text = "10";
         }
 
         protected void latenessStore_ReadData(object sender, StoreReadDataEventArgs e)
@@ -369,7 +369,7 @@ namespace AionHR.Web.UI.Forms
 
             //outCount.Text = "17";
             //outStore.DataBind();
- 
+
         }
         [DirectMethod]
         public void RefreshAll()
@@ -528,8 +528,8 @@ namespace AionHR.Web.UI.Forms
         protected void OverDueStore_ReadData(object sender, StoreReadDataEventArgs e)
         {
             TaskManagementListRequest req = GetTaskManagementRequest();
-            ListResponse<Model.TaskManagement.Task> resp = _taskManagementService.GetAll< Model.TaskManagement.Task>(req);
-            if(!resp.Success)
+            ListResponse<Model.TaskManagement.Task> resp = _taskManagementService.GetAll<Model.TaskManagement.Task>(req);
+            if (!resp.Success)
             {
                 return;
 
@@ -537,7 +537,7 @@ namespace AionHR.Web.UI.Forms
             List<Model.TaskManagement.Task> today = resp.Items.Where(x => x.dueDate == DateTime.Today && !x.completed).ToList();
             List<Model.TaskManagement.Task> late = resp.Items.Where(x => x.dueDate < DateTime.Today && !x.completed).ToList();
             int count = resp.Items.Count(x => !x.completed);
-           
+
             OverDueStore.DataSource = late;
             OverDueStore.DataBind();
             DueTodayStore.DataSource = today;
@@ -573,10 +573,10 @@ namespace AionHR.Web.UI.Forms
                 req.DepartmentId = 0;
             }
 
-            
-            
-                req.DivisionId = 0;
-         
+
+
+            req.DivisionId = 0;
+
 
             req.Size = "30";
             req.StartAt = "1";
@@ -620,7 +620,7 @@ namespace AionHR.Web.UI.Forms
             req.StartAt = "1";
             req.Filter = "";
             req.SortBy = "recordId";
-      
+
 
             return req;
         }
@@ -649,7 +649,7 @@ namespace AionHR.Web.UI.Forms
 
 
 
-            
+
 
 
             req.Size = "30";
@@ -746,30 +746,14 @@ namespace AionHR.Web.UI.Forms
             b.Add(new { Name = "Missing Punches", Count = mpCount.Text });
             b.Add(new { Name = "Leave", Count = leaveCount.Text });
             b.Add(new { Name = "Late", Count = latensessCount.Text });
-  
+
         }
 
-        protected void InChartStore_ReadData(object sender, StoreReadDataEventArgs e)
-        {
-            List<object> b = new List<object>();
-            b.Add(new { Name = "On Time", Count = activeCount.Text });
-            b.Add(new { Name = "Late", Count = latensessCount.Text });
-            InChartStore.DataSource = b;
-            InChartStore.DataBind();
-        }
-
-        protected void OutChartStore_ReadData(object sender, StoreReadDataEventArgs e)
-        {
-            List<object> b = new List<object>();
-            b.Add(new { Name =  GetLocalResourceObject("LeavesGridTitle").ToString(), Count = leaveCount.Text });
-            b.Add(new { Name = GetLocalResourceObject("AbsenseGridTitle").ToString(), Count = abbsenseCount.Text });
-            OutChartStore.DataSource = b;
-            OutChartStore.DataBind();
-        }
+    
 
         protected void AlertsStore_ReadData(object sender, StoreReadDataEventArgs e)
         {
-            
+
         }
 
         protected void LoansStore_ReadData(object sender, StoreReadDataEventArgs e)
@@ -780,7 +764,7 @@ namespace AionHR.Web.UI.Forms
             LoansStore.DataSource = OpenLoans;
             LoansStore.DataBind();
             int x = OpenLoans.Count;
-            X.Call("loansChart", x, x + (10-(x%10)));
+            X.Call("loansChart", x, x + (10 - (x % 10)));
         }
 
         protected void LeaveRequestsStore_ReadData(object sender, StoreReadDataEventArgs e)
@@ -790,14 +774,14 @@ namespace AionHR.Web.UI.Forms
             List<LeaveRequest> OpenLoans = loans.Items.Where(t => t.status == 1).ToList();
             LeaveRequestsStore.DataSource = OpenLoans;
             LeaveRequestsStore.DataBind();
-            
+
         }
 
         protected void BirthdaysStore_ReadData(object sender, StoreReadDataEventArgs e)
         {
             DashboardRequest req = GetDashboardRequest();
             ListResponse<EmployeeBirthday> resp = _systemService.ChildGetAll<EmployeeBirthday>(req);
-            if(!resp.Success)
+            if (!resp.Success)
             {
                 X.Msg.Alert(Resources.Common.Error, resp.Summary).Show();
                 return;
@@ -872,6 +856,43 @@ namespace AionHR.Web.UI.Forms
             ProbationStore.DataBind();
 
 
+        }
+
+        protected void departmentsCount_ReadData(object sender, StoreReadDataEventArgs e)
+        {
+            List<object> objs = new List<object>();
+            objs.Add(new { Department = "First", Count = 40 });
+            objs.Add(new { Department = "Second", Count = 30 });
+            objs.Add(new { Department = "Third", Count = 50 });
+            objs.Add(new { Department = "Fourth", Count = 35 });
+            objs.Add(new { Department = "Fifth", Count = 16 });
+            objs.Add(new { Department = "Sixth", Count = 27 });
+            objs.Add(new { Department = "trht", Count = 40 });
+            objs.Add(new { Department = "Serthtrcond", Count = 10 });
+            objs.Add(new { Department = "Thqweqwird", Count = 20 });
+            objs.Add(new { Department = "Fougrerth", Count = 35 });
+            objs.Add(new { Department = "gerg", Count = 15 });
+            objs.Add(new { Department = "Sixqweqth", Count = 25 });
+            departmentsCount.DataSource = objs;
+            departmentsCount.DataBind();
+        }
+        protected void departments2Count_ReadData(object sender, StoreReadDataEventArgs e)
+        {
+            List<object> objs = new List<object>();
+            objs.Add(new { Department = "First", Count = 40 });
+            objs.Add(new { Department = "Second", Count = 30 });
+            objs.Add(new { Department = "Third", Count = 50 });
+            objs.Add(new { Department = "Fourth", Count = 35 });
+            objs.Add(new { Department = "Fifth", Count = 16 });
+            objs.Add(new { Department = "Sixth", Count = 27 });
+            objs.Add(new { Department = "trht", Count = 40 });
+            objs.Add(new { Department = "Serthtrcond", Count = 10 });
+            objs.Add(new { Department = "Thqweqwird", Count = 20 });
+            objs.Add(new { Department = "Fougrerth", Count = 35 });
+            objs.Add(new { Department = "gerg", Count = 15 });
+            objs.Add(new { Department = "Sixqweqth", Count = 25 });
+            Store1.DataSource = objs;
+            Store1.DataBind();
         }
     }
 }

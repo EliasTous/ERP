@@ -143,6 +143,9 @@
     <EmbeddedResource Include="DailyAttendance.resx">
       <DependentUpon>DailyAttendance.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="DetailedAttendance.ar.resx">
+      <DependentUpon>DetailedAttendance.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DetailedAttendance.resx">
       <DependentUpon>DetailedAttendance.cs</DependentUpon>
     </EmbeddedResource>
