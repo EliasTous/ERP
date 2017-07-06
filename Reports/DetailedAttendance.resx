@@ -726,6 +726,9 @@
   <data name="xrLabel35.Text" xml:space="preserve">
     <value>xrLabel28</value>
   </data>
+  <data name="AllowedLateness.Description" xml:space="preserve">
+    <value>Parameter1</value>
+  </data>
   <data name="xrLabel30.Dpi" type="System.Single, mscorlib">
     <value>100</value>
   </data>
@@ -909,6 +912,9 @@
   <data name="unapprovedAbsenseLabel.SizeF" type="System.Drawing.SizeF, System.Drawing">
     <value>84.1886, 23.0000153</value>
   </data>
+  <data name="unapprovedAbsenseLabel.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
   <data name="xrLabel47.Dpi" type="System.Single, mscorlib">
     <value>100</value>
   </data>
@@ -920,6 +926,9 @@
   </data>
   <data name="xrLabel47.Text" xml:space="preserve">
     <value>Unapproved Absense</value>
+  </data>
+  <data name="xrLabel47.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
   <data name="holidays.Dpi" type="System.Single, mscorlib">
     <value>100</value>
@@ -952,7 +961,7 @@
     <value>187.2159, 23</value>
   </data>
   <data name="xrLabel44.Text" xml:space="preserve">
-    <value>Approved Absense</value>
+    <value>Absense</value>
   </data>
   <data name="approvedAbsenseLabel.Dpi" type="System.Single, mscorlib">
     <value>100</value>
@@ -1065,15 +1074,12 @@
   <data name="ReportFooter.HeightF" type="System.Single, mscorlib">
     <value>163.071915</value>
   </data>
-  <metadata name="objectDataSource1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
   <data name="Department.Description" xml:space="preserve">
     <value>Parameter1</value>
   </data>
-  <data name="AllowedLateness.Description" xml:space="preserve">
-    <value>Parameter1</value>
-  </data>
+  <metadata name="objectDataSource1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>

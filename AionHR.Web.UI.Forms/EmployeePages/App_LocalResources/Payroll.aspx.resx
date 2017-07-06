@@ -267,4 +267,22 @@
   <data name="ErrorWithPCTOf" xml:space="preserve">
     <value>PCTOF value is invalid, the PCTOF will be set to Percentage of basic salary</value>
   </data>
+  <data name="AllowedLateness" xml:space="preserve">
+    <value>Allowed Lateness</value>
+  </data>
+  <data name="FieldLatenessDeduction" xml:space="preserve">
+    <value>Lateness Deduction</value>
+  </data>
+  <data name="FieldOvertimeEntitlement" xml:space="preserve">
+    <value>Overtime Entitlement</value>
+  </data>
+  <data name="Lateness" xml:space="preserve">
+    <value>Lateness</value>
+  </data>
+  <data name="MinimumOvertime" xml:space="preserve">
+    <value>Minimum Overtime</value>
+  </data>
+  <data name="Overtime" xml:space="preserve">
+    <value>Overtime</value>
+  </data>
 </root>

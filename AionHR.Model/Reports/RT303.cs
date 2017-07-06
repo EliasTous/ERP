@@ -18,6 +18,8 @@ namespace AionHR.Model.Reports
 
         public bool isWorkingDay { get; set; }
 
+       
+
         public string workingHours
         {
             get; set;

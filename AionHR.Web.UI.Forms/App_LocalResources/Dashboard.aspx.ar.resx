@@ -168,6 +168,9 @@
   <data name="ContractEndingDate" xml:space="preserve">
     <value>تاريخ نهاية العقد</value>
   </data>
+  <data name="DepartmentsCount" xml:space="preserve">
+    <value>احصائية الاقسام</value>
+  </data>
   <data name="DueToday" xml:space="preserve">
     <value>تستحق اليوم</value>
   </data>

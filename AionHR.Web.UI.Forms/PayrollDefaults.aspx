@@ -11,17 +11,16 @@
     <link rel="stylesheet" href="CSS/LiveSearch.css" />
     <script type="text/javascript" src="Scripts/Nationalities.js"></script>
     <script type="text/javascript" src="Scripts/common.js"></script>
-    <script type="text/javascript" >
-        function handlePayment()
-        {
-            if (App.ldMethod.value < 4) {
-                App.ldValue.setFieldLabel(document.getElementById("paymentValueP").value);
-                App.ldValue.setMaxValue(100);
+    <script type="text/javascript">
+        function handlePayment(val,field) {
+            if (val < 4) {
+                field.setFieldLabel(document.getElementById("paymentValueP").value);
+                field.setMaxValue(100);
             }
 
             else {
-                App.ldValue.setFieldLabel(document.getElementById("paymentValue").value);
-                App.ldValue.setMaxValue(1000000);
+                field.setFieldLabel(document.getElementById("paymentValue").value);
+                field.setMaxValue(1000000);
             }
         }
 
@@ -61,7 +60,6 @@
                         <ext:FormPanel DefaultButton="SaveButton"
                             ID="BasicInfoTab"
                             runat="server"
-                            
                             DefaultAnchor="100%"
                             BodyPadding="5">
                             <Items>
@@ -126,7 +124,7 @@
                                         <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
                                     </Listeners>
                                 </ext:ComboBox>
-                                
+
                                 <ext:ComboBox QueryMode="Local" ForceSelection="true" LabelWidth="130" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: FieldPE %>" Name="peDeductionId" runat="server" DisplayField="name" ValueField="recordId" ID="peDeductionId">
                                     <Store>
                                         <ext:Store runat="server" ID="peDeductionStore">
@@ -157,7 +155,103 @@
                                         <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
                                     </Listeners>
                                 </ext:ComboBox>
-                                <ext:ComboBox QueryMode="Local" ForceSelection="true" LabelWidth="130" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: FieldOT %>" Name="otEntitlementId" runat="server" DisplayField="name" ValueField="recordId" ID="otEntitlementId">
+                               
+                                <ext:FieldSet Collapsible="true" runat="server" Title="<%$ Resources:Common, Loans %>">
+                                    <Items>
+                                        <ext:ComboBox QueryMode="Local" Width="400" LabelWidth="130" ForceSelection="true" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: FieldLoan %>" Name="loanDeductionId" runat="server" DisplayField="name" ValueField="recordId" ID="loanDeductionId">
+                                            <Store>
+                                                <ext:Store runat="server" ID="loanDeductionStore">
+                                                    <Model>
+                                                        <ext:Model runat="server">
+                                                            <Fields>
+                                                                <ext:ModelField Name="recordId" />
+                                                                <ext:ModelField Name="name" />
+                                                            </Fields>
+                                                        </ext:Model>
+                                                    </Model>
+                                                </ext:Store>
+                                            </Store>
+                                            <RightButtons>
+                                                <ext:Button ID="Button3" runat="server" Icon="Add" Hidden="true">
+                                                    <Listeners>
+                                                        <Click Handler="CheckSession();  " />
+                                                    </Listeners>
+                                                    <DirectEvents>
+
+                                                        <Click OnEvent="addDedloan">
+                                                        </Click>
+                                                    </DirectEvents>
+                                                </ext:Button>
+                                            </RightButtons>
+                                            <Listeners>
+                                                <FocusEnter Handler=" if(!this.readOnly)this.rightButtons[0].setHidden(false);" />
+                                                <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
+                                            </Listeners>
+                                        </ext:ComboBox>
+                                        <ext:ComboBox Width="400" QueryMode="Local" LabelWidth="130" ForceSelection="true" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: LoanCoverageType %>" Name="ldMethod" runat="server" ID="ldMethod">
+                                            <Items>
+                                                <ext:ListItem Text="<%$ Resources: PFromNetSalary %>" Value="1" />
+                                                <ext:ListItem Text="<%$ Resources: PFromBasicSalary %>" Value="2" />
+                                                <ext:ListItem Text="<%$ Resources: PFromLoan %>" Value="3" />
+                                                <ext:ListItem Text="<%$ Resources: FixedAmount %>" Value="4" />
+                                                <ext:ListItem Text="<%$ Resources: FixedPayment %>" Value="5" />
+
+                                            </Items>
+                                            <Listeners>
+                                                <Change Handler="handlePayment(this.value,this.next());"></Change>
+                                            </Listeners>
+                                        </ext:ComboBox>
+                                        <ext:NumberField Width="400" runat="server" LabelWidth="130" ID="ldValue" Name="ldValue" FieldLabel="<%$ Resources: PaymentValue %>" MinValue="0" />
+                                    </Items>
+                                </ext:FieldSet>
+                                <ext:FieldSet Collapsible="true" runat="server" Title="<%$ Resources: Lateness %>">
+                                    <Items>
+                                        <ext:ComboBox QueryMode="Local" Width="400" LabelWidth="130" ForceSelection="true" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: FieldLatenessDeduction %>" Name="latenessDeductionId" runat="server" DisplayField="name" ValueField="recordId" ID="latenessDeductionId">
+                                            <Store>
+                                                <ext:Store runat="server" ID="latenessDeductionStore">
+                                                    <Model>
+                                                        <ext:Model runat="server">
+                                                            <Fields>
+                                                                <ext:ModelField Name="recordId" />
+                                                                <ext:ModelField Name="name" />
+                                                            </Fields>
+                                                        </ext:Model>
+                                                    </Model>
+                                                </ext:Store>
+                                            </Store>
+                                            <RightButtons>
+                                                <ext:Button ID="Button6" runat="server" Icon="Add" Hidden="true">
+                                                    <Listeners>
+                                                        <Click Handler="CheckSession();  " />
+                                                    </Listeners>
+                                                    <DirectEvents>
+
+                                                        <Click OnEvent="addDedLateness">
+                                                        </Click>
+                                                    </DirectEvents>
+                                                </ext:Button>
+                                            </RightButtons>
+                                            <Listeners>
+                                                <FocusEnter Handler=" if(!this.readOnly)this.rightButtons[0].setHidden(false);" />
+                                                <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
+                                            </Listeners>
+                                        </ext:ComboBox>
+                                        <ext:ComboBox Width="400" QueryMode="Local" LabelWidth="130" ForceSelection="true" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: DeductionFrom %>" Name="latenessPCTOf" runat="server" ID="latenessPCTOf">
+                                            <Items>
+                                                <ext:ListItem Text="<%$ Resources: PFromNetSalary %>" Value="1" />
+                                                <ext:ListItem Text="<%$ Resources: PFromBasicSalary %>" Value="2" />
+                                               
+
+                                            </Items>
+                                        
+                                        </ext:ComboBox>
+                                        <ext:NumberField Width="400" runat="server" LabelWidth="130" ID="latenessDedAmount" Name="latenessDedAmount" FieldLabel="<%$ Resources: LatenessAmount %>"  MinValue="0" />
+                                        <ext:NumberField Width="400" runat="server" LabelWidth="130" ID="allowedLateness" Name="allowedLateness" FieldLabel="<%$ Resources: AllowedLateness %>" MinValue="0" />
+                                    </Items>
+                                </ext:FieldSet>
+                                <ext:FieldSet Collapsible="true" runat="server" Title="<%$ Resources: Overtime %>">
+                                    <Items>
+                                         <ext:ComboBox QueryMode="Local" ForceSelection="true" LabelWidth="130" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: FieldOT %>" Name="otEntitlementId" runat="server" DisplayField="name" ValueField="recordId" ID="otEntitlementId">
                                     <Store>
                                         <ext:Store runat="server" ID="otEntitlementStore">
                                             <Model>
@@ -187,73 +281,40 @@
                                         <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
                                     </Listeners>
                                 </ext:ComboBox>
-                                <ext:FieldSet runat="server"  Title="<%$ Resources:Common, Loans %>">
-                                    <Items>
-                                        <ext:ComboBox QueryMode="Local" Width="400" LabelWidth="130" ForceSelection="true" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: FieldLoan %>" Name="loanDeductionId" runat="server" DisplayField="name" ValueField="recordId" ID="loanDeductionId">
-                                    <Store>
-                                        <ext:Store runat="server" ID="loanDeductionStore">
-                                            <Model>
-                                                <ext:Model runat="server">
-                                                    <Fields>
-                                                        <ext:ModelField Name="recordId" />
-                                                        <ext:ModelField Name="name" />
-                                                    </Fields>
-                                                </ext:Model>
-                                            </Model>
-                                        </ext:Store>
-                                    </Store>
-                                    <RightButtons>
-                                        <ext:Button ID="Button3" runat="server" Icon="Add" Hidden="true">
-                                            <Listeners>
-                                                <Click Handler="CheckSession();  " />
-                                            </Listeners>
-                                            <DirectEvents>
-
-                                                <Click OnEvent="addDedloan">
-                                                </Click>
-                                            </DirectEvents>
-                                        </ext:Button>
-                                    </RightButtons>
-                                    <Listeners>
-                                        <FocusEnter Handler=" if(!this.readOnly)this.rightButtons[0].setHidden(false);" />
-                                        <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
-                                    </Listeners>
-                                </ext:ComboBox>
-                                        <ext:ComboBox  Width="400" QueryMode="Local" LabelWidth="130" ForceSelection="true" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: LoanCoverageType %>" Name="ldMethod" runat="server" ID="ldMethod">
+                                        <ext:ComboBox Width="400" QueryMode="Local" LabelWidth="130" ForceSelection="true" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: EntitlementTo %>" Name="overtimePCTOf" runat="server" ID="overtimePCTOf">
                                             <Items>
                                                 <ext:ListItem Text="<%$ Resources: PFromNetSalary %>" Value="1" />
                                                 <ext:ListItem Text="<%$ Resources: PFromBasicSalary %>" Value="2" />
-                                                <ext:ListItem Text="<%$ Resources: PFromLoan %>" Value="3" />
+
                                                 <ext:ListItem Text="<%$ Resources: FixedAmount %>" Value="4" />
-                                                <ext:ListItem Text="<%$ Resources: FixedPayment %>" Value="5" />
                                                 
+
                                             </Items>
-                                            <Listeners>
-                                                <Change Handler="handlePayment();"></Change>
-                                            </Listeners>
+                                       
                                         </ext:ComboBox>
-                                        <ext:NumberField Width="400" runat="server" LabelWidth="130" ID="ldValue" Name="ldValue" FieldLabel="<%$ Resources: PaymentValue %>" MinValue="0" />
+                                        <ext:NumberField Width="400" runat="server" LabelWidth="130" ID="overtimeEntAmount" Name="overtimeEntAmount" FieldLabel="<%$ Resources: OvertimeAmount %>"  MinValue="0" />
+                                        <ext:NumberField Width="400" runat="server" LabelWidth="130" ID="minimumOvertime" Name="minimumOvertime" FieldLabel="<%$ Resources: MinimumOvertime %>" MinValue="0" />
                                     </Items>
                                 </ext:FieldSet>
                             </Items>
-                             <Buttons>
-                        <ext:Button ID="SaveButton" runat="server" Text="<%$ Resources:Common, Save %>" Icon="Disk">
+                            <Buttons>
+                                <ext:Button ID="SaveButton" runat="server" Text="<%$ Resources:Common, Save %>" Icon="Disk">
 
-                            <Listeners>
-                                <Click Handler="CheckSession(); if (!#{BasicInfoTab}.getForm().isValid()) {return false;}  " />
-                            </Listeners>
-                            <DirectEvents>
-                                <Click OnEvent="SaveNewRecord" Failure="Ext.MessageBox.alert('#{titleSavingError}.value', '#{titleSavingErrorMessage}.value');">
-                                    <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="={#{EditRecordWindow}.body}" />
-                                    <ExtraParams>
+                                    <Listeners>
+                                        <Click Handler="CheckSession(); if (!#{BasicInfoTab}.getForm().isValid()) {return false;}  " />
+                                    </Listeners>
+                                    <DirectEvents>
+                                        <Click OnEvent="SaveNewRecord" Failure="Ext.MessageBox.alert('#{titleSavingError}.value', '#{titleSavingErrorMessage}.value');">
+                                            <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="={#{EditRecordWindow}.body}" />
+                                            <ExtraParams>
 
-                                        <ext:Parameter Name="values" Value="#{BasicInfoTab}.getForm().getValues()" Mode="Raw" Encode="true" />
-                                    </ExtraParams>
-                                </Click>
-                            </DirectEvents>
-                        </ext:Button>
+                                                <ext:Parameter Name="values" Value="#{BasicInfoTab}.getForm().getValues()" Mode="Raw" Encode="true" />
+                                            </ExtraParams>
+                                        </Click>
+                                    </DirectEvents>
+                                </ext:Button>
 
-                    </Buttons>
+                            </Buttons>
                         </ext:FormPanel>
                         <%--   <ext:TabPanel ID="panelRecordDetails" runat="server" ActiveTabIndex="0" Border="false" DeferredRender="false">
                             <Items>
@@ -262,7 +323,7 @@
                             </Items>
                         </ext:TabPanel>--%>
                     </Items>
-                   
+
                 </ext:Panel>
             </Items>
 

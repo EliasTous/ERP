@@ -373,24 +373,6 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Panel absense;
         
         /// <summary>
-        /// Chart1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.CartesianChart Chart1;
-        
-        /// <summary>
-        /// departmentsCount control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Store departmentsCount;
-        
-        /// <summary>
         /// PolarChart6 control.
         /// </summary>
         /// <remarks>

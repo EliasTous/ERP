@@ -100,10 +100,13 @@ namespace AionHR.Web.UI.Forms
             peDeductionStore.DataBind();
 
             loanDeductionStore.DataSource = GetDeductions();
-           loanDeductionStore.DataBind();
+            loanDeductionStore.DataBind();
 
             otEntitlementStore.DataSource = GetEntitlements();
             otEntitlementStore.DataBind();
+
+            latenessDeductionStore.DataSource = GetDeductions();
+            latenessDeductionStore.DataBind();
         }
 
         private void FillDefaults(List<KeyValuePair<string, string>> items)
@@ -137,10 +140,52 @@ namespace AionHR.Web.UI.Forms
             }
 
             catch { }
+            try
+            {
+                latenessDeductionId.Select(items.Where(s => s.Key == "latenessDeductionId").First().Value);
+            }
+
+            catch { }
+            try
+            {
+                latenessPCTOf.Select(items.Where(s => s.Key == "latenessPCTOf").First().Value);
+            }
+
+            catch { }
+            try
+            {
+                overtimePCTOf.Select(items.Where(s => s.Key == "overtimePCTOf").First().Value);
+            }
+
+            catch { }
 
             try
             {
                 ldValue.Text = (items.Where(s => s.Key == "ldValue").First().Value);
+            }
+
+            catch { }
+            try
+            {
+                latenessDedAmount.Text = (items.Where(s => s.Key == "latenessDedAmount").First().Value);
+            }
+
+            catch { }
+            try
+            {
+                overtimeEntAmount.Text = (items.Where(s => s.Key == "overtimeEntAmount").First().Value);
+            }
+
+            catch { }
+            try
+            {
+                allowedLateness.Text = (items.Where(s => s.Key == "allowedLateness").First().Value);
+            }
+
+            catch { }
+            try
+            {
+                minimumOvertime.Text = (items.Where(s => s.Key == "minimumOvertime").First().Value);
             }
 
             catch { }
@@ -162,7 +207,7 @@ namespace AionHR.Web.UI.Forms
         {
             ListRequest req = new ListRequest();
             ListResponse<EntitlementDeduction> eds = _employeeService.ChildGetAll<EntitlementDeduction>(req);
-             return eds.Items.Where(s => s.type == 1).ToList();
+            return eds.Items.Where(s => s.type == 1).ToList();
         }
         private List<EntitlementDeduction> GetDeductions()
         {
@@ -201,19 +246,33 @@ namespace AionHR.Web.UI.Forms
         {
             List<KeyValuePair<string, string>> submittedValues = new List<KeyValuePair<string, string>>();
             dynamic values = JsonConvert.DeserializeObject(e.ExtraParams["values"]);
-            if (!string.IsNullOrEmpty(values.ulDeductionId.ToString()))
+            if (values.ulDeductionId!=null&&!string.IsNullOrEmpty(values.ulDeductionId.ToString()))
                 submittedValues.Add(new KeyValuePair<string, string>("ulDeductionId", values.ulDeductionId.ToString()));
-            if (!string.IsNullOrEmpty(values.ssDeductionId.ToString()))
+            if (values.ssDeductionId != null && !string.IsNullOrEmpty(values.ssDeductionId.ToString()))
                 submittedValues.Add(new KeyValuePair<string, string>("ssDeductionId", values.ssDeductionId.ToString()));
-            if (!string.IsNullOrEmpty(values.loanDeductionId.ToString()))
+            if (values.loanDeductionId != null && !string.IsNullOrEmpty(values.loanDeductionId.ToString()))
                 submittedValues.Add(new KeyValuePair<string, string>("loanDeductionId", values.loanDeductionId.ToString()));
-            if (!string.IsNullOrEmpty(values.peDeductionId.ToString()))
+            if (values.peDeductionId != null && !string.IsNullOrEmpty(values.peDeductionId.ToString()))
                 submittedValues.Add(new KeyValuePair<string, string>("penaltyDeductionId", values.peDeductionId.ToString()));
-            if (!string.IsNullOrEmpty(values.otEntitlementId.ToString()))
+            if (values.otEntitlementId != null && !string.IsNullOrEmpty(values.otEntitlementId.ToString()))
                 submittedValues.Add(new KeyValuePair<string, string>("otEntitlementId", values.otEntitlementId.ToString()));
-            if (!string.IsNullOrEmpty(values.ldMethod.ToString()))
+            if (values.latenessDeductionId != null && !string.IsNullOrEmpty(values.latenessDeductionId.ToString()))
+                submittedValues.Add(new KeyValuePair<string, string>("latenessDeductionId", values.latenessDeductionId.ToString()));
+            if (values.allowedLateness != null && !string.IsNullOrEmpty(values.allowedLateness.ToString()))
+                submittedValues.Add(new KeyValuePair<string, string>("allowedLateness", values.allowedLateness.ToString()));
+            if (values.minimumOvertime != null && !string.IsNullOrEmpty(values.minimumOvertime.ToString()))
+                submittedValues.Add(new KeyValuePair<string, string>("minimumOvertime", values.minimumOvertime.ToString()));
+            if (values.latenessDedAmount != null && !string.IsNullOrEmpty(values.latenessDedAmount.ToString()))
+                submittedValues.Add(new KeyValuePair<string, string>("latenessDedAmount", values.latenessDedAmount.ToString()));
+            if (values.overtimeEntAmount != null && !string.IsNullOrEmpty(values.overtimeEntAmount.ToString()))
+                submittedValues.Add(new KeyValuePair<string, string>("overtimeEntAmount", values.overtimeEntAmount.ToString()));
+            if (values.ldMethod != null && !string.IsNullOrEmpty(values.ldMethod.ToString()))
                 submittedValues.Add(new KeyValuePair<string, string>("ldMethod", values.ldMethod.ToString()));
-            if (!string.IsNullOrEmpty(values.ldValue.ToString()))
+            if (values.latenessPCTOf != null && !string.IsNullOrEmpty(values.latenessPCTOf.ToString()))
+                submittedValues.Add(new KeyValuePair<string, string>("latenessPCTOf", values.latenessPCTOf.ToString()));
+            if (values.overtimePCTOf != null && !string.IsNullOrEmpty(values.overtimePCTOf.ToString()))
+                submittedValues.Add(new KeyValuePair<string, string>("overtimePCTOf", values.overtimePCTOf.ToString()));
+            if (values.ldValue != null && !string.IsNullOrEmpty(values.ldValue.ToString()))
                 submittedValues.Add(new KeyValuePair<string, string>("ldValue", values.ldValue.ToString()));
 
             KeyValuePair<string, string>[] valArr = submittedValues.ToArray();
@@ -228,7 +287,7 @@ namespace AionHR.Web.UI.Forms
             }
             else
             {
-               
+
 
                 Notification.Show(new NotificationConfig
                 {
@@ -368,6 +427,33 @@ namespace AionHR.Web.UI.Forms
             }
 
         }
+        protected void addDedLateness(object sender, DirectEventArgs e)
+        {
+            if (string.IsNullOrEmpty(latenessDeductionId.Text))
+                return;
+            EntitlementDeduction dept = new EntitlementDeduction();
+            dept.name = latenessDeductionId.Text; ;
+            dept.type = 2;
+
+            PostRequest<EntitlementDeduction> depReq = new PostRequest<EntitlementDeduction>();
+            depReq.entity = dept;
+            PostResponse<EntitlementDeduction> response = _employeeService.ChildAddOrUpdate<EntitlementDeduction>(depReq);
+            if (response.Success)
+            {
+                dept.recordId = response.recordId;
+                FillCombos();
+                latenessDeductionId.Value = dept.recordId;
+            }
+            else
+            {
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, response.Summary).Show();
+                return;
+            }
+
+        }
+
+
 
         [DirectMethod]
         public string CheckSession()
@@ -379,6 +465,6 @@ namespace AionHR.Web.UI.Forms
             else return "1";
         }
 
-    
+
     }
 }

@@ -235,6 +235,7 @@
     <Content Include="Images\Tools\expand-all.gif" />
     <Content Include="Images\Tools\group.png" />
     <Content Include="ImportAttendance.aspx" />
+    <Content Include="ImportDepartments.aspx" />
     <Content Include="ImportEmployeeNotes.aspx" />
     <Content Include="ImportLeaves.aspx" />
     <Content Include="ImportLoans.aspx" />
@@ -316,6 +317,7 @@
     <Content Include="Scripts\CompanyFiles.js" />
     <Content Include="Scripts\CompanyNews.js" />
     <Content Include="Scripts\Contacts.js" />
+    <Content Include="Scripts\HighCharts.js" />
     <Content Include="Scripts\SecurityGroups.js" />
     <Content Include="Scripts\ImportAttendance.js" />
     <Content Include="Scripts\EmployeeComplaints.js" />
@@ -471,6 +473,13 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>AccessControl.ar.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ImportDepartments.aspx.cs">
+      <DependentUpon>ImportDepartments.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ImportDepartments.aspx.designer.cs">
+      <DependentUpon>ImportDepartments.aspx</DependentUpon>
     </Compile>
     <Compile Include="Reports\RT303.aspx.cs">
       <DependentUpon>RT303.aspx</DependentUpon>

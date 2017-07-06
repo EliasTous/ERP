@@ -165,6 +165,9 @@
   <data name="ContractEndingDate" xml:space="preserve">
     <value>Contract Ending Date</value>
   </data>
+  <data name="DepartmentsCount" xml:space="preserve">
+    <value>Active Departments</value>
+  </data>
   <data name="DueToday" xml:space="preserve">
     <value>Due Today</value>
   </data>

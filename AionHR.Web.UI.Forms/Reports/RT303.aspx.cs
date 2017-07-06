@@ -85,7 +85,7 @@ namespace AionHR.Web.UI.Forms.Reports
 
                     format.Text = _systemService.SessionHelper.GetDateformat().ToUpper();
                     ASPxWebDocumentViewer1.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.Utils.DefaultBoolean.True : DevExpress.Utils.DefaultBoolean.False;
-
+                    dateRange1.DefaultStartDate = DateTime.Now.AddDays(-DateTime.Now.Day);
                 }
                 catch { }
             }
@@ -248,7 +248,7 @@ namespace AionHR.Web.UI.Forms.Reports
             h.Parameters["From"].Value = from;
             h.Parameters["To"].Value = to;
             h.Parameters["User"].Value = user;
-
+            
 
 
 
@@ -264,14 +264,27 @@ namespace AionHR.Web.UI.Forms.Reports
                 h.Parameters["Division"].Value = emp.divisionName;
 
             }
-
+            ListRequest def = new ListRequest();
+            int lateness = 0;
+            ListResponse<KeyValuePair<string, string>> items = _systemService.ChildGetAll<KeyValuePair<string, string>>(def);
+            try
+            {
+                lateness = Convert.ToInt32(items.Items.Where(s => s.Key == "allowedLateness").First().Value);
+            }
+            catch
+            {
+                
+            }
+            h.Parameters["AllowedLateness"].Value = lateness;
 
 
             h.CreateDocument();
 
-
+            
             ASPxWebDocumentViewer1.DataBind();
+            h.PrintingSystem.ExecCommand(DevExpress.XtraPrinting.PrintingSystemCommand.ZoomToPageWidth);
             ASPxWebDocumentViewer1.OpenReport(h);
+            
         }
 
         protected void ASPxCallbackPanel1_Callback(object sender, DevExpress.Web.CallbackEventArgsBase e)

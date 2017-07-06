@@ -18,7 +18,21 @@
     <script type="text/javascript" src="Scripts/CircileProgress.js?id=1"></script>
     <script type="text/javascript" src="Scripts/jquery-new.js?id=1"></script>
     <script type="text/javascript">
+        function fixWidth(s)
 
+        {
+            //App.CartesianChart1.setWidth(s * 50);
+            //App.CartesianChart1.setHeight(App.att.getHeight()-40);
+            //App.barPanel.setWidth(s * 50);
+            //App.barPanel.setHeight(App.att.getHeight()-40);
+            //alert(App.att.getWidth());
+            
+            App.CartesianChart1.setWidth(Math.max(App.att.getWidth(), s * 50));
+            App.CartesianChart1.setHeight(App.att.getHeight()-40);
+            App.barPanel.setWidth(Math.max(App.att.getWidth(), s * 50));
+            
+            App.barPanel.setHeight(App.att.getHeight()-40);
+        }
         function getStyle() {
             var dir = document.getElementById('rtl').value == 'True' ? 'right' : 'left';
             var s = 'text-align:' + dir;
@@ -144,7 +158,7 @@
                 App.LeaveRequestsStore.reload();
                 App.LoansStore.reload();
                 App.OverDueStore.reload();
-                App.departmentsCount.reload();
+                
                 /*Chained*/
 
                 //App.activeStore.reload(
@@ -205,6 +219,7 @@
                 //                    });
                 //           }
                 //       });
+                
                 $('.flashing').fadeTo(1000, 0.1, function () { $(this).fadeTo(2000, 1.0); });
             }
             else {
@@ -302,7 +317,13 @@
             drawChart(wrapper, t, of, activeChartCont);
             activeBar = wrapper.bar;
         }
-
+        function suppressZeros(text, sprite, config, rendererData, index) {
+            
+            if (text == 0 || text == '0') {
+                
+                return '';
+            }
+        }
     </script>
 </head>
 <body style="background: url(Images/bg.png) repeat;">
@@ -501,7 +522,7 @@
                                     <Items>
                                         <ext:Panel ID="rightPanel" BodyCls="withBackground" Cls="withBackground" StyleHtmlCls="withBackground" runat="server" AutoScroll="true" Layout="VBoxLayout" Flex="1" StyleSpec="padding-top:20px;">
                                             <Listeners>
-                                                <AfterLayout Handler="App.barPanel.setWidth(App.att.getWidth()); App.active.setWidth(App.att.getWidth()/7);App.active.setHeight(App.att.getWidth()/7);App.Chart1.setHeight(App.att.getHeight()); App.Chart1.setWidth(App.att.getWidth()/3); App.PolarChart6.setWidth(App.att.getWidth()/4); App.PolarChart6.setHeight(App.att.getWidth()/4); App.Chart1.setHeight(App.att.getHeight());App.absense.setWidth(App.att.getWidth()/7);App.late.setWidth(App.att.getWidth()/7);App.overdue.setWidth(App.belowt.getWidth()/4);App.today.setWidth(App.belowt.getWidth()/4);"></AfterLayout>
+                                                <AfterLayout Handler="  App.active.setWidth(App.att.getWidth()/7);App.active.setHeight(App.att.getWidth()/7); App.PolarChart6.setWidth(App.att.getWidth()/4); App.PolarChart6.setHeight(App.att.getWidth()/4); App.absense.setWidth(App.att.getWidth()/7);App.late.setWidth(App.att.getWidth()/7);App.overdue.setWidth(App.belowt.getWidth()/4);App.today.setWidth(App.belowt.getWidth()/4);"></AfterLayout>
                                             </Listeners>
                                             <LayoutConfig>
                                                 <ext:VBoxLayoutConfig Pack="End" Align="Stretch"></ext:VBoxLayoutConfig>
@@ -516,7 +537,7 @@
                                                             </LayoutConfig>
                                                             <Items>
                                                                 
-                                                                <ext:Panel runat="server" Layout="BorderLayout" Flex="1">
+                                                                <ext:Panel runat="server" Layout="BorderLayout" Flex="4">
                                                                     <LayoutConfig>
                                                                         
                                                                     </LayoutConfig>
@@ -555,7 +576,8 @@
                                                                       
                                                                     </Items>
                                                                 </ext:Panel>
-                                                                <ext:Panel runat="server" Layout="BorderLayout" Flex="1">
+                                                                <ext:Panel runat="server" Flex="1" />
+                                                                <ext:Panel runat="server" Layout="BorderLayout" Flex="4">
                                                                     <LayoutConfig>
                                                                         
                                                                     </LayoutConfig>
@@ -592,8 +614,8 @@
 
                                                                     </Items>
                                                                 </ext:Panel>
-
-                                                                <ext:Panel runat="server" Layout="BorderLayout" Flex="1">
+                                                                 <ext:Panel runat="server" Flex="1" />
+                                                                <ext:Panel runat="server" Layout="BorderLayout" Flex="4 ">
                                                                     <LayoutConfig>
                                                                         
                                                                     </LayoutConfig>
@@ -629,73 +651,7 @@
                                                                         <ext:Panel runat="server" Height="10" />
                                                                     </Items>
                                                                 </ext:Panel>
-                                                                  <ext:Panel runat="server" AutoScroll="true" Hidden="false" Flex="2">
-                                                            <Items>
-                                                                <ext:CartesianChart
-                                                                    ID="Chart1"
-                                                                    runat="server"
-                                                                    FlipXY="true"
-                                                                    AutoScroll="true"
-                                                                    
-                                                                    InsetPadding="40" 
-                                                                   >
-                                                                    <Store>
-                                                                        <ext:Store ID="departmentsCount" OnReadData="departmentsCount_ReadData"
-                                                                            runat="server">
-                                                                            <Model>
-                                                                                <ext:Model runat="server">
-                                                                                    <Fields>
-                                                                                        <ext:ModelField Name="Department" />
-                                                                                        <ext:ModelField Name="Count" />
-                                                                                    </Fields>
-                                                                                </ext:Model>
-                                                                            </Model>
-                                                                        </ext:Store>
-                                                                    </Store>
-                                                                    <AnimationConfig Duration="500" Easing="EaseOut" />
-                                                                   
-                                                                    <Items>
-                                                                    </Items>
-                                                                    <Axes>
-                                                                        <ext:NumericAxis
-                                                                            Fields="Count"
-                                                                            Position="Bottom" 
-                                                                           
-                                                                            >
-                                                                            <Renderer Handler="return label.toFixed(0);" />
-                                                                        </ext:NumericAxis>
-
-                                                                        <ext:CategoryAxis 
-                                                                            Fields="Department"
-                                                                            Position="Left"
-                                                                             />
-                                                                    </Axes>
-
-                                                                    <Series>
-                                                                        <ext:BarSeries
-                                                                            XField="Department" 
-                                                                            YField="Count">
-                                                                            
-                                                                            <StyleSpec>
-                                                                                
-                                                                                <ext:SeriesSprite  Opacity="0.8"  BarWidth="5" BaseColor="#33ABAA"    />
-                                                                            </StyleSpec>
-                                                                           <Renderer Handler="return {fill:'rgb(51, 171, 170)'};" />
-                                                                         
-                                                                            <HighlightConfig>
-                                                                                <ext:Sprite  FillStyle="rgba(69, 143, 210, 1.0)" StrokeStyle="black" LineWidth="2" />
-                                                                            </HighlightConfig>
-                                                                            <Tooltip runat="server" TrackMouse="true">
-                                                                                <Renderer Handler="toolTip.setHtml(record.get('Department') + ': ' + record.get('Count') );" />
-                                                                            </Tooltip>
-                                                                            <Label
-                                                                                Display="InsideEnd"
-                                                                                Field="Count" />
-                                                                        </ext:BarSeries>
-                                                                    </Series>
-                                                                </ext:CartesianChart>
-                                                            </Items>
-                                                        </ext:Panel>
+                                       
 
                                                                 <ext:Panel runat="server"  Hidden="true" Flex="1">
                                                                     <Items>
@@ -745,17 +701,17 @@
 
                                                             </Items>
 
-                                                        </ext:Panel>
-                                                         <ext:Panel runat="server" AutoScroll="true" Layout="FitLayout" ID="barPanel" >
+                                                        </ext:Panel> 
+                                                         <ext:Panel runat="server" AutoScroll="true"    ID="barPanel" Title="<%$Resources: DepartmentsCount %>" >
                                                              <Listeners>
                                                                  <AfterLayout Handler=" " />
                                                              </Listeners>
                                                             <Items>
                                                                 <ext:CartesianChart
-                                                                    ID="CartesianChart1"
+                                                                    ID="CartesianChart1"   
                                                                     runat="server"
                                                                     FlipXY="false"
-                                                                   AutoScroll="true"
+                                                                   AutoScroll="true"  
                                                                    >
                                                                     <Store>
                                                                         <ext:Store ID="Store1" OnReadData="departments2Count_ReadData"
@@ -763,53 +719,67 @@
                                                                             <Model>
                                                                                 <ext:Model runat="server">
                                                                                     <Fields>
-                                                                                        <ext:ModelField Name="Department" />
-                                                                                        <ext:ModelField Name="Count" />
+                                                                                        <ext:ModelField Name="departmentName" />
+                                                                                        <ext:ModelField Name="checkedOut" />
+                                                                                        <ext:ModelField Name="checkedIn" />
                                                                                     </Fields>
                                                                                 </ext:Model>
                                                                             </Model>
                                                                         </ext:Store>
                                                                     </Store>
+                                                                    <LegendConfig runat="server" Dock="Bottom" />
+
                                                                     <AnimationConfig Duration="500" Easing="EaseOut" />
                                                                    
                                                                     <Items>
                                                                     </Items>
                                                                     <Axes>
-                                                                        <ext:NumericAxis
+                                                                     <%--   <ext:NumericAxis
                                                                             Fields="Count"
                                                                             Position="Left" 
                                                                             Grid="true"
                                                                             >
                                                                             <Renderer Handler="return label.toFixed(0);" />
-                                                                        </ext:NumericAxis>
+                                                                        </ext:NumericAxis>--%>
 
                                                                         <ext:CategoryAxis 
-                                                                            Fields="Department"
+                                                                            Fields="departmentName"
                                                                             Position="Bottom"
-                                                                             />
+
+                                                                             >
+                                                                            <Label RotationDegrees="-45" />
+                                                                        </ext:CategoryAxis>
                                                                     </Axes>
 
                                                                     <Series>
                                                                         <ext:BarSeries
-                                                                            XField="Department" 
-                                                                            YField="Count">
+                                                                            XField="departmentName"  Stacked="true"
+                                                                            YField="checkedIn,checkedOut" Titles="In,Out">
                                                                             
                                                                             <StyleSpec>
                                                                                 
-                                                                                <ext:SeriesSprite  Opacity="0.8"  BarWidth="5" BaseColor="#33ABAA"    />
+                                                                                <ext:SeriesSprite  Opacity="0.8"  BarWidth="50" MinBarWidth="50" MinGapWidth="10" BaseColor="#33ABAA"    />
                                                                             </StyleSpec>
-                                                                           <Renderer Handler="return {fill:'rgb(51, 171, 170)'};" />
-                                                                         
+                                                                           <%--<Renderer Handler="return {fill:'rgb(51, 171, 170)'};" />--%>
+                                                                            <Tooltip runat="server">
+                                                                         <Renderer Handler="var browser = context.series.getTitle()[Ext.Array.indexOf(context.series.getYField(), context.field)]; toolTip.setHtml(browser + ' for ' + record.get('departmentName') + ': ' + record.get(context.field));" />
+                                                                                </Tooltip>
                                                                             <HighlightConfig>
                                                                                 <ext:Sprite  FillStyle="rgba(69, 143, 210, 1.0)" StrokeStyle="black" LineWidth="2" />
                                                                             </HighlightConfig>
-                                                                            <Tooltip runat="server" TrackMouse="true">
-                                                                                <Renderer Handler="toolTip.setHtml(record.get('Department') + ': ' + record.get('Count') );" />
-                                                                            </Tooltip>
+                                                                            <%--<Tooltip runat="server" TrackMouse="true">
+                                                                                <Renderer Handler="toolTip.setHtml(record.get('Department') + ': ' + record.get('In')+' /'+ parseInt(parseInt(record.get('In'))+parseInt(record.get('Out' ))));" />
+                                                                            </Tooltip>--%>
+                                                                            
                                                                             <Label
-                                                                                Display="InsideEnd"
-                                                                                Field="Count" />
+                                                                                Display="Under" Field="checkedOut,checkedIn" Orientation="Horizontal"
+                                                                                
+                                                                                 >
+                                                                                <Renderer Fn="suppressZeros"  />
+                                                                           </Label>
+                                                                      
                                                                         </ext:BarSeries>
+                                                                 
                                                                     </Series>
                                                                 </ext:CartesianChart>
                                                             </Items>

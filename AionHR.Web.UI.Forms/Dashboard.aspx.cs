@@ -751,10 +751,6 @@ namespace AionHR.Web.UI.Forms
 
     
 
-        protected void AlertsStore_ReadData(object sender, StoreReadDataEventArgs e)
-        {
-
-        }
 
         protected void LoansStore_ReadData(object sender, StoreReadDataEventArgs e)
         {
@@ -858,41 +854,70 @@ namespace AionHR.Web.UI.Forms
 
         }
 
-        protected void departmentsCount_ReadData(object sender, StoreReadDataEventArgs e)
-        {
-            List<object> objs = new List<object>();
-            objs.Add(new { Department = "First", Count = 40 });
-            objs.Add(new { Department = "Second", Count = 30 });
-            objs.Add(new { Department = "Third", Count = 50 });
-            objs.Add(new { Department = "Fourth", Count = 35 });
-            objs.Add(new { Department = "Fifth", Count = 16 });
-            objs.Add(new { Department = "Sixth", Count = 27 });
-            objs.Add(new { Department = "trht", Count = 40 });
-            objs.Add(new { Department = "Serthtrcond", Count = 10 });
-            objs.Add(new { Department = "Thqweqwird", Count = 20 });
-            objs.Add(new { Department = "Fougrerth", Count = 35 });
-            objs.Add(new { Department = "gerg", Count = 15 });
-            objs.Add(new { Department = "Sixqweqth", Count = 25 });
-            departmentsCount.DataSource = objs;
-            departmentsCount.DataBind();
-        }
+        
         protected void departments2Count_ReadData(object sender, StoreReadDataEventArgs e)
         {
+            ListRequest req = new ListRequest();
+            ListResponse<DepartmentActivity> resp = _systemService.ChildGetAll<DepartmentActivity>(req);
+            if (!resp.Success)
+            {
+                X.Msg.Alert(Resources.Common.Error, resp.Summary).Show();
+                return;
+            }
             List<object> objs = new List<object>();
-            objs.Add(new { Department = "First", Count = 40 });
-            objs.Add(new { Department = "Second", Count = 30 });
-            objs.Add(new { Department = "Third", Count = 50 });
-            objs.Add(new { Department = "Fourth", Count = 35 });
-            objs.Add(new { Department = "Fifth", Count = 16 });
-            objs.Add(new { Department = "Sixth", Count = 27 });
-            objs.Add(new { Department = "trht", Count = 40 });
-            objs.Add(new { Department = "Serthtrcond", Count = 10 });
-            objs.Add(new { Department = "Thqweqwird", Count = 20 });
-            objs.Add(new { Department = "Fougrerth", Count = 35 });
-            objs.Add(new { Department = "gerg", Count = 15 });
-            objs.Add(new { Department = "Sixqweqth", Count = 25 });
-            Store1.DataSource = objs;
+            objs.Add(new { departmentName = "First", checkedOut = 2, checkedIn = 38 });
+            objs.Add(new { departmentName = "Second", checkedOut = 0, checkedIn = 30 });
+            objs.Add(new { departmentName = "Third", checkedOut = 5, checkedIn = 45 });
+            objs.Add(new { departmentName = "Fourth", checkedOut = 15, checkedIn = 20 });
+            objs.Add(new { departmentName = "Fifth", checkedOut = 6, checkedIn = 10 });
+            objs.Add(new { departmentName = "Sixth", checkedOut = 2, checkedIn = 25 });
+            objs.Add(new { departmentName = "trht", checkedOut = 2, checkedIn = 38 });
+            objs.Add(new { departmentName = "Serthtrcond", checkedOut = 10, checkedIn = 0 });
+            objs.Add(new { departmentName = "Thqweqwird", checkedOut = 4, checkedIn = 16 });
+            objs.Add(new { departmentName = "Fougrerth", checkedOut = 2, checkedIn = 33 });
+            objs.Add(new { departmentName = "gerg", checkedOut = 0, checkedIn = 15 });
+            objs.Add(new { departmentName = "Sixqweqth", checkedOut = 0, checkedIn = 25 });
+            objs.Add(new { departmentName = "gregr", checkedOut = 2, checkedIn = 38 });
+            objs.Add(new { departmentName = "wqe", checkedOut = 0, checkedIn = 30 });
+            objs.Add(new { departmentName = "Thirfregd", checkedOut = 5, checkedIn = 45 });
+            objs.Add(new { departmentName = "bgt", checkedOut = 15, checkedIn = 20 });
+            objs.Add(new { departmentName = "qwe", checkedOut = 6, checkedIn = 10 });
+            objs.Add(new { departmentName = "yu", checkedOut = 2, checkedIn = 25 });
+            objs.Add(new { departmentName = "iuiyuiuy", checkedOut = 2, checkedIn = 38 });
+            objs.Add(new { departmentName = "luioliul", checkedOut = 10, checkedIn = 0 });
+            objs.Add(new { departmentName = "mn,mn,", checkedOut = 4, checkedIn = 16 });
+            objs.Add(new { departmentName = "vbnvbn", checkedOut = 2, checkedIn = 33 });
+            objs.Add(new { departmentName = "gercbcvbg", checkedOut = 0, checkedIn = 15 });
+            objs.Add(new { departmentName = "xcv", checkedOut = 0, checkedIn = 25 });
+            objs.Add(new { departmentName = "gre", checkedOut = 2, checkedIn = 38 });
+            objs.Add(new { departmentName = "rt45", checkedOut = 0, checkedIn = 30 });
+            objs.Add(new { departmentName = "t434", checkedOut = 5, checkedIn = 45 });
+            objs.Add(new { departmentName = "gtrry345", checkedOut = 15, checkedIn = 20 });
+            objs.Add(new { departmentName = "ytujyt456", checkedOut = 6, checkedIn = 10 });
+            objs.Add(new { departmentName = "jui654", checkedOut = 2, checkedIn = 25 });
+            objs.Add(new { departmentName = "jtyjyt546", checkedOut = 2, checkedIn = 38 });
+            objs.Add(new { departmentName = "jyyh45", checkedOut = 10, checkedIn = 0 });
+            objs.Add(new { departmentName = "gtrfhtr324", checkedOut = 4, checkedIn = 16 });
+            objs.Add(new { departmentName = "gregter", checkedOut = 2, checkedIn = 33 });
+            objs.Add(new { departmentName = "ge234rg", checkedOut = 0, checkedIn = 15 });
+            objs.Add(new { departmentName = "324", checkedOut = 0, checkedIn = 25 });
+            objs.Add(new { departmentName = "greger", checkedOut = 2, checkedIn = 38 });
+            objs.Add(new { departmentName = "gregre12", checkedOut = 0, checkedIn = 30 });
+            objs.Add(new { departmentName = "efwdv ", checkedOut = 5, checkedIn = 45 });
+            objs.Add(new { departmentName = "324ht", checkedOut = 15, checkedIn = 20 });
+            objs.Add(new { departmentName = "qwhtrhtr4e", checkedOut = 6, checkedIn = 10 });
+            objs.Add(new { departmentName = "htr4334", checkedOut = 2, checkedIn = 25 });
+            objs.Add(new { departmentName = "jyt6554", checkedOut = 2, checkedIn = 38 });
+            objs.Add(new { departmentName = "jytyt34", checkedOut = 10, checkedIn = 0 });
+            objs.Add(new { departmentName = "mnhy4mn,", checkedOut = 4, checkedIn = 16 });
+            objs.Add(new { departmentName = "hythy43", checkedOut = 2, checkedIn = 33 });
+            objs.Add(new { departmentName = "hrt2432", checkedOut = 0, checkedIn = 15 });
+            objs.Add(new { departmentName = "hytjny5", checkedOut = 0, checkedIn = 25 });
+            Store1.DataSource = resp.Items;
             Store1.DataBind();
+            X.Call("fixWidth", resp.Items.Count);
         }
+
+       
     }
 }
