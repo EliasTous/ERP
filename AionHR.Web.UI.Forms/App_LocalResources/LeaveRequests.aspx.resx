@@ -231,4 +231,10 @@
   <data name="ErrorNoCalendar" xml:space="preserve">
     <value>Error: You can't create a leave without having at least one calendar</value>
   </data>
+  <data name="CalDays" xml:space="preserve">
+    <value>Days</value>
+  </data>
+  <data name="LateDays" xml:space="preserve">
+    <value>Late Days</value>
+  </data>
 </root>

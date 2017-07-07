@@ -3,6 +3,7 @@ using System.Drawing;
 using System.Collections;
 using System.ComponentModel;
 using DevExpress.XtraReports.UI;
+using DevExpress.XtraPrinting;
 
 /// <summary>
 /// Summary description for JobHistory
@@ -92,7 +93,12 @@ namespace Reports
             }
             base.Dispose(disposing);
         }
+        protected override void OnAfterPrint(EventArgs e)
+        {
+            PrintingSystem.ExecCommand(PrintingSystemCommand.ZoomToPageWidth);
+            base.OnAfterPrint(e);
 
+        }
         #region Designer generated code
 
         /// <summary>

@@ -359,7 +359,7 @@ namespace AionHR.Web.UI.Forms
                                     fullName =response.result.inRelationToName.fullName
                                 }
                       });
-                    inRelationToId.SetValue(response.result.inRelationToId);
+                    inRelationToId.SetValue(response.result.inRelationToId.Value.ToString());
 
                     FillFilesStore(Convert.ToInt32(id));
                     FillTaskType();

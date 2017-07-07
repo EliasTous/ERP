@@ -10,6 +10,6 @@ namespace AionHR.Model.Company.Structure
 {
     public interface ICompanyStructureRepository : IRepository<IEntity, string>,ICommonRepository
     {
-        
+        RecordWebServiceResponse<Department> GetDepartmentByReference(Dictionary<string, string> Headers = null, Dictionary<string, string> QueryStringParams = null);
     }
 }

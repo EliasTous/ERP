@@ -12,6 +12,6 @@ namespace AionHR.Services.Interfaces
 {
     public interface ICompanyStructureService : IBaseService
     {
-        
+        RecordResponse<Department> GetDepartmentByReference(DepartmentByReference request);
     }
 }

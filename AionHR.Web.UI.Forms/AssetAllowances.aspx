@@ -364,7 +364,7 @@
                                 <ext:TextField ID="recordId" runat="server" Name="recordId" Hidden="true" />
 
                                 <ext:ComboBox runat="server" ID="employeeId" name="employeeId"
-                                    DisplayField="fullName"
+                                    DisplayField="fullName" 
                                     ValueField="recordId"
                                     TypeAhead="false"
                                     FieldLabel="<%$ Resources: FieldEmployeeName%>"

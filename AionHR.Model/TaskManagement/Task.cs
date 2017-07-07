@@ -20,7 +20,7 @@ namespace AionHR.Model.TaskManagement
         public int assignToId { get; set; }
         [PropertyID("32010_03")]
         [ApplySecurity]
-        public int inRelationToId { get; set; }
+        public int? inRelationToId { get; set; }
         [PropertyID("32010_04")]
         [ApplySecurity]
         public int ttId { get; set; }

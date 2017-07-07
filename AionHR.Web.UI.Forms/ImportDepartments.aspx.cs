@@ -211,10 +211,10 @@ namespace AionHR.Web.UI.Forms
                 storage.Save("UserId", _systemService.SessionHelper.Get("UserId"));
                 storage.Save("key", _systemService.SessionHelper.Get("Key"));
                 SessionHelper h = new SessionHelper(storage, new APIKeyBasedTokenGenerator());
-              
-                ICompanyStructureService _timeAtt = new CompanyStructureService( new CompanyStructureRepository(),h);
+                IEmployeeService emp = new EmployeeService(new EmployeeRepository(), h);
+                ICompanyStructureService _timeAtt = new CompanyStructureService(new CompanyStructureRepository(), h);
                 SystemService _system = new SystemService(new SystemRepository(), h);
-                DepartmentBatchRunner runner = new DepartmentBatchRunner(storage, _system, _timeAtt) { Items = shifts, OutputPath = MapPath("~/Imports/" + _systemService.SessionHelper.Get("AccountId") + "/") };
+                DepartmentBatchRunner runner = new DepartmentBatchRunner(storage, _system, _timeAtt,emp) { Items = shifts, OutputPath = MapPath("~/Imports/" + _systemService.SessionHelper.Get("AccountId") + "/") };
                 runner.Process();
                 this.ResourceManager1.AddScript("{0}.startTask('longactionprogress');", this.TaskManager1.ClientID);
 
@@ -239,7 +239,7 @@ namespace AionHR.Web.UI.Forms
 
             //object prep = _systemService.SessionHelper.Get("Preporcessing");
             BatchStatusRequest req = new BatchStatusRequest();
-            req.classId = ClassId.LMLR;
+            req.classId = ClassId.CSDE;
             RecordResponse<BatchOperationStatus> resp = _systemService.ChildGetRecord<BatchOperationStatus>(req);
             if (resp.result == null)
                 return;
@@ -278,7 +278,7 @@ namespace AionHR.Web.UI.Forms
             string content;
             try
             {
-                content = File.ReadAllText(MapPath("~/Imports/" + _systemService.SessionHelper.Get("AccountId") + "/" + ClassId.LMLR.ToString() + ".csv"));
+                content = File.ReadAllText(MapPath("~/Imports/" + _systemService.SessionHelper.Get("AccountId") + "/" + ClassId.CSDE.ToString() + ".csv"));
             }
 
             catch (Exception exp)
@@ -293,7 +293,7 @@ namespace AionHR.Web.UI.Forms
             HttpContext.Current.Response.Write(content);
             PostRequest<BatchOperationStatus> req = new PostRequest<BatchOperationStatus>();
             BatchOperationStatus batch = new BatchOperationStatus();
-            batch.classId = ClassId.LMLR;
+            batch.classId = ClassId.CSDE;
             batch.status = 0;
             batch.processed = 0;
             batch.tableSize = 0;
@@ -326,7 +326,7 @@ namespace AionHR.Web.UI.Forms
         {
             PostRequest<BatchOperationStatus> req = new PostRequest<BatchOperationStatus>();
             BatchOperationStatus batch = new BatchOperationStatus();
-            batch.classId = ClassId.LMLR;
+            batch.classId = ClassId.CSDE;
             batch.status = 0;
             batch.processed = 0;
             batch.tableSize = 0;

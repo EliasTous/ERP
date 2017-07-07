@@ -277,12 +277,10 @@ namespace AionHR.Web.UI.Forms.Reports
             }
             h.Parameters["AllowedLateness"].Value = lateness;
 
-
+            h.PrintingSystem.Document.ScaleFactor = 4;
             h.CreateDocument();
 
             
-            ASPxWebDocumentViewer1.DataBind();
-            h.PrintingSystem.ExecCommand(DevExpress.XtraPrinting.PrintingSystemCommand.ZoomToPageWidth);
             ASPxWebDocumentViewer1.OpenReport(h);
             
         }

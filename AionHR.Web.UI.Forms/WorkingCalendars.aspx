@@ -2178,7 +2178,7 @@
                             BodyPadding="5">
                             <Items>
                                 
-                               <ext:ComboBox runat="server" ID="scId" DisplayField="name" Name="scId" ValueField="recordId" FieldLabel="<%$ Resources:Schedule %>" SubmitValue="true">
+                               <ext:ComboBox runat="server" ID="scId" DisplayField="name" AllowBlank="false" Name="scId" ValueField="recordId" FieldLabel="<%$ Resources:Schedule %>" SubmitValue="true">
                                    <Store>
                                        <ext:Store runat="server" ID="schedulesStore" >
                                            <Model>
@@ -2192,7 +2192,7 @@
                                        </ext:Store>
                                    </Store>
                                </ext:ComboBox>
-                                <ext:ComboBox runat="server" DisplayField="name" ValueField="recordId" Name="dayTypeId" ID="dayTypeId" FieldLabel="<%$ Resources:DayType %>" SubmitValue="true">
+                                <ext:ComboBox runat="server" DisplayField="name" ValueField="recordId" AllowBlank="false" Name="dayTypeId" ID="dayTypeId" FieldLabel="<%$ Resources:DayType %>" SubmitValue="true">
                                    <Store>
                                        <ext:Store runat="server" ID="dayTypesStore" >
                                            <Model>

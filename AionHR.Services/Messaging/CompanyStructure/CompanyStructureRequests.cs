@@ -74,3 +74,18 @@ public class CompanyRightToworkListRequest : ListRequest
         }
     }
 }
+
+public class DepartmentByReference:RecordRequest
+{
+    public string Reference { get; set; }
+
+    public override Dictionary<string, string> Parameters
+    {
+        get
+        {
+            parameters = new Dictionary<string, string>();
+            parameters.Add("_departmentRef", Reference);
+            return parameters;
+        }
+    }
+}

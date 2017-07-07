@@ -117,119 +117,68 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="1" xml:space="preserve">
-    <value>Present Today</value>
-  </data>
-  <data name="2" xml:space="preserve">
-    <value>Late</value>
-  </data>
-  <data name="3" xml:space="preserve">
-    <value>Absence</value>
-  </data>
-  <data name="4" xml:space="preserve">
-    <value>Leave</value>
-  </data>
-  <data name="5" xml:space="preserve">
-    <value>Missing Punches</value>
-  </data>
-  <data name="AbsenseGridTitle" xml:space="preserve">
-    <value>Absense</value>
-  </data>
-  <data name="ActiveGridTitle" xml:space="preserve">
-    <value>Active</value>
-  </data>
-  <data name="Alerts" xml:space="preserve">
-    <value>Alerts</value>
-  </data>
-  <data name="All" xml:space="preserve">
-    <value>Late</value>
-  </data>
-  <data name="Anneversaries" xml:space="preserve">
-    <value>Work Anniversaries</value>
-  </data>
-  <data name="Attendance" xml:space="preserve">
-    <value>Attendance</value>
-  </data>
   <data name="BasicInfoTabEditWindowTitle" xml:space="preserve">
-    <value>Profile</value>
+    <value>Shift Details</value>
   </data>
-  <data name="Birthdays" xml:space="preserve">
-    <value>Birthdays</value>
+  <data name="ButtonClear" xml:space="preserve">
+    <value>Clear</value>
   </data>
-  <data name="CheckMoniterGridTitle" xml:space="preserve">
-    <value>Check Monitor</value>
-  </data>
-  <data name="ComapnyRightToWork" xml:space="preserve">
-    <value>Company Right To Work</value>
+  <data name="ButtonRefresh" xml:space="preserve">
+    <value>Refresh</value>
   </data>
   <data name="ContractEndingDate" xml:space="preserve">
     <value>Contract Ending Date</value>
   </data>
-  <data name="DepartmentsCount" xml:space="preserve">
-    <value>Active Departments</value>
+  <data name="DayShifts" xml:space="preserve">
+    <value>Shifts</value>
   </data>
-  <data name="DueToday" xml:space="preserve">
-    <value>Due Today</value>
+  <data name="Download" xml:space="preserve">
+    <value>Download</value>
   </data>
   <data name="EditWindowsTitle" xml:space="preserve">
     <value>Edit Branch</value>
   </data>
-  <data name="EmployeeRightToWork" xml:space="preserve">
-    <value>Employee Right To Work</value>
-  </data>
-  <data name="FieldAmount" xml:space="preserve">
-    <value>Amount</value>
+  <data name="ErrorImporting" xml:space="preserve">
+    <value>Couldn't load file, please check the file format</value>
   </data>
   <data name="FieldBirthPlace" xml:space="preserve">
     <value>Place of Birth</value>
   </data>
   <data name="FieldBranch" xml:space="preserve">
-    <value>Branch</value>
+    <value>Select a Branch</value>
   </data>
-  <data name="FieldCount" xml:space="preserve">
-    <value>Count</value>
+  <data name="FieldBreaks" xml:space="preserve">
+    <value>Breaks</value>
+  </data>
+  <data name="FieldCheckIn" xml:space="preserve">
+    <value>Check In</value>
+  </data>
+  <data name="FieldCheckOut" xml:space="preserve">
+    <value>Check Out</value>
   </data>
   <data name="FieldDate" xml:space="preserve">
-    <value>Date</value>
+    <value>Select a Date</value>
   </data>
   <data name="FieldDateOfBirth" xml:space="preserve">
     <value>Birth Date</value>
   </data>
-  <data name="FieldDaysLeft" xml:space="preserve">
-    <value>Days Left</value>
+  <data name="FieldDay" xml:space="preserve">
+    <value>Day</value>
   </data>
   <data name="FieldDepartment" xml:space="preserve">
-    <value>Department</value>
-  </data>
-  <data name="FieldDestination" xml:space="preserve">
-    <value>Destination</value>
+    <value>Select a Department</value>
   </data>
   <data name="FieldDivision" xml:space="preserve">
-    <value>Division</value>
-  </data>
-  <data name="FieldDueDate" xml:space="preserve">
-    <value>Due Date</value>
-  </data>
-  <data name="FieldEHStatus" xml:space="preserve">
-    <value>Employment</value>
+    <value>Select a Division</value>
   </data>
   <data name="FieldEmployee" xml:space="preserve">
     <value>Employee</value>
-  </data>
-  <data name="FieldEmployeeName" xml:space="preserve">
-    <value>Employee</value>
-  </data>
-  <data name="FieldEndDate" xml:space="preserve">
-    <value>End Date</value>
   </data>
   <data name="FieldFamilyName" xml:space="preserve">
     <value>Family Name</value>
   </data>
   <data name="FieldFirstName" xml:space="preserve">
     <value>First Name</value>
-  </data>
-  <data name="FieldFrom" xml:space="preserve">
-    <value>From</value>
   </data>
   <data name="FieldFullName" xml:space="preserve">
     <value>Name</value>
@@ -243,6 +192,9 @@
   <data name="FieldHomeEmail" xml:space="preserve">
     <value>Home Email</value>
   </data>
+  <data name="FieldHoursWorked" xml:space="preserve">
+    <value>Hours Worked</value>
+  </data>
   <data name="FieldIsInactive" xml:space="preserve">
     <value>Is Inactive?</value>
   </data>
@@ -255,26 +207,11 @@
   <data name="FieldLastTACheckStatus" xml:space="preserve">
     <value>Last Check In Status</value>
   </data>
-  <data name="FieldLtName" xml:space="preserve">
-    <value>Leave Type</value>
-  </data>
   <data name="FieldMiddleName" xml:space="preserve">
     <value>Middle Name</value>
   </data>
-  <data name="FieldMissedIn" xml:space="preserve">
-    <value>In</value>
-  </data>
-  <data name="FieldMissedOut" xml:space="preserve">
-    <value>Out</value>
-  </data>
   <data name="FieldMobile" xml:space="preserve">
     <value>Mobile</value>
-  </data>
-  <data name="FieldMonitor" xml:space="preserve">
-    <value>Setting</value>
-  </data>
-  <data name="FieldName" xml:space="preserve">
-    <value>Name</value>
   </data>
   <data name="FieldNationality" xml:space="preserve">
     <value>Nationality</value>
@@ -284,9 +221,6 @@
   </data>
   <data name="FieldPosition" xml:space="preserve">
     <value>Position</value>
-  </data>
-  <data name="FieldPurpose" xml:space="preserve">
-    <value>Purpose</value>
   </data>
   <data name="FieldRecordId" xml:space="preserve">
     <value>Record ID</value>
@@ -300,21 +234,6 @@
   <data name="FieldSponsor" xml:space="preserve">
     <value>Sponsor</value>
   </data>
-  <data name="FieldStartDate" xml:space="preserve">
-    <value>Start Date</value>
-  </data>
-  <data name="FieldTaskName" xml:space="preserve">
-    <value>Task</value>
-  </data>
-  <data name="FieldTime" xml:space="preserve">
-    <value>Time</value>
-  </data>
-  <data name="FieldTo" xml:space="preserve">
-    <value>To</value>
-  </data>
-  <data name="FieldType" xml:space="preserve">
-    <value>Type</value>
-  </data>
   <data name="FieldVacationSchedule" xml:space="preserve">
     <value>Vacation Schedule</value>
   </data>
@@ -324,52 +243,31 @@
   <data name="FieldWorkingCalendar" xml:space="preserve">
     <value>Calendar</value>
   </data>
-  <data name="In" xml:space="preserve">
-    <value>In</value>
+  <data name="Import" xml:space="preserve">
+    <value>Import</value>
   </data>
-  <data name="Late" xml:space="preserve">
-    <value>Late</value>
+  <data name="Pick" xml:space="preserve">
+    <value>Pick a file to import</value>
   </data>
-  <data name="LatenessGridTitle" xml:space="preserve">
-    <value>Late</value>
+  <data name="preprocessing" xml:space="preserve">
+    <value>Preprocessing</value>
   </data>
-  <data name="Leaves" xml:space="preserve">
-    <value>Leaves</value>
+  <data name="ResultReady" xml:space="preserve">
+    <value>Your Result is ready, click to download</value>
   </data>
-  <data name="LeavesGridTitle" xml:space="preserve">
-    <value>Leaves</value>
+  <data name="saved" xml:space="preserve">
+    <value>{0} items were saved successfully, {1} failed</value>
   </data>
-  <data name="Loans" xml:space="preserve">
-    <value>Loans</value>
+  <data name="TotalBreaks" xml:space="preserve">
+    <value>Total Breaks</value>
   </data>
-  <data name="MissingPunchesGridTitle" xml:space="preserve">
-    <value>Missing Punches</value>
-  </data>
-  <data name="OnTime" xml:space="preserve">
-    <value>On Time</value>
-  </data>
-  <data name="Out" xml:space="preserve">
-    <value>Absent</value>
-  </data>
-  <data name="OutGridTitle" xml:space="preserve">
-    <value>Active Out</value>
-  </data>
-  <data name="OverDue" xml:space="preserve">
-    <value>Over Due</value>
-  </data>
-  <data name="Probation" xml:space="preserve">
-    <value>Probation</value>
-  </data>
-  <data name="Requests" xml:space="preserve">
-    <value>Requests</value>
-  </data>
-  <data name="SalaryChange" xml:space="preserve">
-    <value>Salary Change</value>
-  </data>
-  <data name="Tasks" xml:space="preserve">
-    <value>Tasks</value>
+  <data name="TotalText" xml:space="preserve">
+    <value>Total</value>
   </data>
   <data name="WindowTitle" xml:space="preserve">
     <value>Employees</value>
+  </data>
+  <data name="working" xml:space="preserve">
+    <value>Working</value>
   </data>
 </root>

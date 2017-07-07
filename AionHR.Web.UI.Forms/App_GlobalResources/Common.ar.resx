@@ -933,4 +933,7 @@
   <data name="RT303" xml:space="preserve">
     <value>الحضور التفصيلي</value>
   </data>
+  <data name="ImportDepartments" xml:space="preserve">
+    <value>استيراد معلومات الأقسام</value>
+  </data>
 </root>

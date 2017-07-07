@@ -18,20 +18,18 @@
     <script type="text/javascript" src="Scripts/CircileProgress.js?id=1"></script>
     <script type="text/javascript" src="Scripts/jquery-new.js?id=1"></script>
     <script type="text/javascript">
-        function fixWidth(s)
-
-        {
+        function fixWidth(s) {
             //App.CartesianChart1.setWidth(s * 50);
             //App.CartesianChart1.setHeight(App.att.getHeight()-40);
             //App.barPanel.setWidth(s * 50);
             //App.barPanel.setHeight(App.att.getHeight()-40);
             //alert(App.att.getWidth());
-            
+
             App.CartesianChart1.setWidth(Math.max(App.att.getWidth(), s * 50));
-            App.CartesianChart1.setHeight(App.att.getHeight()-40);
+            App.CartesianChart1.setHeight(App.att.getHeight() - 40);
             App.barPanel.setWidth(Math.max(App.att.getWidth(), s * 50));
-            
-            App.barPanel.setHeight(App.att.getHeight()-40);
+
+            App.barPanel.setHeight(App.att.getHeight() - 40);
         }
         function getStyle() {
             var dir = document.getElementById('rtl').value == 'True' ? 'right' : 'left';
@@ -158,7 +156,7 @@
                 App.LeaveRequestsStore.reload();
                 App.LoansStore.reload();
                 App.OverDueStore.reload();
-                
+
                 /*Chained*/
 
                 //App.activeStore.reload(
@@ -219,7 +217,7 @@
                 //                    });
                 //           }
                 //       });
-                
+
                 $('.flashing').fadeTo(1000, 0.1, function () { $(this).fadeTo(2000, 1.0); });
             }
             else {
@@ -318,9 +316,9 @@
             activeBar = wrapper.bar;
         }
         function suppressZeros(text, sprite, config, rendererData, index) {
-            
+
             if (text == 0 || text == '0') {
-                
+
                 return '';
             }
         }
@@ -533,13 +531,12 @@
                                                     <Items>
                                                         <ext:Panel runat="server" Title="<%$Resources:Attendance %>" Layout="HBoxLayout" Flex="1">
                                                             <LayoutConfig>
-                                                                <ext:HBoxLayoutConfig Align="Stretch" ></ext:HBoxLayoutConfig>
+                                                                <ext:HBoxLayoutConfig Align="Stretch"></ext:HBoxLayoutConfig>
                                                             </LayoutConfig>
                                                             <Items>
-                                                                
+
                                                                 <ext:Panel runat="server" Layout="BorderLayout" Flex="4">
                                                                     <LayoutConfig>
-                                                                        
                                                                     </LayoutConfig>
                                                                     <Items>
                                                                         <ext:Panel runat="server" ID="active" Region="Center">
@@ -547,17 +544,17 @@
                                                                                 <div id="activeChartCont" style="padding: 10px; width: 100%; height: 100%;"></div>
                                                                             </Content>
                                                                         </ext:Panel>
-                                                                         
+
                                                                         <ext:Panel runat="server" Layout="FitLayout" Region="South">
                                                                             <Items>
-                                                                                
+
                                                                                 <ext:Panel runat="server" Layout="HBoxLayout" PaddingSpec="0 0 10 0">
                                                                                     <LayoutConfig>
                                                                                         <ext:HBoxLayoutConfig Align="Middle"></ext:HBoxLayoutConfig>
                                                                                     </LayoutConfig>
                                                                                     <Items>
                                                                                         <ext:Panel runat="server" Flex="1" />
-                                                                                        
+
                                                                                         <ext:Panel runat="server" Flex="1">
                                                                                             <Items>
                                                                                                 <ext:HyperlinkButton Height="20" runat="server" PaddingSpec="0 0 0 0" Flex="1" Text="<%$Resources:ActiveGridTitle %>" StyleSpec="font-size:16pt;">
@@ -570,16 +567,15 @@
                                                                                         <ext:Panel runat="server" Flex="1" />
                                                                                     </Items>
                                                                                 </ext:Panel>
-                                                                                  
+
                                                                             </Items>
                                                                         </ext:Panel>
-                                                                      
+
                                                                     </Items>
                                                                 </ext:Panel>
                                                                 <ext:Panel runat="server" Flex="1" />
                                                                 <ext:Panel runat="server" Layout="BorderLayout" Flex="4">
                                                                     <LayoutConfig>
-                                                                        
                                                                     </LayoutConfig>
                                                                     <Items>
 
@@ -588,7 +584,7 @@
                                                                                 <div id="leavesChartCont" style="padding: 10px; width: 100%; height: 100%;"></div>
                                                                             </Content>
                                                                         </ext:Panel>
-                                                                        <ext:Panel runat="server" Layout="FitLayout"  Region="South" >
+                                                                        <ext:Panel runat="server" Layout="FitLayout" Region="South">
                                                                             <Items>
                                                                                 <ext:Panel runat="server" Layout="HBoxLayout" PaddingSpec="0 0 10 0">
                                                                                     <LayoutConfig>
@@ -614,21 +610,20 @@
 
                                                                     </Items>
                                                                 </ext:Panel>
-                                                                 <ext:Panel runat="server" Flex="1" />
+                                                                <ext:Panel runat="server" Flex="1" />
                                                                 <ext:Panel runat="server" Layout="BorderLayout" Flex="4 ">
                                                                     <LayoutConfig>
-                                                                        
                                                                     </LayoutConfig>
                                                                     <Items>
-                                                                        <ext:Panel runat="server" ID="absense"  Region="Center">
+                                                                        <ext:Panel runat="server" ID="absense" Region="Center">
                                                                             <Content>
                                                                                 <div id="absentChartCont" style="padding: 10px; width: 100%; height: 100%;"></div>
                                                                             </Content>
                                                                         </ext:Panel>
-                                                                       
-                                                                        <ext:Panel runat="server" Layout="FitLayout"  Region="South" >
+
+                                                                        <ext:Panel runat="server" Layout="FitLayout" Region="South">
                                                                             <Items>
-                                                                                <ext:Panel runat="server" Layout="HBoxLayout" PaddingSpec="0 0 10 0" >
+                                                                                <ext:Panel runat="server" Layout="HBoxLayout" PaddingSpec="0 0 10 0">
                                                                                     <LayoutConfig>
                                                                                         <ext:HBoxLayoutConfig Align="Middle"></ext:HBoxLayoutConfig>
                                                                                     </LayoutConfig>
@@ -651,23 +646,21 @@
                                                                         <ext:Panel runat="server" Height="10" />
                                                                     </Items>
                                                                 </ext:Panel>
-                                       
 
-                                                                <ext:Panel runat="server"  Hidden="true" Flex="1">
+
+                                                                <ext:Panel runat="server" Hidden="true" Flex="1">
                                                                     <Items>
                                                                         <ext:PolarChart
                                                                             ID="PolarChart6"
                                                                             runat="server"
                                                                             Shadow="true"
-                                                                            
                                                                             InsetPadding="20"
                                                                             MarginSpec="30 0 0 30"
                                                                             InnerPadding="30">
 
                                                                             <Store>
-                                                                        
-                                                                    </Store>
-                                                                          
+                                                                            </Store>
+
                                                                             <AnimationConfig Duration="500"></AnimationConfig>
                                                                             <Interactions>
                                                                             </Interactions>
@@ -686,33 +679,31 @@
                                                                                         <Renderer Fn="tipRenderer" />
                                                                                     </Tooltip>
                                                                                     <Listeners>
-                                                                                        
                                                                                     </Listeners>
                                                                                 </ext:PieSeries>
                                                                             </Series>
                                                                             <Items>
                                                                             </Items>
                                                                         </ext:PolarChart>
-                                                                        
+
                                                                     </Items>
                                                                 </ext:Panel>
 
-                                                                   
+
 
                                                             </Items>
 
-                                                        </ext:Panel> 
-                                                         <ext:Panel runat="server" AutoScroll="true"    ID="barPanel" Title="<%$Resources: DepartmentsCount %>" >
-                                                             <Listeners>
-                                                                 <AfterLayout Handler=" " />
-                                                             </Listeners>
+                                                        </ext:Panel>
+                                                        <ext:Panel runat="server" AutoScroll="true" ID="barPanel" Title="<%$Resources: DepartmentsCount %>">
+                                                            <Listeners>
+                                                                <AfterLayout Handler=" " />
+                                                            </Listeners>
                                                             <Items>
                                                                 <ext:CartesianChart
-                                                                    ID="CartesianChart1"   
+                                                                    ID="CartesianChart1"
                                                                     runat="server"
                                                                     FlipXY="false"
-                                                                   AutoScroll="true"  
-                                                                   >
+                                                                    AutoScroll="true">
                                                                     <Store>
                                                                         <ext:Store ID="Store1" OnReadData="departments2Count_ReadData"
                                                                             runat="server">
@@ -730,11 +721,11 @@
                                                                     <LegendConfig runat="server" Dock="Bottom" />
 
                                                                     <AnimationConfig Duration="500" Easing="EaseOut" />
-                                                                   
+
                                                                     <Items>
                                                                     </Items>
                                                                     <Axes>
-                                                                     <%--   <ext:NumericAxis
+                                                                        <%--   <ext:NumericAxis
                                                                             Fields="Count"
                                                                             Position="Left" 
                                                                             Grid="true"
@@ -742,49 +733,45 @@
                                                                             <Renderer Handler="return label.toFixed(0);" />
                                                                         </ext:NumericAxis>--%>
 
-                                                                        <ext:CategoryAxis 
+                                                                        <ext:CategoryAxis
                                                                             Fields="departmentName"
-                                                                            Position="Bottom"
-
-                                                                             >
+                                                                            Position="Bottom">
                                                                             <Label RotationDegrees="-45" />
                                                                         </ext:CategoryAxis>
                                                                     </Axes>
 
                                                                     <Series>
                                                                         <ext:BarSeries
-                                                                            XField="departmentName"  Stacked="true"
+                                                                            XField="departmentName" Stacked="true"
                                                                             YField="checkedIn,checkedOut" Titles="In,Out">
-                                                                            
+
                                                                             <StyleSpec>
-                                                                                
-                                                                                <ext:SeriesSprite  Opacity="0.8"  BarWidth="50" MinBarWidth="50" MinGapWidth="10" BaseColor="#33ABAA"    />
+
+                                                                                <ext:SeriesSprite Opacity="0.8" BarWidth="50" MinBarWidth="50" MinGapWidth="10" BaseColor="#33ABAA" />
                                                                             </StyleSpec>
-                                                                           <%--<Renderer Handler="return {fill:'rgb(51, 171, 170)'};" />--%>
+                                                                            <%--<Renderer Handler="return {fill:'rgb(51, 171, 170)'};" />--%>
                                                                             <Tooltip runat="server">
-                                                                         <Renderer Handler="var browser = context.series.getTitle()[Ext.Array.indexOf(context.series.getYField(), context.field)]; toolTip.setHtml(browser + ' for ' + record.get('departmentName') + ': ' + record.get(context.field));" />
-                                                                                </Tooltip>
+                                                                                <Renderer Handler="var browser = context.series.getTitle()[Ext.Array.indexOf(context.series.getYField(), context.field)]; toolTip.setHtml(browser + ' for ' + record.get('departmentName') + ': ' + record.get(context.field));" />
+                                                                            </Tooltip>
                                                                             <HighlightConfig>
-                                                                                <ext:Sprite  FillStyle="rgba(69, 143, 210, 1.0)" StrokeStyle="black" LineWidth="2" />
+                                                                                <ext:Sprite FillStyle="rgba(69, 143, 210, 1.0)" StrokeStyle="black" LineWidth="2" />
                                                                             </HighlightConfig>
                                                                             <%--<Tooltip runat="server" TrackMouse="true">
                                                                                 <Renderer Handler="toolTip.setHtml(record.get('Department') + ': ' + record.get('In')+' /'+ parseInt(parseInt(record.get('In'))+parseInt(record.get('Out' ))));" />
                                                                             </Tooltip>--%>
-                                                                            
+
                                                                             <Label
-                                                                                Display="Under" Field="checkedOut,checkedIn" Orientation="Horizontal"
-                                                                                
-                                                                                 >
-                                                                                <Renderer Fn="suppressZeros"  />
-                                                                           </Label>
-                                                                      
+                                                                                Display="Under" Field="checkedOut,checkedIn" Orientation="Horizontal">
+                                                                                <Renderer Fn="suppressZeros" />
+                                                                            </Label>
+
                                                                         </ext:BarSeries>
-                                                                 
+
                                                                     </Series>
                                                                 </ext:CartesianChart>
                                                             </Items>
                                                         </ext:Panel>
-                                                      
+
 
                                                         <ext:GridPanel MarginSpec="0 0 0 0"
                                                             ID="leaveGrid" Hidden="true"
@@ -923,86 +910,7 @@
                                                     </Defaults>
                                                     <Items>
 
-                                                        <ext:Panel runat="server" Layout="HBoxLayout" Title="<%$Resources:Tasks %>">
-                                                            <LayoutConfig>
-                                                                <ext:HBoxLayoutConfig Align="Stretch"></ext:HBoxLayoutConfig>
-                                                            </LayoutConfig>
-                                                            <Items>
-
-                                                                <ext:Panel runat="server" Layout="VBoxLayout" Flex="1">
-                                                                    <LayoutConfig>
-                                                                        <ext:VBoxLayoutConfig Align="Center" />
-                                                                    </LayoutConfig>
-                                                                    <Items>
-
-                                                                        <ext:Panel runat="server" ID="today" Flex="7">
-                                                                            <Content>
-                                                                                <div id="Chart2Container" style="padding: 10px; width: 100%; height: 100%;"></div>
-                                                                            </Content>
-                                                                        </ext:Panel>
-                                                                        <ext:Panel runat="server" Layout="FitLayout" Height="20">
-                                                                            <Items>
-                                                                                <ext:Panel runat="server" Layout="HBoxLayout">
-                                                                                    <LayoutConfig>
-                                                                                        <ext:HBoxLayoutConfig Align="Middle"></ext:HBoxLayoutConfig>
-                                                                                    </LayoutConfig>
-                                                                                    <Items>
-                                                                                        <ext:Panel runat="server" Flex="1" />
-                                                                                        <ext:Panel runat="server" Flex="1">
-                                                                                            <Items>
-                                                                                                <ext:HyperlinkButton runat="server" Height="20" PaddingSpec="0 0 0 0" Flex="1" Text="<%$Resources:OverDue %>" StyleSpec="font-size:16pt;">
-                                                                                                    <Listeners>
-                                                                                                        <Click Handler="App.overDueWindow.show();" />
-                                                                                                    </Listeners>
-                                                                                                </ext:HyperlinkButton>
-                                                                                            </Items>
-                                                                                        </ext:Panel>
-                                                                                        <ext:Panel runat="server" Flex="1" />
-                                                                                    </Items>
-                                                                                </ext:Panel>
-                                                                            </Items>
-                                                                        </ext:Panel>
-                                                                        <ext:Panel runat="server" Height="10" />
-                                                                    </Items>
-                                                                </ext:Panel>
-                                                                <ext:Panel runat="server" Layout="VBoxLayout" Flex="1">
-                                                                    <LayoutConfig>
-                                                                        <ext:VBoxLayoutConfig Align="Center" />
-                                                                    </LayoutConfig>
-                                                                    <Items>
-
-                                                                        <ext:Panel runat="server" ID="overdue" Width="250" Height="250" Flex="7">
-                                                                            <Content>
-                                                                                <div id="Chart3Container" style="padding: 10px; width: 100%; height: 100%;"></div>
-                                                                            </Content>
-                                                                        </ext:Panel>
-                                                                        <ext:Panel runat="server" Layout="FitLayout" Height="20">
-                                                                            <Items>
-                                                                                <ext:Panel runat="server" Layout="HBoxLayout">
-                                                                                    <LayoutConfig>
-                                                                                        <ext:HBoxLayoutConfig Align="Middle"></ext:HBoxLayoutConfig>
-                                                                                    </LayoutConfig>
-                                                                                    <Items>
-                                                                                        <ext:Panel runat="server" Flex="1" />
-                                                                                        <ext:Panel runat="server" Flex="1">
-                                                                                            <Items>
-                                                                                                <ext:HyperlinkButton runat="server" PaddingSpec="0 0 0 0" Flex="1" Text="<%$Resources:DueToday %>" Height="20" StyleSpec="font-size:16pt;">
-                                                                                                    <Listeners>
-                                                                                                        <Click Handler="App.DueTodayWindow.show();" />
-                                                                                                    </Listeners>
-                                                                                                </ext:HyperlinkButton>
-                                                                                            </Items>
-                                                                                        </ext:Panel>
-                                                                                        <ext:Panel runat="server" Flex="1" />
-                                                                                    </Items>
-                                                                                </ext:Panel>
-                                                                            </Items>
-                                                                        </ext:Panel>
-                                                                        <ext:Panel runat="server" Height="10" />
-                                                                    </Items>
-                                                                </ext:Panel>
-                                                            </Items>
-                                                        </ext:Panel>
+                                                        
                                                         <ext:GridPanel MarginSpec="0 0 0 0"
                                                             ID="GridPanel4"
                                                             runat="server"
@@ -1156,6 +1064,86 @@
                                                                 <%--<ext:CheckboxSelectionModel ID="CheckboxSelectionModel1" runat="server" Mode="Multi" StopIDModeInheritance="true" />--%>
                                                             </SelectionModel>
                                                         </ext:GridPanel>
+                                                        <ext:Panel runat="server" Layout="HBoxLayout" Title="<%$Resources:Tasks %>">
+                                                            <LayoutConfig>
+                                                                <ext:HBoxLayoutConfig Align="Stretch"></ext:HBoxLayoutConfig>
+                                                            </LayoutConfig>
+                                                            <Items>
+
+                                                                <ext:Panel runat="server" Layout="VBoxLayout" Flex="1">
+                                                                    <LayoutConfig>
+                                                                        <ext:VBoxLayoutConfig Align="Center" />
+                                                                    </LayoutConfig>
+                                                                    <Items>
+
+                                                                        <ext:Panel runat="server" ID="today" Flex="7">
+                                                                            <Content>
+                                                                                <div id="Chart2Container" style="padding: 10px; width: 100%; height: 100%;"></div>
+                                                                            </Content>
+                                                                        </ext:Panel>
+                                                                        <ext:Panel runat="server" Layout="FitLayout" Height="20">
+                                                                            <Items>
+                                                                                <ext:Panel runat="server" Layout="HBoxLayout">
+                                                                                    <LayoutConfig>
+                                                                                        <ext:HBoxLayoutConfig Align="Middle"></ext:HBoxLayoutConfig>
+                                                                                    </LayoutConfig>
+                                                                                    <Items>
+                                                                                        <ext:Panel runat="server" Flex="1" />
+                                                                                        <ext:Panel runat="server" Flex="1">
+                                                                                            <Items>
+                                                                                                <ext:HyperlinkButton runat="server" Height="20" PaddingSpec="0 0 0 0" Flex="1" Text="<%$Resources:OverDue %>" StyleSpec="font-size:16pt;">
+                                                                                                    <Listeners>
+                                                                                                        <Click Handler="App.overDueWindow.show();" />
+                                                                                                    </Listeners>
+                                                                                                </ext:HyperlinkButton>
+                                                                                            </Items>
+                                                                                        </ext:Panel>
+                                                                                        <ext:Panel runat="server" Flex="1" />
+                                                                                    </Items>
+                                                                                </ext:Panel>
+                                                                            </Items>
+                                                                        </ext:Panel>
+                                                                        <ext:Panel runat="server" Height="10" />
+                                                                    </Items>
+                                                                </ext:Panel>
+                                                                <ext:Panel runat="server" Layout="VBoxLayout" Flex="1">
+                                                                    <LayoutConfig>
+                                                                        <ext:VBoxLayoutConfig Align="Center" />
+                                                                    </LayoutConfig>
+                                                                    <Items>
+
+                                                                        <ext:Panel runat="server" ID="overdue" Width="250" Height="250" Flex="7">
+                                                                            <Content>
+                                                                                <div id="Chart3Container" style="padding: 10px; width: 100%; height: 100%;"></div>
+                                                                            </Content>
+                                                                        </ext:Panel>
+                                                                        <ext:Panel runat="server" Layout="FitLayout" Height="20">
+                                                                            <Items>
+                                                                                <ext:Panel runat="server" Layout="HBoxLayout">
+                                                                                    <LayoutConfig>
+                                                                                        <ext:HBoxLayoutConfig Align="Middle"></ext:HBoxLayoutConfig>
+                                                                                    </LayoutConfig>
+                                                                                    <Items>
+                                                                                        <ext:Panel runat="server" Flex="1" />
+                                                                                        <ext:Panel runat="server" Flex="1">
+                                                                                            <Items>
+                                                                                                <ext:HyperlinkButton runat="server" PaddingSpec="0 0 0 0" Flex="1" Text="<%$Resources:DueToday %>" Height="20" StyleSpec="font-size:16pt;">
+                                                                                                    <Listeners>
+                                                                                                        <Click Handler="App.DueTodayWindow.show();" />
+                                                                                                    </Listeners>
+                                                                                                </ext:HyperlinkButton>
+                                                                                            </Items>
+                                                                                        </ext:Panel>
+                                                                                        <ext:Panel runat="server" Flex="1" />
+                                                                                    </Items>
+                                                                                </ext:Panel>
+                                                                            </Items>
+                                                                        </ext:Panel>
+                                                                        <ext:Panel runat="server" Height="10" />
+                                                                    </Items>
+                                                                </ext:Panel>
+                                                            </Items>
+                                                        </ext:Panel>
                                                     </Items>
 
                                                 </ext:TabPanel>
@@ -1186,47 +1174,7 @@
                                                             </LayoutConfig>
                                                             <Items>
                                                                 <ext:Panel runat="server" Flex="1" />
-                                                                <ext:Panel runat="server" Layout="HBoxLayout" Flex="10">
-                                                                    <LayoutConfig>
-                                                                        <ext:HBoxLayoutConfig Align="Middle"></ext:HBoxLayoutConfig>
-                                                                    </LayoutConfig>
-                                                                    <Items>
-                                                                        <ext:Panel runat="server" Flex="1" />
-                                                                        <ext:Panel runat="server" Layout="VBoxLayout" Flex="10">
-                                                                            <LayoutConfig>
-                                                                                <ext:VBoxLayoutConfig Align="Center" />
-                                                                            </LayoutConfig>
-                                                                            <Items>
 
-
-                                                                                <ext:Label runat="server" ID="annversaries" Cls="number flashing" StyleHtmlCls="number" PaddingSpec="30 0 0 0" Height="100" />
-
-                                                                                <ext:HyperlinkButton runat="server" Text="<%$Resources:Anneversaries %>" Height="80" PaddingSpec="0 0 0 0" StyleSpec="font-size:16pt;">
-                                                                                    <Listeners>
-                                                                                        <Click Handler="App.anniversaryWindow.show();" />
-                                                                                    </Listeners>
-                                                                                </ext:HyperlinkButton>
-                                                                            </Items>
-                                                                        </ext:Panel>
-                                                                        <ext:Panel runat="server" Flex="1" />
-                                                                        <ext:Panel runat="server" Layout="VBoxLayout" Flex="10">
-                                                                            <LayoutConfig>
-                                                                                <ext:VBoxLayoutConfig Align="Center" />
-                                                                            </LayoutConfig>
-                                                                            <Items>
-
-                                                                                <ext:Label runat="server" ID="birthdays" Cls="number flashing" StyleHtmlCls="number" PaddingSpec="30 0 0 0" Height="100" />
-                                                                                <ext:HyperlinkButton runat="server" PaddingSpec="0 0 0 0" Text="<%$Resources:Birthdays %>" StyleSpec="font-size:16pt;" Height="80">
-                                                                                    <Listeners>
-                                                                                        <Click Handler="App.BirthdaysWindow.show();" />
-                                                                                    </Listeners>
-                                                                                </ext:HyperlinkButton>
-                                                                            </Items>
-                                                                        </ext:Panel>
-                                                                        <ext:Panel runat="server" Flex="1" />
-                                                                    </Items>
-                                                                </ext:Panel>
-                                                                <ext:Panel runat="server" Flex="1" />
                                                                 <ext:Panel runat="server" Layout="HBoxLayout" Flex="10">
                                                                     <LayoutConfig>
                                                                         <ext:HBoxLayoutConfig Align="Middle"></ext:HBoxLayoutConfig>
@@ -1302,7 +1250,48 @@
                                                                         <ext:Panel runat="server" Flex="1" />
                                                                     </Items>
                                                                 </ext:Panel>
+                                                                <ext:Panel runat="server" Layout="HBoxLayout" Flex="10">
+                                                                    <LayoutConfig>
+                                                                        <ext:HBoxLayoutConfig Align="Middle"></ext:HBoxLayoutConfig>
+                                                                    </LayoutConfig>
+                                                                    <Items>
+                                                                        <ext:Panel runat="server" Flex="1" />
+                                                                        <ext:Panel runat="server" Layout="VBoxLayout" Flex="10">
+                                                                            <LayoutConfig>
+                                                                                <ext:VBoxLayoutConfig Align="Center" />
+                                                                            </LayoutConfig>
+                                                                            <Items>
+
+
+                                                                                <ext:Label runat="server" ID="annversaries" Cls="number flashing" StyleHtmlCls="number" PaddingSpec="30 0 0 0" Height="100" />
+
+                                                                                <ext:HyperlinkButton runat="server" Text="<%$Resources:Anneversaries %>" Height="80" PaddingSpec="0 0 0 0" StyleSpec="font-size:16pt;">
+                                                                                    <Listeners>
+                                                                                        <Click Handler="App.anniversaryWindow.show();" />
+                                                                                    </Listeners>
+                                                                                </ext:HyperlinkButton>
+                                                                            </Items>
+                                                                        </ext:Panel>
+                                                                        <ext:Panel runat="server" Flex="1" />
+                                                                        <ext:Panel runat="server" Layout="VBoxLayout" Flex="10">
+                                                                            <LayoutConfig>
+                                                                                <ext:VBoxLayoutConfig Align="Center" />
+                                                                            </LayoutConfig>
+                                                                            <Items>
+
+                                                                                <ext:Label runat="server" ID="birthdays" Cls="number flashing" StyleHtmlCls="number" PaddingSpec="30 0 0 0" Height="100" />
+                                                                                <ext:HyperlinkButton runat="server" PaddingSpec="0 0 0 0" Text="<%$Resources:Birthdays %>" StyleSpec="font-size:16pt;" Height="80">
+                                                                                    <Listeners>
+                                                                                        <Click Handler="App.BirthdaysWindow.show();" />
+                                                                                    </Listeners>
+                                                                                </ext:HyperlinkButton>
+                                                                            </Items>
+                                                                        </ext:Panel>
+                                                                        <ext:Panel runat="server" Flex="1" />
+                                                                    </Items>
+                                                                </ext:Panel>
                                                                 <ext:Panel runat="server" Flex="1" />
+                                                                
                                                             </Items>
                                                         </ext:Panel>
                                                     </Items>

@@ -175,7 +175,7 @@
     <value>التأخير</value>
   </data>
   <data name="LatenessAmount" xml:space="preserve">
-    <value>نسبة خصم التأخير</value>
+    <value>نسبة خصم التأخير %</value>
   </data>
   <data name="MinimumOvertime" xml:space="preserve">
     <value>الساعات الإضافية الأصغرية</value>
@@ -184,6 +184,6 @@
     <value>الدوام الإضافي</value>
   </data>
   <data name="OvertimeAmount" xml:space="preserve">
-    <value>نسبة الاستحقاق</value>
+    <value>نسبة الاستحقاق%</value>
   </data>
 </root>

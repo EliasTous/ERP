@@ -30,6 +30,21 @@ namespace AionHR.Services.Implementations
         {
             return _companyRepository;
         }
+
+        public RecordResponse<Department> GetDepartmentByReference(DepartmentByReference request)
+        {
+            RecordResponse<Department> response;
+            var headers = SessionHelper.GetAuthorizationHeadersForUser();
+            Dictionary<string, string> queryParams = new Dictionary<string, string>();
+            
+
+            RecordWebServiceResponse<Department> webResponse = _companyRepository.GetDepartmentByReference(headers, request.Parameters);
+            response = CreateServiceResponse<RecordResponse<Department>>(webResponse);
+            if (response.Success)
+                response.result = webResponse.record;
+
+            return response;
+        }
     }
 }
 

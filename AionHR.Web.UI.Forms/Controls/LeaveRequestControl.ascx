@@ -16,7 +16,7 @@
         return out;
     }
     function EnableLast() {
-        
+
 
     }
     function CalcSum() {
@@ -83,7 +83,7 @@
 <ext:Hidden ID="LeaveChanged" runat="server" Text="1" EnableViewState="true" />
 <ext:Hidden ID="TotalText" runat="server" Text="<%$ Resources: TotalText %>" />
 <ext:Hidden ID="StoredLeaveChanged" runat="server" Text="0" EnableViewState="true" />
-<ext:Hidden ID="ViewOnly" runat="server"  />
+<ext:Hidden ID="ViewOnly" runat="server" />
 <ext:Window
     ID="EditRecordWindow"
     runat="server"
@@ -133,23 +133,40 @@
                                     </ExtraParams>
                                 </Change>
                             </DirectEvents>
+                            <Listeners>
+                                
+                            </Listeners>
                             <%--          <Listeners>
                                         <Change Handler="alert(this.value);App.leaveRequest1_direct.MarkLeaveChanged(); CalcSum();" />
                                     </Listeners>--%>
                         </ext:DateField>
-                        <ext:DateField ID="endDate" runat="server" FieldLabel="<%$ Resources:FieldEndDate%>" Name="endDate" AllowBlank="false">
-                            <DirectEvents>
-                                <Change OnEvent="MarkLeaveChanged">
-                                    <ExtraParams>
-                                        <ext:Parameter Name="startDate" Value="#{startDate}.getValue()" Mode="Raw" />
-                                        <ext:Parameter Name="endDate" Value="#{endDate}.getValue()" Mode="Raw" />
-                                    </ExtraParams>
-                                </Change>
-                            </DirectEvents>
-                            <%--<Listeners>
+                        <ext:Panel runat="server" Layout="HBoxLayout">
+                            <Items>
+                                <ext:DateField ID="endDate" runat="server" FieldLabel="<%$ Resources:FieldEndDate%>" Name="endDate" AllowBlank="false">
+                                    <DirectEvents>
+                                        <Change OnEvent="MarkLeaveChanged">
+                                            <ExtraParams>
+                                                <ext:Parameter Name="startDate" Value="#{startDate}.getValue()" Mode="Raw" />
+                                                <ext:Parameter Name="endDate" Value="#{endDate}.getValue()" Mode="Raw" />
+                                            </ExtraParams>
+                                        </Change>
+                                    </DirectEvents>
+                                    <%--<Listeners>
                                         <Change Handler="App.leaveRequest1_direct.MarkLeaveChanged(); CalcSum(); " />
                                     </Listeners>--%>
-                        </ext:DateField>
+                                    <Listeners>
+                                        <Select Handler="this.next().setValue(moment(this.getValue()).diff(moment(App.leaveRequest1_startDate.getValue()),'days'));" />
+                                        
+                                    </Listeners>
+                                </ext:DateField>
+                                <ext:NumberField runat="server" ID="calDays" Width="150" Name="calDays" MinValue="1" FieldLabel="<%$Resources:CalDays %>" LabelWidth="40"  >
+                                    <Listeners>
+                                      <FocusLeave Handler="var d; if(this.value==1)d=moment(App.leaveRequest1_startDate.getValue()); else d=moment(App.leaveRequest1_startDate.getValue()).add(parseInt(this.value) -1,'days'); App.leaveRequest1_endDate.setValue(new Date(d.toDate()));" />
+                                        
+                                    </Listeners>
+                                </ext:NumberField>
+                            </Items>
+                        </ext:Panel>
                         <ext:ComboBox runat="server" ID="employeeId" AllowBlank="false"
                             DisplayField="fullName" Name="employeeId"
                             ValueField="recordId"
@@ -273,14 +290,14 @@
                             ID="LeaveDaysGrid"
                             runat="server"
                             PaddingSpec="0 0 1 0"
-                            Header="false" 
+                            Header="false"
                             MaxHeight="350"
                             Layout="FitLayout"
                             Scroll="Vertical"
                             Border="false"
                             Icon="User"
                             ColumnLines="True" IDMode="Explicit" RenderXType="True">
-                   
+
                             <Store>
                                 <ext:Store runat="server" ID="leaveDaysStore">
                                     <Model>
@@ -299,7 +316,7 @@
                             </Store>
 
 
-                            <ColumnModel  ID="ColumnModel2" runat="server" SortAscText="<%$ Resources:Common , SortAscText %>" SortDescText="<%$ Resources:Common ,SortDescText  %>" SortClearText="<%$ Resources:Common ,SortClearText  %>" ColumnsText="<%$ Resources:Common ,ColumnsText  %>" EnableColumnHide="false" Sortable="false">
+                            <ColumnModel ID="ColumnModel2" runat="server" SortAscText="<%$ Resources:Common , SortAscText %>" SortDescText="<%$ Resources:Common ,SortDescText  %>" SortClearText="<%$ Resources:Common ,SortClearText  %>" ColumnsText="<%$ Resources:Common ,ColumnsText  %>" EnableColumnHide="false" Sortable="false">
                                 <Columns>
                                     <ext:Column ID="Column4" Visible="false" DataIndex="recordId" runat="server">
                                     </ext:Column>
@@ -315,7 +332,7 @@
                                     </ext:Column>
                                     <ext:Column ID="DateColumn2" DataIndex="workingHours" Text="<%$ Resources: FieldWorkingHours%>" runat="server" Flex="2">
                                     </ext:Column>
-                          <%--          <ext:WidgetColumn  ID="WidgetColumn2" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldLeaveHours %>" DataIndex="leaveHours" Hideable="false" Width="125" Align="Center">
+                                    <%--          <ext:WidgetColumn  ID="WidgetColumn2" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldLeaveHours %>" DataIndex="leaveHours" Hideable="false" Width="125" Align="Center">
                                         
                                         <Widget>
 
@@ -334,32 +351,32 @@
                                         </Listeners>
                                         
                                     </ext:WidgetColumn>--%>
-                                <ext:ComponentColumn Text="<%$ Resources: FieldLeaveHours %>" runat="server" DataIndex="leaveHours" ItemID="comp" >
-                                    <Component>
-                                         <ext:NumberField ID="NumberField1" runat="server" MinValue="1" DataIndex="leaveHours">
+                                    <ext:ComponentColumn Text="<%$ Resources: FieldLeaveHours %>" runat="server" DataIndex="leaveHours" ItemID="comp">
+                                        <Component>
+                                            <ext:NumberField ID="NumberField1" runat="server" MinValue="1" DataIndex="leaveHours">
                                                 <Listeners>
-                                                 <%--<Change Handler="var rec = this.column.record; rec.set('leaveHours',this.value); rec.commit(); CalcSum(); " />--%>
-                                                   <%--    <AfterRender Handler="  if(App.leaveRequest1_shouldDisableLastDay.value=='1') this.setDisabled(true);else this.setDisabled(false); this.maxValue=this.getWidgetRecord().data['workingHours'];" />
+                                                    <%--<Change Handler="var rec = this.column.record; rec.set('leaveHours',this.value); rec.commit(); CalcSum(); " />--%>
+                                                    <%--    <AfterRender Handler="  if(App.leaveRequest1_shouldDisableLastDay.value=='1') this.setDisabled(true);else this.setDisabled(false); this.maxValue=this.getWidgetRecord().data['workingHours'];" />
                                                     <AfterLayoutAnimation Handler=" this.maxValue=this.getWidgetRecord().data['workingHours'];" />
-                                             --%>       
+                                                    --%>
                                                     <%--<DirtyChange Handler="var rec = this.column.record; rec.set('leaveHours',this.value); rec.commit(); CalcSum(); " />--%>
                                                     <FocusLeave Handler=" var rec = this.column.record;  if(rec.data['workingHours']<this.value){this.setValue(rec.data['workingHours']); }if(1>this.value){this.setValue(1);}  rec.set('leaveHours',this.value); rec.commit(); CalcSum();" />
                                                 </Listeners>
                                             </ext:NumberField>
-                                    </Component>
-                                    <Listeners>
-                                        <Bind Handler=" if(App.leaveRequest1_shouldDisableLastDay.value=='1'){var s =App.leaveRequest1_LeaveDaysGrid.getRowsValues();  if(record.data['dayId'] == s[s.length-1].dayId) cmp.setDisabled(false); else cmp.setDisabled(true);}else {if(App.leaveRequest1_GridDisabled.value=='True') cmp.setDisabled(true); else cmp.setDisabled(false);} cmp.maxValue=record.data['workingHours']; cmp.setValue(record.data['leaveHours']);" />
-                                        
-                                        
-                                    </Listeners>
-                                </ext:ComponentColumn>
+                                        </Component>
+                                        <Listeners>
+                                            <Bind Handler=" if(App.leaveRequest1_shouldDisableLastDay.value=='1'){var s =App.leaveRequest1_LeaveDaysGrid.getRowsValues();  if(record.data['dayId'] == s[s.length-1].dayId) cmp.setDisabled(false); else cmp.setDisabled(true);}else {if(App.leaveRequest1_GridDisabled.value=='True') cmp.setDisabled(true); else cmp.setDisabled(false);} cmp.maxValue=record.data['workingHours']; cmp.setValue(record.data['leaveHours']);" />
+
+
+                                        </Listeners>
+                                    </ext:ComponentColumn>
 
 
 
 
                                 </Columns>
                             </ColumnModel>
-                             <%--  alert(last.dayId);
+                            <%--  alert(last.dayId);
                                                         if(App.leaveRequest1_shouldDisableLastDay.value=='1')
                                                              if(last.dayId==rec.data['dayId'])  
                                                                         this.setDisabled(false);

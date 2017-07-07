@@ -234,4 +234,7 @@
   <data name="FieldDayId" xml:space="preserve">
     <value>التاريخ</value>
   </data>
+  <data name="CalDays" xml:space="preserve">
+    <value>الأيام</value>
+  </data>
 </root>

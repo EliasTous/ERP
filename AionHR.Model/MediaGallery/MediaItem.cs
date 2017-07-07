@@ -14,7 +14,7 @@ namespace AionHR.Model.MediaGallery
         //public string departmentId { get; set; }
         [PropertyID("23020_01")]
         [ApplySecurity]
-        public int departmentId { get; set; }
+        public int? departmentId { get; set; }
         [PropertyID("23020_02")]
         [ApplySecurity]
         public int mcId { get; set; }

@@ -24,9 +24,10 @@ namespace AionHR.Services.Implementations
             try
             {
                 string deptRef = row[0].ToString();
-                string name = row[0].ToString();
-
-                depts.Add(new Department() { departmentRef = deptRef, name = name});
+                string name = row[1].ToString();
+                string parentRef = row[2].ToString();
+                string supervisorRef = row[3].ToString();
+                depts.Add(new Department() { departmentRef = deptRef, name = name, parentRef=parentRef, supervisorRef=supervisorRef });
 
 
 

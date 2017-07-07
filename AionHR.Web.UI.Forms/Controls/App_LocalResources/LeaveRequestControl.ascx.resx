@@ -231,4 +231,7 @@
   <data name="WindowTitle" xml:space="preserve">
     <value>Leave Requests</value>
   </data>
+  <data name="CalDays" xml:space="preserve">
+    <value>Days</value>
+  </data>
 </root>

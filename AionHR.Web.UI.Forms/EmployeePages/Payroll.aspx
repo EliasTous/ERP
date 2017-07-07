@@ -519,7 +519,7 @@
                                                 <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
                                             </Listeners>
                                         </ext:ComboBox>
-                                        <ext:ComboBox runat="server" AllowBlank="false" LabelWidth="130" Width="275" ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" ID="scrId" Name="scrId" FieldLabel="<%$ Resources:FieldScrName%>" SimpleSubmit="true">
+                                        <ext:ComboBox runat="server" AllowBlank="true" LabelWidth="130" Width="275" ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" ID="scrId" Name="scrId" FieldLabel="<%$ Resources:FieldScrName%>" SimpleSubmit="true">
                                             <Store>
                                                 <ext:Store runat="server" ID="scrStore">
                                                     <Model>

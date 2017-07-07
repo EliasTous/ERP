@@ -283,6 +283,15 @@ namespace AionHR.Web.UI.Forms.Controls {
         protected global::Ext.Net.DateField endDate;
         
         /// <summary>
+        /// calDays control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.NumberField calDays;
+        
+        /// <summary>
         /// employeeId control.
         /// </summary>
         /// <remarks>

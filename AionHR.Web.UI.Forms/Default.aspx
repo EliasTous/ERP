@@ -58,6 +58,7 @@
     <ext:Hidden runat="server" ID="systTitle" Text="<%$Resources:Common , States %>" />
     <ext:Hidden runat="server" ID="loansync" Text="<%$Resources:Common , LoanSync %>" />
     <ext:Hidden runat="server" ID="importAt" Text="<%$Resources:Common , ImportAttendance %>" />
+    <ext:Hidden runat="server" ID="importDE" Text="<%$Resources:Common , ImportDepartments %>" />
     <ext:Hidden runat="server" ID="importLoansTitle" Text="<%$Resources:Common , ImportLoans %>" />
     <ext:Hidden runat="server" ID="importLeavesTitle" Text="<%$Resources:Common , ImportLeaves %>" />
     <ext:Hidden runat="server" ID="importNotesTitle" Text="<%$Resources:Common , ImportNotes %>" />
@@ -231,6 +232,11 @@
                                                                         <ext:MenuItem runat="server" Text="<%$Resources: Common , Positions%>">
                                                                             <Listeners>
                                                                                 <Click Handler="openNewTab('positions', 'Positions.aspx', #{poTitle}.value, 'icon-Employees')" />
+                                                                            </Listeners>
+                                                                        </ext:MenuItem>
+                                                                        <ext:MenuItem runat="server" Text="<%$Resources: Common , ImportDepartments%>">
+                                                                            <Listeners>
+                                                                                <Click Handler="openNewTab('import-departments', 'ImportDepartments.aspx', #{importDE}.value, 'icon-Employees')" />
                                                                             </Listeners>
                                                                         </ext:MenuItem>
                                                                     </Items>

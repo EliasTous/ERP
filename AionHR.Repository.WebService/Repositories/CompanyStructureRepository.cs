@@ -44,5 +44,18 @@ namespace AionHR.Repository.WebService.Repositories
             base.DeleteMethodName = "";
             base.AddOrUpdateMethodName = "";
         }
+
+        public RecordWebServiceResponse<Department> GetDepartmentByReference(Dictionary<string, string> Headers = null, Dictionary<string, string> QueryStringParams = null)
+        {
+            var request = new HTTPWebServiceRequest();
+            request.MethodType = "GET";
+            request.URL = ServiceURL + "getDE2";
+            if (Headers != null)
+                request.Headers = Headers;
+            if (QueryStringParams != null)
+                request.QueryStringParams = QueryStringParams;
+
+            return request.GetAsync<RecordWebServiceResponse<Department>>();
+        }
     }
 }

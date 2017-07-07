@@ -4,6 +4,7 @@ using System.Collections;
 using System.ComponentModel;
 using DevExpress.XtraReports.UI;
 using System.Collections.Generic;
+using DevExpress.XtraPrinting;
 
 /// <summary>
 /// Summary description for DetailedAttendance
@@ -231,6 +232,7 @@ public class DetailedAttendance : DevExpress.XtraReports.UI.XtraReport
             this.xrLabel35 = new DevExpress.XtraReports.UI.XRLabel();
             this.To = new DevExpress.XtraReports.Parameters.Parameter();
             this.xrLabel30 = new DevExpress.XtraReports.UI.XRLabel();
+            this.AllowedLateness = new DevExpress.XtraReports.Parameters.Parameter();
             this.xrLabel31 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel29 = new DevExpress.XtraReports.UI.XRLabel();
             this.Employee = new DevExpress.XtraReports.Parameters.Parameter();
@@ -266,7 +268,6 @@ public class DetailedAttendance : DevExpress.XtraReports.UI.XtraReport
             this.totalLatenessLabel = new DevExpress.XtraReports.UI.XRLabel();
             this.latenessDay = new DevExpress.XtraReports.UI.CalculatedField();
             this.Department = new DevExpress.XtraReports.Parameters.Parameter();
-            this.AllowedLateness = new DevExpress.XtraReports.Parameters.Parameter();
             this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).BeginInit();
@@ -280,7 +281,7 @@ public class DetailedAttendance : DevExpress.XtraReports.UI.XtraReport
             this.Detail.Name = "Detail";
             this.Detail.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
             this.Detail.StyleName = "DataField";
-            this.Detail.BeforePrint += new System.Drawing.Printing.PrintEventHandler(this.Detail_BeforePrint);
+            this.Detail.BeforePrint += new System.Drawing.Printing.PrintEventHandler(this.PageHeader_BeforePrint);
             // 
             // xrTable1
             // 
@@ -913,6 +914,12 @@ public class DetailedAttendance : DevExpress.XtraReports.UI.XtraReport
             this.xrLabel30.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel30.StylePriority.UseBorders = false;
             // 
+            // AllowedLateness
+            // 
+            resources.ApplyResources(this.AllowedLateness, "AllowedLateness");
+            this.AllowedLateness.Name = "AllowedLateness";
+            this.AllowedLateness.Visible = false;
+            // 
             // xrLabel31
             // 
             this.xrLabel31.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
@@ -1371,12 +1378,6 @@ public class DetailedAttendance : DevExpress.XtraReports.UI.XtraReport
             this.Department.Name = "Department";
             this.Department.Visible = false;
             // 
-            // AllowedLateness
-            // 
-            resources.ApplyResources(this.AllowedLateness, "AllowedLateness");
-            this.AllowedLateness.Name = "AllowedLateness";
-            this.AllowedLateness.Visible = false;
-            // 
             // objectDataSource1
             // 
             this.objectDataSource1.DataSource = typeof(AionHR.Model.Reports.RT303);
@@ -1645,16 +1646,24 @@ public class DetailedAttendance : DevExpress.XtraReports.UI.XtraReport
 
     private void xrLabel56_BeforePrint(object sender, System.Drawing.Printing.PrintEventArgs e)
     {
-        int totalLeaveHH = totalPaidLeavesHH + totalUnpaidLeavesHH;
-       int  totalLeaveMM = totalPaidLeavesMM + totalUnpaidLeavesMM;
-        totalLeaveHH += totalLeaveMM / 60;
+        int totalLatenessHH = totalOLAHH + totalOLDHH;
+       int  totalLatenessMM = totalOLAMM + totalOLDMM;
+        totalLatenessHH += totalLatenessMM / 60;
 
-        totalLeaveMM = totalLeaveMM % 60;
+        totalLatenessMM = totalLatenessMM % 60;
         int hours = Convert.ToInt32(Parameters["AllowedLateness"].Value);
         
-        xrLabel56.Text = Math.Max(0, totalLeaveHH - hours).ToString();
+        xrLabel56.Text = Math.Max(0, totalLatenessHH - hours).ToString();
     }
 
+   
+
+    protected override void OnAfterPrint(EventArgs e)
+    {
+        PrintingSystem.ExecCommand(PrintingSystemCommand.ZoomToPageWidth);
+        base.OnAfterPrint(e);
+        
+    }
     private void unapprovedAbsenseLabel_SummaryGetResult(object sender, SummaryGetResultEventArgs e)
     {
         e.Result = unapprovedAbsenseCount.ToString();

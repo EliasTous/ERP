@@ -592,7 +592,7 @@
     <value>100</value>
   </data>
   <data name="xrLabel20.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v16.2">
-    <value>315.046234, 48.6038055</value>
+    <value>382.754578, 48.60382</value>
   </data>
   <data name="xrLabel20.SizeF" type="System.Drawing.SizeF, System.Drawing">
     <value>317.105164, 23.0000038</value>
@@ -616,7 +616,7 @@
     <value>100</value>
   </data>
   <data name="reportHeaderBand1.HeightF" type="System.Single, mscorlib">
-    <value>71.60381</value>
+    <value>72.64551</value>
   </data>
   <data name="xrLabel36.Dpi" type="System.Single, mscorlib">
     <value>100</value>

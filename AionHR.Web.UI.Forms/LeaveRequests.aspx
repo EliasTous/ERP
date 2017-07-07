@@ -291,6 +291,12 @@
                             <ext:DateColumn ID="DateColumn3" DataIndex="returnDate" Text="<%$ Resources: FieldReturnDate%>" runat="server" Flex="2" >
                                 
                                 </ext:DateColumn>
+                            <ext:Column runat="server" Width="70" Text="<%$ Resources: CalDays%>">
+                                <Renderer Handler="return moment(record.data['endDate']).diff(moment(record.data['startDate']), 'days')+1" />
+                            </ext:Column>
+                            <ext:Column runat="server" Width="70" Text="<%$ Resources: LateDays%>">
+                                <Renderer Handler="if(record.data['returnDate']!='') var d=moment(record.data['returnDate']).diff(moment(record.data['endDate']), 'days')+1; if(d>0) return d; else return '';" />
+                            </ext:Column>
                             <ext:Column ID="Column3" DataIndex="status" Text="<%$ Resources: FieldStatus%>" runat="server" Flex="2">
                                 <Renderer Handler="return(GetStatusName(record.data['status']));" />
                             </ext:Column>

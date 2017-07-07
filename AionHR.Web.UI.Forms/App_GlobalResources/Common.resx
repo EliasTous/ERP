@@ -933,4 +933,7 @@
   <data name="RT303" xml:space="preserve">
     <value>Detailed Attendance</value>
   </data>
+  <data name="ImportDepartments" xml:space="preserve">
+    <value>Import Departments</value>
+  </data>
 </root>

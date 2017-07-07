@@ -244,7 +244,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     CurrentSalary.Text = r3.RecordID;
                     CurrentSalaryCurrency.Text = response3.result.currencyRef;
                     currencyId.Select(response3.result.currencyId.ToString());
-                    scrId.Select(response3.result.scrId.ToString());
+                    scrId.Select(response3.result.scrId.Value.ToString());
 
                     X.Call("TogglePaymentMethod", response3.result.paymentMethod);
                     eAmount.Text = response3.result.eAmount.ToString();

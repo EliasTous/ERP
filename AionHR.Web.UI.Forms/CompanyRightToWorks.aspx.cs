@@ -323,7 +323,7 @@ namespace AionHR.Web.UI.Forms
                     dtId.Select(response.result.dtId.ToString());
 
                     FillBranch();
-                    branchId.Select(response.result.branchId.ToString());
+                    branchId.Select(response.result.branchId.Value.ToString());
                     if (_systemService.SessionHelper.GetHijriSupport())
                     {
                         SetHijriInputState(true);

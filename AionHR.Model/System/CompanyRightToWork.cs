@@ -13,7 +13,7 @@ namespace AionHR.Model.System
     {
         [PropertyID("20081_01")]
         [ApplySecurity]
-        public int branchId { get; set; }
+        public int? branchId { get; set; }
         [PropertyID("20081_02")]
         [ApplySecurity]
         public int dtId { get; set; }

@@ -1069,6 +1069,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Import Departments.
+        /// </summary>
+        internal static string ImportDepartments {
+            get {
+                return ResourceManager.GetString("ImportDepartments", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Import Leaves.
         /// </summary>
         internal static string ImportLeaves {

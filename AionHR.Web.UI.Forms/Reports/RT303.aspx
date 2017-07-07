@@ -96,6 +96,7 @@
                             Width="100%" OnCallback="ASPxCallbackPanel1_Callback" OnLoad="ASPxCallbackPanel1_Load" >
                             <PanelCollection>
                                 <dx:PanelContent runat="server">
+                                   
                                     <dx:ASPxWebDocumentViewer ID="ASPxWebDocumentViewer1" runat="server" ></dx:ASPxWebDocumentViewer>
                                 </dx:PanelContent>
                             </PanelCollection>

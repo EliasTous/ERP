@@ -526,24 +526,6 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.TabPanel belowt;
         
         /// <summary>
-        /// today control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Panel today;
-        
-        /// <summary>
-        /// overdue control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Panel overdue;
-        
-        /// <summary>
         /// GridPanel4 control.
         /// </summary>
         /// <remarks>
@@ -733,6 +715,24 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.RowSelectionModel rowSelectionModel11;
         
         /// <summary>
+        /// today control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Panel today;
+        
+        /// <summary>
+        /// overdue control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Panel overdue;
+        
+        /// <summary>
         /// alerts control.
         /// </summary>
         /// <remarks>
@@ -740,24 +740,6 @@ namespace AionHR.Web.UI.Forms {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.TabPanel alerts;
-        
-        /// <summary>
-        /// annversaries control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Label annversaries;
-        
-        /// <summary>
-        /// birthdays control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Label birthdays;
         
         /// <summary>
         /// companyRW control.
@@ -794,6 +776,24 @@ namespace AionHR.Web.UI.Forms {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.Label probation;
+        
+        /// <summary>
+        /// annversaries control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Label annversaries;
+        
+        /// <summary>
+        /// birthdays control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Label birthdays;
         
         /// <summary>
         /// BirthdaysWindow control.

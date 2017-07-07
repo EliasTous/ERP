@@ -310,7 +310,7 @@
                                     </Listeners>
                                 </ext:ComboBox>
 
-                                <ext:ComboBox runat="server" ID="mcId" Name="mcId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1"
+                                <ext:ComboBox runat="server" ID="mcId" Name="mcId" AllowBlank="false"  QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1"
                                     DisplayField="name"
                                     ValueField="recordId"
                                     FieldLabel="<%$ Resources: FieldMCName %>">

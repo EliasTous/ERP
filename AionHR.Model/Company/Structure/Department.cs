@@ -25,6 +25,10 @@ namespace AionHR.Model.Company.Structure
         [ApplySecurity]
        
         public int? supervisorId { get; set; }
+        [PropertyID("21040_04")]
+        [ApplySecurity]
+
+        public string supervisorRef { get; set; }
         [PropertyID("21040_05")]
         [ApplySecurity]
         public int? parentId { get; set; }
@@ -32,6 +36,9 @@ namespace AionHR.Model.Company.Structure
         [PropertyID("21040_05")]
         [ApplySecurity]
         public string parentName { get; set; }
+        [PropertyID("21040_05")]
+        [ApplySecurity]
+        public string parentRef { get; set; }
         [PropertyID("21040_04")]
         [ApplySecurity]
         public EmployeeName supervisorName { get; set; }

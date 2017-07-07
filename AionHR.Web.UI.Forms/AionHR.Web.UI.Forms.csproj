@@ -1673,6 +1673,8 @@
       <LastGenOutput>AccessControl.ar.designer.cs</LastGenOutput>
     </Content>
     <Content Include="App_LocalResources\Dashboard.aspx.ar.resx" />
+    <Content Include="App_LocalResources\ImportDepartments.aspx.resx" />
+    <Content Include="App_LocalResources\ImportDepartments.aspx.ar.resx" />
     <EmbeddedResource Include="Properties\licenses.licx" />
     <Content Include="Reports\App_LocalResources\RT202.aspx.resx" />
     <Content Include="Reports\App_LocalResources\RT01.aspx.ar.resx" />

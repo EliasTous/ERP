@@ -555,7 +555,7 @@
                                           <ext:TextArea runat="server" ID="newNoteText" Region="West" Width="550" Height="60" />
                                 <ext:Button Region="East" ID="Button1" MarginSpec="20 0 0 0" Height="25" runat="server" Text="<%$ Resources:Common , Add %>" Icon="Add">
                                   <Listeners>
-                                        <Click Handler="CheckSession();" />
+                                        <Click Handler="CheckSession();if(App.newNoteText.getValue()=='') return false;" />
                                     </Listeners>                           
                                     <DirectEvents>
                                         <Click OnEvent="ADDNewRecordComments">
