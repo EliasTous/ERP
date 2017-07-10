@@ -87,6 +87,13 @@ namespace AionHR.Web.UI.Forms.Controls
                     {
                         ViewOnly.Text = "1";
                     }
+                    if(returnNotes.InputType== InputType.Password)
+                    {
+                        returnNotes.Visible = false;
+                        notesField.Visible = true;
+                        textField1.Visible = false;
+                        textField2.Visible = true;
+                    }
                   
                 }
                 catch (AccessDeniedException exp)
@@ -97,7 +104,7 @@ namespace AionHR.Web.UI.Forms.Controls
                     return;
                 }
 
-            
+              
 
             }
 
@@ -151,6 +158,7 @@ namespace AionHR.Web.UI.Forms.Controls
                 employeeId.SetValue(response.result.employeeId);
 
             }
+            LoadQuickViewInfo(response.result.employeeId);
             LeaveDayListRequest req = new LeaveDayListRequest();
             req.LeaveId = CurrentLeave.Text;
             ListResponse<LeaveDay> resp = _leaveManagementService.ChildGetAll<LeaveDay>(req);
@@ -180,7 +188,7 @@ namespace AionHR.Web.UI.Forms.Controls
             RefreshSecurityForControls();
             this.EditRecordWindow.Title = Resources.Common.EditWindowsTitle;
             this.EditRecordWindow.Show();
-            
+            X.Call("calcDays");
         }
 
         public void Add()
@@ -246,6 +254,7 @@ namespace AionHR.Web.UI.Forms.Controls
             returnDate.Disabled = !disabled;
             approved.Text = disabled.ToString();
             leavePeriod.Disabled = disabled;
+            calDays.Disabled = disabled;
             
         }
 
@@ -259,6 +268,7 @@ namespace AionHR.Web.UI.Forms.Controls
             leavePeriod.Disabled = false;
             approved.Text = "False";
             SaveButton.Disabled = false;
+            calDays.Disabled = false;
         }
 
         private void setUsed(bool disabled)
@@ -269,7 +279,8 @@ namespace AionHR.Web.UI.Forms.Controls
             returnDate.Disabled = disabled;
             SaveButton.Disabled = disabled;
             leavePeriod.Disabled = disabled;
-            
+            calDays.Disabled = disabled;
+
         }
 
         /// <summary>
@@ -279,6 +290,22 @@ namespace AionHR.Web.UI.Forms.Controls
 
 
 
+        private void LoadQuickViewInfo(string employeeId)
+        {
+            RecordRequest r = new RecordRequest();
+            r.RecordID = employeeId;
+            RecordResponse<EmployeeQuickView> resp = _employeeService.ChildGetRecord<EmployeeQuickView>(r);
+            if(!resp.Success)
+            {
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, resp.Summary).Show();
+                return;
+            }
+
+            leaveBalance.Text = resp.result.leavesBalance.ToString();
+            yearsInService.Text = resp.result.serviceDuration;
+
+        }
 
   
 
@@ -414,6 +441,7 @@ namespace AionHR.Web.UI.Forms.Controls
                         }
                         PostRequest<LeaveRequest> postReq = new PostRequest<LeaveRequest>();
                         recordResponse.result.returnDate = b.returnDate;
+                        recordResponse.result.returnNotes = b.returnNotes;
                         recordResponse.result.leavePeriod = leavePeriod.Text;
                         b = recordResponse.result;
                         b.status = 3;
@@ -668,6 +696,7 @@ namespace AionHR.Web.UI.Forms.Controls
             leaveDaysStore.DataSource = leaveDays;
             leaveDaysStore.DataBind();
             X.Call("CalcSum");
+            LoadQuickViewInfo(employeeId.Value.ToString());
         }
         [DirectMethod]
         public void Unnamed_Event(object sender, DirectEventArgs e)
@@ -838,6 +867,7 @@ namespace AionHR.Web.UI.Forms.Controls
             }
             CustomResolver res = new CustomResolver();
             res.AddRule("DateField3", "returnDate");
+           // res.AddRule("Notes", "returnNotes");
             JsonSerializerSettings settings = new JsonSerializerSettings();
             settings.ContractResolver = res;
             LeaveRequest temp = JsonConvert.DeserializeObject<LeaveRequest>(values, settings);
@@ -846,6 +876,7 @@ namespace AionHR.Web.UI.Forms.Controls
             PostRequest<LeaveRequest> req = new PostRequest<LeaveRequest>();
             req.entity = recordResponse.result;
             req.entity.returnDate = temp.returnDate;
+            req.entity.returnNotes = temp.returnNotes;
             req.entity.status = 3;
             PostResponse<LeaveRequest> resp = _leaveManagementService.ChildAddOrUpdate<LeaveRequest>(req);
             if (!resp.Success)

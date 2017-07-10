@@ -231,4 +231,10 @@
   <data name="ErrorNoCalendar" xml:space="preserve">
     <value>لايمكن إنشاء إجازة قبل إضافة تقويم واحد على الأقل</value>
   </data>
+  <data name="CalDays" xml:space="preserve">
+    <value>الايام</value>
+  </data>
+  <data name="LateDays" xml:space="preserve">
+    <value>التأخير</value>
+  </data>
 </root>

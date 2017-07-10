@@ -1546,7 +1546,7 @@ public class DetailedAttendance : DevExpress.XtraReports.UI.XtraReport
     int approvedAbsenseCount,unapprovedAbsenseCount;
     private void approvedAbsenseLabel_SummaryRowChanged(object sender, EventArgs e)
     {
-        if (GetCurrentColumnValue("workingHours").ToString() == "00:00" && GetCurrentColumnValue("paidLeaves").ToString() == "00:00" && GetCurrentColumnValue("unpaidLeaves").ToString() == "00:00" && (bool)GetCurrentColumnValue("isWorkingDay"))
+        if (GetCurrentColumnValue("workingHours").ToString() == "00:00" && GetCurrentColumnValue("paidLeaves").ToString() == "00:00" && GetCurrentColumnValue("unpaidLeaves").ToString() == "00:00" && (bool)GetCurrentColumnValue("isWorkingDay")&&string.IsNullOrEmpty((string)GetCurrentColumnValue("checkIn1")) )
             approvedAbsenseCount++;
     }
 

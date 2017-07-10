@@ -118,84 +118,84 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="All" xml:space="preserve">
-    <value>All</value>
+    <value>الكل</value>
   </data>
   <data name="BasicInfoTabEditWindowTitle" xml:space="preserve">
-    <value>Case Info</value>
+    <value>معلومات القضية</value>
   </data>
   <data name="ButtonClear" xml:space="preserve">
-    <value>Clear</value>
+    <value>الجديد</value>
   </data>
   <data name="CaseAttachmentsTitle" xml:space="preserve">
-    <value>Attachments</value>
+    <value>المرفقات</value>
   </data>
   <data name="CaseCommentsTabTitle" xml:space="preserve">
-    <value>Comments</value>
+    <value>التعليقات</value>
   </data>
   <data name="EditWindowsTitle" xml:space="preserve">
-    <value>Edit Case</value>
+    <value>تعديل القضية</value>
   </data>
   <data name="EmptyComment" xml:space="preserve">
-    <value>Please Enter Comment Before Pressing Add Button</value>
+    <value>يرجى إدخال تعليق قبل ضغط زر الإضافة</value>
   </data>
   <data name="FieldAttachmentName" xml:space="preserve">
-    <value>File Name</value>
+    <value>اسم الملف</value>
   </data>
   <data name="FieldBranch" xml:space="preserve">
-    <value>Branch</value>
+    <value>الفرع</value>
   </data>
   <data name="FieldClosed" xml:space="preserve">
-    <value>Closed</value>
+    <value>مغلقة</value>
   </data>
   <data name="FieldClosedDate" xml:space="preserve">
-    <value>Closed Date</value>
+    <value>تاريخ الإغلاق</value>
   </data>
   <data name="FieldDate" xml:space="preserve">
-    <value>Date</value>
+    <value>التاريخ</value>
   </data>
   <data name="FieldDepartment" xml:space="preserve">
-    <value>Department</value>
+    <value>القسم</value>
   </data>
   <data name="FieldDetails" xml:space="preserve">
-    <value>Details</value>
+    <value>التفاصيل</value>
   </data>
   <data name="FieldDivision" xml:space="preserve">
-    <value>Division</value>
+    <value>الإدارة العليا</value>
   </data>
   <data name="FieldEmployeeId" xml:space="preserve">
-    <value>Employee ID</value>
+    <value>رقم الموظف</value>
   </data>
   <data name="FieldEmployeeName" xml:space="preserve">
-    <value>Employee Name</value>
+    <value>اسم الموظف</value>
   </data>
   <data name="FieldFolderName" xml:space="preserve">
-    <value>Folder</value>
+    <value>المجلد</value>
   </data>
   <data name="FieldOpen" xml:space="preserve">
-    <value>Open</value>
+    <value>مفتوحة</value>
   </data>
   <data name="FieldPending" xml:space="preserve">
-    <value>Pending</value>
+    <value>قيد المعالجة</value>
   </data>
   <data name="FieldRecordId" xml:space="preserve">
-    <value>Record ID</value>
+    <value>الرقم</value>
   </data>
   <data name="FieldStatus" xml:space="preserve">
-    <value>Status</value>
+    <value>الحالة</value>
   </data>
   <data name="FilterBranch" xml:space="preserve">
-    <value>Select a Branch</value>
+    <value>الفرع</value>
   </data>
   <data name="FilterDepartment" xml:space="preserve">
-    <value>Select a Department</value>
+    <value>القسم</value>
   </data>
   <data name="FilterDivision" xml:space="preserve">
-    <value>Select a Division</value>
+    <value>الادارة العليا</value>
   </data>
   <data name="FilterStatus" xml:space="preserve">
-    <value>Select a Status</value>
+    <value>الحالة</value>
   </data>
   <data name="WindowTitle" xml:space="preserve">
-    <value>Cases</value>
+    <value>القضايا</value>
   </data>
 </root>

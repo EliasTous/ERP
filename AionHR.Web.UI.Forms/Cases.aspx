@@ -161,6 +161,7 @@
         <ext:Hidden ID="StatusPending" runat="server" Text="<%$ Resources:FieldPending %>" />
         <ext:Hidden ID="StatusOpen" runat="server" Text="<%$ Resources: FieldOpen %>" />
         <ext:Hidden ID="StatusClosed" runat="server" Text="<%$ Resources: FieldClosed %>" />
+        <ext:Hidden ID="EmptyText" runat="server" Text="<%$ Resources: EmptyComment %>" />
         <ext:Hidden ID="CurrentLanguage" runat="server" />
         <ext:Hidden ID="CasesClassId" runat="server" />
         <ext:Store
@@ -555,7 +556,7 @@
                                           <ext:TextArea runat="server" ID="newNoteText" Region="West" Width="550" Height="60" />
                                 <ext:Button Region="East" ID="Button1" MarginSpec="20 0 0 0" Height="25" runat="server" Text="<%$ Resources:Common , Add %>" Icon="Add">
                                   <Listeners>
-                                        <Click Handler="CheckSession();if(App.newNoteText.getValue()=='') return false;" />
+                                        <Click Handler="CheckSession();if(App.newNoteText.getValue()=='') {Ext.MessageBox.alert(#{titleSavingError}.value, #{EmptyText}.value); return false;}" />
                                     </Listeners>                           
                                     <DirectEvents>
                                         <Click OnEvent="ADDNewRecordComments">

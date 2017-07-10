@@ -132,6 +132,9 @@
   <data name="EditWindowsTitle" xml:space="preserve">
     <value>تعديل المهمة</value>
   </data>
+  <data name="EmptyComment" xml:space="preserve">
+    <value>يرجى إدخال تعليق قبل ضغط زر الإضافة</value>
+  </data>
   <data name="FieldAssignToId" xml:space="preserve">
     <value>Assign To Id</value>
   </data>

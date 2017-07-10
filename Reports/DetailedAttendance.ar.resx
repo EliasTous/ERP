@@ -205,7 +205,7 @@
     <value>العطل</value>
   </data>
   <data name="xrLabel44.Text" xml:space="preserve">
-    <value>الغياب المبرر</value>
+    <value>الغياب غير المبرر</value>
   </data>
   <data name="xrLabel47.Text" xml:space="preserve">
     <value>الغياب غير المبرر</value>
@@ -226,7 +226,7 @@
     <value>ساعات الغياب</value>
   </data>
   <data name="xrLabel57.Text" xml:space="preserve">
-    <value>الحسم للغياب</value>
+    <value>حسم التأخير</value>
   </data>
   <data name="xrLabel58.Text" xml:space="preserve">
     <value>المجموع</value>

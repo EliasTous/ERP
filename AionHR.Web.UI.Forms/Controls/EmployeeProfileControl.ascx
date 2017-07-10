@@ -477,10 +477,10 @@
 
 <ext:Window
     ID="EditRecordWindow"
-    runat="server"
+    runat="server" 
     Icon="PageEdit"
     Title="<%$ Resources:EditWindowsTitle %>"
-    Width="900"
+    Width="820"
     Height="500"
     AutoShow="false"
     Modal="true"
@@ -677,7 +677,7 @@
 
             <Items>
                 <ext:FormPanel DefaultButton="SaveButton"
-                    ID="BasicInfoTab" PaddingSpec="40 0 0 0"
+                    ID="BasicInfoTab" PaddingSpec="20 0 0 0"
                     runat="server"
                     Title="<%$ Resources: BasicInfoTabEditWindowTitle %>"
                     Icon="ApplicationSideList"
@@ -703,7 +703,7 @@
 
                             </Items>
                         </ext:Panel>
-                        <ext:Panel runat="server" MarginSpec="0 0 0 100" ID="rightPanel">
+                        <ext:Panel runat="server" MarginSpec="0 0 0 0" ID="rightPanel">
                             <Items>
                                 <ext:RadioGroup ID="gender" AllowBlank="true" runat="server" GroupName="gender" FieldLabel="<%$ Resources:FieldGender%>">
                                     <Items>

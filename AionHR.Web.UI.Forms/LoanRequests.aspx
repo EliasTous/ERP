@@ -48,6 +48,7 @@
         <ext:Hidden ID="StatusInProcess" runat="server" Text="<%$ Resources: FieldInProcess %>" />
         <ext:Hidden ID="StatusApproved" runat="server" Text="<%$ Resources: FieldApproved %>" />
         <ext:Hidden ID="StatusRejected" runat="server" Text="<%$ Resources: FieldRejected %>" />
+        <ext:Hidden ID="EmptyText" runat="server" Text="<%$ Resources: EmptyComment %>" />
         <ext:Hidden ID="CurrentLanguage" runat="server" />
         <ext:Hidden ID="CurrentAmountCurrency" runat="server" />
         <ext:Hidden ID="CurrentEmployee" runat="server" />
@@ -607,7 +608,7 @@
                                         <ext:TextArea runat="server" ID="newNoteText" Region="West" Width="550" Height="60" />
                                         <ext:Button Region="East" ID="Button1" MarginSpec="20 0 0 0" Height="25" runat="server" Text="<%$ Resources:Common , Add %>" Icon="Add">
                                             <Listeners>
-                                                <Click Handler="CheckSession();" />
+                                                <Click Handler="CheckSession();if(App.newNoteText.getValue()==''){Ext.MessageBox.alert(#{titleSavingError}.value, #{EmptyText}.value); return false;}" />
                                             </Listeners>
                                             <DirectEvents>
                                                 <Click OnEvent="ADDNewRecordComments">
@@ -616,6 +617,7 @@
                                                     </ExtraParams>
                                                     <EventMask ShowMask="true" CustomTarget="={#{loanCommentGrid}.body}" />
                                                 </Click>
+
                                             </DirectEvents>
                                         </ext:Button>
                                     </Items>

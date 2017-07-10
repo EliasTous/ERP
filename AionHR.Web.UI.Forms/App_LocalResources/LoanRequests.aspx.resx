@@ -132,6 +132,9 @@
   <data name="EditWindowsTitle" xml:space="preserve">
     <value>Edit Loan</value>
   </data>
+  <data name="EmptyComment" xml:space="preserve">
+    <value>Please Enter Comment Before Pressing Add Button</value>
+  </data>
   <data name="FieldAmount" xml:space="preserve">
     <value>Amount</value>
   </data>

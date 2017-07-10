@@ -53,12 +53,28 @@
         App.leaveRequest1_Button1.setDisabled(false);
     }
     function SetReturnDateState() {
-        if (App.leaveRequest1_status.value == 2)
+        if (App.leaveRequest1_status.value == 2) {
             App.leaveRequest1_returnDate.setDisabled(false);
-        else
+            App.leaveRequest1_returnNotes.setDisabled(false);
+        }
+        else {
+
             App.leaveRequest1_returnDate.setDisabled(true);
+            App.leaveRequest1_returnNotes.setDisabled(true);
+        }
     }
     var s = function () { };
+    function calcEndDate() {
+        var d;
+        if (App.leaveRequest1_calDays.value == 1)
+            d = moment(App.leaveRequest1_startDate.getValue());
+        else
+            d = moment(App.leaveRequest1_startDate.getValue()).add(parseInt(App.leaveRequest1_calDays.value) - 1, 'days');
+        App.leaveRequest1_endDate.setValue(new Date(d.toDate()));
+    }
+    function calcDays() {
+        App.leaveRequest1_calDays.setValue(parseInt(moment(App.leaveRequest1_endDate.getValue()).diff(moment(App.leaveRequest1_startDate.getValue()), 'days')) + 1);
+    }
 </script>
 <ext:Hidden ID="textMatch" runat="server" Text="<%$ Resources:Common , MatchFound %>" />
 <ext:Hidden ID="textLoadFailed" runat="server" Text="<%$ Resources:Common , LoadFailed %>" />
@@ -90,7 +106,7 @@
     Icon="PageEdit"
     Title="<%$ Resources:EditWindowsTitle %>"
     Width="450"
-    Height="500"
+    Height="650"
     AutoShow="false"
     Modal="true"
     Hidden="true"
@@ -134,7 +150,6 @@
                                 </Change>
                             </DirectEvents>
                             <Listeners>
-                                
                             </Listeners>
                             <%--          <Listeners>
                                         <Change Handler="alert(this.value);App.leaveRequest1_direct.MarkLeaveChanged(); CalcSum();" />
@@ -155,14 +170,14 @@
                                         <Change Handler="App.leaveRequest1_direct.MarkLeaveChanged(); CalcSum(); " />
                                     </Listeners>--%>
                                     <Listeners>
-                                        <Select Handler="this.next().setValue(moment(this.getValue()).diff(moment(App.leaveRequest1_startDate.getValue()),'days'));" />
-                                        
+                                        <Select Handler="calcDays();" />
+
                                     </Listeners>
                                 </ext:DateField>
-                                <ext:NumberField runat="server" ID="calDays" Width="150" Name="calDays" MinValue="1" FieldLabel="<%$Resources:CalDays %>" LabelWidth="40"  >
+                                <ext:NumberField runat="server" ID="calDays" Width="150" Name="calDays" MinValue="1" FieldLabel="<%$Resources:CalDays %>" LabelWidth="40">
                                     <Listeners>
-                                      <FocusLeave Handler="var d; if(this.value==1)d=moment(App.leaveRequest1_startDate.getValue()); else d=moment(App.leaveRequest1_startDate.getValue()).add(parseInt(this.value) -1,'days'); App.leaveRequest1_endDate.setValue(new Date(d.toDate()));" />
-                                        
+                                        <FocusLeave Handler="calcEndDate();" />
+
                                     </Listeners>
                                 </ext:NumberField>
                             </Items>
@@ -263,6 +278,12 @@
                                 <Change Handler="SetReturnDateState();" />
                             </Listeners>
                         </ext:ComboBox>
+                        <ext:FieldSet ID="summary" runat="server" Disabled="true" Title="<%$ Resources:RecentLeaves%>" >
+                            <Items>
+                                <ext:TextField runat="server" ID="leaveBalance" FieldLabel="<%$Resources: LeaveBalance %>" Name="leaveBalance" />
+                                <ext:TextField runat="server" ID="yearsInService" FieldLabel="<%$Resources: YearsInService %>" Name="yearsInService" />
+                            </Items>
+                        </ext:FieldSet>
                         <ext:FieldSet runat="server" Title="<%$ Resources:ReturnInfo%>" ID="returnFieldSet">
                             <Items>
                                 <ext:DateField Disabled="true" runat="server" Name="returnDate" ID="returnDate" FieldLabel="<%$ Resources: FieldReturnDate %>">
@@ -279,8 +300,11 @@
                                         <FocusLeave Handler="if(App.leaveRequest1_returnDate.getValue()>=App.leaveRequest1_endDate.getValue()) App.leaveRequest1_shouldDisableLastDay.value='1'; else App.leaveRequest1_shouldDisableLastDay.value='0';" />
                                     </Listeners>
                                 </ext:DateField>
+                                <ext:TextArea runat="server" FieldLabel="<%$Resources: ReturnNotes %>" ID="returnNotes" Name="returnNotes" />
+                                <ext:TextField  Visible="false" InputType="Password" ReadOnly="true" runat="server" FieldLabel="<%$Resources: ReturnNotes %>" ID="notesField" Name="returnNotes" />
                             </Items>
                         </ext:FieldSet>
+                        
                     </Items>
 
                 </ext:FormPanel>
@@ -457,7 +481,7 @@
     Icon="PageEdit"
     Title="<%$ Resources:LeaveEndWindowTitle %>"
     Width="400"
-    Height="250"
+    Height="300"
     AutoShow="false"
     Modal="true"
     Hidden="true"
@@ -516,7 +540,8 @@
                     <Items>
                         <ext:TextField LabelWidth="150" Width="350" runat="server" Hidden="true" ID="leaveId" />
                         <ext:DateField LabelWidth="150" Width="350" ID="DateField3" AllowBlank="false" runat="server" Name="DateField3" FieldLabel="<%$ Resources:FieldReturnDate%>" />
-
+                        <ext:TextField Visible="False" ReadOnly="true" InputType="Password" LabelWidth="150" Width="350" ID="textField1" AllowBlank="true" runat="server" Name="returnNotes" FieldLabel="<%$ Resources:ReturnNotes%>" />
+                        <ext:TextArea LabelWidth="150" Width="350" ID="textField2" AllowBlank="true" runat="server" Name="returnNotes" FieldLabel="<%$ Resources:ReturnNotes%>" />
                     </Items>
 
                 </ext:FieldSet>

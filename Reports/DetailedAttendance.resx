@@ -1072,7 +1072,7 @@
     <value>100</value>
   </data>
   <data name="ReportFooter.HeightF" type="System.Single, mscorlib">
-    <value>163.071915</value>
+    <value>163.071945</value>
   </data>
   <data name="Department.Description" xml:space="preserve">
     <value>Parameter1</value>
@@ -1084,7 +1084,7 @@
     <value>True</value>
   </metadata>
   <data name="$this.Margins" type="System.Drawing.Printing.Margins, System.Drawing">
-    <value>16, 2, 25, 27</value>
+    <value>16, 10, 25, 27</value>
   </data>
   <data name="$this.PageHeight" type="System.Int32, mscorlib">
     <value>1700</value>

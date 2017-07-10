@@ -702,8 +702,7 @@ namespace AionHR.Web.UI.Forms
                         record.Set("name", n.name);
                         record.Set("reference", n.reference);
                         record.Set("pictureUrl", n.pictureUrl);
-                        record.Set("hireDate", n.hireDate.Value.ToShortDateString());
-
+                       
                         //record.Commit();
                         Notification.Show(new NotificationConfig
                         {

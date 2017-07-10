@@ -237,4 +237,16 @@
   <data name="CalDays" xml:space="preserve">
     <value>الأيام</value>
   </data>
+  <data name="LeaveBalance" xml:space="preserve">
+    <value>رصيد الإجازات</value>
+  </data>
+  <data name="YearsInService" xml:space="preserve">
+    <value>فترة الخدمة</value>
+  </data>
+  <data name="RecentLeaves" xml:space="preserve">
+    <value>الإجازات السابقة</value>
+  </data>
+  <data name="ReturnNotes" xml:space="preserve">
+    <value>ملاحظات</value>
+  </data>
 </root>

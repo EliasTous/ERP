@@ -158,6 +158,7 @@
         <ext:Hidden ID="textMatch" runat="server" Text="<%$ Resources:Common , MatchFound %>" />
         <ext:Hidden ID="textLoadFailed" runat="server" Text="<%$ Resources:Common , LoadFailed %>" />
         <ext:Hidden ID="titleSavingError" runat="server" Text="<%$ Resources:Common , TitleSavingError %>" />
+        <ext:Hidden ID="EmptyText" runat="server" Text="<%$ Resources:  EmptyComment %>" />
         <ext:Hidden ID="titleSavingErrorMessage" runat="server" Text="<%$ Resources:Common , TitleSavingErrorMessage %>" />
         <ext:Hidden ID="currentCase" runat="server" />
      
@@ -613,7 +614,7 @@
                                           <ext:TextArea runat="server" ID="newNoteText" Region="West" Width="550" Height="60" />
                                 <ext:Button Region="East" ID="Button1" MarginSpec="20 0 0 0" Height="25" runat="server" Text="<%$ Resources:Common , Add %>" Icon="Add">
                                   <Listeners>
-                                        <Click Handler="CheckSession();" />
+                                        <Click Handler="CheckSession();if(App.newNoteText.getValue()=='') {Ext.MessageBox.alert(#{titleSavingError}.value, #{EmptyText}.value); return false;}" />
                                     </Listeners>                           
                                     <DirectEvents>
                                         <Click OnEvent="ADDNewRecordComments">
