@@ -81,7 +81,7 @@ namespace AionHR.Web.UI.Forms
                 issueDateMulti.Disabled = issueDate.Disabled;
                 issueDateMulti.ReadOnly = issueDate.ReadOnly;
                 issueDateDisabled.Text = issueDate.ReadOnly.ToString();
-                
+
 
                 expiryDateMulti.InputType = expiryDate.InputType;
                 expiryDateMulti.Disabled = expiryDate.Disabled;
@@ -306,7 +306,7 @@ namespace AionHR.Web.UI.Forms
                     //Step 1 : get the object from the Web Service 
                     RecordRequest r = new RecordRequest();
                     r.RecordID = id;
-                   
+
                     RecordResponse<CompanyRightToWork> response = _systemService.ChildGetRecord<CompanyRightToWork>(r);
                     if (!response.Success)
                     {
@@ -323,7 +323,8 @@ namespace AionHR.Web.UI.Forms
                     dtId.Select(response.result.dtId.ToString());
 
                     FillBranch();
-                    branchId.Select(response.result.branchId.Value.ToString());
+                    if (response.result.branchId.HasValue)
+                        branchId.Select(response.result.branchId.Value.ToString());
                     if (_systemService.SessionHelper.GetHijriSupport())
                     {
                         SetHijriInputState(true);
@@ -394,7 +395,7 @@ namespace AionHR.Web.UI.Forms
                 s.dtName = "";
                 s.branchId = 0;
                 s.branchName = "";
-                
+
 
 
                 PostRequest<CompanyRightToWork> req = new PostRequest<CompanyRightToWork>();
@@ -509,17 +510,17 @@ namespace AionHR.Web.UI.Forms
             BasicInfoTab.Reset();
             FillBranch();
             FillDocumentType();
-            if(_systemService.SessionHelper.GetHijriSupport())
+            if (_systemService.SessionHelper.GetHijriSupport())
             {
                 SetHijriInputState(true);
-                
+
                 X.Call("handleInputRender");
             }
             else
             {
                 SetHijriInputState(false);
             }
-            
+
             this.EditRecordWindow.Title = Resources.Common.AddNewRecord;
             this.EditRecordWindow.Show();
         }
@@ -527,7 +528,7 @@ namespace AionHR.Web.UI.Forms
         private void SetHijriInputState(bool hijriSupported)
         {
             X.Call("setInputState", hijriSupported);
-            
+
 
         }
         protected void Store1_RefreshData(object sender, StoreReadDataEventArgs e)
@@ -546,7 +547,7 @@ namespace AionHR.Web.UI.Forms
             request.SortBy = "dtName";
             request.DTid = 0;
             request.BranchId = 0;
-            
+
 
 
             request.Filter = "";
@@ -565,7 +566,7 @@ namespace AionHR.Web.UI.Forms
             string obj = e.ExtraParams["values"];
             JsonSerializerSettings settings = new JsonSerializerSettings();
             settings.NullValueHandling = NullValueHandling.Ignore;
-            CompanyRightToWork b = JsonConvert.DeserializeObject<CompanyRightToWork>(obj,settings);
+            CompanyRightToWork b = JsonConvert.DeserializeObject<CompanyRightToWork>(obj, settings);
 
             string id = e.ExtraParams["id"];
             string url = e.ExtraParams["url"];
@@ -622,10 +623,10 @@ namespace AionHR.Web.UI.Forms
                         //}
                         fileData = new byte[rwFile.PostedFile.ContentLength];
                         fileData = rwFile.FileBytes;
-                        
+
 
                     }
-                  
+
 
 
 
@@ -699,17 +700,17 @@ namespace AionHR.Web.UI.Forms
                     PostRequest<CompanyRightToWork> request = new PostRequest<CompanyRightToWork>();
                     b.recordId = index.ToString(); ;
                     request.entity = b;
-                    
+
                     byte[] fileData = null;
                     if (rwFile.PostedFile != null && rwFile.PostedFile.ContentLength > 0)
                     {
-                       
+
                         fileData = new byte[rwFile.PostedFile.ContentLength];
                         fileData = rwFile.FileBytes;
-                      
+
 
                     }
-                   
+
 
                     PostResponse<CompanyRightToWork> r = _systemService.ChildAddOrUpdate<CompanyRightToWork>(request);                      //Step 1 Selecting the object or building up the object for update purpose
 

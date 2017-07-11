@@ -10,11 +10,13 @@ namespace AionHR.Model.Reports
     {
         public int dow { get; set; }
 
-        public string from { get; set; }
+        public TimeSpan from { get; set; }
 
-        public string to { get; set; }
+        public TimeSpan to { get; set; }
 
         public bool active { get; set; }
+
+        public int headCount { get; set; }
     }
 
     public class Period
@@ -31,5 +33,23 @@ namespace AionHR.Model.Reports
         public int dow { get; set; }
 
         public List<Period> periods { get; set; }
+    }
+    public class departmentAvailability
+    {
+        public string period {
+            get { return from.ToString(@"hh\:mm"); }
+        }
+
+        public TimeSpan from { get; set; }
+        public TimeSpan to { get; set; }
+
+
+        public int day1 { get; set; }
+        public int day2 { get; set; }
+        public int day3 { get; set; }
+        public int day4 { get; set; }
+        public int day5 { get; set; }
+        public int day6 { get; set; }
+        public int day7 { get; set; }
     }
 }

@@ -166,6 +166,7 @@
     <Content Include="CompanyRightToWorks.aspx" />
     <Content Include="Controls\LeaveRequestControl.ascx" />
     <Content Include="CSS\cal.css" />
+    <Content Include="CSS\jquery-ui.css" />
     <Content Include="CSS\MainDashboard.css" />
     <Content Include="CSS\Dashboard.css" />
     <Content Include="CSS\Calendars.css" />
@@ -285,9 +286,14 @@
     <Content Include="Reports\Controls\MoudleFilter.ascx" />
     <Content Include="Reports\Controls\PaymentMethodFilter.ascx" />
     <Content Include="Reports\Controls\PayRefFilter.ascx" />
+    <Content Include="Reports\Controls\Private_Scripts\jquery-ui-min.js" />
+    <Content Include="Reports\Controls\Private_Scripts\jquery-ui.css" />
+    <Content Include="Reports\Controls\Private_Scripts\jquery.min.js" />
+    <Content Include="Reports\Controls\Private_Scripts\weekPicker.js" />
     <Content Include="Reports\Controls\SalaryChangeReasonFilter.ascx" />
     <Content Include="Reports\Controls\TransactionTypeFilter.ascx" />
     <Content Include="Reports\Controls\UserComboFilter.ascx" />
+    <Content Include="Reports\Controls\WeekPicker.ascx" />
     <Content Include="Reports\RT01.aspx" />
     <Content Include="Reports\RT102.aspx" />
     <Content Include="Reports\RT103.aspx" />
@@ -319,6 +325,7 @@
     <Content Include="Scripts\CompanyNews.js" />
     <Content Include="Scripts\Contacts.js" />
     <Content Include="Scripts\HighCharts.js" />
+    <Content Include="Scripts\jquery-ui-min.js" />
     <Content Include="Scripts\SecurityGroups.js" />
     <Content Include="Scripts\ImportAttendance.js" />
     <Content Include="Scripts\EmployeeComplaints.js" />
@@ -426,6 +433,8 @@
     <Content Include="Scripts\Skills.js" />
     <Content Include="Scripts\Sponsors.js" />
     <Content Include="Scripts\TrainingTypes.js" />
+    <Content Include="Scripts\weekPicker.js" />
+    <Content Include="Scripts\weekPicker.min.js" />
     <Content Include="SecurityGroups.aspx" />
     <Content Include="Sponsors.aspx" />
     <Content Include="States.aspx" />
@@ -442,6 +451,7 @@
     <Content Include="SystemAttachmentsUploader.ashx" />
     <Content Include="EmployeePhotoUploaderHandler.ashx" />
     <None Include="Properties\PublishProfiles\local.pubxml" />
+    <Content Include="Scripts\jquery-min-1.4.2.js" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -481,6 +491,13 @@
     </Compile>
     <Compile Include="ImportDepartments.aspx.designer.cs">
       <DependentUpon>ImportDepartments.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Controls\WeekPicker.ascx.cs">
+      <DependentUpon>WeekPicker.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reports\Controls\WeekPicker.ascx.designer.cs">
+      <DependentUpon>WeekPicker.ascx</DependentUpon>
     </Compile>
     <Compile Include="Reports\RT303.aspx.cs">
       <DependentUpon>RT303.aspx</DependentUpon>
@@ -1686,6 +1703,7 @@
     <Content Include="App_LocalResources\LoanRequests.aspx.ar.resx" />
     <Content Include="App_LocalResources\Cases.aspx.ar.resx" />
     <Content Include="App_LocalResources\LeaveRequests.aspx.ar.resx" />
+    <Content Include="App_LocalResources\WorkingCalendars.aspx.ar.resx" />
     <EmbeddedResource Include="Properties\licenses.licx" />
     <Content Include="Reports\App_LocalResources\RT202.aspx.resx" />
     <Content Include="Reports\App_LocalResources\RT01.aspx.ar.resx" />

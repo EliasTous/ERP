@@ -936,4 +936,7 @@
   <data name="ImportDepartments" xml:space="preserve">
     <value>استيراد معلومات الأقسام</value>
   </data>
+  <data name="RT304" xml:space="preserve">
+    <value>Departments Activity</value>
+  </data>
 </root>

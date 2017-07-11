@@ -118,138 +118,132 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="BasicInfoTabEditWindowTitle" xml:space="preserve">
-    <value>Attendance Calendar Info</value>
+    <value>معلومات جدول الإجازات</value>
   </data>
   <data name="BtnAddPeriod" xml:space="preserve">
-    <value>Add Period</value>
+    <value>إضافة فترة إجازة</value>
   </data>
   <data name="BtnRemovePeriod" xml:space="preserve">
-    <value>Remove Period</value>
+    <value>مسح فترة إجازة</value>
   </data>
   <data name="BtnUpdate" xml:space="preserve">
-    <value>Save</value>
+    <value>حفظ</value>
   </data>
   <data name="DayBreaksForm" xml:space="preserve">
-    <value>Breaks of Day</value>
+    <value>الاستراحات</value>
   </data>
   <data name="EditWindowsTitle" xml:space="preserve">
-    <value>Edit Vacation Schedule</value>
+    <value>تعديل جدول الإجازات</value>
   </data>
   <data name="FieldDays" xml:space="preserve">
-    <value>Vacation Days</value>
+    <value>أيام الإجازة</value>
   </data>
   <data name="FieldDow" xml:space="preserve">
-    <value>Day Of Week</value>
+    <value>اليوم</value>
   </data>
   <data name="Fieldfci_max_lt" xml:space="preserve">
-    <value>First Check In Maximum Lateness</value>
+    <value>الحد الأقصى للتأخير المسموح به لدى أول تسجيل دخول</value>
   </data>
   <data name="Fieldfci_min_ot" xml:space="preserve">
-    <value>First Check In Minimum Over Time</value>
+    <value>الحد الأدنى لاحتساب العمل الإضافي لدى أو ل تسجيل دخول</value>
   </data>
   <data name="FieldFirstIn" xml:space="preserve">
-    <value>First In</value>
+    <value>أول تسجيل دخول</value>
   </data>
   <data name="FieldFrom" xml:space="preserve">
-    <value>From Months</value>
+    <value>من عدد الأشهر</value>
   </data>
-  <data name="FieldIsBenifit" xml:space="preserve">
-    <value>Is Benifit of Over Time</value>
+  <data name="FieldIsBenefit" xml:space="preserve">
+    <value>تحتسب كوقت عمل إضافي؟</value>
   </data>
   <data name="FieldLastOut" xml:space="preserve">
-    <value>Last Out</value>
+    <value>آخر تسجيل خروج</value>
   </data>
   <data name="Fieldlco_max_el" xml:space="preserve">
-    <value>Last Check Out Maximum Early Leave</value>
+    <value>الحد الأقصى للخروج المبكر المسموح به لدى آخر تسجيل خروج</value>
   </data>
   <data name="Fieldlco_max_ot" xml:space="preserve">
-    <value>Last Check Out Maximum Over Time</value>
+    <value>الحد الأدنى لاحتساب العمل الإضافي لدى آخر تسجيل خروج</value>
   </data>
   <data name="Fieldlco_min_ot" xml:space="preserve">
-    <value>Last Check Out Minimum Early Leave</value>
+    <value>الحد الأدنى لاحتساب العمل الإضافي لدى تسجيل الدخول المبكّر</value>
   </data>
   <data name="FieldName" xml:space="preserve">
-    <value>Name</value>
+    <value>الاسم</value>
   </data>
   <data name="FieldTo" xml:space="preserve">
-    <value>To Months</value>
+    <value>إلى عدد الأشهر</value>
   </data>
   <data name="MondayTab" xml:space="preserve">
-    <value>Monday</value>
+    <value>الاثنين</value>
   </data>
   <data name="Periods" xml:space="preserve">
-    <value>Periods</value>
+    <value>فترات جدول الإجازات</value>
   </data>
   <data name="PeriodsTab" xml:space="preserve">
-    <value>Periods Tab</value>
+    <value>فترات جدول الإجازات</value>
   </data>
   <data name="SundayTab" xml:space="preserve">
-    <value>Sunday</value>
+    <value>الأحد</value>
   </data>
   <data name="WindowTitle" xml:space="preserve">
-    <value>Attendance Calendars</value>
+    <value>جداول الإجازات</value>
   </data>
   <data name="CalendarYearFormTitle" xml:space="preserve">
-    <value>Calendar Years</value>
+    <value>السنوات</value>
   </data>
   <data name="EditCalendarWindowTitle" xml:space="preserve">
-    <value>Add Year</value>
+    <value>تعديل تفاصيل التقويم</value>
   </data>
   <data name="FieldCalendarName" xml:space="preserve">
-    <value>Calendar Name</value>
+    <value>اسم التقويم</value>
   </data>
   <data name="Year" xml:space="preserve">
-    <value>Year</value>
+    <value>السنوات</value>
   </data>
   <data name="DayConfigTitle" xml:space="preserve">
-    <value>Day Options</value>
+    <value>خيارات اليوم</value>
   </data>
   <data name="DayType" xml:space="preserve">
-    <value>Day Type</value>
+    <value>نوع اليوم</value>
   </data>
   <data name="Schedule" xml:space="preserve">
-    <value>Schedule</value>
-  </data>
-  <data name="CalendarDays" xml:space="preserve">
-    <value>Calendar Days</value>
+    <value>جدول العمل</value>
   </data>
   <data name="CalendarYearsTitle" xml:space="preserve">
-    <value>Calendar Years</value>
+    <value>السنوات</value>
   </data>
   <data name="EditCalendar" xml:space="preserve">
-    <value>Edit Calendar Days</value>
+    <value>تعديل التقويم</value>
   </data>
   <data name="EditYears" xml:space="preserve">
-    <value>Edit Years</value>
+    <value>تعديل السنوات</value>
   </data>
   <data name="Legends" xml:space="preserve">
-    <value>Legends</value>
+    <value>اختصارات أيام العمل</value>
   </data>
   <data name="LegendsWindow" xml:space="preserve">
-    <value>Legends Table</value>
+    <value>جدول اختصارات أيام العمل</value>
   </data>
   <data name="ApplyPattern" xml:space="preserve">
-    <value>Apply Pattern</value>
+    <value>تطبيق النمط</value>
+  </data>
+  <data name="CalendarDays" xml:space="preserve">
+    <value>ايام التقويم</value>
   </data>
   <data name="From" xml:space="preserve">
-    <value>From</value>
+    <value>من</value>
   </data>
   <data name="PatternWindowTitle" xml:space="preserve">
-    <value>Pattern Selection</value>
+    <value>اختيار النمط</value>
   </data>
   <data name="To" xml:space="preserve">
-    <value>To</value>
-  </data>
-  <data name="Color" xml:space="preserve">
-    <value>Color</value>
-  </data>
-  <data name="MonthDay" xml:space="preserve">
-    <value>Month/Day</value>
+    <value>إلى</value>
   </data>
   <data name="AlternateDaysWindow" xml:space="preserve">
-    <value>Alternate Days</value>
+    <value>تناوب الأيام</value>
   </data>
   <data name="DOW" xml:space="preserve">
-    <value>Day of week</value>
+    <value>اليوم</value>
   </data>
 </root>

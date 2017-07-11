@@ -14,35 +14,38 @@
 
     <script type="text/javascript" src="../Scripts/common.js"></script>
 
-
+    <style type="text/css">
+        #ui-datepicker-div{z-index:99999!important;}
+    </style>
 </head>
 <body style="background: url(Images/bg.png) repeat;">
     <form id="Form1" runat="server">
         <ext:ResourceManager ID="ResourceManager1" runat="server" Theme="Neptune" AjaxTimeout="1200000" />
-        <uc:employeeControl ID="employeeControl1" runat="server" />
+
         <ext:Hidden ID="textMatch" runat="server" Text="<%$ Resources:Common , MatchFound %>" />
         <ext:Hidden ID="textLoadFailed" runat="server" Text="<%$ Resources:Common , LoadFailed %>" />
         <ext:Hidden ID="titleSavingError" runat="server" Text="<%$ Resources:Common , TitleSavingError %>" />
         <ext:Hidden ID="titleSavingErrorMessage" runat="server" Text="<%$ Resources:Common , TitleSavingErrorMessage %>" />
-        <ext:Hidden ID="Field1" runat="server" Text="<%$ Resources:Field1 %>" />
-        <ext:Hidden ID="Field2" runat="server" Text="<%$ Resources:Field2 %>" />
-        <ext:Hidden ID="Field3" runat="server" Text="<%$ Resources:Field3 %>" />
-        <ext:Hidden ID="Field4" runat="server" Text="<%$ Resources:Field4 %>" />
-        <ext:Hidden ID="Field5" runat="server" Text="<%$ Resources:Field5 %>" />
-        <ext:Hidden ID="Field6" runat="server" Text="<%$ Resources:Field6 %>" />
-        <ext:Hidden ID="Field7" runat="server" Text="<%$ Resources:Field7 %>" />
-        <ext:Hidden ID="Field8" runat="server" Text="<%$ Resources:Field8 %>" />
-        <ext:Hidden ID="Field9" runat="server" Text="<%$ Resources:Field9 %>" />
-        <ext:Hidden ID="Field10" runat="server" Text="<%$ Resources:Field10 %>" />
-        <ext:Hidden ID="Field11" runat="server" Text="<%$ Resources:Field11 %>" />
-        <ext:Hidden ID="Field12" runat="server" Text="<%$ Resources:Field12 %>" />
-        <ext:Hidden ID="Field13" runat="server" Text="<%$ Resources:Field13 %>" />
-        <ext:Hidden ID="Field14" runat="server" Text="<%$ Resources:Field14 %>" />
-        <ext:Hidden ID="Field15" runat="server" Text="<%$ Resources:Field15 %>" />
 
 
 
 
+        <ext:Store ID="firstStore"  runat="server">
+            <Model>
+                <ext:Model runat="server">
+                    <Fields>
+                        <ext:ModelField Name="period" />
+                        <ext:ModelField Name="day1" />
+                        <ext:ModelField Name="day2" />
+                        <ext:ModelField Name="day3" />
+                        <ext:ModelField Name="day4" />
+                        <ext:ModelField Name="day5" />
+                        <ext:ModelField Name="day6" />
+                        <ext:ModelField Name="day7" />
+                    </Fields>
+                </ext:Model>
+            </Model>
+        </ext:Store>
         <ext:Viewport ID="Viewport1" runat="server" Layout="FitLayout">
 
             <Items>
@@ -53,6 +56,7 @@
                     Border="false"
                     Layout="FitLayout" AutoScroll="true"
                     Margins="0 0 0 0"
+                    
                     Region="Center">
                     <TopBar>
                         <ext:Toolbar runat="server" Height="60">
@@ -61,15 +65,28 @@
 
                                 <ext:Container runat="server" Layout="FitLayout">
                                     <Content>
-                                        <uc:dateRange runat="server" ID="dateRange1" />
+                                        <uc:jobInfo runat="server" ID="jobInfo1" EnableBranch="false" EnableDivision="false" EnablePosition="false" />
+                                    </Content>
+                                </ext:Container>
+                                <ext:Container runat="server" Layout="FitLayout">
+                                    <Content>
+                                        <uc:weekControl runat="server" ID="weekControl1" />
                                     </Content>
                                 </ext:Container>
                                 <ext:Container runat="server" Layout="FitLayout">
                                     <Content>
                                         <ext:Button runat="server" Text="<%$Resources:Common, Go %>">
                                             <Listeners>
-                                                <Click Handler="App.firstStore.reload(); App.secondStore.reload();" />
+                                                <Click Handler="CheckSession(); App.Chart1.setHidden(false);"  />
                                             </Listeners>
+                                            <DirectEvents>
+                                                <Click OnEvent="Unnamed_Event">
+                                                    <ExtraParams>
+                                                        <ext:Parameter Name="week" Value="App.weekControl1_week.value" Mode="Raw" />
+                                                    </ExtraParams>
+
+                                                </Click>
+                                            </DirectEvents>
                                         </ext:Button>
                                     </Content>
                                 </ext:Container>
@@ -80,55 +97,173 @@
 
                     </TopBar>
                     <Items>
-                        <ext:Panel runat="server" Height="200" Layout="FitLayout" Width="1000" AutoScroll="true" ID="toPrint">
-                            <Items>
+                        <ext:Panel MarginSpec="50 0 0 0" runat="server" Height="200" Layout="FitLayout" Width="1000" AutoScroll="true" ID="toPrint">
 
-                                <ext:CartesianChart
+                            <Items>
+                                <ext:CartesianChart Hidden="true"
+                                    StoreID="firstStore"
                                     ID="Chart1"
                                     runat="server"
-                                    StoreID="firstStore"
-                                    Layout="FitLayout"
-                                    StyleSpec="background:#fff;"
-                                    InsetPadding="40">
-
-
+                                    InsetPadding="40"
+                                    InnerPadding="0 40 0 40">
+                                    <Interactions>
+                                        <ext:PanZoomInteraction ZoomOnPanGesture="true" />
+                                    </Interactions>
+                                    <LegendConfig runat="server" Dock="Right" />
                                     <Axes>
-                                        <ext:NumericAxis Title="<%$ Resources: EmployeeCount %>"
-                                            Fields="headCount"
+                                        <ext:NumericAxis MinorTickSteps="1" 
                                             Position="Left"
+                                            Fields="day1,day2,day3,day4,day5,day6,day7"
                                             Grid="true"
                                             Minimum="0"
-                                            Maximum="100">
-                                            <Renderer Handler="return layoutContext.renderer(label) ;" />
+                                           >
+                                            <Renderer Handler="return layoutContext.renderer(label)" />
                                         </ext:NumericAxis>
 
-                                        <ext:CategoryAxis Title="<%$ Resources: FieldDate %>"
+                                        <ext:CategoryAxis
                                             Position="Bottom"
-                                            Fields="date"
+                                            Fields="period"
                                             Grid="true">
-                                            <Renderer Handler="var s = moment(label); return s.format(#{format}.value);" />
-                                            <Label RotationDegrees="-45" />
+                                            <Label RotationDegrees="-90" />
                                         </ext:CategoryAxis>
                                     </Axes>
-                                    <Series>
-                                        <ext:AreaSeries
-                                            XField="date"
-                                            YField="headCount">
-                                            <StyleSpec>
-                                                <ext:Sprite GlobalAlpha="0.8" />
-                                            </StyleSpec>
-                                            <Marker>
-                                                <ext:CircleSprite GlobalAlpha="0" ScalingX="0.01" ScalingY="0.01" Duration="200" Easing="EaseOut" />
-                                            </Marker>
-                                            <HighlightDefaults>
-                                                <ext:CircleSprite GlobalAlpha="1" ScalingX="1.5" ScalingY="1.5" />
-                                            </HighlightDefaults>
-                                            <Tooltip runat="server" TrackMouse="true" StyleSpec="background: #fff">
-                                                <Renderer Handler=" var s = moment(record.get('date'));  toolTip.setHtml(s.format(#{format}.value) + ': ' + record.get('headCount') );" />
-                                            </Tooltip>
-                                        </ext:AreaSeries>
-                                    </Series>
+                                     <Series>
+                        <ext:LineSeries XField="period" YField="day1" Title="<%$Resources:Common,MondayText %>"  >
+                            <StyleSpec>
+                                <ext:Sprite LineWidth="4" />
+                            </StyleSpec>
+
+                            <HighlightConfig>
+                                <ext:Sprite FillStyle="#000" Radius="5" LineWidth="2" StrokeStyle="#fff" />
+                            </HighlightConfig>
+
+                            <Marker>
+                                <ext:Sprite Radius="4" />
+                            </Marker>
+
+                            <Label Field="day1" Display="Over" />
+
+                            <Tooltip runat="server" TrackMouse="true" ShowDelay="0" DismissDelay="0" HideDelay="0">
+                                
+                            </Tooltip>
+                        </ext:LineSeries>
+                                         <ext:LineSeries XField="period" YField="day2"  Title="<%$Resources:Common,TuesdayText %>" >
+                            <StyleSpec>
+                                <ext:Sprite LineWidth="3" />
+                            </StyleSpec>
+
+                            <HighlightConfig>
+                                <ext:Sprite FillStyle="#000" Radius="5" LineWidth="2" StrokeStyle="#fff" />
+                            </HighlightConfig>
+
+                            <Marker>
+                                <ext:Sprite Radius="4" />
+                            </Marker>
+
+                            <Label Field="day2" Display="Over" />
+
+                            <Tooltip runat="server" TrackMouse="true" ShowDelay="0" DismissDelay="0" HideDelay="0">
+                                
+                            </Tooltip>
+                        </ext:LineSeries>
+                                         <ext:LineSeries XField="period" YField="day3" Title="<%$Resources:Common,WednesdayText %>" >
+                            <StyleSpec>
+                                <ext:Sprite LineWidth="4" />
+                            </StyleSpec>
+
+                            <HighlightConfig>
+                                <ext:Sprite FillStyle="#000" Radius="5" LineWidth="2" StrokeStyle="#fff" />
+                            </HighlightConfig>
+
+                            <Marker>
+                                <ext:Sprite Radius="4" />
+                            </Marker>
+
+                            <Label Field="day3" Display="Over" />
+
+                            <Tooltip runat="server" TrackMouse="true" ShowDelay="0" DismissDelay="0" HideDelay="0">
+                                
+                            </Tooltip>
+                        </ext:LineSeries>
+                                          <ext:LineSeries XField="period" YField="day4" Title="<%$Resources:Common,ThursdayText %>" >
+                            <StyleSpec>
+                                <ext:Sprite LineWidth="4" />
+                            </StyleSpec>
+
+                            <HighlightConfig>
+                                <ext:Sprite FillStyle="#000" Radius="5" LineWidth="2" StrokeStyle="#fff" />
+                            </HighlightConfig>
+
+                            <Marker>
+                                <ext:Sprite Radius="4" />
+                            </Marker>
+
+                            <Label Field="day4" Display="Over" />
+
+                            <Tooltip runat="server" TrackMouse="true" ShowDelay="0" DismissDelay="0" HideDelay="0">
+                                
+                            </Tooltip>
+                        </ext:LineSeries>
+                                          <ext:LineSeries XField="period" YField="day5" Title="<%$Resources:Common,FridayText %>" >
+                            <StyleSpec>
+                                <ext:Sprite LineWidth="4" />
+                            </StyleSpec>
+
+                            <HighlightConfig>
+                                <ext:Sprite FillStyle="#000" Radius="5" LineWidth="2" StrokeStyle="#fff" />
+                            </HighlightConfig>
+
+                            <Marker>
+                                <ext:Sprite Radius="4" />
+                            </Marker>
+
+                            <Label Field="day5" Display="Over" />
+
+                            <Tooltip runat="server" TrackMouse="true" ShowDelay="0" DismissDelay="0" HideDelay="0">
+                                
+                            </Tooltip>
+                        </ext:LineSeries>
+                                          <ext:LineSeries XField="period" YField="day6" Title="<%$Resources:Common,SaturdayText %>" >
+                            <StyleSpec>
+                                <ext:Sprite LineWidth="4" />
+                            </StyleSpec>
+
+                            <HighlightConfig>
+                                <ext:Sprite FillStyle="#000" Radius="5" LineWidth="2" StrokeStyle="#fff" />
+                            </HighlightConfig>
+
+                            <Marker>
+                                <ext:Sprite Radius="4" />
+                            </Marker>
+
+                            <Label Field="day6" Display="Over" />
+
+                            <Tooltip runat="server" TrackMouse="true" ShowDelay="0" DismissDelay="0" HideDelay="0">
+                                
+                            </Tooltip>
+                        </ext:LineSeries>
+                                          <ext:LineSeries XField="period" YField="day7" Title="<%$Resources:Common,SundayText %>" >
+                            <StyleSpec>
+                                <ext:Sprite LineWidth="4" />
+                            </StyleSpec>
+
+                            <HighlightConfig>
+                                <ext:Sprite FillStyle="#000" Radius="5" LineWidth="2" StrokeStyle="#fff" />
+                            </HighlightConfig>
+
+                            <Marker>
+                                <ext:Sprite Radius="4" />
+                            </Marker>
+
+                            <Label Field="day7" Display="Over" />
+
+                            <Tooltip runat="server" TrackMouse="true" ShowDelay="0" DismissDelay="0" HideDelay="0">
+                                
+                            </Tooltip>
+                        </ext:LineSeries>
+                    </Series>
                                 </ext:CartesianChart>
+
 
 
                             </Items>

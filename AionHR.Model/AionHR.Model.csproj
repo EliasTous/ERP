@@ -150,6 +150,7 @@
     <Compile Include="TimeAttendance\AttendanceShift.cs" />
     <Compile Include="TimeAttendance\BiometricDevice.cs" />
     <Compile Include="TimeAttendance\Calendar.cs" />
+    <Compile Include="TimeAttendance\CalendarAlternation.cs" />
     <Compile Include="TimeAttendance\CalendarDay.cs" />
     <Compile Include="TimeAttendance\CalendarPattern.cs" />
     <Compile Include="TimeAttendance\CalendarYear.cs" />

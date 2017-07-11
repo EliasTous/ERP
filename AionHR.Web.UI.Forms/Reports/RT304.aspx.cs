@@ -23,7 +23,7 @@ using AionHR.Model.Company.Structure;
 using AionHR.Model.System;
 using AionHR.Model.Attendance;
 using AionHR.Services.Messaging.Reports;
-
+using AionHR.Model.Reports;
 
 namespace AionHR.Web.UI.Forms.Reports
 {
@@ -140,8 +140,8 @@ namespace AionHR.Web.UI.Forms.Reports
 
             req.Size = "1000";
             req.StartAt = "1";
-            req.SortBy = "departmentName";
-            req.Add(dateRange1.GetRange());
+
+            req.Add(jobInfo1.GetJobInfo());
 
 
             return req;
@@ -149,7 +149,7 @@ namespace AionHR.Web.UI.Forms.Reports
 
         protected void firstStore_ReadData(object sender, StoreReadDataEventArgs e)
         {
-
+            ReportCompositeRequest requst = GetRequest();
         }
 
         [DirectMethod]
@@ -160,6 +160,91 @@ namespace AionHR.Web.UI.Forms.Reports
                 return "0";
             }
             else return "1";
+        }
+
+        protected void Unnamed_Event(object sender, DirectEventArgs e)
+        {
+            ReportCompositeRequest request = GetRequest();
+            if (string.IsNullOrEmpty(e.ExtraParams["week"]))
+                return;
+            string week = e.ExtraParams["week"];
+            int year = Convert.ToInt32(week.Split('-')[0]);
+            int weekNo = Convert.ToInt32(week.Split('-')[1]);
+            DateTime d = FirstDateOfWeekISO8601(year, weekNo);
+            DateTime dF = d.AddDays(7);
+            DateRangeParameterSet r = new DateRangeParameterSet();
+            r.DateFrom = d;
+            r.DateTo = dF;
+            r.IsDayId = true;
+            request.Add(r);
+            ListResponse<AionHR.Model.Reports.RT304> resp = _reportsService.ChildGetAll<AionHR.Model.Reports.RT304>(request);
+            if (!resp.Success)
+            {
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, resp.Summary).Show();
+                return;
+            }
+            if (resp.Items.Count > 0)
+                DisplayResult(resp.Items);
+
+        }
+
+        private void DisplayResult(List<AionHR.Model.Reports.RT304> items)
+        {
+            List<TimeSpan> timesFrom = items
+                      .Select(x => x.from)
+                      .ToList();
+
+            var min = timesFrom.Min();
+            List<TimeSpan> timesTo = items
+                      .Select(x => x.to)
+                      .ToList();
+
+            var max = timesTo.Max();
+            List<departmentAvailability> avs = new List<departmentAvailability>();
+            InitAvailability(avs, min, max);
+
+            items.Where(x => x.dow == 1).ToList().ForEach(x => { foreach (var item in avs) { if (item.from >= x.from && item.to <= x.to) { if (x.active) item.day1 += x.headCount; else item.day1 -= x.headCount; } } });
+            items.Where(x => x.dow == 2).ToList().ForEach(x => { foreach (var item in avs) { if (item.from >= x.from && item.to <= x.to) { if (x.active) item.day2 += x.headCount; else item.day2 -= x.headCount; } } });
+            items.Where(x => x.dow == 3).ToList().ForEach(x => { foreach (var item in avs) { if (item.from >= x.from && item.to <= x.to) { if (x.active) item.day3 += x.headCount; else item.day3 -= x.headCount; } } });
+            items.Where(x => x.dow == 4).ToList().ForEach(x => { foreach (var item in avs) { if (item.from >= x.from && item.to <= x.to) { if (x.active) item.day4 += x.headCount; else item.day4 -= x.headCount; } } });
+            items.Where(x => x.dow == 5).ToList().ForEach(x => { foreach (var item in avs) { if (item.from >= x.from && item.to <= x.to) { if (x.active) item.day5 += x.headCount; else item.day5 -= x.headCount; } } });
+            items.Where(x => x.dow == 6).ToList().ForEach(x => { foreach (var item in avs) { if (item.from >= x.from && item.to <= x.to) { if (x.active) item.day6 += x.headCount; else item.day6 -= x.headCount; } } });
+            items.Where(x => x.dow == 7).ToList().ForEach(x => { foreach (var item in avs) { if (item.from >= x.from && item.to <= x.to) { if (x.active) item.day7 += x.headCount; else item.day7 -= x.headCount; } } });
+            firstStore.DataSource = avs;
+            firstStore.DataBind();
+
+        }
+
+        private void InitAvailability(List<departmentAvailability> avs, TimeSpan min, TimeSpan max)
+        {
+            TimeSpan p = min;
+            while (p <= max)
+            {
+                avs.Add(new departmentAvailability() { from = p, to = p.Add(new TimeSpan(0, 30, 0)) });
+                p = p.Add(new TimeSpan(0, 30, 0));
+            }
+        }
+
+
+
+
+        private DateTime FirstDateOfWeekISO8601(int year, int weekOfYear)
+        {
+            DateTime jan1 = new DateTime(year, 1, 1);
+            int daysOffset = DayOfWeek.Thursday - jan1.DayOfWeek;
+
+            DateTime firstThursday = jan1.AddDays(daysOffset);
+            var cal = CultureInfo.CurrentCulture.Calendar;
+            int firstWeek = cal.GetWeekOfYear(firstThursday, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday);
+
+            var weekNum = weekOfYear;
+            if (firstWeek <= 1)
+            {
+                weekNum -= 1;
+            }
+            var result = firstThursday.AddDays(weekNum * 7);
+            return result.AddDays(-3);
         }
     }
 }

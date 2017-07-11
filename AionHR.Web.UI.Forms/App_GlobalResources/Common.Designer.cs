@@ -2005,6 +2005,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Departments Activity.
+        /// </summary>
+        internal static string RT304 {
+            get {
+                return ResourceManager.GetString("RT304", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Loans History.
         /// </summary>
         internal static string RT401 {

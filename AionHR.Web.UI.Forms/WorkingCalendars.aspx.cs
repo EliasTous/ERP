@@ -976,6 +976,18 @@ namespace AionHR.Web.UI.Forms
 
             patternWindow.Show();
         }
+
+        protected void alternateWidnow_click(object sender, DirectEventArgs e)
+        {
+            alternateDTStore.DataSource = LoadDayTypes();
+            alternateDTStore.DataBind();
+            alternateDaysForm.Reset();
+            
+            startDate.MinDate = dateFrom.MinDate = new DateTime(Convert.ToInt32(CurrentYear.Text), 1, 1);
+            endDate.MaxDate = dateFrom.MaxDate = new DateTime(Convert.ToInt32(CurrentYear.Text), 12, 31);
+
+            alternateDaysWindow.Show();
+        }
         protected void SavePattern(object sender, DirectEventArgs e)
         {
 
@@ -1022,6 +1034,52 @@ namespace AionHR.Web.UI.Forms
 
         }
 
+        protected void SaveAlternation(object sender, DirectEventArgs e)
+        {
 
+
+            string day = e.ExtraParams["alt"];
+            CalendarAlternation b = JSON.Deserialize<CalendarAlternation>(day);
+
+            b.caId = CurrentCalendar.Text;
+
+            b.year = CurrentYear.Text;
+
+            b.startDayId = b.dateFrom.ToString("yyyyMMdd");
+            b.endDayId = b.dateTo.ToString("yyyyMMdd");
+
+            PostRequest<CalendarAlternation> request = new PostRequest<CalendarAlternation>();
+            request.entity = b;
+            PostResponse<CalendarAlternation> response = _branchService.ChildAddOrUpdate<CalendarAlternation>(request);
+
+            if (!response.Success)//it maybe another check
+            {
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.ErrorUpdatingRecord, response.Summary).Show();
+                return;
+            }
+
+            //Step 2 : saving to store
+
+
+            else
+            {
+
+                LoadDays();
+                //Display successful notification
+                Notification.Show(new NotificationConfig
+                {
+                    Title = Resources.Common.Notification,
+                    Icon = Icon.Information,
+                    Html = Resources.Common.RecordSavingSucc
+                });
+
+                this.alternateDaysWindow.Close();
+
+
+
+            }
+
+        }
     }
 }
