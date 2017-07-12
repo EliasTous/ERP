@@ -105,7 +105,7 @@
                                     ID="Chart1"
                                     runat="server"
                                     InsetPadding="40"
-                                    InnerPadding="0 40 0 40">
+                                    InnerPadding="40 40 0 40">
                                     <Interactions>
                                         <ext:PanZoomInteraction ZoomOnPanGesture="true" />
                                     </Interactions>

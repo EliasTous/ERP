@@ -79,7 +79,7 @@
                                         <Click Handler="CheckSession();App.direct.AddPayroll();" />
                                     </Listeners>
                                 </ext:Button>
-                                <ext:ComboBox QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" EmptyText="<%$ Resources: FieldYear %>" Name="year" runat="server" DisplayField="fiscalYear" ValueField="fiscalYear" ID="year">
+                                <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" EmptyText="<%$ Resources: FieldYear %>" Name="year" runat="server" DisplayField="fiscalYear" ValueField="fiscalYear" ID="year">
                                     <Store>
                                         <ext:Store runat="server" ID="yearStore">
                                             <Model>
@@ -98,7 +98,7 @@
                                         
                                     </Listeners>
                                 </ext:ComboBox>
-                                <ext:ComboBox ID="salaryTypeFilter"  Name="salaryTypeFilter" runat="server" EmptyText="<%$ Resources:FieldPeriodType%>" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1">
+                                <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  ID="salaryTypeFilter"  Name="salaryTypeFilter" runat="server" EmptyText="<%$ Resources:FieldPeriodType%>" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1">
                                     <Items>
 
                                         <ext:ListItem Text="<%$ Resources: SalaryWeekly%>" Value="2"></ext:ListItem>
@@ -111,7 +111,7 @@
                                         </Select>
                                     </Listeners>
                                 </ext:ComboBox>
-                                <ext:ComboBox ID="status"  runat="server" EmptyText="<%$ Resources:FieldStatus%>" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1">
+                                <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  ID="status"  runat="server" EmptyText="<%$ Resources:FieldStatus%>" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1">
                                     <Items>
 
                                         <ext:ListItem Text="<%$ Resources: Status0%>" Value="0"></ext:ListItem>
@@ -238,7 +238,7 @@
                             </Listeners>
                             <Items>
                                 <ext:TextField runat="server" ID="payRef" Name="payRef" FieldLabel="<%$ Resources: FieldPayRef %>" AllowBlank="true" />
-                                <ext:ComboBox QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: FieldYear %>" Name="fiscalYear" runat="server" DisplayField="fiscalYear" ValueField="fiscalYear" ID="fiscalYear">
+                                <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: FieldYear %>" Name="fiscalYear" runat="server" DisplayField="fiscalYear" ValueField="fiscalYear" ID="fiscalYear">
                                     <Store>
                                         <ext:Store runat="server" ID="fiscalyearStore">
                                             <Model>
@@ -263,7 +263,7 @@
                                         </Select>
                                     </DirectEvents>
                                 </ext:ComboBox>
-                                <ext:ComboBox ID="salaryType" Name="salaryType" runat="server" FieldLabel="<%$ Resources:FieldPeriodType%>" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1">
+                                <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  ID="salaryType" Name="salaryType" runat="server" FieldLabel="<%$ Resources:FieldPeriodType%>" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1">
                                     <Items>
 
                                         <ext:ListItem Text="<%$ Resources: SalaryWeekly%>" Value="2"></ext:ListItem>
@@ -283,7 +283,7 @@
                                         </Select>
                                     </DirectEvents>
                                 </ext:ComboBox>
-                                <ext:ComboBox QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: FieldPeriod %>" Name="periodId" DisplayField="name" ValueField="recordId" runat="server" ID="periodId">
+                                <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: FieldPeriod %>" Name="periodId" DisplayField="name" ValueField="recordId" runat="server" ID="periodId">
                                     <Store>
                                         <ext:Store runat="server" ID="fiscalPeriodsStore" OnReadData="fiscalPeriodsStore_ReadData">
                                             <Model>
@@ -349,7 +349,7 @@
 
 
                                 </ext:Button>
-                                <ext:ComboBox runat="server" Width="130" LabelAlign="Top" EmptyText="<%$ Resources:FieldBranch%>" ValueField="recordId" DisplayField="name" ID="branchId" Name="branchId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1">
+                                <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" Width="130" LabelAlign="Top" EmptyText="<%$ Resources:FieldBranch%>" ValueField="recordId" DisplayField="name" ID="branchId" Name="branchId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1">
                                     <Store>
                                         <ext:Store runat="server" ID="branchStore">
                                             <Model>
@@ -368,7 +368,7 @@
 
                                 </ext:ComboBox>
 
-                                <ext:ComboBox runat="server" Width="155" EmptyText="<%$ Resources:FieldDepartment%>" LabelAlign="Top" ValueField="recordId" DisplayField="name" ID="departmentId" Name="departmentId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1">
+                                <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" Width="155" EmptyText="<%$ Resources:FieldDepartment%>" LabelAlign="Top" ValueField="recordId" DisplayField="name" ID="departmentId" Name="departmentId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1">
                                     <Store>
                                         <ext:Store runat="server" ID="departmentStore">
                                             <Model>
@@ -387,7 +387,7 @@
 
 
                                 </ext:ComboBox>
-                                <ext:ComboBox runat="server" ID="employeeId" Width="130" LabelAlign="Top"
+                                <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" ID="employeeId" Width="130" LabelAlign="Top"
                                     DisplayField="fullName"
                                     ValueField="recordId" AllowBlank="true"
                                     TypeAhead="false"
@@ -862,7 +862,7 @@
                     <Items>
                         <ext:TextField runat="server" Name="type" ID="type" Hidden="true" Disabled="true" />
                         <ext:TextField runat="server" Name="isInsert" ID="isInsert" Hidden="true" Disabled="true" />
-                        <ext:ComboBox runat="server" ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" AllowBlank="false" DisplayField="name" ID="edId" Name="edId" FieldLabel="<%$ Resources:FieldDeduction%>" SimpleSubmit="true">
+                        <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" AllowBlank="false" DisplayField="name" ID="edId" Name="edId" FieldLabel="<%$ Resources:FieldDeduction%>" SimpleSubmit="true">
                             <Store>
                                 <ext:Store runat="server" ID="edStore">
                                     <Model>
@@ -944,7 +944,7 @@
                         
                         <ext:TextField runat="server" Name="recordId" ID="recordId" Hidden="true" Disabled="true" />
                       
-                         <ext:ComboBox ID="statusCombo" Name="statusCombo" runat="server" FieldLabel="<%$ Resources:FieldStatus%>" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1">
+                         <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  ID="statusCombo" Name="statusCombo" runat="server" FieldLabel="<%$ Resources:FieldStatus%>" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1">
                                     <Items>
 
                                         <ext:ListItem Text="<%$ Resources: Status1%>" Value="1"></ext:ListItem>

@@ -64,7 +64,7 @@
                             BodyPadding="5">
                             <Items>
 
-                                <ext:ComboBox QueryMode="Local" ForceSelection="true" LabelWidth="160" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: FieldUL %>" Name="ulDeductionId" runat="server" DisplayField="name" ValueField="recordId" ID="ulDeductionId">
+                                <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  QueryMode="Local" ForceSelection="true" LabelWidth="160" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: FieldUL %>" Name="ulDeductionId" runat="server" DisplayField="name" ValueField="recordId" ID="ulDeductionId">
                                     <Store>
                                         <ext:Store runat="server" ID="ulDeductionStore">
                                             <Model>
@@ -94,7 +94,7 @@
                                         <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
                                     </Listeners>
                                 </ext:ComboBox>
-                                <ext:ComboBox QueryMode="Local" ForceSelection="true" LabelWidth="160" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: FieldSS %>" Name="ssDeductionId" runat="server" DisplayField="name" ValueField="recordId" ID="ssDeductionId">
+                                <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  QueryMode="Local" ForceSelection="true" LabelWidth="160" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: FieldSS %>" Name="ssDeductionId" runat="server" DisplayField="name" ValueField="recordId" ID="ssDeductionId">
                                     <Store>
                                         <ext:Store runat="server" ID="ssDeductionStore">
                                             <Model>
@@ -125,7 +125,7 @@
                                     </Listeners>
                                 </ext:ComboBox>
 
-                                <ext:ComboBox QueryMode="Local" ForceSelection="true" LabelWidth="160" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: FieldPE %>" Name="peDeductionId" runat="server" DisplayField="name" ValueField="recordId" ID="peDeductionId">
+                                <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  QueryMode="Local" ForceSelection="true" LabelWidth="160" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: FieldPE %>" Name="peDeductionId" runat="server" DisplayField="name" ValueField="recordId" ID="peDeductionId">
                                     <Store>
                                         <ext:Store runat="server" ID="peDeductionStore">
                                             <Model>
@@ -158,7 +158,7 @@
                                
                                 <ext:FieldSet Collapsible="true" runat="server" Title="<%$ Resources:Common, Loans %>">
                                     <Items>
-                                        <ext:ComboBox QueryMode="Local" Width="400" LabelWidth="160" ForceSelection="true" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: FieldLoan %>" Name="loanDeductionId" runat="server" DisplayField="name" ValueField="recordId" ID="loanDeductionId">
+                                        <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  QueryMode="Local" Width="400" LabelWidth="160" ForceSelection="true" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: FieldLoan %>" Name="loanDeductionId" runat="server" DisplayField="name" ValueField="recordId" ID="loanDeductionId">
                                             <Store>
                                                 <ext:Store runat="server" ID="loanDeductionStore">
                                                     <Model>
@@ -188,7 +188,7 @@
                                                 <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
                                             </Listeners>
                                         </ext:ComboBox>
-                                        <ext:ComboBox Width="400" QueryMode="Local" LabelWidth="160" ForceSelection="true" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: LoanCoverageType %>" Name="ldMethod" runat="server" ID="ldMethod">
+                                        <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  Width="400" QueryMode="Local" LabelWidth="160" ForceSelection="true" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: LoanCoverageType %>" Name="ldMethod" runat="server" ID="ldMethod">
                                             <Items>
                                                 <ext:ListItem Text="<%$ Resources: PFromNetSalary %>" Value="1" />
                                                 <ext:ListItem Text="<%$ Resources: PFromBasicSalary %>" Value="2" />
@@ -206,7 +206,7 @@
                                 </ext:FieldSet>
                                 <ext:FieldSet Collapsible="true" runat="server" Title="<%$ Resources: Lateness %>">
                                     <Items>
-                                        <ext:ComboBox QueryMode="Local" Width="400" LabelWidth="160" ForceSelection="true" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: FieldLatenessDeduction %>" Name="latenessDeductionId" runat="server" DisplayField="name" ValueField="recordId" ID="latenessDeductionId">
+                                        <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  QueryMode="Local" Width="400" LabelWidth="160" ForceSelection="true" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: FieldLatenessDeduction %>" Name="latenessDeductionId" runat="server" DisplayField="name" ValueField="recordId" ID="latenessDeductionId">
                                             <Store>
                                                 <ext:Store runat="server" ID="latenessDeductionStore">
                                                     <Model>
@@ -236,7 +236,7 @@
                                                 <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
                                             </Listeners>
                                         </ext:ComboBox>
-                                        <ext:ComboBox Width="400" QueryMode="Local" LabelWidth="160" ForceSelection="true" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: DeductionFrom %>" Name="latenessPCTOf" runat="server" ID="latenessPCTOf">
+                                        <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  Width="400" QueryMode="Local" LabelWidth="160" ForceSelection="true" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: DeductionFrom %>" Name="latenessPCTOf" runat="server" ID="latenessPCTOf">
                                             <Items>
                                                 <ext:ListItem Text="<%$ Resources: PFromNetSalary %>" Value="1" />
                                                 <ext:ListItem Text="<%$ Resources: PFromBasicSalary %>" Value="2" />
@@ -251,7 +251,7 @@
                                 </ext:FieldSet>
                                 <ext:FieldSet Collapsible="true" runat="server" Title="<%$ Resources: Overtime %>">
                                     <Items>
-                                         <ext:ComboBox QueryMode="Local" ForceSelection="true" LabelWidth="160" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: FieldOT %>" Name="otEntitlementId" runat="server" DisplayField="name" ValueField="recordId" ID="otEntitlementId">
+                                         <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  QueryMode="Local" ForceSelection="true" LabelWidth="160" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: FieldOT %>" Name="otEntitlementId" runat="server" DisplayField="name" ValueField="recordId" ID="otEntitlementId">
                                     <Store>
                                         <ext:Store runat="server" ID="otEntitlementStore">
                                             <Model>
@@ -281,7 +281,7 @@
                                         <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
                                     </Listeners>
                                 </ext:ComboBox>
-                                        <ext:ComboBox Width="400" QueryMode="Local" LabelWidth="160" ForceSelection="true" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: EntitlementTo %>" Name="overtimePCTOf" runat="server" ID="overtimePCTOf">
+                                        <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  Width="400" QueryMode="Local" LabelWidth="160" ForceSelection="true" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: EntitlementTo %>" Name="overtimePCTOf" runat="server" ID="overtimePCTOf">
                                             <Items>
                                                 <ext:ListItem Text="<%$ Resources: PFromNetSalary %>" Value="1" />
                                                 <ext:ListItem Text="<%$ Resources: PFromBasicSalary %>" Value="2" />

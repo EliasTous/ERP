@@ -273,7 +273,7 @@
                             <Items>
                                 <ext:TextField ID="recordId" runat="server"  Name="recordId"  Hidden="true"/>
                                 <ext:TextField ID="url" runat="server"  Name="url"  Hidden="true"/>
-                                 <ext:ComboBox runat="server" ID="departmentId" Name="departmentId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1"
+                                 <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" ID="departmentId" Name="departmentId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1"
                                     DisplayField="name"
                                     ValueField="recordId"
                                     FieldLabel="<%$ Resources: FieldDEName %>">
@@ -310,7 +310,7 @@
                                     </Listeners>
                                 </ext:ComboBox>
 
-                                <ext:ComboBox runat="server" ID="mcId" Name="mcId" AllowBlank="false"  QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1"
+                                <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" ID="mcId" Name="mcId" AllowBlank="false"  QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1"
                                     DisplayField="name"
                                     ValueField="recordId"
                                     FieldLabel="<%$ Resources: FieldMCName %>">
@@ -347,7 +347,7 @@
                                     </Listeners>
                                 </ext:ComboBox>
 
-                                <ext:ComboBox runat="server" ID="type" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" Name="type"
+                                <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" ID="type" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" Name="type"
                                     FieldLabel="<%$ Resources: FieldType %>" AllowBlank="false">
                                     <Items>
                                         <ext:ListItem Text="<%$ Resources: FieldAudio %>" Value="0" />

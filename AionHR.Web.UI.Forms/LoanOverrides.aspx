@@ -269,7 +269,7 @@
                             BodyPadding="5">
                             <Items>
                                 <ext:TextField runat="server" ID="isNew" Hidden="true" Enabled="false" />
-                                <ext:ComboBox runat="server" LabelWidth="130" ID="employeeId" AllowBlank="false"
+                                <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" LabelWidth="130" ID="employeeId" AllowBlank="false"
                                     DisplayField="fullName"
                                     ValueField="recordId"
                                     TypeAhead="false"
@@ -296,7 +296,7 @@
                                     </Store>
                                     
                                 </ext:ComboBox>
-                                <ext:ComboBox  Width="400" QueryMode="Local" LabelWidth="130" ForceSelection="true" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: LoanCoverageType %>" Name="ldMethod" runat="server" ID="ldMethod">
+                                <ext:ComboBox   AnyMatch="true" CaseSensitive="false"   Width="400" QueryMode="Local" LabelWidth="130" ForceSelection="true" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: LoanCoverageType %>" Name="ldMethod" runat="server" ID="ldMethod">
                                             <Items>
                                                 <ext:ListItem Text="<%$ Resources: ldMethod1 %>" Value="1" />
                                                 <ext:ListItem Text="<%$ Resources: ldMethod2 %>" Value="2" />

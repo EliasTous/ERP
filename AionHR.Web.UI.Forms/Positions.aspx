@@ -266,7 +266,7 @@
 
 
                                 
-                                <ext:ComboBox Enabled="false" ValueField="recordId" AllowBlank="true" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" runat="server" ID="referToPositionId" Name="referToPositionId" FieldLabel="<%$ Resources:FieldReferer%>" SimpleSubmit="true">
+                                <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  Enabled="false" ValueField="recordId" AllowBlank="true" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" runat="server" ID="referToPositionId" Name="referToPositionId" FieldLabel="<%$ Resources:FieldReferer%>" SimpleSubmit="true">
                                                     <Store>
                                                         <ext:Store runat="server" ID="positionStore">
                                                             <Model>

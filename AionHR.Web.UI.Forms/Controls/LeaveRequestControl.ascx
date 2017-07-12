@@ -182,7 +182,7 @@
                                 </ext:NumberField>
                             </Items>
                         </ext:Panel>
-                        <ext:ComboBox runat="server" ID="employeeId" AllowBlank="false"
+                        <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" ID="employeeId" AllowBlank="false"
                             DisplayField="fullName" Name="employeeId"
                             ValueField="recordId"
                             TypeAhead="false"
@@ -227,7 +227,7 @@
 
 
 
-                        <ext:ComboBox runat="server" ID="ltId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1"
+                        <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" ID="ltId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1"
                             DisplayField="name" Name="ltId"
                             ValueField="recordId" AllowBlank="false"
                             FieldLabel="<%$ Resources: FieldLtName %>">
@@ -265,7 +265,7 @@
                         </ext:ComboBox>
 
 
-                        <ext:ComboBox runat="server" ID="status" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" AllowBlank="false" Name="status"
+                        <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" ID="status" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" AllowBlank="false" Name="status"
                             FieldLabel="<%$ Resources: FieldStatus %>">
                             <Items>
 
@@ -497,7 +497,7 @@
                     <Items>
                         <ext:Container runat="server" Layout="FitLayout">
                             <Content>
-                                <ext:ComboBox runat="server" ID="returnedEmployee" Width="350" LabelWidth="150" LabelAlign="Left"
+                                <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" ID="returnedEmployee" Width="350" LabelWidth="150" LabelAlign="Left"
                                     DisplayField="fullName"
                                     ValueField="recordId" AllowBlank="true"
                                     TypeAhead="false"

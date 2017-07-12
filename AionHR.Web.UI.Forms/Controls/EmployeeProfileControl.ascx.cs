@@ -91,6 +91,7 @@ namespace AionHR.Web.UI.Forms
             panelRecordDetails.ActiveIndex = 0;
             //timeZoneCombo.Select(response.result.timeZone.ToString());
             this.EditRecordWindow.Title = Resources.Common.EditWindowsTitle;
+            reference.IsRemoteValidation = false;
             this.EditRecordWindow.Show();
         }
         protected void Page_Load(object sender, EventArgs e)
@@ -398,7 +399,7 @@ namespace AionHR.Web.UI.Forms
             CurrentEmployeePhotoName.Text = "Images/empPhoto.jpg";
             CurrentEmployee.Text = "";
             this.EditRecordWindow.Title = Resources.Common.AddNewRecord;
-
+            reference.IsRemoteValidation = true;
             // timeZoneCombo.Select(_systemService.SessionHelper.GetTimeZone());
             this.EditRecordWindow.Show();
         }
@@ -1303,6 +1304,33 @@ namespace AionHR.Web.UI.Forms
             TeamStore.DataSource = emps.Items;
             TeamStore.DataBind();
             TeamWindow.Show();
+        }
+
+        protected void CheckReference(object sender, DirectEventArgs e)
+        {
+           
+        }
+
+        protected void Reference_Validation(object sender, RemoteValidationEventArgs e)
+        {
+                EmployeeByReference req = new EmployeeByReference();
+            req.Reference = reference.Text;
+            RecordResponse<Employee> resp = _employeeService.ChildGetRecord<Employee>(req);
+            if (resp.Success)
+            {
+                if (resp.result != null)
+                {
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    X.Msg.Alert(Resources.Common.Error, GetLocalResourceObject("ReferenceAlreadyExist")).Show();
+                    e.Success = false;
+
+                    return;
+                }
+                else
+                {
+                    e.Success = true;
+                }
+            }
         }
     }
 }

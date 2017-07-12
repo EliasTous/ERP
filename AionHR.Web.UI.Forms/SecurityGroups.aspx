@@ -307,7 +307,7 @@
                                 <ext:TextField LabelWidth="150" ID="recordId" Hidden="true" runat="server" Disabled="true" Name="recordId" />
                                 <ext:TextField LabelWidth="150" ID="name" runat="server" FieldLabel="<%$ Resources:FieldName%>" Name="name" AllowBlank="false" BlankText="<%$ Resources:Common, MandatoryField%>" />
                                 <ext:TextArea ID="description" LabelWidth="150" runat="server" FieldLabel="<%$ Resources:FieldDescription%>" Name="description" />
-                                <ext:ComboBox LabelWidth="150" runat="server" FieldLabel="<%$ Resources:DefaultAccessLevel%>" Editable="false" ID="defaultAccessLevel" Name="defaultAccessLevel">
+                                <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  LabelWidth="150" runat="server" FieldLabel="<%$ Resources:DefaultAccessLevel%>" Editable="false" ID="defaultAccessLevel" Name="defaultAccessLevel">
                                     <Items>
 
                                         <ext:ListItem Text="<%$ Resources: NoAccess %>" Value="0" />
@@ -496,7 +496,7 @@
                             <TopBar>
                                 <ext:Toolbar runat="server">
                                     <Items>
-                                        <ext:ComboBox runat="server" Editable="false" ID="modulesCombo" ValueField="id" DisplayField="name" FieldLabel="<%$ Resources:SelectModule%>">
+                                        <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" Editable="false" ID="modulesCombo" ValueField="id" DisplayField="name" FieldLabel="<%$ Resources:SelectModule%>">
                                             <Listeners>
                                                 
                                                 <Select Handler="App.CurrentModule.value = this.value; App.classesStore.reload(); " />
@@ -746,7 +746,7 @@
                     <Items>
                         <ext:TextField runat="server" Name="classId" ID="classId" Hidden="true" Disabled="true" />
 
-                        <ext:ComboBox runat="server" FieldLabel="<%$ Resources:AccessLevel%>" DisplayField="text" ValueField="value" Editable="false" StoreID="classAccessLevelsStore" ID="accessLevel" Name="accessLevel">
+                        <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" FieldLabel="<%$ Resources:AccessLevel%>" DisplayField="text" ValueField="value" Editable="false" StoreID="classAccessLevelsStore" ID="accessLevel" Name="accessLevel">
                          <%--   <Items>
 
                                 <ext:ListItem Text="<%$ Resources: NoAccess %>" Value="0" />
@@ -808,7 +808,7 @@
                     <Items>
 
                         <ext:TextField runat="server" Name="moduleId" ID="moduleId" Hidden="true" Disabled="true" />
-                        <ext:ComboBox runat="server" FieldLabel="<%$ Resources:AccessLevel%>" Editable="false" ID="moduleAccessLevel" Name="moduleAccessLevel">
+                        <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" FieldLabel="<%$ Resources:AccessLevel%>" Editable="false" ID="moduleAccessLevel" Name="moduleAccessLevel">
                             <Items>
 
                                 <ext:ListItem Text="<%$ Resources: NoAccess %>" Value="0" />
@@ -913,7 +913,7 @@
                                     <ext:Column ID="Column9" MenuDisabled="true" runat="server" DataIndex="name" Text="<%$ Resources:Property%>" Hideable="false" Flex="1" />
                                     <ext:WidgetColumn ID="WidgetColumn1" MenuDisabled="true" runat="server" Text="<%$ Resources:AccessLevel%>" DataIndex="accessLevel" Hideable="false" Width="150" Align="Center">
                                         <Widget>
-                                            <ext:ComboBox runat="server" Editable="false" DisplayField="text" ValueField="value" StoreID="accessLevelsStore">
+                                            <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" Editable="false" DisplayField="text" ValueField="value" StoreID="accessLevelsStore">
 
                                                 <%--<Items>
                                                     <ext:ListItem Text="<%$ Resources: Write %>" Value="2" />

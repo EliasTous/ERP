@@ -118,7 +118,7 @@
                             
 
 
-                                 <ext:ComboBox runat="server" ValueField="recordId" DisplayField="name" ID="branchId" Name="branchId" EmptyText="<%$ Resources:FilterBranch%>" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" >
+                                 <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" ValueField="recordId" DisplayField="name" ID="branchId" Name="branchId" EmptyText="<%$ Resources:FilterBranch%>" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" >
                                     <Store>
                                         <ext:Store runat="server" ID="branchStore">
                                             <Model>
@@ -137,7 +137,7 @@
                                
                                 </ext:ComboBox>
                                  
-                                <ext:ComboBox runat="server" ValueField="recordId" DisplayField="name" ID="departmentId" Name="departmentId" EmptyText="<%$ Resources:FilterDepartment%>" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" >
+                                <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" ValueField="recordId" DisplayField="name" ID="departmentId" Name="departmentId" EmptyText="<%$ Resources:FilterDepartment%>" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" >
                                     <Store>
                                         <ext:Store runat="server" ID="departmentStore">
                                             <Model>
@@ -156,7 +156,7 @@
                                 
 
                                 </ext:ComboBox>
-                                <%-- <ext:ComboBox runat="server" ValueField="recordId" DisplayField="name" ID="divisionId" Name="divisionId" EmptyText="<%$ Resources:FilterDivision%>" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" >
+                                <%-- <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" ValueField="recordId" DisplayField="name" ID="divisionId" Name="divisionId" EmptyText="<%$ Resources:FilterDivision%>" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" >
                                     <Store>
                                         <ext:Store runat="server" ID="divisionStore">
                                             <Model>
@@ -174,7 +174,7 @@
                                     </Listeners>
                                     
                                 </ext:ComboBox>--%>
-                                <ext:ComboBox runat="server" ID="statusPref" Editable="false" EmptyText="<%$ Resources: FilterStatus %>"  >
+                                <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" ID="statusPref" Editable="false" EmptyText="<%$ Resources: FilterStatus %>"  >
                                     <Items>
                                         <ext:ListItem Text="<%$ Resources: All %>" Value="0"  />
                                         <ext:ListItem Text="<%$ Resources: FieldPending %>" Value="1" />
@@ -352,7 +352,7 @@
                             BodyPadding="5">
                             <Items>
                                 <ext:TextField ID="recordId" runat="server"  Name="recordId"  Hidden="true"/>
-                                <ext:ComboBox runat="server" ID="employeeId"
+                                <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" ID="employeeId"
                                     DisplayField="fullName" Name="employeeId"
                                     ValueField="recordId"
                                     TypeAhead="false" AllowBlank="false"
@@ -383,7 +383,7 @@
                                 <ext:TextField ID="actionTaken" runat="server" FieldLabel="<%$ Resources:FieldActionTaken%>" Name="actionTaken" AllowBlank="false"/>
                                 <ext:TextField ID="actionRequired" runat="server" FieldLabel="<%$ Resources:FieldActionRequired%>" Name="actionRequired" AllowBlank="false"/>
                                 <ext:TextField ID="complaintDetails" runat="server" FieldLabel="<%$ Resources:FieldComplaintDetails%>" Name="complaintDetails" AllowBlank="false"/>
-                                <ext:ComboBox runat="server" ID="status" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" Name="status"
+                                <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" ID="status" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" Name="status"
                                     FieldLabel="<%$ Resources: FieldStatus %>" AllowBlank="false">
                                     <Items>
                                         

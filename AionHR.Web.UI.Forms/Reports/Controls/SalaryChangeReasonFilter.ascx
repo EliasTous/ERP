@@ -2,7 +2,7 @@
 <ext:Panel runat="server" Layout="HBoxLayout" Width="150">
     <Items>
        
-        <ext:ComboBox runat="server" QueryMode="Local" Width="140" ForceSelection="true" TypeAhead="true" MinChars="1" ValueField="recordId" DisplayField="name" ID="scrId" Name="scrId" EmptyText="<%$ Resources:FieldSCR%>">
+        <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" QueryMode="Local" Width="140" ForceSelection="true" TypeAhead="true" MinChars="1" ValueField="recordId" DisplayField="name" ID="scrId" Name="scrId" EmptyText="<%$ Resources:FieldSCR%>">
             <Store>
                 <ext:Store runat="server" ID="scrStore">
                     <Model>

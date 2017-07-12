@@ -272,7 +272,7 @@
 
 
                                 <ext:Checkbox ID="isInactiveCheck" runat="server" FieldLabel="<%$ Resources: FieldIsInactive%>" DataIndex="isInactive" Name="isInactive" InputValue="true" />
-                                <ext:ComboBox runat="server" ID="supervisorId"
+                                <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" ID="supervisorId"
                                     DisplayField="fullName"
                                     ValueField="recordId"
                                     TypeAhead="false" Name="supervisorId"
@@ -293,12 +293,12 @@
                                             <Proxy>
                                                 <ext:PageProxy DirectFn="App.direct.FillSupervisor"></ext:PageProxy>
                                             </Proxy>
-
+                                            
                                         </ext:Store>
 
                                     </Store>
                                 </ext:ComboBox>
-                                <ext:ComboBox Enabled="false" runat="server" AllowBlank="true" ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" ID="parentId" Name="parentId" FieldLabel="<%$ Resources:FieldParentName%>" SimpleSubmit="true">
+                                <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  Enabled="false" runat="server" AllowBlank="true" ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" ID="parentId" Name="parentId" FieldLabel="<%$ Resources:FieldParentName%>" SimpleSubmit="true">
                                     <Store>
                                         <ext:Store runat="server" ID="departmentStore"  AutoLoad="true" AutoSync="true">
                                             <Model>

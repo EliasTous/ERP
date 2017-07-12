@@ -513,7 +513,7 @@
                             BodyPadding="5">
                             <Items>
                                 <ext:TextField runat="server" Name="recordId" ID="RWID" Hidden="true" Disabled="true" />
-                                <ext:ComboBox ValueField="recordId" AllowBlank="false" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" runat="server" ID="dtId" Name="dtId" FieldLabel="<%$ Resources:FieldRWDocumentType%>" SimpleSubmit="true">
+                                <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  ValueField="recordId" AllowBlank="false" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" runat="server" ID="dtId" Name="dtId" FieldLabel="<%$ Resources:FieldRWDocumentType%>" SimpleSubmit="true">
                                     <Store>
                                         <ext:Store runat="server" ID="RWDocumentTypeStore">
                                             <Model>
@@ -634,7 +634,7 @@
                             <Items>
                                 <ext:TextField ID="BCID" Hidden="true" runat="server" FieldLabel="<%$ Resources:FieldrecordId%>" Disabled="true" Name="recordId" />
 
-                                <ext:ComboBox runat="server" AllowBlank="false" ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" ID="ctId" Name="ctId" FieldLabel="<%$ Resources:FieldBCCheckType%>" SimpleSubmit="true">
+                                <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" AllowBlank="false" ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" ID="ctId" Name="ctId" FieldLabel="<%$ Resources:FieldBCCheckType%>" SimpleSubmit="true">
                                     <Store>
                                         <ext:Store runat="server" ID="checkTypeStore">
                                             <Model>

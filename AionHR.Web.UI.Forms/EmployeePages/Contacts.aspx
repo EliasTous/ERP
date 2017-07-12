@@ -438,7 +438,7 @@
                                         <ext:TextField runat="server" Name="cocity" AllowBlank="false" ID="cocity" FieldLabel="<%$ Resources:FieldCCity%>" />
                                         <ext:TextField runat="server" Name="copostalCode" AllowBlank="true" MaxLength="6" ID="copostalCode" FieldLabel="<%$ Resources:FieldCPostalCode%>" />
                                         <%--<ext:TextField  runat="server" Name="countryName" AllowBlank="false"  ID="countryName"  FieldLabel="<%$ Resources:FieldCountryName%>" />--%>
-                                         <ext:ComboBox ValueField="recordId" AllowBlank="false" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1"
+                                         <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  ValueField="recordId" AllowBlank="false" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1"
                                             DisplayField="name" runat="server" ID="costId" Name="costId" FieldLabel="<%$ Resources:FieldState%>" SimpleSubmit="true">
                                             <Store>
                                                 <ext:Store runat="server" ID="costStore">
@@ -471,7 +471,7 @@
                                                 <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
                                             </Listeners>
                                         </ext:ComboBox>
-                                        <ext:ComboBox ValueField="recordId" AllowBlank="false" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1"
+                                        <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  ValueField="recordId" AllowBlank="false" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1"
                                             DisplayField="name" runat="server" ID="conaId" Name="conaId" FieldLabel="<%$ Resources:FieldCCountryName%>" SimpleSubmit="true">
                                             <Store>
                                                 <ext:Store runat="server" ID="conaStore">
@@ -574,7 +574,7 @@
                                         <ext:TextField runat="server" Name="recordId" ID="ecId" Hidden="true" Disabled="true" />
                                         <ext:TextField runat="server" Name="name" AllowBlank="false" ID="name" FieldLabel="<%$ Resources:FieldEMInst%>" />
                                          <ext:TextField runat="server" Name="ecaddressId" ID="ecaddressId" Hidden="true" Disabled="true" />
-                                        <ext:ComboBox ValueField="recordId" AllowBlank="false" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1"
+                                        <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  ValueField="recordId" AllowBlank="false" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1"
                                             DisplayField="name" runat="server" ID="rtId" Name="rtId" FieldLabel="<%$ Resources:FieldEMRTName%>" SimpleSubmit="true">
                                             <Store>
                                                 <ext:Store runat="server" ID="rtStore">
@@ -634,7 +634,7 @@
                                         <ext:TextField runat="server" Name="city" AllowBlank="false" ID="city" FieldLabel="<%$ Resources:FieldEMCity%>" />
                                         <ext:TextField runat="server" Name="postalCode"   ID="postalCode" FieldLabel="<%$ Resources:FieldEMPostalCode%>" MaxLength="6" />
                                         <%--<ext:TextField  runat="server" Name="countryName" AllowBlank="false"  ID="countryName"  FieldLabel="<%$ Resources:FieldCountryName%>" />--%>
-                                         <ext:ComboBox ValueField="recordId" AllowBlank="false" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1"
+                                         <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  ValueField="recordId" AllowBlank="false" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1"
                                             DisplayField="name" runat="server" ID="ecstId" Name="ecstId" FieldLabel="<%$ Resources:FieldState%>" SimpleSubmit="true">
                                             <Store>
                                                 <ext:Store runat="server" ID="ecstStore">
@@ -667,7 +667,7 @@
                                                 <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
                                             </Listeners>
                                         </ext:ComboBox>
-                                        <ext:ComboBox ValueField="recordId" AllowBlank="false" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1"
+                                        <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  ValueField="recordId" AllowBlank="false" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1"
                                             DisplayField="name" runat="server" ID="ecnaId" Name="ecnaId" FieldLabel="<%$ Resources:FieldEMCountryName%>" SimpleSubmit="true">
                                             <Store>
                                                 <ext:Store runat="server" ID="ecnaStore">
@@ -705,7 +705,7 @@
                                     </Items>
                                 </ext:Panel>
 
-                                <%--<ext:ComboBox runat="server" ID="addressId"
+                                <%--<ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" ID="addressId"
                                     DisplayField="fullName"
                                     ValueField="recordId"
                                     TypeAhead="false"

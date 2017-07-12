@@ -291,7 +291,7 @@
                                         </Click>
                                     </DirectEvents>
                                 </ext:Button>
-                              <ext:ComboBox  ID="periodType" runat="server" EmptyText="<%$ Resources:FieldPeriodType%>" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1">
+                              <ext:ComboBox   AnyMatch="true" CaseSensitive="false"   ID="periodType" runat="server" EmptyText="<%$ Resources:FieldPeriodType%>" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1">
                                             <Items>
                                                   
                                                 <ext:ListItem Text="<%$ Resources: SalaryWeekly%>" Value="2"></ext:ListItem>

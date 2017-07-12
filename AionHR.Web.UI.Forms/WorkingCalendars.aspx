@@ -1767,7 +1767,7 @@
                     BodyPadding="5">
                     <Items>
 
-                        <ext:ComboBox runat="server" ID="scId" DisplayField="name" AllowBlank="false" Name="scId" ValueField="recordId" FieldLabel="<%$ Resources:Schedule %>" SubmitValue="true">
+                        <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" ID="scId" DisplayField="name" AllowBlank="false" Name="scId" ValueField="recordId" FieldLabel="<%$ Resources:Schedule %>" SubmitValue="true">
                             <Store>
                                 <ext:Store runat="server" ID="schedulesStore">
                                     <Model>
@@ -1781,7 +1781,7 @@
                                 </ext:Store>
                             </Store>
                         </ext:ComboBox>
-                        <ext:ComboBox runat="server" DisplayField="name" ValueField="recordId" AllowBlank="false" Name="dayTypeId" ID="dayTypeId" FieldLabel="<%$ Resources:DayType %>" SubmitValue="true">
+                        <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" DisplayField="name" ValueField="recordId" AllowBlank="false" Name="dayTypeId" ID="dayTypeId" FieldLabel="<%$ Resources:DayType %>" SubmitValue="true">
                             <Store>
                                 <ext:Store runat="server" ID="dayTypesStore">
                                     <Model>
@@ -1898,7 +1898,7 @@
                     <Items>
                         <ext:DateField runat="server" AllowBlank="false" ID="dateFrom" Name="dateFrom" FieldLabel="<%$ Resources:From %>" />
                         <ext:DateField runat="server" AllowBlank="false" ID="dateTo" Name="dateTo" FieldLabel="<%$ Resources:To %>" />
-                        <ext:ComboBox runat="server" AllowBlank="false" Name="scId" ID="scIdCombo" DisplayField="name" ValueField="recordId" FieldLabel="<%$ Resources:Schedule %>" SubmitValue="true">
+                        <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" AllowBlank="false" Name="scId" ID="scIdCombo" DisplayField="name" ValueField="recordId" FieldLabel="<%$ Resources:Schedule %>" SubmitValue="true">
                             <Store>
                                 <ext:Store runat="server" ID="patternScheduleStore">
                                     <Model>
@@ -1968,7 +1968,7 @@
                     <Items>
                         <ext:DateField runat="server" AllowBlank="false" ID="startDate" Name="dateFrom" FieldLabel="<%$ Resources:From %>" />
                         <ext:DateField runat="server" AllowBlank="false" ID="endDate" Name="dateTo" FieldLabel="<%$ Resources:To %>" />
-                        <ext:ComboBox runat="server" AllowBlank="false" Name="dayTypeId" ID="dtId" DisplayField="name" ValueField="recordId" FieldLabel="<%$ Resources:DayType %>" SubmitValue="true">
+                        <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" AllowBlank="false" Name="dayTypeId" ID="dtId" DisplayField="name" ValueField="recordId" FieldLabel="<%$ Resources:DayType %>" SubmitValue="true">
                             <Store>
                                 <ext:Store runat="server" ID="alternateDTStore">
                                     <Model>
@@ -1982,7 +1982,7 @@
                                 </ext:Store>
                             </Store>
                         </ext:ComboBox>
-                          <ext:ComboBox QueryMode="Local"   ForceSelection="true" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: DOW %>" Name="dow" runat="server" ID="dow">
+                          <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  QueryMode="Local"   ForceSelection="true" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: DOW %>" Name="dow" runat="server" ID="dow">
                             <Items>
                                 <ext:ListItem Text="<%$ Resources:Common, MondayText %>" Value="1" />
                                 <ext:ListItem Text="<%$ Resources:Common, TuesdayText %>" Value="2" />

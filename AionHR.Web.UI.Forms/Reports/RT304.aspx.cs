@@ -186,6 +186,11 @@ namespace AionHR.Web.UI.Forms.Reports
             }
             if (resp.Items.Count > 0)
                 DisplayResult(resp.Items);
+            else
+            {
+                firstStore.DataSource = new List<departmentAvailability>();
+                firstStore.DataBind();
+            }
 
         }
 

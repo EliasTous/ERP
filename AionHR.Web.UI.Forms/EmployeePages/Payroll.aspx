@@ -487,7 +487,7 @@
                                     <Items>
                                         <ext:TextField ID="SAId" Hidden="true" runat="server" LabelWidth="130" Width="275" FieldLabel="<%$ Resources:FieldrecordId%>" Disabled="true" Name="recordId" />
 
-                                        <ext:ComboBox runat="server" AllowBlank="false" LabelWidth="130" Width="275" ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="reference" ID="currencyId" Name="currencyId" FieldLabel="<%$ Resources:FieldSACurrencyName%>" SimpleSubmit="true">
+                                        <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" AllowBlank="false" LabelWidth="130" Width="275" ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="reference" ID="currencyId" Name="currencyId" FieldLabel="<%$ Resources:FieldSACurrencyName%>" SimpleSubmit="true">
 
                                             <Store>
                                                 <ext:Store runat="server" ID="currencyStore">
@@ -519,7 +519,7 @@
                                                 <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
                                             </Listeners>
                                         </ext:ComboBox>
-                                        <ext:ComboBox runat="server" AllowBlank="true" LabelWidth="130" Width="275" ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" ID="scrId" Name="scrId" FieldLabel="<%$ Resources:FieldScrName%>" SimpleSubmit="true">
+                                        <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" AllowBlank="true" LabelWidth="130" Width="275" ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" ID="scrId" Name="scrId" FieldLabel="<%$ Resources:FieldScrName%>" SimpleSubmit="true">
                                             <Store>
                                                 <ext:Store runat="server" ID="scrStore">
                                                     <Model>
@@ -551,7 +551,7 @@
                                         </ext:ComboBox>
                                         <ext:DateField AllowBlank="false" runat="server" LabelWidth="130" Width="275" ID="effectiveDate" Name="effectiveDate" FieldLabel="<%$ Resources:FieldEffectiveDate%>" />
 
-                                        <ext:ComboBox AllowBlank="false" ID="salaryType" LabelWidth="130" Width="275" runat="server" FieldLabel="<%$ Resources:FieldSalaryType%>" Name="salaryType" IDMode="Static" SubmitValue="true">
+                                        <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  AllowBlank="false" ID="salaryType" LabelWidth="130" Width="275" runat="server" FieldLabel="<%$ Resources:FieldSalaryType%>" Name="salaryType" IDMode="Static" SubmitValue="true">
                                             <Items>
                                                <ext:ListItem Text="<%$ Resources: SalaryDaily%>" Value="1"></ext:ListItem>
                                                 <ext:ListItem Text="<%$ Resources: SalaryWeekly%>" Value="2"></ext:ListItem>
@@ -560,7 +560,7 @@
                                                 <ext:ListItem Text="<%$ Resources: SalaryMonthly%>" Value="5"></ext:ListItem>
                                             </Items>
                                         </ext:ComboBox>
-                                        <ext:ComboBox AllowBlank="false" ID="paymentFrequency" LabelWidth="130" Width="275" runat="server" FieldLabel="<%$ Resources:FieldPaymentFrequency%>" Name="paymentFrequency" IDMode="Static" SubmitValue="true">
+                                        <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  AllowBlank="false" ID="paymentFrequency" LabelWidth="130" Width="275" runat="server" FieldLabel="<%$ Resources:FieldPaymentFrequency%>" Name="paymentFrequency" IDMode="Static" SubmitValue="true">
                                             <Items>
                                                    <ext:ListItem Text="<%$ Resources: SalaryDaily%>" Value="1"></ext:ListItem>
                                                 <ext:ListItem Text="<%$ Resources: SalaryWeekly%>" Value="2"></ext:ListItem>
@@ -570,7 +570,7 @@
                                             </Items>
                                         </ext:ComboBox>
 
-                                        <ext:ComboBox LabelWidth="130" Width="275" AllowBlank="false" ID="paymentMethod" runat="server" FieldLabel="<%$ Resources:FieldPaymentMethod%>" Name="paymentMethod" IDMode="Static" SubmitValue="true">
+                                        <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  LabelWidth="130" Width="275" AllowBlank="false" ID="paymentMethod" runat="server" FieldLabel="<%$ Resources:FieldPaymentMethod%>" Name="paymentMethod" IDMode="Static" SubmitValue="true">
                                             <Items>
                                                 <ext:ListItem Text="<%$ Resources: SalaryCash%>" Value="0"></ext:ListItem>
                                                 <ext:ListItem Text="<%$ Resources: SalaryBank%>" Value="1"></ext:ListItem>
@@ -678,7 +678,7 @@
                                                 <Renderer Fn="entnameRenderer" />
                                                 <Editor>
 
-                                                    <%-- <ext:ComboBox Enabled="false" ValueField="recordId" AllowBlank="false" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" runat="server" ID="entEdId" Name="edId" StoreID="entsStore">
+                                                    <%-- <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  Enabled="false" ValueField="recordId" AllowBlank="false" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" runat="server" ID="entEdId" Name="edId" StoreID="entsStore">
                                                         <RightButtons>
                                                             <ext:Button ID="Button10" runat="server" Icon="Add" Hidden="true">
                                                                 <Listeners>
@@ -868,7 +868,7 @@
                                                 <Renderer Fn="dednameRenderer" />
                                                 <Editor>
 
-                                                    <%--  <ext:ComboBox Enabled="false" ValueField="recordId" AllowBlank="false" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" runat="server" ID="dedEdId" Name="deductionId" StoreID="dedsStore">
+                                                    <%--  <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  Enabled="false" ValueField="recordId" AllowBlank="false" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" runat="server" ID="dedEdId" Name="deductionId" StoreID="dedsStore">
                                                         <RightButtons>
                                                             <ext:Button ID="Button9" runat="server" Icon="Add" Hidden="true">
                                                                 <Listeners>
@@ -1049,7 +1049,7 @@
 
                                 <ext:TextField ID="BOId" Hidden="true" runat="server" FieldLabel="<%$ Resources:FieldrecordId%>" Disabled="true" Name="recordId" />
 
-                                <ext:ComboBox runat="server" AllowBlank="false" ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="reference" ID="CurrencyCombo" DataIndex="currencyId" FieldLabel="<%$ Resources:FieldSACurrencyName%>" SimpleSubmit="true">
+                                <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" AllowBlank="false" ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="reference" ID="CurrencyCombo" DataIndex="currencyId" FieldLabel="<%$ Resources:FieldSACurrencyName%>" SimpleSubmit="true">
 
                                     <Store>
                                         <ext:Store runat="server" ID="BOCurrencyStore">
@@ -1080,7 +1080,7 @@
                                         <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
                                     </Listeners>
                                 </ext:ComboBox>
-                                <ext:ComboBox runat="server" AllowBlank="false" ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" ID="btId" Name="btId" FieldLabel="<%$ Resources:FieldBTName%>" SimpleSubmit="true">
+                                <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" AllowBlank="false" ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" ID="btId" Name="btId" FieldLabel="<%$ Resources:FieldBTName%>" SimpleSubmit="true">
                                     <Store>
                                         <ext:Store runat="server" ID="BTStore">
                                             <Model>
@@ -1181,7 +1181,7 @@
                                 <ext:TextField ID="oldEntValue" Hidden="true" runat="server" FieldLabel="<%$ Resources:FieldrecordId%>" Disabled="true" Name="recordId" />
                                 <ext:Checkbox ID="oldENIncludeInFinal" Hidden="true" runat="server" disabled="true" />
                               
-                              <ext:ComboBox runat="server" ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" AllowBlank="false" DisplayField="name" ID="entEdId" Name="edId" FieldLabel="<%$ Resources:FieldEntitlement%>" SimpleSubmit="true" StoreID="entsStore">
+                              <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" AllowBlank="false" DisplayField="name" ID="entEdId" Name="edId" FieldLabel="<%$ Resources:FieldEntitlement%>" SimpleSubmit="true" StoreID="entsStore">
                                             
                                              <RightButtons>
                                                         <ext:Button ID="Button10" runat="server" Icon="Add" Hidden="true">
@@ -1300,7 +1300,7 @@
                                 <ext:TextField ID="DEId" Hidden="true" runat="server" FieldLabel="<%$ Resources:FieldrecordId%>" Disabled="true" Name="recordId" />
                                 <ext:Checkbox ID="oldDEIncludeInFinal" Hidden="true" runat="server" disabled="true" />
                                 
-                                <ext:ComboBox  runat="server" ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" AllowBlank="false" DisplayField="name" ID="dedEdId" Name="DEedId" FieldLabel="<%$ Resources:FieldDeduction%>" SimpleSubmit="true" StoreID="dedsStore">
+                                <ext:ComboBox   AnyMatch="true" CaseSensitive="false"   runat="server" ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" AllowBlank="false" DisplayField="name" ID="dedEdId" Name="DEedId" FieldLabel="<%$ Resources:FieldDeduction%>" SimpleSubmit="true" StoreID="dedsStore">
                                     <RightButtons>
                                         <ext:Button ID="Button9" runat="server" Icon="Add" Hidden="true">
                                             <Listeners>
@@ -1325,7 +1325,7 @@
                                         <Change Handler="DETogglePerc(this.value)" />
                                     </Listeners>
                                 </ext:Checkbox>
-                                 <ext:ComboBox Disabled="true" runat="server" ID="pctOf" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" AllowBlank="true" Name="pctOf"
+                                 <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  Disabled="true" runat="server" ID="pctOf" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" AllowBlank="true" Name="pctOf"
                                     FieldLabel="<%$ Resources: FieldPctOf %>">
                                     <Items>
 

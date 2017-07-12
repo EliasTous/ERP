@@ -462,7 +462,7 @@
                             <Items>
                                 <ext:TextField ID="fieldScId" Hidden="true" runat="server" Disabled="true" DataIndex="scId" />
                                 <ext:TextField ID="fieldDow" Hidden="true" runat="server" Disabled="true" DataIndex="dow" />
-                                <ext:ComboBox runat="server" AllowBlank="false" DisplayField="name" ValueField="recordId" Name="dayTypeId" ID="dayTypeId" FieldLabel="<%$ Resources:DayType %>" SubmitValue="true" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1">
+                                <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" AllowBlank="false" DisplayField="name" ValueField="recordId" Name="dayTypeId" ID="dayTypeId" FieldLabel="<%$ Resources:DayType %>" SubmitValue="true" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1">
                                     <Store>
                                         <ext:Store runat="server" ID="dayTypesStore">
                                             <Model>
@@ -672,7 +672,7 @@
                     DefaultAnchor="100%"
                     BodyPadding="5">
                     <Items>
-                        <ext:ComboBox QueryMode="Local" ForceSelection="true" TypeAhead="true" AllowBlank="false" MinChars="1" FieldLabel="<%$ Resources: FieldFirstDayOfWeek %>" Name="fdow" runat="server" ID="fdowCombo">
+                        <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  QueryMode="Local" ForceSelection="true" TypeAhead="true" AllowBlank="false" MinChars="1" FieldLabel="<%$ Resources: FieldFirstDayOfWeek %>" Name="fdow" runat="server" ID="fdowCombo">
                             <Items>
                                 <ext:ListItem Text="<%$ Resources:Common, MondayText %>" Value="1" />
                                 <ext:ListItem Text="<%$ Resources:Common, TuesdayText %>" Value="2" />
@@ -709,7 +709,7 @@
                             </Plugins>
                             <Validator Handler="return validateTo(this.getValue(),this.prev().getValue());" />
                         </ext:TextField>
-                        <ext:ComboBox QueryMode="Local" ForceSelection="true" AllowBlank="false" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: FieldworkingDays %>" Name="workingDays" runat="server" ID="ComboBox1">
+                        <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  QueryMode="Local" ForceSelection="true" AllowBlank="false" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: FieldworkingDays %>" Name="workingDays" runat="server" ID="ComboBox1">
                             <Items>
 
                                 <ext:ListItem Text="5" Value="5" />
@@ -717,7 +717,7 @@
                                 <ext:ListItem Text="7" Value="7" />
                             </Items>
                         </ext:ComboBox>
-                        <ext:ComboBox runat="server" QueryMode="Local" ForceSelection="true" AllowBlank="false" TypeAhead="true" MinChars="1" DisplayField="name" ValueField="recordId" ID="workingDayTypeId" FieldLabel="<%$ Resources:WorkingDayType %>" SubmitValue="true">
+                        <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" QueryMode="Local" ForceSelection="true" AllowBlank="false" TypeAhead="true" MinChars="1" DisplayField="name" ValueField="recordId" ID="workingDayTypeId" FieldLabel="<%$ Resources:WorkingDayType %>" SubmitValue="true">
                             <Store>
                                 <ext:Store runat="server" ID="workDTStore">
                                     <Model>
@@ -731,7 +731,7 @@
                                 </ext:Store>
                             </Store>
                         </ext:ComboBox>
-                        <ext:ComboBox runat="server" QueryMode="Local" ForceSelection="true" AllowBlank="false" TypeAhead="true" MinChars="1" DisplayField="name" ValueField="recordId" ID="weekendDayTypeId" FieldLabel="<%$ Resources:WeekendDayType %>" SubmitValue="true">
+                        <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" QueryMode="Local" ForceSelection="true" AllowBlank="false" TypeAhead="true" MinChars="1" DisplayField="name" ValueField="recordId" ID="weekendDayTypeId" FieldLabel="<%$ Resources:WeekendDayType %>" SubmitValue="true">
                             <Store>
                                 <ext:Store runat="server" ID="WeekendDTStore">
                                     <Model>

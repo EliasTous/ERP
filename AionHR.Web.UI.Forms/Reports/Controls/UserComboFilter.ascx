@@ -3,7 +3,7 @@
 <ext:Panel runat="server" Layout="HBoxLayout" Width="120">
     <Items>
 
-         <ext:ComboBox runat="server" ID="userId" EnableViewState="true" Width="120"
+         <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" ID="userId" EnableViewState="true" Width="120"
                                     DisplayField="fullName"
                                     ValueField="recordId"
                                     TypeAhead="false"

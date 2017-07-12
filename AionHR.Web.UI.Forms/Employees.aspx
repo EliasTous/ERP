@@ -153,7 +153,7 @@
                                         </Click>
                                     </DirectEvents>
                                 </ext:Button>
-                                <ext:ComboBox runat="server" ID="inactivePref" Editable="false" FieldLabel="<%$ Resources: Filter %>">
+                                <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" ID="inactivePref" Editable="false" FieldLabel="<%$ Resources: Filter %>">
                                     <Items>
                                         <ext:ListItem Text="<%$ Resources: All %>" Value="2" />
                                         <ext:ListItem Text="<%$ Resources: ActiveOnly %>" Value="0" />
@@ -163,7 +163,7 @@
                                         <Change Handler="App.Store1.reload()" />
                                     </Listeners>
                                 </ext:ComboBox>
-                                <ext:ComboBox runat="server" Width="130" LabelAlign="Top" EmptyText="<%$ Resources:FieldBranch%>" ValueField="recordId" DisplayField="name" ID="filterBranch" Name="branchId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1">
+                                <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" Width="130" LabelAlign="Top" EmptyText="<%$ Resources:FieldBranch%>" ValueField="recordId" DisplayField="name" ID="filterBranch" Name="branchId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1">
                                     <Store>
                                         <ext:Store runat="server" ID="filterBranchStore">
                                             <Model>
@@ -182,7 +182,7 @@
 
                                 </ext:ComboBox>
 
-                                <ext:ComboBox runat="server" Width="155" EmptyText="<%$ Resources:FieldDepartment%>" LabelAlign="Top" ValueField="recordId" DisplayField="name" ID="filterDepartment" Name="departmentId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1">
+                                <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" Width="155" EmptyText="<%$ Resources:FieldDepartment%>" LabelAlign="Top" ValueField="recordId" DisplayField="name" ID="filterDepartment" Name="departmentId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1">
                                     <Store>
                                         <ext:Store runat="server" ID="filterDepartmentStore">
                                             <Model>
@@ -201,7 +201,7 @@
 
 
                                 </ext:ComboBox>
-                                <ext:ComboBox EmptyText="<%$ Resources: FieldDivision%>" runat="server" Width="130" LabelAlign="Top" ValueField="recordId" DisplayField="name" ID="filterDivision" Name="divisionId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1">
+                                <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  EmptyText="<%$ Resources: FieldDivision%>" runat="server" Width="130" LabelAlign="Top" ValueField="recordId" DisplayField="name" ID="filterDivision" Name="divisionId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1">
                                     <Store>
                                         <ext:Store runat="server" ID="filterDivisionStore">
                                             <Model>
@@ -219,7 +219,7 @@
                                     </Listeners>
 
                                 </ext:ComboBox>
-                                <ext:ComboBox EmptyText="<%$ Resources: FieldPosition%>" runat="server" Width="130" LabelAlign="Top" ValueField="recordId" DisplayField="name" ID="filterPosition" Name="divisionId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1">
+                                <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  EmptyText="<%$ Resources: FieldPosition%>" runat="server" Width="130" LabelAlign="Top" ValueField="recordId" DisplayField="name" ID="filterPosition" Name="divisionId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1">
                                     <Store>
                                         <ext:Store runat="server" ID="filterPositionStore">
                                             <Model>

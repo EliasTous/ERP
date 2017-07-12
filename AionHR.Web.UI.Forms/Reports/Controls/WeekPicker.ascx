@@ -24,7 +24,7 @@
 <link href="../CSS/jquery-ui.css" rel="stylesheet" />
 
 
-<ext:Panel runat="server" Layout="HBoxLayout" Width="150" >
+<ext:Panel runat="server" Layout="HBoxLayout" Width="250" >
     
     <Items>
         <ext:Hidden runat="server" ID="week" />
@@ -33,7 +33,10 @@
         <AfterLayout Handler="convertToWeekPicker($('#weekPicker1')); globalAdditionalFunction =called;  globalTriggeringElement=$('#weekPicker1'); " />
     </Listeners>
     <Content>
-        <input type="text" id="weekPicker1"  />
+        <div style="float:left;display:inline;" >
+        <asp:Literal  runat="server" Text="<%$Resources:PickWeek %>" ></asp:Literal>
+        <input type="text" id="weekPicker1"   placeholder="" />
+            </div>
     </Content>
 </ext:Container>
 

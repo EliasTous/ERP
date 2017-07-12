@@ -236,7 +236,7 @@
                                 <ext:TextField runat="server" Name="recordId"  ID="recordId" Hidden="true"  Disabled="true"/>
                                 <ext:TextField  runat="server" Name="institution" AllowBlank="false"  ID="institution"  FieldLabel="<%$ Resources:FieldInst%>" />
 
-                                <ext:ComboBox ValueField="recordId" AllowBlank="false" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1"
+                                <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  ValueField="recordId" AllowBlank="false" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1"
                                      DisplayField="name" runat="server" ID="clId" Name="clId" FieldLabel="<%$ Resources:FieldCLName%>" SimpleSubmit="true">
                                     <Store>
                                         <ext:Store runat="server" ID="clStore">

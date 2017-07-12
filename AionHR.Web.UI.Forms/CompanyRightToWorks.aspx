@@ -355,7 +355,7 @@
                             <Items>
                                 <ext:TextField ID="recordId" runat="server" Name="recordId" Hidden="true" />
                                 <ext:TextField ID="url" runat="server" Name="url" Hidden="true" />
-                                <ext:ComboBox runat="server" ID="branchId" Name="branchId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1"
+                                <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" ID="branchId" Name="branchId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1"
                                     DisplayField="name"
                                     ValueField="recordId"
                                     FieldLabel="<%$ Resources: FieldBRName %>">
@@ -392,7 +392,7 @@
                                     </Listeners>
                                 </ext:ComboBox>
 
-                                <ext:ComboBox runat="server" AllowBlank="false" ID="dtId" Name="dtId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1"
+                                <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" AllowBlank="false" ID="dtId" Name="dtId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1"
                                     DisplayField="name"
                                     ValueField="recordId"
                                     FieldLabel="<%$ Resources: FieldDTName %>">

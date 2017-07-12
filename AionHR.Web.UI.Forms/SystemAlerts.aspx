@@ -130,7 +130,7 @@
                             </ext:Column>
                             <ext:WidgetColumn ID="WidgetColumn1" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldSendTo %>" DataIndex="sendTo" Hideable="false" Width="150" Align="Center">
                                 <Widget>
-                                    <ext:ComboBox runat="server" Editable="false" ID="to" >
+                                    <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" Editable="false" ID="to" >
                                         <Items>
                                             <ext:ListItem Text="<%$ Resources: All %>" Value="2" />
                                             <ext:ListItem Text="<%$ Resources: Administrator %>" Value="0" />

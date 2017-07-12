@@ -429,7 +429,7 @@
 
                                 <ext:Checkbox ID="isInactiveCheck" TabIndex="4" runat="server" FieldLabel="<%$ Resources: FieldIsInActive%>" DataIndex="isInactive" Name="isInactive" InputValue="true" />
                                 <ext:Checkbox ID="isAdminCheck" TabIndex="5" runat="server" FieldLabel="<%$ Resources: FieldIsAdmin%>" DataIndex="isAdmin" Name="isAdmin" InputValue="true" />
-                                <ext:ComboBox runat="server" ID="employeeId" TabIndex="6" Name="employeeId"
+                                <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" ID="employeeId" TabIndex="6" Name="employeeId"
                                     DisplayField="fullName"
                                     ValueField="recordId"
                                     TypeAhead="false"
@@ -460,7 +460,7 @@
                                         <FocusLeave Handler=" if(this.value==null|| isNaN(this.value) )SetNameEnabled(true,'');  if(isNaN(this.value)) this.setValue(null);" />
                                     </Listeners>
                                 </ext:ComboBox>
-                                <ext:ComboBox runat="server" ID="languageId" AllowBlank="false" TabIndex="7" Name="languageId"
+                                <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" ID="languageId" AllowBlank="false" TabIndex="7" Name="languageId"
                                     SubmitValue="true"
                                     TypeAhead="false"
                                     FieldLabel="<%$ Resources: FieldLanguageId%>">
@@ -544,7 +544,7 @@
                                     <TopBar>
                                         <ext:Toolbar runat="server">
                                             <Items>
-                                                <ext:ComboBox runat="server" ID="GroupsCombo" DisplayField="name" ValueField="recordId" QueryMode="Local" Width="120" ForceSelection="true" TypeAhead="true" MinChars="1">
+                                                <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" ID="GroupsCombo" DisplayField="name" ValueField="recordId" QueryMode="Local" Width="120" ForceSelection="true" TypeAhead="true" MinChars="1">
                                                     <Store>
                                                         <ext:Store runat="server" ID="AllGroupsStore" OnReadData="AllGroupsStore_ReadData">
                                                             <Model>

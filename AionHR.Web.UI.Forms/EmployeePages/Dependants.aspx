@@ -241,7 +241,7 @@
                             <Items>
                                 
                                         <ext:TextField runat="server" Name="recordId" ID="recordId" Hidden="true" Disabled="true" />
-                                        <ext:ComboBox runat="server" ID="dependencyType" Name="dependencyType" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" AllowBlank="false"
+                                        <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" ID="dependencyType" Name="dependencyType" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" AllowBlank="false"
                                             FieldLabel="<%$ Resources: FieldDependency %>">
                                             <Items>
 
@@ -291,7 +291,7 @@
                                 <ext:TextField runat="server" Name="city" AllowBlank="true" ID="city" FieldLabel="<%$ Resources:FieldCity%>" />
                                 <ext:TextField runat="server" Name="postalCode" AllowBlank="true" MaxLength="6" ID="postalCode" FieldLabel="<%$ Resources:FieldPostalCode%>" />
                                 <%--<ext:TextField  runat="server" Name="countryName" AllowBlank="false"  ID="countryName"  FieldLabel="<%$ Resources:FieldCountryName%>" />--%>
-                                <ext:ComboBox ValueField="recordId" AllowBlank="true" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1"
+                                <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  ValueField="recordId" AllowBlank="true" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1"
                                     DisplayField="name" runat="server" ID="stateId" Name="stateId" FieldLabel="<%$ Resources:FieldState%>" SimpleSubmit="true">
                                     <Store>
                                         <ext:Store runat="server" ID="stStore">
@@ -325,7 +325,7 @@
                                         <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
                                     </Listeners>
                                 </ext:ComboBox>
-                                <ext:ComboBox ValueField="recordId" AllowBlank="true" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1"
+                                <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  ValueField="recordId" AllowBlank="true" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1"
                                     DisplayField="name" runat="server" ID="countryId" Name="countryId" FieldLabel="<%$ Resources:FieldCountryName%>" SimpleSubmit="true">
                                     <Store>
                                         <ext:Store runat="server" ID="naStore">

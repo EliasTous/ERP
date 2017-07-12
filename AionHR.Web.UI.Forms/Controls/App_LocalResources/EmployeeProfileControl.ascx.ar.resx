@@ -345,4 +345,7 @@
   <data name="Yes" xml:space="preserve">
     <value>نعم</value>
   </data>
+  <data name="ReferenceAlreadyExist" xml:space="preserve">
+    <value>الرمز موجود مسبقاً</value>
+  </data>
 </root>

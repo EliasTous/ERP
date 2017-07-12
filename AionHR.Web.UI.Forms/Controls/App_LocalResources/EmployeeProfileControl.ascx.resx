@@ -351,4 +351,7 @@
   <data name="Yes" xml:space="preserve">
     <value>Yes</value>
   </data>
+  <data name="ReferenceAlreadyExist" xml:space="preserve">
+    <value>Reference Already Exist</value>
+  </data>
 </root>

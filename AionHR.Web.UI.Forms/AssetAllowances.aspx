@@ -93,7 +93,7 @@
                                         </Click>
                                     </DirectEvents>
                                 </ext:Button>
-                                  <ext:ComboBox runat="server" Width="130"  LabelAlign="Top" EmptyText="<%$ Resources:FilterBranch%>" ValueField="recordId" DisplayField="name" ID="branchId" Name="branchId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" >
+                                  <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" Width="130"  LabelAlign="Top" EmptyText="<%$ Resources:FilterBranch%>" ValueField="recordId" DisplayField="name" ID="branchId" Name="branchId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" >
                                     <Store>
                                         <ext:Store runat="server" ID="branchStore">
                                             <Model>
@@ -112,7 +112,7 @@
                                   
                                 </ext:ComboBox>
                                  
-                                <ext:ComboBox runat="server" Width="155"  EmptyText="<%$ Resources:FilterDepartment%>" LabelAlign="Top" ValueField="recordId" DisplayField="name" ID="departmentId" Name="departmentId"  QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" >
+                                <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" Width="155"  EmptyText="<%$ Resources:FilterDepartment%>" LabelAlign="Top" ValueField="recordId" DisplayField="name" ID="departmentId" Name="departmentId"  QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" >
                                     <Store>
                                         <ext:Store runat="server" ID="departmentStore">
                                             <Model>
@@ -131,7 +131,7 @@
                               
 
                                 </ext:ComboBox>
-                                 <ext:ComboBox EmptyText="<%$ Resources: FilterAssetCateg%>" runat="server" Width="130"  LabelAlign="Top" ValueField="recordId" DisplayField="name" ID="assetCatId"   QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" >
+                                 <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  EmptyText="<%$ Resources: FilterAssetCateg%>" runat="server" Width="130"  LabelAlign="Top" ValueField="recordId" DisplayField="name" ID="assetCatId"   QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" >
                                     <Store>
                                         <ext:Store runat="server" ID="assetCategoryStore">
                                             <Model>
@@ -149,7 +149,7 @@
                                     </Listeners>
                                 
                                 </ext:ComboBox>
-                                <ext:ComboBox runat="server" ID="employeeFilter" Width="130"  LabelAlign="Top"
+                                <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" ID="employeeFilter" Width="130"  LabelAlign="Top"
                                     DisplayField="fullName"
                                     ValueField="recordId" AllowBlank="true"
                                     TypeAhead="false"
@@ -363,7 +363,7 @@
 
                                 <ext:TextField ID="recordId" runat="server" Name="recordId" Hidden="true" />
 
-                                <ext:ComboBox runat="server" ID="employeeId" name="employeeId"
+                                <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" ID="employeeId" name="employeeId" 
                                     DisplayField="fullName" 
                                     ValueField="recordId"
                                     TypeAhead="false"
@@ -392,7 +392,7 @@
                                 </ext:ComboBox>
 
 
-                                <ext:ComboBox runat="server" ID="acId" Name="acId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1"
+                                <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" ID="acId" Name="acId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1"
                                     DisplayField="name" AllowBlank="false"
                                     ValueField="recordId"
                                     FieldLabel="<%$ Resources: FieldAcName %>">
