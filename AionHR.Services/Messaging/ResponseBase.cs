@@ -21,7 +21,10 @@ namespace AionHR.Services.Messaging
         /// </summary>
         public string Message { get; set; }
 
-        public string Summary { get; set; }
-        
+        public string Summary
+        {
+            get; set;
+
+        }
     }
 }

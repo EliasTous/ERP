@@ -11,7 +11,16 @@
     <link rel="stylesheet" href="CSS/LiveSearch.css" />
     <script type="text/javascript" src="Scripts/Nationalities.js"></script>
     <script type="text/javascript" src="Scripts/common.js"></script>
+    <script type="text/javascript" >
+        function ValidateIPaddress(ipaddress) {
+            if (/^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/.test(ipaddress)) {
+                return (true);
+            }
+            
+            return (false);
+        }
 
+    </script>
 
 </head>
 <body style="background: url(Images/bg.png) repeat;">
@@ -237,7 +246,9 @@
                                                 <ext:ListItem Text="+12 UTC" Value="12" />
                                             </Items>
                                         </ext:ComboBox>
-
+                                        <ext:TextField runat="server" Name="localServerIP" ID="localServerIP"  LabelWidth="150" FieldLabel="<%$Resources:LocalServerIP %>">
+                                            <Validator Fn="ValidateIPaddress" />
+                                        </ext:TextField>
                                         <ext:Checkbox FieldLabel="<%$ Resources: FieldEnableCamera %>" LabelWidth="150" runat="server" InputValue="True" Name="enableCamera" ID="enableCameraCheck" />
                                         <ext:Checkbox FieldLabel="<%$ Resources: FieldEnableHijri %>" LabelWidth="150" runat="server" InputValue="True" Name="enableHijri" ID="enableHijri" />
                                     </Items>

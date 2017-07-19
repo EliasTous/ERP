@@ -189,6 +189,9 @@
   <data name="LastNameFirstName" xml:space="preserve">
     <value>Last Name, First Name</value>
   </data>
+  <data name="LocalServerIP" xml:space="preserve">
+    <value>Local Server IP</value>
+  </data>
   <data name="MonthDayYear" xml:space="preserve">
     <value>Month - Day - Year</value>
   </data>

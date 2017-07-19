@@ -124,6 +124,22 @@
             str += s.destination + ', ' + moment(s.endDate).format(document.getElementById('format').value);
             return str;
         }
+        function displayTotalLoans(s)
+        {
+            var str = "<div style=" + getStyle() + ">" + s.name;
+            str += '<br/>';
+            str += getDateFormatted(s.date) + ', ' + s.currencyRef + s.amount;
+            str += '</div>';
+            return str;
+        }
+        function displayCompletedLoans(s)
+        {
+            var str = "<div style=" + getStyle() + ">" + s.name;
+            str += '<br/>';
+            str += getDateFormatted(s.date) + ', ' + s.currencyRef + s.amount;
+            str += '</div>';
+            return str;
+        }
         function dump(obj) {
             var out = '';
             for (var i in obj) {
@@ -400,7 +416,7 @@
                     <TopBar>
                         <ext:Toolbar runat="server">
                             <Items>
-                                <ext:ComboBox runat="server" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" ValueField="recordId" DisplayField="name" ID="branchId" Name="branchId" EmptyText="<%$ Resources:FieldBranch%>">
+                                <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" ValueField="recordId" DisplayField="name" ID="branchId" Name="branchId" EmptyText="<%$ Resources:FieldBranch%>">
                                     <Store>
                                         <ext:Store runat="server" ID="branchStore">
                                             <Model>
@@ -415,11 +431,11 @@
                                     </Store>
 
                                     <Items>
-                                        <ext:ListItem Text="-----All-----" Value="0" />
+                                        <ext:ListItem Text="<%$Resources:All %>" Value="0" />
                                     </Items>
                                 </ext:ComboBox>
 
-                                <ext:ComboBox runat="server" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" ValueField="recordId" DisplayField="name" ID="departmentId" Name="departmentId" EmptyText="<%$ Resources:FieldDepartment%>">
+                                <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" ValueField="recordId" DisplayField="name" ID="departmentId" Name="departmentId" EmptyText="<%$ Resources:FieldDepartment%>">
                                     <Store>
                                         <ext:Store runat="server" ID="departmentStore">
                                             <Model>
@@ -434,11 +450,11 @@
                                     </Store>
 
                                     <Items>
-                                        <ext:ListItem Text="-----All-----" Value="0" />
+                                        <ext:ListItem Text="<%$Resources:All %>" Value="0" />
                                     </Items>
 
                                 </ext:ComboBox>
-                                <ext:ComboBox runat="server" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" ValueField="recordId" DisplayField="name" ID="ComboBox1" Name="positionId" EmptyText="<%$ Resources:FieldPosition%>">
+                                <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" ValueField="recordId" DisplayField="name" ID="ComboBox1" Name="positionId" EmptyText="<%$ Resources:FieldPosition%>">
                                     <Store>
                                         <ext:Store runat="server" ID="positionStore">
                                             <Model>
@@ -453,10 +469,10 @@
                                     </Store>
 
                                     <Items>
-                                        <ext:ListItem Text="-----All-----" Value="0" />
+                                        <ext:ListItem Text="<%$Resources:All %>" Value="0" />
                                     </Items>
                                 </ext:ComboBox>
-                                <ext:ComboBox runat="server" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" ValueField="recordId" DisplayField="name" ID="divisionId" Name="divisionId" EmptyText="<%$ Resources:FieldDivision%>">
+                                <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" ValueField="recordId" DisplayField="name" ID="divisionId" Name="divisionId" EmptyText="<%$ Resources:FieldDivision%>">
                                     <Store>
                                         <ext:Store runat="server" ID="divisionStore">
                                             <Model>
@@ -471,10 +487,10 @@
                                     </Store>
 
                                     <Items>
-                                        <ext:ListItem Text="-----All-----" Value="0" />
+                                        <ext:ListItem Text="<%$Resources:All %>" Value="0" />
                                     </Items>
                                 </ext:ComboBox>
-                                <ext:ComboBox runat="server" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" ValueField="recordId" DisplayField="name" ID="esId" Name="esId" EmptyText="<%$ Resources:FieldEHStatus%>">
+                                <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" ValueField="recordId" DisplayField="name" ID="esId" Name="esId" EmptyText="<%$ Resources:FieldEHStatus%>">
                                     <Store>
                                         <ext:Store runat="server" ID="statusStore">
                                             <Model>
@@ -489,12 +505,12 @@
                                     </Store>
 
                                     <Items>
-                                        <ext:ListItem Text="-----All-----" Value="0" />
+                                        <ext:ListItem Text="<%$Resources:All %>" Value="0" />
                                     </Items>
                                 </ext:ComboBox>
                                 <ext:ToolbarSeparator runat="server" />
 
-                                <ext:Button runat="server" Text="GO">
+                                <ext:Button runat="server" Text="<%$Resources:Go %>">
                                     <Listeners>
                                         <Click Handler="RefreshAllGrids();" />
                                     </Listeners>
@@ -1243,6 +1259,45 @@
                                                                                 <ext:HyperlinkButton runat="server" Text="<%$Resources:Probation %>" StyleSpec="font-size:16pt;" Height="80" StyleHtmlCls="flashing">
                                                                                     <Listeners>
                                                                                         <Click Handler="App.ProbationWindow.show();" />
+                                                                                    </Listeners>
+                                                                                </ext:HyperlinkButton>
+                                                                            </Items>
+                                                                        </ext:Panel>
+                                                                        <ext:Panel runat="server" Flex="1" />
+                                                                    </Items>
+                                                                </ext:Panel>
+                                                                <ext:Panel runat="server" Flex="1" />
+                                                                <ext:Panel runat="server" Layout="HBoxLayout" Flex="10">
+                                                                    <LayoutConfig>
+                                                                        <ext:HBoxLayoutConfig Align="Middle"></ext:HBoxLayoutConfig>
+                                                                    </LayoutConfig>
+
+                                                                    <Items>
+                                                                        <ext:Panel runat="server" Flex="1" />
+                                                                        <ext:Panel runat="server" Layout="VBoxLayout" Flex="10">
+                                                                            <LayoutConfig>
+                                                                                <ext:VBoxLayoutConfig Align="Center" />
+                                                                            </LayoutConfig>
+                                                                            <Items>
+
+                                                                                <ext:Label runat="server" ID="totalLoansLbl" Cls="number flashing" StyleHtmlCls="number" PaddingSpec="30 0 0 0" Height="100" />
+                                                                                <ext:HyperlinkButton runat="server" Text="<%$Resources:TotalLoans %>" StyleSpec="font-size:16pt;" Height="80">
+                                                                                    <Listeners>
+                                                                                        <Click Handler="App.totalLoansWindow.show();" />
+                                                                                    </Listeners>
+                                                                                </ext:HyperlinkButton>
+                                                                            </Items>
+                                                                        </ext:Panel>
+                                                                        <ext:Panel runat="server" Flex="1" />
+                                                                        <ext:Panel runat="server" Layout="VBoxLayout" Flex="10">
+                                                                            <LayoutConfig>
+                                                                                <ext:VBoxLayoutConfig Align="Center" />
+                                                                            </LayoutConfig>
+                                                                            <Items>
+                                                                                <ext:Label runat="server" ID="deductedLoansLbl" Cls="number flashing" StyleHtmlCls="number" PaddingSpec="30 0 0 0" Height="100" />
+                                                                                <ext:HyperlinkButton runat="server" Text="<%$Resources:CompletedLoans %>" StyleSpec="font-size:16pt;" Height="80" StyleHtmlCls="flashing">
+                                                                                    <Listeners>
+                                                                                        <Click Handler="App.completedLoansWindow.show();" />
                                                                                     </Listeners>
                                                                                 </ext:HyperlinkButton>
                                                                             </Items>
@@ -2067,6 +2122,168 @@
 
                     <SelectionModel>
                         <ext:RowSelectionModel ID="rowSelectionModel" runat="server" Mode="Single" StopIDModeInheritance="true" />
+                        <%--<ext:CheckboxSelectionModel ID="CheckboxSelectionModel1" runat="server" Mode="Multi" StopIDModeInheritance="true" />--%>
+                    </SelectionModel>
+                </ext:GridPanel>
+            </Items>
+        </ext:Window>
+        <ext:Window runat="server" Modal="true" Title="<%$ Resources: TotalLoans %>"
+            Hidden="true" Layout="FitLayout" AutoShow="false" ID="totalLoansWindow" Width="400" Height="300">
+             <Listeners>
+                <AfterLayout Handler="App.totalLoansStore.reload()" />
+            </Listeners>
+            <Items>
+                <ext:GridPanel MarginSpec="0 0 0 0"
+                    ID="GridPanel11" Layout="FitLayout"
+                    runat="server"
+                    PaddingSpec="0 0 0 0"
+                    Header="false"
+                    Title="<%$ Resources: TotalLoans %>"
+                    Scroll="Vertical" HideHeaders="true"
+                    Border="false"
+                    
+                    ColumnLines="True">
+                      <Store>
+                        <ext:Store
+                            ID="totalLoansStore"
+                            runat="server" OnReadData="totalLoansStore_ReadData"
+                            PageSize="30">
+
+                            <Model>
+                                <ext:Model ID="Model16" runat="server">
+                                    <Fields>
+
+
+                                        <ext:ModelField Name="name" ServerMapping="employeeName.fullName" />
+                                        <ext:ModelField Name="amount" />
+                                        <ext:ModelField Name="date" />
+                                        <ext:ModelField Name="currencyRef" />
+
+
+                                    </Fields>
+                                </ext:Model>
+                            </Model>
+
+                        </ext:Store>
+                    </Store>
+
+
+
+                    <ColumnModel ID="ColumnModel16" runat="server" SortAscText="<%$ Resources:Common , SortAscText %>" SortDescText="<%$ Resources:Common ,SortDescText  %>" SortClearText="<%$ Resources:Common ,SortClearText  %>" ColumnsText="<%$ Resources:Common ,ColumnsText  %>" EnableColumnHide="false" Sortable="false">
+                        <Columns>
+
+                            <%--                                                   <ext:Column Visible="false" ID="ColrecordId" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldrecordId %>" DataIndex="recordId" Hideable="false" Width="75" />
+                                                    <ext:Column Flex="2" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEmployee %>" DataIndex="name" Hideable="false" />
+                                                    <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldTime%>" DataIndex="time" Width="55" Hideable="false" />
+                                                    <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldPosition%>" DataIndex="positionName" Flex="3" Hideable="false" />
+                                                    <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDepartment%>" DataIndex="departmentName" Flex="3" Hideable="false" />
+                                                    <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldBranch%>" DataIndex="branchName" Flex="3" Hideable="false" />
+                            --%><ext:Column Flex="2" MenuDisabled="true" runat="server" Text="<%$ Resources: Loan %>" DataIndex="name" Hideable="false" Width="75">
+                                <Renderer Handler=" return displayTotalLoans(record.data);  ">
+                                </Renderer>
+                            </ext:Column>
+
+
+
+
+
+
+
+
+
+
+                        </Columns>
+                    </ColumnModel>
+
+
+                    <View>
+                        <ext:GridView Border="false" ID="GridView16" runat="server" />
+                    </View>
+
+
+                    <SelectionModel>
+                        <ext:RowSelectionModel ID="rowSelectionModel15" runat="server" Mode="Single" StopIDModeInheritance="true" />
+                        <%--<ext:CheckboxSelectionModel ID="CheckboxSelectionModel1" runat="server" Mode="Multi" StopIDModeInheritance="true" />--%>
+                    </SelectionModel>
+                </ext:GridPanel>
+            </Items>
+        </ext:Window>
+
+            <ext:Window runat="server" Modal="true" Title="<%$ Resources: CompletedLoans %>"
+            Hidden="true" Layout="FitLayout" AutoShow="false" ID="completedLoansWindow" Width="400" Height="300">
+                  <Listeners>
+                <AfterLayout Handler="App.CompletedLoansStore.reload()" />
+            </Listeners>
+            <Items>
+                <ext:GridPanel MarginSpec="0 0 0 0"
+                    ID="GridPanel12" Layout="FitLayout"
+                    runat="server"
+                    PaddingSpec="0 0 0 0"
+                    Header="false"
+                    Title="<%$ Resources: CompletedLoans %>"
+                    Scroll="Vertical" HideHeaders="true"
+                    Border="false"
+                    
+                    ColumnLines="True">
+                      <Store>
+                        <ext:Store
+                            ID="CompletedLoansStore"
+                            runat="server" OnReadData="CompletedLoansStore_ReadData"
+                            PageSize="30">
+
+                            <Model>
+                                <ext:Model ID="Model17" runat="server">
+                                    <Fields>
+
+
+                                        <ext:ModelField Name="name" ServerMapping="employeeName.fullName" />
+                                        <ext:ModelField Name="amount" />
+                                        <ext:ModelField Name="date" />
+                                        <ext:ModelField Name="currencyRef" />
+
+                                    </Fields>
+                                </ext:Model>
+                            </Model>
+
+                        </ext:Store>
+                    </Store>
+
+
+
+                    <ColumnModel ID="ColumnModel17" runat="server" SortAscText="<%$ Resources:Common , SortAscText %>" SortDescText="<%$ Resources:Common ,SortDescText  %>" SortClearText="<%$ Resources:Common ,SortClearText  %>" ColumnsText="<%$ Resources:Common ,ColumnsText  %>" EnableColumnHide="false" Sortable="false">
+                        <Columns>
+
+                            <%--                                                   <ext:Column Visible="false" ID="ColrecordId" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldrecordId %>" DataIndex="recordId" Hideable="false" Width="75" />
+                                                    <ext:Column Flex="2" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEmployee %>" DataIndex="name" Hideable="false" />
+                                                    <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldTime%>" DataIndex="time" Width="55" Hideable="false" />
+                                                    <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldPosition%>" DataIndex="positionName" Flex="3" Hideable="false" />
+                                                    <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDepartment%>" DataIndex="departmentName" Flex="3" Hideable="false" />
+                                                    <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldBranch%>" DataIndex="branchName" Flex="3" Hideable="false" />
+                            --%><ext:Column Flex="2" MenuDisabled="true" runat="server" Text="<%$ Resources: Loan %>" DataIndex="name" Hideable="false" Width="75">
+                                <Renderer Handler=" return displayCompletedLoans(record.data);  ">
+                                </Renderer>
+                            </ext:Column>
+
+
+
+
+
+
+
+
+
+
+                        </Columns>
+                    </ColumnModel>
+
+
+                    <View>
+                        <ext:GridView Border="false" ID="GridView17" runat="server" />
+                    </View>
+
+
+                    <SelectionModel>
+                        <ext:RowSelectionModel ID="rowSelectionModel16" runat="server" Mode="Single" StopIDModeInheritance="true" />
                         <%--<ext:CheckboxSelectionModel ID="CheckboxSelectionModel1" runat="server" Mode="Multi" StopIDModeInheritance="true" />--%>
                     </SelectionModel>
                 </ext:GridPanel>

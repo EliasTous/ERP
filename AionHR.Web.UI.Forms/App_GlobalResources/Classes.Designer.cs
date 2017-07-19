@@ -214,6 +214,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Import Departments.
+        /// </summary>
+        internal static string Class21099 {
+            get {
+                return ResourceManager.GetString("Class21099", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Document Type.
         /// </summary>
         internal static string Class22010 {
@@ -426,6 +435,15 @@ namespace Resources {
         internal static string Class31090 {
             get {
                 return ResourceManager.GetString("Class31090", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Import Employees.
+        /// </summary>
+        internal static string Class31098 {
+            get {
+                return ResourceManager.GetString("Class31098", resourceCulture);
             }
         }
         

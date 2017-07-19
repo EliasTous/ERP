@@ -224,7 +224,7 @@ namespace AionHR.Web.UI.Forms
                 if (!r.Success)
                 {
                     X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.Error, r.Summary).Show();
+                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() : r.Summary).Show();
                     return;
                 }
                 else
@@ -424,7 +424,7 @@ namespace AionHR.Web.UI.Forms
             ListResponse<FiscalYear> branches = _payrollService.ChildGetAll<FiscalYear>(request);
             if (!branches.Success)
             {
-                X.Msg.Alert(Resources.Common.Error, branches.Summary).Show();
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", branches.ErrorCode) != null ? GetGlobalResourceObject("Errors", branches.ErrorCode).ToString() : branches.Summary).Show();
                 return;
             }
             this.Store1.DataSource = branches.Items;
@@ -464,7 +464,7 @@ namespace AionHR.Web.UI.Forms
                 {
                     //Show an error saving...
                     X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.Error, r.Summary).Show();
+                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() : r.Summary).Show();
                     return;
                 }
 
@@ -636,7 +636,7 @@ namespace AionHR.Web.UI.Forms
             ListResponse<FiscalPeriod> resp = _payrollService.ChildGetAll<FiscalPeriod>(req);
             if (!resp.Success)
             {
-                X.Msg.Alert(Resources.Common.Error, resp.Summary).Show();
+                X.Msg.Alert(Resources.Common.Error,GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() : resp.Summary).Show();
                 return;
             }
             fiscalPeriodsStore.DataSource = resp.Items;

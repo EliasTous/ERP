@@ -212,7 +212,7 @@ namespace AionHR.Web.UI.Forms
                     {
                         //Show an error saving...
                         X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                        X.Msg.Alert(Resources.Common.Error, r.Summary).Show();
+                        X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() : r.Summary).Show();
                         return;
                     }
                     else
@@ -228,7 +228,7 @@ namespace AionHR.Web.UI.Forms
                         try
                         {
                             types.ForEach(x => allClasses.Add(new ModuleClass() { classId = (x.GetCustomAttribute(typeof(ClassIdentifier), false) as ClassIdentifier).ClassID, accessLevel = level, id = (x.GetCustomAttribute(typeof(ClassIdentifier), false) as ClassIdentifier).ClassID, sgId = b.recordId }));
-                            allClasses.Where(x => x.classId.StartsWith("80") || x.classId.EndsWith("99")).ToList().ForEach(x => x.accessLevel = Math.Min(1, x.accessLevel));
+                            allClasses.Where(x => x.classId.StartsWith("80") || x.classId.EndsWith("99") || x.classId.EndsWith("98")).ToList().ForEach(x => x.accessLevel = Math.Min(1, x.accessLevel));
                         }
 
                         catch { }
@@ -237,7 +237,7 @@ namespace AionHR.Web.UI.Forms
                         if (!batResp.Success)
                         {
                             X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                            X.Msg.Alert(Resources.Common.Error, r.Summary).Show();
+                            X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() : r.Summary).Show();
                             return;
                         }
                         //Display successful notification
@@ -335,7 +335,7 @@ namespace AionHR.Web.UI.Forms
             resp = _accessControlService.ChildDelete<SecurityGroupUser>(req);
             if (!resp.Success)
             {
-                X.Msg.Alert(Resources.Common.Error, resp.Summary).Show();
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() : resp.Summary).Show();
                 return;
             }
             foreach (var item in selectedUsers)
@@ -345,7 +345,7 @@ namespace AionHR.Web.UI.Forms
                 resp = _accessControlService.ChildAddOrUpdate<SecurityGroupUser>(req);
                 if (!resp.Success)
                 {
-                    X.Msg.Alert(Resources.Common.Error, resp.Summary).Show();
+                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() : resp.Summary).Show();
                     return;
                 }
 
@@ -379,7 +379,7 @@ namespace AionHR.Web.UI.Forms
 
             if (!resp.Success)
             {
-                X.Msg.Alert(Resources.Common.Error, resp.Summary).Show();
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() : resp.Summary).Show();
                 return;
             }
 
@@ -451,7 +451,7 @@ namespace AionHR.Web.UI.Forms
                 resp = _accessControlService.ChildAddOrUpdate<ClassProperty>(req);
                 if (!resp.Success)
                 {
-                    X.Msg.Alert(Resources.Common.Error, resp.Summary).Show();
+                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() : resp.Summary).Show();
                     return;
                 }
             }
@@ -591,7 +591,7 @@ namespace AionHR.Web.UI.Forms
                     if (!response.Success)
                     {
                         X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                        X.Msg.Alert(Resources.Common.Error, response.Summary).Show();
+                        X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).ToString() : response.Summary).Show();
                         return;
                     }
                     //Step 2 : call setvalues with the retrieved object

@@ -64,7 +64,7 @@ namespace AionHR.Web.UI.Forms
             ListResponse<LeaveRequest> resp = _leaveManagementService.ChildGetAll<LeaveRequest>(req);
             if (!resp.Success)
             {
-                X.Msg.Alert(Resources.Common.Error, resp.Summary).Show();
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() : resp.Summary).Show();
                 return new DataTable();
             }
             DataTable dt;
@@ -316,7 +316,7 @@ namespace AionHR.Web.UI.Forms
             ListRequest departmentsRequest = new ListRequest();
             ListResponse<Department> resp = _companyStructureService.ChildGetAll<Department>(departmentsRequest);
             if (!resp.Success)
-                X.Msg.Alert(Resources.Common.Error, resp.Summary).Show();
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() : resp.Summary).Show();
             departmentStore.DataSource = resp.Items;
             departmentStore.DataBind();
         }
@@ -325,7 +325,7 @@ namespace AionHR.Web.UI.Forms
             ListRequest branchesRequest = new ListRequest();
             ListResponse<Branch> resp = _companyStructureService.ChildGetAll<Branch>(branchesRequest);
             if (!resp.Success)
-                X.Msg.Alert(Resources.Common.Error, resp.Summary).Show();
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() : resp.Summary).Show();
             branchStore.DataSource = resp.Items;
             branchStore.DataBind();
         }

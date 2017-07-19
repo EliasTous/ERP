@@ -244,12 +244,21 @@ namespace AionHR.Web.UI.Forms
             int empRW = dashoard.Items.Where(x => x.itemId == 62).ToList()[0].count;
             int scr = dashoard.Items.Where(x => x.itemId == 31).ToList()[0].count;
             int prob = dashoard.Items.Where(x => x.itemId == 32).ToList()[0].count;
+            var l1 = dashoard.Items.Where(x => x.itemId == 71).ToList();
+            int total = 0, paid = 0;
+            if (l1.Count > 0)
+                total = l1[0].count;
+            var l2 = dashoard.Items.Where(x => x.itemId == 72).ToList();
+            if (l2.Count > 0)
+                paid = l2[0].count;
             annversaries.Text = annev.ToString();
             birthdays.Text = birth.ToString();
             companyRW.Text = comp.ToString();
             salaryChange.Text = scr.ToString();
             probation.Text = prob.ToString();
             employeeRW.Text = empRW.ToString();
+            totalLoansLbl.Text = total.ToString();
+            deductedLoansLbl.Text = paid.ToString();
             //X.Call("alerts", annev, annevTotal, birthdays, birthdaysTotal, empRW, empRWTotal, compRW, compRWTotal, scr, scrTotal, prob, probTotal);
 
         }
@@ -749,7 +758,7 @@ namespace AionHR.Web.UI.Forms
 
         }
 
-    
+
 
 
         protected void LoansStore_ReadData(object sender, StoreReadDataEventArgs e)
@@ -779,7 +788,7 @@ namespace AionHR.Web.UI.Forms
             ListResponse<EmployeeBirthday> resp = _systemService.ChildGetAll<EmployeeBirthday>(req);
             if (!resp.Success)
             {
-                X.Msg.Alert(Resources.Common.Error, resp.Summary).Show();
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() : resp.Summary).Show();
                 return;
             }
             BirthdaysStore.DataSource = resp.Items;
@@ -793,7 +802,7 @@ namespace AionHR.Web.UI.Forms
             ListResponse<WorkAnniversary> resp = _systemService.ChildGetAll<WorkAnniversary>(req);
             if (!resp.Success)
             {
-                X.Msg.Alert(Resources.Common.Error, resp.Summary).Show();
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() : resp.Summary).Show();
                 return;
             }
             AnniversaryStore.DataSource = resp.Items;
@@ -806,7 +815,7 @@ namespace AionHR.Web.UI.Forms
             ListResponse<CompanyRTW> resp = _systemService.ChildGetAll<CompanyRTW>(req);
             if (!resp.Success)
             {
-                X.Msg.Alert(Resources.Common.Error, resp.Summary).Show();
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() : resp.Summary).Show();
                 return;
             }
             CompanyRightToWorkStore.DataSource = resp.Items;
@@ -819,7 +828,7 @@ namespace AionHR.Web.UI.Forms
             ListResponse<EmpRTW> resp = _systemService.ChildGetAll<EmpRTW>(req);
             if (!resp.Success)
             {
-                X.Msg.Alert(Resources.Common.Error, resp.Summary).Show();
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() : resp.Summary).Show();
                 return;
             }
             EmployeeRightToWorkStore.DataSource = resp.Items;
@@ -832,7 +841,7 @@ namespace AionHR.Web.UI.Forms
             ListResponse<SalaryChange> resp = _systemService.ChildGetAll<SalaryChange>(req);
             if (!resp.Success)
             {
-                X.Msg.Alert(Resources.Common.Error, resp.Summary).Show();
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() : resp.Summary).Show();
                 return;
             }
             SCRStore.DataSource = resp.Items;
@@ -845,7 +854,7 @@ namespace AionHR.Web.UI.Forms
             ListResponse<ProbationEnd> resp = _systemService.ChildGetAll<ProbationEnd>(req);
             if (!resp.Success)
             {
-                X.Msg.Alert(Resources.Common.Error, resp.Summary).Show();
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() : resp.Summary).Show();
                 return;
             }
             ProbationStore.DataSource = resp.Items;
@@ -854,14 +863,14 @@ namespace AionHR.Web.UI.Forms
 
         }
 
-        
+
         protected void departments2Count_ReadData(object sender, StoreReadDataEventArgs e)
         {
             ListRequest req = new ListRequest();
             ListResponse<DepartmentActivity> resp = _systemService.ChildGetAll<DepartmentActivity>(req);
             if (!resp.Success)
             {
-                X.Msg.Alert(Resources.Common.Error, resp.Summary).Show();
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() : resp.Summary).Show();
                 return;
             }
             List<object> objs = new List<object>();
@@ -918,6 +927,34 @@ namespace AionHR.Web.UI.Forms
             X.Call("fixWidth", resp.Items.Count);
         }
 
-       
+        protected void CompletedLoansStore_ReadData(object sender, StoreReadDataEventArgs e)
+        {
+            LoanManagementListRequest req = new LoanManagementListRequest();
+            req = GetLoanManagementRequest();
+            req.Status = 2;
+            ListResponse<Loan> resp = _loanService.GetAll<Loan>(req);
+            if (!resp.Success)
+            {
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() : resp.Summary).Show();
+                return;
+            }
+            CompletedLoansStore.DataSource = resp.Items;
+            CompletedLoansStore.DataBind();
+        }
+
+        protected void totalLoansStore_ReadData(object sender, StoreReadDataEventArgs e)
+        {
+            LoanManagementListRequest req = new LoanManagementListRequest();
+            req = GetLoanManagementRequest();
+            req.Status = 1;
+            ListResponse<Loan> resp = _loanService.GetAll<Loan>(req);
+            if (!resp.Success)
+            {
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() : resp.Summary).Show();
+                return;
+            }
+            totalLoansStore.DataSource = resp.Items;
+            totalLoansStore.DataBind();
+        }
     }
 }

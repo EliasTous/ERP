@@ -145,7 +145,7 @@
     <value>التنبيهات</value>
   </data>
   <data name="All" xml:space="preserve">
-    <value>الكل</value>
+    <value>----الكل----</value>
   </data>
   <data name="Anneversaries" xml:space="preserve">
     <value>ذكرى الانضمام إلى الشركة</value>
@@ -164,6 +164,9 @@
   </data>
   <data name="ComapnyRightToWork" xml:space="preserve">
     <value>وثائق الشركة</value>
+  </data>
+  <data name="CompletedLoans" xml:space="preserve">
+    <value>السلف المسددة</value>
   </data>
   <data name="ContractEndingDate" xml:space="preserve">
     <value>تاريخ نهاية العقد</value>
@@ -207,8 +210,14 @@
   <data name="FieldDestination" xml:space="preserve">
     <value>الوجهة</value>
   </data>
+  <data name="FieldDivision" xml:space="preserve">
+    <value>الإدارة</value>
+  </data>
   <data name="FieldDueDate" xml:space="preserve">
     <value>تاريخ الاستحقاق</value>
+  </data>
+  <data name="FieldEHStatus" xml:space="preserve">
+    <value>نوع التوظيف</value>
   </data>
   <data name="FieldEmployee" xml:space="preserve">
     <value>الموظف</value>
@@ -321,6 +330,9 @@
   <data name="FieldWorkingCalendar" xml:space="preserve">
     <value>التقويم</value>
   </data>
+  <data name="Go" xml:space="preserve">
+    <value>ابحث</value>
+  </data>
   <data name="In" xml:space="preserve">
     <value>الحاضرين</value>
   </data>
@@ -335,6 +347,9 @@
   </data>
   <data name="LeavesGridTitle" xml:space="preserve">
     <value>الإجازات</value>
+  </data>
+  <data name="Loan" xml:space="preserve">
+    <value>السلفة</value>
   </data>
   <data name="Loans" xml:space="preserve">
     <value>السلف</value>
@@ -365,6 +380,9 @@
   </data>
   <data name="Tasks" xml:space="preserve">
     <value>المهام</value>
+  </data>
+  <data name="TotalLoans" xml:space="preserve">
+    <value>إجمالي السلف</value>
   </data>
   <data name="WindowTitle" xml:space="preserve">
     <value>الموظفين</value>

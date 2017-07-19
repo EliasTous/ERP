@@ -63,8 +63,9 @@
     <ext:Hidden runat="server" ID="importLeavesTitle" Text="<%$Resources:Common , ImportLeaves %>" />
     <ext:Hidden runat="server" ID="importNotesTitle" Text="<%$Resources:Common , ImportNotes %>" />
     <ext:Hidden runat="server" ID="alsgTitle" Text="<%$Resources:Common , SecurityGroups %>" />
-
-
+    <ext:Hidden runat="server" ID="importEmployeesTitle" Text="<%$Resources:Common , ImportEmployees %>" />
+    <ext:Hidden runat="server" ID="importJobInfoTitle" Text="<%$Resources:Common , ImportJobInfo %>" />
+    
     <ext:Hidden runat="server" ID="aaTitle" Text="<%$Resources:Common , SystemAlerts %>" />
     <ext:Hidden runat="server" ID="ttTitle" Text="<%$Resources:Common , TaskTypes %>" />
     <ext:Hidden runat="server" ID="TrType1" Text="<%$Resources:Common , TrType1 %>" />
@@ -199,6 +200,16 @@
                                                         <ext:MenuItem runat="server" Text="<%$Resources: Common , ImportNotes%>">
                                                             <Listeners>
                                                                 <Click Handler="openNewTab('importNotes', 'ImportEmployeeNotes.aspx', #{importNotesTitle}.value, 'icon-Employees')" />
+                                                            </Listeners>
+                                                        </ext:MenuItem>
+                                                            <ext:MenuItem runat="server" Text="<%$Resources: Common , ImportEmployees%>">
+                                                            <Listeners>
+                                                                <Click Handler="openNewTab('importEmployees', 'ImportEmployees.aspx', #{importEmployeesTitle}.value, 'icon-Employees')" />
+                                                            </Listeners>
+                                                        </ext:MenuItem>
+                                                                        <ext:MenuItem runat="server" Text="<%$Resources: Common , ImportJobInfo%>">
+                                                            <Listeners>
+                                                                <Click Handler="openNewTab('importJobInfo', 'ImportJobInfo.aspx', #{importJobInfoTitle}.value, 'icon-Employees')" />
                                                             </Listeners>
                                                         </ext:MenuItem>
                                                     </Items>

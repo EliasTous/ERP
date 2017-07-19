@@ -61,11 +61,191 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to system is in maintenance mode.
+        ///   Looks up a localized string similar to Sqrl Expression Invalid.
+        /// </summary>
+        internal static string Error_102 {
+            get {
+                return ResourceManager.GetString("Error_102", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to invalid ORDER BY clause in SQL statement.
+        /// </summary>
+        internal static string Error_1033 {
+            get {
+                return ResourceManager.GetString("Error_1033", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Type Mismatch.
+        /// </summary>
+        internal static string Error_12100 {
+            get {
+                return ResourceManager.GetString("Error_12100", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to خطأ في تنسيق الحقل.
+        /// </summary>
+        internal static string Error_12101 {
+            get {
+                return ResourceManager.GetString("Error_12101", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Null Data Error.
+        /// </summary>
+        internal static string Error_12200 {
+            get {
+                return ResourceManager.GetString("Error_12200", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Argument out of range.
+        /// </summary>
+        internal static string Error_12300 {
+            get {
+                return ResourceManager.GetString("Error_12300", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to dow out of range.
+        /// </summary>
+        internal static string Error_12301 {
+            get {
+                return ResourceManager.GetString("Error_12301", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SQLخطأ في اتصال.
+        /// </summary>
+        internal static string Error_12400 {
+            get {
+                return ResourceManager.GetString("Error_12400", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to missing SQL column.
+        /// </summary>
+        internal static string Error_12401 {
+            get {
+                return ResourceManager.GetString("Error_12401", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to خطأ معامل بيانات فارغة.
+        /// </summary>
+        internal static string Error_12402 {
+            get {
+                return ResourceManager.GetString("Error_12402", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to خطأ اتصال قاعدة البيانات.
+        /// </summary>
+        internal static string Error_12403 {
+            get {
+                return ResourceManager.GetString("Error_12403", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sql batch run error.
+        /// </summary>
+        internal static string Error_12404 {
+            get {
+                return ResourceManager.GetString("Error_12404", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to INPUT_FORM_MISSING_TAG.
+        /// </summary>
+        internal static string Error_12405 {
+            get {
+                return ResourceManager.GetString("Error_12405", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to required field empty.
+        /// </summary>
+        internal static string Error_12406 {
+            get {
+                return ResourceManager.GetString("Error_12406", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to INPUT_FORM_TYPE_MISMATCH_TAG.
+        /// </summary>
+        internal static string Error_12407 {
+            get {
+                return ResourceManager.GetString("Error_12407", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to خطأ انشاء ملف.
+        /// </summary>
+        internal static string Error_12501 {
+            get {
+                return ResourceManager.GetString("Error_12501", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to API key authentication error.
+        /// </summary>
+        internal static string Error_19000 {
+            get {
+                return ResourceManager.GetString("Error_19000", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Maintainance Mode.
         /// </summary>
         internal static string Error_19001 {
             get {
                 return ResourceManager.GetString("Error_19001", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SQL object not set.
+        /// </summary>
+        internal static string Error_19002 {
+            get {
+                return ResourceManager.GetString("Error_19002", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Authentication compute hash error.
+        /// </summary>
+        internal static string Error_19003 {
+            get {
+                return ResourceManager.GetString("Error_19003", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to غير مستعمل.
+        /// </summary>
+        internal static string Error_19004 {
+            get {
+                return ResourceManager.GetString("Error_19004", resourceCulture);
             }
         }
         
@@ -75,6 +255,411 @@ namespace Resources {
         internal static string Error_19005 {
             get {
                 return ResourceManager.GetString("Error_19005", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User must be either an employee or an admin in order to log in.
+        /// </summary>
+        internal static string Error_19006 {
+            get {
+                return ResourceManager.GetString("Error_19006", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to عملية أو وظيفة تتوقع معامل غيرمزود.
+        /// </summary>
+        internal static string Error_201 {
+            get {
+                return ResourceManager.GetString("Error_201", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SMTP send error.
+        /// </summary>
+        internal static string Error_20100 {
+            get {
+                return ResourceManager.GetString("Error_20100", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to LOAD_TEMPLATE_ERROR.
+        /// </summary>
+        internal static string Error_20101 {
+            get {
+                return ResourceManager.GetString("Error_20101", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid Column name.
+        /// </summary>
+        internal static string Error_207 {
+            get {
+                return ResourceManager.GetString("Error_207", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Duplicate Primary key.
+        /// </summary>
+        internal static string Error_2601 {
+            get {
+                return ResourceManager.GetString("Error_2601", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to key violation error.
+        /// </summary>
+        internal static string Error_2627 {
+            get {
+                return ResourceManager.GetString("Error_2627", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to خطأ اتصال قاعدة البيانات.
+        /// </summary>
+        internal static string Error_4060 {
+            get {
+                return ResourceManager.GetString("Error_4060", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to invalid Geozone .
+        /// </summary>
+        internal static string Error_50001 {
+            get {
+                return ResourceManager.GetString("Error_50001", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to unknown account.
+        /// </summary>
+        internal static string Error_50002 {
+            get {
+                return ResourceManager.GetString("Error_50002", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Already Checked.
+        /// </summary>
+        internal static string Error_50003 {
+            get {
+                return ResourceManager.GetString("Error_50003", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid Geozone.
+        /// </summary>
+        internal static string Error_50004 {
+            get {
+                return ResourceManager.GetString("Error_50004", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Duplicate Reference.
+        /// </summary>
+        internal static string Error_50005 {
+            get {
+                return ResourceManager.GetString("Error_50005", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Duplicate name.
+        /// </summary>
+        internal static string Error_50006 {
+            get {
+                return ResourceManager.GetString("Error_50006", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unknown record.
+        /// </summary>
+        internal static string Error_50007 {
+            get {
+                return ResourceManager.GetString("Error_50007", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Inactive employee.
+        /// </summary>
+        internal static string Error_50008 {
+            get {
+                return ResourceManager.GetString("Error_50008", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Email already exists.
+        /// </summary>
+        internal static string Error_50009 {
+            get {
+                return ResourceManager.GetString("Error_50009", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Registration already exists.
+        /// </summary>
+        internal static string Error_50010 {
+            get {
+                return ResourceManager.GetString("Error_50010", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to record already exists.
+        /// </summary>
+        internal static string Error_50011 {
+            get {
+                return ResourceManager.GetString("Error_50011", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to view count SQL object not set.
+        /// </summary>
+        internal static string Error_50012 {
+            get {
+                return ResourceManager.GetString("Error_50012", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to registration alrady activated.
+        /// </summary>
+        internal static string Error_50013 {
+            get {
+                return ResourceManager.GetString("Error_50013", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to invalid date range.
+        /// </summary>
+        internal static string Error_50014 {
+            get {
+                return ResourceManager.GetString("Error_50014", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to invalid router ref.
+        /// </summary>
+        internal static string Error_50015 {
+            get {
+                return ResourceManager.GetString("Error_50015", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to خطأ في قاعدة البيانات عند اضافة حساب جديد.
+        /// </summary>
+        internal static string Error_50016 {
+            get {
+                return ResourceManager.GetString("Error_50016", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DB was not created.
+        /// </summary>
+        internal static string Error_50017 {
+            get {
+                return ResourceManager.GetString("Error_50017", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to لم يتم العثور على سجل للحذف.
+        /// </summary>
+        internal static string Error_50019 {
+            get {
+                return ResourceManager.GetString("Error_50019", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Database already created.
+        /// </summary>
+        internal static string Error_50020 {
+            get {
+                return ResourceManager.GetString("Error_50020", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error deleting record.
+        /// </summary>
+        internal static string Error_50021 {
+            get {
+                return ResourceManager.GetString("Error_50021", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to could not find an account with record status = new, database creation aborted.
+        /// </summary>
+        internal static string Error_50022 {
+            get {
+                return ResourceManager.GetString("Error_50022", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to super user cannot be deleted.
+        /// </summary>
+        internal static string Error_50023 {
+            get {
+                return ResourceManager.GetString("Error_50023", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to لم يتم تحديد منطقة زمنية، اخفاق في الدخول.
+        /// </summary>
+        internal static string Error_50024 {
+            get {
+                return ResourceManager.GetString("Error_50024", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid Email.
+        /// </summary>
+        internal static string Error_50029 {
+            get {
+                return ResourceManager.GetString("Error_50029", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid Reset Password link,please try again.
+        /// </summary>
+        internal static string Error_50030 {
+            get {
+                return ResourceManager.GetString("Error_50030", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to خطأ تداخل بيانات.
+        /// </summary>
+        internal static string Error_50032 {
+            get {
+                return ResourceManager.GetString("Error_50032", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Already Checked.
+        /// </summary>
+        internal static string Error_50033 {
+            get {
+                return ResourceManager.GetString("Error_50033", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Already Checked.
+        /// </summary>
+        internal static string Error_50034 {
+            get {
+                return ResourceManager.GetString("Error_50034", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Days couldn&apos;t be generated for selected schedule.
+        /// </summary>
+        internal static string Error_50035 {
+            get {
+                return ResourceManager.GetString("Error_50035", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to you must create day types before creating a schedule.
+        /// </summary>
+        internal static string Error_50036 {
+            get {
+                return ResourceManager.GetString("Error_50036", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Employee Id Ref already in use.
+        /// </summary>
+        internal static string Error_50043 {
+            get {
+                return ResourceManager.GetString("Error_50043", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SQLفي جدول عمود null لا يمكن ادخال القيمة.
+        /// </summary>
+        internal static string Error_515 {
+            get {
+                return ResourceManager.GetString("Error_515", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to خطأ اتصال قاعدة البيانات.
+        /// </summary>
+        internal static string Error_53 {
+            get {
+                return ResourceManager.GetString("Error_53", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to خطأ في سلامة البيانات.
+        /// </summary>
+        internal static string Error_547 {
+            get {
+                return ResourceManager.GetString("Error_547", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to type casting value from string error.
+        /// </summary>
+        internal static string Error_8114 {
+            get {
+                return ResourceManager.GetString("Error_8114", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Procedure missing arguments or too many arguments specified.
+        /// </summary>
+        internal static string Error_8144 {
+            get {
+                return ResourceManager.GetString("Error_8144", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ارسال معامل غير معروف لعملية مخزنة.
+        /// </summary>
+        internal static string Error_8146 {
+            get {
+                return ResourceManager.GetString("Error_8146", resourceCulture);
             }
         }
     }

@@ -195,6 +195,9 @@
   <data name="LastNameFirstName" xml:space="preserve">
     <value>الاسم الأخير , الاسم الأول</value>
   </data>
+  <data name="LocalServerIP" xml:space="preserve">
+    <value>عنوان السيرفر المحلي</value>
+  </data>
   <data name="MonthDayYear" xml:space="preserve">
     <value>شهر - يوم - سنة</value>
   </data>

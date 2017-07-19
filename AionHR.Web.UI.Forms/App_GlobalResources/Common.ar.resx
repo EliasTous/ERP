@@ -937,6 +937,12 @@
     <value>استيراد معلومات الأقسام</value>
   </data>
   <data name="RT304" xml:space="preserve">
-    <value>Departments Activity</value>
+    <value>نشاط الأقسام</value>
+  </data>
+  <data name="ImportEmployees" xml:space="preserve">
+    <value>استيراد ملفات الموظفين</value>
+  </data>
+  <data name="ImportJobInfo" xml:space="preserve">
+    <value>استيراد المعلومات الوظيفية</value>
   </data>
 </root>

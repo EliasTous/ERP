@@ -132,6 +132,15 @@
   <data name="xrLabel14.Text" xml:space="preserve">
     <value>لم يتم العثور على نتائج</value>
   </data>
+  <data name="xrLabel17.Text" xml:space="preserve">
+    <value>القسم</value>
+  </data>
+  <data name="xrLabel19.Text" xml:space="preserve">
+    <value>الفرع</value>
+  </data>
+  <data name="xrLabel21.Text" xml:space="preserve">
+    <value>الموظف</value>
+  </data>
   <data name="xrLabel7.Text" xml:space="preserve">
     <value>الاسم</value>
   </data>

@@ -126,7 +126,7 @@ namespace AionHR.Web.UI.Forms
             }
             else
             {
-                lblError.Text = GetGlobalResourceObject("Errors", response.ErrorCode) !=null? GetGlobalResourceObject("Errors", response.ErrorCode).ToString():response.Summary;
+                lblError.Text = GetGlobalResourceObject("Errors",  response.ErrorCode) !=null? GetGlobalResourceObject("Errors", response.ErrorCode).ToString():response.Summary;
                 return "error";//Error in authentication
 
             }

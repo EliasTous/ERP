@@ -37,7 +37,7 @@
                 <ext:FormPanel runat="server" ID="hireInfoForm" Region="Center" Layout="HBoxLayout" >
                     <Items>
                         <ext:Panel runat="server"  flex="2"><Items></Items></ext:Panel>
-                        <ext:Panel ID="actualPanel" runat="server" Flex="5"><Items>
+                        <ext:Panel ID="actualPanel" runat="server" Flex="6"><Items>
                             <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" AllowBlank="false" ValueField="recordId" QueryMode="Local"  LabelWidth="200" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" ID="npId" Name="npId" FieldLabel="<%$ Resources:FieldNP%>" SimpleSubmit="true">
                             <Store>
                                 <ext:Store runat="server" ID="npStore">

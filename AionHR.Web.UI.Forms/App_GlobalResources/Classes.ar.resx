@@ -168,6 +168,9 @@
   <data name="Class21040" xml:space="preserve">
     <value>الأقسام</value>
   </data>
+  <data name="Class21099" xml:space="preserve">
+    <value>استيراد معلومات الأقسام</value>
+  </data>
   <data name="Class22010" xml:space="preserve">
     <value>أنواع الملفات</value>
   </data>
@@ -239,6 +242,9 @@
   </data>
   <data name="Class31090" xml:space="preserve">
     <value>ملاحظات الموظفين</value>
+  </data>
+  <data name="Class31098" xml:space="preserve">
+    <value>استيراد ملفات الموظفين</value>
   </data>
   <data name="Class31099" xml:space="preserve">
     <value>استيراد الملاحظات</value>

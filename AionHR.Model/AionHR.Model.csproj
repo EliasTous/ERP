@@ -48,6 +48,7 @@
     <Compile Include="Company\Structure\Division.cs" />
     <Compile Include="Company\Structure\ICompanyStructureRepository.cs" />
     <Compile Include="Company\Structure\IDepartmentRepository.cs" />
+    <Compile Include="Company\Structure\ImportDepartments.cs" />
     <Compile Include="Dashboard\CompanyRTW.cs" />
     <Compile Include="Dashboard\DepartmentActivity.cs" />
     <Compile Include="Dashboard\EmployeeBirthday.cs" />
@@ -73,6 +74,8 @@
     <Compile Include="Employees\Profile\EmployeeTermination.cs" />
     <Compile Include="Employees\Profile\EmploymentHistory.cs" />
     <Compile Include="Employees\Profile\HireInfo.cs" />
+    <Compile Include="Employees\Profile\ImportEmployees.cs" />
+    <Compile Include="Employees\Profile\ImportJobInfo.cs" />
     <Compile Include="Employees\Profile\ImportNotes.cs" />
     <Compile Include="Employees\Profile\JobInfo.cs" />
     <Compile Include="Employees\Profile\NoticePeriod.cs" />

@@ -142,7 +142,7 @@
     <value>Alerts</value>
   </data>
   <data name="All" xml:space="preserve">
-    <value>Late</value>
+    <value>---All---</value>
   </data>
   <data name="Anneversaries" xml:space="preserve">
     <value>Work Anniversaries</value>
@@ -161,6 +161,9 @@
   </data>
   <data name="ComapnyRightToWork" xml:space="preserve">
     <value>Company Right To Work</value>
+  </data>
+  <data name="CompletedLoans" xml:space="preserve">
+    <value>Completed Loans</value>
   </data>
   <data name="ContractEndingDate" xml:space="preserve">
     <value>Contract Ending Date</value>
@@ -324,6 +327,9 @@
   <data name="FieldWorkingCalendar" xml:space="preserve">
     <value>Calendar</value>
   </data>
+  <data name="Go" xml:space="preserve">
+    <value>Go</value>
+  </data>
   <data name="In" xml:space="preserve">
     <value>In</value>
   </data>
@@ -338,6 +344,9 @@
   </data>
   <data name="LeavesGridTitle" xml:space="preserve">
     <value>Leaves</value>
+  </data>
+  <data name="Loan" xml:space="preserve">
+    <value>Loan</value>
   </data>
   <data name="Loans" xml:space="preserve">
     <value>Loans</value>
@@ -368,6 +377,9 @@
   </data>
   <data name="Tasks" xml:space="preserve">
     <value>Tasks</value>
+  </data>
+  <data name="TotalLoans" xml:space="preserve">
+    <value>Total Loans</value>
   </data>
   <data name="WindowTitle" xml:space="preserve">
     <value>Employees</value>

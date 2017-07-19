@@ -1078,6 +1078,24 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Import Employees.
+        /// </summary>
+        internal static string ImportEmployees {
+            get {
+                return ResourceManager.GetString("ImportEmployees", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Import Job Info.
+        /// </summary>
+        internal static string ImportJobInfo {
+            get {
+                return ResourceManager.GetString("ImportJobInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Import Leaves.
         /// </summary>
         internal static string ImportLeaves {

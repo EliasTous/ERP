@@ -238,6 +238,8 @@
     <Content Include="ImportAttendance.aspx" />
     <Content Include="ImportDepartments.aspx" />
     <Content Include="ImportEmployeeNotes.aspx" />
+    <Content Include="ImportEmployees.aspx" />
+    <Content Include="ImportJobInfo.aspx" />
     <Content Include="ImportLeaves.aspx" />
     <Content Include="ImportLoans.aspx" />
     <Content Include="LeaveCalendar.aspx" />
@@ -481,12 +483,31 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AccessControl.ar.resx</DependentUpon>
     </Compile>
+    <Compile Include="App_GlobalResources\Errors.ar.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Errors.ar.resx</DependentUpon>
+    </Compile>
     <Compile Include="ImportDepartments.aspx.cs">
       <DependentUpon>ImportDepartments.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="ImportDepartments.aspx.designer.cs">
       <DependentUpon>ImportDepartments.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ImportEmployees.aspx.cs">
+      <DependentUpon>ImportEmployees.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ImportEmployees.aspx.designer.cs">
+      <DependentUpon>ImportEmployees.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ImportJobInfo.aspx.cs">
+      <DependentUpon>ImportJobInfo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ImportJobInfo.aspx.designer.cs">
+      <DependentUpon>ImportJobInfo.aspx</DependentUpon>
     </Compile>
     <Compile Include="Reports\Controls\WeekPicker.ascx.cs">
       <DependentUpon>WeekPicker.ascx</DependentUpon>
@@ -1700,6 +1721,14 @@
     <Content Include="App_LocalResources\Cases.aspx.ar.resx" />
     <Content Include="App_LocalResources\LeaveRequests.aspx.ar.resx" />
     <Content Include="App_LocalResources\WorkingCalendars.aspx.ar.resx" />
+    <Content Include="App_LocalResources\ImportEmployees.aspx.resx" />
+    <Content Include="App_LocalResources\ImportEmployees.aspx.ar.resx" />
+    <Content Include="App_LocalResources\ImportJobInfo.aspx.resx" />
+    <Content Include="App_LocalResources\ImportJobInfo.aspx.ar.resx" />
+    <Content Include="App_GlobalResources\Errors.ar.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>Errors.ar.designer.cs</LastGenOutput>
+    </Content>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <Content Include="Reports\App_LocalResources\RT202.aspx.resx" />
     <Content Include="Reports\App_LocalResources\RT01.aspx.ar.resx" />

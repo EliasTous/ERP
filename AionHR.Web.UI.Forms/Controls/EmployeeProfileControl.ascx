@@ -686,20 +686,18 @@
 
 
                     <Items>
-                        <ext:Panel runat="server" Margin="20" ID="left">
+                        <ext:Panel runat="server" MarginSpec="20 20 0 0" ID="left">
                             <Items>
                                 <ext:TextField ID="recordId" Hidden="true" runat="server" FieldLabel="<%$ Resources:FieldrecordId%>" Name="recordId" />
-                                <ext:TextField ID="reference" ValidateBlank="false" MsgTarget="None" IsRemoteValidation="true" ValidateOnChange="false" ValidateOnBlur="true" runat="server" FieldLabel="<%$ Resources:FieldReference%>" Name="reference" BlankText="<%$ Resources:Common, MandatoryField%>" >
+                                <ext:TextField ID="reference" ValidateBlank="false" MsgTarget="None" ValidateOnChange="false" ValidateOnBlur="true" runat="server" FieldLabel="<%$ Resources:FieldReference%>" Name="reference" BlankText="<%$ Resources:Common, MandatoryField%>" >
                                     <Listeners>
-                                        <BeforeRemoteValidation Handler="CheckSession();" >
-                                            
-                                            </BeforeRemoteValidation>
+                                       <FocusLeave Handler="if(#{CurrentEmployee}.value!='') return; App.direct.employeeControl1.CheckReference(this.value,{
+                success: function (result) {
+                    if(result=='1'){App.employeeControl1_reference.markInvalid('');} }});" />
                                        
                                     </Listeners>
                                   
-                                   <RemoteValidation DisableCaching="false" OnValidation="Reference_Validation" ErrorMessage="<%$Resources:ReferenceAlreadyExist %>"  >
-                                      
-                                       </RemoteValidation>
+                                   
                                     </ext:TextField>
                                 <ext:TextField ID="firstName" runat="server" FieldLabel="<%$ Resources:FieldFirstName%>" Name="firstName" AllowBlank="false" BlankText="<%$ Resources:Common, MandatoryField%>">
                                 </ext:TextField>

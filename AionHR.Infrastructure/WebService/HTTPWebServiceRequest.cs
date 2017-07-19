@@ -118,7 +118,7 @@ namespace AionHR.Infrastructure.WebService
 
 
                 var r = req.GetResponse();
-                Stream s = r.GetResponseStream();
+                 Stream s = r.GetResponseStream();
                 StreamReader reader = new StreamReader(s, true);
                 string x = reader.ReadToEnd();
 

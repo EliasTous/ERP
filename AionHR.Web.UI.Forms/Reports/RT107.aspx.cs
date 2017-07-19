@@ -156,7 +156,7 @@ namespace AionHR.Web.UI.Forms.Reports
                     ListResponse<RT107B> resp = _reportService.ChildGetAll<RT107B>(comp);
                     if(!resp.Success)
                     {
-                        X.Msg.Alert(Resources.Common.Error, resp.Summary).Show();
+                        X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() : resp.Summary).Show();
                         return;
                     }
                     employeesStore.DataSource = resp.Items;
@@ -315,7 +315,7 @@ namespace AionHR.Web.UI.Forms.Reports
             ListResponse<AionHR.Model.Reports.RT107> branches = _reportService.ChildGetAll<AionHR.Model.Reports.RT107>(req);
             if (!branches.Success)
             {
-                X.Msg.Alert(Resources.Common.Error, branches.Summary).Show();
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", branches.ErrorCode) != null ? GetGlobalResourceObject("Errors", branches.ErrorCode).ToString() : branches.Summary).Show();
                 return;
             }
             this.Store1.DataSource = branches.Items;

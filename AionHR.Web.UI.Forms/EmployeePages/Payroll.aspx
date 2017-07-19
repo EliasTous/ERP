@@ -465,7 +465,7 @@
             runat="server"
             Icon="PageEdit"
             Title="<%$ Resources:EditSAWindowTitle %>"
-            Width="700"
+            Width="650"
             Height="340"
             AutoShow="false"
             Modal="true"
@@ -583,7 +583,7 @@
                                     </Items>
                                 </ext:Panel>
                                 
-                                <ext:Panel runat="server" PaddingSpec="0 0 0 20" ID="secondPanel">
+                                <ext:Panel runat="server" PaddingSpec="0 0 0 5" ID="secondPanel">
                                     <Items>
                                         
 

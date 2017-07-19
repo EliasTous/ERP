@@ -168,6 +168,9 @@
   <data name="Class21040" xml:space="preserve">
     <value>Departments</value>
   </data>
+  <data name="Class21099" xml:space="preserve">
+    <value>Import Departments</value>
+  </data>
   <data name="Class22010" xml:space="preserve">
     <value>Document Type</value>
   </data>
@@ -239,6 +242,9 @@
   </data>
   <data name="Class31090" xml:space="preserve">
     <value>Notes</value>
+  </data>
+  <data name="Class31098" xml:space="preserve">
+    <value>Import Employees</value>
   </data>
   <data name="Class31099" xml:space="preserve">
     <value>Import Notes</value>
