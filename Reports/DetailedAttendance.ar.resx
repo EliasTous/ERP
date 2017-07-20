@@ -124,10 +124,10 @@
     <value>خروج4</value>
   </data>
   <data name="xrLabel11.Text" xml:space="preserve">
-    <value>وقت العمل</value>
+    <value>وقت العمل الفعلي</value>
   </data>
   <data name="xrLabel12.Text" xml:space="preserve">
-    <value>وقت الخروج</value>
+    <value>وقت خارج الدوام</value>
   </data>
   <data name="xrLabel13.Text" xml:space="preserve">
     <value>التأخير</value>
@@ -154,7 +154,7 @@
     <value>لم يتم العثور على نتائج مطابقة</value>
   </data>
   <data name="xrLabel25.Text" xml:space="preserve">
-    <value>مجموع الأيام</value>
+    <value>إجمالي عدد الأيام</value>
   </data>
   <data name="xrLabel27.Text" xml:space="preserve">
     <value>الحضور التفصيلي</value>
@@ -199,10 +199,10 @@
     <value>خروج 1</value>
   </data>
   <data name="xrLabel41.Text" xml:space="preserve">
-    <value>أيام العمل</value>
+    <value>أيام العمل الفعلية</value>
   </data>
   <data name="xrLabel43.Text" xml:space="preserve">
-    <value>العطل</value>
+    <value>الإجازات الرسمية</value>
   </data>
   <data name="xrLabel44.Text" xml:space="preserve">
     <value>الغياب غير المبرر</value>
@@ -211,7 +211,7 @@
     <value>الغياب غير المبرر</value>
   </data>
   <data name="xrLabel48.Text" xml:space="preserve">
-    <value>الساعات الكلية</value>
+    <value>ساعات العمل المفترضة</value>
   </data>
   <data name="xrLabel5.Text" xml:space="preserve">
     <value>دخول 2</value>
@@ -220,13 +220,13 @@
     <value>ساعات الإجازة</value>
   </data>
   <data name="xrLabel52.Text" xml:space="preserve">
-    <value>ساعات العمل</value>
+    <value>ساعات العمل الفعلية</value>
   </data>
   <data name="xrLabel53.Text" xml:space="preserve">
     <value>ساعات الغياب</value>
   </data>
   <data name="xrLabel57.Text" xml:space="preserve">
-    <value>حسم التأخير</value>
+    <value>صافي ساعات التأخير</value>
   </data>
   <data name="xrLabel58.Text" xml:space="preserve">
     <value>المجموع</value>

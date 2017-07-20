@@ -686,7 +686,7 @@
 
 
                     <Items>
-                        <ext:Panel runat="server" MarginSpec="20 20 0 0" ID="left">
+                        <ext:Panel runat="server" MarginSpec="0 20 0 0" ID="left">
                             <Items>
                                 <ext:TextField ID="recordId" Hidden="true" runat="server" FieldLabel="<%$ Resources:FieldrecordId%>" Name="recordId" />
                                 <ext:TextField ID="reference" ValidateBlank="false" MsgTarget="None" ValidateOnChange="false" ValidateOnBlur="true" runat="server" FieldLabel="<%$ Resources:FieldReference%>" Name="reference" BlankText="<%$ Resources:Common, MandatoryField%>" >

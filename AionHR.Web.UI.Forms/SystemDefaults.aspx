@@ -13,6 +13,8 @@
     <script type="text/javascript" src="Scripts/common.js"></script>
     <script type="text/javascript" >
         function ValidateIPaddress(ipaddress) {
+            if (ipaddress == '')
+                return true;
             if (/^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/.test(ipaddress)) {
                 return (true);
             }

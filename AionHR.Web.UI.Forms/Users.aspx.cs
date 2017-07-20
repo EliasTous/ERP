@@ -417,7 +417,7 @@ namespace AionHR.Web.UI.Forms
             List<Employee> emps = new List<Employee>();
             RecordResponse<Employee> emp = _employeeService.Get<Employee>(req);
             if (!emp.Success)
-                X.Msg.Alert(Resources.Common.Error, emp.Summary).Show();
+                X.Msg.Alert(Resources.Common.Error,GetGlobalResourceObject("Errors", emp.ErrorCode) != null ? GetGlobalResourceObject("Errors", emp.ErrorCode).ToString() : emp.Summary).Show();
             emps.Add(emp.result);
             return emps;
         }
@@ -733,7 +733,7 @@ namespace AionHR.Web.UI.Forms
             ListResponse<SecurityGroup> groups = _accessControlService.ChildGetAll<SecurityGroup>(groupsReq);
             if (!groups.Success)
             {
-                X.Msg.Alert(Resources.Common.Error, groups.Summary).Show();
+                X.Msg.Alert(Resources.Common.Error,GetGlobalResourceObject("Errors", groups.ErrorCode) != null ? GetGlobalResourceObject("Errors", groups.ErrorCode).ToString() : groups.Summary).Show();
                 return;
             }
 
@@ -742,7 +742,7 @@ namespace AionHR.Web.UI.Forms
             ListResponse<SecurityGroupUser> userGroups = _accessControlService.ChildGetAll<SecurityGroupUser>(request);
             if (!groups.Success)
             {
-                X.Msg.Alert(Resources.Common.Error, groups.Summary).Show();
+                X.Msg.Alert(Resources.Common.Error,GetGlobalResourceObject("Errors", groups.ErrorCode) != null ? GetGlobalResourceObject("Errors", groups.ErrorCode).ToString() : groups.Summary).Show();
                 return;
             }
             UserGroupsStore.DataSource = userGroups.Items;

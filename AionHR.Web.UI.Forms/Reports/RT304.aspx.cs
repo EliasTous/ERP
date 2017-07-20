@@ -171,7 +171,7 @@ namespace AionHR.Web.UI.Forms.Reports
             int year = Convert.ToInt32(week.Split('-')[0]);
             int weekNo = Convert.ToInt32(week.Split('-')[1]);
             DateTime d = FirstDateOfWeekISO8601(year, weekNo);
-            DateTime dF = d.AddDays(7);
+            DateTime dF = d.AddDays(6);
             DateRangeParameterSet r = new DateRangeParameterSet();
             r.DateFrom = d;
             r.DateTo = dF;
@@ -209,7 +209,21 @@ namespace AionHR.Web.UI.Forms.Reports
             List<departmentAvailability> avs = new List<departmentAvailability>();
             InitAvailability(avs, min, max);
 
-            items.Where(x => x.dow == 1).ToList().ForEach(x => { foreach (var item in avs) { if (item.from >= x.from && item.to <= x.to) { if (x.active) item.day1 += x.headCount; else item.day1 -= x.headCount; } } });
+            //items.Where(x => x.dow == 1).ToList().ForEach(x => { foreach (var item in avs) { if (item.from >= x.from && item.to <= x.to) { if (x.active) item.day1 += x.headCount; else item.day1 -= x.headCount; } } });
+
+            var first = items.Where(x => x.dow == 1).ToList();
+            foreach (var item in avs)
+            {
+                foreach (var x in first)
+                {
+                    if (item.from >= x.from && item.to <= x.to)
+                    {
+                        if (x.active)
+                            item.day1 += x.headCount;
+                        else item.day1 -= x.headCount;
+                    }
+                }
+            }
             items.Where(x => x.dow == 2).ToList().ForEach(x => { foreach (var item in avs) { if (item.from >= x.from && item.to <= x.to) { if (x.active) item.day2 += x.headCount; else item.day2 -= x.headCount; } } });
             items.Where(x => x.dow == 3).ToList().ForEach(x => { foreach (var item in avs) { if (item.from >= x.from && item.to <= x.to) { if (x.active) item.day3 += x.headCount; else item.day3 -= x.headCount; } } });
             items.Where(x => x.dow == 4).ToList().ForEach(x => { foreach (var item in avs) { if (item.from >= x.from && item.to <= x.to) { if (x.active) item.day4 += x.headCount; else item.day4 -= x.headCount; } } });

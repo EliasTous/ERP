@@ -34,8 +34,6 @@ public class DetailedAttendance : DevExpress.XtraReports.UI.XtraReport
     private XRLabel xrLabel13;
     private XRLabel xrLabel12;
     private XRLabel xrLabel11;
-    private XRLabel xrLabel9;
-    private XRLabel xrLabel10;
     private XRLabel xrLabel7;
     private XRLabel xrLabel8;
     private XRLabel xrLabel5;
@@ -96,8 +94,6 @@ public class DetailedAttendance : DevExpress.XtraReports.UI.XtraReport
     private XRTableCell xrTableCell6;
     private XRTableCell xrTableCell5;
     private XRTableCell xrTableCell4;
-    private XRTableCell xrTableCell11;
-    private XRTableCell xrTableCell12;
     private XRTableCell xrTableCell14;
     private XRTableCell xrTableCell13;
     private XRTableCell xrTableCell15;
@@ -176,8 +172,6 @@ public class DetailedAttendance : DevExpress.XtraReports.UI.XtraReport
             this.xrTableCell6 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell5 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell4 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.xrTableCell11 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.xrTableCell12 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell14 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell13 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell15 = new DevExpress.XtraReports.UI.XRTableCell();
@@ -195,8 +189,6 @@ public class DetailedAttendance : DevExpress.XtraReports.UI.XtraReport
             this.xrLabel13 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel12 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel11 = new DevExpress.XtraReports.UI.XRLabel();
-            this.xrLabel9 = new DevExpress.XtraReports.UI.XRLabel();
-            this.xrLabel10 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel7 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel8 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel5 = new DevExpress.XtraReports.UI.XRLabel();
@@ -305,8 +297,6 @@ public class DetailedAttendance : DevExpress.XtraReports.UI.XtraReport
             this.xrTableCell6,
             this.xrTableCell5,
             this.xrTableCell4,
-            this.xrTableCell11,
-            this.xrTableCell12,
             this.xrTableCell14,
             this.xrTableCell13,
             this.xrTableCell15,
@@ -372,20 +362,6 @@ public class DetailedAttendance : DevExpress.XtraReports.UI.XtraReport
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "checkOut3")});
             resources.ApplyResources(this.xrTableCell4, "xrTableCell4");
             this.xrTableCell4.Name = "xrTableCell4";
-            // 
-            // xrTableCell11
-            // 
-            this.xrTableCell11.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding("Text", null, "checkIn4")});
-            resources.ApplyResources(this.xrTableCell11, "xrTableCell11");
-            this.xrTableCell11.Name = "xrTableCell11";
-            // 
-            // xrTableCell12
-            // 
-            this.xrTableCell12.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding("Text", null, "checkOut4")});
-            resources.ApplyResources(this.xrTableCell12, "xrTableCell12");
-            this.xrTableCell12.Name = "xrTableCell12";
             // 
             // xrTableCell14
             // 
@@ -455,8 +431,6 @@ public class DetailedAttendance : DevExpress.XtraReports.UI.XtraReport
             this.xrLabel13,
             this.xrLabel12,
             this.xrLabel11,
-            this.xrLabel9,
-            this.xrLabel10,
             this.xrLabel7,
             this.xrLabel8,
             this.xrLabel5,
@@ -552,28 +526,6 @@ public class DetailedAttendance : DevExpress.XtraReports.UI.XtraReport
             this.xrLabel11.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel11.StyleName = "centeredTitle";
             this.xrLabel11.StylePriority.UseBorders = false;
-            // 
-            // xrLabel9
-            // 
-            this.xrLabel9.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
-            | DevExpress.XtraPrinting.BorderSide.Right) 
-            | DevExpress.XtraPrinting.BorderSide.Bottom)));
-            resources.ApplyResources(this.xrLabel9, "xrLabel9");
-            this.xrLabel9.Name = "xrLabel9";
-            this.xrLabel9.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel9.StyleName = "centeredTitle";
-            this.xrLabel9.StylePriority.UseBorders = false;
-            // 
-            // xrLabel10
-            // 
-            this.xrLabel10.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
-            | DevExpress.XtraPrinting.BorderSide.Right) 
-            | DevExpress.XtraPrinting.BorderSide.Bottom)));
-            resources.ApplyResources(this.xrLabel10, "xrLabel10");
-            this.xrLabel10.Name = "xrLabel10";
-            this.xrLabel10.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel10.StyleName = "centeredTitle";
-            this.xrLabel10.StylePriority.UseBorders = false;
             // 
             // xrLabel7
             // 

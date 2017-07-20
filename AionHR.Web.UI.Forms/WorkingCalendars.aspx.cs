@@ -208,7 +208,7 @@ namespace AionHR.Web.UI.Forms
                     if (!daysResponse.Success)
                     {
                         X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                        X.Msg.Alert(Resources.Common.Error, daysResponse.Summary).Show();
+                        X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", daysResponse.ErrorCode) != null ? GetGlobalResourceObject("Errors", daysResponse.ErrorCode).ToString() : daysResponse.Summary).Show();
                         return;
                     }
 
@@ -925,7 +925,7 @@ namespace AionHR.Web.UI.Forms
             if (!dayObj.Success)
             {
                 X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.ErrorUpdatingRecord, dayObj.Summary).Show();
+                X.Msg.Alert(Resources.Common.ErrorUpdatingRecord, GetGlobalResourceObject("Errors", dayObj.ErrorCode) != null ? GetGlobalResourceObject("Errors", dayObj.ErrorCode).ToString() : dayObj.Summary).Show();
                 return;
             }
             dayConfigWindow.Show();
@@ -946,7 +946,7 @@ namespace AionHR.Web.UI.Forms
             ListRequest req = new ListRequest();
             ListResponse<AttendanceSchedule> schedules = _branchService.ChildGetAll<AttendanceSchedule>(req);
             if (!schedules.Success)
-                X.Msg.Alert(Resources.Common.Error, schedules.Summary).Show();
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", schedules.ErrorCode) != null ? GetGlobalResourceObject("Errors", schedules.ErrorCode).ToString() : schedules.Summary).Show();
             return schedules.Items;
         }
         private List<DayType> LoadDayTypes()
@@ -954,7 +954,7 @@ namespace AionHR.Web.UI.Forms
             ListRequest req = new ListRequest();
             ListResponse<DayType> schedules = _branchService.ChildGetAll<DayType>(req);
             if (!schedules.Success)
-                X.Msg.Alert(Resources.Common.Error, schedules.Summary).Show();
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", schedules.ErrorCode) != null ? GetGlobalResourceObject("Errors", schedules.ErrorCode).ToString() : schedules.Summary).Show();
             colorsStore.DataSource = schedules.Items;
             colorsStore.DataBind();
             return schedules.Items;
