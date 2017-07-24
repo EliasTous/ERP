@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="RT102.aspx.cs" Inherits="AionHR.Web.UI.Forms.Reports.RT102" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="RT108.aspx.cs" Inherits="AionHR.Web.UI.Forms.Reports.RT108" %>
 
 <%@ Register Assembly="DevExpress.Web.v16.2, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web" TagPrefix="dx" %>
 
@@ -29,26 +29,12 @@
             Ext.MessageBox.alert('Error', e.message);
             e.handled = true;
         }
-        function dump(obj) {
-            var out = '';
-            for (var i in obj) {
-                out += i + ": " + obj[i] + "\n";
-
-
-            }
-            return out;
-        }
     </script>
 </head>
 <body style="background: url(Images/bg.png) repeat;">
     <form id="Form1" runat="server">
         <ext:ResourceManager ID="ResourceManager1" runat="server" Theme="Neptune" AjaxTimeout="1200000" />
 
-
-        <ext:Viewport ID="Viewport1" runat="server" Layout="FitLayout">
-
-            <Items>
-                
         <ext:Hidden ID="textMatch" runat="server" Text="<%$ Resources:Common , MatchFound %>" />
         <ext:Hidden ID="textLoadFailed" runat="server" Text="<%$ Resources:Common , LoadFailed %>" />
         <ext:Hidden ID="titleSavingError" runat="server" Text="<%$ Resources:Common , TitleSavingError %>" />
@@ -57,42 +43,31 @@
         <ext:Hidden ID="rtl" runat="server" />
         <ext:Hidden ID="format" runat="server" />
 
-        
-      
+
+        <ext:Viewport ID="Viewport1" runat="server" Layout="FitLayout">
+
+            <Items>
 
                 <ext:Panel
                     ID="Center"
                     runat="server"
                     Border="false"
-                    Layout="FitLayout" AutoScroll="true"
+                    AutoScroll="true"
                     Margins="0 0 0 0"
                     Region="Center">
                     <TopBar>
                         <ext:Toolbar runat="server" Height="60">
 
                             <Items>
-                                  <ext:Hidden ID="NextPage" runat="server" Text="<%$ Resources:Reports , NextPage %>"/>
-        <ext:Hidden ID="LastPage" runat="server" Text="<%$ Resources:Reports , LastPage %>"/>
-        <ext:Hidden ID="PreviousPage" runat="server" Text="<%$ Resources:Reports , PreviousPage %>"/>
-        <ext:Hidden ID="FirstPage" runat="server" Text="<%$ Resources:Reports , FirstPage %>" />
-        <ext:Hidden ID="ToggleMultipleMode" runat="server"  Text="<%$ Resources:Reports , ToggleMultipleMode %>"/>
-        <ext:Hidden ID="ZoomOut" runat="server" Text="<%$ Resources:Reports , ZoomOut %>"/>
-        <ext:Hidden ID="ZoomIn" runat="server" Text="<%$ Resources:Reports , ZoomIn %>"/>
-        <ext:Hidden ID="HighlightEditingFields" runat="server" Text="<%$ Resources:Reports , HighlightEditingFields %>"/>
-        <ext:Hidden ID="PrintPage" runat="server" Text="<%$ Resources:Reports , PrintPage %>"/>
-        <ext:Hidden ID="Print" runat="server" Text="<%$ Resources:Reports , Print %>" />
-        <ext:Hidden ID="ExportTo" runat="server" Text="<%$ Resources:Reports , ExportTo %>"/>
-        <ext:Hidden ID="Search" runat="server" Text="<%$ Resources:Reports , Search %>"/>
-                                <ext:Container runat="server" Layout="FitLayout">
+                                <ext:Container runat="server"  Layout="FitLayout">
                                     <Content>
-                                        <uc:dateRange runat="server" ID="dateRange1" />
+                                        <uc:jobInfo runat="server" ID="jobInfoFilter1" />
                                     </Content>
                                 </ext:Container>
 
-
                                 <ext:Container runat="server" Layout="FitLayout">
                                     <Content>
-                                        <ext:Button runat="server" Text="<%$Resources:Common, Go %>">
+                                        <ext:Button runat="server" Text="<%$Resources:Common, Go %>"> 
                                             <Listeners>
                                                 <Click Handler="callbackPanel.PerformCallback('1');" />
                                             </Listeners>
@@ -107,20 +82,17 @@
 
                     </TopBar>
                     <Content>
-                        
+
                         <dx:ASPxCallbackPanel ID="ASPxCallbackPanel1" runat="server" ClientInstanceName="callbackPanel"
                             Width="100%" OnCallback="ASPxCallbackPanel1_Callback" OnLoad="ASPxCallbackPanel1_Load" ClientSideEvents-CallbackError="alertNow">
                             <PanelCollection>
                                 <dx:PanelContent runat="server">
-                                    <dx:ASPxWebDocumentViewer ID="ASPxWebDocumentViewer1" runat="server">
-                                   
-                                    </dx:ASPxWebDocumentViewer>
+                                    <dx:ASPxWebDocumentViewer ID="ASPxWebDocumentViewer1" runat="server"></dx:ASPxWebDocumentViewer>
                                 </dx:PanelContent>
                             </PanelCollection>
                         </dx:ASPxCallbackPanel>
                     </Content>
                     <Items>
-                        <ext:Label runat="server" Text="fff" Hidden="true" />
                     </Items>
                 </ext:Panel>
 

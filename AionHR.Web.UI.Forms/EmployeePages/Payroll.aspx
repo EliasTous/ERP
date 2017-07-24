@@ -595,8 +595,8 @@
                                             </Listeners>
                                         </ext:TextField>
                                         <ext:TextField LabelWidth="130" Width="350" ID="finalAmount"  ReadOnly="true" AllowBlank="true" runat="server" FieldLabel="<%$ Resources:FieldFinalAmount%>" Name="finalAmount" />
-                                        <ext:TextField LabelWidth="130" Width="350" ID="eAmount"  ReadOnly="true" AllowBlank="true" runat="server" FieldLabel="<%$ Resources:Entitlements%>" Name="eAmount" />
-                                        <ext:TextField LabelWidth="130" Width="350" ID="dAmount"  ReadOnly="true" AllowBlank="true" runat="server" FieldLabel="<%$ Resources:Deductions%>" Name="dAmount" />
+                                        <ext:TextField LabelWidth="130" Width="350" ID="eAmount"  ReadOnly="true" AllowBlank="true" runat="server" FieldLabel="<%$ Resources:TotalEntitlements%>" Name="eAmount" />
+                                        <ext:TextField LabelWidth="130" Width="350" ID="dAmount"  ReadOnly="true" AllowBlank="true" runat="server" FieldLabel="<%$ Resources:TotalDeductions%>" Name="dAmount" />
                                         
                                     </Items>
                                 </ext:Panel>
@@ -1152,7 +1152,7 @@
             Icon="PageEdit"
             Title="<%$ Resources:FieldEntitlement %>"
             Width="650"
-            Height="300"
+            Height="320"
             AutoShow="false"
             Modal="true"
             Closable="false"
@@ -1233,6 +1233,7 @@
                                 </ext:TextField>
                                 <ext:TextArea runat="server" ID="enComment" Name="comment" DataIndex="comments" FieldLabel="<%$ Resources:FieldComment%>" />
                                 <ext:TextField runat="server" InputType="Password" Visible="false" ID="enCommentField" Name="comment" DataIndex="comments" FieldLabel="<%$ Resources:FieldComment%>" />
+                                <ext:Checkbox ID="isTaxable" FieldLabel="<%$ Resources: FieldIsTaxable %>" runat="server" DataIndex="isTaxable" Name="isTaxable" InputValue="true" />
                             </Items>
 
                         </ext:FormPanel>
@@ -1272,7 +1273,7 @@
             Icon="PageEdit"
             Title="<%$ Resources:FieldDeduction %>"
             Width="650"
-            Height="300"
+            Height="340"
             AutoShow="false"
             Modal="true"
             Closable="false"
@@ -1362,7 +1363,7 @@
                                 </ext:TextField>
                                 <ext:TextArea runat="server" Name="comment" DataIndex="comment" ID="deComment" FieldLabel="<%$ Resources:FieldComment%>" />
                                 <ext:TextField InputType="Password" Visible="false" runat="server" Name="comment" DataIndex="comment" ID="deCommentField" FieldLabel="<%$ Resources:FieldComment%>" />
-
+                                <ext:Checkbox ID="deIsTaxable" FieldLabel="<%$ Resources: FieldIsTaxable %>" runat="server" DataIndex="isTaxable" Name="isTaxable" InputValue="true" />
                             </Items>
 
                         </ext:FormPanel>

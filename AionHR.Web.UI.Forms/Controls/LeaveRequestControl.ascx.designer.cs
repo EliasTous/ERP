@@ -211,6 +211,15 @@ namespace AionHR.Web.UI.Forms.Controls {
         protected global::Ext.Net.Hidden TotalText;
         
         /// <summary>
+        /// SpecifyStartDateFirst control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Hidden SpecifyStartDateFirst;
+        
+        /// <summary>
         /// StoredLeaveChanged control.
         /// </summary>
         /// <remarks>

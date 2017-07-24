@@ -64,6 +64,9 @@
     <Compile Include="DetailedAttendance.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="EmployeeDetails.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Hirings.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -148,6 +151,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DetailedAttendance.resx">
       <DependentUpon>DetailedAttendance.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EmployeeDetails.ar.resx">
+      <DependentUpon>EmployeeDetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EmployeeDetails.resx">
+      <DependentUpon>EmployeeDetails.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Hirings.ar.resx">
       <DependentUpon>Hirings.cs</DependentUpon>

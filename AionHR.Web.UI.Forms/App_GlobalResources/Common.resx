@@ -945,4 +945,13 @@
   <data name="ImportJobInfo" xml:space="preserve">
     <value>Import Job Info</value>
   </data>
+  <data name="MissingHireDate" xml:space="preserve">
+    <value>Employee Must Have a hire date to complete this operation</value>
+  </data>
+  <data name="Active" xml:space="preserve">
+    <value>Active</value>
+  </data>
+  <data name="Inactive" xml:space="preserve">
+    <value>Inactive</value>
+  </data>
 </root>

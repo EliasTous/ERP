@@ -61,8 +61,17 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                 HideShowButtons();
                 HideShowColumns();
                 if (string.IsNullOrEmpty(Request.QueryString["employeeId"]))
+                {
                     X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorOperation).Show();
+                    return;
+                }
                 CurrentEmployee.Text = Request.QueryString["employeeId"];
+                if (string.IsNullOrEmpty(Request.QueryString["hireDate"]))
+                {
+                    X.Msg.Alert(Resources.Common.Error, Resources.Common.MissingHireDate).Show();
+                    Viewport11.Hidden = true;
+                    return;
+                }
                 CurrentHireDate.Text = Request.QueryString["hireDate"];
                 EmployeeTerminated.Text = Request.QueryString["terminated"];
 
@@ -77,18 +86,18 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
                     X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorAccessDenied).Show();
                     JobInfoGrid.Hidden = true;
-                   
+
                 }
                 try
                 {
-                    AccessControlApplier.ApplyAccessControlOnPage(typeof(EmploymentHistory), EditEHForm, employeementHistoryGrid, btnAdd,SaveEHButton );
+                    AccessControlApplier.ApplyAccessControlOnPage(typeof(EmploymentHistory), EditEHForm, employeementHistoryGrid, btnAdd, SaveEHButton);
                 }
                 catch (AccessDeniedException exp)
                 {
                     X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
                     X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorAccessDenied).Show();
                     employeementHistoryGrid.Hidden = true;
-                    
+
                 }
             }
             Column2.Format = ColDate.Format = ehDate.Format = date.Format = _systemService.SessionHelper.GetDateformat();
@@ -163,7 +172,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     this.EditEHForm.SetValues(response.result);
                     FillEHStatus();
                     statusId.Select(response.result.statusId.ToString());
-                   
+
                     this.EditEHwindow.Title = Resources.Common.EditWindowsTitle;
                     this.EditEHwindow.Show();
                     break;
@@ -451,7 +460,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
 
             this.EditEHwindow.Show();
 
-            
+
         }
         protected void ADDNewJI(object sender, DirectEventArgs e)
         {

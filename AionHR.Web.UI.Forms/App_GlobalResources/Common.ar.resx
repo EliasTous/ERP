@@ -945,4 +945,13 @@
   <data name="ImportJobInfo" xml:space="preserve">
     <value>استيراد المعلومات الوظيفية</value>
   </data>
+  <data name="MissingHireDate" xml:space="preserve">
+    <value>يجب أن يمتلك الموظف تاريخ توظيف لإتمام هذه العملية</value>
+  </data>
+  <data name="Active" xml:space="preserve">
+    <value>فعال</value>
+  </data>
+  <data name="Inactive" xml:space="preserve">
+    <value>غير فعال</value>
+  </data>
 </root>

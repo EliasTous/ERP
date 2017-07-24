@@ -10,7 +10,7 @@
     <title></title>
     
     <link rel="stylesheet" type="text/css" href="CSS/Common.css?id=11" />
-     <script src="Scripts.js" type="text/javascript"></script>
+     
     <link rel="stylesheet" type="text/css" href="CSS/Employees.css?id=16" />
     <link rel="stylesheet" href="CSS/LiveSearch.css" />
     <script src="Scripts/jquery-new.js"></script>
@@ -25,7 +25,7 @@
      <script type="text/javascript">
 
      </script>
-      
+ 
  
 </head>
 <body style="background: url(Images/bg.png) repeat;">
@@ -50,16 +50,17 @@
         <ext:Hidden runat="server" ID="imageData" />
         
         <ext:Hidden runat="server" ID="imageVisible" />
-        <ext:Viewport runat="server" Layout="BorderLayout" ID="Viewport1">
+        <ext:Viewport runat="server" Layout="FitLayout" ID="Viewport1">
             <Items>
                 <ext:GridPanel
                     ID="GridPanel1"
                     runat="server"
-                    PaddingSpec="0 0 1 0"
+                    
                     Header="false"
                     Title="<%$ Resources: WindowTitle %>"
                     Layout="FitLayout"
-                    Scroll="Vertical"
+                     Scroll="Vertical"
+                    
                     Region="Center"
                     Border="false"
                     Icon="User" HideHeaders="false"
@@ -85,7 +86,7 @@
                             </Listeners>
                         </ext:RowExpander>
                     </Plugins>
-
+                   
                     <Store>
                         <ext:Store
                             ID="Store1"
@@ -250,7 +251,7 @@
                                     </Triggers>
                                     <Listeners>
                                         <KeyPress Fn="enterKeyPressSearchHandler" Buffer="100" />
-                                        <FocusLeave Handler="#{Store1}.reload();" />
+                                        
                                         <TriggerClick Handler="#{Store1}.reload();" />
                                         <SpecialKey   Handler="if(e.keyCode==13) #{Store1}.reload();" />
                                     </Listeners>
@@ -325,7 +326,7 @@
                             <ext:Column runat="server"
                                 ID="colEdit" Visible="true"
                                 Text="<%$ Resources:Common, Edit %>"
-                                Width="70"
+                                Width="100"
                                 Hideable="false"
                                 Align="Center"
                                 Fixed="true"
@@ -377,7 +378,9 @@
                     <Listeners>
                         <Render Handler="CheckSession(); this.on('cellclick', cellClick);" />
 
-
+                  
+                        <AfterLayout Handler="item.getView().setScrollX(0);" />
+                    
                     </Listeners>
                     <DirectEvents>
 

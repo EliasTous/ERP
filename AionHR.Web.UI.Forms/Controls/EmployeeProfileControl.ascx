@@ -482,13 +482,16 @@
     Title="<%$ Resources:EditWindowsTitle %>"
     Width="820"
     Height="500"
+    MinWidth="820"
+     
+    MinHeight="500"
     AutoShow="false"
     Modal="true"
     Hidden="true"
     Maximizable="false"
     Header="true"
     Draggable="false"
-    Resizable="false"
+    Resizable="true"
     Maximized="false"
     Layout="BorderLayout">
     <Listeners>

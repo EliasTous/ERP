@@ -299,6 +299,7 @@
     <Content Include="Reports\RT105.aspx" />
     <Content Include="Reports\RT106.aspx" />
     <Content Include="Reports\RT107.aspx" />
+    <Content Include="Reports\RT108.aspx" />
     <Content Include="Reports\RT201.aspx" />
     <Content Include="Reports\RT202.aspx" />
     <Content Include="Reports\RT203.aspx" />
@@ -488,6 +489,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Errors.ar.resx</DependentUpon>
     </Compile>
+    <Compile Include="App_GlobalResources\Reports.ar.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reports.ar.resx</DependentUpon>
+    </Compile>
+    <Compile Include="App_GlobalResources\Reports.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reports.resx</DependentUpon>
+    </Compile>
     <Compile Include="ImportDepartments.aspx.cs">
       <DependentUpon>ImportDepartments.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -515,6 +526,13 @@
     </Compile>
     <Compile Include="Reports\Controls\WeekPicker.ascx.designer.cs">
       <DependentUpon>WeekPicker.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\RT108.aspx.cs">
+      <DependentUpon>RT108.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reports\RT108.aspx.designer.cs">
+      <DependentUpon>RT108.aspx</DependentUpon>
     </Compile>
     <Compile Include="Reports\RT303.aspx.cs">
       <DependentUpon>RT303.aspx</DependentUpon>
@@ -1728,6 +1746,14 @@
     <Content Include="App_GlobalResources\Errors.ar.resx">
       <Generator>GlobalResourceProxyGenerator</Generator>
       <LastGenOutput>Errors.ar.designer.cs</LastGenOutput>
+    </Content>
+    <Content Include="App_GlobalResources\Reports.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>Reports.Designer.cs</LastGenOutput>
+    </Content>
+    <Content Include="App_GlobalResources\Reports.ar.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>Reports.ar.designer.cs</LastGenOutput>
     </Content>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <Content Include="Reports\App_LocalResources\RT202.aspx.resx" />

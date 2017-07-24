@@ -246,4 +246,7 @@
   <data name="ReturnNotes" xml:space="preserve">
     <value>Notes</value>
   </data>
+  <data name="SpecifyStartDateFirst" xml:space="preserve">
+    <value>Please Specify Start Date First!</value>
+  </data>
 </root>

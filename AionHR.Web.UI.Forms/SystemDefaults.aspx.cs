@@ -144,7 +144,7 @@ namespace AionHR.Web.UI.Forms
             try
 
             {
-                localServerIP.Text = items.Where(s => s.Key == "localServerIP").First().Value;
+                localServerIP.Text = items.Where(s => s.Key == "localServerIP").First().Value.Split('/')[0];
             }
             catch { }
 
@@ -211,7 +211,7 @@ namespace AionHR.Web.UI.Forms
                 submittedValues.Add(new KeyValuePair<string, string>("vsId", values.vsId.ToString()));
 
             if (values.localServerIP != null && !string.IsNullOrEmpty(values.localServerIP.ToString()))
-                submittedValues.Add(new KeyValuePair<string, string>("localServerIP", values.localServerIP.ToString()));
+                submittedValues.Add(new KeyValuePair<string, string>("localServerIP", values.localServerIP.ToString()+"/AionWSLocal"));
 
             submittedValues.Add(new KeyValuePair<string, string>("enableCamera", values.enableCamera == null ? "false" : "true"));
             submittedValues.Add(new KeyValuePair<string, string>("enableHijri", values.enableHijri == null ? "false" : "true"));

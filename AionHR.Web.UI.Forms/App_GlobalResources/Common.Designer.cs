@@ -70,6 +70,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Active.
+        /// </summary>
+        internal static string Active {
+            get {
+                return ResourceManager.GetString("Active", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Active Module.
         /// </summary>
         internal static string ActiveModule {
@@ -1123,6 +1132,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Inactive.
+        /// </summary>
+        internal static string Inactive {
+            get {
+                return ResourceManager.GetString("Inactive", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to January.
         /// </summary>
         internal static string January {
@@ -1389,6 +1407,15 @@ namespace Resources {
         internal static string Mediocre {
             get {
                 return ResourceManager.GetString("Mediocre", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Employee Must Have a hire date to complete this operation.
+        /// </summary>
+        internal static string MissingHireDate {
+            get {
+                return ResourceManager.GetString("MissingHireDate", resourceCulture);
             }
         }
         

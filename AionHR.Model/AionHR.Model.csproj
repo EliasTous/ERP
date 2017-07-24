@@ -117,6 +117,7 @@
     <Compile Include="Reports\RT106.cs" />
     <Compile Include="Reports\RT107.cs" />
     <Compile Include="Reports\RT107B.cs" />
+    <Compile Include="Reports\RT108.cs" />
     <Compile Include="Reports\RT201.cs" />
     <Compile Include="Reports\RT202.cs" />
     <Compile Include="Reports\RT203.cs" />

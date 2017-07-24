@@ -65,6 +65,12 @@
     }
     var s = function () { };
     function calcEndDate() {
+        
+        if (App.leaveRequest1_startDate.getValue() == null) {
+            alert(App.leaveRequest1_SpecifyStartDateFirst.value)
+            App.leaveRequest1_calDays.setValue('');
+            return;
+        }
         var d;
         if (App.leaveRequest1_calDays.value == 1)
             d = moment(App.leaveRequest1_startDate.getValue());
@@ -73,6 +79,10 @@
         App.leaveRequest1_endDate.setValue(new Date(d.toDate()));
     }
     function calcDays() {
+        if (App.leaveRequest1_startDate.getValue() == '') {
+            alert('specify start date')
+            return;
+        }
         App.leaveRequest1_calDays.setValue(parseInt(moment(App.leaveRequest1_endDate.getValue()).diff(moment(App.leaveRequest1_startDate.getValue()), 'days')) + 1);
     }
 </script>
@@ -98,6 +108,7 @@
 <ext:Hidden ID="GridDisabled" runat="server" />
 <ext:Hidden ID="LeaveChanged" runat="server" Text="1" EnableViewState="true" />
 <ext:Hidden ID="TotalText" runat="server" Text="<%$ Resources: TotalText %>" />
+<ext:Hidden ID="SpecifyStartDateFirst" runat="server" Text="<%$ Resources: SpecifyStartDateFirst %>" />
 <ext:Hidden ID="StoredLeaveChanged" runat="server" Text="0" EnableViewState="true" />
 <ext:Hidden ID="ViewOnly" runat="server" />
 <ext:Window
@@ -140,7 +151,7 @@
                     BodyPadding="5">
                     <Items>
                         <ext:TextField ID="recordId" runat="server" Name="recordId" Hidden="true" />
-                        <ext:DateField ID="startDate" runat="server" FieldLabel="<%$ Resources:FieldStartDate%>" Name="startDate" AllowBlank="false">
+                        <ext:DateField ID="startDate"   runat="server" FieldLabel="<%$ Resources:FieldStartDate%>" Name="startDate" AllowBlank="false">
                             <DirectEvents>
                                 <Change OnEvent="MarkLeaveChanged">
                                     <ExtraParams>
@@ -149,15 +160,18 @@
                                     </ExtraParams>
                                 </Change>
                             </DirectEvents>
-                            <Listeners>
-                            </Listeners>
+                         <Listeners>
+                                        <Select Handler="calcDays();" />
+
+                                    </Listeners>
                             <%--          <Listeners>
                                         <Change Handler="alert(this.value);App.leaveRequest1_direct.MarkLeaveChanged(); CalcSum();" />
                                     </Listeners>--%>
                         </ext:DateField>
                         <ext:Panel runat="server" Layout="HBoxLayout">
                             <Items>
-                                <ext:DateField ID="endDate" runat="server" FieldLabel="<%$ Resources:FieldEndDate%>" Name="endDate" AllowBlank="false">
+                                <ext:DateField ID="endDate"    runat="server" FieldLabel="<%$ Resources:FieldEndDate%>"  min Name="endDate" AllowBlank="false">
+                                 
                                     <DirectEvents>
                                         <Change OnEvent="MarkLeaveChanged">
                                             <ExtraParams>

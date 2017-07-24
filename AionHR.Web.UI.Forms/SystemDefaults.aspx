@@ -248,9 +248,13 @@
                                                 <ext:ListItem Text="+12 UTC" Value="12" />
                                             </Items>
                                         </ext:ComboBox>
+                                        <ext:Panel runat="server" Layout="HBoxLayout" Height="100"><Items>
                                         <ext:TextField runat="server" Name="localServerIP" ID="localServerIP"  LabelWidth="150" FieldLabel="<%$Resources:LocalServerIP %>">
                                             <Validator Fn="ValidateIPaddress" />
+                                          
                                         </ext:TextField>
+                                            <ext:Label runat="server" MarginSpec="5 0 10 10" Text="  /AionWSLocal" />
+                                            </Items></ext:Panel>
                                         <ext:Checkbox FieldLabel="<%$ Resources: FieldEnableCamera %>" LabelWidth="150" runat="server" InputValue="True" Name="enableCamera" ID="enableCameraCheck" />
                                         <ext:Checkbox FieldLabel="<%$ Resources: FieldEnableHijri %>" LabelWidth="150" runat="server" InputValue="True" Name="enableHijri" ID="enableHijri" />
                                     </Items>

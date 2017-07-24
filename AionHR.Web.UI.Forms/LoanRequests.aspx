@@ -717,7 +717,7 @@
                                               <ext:Column runat="server"
                                                 ID="ColEHDelete" Flex="1" Visible="true"
                                                 Text=""
-                                                Width="60"
+                                                Width="110"
                                                 Align="Center"
                                                 Fixed="true"
                                                 Filterable="false"
