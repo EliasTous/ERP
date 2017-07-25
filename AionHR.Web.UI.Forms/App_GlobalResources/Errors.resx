@@ -139,16 +139,16 @@
     <value>dow out of range</value>
   </data>
   <data name="Error_12400" xml:space="preserve">
-    <value>SQLخطأ في اتصال</value>
+    <value>Sql Connection Error</value>
   </data>
   <data name="Error_12401" xml:space="preserve">
     <value>missing SQL column</value>
   </data>
   <data name="Error_12402" xml:space="preserve">
-    <value>خطأ معامل بيانات فارغة</value>
+    <value>Empty Data Error</value>
   </data>
   <data name="Error_12403" xml:space="preserve">
-    <value>خطأ اتصال قاعدة البيانات</value>
+    <value>DB Connection Error</value>
   </data>
   <data name="Error_12404" xml:space="preserve">
     <value>Sql batch run error</value>
@@ -163,7 +163,7 @@
     <value>INPUT_FORM_TYPE_MISMATCH_TAG</value>
   </data>
   <data name="Error_12501" xml:space="preserve">
-    <value>خطأ انشاء ملف</value>
+    <value>File Creation Error</value>
   </data>
   <data name="Error_19000" xml:space="preserve">
     <value>API key authentication error</value>

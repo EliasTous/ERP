@@ -124,7 +124,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to SQLخطأ في اتصال.
+        ///   Looks up a localized string similar to Sql Connection Error.
         /// </summary>
         internal static string Error_12400 {
             get {
@@ -142,7 +142,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to خطأ معامل بيانات فارغة.
+        ///   Looks up a localized string similar to Empty Data Error.
         /// </summary>
         internal static string Error_12402 {
             get {
@@ -151,7 +151,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to خطأ اتصال قاعدة البيانات.
+        ///   Looks up a localized string similar to DB Connection Error.
         /// </summary>
         internal static string Error_12403 {
             get {
@@ -196,7 +196,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to خطأ انشاء ملف.
+        ///   Looks up a localized string similar to File Creation Error.
         /// </summary>
         internal static string Error_12501 {
             get {

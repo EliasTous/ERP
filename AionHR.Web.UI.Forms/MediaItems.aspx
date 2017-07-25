@@ -359,7 +359,7 @@
                                 </ext:ComboBox>
 
                                 
-                                <ext:TextField ID="description" runat="server" FieldLabel="<%$ Resources:FieldDescription%>" Name="description" AllowBlank="true"/>
+                                <ext:TextField ID="description" runat="server" FieldLabel="<%$ Resources:FieldDescription%>" Name="description" AllowBlank="false"/>
                                 <ext:DateField ID="date" runat="server" FieldLabel="<%$ Resources:FieldDate%>" Name="date" AllowBlank="false" />                                
 
 

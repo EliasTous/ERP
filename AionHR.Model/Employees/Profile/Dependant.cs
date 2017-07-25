@@ -26,7 +26,7 @@ namespace AionHR.Model.Employees.Profile
         public string lastName { get; set; }
         [PropertyID("31150_05")]
         [ApplySecurity]
-        public DateTime birthDate { get; set; }
+        public DateTime? birthDate { get; set; }
         [PropertyID("31150_06")]
         [ApplySecurity]
         public string gender { get; set; }

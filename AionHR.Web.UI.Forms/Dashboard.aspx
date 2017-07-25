@@ -9,7 +9,7 @@
     <title></title>
 
     <link rel="stylesheet" type="text/css" href="CSS/Common.css" />
-    <link rel="stylesheet" type="text/css" href="CSS/Dashboard.css?id=27" />
+    <link rel="stylesheet" type="text/css" href="CSS/Dashboard.css?id=28" />
     <link rel="stylesheet" href="CSS/LiveSearch.css" />
     <script type="text/javascript" src="Scripts/Dashboard.js"></script>
     <!--  <script type="text/javascript" src="Scripts/app.js"></script>-->
@@ -1203,7 +1203,7 @@
                                                                             </LayoutConfig>
                                                                             <Items>
                                                                                 <ext:Label runat="server" ID="companyRW" Cls="number flashing" StyleHtmlCls="number" PaddingSpec="30 0 0 0" Height="100" />
-                                                                                <ext:HyperlinkButton runat="server" Text="<%$Resources:ComapnyRightToWork %>" ShrinkWrap="Both" PaddingSpec="0 0 0 0" StyleSpec="font-size:12pt;" Height="80">
+                                                                                <ext:HyperlinkButton runat="server" Text="<%$Resources:ComapnyRightToWork %>" ShrinkWrap="Both" PaddingSpec="0 0 0 0" StyleSpec="font-size:10pt;" Height="80">
                                                                                     <Listeners>
                                                                                         <Click Handler="App.CompanyRightToWorkWindow.show();" />
                                                                                     </Listeners>
@@ -1217,7 +1217,7 @@
                                                                             </LayoutConfig>
                                                                             <Items>
                                                                                 <ext:Label runat="server" ID="employeeRW" Cls="number flashing" StyleHtmlCls="number" PaddingSpec="30 0 0 0" Height="100" />
-                                                                                <ext:HyperlinkButton runat="server" PaddingSpec="0 0 0 0" Text="<%$Resources:EmployeeRightToWork %>" StyleSpec="font-size:12pt;" Height="80">
+                                                                                <ext:HyperlinkButton runat="server" PaddingSpec="0 0 0 0" Text="<%$Resources:EmployeeRightToWork %>" StyleSpec="font-size:10pt;" Height="80">
                                                                                     <Listeners>
                                                                                         <Click Handler="App.EmployeeRightToWorkWindow.show();" />
                                                                                     </Listeners>
@@ -1242,7 +1242,7 @@
                                                                             <Items>
 
                                                                                 <ext:Label runat="server" ID="salaryChange" Cls="number flashing" StyleHtmlCls="number" PaddingSpec="30 0 0 0" Height="100" />
-                                                                                <ext:HyperlinkButton runat="server" Text="<%$Resources:SalaryChange %>" StyleSpec="font-size:16pt;" Height="80">
+                                                                                <ext:HyperlinkButton runat="server" Text="<%$Resources:SalaryChange %>" StyleSpec="font-size:12pt;" Height="80">
                                                                                     <Listeners>
                                                                                         <Click Handler="App.SCRWindow.show();" />
                                                                                     </Listeners>
@@ -1256,7 +1256,7 @@
                                                                             </LayoutConfig>
                                                                             <Items>
                                                                                 <ext:Label runat="server" ID="probation" Cls="number flashing" StyleHtmlCls="number" PaddingSpec="30 0 0 0" Height="100" />
-                                                                                <ext:HyperlinkButton runat="server" Text="<%$Resources:Probation %>" StyleSpec="font-size:16pt;" Height="80" StyleHtmlCls="flashing">
+                                                                                <ext:HyperlinkButton runat="server" Text="<%$Resources:Probation %>" StyleSpec="font-size:12pt;" Height="80" StyleHtmlCls="flashing">
                                                                                     <Listeners>
                                                                                         <Click Handler="App.ProbationWindow.show();" />
                                                                                     </Listeners>
@@ -1281,7 +1281,7 @@
                                                                             <Items>
 
                                                                                 <ext:Label runat="server" ID="totalLoansLbl" Cls="number flashing" StyleHtmlCls="number" PaddingSpec="30 0 0 0" Height="100" />
-                                                                                <ext:HyperlinkButton runat="server" Text="<%$Resources:TotalLoans %>" StyleSpec="font-size:16pt;" Height="80">
+                                                                                <ext:HyperlinkButton runat="server" Text="<%$Resources:TotalLoans %>" StyleSpec="font-size:12pt;" Height="80">
                                                                                     <Listeners>
                                                                                         <Click Handler="App.totalLoansWindow.show();" />
                                                                                     </Listeners>
@@ -1295,7 +1295,7 @@
                                                                             </LayoutConfig>
                                                                             <Items>
                                                                                 <ext:Label runat="server" ID="deductedLoansLbl" Cls="number flashing" StyleHtmlCls="number" PaddingSpec="30 0 0 0" Height="100" />
-                                                                                <ext:HyperlinkButton runat="server" Text="<%$Resources:CompletedLoans %>" StyleSpec="font-size:16pt;" Height="80" StyleHtmlCls="flashing">
+                                                                                <ext:HyperlinkButton runat="server" Text="<%$Resources:CompletedLoans %>" StyleSpec="font-size:12pt;" Height="80" StyleHtmlCls="flashing">
                                                                                     <Listeners>
                                                                                         <Click Handler="App.completedLoansWindow.show();" />
                                                                                     </Listeners>
@@ -1320,7 +1320,7 @@
 
                                                                                 <ext:Label runat="server" ID="annversaries" Cls="number flashing" StyleHtmlCls="number" PaddingSpec="30 0 0 0" Height="100" />
 
-                                                                                <ext:HyperlinkButton runat="server" Text="<%$Resources:Anneversaries %>" Height="80" PaddingSpec="0 0 0 0" StyleSpec="font-size:16pt;">
+                                                                                <ext:HyperlinkButton runat="server" Text="<%$Resources:Anneversaries %>" Height="80" PaddingSpec="0 0 0 0" StyleSpec="font-size:12pt;">
                                                                                     <Listeners>
                                                                                         <Click Handler="App.anniversaryWindow.show();" />
                                                                                     </Listeners>
@@ -1335,7 +1335,7 @@
                                                                             <Items>
 
                                                                                 <ext:Label runat="server" ID="birthdays" Cls="number flashing" StyleHtmlCls="number" PaddingSpec="30 0 0 0" Height="100" />
-                                                                                <ext:HyperlinkButton runat="server" PaddingSpec="0 0 0 0" Text="<%$Resources:Birthdays %>" StyleSpec="font-size:16pt;" Height="80">
+                                                                                <ext:HyperlinkButton runat="server" PaddingSpec="0 0 0 0" Text="<%$Resources:Birthdays %>" StyleSpec="font-size:12pt;" Height="80">
                                                                                     <Listeners>
                                                                                         <Click Handler="App.BirthdaysWindow.show();" />
                                                                                     </Listeners>

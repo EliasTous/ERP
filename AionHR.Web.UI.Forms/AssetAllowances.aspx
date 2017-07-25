@@ -93,7 +93,7 @@
                                         </Click>
                                     </DirectEvents>
                                 </ext:Button>
-                                  <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" Width="130"  LabelAlign="Top" EmptyText="<%$ Resources:FilterBranch%>" ValueField="recordId" DisplayField="name" ID="branchId" Name="branchId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" >
+                                <ext:ComboBox AnyMatch="true" CaseSensitive="false" runat="server" Width="130" LabelAlign="Top" EmptyText="<%$ Resources:FilterBranch%>" ValueField="recordId" DisplayField="name" ID="branchId" Name="branchId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1">
                                     <Store>
                                         <ext:Store runat="server" ID="branchStore">
                                             <Model>
@@ -109,10 +109,10 @@
                                     <Listeners>
                                         <Select Handler="#{Store1}.reload()" />
                                     </Listeners>
-                                  
+
                                 </ext:ComboBox>
-                                 
-                                <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" Width="155"  EmptyText="<%$ Resources:FilterDepartment%>" LabelAlign="Top" ValueField="recordId" DisplayField="name" ID="departmentId" Name="departmentId"  QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" >
+
+                                <ext:ComboBox AnyMatch="true" CaseSensitive="false" runat="server" Width="155" EmptyText="<%$ Resources:FilterDepartment%>" LabelAlign="Top" ValueField="recordId" DisplayField="name" ID="departmentId" Name="departmentId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1">
                                     <Store>
                                         <ext:Store runat="server" ID="departmentStore">
                                             <Model>
@@ -128,10 +128,10 @@
                                     <Listeners>
                                         <Select Handler="#{Store1}.reload()" />
                                     </Listeners>
-                              
+
 
                                 </ext:ComboBox>
-                                 <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  EmptyText="<%$ Resources: FilterAssetCateg%>" runat="server" Width="130"  LabelAlign="Top" ValueField="recordId" DisplayField="name" ID="assetCatId"   QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" >
+                                <ext:ComboBox AnyMatch="true" CaseSensitive="false" EmptyText="<%$ Resources: FilterAssetCateg%>" runat="server" Width="130" LabelAlign="Top" ValueField="recordId" DisplayField="name" ID="assetCatId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1">
                                     <Store>
                                         <ext:Store runat="server" ID="assetCategoryStore">
                                             <Model>
@@ -147,15 +147,14 @@
                                     <Listeners>
                                         <Select Handler="#{Store1}.reload()" />
                                     </Listeners>
-                                
+
                                 </ext:ComboBox>
-                                <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" ID="employeeFilter" Width="130"  LabelAlign="Top"
+                                <ext:ComboBox AnyMatch="true" CaseSensitive="false" runat="server" ID="employeeFilter" Width="130" LabelAlign="Top"
                                     DisplayField="fullName"
                                     ValueField="recordId" AllowBlank="true"
                                     TypeAhead="false"
-                                    
                                     HideTrigger="true" SubmitValue="true"
-                                    MinChars="3"  EmptyText="<%$ Resources: FilterEmployee%>"
+                                    MinChars="3" EmptyText="<%$ Resources: FilterEmployee%>"
                                     TriggerAction="Query" ForceSelection="false">
                                     <Store>
                                         <ext:Store runat="server" ID="Store2" AutoLoad="false">
@@ -179,11 +178,10 @@
                                         <ext:ListItem Text="-----All-----" Value="0" />
                                     </Items>
                                 </ext:ComboBox>
-                               
-                                <ext:Button runat="server" Text="<%$ Resources: ButtonClear%>" MarginSpec="0 0 0 0"  Width="100">
+
+                                <ext:Button runat="server" Text="<%$ Resources: ButtonClear%>" MarginSpec="0 0 0 0" Width="100">
                                     <Listeners>
                                         <Click Handler="#{departmentId}.clear(); #{branchId}.clear(); #{assetCatId}.clear(); #{employeeFilter}.clear(); #{Store1}.reload(); ">
-
                                         </Click>
                                     </Listeners>
                                 </ext:Button>
@@ -220,14 +218,14 @@
                             <ext:Column ID="ColName" DataIndex="employeeName" Text="<%$ Resources: FieldEmployeeName%>" runat="server" Flex="6">
                                 <Renderer Handler=" return  record.data['employeeName'].fullName" />
                             </ext:Column>
-                            
+
                             <ext:Column ID="Column5" DataIndex="acName" Text="<%$ Resources: FieldacName%>" runat="server" Flex="2" />
                             <ext:Column ID="Column3" DataIndex="description" Text="<%$ Resources: FieldDescription%>" runat="server" Flex="2" />
                             <ext:Column ID="Column4" DataIndex="serialNo" Text="<%$ Resources: FieldSerialNo%>" runat="server" Flex="2" />
                             <ext:Column ID="Column6" DataIndex="comment" Text="<%$ Resources: FieldComment%>" runat="server" Flex="2" />
 
-                            <ext:DateColumn  ID="Column1" DataIndex="date" Text="<%$ Resources: FieldDate%>" runat="server" Flex="2" />
-                            <ext:DateColumn  ID="Column2" DataIndex="returnedDate" Text="<%$ Resources: FieldReturnedDate%>" runat="server" Flex="2" />
+                            <ext:DateColumn ID="Column1" DataIndex="date" Text="<%$ Resources: FieldDate%>" runat="server" Flex="2" />
+                            <ext:DateColumn ID="Column2" DataIndex="returnedDate" Text="<%$ Resources: FieldReturnedDate%>" runat="server" Flex="2" />
 
                             <ext:Column runat="server"
                                 ID="colEdit" Visible="false"
@@ -243,7 +241,7 @@
                                 <Renderer Fn="editRender" />
 
                             </ext:Column>
-                            
+
                             <ext:Column runat="server"
                                 ID="colAttach"
                                 Text="<%$ Resources:Common, Attach %>"
@@ -267,7 +265,7 @@
                                 Hideable="false"
                                 MenuDisabled="true"
                                 Resizable="false">
-                                <Renderer handler="return editRender()+'&nbsp;&nbsp;' +deleteRender(); " />
+                                <Renderer Handler="return editRender()+'&nbsp;&nbsp;' +deleteRender(); " />
 
                             </ext:Column>
 
@@ -363,8 +361,8 @@
 
                                 <ext:TextField ID="recordId" runat="server" Name="recordId" Hidden="true" />
 
-                                <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" ID="employeeId" name="employeeId" 
-                                    DisplayField="fullName" 
+                                <ext:ComboBox AnyMatch="true" CaseSensitive="false" runat="server" ID="employeeId" Name="employeeId"
+                                    DisplayField="fullName"
                                     ValueField="recordId"
                                     TypeAhead="false"
                                     FieldLabel="<%$ Resources: FieldEmployeeName%>"
@@ -392,7 +390,7 @@
                                 </ext:ComboBox>
 
 
-                                <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" ID="acId" Name="acId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1"
+                                <ext:ComboBox AnyMatch="true" CaseSensitive="false" runat="server" ID="acId" Name="acId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1"
                                     DisplayField="name" AllowBlank="false"
                                     ValueField="recordId"
                                     FieldLabel="<%$ Resources: FieldAcName %>">
@@ -428,19 +426,28 @@
                                         <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
                                     </Listeners>
                                 </ext:ComboBox>
-                                
+
                                 <ext:TextField ID="description" runat="server" FieldLabel="<%$ Resources:FieldDescription%>" Name="description" AllowBlank="false" />
                                 <ext:TextField ID="serialNo" runat="server" FieldLabel="<%$ Resources:FieldSerialNo%>" Name="serialNo" />
+                                
                                 <ext:TextField ID="comment" runat="server" FieldLabel="<%$ Resources:FieldComment%>" Name="comment" />
 
-                                <ext:DateField ID="date" runat="server" FieldLabel="<%$ Resources:FieldDate%>" Name="date" AllowBlank="false" />
-                                <ext:DateField ID="returnedDate" runat="server" FieldLabel="<%$ Resources:FieldReturnedDate%>" Name="returnedDate" AllowBlank="false" />
+                                <ext:DateField Vtype="daterange" ID="date" runat="server" FieldLabel="<%$ Resources:FieldDate%>" Name="date" AllowBlank="false">
+                                    <CustomConfig>
+                                        <ext:ConfigItem Name="endDateField" Value="returnedDate" Mode="Value" />
+                                    </CustomConfig>
+                                </ext:DateField>
+                                <ext:DateField ID="returnedDate" Vtype="daterange" runat="server" FieldLabel="<%$ Resources:FieldReturnedDate%>" Name="returnedDate" AllowBlank="false">
+                                    <CustomConfig>
+                                        <ext:ConfigItem Name="startDateField" Value="date" Mode="Value" />
+                                    </CustomConfig>
+                                </ext:DateField>
 
-                                
-                                
 
 
-                               </Items>
+
+
+                            </Items>
 
                         </ext:FormPanel>
 
