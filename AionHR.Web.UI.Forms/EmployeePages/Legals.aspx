@@ -571,8 +571,16 @@
                                
                                    
                                 </ext:TextField>
-                                <ext:DateField ID="rwIssueDate" runat="server" Name="issueDate" FieldLabel="<%$ Resources:FieldRWIssueDate%>" AllowBlank="true" />
-                               <ext:DateField ID="rwExpiryDate" runat="server" Name="expiryDate" FieldLabel="<%$ Resources:FieldRWExpiryDate%>" AllowBlank="false" />
+                                <ext:DateField ID="rwIssueDate" Vtype="daterange" runat="server" Name="issueDate" FieldLabel="<%$ Resources:FieldRWIssueDate%>" AllowBlank="true" >
+                                                                           <CustomConfig>
+                        <ext:ConfigItem Name="endDateField" Value="rwExpiryDate" Mode="Value" />
+                    </CustomConfig>
+                                    </ext:DateField>
+                               <ext:DateField ID="rwExpiryDate" Vtype="daterange" runat="server" Name="expiryDate" FieldLabel="<%$ Resources:FieldRWExpiryDate%>" AllowBlank="false" >
+                                                 <CustomConfig>
+                        <ext:ConfigItem Name="startDateField" Value="rwIssueDate" Mode="Value" />
+                    </CustomConfig>
+                                   </ext:DateField>
                                 <ext:TextArea runat="server" Name="remarks" ID="remarks" FieldLabel="<%$ Resources:FieldRWRemarks%>" />
                                 <ext:TextField InputType="Password" runat="server" Name="remarks" Visible="false" ID="remarksField" FieldLabel="<%$ Resources:FieldRWRemarks%>" />
                                
@@ -665,8 +673,16 @@
                                     </Listeners>
                                 </ext:ComboBox>
 
-                                <ext:DateField ID="DateField1" runat="server" Name="date" FieldLabel="<%$ Resources:FieldBCIssueDate%>" AllowBlank="false" />
-                                <ext:DateField ID="DateField2" runat="server" Name="expiryDate" FieldLabel="<%$ Resources:FieldBCExpiryDate%>" AllowBlank="false" />
+                                <ext:DateField ID="DateField1" runat="server" Name="date" FieldLabel="<%$ Resources:FieldBCIssueDate%>" AllowBlank="false" Vtype="daterange" >
+                                       <CustomConfig>
+                        <ext:ConfigItem Name="endDateField" Value="DateField2" Mode="Value" />
+                    </CustomConfig>
+                                    </ext:DateField>
+                                <ext:DateField ID="DateField2" runat="server" Name="expiryDate" FieldLabel="<%$ Resources:FieldBCExpiryDate%>" AllowBlank="false" Vtype="daterange" >
+                                      <CustomConfig>
+                        <ext:ConfigItem Name="startDateField" Value="DateField1" Mode="Value" />
+                    </CustomConfig>
+                                    </ext:DateField>
                                 <ext:TextArea runat="server" Name="remarks" ID="bcRemarks" FieldLabel="<%$ Resources:FieldBCRemarks%>" />
                                 <ext:TextField Visible="false" InputType="Password" runat="server" Name="remarks" ID="bcRemarksField" FieldLabel="<%$ Resources:FieldBCRemarks%>" />
                                 <ext:FileUploadField runat="server" ID="bcFile" Name="fileUrl" FieldLabel="<%$ Resources:FieldFile%>" AllowBlank="true" />

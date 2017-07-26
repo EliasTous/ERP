@@ -117,52 +117,76 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="xrLabel10.Text" xml:space="preserve">
-    <value>البداية</value>
+  <data name="BCGridTitle" xml:space="preserve">
+    <value>التحقق من الخلفية</value>
   </data>
-  <data name="xrLabel11.Text" xml:space="preserve">
-    <value>النهاية</value>
+  <data name="EditBCWindow" xml:space="preserve">
+    <value>معلومات التحقق من الخلفية</value>
   </data>
-  <data name="xrLabel12.Text" xml:space="preserve">
-    <value>العودة</value>
+  <data name="EditBCWindowTitle" xml:space="preserve">
+    <value>تعديل معلومات التحقق من الخلفية</value>
   </data>
-  <data name="xrLabel13.Text" xml:space="preserve">
-    <value>الحالة</value>
+  <data name="EditRWWindow" xml:space="preserve">
+    <value>معلومات إذن العمل</value>
   </data>
-  <data name="xrLabel14.Text" xml:space="preserve">
-    <value>النوع</value>
+  <data name="EditRWWindowTitle" xml:space="preserve">
+    <value>تعديل معلومات إذن العمل</value>
   </data>
-  <data name="xrLabel15.Text" xml:space="preserve">
-    <value>مدفوعة؟</value>
+  <data name="FieldBCCheckType" xml:space="preserve">
+    <value>نوع التحقق</value>
   </data>
-  <data name="xrLabel16.Text" xml:space="preserve">
-    <value>السبب</value>
+  <data name="FieldBCCTName" xml:space="preserve">
+    <value>نوع التحقق</value>
   </data>
-  <data name="xrLabel18.Text" xml:space="preserve">
-    <value>القسم</value>
+  <data name="FieldBCEmployeeName" xml:space="preserve">
+    <value>اسم الموظف</value>
   </data>
-  <data name="xrLabel19.Text" xml:space="preserve">
-    <value>الفرع</value>
+  <data name="FieldBCExpiryDate" xml:space="preserve">
+    <value>تاريخ الانتهاء</value>
   </data>
-  <data name="xrLabel20.Text" xml:space="preserve">
-    <value>النوع</value>
+  <data name="FieldBCIssueDate" xml:space="preserve">
+    <value>تاريخ البداية</value>
   </data>
-  <data name="xrLabel21.Text" xml:space="preserve">
-    <value>الحالة</value>
+  <data name="FieldBCRemarks" xml:space="preserve">
+    <value>الملاحظات</value>
   </data>
-  <data name="xrLabel28.Text" xml:space="preserve">
-    <value>الموظف</value>
+  <data name="FieldRWDocumentRef" xml:space="preserve">
+    <value>رمز الوثيقة</value>
   </data>
-  <data name="xrLabel30.Text" xml:space="preserve">
-    <value>تقرير الإجازات</value>
+  <data name="FieldRWDocumentType" xml:space="preserve">
+    <value>نوع الوثيقة</value>
   </data>
-  <data name="xrLabel31.Text" xml:space="preserve">
+  <data name="FieldRWDtName" xml:space="preserve">
+    <value>نوع الوثيقة</value>
+  </data>
+  <data name="FieldRWEmployeeName" xml:space="preserve">
+    <value>اسم الموظف</value>
+  </data>
+  <data name="FieldRWExpiryDate" xml:space="preserve">
+    <value>تاريخ الانتهاء</value>
+  </data>
+  <data name="FieldRWIssueDate" xml:space="preserve">
+    <value>تاريخ البداية</value>
+  </data>
+  <data name="FieldRWRemarks" xml:space="preserve">
+    <value>الملاحظات</value>
+  </data>
+  <data name="RWGridTitle" xml:space="preserve">
+    <value>إذن العمل</value>
+  </data>
+  <data name="FieldRecordId" xml:space="preserve">
     <value>الرقم</value>
   </data>
-  <data name="xrLabel9.Text" xml:space="preserve">
-    <value>الموظف</value>
+  <data name="FieldFile" xml:space="preserve">
+    <value>المرفقات</value>
   </data>
-  <data name="xrPageInfo2.Format" xml:space="preserve">
-    <value>صفحة {0} من {1}</value>
+  <data name="ChooseCalendarType" xml:space="preserve">
+    <value>التقويم</value>
+  </data>
+  <data name="DateFormatError" xml:space="preserve">
+    <value>خطأ في صيغة التاريخ ،يرجى اختيار التاريخ من عنصر الاختيار </value>
+  </data>
+  <data name="DateRangeError" xml:space="preserve">
+    <value>تاريخ نهاية الصلاحية يجب أن يكون بعد تاريخ الإصدار</value>
   </data>
 </root>

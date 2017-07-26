@@ -301,13 +301,13 @@
     <value>Employee Id Ref already in use</value>
   </data>
   <data name="Error_515" xml:space="preserve">
-    <value>SQLفي جدول عمود null لا يمكن ادخال القيمة</value>
+    <value>Cannot Insert Null Value to this field</value>
   </data>
   <data name="Error_53" xml:space="preserve">
-    <value>خطأ اتصال قاعدة البيانات</value>
+    <value>Database connection error</value>
   </data>
   <data name="Error_547" xml:space="preserve">
-    <value>خطأ في سلامة البيانات</value>
+    <value>Data Entegrity Error</value>
   </data>
   <data name="Error_8114" xml:space="preserve">
     <value>type casting value from string error</value>

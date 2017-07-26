@@ -1218,4 +1218,10 @@
   <data name="Property4501003" xml:space="preserve">
     <value>Payment</value>
   </data>
+  <data name="Property4202010" xml:space="preserve">
+    <value>Return Notes</value>
+  </data>
+  <data name="Property4202011" xml:space="preserve">
+    <value>Leave Ref</value>
+  </data>
 </root>

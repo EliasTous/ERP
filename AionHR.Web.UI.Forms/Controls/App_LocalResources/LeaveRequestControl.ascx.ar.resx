@@ -252,4 +252,7 @@
   <data name="SpecifyStartDateFirst" xml:space="preserve">
     <value>يرجى اختيار تاريخ بداية الإجازة أولاً</value>
   </data>
+  <data name="FieldLeaveRef" xml:space="preserve">
+    <value>الرقم</value>
+  </data>
 </root>

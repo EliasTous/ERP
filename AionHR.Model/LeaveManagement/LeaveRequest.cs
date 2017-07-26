@@ -51,7 +51,10 @@ namespace AionHR.Model.LeaveManagement
 
         public string returnNotes { get; set; }
 
+        [PropertyID("42020_11")]
+        [ApplySecurity]
 
+        public string leaveRef { get; set; }
 
         public string leavePeriod { get; set; }
 

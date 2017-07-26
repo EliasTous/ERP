@@ -248,7 +248,67 @@
                                                 <ext:ListItem Text="+12 UTC" Value="12" />
                                             </Items>
                                         </ext:ComboBox>
-                                        <ext:Panel runat="server" Layout="HBoxLayout" Height="100"><Items>
+                                        <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  QueryMode="Local"  LabelWidth="150" ForceSelection="true" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: PassportRTW %>" Name="passportCombo" DisplayField="name" ValueField="recordId" runat="server" ID="passportCombo">
+                                            <Store>
+                                                <ext:Store runat="server" ID="passportStore">
+                                                    <Model>
+                                                        <ext:Model runat="server">
+                                                            <Fields>
+                                                                <ext:ModelField Name="recordId" />
+                                                                <ext:ModelField Name="name" />
+                                                            </Fields>
+                                                        </ext:Model>
+                                                    </Model>
+                                                </ext:Store>
+                                            </Store>
+                                            <RightButtons>
+                                                <ext:Button ID="Button5" runat="server" Icon="Add" Hidden="true">
+                                                    <Listeners>
+                                                        <Click Handler="CheckSession();  " />
+                                                    </Listeners>
+                                                    <DirectEvents>
+
+                                                        <Click OnEvent="addPassport">
+                                                        </Click>
+                                                    </DirectEvents>
+                                                </ext:Button>
+                                            </RightButtons>
+                                            <Listeners>
+                                                <FocusEnter Handler=" if(!this.readOnly)this.rightButtons[0].setHidden(false);" />
+                                                <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
+                                            </Listeners>
+                                        </ext:ComboBox>
+                                         <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  QueryMode="Local"  LabelWidth="150" ForceSelection="true" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: IDRTW %>" Name="idCombo" DisplayField="name" ValueField="recordId" runat="server" ID="idCombo">
+                                            <Store>
+                                                <ext:Store runat="server" ID="idStore">
+                                                    <Model>
+                                                        <ext:Model runat="server">
+                                                            <Fields>
+                                                                <ext:ModelField Name="recordId" />
+                                                                <ext:ModelField Name="name" />
+                                                            </Fields>
+                                                        </ext:Model>
+                                                    </Model>
+                                                </ext:Store>
+                                            </Store>
+                                            <RightButtons>
+                                                <ext:Button ID="Button6" runat="server" Icon="Add" Hidden="true">
+                                                    <Listeners>
+                                                        <Click Handler="CheckSession();  " />
+                                                    </Listeners>
+                                                    <DirectEvents>
+
+                                                        <Click OnEvent="addId">
+                                                        </Click>
+                                                    </DirectEvents>
+                                                </ext:Button>
+                                            </RightButtons>
+                                            <Listeners>
+                                                <FocusEnter Handler=" if(!this.readOnly)this.rightButtons[0].setHidden(false);" />
+                                                <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
+                                            </Listeners>
+                                        </ext:ComboBox>
+                                        <ext:Panel runat="server" Layout="HBoxLayout" Height="50"><Items>
                                         <ext:TextField runat="server" Name="localServerIP" ID="localServerIP"  LabelWidth="150" FieldLabel="<%$Resources:LocalServerIP %>">
                                             <Validator Fn="ValidateIPaddress" />
                                           

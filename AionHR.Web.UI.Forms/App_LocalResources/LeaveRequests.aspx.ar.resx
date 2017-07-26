@@ -237,4 +237,7 @@
   <data name="LateDays" xml:space="preserve">
     <value>التأخير</value>
   </data>
+  <data name="FieldLeaveRef" xml:space="preserve">
+    <value>الرقم</value>
+  </data>
 </root>

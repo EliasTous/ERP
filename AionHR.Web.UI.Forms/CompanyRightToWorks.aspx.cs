@@ -603,7 +603,12 @@ namespace AionHR.Web.UI.Forms
             {
                 return;
             }
-
+            if(b.issueDate>b.expiryDate)
+            {
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, GetLocalResourceObject("DateRangeError")).Show();
+                return;
+            }
             if (string.IsNullOrEmpty(id))
             {
 

@@ -1212,4 +1212,10 @@
   <data name="Property4503003" xml:space="preserve">
     <value>قيمة الدفعة</value>
   </data>
+  <data name="Property4202010" xml:space="preserve">
+    <value>تفاصيل العودة </value>
+  </data>
+  <data name="Property4202011" xml:space="preserve">
+    <value>رقم الإجازة</value>
+  </data>
 </root>

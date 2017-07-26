@@ -255,6 +255,7 @@ namespace AionHR.Web.UI.Forms.Controls
             approved.Text = disabled.ToString();
             leavePeriod.Disabled = disabled;
             calDays.Disabled = disabled;
+            leaveRef.Disabled = disabled;
             
         }
 
@@ -269,6 +270,7 @@ namespace AionHR.Web.UI.Forms.Controls
             approved.Text = "False";
             SaveButton.Disabled = false;
             calDays.Disabled = false;
+            leaveRef.Disabled = false;
         }
 
         private void setUsed(bool disabled)
@@ -280,6 +282,7 @@ namespace AionHR.Web.UI.Forms.Controls
             SaveButton.Disabled = disabled;
             leavePeriod.Disabled = disabled;
             calDays.Disabled = disabled;
+            leaveRef.Disabled = disabled;
 
         }
 

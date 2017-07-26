@@ -189,7 +189,4 @@
   <data name="WriteProperty" xml:space="preserve">
     <value>تعديل</value>
   </data>
-  <data name="ResetProperties" xml:space="preserve">
-    <value>الافتراضي</value>
-  </data>
 </root>

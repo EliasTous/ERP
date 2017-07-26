@@ -231,7 +231,14 @@ namespace AionHR.Web.UI.Forms.Reports
                 DateTime date = DateTime.ParseExact(x.dayId, "yyyyMMdd", new CultureInfo("en"));
                 x.dateString = date.ToString(_systemService.SessionHelper.GetDateformat());
                 x.dowString = GetGlobalResourceObject("Common", date.DayOfWeek.ToString() + "Text").ToString();
-
+                x.specialTasks = x.jobTasks = "00:00";
+                if (x.workingHours!="00:00")
+                {
+                    x.specialTasks = x.unpaidLeaves;
+                    x.unpaidLeaves = "00:00";
+                    x.jobTasks = x.paidLeaves;
+                    x.paidLeaves = "00:00";
+                }
             }
             );
 

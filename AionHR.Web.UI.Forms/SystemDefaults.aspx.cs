@@ -23,6 +23,7 @@ using AionHR.Model.Company.Structure;
 using AionHR.Model.System;
 using AionHR.Model.Attendance;
 using AionHR.Model.Employees.Leaves;
+using AionHR.Model.Employees.Profile;
 
 namespace AionHR.Web.UI.Forms
 {
@@ -32,6 +33,7 @@ namespace AionHR.Web.UI.Forms
         ILeaveManagementService _leaveManagementService = ServiceLocator.Current.GetInstance<ILeaveManagementService>();
         ICompanyStructureService _companyStructureService = ServiceLocator.Current.GetInstance<ICompanyStructureService>();
         ITimeAttendanceService _timeAttendanceService = ServiceLocator.Current.GetInstance<ITimeAttendanceService>();
+        IEmployeeService _employeeService = ServiceLocator.Current.GetInstance<IEmployeeService>();
         protected override void InitializeCulture()
         {
 
@@ -93,6 +95,31 @@ namespace AionHR.Web.UI.Forms
             FillCurrency();
             FillCalendars();
             FillVS();
+            FillIDs();
+            FillPassports();
+        }
+
+        private void FillIDs()
+        {
+            idStore.DataSource = GetRTW();
+            idStore.DataBind();
+        }
+        private List<DocumentType> GetRTW()
+        {
+            ListRequest RWDocumentType = new ListRequest();
+            ListResponse<DocumentType> resp = _employeeService.ChildGetAll<DocumentType>(RWDocumentType);
+            if (!resp.Success)
+            {
+               X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() : resp.Summary).Show();
+                return new List<DocumentType>();
+            }
+            return resp.Items;
+           
+        }
+        private void FillPassports()
+        {
+            passportStore.DataSource = GetRTW();
+            passportStore.DataBind();
         }
 
         private void FillDefaults(List<KeyValuePair<string, string>> items)
@@ -124,6 +151,12 @@ namespace AionHR.Web.UI.Forms
 
             catch { }
             try { caId.Select(items.Where(s => s.Key == "caId").First().Value); }
+
+            catch { }
+            try { idCombo.Select(items.Where(s => s.Key == "resDocTypeId").First().Value); }
+
+            catch { }
+            try { passportCombo.Select(items.Where(s => s.Key == "passportDocTypeId").First().Value); }
 
             catch { }
             try { vsId.Select(items.Where(s => s.Key == "vsId").First().Value); }
@@ -207,6 +240,12 @@ namespace AionHR.Web.UI.Forms
                 submittedValues.Add(new KeyValuePair<string, string>("fdow", values.fdow.ToString()));
             if (!string.IsNullOrEmpty(values.caId.ToString()))
                 submittedValues.Add(new KeyValuePair<string, string>("caId", values.caId.ToString()));
+            if (!string.IsNullOrEmpty(values.vsId.ToString()))
+                submittedValues.Add(new KeyValuePair<string, string>("vsId", values.vsId.ToString()));
+            if (!string.IsNullOrEmpty(values.passportCombo.ToString()))
+                submittedValues.Add(new KeyValuePair<string, string>("passportDocTypeId", values.passportCombo.ToString()));
+            if (!string.IsNullOrEmpty(values.idCombo.ToString()))
+                submittedValues.Add(new KeyValuePair<string, string>("resDocTypeId", values.idCombo.ToString()));
             if (!string.IsNullOrEmpty(values.vsId.ToString()))
                 submittedValues.Add(new KeyValuePair<string, string>("vsId", values.vsId.ToString()));
 
@@ -383,6 +422,60 @@ namespace AionHR.Web.UI.Forms
                 dept.recordId = response.recordId;
                 FillVS();
                 vsId.Select(dept.recordId);
+            }
+            else
+            {
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).ToString() : response.Summary).Show();
+                return;
+            }
+
+        }
+
+        protected void addId(object sender, DirectEventArgs e)
+        {
+            if (string.IsNullOrEmpty(idCombo.Text))
+                return;
+            DocumentType dept = new DocumentType();
+            dept.name = idCombo.Text;
+
+            PostRequest<DocumentType> depReq = new PostRequest<DocumentType>();
+            depReq.entity = dept;
+
+            PostResponse<DocumentType> response = _employeeService.ChildAddOrUpdate<DocumentType>(depReq);
+            if (response.Success)
+            {
+                dept.recordId = response.recordId;
+                idStore.DataSource = GetRTW();
+                idStore.DataBind();
+                idCombo.Select(dept.recordId);
+            }
+            else
+            {
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).ToString() : response.Summary).Show();
+                return;
+            }
+
+        }
+
+        protected void addPassport(object sender, DirectEventArgs e)
+        {
+            if (string.IsNullOrEmpty(passportCombo.Text))
+                return;
+            DocumentType dept = new DocumentType();
+            dept.name = passportCombo.Text;
+
+            PostRequest<DocumentType> depReq = new PostRequest<DocumentType>();
+            depReq.entity = dept;
+
+            PostResponse<DocumentType> response = _employeeService.ChildAddOrUpdate<DocumentType>(depReq);
+            if (response.Success)
+            {
+                dept.recordId = response.recordId;
+                passportStore.DataSource = GetRTW();
+                passportStore.DataBind();
+                passportCombo.Select(dept.recordId);
             }
             else
             {

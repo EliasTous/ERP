@@ -954,4 +954,7 @@
   <data name="Inactive" xml:space="preserve">
     <value>غير فعال</value>
   </data>
+  <data name="RT108" xml:space="preserve">
+    <value>معلومات الموظفين</value>
+  </data>
 </root>

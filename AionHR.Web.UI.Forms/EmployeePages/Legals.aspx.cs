@@ -596,12 +596,18 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             catch (Exception exp)
             {
                 X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, "Invalid Format").Show();
+                X.Msg.Alert(Resources.Common.Error, GetLocalResourceObject("DateFormatError")).Show();
 
                 return;
             }
             //b.remarks = 
+            if(b.issueDate!=null &&(b.issueDate>b.expiryDate))
+            {
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, GetLocalResourceObject("DateRangeError")).Show();
 
+                return;
+            }
             if (string.IsNullOrEmpty(id))
             {
 

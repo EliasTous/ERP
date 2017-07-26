@@ -121,7 +121,7 @@
     <value>اليوم</value>
   </data>
   <data name="xrLabel10.Text" xml:space="preserve">
-    <value>خروج4</value>
+    <value>مهمات عمل</value>
   </data>
   <data name="xrLabel11.Text" xml:space="preserve">
     <value>وقت العمل الفعلي</value>
@@ -133,10 +133,10 @@
     <value>التأخير</value>
   </data>
   <data name="xrLabel14.Text" xml:space="preserve">
-    <value>غياب مدفوع</value>
+    <value> مدفوع</value>
   </data>
   <data name="xrLabel15.Text" xml:space="preserve">
-    <value>غياب غير مدفوع</value>
+    <value> غير مدفوع</value>
   </data>
   <data name="xrLabel16.Text" xml:space="preserve">
     <value>دخول متأخر</value>
@@ -247,7 +247,7 @@
     <value>خروج3</value>
   </data>
   <data name="xrLabel9.Text" xml:space="preserve">
-    <value>دخول 4</value>
+    <value>مهمات خاصة</value>
   </data>
   <data name="xrPageInfo2.Format" xml:space="preserve">
     <value>صفحة {0} من {1}</value>

@@ -186,6 +186,9 @@
   <data name="FirstNameMiddleNameLastName" xml:space="preserve">
     <value>First Name, Middle Name, Last Name</value>
   </data>
+  <data name="IDRTW" xml:space="preserve">
+    <value>ID Document Type</value>
+  </data>
   <data name="LastNameFirstName" xml:space="preserve">
     <value>Last Name, First Name</value>
   </data>
@@ -197,6 +200,9 @@
   </data>
   <data name="MonthYearDay" xml:space="preserve">
     <value>Month - Year - Day</value>
+  </data>
+  <data name="PassportRTW" xml:space="preserve">
+    <value>Passport Document Type</value>
   </data>
   <data name="ReferenceFirstNameLastName" xml:space="preserve">
     <value>Reference, First Name, LastName</value>

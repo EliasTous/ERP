@@ -610,7 +610,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to SQLفي جدول عمود null لا يمكن ادخال القيمة.
+        ///   Looks up a localized string similar to Cannot Insert Null Value to this field.
         /// </summary>
         internal static string Error_515 {
             get {
@@ -619,7 +619,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to خطأ اتصال قاعدة البيانات.
+        ///   Looks up a localized string similar to Database connection error.
         /// </summary>
         internal static string Error_53 {
             get {
@@ -628,7 +628,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to خطأ في سلامة البيانات.
+        ///   Looks up a localized string similar to Data Entegrity Error.
         /// </summary>
         internal static string Error_547 {
             get {

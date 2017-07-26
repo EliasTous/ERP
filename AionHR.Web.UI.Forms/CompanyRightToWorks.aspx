@@ -454,8 +454,17 @@
                                 <ext:TextField ID="expiryDateMulti" Width="250" runat="server" Margin="5" FieldLabel="<%$ Resources:FieldExpiryDate%>" FieldCls="showCal2">
                                 </ext:TextField>
 
-                                <ext:DateField ID="issueDate" runat="server" FieldLabel="<%$ Resources:FieldIssueDate%>" Name="issueDate" />
-                                <ext:DateField ID="expiryDate" runat="server" FieldLabel="<%$ Resources:FieldExpiryDate%>" Name="expiryDate" />
+                                <ext:DateField ID="issueDate" runat="server" Vtype="daterange" FieldLabel="<%$ Resources:FieldIssueDate%>" Name="issueDate" >
+                                     <CustomConfig>
+                        <ext:ConfigItem Name="endDateField" Value="expiryDate" Mode="Value" />
+                    </CustomConfig>
+                                    </ext:DateField>
+                                <ext:DateField ID="expiryDate" runat="server" Vtype="daterange" FieldLabel="<%$ Resources:FieldExpiryDate%>" Name="expiryDate" >
+                                    <CustomConfig>
+                        <ext:ConfigItem Name="startDateField" Value="issueDate" Mode="Value" />
+                    </CustomConfig>
+                                    </ext:DateField>
+
 
 
                                 <ext:FileUploadField runat="server" ID="rwFile" FieldLabel="<%$ Resources:FieldFile%>" AllowBlank="true" Name="fileUrl" />

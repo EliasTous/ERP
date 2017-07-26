@@ -159,7 +159,7 @@ namespace AionHR.Web.UI.Forms
 
                 case "imgAttach":
 
-                    //Here will show up a winow relatice to attachement depending on the case we are working on
+                    //Here will show up a window relatice to attachement depending on the case we are working on
                     break;
                 default:
                     break;

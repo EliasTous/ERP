@@ -30,6 +30,11 @@ namespace AionHR.Model.Reports
         }
         public string paidLeaves { get; set; }
         public string unpaidLeaves { get; set; }
+
+        public string jobTasks { get; set; }
+
+        public string specialTasks { get; set; }
+
         public string checkIn1 { get; set; }
         public string checkIn2 { get; set; }
         public string checkIn3 { get; set; }

@@ -296,7 +296,7 @@
                                     </Store>
                                     
                                 </ext:ComboBox>
-                                <ext:ComboBox   AnyMatch="true" CaseSensitive="false"   Width="400" QueryMode="Local" LabelWidth="130" ForceSelection="true" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: LoanCoverageType %>" Name="ldMethod" runat="server" ID="ldMethod">
+                                <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  AllowBlank="false"  Width="400" QueryMode="Local" LabelWidth="130" ForceSelection="true" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: LoanCoverageType %>" Name="ldMethod" runat="server" ID="ldMethod">
                                             <Items>
                                                 <ext:ListItem Text="<%$ Resources: ldMethod1 %>" Value="1" />
                                                 <ext:ListItem Text="<%$ Resources: ldMethod2 %>" Value="2" />
@@ -310,7 +310,7 @@
                                             </Listeners>
 
                                         </ext:ComboBox>
-                                <ext:NumberField Width="400" runat="server" LabelWidth="130" ID="ldValue" Name="ldValue" FieldLabel="<%$ Resources: PaymentValue %>" MinValue="0" />
+                                <ext:NumberField Width="400" AllowBlank="false" runat="server" LabelWidth="130" ID="ldValue" Name="ldValue" FieldLabel="<%$ Resources: PaymentValue %>" MinValue="0" />
                                 
                             </Items>
 

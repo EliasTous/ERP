@@ -192,6 +192,9 @@
   <data name="FirstNameMiddleNameLastName" xml:space="preserve">
     <value>الاسم الأول , الاسم الأوسط , الاسم الأخير</value>
   </data>
+  <data name="IDRTW" xml:space="preserve">
+    <value>نوع ملف الهوية أو الإقامة</value>
+  </data>
   <data name="LastNameFirstName" xml:space="preserve">
     <value>الاسم الأخير , الاسم الأول</value>
   </data>
@@ -203,6 +206,9 @@
   </data>
   <data name="MonthYearDay" xml:space="preserve">
     <value>شهر - سنة - يوم</value>
+  </data>
+  <data name="PassportRTW" xml:space="preserve">
+    <value>نوع ملف جواز السفر</value>
   </data>
   <data name="ReferenceFirstNameLastName" xml:space="preserve">
     <value>الرمز، الاسم الأول، الاسم الأخير</value>

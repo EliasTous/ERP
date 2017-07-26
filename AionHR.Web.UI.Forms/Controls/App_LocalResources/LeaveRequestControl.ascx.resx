@@ -249,4 +249,7 @@
   <data name="SpecifyStartDateFirst" xml:space="preserve">
     <value>Please Specify Start Date First!</value>
   </data>
+  <data name="FieldLeaveRef" xml:space="preserve">
+    <value>Ref</value>
+  </data>
 </root>

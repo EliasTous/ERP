@@ -263,7 +263,7 @@
                                                                                 <Click Handler="openNewTab('nationalieis', 'Nationalities.aspx', #{naTitle}.value, 'icon-Employees')" />
                                                                             </Listeners>
                                                                         </ext:MenuItem>
-                                                                        <ext:MenuItem runat="server" Text="<%$Resources: Common , States%>">
+                                                                        <ext:MenuItem runat="server" Text="<%$Resources: Common , States%>" >
                                                                             <Listeners>
                                                                                 <Click Handler="openNewTab('states', 'States.aspx', #{systTitle}.value, 'icon-Employees')" />
                                                                             </Listeners>

@@ -89,6 +89,7 @@
 
                         <ext:ModelField Name="recordId" />
                         <ext:ModelField Name="employeeId" />
+                        <ext:ModelField Name="leaveRef" />
                         <ext:ModelField Name="startDate" />
                         <ext:ModelField Name="endDate" />
                         <ext:ModelField Name="returnDate" />
@@ -283,6 +284,7 @@
                     <ColumnModel ID="ColumnModel1" runat="server" SortAscText="<%$ Resources:Common , SortAscText %>" SortDescText="<%$ Resources:Common ,SortDescText  %>" SortClearText="<%$ Resources:Common ,SortClearText  %>" ColumnsText="<%$ Resources:Common ,ColumnsText  %>" EnableColumnHide="false" Sortable="false">
                         <Columns>
                             <ext:Column ID="ColRecordId" Visible="false" DataIndex="recordId" runat="server" />
+                            <ext:Column ID="Column4" DataIndex="leaveRef" Text="<%$ Resources: FieldLeaveRef%>" runat="server" Width="70" />
                             <ext:Column ID="ColName" DataIndex="employeeName" Text="<%$ Resources: FieldEmployeeName%>" runat="server" Flex="6">
                                 <Renderer Handler=" return  record.data['employeeName'].fullName" />
                             </ext:Column>

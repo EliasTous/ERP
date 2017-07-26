@@ -183,4 +183,10 @@
   <data name="ChooseCalendarType" xml:space="preserve">
     <value>Choose Calendar</value>
   </data>
+  <data name="DateFormatError" xml:space="preserve">
+    <value>Date Format error, please use date picker to choose a date correctly</value>
+  </data>
+  <data name="DateRangeError" xml:space="preserve">
+    <value>Expiry date must be greater than Issue Date</value>
+  </data>
 </root>

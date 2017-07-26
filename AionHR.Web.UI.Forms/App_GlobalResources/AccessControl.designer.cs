@@ -2689,6 +2689,24 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Return Notes.
+        /// </summary>
+        internal static string Property4202010 {
+            get {
+                return ResourceManager.GetString("Property4202010", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Leave Ref.
+        /// </summary>
+        internal static string Property4202011 {
+            get {
+                return ResourceManager.GetString("Property4202011", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Day.
         /// </summary>
         internal static string Property4202101 {

@@ -15,6 +15,8 @@ namespace AionHR.Model.Reports
 
         public DateTime startDate { get; set; }
 
+        public string leaveRef { get; set; }
+
         public String startDateString { get; set; }
         public DateTime endDate { get; set; }
         public String endDateString { get; set; }

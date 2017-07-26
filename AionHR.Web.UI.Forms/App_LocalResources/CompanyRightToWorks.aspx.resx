@@ -153,4 +153,7 @@
   <data name="ChooseCalendarType" xml:space="preserve">
     <value>Calendar</value>
   </data>
+  <data name="DateRangeError" xml:space="preserve">
+    <value>Expiry Date must be greater than issue date</value>
+  </data>
 </root>
