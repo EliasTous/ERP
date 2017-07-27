@@ -439,6 +439,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Import Job Info.
+        /// </summary>
+        internal static string Class31097 {
+            get {
+                return ResourceManager.GetString("Class31097", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Import Employees.
         /// </summary>
         internal static string Class31098 {

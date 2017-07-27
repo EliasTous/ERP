@@ -9,7 +9,7 @@ namespace AionHR.Model.Reports
 {
     public class RT108
     {
-        public string reference { get; set; }
+        
 
         public EmployeeName name { get; set; }
 
@@ -17,21 +17,21 @@ namespace AionHR.Model.Reports
 
         public string religionString { get; set; }
 
-        public string nationality { get; set; }
+        public string countryName { get; set; }
 
         public int gender { get; set; }
 
         public string genderString { get; set; }
 
-        public int idRef { get; set; }
+        public string resRef { get; set; }
 
-        public DateTime? idExpiry { get; set; }
+        public DateTime? resExpiryDate { get; set; }
 
         public string idExpiryString { get; set; }
 
-        public int passportRef { get; set; }
+        public string passportRef { get; set; }
 
-        public DateTime? passportExpiry { get; set; }
+        public DateTime? passportExpiryDate { get; set; }
 
         public string passportExpiryString { get; set; }
 
@@ -42,16 +42,16 @@ namespace AionHR.Model.Reports
         public string departmentName { get; set; }
         public string divisionName { get; set; }
         public string ehStatus { get; set; }
-        public DateTime hireDate { get; set; }
+        public DateTime? hireDate { get; set; }
         public string hireDateString { get; set; }
-        public DateTime lastLeaveReturn { get; set; }
+        public DateTime? lastLeaveReturnDate { get; set; }
         public string lastLeaveReturnString { get; set; }
 
         public string hireLength { get; set; }
 
         public DateTime hireEndDate { get; set; }
         public string hireEndDateString { get; set; }
-
+        public string contractDuration { get; set; }
         public double taxableSalary { get; set; }
         public double unTaxableSalary { get; set; }
 
@@ -59,8 +59,9 @@ namespace AionHR.Model.Reports
         public bool isInactive { get; set; }
 
         public string isInactiveString { get; set; }
-
-        public string terminationReason { get; set; }
+        public DateTime? terminationDate { get; set; }
+        public string terminationDateString { get; set; }
+        public string terminationReasonName { get; set; }
 
 
     }

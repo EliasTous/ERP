@@ -258,6 +258,14 @@ public class DetailedAttendance : DevExpress.XtraReports.UI.XtraReport
             this.xrLabel28 = new DevExpress.XtraReports.UI.XRLabel();
             this.centeredTitle = new DevExpress.XtraReports.UI.XRControlStyle();
             this.ReportFooter = new DevExpress.XtraReports.UI.ReportFooterBand();
+            this.xrLabel61 = new DevExpress.XtraReports.UI.XRLabel();
+            this.xrLabel60 = new DevExpress.XtraReports.UI.XRLabel();
+            this.xrLabel59 = new DevExpress.XtraReports.UI.XRLabel();
+            this.xrLabel55 = new DevExpress.XtraReports.UI.XRLabel();
+            this.xrLabel46 = new DevExpress.XtraReports.UI.XRLabel();
+            this.xrLabel45 = new DevExpress.XtraReports.UI.XRLabel();
+            this.xrLabel42 = new DevExpress.XtraReports.UI.XRLabel();
+            this.xrLabel40 = new DevExpress.XtraReports.UI.XRLabel();
             this.approvedAbsenseLbl = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel24 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel23 = new DevExpress.XtraReports.UI.XRLabel();
@@ -294,14 +302,6 @@ public class DetailedAttendance : DevExpress.XtraReports.UI.XtraReport
             this.latenessDay = new DevExpress.XtraReports.UI.CalculatedField();
             this.Department = new DevExpress.XtraReports.Parameters.Parameter();
             this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
-            this.xrLabel40 = new DevExpress.XtraReports.UI.XRLabel();
-            this.xrLabel42 = new DevExpress.XtraReports.UI.XRLabel();
-            this.xrLabel45 = new DevExpress.XtraReports.UI.XRLabel();
-            this.xrLabel46 = new DevExpress.XtraReports.UI.XRLabel();
-            this.xrLabel55 = new DevExpress.XtraReports.UI.XRLabel();
-            this.xrLabel59 = new DevExpress.XtraReports.UI.XRLabel();
-            this.xrLabel60 = new DevExpress.XtraReports.UI.XRLabel();
-            this.xrLabel61 = new DevExpress.XtraReports.UI.XRLabel();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
@@ -412,6 +412,8 @@ public class DetailedAttendance : DevExpress.XtraReports.UI.XtraReport
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "workingHours")});
             resources.ApplyResources(this.xrTableCell14, "xrTableCell14");
             this.xrTableCell14.Name = "xrTableCell14";
+            this.xrTableCell14.StylePriority.UseTextAlignment = false;
+            this.xrTableCell14.BeforePrint += new System.Drawing.Printing.PrintEventHandler(this.xrTableCell13_BeforePrint);
             // 
             // xrTableCell13
             // 
@@ -419,6 +421,8 @@ public class DetailedAttendance : DevExpress.XtraReports.UI.XtraReport
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "paidLeaves")});
             resources.ApplyResources(this.xrTableCell13, "xrTableCell13");
             this.xrTableCell13.Name = "xrTableCell13";
+            this.xrTableCell13.StylePriority.UseTextAlignment = false;
+            this.xrTableCell13.BeforePrint += new System.Drawing.Printing.PrintEventHandler(this.xrTableCell13_BeforePrint);
             // 
             // xrTableCell15
             // 
@@ -426,6 +430,8 @@ public class DetailedAttendance : DevExpress.XtraReports.UI.XtraReport
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "unpaidLeaves")});
             resources.ApplyResources(this.xrTableCell15, "xrTableCell15");
             this.xrTableCell15.Name = "xrTableCell15";
+            this.xrTableCell15.StylePriority.UseTextAlignment = false;
+            this.xrTableCell15.BeforePrint += new System.Drawing.Printing.PrintEventHandler(this.xrTableCell13_BeforePrint);
             // 
             // xrTableCell11
             // 
@@ -437,6 +443,8 @@ public class DetailedAttendance : DevExpress.XtraReports.UI.XtraReport
             resources.ApplyResources(this.xrTableCell11, "xrTableCell11");
             this.xrTableCell11.Name = "xrTableCell11";
             this.xrTableCell11.StylePriority.UseBorders = false;
+            this.xrTableCell11.StylePriority.UseTextAlignment = false;
+            this.xrTableCell11.BeforePrint += new System.Drawing.Printing.PrintEventHandler(this.xrTableCell13_BeforePrint);
             // 
             // xrTableCell12
             // 
@@ -448,6 +456,8 @@ public class DetailedAttendance : DevExpress.XtraReports.UI.XtraReport
             resources.ApplyResources(this.xrTableCell12, "xrTableCell12");
             this.xrTableCell12.Name = "xrTableCell12";
             this.xrTableCell12.StylePriority.UseBorders = false;
+            this.xrTableCell12.StylePriority.UseTextAlignment = false;
+            this.xrTableCell12.BeforePrint += new System.Drawing.Printing.PrintEventHandler(this.xrTableCell13_BeforePrint);
             // 
             // xrTableCell10
             // 
@@ -455,6 +465,7 @@ public class DetailedAttendance : DevExpress.XtraReports.UI.XtraReport
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "OL_A", "{0}")});
             resources.ApplyResources(this.xrTableCell10, "xrTableCell10");
             this.xrTableCell10.Name = "xrTableCell10";
+            this.xrTableCell10.StylePriority.UseTextAlignment = false;
             this.xrTableCell10.BeforePrint += new System.Drawing.Printing.PrintEventHandler(this.xrTableCell3_BeforePrint);
             // 
             // xrTableCell16
@@ -463,6 +474,7 @@ public class DetailedAttendance : DevExpress.XtraReports.UI.XtraReport
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "OL_D", "{0}")});
             resources.ApplyResources(this.xrTableCell16, "xrTableCell16");
             this.xrTableCell16.Name = "xrTableCell16";
+            this.xrTableCell16.StylePriority.UseTextAlignment = false;
             this.xrTableCell16.BeforePrint += new System.Drawing.Printing.PrintEventHandler(this.xrTableCell3_BeforePrint);
             // 
             // xrTableCell3
@@ -471,6 +483,7 @@ public class DetailedAttendance : DevExpress.XtraReports.UI.XtraReport
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "latenessDay", "{0}")});
             resources.ApplyResources(this.xrTableCell3, "xrTableCell3");
             this.xrTableCell3.Name = "xrTableCell3";
+            this.xrTableCell3.StylePriority.UseTextAlignment = false;
             this.xrTableCell3.BeforePrint += new System.Drawing.Printing.PrintEventHandler(this.xrTableCell3_BeforePrint);
             // 
             // TopMargin
@@ -532,6 +545,7 @@ public class DetailedAttendance : DevExpress.XtraReports.UI.XtraReport
             this.xrLabel9.Name = "xrLabel9";
             this.xrLabel9.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel9.StylePriority.UseBorders = false;
+            this.xrLabel9.StylePriority.UseTextAlignment = false;
             // 
             // xrLabel10
             // 
@@ -542,6 +556,7 @@ public class DetailedAttendance : DevExpress.XtraReports.UI.XtraReport
             this.xrLabel10.Name = "xrLabel10";
             this.xrLabel10.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel10.StylePriority.UseBorders = false;
+            this.xrLabel10.StylePriority.UseTextAlignment = false;
             // 
             // xrLabel18
             // 
@@ -552,6 +567,7 @@ public class DetailedAttendance : DevExpress.XtraReports.UI.XtraReport
             this.xrLabel18.Name = "xrLabel18";
             this.xrLabel18.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel18.StylePriority.UseBorders = false;
+            this.xrLabel18.StylePriority.UseTextAlignment = false;
             // 
             // xrLabel17
             // 
@@ -562,6 +578,7 @@ public class DetailedAttendance : DevExpress.XtraReports.UI.XtraReport
             this.xrLabel17.Name = "xrLabel17";
             this.xrLabel17.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel17.StylePriority.UseBorders = false;
+            this.xrLabel17.StylePriority.UseTextAlignment = false;
             // 
             // xrLabel16
             // 
@@ -572,6 +589,7 @@ public class DetailedAttendance : DevExpress.XtraReports.UI.XtraReport
             this.xrLabel16.Name = "xrLabel16";
             this.xrLabel16.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel16.StylePriority.UseBorders = false;
+            this.xrLabel16.StylePriority.UseTextAlignment = false;
             // 
             // xrLabel15
             // 
@@ -582,6 +600,7 @@ public class DetailedAttendance : DevExpress.XtraReports.UI.XtraReport
             this.xrLabel15.Name = "xrLabel15";
             this.xrLabel15.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel15.StylePriority.UseBorders = false;
+            this.xrLabel15.StylePriority.UseTextAlignment = false;
             // 
             // xrLabel14
             // 
@@ -592,6 +611,7 @@ public class DetailedAttendance : DevExpress.XtraReports.UI.XtraReport
             this.xrLabel14.Name = "xrLabel14";
             this.xrLabel14.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel14.StylePriority.UseBorders = false;
+            this.xrLabel14.StylePriority.UseTextAlignment = false;
             // 
             // xrLabel13
             // 
@@ -1062,6 +1082,90 @@ public class DetailedAttendance : DevExpress.XtraReports.UI.XtraReport
             this.ReportFooter.Name = "ReportFooter";
             this.ReportFooter.BeforePrint += new System.Drawing.Printing.PrintEventHandler(this.PageHeader_BeforePrint);
             // 
+            // xrLabel61
+            // 
+            this.xrLabel61.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            | DevExpress.XtraPrinting.BorderSide.Right) 
+            | DevExpress.XtraPrinting.BorderSide.Bottom)));
+            resources.ApplyResources(this.xrLabel61, "xrLabel61");
+            this.xrLabel61.Name = "xrLabel61";
+            this.xrLabel61.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel61.StylePriority.UseBorders = false;
+            this.xrLabel61.BeforePrint += new System.Drawing.Printing.PrintEventHandler(this.xrLabel61_BeforePrint);
+            // 
+            // xrLabel60
+            // 
+            this.xrLabel60.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            | DevExpress.XtraPrinting.BorderSide.Right) 
+            | DevExpress.XtraPrinting.BorderSide.Bottom)));
+            resources.ApplyResources(this.xrLabel60, "xrLabel60");
+            this.xrLabel60.Name = "xrLabel60";
+            this.xrLabel60.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel60.StylePriority.UseBorders = false;
+            this.xrLabel60.BeforePrint += new System.Drawing.Printing.PrintEventHandler(this.xrLabel60_BeforePrint);
+            // 
+            // xrLabel59
+            // 
+            this.xrLabel59.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            | DevExpress.XtraPrinting.BorderSide.Right) 
+            | DevExpress.XtraPrinting.BorderSide.Bottom)));
+            resources.ApplyResources(this.xrLabel59, "xrLabel59");
+            this.xrLabel59.Name = "xrLabel59";
+            this.xrLabel59.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel59.StylePriority.UseBorders = false;
+            this.xrLabel59.BeforePrint += new System.Drawing.Printing.PrintEventHandler(this.xrLabel59_BeforePrint);
+            // 
+            // xrLabel55
+            // 
+            this.xrLabel55.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            | DevExpress.XtraPrinting.BorderSide.Right) 
+            | DevExpress.XtraPrinting.BorderSide.Bottom)));
+            resources.ApplyResources(this.xrLabel55, "xrLabel55");
+            this.xrLabel55.Name = "xrLabel55";
+            this.xrLabel55.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel55.StylePriority.UseBorders = false;
+            this.xrLabel55.BeforePrint += new System.Drawing.Printing.PrintEventHandler(this.xrLabel55_BeforePrint);
+            // 
+            // xrLabel46
+            // 
+            this.xrLabel46.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            | DevExpress.XtraPrinting.BorderSide.Right) 
+            | DevExpress.XtraPrinting.BorderSide.Bottom)));
+            resources.ApplyResources(this.xrLabel46, "xrLabel46");
+            this.xrLabel46.Name = "xrLabel46";
+            this.xrLabel46.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel46.StylePriority.UseBorders = false;
+            // 
+            // xrLabel45
+            // 
+            this.xrLabel45.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            | DevExpress.XtraPrinting.BorderSide.Right) 
+            | DevExpress.XtraPrinting.BorderSide.Bottom)));
+            resources.ApplyResources(this.xrLabel45, "xrLabel45");
+            this.xrLabel45.Name = "xrLabel45";
+            this.xrLabel45.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel45.StylePriority.UseBorders = false;
+            // 
+            // xrLabel42
+            // 
+            this.xrLabel42.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            | DevExpress.XtraPrinting.BorderSide.Right) 
+            | DevExpress.XtraPrinting.BorderSide.Bottom)));
+            resources.ApplyResources(this.xrLabel42, "xrLabel42");
+            this.xrLabel42.Name = "xrLabel42";
+            this.xrLabel42.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel42.StylePriority.UseBorders = false;
+            // 
+            // xrLabel40
+            // 
+            this.xrLabel40.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            | DevExpress.XtraPrinting.BorderSide.Right) 
+            | DevExpress.XtraPrinting.BorderSide.Bottom)));
+            resources.ApplyResources(this.xrLabel40, "xrLabel40");
+            this.xrLabel40.Name = "xrLabel40";
+            this.xrLabel40.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel40.StylePriority.UseBorders = false;
+            // 
             // approvedAbsenseLbl
             // 
             this.approvedAbsenseLbl.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
@@ -1122,6 +1226,7 @@ public class DetailedAttendance : DevExpress.XtraReports.UI.XtraReport
             this.SpecialTaskLbl.Name = "SpecialTaskLbl";
             this.SpecialTaskLbl.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.SpecialTaskLbl.StylePriority.UseBorders = false;
+            this.SpecialTaskLbl.StylePriority.UseTextAlignment = false;
             xrSummary2.Func = DevExpress.XtraReports.UI.SummaryFunc.Custom;
             xrSummary2.Running = DevExpress.XtraReports.UI.SummaryRunning.Report;
             this.SpecialTaskLbl.Summary = xrSummary2;
@@ -1140,6 +1245,7 @@ public class DetailedAttendance : DevExpress.XtraReports.UI.XtraReport
             this.JobTaskLbl.Name = "JobTaskLbl";
             this.JobTaskLbl.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.JobTaskLbl.StylePriority.UseBorders = false;
+            this.JobTaskLbl.StylePriority.UseTextAlignment = false;
             xrSummary3.Func = DevExpress.XtraReports.UI.SummaryFunc.Custom;
             xrSummary3.Running = DevExpress.XtraReports.UI.SummaryRunning.Report;
             this.JobTaskLbl.Summary = xrSummary3;
@@ -1424,6 +1530,7 @@ public class DetailedAttendance : DevExpress.XtraReports.UI.XtraReport
             this.totalWorkingHoursLabel.Name = "totalWorkingHoursLabel";
             this.totalWorkingHoursLabel.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.totalWorkingHoursLabel.StylePriority.UseBorders = false;
+            this.totalWorkingHoursLabel.StylePriority.UseTextAlignment = false;
             xrSummary11.Func = DevExpress.XtraReports.UI.SummaryFunc.Custom;
             xrSummary11.Running = DevExpress.XtraReports.UI.SummaryRunning.Report;
             this.totalWorkingHoursLabel.Summary = xrSummary11;
@@ -1442,6 +1549,7 @@ public class DetailedAttendance : DevExpress.XtraReports.UI.XtraReport
             this.totalPaidLeavesLabel.Name = "totalPaidLeavesLabel";
             this.totalPaidLeavesLabel.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.totalPaidLeavesLabel.StylePriority.UseBorders = false;
+            this.totalPaidLeavesLabel.StylePriority.UseTextAlignment = false;
             xrSummary12.Func = DevExpress.XtraReports.UI.SummaryFunc.Custom;
             xrSummary12.Running = DevExpress.XtraReports.UI.SummaryRunning.Report;
             this.totalPaidLeavesLabel.Summary = xrSummary12;
@@ -1460,6 +1568,7 @@ public class DetailedAttendance : DevExpress.XtraReports.UI.XtraReport
             this.totalUnpaidLeavesLabel.Name = "totalUnpaidLeavesLabel";
             this.totalUnpaidLeavesLabel.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.totalUnpaidLeavesLabel.StylePriority.UseBorders = false;
+            this.totalUnpaidLeavesLabel.StylePriority.UseTextAlignment = false;
             xrSummary13.Func = DevExpress.XtraReports.UI.SummaryFunc.Custom;
             xrSummary13.Running = DevExpress.XtraReports.UI.SummaryRunning.Report;
             this.totalUnpaidLeavesLabel.Summary = xrSummary13;
@@ -1478,6 +1587,7 @@ public class DetailedAttendance : DevExpress.XtraReports.UI.XtraReport
             this.totalOLALabel.Name = "totalOLALabel";
             this.totalOLALabel.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.totalOLALabel.StylePriority.UseBorders = false;
+            this.totalOLALabel.StylePriority.UseTextAlignment = false;
             xrSummary14.Func = DevExpress.XtraReports.UI.SummaryFunc.Custom;
             xrSummary14.Running = DevExpress.XtraReports.UI.SummaryRunning.Report;
             this.totalOLALabel.Summary = xrSummary14;
@@ -1496,6 +1606,7 @@ public class DetailedAttendance : DevExpress.XtraReports.UI.XtraReport
             this.totalOLDLabel.Name = "totalOLDLabel";
             this.totalOLDLabel.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.totalOLDLabel.StylePriority.UseBorders = false;
+            this.totalOLDLabel.StylePriority.UseTextAlignment = false;
             xrSummary15.Func = DevExpress.XtraReports.UI.SummaryFunc.Custom;
             xrSummary15.Running = DevExpress.XtraReports.UI.SummaryRunning.Report;
             this.totalOLDLabel.Summary = xrSummary15;
@@ -1512,6 +1623,7 @@ public class DetailedAttendance : DevExpress.XtraReports.UI.XtraReport
             this.totalLatenessLabel.Name = "totalLatenessLabel";
             this.totalLatenessLabel.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.totalLatenessLabel.StylePriority.UseBorders = false;
+            this.totalLatenessLabel.StylePriority.UseTextAlignment = false;
             xrSummary16.Func = DevExpress.XtraReports.UI.SummaryFunc.Custom;
             xrSummary16.Running = DevExpress.XtraReports.UI.SummaryRunning.Report;
             this.totalLatenessLabel.Summary = xrSummary16;
@@ -1532,90 +1644,6 @@ public class DetailedAttendance : DevExpress.XtraReports.UI.XtraReport
             // 
             this.objectDataSource1.DataSource = typeof(AionHR.Model.Reports.RT303);
             this.objectDataSource1.Name = "objectDataSource1";
-            // 
-            // xrLabel40
-            // 
-            this.xrLabel40.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
-            | DevExpress.XtraPrinting.BorderSide.Right) 
-            | DevExpress.XtraPrinting.BorderSide.Bottom)));
-            resources.ApplyResources(this.xrLabel40, "xrLabel40");
-            this.xrLabel40.Name = "xrLabel40";
-            this.xrLabel40.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96F);
-            this.xrLabel40.StylePriority.UseBorders = false;
-            // 
-            // xrLabel42
-            // 
-            this.xrLabel42.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
-            | DevExpress.XtraPrinting.BorderSide.Right) 
-            | DevExpress.XtraPrinting.BorderSide.Bottom)));
-            resources.ApplyResources(this.xrLabel42, "xrLabel42");
-            this.xrLabel42.Name = "xrLabel42";
-            this.xrLabel42.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96F);
-            this.xrLabel42.StylePriority.UseBorders = false;
-            // 
-            // xrLabel45
-            // 
-            this.xrLabel45.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
-            | DevExpress.XtraPrinting.BorderSide.Right) 
-            | DevExpress.XtraPrinting.BorderSide.Bottom)));
-            resources.ApplyResources(this.xrLabel45, "xrLabel45");
-            this.xrLabel45.Name = "xrLabel45";
-            this.xrLabel45.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96F);
-            this.xrLabel45.StylePriority.UseBorders = false;
-            // 
-            // xrLabel46
-            // 
-            this.xrLabel46.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
-            | DevExpress.XtraPrinting.BorderSide.Right) 
-            | DevExpress.XtraPrinting.BorderSide.Bottom)));
-            resources.ApplyResources(this.xrLabel46, "xrLabel46");
-            this.xrLabel46.Name = "xrLabel46";
-            this.xrLabel46.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96F);
-            this.xrLabel46.StylePriority.UseBorders = false;
-            // 
-            // xrLabel55
-            // 
-            this.xrLabel55.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
-            | DevExpress.XtraPrinting.BorderSide.Right) 
-            | DevExpress.XtraPrinting.BorderSide.Bottom)));
-            resources.ApplyResources(this.xrLabel55, "xrLabel55");
-            this.xrLabel55.Name = "xrLabel55";
-            this.xrLabel55.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96F);
-            this.xrLabel55.StylePriority.UseBorders = false;
-            this.xrLabel55.BeforePrint += new System.Drawing.Printing.PrintEventHandler(this.xrLabel55_BeforePrint);
-            // 
-            // xrLabel59
-            // 
-            this.xrLabel59.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
-            | DevExpress.XtraPrinting.BorderSide.Right) 
-            | DevExpress.XtraPrinting.BorderSide.Bottom)));
-            resources.ApplyResources(this.xrLabel59, "xrLabel59");
-            this.xrLabel59.Name = "xrLabel59";
-            this.xrLabel59.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel59.StylePriority.UseBorders = false;
-            this.xrLabel59.BeforePrint += new System.Drawing.Printing.PrintEventHandler(this.xrLabel59_BeforePrint);
-            // 
-            // xrLabel60
-            // 
-            this.xrLabel60.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
-            | DevExpress.XtraPrinting.BorderSide.Right) 
-            | DevExpress.XtraPrinting.BorderSide.Bottom)));
-            resources.ApplyResources(this.xrLabel60, "xrLabel60");
-            this.xrLabel60.Name = "xrLabel60";
-            this.xrLabel60.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel60.StylePriority.UseBorders = false;
-            this.xrLabel60.BeforePrint += new System.Drawing.Printing.PrintEventHandler(this.xrLabel60_BeforePrint);
-            // 
-            // xrLabel61
-            // 
-            this.xrLabel61.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
-            | DevExpress.XtraPrinting.BorderSide.Right) 
-            | DevExpress.XtraPrinting.BorderSide.Bottom)));
-            resources.ApplyResources(this.xrLabel61, "xrLabel61");
-            this.xrLabel61.Name = "xrLabel61";
-            this.xrLabel61.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel61.StylePriority.UseBorders = false;
-            this.xrLabel61.BeforePrint += new System.Drawing.Printing.PrintEventHandler(this.xrLabel61_BeforePrint);
             // 
             // DetailedAttendance
             // 
@@ -1797,7 +1825,7 @@ public class DetailedAttendance : DevExpress.XtraReports.UI.XtraReport
 
     private void unapprovedAbsenseLabel_SummaryRowChanged(object sender, EventArgs e)
     {
-        if (GetCurrentColumnValue("workingHours").ToString() == "00:00" && GetCurrentColumnValue("paidLeaves").ToString() == "00:00" && (bool)GetCurrentColumnValue("isWorkingDay")&& string.IsNullOrEmpty((string)GetCurrentColumnValue("checkIn1")))
+        if (GetCurrentColumnValue("workingHours").ToString() == "00:00" && GetCurrentColumnValue("paidLeaves").ToString() == "00:00" && (bool)GetCurrentColumnValue("isWorkingDay") && string.IsNullOrEmpty((string)GetCurrentColumnValue("checkIn1")))
             unapprovedAbsenseCount++;
     }
 
@@ -1881,7 +1909,7 @@ public class DetailedAttendance : DevExpress.XtraReports.UI.XtraReport
     private void xrLabel56_BeforePrint(object sender, System.Drawing.Printing.PrintEventArgs e)
     {
         int totalLatenessHH = totalOLAHH + totalOLDHH + SpecTasksHours;
-        int totalLatenessMM = totalOLAMM + totalOLDMM +SpecTasksMins;
+        int totalLatenessMM = totalOLAMM + totalOLDMM + SpecTasksMins;
         totalLatenessHH += totalLatenessMM / 60;
 
         totalLatenessMM = totalLatenessMM % 60;
@@ -1963,8 +1991,8 @@ public class DetailedAttendance : DevExpress.XtraReports.UI.XtraReport
 
     private void xrLabel60_BeforePrint(object sender, System.Drawing.Printing.PrintEventArgs e)
     {
-        int totalLatenessHH = totalOLAHH + totalOLDHH ;
-        int totalLatenessMM = totalOLAMM + totalOLDMM ;
+        int totalLatenessHH = totalOLAHH + totalOLDHH;
+        int totalLatenessMM = totalOLAMM + totalOLDMM;
         totalLatenessHH += totalLatenessMM / 60;
 
         totalLatenessMM = totalLatenessMM % 60;
@@ -1983,7 +2011,13 @@ public class DetailedAttendance : DevExpress.XtraReports.UI.XtraReport
         totalLatenessMM = totalLatenessMM % 60;
         int hours = Convert.ToInt32(Parameters["AllowedLateness"].Value);
 
-        (sender as XRLabel).Text= Math.Max(0, totalLatenessHH ).ToString();
+        (sender as XRLabel).Text = (Math.Abs(totalLatenessHH).ToString().PadLeft(2, '0') + ":" + Math.Abs(totalLatenessMM).ToString().PadLeft(2, '0'));
+    }
+
+    private void xrTableCell13_BeforePrint(object sender, System.Drawing.Printing.PrintEventArgs e)
+    {
+        if ((sender as XRLabel).Text == "00:00")
+            (sender as XRLabel).Text = "---";
     }
 
     private void JobTaskLbl_SummaryReset(object sender, EventArgs e)
@@ -2046,7 +2080,10 @@ public class DetailedAttendance : DevExpress.XtraReports.UI.XtraReport
         string s = (sender as XRLabel).Text;
         var r = s.Split(':');
         s = r[0] + ':' + r[1];
-        (sender as XRLabel).Text = s;
+        if (s == "00:00")
+            (sender as XRLabel).Text = "---";
+        else
+            (sender as XRLabel).Text = s;
     }
 
     private void totalWorkingHoursLabel_SummaryRowChanged(object sender, EventArgs e)

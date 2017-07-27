@@ -112,6 +112,15 @@ namespace AionHR.Web.UI.Forms.Reports {
         protected global::AionHR.Web.UI.Forms.Reports.JobInfoFilter jobInfoFilter1;
         
         /// <summary>
+        /// activeControl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AionHR.Web.UI.Forms.Reports.ActiveStatusFilter activeControl;
+        
+        /// <summary>
         /// ASPxCallbackPanel1 control.
         /// </summary>
         /// <remarks>

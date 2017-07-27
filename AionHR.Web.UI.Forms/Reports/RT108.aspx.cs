@@ -182,13 +182,14 @@ namespace AionHR.Web.UI.Forms.Reports
             string format = _systemService.SessionHelper.GetDateformat();
             resp.Items.ForEach(x =>
             {
-                x.hireDateString = x.hireDate.ToString(format);
-                x.hireEndDateString = x.hireEndDate.ToString(format);
-                x.idExpiryString = x.idExpiry.Value.ToString(format);
-                x.passportExpiryString = x.passportExpiry.Value.ToString(format);
-                x.lastLeaveReturnString = x.lastLeaveReturn.ToString(format);
+                x.hireDateString = x.hireDate.HasValue? x.hireDate.Value.ToString(format):"";
+                
+                x.idExpiryString = x.resExpiryDate.HasValue? x.resExpiryDate.Value.ToString(format):"";
+                x.passportExpiryString = x.passportExpiryDate.HasValue? x.passportExpiryDate.Value.ToString(format):"";
+                x.terminationDateString = x.terminationDate.HasValue? x.terminationDate.Value.ToString(format):"";
+                x.lastLeaveReturnString = x.lastLeaveReturnDate.HasValue? x.lastLeaveReturnDate.Value.ToString(format):"";
                 x.genderString = x.gender==0?GetGlobalResourceObject("Common","Male").ToString(): GetGlobalResourceObject("Common", "Female").ToString();
-                x.isInactiveString = x.isInactive?GetGlobalResourceObject("Common", "Active").ToString():GetGlobalResourceObject("Common", "Inactive").ToString();
+                x.isInactiveString = x.isInactive?GetGlobalResourceObject("Common", "Inactive").ToString():GetGlobalResourceObject("Common", "Active").ToString();
             });
             y.DataSource = resp.Items;
             string user = _systemService.SessionHelper.GetCurrentUser();
@@ -225,6 +226,7 @@ namespace AionHR.Web.UI.Forms.Reports
             request.StartAt = "1";
             request.SortBy = "hireDate";
             request.Add(jobInfoFilter1.GetJobInfo());
+            request.Add(activeControl.GetActiveStatus());
             return request;
 
         }

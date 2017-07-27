@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="xrLabel1.Text" xml:space="preserve">
+    <value>تاريخ انهاء الخدمة</value>
+  </data>
   <data name="xrLabel10.Text" xml:space="preserve">
     <value>الرقم</value>
   </data>
@@ -142,7 +145,7 @@
     <value>آخر إجازة</value>
   </data>
   <data name="xrLabel18.Text" xml:space="preserve">
-    <value>نهاية العقد</value>
+    <value>مدة العقد</value>
   </data>
   <data name="xrLabel19.Text" xml:space="preserve">
     <value>مدة العقد</value>
@@ -198,8 +201,11 @@
   <data name="xrLabel5.Text" xml:space="preserve">
     <value>الرقم</value>
   </data>
+  <data name="xrLabel52.Text" xml:space="preserve">
+    <value>معلومات الموظفين</value>
+  </data>
   <data name="xrLabel6.Text" xml:space="preserve">
-    <value>نهاية الصلاحية</value>
+    <value>الصلاحية</value>
   </data>
   <data name="xrLabel7.Text" xml:space="preserve">
     <value>الهوية/الإقامة</value>
@@ -208,7 +214,7 @@
     <value>جواز السفر</value>
   </data>
   <data name="xrLabel9.Text" xml:space="preserve">
-    <value>نهاية الصلاحية</value>
+    <value>الصلاحية</value>
   </data>
   <data name="xrPageInfo2.Format" xml:space="preserve">
     <value>صفحة {0} من {1}</value>

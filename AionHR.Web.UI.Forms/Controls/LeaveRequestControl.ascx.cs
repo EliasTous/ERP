@@ -392,7 +392,7 @@ namespace AionHR.Web.UI.Forms.Controls
                         days.ForEach(d => d.leaveId = Convert.ToInt32(b.recordId));
                         AddDays(days);
                         if (Store1 != null)
-                            this.Store1.Insert(0, b);
+                            this.Store1.Reload();
                         else
                         {
                             RefreshLeaveCalendarCallBack();

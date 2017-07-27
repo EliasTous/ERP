@@ -133,10 +133,10 @@
     <value>التأخير</value>
   </data>
   <data name="xrLabel14.Text" xml:space="preserve">
-    <value> مدفوع</value>
+    <value>بإذن</value>
   </data>
   <data name="xrLabel15.Text" xml:space="preserve">
-    <value> غير مدفوع</value>
+    <value>بدون اذن</value>
   </data>
   <data name="xrLabel16.Text" xml:space="preserve">
     <value>دخول متأخر</value>
@@ -152,6 +152,12 @@
   </data>
   <data name="xrLabel20.Text" xml:space="preserve">
     <value>لم يتم العثور على نتائج مطابقة</value>
+  </data>
+  <data name="xrLabel21.Text" xml:space="preserve">
+    <value>الغياب</value>
+  </data>
+  <data name="xrLabel24.Text" xml:space="preserve">
+    <value>عدد أيام الغياب بإذن</value>
   </data>
   <data name="xrLabel25.Text" xml:space="preserve">
     <value>إجمالي عدد الأيام</value>
@@ -198,17 +204,29 @@
   <data name="xrLabel4.Text" xml:space="preserve">
     <value>خروج 1</value>
   </data>
+  <data name="xrLabel40.Text" xml:space="preserve">
+    <value>ساعات مهمة العمل</value>
+  </data>
   <data name="xrLabel41.Text" xml:space="preserve">
     <value>أيام العمل الفعلية</value>
+  </data>
+  <data name="xrLabel42.Text" xml:space="preserve">
+    <value>ساعات المهمة الخاصة</value>
   </data>
   <data name="xrLabel43.Text" xml:space="preserve">
     <value>الإجازات الرسمية</value>
   </data>
   <data name="xrLabel44.Text" xml:space="preserve">
-    <value>الغياب غير المبرر</value>
+    <value>مجموع أيام الغياب</value>
+  </data>
+  <data name="xrLabel45.Text" xml:space="preserve">
+    <value>إجمالي التأخير</value>
+  </data>
+  <data name="xrLabel46.Text" xml:space="preserve">
+    <value>التأخير عن الدوام</value>
   </data>
   <data name="xrLabel47.Text" xml:space="preserve">
-    <value>الغياب غير المبرر</value>
+    <value>عدد أيام الغياب بدون اذن</value>
   </data>
   <data name="xrLabel48.Text" xml:space="preserve">
     <value>ساعات العمل المفترضة</value>
@@ -226,7 +244,7 @@
     <value>ساعات الغياب</value>
   </data>
   <data name="xrLabel57.Text" xml:space="preserve">
-    <value>صافي ساعات التأخير</value>
+    <value>حسم التأخير</value>
   </data>
   <data name="xrLabel58.Text" xml:space="preserve">
     <value>المجموع</value>

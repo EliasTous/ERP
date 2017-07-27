@@ -64,7 +64,11 @@
                                         <uc:jobInfo runat="server" ID="jobInfoFilter1" />
                                     </Content>
                                 </ext:Container>
-
+                                  <ext:Container runat="server"  Layout="FitLayout">
+                                    <Content>
+                                        <uc:activeStatus runat="server" ID="activeControl" />
+                                    </Content>
+                                </ext:Container>
                                 <ext:Container runat="server" Layout="FitLayout">
                                     <Content>
                                         <ext:Button runat="server" Text="<%$Resources:Common, Go %>"> 

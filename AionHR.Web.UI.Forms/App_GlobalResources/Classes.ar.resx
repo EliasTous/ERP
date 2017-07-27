@@ -243,6 +243,9 @@
   <data name="Class31090" xml:space="preserve">
     <value>ملاحظات الموظفين</value>
   </data>
+  <data name="Class31097" xml:space="preserve">
+    <value>استيراد معلومات العمل</value>
+  </data>
   <data name="Class31098" xml:space="preserve">
     <value>استيراد ملفات الموظفين</value>
   </data>
