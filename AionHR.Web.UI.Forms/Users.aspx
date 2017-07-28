@@ -627,7 +627,25 @@
                                         </CellClick>
                                     </DirectEvents>
                                 </ext:GridPanel>
-
+                                  <ext:ItemSelector runat="server"  MaxHeight="300" MinHeight="300" AutoScroll="true" ID="userSelector" FromTitle="<%$Resources:All %>" DisplayField="fullName" ValueField="userId"
+                            ToTitle="Selected" >
+                            <Listeners>
+                                <AfterRender Handler="SwapRTL(); " />
+                            </Listeners>
+                            <Store>
+                                <ext:Store runat="server" ID="groupSelectorGroup" OnReadData="groupSelectorGroup_ReadData">
+                                    <Model>
+                                        <ext:Model runat="server" IDProperty="recordId">
+                                            <Fields>
+                                                <ext:ModelField Name="recordId" />
+                                                <ext:ModelField Name="name" />
+                                            </Fields>
+                                        </ext:Model>
+                                    </Model>
+                                </ext:Store>
+                            </Store>
+                   
+                        </ext:ItemSelector>
                             </Items>
                         </ext:FormPanel>
                     </Items>

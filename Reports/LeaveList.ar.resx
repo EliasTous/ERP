@@ -159,6 +159,9 @@
   <data name="xrLabel31.Text" xml:space="preserve">
     <value>الرقم</value>
   </data>
+  <data name="xrLabel33.Text" xml:space="preserve">
+    <value>المدة</value>
+  </data>
   <data name="xrLabel9.Text" xml:space="preserve">
     <value>الموظف</value>
   </data>

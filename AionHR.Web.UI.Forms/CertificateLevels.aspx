@@ -72,6 +72,7 @@
                     ColumnLines="True" IDMode="Explicit" RenderXType="True">
 
                     <TopBar>
+                        
                         <ext:Toolbar ID="Toolbar1" runat="server" ClassicButtonStyle="false">
                             <Items>
                                 <ext:Button ID="btnAdd" runat="server" Text="<%$ Resources:Common , Add %>" Icon="Add">       
@@ -205,6 +206,7 @@
                         <Render Handler="this.on('cellclick', cellClick);" />
                     </Listeners>
                     <DirectEvents>
+                        
                         <CellClick OnEvent="PoPuP">
                             <EventMask ShowMask="true" />
                             <ExtraParams>

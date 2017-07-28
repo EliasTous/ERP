@@ -276,11 +276,26 @@
   <data name="Error_50024" xml:space="preserve">
     <value>لم يتم تحديد منطقة زمنية، اخفاق في الدخول</value>
   </data>
+  <data name="Error_50025" xml:space="preserve">
+    <value>Invalid Biometric Device</value>
+  </data>
+  <data name="Error_50026" xml:space="preserve">
+    <value>conflict while generating new employee reference, reference already exist</value>
+  </data>
+  <data name="Error_50027" xml:space="preserve">
+    <value>attendance shift data consistency error</value>
+  </data>
+  <data name="Error_50028" xml:space="preserve">
+    <value>an attendance check-in already exist at the selected check-in time</value>
+  </data>
   <data name="Error_50029" xml:space="preserve">
     <value>Invalid Email</value>
   </data>
   <data name="Error_50030" xml:space="preserve">
     <value>Invalid Reset Password link,please try again</value>
+  </data>
+  <data name="Error_50031" xml:space="preserve">
+    <value>fiscal year periods already generated</value>
   </data>
   <data name="Error_50032" xml:space="preserve">
     <value>خطأ تداخل بيانات</value>
@@ -297,8 +312,53 @@
   <data name="Error_50036" xml:space="preserve">
     <value>you must create day types before creating a schedule</value>
   </data>
+  <data name="Error_50037" xml:space="preserve">
+    <value>payroll already generated</value>
+  </data>
+  <data name="Error_50038" xml:space="preserve">
+    <value>payroll E/D already generated</value>
+  </data>
+  <data name="Error_50039" xml:space="preserve">
+    <value>payroll period setup record not found</value>
+  </data>
+  <data name="Error_50040" xml:space="preserve">
+    <value>work mail duplication error</value>
+  </data>
+  <data name="Error_50041" xml:space="preserve">
+    <value>personal mail duplication error</value>
+  </data>
+  <data name="Error_50042" xml:space="preserve">
+    <value>employee activity date is before his hire date</value>
+  </data>
   <data name="Error_50043" xml:space="preserve">
     <value>Employee Id Ref already in use</value>
+  </data>
+  <data name="Error_50044" xml:space="preserve">
+    <value>payroll already posted, it cannot be deleted</value>
+  </data>
+  <data name="Error_50045" xml:space="preserve">
+    <value>unposted payroll already exist for the same period type</value>
+  </data>
+  <data name="Error_50046" xml:space="preserve">
+    <value>payroll gap, please choose a previous period</value>
+  </data>
+  <data name="Error_50047" xml:space="preserve">
+    <value>could not find an unposted record to post</value>
+  </data>
+  <data name="Error_50048" xml:space="preserve">
+    <value>an error has occured while creating the account database</value>
+  </data>
+  <data name="Error_50049" xml:space="preserve">
+    <value>an error has occured while backing-up the sample database</value>
+  </data>
+  <data name="Error_50050" xml:space="preserve">
+    <value>an error has occured while restoring the sample database</value>
+  </data>
+  <data name="Error_50051" xml:space="preserve">
+    <value>a leave request already exist for this employee with the same starting date</value>
+  </data>
+  <data name="Error_50052" xml:space="preserve">
+    <value>attendance shift ending time is before start time</value>
   </data>
   <data name="Error_515" xml:space="preserve">
     <value>Cannot Insert Null Value to this field</value>
@@ -307,7 +367,7 @@
     <value>Database connection error</value>
   </data>
   <data name="Error_547" xml:space="preserve">
-    <value>Data Entegrity Error</value>
+    <value>Data Integrity Error</value>
   </data>
   <data name="Error_8114" xml:space="preserve">
     <value>type casting value from string error</value>

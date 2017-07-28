@@ -67,8 +67,8 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorOperation).Show();
                 CurrentEmployee.Text = Request.QueryString["employeeId"];
 
-                
-                 date.Format = effectiveDate.Format = cc.Format= ccc.Format = _systemService.SessionHelper.GetDateformat();
+
+                date.Format = effectiveDate.Format = cc.Format = ccc.Format = _systemService.SessionHelper.GetDateformat();
 
                 EmployeeTerminated.Text = Request.QueryString["terminated"];
 
@@ -77,7 +77,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                 Button6.Disabled = Button1.Disabled = Button11.Disabled = Button14.Disabled = Button12.Disabled = Button4.Disabled = SaveENButton.Disabled = Button15.Disabled = disabled;
                 if ((bool)_systemService.SessionHelper.Get("IsAdmin"))
                     return;
-              
+
                 try
                 {
                     AccessControlApplier.ApplyAccessControlOnPage(typeof(EmployeeSalary), firstPanel, SalaryGrid, Button6, Button12);
@@ -109,18 +109,18 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
                     X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorAccessDenied).Show();
                     BonusGrid.Hidden = true;
-                    
+
                 }
                 try
                 {
-                    AccessControlApplier.ApplyAccessControlOnPage(typeof(SalaryDetail),  ENForm, entitlementsGrid, Button11, SaveENButton);
+                    AccessControlApplier.ApplyAccessControlOnPage(typeof(SalaryDetail), ENForm, entitlementsGrid, Button11, SaveENButton);
                     ApplyAccessControlEntitlements();
                 }
                 catch (AccessDeniedException exp)
                 {
-                   
+
                     entitlementsForm.Hidden = true;
-                    
+
                 }
                 try
                 {
@@ -129,9 +129,9 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                 }
                 catch (AccessDeniedException exp)
                 {
-                    
+
                     DeductionForm.Hidden = true;
-                   
+
                 }
                 if (enComment.InputType == InputType.Password)
                 {
@@ -153,7 +153,8 @@ namespace AionHR.Web.UI.Forms.EmployeePages
 
             var properties = AccessControlApplier.GetPropertiesLevels(typeof(SalaryDetail));
 
-            properties.ForEach(property => {
+            properties.ForEach(property =>
+            {
                 switch (property.propertyId)
                 {
                     case "3106301": entEdId.Disabled = property.accessLevel < 1; entEdId.InputType = property.accessLevel < 1 ? InputType.Password : InputType.Text; entEdId.ReadOnly = property.accessLevel < 2 ? true : false; break;
@@ -166,7 +167,8 @@ namespace AionHR.Web.UI.Forms.EmployeePages
         private void ApplyAccessControlDeductions()
         {
             var properties = AccessControlApplier.GetPropertiesLevels(typeof(SalaryDetail));
-            properties.ForEach(property => {
+            properties.ForEach(property =>
+            {
                 switch (property.propertyId)
                 {
                     case "3106301": dedEdId.Disabled = property.accessLevel < 1; dedEdId.InputType = property.accessLevel < 1 ? InputType.Password : InputType.Text; dedEdId.ReadOnly = property.accessLevel < 2 ? true : false; break;
@@ -244,7 +246,9 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     CurrentSalary.Text = r3.RecordID;
                     CurrentSalaryCurrency.Text = response3.result.currencyRef;
                     currencyId.Select(response3.result.currencyId.ToString());
-                    scrId.Select(response3.result.scrId.Value.ToString());
+                    if (response3.result.scrId.HasValue)
+
+                        scrId.Select(response3.result.scrId.Value.ToString());
 
                     X.Call("TogglePaymentMethod", response3.result.paymentMethod);
                     eAmount.Text = response3.result.eAmount.ToString();
@@ -435,12 +439,12 @@ namespace AionHR.Web.UI.Forms.EmployeePages
 
                     oldDEIncludeInFinal.Checked = dedDetail.includeInTotal.Value;
                     dedEdId.Select(dedDetail.edId.ToString());
-                    
+
                     if (dedDetail.pct != 0)
                     {
                         dePCT.Disabled = false;
                         deFixedAmount.Disabled = true;
-                        if(dedDetail.pctOf > 2 || dedDetail.pctOf < 1)
+                        if (dedDetail.pctOf > 2 || dedDetail.pctOf < 1)
                         {
                             X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
                             X.Msg.Alert(Resources.Common.Error, GetLocalResourceObject("ErrorWithPCTOf")).Show();
@@ -521,7 +525,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                 {
                     //Show an error saving...
                     X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.Error, res.Summary).Show();
+                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", res.ErrorCode) != null ? GetGlobalResourceObject("Errors", res.ErrorCode).ToString() : res.Summary).Show();
                     return;
                 }
                 else
@@ -1171,7 +1175,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                 if (b.pctOf == 1)
                     b.fixedAmount = (b.pct / 100) * Convert.ToDouble(BasicSalary.Text);
                 else
-                    b.fixedAmount= (b.pct / 100) * (Convert.ToDouble(BasicSalary.Text)+Convert.ToDouble(eAmount.Text));
+                    b.fixedAmount = (b.pct / 100) * (Convert.ToDouble(BasicSalary.Text) + Convert.ToDouble(eAmount.Text));
             }
             if (deIsPCT.Checked)
             {
@@ -1227,7 +1231,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     bool oldInclude = Convert.ToBoolean(e.ExtraParams["oldInclude"]);
                     ModelProxy record = this.deductionStore.GetById(id);
 
-                    
+
                     DEForm.UpdateRecord(record);
                     record.Set("edName", b.edName);
                     record.Set("edId", b.edId);

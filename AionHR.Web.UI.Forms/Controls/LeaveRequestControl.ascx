@@ -152,6 +152,41 @@
                     <Items>
                         <ext:TextField ID="recordId" runat="server" Name="recordId" Hidden="true" />
                         <ext:TextField ID="leaveRef" runat="server" Name="leaveRef"  FieldLabel="<%$ Resources:FieldLeaveRef%>" />
+                           <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" ID="employeeId" AllowBlank="false"
+                            DisplayField="fullName" Name="employeeId"
+                            ValueField="recordId"
+                            TypeAhead="false"
+                            FieldLabel="<%$ Resources: FieldEmployeeName%>"
+                            HideTrigger="true" SubmitValue="true"
+                            MinChars="3"
+                            TriggerAction="Query" ForceSelection="false">
+                            <Store>
+                                <ext:Store runat="server" ID="employeeStore" AutoLoad="false">
+                                    <Model>
+                                        <ext:Model runat="server">
+                                            <Fields>
+                                                <ext:ModelField Name="recordId" />
+                                                <ext:ModelField Name="fullName" />
+                                            </Fields>
+                                        </ext:Model>
+                                    </Model>
+                                    <Proxy>
+                                        <ext:PageProxy DirectFn="App.direct.FillEmployee"></ext:PageProxy>
+                                    </Proxy>
+
+                                </ext:Store>
+
+                            </Store>
+                            <DirectEvents>
+                                <Select OnEvent="MarkLeaveChanged">
+                                    <ExtraParams>
+                                        <ext:Parameter Name="startDate" Value="#{startDate}.getValue()" Mode="Raw" />
+                                        <ext:Parameter Name="endDate" Value="#{endDate}.getValue()" Mode="Raw" />
+                                    </ExtraParams>
+                                </Select>
+                            </DirectEvents>
+
+                        </ext:ComboBox>
                         <ext:DateField ID="startDate"   runat="server" FieldLabel="<%$ Resources:FieldStartDate%>" Name="startDate" AllowBlank="false">
                             <DirectEvents>
                                 <Change OnEvent="MarkLeaveChanged">
@@ -197,41 +232,7 @@
                                 </ext:NumberField>
                             </Items>
                         </ext:Panel>
-                        <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" ID="employeeId" AllowBlank="false"
-                            DisplayField="fullName" Name="employeeId"
-                            ValueField="recordId"
-                            TypeAhead="false"
-                            FieldLabel="<%$ Resources: FieldEmployeeName%>"
-                            HideTrigger="true" SubmitValue="true"
-                            MinChars="3"
-                            TriggerAction="Query" ForceSelection="false">
-                            <Store>
-                                <ext:Store runat="server" ID="employeeStore" AutoLoad="false">
-                                    <Model>
-                                        <ext:Model runat="server">
-                                            <Fields>
-                                                <ext:ModelField Name="recordId" />
-                                                <ext:ModelField Name="fullName" />
-                                            </Fields>
-                                        </ext:Model>
-                                    </Model>
-                                    <Proxy>
-                                        <ext:PageProxy DirectFn="App.direct.FillEmployee"></ext:PageProxy>
-                                    </Proxy>
-
-                                </ext:Store>
-
-                            </Store>
-                            <DirectEvents>
-                                <Select OnEvent="MarkLeaveChanged">
-                                    <ExtraParams>
-                                        <ext:Parameter Name="startDate" Value="#{startDate}.getValue()" Mode="Raw" />
-                                        <ext:Parameter Name="endDate" Value="#{endDate}.getValue()" Mode="Raw" />
-                                    </ExtraParams>
-                                </Select>
-                            </DirectEvents>
-
-                        </ext:ComboBox>
+                     
                         <ext:TextField runat="server" ID="leavePeriod" Name="leavePeriod" ReadOnly="true" FieldLabel="<%$ Resources:TotalText%>" />
                         <ext:TextArea ID="justification" runat="server" FieldLabel="<%$ Resources:FieldJustification%>" Name="justification" />
                         <ext:TextField ID="destination" runat="server" FieldLabel="<%$ Resources:FieldDestination%>" Name="destination" AllowBlank="false" />

@@ -19,6 +19,8 @@ namespace AionHR.Model.Reports
 
         public int used { get; set; }
 
+        
+
         public int scheduled { get; set; }
 
         public int endingBalance { get; set; }

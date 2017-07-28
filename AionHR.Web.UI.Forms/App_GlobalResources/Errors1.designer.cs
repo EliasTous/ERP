@@ -538,6 +538,42 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Invalid Biometric Device.
+        /// </summary>
+        internal static string Error_50025 {
+            get {
+                return ResourceManager.GetString("Error_50025", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to conflict while generating new employee reference, reference already exist.
+        /// </summary>
+        internal static string Error_50026 {
+            get {
+                return ResourceManager.GetString("Error_50026", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to attendance shift data consistency error.
+        /// </summary>
+        internal static string Error_50027 {
+            get {
+                return ResourceManager.GetString("Error_50027", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to an attendance check-in already exist at the selected check-in time.
+        /// </summary>
+        internal static string Error_50028 {
+            get {
+                return ResourceManager.GetString("Error_50028", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Invalid Email.
         /// </summary>
         internal static string Error_50029 {
@@ -552,6 +588,15 @@ namespace Resources {
         internal static string Error_50030 {
             get {
                 return ResourceManager.GetString("Error_50030", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to fiscal year periods already generated.
+        /// </summary>
+        internal static string Error_50031 {
+            get {
+                return ResourceManager.GetString("Error_50031", resourceCulture);
             }
         }
         
@@ -601,11 +646,146 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to payroll already generated.
+        /// </summary>
+        internal static string Error_50037 {
+            get {
+                return ResourceManager.GetString("Error_50037", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to payroll E/D already generated.
+        /// </summary>
+        internal static string Error_50038 {
+            get {
+                return ResourceManager.GetString("Error_50038", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to payroll period setup record not found.
+        /// </summary>
+        internal static string Error_50039 {
+            get {
+                return ResourceManager.GetString("Error_50039", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to work mail duplication error.
+        /// </summary>
+        internal static string Error_50040 {
+            get {
+                return ResourceManager.GetString("Error_50040", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to personal mail duplication error.
+        /// </summary>
+        internal static string Error_50041 {
+            get {
+                return ResourceManager.GetString("Error_50041", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to employee activity date is before his hire date.
+        /// </summary>
+        internal static string Error_50042 {
+            get {
+                return ResourceManager.GetString("Error_50042", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Employee Id Ref already in use.
         /// </summary>
         internal static string Error_50043 {
             get {
                 return ResourceManager.GetString("Error_50043", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to payroll already posted, it cannot be deleted.
+        /// </summary>
+        internal static string Error_50044 {
+            get {
+                return ResourceManager.GetString("Error_50044", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to unposted payroll already exist for the same period type.
+        /// </summary>
+        internal static string Error_50045 {
+            get {
+                return ResourceManager.GetString("Error_50045", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to payroll gap, please choose a previous period.
+        /// </summary>
+        internal static string Error_50046 {
+            get {
+                return ResourceManager.GetString("Error_50046", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to could not find an unposted record to post.
+        /// </summary>
+        internal static string Error_50047 {
+            get {
+                return ResourceManager.GetString("Error_50047", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to an error has occured while creating the account database.
+        /// </summary>
+        internal static string Error_50048 {
+            get {
+                return ResourceManager.GetString("Error_50048", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to an error has occured while backing-up the sample database.
+        /// </summary>
+        internal static string Error_50049 {
+            get {
+                return ResourceManager.GetString("Error_50049", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to an error has occured while restoring the sample database.
+        /// </summary>
+        internal static string Error_50050 {
+            get {
+                return ResourceManager.GetString("Error_50050", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to a leave request already exist for this employee with the same starting date.
+        /// </summary>
+        internal static string Error_50051 {
+            get {
+                return ResourceManager.GetString("Error_50051", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to attendance shift ending time is before start time.
+        /// </summary>
+        internal static string Error_50052 {
+            get {
+                return ResourceManager.GetString("Error_50052", resourceCulture);
             }
         }
         
@@ -628,7 +808,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Data Entegrity Error.
+        ///   Looks up a localized string similar to Data Integrity Error.
         /// </summary>
         internal static string Error_547 {
             get {

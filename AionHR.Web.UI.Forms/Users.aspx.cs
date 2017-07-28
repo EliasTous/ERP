@@ -777,5 +777,32 @@ namespace AionHR.Web.UI.Forms
 
             AllGroupsStore.Reload();
         }
+
+        protected void groupSelectorGroup_ReadData(object sender, StoreReadDataEventArgs e)
+        {
+            UsersListRequest req = new UsersListRequest();
+            req.Size = "100";
+            req.StartAt = "1";
+            req.Filter = "";
+
+            var s = jobInfo1.GetJobInfo();
+            req.DepartmentId = s.DepartmentId.HasValue ? s.DepartmentId.ToString() : "0";
+            req.PositionId = s.PositionId.HasValue ? s.PositionId.ToString() : "0";
+            ListResponse<UserInfo> groups = _systemService.ChildGetAll<UserInfo>(req);
+            if (!groups.Success)
+            {
+                X.Msg.Alert(Resources.Common.Error, groups.Summary).Show();
+                return;
+            }
+            GroupUsersListRequest request = new GroupUsersListRequest();
+            request.UserId = CurrentUser.Text;
+            ListResponse<SecurityGroupUser> userGroups = _accessControlService.ChildGetAll<SecurityGroupUser>(request);
+            if (!groups.Success)
+            {
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", groups.ErrorCode) != null ? GetGlobalResourceObject("Errors", groups.ErrorCode).ToString() : groups.Summary).Show();
+                return;
+            }
+            X.Call("AddSource", userGroups.Items);
+        }
     }
 }

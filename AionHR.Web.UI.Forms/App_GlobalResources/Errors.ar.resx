@@ -276,12 +276,27 @@
   <data name="Error_50024" xml:space="preserve">
     <value>لم يتم تحديد منطقة زمنية، اخفاق في الدخول</value>
   </data>
+  <data name="Error_50025" xml:space="preserve">
+    <value>جهاز بصمة غير معروف</value>
+  </data>
+  <data name="Error_50026" xml:space="preserve">
+    <value>رمز الموظف مستخدم مسبقاً</value>
+  </data>
+  <data name="Error_50027" xml:space="preserve">
+    <value>خطأ في معلومات الحضور </value>
+  </data>
+  <data name="Error_50028" xml:space="preserve">
+    <value>تم تسجيل الدخول مسبقاً</value>
+  </data>
   <data name="Error_50029" xml:space="preserve">
     <value>بريد الكتروني غير صالح</value>
   </data>
   <data name="Error_50030" xml:space="preserve">
     <value>رابط اعادة وضع كلمة السر غير صالح، احتمالية اعادة الوضع مستعملة مسبقا، حاول 
 طلب اعادة وضع اخرى</value>
+  </data>
+  <data name="Error_50031" xml:space="preserve">
+    <value>تم توليد الفترة مسبقا</value>
   </data>
   <data name="Error_50032" xml:space="preserve">
     <value>خطأ تداخل بيانات</value>
@@ -299,8 +314,53 @@
   <data name="Error_50036" xml:space="preserve">
     <value>لا يمكن انشاء أيام جداول الدوام قبل انشاء أنواع أيام العمل</value>
   </data>
+  <data name="Error_50037" xml:space="preserve">
+    <value>دفع الرواتب مولد مسبقاً</value>
+  </data>
+  <data name="Error_50038" xml:space="preserve">
+    <value>الخصم/الاستحقاق موجود مسبقا</value>
+  </data>
+  <data name="Error_50039" xml:space="preserve">
+    <value>الفترة غير معرفة</value>
+  </data>
+  <data name="Error_50040" xml:space="preserve">
+    <value>إيميل مستخدم مسبقا</value>
+  </data>
+  <data name="Error_50041" xml:space="preserve">
+    <value>إيميل شخصي مستخدم مسبقا</value>
+  </data>
+  <data name="Error_50042" xml:space="preserve">
+    <value>لايمكن تسجيل عمليات بتاريخ قبل تاريخ التعيين لهذا الموظف</value>
+  </data>
   <data name="Error_50043" xml:space="preserve">
     <value>رقم الهوية مستخدم مسبقاً</value>
+  </data>
+  <data name="Error_50044" xml:space="preserve">
+    <value>لايمكن حذف دفع رواتب مثبت</value>
+  </data>
+  <data name="Error_50045" xml:space="preserve">
+    <value>تم إضافة دفع رواتب لهذه الفترة مسبقا</value>
+  </data>
+  <data name="Error_50046" xml:space="preserve">
+    <value>يجب إضافة عملية دفع رواتب للفترات السابقة</value>
+  </data>
+  <data name="Error_50047" xml:space="preserve">
+    <value>لم يتم إيجاد عملية دفع رواتب غير مثبتة</value>
+  </data>
+  <data name="Error_50048" xml:space="preserve">
+    <value>خطأ أثناء إنشاء قاعدة البيانات</value>
+  </data>
+  <data name="Error_50049" xml:space="preserve">
+    <value>خطأ أثناء إضافة البيانات التجريبية</value>
+  </data>
+  <data name="Error_50050" xml:space="preserve">
+    <value>خطأ أثناء إضافة البيانات التجريبية</value>
+  </data>
+  <data name="Error_50051" xml:space="preserve">
+    <value>تم طلب إجازة مسبقاً من قبل نفس الموظف وبنفس التاريخ</value>
+  </data>
+  <data name="Error_50052" xml:space="preserve">
+    <value>وقت تسجيل الخروج يجب أن يكون بعد وقت تسجيل الدخول</value>
   </data>
   <data name="Error_515" xml:space="preserve">
     <value>SQLفي جدول عمود null لا يمكن ادخال القيمة</value>
