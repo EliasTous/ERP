@@ -35,7 +35,7 @@
             return out;
         }
         function show() {
-
+            
             var fromStore = App.usersStore;
             var toStore = App.userSelector.toField.getStore();
 
@@ -56,6 +56,7 @@
 
         }
         function AddSource(items) {
+           
             var fromStore = App.userSelector.fromField.getStore();
             var toStore = App.userSelector.toField.getStore();
 

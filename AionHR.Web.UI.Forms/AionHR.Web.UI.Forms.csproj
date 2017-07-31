@@ -1756,6 +1756,8 @@
       <LastGenOutput>Reports.ar.designer.cs</LastGenOutput>
     </Content>
     <Content Include="EmployeePages\App_LocalResources\Legals.aspx.ar.resx" />
+    <Content Include="App_LocalResources\Users.aspx.ar.resx" />
+    <Content Include="App_LocalResources\LeaveTypes.aspx.ar.resx" />
     <EmbeddedResource Include="Properties\licenses.licx" />
     <Content Include="Reports\App_LocalResources\RT202.aspx.resx" />
     <Content Include="Reports\App_LocalResources\RT01.aspx.ar.resx" />

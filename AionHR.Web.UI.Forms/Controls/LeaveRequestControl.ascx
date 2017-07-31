@@ -362,7 +362,8 @@
                                     </ext:Column>
                                     <ext:Column ID="Column7" Visible="false" DataIndex="leaveId" runat="server">
                                     </ext:Column>
-                                    <ext:Column ID="Column6" DataIndex="dayId" Text="<%$ Resources: FieldDayId%>" runat="server" Width="85">
+                                    <ext:Column ID="Column6" DataIndex="dayId" Text="<%$ Resources: FieldDayId%>" runat="server" Width="100">
+
                                         <Renderer Handler="var friendlydate = moment(record.data['dayId'], 'YYYYMMDD');  return friendlydate.format(document.getElementById('leaveRequest1_DateFormat').value);">
                                         </Renderer>
                                     </ext:Column>

@@ -1218,4 +1218,7 @@
   <data name="Property4202011" xml:space="preserve">
     <value>رقم الإجازة</value>
   </data>
+  <data name="Property420004" xml:space="preserve">
+    <value>نوع الإجازة</value>
+  </data>
 </root>

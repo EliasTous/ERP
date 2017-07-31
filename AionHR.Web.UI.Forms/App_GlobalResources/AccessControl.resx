@@ -1224,4 +1224,7 @@
   <data name="Property4202011" xml:space="preserve">
     <value>Leave Ref</value>
   </data>
+  <data name="Property420004" xml:space="preserve">
+    <value>Leave Type</value>
+  </data>
 </root>

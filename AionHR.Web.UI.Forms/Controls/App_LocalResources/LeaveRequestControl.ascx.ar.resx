@@ -118,13 +118,13 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="BasicInfoTabEditWindowTitle" xml:space="preserve">
-    <value>معلومات طلب الإجازة</value>
+    <value>طلب خروج /إجازة</value>
   </data>
   <data name="ButtonClear" xml:space="preserve">
     <value>جديد</value>
   </data>
   <data name="EditWindowsTitle" xml:space="preserve">
-    <value>تعديل طلب الإجازة</value>
+    <value>طلب خروج /إجازة</value>
   </data>
   <data name="ErrorNoCalendar" xml:space="preserve">
     <value>لايمكن إنشاء إجازة قبل إضافة تقويم واحد على الأقل</value>

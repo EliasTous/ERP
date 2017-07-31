@@ -117,76 +117,76 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AccessLevel" xml:space="preserve">
-    <value>السماحية</value>
-  </data>
-  <data name="AccessLevels" xml:space="preserve">
-    <value>الصلاحيات</value>
-  </data>
   <data name="Add" xml:space="preserve">
-    <value>اضافة</value>
+    <value>إضافة </value>
   </data>
   <data name="All" xml:space="preserve">
     <value>الكل</value>
   </data>
-  <data name="Class" xml:space="preserve">
-    <value>الصفحة</value>
+  <data name="BasicInfoTabEditWindowTitle" xml:space="preserve">
+    <value>معلومات المستخدم</value>
   </data>
-  <data name="EditGroup" xml:space="preserve">
-    <value>تعديل المجموعة</value>
+  <data name="EditWindowsTitle" xml:space="preserve">
+    <value>تعديل المستخدم</value>
   </data>
-  <data name="EditGroupUsers" xml:space="preserve">
-    <value>مستخدمي المجموعة</value>
+  <data name="FieldConfirmPassword" xml:space="preserve">
+    <value>تأكيد كلمة السر</value>
   </data>
-  <data name="FieldDescription" xml:space="preserve">
-    <value>التفاصيل</value>
+  <data name="FieldEmail" xml:space="preserve">
+    <value>البريد الالكتروني</value>
   </data>
-  <data name="FieldName" xml:space="preserve">
+  <data name="FieldEmployeeFullName" xml:space="preserve">
+    <value>الموظف</value>
+  </data>
+  <data name="FieldFullName" xml:space="preserve">
     <value>الاسم</value>
   </data>
-  <data name="Filter" xml:space="preserve">
-    <value>اختر</value>
+  <data name="FieldGroup" xml:space="preserve">
+    <value>المجموعة</value>
   </data>
-  <data name="Group" xml:space="preserve">
-    <value>معلومات المجموعة</value>
+  <data name="FieldIsAdmin" xml:space="preserve">
+    <value>إداري؟</value>
+  </data>
+  <data name="FieldIsInActive" xml:space="preserve">
+    <value>غير نشط؟</value>
+  </data>
+  <data name="FieldLanguageId" xml:space="preserve">
+    <value>اللغة</value>
+  </data>
+  <data name="FieldPassword" xml:space="preserve">
+    <value>كلمة السر</value>
+  </data>
+  <data name="FieldRecordId" xml:space="preserve">
+    <value>الرقم</value>
   </data>
   <data name="Groups" xml:space="preserve">
-    <value>المجموعات</value>
+    <value>المجموعات الأمنية</value>
   </data>
-  <data name="Property" xml:space="preserve">
-    <value>القيمة</value>
-  </data>
-  <data name="Read" xml:space="preserve">
-    <value>عرض</value>
+  <data name="Mediocre" xml:space="preserve">
+    <value>متوسطة</value>
   </data>
   <data name="Remove" xml:space="preserve">
     <value>حذف</value>
   </data>
   <data name="Selected" xml:space="preserve">
-    <value>في المجموعة</value>
+    <value>المجموعات المختارة</value>
   </data>
-  <data name="SelectModule" xml:space="preserve">
-    <value>اختر مكون</value>
+  <data name="Strength" xml:space="preserve">
+    <value>صعوبة كلمة السر</value>
   </data>
-  <data name="Users" xml:space="preserve">
+  <data name="Strong" xml:space="preserve">
+    <value>قوية</value>
+  </data>
+  <data name="VeryStrong" xml:space="preserve">
+    <value>قوية جداً</value>
+  </data>
+  <data name="VeryWeak" xml:space="preserve">
+    <value>ضعيفة جداً</value>
+  </data>
+  <data name="Weak" xml:space="preserve">
+    <value>ضعيفة</value>
+  </data>
+  <data name="WindowTitle" xml:space="preserve">
     <value>المستخدمين</value>
-  </data>
-  <data name="View" xml:space="preserve">
-    <value>محجوب</value>
-  </data>
-  <data name="FullControl" xml:space="preserve">
-    <value>صلاحيات كاملة</value>
-  </data>
-  <data name="GroupInfo" xml:space="preserve">
-    <value>معلومات المجموعة</value>
-  </data>
-  <data name="NoAccess" xml:space="preserve">
-    <value>وصول ممنوع</value>
-  </data>
-  <data name="WriteClass" xml:space="preserve">
-    <value>إضافة ،تعديل</value>
-  </data>
-  <data name="WriteProperty" xml:space="preserve">
-    <value>تعديل</value>
   </data>
 </root>

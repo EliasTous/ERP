@@ -19,7 +19,7 @@ public class GroupUsersListRequest : ListRequest
     {
         get
         {
-            parameters = new Dictionary<string, string>();
+            parameters = base.Parameters;
             parameters.Add("_sgId", GroupId);
             parameters.Add("_userId", UserId);
             return parameters;

@@ -88,6 +88,13 @@ namespace AionHR.Web.UI.Forms
                     Viewport1.Hidden = true;
                     return;
                 }
+
+                userSelector.ButtonsText = new ItemSelectorButtonsText();
+                userSelector.ButtonsText.Add = GetLocalResourceObject("Add").ToString();
+                userSelector.ButtonsText.Remove = GetLocalResourceObject("Remove").ToString();
+                userSelector.Buttons = new ItemSelectorButton[2];
+                userSelector.Buttons[0] = ItemSelectorButton.Add;
+                userSelector.Buttons[1] = ItemSelectorButton.Remove;
             }
 
 
@@ -125,7 +132,7 @@ namespace AionHR.Web.UI.Forms
                 this.ResourceManager1.RTL = true;
                 this.Viewport1.RTL = true;
                 this.rtl.Text = "1";
-
+                isRTL.Text = "1";
             }
             else
             {
@@ -780,29 +787,104 @@ namespace AionHR.Web.UI.Forms
 
         protected void groupSelectorGroup_ReadData(object sender, StoreReadDataEventArgs e)
         {
-            UsersListRequest req = new UsersListRequest();
+            
+            
+        }
+
+        protected void UserGroupsStore_ReadData(object sender, StoreReadDataEventArgs e)
+        {
+            string filter = string.Empty;
+
+
+            GroupUsersListRequest req = new GroupUsersListRequest();
             req.Size = "100";
             req.StartAt = "1";
             req.Filter = "";
+            req.UserId = CurrentUser.Text;
 
-            var s = jobInfo1.GetJobInfo();
-            req.DepartmentId = s.DepartmentId.HasValue ? s.DepartmentId.ToString() : "0";
-            req.PositionId = s.PositionId.HasValue ? s.PositionId.ToString() : "0";
-            ListResponse<UserInfo> groups = _systemService.ChildGetAll<UserInfo>(req);
+
+
+
+            //Fetching the corresponding list
+
+            //in this test will take a list of News
+
+
+            ListResponse<SecurityGroupUser> groups = _accessControlService.ChildGetAll<SecurityGroupUser>(req);
             if (!groups.Success)
             {
                 X.Msg.Alert(Resources.Common.Error, groups.Summary).Show();
                 return;
             }
-            GroupUsersListRequest request = new GroupUsersListRequest();
-            request.UserId = CurrentUser.Text;
-            ListResponse<SecurityGroupUser> userGroups = _accessControlService.ChildGetAll<SecurityGroupUser>(request);
-            if (!groups.Success)
+            this.UserGroupsStore.DataSource = groups.Items;
+            e.Total = groups.count;
+
+            this.UserGroupsStore.DataBind();
+        }
+
+        protected void SaveGroupUsers(object sender, DirectEventArgs e)
+        {
+
+
+            //Getting the id to check if it is an Add or an edit as they are managed within the same form.
+            string id = e.ExtraParams["id"];
+
+            List<SecurityGroupUser> selectedUsers = new List<SecurityGroupUser>();
+            foreach (var item in  userSelector.SelectedItems)
             {
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", groups.ErrorCode) != null ? GetGlobalResourceObject("Errors", groups.ErrorCode).ToString() : groups.Summary).Show();
+                selectedUsers.Add(new SecurityGroupUser() { userId = CurrentUser.Text, sgName = item.Text, sgId = item.Value });
+            }
+
+            PostRequest<SecurityGroupUser> req = new PostRequest<SecurityGroupUser>();
+            PostResponse<SecurityGroupUser> resp = new PostResponse<SecurityGroupUser>();
+            req.entity = new SecurityGroupUser() { sgId = "0", userId = CurrentUser.Text };
+            resp = _accessControlService.ChildDelete<SecurityGroupUser>(req);
+            if (!resp.Success)
+            {
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() : resp.Summary).Show();
                 return;
             }
-            X.Call("AddSource", userGroups.Items);
+            foreach (var item in selectedUsers)
+            {
+                req.entity = item;
+                req.entity.userId = CurrentUser.Text;
+                resp = _accessControlService.ChildAddOrUpdate<SecurityGroupUser>(req);
+                if (!resp.Success)
+                {
+                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() : resp.Summary).Show();
+                    return;
+                }
+
+            }
+            Notification.Show(new NotificationConfig
+            {
+                Title = Resources.Common.Notification,
+                Icon = Icon.Information,
+                Html = Resources.Common.RecordSavingSucc
+            });
+            groupUsersWindow.Close();
+            UserGroupsStore.Reload();
+
+
+        }
+
+        protected void ADDGroups(object sender, DirectEventArgs e)
+        {
+
+            GroupUsersListRequest request = new GroupUsersListRequest();
+            request.UserId = CurrentUser.Text;
+            ListResponse<SecurityGroup> userGroups = _accessControlService.ChildGetAll<SecurityGroup>(request);
+            if (!userGroups.Success)
+            {
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", userGroups.ErrorCode) != null ? GetGlobalResourceObject("Errors", userGroups.ErrorCode).ToString() : userGroups.Summary).Show();
+                return;
+            }
+            List<SecurityGroupUser> list = new List<SecurityGroupUser>();
+            userGroups.Items.ForEach(x => { list.Add(new SecurityGroupUser() { sgName = x.name, sgId = x.recordId, userId = CurrentUser.Text }); });
+            groupSelectorGroup.DataSource = list;
+            groupSelectorGroup.DataBind();
+            this.groupUsersWindow.Show();
+            X.Call("show");
         }
     }
 }

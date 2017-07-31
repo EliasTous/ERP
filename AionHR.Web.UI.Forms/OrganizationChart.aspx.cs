@@ -53,7 +53,17 @@ namespace AionHR.Web.UI.Forms
 
             if (!X.IsAjaxRequest && !IsPostBack)
             {
-
+                try
+                {
+                    AccessControlApplier.ApplyAccessControlOnPage(typeof(AionHR.Model.System.OrgCharts), null, null, null, null);
+                }
+                catch (AccessDeniedException exp)
+                {
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorAccessDenied).Show();
+                    topBar.Hidden = true;
+                    return;
+                }
                 SetExtLanguage();
                 HideShowButtons();
                 HideShowColumns();

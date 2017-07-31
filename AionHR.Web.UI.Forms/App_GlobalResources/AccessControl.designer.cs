@@ -2572,6 +2572,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Leave Type.
+        /// </summary>
+        internal static string Property420004 {
+            get {
+                return ResourceManager.GetString("Property420004", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Name.
         /// </summary>
         internal static string Property4201001 {

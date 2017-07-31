@@ -120,6 +120,9 @@
   <data name="BasicInfoTabEditWindowTitle" xml:space="preserve">
     <value>Leave Type Info</value>
   </data>
+  <data name="Business" xml:space="preserve">
+    <value>Business</value>
+  </data>
   <data name="EditWindowsTitle" xml:space="preserve">
     <value>Edit Leave Type</value>
   </data>
@@ -134,6 +137,12 @@
   </data>
   <data name="FieldRequiresApproval" xml:space="preserve">
     <value>Requires Approval?</value>
+  </data>
+  <data name="LeaveType" xml:space="preserve">
+    <value>Leave Type</value>
+  </data>
+  <data name="Personal" xml:space="preserve">
+    <value>Personal</value>
   </data>
   <data name="WindowTitle" xml:space="preserve">
     <value>Leave Types</value>

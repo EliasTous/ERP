@@ -31,7 +31,7 @@
         <ext:Hidden ID="titleSavingError" runat="server" Text="<%$ Resources:Common , TitleSavingError %>" />
         <ext:Hidden ID="titleSavingErrorMessage" runat="server" Text="<%$ Resources:Common , TitleSavingErrorMessage %>" />
         
-        <ext:Toolbar runat="server" >
+        <ext:Toolbar runat="server" ID="topBar" >
             <Items>
                 <ext:Button runat="server" Text="<%$ Resources:Print %>" >
                     <Listeners>

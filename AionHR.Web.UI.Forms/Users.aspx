@@ -156,6 +156,57 @@
                 App.fullName.setValue(name);
 
         }
+        function show() {
+
+            var fromStore = App.UserGroupsStore;
+            var toStore = App.userSelector.toField.getStore();
+
+            for (var i = 0; i < fromStore.getCount() ; i++) {
+                var s = fromStore.getAt(i);
+                toStore.add(s);
+
+                var d = App.userSelector.fromField.getStore().getById(s.getId());
+
+                if (d != null) {
+                    App.userSelector.fromField.getStore().remove(d);
+
+                }
+            }
+
+
+
+        }
+        function AddSource(items) {
+            var fromStore = App.userSelector.fromField.getStore();
+            var toStore = App.userSelector.toField.getStore();
+
+            while (fromStore.getCount() > 0)
+                fromStore.removeAt(0);
+
+
+
+            for (i = 0; i < items.length ; i++) {
+                if (fromStore.getById(items[i].userId) == null && toStore.getById(items[i].userId) == null) {
+
+                    fromStore.add(items[i]);
+                }
+
+            }
+        }
+        function SwapRTL() {
+            if (document.getElementById("isRTL").value == '1') {
+
+                $(".x-form-itemselector-add").css('background-image', 'url(/ux/resources/images/itemselector/left-gif/ext.axd)');
+                $(".x-form-itemselector-remove").css('background-image', 'url(/ux/resources/images/itemselector/right-gif/ext.axd)');
+
+            }
+            else {
+
+                $(".x-form-itemselector-add").css('background-image', 'url(/ux/resources/images/itemselector/right-gif/ext.axd)');
+                $(".x-form-itemselector-remove").css('background-image', 'url(/ux/resources/images/itemselector/left-gif/ext.axd)');
+
+            }
+        }
     </script>
 
 </head>
@@ -177,6 +228,7 @@
         <ext:Hidden ID="hide6" runat="server" />
         <ext:Hidden ID="hide7" runat="server" />
         <ext:Hidden ID="hide8" runat="server" />
+        <ext:Hidden ID="isRTL" runat="server" />
         <ext:Hidden ID="CurrentUser" runat="server" />
         <ext:Hidden runat="server" ID="level1" Text="<%$ Resources:VeryWeak %>" />
         <ext:Hidden runat="server" ID="level2" Text="<%$ Resources:Weak %>" />
@@ -429,7 +481,7 @@
 
                                 <ext:Checkbox ID="isInactiveCheck" TabIndex="4" runat="server" FieldLabel="<%$ Resources: FieldIsInActive%>" DataIndex="isInactive" Name="isInactive" InputValue="true" />
                                 <ext:Checkbox ID="isAdminCheck" TabIndex="5" runat="server" FieldLabel="<%$ Resources: FieldIsAdmin%>" DataIndex="isAdmin" Name="isAdmin" InputValue="true" />
-                                <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" ID="employeeId" TabIndex="6" Name="employeeId"
+                                <ext:ComboBox AnyMatch="true" CaseSensitive="false" runat="server" ID="employeeId" TabIndex="6" Name="employeeId"
                                     DisplayField="fullName"
                                     ValueField="recordId"
                                     TypeAhead="false"
@@ -460,7 +512,7 @@
                                         <FocusLeave Handler=" if(this.value==null|| isNaN(this.value) )SetNameEnabled(true,'');  if(isNaN(this.value)) this.setValue(null);" />
                                     </Listeners>
                                 </ext:ComboBox>
-                                <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" ID="languageId" AllowBlank="false" TabIndex="7" Name="languageId"
+                                <ext:ComboBox AnyMatch="true" CaseSensitive="false" runat="server" ID="languageId" AllowBlank="false" TabIndex="7" Name="languageId"
                                     SubmitValue="true"
                                     TypeAhead="false"
                                     FieldLabel="<%$ Resources: FieldLanguageId%>">
@@ -544,7 +596,7 @@
                                     <TopBar>
                                         <ext:Toolbar runat="server">
                                             <Items>
-                                                <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" ID="GroupsCombo" DisplayField="name" ValueField="recordId" QueryMode="Local" Width="120" ForceSelection="true" TypeAhead="true" MinChars="1">
+                                                <ext:ComboBox Hidden="true" AnyMatch="true" CaseSensitive="false" runat="server" ID="GroupsCombo" DisplayField="name" ValueField="recordId" QueryMode="Local" Width="120" ForceSelection="true" TypeAhead="true" MinChars="1">
                                                     <Store>
                                                         <ext:Store runat="server" ID="AllGroupsStore" OnReadData="AllGroupsStore_ReadData">
                                                             <Model>
@@ -560,21 +612,32 @@
                                                         </ext:Store>
                                                     </Store>
                                                 </ext:ComboBox>
-                                                <ext:Button runat="server" ID="addToGroupButton" Icon="BulletPlus">
+                                                <ext:Button Hidden="true" runat="server" ID="addToGroupButton" Icon="BulletPlus">
                                                     <DirectEvents>
                                                         <Click OnEvent="addUserToGroup" />
+                                                    </DirectEvents>
+                                                </ext:Button>
+                                                <ext:Button ID="Button1" runat="server" Text="<%$ Resources:Common , Add %>" Icon="Add">
+                                                    <Listeners>
+                                                        <Click Handler="CheckSession();" />
+                                                    </Listeners>
+                                                    <DirectEvents>
+                                                        <Click OnEvent="ADDGroups">
+                                                            <EventMask ShowMask="true" CustomTarget="={#{groupsGrid}.body}" />
+                                                        </Click>
                                                     </DirectEvents>
                                                 </ext:Button>
                                             </Items>
                                         </ext:Toolbar>
                                     </TopBar>
                                     <Store>
-                                        <ext:Store runat="server" ID="UserGroupsStore">
+                                        <ext:Store runat="server" ID="UserGroupsStore" OnReadData="UserGroupsStore_ReadData">
                                             <Model>
                                                 <ext:Model ID="Model3" runat="server" IDProperty="sgId">
                                                     <Fields>
 
                                                         <ext:ModelField Name="sgId" />
+                                                        <ext:ModelField Name="userId" />
                                                         <ext:ModelField Name="sgName" />
 
                                                     </Fields>
@@ -627,25 +690,7 @@
                                         </CellClick>
                                     </DirectEvents>
                                 </ext:GridPanel>
-                                  <ext:ItemSelector runat="server"  MaxHeight="300" MinHeight="300" AutoScroll="true" ID="userSelector" FromTitle="<%$Resources:All %>" DisplayField="fullName" ValueField="userId"
-                            ToTitle="Selected" >
-                            <Listeners>
-                                <AfterRender Handler="SwapRTL(); " />
-                            </Listeners>
-                            <Store>
-                                <ext:Store runat="server" ID="groupSelectorGroup" OnReadData="groupSelectorGroup_ReadData">
-                                    <Model>
-                                        <ext:Model runat="server" IDProperty="recordId">
-                                            <Fields>
-                                                <ext:ModelField Name="recordId" />
-                                                <ext:ModelField Name="name" />
-                                            </Fields>
-                                        </ext:Model>
-                                    </Model>
-                                </ext:Store>
-                            </Store>
-                   
-                        </ext:ItemSelector>
+
                             </Items>
                         </ext:FormPanel>
                     </Items>
@@ -653,7 +698,80 @@
             </Items>
 
         </ext:Window>
+        <ext:Window
+            ID="groupUsersWindow"
+            runat="server"
+            Icon="PageEdit"
+            Title=""
+            Width="550"
+            Height="450"
+            AutoShow="false"
+            Modal="true"
+            Hidden="true"
+            Layout="Fit">
 
+            <Items>
+
+                <ext:FormPanel
+                    ID="groupUsersForm" DefaultButton="Button3"
+                    runat="server" Header="false"
+                    Icon="ApplicationSideList"
+                    DefaultAnchor="100%"
+                    BodyPadding="5">
+
+                    <Items>
+                        <ext:ItemSelector runat="server" MaxHeight="300" MinHeight="300" AutoScroll="true" ID="userSelector" FromTitle="All" DisplayField="sgName" ValueField="sgId"
+                            ToTitle="<%$Resources:Selected %>">
+                            <Listeners>
+                                <AfterRender Handler="SwapRTL(); " />
+                            </Listeners>
+                            <Store>
+                                <ext:Store 
+                                    PageSize="30" IDMode="Explicit" Namespace="App" runat="server" ID="groupSelectorGroup" OnReadData="groupSelectorGroup_ReadData">
+                                    <Model>
+                                        <ext:Model runat="server" IDProperty="sgId">
+                                            <Fields>
+                                                <ext:ModelField Name="sgId" />
+                                                <ext:ModelField Name="sgName" />
+                                            </Fields>
+                                        </ext:Model>
+                                    </Model>
+
+                                  
+                                </ext:Store>
+                            </Store>
+
+                        </ext:ItemSelector>
+
+                    </Items>
+
+                </ext:FormPanel>
+
+
+            </Items>
+            <Buttons>
+                <ext:Button ID="Button3" runat="server" Text="<%$ Resources:Common, Save %>" Icon="Disk">
+
+                    <Listeners>
+                        <Click Handler="CheckSession(); if (!#{GroupUsersForm}.getForm().isValid()) {return false;} " />
+                    </Listeners>
+                    <DirectEvents>
+                        <Click OnEvent="SaveGroupUsers" Failure="Ext.MessageBox.alert('#{titleSavingError}.value', '#{titleSavingErrorMessage}.value');">
+                            <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="={#{GroupUsersWindow}.body}" />
+                            <ExtraParams>
+                                <ext:Parameter Name="id" Value="#{recordId}.getValue()" Mode="Raw" />
+                                <ext:Parameter Name="values" Value="#{GroupUsersForm}.getForm().getValues(false, false, false, true)" Mode="Raw" Encode="true" />
+                            </ExtraParams>
+                        </Click>
+                    </DirectEvents>
+                </ext:Button>
+                <ext:Button ID="Button4" runat="server" Text="<%$ Resources:Common , Cancel %>" Icon="Cancel">
+                    <Listeners>
+                        <Click Handler="this.up('window').hide();" />
+                    </Listeners>
+                </ext:Button>
+            </Buttons>
+        </ext:Window>
 
 
     </form>

@@ -252,6 +252,9 @@
   <data name="xrLabel6.Text" xml:space="preserve">
     <value>خروج 2</value>
   </data>
+  <data name="xrLabel63.Text" xml:space="preserve">
+    <value>الاستراحات</value>
+  </data>
   <data name="xrLabel7.Text" xml:space="preserve">
     <value>دخول 3</value>
   </data>

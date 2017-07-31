@@ -157,6 +157,15 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Hidden hide8;
         
         /// <summary>
+        /// isRTL control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Hidden isRTL;
+        
+        /// <summary>
         /// CurrentUser control.
         /// </summary>
         /// <remarks>
@@ -616,6 +625,15 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Button addToGroupButton;
         
         /// <summary>
+        /// Button1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Button Button1;
+        
+        /// <summary>
         /// UserGroupsStore control.
         /// </summary>
         /// <remarks>
@@ -661,6 +679,24 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Column Column4;
         
         /// <summary>
+        /// groupUsersWindow control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Window groupUsersWindow;
+        
+        /// <summary>
+        /// groupUsersForm control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.FormPanel groupUsersForm;
+        
+        /// <summary>
         /// userSelector control.
         /// </summary>
         /// <remarks>
@@ -677,5 +713,23 @@ namespace AionHR.Web.UI.Forms {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.Store groupSelectorGroup;
+        
+        /// <summary>
+        /// Button3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Button Button3;
+        
+        /// <summary>
+        /// Button4 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Button Button4;
     }
 }

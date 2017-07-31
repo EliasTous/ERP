@@ -52,6 +52,11 @@ namespace AionHR.Model.Reports
         public TimeSpan OL_A { get; set; }
         public TimeSpan OL_D { get; set; }
 
+        public int OL_B { get; set; }
+
+        public TimeSpan OLBFinal { get; set; }
+        public string breaks { get; set; }
+
 
 
 

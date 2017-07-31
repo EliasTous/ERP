@@ -20,5 +20,9 @@ namespace AionHR.Model.Employees.Leaves
         [PropertyID("42000_03")]
         [ApplySecurity]
         public bool requireApproval { get; set; }
+
+        [PropertyID("42000_04")]
+        [ApplySecurity]
+        public int leaveType { get; set; }
     }
 }

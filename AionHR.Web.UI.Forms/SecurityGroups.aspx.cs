@@ -233,13 +233,13 @@ namespace AionHR.Web.UI.Forms
 
                         catch { }
                         batch.entity = allClasses.ToArray();
-                        PostResponse<ModuleClass[]> batResp = _accessControlService.ChildAddOrUpdate<ModuleClass[]>(batch);
-                        if (!batResp.Success)
-                        {
-                            X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                            X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() : r.Summary).Show();
-                            return;
-                        }
+                        //PostResponse<ModuleClass[]> batResp = _accessControlService.ChildAddOrUpdate<ModuleClass[]>(batch);
+                        //if (!batResp.Success)
+                        //{
+                        //    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                        //    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() : r.Summary).Show();
+                        //    return;
+                        //}
                         //Display successful notification
                         Notification.Show(new NotificationConfig
                         {
@@ -985,7 +985,7 @@ namespace AionHR.Web.UI.Forms
                 return;
             }
             List<ModuleClass> finalClasses = new List<ModuleClass>();
-            classes.ForEach(x => { List<ModuleClass> match = stored.Items.Where(y => y.classId == x.classId).ToList(); ModuleClass temp = new ModuleClass(x); if (match.Count > 0) temp.accessLevel = match[0].accessLevel; else temp.accessLevel = 3; finalClasses.Add(temp); });
+            classes.ForEach(x => { List<ModuleClass> match = stored.Items.Where(y => y.classId == x.classId).ToList(); ModuleClass temp = new ModuleClass(x); if (match.Count > 0) temp.accessLevel = match[0].accessLevel; else temp.accessLevel = 0; finalClasses.Add(temp); });
 
 
             classesStore.DataSource = finalClasses;

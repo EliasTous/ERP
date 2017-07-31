@@ -238,6 +238,12 @@ namespace AionHR.Web.UI.Forms.Reports
                     x.unpaidLeaves = "00:00";
                     x.jobTasks = x.paidLeaves;
                     x.paidLeaves = "00:00";
+                    int leaveMins = Convert.ToInt32(x.unpaidLeaves.Split(':')[0]) * 60 + Convert.ToInt32(x.unpaidLeaves.Split(':')[1]);
+                    int netMins = x.OL_B>0?x.OL_B:0 - leaveMins;
+                    
+                    x.OLBFinal = new TimeSpan((netMins / 60), (netMins % 60), 0);
+
+
                 }
             }
             );
