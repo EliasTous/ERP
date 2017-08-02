@@ -120,6 +120,15 @@
   <data name="Class20000" xml:space="preserve">
     <value>Folders</value>
   </data>
+  <data name="Class20001" xml:space="preserve">
+    <value>Dashboard</value>
+  </data>
+  <data name="Class20002" xml:space="preserve">
+    <value>Employee Org Chart</value>
+  </data>
+  <data name="Class20003" xml:space="preserve">
+    <value>Company Org Chart</value>
+  </data>
   <data name="Class20010" xml:space="preserve">
     <value>Users</value>
   </data>

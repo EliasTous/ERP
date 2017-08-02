@@ -97,6 +97,20 @@ namespace AionHR.Web.UI.Forms
             FillVS();
             FillIDs();
             FillPassports();
+            FillSchedules();
+        }
+
+        private void FillSchedules()
+        {
+            ListRequest vsRequest = new ListRequest();
+            ListResponse<AttendanceSchedule> resp = _timeAttendanceService.ChildGetAll<AttendanceSchedule>(vsRequest);
+            if (!resp.Success)
+            {
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() : resp.Summary).Show();
+                return;
+            }
+            scheduleStore.DataSource = resp.Items;
+            scheduleStore.DataBind();
         }
 
         private void FillIDs()
@@ -157,6 +171,9 @@ namespace AionHR.Web.UI.Forms
 
             catch { }
             try { passportCombo.Select(items.Where(s => s.Key == "passportDocTypeId").First().Value); }
+
+            catch { }
+            try { scId.Select(items.Where(s => s.Key == "scId").First().Value); }
 
             catch { }
             try { vsId.Select(items.Where(s => s.Key == "vsId").First().Value); }
@@ -248,6 +265,8 @@ namespace AionHR.Web.UI.Forms
                 submittedValues.Add(new KeyValuePair<string, string>("resDocTypeId", values.idCombo.ToString()));
             if (!string.IsNullOrEmpty(values.vsId.ToString()))
                 submittedValues.Add(new KeyValuePair<string, string>("vsId", values.vsId.ToString()));
+            if (!string.IsNullOrEmpty(values.scId.ToString()))
+                submittedValues.Add(new KeyValuePair<string, string>("scId", values.scId.ToString()));
 
             if (values.localServerIP != null && !string.IsNullOrEmpty(values.localServerIP.ToString()))
                 submittedValues.Add(new KeyValuePair<string, string>("localServerIP", values.localServerIP.ToString()+"/AionWSLocal"));

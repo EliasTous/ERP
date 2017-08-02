@@ -245,6 +245,7 @@ namespace AionHR.Web.UI.Forms
             //sponsorId.Select(result.sponsorId);
             vsId.Select(result.vsId);
             caId.Select(result.caId);
+            scId.Select(result.scId.ToString());
             divisionId.Select(result.divisionId);
             if (result.gender == 1)
                 gender1.Checked = true;
@@ -280,6 +281,7 @@ namespace AionHR.Web.UI.Forms
 
             img.Hidden = isAdd;
             FillVacationSchedule();
+            FillSchedules();
             panelRecordDetails.Enabled = !isAdd;
 
             FillWorkingCalendar();
@@ -287,6 +289,19 @@ namespace AionHR.Web.UI.Forms
             SetTabPanelActivated(!isAdd);
 
 
+        }
+
+        private void FillSchedules()
+        {
+            ListRequest vsRequest = new ListRequest();
+            ListResponse<AttendanceSchedule> resp = _timeAttendanceService.ChildGetAll<AttendanceSchedule>(vsRequest);
+            if (!resp.Success)
+            {
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() : resp.Summary).Show();
+                return;
+            }
+            scheduleStore.DataSource = resp.Items;
+            scheduleStore.DataBind();
         }
 
         private void ClearLeftPanel()

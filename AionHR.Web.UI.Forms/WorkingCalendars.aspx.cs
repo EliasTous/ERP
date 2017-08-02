@@ -177,6 +177,7 @@ namespace AionHR.Web.UI.Forms
                     this.BasicInfoTab.SetValues(response.result);
                     //_systemService.SessionHelper.Set("currentSchedule",r.RecordID);
                     //// InitCombos(response.result);
+                    setDefaultBtn.Hidden = false;
                     this.EditCalendarWindow.Title = Resources.Common.EditWindowsTitle;
                     this.EditCalendarWindow.Show();
                     //FillDow("1");
@@ -600,7 +601,7 @@ namespace AionHR.Web.UI.Forms
             BasicInfoTab.Reset();
 
             this.EditCalendarWindow.Title = Resources.Common.AddNewRecord;
-
+            setDefaultBtn.Hidden = true;
             this.EditCalendarWindow.Show();
         }
         protected void AddNewDay(object sender, DirectEventArgs e)
@@ -678,7 +679,8 @@ namespace AionHR.Web.UI.Forms
 
                     else
                     {
-
+                        CurrentCalendar.Text = b.recordId;
+                        recordId.Text = b.recordId;
                         //Add this record to the store 
                         this.Store1.Insert(0, b);
 
@@ -690,7 +692,7 @@ namespace AionHR.Web.UI.Forms
                             Html = Resources.Common.RecordSavingSucc
                         });
 
-                        this.EditCalendarWindow.Close();
+                        X.Call("SetVisible");
                         RowSelectionModel sm = this.GridPanel1.GetSelectionModel() as RowSelectionModel;
                         sm.DeselectAll();
                         sm.Select(b.recordId.ToString());
@@ -999,6 +1001,7 @@ namespace AionHR.Web.UI.Forms
 
             b.year = CurrentYear.Text;
 
+            
 
             PostRequest<CalendarPattern> request = new PostRequest<CalendarPattern>();
             request.entity = b;
@@ -1080,6 +1083,20 @@ namespace AionHR.Web.UI.Forms
 
             }
 
+        }
+
+        protected void SetDefaultClick(object sender, DirectEventArgs e)
+        {
+            KeyValuePair<string, string> pair = new KeyValuePair<string, string>("caId", CurrentCalendar.Text);
+            PostRequest<KeyValuePair<string, string>> req = new PostRequest<KeyValuePair<string, string>>();
+            req.entity = pair;
+            PostResponse<KeyValuePair<string, string>> resp = _systemService.ChildAddOrUpdate<KeyValuePair<string, string>>(req);
+            if(!resp.Success)
+            {
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.ErrorUpdatingRecord, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() : resp.Summary).Show();
+                return;
+            }
         }
     }
 }

@@ -354,4 +354,7 @@
   <data name="ReferenceAlreadyExist" xml:space="preserve">
     <value>Reference Already Exist</value>
   </data>
+  <data name="FieldSchedule" xml:space="preserve">
+    <value>Attendance Schedule</value>
+  </data>
 </root>

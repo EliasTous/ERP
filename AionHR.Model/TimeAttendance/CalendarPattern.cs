@@ -20,6 +20,8 @@ namespace AionHR.Model.TimeAttendance
 
         public string scId { get; set; }
 
+        public bool applyScId { get; set; }
+
 
 
     }

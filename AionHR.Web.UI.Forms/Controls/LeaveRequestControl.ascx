@@ -4,6 +4,11 @@
 <script type="text/javascript" src="../Scripts/LeaveRequests2.js?id=10"></script>
 <script type="text/javascript" src="../Scripts/common.js"></script>
 <script type="text/javascript" src="../Scripts/moment.js"></script>
+<style type="text/css">
+    .print-button{
+        padding:3px;
+    }
+</style>
 <script type="text/javascript">
 
     function dump(obj) {
@@ -18,6 +23,11 @@
     function EnableLast() {
 
 
+    }
+    function openInNewTab() {
+        
+        window.document.forms[0].target = '_blank';
+        setTimeout(function () { window.document.forms[0].target = ''; }, 0);
     }
     function CalcSum() {
 
@@ -464,8 +474,19 @@
             </Items>
         </ext:TabPanel>
     </Items>
-    <Buttons>
-        <ext:Button ID="SaveButton" runat="server" Text="<%$ Resources:Common, Save %>" Icon="Disk">
+    <BottomBar>
+        <ext:Toolbar runat="server" ClassicButtonStyle="true">
+            <Items>
+                
+                <ext:Container runat="server" Width="60" Height="25">
+                    <Content>
+                        <%--<asp:ImageButton runat="server"  ID="imgButton"  CausesValidation="false"  ImageUrl="~/Images/Tools/expand-all.gif" OnClientClick="openInNewTab();"   />--%>
+                <asp:Button  runat="server" Width="60"   Text="<%$Resources:Print %>" CssClass="x-btn-inner x-btn-inner-default-small x-btn x-unselectable x-box-item x-toolbar-item x-btn-default-small print-button" OnClick="Button3_Click"  OnClientClick="openInNewTab();" />
+            </Content>
+                </ext:Container>
+                <ext:ToolbarSeparator runat="server" />
+                <ext:ToolbarFill></ext:ToolbarFill>
+                 <ext:Button ID="SaveButton" runat="server" Text="<%$ Resources:Common, Save %>" Icon="Disk">
 
             <Listeners>
                 <Click Handler="CheckSession(); if (!#{BasicInfoTab}.getForm().isValid()||!#{LeaveDays}.getForm().isValid()) {return false;}  " />
@@ -486,7 +507,23 @@
                 <Click Handler="this.up('window').hide();" />
             </Listeners>
         </ext:Button>
+        <ext:Button ID="Button3" runat="server" Text="Print" Hidden="true" >
+            <Listeners>
+                <Click Handler="openInNewTab" />
+            </Listeners>
+                    <DirectEvents>
+                        <Click OnEvent="Button3_DirectClick"   IsUpload="true" FormID="form1" ></Click>
+                    </DirectEvents>
+                </ext:Button>
+            </Items>
+        </ext:Toolbar>
+    </BottomBar>
+    <Buttons>
+        
+       
+        
     </Buttons>
+    
     <DirectEvents>
         <Close OnEvent="closing" />
     </DirectEvents>
@@ -586,6 +623,7 @@
                         <Click Handler="this.up('window').hide();" />
                     </Listeners>
                 </ext:Button>
+                
             </Buttons>
         </ext:FormPanel>
     </Items>

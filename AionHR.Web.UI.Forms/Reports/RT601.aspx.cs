@@ -245,6 +245,8 @@ namespace AionHR.Web.UI.Forms.Reports
                     s.statusString = GetLocalResourceObject("StatusRejected").ToString();
                 else
                     s.statusString = GetLocalResourceObject("Status" + s.status).ToString();
+
+                s.leaveTypeString = GetLocalResourceObject("leaveType" + s.leaveType).ToString();
             });
             LeaveList h = new LeaveList();
             h.DataSource = resp.Items;

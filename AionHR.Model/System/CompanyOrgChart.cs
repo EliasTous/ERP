@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace AionHR.Model.System
 {
-    [ClassIdentifier("20002", "20")]
-    public class EmpOrgChart
+    [ClassIdentifier("20003", "20")]
+   public class CompanyOrgChart
     {
     }
 }

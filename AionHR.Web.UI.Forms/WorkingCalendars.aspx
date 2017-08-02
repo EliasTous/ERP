@@ -19,6 +19,13 @@
     <link rel="stylesheet" href="CSS/Calendars.css" />
     <script type="text/javascript" src="Scripts/Calendars.js?id=1"></script>
 
+    <script type="text/javascript">
+
+        function SetVisible()
+        {
+            App.setDefaultBtn.setHidden(false);
+        }
+    </script>
 
 
 </head>
@@ -1679,6 +1686,11 @@
                         <Click Handler="this.up('window').hide();" />
                     </Listeners>
                 </ext:Button>
+                   <ext:Button ID="setDefaultBtn" runat="server" Text="<%$ Resources:SetDefault %>"  Hidden="true">
+               <DirectEvents>
+                   <Click OnEvent="SetDefaultClick" />
+               </DirectEvents>
+                </ext:Button>
             </Buttons>
         </ext:Window>
 
@@ -1912,7 +1924,7 @@
                                 </ext:Store>
                             </Store>
                         </ext:ComboBox>
-                      
+                        <ext:Checkbox runat="server" Name="applyScId" DataIndex="applyScId" ID="applyScId" InputValue="True" FieldLabel="<%$ Resources:ApplySchedule %>" />
                     </Items>
 
                 </ext:FormPanel>
@@ -1943,6 +1955,7 @@
                         <Click Handler="this.up('window').hide();" />
                     </Listeners>
                 </ext:Button>
+              
             </Buttons>
         </ext:Window>
         <ext:Window

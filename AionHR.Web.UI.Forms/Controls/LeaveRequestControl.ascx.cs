@@ -30,6 +30,8 @@ using AionHR.Model.TimeAttendance;
 using AionHR.Infrastructure.JSON;
 using AionHR.Model.Access_Control;
 using AionHR.Model.Attributes;
+using Reports;
+using AionHR.Services.Messaging.Reports;
 
 namespace AionHR.Web.UI.Forms.Controls
 {
@@ -59,7 +61,7 @@ namespace AionHR.Web.UI.Forms.Controls
         ICompanyStructureService _companyStructureService = ServiceLocator.Current.GetInstance<ICompanyStructureService>();
         ITimeAttendanceService _timeAttendanceService = ServiceLocator.Current.GetInstance<ITimeAttendanceService>();
         IAccessControlService _accessControlService = ServiceLocator.Current.GetInstance<IAccessControlService>();
-
+        IReportsService _reportsService = ServiceLocator.Current.GetInstance<IReportsService>();
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -118,6 +120,37 @@ namespace AionHR.Web.UI.Forms.Controls
         {
             LeaveDaysGrid = new GridPanel();
             
+        }
+
+        private void ImgButton_Click(object sender, ImageClickEventArgs e)
+        {
+            ReportCompositeRequest request = new ReportCompositeRequest();
+            request.Size = "1000";
+            request.StartAt = "1";
+
+
+
+            ListResponse<AionHR.Model.Reports.RT106> resp = _reportsService.ChildGetAll<AionHR.Model.Reports.RT106>(request);
+            if (!resp.Success)
+            {
+            }
+
+            TurnoverRate y = new TurnoverRate();
+            y.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;
+            y.RightToLeftLayout = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeftLayout.Yes : DevExpress.XtraReports.UI.RightToLeftLayout.No;
+            y.DataSource = resp.Items;
+            string user = _systemService.SessionHelper.GetCurrentUser();
+            y.Parameters["User"].Value = user;
+            string format = "Pdf";
+            string fileName = String.Format("Report.{0}", format);
+            MemoryStream ms = new MemoryStream();
+            y.ExportToPdf(ms, new DevExpress.XtraPrinting.PdfExportOptions() { ShowPrintDialogOnOpen = true });
+            Response.Clear();
+            Response.ContentType = "application/pdf";
+            Response.AddHeader("Content-Disposition", String.Format("{0}; filename={1}", "inline", fileName));
+            Response.BinaryWrite(ms.ToArray());
+            Response.Flush();
+            Response.Close();
         }
 
         #region public interface
@@ -913,6 +946,177 @@ namespace AionHR.Web.UI.Forms.Controls
         {
             leaveDaysStore.DataSource = new List<LeaveDay>();
             leaveDaysStore.DataBind();
+        }
+
+        protected void Unnamed_Event1(object sender, EventArgs  e)
+        {
+           
+        }
+
+        protected void Button3_Click(object sender, EventArgs e)
+        {
+
+            string dateFormat = _systemService.SessionHelper.GetDateformat();
+            LeaveRequestReport y = new LeaveRequestReport();
+            RecordRequest r = new RecordRequest();
+            r.RecordID = CurrentLeave.Text;
+            
+            RecordResponse<LeaveRequest> response = _leaveManagementService.ChildGetRecord<LeaveRequest>(r);
+            if (response.result == null)
+                return;
+            RecordRequest qvr = new RecordRequest();
+            r.RecordID = response.result.employeeId;
+            RecordResponse<EmployeeQuickView> resp = _employeeService.ChildGetRecord<EmployeeQuickView>(r);
+            if (!resp.Success)
+            {
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() : resp.Summary).Show();
+                return;
+            }
+            try {
+                leaveBalance.Text = resp.result.leavesBalance.ToString();
+                yearsInService.Text = resp.result.serviceDuration;
+                LeaveRequest request = response.result;
+                y.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;
+                y.RightToLeftLayout = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeftLayout.Yes : DevExpress.XtraReports.UI.RightToLeftLayout.No;
+
+                y.Parameters["Employee"].Value = request.employeeName.fullName;
+                y.Parameters["Ref"].Value = request.leaveRef;
+                y.Parameters["From"].Value = request.startDate.ToString(dateFormat);
+                y.Parameters["To"].Value = request.endDate.ToString(dateFormat);
+                y.Parameters["Days"].Value = calDays.Text;
+                y.Parameters["Hours"].Value = request.leavePeriod;
+                y.Parameters["Justification"].Value = request.justification;
+                y.Parameters["Destination"].Value = request.destination;
+                y.Parameters["LeaveType"].Value = request.ltName;
+                y.Parameters["LeaveBalance"].Value = resp.result.leavesBalance;
+                y.Parameters["YearsInService"].Value = resp.result.serviceDuration;
+                y.Parameters["IsPaid"].Value = request.isPaid.HasValue && request.isPaid.Value ? "Yes" : "No";
+                string format = "Pdf";
+                string fileName = String.Format("Report.{0}", format);
+                string user = _systemService.SessionHelper.GetCurrentUser();
+
+                MemoryStream ms = new MemoryStream();
+                y.ExportToPdf(ms, new DevExpress.XtraPrinting.PdfExportOptions() { ShowPrintDialogOnOpen = true });
+                Response.Clear();
+                Response.ContentType = "application/pdf";
+                Response.AddHeader("Content-Disposition", String.Format("{0}; filename={1}", "inline", fileName));
+                Response.BinaryWrite(ms.ToArray());
+                Response.Flush();
+                Response.Close();
+            }
+            catch
+            {
+
+            }
+        }
+
+        protected void Button3_DirectClick(object sender, DirectEventArgs e)
+        {
+            string dateFormat = _systemService.SessionHelper.GetDateformat();
+            LeaveRequestReport y = new LeaveRequestReport();
+
+            y.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;
+            y.RightToLeftLayout = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeftLayout.Yes : DevExpress.XtraReports.UI.RightToLeftLayout.No;
+            y.Parameters["Employee"].Value = employeeId.SelectedItem.Text.ToString();
+            y.Parameters["Ref"].Value = leaveRef.Text;
+            y.Parameters["From"].Value = startDate.SelectedDate.ToString(dateFormat);
+            y.Parameters["To"].Value = endDate.SelectedDate.ToString(dateFormat);
+            y.Parameters["Days"].Value = calDays.Text;
+            y.Parameters["Hours"].Value = leavePeriod.Text;
+            y.Parameters["Justification"].Value = leavePeriod.Text;
+            y.Parameters["Destination"].Value = destination.Text;
+            y.Parameters["LeaveType"].Value = ltId.SelectedItem.Text;
+            y.Parameters["LeaveBalance"].Value = leaveBalance.Text;
+            y.Parameters["YearsInService"].Value = yearsInService.Text;
+            y.Parameters["IsPaid"].Value = isPaid.Checked ? "Yes" : "No";
+            string format = "Pdf";
+            string fileName = String.Format("Report.{0}", format);
+            string user = _systemService.SessionHelper.GetCurrentUser();
+
+            MemoryStream ms = new MemoryStream();
+            y.ExportToPdf(ms, new DevExpress.XtraPrinting.PdfExportOptions() { ShowPrintDialogOnOpen = true });
+            //Response.Clear();
+            //Response.ContentType = "application/pdf";
+            //Response.AddHeader("Content-Disposition", String.Format("{0}; filename={1}", "inline", fileName));
+            //Response.AddHeader("Access-Control-Allow-Origin", "*");
+            //Response.BinaryWrite(ms.ToArray());
+            //Response.Flush();
+            //Response.Close();
+            DownloadFile(ms);
+        }
+
+        public void DownloadFile(Stream stream)
+        {
+           
+
+          
+
+            //This controls how many bytes to read at a time and send to the client
+            int bytesToRead = 10000;
+
+            // Buffer to read bytes in chunk size specified above
+            byte[] buffer = new Byte[bytesToRead];
+
+            // The number of bytes read
+            try
+            {
+              
+
+                
+                //Get the Stream returned from the response
+        
+                // prepare the response to the client. resp is the client Response
+
+                var resp = HttpContext.Current.Response;
+
+                //Indicate the type of data being sent
+                resp.ContentType = "application/octet-stream";
+               
+              
+                //Name the file 
+                resp.AddHeader("Content-Disposition", "attachment; filename=\"Report.pdf\"");
+                resp.AddHeader("Content-Length", stream.Length.ToString());
+
+                int length;
+                do
+                {
+                    // Verify that the client is connected.
+                    if (resp.IsClientConnected)
+                    {
+                        // Read data into the buffer.
+                        length = stream.Read(buffer, 0, bytesToRead);
+
+                        // and write it out to the response's output stream
+                        resp.OutputStream.Write(buffer, 0, length);
+
+                        // Flush the data
+
+
+                        //Clear the buffer
+                        buffer = new Byte[bytesToRead];
+                    }
+                    else
+                    {
+                        // cancel the download if client has disconnected
+                        length = -1;
+                    }
+                } while (length > 0); //Repeat until no data is read
+                resp.Flush();
+            }
+            catch (Exception exp)
+            {
+                X.Msg.Alert(Resources.Common.Error, exp.Message + "<br />" + exp.StackTrace).Show();
+                return;
+            }
+            finally
+            {
+                if (stream != null)
+                {
+                    //Close the input stream
+                    stream.Close();
+                }
+            }
         }
     }
 }

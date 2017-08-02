@@ -9,7 +9,7 @@
     <title></title>
     <link rel="stylesheet" type="text/css" href="CSS/Common.css" />
     <link rel="stylesheet" href="CSS/LiveSearch.css" />
-    <script type="text/javascript" src="Scripts/LeaveTypes.js?id=3"></script>
+    <script type="text/javascript" src="Scripts/LeaveTypes.js?id=4"></script>
     <script type="text/javascript" src="Scripts/common.js"></script>
 
 
@@ -22,7 +22,8 @@
         <ext:Hidden ID="textLoadFailed" runat="server" Text="<%$ Resources:Common , LoadFailed %>" />
         <ext:Hidden ID="titleSavingError" runat="server" Text="<%$ Resources:Common , TitleSavingError %>" />
         <ext:Hidden ID="titleSavingErrorMessage" runat="server" Text="<%$ Resources:Common , TitleSavingErrorMessage %>" />
-
+        <ext:Hidden ID="leaveType1" runat="server" Text="<%$ Resources: Personal %>" />
+         <ext:Hidden ID="leaveType2" runat="server" Text="<%$ Resources: Business %>" />
         <ext:Store
             ID="Store1"
             runat="server"
@@ -45,6 +46,7 @@
                         <ext:ModelField Name="reference" />
                         <ext:ModelField Name="name" />
                         <ext:ModelField Name="requireApproval" />
+                        <ext:ModelField Name="leaveType" />
 
                     </Fields>
                 </ext:Model>
@@ -117,6 +119,9 @@
                             <ext:Column ID="Column1" DataIndex="reference" Text="<%$ Resources: FieldReference%>" Width="150" runat="server" />
                             <ext:Column CellCls="cellLink" ID="ColName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldName%>" DataIndex="name" Flex="2" Hideable="false">
                             </ext:Column>
+                            <ext:Column ID="Column2" DataIndex="leaveType" Text="<%$ Resources: LeaveType%>" Width="100" runat="server" >
+                                <Renderer Handler="return getLeaveTypeString(record.data['leaveType']);" />
+                                </ext:Column>
                             <ext:CheckColumn runat="server" Flex="1" Text="<%$ Resources: FieldRequiresApproval %>" DataIndex="requireApproval"></ext:CheckColumn>
 
 

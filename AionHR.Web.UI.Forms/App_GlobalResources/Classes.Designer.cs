@@ -70,6 +70,33 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Dashboard.
+        /// </summary>
+        internal static string Class20001 {
+            get {
+                return ResourceManager.GetString("Class20001", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Employee Org Chart.
+        /// </summary>
+        internal static string Class20002 {
+            get {
+                return ResourceManager.GetString("Class20002", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Company Org Chart.
+        /// </summary>
+        internal static string Class20003 {
+            get {
+                return ResourceManager.GetString("Class20003", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Users.
         /// </summary>
         internal static string Class20010 {

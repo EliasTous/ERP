@@ -82,3 +82,8 @@ var selectColor = function (cp, color) {
 var setTriggerColor = function (color) {
     App.colorDay.triggerEl.elements["0"].applyStyles("background-color:" + "#" + color + ";");
 };
+
+function getLeaveTypeString(index)
+{
+    return document.getElementById("leaveType" + index).value;
+}

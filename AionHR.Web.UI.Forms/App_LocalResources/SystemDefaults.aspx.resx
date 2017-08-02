@@ -171,6 +171,9 @@
   <data name="FieldReference" xml:space="preserve">
     <value>Reference</value>
   </data>
+  <data name="FieldSchedule" xml:space="preserve">
+    <value>Attendance Schedule</value>
+  </data>
   <data name="FieldTimeZone" xml:space="preserve">
     <value>Default Time Zone</value>
   </data>

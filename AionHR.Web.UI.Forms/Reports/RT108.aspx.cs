@@ -180,14 +180,15 @@ namespace AionHR.Web.UI.Forms.Reports
             y.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;
             y.RightToLeftLayout = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeftLayout.Yes : DevExpress.XtraReports.UI.RightToLeftLayout.No;
             string format = _systemService.SessionHelper.GetDateformat();
+            CultureInfo cul = new CultureInfo("en");
             resp.Items.ForEach(x =>
             {
-                x.hireDateString = x.hireDate.HasValue? x.hireDate.Value.ToString(format):"";
+                x.hireDateString = x.hireDate.HasValue? x.hireDate.Value.ToString(format, cul) :"";
                 
-                x.idExpiryString = x.resExpiryDate.HasValue? x.resExpiryDate.Value.ToString(format):"";
-                x.passportExpiryString = x.passportExpiryDate.HasValue? x.passportExpiryDate.Value.ToString(format):"";
-                x.terminationDateString = x.terminationDate.HasValue? x.terminationDate.Value.ToString(format):"";
-                x.lastLeaveReturnString = x.lastLeaveReturnDate.HasValue? x.lastLeaveReturnDate.Value.ToString(format):"";
+                x.idExpiryString = x.resExpiryDate.HasValue? x.resExpiryDate.Value.ToString(format, cul) :"";
+                x.passportExpiryString = x.passportExpiryDate.HasValue? x.passportExpiryDate.Value.ToString(format, cul) :"";
+                x.terminationDateString = x.terminationDate.HasValue? x.terminationDate.Value.ToString(format, cul) :"";
+                x.lastLeaveReturnString = x.lastLeaveReturnDate.HasValue? x.lastLeaveReturnDate.Value.ToString(format, cul) :"";
                 x.genderString = x.gender==0?GetGlobalResourceObject("Common","Male").ToString(): GetGlobalResourceObject("Common", "Female").ToString();
                 x.isInactiveString = x.isInactive?GetGlobalResourceObject("Common", "Inactive").ToString():GetGlobalResourceObject("Common", "Active").ToString();
             });

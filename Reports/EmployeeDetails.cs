@@ -80,6 +80,7 @@ public class EmployeeDetails : DevExpress.XtraReports.UI.XtraReport
     private XRLabel xrLabel39;
     private XRTableCell xrTableCell1;
     private XRLabel xrLabel1;
+    private XRControlStyle xrControlStyle1;
 
     /// <summary>
     /// Required designer variable.
@@ -188,6 +189,7 @@ public class EmployeeDetails : DevExpress.XtraReports.UI.XtraReport
             this.PageHeader = new DevExpress.XtraReports.UI.PageHeaderBand();
             this.xrLabel39 = new DevExpress.XtraReports.UI.XRLabel();
             this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
+            this.xrControlStyle1 = new DevExpress.XtraReports.UI.XRControlStyle();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
@@ -211,6 +213,7 @@ public class EmployeeDetails : DevExpress.XtraReports.UI.XtraReport
             this.xrTable1.Name = "xrTable1";
             this.xrTable1.Rows.AddRange(new DevExpress.XtraReports.UI.XRTableRow[] {
             this.xrTableRow1});
+            this.xrTable1.StyleName = "xrControlStyle1";
             this.xrTable1.StylePriority.UseBorders = false;
             // 
             // xrTableRow1
@@ -863,6 +866,12 @@ public class EmployeeDetails : DevExpress.XtraReports.UI.XtraReport
             this.objectDataSource1.DataSource = typeof(AionHR.Model.Reports.RT108);
             this.objectDataSource1.Name = "objectDataSource1";
             // 
+            // xrControlStyle1
+            // 
+            this.xrControlStyle1.Name = "xrControlStyle1";
+            this.xrControlStyle1.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
+            this.xrControlStyle1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            // 
             // EmployeeDetails
             // 
             this.Bands.AddRange(new DevExpress.XtraReports.UI.Band[] {
@@ -887,7 +896,8 @@ public class EmployeeDetails : DevExpress.XtraReports.UI.XtraReport
             this.Title,
             this.FieldCaption,
             this.PageInfo,
-            this.DataField});
+            this.DataField,
+            this.xrControlStyle1});
             this.Version = "16.2";
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).EndInit();

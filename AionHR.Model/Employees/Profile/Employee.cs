@@ -11,6 +11,7 @@ namespace AionHR.Model.Employees.Profile
     [ClassIdentifier("31000", "31")]
     public class Employee : ModelBase, IEntity
     {
+
         [PropertyID("31000_01")]
         [ApplySecurity]
         public string reference { get; set; }
@@ -19,6 +20,13 @@ namespace AionHR.Model.Employees.Profile
         [PropertyID("31000_24")]
         [ApplySecurity]
         public EmployeeName name { get; set; }
+        [PropertyID("31000_25")]
+        [ApplySecurity]
+        public int scId { get; set; }
+        [PropertyID("31000_25")]
+        [ApplySecurity]
+        public string scName { get; set; }
+
         [PropertyID("31000_02")]
         [ApplySecurity]
         public string firstName { get; set; }

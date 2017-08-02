@@ -120,6 +120,15 @@
   <data name="Class20000" xml:space="preserve">
     <value>الملفات</value>
   </data>
+  <data name="Class20001" xml:space="preserve">
+    <value>لوحة التحكم </value>
+  </data>
+  <data name="Class20002" xml:space="preserve">
+    <value>مخطط الموظفين التنظيمي</value>
+  </data>
+  <data name="Class20003" xml:space="preserve">
+    <value>مخطط الشركة التنظيمي</value>
+  </data>
   <data name="Class20010" xml:space="preserve">
     <value>المستخدمين</value>
   </data>

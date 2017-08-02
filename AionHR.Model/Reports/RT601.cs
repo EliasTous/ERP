@@ -31,6 +31,9 @@ namespace AionHR.Model.Reports
         public string destination { get; set; }
         public bool isPaid { get; set; }
 
+        public int leaveType { get; set; }
+
+        public string leaveTypeString { get; set; }
        
         public string isPaidString { get; set; }
         public string ltName { get; set; }

@@ -250,6 +250,15 @@ namespace AionHR.Web.UI.Forms.Reports
             }
 
             h.CreateDocument();
+            //string format = "Pdf";
+            //string fileName = String.Format("Report.{0}", format);
+            //MemoryStream ms = new MemoryStream();
+            //h.ExportToPdf(ms,new DevExpress.XtraPrinting.PdfExportOptions() { ShowPrintDialogOnOpen = true });
+            //Response.Clear();
+            //Response.ContentType = "application/pdf";
+            //Response.AddHeader("Content-Disposition", String.Format("{0}; filename={1}", "inline", fileName));
+            //Response.BinaryWrite(ms.ToArray());
+            //Response.End();
             ASPxWebDocumentViewer1.OpenReport(h);
             ASPxWebDocumentViewer1.DataBind();
 

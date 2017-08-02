@@ -252,4 +252,10 @@
   <data name="DOW" xml:space="preserve">
     <value>Day of week</value>
   </data>
+  <data name="ApplySchedule" xml:space="preserve">
+    <value>Apply Schedule</value>
+  </data>
+  <data name="SetDefault" xml:space="preserve">
+    <value>Set Default Calendar</value>
+  </data>
 </root>

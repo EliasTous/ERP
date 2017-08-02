@@ -130,7 +130,7 @@
     <value>الحالة</value>
   </data>
   <data name="xrLabel14.Text" xml:space="preserve">
-    <value>النوع</value>
+    <value>اسم النوع</value>
   </data>
   <data name="xrLabel15.Text" xml:space="preserve">
     <value>مدفوعة؟</value>
@@ -145,7 +145,7 @@
     <value>الفرع</value>
   </data>
   <data name="xrLabel20.Text" xml:space="preserve">
-    <value>النوع</value>
+    <value>اسم النوع</value>
   </data>
   <data name="xrLabel21.Text" xml:space="preserve">
     <value>الحالة</value>
@@ -161,6 +161,15 @@
   </data>
   <data name="xrLabel33.Text" xml:space="preserve">
     <value>المدة</value>
+  </data>
+  <data name="xrLabel35.Text" xml:space="preserve">
+    <value>النوع</value>
+  </data>
+  <data name="xrLabel37.Text" xml:space="preserve">
+    <value>القسم</value>
+  </data>
+  <data name="xrLabel38.Text" xml:space="preserve">
+    <value>الفرع</value>
   </data>
   <data name="xrLabel9.Text" xml:space="preserve">
     <value>الموظف</value>

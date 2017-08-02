@@ -117,31 +117,19 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="leaveType1" xml:space="preserve">
-    <value>Personal</value>
+  <data name="BasicInfoTabEditWindowTitle" xml:space="preserve">
+    <value>أنواع السلف</value>
   </data>
-  <data name="leaveType2" xml:space="preserve">
-    <value>Business</value>
+  <data name="EditWindowsTitle" xml:space="preserve">
+    <value>تعديل نوع السلفة</value>
   </data>
-  <data name="Paid0" xml:space="preserve">
-    <value>No</value>
+  <data name="FieldName" xml:space="preserve">
+    <value>الاسم</value>
   </data>
-  <data name="Paid1" xml:space="preserve">
-    <value>Yes</value>
+  <data name="FieldRecordId" xml:space="preserve">
+    <value>Record ID</value>
   </data>
-  <data name="Status0" xml:space="preserve">
-    <value>N/A</value>
-  </data>
-  <data name="Status1" xml:space="preserve">
-    <value>Pending</value>
-  </data>
-  <data name="Status2" xml:space="preserve">
-    <value>Approved</value>
-  </data>
-  <data name="Status3" xml:space="preserve">
-    <value>Used</value>
-  </data>
-  <data name="StatusRejected" xml:space="preserve">
-    <value>Rejected</value>
+  <data name="WindowTitle" xml:space="preserve">
+    <value>أنواع السلفة</value>
   </data>
 </root>

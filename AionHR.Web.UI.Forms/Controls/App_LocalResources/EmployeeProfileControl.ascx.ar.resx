@@ -348,4 +348,7 @@
   <data name="ReferenceAlreadyExist" xml:space="preserve">
     <value>الرمز موجود مسبقاً</value>
   </data>
+  <data name="FieldSchedule" xml:space="preserve">
+    <value>جدول الدوام</value>
+  </data>
 </root>

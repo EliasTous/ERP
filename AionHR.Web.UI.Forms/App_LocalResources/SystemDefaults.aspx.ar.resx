@@ -177,6 +177,9 @@
   <data name="FieldReference" xml:space="preserve">
     <value>الرمز</value>
   </data>
+  <data name="FieldSchedule" xml:space="preserve">
+    <value>جدول الدوام</value>
+  </data>
   <data name="FieldTimeZone" xml:space="preserve">
     <value>المنطقة الزمنية الإفتراضية</value>
   </data>

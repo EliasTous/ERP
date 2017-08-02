@@ -58,6 +58,7 @@ namespace AionHR.Model.LeaveManagement
 
         public string leavePeriod { get; set; }
 
+
         public string employeeRef { get; set; }
         [PropertyID("42020_03")]
         [ApplySecurity]
@@ -65,5 +66,9 @@ namespace AionHR.Model.LeaveManagement
         [PropertyID("42020_07")]
         [ApplySecurity]
         public string ltName { get; set; }
+
+        public string departmentName { get; set; }
+
+        public string branchName { get; set; }
     }   
 }

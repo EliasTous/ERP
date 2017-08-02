@@ -56,7 +56,7 @@ namespace AionHR.Web.UI.Forms
             {
                 try
                 {
-                    AccessControlApplier.ApplyAccessControlOnPage(typeof(AionHR.Model.System.OrgCharts), null, null, null, null);
+                    AccessControlApplier.ApplyAccessControlOnPage(typeof(AionHR.Model.System.EmpOrgChart), null, null, null, null);
                 }
                 catch (AccessDeniedException exp)
                 {

@@ -252,4 +252,7 @@
   <data name="FieldLeaveRef" xml:space="preserve">
     <value>Ref</value>
   </data>
+  <data name="Print" xml:space="preserve">
+    <value>Print</value>
+  </data>
 </root>

@@ -40,6 +40,15 @@
             var friendlydate = moment(d, 'YYYYMMDD');
             return friendlydate.format(document.getElementById("format").value);
         }
+        function displayLeaveFirstCell(d)
+        {
+           
+            var str = "<div style= " + getStyle() + ">" + d.name;
+            str += "<br/>";
+            str += d.branchName + ", " + d.departmentName;
+            str += "</div>";
+            return str;
+        }
         function displayMissedPunchRecord(s) {
             var str = "<div style=" + getStyle() + ">" + s.name;
 
@@ -956,11 +965,13 @@
 
                                                                                 <ext:ModelField Name="employeeId" />
                                                                                 <ext:ModelField Name="recordId" />
-                                                                                <ext:ModelField Name="employeeName" IsComplex="true" />
+                                                                                <ext:ModelField Name="name"  ServerMapping="employeeName.fullName" />
                                                                                 <ext:ModelField Name="destination" />
                                                                                 <ext:ModelField Name="ltName" />
                                                                                 <ext:ModelField Name="startDate" />
                                                                                 <ext:ModelField Name="endDate" />
+                                                                                <ext:ModelField Name="branchName" />
+                                                                                <ext:ModelField Name="departmentName" />
 
                                                                             </Fields>
                                                                         </ext:Model>
@@ -974,7 +985,7 @@
                                                                 <Columns>
                                                                     <ext:Column Visible="false" ID="Column9" MenuDisabled="true" runat="server" DataIndex="recordId" Hideable="false" Width="75" />
                                                                     <ext:Column ID="ColName" DataIndex="employeeName" Text="<%$ Resources: FieldEmployeeName%>" runat="server" Flex="2">
-                                                                        <Renderer Handler=" return  record.data['employeeName'].fullName" />
+                                                                        <Renderer Handler=" return  displayLeaveFirstCell(record.data);" />
                                                                     </ext:Column>
                                                                     <ext:DateColumn ID="DateColumn1" DataIndex="startDate" Text="<%$ Resources: FieldStartDate%>" runat="server" Width="100" />
                                                                     <ext:DateColumn ID="DateColumn2" DataIndex="endDate" Text="<%$ Resources: FieldEndDate%>" runat="server" Width="100" />

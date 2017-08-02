@@ -79,6 +79,9 @@
     <Compile Include="LeaveList.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="LeaveRequestReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="LoansReport.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -187,6 +190,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="LeaveList.resx">
       <DependentUpon>LeaveList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LeaveRequestReport.ar.resx">
+      <DependentUpon>LeaveRequestReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LeaveRequestReport.resx">
+      <DependentUpon>LeaveRequestReport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LoansReport.ar.resx">
       <DependentUpon>LoansReport.cs</DependentUpon>

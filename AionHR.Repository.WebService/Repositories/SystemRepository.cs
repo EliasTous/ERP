@@ -85,7 +85,7 @@ namespace AionHR.Repository.WebService.Repositories
 
 
 
-
+            ChildAddOrUpdateLookup.Add(typeof(KeyValuePair<string, string>), "setDE");
             ChildAddOrUpdateLookup.Add(typeof(KeyValuePair<string, string>[]), "arrDE");
             ChildAddOrUpdateLookup.Add(typeof(SystemAlert[]), "arrAA");
 

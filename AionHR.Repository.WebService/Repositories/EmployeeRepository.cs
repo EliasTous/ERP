@@ -60,7 +60,6 @@ namespace AionHR.Repository.WebService.Repositories
             ChildGetAllLookup.Add(typeof(TeamMember), "qryTM");
             ChildGetAllLookup.Add(typeof(EmployeeContact), "qryCO");
             ChildGetAllLookup.Add(typeof(NoticePeriod), "qryNP");
-            
 
 
             ChildGetLookup.Add(typeof(Sponsor), "getSP");

@@ -1221,4 +1221,7 @@
   <data name="Property420004" xml:space="preserve">
     <value>نوع الإجازة</value>
   </data>
+  <data name="Property3100025" xml:space="preserve">
+    <value>جدول الدوام</value>
+  </data>
 </root>

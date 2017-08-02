@@ -246,4 +246,10 @@
   <data name="DOW" xml:space="preserve">
     <value>اليوم</value>
   </data>
+  <data name="ApplySchedule" xml:space="preserve">
+    <value>تطبيق جدول الدوام</value>
+  </data>
+  <data name="SetDefault" xml:space="preserve">
+    <value>تعيين تقويم افتراضي</value>
+  </data>
 </root>

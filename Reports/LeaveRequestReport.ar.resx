@@ -117,31 +117,115 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="leaveType1" xml:space="preserve">
-    <value>Personal</value>
+  <data name="Days.Description" xml:space="preserve">
+    <value>Parameter1</value>
   </data>
-  <data name="leaveType2" xml:space="preserve">
-    <value>Business</value>
+  <data name="Destination.Description" xml:space="preserve">
+    <value>Parameter1</value>
   </data>
-  <data name="Paid0" xml:space="preserve">
-    <value>No</value>
+  <data name="Employee.Description" xml:space="preserve">
+    <value>Parameter1</value>
   </data>
-  <data name="Paid1" xml:space="preserve">
-    <value>Yes</value>
+  <data name="From.Description" xml:space="preserve">
+    <value>Parameter1</value>
   </data>
-  <data name="Status0" xml:space="preserve">
-    <value>N/A</value>
+  <data name="Hours.Description" xml:space="preserve">
+    <value>Parameter1</value>
   </data>
-  <data name="Status1" xml:space="preserve">
-    <value>Pending</value>
+  <data name="IsPaid.Description" xml:space="preserve">
+    <value>Parameter1</value>
   </data>
-  <data name="Status2" xml:space="preserve">
-    <value>Approved</value>
+  <data name="Justification.Description" xml:space="preserve">
+    <value>Parameter1</value>
   </data>
-  <data name="Status3" xml:space="preserve">
-    <value>Used</value>
+  <data name="LeaveBalance.Description" xml:space="preserve">
+    <value>Parameter1</value>
   </data>
-  <data name="StatusRejected" xml:space="preserve">
-    <value>Rejected</value>
+  <data name="LeaveType.Description" xml:space="preserve">
+    <value>Parameter1</value>
+  </data>
+  <data name="Ref.Description" xml:space="preserve">
+    <value>Parameter1</value>
+  </data>
+  <data name="To.Description" xml:space="preserve">
+    <value>Parameter1</value>
+  </data>
+  <data name="xrLabel1.Text" xml:space="preserve">
+    <value>من</value>
+  </data>
+  <data name="xrLabel10.Text" xml:space="preserve">
+    <value>الوجهة</value>
+  </data>
+  <data name="xrLabel11.Text" xml:space="preserve">
+    <value>مدفوعة</value>
+  </data>
+  <data name="xrLabel12.Text" xml:space="preserve">
+    <value>نوع الإجازة</value>
+  </data>
+  <data name="xrLabel13.Text" xml:space="preserve">
+    <value>رصيد الإجازات</value>
+  </data>
+  <data name="xrLabel14.Text" xml:space="preserve">
+    <value>سنين الخدمة</value>
+  </data>
+  <data name="xrLabel15.Text" xml:space="preserve">
+    <value>xrLabel15</value>
+  </data>
+  <data name="xrLabel16.Text" xml:space="preserve">
+    <value>xrLabel16</value>
+  </data>
+  <data name="xrLabel17.Text" xml:space="preserve">
+    <value>xrLabel17</value>
+  </data>
+  <data name="xrLabel18.Text" xml:space="preserve">
+    <value>xrLabel18</value>
+  </data>
+  <data name="xrLabel19.Text" xml:space="preserve">
+    <value>xrLabel19</value>
+  </data>
+  <data name="xrLabel2.Text" xml:space="preserve">
+    <value>xrLabel2</value>
+  </data>
+  <data name="xrLabel20.Text" xml:space="preserve">
+    <value>xrLabel20</value>
+  </data>
+  <data name="xrLabel21.Text" xml:space="preserve">
+    <value>xrLabel21</value>
+  </data>
+  <data name="xrLabel22.Text" xml:space="preserve">
+    <value>xrLabel22</value>
+  </data>
+  <data name="xrLabel23.Text" xml:space="preserve">
+    <value>xrLabel23</value>
+  </data>
+  <data name="xrLabel24.Text" xml:space="preserve">
+    <value>نموذج طلب الإجازة/الخروج</value>
+  </data>
+  <data name="xrLabel3.Text" xml:space="preserve">
+    <value>إلى</value>
+  </data>
+  <data name="xrLabel4.Text" xml:space="preserve">
+    <value>الموظف</value>
+  </data>
+  <data name="xrLabel5.Text" xml:space="preserve">
+    <value>xrLabel5</value>
+  </data>
+  <data name="xrLabel6.Text" xml:space="preserve">
+    <value>الرقم</value>
+  </data>
+  <data name="xrLabel7.Text" xml:space="preserve">
+    <value>الساعات</value>
+  </data>
+  <data name="xrLabel8.Text" xml:space="preserve">
+    <value>الأيام</value>
+  </data>
+  <data name="xrLabel9.Text" xml:space="preserve">
+    <value>السبب</value>
+  </data>
+  <data name="xrRichText1.SerializableRtfString" xml:space="preserve">
+    <value>ewBcAHIAdABmADEAXABhAG4AcwBpAGMAcABnADEAMgA1ADIADQAKAHsADQAKAFwAZgBvAG4AdAB0AGIAbAANAAoAewBcAGYAMAAgAFQAaQBtAGUAcwAgAE4AZQB3ACAAUgBvAG0AYQBuADsAfQANAAoAfQANAAoAewANAAoAXABjAG8AbABvAHIAdABiAGwADQAKADsADQAKAFwAcgBlAGQAMABcAGcAcgBlAGUAbgAwAFwAYgBsAHUAZQAyADUANQA7AA0ACgBcAHIAZQBkADAAXABnAHIAZQBlAG4AMABcAGIAbAB1AGUAMAA7AA0ACgB9AA0ACgBcAG4AbwB1AGkAYwBvAG0AcABhAHQAXABzAHAAbAB5AHQAdwBuAGkAbgBlAFwAaAB0AG0AYQB1AHQAcwBwAHsAXABwAGEAcgBkAFwAcABsAGEAaQBuAFwAcQBsAHsAXABmAHMAMgAwAFwAYwBmADIAIAB4AHIAUgBpAGMAaABUAGUAeAB0ADEAfQBcAGYAcwAyADQAXABwAGEAcgB9AA0ACgB9AA0ACgA=</value>
+  </data>
+  <data name="YearsInService.Description" xml:space="preserve">
+    <value>Parameter1</value>
   </data>
 </root>
