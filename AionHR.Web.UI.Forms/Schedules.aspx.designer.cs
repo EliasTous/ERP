@@ -598,6 +598,15 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Button CancelButton;
         
         /// <summary>
+        /// setDefaultBtn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Button setDefaultBtn;
+        
+        /// <summary>
         /// EditDayBreaks control.
         /// </summary>
         /// <remarks>

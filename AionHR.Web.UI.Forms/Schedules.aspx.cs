@@ -210,6 +210,7 @@ namespace AionHR.Web.UI.Forms
                     this.BasicInfoTab.SetValues(response.result);
                     //_systemService.SessionHelper.Set("currentSchedule",r.RecordID);
                     //// InitCombos(response.result);
+                    setDefaultBtn.Hidden = false;
                     this.EditRecordWindow.Title = Resources.Common.EditWindowsTitle;
                     this.EditRecordWindow.Show();
                     //FillDow("1");
@@ -511,6 +512,7 @@ namespace AionHR.Web.UI.Forms
             this.EditRecordWindow.Title = Resources.Common.AddNewRecord;
 
             this.EditRecordWindow.Show();
+            setDefaultBtn.Hidden = true;
             //fci_max_lt.Text = fci_min_ot.Text = lco_max_el.Text = lco_max_ot.Text = lco_min_ot.Text = "0";
         }
         protected void AddNewDay(object sender, DirectEventArgs e)
@@ -608,8 +610,9 @@ namespace AionHR.Web.UI.Forms
                             Icon = Icon.Information,
                             Html = Resources.Common.RecordSavingSucc
                         });
-
-                        this.EditRecordWindow.Close();
+                        setDefaultBtn.Hidden = false;
+                        recordId.Text = b.recordId;
+                        
                         RowSelectionModel sm = this.GridPanel1.GetSelectionModel() as RowSelectionModel;
                         sm.DeselectAll();
                         sm.Select(b.recordId.ToString());
@@ -662,7 +665,6 @@ namespace AionHR.Web.UI.Forms
                             Html = Resources.Common.RecordUpdatedSucc
                         });
                         this.EditRecordWindow.Close();
-
 
                     }
 
@@ -998,6 +1000,24 @@ namespace AionHR.Web.UI.Forms
                 this.patternWindow.Close();
             }
 
+        }
+
+        protected void SetDefaultClick(object sender, DirectEventArgs e)
+        {
+            KeyValuePair<string, string> pair = new KeyValuePair<string, string>("scId", e.ExtraParams["id"].ToString());
+            PostRequest<KeyValuePair<string, string>> req = new PostRequest<KeyValuePair<string, string>>();
+            req.entity = pair;
+            PostResponse<KeyValuePair<string, string>> resp = _systemService.ChildAddOrUpdate<KeyValuePair<string, string>>(req);
+            if (!resp.Success)
+            {
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.ErrorUpdatingRecord, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() : resp.Summary).Show();
+                return;
+            }
+            else
+            {
+                X.Msg.Alert(Resources.Common.RecordSavingSucc, GetLocalResourceObject("DefaultSetSucc").ToString()).Show();
+            }
         }
 
 

@@ -252,4 +252,7 @@
   <data name="SetDefault" xml:space="preserve">
     <value>تعيين تقويم افتراضي</value>
   </data>
+  <data name="DefaultSetSucc" xml:space="preserve">
+    <value>تم تعيين التقويم بنجاح</value>
+  </data>
 </root>

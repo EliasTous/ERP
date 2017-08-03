@@ -231,4 +231,10 @@
   <data name="FieldDuration" xml:space="preserve">
     <value>Duration</value>
   </data>
+  <data name="SetDefault" xml:space="preserve">
+    <value>Set Default Schedule</value>
+  </data>
+  <data name="DefaultSetSucc" xml:space="preserve">
+    <value>Default schedule set successfully</value>
+  </data>
 </root>

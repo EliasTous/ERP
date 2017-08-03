@@ -258,4 +258,7 @@
   <data name="SetDefault" xml:space="preserve">
     <value>Set Default Calendar</value>
   </data>
+  <data name="DefaultSetSucc" xml:space="preserve">
+    <value>Default Calendar set successfully</value>
+  </data>
 </root>

@@ -234,4 +234,10 @@
   <data name="FieldDuration" xml:space="preserve">
     <value>المدة</value>
   </data>
+  <data name="SetDefault" xml:space="preserve">
+    <value>تعيين جدول افتراضي</value>
+  </data>
+  <data name="DefaultSetSucc" xml:space="preserve">
+    <value>تم تعيين الجدول بنجاح</value>
+  </data>
 </root>

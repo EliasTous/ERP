@@ -433,6 +433,19 @@
                         <Click Handler="this.up('window').hide();" />
                     </Listeners>
                 </ext:Button>
+                     <ext:Button ID="setDefaultBtn" runat="server" Text="<%$ Resources:SetDefault %>"  Hidden="true">
+                       <Listeners  >
+                           <Click Handler="CheckSession();"></Click>
+                           </Listeners>
+               <DirectEvents>
+                  
+                   <Click OnEvent="SetDefaultClick" >
+                         <ExtraParams>
+                                <ext:Parameter Name="id" Value="#{recordId}.getValue()" Mode="Raw" />
+                        </ExtraParams>
+                       </Click>
+               </DirectEvents>
+                </ext:Button>
             </Buttons>
         </ext:Window>
 

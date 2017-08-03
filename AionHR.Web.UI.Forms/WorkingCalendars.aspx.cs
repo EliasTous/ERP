@@ -1087,7 +1087,7 @@ namespace AionHR.Web.UI.Forms
 
         protected void SetDefaultClick(object sender, DirectEventArgs e)
         {
-            KeyValuePair<string, string> pair = new KeyValuePair<string, string>("caId", CurrentCalendar.Text);
+            KeyValuePair<string, string> pair = new KeyValuePair<string, string>("caId", e.ExtraParams["id"].ToString());
             PostRequest<KeyValuePair<string, string>> req = new PostRequest<KeyValuePair<string, string>>();
             req.entity = pair;
             PostResponse<KeyValuePair<string, string>> resp = _systemService.ChildAddOrUpdate<KeyValuePair<string, string>>(req);
@@ -1096,6 +1096,10 @@ namespace AionHR.Web.UI.Forms
                 X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
                 X.Msg.Alert(Resources.Common.ErrorUpdatingRecord, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() : resp.Summary).Show();
                 return;
+            }
+            else
+            {
+                X.Msg.Alert(Resources.Common.RecordSavingSucc, GetLocalResourceObject("DefaultSetSucc").ToString()).Show();
             }
         }
     }
