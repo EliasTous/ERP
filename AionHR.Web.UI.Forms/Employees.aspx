@@ -66,7 +66,7 @@
                     Icon="User" HideHeaders="false"
                     ColumnLines="false" IDMode="Explicit" RenderXType="True">
                     <Plugins>
-                        <ext:RowExpander ID="RowExpander1" runat="server" HiddenColumn="true" ExpandOnEnter="false" ExpandOnDblClick="false" SingleExpand="true">
+                        <ext:RowExpander ID="RowExpander1" runat="server" HiddenColumn="true" ExpandOnEnter="false" ExpandOnDblClick="false" SingleExpand="true" >
                             <Loader runat="server" Mode="Data" DirectMethod="App.direct.GetQuickView">
                                 <LoadMask ShowMask="true" />
                                 <Params>
@@ -78,6 +78,9 @@
                             <Template ID="Template1" runat="server">
 
                                 <Html>
+                                    <table width="200">
+
+                                    </table>
                                 </Html>
                             </Template>
                             <Listeners>

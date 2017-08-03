@@ -167,6 +167,7 @@
     <Compile Include="TimeAttendance\ImportAttendance.cs" />
     <Compile Include="TimeAttendance\ITimeAttendanceRepository.cs" />
     <Compile Include="TimeAttendance\LeaveCalendarDay.cs" />
+    <Compile Include="TimeAttendance\OvertimeSetting.cs" />
     <Compile Include="TimeAttendance\Router.cs" />
     <Compile Include="Company\Cases\Case.cs" />
     <Compile Include="Company\Cases\CaseComment.cs" />

@@ -957,4 +957,7 @@
   <data name="RT108" xml:space="preserve">
     <value>Employee Details</value>
   </data>
+  <data name="OvertimeSettings" xml:space="preserve">
+    <value>Overtime Settings</value>
+  </data>
 </root>

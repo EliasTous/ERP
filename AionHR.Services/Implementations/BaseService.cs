@@ -82,6 +82,11 @@ namespace AionHR.Services.Implementations
                     response.count = response.Items.Count;
             }
 
+            else
+            {
+                response.Items = new List<T>();
+                response.Summary = "Remote Server Error";
+            }
             return response;
         }
 

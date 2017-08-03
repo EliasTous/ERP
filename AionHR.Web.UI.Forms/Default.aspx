@@ -57,6 +57,7 @@
     <ext:Hidden runat="server" ID="cdtTitle" Text="<%$Resources:Common , CompanyDocumentTypes %>" />
     <ext:Hidden runat="server" ID="systTitle" Text="<%$Resources:Common , States %>" />
     <ext:Hidden runat="server" ID="loansync" Text="<%$Resources:Common , LoanSync %>" />
+    <ext:Hidden runat="server" ID="otTitle" Text="<%$Resources:Common , OvertimeSettings %>" />
     <ext:Hidden runat="server" ID="importAt" Text="<%$Resources:Common , ImportAttendance %>" />
     <ext:Hidden runat="server" ID="importDE" Text="<%$Resources:Common , ImportDepartments %>" />
     <ext:Hidden runat="server" ID="importLoansTitle" Text="<%$Resources:Common , ImportLoans %>" />
@@ -377,6 +378,11 @@
                                                                         <ext:MenuItem runat="server" Text="<%$Resources: Common , ImportAttendance%>">
                                                                             <Listeners>
                                                                                 <Click Handler="openNewTab('Import', 'ImportAttendance.aspx',#{importAt}.value , 'icon-Employees')" />
+                                                                            </Listeners>
+                                                                        </ext:MenuItem>
+                                                                           <ext:MenuItem runat="server" Text="<%$Resources: Common , OvertimeSettings%>">
+                                                                            <Listeners>
+                                                                                <Click Handler="openNewTab('otSettings', 'OvertimeSettings.aspx',#{otTitle}.value , 'icon-Employees')" />
                                                                             </Listeners>
                                                                         </ext:MenuItem>
                                                                     </Items>

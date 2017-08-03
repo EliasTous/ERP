@@ -254,6 +254,7 @@
     <Content Include="MediaItems.aspx" />
     <Content Include="Nationalities.aspx" />
     <Content Include="OrganizationChart.aspx" />
+    <Content Include="OvertimeSettings.aspx" />
     <Content Include="packages.config" />
     <Content Include="PayrollDefaults.aspx" />
     <Content Include="PayrollGeneration.aspx" />
@@ -325,6 +326,7 @@
     <Content Include="Scripts\Contacts.js" />
     <Content Include="Scripts\HighCharts.js" />
     <Content Include="Scripts\jquery-ui-min.js" />
+    <Content Include="Scripts\OvertimeSettings.js" />
     <Content Include="Scripts\SecurityGroups.js" />
     <Content Include="Scripts\ImportAttendance.js" />
     <Content Include="Scripts\EmployeeComplaints.js" />
@@ -519,6 +521,13 @@
     </Compile>
     <Compile Include="ImportJobInfo.aspx.designer.cs">
       <DependentUpon>ImportJobInfo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OvertimeSettings.aspx.cs">
+      <DependentUpon>OvertimeSettings.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="OvertimeSettings.aspx.designer.cs">
+      <DependentUpon>OvertimeSettings.aspx</DependentUpon>
     </Compile>
     <Compile Include="Reports\Controls\WeekPicker.ascx.cs">
       <DependentUpon>WeekPicker.ascx</DependentUpon>
@@ -1759,6 +1768,8 @@
     <Content Include="App_LocalResources\Users.aspx.ar.resx" />
     <Content Include="App_LocalResources\LeaveTypes.aspx.ar.resx" />
     <Content Include="App_LocalResources\LoanTypes.aspx.ar.resx" />
+    <Content Include="App_LocalResources\OvertimeSettings.aspx.resx" />
+    <Content Include="App_LocalResources\OvertimeSettings.aspx.ar.resx" />
     <EmbeddedResource Include="Properties\licenses.licx" />
     <Content Include="Reports\App_LocalResources\RT202.aspx.resx" />
     <Content Include="Reports\App_LocalResources\RT01.aspx.ar.resx" />
@@ -1792,6 +1803,8 @@
     <Content Include="Reports\App_LocalResources\RT107.aspx.ar.resx" />
     <Content Include="Reports\Controls\App_LocalResources\WeekPicker.ascx.ar.resx" />
     <Content Include="Reports\Controls\App_LocalResources\WeekPicker.ascx.resx" />
+    <Content Include="Reports\App_LocalResources\RT303.aspx.resx" />
+    <Content Include="Reports\App_LocalResources\RT303.aspx.ar.resx" />
     <EmbeddedResource Include="Reports\RT201.aspx.resx">
       <DependentUpon>RT201.aspx.cs</DependentUpon>
       <Generator>ResXFileCodeGenerator</Generator>

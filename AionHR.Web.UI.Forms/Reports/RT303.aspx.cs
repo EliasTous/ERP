@@ -232,19 +232,25 @@ namespace AionHR.Web.UI.Forms.Reports
                 x.dateString = date.ToString(_systemService.SessionHelper.GetDateformat());
                 x.dowString = GetGlobalResourceObject("Common", date.DayOfWeek.ToString() + "Text").ToString();
                 x.specialTasks = x.jobTasks = "00:00";
-                if (x.workingHours!="00:00")
+                if (x.workingHours != "00:00")
                 {
                     x.specialTasks = x.unpaidLeaves;
                     x.unpaidLeaves = "00:00";
                     x.jobTasks = x.paidLeaves;
                     x.paidLeaves = "00:00";
                     int leaveMins = Convert.ToInt32(x.unpaidLeaves.Split(':')[0]) * 60 + Convert.ToInt32(x.unpaidLeaves.Split(':')[1]);
-                    int netMins = x.OL_B>0?x.OL_B:0 - leaveMins;
-                    
+                    int netMins = x.OL_B > 0 ? x.OL_B : 0 - leaveMins;
+
                     x.OLBFinal = new TimeSpan((netMins / 60), (netMins % 60), 0);
 
 
                 }
+                if (x.paidLeaves == "00:00" && x.unpaidLeaves == "00:00" && x.isWorkingDay && x.checkIn1 == "")
+                {
+                    x.LeaveType = GetLocalResourceObject("Unpaid").ToString();
+                }
+                else if (x.paidLeaves != "00:00" || x.unpaidLeaves != "00:00")
+                    x.LeaveType = GetLocalResourceObject("Paid").ToString();
             }
             );
 
@@ -261,7 +267,7 @@ namespace AionHR.Web.UI.Forms.Reports
             h.Parameters["From"].Value = from;
             h.Parameters["To"].Value = to;
             h.Parameters["User"].Value = user;
-            
+
 
 
 
@@ -286,16 +292,16 @@ namespace AionHR.Web.UI.Forms.Reports
             }
             catch
             {
-                
+
             }
             h.Parameters["AllowedLateness"].Value = lateness;
 
             h.PrintingSystem.Document.ScaleFactor = 4;
             h.CreateDocument();
 
-            
+
             ASPxWebDocumentViewer1.OpenReport(h);
-            
+
         }
 
         protected void ASPxCallbackPanel1_Callback(object sender, DevExpress.Web.CallbackEventArgsBase e)

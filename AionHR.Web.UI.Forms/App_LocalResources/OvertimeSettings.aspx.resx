@@ -117,163 +117,25 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="xrLabel1.Text" xml:space="preserve">
-    <value>اليوم</value>
+  <data name="DateFrom" xml:space="preserve">
+    <value>From</value>
   </data>
-  <data name="xrLabel10.Text" xml:space="preserve">
-    <value>مهمات عمل</value>
+  <data name="DateTo" xml:space="preserve">
+    <value>To</value>
   </data>
-  <data name="xrLabel11.Text" xml:space="preserve">
-    <value>وقت العمل الفعلي</value>
+  <data name="Day" xml:space="preserve">
+    <value>Day</value>
   </data>
-  <data name="xrLabel12.Text" xml:space="preserve">
-    <value>وقت خارج الدوام</value>
+  <data name="EditWindowsTitle" xml:space="preserve">
+    <value>Overtime Setting</value>
   </data>
-  <data name="xrLabel13.Text" xml:space="preserve">
-    <value>التأخير</value>
+  <data name="FieldName" xml:space="preserve">
+    <value>Employee</value>
   </data>
-  <data name="xrLabel14.Text" xml:space="preserve">
-    <value>بإذن</value>
+  <data name="MaximumOvertime" xml:space="preserve">
+    <value>Maximum Overtime</value>
   </data>
-  <data name="xrLabel15.Text" xml:space="preserve">
-    <value>بدون اذن</value>
-  </data>
-  <data name="xrLabel16.Text" xml:space="preserve">
-    <value>دخول متأخر</value>
-  </data>
-  <data name="xrLabel17.Text" xml:space="preserve">
-    <value>خروج مبكر</value>
-  </data>
-  <data name="xrLabel18.Text" xml:space="preserve">
-    <value>مجموع</value>
-  </data>
-  <data name="xrLabel2.Text" xml:space="preserve">
-    <value>التاريخ</value>
-  </data>
-  <data name="xrLabel20.Text" xml:space="preserve">
-    <value>لم يتم العثور على نتائج مطابقة</value>
-  </data>
-  <data name="xrLabel21.Text" xml:space="preserve">
-    <value>الغياب</value>
-  </data>
-  <data name="xrLabel24.Text" xml:space="preserve">
-    <value>عدد أيام الغياب بإذن</value>
-  </data>
-  <data name="xrLabel25.Text" xml:space="preserve">
-    <value>إجمالي عدد الأيام</value>
-  </data>
-  <data name="xrLabel27.Text" xml:space="preserve">
-    <value>الحضور التفصيلي</value>
-  </data>
-  <data name="xrLabel28.Text" xml:space="preserve">
-    <value>الموظف</value>
-  </data>
-  <data name="xrLabel29.Text" xml:space="preserve">
-    <value>xrLabel28</value>
-  </data>
-  <data name="xrLabel3.Text" xml:space="preserve">
-    <value>دخول1</value>
-  </data>
-  <data name="xrLabel31.Text" xml:space="preserve">
-    <value>التأخير المسموح</value>
-  </data>
-  <data name="xrLabel32.Text" xml:space="preserve">
-    <value>من</value>
-  </data>
-  <data name="xrLabel33.Text" xml:space="preserve">
-    <value>xrLabel28</value>
-  </data>
-  <data name="xrLabel34.Text" xml:space="preserve">
-    <value>إلى</value>
-  </data>
-  <data name="xrLabel35.Text" xml:space="preserve">
-    <value>xrLabel28</value>
-  </data>
-  <data name="xrLabel36.Text" xml:space="preserve">
-    <value>الفرع</value>
-  </data>
-  <data name="xrLabel37.Text" xml:space="preserve">
-    <value>xrLabel28</value>
-  </data>
-  <data name="xrLabel38.Text" xml:space="preserve">
-    <value>الإدارة</value>
-  </data>
-  <data name="xrLabel39.Text" xml:space="preserve">
-    <value>xrLabel28</value>
-  </data>
-  <data name="xrLabel4.Text" xml:space="preserve">
-    <value>خروج 1</value>
-  </data>
-  <data name="xrLabel40.Text" xml:space="preserve">
-    <value>ساعات مهمة العمل</value>
-  </data>
-  <data name="xrLabel41.Text" xml:space="preserve">
-    <value>أيام العمل الفعلية</value>
-  </data>
-  <data name="xrLabel42.Text" xml:space="preserve">
-    <value>ساعات المهمة الخاصة</value>
-  </data>
-  <data name="xrLabel43.Text" xml:space="preserve">
-    <value>الإجازات الرسمية</value>
-  </data>
-  <data name="xrLabel44.Text" xml:space="preserve">
-    <value>مجموع أيام الغياب</value>
-  </data>
-  <data name="xrLabel45.Text" xml:space="preserve">
-    <value>إجمالي التأخير</value>
-  </data>
-  <data name="xrLabel46.Text" xml:space="preserve">
-    <value>التأخير عن الدوام</value>
-  </data>
-  <data name="xrLabel47.Text" xml:space="preserve">
-    <value>عدد أيام الغياب بدون اذن</value>
-  </data>
-  <data name="xrLabel48.Text" xml:space="preserve">
-    <value>ساعات العمل المفترضة</value>
-  </data>
-  <data name="xrLabel5.Text" xml:space="preserve">
-    <value>دخول 2</value>
-  </data>
-  <data name="xrLabel50.Text" xml:space="preserve">
-    <value>ساعات الإجازة</value>
-  </data>
-  <data name="xrLabel52.Text" xml:space="preserve">
-    <value>ساعات العمل الفعلية</value>
-  </data>
-  <data name="xrLabel53.Text" xml:space="preserve">
-    <value>ساعات الغياب</value>
-  </data>
-  <data name="xrLabel57.Text" xml:space="preserve">
-    <value>حسم التأخير</value>
-  </data>
-  <data name="xrLabel58.Text" xml:space="preserve">
-    <value>المجموع</value>
-  </data>
-  <data name="xrLabel6.Text" xml:space="preserve">
-    <value>خروج 2</value>
-  </data>
-  <data name="xrLabel63.Text" xml:space="preserve">
-    <value>الاستراحات</value>
-  </data>
-  <data name="xrLabel63.Text1" xml:space="preserve">
-    <value>أثناء الدوام</value>
-  </data>
-  <data name="xrLabel7.Text" xml:space="preserve">
-    <value>دخول 3</value>
-  </data>
-  <data name="xrLabel75.Text" xml:space="preserve">
-    <value>من قبل</value>
-  </data>
-  <data name="xrLabel76.Text" xml:space="preserve">
-    <value>xrLabel76</value>
-  </data>
-  <data name="xrLabel8.Text" xml:space="preserve">
-    <value>خروج3</value>
-  </data>
-  <data name="xrLabel9.Text" xml:space="preserve">
-    <value>مهمات خاصة</value>
-  </data>
-  <data name="xrPageInfo2.Format" xml:space="preserve">
-    <value>صفحة {0} من {1}</value>
+  <data name="WindowTitle" xml:space="preserve">
+    <value>Overtime Settings</value>
   </data>
 </root>

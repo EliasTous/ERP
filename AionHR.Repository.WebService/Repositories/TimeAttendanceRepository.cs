@@ -48,6 +48,7 @@ namespace AionHR.Repository.WebService.Repositories
             ChildGetAllLookup.Add(typeof(Geofence), "qryGF");
             ChildGetAllLookup.Add(typeof(AttendanceShift), "qryAS");
             ChildGetAllLookup.Add(typeof(LeaveCalendarDay), "qryCD2");
+            ChildGetAllLookup.Add(typeof(OvertimeSetting), "qryOT");
 
             ChildAddOrUpdateLookup.Add(typeof(DayType), "setDT");
             ChildAddOrUpdateLookup.Add(typeof(AttendanceSchedule), "setSC");
@@ -65,6 +66,7 @@ namespace AionHR.Repository.WebService.Repositories
             ChildAddOrUpdateLookup.Add(typeof(AttendanceShift[]), "arrAS");
             ChildAddOrUpdateLookup.Add(typeof(Check), "setCH");
             ChildAddOrUpdateLookup.Add(typeof(CalendarAlternation), "altCD");
+            ChildAddOrUpdateLookup.Add(typeof(OvertimeSetting), "setOT");
 
             ChildDeleteLookup.Add(typeof(AttendanceBreak), "delSB");
             ChildDeleteLookup.Add(typeof(AttendanceSchedule), "delSC");
@@ -74,6 +76,7 @@ namespace AionHR.Repository.WebService.Repositories
             ChildDeleteLookup.Add(typeof(Router), "delRO");
             ChildDeleteLookup.Add(typeof(Geofence), "delGF");
             ChildDeleteLookup.Add(typeof(AttendanceShift), "delAS");
+            ChildDeleteLookup.Add(typeof(OvertimeSetting), "delOT");
 
 
 

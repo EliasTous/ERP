@@ -21,6 +21,25 @@ public class DayBreaksListRequest:ListRequest
     }
 }
 
+public class OvertimeSettingsListRequest : ListRequest
+{
+    public string DayId { get; set; }
+
+    public int EmployeeId { get; set; }
+    private Dictionary<string, string> parameters;
+
+    public override Dictionary<string, string> Parameters
+    {
+        get
+        {
+            parameters = new Dictionary<string, string>();
+            parameters.Add("_dayId", DayId);
+            parameters.Add("_employeeId", EmployeeId.ToString());
+
+            return parameters;
+        }
+    }
+}
 public class AttendanceScheduleRecordRequest:RecordRequest
 {
     public string ScheduleId { get; set; }

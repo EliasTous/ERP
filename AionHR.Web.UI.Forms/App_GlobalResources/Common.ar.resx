@@ -957,4 +957,7 @@
   <data name="RT108" xml:space="preserve">
     <value>معلومات الموظفين</value>
   </data>
+  <data name="OvertimeSettings" xml:space="preserve">
+    <value>إعدادات الوقت الإضافي</value>
+  </data>
 </root>
