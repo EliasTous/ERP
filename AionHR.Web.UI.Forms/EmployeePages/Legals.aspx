@@ -138,7 +138,7 @@
                         <ext:Store
                             ID="rightToWorkStore"
                             runat="server"
-                            RemoteSort="True"
+                            RemoteSort="False"
                             RemoteFilter="true"
                             OnReadData="rightToWork_RefreshData"
                             PageSize="50" IDMode="Explicit" Namespace="App">
@@ -323,7 +323,7 @@
                         <ext:Store
                             ID="BCStore"
                             runat="server"
-                            RemoteSort="True"
+                            RemoteSort="False"
                             RemoteFilter="true"
                             OnReadData="BCStore_RefreshData"
                             PageSize="50" IDMode="Explicit" Namespace="App">

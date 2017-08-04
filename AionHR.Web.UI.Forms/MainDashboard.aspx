@@ -94,7 +94,7 @@
                                         <ext:Store
                                             ID="store1" PageSize="30"
                                             runat="server"
-                                            RemoteSort="True"
+                                            RemoteSort="False"
                                             RemoteFilter="true">
 
                                             <Model>
@@ -209,7 +209,7 @@
                                         <ext:Store PageSize="30"
                                             ID="store3"
                                             runat="server"
-                                            RemoteSort="True"
+                                            RemoteSort="False"
                                             RemoteFilter="true">
 
                                             <Model>
@@ -271,7 +271,7 @@
                                         <ext:Store
                                             ID="store4"
                                             runat="server"
-                                            RemoteSort="True" PageSize="30"
+                                            RemoteSort="False" PageSize="30"
                                             RemoteFilter="true">
 
                                             <Model>
@@ -327,7 +327,7 @@
                                         <ext:Store PageSize="30"
                                             ID="store5"
                                             runat="server"
-                                            RemoteSort="True"
+                                            RemoteSort="False"
                                             RemoteFilter="true">
 
                                             <Model>
@@ -381,7 +381,7 @@
                                         <ext:Store PageSize="30"
                                             ID="store6"
                                             runat="server"
-                                            RemoteSort="True"
+                                            RemoteSort="False"
                                             RemoteFilter="true">
 
                                             <Model>
@@ -459,7 +459,7 @@
                                         <ext:Store PageSize="30"
                                             ID="latenessStore"
                                             runat="server" 
-                                            RemoteSort="True"
+                                            RemoteSort="False"
                                             RemoteFilter="true">
                                             <Proxy>
                                                 <ext:PageProxy>

@@ -48,7 +48,7 @@
                         <ext:Store
                             ID="contactStore"
                             runat="server"
-                            RemoteSort="True"
+                            RemoteSort="False"
                             RemoteFilter="true"
                             OnReadData="contactStore_RefreshData"
                             PageSize="50" IDMode="Explicit" Namespace="App">
@@ -227,7 +227,7 @@
                         <ext:Store
                             ID="emergencyContactStore"
                             runat="server"
-                            RemoteSort="True"
+                            RemoteSort="False"
                             RemoteFilter="true"
                             OnReadData="emergencyContactsStore_RefreshData"
                             PageSize="50" IDMode="Explicit" Namespace="App">

@@ -1224,4 +1224,13 @@
   <data name="Property3100025" xml:space="preserve">
     <value>جدول الدوام</value>
   </data>
+  <data name="Property4108001" xml:space="preserve">
+    <value>الموظف</value>
+  </data>
+  <data name="Property4108002" xml:space="preserve">
+    <value>اليوم</value>
+  </data>
+  <data name="Property4108003" xml:space="preserve">
+    <value>الوقت الإضافي الأقصى</value>
+  </data>
 </root>

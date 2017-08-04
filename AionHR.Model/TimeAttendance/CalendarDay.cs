@@ -12,7 +12,7 @@ namespace AionHR.Model.Attendance
     {
         [PropertyID("41072_01")]
         [ApplySecurity]
-        public int scId { get; set; }
+        public int? scId { get; set; }
         [PropertyID("41072_02")]
         [ApplySecurity]
         public int dayTypeId { get; set; }

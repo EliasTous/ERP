@@ -167,7 +167,7 @@
         <ext:Store
             ID="Store1"
             runat="server"
-            RemoteSort="True"
+            RemoteSort="False"
             RemoteFilter="true"
             OnReadData="Store1_RefreshData"
             PageSize="50" IDMode="Explicit" Namespace="App">
@@ -583,7 +583,7 @@
                         <ext:Store
                             ID="caseCommentStore"
                             runat="server"
-                            RemoteSort="True"
+                            RemoteSort="False"
                             RemoteFilter="true"
                             
                             PageSize="50" IDMode="Explicit" Namespace="App">

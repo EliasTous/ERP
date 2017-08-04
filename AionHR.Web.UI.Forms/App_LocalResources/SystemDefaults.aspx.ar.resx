@@ -216,6 +216,9 @@
   <data name="ReferenceFirstNameLastName" xml:space="preserve">
     <value>الرمز، الاسم الأول، الاسم الأخير</value>
   </data>
+  <data name="ReferenceFirstNameMiddleNameFamilyNameLastName" xml:space="preserve">
+    <value>الرمز،الاسم الأول،الاسم الأوسط،اسم العائلة ،الاسم الأخير</value>
+  </data>
   <data name="ReferenceFirstNameMiddleNameLastName" xml:space="preserve">
     <value>الرمز،الاسم الأول،الاسم الأوسط ،الاسم الأخير</value>
   </data>

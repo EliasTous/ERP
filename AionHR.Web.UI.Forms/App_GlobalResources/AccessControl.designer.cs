@@ -2554,6 +2554,33 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Employee.
+        /// </summary>
+        internal static string Property4108001 {
+            get {
+                return ResourceManager.GetString("Property4108001", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Day.
+        /// </summary>
+        internal static string Property4108002 {
+            get {
+                return ResourceManager.GetString("Property4108002", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Max Overtime.
+        /// </summary>
+        internal static string Property4108003 {
+            get {
+                return ResourceManager.GetString("Property4108003", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Name .
         /// </summary>
         internal static string Property4200001 {

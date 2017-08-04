@@ -88,7 +88,7 @@
                         <ext:Store
                             ID="SAStore"
                             runat="server"
-                            RemoteSort="True"
+                            RemoteSort="False"
                             RemoteFilter="true"
                             OnReadData="SAStore_Refresh"
                             PageSize="50" IDMode="Explicit" Namespace="App">
@@ -290,7 +290,7 @@
                         <ext:Store
                             ID="BOStore"
                             runat="server"
-                            RemoteSort="True"
+                            RemoteSort="False"
                             RemoteFilter="true"
                             OnReadData="BOStore_Refresh"
                             PageSize="50" IDMode="Explicit" Namespace="App">

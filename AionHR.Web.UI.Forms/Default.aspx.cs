@@ -52,6 +52,15 @@ namespace AionHR.Web.UI.Forms
         }
         protected void Page_Load(object sender, EventArgs e)
         {
+            try
+            {
+                if (CheckSession() == "0")
+                    Logout();
+            }
+            catch
+            {
+                Logout();
+            }
             if (!_systemService.SessionHelper.CheckUserLoggedIn())
             {
                 if (_systemService.SessionHelper.CheckIfArabicSession())

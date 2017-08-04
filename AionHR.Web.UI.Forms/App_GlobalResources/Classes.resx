@@ -345,6 +345,9 @@
   <data name="Class41072" xml:space="preserve">
     <value>Days</value>
   </data>
+  <data name="Class41080" xml:space="preserve">
+    <value>Overtime Setting</value>
+  </data>
   <data name="Class41099" xml:space="preserve">
     <value>Import Attendance</value>
   </data>

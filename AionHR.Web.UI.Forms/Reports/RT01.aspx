@@ -40,7 +40,7 @@
         <ext:Store PageSize="30"
                                     ID="reportStore" OnReadData="reportStore_ReadData"
                                     runat="server"
-                                    RemoteSort="True"
+                                    RemoteSort="False"
                                     RemoteFilter="true">
                                     <Proxy>
                                         <ext:PageProxy>

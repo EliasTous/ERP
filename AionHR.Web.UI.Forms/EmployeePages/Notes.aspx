@@ -77,7 +77,7 @@
                         <ext:Store
                             ID="employeementHistoryStore"
                             runat="server"
-                            RemoteSort="True"
+                            RemoteSort="False"
                             RemoteFilter="true"
                             OnReadData="employeementHistory_RefreshData"
                             PageSize="50" IDMode="Explicit" Namespace="App">

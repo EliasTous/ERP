@@ -148,6 +148,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Absent.aspx" />
     <Content Include="AllowanceTypes.aspx" />
     <Content Include="App_LocalResources\ARForgotPassword.aspx.resx" />
     <Content Include="ARForgotPassword.aspx" />
@@ -481,6 +482,13 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Absent.aspx.cs">
+      <DependentUpon>Absent.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Absent.aspx.designer.cs">
+      <DependentUpon>Absent.aspx</DependentUpon>
+    </Compile>
     <Compile Include="App_GlobalResources\AccessControl.ar.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

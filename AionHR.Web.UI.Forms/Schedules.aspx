@@ -47,7 +47,7 @@
         <ext:Store
             ID="Store1"
             runat="server"
-            RemoteSort="True"
+            RemoteSort="False"
             RemoteFilter="true"
             OnReadData="Store1_RefreshData"
             PageSize="30" IDMode="Explicit" Namespace="App">
@@ -313,7 +313,7 @@
                                         </Click>
                                     </DirectEvents>
                                 </ext:Button>
-                                <ext:Button ID="patternButton" runat="server" Text="<%$ Resources:ApplyPattern %>" Icon="Help">
+                                <ext:Button ID="patternButton" runat="server" Text="<%$ Resources:ApplyPattern %>" Icon="Help" Hidden="true">
                                     <Listeners>
                                         <Click Handler="CheckSession();" />
                                     </Listeners>

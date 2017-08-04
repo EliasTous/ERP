@@ -37,7 +37,7 @@
         <ext:Store
             ID="Store1"
             runat="server"
-            RemoteSort="True"
+            RemoteSort = "False"
             RemoteFilter="true"
             OnReadData="Store1_RefreshData"
             PageSize="50" IDMode="Explicit" Namespace="App">
@@ -384,7 +384,7 @@
                             <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="={#{EditRecordWindow}.body}" />
                             <ExtraParams>
                                 <ext:Parameter Name="id" Value="#{recordId}.getValue()" Mode="Raw" />
-                                <ext:Parameter Name="id" Value="#{url}.getValue()" Mode="Raw" />
+                                <ext:Parameter Name="url" Value="#{url}.getValue()" Mode="Raw" />
                                 <ext:Parameter Name="values" Value ="#{BasicInfoTab}.getForm().getValues()" Mode="Raw" Encode="true" />
                             </ExtraParams>
                         </Click>

@@ -44,7 +44,7 @@
         <ext:Store
             ID="Store1"
             runat="server"
-            RemoteSort="True"
+            RemoteSort="False"
             RemoteFilter="true"
             OnReadData="Store1_RefreshData"
             PageSize="30" IDMode="Explicit" Namespace="App">
@@ -1787,7 +1787,7 @@
                     BodyPadding="5">
                     <Items>
 
-                        <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" ID="scId" DisplayField="name" AllowBlank="false" Name="scId" ValueField="recordId" FieldLabel="<%$ Resources:Schedule %>" SubmitValue="true">
+                        <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" ID="scId" DisplayField="name" AllowBlank="true" Name="scId" ValueField="recordId" FieldLabel="<%$ Resources:Schedule %>" SubmitValue="true">
                             <Store>
                                 <ext:Store runat="server" ID="schedulesStore">
                                     <Model>

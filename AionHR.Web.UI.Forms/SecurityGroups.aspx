@@ -113,7 +113,7 @@
         <ext:Store
             ID="groupsStore"
             runat="server"
-            RemoteSort="True"
+            RemoteSort="False"
             RemoteFilter="true"
             OnReadData="groupsStore_RefreshData"
             PageSize="30" IDMode="Explicit" Namespace="App">
@@ -360,7 +360,7 @@
                                 <ext:Store
                                     ID="usersStore"
                                     runat="server"
-                                    RemoteSort="True"
+                                    RemoteSort="False"
                                     RemoteFilter="true"
                                     AutoLoad="false"
                                     OnReadData="usersStore_RefreshData"

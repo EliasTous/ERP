@@ -85,7 +85,7 @@ namespace AionHR.Web.UI.Forms
                 {
 
                     GridPanel2.Hidden = true;
-                    
+
                 }
                 try
                 {
@@ -94,9 +94,9 @@ namespace AionHR.Web.UI.Forms
                 }
                 catch (AccessDeniedException exp)
                 {
-                   
+
                     dayConfigForm.Hidden = true;
-                    
+
                 }
             }
 
@@ -427,8 +427,8 @@ namespace AionHR.Web.UI.Forms
                             return;
                         }
                     }
-                        //Step 2 :  remove the object from the store
-                        Store1.Remove(index);
+                    //Step 2 :  remove the object from the store
+                    Store1.Remove(index);
 
                     //Step 3 : Showing a notification for the user 
                     Notification.Show(new NotificationConfig
@@ -938,7 +938,8 @@ namespace AionHR.Web.UI.Forms
 
             if (dayObj.result != null)
             {
-                scId.Select(dayObj.result.scId.ToString());
+                if (dayObj.result.scId.HasValue)
+                    scId.Select(dayObj.result.scId.Value.ToString());
                 dayTypeId.Select(dayObj.result.dayTypeId.ToString());
             }
         }
@@ -984,7 +985,7 @@ namespace AionHR.Web.UI.Forms
             alternateDTStore.DataSource = LoadDayTypes();
             alternateDTStore.DataBind();
             alternateDaysForm.Reset();
-            
+
             startDate.MinDate = dateFrom.MinDate = new DateTime(Convert.ToInt32(CurrentYear.Text), 1, 1);
             endDate.MaxDate = dateFrom.MaxDate = new DateTime(Convert.ToInt32(CurrentYear.Text), 12, 31);
 
@@ -1001,7 +1002,7 @@ namespace AionHR.Web.UI.Forms
 
             b.year = CurrentYear.Text;
 
-            
+
 
             PostRequest<CalendarPattern> request = new PostRequest<CalendarPattern>();
             request.entity = b;
@@ -1091,7 +1092,7 @@ namespace AionHR.Web.UI.Forms
             PostRequest<KeyValuePair<string, string>> req = new PostRequest<KeyValuePair<string, string>>();
             req.entity = pair;
             PostResponse<KeyValuePair<string, string>> resp = _systemService.ChildAddOrUpdate<KeyValuePair<string, string>>(req);
-            if(!resp.Success)
+            if (!resp.Success)
             {
                 X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
                 X.Msg.Alert(Resources.Common.ErrorUpdatingRecord, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() : resp.Summary).Show();

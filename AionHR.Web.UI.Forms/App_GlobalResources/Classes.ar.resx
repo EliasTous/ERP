@@ -345,6 +345,9 @@
   <data name="Class41072" xml:space="preserve">
     <value>أيام</value>
   </data>
+  <data name="Class41080" xml:space="preserve">
+    <value>إعدادات الوقت الإضافي</value>
+  </data>
   <data name="Class41099" xml:space="preserve">
     <value>استيراد الحضور</value>
   </data>

@@ -53,7 +53,7 @@
                         <ext:Store
                             ID="dependandtsStore"
                             runat="server"
-                            RemoteSort="True"
+                            RemoteSort="False"
                             RemoteFilter="true"
                             OnReadData="dependandtsStore_RefreshData"
                             PageSize="50" IDMode="Explicit" Namespace="App">

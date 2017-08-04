@@ -122,13 +122,13 @@
                             </Listeners>
                             <Menu>
 
-                                <ext:Menu runat="server">
+                                <ext:Menu runat="server" >
 
                                     <Items>
-                                        <ext:MenuItem runat="server" Text="<%$ Resources:Common , EmployeeFiles %>">
+                                        <ext:MenuItem runat="server" Text="<%$ Resources:Common , EmployeeFiles %>" > 
 
                                             <Menu>
-                                                <ext:Menu runat="server">
+                                                <ext:Menu runat="server" >
                                                     <Items>
                                                         <ext:MenuItem runat="server" Text="<%$Resources: Common , Sponsors%>">
                                                             <Listeners>
@@ -642,7 +642,7 @@
                 ColumnLines="True" IDMode="Explicit" RenderXType="True">
                 <Store>
                     <ext:Store runat="server" ID="transactionLogStore"
-                        RemoteSort="True"
+                        RemoteSort="False"
                         RemoteFilter="true"
                         OnReadData="TransactionLog_RefreshData"
                         PageSize="30" IDMode="Explicit" Namespace="App" IsPagingStore="true">

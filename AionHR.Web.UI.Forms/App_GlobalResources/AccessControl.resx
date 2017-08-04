@@ -1230,4 +1230,13 @@
   <data name="Property3100025" xml:space="preserve">
     <value>Schedule</value>
   </data>
+  <data name="Property4108001" xml:space="preserve">
+    <value>Employee</value>
+  </data>
+  <data name="Property4108002" xml:space="preserve">
+    <value>Day</value>
+  </data>
+  <data name="Property4108003" xml:space="preserve">
+    <value>Max Overtime</value>
+  </data>
 </root>

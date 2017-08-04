@@ -22,7 +22,7 @@ namespace AionHR.Model.Employees.Profile
         public EmployeeName name { get; set; }
         [PropertyID("31000_25")]
         [ApplySecurity]
-        public int scId { get; set; }
+        public int? scId { get; set; }
         [PropertyID("31000_25")]
         [ApplySecurity]
         public string scName { get; set; }

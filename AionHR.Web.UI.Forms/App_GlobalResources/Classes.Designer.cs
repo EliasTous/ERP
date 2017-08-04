@@ -745,6 +745,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Overtime Setting.
+        /// </summary>
+        internal static string Class41080 {
+            get {
+                return ResourceManager.GetString("Class41080", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Import Attendance.
         /// </summary>
         internal static string Class41099 {

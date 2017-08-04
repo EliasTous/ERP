@@ -220,8 +220,8 @@ namespace AionHR.Web.UI.Forms
                     //Step 2 : call setvalues with the retrieved object
                     url.Text = response.result.pictureUrl;
                     this.BasicInfoTab.SetValues(response.result);
-
-                    FillMediaCategory();
+                    rwFile.Reset();
+                     FillMediaCategory();
                     mcId.Select(response.result.mcId.ToString());
 
                     FillDepartment();

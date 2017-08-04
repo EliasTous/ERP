@@ -210,6 +210,9 @@
   <data name="ReferenceFirstNameLastName" xml:space="preserve">
     <value>Reference, First Name, LastName</value>
   </data>
+  <data name="ReferenceFirstNameMiddleNameFamilyNameLastName" xml:space="preserve">
+    <value>Reference, First Name, Middle Name, Family Name, Last Name</value>
+  </data>
   <data name="ReferenceFirstNameMiddleNameLastName" xml:space="preserve">
     <value>Reference, First Name, Middle Name, Last Name</value>
   </data>

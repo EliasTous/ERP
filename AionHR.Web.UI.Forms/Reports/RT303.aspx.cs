@@ -251,6 +251,21 @@ namespace AionHR.Web.UI.Forms.Reports
                 }
                 else if (x.paidLeaves != "00:00" || x.unpaidLeaves != "00:00")
                     x.LeaveType = GetLocalResourceObject("Paid").ToString();
+
+                x.Overtime = "---";
+                x.EarlyLeave = new TimeSpan(0, 0, 0);
+                if (x.OL_D>0)
+                {
+                    x.Overtime = (x.OL_D / 60).ToString().PadLeft(2, '0') + ":" + (x.OL_D % 60).ToString().PadLeft(2, '0');
+
+                }
+                else if(x.OL_D<0)
+                {
+
+                    x.EarlyLeave = new TimeSpan(Math.Abs(x.OL_D / 60), Math.Abs(x.OL_D % 60),0);
+                }
+           
+               
             }
             );
 

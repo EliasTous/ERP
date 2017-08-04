@@ -133,7 +133,7 @@
     <value>التأخير</value>
   </data>
   <data name="xrLabel14.Text" xml:space="preserve">
-    <value>بإذن</value>
+    <value>العمل الإضافي</value>
   </data>
   <data name="xrLabel15.Text" xml:space="preserve">
     <value>بدون اذن</value>
@@ -253,10 +253,10 @@
     <value>خروج 2</value>
   </data>
   <data name="xrLabel63.Text" xml:space="preserve">
-    <value>الاستراحات</value>
-  </data>
-  <data name="xrLabel63.Text1" xml:space="preserve">
     <value>أثناء الدوام</value>
+  </data>
+  <data name="xrLabel65.Text" xml:space="preserve">
+    <value>الأيام غير المغلقة</value>
   </data>
   <data name="xrLabel7.Text" xml:space="preserve">
     <value>دخول 3</value>

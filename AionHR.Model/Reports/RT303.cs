@@ -51,12 +51,15 @@ namespace AionHR.Model.Reports
         public string checkOut4 { get; set; }
 
         public TimeSpan OL_A { get; set; }
-        public TimeSpan OL_D { get; set; }
+        public int OL_D { get; set; }
 
         public int OL_B { get; set; }
 
+
         public TimeSpan OLBFinal { get; set; }
         public string breaks { get; set; }
+        public TimeSpan EarlyLeave { get; set; }
+        public string Overtime { get; set; }
 
 
 
