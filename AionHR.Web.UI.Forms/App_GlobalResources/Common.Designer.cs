@@ -2077,6 +2077,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Absent.
+        /// </summary>
+        internal static string RT305 {
+            get {
+                return ResourceManager.GetString("RT305", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Loans History.
         /// </summary>
         internal static string RT401 {

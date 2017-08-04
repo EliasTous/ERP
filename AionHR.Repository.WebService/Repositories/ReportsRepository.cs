@@ -1,6 +1,7 @@
 ﻿using AionHR.Infrastructure.Configuration;
 using AionHR.Infrastructure.Domain;
 using AionHR.Model.Reports;
+using AionHR.Model.TimeAttendance;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,6 +36,7 @@ namespace AionHR.Repository.WebService.Repositories
             ChildGetAllLookup.Add(typeof(RT302), "RT302");
             ChildGetAllLookup.Add(typeof(RT303), "RT303");
             ChildGetAllLookup.Add(typeof(RT304), "RT304");
+            ChildGetAllLookup.Add(typeof(RT305), "RT305");
 
             ChildGetAllLookup.Add(typeof(RT401), "RT401");
 

@@ -960,4 +960,7 @@
   <data name="OvertimeSettings" xml:space="preserve">
     <value>Overtime Settings</value>
   </data>
+  <data name="RT305" xml:space="preserve">
+    <value>Absent</value>
+  </data>
 </root>

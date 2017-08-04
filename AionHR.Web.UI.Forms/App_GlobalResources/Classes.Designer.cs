@@ -718,6 +718,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Absense.
+        /// </summary>
+        internal static string Class41063 {
+            get {
+                return ResourceManager.GetString("Class41063", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Header.
         /// </summary>
         internal static string Class41070 {

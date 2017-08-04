@@ -2520,6 +2520,51 @@ namespace Resources {
         /// <summary>
         ///   Looks up a localized string similar to Name.
         /// </summary>
+        internal static string Property4106301 {
+            get {
+                return ResourceManager.GetString("Property4106301", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Date.
+        /// </summary>
+        internal static string Property4106302 {
+            get {
+                return ResourceManager.GetString("Property4106302", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Branch.
+        /// </summary>
+        internal static string Property4106303 {
+            get {
+                return ResourceManager.GetString("Property4106303", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Department.
+        /// </summary>
+        internal static string Property4106304 {
+            get {
+                return ResourceManager.GetString("Property4106304", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Leave Type.
+        /// </summary>
+        internal static string Property4106305 {
+            get {
+                return ResourceManager.GetString("Property4106305", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name.
+        /// </summary>
         internal static string Property4107001 {
             get {
                 return ResourceManager.GetString("Property4107001", resourceCulture);

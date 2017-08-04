@@ -13,16 +13,7 @@
     <script type="text/javascript" src="Scripts/common.js"></script>
     <script type="text/javascript" src="Scripts/moment.js"></script>
     <script type="text/javascript">
-        function setTotal(t,b) {
-            // alert(t);
-            // alert(document.getElementById("total"));
-
-            document.getElementById("total").innerHTML = t;
-            document.getElementById("totalBreaks").innerHTML = b;
-            Ext.defer(function () {
-                App.GridPanel1.view.refresh();
-            }, 10);
-        }
+  
 
         function startRefresh() {
 
@@ -35,7 +26,7 @@
 
 
             if (window.
-                parent.App.tabPanel.getActiveTab().id == "ad") {
+                parent.App.tabPanel.getActiveTab().id == "ab") {
 
 
 
@@ -78,10 +69,9 @@
         <ext:Hidden ID="textLoadFailed" runat="server" Text="<%$ Resources:Common , LoadFailed %>" />
         <ext:Hidden ID="titleSavingError" runat="server" Text="<%$ Resources:Common , TitleSavingError %>" />
         <ext:Hidden ID="titleSavingErrorMessage" runat="server" Text="<%$ Resources:Common , TitleSavingErrorMessage %>" />
-        <ext:Hidden ID="TotalText" runat="server" Text="<%$ Resources: TotalText %>" />
-        <ext:Hidden ID="HoursWorked" runat="server" Text="<%$ Resources: FieldHoursWorked %>" />
-        <ext:Hidden ID="TotalBreaksText" runat="server" Text="<%$ Resources: TotalBreaks %>" />
+        
         <ext:Hidden ID="CurrentEmployee" runat="server"  />
+        <ext:Hidden ID="format" runat="server"  />
         <ext:Hidden ID="CurrentDay" runat="server"  />
         <ext:Store
             ID="Store1"
@@ -102,23 +92,12 @@
                     <Fields>
 
                         <ext:ModelField Name="dayId" />
-                        <ext:ModelField Name="employeeId" />
-                        <ext:ModelField Name="employeeName" IsComplex="true" />
+                       
+                        <ext:ModelField Name="name" IsComplex="true" />
                         <ext:ModelField Name="branchName" />
                         <ext:ModelField Name="departmentName" />
-                        <ext:ModelField Name="checkIn" />
-                        <ext:ModelField Name="checkOut" />
-                        <ext:ModelField Name="workingTime" />
-                        <ext:ModelField Name="breaks" />
-                        <ext:ModelField Name="OL_A" />
-                        <ext:ModelField Name="OL_B" />
-                        <ext:ModelField Name="OL_D" />
-                        <ext:ModelField Name="OL_N" />
-                        <ext:ModelField Name="OL_A_SIGN" />
-                        <ext:ModelField Name="OL_B_SIGN" />
-                        <ext:ModelField Name="OL_D_SIGN" />
-                        <ext:ModelField Name="OL_N_SIGN" />
-                        <ext:ModelField Name="netOL" />
+                       
+                        <ext:ModelField Name="ltName" />
 
 
 
@@ -129,7 +108,7 @@
                 </ext:Model>
             </Model>
             <Sorters>
-                <ext:DataSorter Property="recordId" Direction="ASC" />
+                <ext:DataSorter Property="dayId" Direction="ASC" />
             </Sorters>
         </ext:Store>
 
@@ -143,7 +122,7 @@
                     StoreID="Store1"
                     PaddingSpec="0 0 1 0"
                     Header="false"
-                    Title="<%$ Resources: WindowTitle %>"
+                   
                     Layout="FitLayout"
                     Scroll="Vertical"
                     Border="false"
@@ -151,180 +130,66 @@
                     ColumnLines="True" IDMode="Explicit" RenderXType="True">
 
                     <TopBar>
-                        <ext:Toolbar ID="Toolbar1" runat="server" ClassicButtonStyle="false" Dock="Top">
+             
 
-                            <Defaults>
-                                <ext:Parameter Name="width" Value="220" Mode="Raw" />
-                                <ext:Parameter Name="labelWidth" Value="70" Mode="Raw" />
-                            </Defaults>
+                        <ext:Toolbar runat="server">
                             <Items>
-                                <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" Width="130" LabelAlign="Top" EmptyText="<%$ Resources:FieldBranch%>" ValueField="recordId" DisplayField="name" ID="branchId" Name="branchId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1">
-                                    <Store>
-                                        <ext:Store runat="server" ID="branchStore">
-                                            <Model>
-                                                <ext:Model runat="server">
-                                                    <Fields>
-                                                        <ext:ModelField Name="recordId" />
-                                                        <ext:ModelField Name="name" />
-                                                    </Fields>
-                                                </ext:Model>
-                                            </Model>
-                                        </ext:Store>
-                                    </Store>
-                                    <Listeners>
-                                        <Select Handler="#{Store1}.reload()" />
-                                    </Listeners>
+                                   <ext:Container runat="server" Layout="FitLayout">
+                                    <Content>
+                                        <%--<uc:dateRange runat="server" ID="dateRange1" />--%>
+                                        <uc:dateRange runat="server" ID="dateRange1" />
+                                    </Content>
+                                </ext:Container>
+                                <ext:Container runat="server" Layout="FitLayout">
+                                    <Content>
+                                        <%--<uc:dateRange runat="server" ID="dateRange1" />--%>
+                                        <uc:employeeCombo runat="server" ID="employeeCombo1" />
+                                    </Content>
+                                </ext:Container>
+                                  <ext:Container runat="server" Layout="FitLayout">
+                                    <Content>
+                                        <uc:jobInfo runat="server" ID="jobInfo1" />
 
-                                </ext:ComboBox>
+                                    </Content>
 
-                                <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" Width="155" EmptyText="<%$ Resources:FieldDepartment%>" LabelAlign="Top" ValueField="recordId" DisplayField="name" ID="departmentId" Name="departmentId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1">
-                                    <Store>
-                                        <ext:Store runat="server" ID="departmentStore">
-                                            <Model>
-                                                <ext:Model runat="server">
-                                                    <Fields>
-                                                        <ext:ModelField Name="recordId" />
-                                                        <ext:ModelField Name="name" />
-                                                    </Fields>
-                                                </ext:Model>
-                                            </Model>
-                                        </ext:Store>
-                                    </Store>
-                                    <Listeners>
-                                        <Select Handler="#{Store1}.reload()" />
-                                    </Listeners>
+                                </ext:Container>
 
 
-                                </ext:ComboBox>
-                                <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  EmptyText="<%$ Resources: FieldDivision%>" runat="server" Width="130" LabelAlign="Top" ValueField="recordId" DisplayField="name" ID="divisionId" Name="divisionId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1">
-                                    <Store>
-                                        <ext:Store runat="server" ID="divisionStore">
-                                            <Model>
-                                                <ext:Model runat="server">
-                                                    <Fields>
-                                                        <ext:ModelField Name="recordId" />
-                                                        <ext:ModelField Name="name" />
-                                                    </Fields>
-                                                </ext:Model>
-                                            </Model>
-                                        </ext:Store>
-                                    </Store>
+                                <ext:ToolbarSeparator runat="server" />
+                                <ext:Button runat="server" Text="<%$Resources:Go %>">
                                     <Listeners>
-                                        <Select Handler="#{Store1}.reload()" />
-                                    </Listeners>
-
-                                </ext:ComboBox>
-                                <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" ID="employeeId" Width="130" LabelAlign="Top"
-                                    DisplayField="fullName"
-                                    ValueField="recordId" AllowBlank="true"
-                                    TypeAhead="false"
-                                    HideTrigger="true" SubmitValue="true"
-                                    MinChars="3" EmptyText="<%$ Resources: FieldEmployee%>"
-                                    TriggerAction="Query" ForceSelection="false">
-                                    <Store>
-                                        <ext:Store runat="server" ID="EmployeeStore" AutoLoad="false">
-                                            <Model>
-                                                <ext:Model runat="server">
-                                                    <Fields>
-                                                        <ext:ModelField Name="recordId" />
-                                                        <ext:ModelField Name="fullName" />
-                                                    </Fields>
-                                                </ext:Model>
-                                            </Model>
-                                            <Proxy>
-                                                <ext:PageProxy DirectFn="App.direct.FillEmployee"></ext:PageProxy>
-                                            </Proxy>
-                                        </ext:Store>
-                                    </Store>
-                                    <Listeners>
-                                        <Select Handler="#{Store1}.reload()" />
-                                    </Listeners>
-                                    <Items>
-                                        <ext:ListItem Text="-----All-----" Value="0" />
-                                    </Items>
-                                </ext:ComboBox>
-                                <ext:DateField runat="server" ID="dayId" EmptyText="<%$ Resources: FieldDate%>" Width="130" LabelAlign="Top">
-                                    <Listeners>
-                                        <Change Handler="#{Store1}.reload()" />
-                                        <FocusLeave Handler="#{Store1}.reload()" />
-                                    </Listeners>
-                                </ext:DateField>
-                                <ext:Button runat="server" Text="<%$ Resources: ButtonClear%>" MarginSpec="0 0 0 0" Width="100">
-                                    <Listeners>
-                                        <Click Handler="#{departmentId}.clear();#{dayId}.setValue(new Date()); #{branchId}.clear(); #{divisionId}.clear(); #{Store1}.reload(); #{employeeId}.clear();">
-                                        </Click>
+                                        <Click Handler="CheckSession(); App.Store1.reload();" />
                                     </Listeners>
                                 </ext:Button>
-                                <ext:Button runat="server" Text="<%$ Resources: ButtonRefresh%>" Width="100">
-                                    <Listeners>
-                                        <Click Handler="#{Store1}.reload()" />
-                                    </Listeners>
-                                </ext:Button>
-
-
-
-                                <ext:Button Visible="false" ID="btnDeleteSelected" runat="server" Text="<%$ Resources:Common , DeleteAll %>" Icon="Delete">
-                                    <Listeners>
-                                        <Click Handler="CheckSession();"></Click>
-                                    </Listeners>
-                                    <DirectEvents>
-                                        <Click OnEvent="btnDeleteAll">
-                                            <EventMask ShowMask="true" />
-                                        </Click>
-                                    </DirectEvents>
-                                </ext:Button>
-                                <ext:ToolbarFill ID="ToolbarFillExport" runat="server" />
-
-
                             </Items>
                         </ext:Toolbar>
-
                     </TopBar>
 
                     <ColumnModel ID="ColumnModel1" runat="server" SortAscText="<%$ Resources:Common , SortAscText %>" SortDescText="<%$ Resources:Common ,SortDescText  %>" SortClearText="<%$ Resources:Common ,SortClearText  %>" ColumnsText="<%$ Resources:Common ,ColumnsText  %>" EnableColumnHide="false" Sortable="true">
                         <Columns>
 
                             <ext:Column ID="ColDay" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDay%>" DataIndex="dayId" Flex="2" Hideable="false">
-
-                                <SummaryRenderer Handler="return #{TotalText}.value;" />
+                                <Renderer Handler="var d = moment(record.data['dayId']);  return d.format(App.format.value);" />
                             </ext:Column>
                             <ext:Column ID="ColName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldFullName%>" DataIndex="employeeName" Flex="3" Hideable="false">
-                                <Renderer Handler="return record.data['employeeName'].fullName;" />
-                                <SummaryRenderer Handler="return '<hr/>';" />
+                                <Renderer Handler="return record.data['name'].fullName;" />
+                        
                             </ext:Column>
                             <ext:Column ID="ColBranchName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldBranch%>" DataIndex="branchName" Flex="2" Hideable="true">
-                                <SummaryRenderer Handler="return '<hr/>';" />
+                                
                             </ext:Column>
                             <ext:Column ID="ColDepartmentName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDepartment%>" DataIndex="departmentName" Flex="2" Hideable="false">
-                                <SummaryRenderer Handler="return '<hr/>';" />
+                            
                             </ext:Column>
 
-                            <ext:Column ID="ColCheckIn" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldCheckIn%>" DataIndex="checkIn" Flex="2" Hideable="false">
-                                <Renderer Handler=" var olA = ''; if(record.data['OL_A']=='00:00') olA=''; else olA= record.data['OL_A']; var cssClass='';if(record.data['OL_A_SIGN']<0) cssClass='color:red;'; var result = ' <div style= ' + cssClass +' > ' + record.data['checkIn'] + '<br/>' + olA + '</div>'; return result;" />
-                                <SummaryRenderer Handler="return '<hr/>';" />
-                            </ext:Column>
-
-                            <ext:Column ID="ColCheckOut" Sortable="true" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldCheckOut%>" DataIndex="checkOut" Flex="2" Hideable="false">
-                                <Renderer Handler="var olD = ''; if(record.data['OL_D']=='00:00') olD=''; else olD= record.data['OL_D']; var cssClass='';if(record.data['OL_D_SIGN']<0) cssClass='color:red;'; var result = ' <div style= ' + cssClass +' > ' + record.data['checkOut'] + '<br/>' + olD + '</div>'; return result;" />
-                                <SummaryRenderer Handler="return '<hr/>';" />
-                            </ext:Column>
-
-
-                            <ext:Column SummaryType="None" ID="Column1" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldHoursWorked%>" DataIndex="hoursWorked" Flex="2" Hideable="false">
-                                <Renderer Handler="var olN = ''; if(record.data['OL_N']=='00:00') olN=''; else olN= record.data['OL_N']; var cssClass='';if(record.data['OL_N_SIGN']<0) cssClass='color:red;'; var result = ' <div style= ' + cssClass +' > ' + record.data['workingTime'] + '<br/>' + olN + '</div>'; return result;" />
-                                <SummaryRenderer Handler="return document.getElementById('total').innerHTML+ ' ' + #{HoursWorked}.value;" />
-                            </ext:Column>
-
-
-                            <ext:Column ID="Column2" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldBreaks%>" DataIndex="breaks" Flex="2" Hideable="false">
-                                <Renderer Handler="var olB = ''; if(record.data['OL_B']=='00:00') olB=''; else olB= record.data['OL_B'];var cssClass='';if(record.data['OL_B_SIGN']<0) cssClass='color:red;'; var result = ' <div style= ' + cssClass +' > ' + record.data['breaks'] + '<br/>' + olB + '</div>'; return result;" />
-                                <SummaryRenderer Handler="return document.getElementById('totalBreaks').innerHTML+ ' ' + #{TotalBreaksText}.value;" />
-                            </ext:Column>
+                         
+                            <ext:Column ID="Column2" MenuDisabled="true" runat="server" Text="<%$ Resources: LeaveType%>" DataIndex="ltName" Flex="2" Hideable="false">
+                         </ext:Column>
 
 
 
                             <ext:Column runat="server"
-                                ID="colEdit" Visible="true"
+                                ID="colEdit" Visible="false"
                                 Text="<%$ Resources:Common, FieldDetails %>"
                                 Width="80"
                                 Hideable="false"
@@ -402,24 +267,11 @@
 
 
                     </View>
-                    <Features>
-
-                        <ext:Summary ID="Summary1" runat="server" DefaultValueMode="Ignore" />
-                    </Features>
+                   
                     <Listeners>
                         <Render Handler="this.on('cellclick', cellClick);" />
                     </Listeners>
-                    <DirectEvents>
-                        <CellClick OnEvent="PoPuP">
-                            <EventMask ShowMask="true" />
-                            <ExtraParams>
-                                <ext:Parameter Name="dayId" Value="record.data['dayId']" Mode="Raw" />
-                                <ext:Parameter Name="employeeId" Value="record.data['employeeId']" Mode="Raw" />
-                                <ext:Parameter Name="type" Value="getCellType( this, rowIndex, cellIndex)" Mode="Raw" />
-                            </ExtraParams>
-
-                        </CellClick>
-                    </DirectEvents>
+               
                     <SelectionModel>
                         <ext:RowSelectionModel ID="rowSelectionModel" runat="server" Mode="Single" StopIDModeInheritance="true" />
                         <%--<ext:CheckboxSelectionModel ID="CheckboxSelectionModel1" runat="server" Mode="Multi" StopIDModeInheritance="true" />--%>
@@ -427,8 +279,7 @@
 
 
                 </ext:GridPanel>
-                <ext:Label runat="server" ID="total" />
-                <ext:Label runat="server" ID="totalBreaks" />
+          
             </Items>
         </ext:Viewport>
 

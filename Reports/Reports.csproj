@@ -55,6 +55,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Absense.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="AuditTrail.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -134,6 +137,12 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Absense.ar.resx">
+      <DependentUpon>Absense.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Absense.resx">
+      <DependentUpon>Absense.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AuditTrail.ar.resx">
       <DependentUpon>AuditTrail.cs</DependentUpon>
     </EmbeddedResource>

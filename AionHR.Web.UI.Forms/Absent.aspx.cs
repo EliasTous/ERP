@@ -26,6 +26,8 @@ using AionHR.Model.System;
 using AionHR.Model.Employees.Leaves;
 using AionHR.Model.Attendance;
 using AionHR.Model.TimeAttendance;
+using AionHR.Services.Messaging.Reports;
+
 namespace AionHR.Web.UI.Forms
 {
     public partial class Absent : System.Web.UI.Page
@@ -34,7 +36,7 @@ namespace AionHR.Web.UI.Forms
         IEmployeeService _employeeService = ServiceLocator.Current.GetInstance<IEmployeeService>();
         ICompanyStructureService _companyStructureService = ServiceLocator.Current.GetInstance<ICompanyStructureService>();
         ILeaveManagementService _leaveManagementService = ServiceLocator.Current.GetInstance<ILeaveManagementService>();
-        ITimeAttendanceService _timeAttendanceService = ServiceLocator.Current.GetInstance<ITimeAttendanceService>();
+        IReportsService _timeAttendanceService = ServiceLocator.Current.GetInstance<IReportsService>();
         protected override void InitializeCulture()
         {
 
@@ -64,13 +66,10 @@ namespace AionHR.Web.UI.Forms
                 SetExtLanguage();
                 HideShowButtons();
                 HideShowColumns();
-                FillBranch();
-                FillDepartment();
-                FillDivision();
-                dayId.SelectedDate = DateTime.Today;
+ 
                 try
                 {
-                    AccessControlApplier.ApplyAccessControlOnPage(typeof(AttendanceDay), null, GridPanel1, null, null);
+                    AccessControlApplier.ApplyAccessControlOnPage(typeof(RT305), null, GridPanel1, null, null);
                 }
                 catch (AccessDeniedException exp)
                 {
@@ -79,18 +78,8 @@ namespace AionHR.Web.UI.Forms
                     Viewport1.Hidden = true;
                     return;
                 }
-                try
-                {
-                    AccessControlApplier.ApplyAccessControlOnPage(typeof(AttendanceShift), EditShiftForm, attendanceShiftGrid, btnAdd, SaveButton);
-                }
-                catch (AccessDeniedException exp)
-                {
-                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorAccessDenied).Show();
-                    Viewport1.Hidden = true;
-                    return;
-                }
-
+                dateRange1.DefaultStartDate = DateTime.Now.AddDays(-DateTime.Now.Day);
+           
             }
 
 
@@ -107,37 +96,7 @@ namespace AionHR.Web.UI.Forms
         }
 
 
-        protected void PoPuP(object sender, DirectEventArgs e)
-        {
-
-
-            int dayId = Convert.ToInt32(e.ExtraParams["dayId"]);
-            int employeeId = Convert.ToInt32(e.ExtraParams["employeeId"]);
-            CurrentDay.Text = dayId.ToString();
-            CurrentEmployee.Text = employeeId.ToString();
-            string type = e.ExtraParams["type"];
-            switch (type)
-            {
-                case "imgEdit":
-                    //Step 1 : get the object from the Web Service 
-                    AttendanceShiftListRequest request = new AttendanceShiftListRequest();
-                    request.EmployeeId = employeeId;
-                    request.DayId = dayId;
-                    ListResponse<AttendanceShift> shifts = _timeAttendanceService.ChildGetAll<AttendanceShift>(request);
-                    if (shifts.Success)
-                    {
-                        attendanceShiftStore.DataSource = shifts.Items;
-                        attendanceShiftStore.DataBind();
-                        AttendanceShiftWindow.Show();
-                    }
-
-                    break;
-                default:
-                    break;
-            }
-
-
-        }
+       
         private void HideShowButtons()
         {
 
@@ -244,69 +203,12 @@ namespace AionHR.Web.UI.Forms
         /// <param name="sender"></param>
         /// <param name="e"></param>
 
-        private AttendnanceDayListRequest GetAttendanceDayRequest()
+        private ReportCompositeRequest GetAbsentRequest()
         {
-            AttendnanceDayListRequest req = new AttendnanceDayListRequest();
-
-            if (!string.IsNullOrEmpty(branchId.Text) && branchId.Value.ToString() != "0")
-            {
-                req.BranchId = branchId.Value.ToString();
-                GridPanel1.ColumnModel.Columns.Where(a => a.ID == "ColBranchName").First().SetHidden(true);
-
-
-            }
-            else
-            {
-                req.BranchId = "0";
-                GridPanel1.ColumnModel.Columns.Where(a => a.ID == "ColBranchName").First().SetHidden(false);
-            }
-
-            if (!string.IsNullOrEmpty(departmentId.Text) && departmentId.Value.ToString() != "0")
-            {
-                req.DepartmentId = departmentId.Value.ToString();
-                GridPanel1.ColumnModel.Columns.Where(a => a.ID == "ColDepartmentName").First().SetHidden(true);
-
-            }
-            else
-            {
-                req.DepartmentId = "0";
-                GridPanel1.ColumnModel.Columns.Where(a => a.ID == "ColDepartmentName").First().SetHidden(false);
-            }
-
-            if (dayId.SelectedDate != DateTime.MinValue)
-
-            {
-                req.DayId = dayId.SelectedDate.ToString("yyyyMMdd");
-                GridPanel1.ColumnModel.Columns.Where(a => a.ID == "ColDay").First().SetHidden(true);
-
-
-            }
-            else
-            {
-                req.DayId = "";
-                GridPanel1.ColumnModel.Columns.Where(a => a.ID == "ColDay").First().SetHidden(false);
-            }
-
-            if (!string.IsNullOrEmpty(employeeId.Text) && employeeId.Value.ToString() != "0")
-            {
-                req.EmployeeId = employeeId.Value.ToString();
-                GridPanel1.ColumnModel.Columns.Where(a => a.ID == "ColName").First().SetHidden(true);
-
-
-            }
-            else
-            {
-                req.EmployeeId = "0";
-                GridPanel1.ColumnModel.Columns.Where(a => a.ID == "ColName").First().SetHidden(false);
-
-            }
-
-            req.Month = "0";
-            req.Year = "0";
-            req.Size = "30";
-            req.StartAt = "1";
-            req.Filter = "";
-            req.SortBy = "firstName";
+            ReportCompositeRequest req = new ReportCompositeRequest();
+            req.Add(jobInfo1.GetJobInfo());
+            req.Add(employeeCombo1.GetEmployee());
+            req.Add(dateRange1.GetRange());
             return req;
         }
 
@@ -315,66 +217,22 @@ namespace AionHR.Web.UI.Forms
 
             //GEtting the filter from the page
 
-            AttendnanceDayListRequest req = GetAttendanceDayRequest();
+            ReportCompositeRequest req = GetAbsentRequest();
             req.StartAt = e.Start.ToString();
-            ListResponse<AttendanceDay> daysResponse = _timeAttendanceService.ChildGetAll<AttendanceDay>(req);
+            ListResponse<RT305> daysResponse = _timeAttendanceService.ChildGetAll<RT305>(req);
             if (!daysResponse.Success)
             {
                 X.Msg.Alert(Resources.Common.Error, daysResponse.Summary).Show();
                 return;
             }
-            int total = daysResponse.Items.Sum(x => x.netOL);
-            string totalWorked, totalBreaks;
-            int hoursWorked = 0, minsWorked = 0, hoursBreak = 0, minsBrea = 0;
-            daysResponse.Items.ForEach(x => { hoursWorked += Convert.ToInt32(x.workingTime.Substring(0, 2)); minsWorked += Convert.ToInt32(x.workingTime.Substring(3, 2)); hoursBreak += Convert.ToInt32(x.breaks.Substring(0, 2)); minsBrea += Convert.ToInt32(x.breaks.Substring(3, 2)); });
-            hoursWorked += minsWorked / 60;
-            minsWorked = minsWorked % 60;
-
-            hoursBreak += minsBrea / 60;
-            minsBrea = minsBrea % 60;
-            totalWorked = hoursWorked.ToString() + ":" + minsWorked.ToString();
-            totalBreaks = hoursBreak.ToString() + ":" + minsBrea.ToString();
-            X.Call("setTotal", totalWorked, totalBreaks);
-            this.total.Text = total.ToString();
-            var data = daysResponse.Items;
-            if (daysResponse.Items != null)
-            {
-                this.Store1.DataSource = daysResponse.Items;
-                this.Store1.DataBind();
-            }
+            Store1.DataSource = daysResponse.Items;
+            Store1.DataBind();
             e.Total = daysResponse.count;
+            format.Text = _systemService.SessionHelper.GetDateformat().ToUpper(); ;
         }
 
 
-        private void FillDepartment()
-        {
-            ListRequest departmentsRequest = new ListRequest();
-            ListResponse<Department> resp = _companyStructureService.ChildGetAll<Department>(departmentsRequest);
-            if (!resp.Success)
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() : resp.Summary).Show();
-            departmentStore.DataSource = resp.Items;
-            departmentStore.DataBind();
-        }
-        private void FillBranch()
-        {
-            ListRequest branchesRequest = new ListRequest();
-            ListResponse<Branch> resp = _companyStructureService.ChildGetAll<Branch>(branchesRequest);
-            if (!resp.Success)
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() : resp.Summary).Show();
-            branchStore.DataSource = resp.Items;
-            branchStore.DataBind();
-        }
-
-        private void FillDivision()
-        {
-            ListRequest branchesRequest = new ListRequest();
-            ListResponse<Division> resp = _companyStructureService.ChildGetAll<Division>(branchesRequest);
-            if (!resp.Success)
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() : resp.Summary).Show();
-            divisionStore.DataSource = resp.Items;
-            divisionStore.DataBind();
-        }
-
+        
 
 
 

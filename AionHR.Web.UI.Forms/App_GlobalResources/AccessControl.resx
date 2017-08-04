@@ -1239,4 +1239,19 @@
   <data name="Property4108003" xml:space="preserve">
     <value>Max Overtime</value>
   </data>
+  <data name="Property4106301" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="Property4106302" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="Property4106303" xml:space="preserve">
+    <value>Branch</value>
+  </data>
+  <data name="Property4106304" xml:space="preserve">
+    <value>Department</value>
+  </data>
+  <data name="Property4106305" xml:space="preserve">
+    <value>Leave Type</value>
+  </data>
 </root>

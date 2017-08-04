@@ -1233,4 +1233,19 @@
   <data name="Property4108003" xml:space="preserve">
     <value>الوقت الإضافي الأقصى</value>
   </data>
+  <data name="Property4106301" xml:space="preserve">
+    <value>الاسم</value>
+  </data>
+  <data name="Property4106302" xml:space="preserve">
+    <value>التاريخ</value>
+  </data>
+  <data name="Property4106303" xml:space="preserve">
+    <value>الفرع</value>
+  </data>
+  <data name="Property4106304" xml:space="preserve">
+    <value>القسم</value>
+  </data>
+  <data name="Property4106305" xml:space="preserve">
+    <value>نوع الإجازة</value>
+  </data>
 </root>

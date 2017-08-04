@@ -310,6 +310,7 @@
     <Content Include="Reports\RT302.aspx" />
     <Content Include="Reports\RT303.aspx" />
     <Content Include="Reports\RT304.aspx" />
+    <Content Include="Reports\RT305.aspx" />
     <Content Include="Reports\RT401.aspx" />
     <Content Include="Reports\RT501.aspx" />
     <Content Include="Reports\RT601.aspx" />
@@ -564,6 +565,13 @@
     </Compile>
     <Compile Include="Reports\RT304.aspx.designer.cs">
       <DependentUpon>RT304.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\RT305.aspx.cs">
+      <DependentUpon>RT305.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reports\RT305.aspx.designer.cs">
+      <DependentUpon>RT305.aspx</DependentUpon>
     </Compile>
     <Compile Include="Utilities\AccessControlApplier.cs" />
     <Compile Include="AllowanceTypes.aspx.cs">
@@ -1778,6 +1786,8 @@
     <Content Include="App_LocalResources\LoanTypes.aspx.ar.resx" />
     <Content Include="App_LocalResources\OvertimeSettings.aspx.resx" />
     <Content Include="App_LocalResources\OvertimeSettings.aspx.ar.resx" />
+    <Content Include="App_LocalResources\Absent.aspx.resx" />
+    <Content Include="App_LocalResources\Absent.aspx.ar.resx" />
     <EmbeddedResource Include="Properties\licenses.licx" />
     <Content Include="Reports\App_LocalResources\RT202.aspx.resx" />
     <Content Include="Reports\App_LocalResources\RT01.aspx.ar.resx" />
