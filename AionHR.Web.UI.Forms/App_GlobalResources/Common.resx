@@ -963,4 +963,7 @@
   <data name="RT305" xml:space="preserve">
     <value>Absent</value>
   </data>
+  <data name="ImportOvertimeSettings" xml:space="preserve">
+    <value>Import Overtime Settings</value>
+  </data>
 </root>

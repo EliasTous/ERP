@@ -66,6 +66,7 @@
     <ext:Hidden runat="server" ID="alsgTitle" Text="<%$Resources:Common , SecurityGroups %>" />
     <ext:Hidden runat="server" ID="importEmployeesTitle" Text="<%$Resources:Common , ImportEmployees %>" />
     <ext:Hidden runat="server" ID="importJobInfoTitle" Text="<%$Resources:Common , ImportJobInfo %>" />
+    <ext:Hidden runat="server" ID="importOTTitle" Text="<%$Resources:Common , ImportOvertimeSettings %>" />
     
     <ext:Hidden runat="server" ID="aaTitle" Text="<%$Resources:Common , SystemAlerts %>" />
     <ext:Hidden runat="server" ID="ttTitle" Text="<%$Resources:Common , TaskTypes %>" />
@@ -383,6 +384,11 @@
                                                                            <ext:MenuItem runat="server" Text="<%$Resources: Common , OvertimeSettings%>">
                                                                             <Listeners>
                                                                                 <Click Handler="openNewTab('otSettings', 'OvertimeSettings.aspx',#{otTitle}.value , 'icon-Employees')" />
+                                                                            </Listeners>
+                                                                        </ext:MenuItem>
+                                                                        <ext:MenuItem runat="server" Text="<%$Resources: Common , ImportOvertimeSettings%>">
+                                                                            <Listeners>
+                                                                                <Click Handler="openNewTab('otSettings', 'ImportOvertimeSettings.aspx',#{importOTTitle}.value , 'icon-Employees')" />
                                                                             </Listeners>
                                                                         </ext:MenuItem>
                                                                     </Items>

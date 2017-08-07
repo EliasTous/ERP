@@ -117,127 +117,22 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="BasicInfoTabEditWindowTitle" xml:space="preserve">
-    <value>معلومات جدول الدوام</value>
+  <data name="Download" xml:space="preserve">
+    <value>Download</value>
   </data>
-  <data name="BtnAddPeriod" xml:space="preserve">
-    <value>إضافة استراحة</value>
+  <data name="Import" xml:space="preserve">
+    <value>Import</value>
   </data>
-  <data name="BtnRemovePeriod" xml:space="preserve">
-    <value>مسح استراحة</value>
+  <data name="Pick" xml:space="preserve">
+    <value>Pick a file to import</value>
   </data>
-  <data name="BtnUpdate" xml:space="preserve">
-    <value>حفظ</value>
+  <data name="preprocessing" xml:space="preserve">
+    <value>Preprocessing</value>
   </data>
-  <data name="EditWindowsTitle" xml:space="preserve">
-    <value>تعديل الأيام</value>
+  <data name="ResultReady" xml:space="preserve">
+    <value>Your Result is ready, click to download</value>
   </data>
-  <data name="FieldDays" xml:space="preserve">
-    <value>أيام الإجازات</value>
-  </data>
-  <data name="Fieldfci_max_lt" xml:space="preserve">
-    <value>الحد الأقصى للتأخير المسموح به لدى أول تسجيل دخول</value>
-  </data>
-  <data name="Fieldfci_min_ot" xml:space="preserve">
-    <value>الحد الأدنى لاحتساب العمل الإضافي لدى أو ل تسجيل دخول</value>
-  </data>
-  <data name="FieldFrom" xml:space="preserve">
-    <value>من الساعة</value>
-  </data>
-  <data name="FieldIsBenifit" xml:space="preserve">
-    <value>تحتسب كوقت عمل إضافي؟</value>
-  </data>
-  <data name="Fieldlco_max_el" xml:space="preserve">
-    <value>الحد الأقصى للخروج المبكر المسموح به لدى آخر تسجيل خروج</value>
-  </data>
-  <data name="Fieldlco_max_ot" xml:space="preserve">
-    <value>الحد الأقصى للعمل الإضافي المحتسب</value>
-  </data>
-  <data name="Fieldlco_min_ot" xml:space="preserve">
-    <value>الحد الأدنى للعمل الإضافي المحتسب</value>
-  </data>
-  <data name="FieldName" xml:space="preserve">
-    <value>الاسم</value>
-  </data>
-  <data name="FieldTo" xml:space="preserve">
-    <value>إلى الساعة</value>
-  </data>
-  <data name="Periods" xml:space="preserve">
-    <value>فترات جدول الإجازات</value>
-  </data>
-  <data name="PeriodsTab" xml:space="preserve">
-    <value>فترات جدول الإجازات</value>
-  </data>
-  <data name="SundayTab" xml:space="preserve">
-    <value>الأحد</value>
-  </data>
-  <data name="WindowTitle" xml:space="preserve">
-    <value>جداول الإجازات</value>
-  </data>
-  <data name="FieldFirstIn" xml:space="preserve">
-    <value>أول تسجيل دخول</value>
-  </data>
-  <data name="FieldLastOut" xml:space="preserve">
-    <value>آخر تسجيل خروج</value>
-  </data>
-  <data name="MondayTab" xml:space="preserve">
-    <value>الاثنين</value>
-  </data>
-  <data name="DayBreaksForm" xml:space="preserve">
-    <value>الاستراحات</value>
-  </data>
-  <data name="FieldDow" xml:space="preserve">
-    <value>اليوم</value>
-  </data>
-  <data name="Break" xml:space="preserve">
-    <value>استراحة</value>
-  </data>
-  <data name="ApplyPattern" xml:space="preserve">
-    <value>تطبيق النمط</value>
-  </data>
-  <data name="BreakTimeFrom" xml:space="preserve">
-    <value>بداية الاستراحة</value>
-  </data>
-  <data name="BreakTimeTo" xml:space="preserve">
-    <value>نهاية الاستراحة</value>
-  </data>
-  <data name="DayType" xml:space="preserve">
-    <value>نوع اليوم</value>
-  </data>
-  <data name="EditDaysButton" xml:space="preserve">
-    <value>تعديل الأيام</value>
-  </data>
-  <data name="FieldFirstDayOfWeek" xml:space="preserve">
-    <value>يوم العمل الأول من الأسبوع</value>
-  </data>
-  <data name="FieldworkingDays" xml:space="preserve">
-    <value>أيام العمل</value>
-  </data>
-  <data name="MondayTab1" xml:space="preserve">
-    <value>الاثنين</value>
-  </data>
-  <data name="PatternWindowTitle" xml:space="preserve">
-    <value>اختيار النمط</value>
-  </data>
-  <data name="WeekendDayType" xml:space="preserve">
-    <value>نوع عطلة نهلية الأسبوع</value>
-  </data>
-  <data name="WorkingDayType" xml:space="preserve">
-    <value>نوع يوم العمل</value>
-  </data>
-  <data name="WorkingTimeFrom" xml:space="preserve">
-    <value>بداية ساعات العمل</value>
-  </data>
-  <data name="WorkingTimeTo" xml:space="preserve">
-    <value>نهاية ساعات العمل</value>
-  </data>
-  <data name="FieldDuration" xml:space="preserve">
-    <value>المدة</value>
-  </data>
-  <data name="SetDefault" xml:space="preserve">
-    <value>تعيين جدول افتراضي</value>
-  </data>
-  <data name="DefaultSetSucc" xml:space="preserve">
-    <value>تم تعيين الجدول بنجاح</value>
+  <data name="working" xml:space="preserve">
+    <value>Working</value>
   </data>
 </root>

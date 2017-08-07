@@ -243,6 +243,7 @@
     <Content Include="ImportJobInfo.aspx" />
     <Content Include="ImportLeaves.aspx" />
     <Content Include="ImportLoans.aspx" />
+    <Content Include="ImportOvertimeSettings.aspx" />
     <Content Include="LeaveCalendar.aspx" />
     <Content Include="LeaveRequests.aspx" />
     <Content Include="LeaveTypes.aspx" />
@@ -530,6 +531,13 @@
     </Compile>
     <Compile Include="ImportJobInfo.aspx.designer.cs">
       <DependentUpon>ImportJobInfo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ImportOvertimeSettings.aspx.cs">
+      <DependentUpon>ImportOvertimeSettings.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ImportOvertimeSettings.aspx.designer.cs">
+      <DependentUpon>ImportOvertimeSettings.aspx</DependentUpon>
     </Compile>
     <Compile Include="OvertimeSettings.aspx.cs">
       <DependentUpon>OvertimeSettings.aspx</DependentUpon>
@@ -1788,6 +1796,10 @@
     <Content Include="App_LocalResources\OvertimeSettings.aspx.ar.resx" />
     <Content Include="App_LocalResources\Absent.aspx.resx" />
     <Content Include="App_LocalResources\Absent.aspx.ar.resx" />
+    <Content Include="App_LocalResources\Employees.aspx.ar.resx" />
+    <Content Include="App_LocalResources\TimeAttendanceView.aspx.ar.resx" />
+    <Content Include="App_LocalResources\ImportOvertimeSettings.aspx.resx" />
+    <Content Include="App_LocalResources\ImportOvertimeSettings.aspx.ar.resx" />
     <EmbeddedResource Include="Properties\licenses.licx" />
     <Content Include="Reports\App_LocalResources\RT202.aspx.resx" />
     <Content Include="Reports\App_LocalResources\RT01.aspx.ar.resx" />

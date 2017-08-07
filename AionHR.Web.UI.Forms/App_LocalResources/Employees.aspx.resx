@@ -351,4 +351,25 @@
   <data name="Dependants" xml:space="preserve">
     <value>Dependants</value>
   </data>
+  <data name="BatchEmployeeTitle" xml:space="preserve">
+    <value>Apply</value>
+  </data>
+  <data name="FieldCalendar" xml:space="preserve">
+    <value>Calendar</value>
+  </data>
+  <data name="FieldSchedule" xml:space="preserve">
+    <value>Schedule</value>
+  </data>
+  <data name="BatchSucc" xml:space="preserve">
+    <value>Batch Successfully Applied</value>
+  </data>
+  <data name="FewParameters" xml:space="preserve">
+    <value>Please Select at least one action</value>
+  </data>
+  <data name="Batch" xml:space="preserve">
+    <value>Apply Batch</value>
+  </data>
+  <data name="Condition" xml:space="preserve">
+    <value>Choose Conditions (Empty means all)</value>
+  </data>
 </root>

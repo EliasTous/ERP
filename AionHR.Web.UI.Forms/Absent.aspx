@@ -76,7 +76,7 @@
         <ext:Store
             ID="Store1"
             runat="server"
-          
+           RemoteSort="false"
           
             OnReadData="Store1_RefreshData"
             PageSize="30" IDMode="Explicit" Namespace="App" IsPagingStore="true">

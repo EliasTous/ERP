@@ -8,25 +8,25 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title></title>
-    
+
     <link rel="stylesheet" type="text/css" href="CSS/Common.css?id=11" />
-     
+
     <link rel="stylesheet" type="text/css" href="CSS/Employees.css?id=16" />
     <link rel="stylesheet" href="CSS/LiveSearch.css" />
     <script src="Scripts/jquery-new.js"></script>
     <link rel="stylesheet" type="text/css" href="CSS/cropper.css">
 
-  <script type="text/javascript" src="Scripts/cropper.js"></script>
+    <script type="text/javascript" src="Scripts/cropper.js"></script>
 
     <script type="text/javascript" src="Scripts/common.js?id=1"></script>
 
     <script type="text/javascript" src="Scripts/Employees.js?id=24"></script>
-    
-     <script type="text/javascript">
 
-     </script>
- 
- 
+    <script type="text/javascript">
+
+    </script>
+
+
 </head>
 <body style="background: url(Images/bg.png) repeat;">
     <form id="Form1" runat="server">
@@ -48,25 +48,23 @@
         <ext:Hidden runat="server" ID="lblLoading" Text="<%$Resources:Common , Loading %>" />
         <ext:Hidden runat="server" ID="pRTL" />
         <ext:Hidden runat="server" ID="imageData" />
-        
+
         <ext:Hidden runat="server" ID="imageVisible" />
         <ext:Viewport runat="server" Layout="FitLayout" ID="Viewport1">
             <Items>
                 <ext:GridPanel
                     ID="GridPanel1"
                     runat="server"
-                    
                     Header="false"
                     Title="<%$ Resources: WindowTitle %>"
                     Layout="FitLayout"
-                     Scroll="Vertical"
-                    
+                    Scroll="Vertical"
                     Region="Center"
                     Border="false"
                     Icon="User" HideHeaders="false"
                     ColumnLines="false" IDMode="Explicit" RenderXType="True">
                     <Plugins>
-                        <ext:RowExpander ID="RowExpander1" runat="server" HiddenColumn="true" ExpandOnEnter="false" ExpandOnDblClick="false" SingleExpand="true" >
+                        <ext:RowExpander ID="RowExpander1" runat="server" HiddenColumn="true" ExpandOnEnter="false" ExpandOnDblClick="false" SingleExpand="true">
                             <Loader runat="server" Mode="Data" DirectMethod="App.direct.GetQuickView">
                                 <LoadMask ShowMask="true" />
                                 <Params>
@@ -89,7 +87,7 @@
                             </Listeners>
                         </ext:RowExpander>
                     </Plugins>
-                   
+
                     <Store>
                         <ext:Store
                             ID="Store1"
@@ -135,13 +133,23 @@
                     <TopBar>
                         <ext:Toolbar ID="Toolbar1" runat="server" ClassicButtonStyle="false">
                             <Items>
-                                      
+
                                 <ext:Button ID="btnAdd" runat="server" Text="<%$ Resources:Common , Add %>" Icon="Add">
                                     <Listeners>
                                         <Click Handler="CheckSession();" />
                                     </Listeners>
                                     <DirectEvents>
                                         <Click OnEvent="ADDNewRecord">
+                                            <EventMask ShowMask="true" CustomTarget="={#{GridPanel1}.body}" />
+                                        </Click>
+                                    </DirectEvents>
+                                </ext:Button>
+                                <ext:Button ID="Button1" runat="server" Icon="DiskMultiple">
+                                    <Listeners>
+                                        <Click Handler="CheckSession();" />
+                                    </Listeners>
+                                    <DirectEvents>
+                                        <Click OnEvent="openBatchEM">
                                             <EventMask ShowMask="true" CustomTarget="={#{GridPanel1}.body}" />
                                         </Click>
                                     </DirectEvents>
@@ -157,7 +165,7 @@
                                         </Click>
                                     </DirectEvents>
                                 </ext:Button>
-                                <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" ID="inactivePref" Editable="false" FieldLabel="<%$ Resources: Filter %>">
+                                <ext:ComboBox AnyMatch="true" CaseSensitive="false" runat="server" ID="inactivePref" Editable="false" FieldLabel="<%$ Resources: Filter %>">
                                     <Items>
                                         <ext:ListItem Text="<%$ Resources: All %>" Value="2" />
                                         <ext:ListItem Text="<%$ Resources: ActiveOnly %>" Value="0" />
@@ -167,7 +175,7 @@
                                         <Change Handler="App.Store1.reload()" />
                                     </Listeners>
                                 </ext:ComboBox>
-                                <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" Width="130" LabelAlign="Top" EmptyText="<%$ Resources:FieldBranch%>" ValueField="recordId" DisplayField="name" ID="filterBranch" Name="branchId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1">
+                                <ext:ComboBox AnyMatch="true" CaseSensitive="false" runat="server" Width="130" LabelAlign="Top" EmptyText="<%$ Resources:FieldBranch%>" ValueField="recordId" DisplayField="name" ID="filterBranch"   QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1">
                                     <Store>
                                         <ext:Store runat="server" ID="filterBranchStore">
                                             <Model>
@@ -186,7 +194,7 @@
 
                                 </ext:ComboBox>
 
-                                <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" Width="155" EmptyText="<%$ Resources:FieldDepartment%>" LabelAlign="Top" ValueField="recordId" DisplayField="name" ID="filterDepartment" Name="departmentId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1">
+                                <ext:ComboBox AnyMatch="true" CaseSensitive="false" runat="server" Width="155" EmptyText="<%$ Resources:FieldDepartment%>" LabelAlign="Top" ValueField="recordId" DisplayField="name" ID="filterDepartment"   QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1">
                                     <Store>
                                         <ext:Store runat="server" ID="filterDepartmentStore">
                                             <Model>
@@ -205,7 +213,7 @@
 
 
                                 </ext:ComboBox>
-                                <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  EmptyText="<%$ Resources: FieldDivision%>" runat="server" Width="130" LabelAlign="Top" ValueField="recordId" DisplayField="name" ID="filterDivision" Name="divisionId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1">
+                                <ext:ComboBox AnyMatch="true" CaseSensitive="false" EmptyText="<%$ Resources: FieldDivision%>" runat="server" Width="130" LabelAlign="Top" ValueField="recordId" DisplayField="name" ID="filterDivision" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1">
                                     <Store>
                                         <ext:Store runat="server" ID="filterDivisionStore">
                                             <Model>
@@ -223,7 +231,7 @@
                                     </Listeners>
 
                                 </ext:ComboBox>
-                                <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  EmptyText="<%$ Resources: FieldPosition%>" runat="server" Width="130" LabelAlign="Top" ValueField="recordId" DisplayField="name" ID="filterPosition" Name="divisionId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1">
+                                <ext:ComboBox AnyMatch="true" CaseSensitive="false" EmptyText="<%$ Resources: FieldPosition%>" runat="server" Width="130" LabelAlign="Top" ValueField="recordId" DisplayField="name" ID="filterPosition"  QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1">
                                     <Store>
                                         <ext:Store runat="server" ID="filterPositionStore">
                                             <Model>
@@ -254,9 +262,9 @@
                                     </Triggers>
                                     <Listeners>
                                         <KeyPress Fn="enterKeyPressSearchHandler" Buffer="100" />
-                                        
+
                                         <TriggerClick Handler="#{Store1}.reload();" />
-                                        <SpecialKey   Handler="if(e.keyCode==13) #{Store1}.reload();" />
+                                        <SpecialKey Handler="if(e.keyCode==13) #{Store1}.reload();" />
                                     </Listeners>
                                 </ext:TextField>
 
@@ -279,7 +287,7 @@
                                 <Listeners>
                                     <Bind Handler="if(App.imageVisible.value=='True') cmp.setImageUrl(record.get('pictureUrl')+'?id='+new Date().getTime()); else cmp.setImageUrl('../Images/empPhoto.jpg'); " />
                                 </Listeners>
-                                
+
                             </ext:ComponentColumn>
                             <ext:Column ID="ColReference" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldRef%>" DataIndex="reference" Width="60" Hideable="false">
                                 <Renderer Handler=" return  record.data['name'].reference ">
@@ -325,7 +333,7 @@
                                 <Renderer Fn="attachRender" />
                             </ext:Column>
 
-                            
+
                             <ext:Column runat="server"
                                 ID="colEdit" Visible="true"
                                 Text="<%$ Resources:Common, Edit %>"
@@ -374,7 +382,7 @@
                             </Items>
                             <Listeners>
                                 <BeforeRender Handler="this.items.removeAt(this.items.length - 2);" />
-                                
+
                             </Listeners>
                         </ext:PagingToolbar>
 
@@ -382,9 +390,9 @@
                     <Listeners>
                         <Render Handler="CheckSession(); this.on('cellclick', cellClick);" />
 
-                  
+
                         <AfterLayout Handler="item.getView().setScrollX(30);" />
-                    
+
                     </Listeners>
                     <DirectEvents>
 
@@ -413,11 +421,213 @@
         </ext:Viewport>
         <uc:employeeControl runat="server" ID="employeeControl1" />
 
+        <ext:Window
+            ID="batchWindow"
+            runat="server"
+            Icon="PageEdit"
+            Title="<%$ Resources:BatchEmployeeTitle %>"
+            Width="400"
+            Height="350"
+            AutoShow="false"
+            Modal="true"
+            Hidden="true"
+             Resizable="false"
+            Maximizable="false"
+            Layout="Fit">
+
+            <Items>
+            
+                        <ext:FormPanel
+                            ID="batchForm" DefaultButton="SaveButton"
+                            runat="server"
+                          
+                            DefaultAnchor="100%"
+                            BodyPadding="5">
+                            <Items>
+                                <ext:FieldSet runat="server" Title="<%$Resources:Condition %>"><Items>
+                                <ext:ComboBox AnyMatch="true" Width="330" CaseSensitive="false" runat="server" ID="departmentId" Name="departmentId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1"
+                                    DisplayField="name"
+                                    ValueField="recordId"
+                                    FieldLabel="<%$ Resources: FieldDepartment %>">
+                                    <Store>
+                                        <ext:Store runat="server" ID="departmentStore">
+                                            <Model>
+                                                <ext:Model runat="server">
+                                                    <Fields>
+                                                        <ext:ModelField Name="recordId" />
+                                                        <ext:ModelField Name="name" />
+                                                    </Fields>
+                                                </ext:Model>
+                                            </Model>
+
+
+                                        </ext:Store>
+
+                                    </Store>
+                                   
+                                </ext:ComboBox>
+                                   <ext:ComboBox AnyMatch="true" Width="330" CaseSensitive="false" runat="server" ID="branchId" Name="branchId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1"
+                                    DisplayField="name"
+                                    ValueField="recordId"
+                                    FieldLabel="<%$ Resources: FieldBranch %>">
+                                    <Store>
+                                        <ext:Store runat="server" ID="branchStore">
+                                            <Model>
+                                                <ext:Model runat="server">
+                                                    <Fields>
+                                                        <ext:ModelField Name="recordId" />
+                                                        <ext:ModelField Name="name" />
+                                                    </Fields>
+                                                </ext:Model>
+                                            </Model>
+
+
+                                        </ext:Store>
+
+                                    </Store>
+                                   
+                                </ext:ComboBox>
+                                   <ext:ComboBox AnyMatch="true" CaseSensitive="false" Width="330" runat="server" ID="positionId" Name="positionId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1"
+                                    DisplayField="name"
+                                    ValueField="recordId"
+                                    FieldLabel="<%$ Resources: FieldPosition %>">
+                                    <Store>
+                                        <ext:Store runat="server" ID="positionStore">
+                                            <Model>
+                                                <ext:Model runat="server">
+                                                    <Fields>
+                                                        <ext:ModelField Name="recordId" />
+                                                        <ext:ModelField Name="name" />
+                                                    </Fields>
+                                                </ext:Model>
+                                            </Model>
+
+
+                                        </ext:Store>
+
+                                    </Store>
+                                   
+                                </ext:ComboBox>
+                                <ext:ComboBox AnyMatch="true" Width="330" CaseSensitive="false" runat="server" ID="divisionId" Name="divisionId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1"
+                                    DisplayField="name"
+                                    ValueField="recordId"
+                                    FieldLabel="<%$ Resources: FieldDivision %>">
+                                    <Store>
+                                        <ext:Store runat="server" ID="divisionStore">
+                                            <Model>
+                                                <ext:Model runat="server">
+                                                    <Fields>
+                                                        <ext:ModelField Name="recordId" />
+                                                        <ext:ModelField Name="name" />
+                                                    </Fields>
+                                                </ext:Model>
+                                            </Model>
+
+
+                                        </ext:Store>
+
+                                    </Store>
+                                   
+                                </ext:ComboBox>
+                          </Items></ext:FieldSet>
+                                <ext:FieldSet runat="server" Title="<%$Resources:Batch %>"><Items>
+                                     <ext:ComboBox AnyMatch="true" Width="330" CaseSensitive="false" runat="server" ID="caId" Name="caId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1"
+                                    DisplayField="name"
+                                    ValueField="recordId"
+                                    FieldLabel="<%$ Resources: FieldCalendar %>">
+                                    <Store>
+                                        <ext:Store runat="server" ID="calendarStore">
+                                            <Model>
+                                                <ext:Model runat="server">
+                                                    <Fields>
+                                                        <ext:ModelField Name="recordId" />
+                                                        <ext:ModelField Name="name" />
+                                                    </Fields>
+                                                </ext:Model>
+                                            </Model>
+
+
+                                        </ext:Store>
+
+                                    </Store>
+                                   
+                                </ext:ComboBox>
+                                   <ext:ComboBox AnyMatch="true" Width="330" CaseSensitive="false" runat="server" ID="scId" Name="scId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1"
+                                    DisplayField="name"
+                                    ValueField="recordId"
+                                    FieldLabel="<%$ Resources: FieldSchedule %>">
+                                    <Store>
+                                        <ext:Store runat="server" ID="ScheduleStore">
+                                            <Model>
+                                                <ext:Model runat="server">
+                                                    <Fields>
+                                                        <ext:ModelField Name="recordId" />
+                                                        <ext:ModelField Name="name" />
+                                                    </Fields>
+                                                </ext:Model>
+                                            </Model>
+
+
+                                        </ext:Store>
+
+                                    </Store>
+                                   
+                                </ext:ComboBox>
+                                <ext:ComboBox AnyMatch="true" Width="330" CaseSensitive="false" runat="server" ID="vsId" Name="vsId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1"
+                                    DisplayField="name"
+                                    ValueField="recordId"
+                                    FieldLabel="<%$ Resources: FieldVacationSchedule %>">
+                                    <Store>
+                                        <ext:Store runat="server" ID="VSStore">
+                                            <Model>
+                                                <ext:Model runat="server">
+                                                    <Fields>
+                                                        <ext:ModelField Name="recordId" />
+                                                        <ext:ModelField Name="name" />
+                                                    </Fields>
+                                                </ext:Model>
+                                            </Model>
+
+
+                                        </ext:Store>
+
+                                    </Store>
+                                   
+                                </ext:ComboBox>
+                    </Items></ext:FieldSet>
+                            </Items>
+                            
+                        </ext:FormPanel>
+
+  
+            </Items>
+            <Buttons>
+                <ext:Button ID="SaveButton" runat="server" Text="<%$ Resources:Common, Save %>" Icon="Disk">
+
+                    <Listeners>
+                        <Click Handler="CheckSession();   if (!#{batchForm}.getForm().isValid()) {return false;}  " />
+                    </Listeners>
+                    <DirectEvents>
+                        <Click OnEvent="SaveBatch" Failure="Ext.MessageBox.alert('#{titleSavingError}.value', '#{titleSavingErrorMessage}.value');">
+                            <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="={#{batchWindow}.body}" />
+                            <ExtraParams>
+                               
+                                <ext:Parameter Name="values" Value="#{batchForm}.getForm().getValues()" Mode="Raw" Encode="true" />
+                            </ExtraParams>
+                        </Click>
+                    </DirectEvents>
+                </ext:Button>
+                <ext:Button ID="CancelButton" runat="server" Text="<%$ Resources:Common , Cancel %>" Icon="Cancel">
+                    <Listeners>
+                        <Click Handler="this.up('window').hide();" />
+                    </Listeners>
+                </ext:Button>
+            </Buttons>
+        </ext:Window>
 
 
 
-        
-        
+
     </form>
 
 </body>

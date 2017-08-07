@@ -154,7 +154,7 @@
     <value>Last Check Out Maximum Over Time (mins)</value>
   </data>
   <data name="Fieldlco_min_ot" xml:space="preserve">
-    <value>Last Check Out Minimum Early Leave (mins)</value>
+    <value>Last Check Out Minimum Over Time(mins)</value>
   </data>
   <data name="FieldName" xml:space="preserve">
     <value>Name</value>

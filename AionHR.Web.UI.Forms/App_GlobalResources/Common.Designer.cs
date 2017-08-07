@@ -1132,6 +1132,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Import Overtime Settings.
+        /// </summary>
+        internal static string ImportOvertimeSettings {
+            get {
+                return ResourceManager.GetString("ImportOvertimeSettings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Inactive.
         /// </summary>
         internal static string Inactive {

@@ -125,6 +125,7 @@ namespace AionHR.Repository.WebService.Repositories
             ChildAddOrUpdateLookup.Add(typeof(EmployeeContact), "setCO");
             ChildAddOrUpdateLookup.Add(typeof(HireInfo), "setRE");
             ChildAddOrUpdateLookup.Add(typeof(NoticePeriod), "setNP");
+            ChildAddOrUpdateLookup.Add(typeof(BatchEM), "batEM");
 
 
 

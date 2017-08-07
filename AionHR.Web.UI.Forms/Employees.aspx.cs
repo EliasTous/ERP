@@ -422,7 +422,7 @@ namespace AionHR.Web.UI.Forms
             ListResponse<Employee> emps = _employeeService.GetAll<Employee>(empRequest);
             if (!emps.Success)
             {
-                X.Msg.Alert(Resources.Common.Error, emps.Summary).Show();
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", emps.ErrorCode) != null ? GetGlobalResourceObject("Errors", emps.ErrorCode).ToString() : emps.Summary).Show();
                 return;
             }
             e.Total = emps.count;
@@ -477,5 +477,98 @@ namespace AionHR.Web.UI.Forms
 
         }
 
+        protected void openBatchEM(object sender, DirectEventArgs e )
+        {
+            batchForm.Reset();
+            FillCalendars();
+            FillSchedules();
+            FillVS();
+            departmentStore.DataSource = GetDepartments();
+            departmentStore.DataBind();
+            branchStore.DataSource = GetBranches();
+            branchStore.DataBind();
+            divisionStore.DataSource = GetDivisions();
+            divisionStore.DataBind();
+            positionStore.DataSource = GetPositions();
+            positionStore.DataBind();
+            batchWindow.Show();
+        }
+
+        private void FillCalendars()
+        {
+            ListRequest req = new ListRequest();
+            ListResponse<WorkingCalendar> resp = _timeAttendanceService.ChildGetAll<WorkingCalendar>(req);
+            if(!resp.Success)
+            {
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() : resp.Summary).Show();
+                return;
+            }
+            calendarStore.DataSource = resp.Items;
+            calendarStore.DataBind();
+        }
+
+        private void FillSchedules()
+        {
+            ListRequest req = new ListRequest();
+            ListResponse<AttendanceSchedule> resp = _timeAttendanceService.ChildGetAll<AttendanceSchedule>(req);
+            if (!resp.Success)
+            {
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() : resp.Summary).Show();
+                return;
+            }
+            ScheduleStore.DataSource = resp.Items;
+            ScheduleStore.DataBind();
+        }
+
+        private void FillVS()
+        {
+            ListRequest req = new ListRequest();
+            ListResponse<VacationSchedule> resp = _leaveManagementService.ChildGetAll<VacationSchedule>(req);
+            if (!resp.Success)
+            {
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() : resp.Summary).Show();
+                return;
+            }
+            VSStore.DataSource = resp.Items;
+            VSStore.DataBind();
+        }
+
+        protected void SaveBatch(object sender, DirectEventArgs e )
+        {
+            BatchEM bat = JsonConvert.DeserializeObject< BatchEM>(e.ExtraParams["values"]);
+            if(!bat.scId.HasValue && !bat.vsId.HasValue && !bat.caId.HasValue)
+            {
+                X.Msg.Alert(Resources.Common.Error, GetLocalResourceObject("FewParameters").ToString()).Show();
+                return;
+            }
+
+            if (!bat.branchId.HasValue)
+                bat.branchId = 0;
+
+            if (!bat.departmentId.HasValue)
+                bat.departmentId = 0;
+
+            if (!bat.positionId.HasValue)
+                bat.positionId = 0;
+
+            if (!bat.divisionId.HasValue)
+                bat.divisionId = 0;
+
+            PostRequest<BatchEM> batReq = new PostRequest<BatchEM>();
+            
+            batReq.entity = bat;
+            PostResponse<BatchEM> resp = _employeeService.ChildAddOrUpdate<BatchEM>(batReq);
+            if(!resp.Success)
+            {
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() : resp.Summary).Show();
+                return;
+            }
+            else
+            {
+                X.Msg.Alert(Resources.Common.RecordUpdatedSucc, GetLocalResourceObject("BatchSucc").ToString()).Show();
+                batchWindow.Close();
+                return;
+            }
+        }
     }
 }

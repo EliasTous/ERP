@@ -7,10 +7,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace AionHR.Web.UI.Forms.Reports {
+namespace AionHR.Web.UI.Forms {
     
     
-    public partial class RT102 {
+    public partial class ImportOvertimeSettings {
         
         /// <summary>
         /// Form1 control.
@@ -29,15 +29,6 @@ namespace AionHR.Web.UI.Forms.Reports {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.ResourceManager ResourceManager1;
-        
-        /// <summary>
-        /// Viewport1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Viewport Viewport1;
         
         /// <summary>
         /// textMatch control.
@@ -76,57 +67,75 @@ namespace AionHR.Web.UI.Forms.Reports {
         protected global::Ext.Net.Hidden titleSavingErrorMessage;
         
         /// <summary>
-        /// rtl control.
+        /// CurrentPath control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Hidden rtl;
+        protected global::Ext.Net.Hidden CurrentPath;
         
         /// <summary>
-        /// format control.
+        /// Viewport1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Hidden format;
+        protected global::Ext.Net.Viewport Viewport1;
         
         /// <summary>
-        /// Center control.
+        /// uploadFileForm control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Panel Center;
+        protected global::Ext.Net.FormPanel uploadFileForm;
         
         /// <summary>
-        /// dateRange1 control.
+        /// fileUpload control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AionHR.Web.UI.Forms.Reports.DateRangeFilter dateRange1;
+        protected global::Ext.Net.FileUploadField fileUpload;
         
         /// <summary>
-        /// ASPxCallbackPanel1 control.
+        /// SubmitFileButton control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::DevExpress.Web.ASPxCallbackPanel ASPxCallbackPanel1;
+        protected global::Ext.Net.Button SubmitFileButton;
         
         /// <summary>
-        /// ASPxWebDocumentViewer1 control.
+        /// Progress1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::DevExpress.XtraReports.Web.ASPxWebDocumentViewer ASPxWebDocumentViewer1;
+        protected global::Ext.Net.ProgressBar Progress1;
+        
+        /// <summary>
+        /// beginOperation control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Button beginOperation;
+        
+        /// <summary>
+        /// TaskManager1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.TaskManager TaskManager1;
     }
 }

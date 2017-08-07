@@ -73,6 +73,8 @@
     <Compile Include="Implementations\LoanTrackingServicecs.cs" />
     <Compile Include="Implementations\MasterService.cs" />
     <Compile Include="Implementations\MediaGalleryService.cs" />
+    <Compile Include="Implementations\OvertimeBatchRunner.cs" />
+    <Compile Include="Implementations\OvertimeImportingService.cs" />
     <Compile Include="Implementations\PayrollService.cs" />
     <Compile Include="Implementations\ReportsService.cs" />
     <Compile Include="Implementations\TaskManagementService.cs" />

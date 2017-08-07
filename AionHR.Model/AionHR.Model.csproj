@@ -60,6 +60,7 @@
     <Compile Include="EmployeeComplaints\IComplaintsRepository.cs" />
     <Compile Include="Employees\Profile\AssetAllowance.cs" />
     <Compile Include="Employees\Profile\AssetCategory.cs" />
+    <Compile Include="Employees\Profile\BatchEM.cs" />
     <Compile Include="Employees\Profile\Bonus.cs" />
     <Compile Include="Employees\Profile\BonusType.cs" />
     <Compile Include="Employees\Profile\CheckType.cs" />
@@ -165,6 +166,7 @@
     <Compile Include="TimeAttendance\DayType.cs" />
     <Compile Include="TimeAttendance\Geofence.cs" />
     <Compile Include="TimeAttendance\ImportAttendance.cs" />
+    <Compile Include="TimeAttendance\ImportOvertimeSetting.cs" />
     <Compile Include="TimeAttendance\ITimeAttendanceRepository.cs" />
     <Compile Include="TimeAttendance\LeaveCalendarDay.cs" />
     <Compile Include="TimeAttendance\OvertimeSetting.cs" />

@@ -71,18 +71,7 @@
                         <ext:Toolbar runat="server" Height="60">
 
                             <Items>
-                                  <ext:Hidden ID="NextPage" runat="server" Text="<%$ Resources:Reports , NextPage %>"/>
-        <ext:Hidden ID="LastPage" runat="server" Text="<%$ Resources:Reports , LastPage %>"/>
-        <ext:Hidden ID="PreviousPage" runat="server" Text="<%$ Resources:Reports , PreviousPage %>"/>
-        <ext:Hidden ID="FirstPage" runat="server" Text="<%$ Resources:Reports , FirstPage %>" />
-        <ext:Hidden ID="ToggleMultipleMode" runat="server"  Text="<%$ Resources:Reports , ToggleMultipleMode %>"/>
-        <ext:Hidden ID="ZoomOut" runat="server" Text="<%$ Resources:Reports , ZoomOut %>"/>
-        <ext:Hidden ID="ZoomIn" runat="server" Text="<%$ Resources:Reports , ZoomIn %>"/>
-        <ext:Hidden ID="HighlightEditingFields" runat="server" Text="<%$ Resources:Reports , HighlightEditingFields %>"/>
-        <ext:Hidden ID="PrintPage" runat="server" Text="<%$ Resources:Reports , PrintPage %>"/>
-        <ext:Hidden ID="Print" runat="server" Text="<%$ Resources:Reports , Print %>" />
-        <ext:Hidden ID="ExportTo" runat="server" Text="<%$ Resources:Reports , ExportTo %>"/>
-        <ext:Hidden ID="Search" runat="server" Text="<%$ Resources:Reports , Search %>"/>
+                           
                                 <ext:Container runat="server" Layout="FitLayout">
                                     <Content>
                                         <uc:dateRange runat="server" ID="dateRange1" />
