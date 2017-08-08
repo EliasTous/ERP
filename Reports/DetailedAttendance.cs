@@ -171,6 +171,7 @@ public class DetailedAttendance : DevExpress.XtraReports.UI.XtraReport
     {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DetailedAttendance));
+            DevExpress.XtraReports.UI.XRSummary xrSummary1 = new DevExpress.XtraReports.UI.XRSummary();
             DevExpress.XtraReports.UI.XRSummary xrSummary2 = new DevExpress.XtraReports.UI.XRSummary();
             DevExpress.XtraReports.UI.XRSummary xrSummary3 = new DevExpress.XtraReports.UI.XRSummary();
             DevExpress.XtraReports.UI.XRSummary xrSummary4 = new DevExpress.XtraReports.UI.XRSummary();
@@ -187,7 +188,6 @@ public class DetailedAttendance : DevExpress.XtraReports.UI.XtraReport
             DevExpress.XtraReports.UI.XRSummary xrSummary15 = new DevExpress.XtraReports.UI.XRSummary();
             DevExpress.XtraReports.UI.XRSummary xrSummary16 = new DevExpress.XtraReports.UI.XRSummary();
             DevExpress.XtraReports.UI.XRSummary xrSummary17 = new DevExpress.XtraReports.UI.XRSummary();
-            DevExpress.XtraReports.UI.XRSummary xrSummary1 = new DevExpress.XtraReports.UI.XRSummary();
             this.Detail = new DevExpress.XtraReports.UI.DetailBand();
             this.xrLabel62 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrTable1 = new DevExpress.XtraReports.UI.XRTable();
@@ -264,6 +264,8 @@ public class DetailedAttendance : DevExpress.XtraReports.UI.XtraReport
             this.xrLabel28 = new DevExpress.XtraReports.UI.XRLabel();
             this.centeredTitle = new DevExpress.XtraReports.UI.XRControlStyle();
             this.ReportFooter = new DevExpress.XtraReports.UI.ReportFooterBand();
+            this.xrLabel66 = new DevExpress.XtraReports.UI.XRLabel();
+            this.xrLabel65 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel64 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel15 = new DevExpress.XtraReports.UI.XRLabel();
             this.totalOLBLbl = new DevExpress.XtraReports.UI.XRLabel();
@@ -309,8 +311,6 @@ public class DetailedAttendance : DevExpress.XtraReports.UI.XtraReport
             this.latenessDay = new DevExpress.XtraReports.UI.CalculatedField();
             this.Department = new DevExpress.XtraReports.Parameters.Parameter();
             this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
-            this.xrLabel65 = new DevExpress.XtraReports.UI.XRLabel();
-            this.xrLabel66 = new DevExpress.XtraReports.UI.XRLabel();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
@@ -480,7 +480,7 @@ public class DetailedAttendance : DevExpress.XtraReports.UI.XtraReport
             resources.ApplyResources(this.xrTableCell10, "xrTableCell10");
             this.xrTableCell10.Name = "xrTableCell10";
             this.xrTableCell10.StylePriority.UseTextAlignment = false;
-            this.xrTableCell10.BeforePrint += new System.Drawing.Printing.PrintEventHandler(this.xrTableCell3_BeforePrint);
+            this.xrTableCell10.BeforePrint += new System.Drawing.Printing.PrintEventHandler(this.xrTableCell10_BeforePrint);
             // 
             // xrTableCell16
             // 
@@ -1108,6 +1108,34 @@ public class DetailedAttendance : DevExpress.XtraReports.UI.XtraReport
             this.ReportFooter.Name = "ReportFooter";
             this.ReportFooter.BeforePrint += new System.Drawing.Printing.PrintEventHandler(this.PageHeader_BeforePrint);
             // 
+            // xrLabel66
+            // 
+            this.xrLabel66.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            | DevExpress.XtraPrinting.BorderSide.Right) 
+            | DevExpress.XtraPrinting.BorderSide.Bottom)));
+            this.xrLabel66.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "workingHours")});
+            resources.ApplyResources(this.xrLabel66, "xrLabel66");
+            this.xrLabel66.Name = "xrLabel66";
+            this.xrLabel66.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel66.StylePriority.UseBorders = false;
+            xrSummary1.Func = DevExpress.XtraReports.UI.SummaryFunc.Custom;
+            xrSummary1.Running = DevExpress.XtraReports.UI.SummaryRunning.Report;
+            this.xrLabel66.Summary = xrSummary1;
+            this.xrLabel66.SummaryGetResult += new DevExpress.XtraReports.UI.SummaryGetResultHandler(this.xrLabel66_SummaryGetResult);
+            this.xrLabel66.SummaryReset += new System.EventHandler(this.xrLabel66_SummaryReset);
+            this.xrLabel66.SummaryRowChanged += new System.EventHandler(this.xrLabel66_SummaryRowChanged);
+            // 
+            // xrLabel65
+            // 
+            this.xrLabel65.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            | DevExpress.XtraPrinting.BorderSide.Right) 
+            | DevExpress.XtraPrinting.BorderSide.Bottom)));
+            resources.ApplyResources(this.xrLabel65, "xrLabel65");
+            this.xrLabel65.Name = "xrLabel65";
+            this.xrLabel65.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel65.StylePriority.UseBorders = false;
+            // 
             // xrLabel64
             // 
             this.xrLabel64.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
@@ -1682,34 +1710,6 @@ public class DetailedAttendance : DevExpress.XtraReports.UI.XtraReport
             this.objectDataSource1.DataSource = typeof(AionHR.Model.Reports.RT303);
             this.objectDataSource1.Name = "objectDataSource1";
             // 
-            // xrLabel65
-            // 
-            this.xrLabel65.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
-            | DevExpress.XtraPrinting.BorderSide.Right) 
-            | DevExpress.XtraPrinting.BorderSide.Bottom)));
-            resources.ApplyResources(this.xrLabel65, "xrLabel65");
-            this.xrLabel65.Name = "xrLabel65";
-            this.xrLabel65.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96F);
-            this.xrLabel65.StylePriority.UseBorders = false;
-            // 
-            // xrLabel66
-            // 
-            this.xrLabel66.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
-            | DevExpress.XtraPrinting.BorderSide.Right) 
-            | DevExpress.XtraPrinting.BorderSide.Bottom)));
-            this.xrLabel66.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding("Text", null, "workingHours")});
-            resources.ApplyResources(this.xrLabel66, "xrLabel66");
-            this.xrLabel66.Name = "xrLabel66";
-            this.xrLabel66.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96F);
-            this.xrLabel66.StylePriority.UseBorders = false;
-            xrSummary1.Func = DevExpress.XtraReports.UI.SummaryFunc.Custom;
-            xrSummary1.Running = DevExpress.XtraReports.UI.SummaryRunning.Report;
-            this.xrLabel66.Summary = xrSummary1;
-            this.xrLabel66.SummaryGetResult += new DevExpress.XtraReports.UI.SummaryGetResultHandler(this.xrLabel66_SummaryGetResult);
-            this.xrLabel66.SummaryReset += new System.EventHandler(this.xrLabel66_SummaryReset);
-            this.xrLabel66.SummaryRowChanged += new System.EventHandler(this.xrLabel66_SummaryRowChanged);
-            // 
             // DetailedAttendance
             // 
             this.Bands.AddRange(new DevExpress.XtraReports.UI.Band[] {
@@ -2103,7 +2103,7 @@ public class DetailedAttendance : DevExpress.XtraReports.UI.XtraReport
 
     private void xrTableCell13_BeforePrint(object sender, System.Drawing.Printing.PrintEventArgs e)
     {
-        if ((sender as XRLabel).Text == "00:00")
+        if ((sender as XRLabel).Text == "00:00" || GetPunchCount()%2!=0)
             (sender as XRLabel).Text = "---";
     }
     int totalolbMINS, totalolbHours;
@@ -2115,7 +2115,7 @@ public class DetailedAttendance : DevExpress.XtraReports.UI.XtraReport
     private void totalOLBLbl_SummaryRowChanged(object sender, EventArgs e)
     {
         string temp = GetCurrentColumnValue("OLBFinal").ToString();
-        if (temp.Split(':').Length == 0)
+        if (temp.Split(':').Length == 0|| GetPunchCount()%2!=0)
             return;
         totalolbHours += Convert.ToInt32(GetCurrentColumnValue("OLBFinal").ToString().Substring(0, 2));
         totalolbMINS += Convert.ToInt32(GetCurrentColumnValue("OLBFinal").ToString().Substring(3, 2));
@@ -2159,6 +2159,18 @@ public class DetailedAttendance : DevExpress.XtraReports.UI.XtraReport
     {
         e.Result = pendingDays;
         e.Handled = true;
+    }
+
+    private void xrTableCell10_BeforePrint(object sender, System.Drawing.Printing.PrintEventArgs e)
+    {
+
+        string s = (sender as XRLabel).Text;
+        var r = s.Split(':');
+        s = r[0] + ':' + r[1];
+        if (s == "00:00")
+            (sender as XRLabel).Text = "---";
+        else
+            (sender as XRLabel).Text = s;
     }
 
     private void xrLabel64_SummaryGetResult(object sender, SummaryGetResultEventArgs e)
@@ -2239,7 +2251,7 @@ public class DetailedAttendance : DevExpress.XtraReports.UI.XtraReport
         string s = (sender as XRLabel).Text;
         var r = s.Split(':');
         s = r[0] + ':' + r[1];
-        if (s == "00:00")
+        if (s == "00:00"|| GetPunchCount()%2!=0)
             (sender as XRLabel).Text = "---";
         else
             (sender as XRLabel).Text = s;

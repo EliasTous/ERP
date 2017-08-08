@@ -1103,5 +1103,57 @@ namespace AionHR.Web.UI.Forms
                 X.Msg.Alert(Resources.Common.RecordSavingSucc, GetLocalResourceObject("DefaultSetSucc").ToString()).Show();
             }
         }
+
+        protected void openCopyCalendar(object sender, DirectEventArgs e)
+        {
+            copyCalendarForm.Reset();
+            ListRequest calendars = new ListRequest();
+            ListResponse<WorkingCalendar> cals = _branchService.ChildGetAll<WorkingCalendar>(calendars);
+            calStore.DataSource = cals.Items;
+            calStore.DataBind();
+            copyCalendarWindow.Show();
+        }
+
+        protected void CopyCalendar(object sender, DirectEventArgs e)
+        {
+            string id = e.ExtraParams["caId"];
+            CalendarDayListRequest req = new CalendarDayListRequest();
+            req.CalendarId = id;
+            req.Year = CurrentYear.Text;
+            ListResponse<Model.Attendance.CalendarDay> days = _branchService.ChildGetAll<Model.Attendance.CalendarDay>(req);
+            if(!days.Success)
+            {
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.ErrorUpdatingRecord, GetGlobalResourceObject("Errors", days.ErrorCode) != null ? GetGlobalResourceObject("Errors", days.ErrorCode).ToString() : days.Summary).Show();
+                return;
+            }
+            else if(days.count==0)
+            {
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.ErrorUpdatingRecord,GetLocalResourceObject("NoDays").ToString() ).Show();
+                return;
+            }
+            else
+            {
+                PostRequest<Model.Attendance.CalendarDay[]> copy = new PostRequest<Model.Attendance.CalendarDay[]>();
+                days.Items.ForEach(x => x.caId = Convert.ToInt32(CurrentCalendar.Text));
+                copy.entity = days.Items.ToArray();
+                PostResponse<Model.Attendance.CalendarDay[]> response = _branchService.ChildAddOrUpdate<Model.Attendance.CalendarDay[]>(copy);
+                if(!response.Success)
+                {
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    X.Msg.Alert(Resources.Common.ErrorUpdatingRecord, GetGlobalResourceObject("Errors", days.ErrorCode) != null ? GetGlobalResourceObject("Errors", days.ErrorCode).ToString() : days.Summary).Show();
+                    return;
+                }
+                else
+                {
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    X.Msg.Alert(Resources.Common.ErrorUpdatingRecord, GetLocalResourceObject("CopiedSucc").ToString()).Show();
+                    LoadDays();
+                    return;
+                }
+            }
+        }
+
     }
 }

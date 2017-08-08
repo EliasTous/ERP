@@ -234,15 +234,15 @@ namespace AionHR.Web.UI.Forms.Reports
                 x.specialTasks = x.jobTasks = "00:00";
                 if (x.workingHours != "00:00")
                 {
-                    x.specialTasks = x.unpaidLeaves;
+                    
                     x.unpaidLeaves = "00:00";
                     x.jobTasks = x.paidLeaves;
                     x.paidLeaves = "00:00";
                     int leaveMins = Convert.ToInt32(x.unpaidLeaves.Split(':')[0]) * 60 + Convert.ToInt32(x.unpaidLeaves.Split(':')[1]);
-                    int netMins = x.OL_B > 0 ? x.OL_B : 0 - leaveMins;
+                    int netMins = x.OL_B < 0 ? x.OL_B : 0 - leaveMins;
 
                     x.OLBFinal = new TimeSpan((netMins / 60), (netMins % 60), 0);
-
+                    x.specialTasks = x.OL_B >= -leaveMins ? ((Math.Abs(x.OL_B / 60)).ToString().PadLeft(2, '0') + ":" + (Math.Abs(x.OL_B % 60)).ToString().PadLeft(2, '0')) : x.unpaidLeaves;
 
                 }
                 if (x.paidLeaves == "00:00" && x.unpaidLeaves == "00:00" && x.isWorkingDay && x.checkIn1 == "")
@@ -318,6 +318,7 @@ namespace AionHR.Web.UI.Forms.Reports
             ASPxWebDocumentViewer1.OpenReport(h);
 
         }
+
 
         protected void ASPxCallbackPanel1_Callback(object sender, DevExpress.Web.CallbackEventArgsBase e)
         {

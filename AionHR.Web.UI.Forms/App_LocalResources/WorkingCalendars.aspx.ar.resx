@@ -255,4 +255,16 @@
   <data name="DefaultSetSucc" xml:space="preserve">
     <value>تم تعيين التقويم بنجاح</value>
   </data>
+  <data name="Calendar" xml:space="preserve">
+    <value>التقويم</value>
+  </data>
+  <data name="CopiedSucc" xml:space="preserve">
+    <value>تم نسخ التقويم بنجاح</value>
+  </data>
+  <data name="ImportCalendar" xml:space="preserve">
+    <value>نسخ من تقويم آخر</value>
+  </data>
+  <data name="NoDays" xml:space="preserve">
+    <value>لم يتم العثور على أيام في السنة الحالية </value>
+  </data>
 </root>

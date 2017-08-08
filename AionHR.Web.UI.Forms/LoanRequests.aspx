@@ -56,7 +56,7 @@
         <ext:Store
             ID="Store1"
             runat="server"
-            RemoteSort="False"
+            RemoteSort="True"
             RemoteFilter="true"
             OnReadData="Store1_RefreshData"
             PageSize="50" IDMode="Explicit" Namespace="App">
@@ -92,6 +92,7 @@
             </Model>
             <Sorters>
                 <ext:DataSorter Property="recordId" Direction="ASC" />
+                <ext:DataSorter Property="employeeId" Direction="ASC" />
             </Sorters>
         </ext:Store>
 

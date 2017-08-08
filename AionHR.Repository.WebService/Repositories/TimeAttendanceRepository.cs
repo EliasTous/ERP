@@ -54,6 +54,7 @@ namespace AionHR.Repository.WebService.Repositories
             ChildAddOrUpdateLookup.Add(typeof(AttendanceSchedule), "setSC");
             ChildAddOrUpdateLookup.Add(typeof(AttendanceScheduleDay), "setSD");
             ChildAddOrUpdateLookup.Add(typeof(AttendanceBreak[]), "arrSB");
+            ChildAddOrUpdateLookup.Add(typeof(CalendarDay[]), "arrCD");
             ChildAddOrUpdateLookup.Add(typeof(WorkingCalendar), "setCA");
             ChildAddOrUpdateLookup.Add(typeof(CalendarYear), "setCY");
             ChildAddOrUpdateLookup.Add(typeof(CalendarDay), "setCD");

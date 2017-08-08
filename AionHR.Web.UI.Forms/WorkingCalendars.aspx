@@ -384,6 +384,15 @@
                                         </Click>
                                     </DirectEvents>
                                 </ext:Button>
+                                  <ext:Button ID="Button12" runat="server" Text="<%$ Resources:ImportCalendar %>" Icon="DatabaseCopy">
+                                    <Listeners>
+                                        <Click Handler="CheckSession();" />
+                                    </Listeners>
+                                    <DirectEvents>
+                                        <Click OnEvent="openCopyCalendar">
+                                        </Click>
+                                    </DirectEvents>
+                                </ext:Button>
 
 
                             </Items>
@@ -2040,6 +2049,75 @@
                     </DirectEvents>
                 </ext:Button>
                 <ext:Button ID="Button11" runat="server" Text="<%$ Resources:Common , Cancel %>" Icon="Cancel">
+                    <Listeners>
+                        <Click Handler="this.up('window').hide();" />
+                    </Listeners>
+                </ext:Button>
+            </Buttons>
+        </ext:Window>
+
+        <ext:Window
+            ID="copyCalendarWindow"
+            runat="server"
+            Icon="PageEdit"
+            Title="<%$ Resources:ImportCalendar %>"
+            Width="450"
+            Height="330"
+            AutoShow="false"
+            Modal="true"
+            Hidden="true"
+            Layout="Fit">
+
+            <Items>
+
+                <ext:FormPanel DefaultButton="Button13"
+                    ID="copyCalendarForm"
+                    runat="server"
+                    Icon="ApplicationSideList"
+                    DefaultAnchor="100%"
+                    BodyPadding="5">
+                    <Items>
+
+                        <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" ID="sourceCal" DisplayField="name" AllowBlank="false"  ValueField="recordId" FieldLabel="<%$ Resources:Calendar %>" SubmitValue="true">
+                            <Store>
+                                <ext:Store runat="server" ID="calStore">
+                                    <Model>
+                                        <ext:Model runat="server" IDProperty="recordId">
+                                            <Fields>
+                                                <ext:ModelField Name="recordId" />
+                                                <ext:ModelField Name="name" />
+                                            </Fields>
+                                        </ext:Model>
+                                    </Model>
+                                </ext:Store>
+                            </Store>
+                        </ext:ComboBox>
+                       
+                    </Items>
+
+                </ext:FormPanel>
+
+
+            </Items>
+
+            <Buttons>
+                <ext:Button ID="Button13" runat="server" Text="<%$ Resources:Common, Save %>" Icon="Disk">
+
+                    <Listeners>
+                        <Click Handler="CheckSession(); if (!#{copyCalendarForm}.getForm().isValid()) {return false;} " />
+                    </Listeners>
+                    <DirectEvents>
+                        <Click OnEvent="CopyCalendar" Failure="Ext.MessageBox.alert('#{titleSavingError}.value', '#{titleSavingErrorMessage}.value');">
+                            <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="={#{copyCalendarWindow}.body}" />
+                            <ExtraParams>
+                                <ext:Parameter Name="caId" Value="#{sourceCal}.getValue()" Mode="Raw" />
+
+
+                            </ExtraParams>
+                        </Click>
+                    </DirectEvents>
+                </ext:Button>
+                <ext:Button ID="Button14" runat="server" Text="<%$ Resources:Common , Cancel %>" Icon="Cancel">
                     <Listeners>
                         <Click Handler="this.up('window').hide();" />
                     </Listeners>

@@ -121,7 +121,7 @@
     <value>اليوم</value>
   </data>
   <data name="xrLabel10.Text" xml:space="preserve">
-    <value>مهمات عمل</value>
+    <value>غير مدفوع</value>
   </data>
   <data name="xrLabel11.Text" xml:space="preserve">
     <value>وقت العمل الفعلي</value>
@@ -271,7 +271,7 @@
     <value>خروج3</value>
   </data>
   <data name="xrLabel9.Text" xml:space="preserve">
-    <value>مهمات خاصة</value>
+    <value>مدفوع</value>
   </data>
   <data name="xrPageInfo2.Format" xml:space="preserve">
     <value>صفحة {0} من {1}</value>

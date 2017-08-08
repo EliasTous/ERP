@@ -261,4 +261,16 @@
   <data name="DefaultSetSucc" xml:space="preserve">
     <value>Default Calendar set successfully</value>
   </data>
+  <data name="CopiedSucc" xml:space="preserve">
+    <value>Calendar Imported Successfully</value>
+  </data>
+  <data name="ImportCalendar" xml:space="preserve">
+    <value>Import Calendar</value>
+  </data>
+  <data name="NoDays" xml:space="preserve">
+    <value>No Days for the current year</value>
+  </data>
+  <data name="Calendar" xml:space="preserve">
+    <value>Calendar</value>
+  </data>
 </root>

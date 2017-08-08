@@ -36,7 +36,6 @@
 
             sum += record.data['leaveHours'];
         });
-
         App.leaveRequest1_leavePeriod.setValue(sum.toFixed(2));
         App.leaveRequest1_sumHours2.setValue(sum.toFixed(2));
 
@@ -199,12 +198,13 @@
                         </ext:ComboBox>
                         <ext:DateField ID="startDate"   runat="server" FieldLabel="<%$ Resources:FieldStartDate%>" Name="startDate" AllowBlank="false">
                             <DirectEvents>
-                                <Change OnEvent="MarkLeaveChanged">
+                                <FocusLeave OnEvent="MarkLeaveChanged">
                                     <ExtraParams>
                                         <ext:Parameter Name="startDate" Value="#{startDate}.getValue()" Mode="Raw" />
                                         <ext:Parameter Name="endDate" Value="#{endDate}.getValue()" Mode="Raw" />
                                     </ExtraParams>
-                                </Change>
+                                </FocusLeave>
+                                
                             </DirectEvents>
                          <Listeners>
                                         <Select Handler="calcDays();" />
@@ -219,12 +219,12 @@
                                 <ext:DateField ID="endDate"    runat="server" FieldLabel="<%$ Resources:FieldEndDate%>"  min Name="endDate" AllowBlank="false">
                                  
                                     <DirectEvents>
-                                        <Change OnEvent="MarkLeaveChanged">
+                                        <FocusLeave OnEvent="MarkLeaveChanged">
                                             <ExtraParams>
                                                 <ext:Parameter Name="startDate" Value="#{startDate}.getValue()" Mode="Raw" />
                                                 <ext:Parameter Name="endDate" Value="#{endDate}.getValue()" Mode="Raw" />
                                             </ExtraParams>
-                                        </Change>
+                                        </FocusLeave>
                                     </DirectEvents>
                                     <%--<Listeners>
                                         <Change Handler="App.leaveRequest1_direct.MarkLeaveChanged(); CalcSum(); " />
