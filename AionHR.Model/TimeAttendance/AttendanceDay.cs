@@ -45,9 +45,11 @@ namespace AionHR.Model.Attendance
         [ApplySecurity]
         public int employeeId { get; set; }
 
-       
-        
-        
+       public string caName { get; set; }
+
+        public string scName { get; set; }
+
+
         public int netOL { get; set; }
         public string OL_A { get; set; }
         public string OL_B { get; set; }

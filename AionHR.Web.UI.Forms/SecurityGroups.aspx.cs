@@ -1040,14 +1040,31 @@ namespace AionHR.Web.UI.Forms
                 classId = "21010";
             else
                 classId = classIdCombo.SelectedItem.Value;
-            DataAccessListRequest req = new DataAccessListRequest();
-            req.classId = classId;
-            req.sgId = CurrentGroup.Text;
-            ListResponse<DataAccessItemView> stored = _accessControlService.ChildGetAll<DataAccessItemView>(req);
+            DataAccessRecordRequest recordReq = new DataAccessRecordRequest();
+            recordReq.RecordID = "0";
+            recordReq.sgId = CurrentGroup.Text;
+            recordReq.classId = classId;
+            RecordResponse<DataAccessItemView> recordRes = _accessControlService.ChildGetRecord<DataAccessItemView>(recordReq);
+            if (recordRes.result != null)
+            {
+                superUserCheck.Checked = true;
+                dataStore.DataSource = new List<DataAccessItemView>();
+                dataStore.DataBind();
+            }
+            else
+            {
 
 
-            dataStore.DataSource = stored.Items;
-            dataStore.DataBind();
+                DataAccessListRequest req = new DataAccessListRequest();
+
+
+                req.classId = classId;
+                req.sgId = CurrentGroup.Text;
+                ListResponse<DataAccessItemView> stored = _accessControlService.ChildGetAll<DataAccessItemView>(req);
+                dataStore.DataSource = stored.Items;
+                dataStore.DataBind();
+                superUserCheck.Checked = false;
+            }
 
 
         }
@@ -1101,7 +1118,7 @@ namespace AionHR.Web.UI.Forms
             List<DataAccessItemView> changed = JsonConvert.DeserializeObject<List<DataAccessItemView>>(e.ExtraParams["values"]);
 
             PostRequest<DataAccessItemView> req = new PostRequest<DataAccessItemView>();
-            
+
             changed.ForEach(
                 x =>
                 {
@@ -1115,12 +1132,39 @@ namespace AionHR.Web.UI.Forms
                         resp = _accessControlService.ChildDelete<DataAccessItemView>(req);
                 });
             Notification.Show(new NotificationConfig
-                {
-                    Title = Resources.Common.Notification,
-                    Icon = Icon.Information,
-                    Html = Resources.Common.RecordSavingSucc
-                });
+            {
+                Title = Resources.Common.Notification,
+                Icon = Icon.Information,
+                Html = Resources.Common.RecordSavingSucc
+            });
             X.Call("clearDirty");
+        }
+
+        protected void ToggleSuperuser(object sender, DirectEventArgs e)
+        {
+            if (superUserCheck.Checked)
+            {
+                PostRequest<DataAccessItemView> req = new PostRequest<DataAccessItemView>();
+                DataAccessItemView x = new DataAccessItemView();
+                x.classId = classIdCombo.SelectedItem.Value;
+                x.sgId = CurrentGroup.Text;
+                x.hasAccess = true;
+                x.recordId = "0";
+                req.entity = x;
+                PostResponse<DataAccessItemView> resp = _accessControlService.ChildAddOrUpdate<DataAccessItemView>(req);
+            }
+            else
+            {
+                PostRequest<DataAccessItemView> req = new PostRequest<DataAccessItemView>();
+                DataAccessItemView x = new DataAccessItemView();
+                x.classId = classIdCombo.SelectedItem.Value;
+                x.sgId = CurrentGroup.Text;
+                x.hasAccess = false;
+                x.recordId = "0";
+                req.entity = x;
+                PostResponse<DataAccessItemView> resp = _accessControlService.ChildDelete<DataAccessItemView>(req);
+            }
+            dataStore.Reload();
         }
     }
 }

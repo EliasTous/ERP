@@ -188,6 +188,24 @@ namespace AionHR.Web.UI.Forms
             try
 
             {
+                apply_ALDA_CSBR.Checked = items.Where(s => s.Key == "apply-ALDA-CSBR").First().Value == "true";
+            }
+            catch { }
+            try
+
+            {
+                apply_ALDA_CSDE.Checked = items.Where(s => s.Key == "apply-ALDA-CSDE").First().Value == "true";
+            }
+            catch { }
+            try
+
+            {
+                apply_ALDA_CSDI.Checked = items.Where(s => s.Key == "apply-ALDA-CSDI").First().Value == "true";
+            }
+            catch { }
+            try
+
+            {
                 enableHijri.Checked = items.Where(s => s.Key == "enableHijri").First().Value == "true";
             }
             catch { }
@@ -273,6 +291,9 @@ namespace AionHR.Web.UI.Forms
 
             submittedValues.Add(new KeyValuePair<string, string>("enableCamera", values.enableCamera == null ? "false" : "true"));
             submittedValues.Add(new KeyValuePair<string, string>("enableHijri", values.enableHijri == null ? "false" : "true"));
+            submittedValues.Add(new KeyValuePair<string, string>("apply-ALDA-CSBR", values.apply_ALDA_CSBR == null ? "false" : "true"));
+            submittedValues.Add(new KeyValuePair<string, string>("apply-ALDA-CSDE", values.apply_ALDA_CSDE == null ? "false" : "true"));
+            submittedValues.Add(new KeyValuePair<string, string>("apply-ALDA-CSDI", values.apply_ALDA_CSDI == null ? "false" : "true"));
             KeyValuePair<string, string>[] valArr = submittedValues.ToArray();
             PostRequest<KeyValuePair<string, string>[]> req = new PostRequest<KeyValuePair<string, string>[]>();
             req.entity = valArr;

@@ -165,3 +165,22 @@ public class DataAccessListRequest:ListRequest
     }
 
 }
+public class DataAccessRecordRequest:RecordRequest
+{
+    public string sgId { get; set; }
+
+    public string classId { get; set; }
+    private Dictionary<string, string> parameters;
+
+    public override Dictionary<string, string> Parameters
+    {
+        get
+        {
+            parameters = base.Parameters;
+
+            parameters.Add("_sgId", sgId);
+            parameters.Add("_classId", classId);
+            return parameters;
+        }
+    }
+}

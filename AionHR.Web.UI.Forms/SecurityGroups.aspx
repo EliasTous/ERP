@@ -669,7 +669,11 @@
                                             </Items>
 
                                         </ext:ComboBox>
-
+                                        <ext:Checkbox runat="server" ID="superUserCheck" FieldLabel="<%$Resources:IsSuperUser %>">
+                                            <DirectEvents>
+                                                <Change OnEvent="ToggleSuperuser" />
+                                            </DirectEvents>
+                                        </ext:Checkbox>
                                       
                                     </Items>
 

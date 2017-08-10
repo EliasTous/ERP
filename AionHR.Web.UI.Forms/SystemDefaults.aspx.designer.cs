@@ -346,6 +346,33 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Checkbox enableHijri;
         
         /// <summary>
+        /// apply_ALDA_CSBR control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Checkbox apply_ALDA_CSBR;
+        
+        /// <summary>
+        /// apply_ALDA_CSDE control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Checkbox apply_ALDA_CSDE;
+        
+        /// <summary>
+        /// apply_ALDA_CSDI control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Checkbox apply_ALDA_CSDI;
+        
+        /// <summary>
         /// SaveButton control.
         /// </summary>
         /// <remarks>

@@ -126,6 +126,9 @@
   <data name="ButtonRefresh" xml:space="preserve">
     <value>تحديث</value>
   </data>
+  <data name="CA" xml:space="preserve">
+    <value>التقويم</value>
+  </data>
   <data name="ContractEndingDate" xml:space="preserve">
     <value>تاريخ نهاية العقد</value>
   </data>
@@ -242,6 +245,9 @@
   </data>
   <data name="FieldWorkingCalendar" xml:space="preserve">
     <value>التقويم</value>
+  </data>
+  <data name="SC" xml:space="preserve">
+    <value>جدول العمل</value>
   </data>
   <data name="TotalBreaks" xml:space="preserve">
     <value>إجمالي الاستراحات</value>

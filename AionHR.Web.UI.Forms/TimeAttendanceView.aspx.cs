@@ -190,6 +190,8 @@ namespace AionHR.Web.UI.Forms
                     shiftEmpId.Text = emp;
                     checkIn.Text = cIn;
                     checkOut.Text = cOut;
+                    ca.Text = CurrentCA.Text;
+                    sc.Text = CurrentSC.Text;
                     EditShiftWindow.Show();
 
 
@@ -697,6 +699,8 @@ namespace AionHR.Web.UI.Forms
             //Reset all values of the relative object
 
             EditShiftForm.Reset();
+            ca.Text = CurrentCA.Text;
+            sc.Text = CurrentSC.Text;
             shiftDayId.Text = CurrentDay.Text;
             shiftEmpId.Text = CurrentEmployee.Text;
             this.EditShiftWindow.Title = Resources.Common.AddNewRecord;

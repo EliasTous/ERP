@@ -126,6 +126,9 @@
   <data name="ButtonRefresh" xml:space="preserve">
     <value>Refresh</value>
   </data>
+  <data name="CA" xml:space="preserve">
+    <value>Calendar</value>
+  </data>
   <data name="ContractEndingDate" xml:space="preserve">
     <value>Contract Ending Date</value>
   </data>
@@ -242,6 +245,9 @@
   </data>
   <data name="FieldWorkingCalendar" xml:space="preserve">
     <value>Calendar</value>
+  </data>
+  <data name="SC" xml:space="preserve">
+    <value>Schedule</value>
   </data>
   <data name="TotalBreaks" xml:space="preserve">
     <value>Total Breaks</value>

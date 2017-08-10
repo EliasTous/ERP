@@ -204,4 +204,7 @@
   <data name="DaSaveTitle" xml:space="preserve">
     <value>تأكيد</value>
   </data>
+  <data name="IsSuperUser" xml:space="preserve">
+    <value>صلاحيات كاملة</value>
+  </data>
 </root>

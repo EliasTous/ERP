@@ -333,6 +333,9 @@
                                             </Items></ext:Panel>
                                         <ext:Checkbox FieldLabel="<%$ Resources: FieldEnableCamera %>" LabelWidth="150" runat="server" InputValue="True" Name="enableCamera" ID="enableCameraCheck" />
                                         <ext:Checkbox FieldLabel="<%$ Resources: FieldEnableHijri %>" LabelWidth="150" runat="server" InputValue="True" Name="enableHijri" ID="enableHijri" />
+                                        <ext:Checkbox FieldLabel="<%$ Resources: apply_ALDA_CSBR %>" LabelWidth="150" runat="server" InputValue="True" Name="apply_ALDA_CSBR" ID="apply_ALDA_CSBR" />
+                                        <ext:Checkbox FieldLabel="<%$ Resources: apply_ALDA_CSDE %>" LabelWidth="150" runat="server" InputValue="True" Name="apply_ALDA_CSDE" ID="apply_ALDA_CSDE" />
+                                        <ext:Checkbox FieldLabel="<%$ Resources: apply_ALDA_CSDI %>" LabelWidth="150" runat="server" InputValue="True" Name="apply_ALDA_CSDI" ID="apply_ALDA_CSDI" />
                                     </Items>
 
                                 </ext:FormPanel>

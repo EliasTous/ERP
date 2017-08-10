@@ -123,6 +123,15 @@
   <data name="Alert309Title" xml:space="preserve">
     <value>الذكرى السنوية لبداية الخدمة</value>
   </data>
+  <data name="apply_ALDA_CSBR" xml:space="preserve">
+    <value>تطبيق حماية البيانات للفروع</value>
+  </data>
+  <data name="apply_ALDA_CSDE" xml:space="preserve">
+    <value>تطبيق حماية البيانات للأقسام</value>
+  </data>
+  <data name="apply_ALDA_CSDI" xml:space="preserve">
+    <value>تطبيق حماية البيانات للإدارات</value>
+  </data>
   <data name="BasicInfoTabEditWindowTitle" xml:space="preserve">
     <value>الاعدادات الإفتراضية للنظام</value>
   </data>

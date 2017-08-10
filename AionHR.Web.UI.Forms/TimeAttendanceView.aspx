@@ -13,7 +13,7 @@
     <script type="text/javascript" src="Scripts/common.js"></script>
     <script type="text/javascript" src="Scripts/moment.js"></script>
     <script type="text/javascript">
-        function setTotal(t,b) {
+        function setTotal(t, b) {
             // alert(t);
             // alert(document.getElementById("total"));
 
@@ -81,16 +81,14 @@
         <ext:Hidden ID="TotalText" runat="server" Text="<%$ Resources: TotalText %>" />
         <ext:Hidden ID="HoursWorked" runat="server" Text="<%$ Resources: FieldHoursWorked %>" />
         <ext:Hidden ID="TotalBreaksText" runat="server" Text="<%$ Resources: TotalBreaks %>" />
-        <ext:Hidden ID="CurrentEmployee" runat="server"  />
-        <ext:Hidden ID="CurrentDay" runat="server"  />
-        <ext:Hidden ID="CurrentCA" runat="server"  />
-        <ext:Hidden ID="CurrentSC" runat="server"  />
-        <ext:Hidden ID="format" runat="server"  />
+        <ext:Hidden ID="CurrentEmployee" runat="server" />
+        <ext:Hidden ID="CurrentDay" runat="server" />
+        <ext:Hidden ID="CurrentCA" runat="server" />
+        <ext:Hidden ID="CurrentSC" runat="server" />
+        <ext:Hidden ID="format" runat="server" />
         <ext:Store
             ID="Store1"
             runat="server"
-          
-          
             OnReadData="Store1_RefreshData"
             PageSize="30" IDMode="Explicit" Namespace="App" IsPagingStore="true">
             <Proxy>
@@ -119,7 +117,7 @@
                         <ext:ModelField Name="OL_N" />
                         <ext:ModelField Name="caName" />
                         <ext:ModelField Name="scName" />
-                        
+
                         <ext:ModelField Name="netOL" />
 
 
@@ -160,7 +158,7 @@
                                 <ext:Parameter Name="labelWidth" Value="70" Mode="Raw" />
                             </Defaults>
                             <Items>
-                                <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" Width="130" LabelAlign="Top" EmptyText="<%$ Resources:FieldBranch%>" ValueField="recordId" DisplayField="name" ID="branchId" Name="branchId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1">
+                                <ext:ComboBox AnyMatch="true" CaseSensitive="false" runat="server" Width="130" LabelAlign="Top" EmptyText="<%$ Resources:FieldBranch%>" ValueField="recordId" DisplayField="name" ID="branchId" Name="branchId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1">
                                     <Store>
                                         <ext:Store runat="server" ID="branchStore">
                                             <Model>
@@ -179,7 +177,7 @@
 
                                 </ext:ComboBox>
 
-                                <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" Width="155" EmptyText="<%$ Resources:FieldDepartment%>" LabelAlign="Top" ValueField="recordId" DisplayField="name" ID="departmentId" Name="departmentId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1">
+                                <ext:ComboBox AnyMatch="true" CaseSensitive="false" runat="server" Width="155" EmptyText="<%$ Resources:FieldDepartment%>" LabelAlign="Top" ValueField="recordId" DisplayField="name" ID="departmentId" Name="departmentId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1">
                                     <Store>
                                         <ext:Store runat="server" ID="departmentStore">
                                             <Model>
@@ -198,7 +196,7 @@
 
 
                                 </ext:ComboBox>
-                                <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  EmptyText="<%$ Resources: FieldDivision%>" runat="server" Width="130" LabelAlign="Top" ValueField="recordId" DisplayField="name" ID="divisionId" Name="divisionId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1">
+                                <ext:ComboBox AnyMatch="true" CaseSensitive="false" EmptyText="<%$ Resources: FieldDivision%>" runat="server" Width="130" LabelAlign="Top" ValueField="recordId" DisplayField="name" ID="divisionId" Name="divisionId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1">
                                     <Store>
                                         <ext:Store runat="server" ID="divisionStore">
                                             <Model>
@@ -216,7 +214,7 @@
                                     </Listeners>
 
                                 </ext:ComboBox>
-                                <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" ID="employeeId" Width="130" LabelAlign="Top"
+                                <ext:ComboBox AnyMatch="true" CaseSensitive="false" runat="server" ID="employeeId" Width="130" LabelAlign="Top"
                                     DisplayField="fullName"
                                     ValueField="recordId" AllowBlank="true"
                                     TypeAhead="false"
@@ -293,7 +291,7 @@
                         <Columns>
 
                             <ext:Column ID="ColDay" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDay%>" DataIndex="dayId" Flex="2" Hideable="false">
-                                 <Renderer Handler="var d = moment(record.data['dayId'],'YYYYMMDD'); return d.format(App.format.value);" />
+                                <Renderer Handler="var d = moment(record.data['dayId'],'YYYYMMDD'); return d.format(App.format.value);" />
                                 <SummaryRenderer Handler="return #{TotalText}.value;" />
                             </ext:Column>
                             <ext:Column ID="ColName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldFullName%>" DataIndex="employeeName" Flex="3" Hideable="false">
@@ -448,11 +446,11 @@
             Icon="PageEdit"
             Width="450"
             Title="<%$ Resources:DayShifts %>"
-            MinHeight="100"
+            MinHeight="300"
             MaxHeight="600"
             AutoShow="false"
             Modal="true"
-            Maximizable="false" Resizable="false" Draggable="false" 
+            Maximizable="false" Resizable="false" Draggable="false"
             Hidden="true"
             Layout="FitLayout">
 
@@ -470,10 +468,10 @@
                     <TopBar>
                         <ext:Toolbar runat="server">
                             <Items>
-                                <ext:Button ID="btnAdd" runat="server" Text="<%$ Resources:Common , Add %>" Icon="Add">       
-                                     <Listeners>
+                                <ext:Button ID="btnAdd" runat="server" Text="<%$ Resources:Common , Add %>" Icon="Add">
+                                    <Listeners>
                                         <Click Handler="CheckSession();" />
-                                    </Listeners>                           
+                                    </Listeners>
                                     <DirectEvents>
                                         <Click OnEvent="AddShift">
                                             <EventMask ShowMask="true" CustomTarget="={#{attendanceShiftGrid}.body}" />
@@ -504,9 +502,9 @@
                     </Store>
                     <ColumnModel runat="server">
                         <Columns>
-                             <ext:Column runat="server" DataIndex="recordId"  Visible="false" />
-                            <ext:Column runat="server" DataIndex="dayId"  Visible="false" />
-                            <ext:Column runat="server" DataIndex="employeeId"  Visible="false" />
+                            <ext:Column runat="server" DataIndex="recordId" Visible="false" />
+                            <ext:Column runat="server" DataIndex="dayId" Visible="false" />
+                            <ext:Column runat="server" DataIndex="employeeId" Visible="false" />
                             <ext:Column runat="server" DataIndex="checkIn" Text="<%$ Resources: FieldCheckIn %>" Flex="1" />
                             <ext:Column runat="server" DataIndex="checkOut" Text="<%$ Resources: FieldCheckOut %>" Flex="1" />
                             <ext:Column runat="server" DataIndex="duration" Text="<%$ Resources: FieldHoursWorked %>" Flex="1" />
@@ -521,8 +519,8 @@
                                 MenuDisabled="true"
                                 Resizable="false">
 
-                                <Renderer handler="return editRender()+'&nbsp;&nbsp;' +deleteRender(); " />
-                                </ext:Column>
+                                <Renderer Handler="return editRender()+'&nbsp;&nbsp;' +deleteRender(); " />
+                            </ext:Column>
                         </Columns>
 
                     </ColumnModel>
@@ -538,7 +536,7 @@
                                 <ext:Parameter Name="shiftId" Value="record.data['recordId']" Mode="Raw" />
                                 <ext:Parameter Name="checkedIn" Value="record.data['checkIn']" Mode="Raw" />
                                 <ext:Parameter Name="checkedOut" Value="record.data['checkOut']" Mode="Raw" />
-                                
+
                                 <ext:Parameter Name="type" Value="getCellType( this, rowIndex, cellIndex)" Mode="Raw" />
                             </ExtraParams>
 
@@ -573,47 +571,54 @@
             Icon="PageEdit"
             Title="<%$ Resources:EditWindowsTitle %>"
             Width="450"
-            Height="150"
+            Height="200"
             AutoShow="false"
             Modal="true"
             Hidden="true"
-             Draggable="false"
-             Maximizable="false"
+            Draggable="false"
+            Maximizable="false"
             Resizable="false" Header="false"
             Layout="Fit">
 
             <Items>
-               
-                        <ext:FormPanel
-                            ID="EditShiftForm" DefaultButton="SaveButton"
-                            runat="server"
-                            Title="<%$ Resources: BasicInfoTabEditWindowTitle %>"
-                            Icon="ApplicationSideList"
-                            DefaultAnchor="100%" 
-                            BodyPadding="5">
+
+                <ext:FormPanel
+                    ID="EditShiftForm" DefaultButton="SaveButton"
+                    runat="server"
+                    Title="<%$ Resources: BasicInfoTabEditWindowTitle %>"
+                    Icon="ApplicationSideList"
+                    DefaultAnchor="100%"
+                    BodyPadding="5">
+                    <Items>
+                        <ext:TextField ID="recordId"  runat="server" Name="recordId" Hidden="true" />
+                        <ext:TextField ID="shiftDayId" runat="server" Name="shiftDayId" Hidden="true" />
+                        <ext:TextField ID="shiftEmpId" runat="server" Name="shiftEmpId" Hidden="true" />
+                        <ext:Panel runat="server" Layout="HBoxLayout" >
                             <Items>
-                                <ext:TextField ID="recordId" runat="server" Name="recordId" Hidden="true" />
-                                <ext:TextField ID="shiftDayId" runat="server" Name="shiftDayId" Hidden="true" />
-                                <ext:TextField ID="shiftEmpId" runat="server" Name="shiftEmpId" Hidden="true" />
-                                <ext:TextField ID="checkIn" runat="server" FieldLabel="<%$ Resources:FieldCheckIn%>" Name="checkIn" AllowBlank="false">
-                                    <Plugins>
-                                        <ext:InputMask Mask="99:99" />
-
-                                    </Plugins>
-                                    <Validator Handler="return validateFrom(this.getValue());" />
-                                </ext:TextField>
-
-                                <ext:TextField ID="checkOut" runat="server" FieldLabel="<%$ Resources:FieldCheckOut%>" Name="checkOut" AllowBlank="true">
-                                    <Plugins>
-                                        <ext:InputMask Mask="99:99" AllowInvalid="true"  />
-                                    </Plugins>
-                                    <Validator Handler="return validateTo(this.getValue(),this.prev().getValue());" />
-                                </ext:TextField>
+                                <ext:TextField Width="200" runat="server" ID="ca" FieldLabel="<%$Resources:CA %>"  Readonly="true"></ext:TextField>
+                                <ext:TextField Width="200" runat="server" ID="sc" FieldLabel="<%$Resources:SC %>" Readonly="true"></ext:TextField>
                             </Items>
+                        </ext:Panel>
 
-                        </ext:FormPanel>
+                        <ext:TextField MarginSpec="20 0 0 0" ID="checkIn" runat="server" FieldLabel="<%$ Resources:FieldCheckIn%>" Name="checkIn" AllowBlank="false">
+                            <Plugins>
+                                <ext:InputMask Mask="99:99" />
 
-                  
+                            </Plugins>
+                            <Validator Handler="return validateFrom(this.getValue());" />
+                        </ext:TextField>
+
+                        <ext:TextField ID="checkOut" runat="server" FieldLabel="<%$ Resources:FieldCheckOut%>" Name="checkOut" AllowBlank="true">
+                            <Plugins>
+                                <ext:InputMask Mask="99:99" AllowInvalid="true" />
+                            </Plugins>
+                            <Validator Handler="return validateTo(this.getValue(),this.prev().getValue());" />
+                        </ext:TextField>
+                    </Items>
+
+                </ext:FormPanel>
+
+
             </Items>
             <Buttons>
                 <ext:Button ID="SaveButton" runat="server" Text="<%$ Resources:Common, Save %>" Icon="Disk">

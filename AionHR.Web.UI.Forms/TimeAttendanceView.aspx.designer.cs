@@ -562,6 +562,24 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.TextField shiftEmpId;
         
         /// <summary>
+        /// ca control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.TextField ca;
+        
+        /// <summary>
+        /// sc control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.TextField sc;
+        
+        /// <summary>
         /// checkIn control.
         /// </summary>
         /// <remarks>

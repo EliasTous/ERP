@@ -207,4 +207,7 @@
   <data name="DaSaveTitle" xml:space="preserve">
     <value>Confirm</value>
   </data>
+  <data name="IsSuperUser" xml:space="preserve">
+    <value>Is super user</value>
+  </data>
 </root>
