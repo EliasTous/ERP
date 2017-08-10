@@ -102,7 +102,7 @@ namespace AionHR.Services.Implementations
             ListResponse<Branch> branches = companyStructure.ChildGetAll<Branch>(req);
             if (branches.Success && branches.Items != null)
             {
-                branches.Items.ForEach(x => this.branches.Add(x.name, Convert.ToInt32(x.recordId)));
+                branches.Items.ForEach(x => this.branches.Add(x.name.Trim('\r', '\n'), Convert.ToInt32(x.recordId)));
             }
         }
         private void FillDepartments()
@@ -111,7 +111,10 @@ namespace AionHR.Services.Implementations
             ListResponse<Department> branches = companyStructure.ChildGetAll<Department>(req);
             if (branches.Success && branches.Items != null)
             {
-                branches.Items.ForEach(x => this.departments.Add(x.name, Convert.ToInt32(x.recordId)));
+                foreach (var item in branches.Items)
+                {
+                    this.departments.Add(item.name.Trim('\r','\n'), Convert.ToInt32(item.recordId));
+                }
             }
         }
         private void FillDivisions()
@@ -120,7 +123,7 @@ namespace AionHR.Services.Implementations
             ListResponse<Division> branches = companyStructure.ChildGetAll<Division>(req);
             if (branches.Success && branches.Items != null)
             {
-                branches.Items.ForEach(x => this.divisions.Add(x.name, Convert.ToInt32(x.recordId)));
+                branches.Items.ForEach(x => this.divisions.Add(x.name.Trim('\r', '\n'), Convert.ToInt32(x.recordId)));
             }
         }
         private void FillPosition()
@@ -129,7 +132,7 @@ namespace AionHR.Services.Implementations
             ListResponse<Position> branches = companyStructure.ChildGetAll<Position>(req);
             if (branches.Success && branches.Items != null)
             {
-                branches.Items.ForEach(x => this.positions.Add(x.name, Convert.ToInt32(x.recordId)));
+                branches.Items.ForEach(x => this.positions.Add(x.name.Trim('\r', '\n'), Convert.ToInt32(x.recordId)));
             }
         }
 

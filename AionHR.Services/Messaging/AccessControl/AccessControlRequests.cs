@@ -141,4 +141,27 @@ public class SecurityGroupsListRequest : ListRequest
             return parameters;
         }
     }
+
+
+}
+
+public class DataAccessListRequest:ListRequest
+{
+    public string sgId { get; set; }
+
+    public string classId { get; set; }
+    private Dictionary<string, string> parameters;
+
+    public override Dictionary<string, string> Parameters
+    {
+        get
+        {
+            parameters = base.parameters;
+            
+            parameters.Add("_sgId", sgId);
+            parameters.Add("_classId", classId);
+            return parameters;
+        }
+    }
+
 }

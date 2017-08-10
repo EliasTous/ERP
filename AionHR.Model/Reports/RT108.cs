@@ -63,6 +63,10 @@ namespace AionHR.Model.Reports
         public string terminationDateString { get; set; }
         public string terminationReasonName { get; set; }
 
+        public DateTime? termEndDate { get; set; }
+
+        public string termEndDateString { get; set; }
+
 
     }
 }

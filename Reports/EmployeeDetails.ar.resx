@@ -136,19 +136,19 @@
     <value>القسم</value>
   </data>
   <data name="xrLabel15.Text" xml:space="preserve">
-    <value>الحالة الوظيفية</value>
+    <value>رقم</value>
   </data>
   <data name="xrLabel16.Text" xml:space="preserve">
     <value>تاريخ التعيين</value>
   </data>
   <data name="xrLabel17.Text" xml:space="preserve">
-    <value>آخر إجازة</value>
+    <value>تاريخ آخر إجازة</value>
   </data>
   <data name="xrLabel18.Text" xml:space="preserve">
     <value>مدة العقد</value>
   </data>
   <data name="xrLabel19.Text" xml:space="preserve">
-    <value>مدة العقد</value>
+    <value>تاريخ نهاية العقد</value>
   </data>
   <data name="xrLabel2.Text" xml:space="preserve">
     <value>الاسم</value>
@@ -205,7 +205,7 @@
     <value>معلومات الموظفين</value>
   </data>
   <data name="xrLabel6.Text" xml:space="preserve">
-    <value>الصلاحية</value>
+    <value>الانتهاء</value>
   </data>
   <data name="xrLabel7.Text" xml:space="preserve">
     <value>الهوية/الإقامة</value>
@@ -214,7 +214,7 @@
     <value>جواز السفر</value>
   </data>
   <data name="xrLabel9.Text" xml:space="preserve">
-    <value>الصلاحية</value>
+    <value>الانتهاء</value>
   </data>
   <data name="xrPageInfo2.Format" xml:space="preserve">
     <value>صفحة {0} من {1}</value>

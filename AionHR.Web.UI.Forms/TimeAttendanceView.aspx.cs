@@ -69,7 +69,9 @@ namespace AionHR.Web.UI.Forms
                 FillBranch();
                 FillDepartment();
                 FillDivision();
-                dayId.SelectedDate = DateTime.Today;
+                format.Text = _systemService.SessionHelper.GetDateformat().ToUpper();
+               startDayId.SelectedDate = DateTime.Today;
+                endDayId.SelectedDate = DateTime.Today;
                 try
                 {
                     AccessControlApplier.ApplyAccessControlOnPage(typeof(AttendanceDay), null, GridPanel1, null, null);
@@ -117,6 +119,8 @@ namespace AionHR.Web.UI.Forms
             int employeeId = Convert.ToInt32(e.ExtraParams["employeeId"]);
             CurrentDay.Text = dayId.ToString();
             CurrentEmployee.Text = employeeId.ToString();
+            CurrentCA.Text = e.ExtraParams["ca"];
+            CurrentSC.Text = e.ExtraParams["sc"];
             string type = e.ExtraParams["type"];
             switch (type)
             {
@@ -358,7 +362,16 @@ namespace AionHR.Web.UI.Forms
                 req.BranchId = "0";
                 GridPanel1.ColumnModel.Columns.Where(a => a.ID == "ColBranchName").First().SetHidden(false);
             }
+            if (!string.IsNullOrEmpty(divisionId.Text) && divisionId.Value.ToString() != "0")
+            {
+                req.DivisionId = divisionId.Value.ToString();
 
+
+            }
+            else
+            {
+                req.DivisionId = "0";
+            }
             if (!string.IsNullOrEmpty(departmentId.Text) && departmentId.Value.ToString() != "0")
             {
                 req.DepartmentId = departmentId.Value.ToString();
@@ -371,20 +384,28 @@ namespace AionHR.Web.UI.Forms
                 GridPanel1.ColumnModel.Columns.Where(a => a.ID == "ColDepartmentName").First().SetHidden(false);
             }
 
-            if (dayId.SelectedDate != DateTime.MinValue)
+            if (startDayId.SelectedDate != DateTime.MinValue)
 
             {
-                req.DayId = dayId.SelectedDate.ToString("yyyyMMdd");
-                GridPanel1.ColumnModel.Columns.Where(a => a.ID == "ColDay").First().SetHidden(true);
+                req.StartDayId = startDayId.SelectedDate.ToString("yyyyMMdd");
 
 
             }
             else
             {
-                req.DayId = "";
-                GridPanel1.ColumnModel.Columns.Where(a => a.ID == "ColDay").First().SetHidden(false);
+                req.StartDayId = "";
             }
+            if (endDayId.SelectedDate != DateTime.MinValue)
 
+            {
+                req.EndDayId = endDayId.SelectedDate.ToString("yyyyMMdd");
+
+
+            }
+            else
+            {
+                req.EndDayId = "";
+            }
             if (!string.IsNullOrEmpty(employeeId.Text) && employeeId.Value.ToString() != "0")
             {
                 req.EmployeeId = employeeId.Value.ToString();
@@ -423,12 +444,27 @@ namespace AionHR.Web.UI.Forms
             }
             int total = daysResponse.Items.Sum(x => x.netOL);
             string totalWorked, totalBreaks;
-            int hoursWorked=0, minsWorked = 0,hoursBreak=0,minsBrea=0;
-            daysResponse.Items.ForEach(x => { hoursWorked += Convert.ToInt32(x.workingTime.Substring(0, 2)); minsWorked += Convert.ToInt32(x.workingTime.Substring(3, 2)); hoursBreak += Convert.ToInt32(x.breaks.Substring(0, 2)); minsBrea += Convert.ToInt32(x.breaks.Substring(3, 2)); });
+            int hoursWorked=0, minsWorked = 0,hoursBreak,minsBrea=0;
+            daysResponse.Items.ForEach(x => {
+                hoursWorked += Convert.ToInt32(x.workingTime.Substring(0, 2));
+                minsWorked += Convert.ToInt32(x.workingTime.Substring(3, 2));
+                if(x.breaks[0]=='-')
+                {
+                    minsBrea -= Convert.ToInt32(x.breaks.Substring(1, 2))*60;
+                    minsBrea -= Convert.ToInt32(x.breaks.Substring(4, 2));
+                }
+                else
+
+                {
+                    minsBrea += Convert.ToInt32(x.breaks.Substring(0, 2)) * 60;
+                    minsBrea += Convert.ToInt32(x.breaks.Substring(3, 2));
+
+                }
+                });
             hoursWorked += minsWorked / 60;
             minsWorked = minsWorked % 60;
 
-            hoursBreak += minsBrea / 60;
+            hoursBreak = minsBrea / 60;
             minsBrea = minsBrea % 60;
             totalWorked = hoursWorked.ToString() + ":" + minsWorked.ToString();
             totalBreaks = hoursBreak.ToString() + ":" + minsBrea.ToString();

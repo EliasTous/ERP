@@ -192,4 +192,19 @@
   <data name="ResetProperties" xml:space="preserve">
     <value>Reset</value>
   </data>
+  <data name="Active" xml:space="preserve">
+    <value>Active</value>
+  </data>
+  <data name="DataAccess" xml:space="preserve">
+    <value>Data Access</value>
+  </data>
+  <data name="Record" xml:space="preserve">
+    <value>Record</value>
+  </data>
+  <data name="DaSaveText" xml:space="preserve">
+    <value>All changes will be discarded, Proceed?</value>
+  </data>
+  <data name="DaSaveTitle" xml:space="preserve">
+    <value>Confirm</value>
+  </data>
 </root>

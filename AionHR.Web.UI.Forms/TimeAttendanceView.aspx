@@ -83,6 +83,9 @@
         <ext:Hidden ID="TotalBreaksText" runat="server" Text="<%$ Resources: TotalBreaks %>" />
         <ext:Hidden ID="CurrentEmployee" runat="server"  />
         <ext:Hidden ID="CurrentDay" runat="server"  />
+        <ext:Hidden ID="CurrentCA" runat="server"  />
+        <ext:Hidden ID="CurrentSC" runat="server"  />
+        <ext:Hidden ID="format" runat="server"  />
         <ext:Store
             ID="Store1"
             runat="server"
@@ -114,10 +117,9 @@
                         <ext:ModelField Name="OL_B" />
                         <ext:ModelField Name="OL_D" />
                         <ext:ModelField Name="OL_N" />
-                        <ext:ModelField Name="OL_A_SIGN" />
-                        <ext:ModelField Name="OL_B_SIGN" />
-                        <ext:ModelField Name="OL_D_SIGN" />
-                        <ext:ModelField Name="OL_N_SIGN" />
+                        <ext:ModelField Name="caName" />
+                        <ext:ModelField Name="scName" />
+                        
                         <ext:ModelField Name="netOL" />
 
 
@@ -243,7 +245,13 @@
                                         <ext:ListItem Text="-----All-----" Value="0" />
                                     </Items>
                                 </ext:ComboBox>
-                                <ext:DateField runat="server" ID="dayId" EmptyText="<%$ Resources: FieldDate%>" Width="130" LabelAlign="Top">
+                                <ext:DateField runat="server" ID="startDayId" EmptyText="<%$ Resources: FieldStartDate%>" Width="130" LabelAlign="Top">
+                                    <Listeners>
+                                        <Change Handler="#{Store1}.reload()" />
+                                        <FocusLeave Handler="#{Store1}.reload()" />
+                                    </Listeners>
+                                </ext:DateField>
+                                <ext:DateField runat="server" ID="endDayId" EmptyText="<%$ Resources: FieldEndDate%>" Width="130" LabelAlign="Top">
                                     <Listeners>
                                         <Change Handler="#{Store1}.reload()" />
                                         <FocusLeave Handler="#{Store1}.reload()" />
@@ -251,7 +259,7 @@
                                 </ext:DateField>
                                 <ext:Button runat="server" Text="<%$ Resources: ButtonClear%>" MarginSpec="0 0 0 0" Width="100">
                                     <Listeners>
-                                        <Click Handler="#{departmentId}.clear();#{dayId}.setValue(new Date()); #{branchId}.clear(); #{divisionId}.clear(); #{Store1}.reload(); #{employeeId}.clear();">
+                                        <Click Handler="#{departmentId}.clear();#{endDayId}.setValue(new Date()); #{startDayId}.setValue(new Date()); #{branchId}.clear(); #{divisionId}.clear(); #{Store1}.reload(); #{employeeId}.clear();">
                                         </Click>
                                     </Listeners>
                                 </ext:Button>
@@ -285,7 +293,7 @@
                         <Columns>
 
                             <ext:Column ID="ColDay" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDay%>" DataIndex="dayId" Flex="2" Hideable="false">
-
+                                 <Renderer Handler="var d = moment(record.data['dayId'],'YYYYMMDD'); return d.format(App.format.value);" />
                                 <SummaryRenderer Handler="return #{TotalText}.value;" />
                             </ext:Column>
                             <ext:Column ID="ColName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldFullName%>" DataIndex="employeeName" Flex="3" Hideable="false">
@@ -300,24 +308,24 @@
                             </ext:Column>
 
                             <ext:Column ID="ColCheckIn" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldCheckIn%>" DataIndex="checkIn" Flex="2" Hideable="false">
-                                <Renderer Handler=" var olA = ''; if(record.data['OL_A']=='00:00') olA=''; else olA= record.data['OL_A']; var cssClass='';if(record.data['OL_A_SIGN']<0) cssClass='color:red;'; var result = ' <div style= ' + cssClass +' > ' + record.data['checkIn'] + '<br/>' + olA + '</div>'; return result;" />
+                                <Renderer Handler=" var olA = ''; if(record.data['OL_A']=='00:00') olA=''; else olA= record.data['OL_A']; var cssClass='';if(record.data['OL_A'][0]=='-') cssClass='color:red;'; var result = ' <div style= ' + cssClass +' > ' + record.data['checkIn'] + '<br/>' + olA + '</div>'; return result;" />
                                 <SummaryRenderer Handler="return '<hr/>';" />
                             </ext:Column>
 
                             <ext:Column ID="ColCheckOut" Sortable="true" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldCheckOut%>" DataIndex="checkOut" Flex="2" Hideable="false">
-                                <Renderer Handler="var olD = ''; if(record.data['OL_D']=='00:00') olD=''; else olD= record.data['OL_D']; var cssClass='';if(record.data['OL_D_SIGN']<0) cssClass='color:red;'; var result = ' <div style= ' + cssClass +' > ' + record.data['checkOut'] + '<br/>' + olD + '</div>'; return result;" />
+                                <Renderer Handler="var olD = ''; if(record.data['OL_D']=='00:00') olD=''; else olD= record.data['OL_D']; var cssClass='';if(record.data['OL_D'][0]=='-') cssClass='color:red;'; var result = ' <div style= ' + cssClass +' > ' + record.data['checkOut'] + '<br/>' + olD + '</div>'; return result;" />
                                 <SummaryRenderer Handler="return '<hr/>';" />
                             </ext:Column>
 
 
                             <ext:Column SummaryType="None" ID="Column1" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldHoursWorked%>" DataIndex="hoursWorked" Flex="2" Hideable="false">
-                                <Renderer Handler="var olN = ''; if(record.data['OL_N']=='00:00') olN=''; else olN= record.data['OL_N']; var cssClass='';if(record.data['OL_N_SIGN']<0) cssClass='color:red;'; var result = ' <div style= ' + cssClass +' > ' + record.data['workingTime'] + '<br/>' + olN + '</div>'; return result;" />
+                                <Renderer Handler="var olN = ''; if(record.data['OL_N']=='00:00') olN=''; else olN= record.data['OL_N']; var cssClass='';if(record.data['OL_N'][0]=='-') cssClass='color:red;'; var result = ' <div style= ' + cssClass +' > ' + record.data['workingTime'] + '<br/>' + olN + '</div>'; return result;" />
                                 <SummaryRenderer Handler="return document.getElementById('total').innerHTML+ ' ' + #{HoursWorked}.value;" />
                             </ext:Column>
 
 
                             <ext:Column ID="Column2" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldBreaks%>" DataIndex="breaks" Flex="2" Hideable="false">
-                                <Renderer Handler="var olB = ''; if(record.data['OL_B']=='00:00') olB=''; else olB= record.data['OL_B'];var cssClass='';if(record.data['OL_B_SIGN']<0) cssClass='color:red;'; var result = ' <div style= ' + cssClass +' > ' + record.data['breaks'] + '<br/>' + olB + '</div>'; return result;" />
+                                <Renderer Handler="var olB = ''; if(record.data['OL_B']=='00:00') olB=''; else olB= record.data['OL_B'];var cssClass='';if(record.data['OL_B'][0]=='-') cssClass='color:red;'; var result = ' <div style= ' + cssClass +' > ' + record.data['breaks'] + '<br/>' + olB + '</div>'; return result;" />
                                 <SummaryRenderer Handler="return document.getElementById('totalBreaks').innerHTML+ ' ' + #{TotalBreaksText}.value;" />
                             </ext:Column>
 
@@ -415,6 +423,8 @@
                             <ExtraParams>
                                 <ext:Parameter Name="dayId" Value="record.data['dayId']" Mode="Raw" />
                                 <ext:Parameter Name="employeeId" Value="record.data['employeeId']" Mode="Raw" />
+                                <ext:Parameter Name="ca" Value="record.data['caName']" Mode="Raw" />
+                                <ext:Parameter Name="sc" Value="record.data['scName']" Mode="Raw" />
                                 <ext:Parameter Name="type" Value="getCellType( this, rowIndex, cellIndex)" Mode="Raw" />
                             </ExtraParams>
 

@@ -129,7 +129,7 @@ namespace AionHR.Web.UI.Forms
             string empName = e.ExtraParams["employeeFullName"];
             string day= e.ExtraParams["dayId"];
             string OT = e.ExtraParams["maximumOT"];
-
+            string minOT = e.ExtraParams["minOT"];
 
             switch (type)
             {
@@ -152,7 +152,7 @@ namespace AionHR.Web.UI.Forms
                     dayId.ReadOnly = true;
                     dayId.SelectedDate = DateTime.ParseExact(day, "yyyyMMdd",new CultureInfo("en"));
                     maxOvertime.Text = OT;
-
+                    minOvertime.Text = minOT;
                     this.EditRecordWindow.Title = Resources.Common.EditWindowsTitle;
                     this.EditRecordWindow.Show();
                     break;

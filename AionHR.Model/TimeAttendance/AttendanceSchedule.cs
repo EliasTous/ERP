@@ -26,8 +26,20 @@ namespace AionHR.Model.Attendance
         [PropertyID("41050_05")]
         [ApplySecurity]
         public short? lco_min_ot { get; set; }
-        [PropertyID("41050_06")]
+        [PropertyID("41050_05")]
         [ApplySecurity]
         public short? lco_max_ot { get; set; }
+
+        [PropertyID("41050_02")]
+        [ApplySecurity]
+        public bool? enableAOT { get; set; }
+
+        [PropertyID("41050_06")]
+        [ApplySecurity]
+        public bool? enableBOT { get; set; }
+
+        [PropertyID("41050_05")]
+        [ApplySecurity]
+        public bool? enableDOT { get; set; }
     }
 }

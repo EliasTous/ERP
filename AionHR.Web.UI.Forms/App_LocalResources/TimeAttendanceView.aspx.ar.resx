@@ -168,6 +168,9 @@
   <data name="FieldEmployee" xml:space="preserve">
     <value>الموظف</value>
   </data>
+  <data name="FieldEndDate" xml:space="preserve">
+    <value>تاريخ النهاية</value>
+  </data>
   <data name="FieldFamilyName" xml:space="preserve">
     <value>اسم العائلة</value>
   </data>
@@ -227,6 +230,9 @@
   </data>
   <data name="FieldSponsor" xml:space="preserve">
     <value>الكفلاء</value>
+  </data>
+  <data name="FieldStartDate" xml:space="preserve">
+    <value>تاريخ البداية</value>
   </data>
   <data name="FieldVacationSchedule" xml:space="preserve">
     <value>جدول الإجازات</value>

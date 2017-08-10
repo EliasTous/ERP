@@ -19,6 +19,8 @@ namespace AionHR.Model.TimeAttendance
         public string dayId { get; set; }
         [PropertyID("4108003")]
         public int maxOvertime { get; set; }
+        [PropertyID("4108004")]
+        public int minOvertime { get; set; }
 
         public string reference { get; set; }
     }

@@ -189,4 +189,19 @@
   <data name="WriteProperty" xml:space="preserve">
     <value>تعديل</value>
   </data>
+  <data name="Active" xml:space="preserve">
+    <value>مرئي</value>
+  </data>
+  <data name="DataAccess" xml:space="preserve">
+    <value>الوصول إلى البيانات</value>
+  </data>
+  <data name="Record" xml:space="preserve">
+    <value>السجل</value>
+  </data>
+  <data name="DaSaveText" xml:space="preserve">
+    <value>سيتم تجاهل التغييرات،هل تود المتابعة؟</value>
+  </data>
+  <data name="DaSaveTitle" xml:space="preserve">
+    <value>تأكيد</value>
+  </data>
 </root>

@@ -2329,7 +2329,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Last check out minimum early leave.
+        ///   Looks up a localized string similar to Last check out over time.
         /// </summary>
         internal static string Property4105005 {
             get {
@@ -2338,7 +2338,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Last check out maximum over time.
+        ///   Looks up a localized string similar to Break overtime.
         /// </summary>
         internal static string Property4105006 {
             get {
@@ -2622,6 +2622,15 @@ namespace Resources {
         internal static string Property4108003 {
             get {
                 return ResourceManager.GetString("Property4108003", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Minimum Overtime.
+        /// </summary>
+        internal static string Property4108004 {
+            get {
+                return ResourceManager.GetString("Property4108004", resourceCulture);
             }
         }
         

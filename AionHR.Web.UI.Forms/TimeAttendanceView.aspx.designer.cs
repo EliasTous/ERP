@@ -112,6 +112,33 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Hidden CurrentDay;
         
         /// <summary>
+        /// CurrentCA control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Hidden CurrentCA;
+        
+        /// <summary>
+        /// CurrentSC control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Hidden CurrentSC;
+        
+        /// <summary>
+        /// format control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Hidden format;
+        
+        /// <summary>
         /// Store1 control.
         /// </summary>
         /// <remarks>
@@ -229,13 +256,22 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Store EmployeeStore;
         
         /// <summary>
-        /// dayId control.
+        /// startDayId control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.DateField dayId;
+        protected global::Ext.Net.DateField startDayId;
+        
+        /// <summary>
+        /// endDayId control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.DateField endDayId;
         
         /// <summary>
         /// btnDeleteSelected control.

@@ -30,6 +30,7 @@ namespace AionHR.Services.Implementations
             {
                 b.AppendLine(error.reference + ","
                     + error.dayId + "," +
+                    error.minOvertime+","+
                     error.maxOvertime + "," +
                    
                    errorMessages[i++].Replace('\r', ' ').Replace(',', ';')

@@ -135,6 +135,9 @@
   <data name="MaximumOvertime" xml:space="preserve">
     <value>الوقت الإضافي الأقصى</value>
   </data>
+  <data name="MinimumOvertime" xml:space="preserve">
+    <value>الوقت الإضافي الأدنى</value>
+  </data>
   <data name="WindowTitle" xml:space="preserve">
     <value>إعدادات الوقت الإضافي</value>
   </data>

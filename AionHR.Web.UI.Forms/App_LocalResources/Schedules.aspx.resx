@@ -237,4 +237,22 @@
   <data name="DefaultSetSucc" xml:space="preserve">
     <value>Default schedule set successfully</value>
   </data>
+  <data name="EnableAOT" xml:space="preserve">
+    <value>Enable Arrival Overtime</value>
+  </data>
+  <data name="EnableBOT" xml:space="preserve">
+    <value>Enable Break Overtime</value>
+  </data>
+  <data name="EnableDOT" xml:space="preserve">
+    <value>Enable Departure Overtime</value>
+  </data>
+  <data name="ArrivalOvertime" xml:space="preserve">
+    <value>Arrival Overtime</value>
+  </data>
+  <data name="DepartureOvertime" xml:space="preserve">
+    <value>Departure Overtime</value>
+  </data>
+  <data name="Lateness" xml:space="preserve">
+    <value>Lateness</value>
+  </data>
 </root>

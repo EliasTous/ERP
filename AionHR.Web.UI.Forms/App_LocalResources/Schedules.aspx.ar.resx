@@ -240,4 +240,22 @@
   <data name="DefaultSetSucc" xml:space="preserve">
     <value>تم تعيين الجدول بنجاح</value>
   </data>
+  <data name="EnableAOT" xml:space="preserve">
+    <value>الوقت الإضافي الصباحي</value>
+  </data>
+  <data name="EnableBOT" xml:space="preserve">
+    <value>الوقت الإضافي في الاستراحة</value>
+  </data>
+  <data name="EnableDOT" xml:space="preserve">
+    <value>الوقت الإضافي آخر الدوام</value>
+  </data>
+  <data name="ArrivalOvertime" xml:space="preserve">
+    <value>الوقت الإضافي الصباحي</value>
+  </data>
+  <data name="DepartureOvertime" xml:space="preserve">
+    <value>الوقت الإضافي آخر الدوام</value>
+  </data>
+  <data name="Lateness" xml:space="preserve">
+    <value>التأخير</value>
+  </data>
 </root>

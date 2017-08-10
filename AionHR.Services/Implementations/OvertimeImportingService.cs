@@ -26,7 +26,7 @@ namespace AionHR.Services.Implementations
             int i = 0;
             while(i<=t.Days)
             {
-                result.Add(new OvertimeSetting() { reference = row[0].ToString(), maxOvertime = Convert.ToInt32(row[3]), dayId = from.AddDays(i++).ToString("yyyyMMdd") });
+                result.Add(new OvertimeSetting() { reference = row[0].ToString(), maxOvertime = Convert.ToInt32(row[4]),minOvertime=Convert.ToInt32(row[3]), dayId = from.AddDays(i++).ToString("yyyyMMdd") });
             }
 
             return result;

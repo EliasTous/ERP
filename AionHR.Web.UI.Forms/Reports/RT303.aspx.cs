@@ -238,13 +238,11 @@ namespace AionHR.Web.UI.Forms.Reports
                     x.unpaidLeaves = "00:00";
                     x.jobTasks = x.paidLeaves;
                     x.paidLeaves = "00:00";
-                    int leaveMins = Convert.ToInt32(x.unpaidLeaves.Split(':')[0]) * 60 + Convert.ToInt32(x.unpaidLeaves.Split(':')[1]);
-                    int netMins = x.OL_B < 0 ? x.OL_B : 0 - leaveMins;
-
-                    x.OLBFinal = new TimeSpan((netMins / 60), (netMins % 60), 0);
-                    x.specialTasks = x.OL_B >= -leaveMins ? ((Math.Abs(x.OL_B / 60)).ToString().PadLeft(2, '0') + ":" + (Math.Abs(x.OL_B % 60)).ToString().PadLeft(2, '0')) : x.unpaidLeaves;
+                    x.specialTasks = x.unpaidLeaves;
 
                 }
+                else
+
                 if (x.paidLeaves == "00:00" && x.unpaidLeaves == "00:00" && x.isWorkingDay && x.checkIn1 == "")
                 {
                     x.LeaveType = GetLocalResourceObject("Unpaid").ToString();
@@ -252,19 +250,7 @@ namespace AionHR.Web.UI.Forms.Reports
                 else if (x.paidLeaves != "00:00" || x.unpaidLeaves != "00:00")
                     x.LeaveType = GetLocalResourceObject("Paid").ToString();
 
-                x.Overtime = "---";
-                x.EarlyLeave = new TimeSpan(0, 0, 0);
-                if (x.OL_D>0)
-                {
-                    x.Overtime = (x.OL_D / 60).ToString().PadLeft(2, '0') + ":" + (x.OL_D % 60).ToString().PadLeft(2, '0');
-
-                }
-                else if(x.OL_D<0)
-                {
-
-                    x.EarlyLeave = new TimeSpan(Math.Abs(x.OL_D / 60), Math.Abs(x.OL_D % 60),0);
-                }
-           
+              
                
             }
             );

@@ -1001,7 +1001,34 @@ namespace AionHR.Web.UI.Forms
         {
 
         }
+        [DirectMethod]
+        public object ValidateSave(bool isPhantom, string obj, JsonObject values)
+        {
 
+
+            if (!values.ContainsKey("comment"))
+            {
+                return new { valid = false, msg = "Error in call" };
+            }
+
+            PostRequest<LoanComment> req = new PostRequest<LoanComment>();
+            LoanComment note = JsonConvert.DeserializeObject<List<LoanComment>>(obj)[0];
+            //note.recordId = id;
+            note.loanId = Convert.ToInt32(currentCase.Text);
+            note.comment = values["comment"].ToString();
+            int bulk;
+
+            req.entity = note;
+
+            PostResponse<LoanComment> resp = _loanService.ChildAddOrUpdate<LoanComment>(req);
+            if (!resp.Success)
+            {
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() : resp.Summary).Show();
+                return new { valid = false };
+            }
+            loanComments_RefreshData(note.loanId);
+            return new { valid = true };
+        }
 
 
     }

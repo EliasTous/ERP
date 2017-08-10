@@ -44,6 +44,7 @@
                         <ext:ModelField Name="employeeId" />
                         <ext:ModelField Name="dayId" />
                         <ext:ModelField Name="maxOvertime" />
+                        <ext:ModelField Name="minOvertime" />
                         <ext:ModelField Name="employeeName" IsComplex="true" />
                     </Fields>
                 </ext:Model>
@@ -147,6 +148,8 @@
                             </ext:Column>
                             <ext:Column CellCls="cellLink" ID="Column2" MenuDisabled="true" runat="server" Text="<%$ Resources: MaximumOvertime%>" DataIndex="maxOvertime" Width="150" Hideable="false">
                             </ext:Column>
+                            <ext:Column CellCls="cellLink" ID="Column3" MenuDisabled="true" runat="server" Text="<%$ Resources: MinimumOvertime%>" DataIndex="minOvertime" Width="150" Hideable="false">
+                            </ext:Column>
 
 
                             <ext:Column runat="server"
@@ -238,6 +241,7 @@
                                 <ext:Parameter Name="employeeFullName" Value="record.data['employeeName'].fullName" Mode="Raw" />
                                 <ext:Parameter Name="dayId" Value="record.data['dayId']" Mode="Raw" />
                                 <ext:Parameter Name="maximumOT" Value="record.data['maxOvertime']" Mode="Raw" />
+                                <ext:Parameter Name="minOT" Value="record.data['minOvertime']" Mode="Raw" />
                                 <ext:Parameter Name="type" Value="getCellType( this, rowIndex, cellIndex)" Mode="Raw" />
                             </ExtraParams>
 
@@ -282,13 +286,6 @@
                             <Items>
 
                                 <ext:TextField runat="server" ID="recordId" Hidden="true" />
-                                <ext:DateField runat="server" ID="dayId" FieldLabel="<%$ Resources:Day%>" Name="dayId" AllowBlank="false" />
-
-
-                                <ext:TextField ID="maxOvertime" runat="server" FieldLabel="<%$ Resources:MaximumOvertime%>" Name="maxOvertime" AllowBlank="false">
-                                    <Validator Handler="return !isNaN(this.value);" />
-                                </ext:TextField>
-
                                 <ext:ComboBox AnyMatch="true" CaseSensitive="false" runat="server" ID="employeeId" 
                                     DisplayField="fullName"
                                     ValueField="recordId" AllowBlank="false"
@@ -317,6 +314,17 @@
                                     <Items>
                                     </Items>
                                 </ext:ComboBox>
+                                <ext:DateField runat="server" ID="dayId" FieldLabel="<%$ Resources:Day%>" Name="dayId" AllowBlank="false" />
+
+                                <ext:TextField ID="minOvertime" runat="server" FieldLabel="<%$ Resources:MinimumOvertime%>" Name="minOvertime" AllowBlank="false">
+                                    <Validator Handler="return !isNaN(this.value)&&parseInt(this.value)<=parseInt(this.next().value); " />
+                                </ext:TextField>
+                                <ext:TextField ID="maxOvertime" runat="server" FieldLabel="<%$ Resources:MaximumOvertime%>" Name="maxOvertime" AllowBlank="false">
+                                    <Validator Handler="this.prev().validate();return !isNaN(this.value) && parseInt(this.value)>=parseInt(this.prev().value);" />
+                                </ext:TextField>
+                                 
+
+                                
                                 <%--<ext:TextField ID="intName" runat="server" FieldLabel="<%$ Resources:IntName%>" Name="intName"   AllowBlank="false"/>--%>
                             </Items>
 

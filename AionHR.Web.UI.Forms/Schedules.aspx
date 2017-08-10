@@ -362,7 +362,7 @@
             Icon="PageEdit"
             Title="<%$ Resources:EditWindowsTitle %>"
             Width="450"
-            Height="480"
+            Height="430"
             AutoShow="false"
             Modal="true"
             Hidden="true"
@@ -385,22 +385,47 @@
                             <Items>
                                 <ext:TextField ID="recordId" Hidden="true" runat="server" Disabled="true" DataIndex="recordId" />
                                 <ext:TextField ID="name" runat="server" FieldLabel="<%$ Resources:FieldName%>" DataIndex="name" AllowBlank="false" BlankText="<%$ Resources:Common, MandatoryField%>" />
-                                <ext:TextField ID="fci_min_ot" runat="server" FieldLabel="<%$ Resources:Fieldfci_min_ot%>" DataIndex="fci_min_ot" Name="fci_min_ot"   EmptyText="0"  >
-                                    <Validator Handler="return !isNaN(this.value)&& this.value>=0" />
-                                    </ext:TextField>
 
-                                <ext:TextField ID="fci_max_lt" runat="server" FieldLabel="<%$ Resources:Fieldfci_max_lt%>" DataIndex="fci_max_lt" Name="fci_max_lt"  EmptyText="0"  >
-                                    <Validator Handler="return this.value=='' || (!isNaN(this.value)&& this.value>=0);" />
-                                    </ext:TextField>
-                                <ext:TextField ID="lco_max_el" runat="server" FieldLabel="<%$ Resources:Fieldlco_max_el%>" DataIndex="lco_max_el"  Name="lco_max_el"  EmptyText="0" >
-                                    <Validator Handler="return this.value=='' || (!isNaN(this.value)&& this.value>=0);" />
-                                    </ext:TextField>
-                                <ext:TextField ID="lco_min_ot" runat="server" FieldLabel="<%$ Resources:Fieldlco_min_ot%>" DataIndex="lco_min_ot"  Name="lco_min_ot"  EmptyText="0" >
-                                    <Validator Handler="return this.value=='' || (!isNaN(this.value)&& this.value>=0);" />
-                                    </ext:TextField>
-                                <ext:TextField ID="lco_max_ot" runat="server" FieldLabel="<%$ Resources:Fieldlco_max_ot%>" DataIndex="lco_max_ot"  Name="lco_max_ot"  EmptyText="0" >
-                                    <Validator Handler="return this.value=='' || (!isNaN(this.value)&& this.value>=0);" />
-                                    </ext:TextField>
+                                <ext:FieldSet runat="server" Title="<%$Resources:Lateness %>">
+                                    <Items>
+
+                                        <ext:TextField LabelWidth="300" Width="360" ID="fci_max_lt" runat="server" FieldLabel="<%$ Resources:Fieldfci_max_lt%>" DataIndex="fci_max_lt" Name="fci_max_lt" EmptyText="0">
+                                            <Validator Handler="return this.value=='' || (!isNaN(this.value)&& this.value>=0);" />
+                                        </ext:TextField>
+                                        <ext:TextField LabelWidth="300" Width="360" ID="lco_max_el" runat="server" FieldLabel="<%$ Resources:Fieldlco_max_el%>" DataIndex="lco_max_el" Name="lco_max_el" EmptyText="0">
+                                            <Validator Handler="return this.value=='' || (!isNaN(this.value)&& this.value>=0);" />
+                                        </ext:TextField>
+                                    </Items>
+                                </ext:FieldSet>
+                                <ext:FieldSet runat="server" Title="<%$Resources:ArrivalOvertime %>" >
+                                    <Items>
+                                        <ext:Checkbox LabelWidth="300" runat="server" ID="enableAOT" Name="enableAOT" InputValue="true" FieldLabel="<%$ Resources:EnableAOT %>">
+                                            <Listeners>
+                                                <AfterRender Handler="this.next().setDisabled(!this.value);" />
+                                                <Change Handler="this.next().setDisabled(!this.value);" />
+                                            </Listeners>
+                                        </ext:Checkbox>
+                                        <ext:TextField LabelWidth="300" Width="360" ID="fci_min_ot" runat="server" FieldLabel="<%$ Resources:Fieldfci_min_ot%>" DataIndex="fci_min_ot" Name="fci_min_ot" EmptyText="0">
+                                            <Validator Handler="return !isNaN(this.value)&& this.value>=0" />
+                                        </ext:TextField>
+                                    </Items>
+                                </ext:FieldSet>
+                                <ext:FieldSet runat="server" Title="<%$Resources:DepartureOvertime %>">
+                                    <Items>
+                                        <ext:Checkbox LabelWidth="300" runat="server" ID="enableDOT" Name="enableDOT" InputValue="true" FieldLabel="<%$ Resources:EnableDOT %>">
+                                            <Listeners>
+                                                <AfterRender Handler="this.next().setDisabled(!this.value); this.next().next().setDisabled(!this.value);" />
+                                                <Change Handler="this.next().setDisabled(!this.value); this.next().next().setDisabled(!this.value);" />
+                                            </Listeners>
+                                        </ext:Checkbox>
+                                        <ext:TextField LabelWidth="300" Width="360" ID="lco_min_ot" runat="server" FieldLabel="<%$ Resources:Fieldlco_min_ot%>" DataIndex="lco_min_ot" Name="lco_min_ot" EmptyText="0">
+                                            <Validator Handler="return this.value=='' || (!isNaN(this.value)&& this.value>=0);" />
+                                        </ext:TextField>
+                                        <ext:TextField LabelWidth="300" Width="360" ID="lco_max_ot" runat="server" FieldLabel="<%$ Resources:Fieldlco_max_ot%>" DataIndex="lco_max_ot" Name="lco_max_ot" EmptyText="0">
+                                            <Validator Handler="return this.value=='' || (!isNaN(this.value)&& this.value>=0);" />
+                                        </ext:TextField>
+                                    </Items>
+                                </ext:FieldSet>
 
 
                             </Items>
@@ -433,18 +458,18 @@
                         <Click Handler="this.up('window').hide();" />
                     </Listeners>
                 </ext:Button>
-                     <ext:Button ID="setDefaultBtn" runat="server" Text="<%$ Resources:SetDefault %>"  Hidden="true">
-                       <Listeners  >
-                           <Click Handler="CheckSession();"></Click>
-                           </Listeners>
-               <DirectEvents>
-                  
-                   <Click OnEvent="SetDefaultClick" >
-                         <ExtraParams>
+                <ext:Button ID="setDefaultBtn" runat="server" Text="<%$ Resources:SetDefault %>" Hidden="true">
+                    <Listeners>
+                        <Click Handler="CheckSession();"></Click>
+                    </Listeners>
+                    <DirectEvents>
+
+                        <Click OnEvent="SetDefaultClick">
+                            <ExtraParams>
                                 <ext:Parameter Name="id" Value="#{recordId}.getValue()" Mode="Raw" />
-                        </ExtraParams>
-                       </Click>
-               </DirectEvents>
+                            </ExtraParams>
+                        </Click>
+                    </DirectEvents>
                 </ext:Button>
             </Buttons>
         </ext:Window>
@@ -475,7 +500,7 @@
                             <Items>
                                 <ext:TextField ID="fieldScId" Hidden="true" runat="server" Disabled="true" DataIndex="scId" />
                                 <ext:TextField ID="fieldDow" Hidden="true" runat="server" Disabled="true" DataIndex="dow" />
-                                <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" AllowBlank="false" DisplayField="name" ValueField="recordId" Name="dayTypeId" ID="dayTypeId" FieldLabel="<%$ Resources:DayType %>" SubmitValue="true" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1">
+                                <ext:ComboBox AnyMatch="true" CaseSensitive="false" runat="server" AllowBlank="false" DisplayField="name" ValueField="recordId" Name="dayTypeId" ID="dayTypeId" FieldLabel="<%$ Resources:DayType %>" SubmitValue="true" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1">
                                     <Store>
                                         <ext:Store runat="server" ID="dayTypesStore">
                                             <Model>
@@ -496,7 +521,7 @@
                                     </Listeners>
                                 </ext:ComboBox>
                                 <ext:TextField ID="firstIn" FieldLabel="<%$Resources: FieldFirstIn %>" runat="server" Name="firstIn" DataIndex="firstIn" AllowBlank="false">
-                             <%--       <Plugins>
+                                    <%--       <Plugins>
                                         <ext:InputMask Mask="99:99" />
 
                                     </Plugins>--%>
@@ -581,7 +606,7 @@
                                                         EndNumberField="toField"--%>
                                                     <ext:TextField runat="server" ID="fromField" InvalidText="<%$ Resources:Common,TimeFieldError %>">
 
-                                                 <%--       <Plugins>
+                                                        <%--       <Plugins>
                                                             <ext:InputMask Mask="99:99"></ext:InputMask>
                                                         </Plugins>--%>
                                                         <Validator Handler="return validateFrom(this.getValue());"></Validator>
@@ -603,7 +628,7 @@
                                                         runat="server"
                                                         ID="toField" InvalidText="<%$ Resources:Common,TimeFieldError %>"
                                                         AllowBlank="false">
-                                                     <%--   <Plugins>
+                                                        <%--   <Plugins>
                                                             <ext:InputMask runat="server" Mask="99:99">
                                                             </ext:InputMask>
 
@@ -685,7 +710,7 @@
                     DefaultAnchor="100%"
                     BodyPadding="5">
                     <Items>
-                        <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  QueryMode="Local" ForceSelection="true" TypeAhead="true" AllowBlank="false" MinChars="1" FieldLabel="<%$ Resources: FieldFirstDayOfWeek %>" Name="fdow" runat="server" ID="fdowCombo">
+                        <ext:ComboBox AnyMatch="true" CaseSensitive="false" QueryMode="Local" ForceSelection="true" TypeAhead="true" AllowBlank="false" MinChars="1" FieldLabel="<%$ Resources: FieldFirstDayOfWeek %>" Name="fdow" runat="server" ID="fdowCombo">
                             <Items>
                                 <ext:ListItem Text="<%$ Resources:Common, MondayText %>" Value="1" />
                                 <ext:ListItem Text="<%$ Resources:Common, TuesdayText %>" Value="2" />
@@ -722,7 +747,7 @@
                             </Plugins>
                             <Validator Handler="return validateTo(this.getValue(),this.prev().getValue());" />
                         </ext:TextField>
-                        <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  QueryMode="Local" ForceSelection="true" AllowBlank="false" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: FieldworkingDays %>" Name="workingDays" runat="server" ID="ComboBox1">
+                        <ext:ComboBox AnyMatch="true" CaseSensitive="false" QueryMode="Local" ForceSelection="true" AllowBlank="false" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: FieldworkingDays %>" Name="workingDays" runat="server" ID="ComboBox1">
                             <Items>
 
                                 <ext:ListItem Text="5" Value="5" />
@@ -730,7 +755,7 @@
                                 <ext:ListItem Text="7" Value="7" />
                             </Items>
                         </ext:ComboBox>
-                        <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" QueryMode="Local" ForceSelection="true" AllowBlank="false" TypeAhead="true" MinChars="1" DisplayField="name" ValueField="recordId" ID="workingDayTypeId" FieldLabel="<%$ Resources:WorkingDayType %>" SubmitValue="true">
+                        <ext:ComboBox AnyMatch="true" CaseSensitive="false" runat="server" QueryMode="Local" ForceSelection="true" AllowBlank="false" TypeAhead="true" MinChars="1" DisplayField="name" ValueField="recordId" ID="workingDayTypeId" FieldLabel="<%$ Resources:WorkingDayType %>" SubmitValue="true">
                             <Store>
                                 <ext:Store runat="server" ID="workDTStore">
                                     <Model>
@@ -744,7 +769,7 @@
                                 </ext:Store>
                             </Store>
                         </ext:ComboBox>
-                        <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" QueryMode="Local" ForceSelection="true" AllowBlank="false" TypeAhead="true" MinChars="1" DisplayField="name" ValueField="recordId" ID="weekendDayTypeId" FieldLabel="<%$ Resources:WeekendDayType %>" SubmitValue="true">
+                        <ext:ComboBox AnyMatch="true" CaseSensitive="false" runat="server" QueryMode="Local" ForceSelection="true" AllowBlank="false" TypeAhead="true" MinChars="1" DisplayField="name" ValueField="recordId" ID="weekendDayTypeId" FieldLabel="<%$ Resources:WeekendDayType %>" SubmitValue="true">
                             <Store>
                                 <ext:Store runat="server" ID="WeekendDTStore">
                                     <Model>

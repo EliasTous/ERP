@@ -89,6 +89,13 @@
 
             }
         }
+        function clearDirty()
+        {
+            App.GridPanel1.getStore().each(function (record) {
+
+                record.commit();
+            });
+        }
     </script>
 
 </head>
@@ -109,7 +116,10 @@
         <ext:Hidden ID="accessLevel1" Text="<%$ Resources: Read %>" runat="server" />
         <ext:Hidden ID="accessLevel2" Text="<%$ Resources: WriteClass %>" runat="server" />
         <ext:Hidden ID="accessLevel3" Text="<%$ Resources: FullControl %>" runat="server" />
-
+         <ext:Hidden ID="daSaveTitle" Text="<%$ Resources: DaSaveTitle %>" runat="server" />
+          <ext:Hidden ID="daSaveText" Text="<%$ Resources: DaSaveText %>" runat="server" />
+        <ext:Hidden ID="YesText" Text="<%$ Resources: Common,Yes %>" runat="server" />
+        <ext:Hidden ID="NoText" Text="<%$ Resources: Common,No %>" runat="server" />
         <ext:Store
             ID="groupsStore"
             runat="server"
@@ -624,6 +634,135 @@
 
                                 </ext:GridPanel>
                             </Items>
+                        </ext:FormPanel>
+
+                                  <ext:FormPanel runat="server" ID="dataAccessForm" Layout="FitLayout" Title="<%$ Resources:DataAccess%>">
+                            <TopBar>
+                                <ext:Toolbar runat="server">
+                                    <Items>
+                                        <ext:Hidden runat="server" ID="currentSelection"></ext:Hidden>
+                                        <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" Editable="false" ID="classIdCombo" ValueField="id" DisplayField="name" FieldLabel="<%$ Resources:SelectModule%>">
+                                      <Listeners>
+                                          <BeforeSelect Handler="App.currentSelection.value=this.value">
+
+                                          </BeforeSelect>
+                                          <Select Handler=" if(#{GridPanel1}.getRowsValues({dirtyRowsOnly : true}).length>0) return true; else {App.dataStore.reload(); return false;}">
+                                              
+                                          </Select>
+                                          
+                                      </Listeners>
+                                       <DirectEvents>
+                                           <Select OnEvent="PropmptSave">
+                                               <ExtraParams>
+                                                   <ext:Parameter Name="selected" Value="#{classIdCombo}.value" Mode="Raw" />
+                                                   <ext:Parameter Name="current" Value="#{currentSelection}.value" Mode="Raw" />
+                                               </ExtraParams>
+                                           </Select>
+                                       </DirectEvents>
+                                            <Items>
+
+                                                <ext:ListItem Text="<%$ Resources: Classes,Class21010  %>" Value="21010" />
+                                                <ext:ListItem Text="<%$ Resources:  Classes,Class21020  %>" Value="21020" />
+                                                <ext:ListItem Text="<%$ Resources:  Classes,Class21040  %>" Value="21040" />
+                                               
+
+                                            </Items>
+
+                                        </ext:ComboBox>
+
+                                      
+                                    </Items>
+
+                                </ext:Toolbar>
+                            </TopBar>
+                            <Items>
+                                <ext:GridPanel
+                                    ID="GridPanel1"
+                                    runat="server"
+                                    PaddingSpec="0 0 1 0"
+                                    Header="false"
+                                    Layout="FitLayout"
+                                    Scroll="Vertical"
+                                    Border="false"
+                                    Icon="User" 
+                                    ColumnLines="True" IDMode="Explicit" RenderXType="True">
+
+                                    <Store>
+                                        <ext:Store runat="server" ID="dataStore" OnReadData="dataStore_ReadData" AutoLoad="true">
+                                            <Model>
+                                                <ext:Model runat="server" IDProperty="recordId">
+                                                    <Fields>
+                                                        <ext:ModelField Name="recordId" />
+                                                        <ext:ModelField Name="name" />
+                                                        <ext:ModelField Name="hasAccess" />
+                                                    </Fields>
+                                                </ext:Model>
+                                            </Model>
+                                        </ext:Store>
+                                    </Store>
+
+
+
+                                    <ColumnModel ID="ColumnModel5" runat="server" SortAscText="<%$ Resources:Common , SortAscText %>" SortDescText="<%$ Resources:Common ,SortDescText  %>" SortClearText="<%$ Resources:Common ,SortClearText  %>" ColumnsText="<%$ Resources:Common ,ColumnsText  %>" EnableColumnHide="false" Sortable="false">
+                                        <Columns>
+
+                                            <ext:Column Visible="false" ID="Column10" MenuDisabled="true" runat="server" DataIndex="recordId" Hideable="false" Width="75" />
+                                            <ext:Column ID="Column11" MenuDisabled="true" runat="server" Text="<%$ Resources:Record%>" DataIndex="name" Hideable="false" Flex="1" />
+                                           <ext:WidgetColumn ID="WidgetColumn2" MenuDisabled="true"  runat="server" Text="<%$ Resources: Active %>" DataIndex="hasAccess" Hideable="false" Width="75" Align="Center">
+                                <Widget>
+                                    <ext:Checkbox runat="server" Name="hasAccess" ID="chk">
+                                        <Listeners>
+                                            
+                                            <Change Handler="var rec = this.getWidgetRecord(); rec.set('hasAccess',this.value);  "  >
+                                                
+                                            </Change>
+                                            
+                                        </Listeners>
+                                   <%--     <DirectEvents>
+                                            <Change OnEvent ="onChangeActive_Event">
+                                                <ExtraParams>
+                                                    <ext:Parameter Name="recordId" Value="this.getWidgetRecord().data['recordId']" Mode="Raw" />
+                                                    <ext:Parameter Name="state" Value="this.value" Mode="Raw" />
+                                                </ExtraParams>
+                                            </Change>
+                                        </DirectEvents>--%>
+                                    </ext:Checkbox>
+
+                                </Widget>
+                              
+                            </ext:WidgetColumn>
+                                        </Columns>
+                                    </ColumnModel>
+                                   
+                                    <Listeners>
+                                        <Render Handler="this.on('cellclick', cellClick);" />
+                                    </Listeners>
+                                    
+
+                                    <View>
+                                        <ext:GridView ID="GridView5" runat="server" />
+                                    </View>
+
+
+                                    <SelectionModel>
+                                        <ext:RowSelectionModel ID="rowSelectionModel4" runat="server" Mode="Single" StopIDModeInheritance="true" />
+                                        <%--<ext:CheckboxSelectionModel ID="CheckboxSelectionModel1" runat="server" Mode="Multi" StopIDModeInheritance="true" />--%>
+                                    </SelectionModel>
+
+                                </ext:GridPanel>
+                            </Items>
+                                      <Buttons>
+                                          <ext:Button runat="server" ID="saveDABtn" Text="<%$Resources: Common,Save %>">
+                                              
+                                              <DirectEvents>
+                                                  <Click OnEvent="SaveDA">
+                                                      <ExtraParams>
+                                                          <ext:Parameter Name="values" Value="Ext.encode(#{GridPanel1}.getRowsValues({dirtyRowsOnly : true}))" Mode="Raw"  />
+                                                      </ExtraParams>
+                                                  </Click>
+                                              </DirectEvents>
+                                          </ext:Button>
+                                      </Buttons>
                         </ext:FormPanel>
                     </Items>
                 </ext:TabPanel>

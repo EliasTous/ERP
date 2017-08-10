@@ -43,6 +43,7 @@ namespace AionHR.Web.UI.Forms
         //IEmployeeService _employeeService = ServiceLocator.Current.GetInstance<IEmployeeService>();
         IAccessControlService _accessControlService = ServiceLocator.Current.GetInstance<IAccessControlService>();
         IMasterService _masterService = ServiceLocator.Current.GetInstance<IMasterService>();
+        ICompanyStructureService _company = ServiceLocator.Current.GetInstance<ICompanyStructureService>();
         protected override void InitializeCulture()
         {
 
@@ -886,6 +887,7 @@ namespace AionHR.Web.UI.Forms
             if (!groups.Success)
             {
                 X.Msg.Alert(Resources.Common.Error, groups.Summary).Show();
+
                 return;
             }
             this.usersStore.DataSource = groups.Items;
@@ -1031,5 +1033,94 @@ namespace AionHR.Web.UI.Forms
             propertiesStore.DataBind();
         }
 
+        protected void dataStore_ReadData(object sender, StoreReadDataEventArgs e)
+        {
+            string classId = "";
+            if (classIdCombo.SelectedItem == null || string.IsNullOrEmpty(classIdCombo.SelectedItem.Value))
+                classId = "21010";
+            else
+                classId = classIdCombo.SelectedItem.Value;
+            DataAccessListRequest req = new DataAccessListRequest();
+            req.classId = classId;
+            req.sgId = CurrentGroup.Text;
+            ListResponse<DataAccessItemView> stored = _accessControlService.ChildGetAll<DataAccessItemView>(req);
+
+
+            dataStore.DataSource = stored.Items;
+            dataStore.DataBind();
+
+
+        }
+
+
+        [DirectMethod]
+        public void onChangeActive_Event(string recordId, string isChecked)
+        {
+            DataAccessItemView item = new DataAccessItemView();
+            item.sgId = CurrentGroup.Text;
+            item.classId = classIdCombo.SelectedItem.Value;
+            item.recordId = recordId;
+
+            PostRequest<DataAccessItemView> req = new PostRequest<DataAccessItemView>();
+            req.entity = item;
+            PostResponse<DataAccessItemView> resp = null;
+            if (isChecked == "true")
+            {
+                req.entity.hasAccess = true;
+                resp = _accessControlService.ChildAddOrUpdate<DataAccessItemView>(req);
+            }
+            else
+            {
+                req.entity.hasAccess = false;
+                resp = _accessControlService.ChildDelete<DataAccessItemView>(req);
+            }
+
+        }
+
+        protected void PropmptSave(object sender, DirectEventArgs e)
+        {
+            X.Msg.Confirm(GetLocalResourceObject("DaSaveTitle").ToString(), GetLocalResourceObject("DaSaveText").ToString(), new MessageBoxButtonsConfig
+            {
+                Yes = new MessageBoxButtonConfig
+                {
+                    //We are call a direct request metho for deleting a record
+                    Handler = "App.dataStore.reload()",
+
+                    Text = Resources.Common.Yes
+                },
+                No = new MessageBoxButtonConfig
+                {
+                    Handler = "App.classIdCombo.select('" + e.ExtraParams["current"] + "')",
+                    Text = Resources.Common.No
+                }
+
+            }).Show();
+        }
+        protected void SaveDA(object sender, DirectEventArgs e)
+        {
+            List<DataAccessItemView> changed = JsonConvert.DeserializeObject<List<DataAccessItemView>>(e.ExtraParams["values"]);
+
+            PostRequest<DataAccessItemView> req = new PostRequest<DataAccessItemView>();
+            
+            changed.ForEach(
+                x =>
+                {
+                    x.classId = classIdCombo.SelectedItem.Value;
+                    x.sgId = CurrentGroup.Text;
+                    req.entity = x;
+                    PostResponse<DataAccessItemView> resp;
+                    if (x.hasAccess)
+                        resp = _accessControlService.ChildAddOrUpdate<DataAccessItemView>(req);
+                    else
+                        resp = _accessControlService.ChildDelete<DataAccessItemView>(req);
+                });
+            Notification.Show(new NotificationConfig
+                {
+                    Title = Resources.Common.Notification,
+                    Icon = Icon.Information,
+                    Html = Resources.Common.RecordSavingSucc
+                });
+            X.Call("clearDirty");
+        }
     }
 }

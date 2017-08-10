@@ -14,7 +14,7 @@
     <link rel="stylesheet" type="text/css" href="CSS/Common.css" />
 
     <link rel="stylesheet" href="CSS/LiveSearch.css" />
-    <script type="text/javascript" src="Scripts/LoanRequests.js?id=0"></script>
+    <script type="text/javascript" src="Scripts/LoanRequests.js?id=1"></script>
 
 
     <script type="text/javascript" src="Scripts/common.js"></script>

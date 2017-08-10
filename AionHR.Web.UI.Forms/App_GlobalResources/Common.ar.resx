@@ -949,10 +949,10 @@
     <value>يجب أن يمتلك الموظف تاريخ توظيف لإتمام هذه العملية</value>
   </data>
   <data name="Active" xml:space="preserve">
-    <value>فعال</value>
+    <value>نشط</value>
   </data>
   <data name="Inactive" xml:space="preserve">
-    <value>غير فعال</value>
+    <value>غير نشط</value>
   </data>
   <data name="RT108" xml:space="preserve">
     <value>معلومات الموظفين</value>

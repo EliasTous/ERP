@@ -50,7 +50,7 @@ namespace AionHR.Services.Messaging
 
         public ListRequest()
         {
-            
+            parameters = new Dictionary<string, string>();
         }
     }
 }

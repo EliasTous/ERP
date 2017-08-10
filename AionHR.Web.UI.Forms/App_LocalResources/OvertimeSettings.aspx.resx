@@ -135,6 +135,9 @@
   <data name="MaximumOvertime" xml:space="preserve">
     <value>Maximum Overtime</value>
   </data>
+  <data name="MinimumOvertime" xml:space="preserve">
+    <value>Minimum Overtime</value>
+  </data>
   <data name="WindowTitle" xml:space="preserve">
     <value>Overtime Settings</value>
   </data>

@@ -25,10 +25,10 @@ namespace AionHR.Services.Implementations
             {
                 JobInfo j = new JobInfo();
                 j.employeeId = Convert.ToInt32(row[0].ToString());
-                j.departmentName = row[1].ToString();
-                j.branchName = row[2].ToString();
-                j.positionName = row[3].ToString();
-                j.divisionName = row[4].ToString();
+                j.departmentName = row[1].ToString().Trim('\r', '\n').Trim();
+                j.branchName = row[2].ToString().Trim('\r', '\n').Trim(); ;
+                j.positionName = row[3].ToString().Trim('\r', '\n').Trim(); ;
+                j.divisionName = row[4].ToString().Trim('\r', '\n').Trim(); ;
                 int reportTo;
                 if (int.TryParse(row[5].ToString(), out reportTo))
                     j.reportToId = reportTo;

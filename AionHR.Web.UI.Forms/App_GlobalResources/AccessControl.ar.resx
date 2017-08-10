@@ -763,10 +763,10 @@
     <value>الحد الأقصى للخروج المبكر المسموح به لدى إخر تسجيل خروج </value>
   </data>
   <data name="Property4105005" xml:space="preserve">
-    <value>الحد الأدنى لاحتساب العمل الإضافي لدى أو لتسجيل الدخول المبكر</value>
+    <value>الوقت الإضافي عند آخر تسجيل خروج</value>
   </data>
   <data name="Property4105006" xml:space="preserve">
-    <value>الحد الأدنى لاحتساب العمل الإضافي لدى آخر لتسجيل خروج</value>
+    <value>الوقت الإضافي في الاستراحات</value>
   </data>
   <data name="Property4105101" xml:space="preserve">
     <value>نوع اليوم</value>
@@ -1247,5 +1247,8 @@
   </data>
   <data name="Property4106305" xml:space="preserve">
     <value>نوع الإجازة</value>
+  </data>
+  <data name="Property4108004" xml:space="preserve">
+    <value>الحد الأدنى للعمل الإضافي</value>
   </data>
 </root>

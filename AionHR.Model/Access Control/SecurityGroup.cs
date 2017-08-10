@@ -126,4 +126,20 @@ namespace AionHR.Model.Access_Control
 
         public List<ModuleClassDefinition> classes { get; set; }
     }
+    public class DataAccessItem
+    {
+        public string recordId { get; set; }
+
+        public string classId { get; set; }
+
+        public string sgId { get; set; }
+
+        
+    }
+
+    public class DataAccessItemView:DataAccessItem
+    {
+        public string name { get; set; }
+        public bool hasAccess { get; set; }
+    }
 }

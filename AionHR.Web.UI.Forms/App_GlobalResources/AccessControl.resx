@@ -757,10 +757,10 @@
     <value>Last check out maximum early leave </value>
   </data>
   <data name="Property4105005" xml:space="preserve">
-    <value>Last check out minimum early leave</value>
+    <value>Last check out over time</value>
   </data>
   <data name="Property4105006" xml:space="preserve">
-    <value>Last check out maximum over time</value>
+    <value>Break overtime</value>
   </data>
   <data name="Property4105101" xml:space="preserve">
     <value>Day type</value>
@@ -1253,5 +1253,8 @@
   </data>
   <data name="Property4106305" xml:space="preserve">
     <value>Leave Type</value>
+  </data>
+  <data name="Property4108004" xml:space="preserve">
+    <value>Minimum Overtime</value>
   </data>
 </root>

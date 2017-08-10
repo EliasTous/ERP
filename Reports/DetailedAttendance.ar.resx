@@ -127,22 +127,22 @@
     <value>وقت العمل الفعلي</value>
   </data>
   <data name="xrLabel12.Text" xml:space="preserve">
-    <value>وقت خارج الدوام</value>
+    <value>الخروج</value>
   </data>
   <data name="xrLabel13.Text" xml:space="preserve">
-    <value>التأخير</value>
+    <value>تباينات الحضور</value>
   </data>
   <data name="xrLabel14.Text" xml:space="preserve">
-    <value>العمل الإضافي</value>
+    <value>صافي</value>
   </data>
   <data name="xrLabel15.Text" xml:space="preserve">
     <value>بدون اذن</value>
   </data>
   <data name="xrLabel16.Text" xml:space="preserve">
-    <value>دخول متأخر</value>
+    <value>دخول</value>
   </data>
   <data name="xrLabel17.Text" xml:space="preserve">
-    <value>خروج مبكر</value>
+    <value>خروج</value>
   </data>
   <data name="xrLabel18.Text" xml:space="preserve">
     <value>مجموع</value>
@@ -252,8 +252,11 @@
   <data name="xrLabel6.Text" xml:space="preserve">
     <value>خروج 2</value>
   </data>
+  <data name="xrLabel62.Text" xml:space="preserve">
+    <value>الاستراحات</value>
+  </data>
   <data name="xrLabel63.Text" xml:space="preserve">
-    <value>أثناء الدوام</value>
+    <value>خلال الدوام</value>
   </data>
   <data name="xrLabel65.Text" xml:space="preserve">
     <value>الأيام غير المغلقة</value>
