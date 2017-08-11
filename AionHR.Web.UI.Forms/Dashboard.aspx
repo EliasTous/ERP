@@ -425,81 +425,12 @@
                     <TopBar>
                         <ext:Toolbar runat="server">
                             <Items>
-                                <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" ValueField="recordId" DisplayField="name" ID="branchId" Name="branchId" EmptyText="<%$ Resources:FieldBranch%>">
-                                    <Store>
-                                        <ext:Store runat="server" ID="branchStore">
-                                            <Model>
-                                                <ext:Model runat="server">
-                                                    <Fields>
-                                                        <ext:ModelField Name="recordId" />
-                                                        <ext:ModelField Name="name" />
-                                                    </Fields>
-                                                </ext:Model>
-                                            </Model>
-                                        </ext:Store>
-                                    </Store>
-
-                                    <Items>
-                                        <ext:ListItem Text="<%$Resources:All %>" Value="0" />
-                                    </Items>
-                                </ext:ComboBox>
-
-                                <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" ValueField="recordId" DisplayField="name" ID="departmentId" Name="departmentId" EmptyText="<%$ Resources:FieldDepartment%>">
-                                    <Store>
-                                        <ext:Store runat="server" ID="departmentStore">
-                                            <Model>
-                                                <ext:Model runat="server">
-                                                    <Fields>
-                                                        <ext:ModelField Name="recordId" />
-                                                        <ext:ModelField Name="name" />
-                                                    </Fields>
-                                                </ext:Model>
-                                            </Model>
-                                        </ext:Store>
-                                    </Store>
-
-                                    <Items>
-                                        <ext:ListItem Text="<%$Resources:All %>" Value="0" />
-                                    </Items>
-
-                                </ext:ComboBox>
-                                <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" ValueField="recordId" DisplayField="name" ID="ComboBox1" Name="positionId" EmptyText="<%$ Resources:FieldPosition%>">
-                                    <Store>
-                                        <ext:Store runat="server" ID="positionStore">
-                                            <Model>
-                                                <ext:Model runat="server">
-                                                    <Fields>
-                                                        <ext:ModelField Name="recordId" />
-                                                        <ext:ModelField Name="name" />
-                                                    </Fields>
-                                                </ext:Model>
-                                            </Model>
-                                        </ext:Store>
-                                    </Store>
-
-                                    <Items>
-                                        <ext:ListItem Text="<%$Resources:All %>" Value="0" />
-                                    </Items>
-                                </ext:ComboBox>
-                                <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" ValueField="recordId" DisplayField="name" ID="divisionId" Name="divisionId" EmptyText="<%$ Resources:FieldDivision%>">
-                                    <Store>
-                                        <ext:Store runat="server" ID="divisionStore">
-                                            <Model>
-                                                <ext:Model runat="server">
-                                                    <Fields>
-                                                        <ext:ModelField Name="recordId" />
-                                                        <ext:ModelField Name="name" />
-                                                    </Fields>
-                                                </ext:Model>
-                                            </Model>
-                                        </ext:Store>
-                                    </Store>
-
-                                    <Items>
-                                        <ext:ListItem Text="<%$Resources:All %>" Value="0" />
-                                    </Items>
-                                </ext:ComboBox>
-                                <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" ValueField="recordId" DisplayField="name" ID="esId" Name="esId" EmptyText="<%$ Resources:FieldEHStatus%>">
+                                <ext:Container runat="server"  Layout="FitLayout">
+                                    <Content>
+                                        <uc:jobInfo runat="server" ID="jobInfoFilter1" />
+                                    </Content>
+                                </ext:Container>
+                               <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" ValueField="recordId" DisplayField="name" ID="esId" Name="esId" EmptyText="<%$ Resources:FieldEHStatus%>">
                                     <Store>
                                         <ext:Store runat="server" ID="statusStore">
                                             <Model>
@@ -517,6 +448,8 @@
                                         <ext:ListItem Text="<%$Resources:All %>" Value="0" />
                                     </Items>
                                 </ext:ComboBox>
+                               
+                               
                                 <ext:ToolbarSeparator runat="server" />
 
                                 <ext:Button runat="server" Text="<%$Resources:Go %>">

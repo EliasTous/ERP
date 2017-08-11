@@ -84,13 +84,7 @@ namespace AionHR.Web.UI.Forms
                 try
                 {
 
-                    FillDepartment();
-
-                    FillBranch();
-
-                    FillPosition();
-
-                    FillDivision();
+                
 
                     FillStatus();
 
@@ -108,36 +102,7 @@ namespace AionHR.Web.UI.Forms
 
         }
 
-        private void FillPosition()
-        {
-            ListRequest positionRequest = new ListRequest();
-            ListResponse<Model.Company.Structure.Position> resp = _companyStructureService.ChildGetAll<Model.Company.Structure.Position>(positionRequest);
-            positionStore.DataSource = resp.Items;
-            positionStore.DataBind();
-        }
-
-        private void FillDepartment()
-        {
-            ListRequest departmentsRequest = new ListRequest();
-            ListResponse<Department> resp = _companyStructureService.ChildGetAll<Department>(departmentsRequest);
-            departmentStore.DataSource = resp.Items;
-            departmentStore.DataBind();
-        }
-        private void FillBranch()
-        {
-            ListRequest branchesRequest = new ListRequest();
-            ListResponse<Branch> resp = _companyStructureService.ChildGetAll<Branch>(branchesRequest);
-            branchStore.DataSource = resp.Items;
-            branchStore.DataBind();
-        }
-
-        private void FillDivision()
-        {
-            ListRequest divisionReq = new ListRequest();
-            ListResponse<Division> resp = _companyStructureService.ChildGetAll<Division>(divisionReq);
-            divisionStore.DataSource = resp.Items;
-            divisionStore.DataBind();
-        }
+      
 
         private void FillStatus()
         {
@@ -403,56 +368,60 @@ namespace AionHR.Web.UI.Forms
         private ActiveAttendanceRequest GetActiveAttendanceRequest()
         {
             ActiveAttendanceRequest req = new ActiveAttendanceRequest();
-
+            var d = jobInfoFilter1.GetJobInfo();
+            req.BranchId = d.BranchId.HasValue?d.BranchId.Value:0;
+            req.DepartmentId = d.DepartmentId.HasValue ? d.DepartmentId.Value : 0;
+            req.DivisionId = d.DivisionId.HasValue ? d.DivisionId.Value : 0;
+            req.PositionId = d.PositionId.HasValue ? d.PositionId.Value : 0;
             int intResult;
 
-            if (!string.IsNullOrEmpty(branchId.Text) && branchId.Value.ToString() != "0" && int.TryParse(branchId.Value.ToString(), out intResult))
-            {
-                req.BranchId = intResult;
+            //if (!string.IsNullOrEmpty(branchId.Text) && branchId.Value.ToString() != "0" && int.TryParse(branchId.Value.ToString(), out intResult))
+            //{
+            //    req.BranchId = intResult;
 
 
 
-            }
-            else
-            {
-                req.BranchId = 0;
+            //}
+            //else
+            //{
+            //    req.BranchId = 0;
 
-            }
+            //}
 
-            if (!string.IsNullOrEmpty(departmentId.Text) && departmentId.Value.ToString() != "0" && int.TryParse(departmentId.Value.ToString(), out intResult))
-            {
-                req.DepartmentId = intResult;
-
-
-            }
-            else
-            {
-                req.DepartmentId = 0;
-
-            }
-            if (!string.IsNullOrEmpty(ComboBox1.Text) && ComboBox1.Value.ToString() != "0" && int.TryParse(ComboBox1.Value.ToString(), out intResult))
-            {
-                req.PositionId = intResult;
+            //if (!string.IsNullOrEmpty(departmentId.Text) && departmentId.Value.ToString() != "0" && int.TryParse(departmentId.Value.ToString(), out intResult))
+            //{
+            //    req.DepartmentId = intResult;
 
 
-            }
-            else
-            {
-                req.PositionId = 0;
+            //}
+            //else
+            //{
+            //    req.DepartmentId = 0;
 
-            }
+            //}
+            //if (!string.IsNullOrEmpty(ComboBox1.Text) && ComboBox1.Value.ToString() != "0" && int.TryParse(ComboBox1.Value.ToString(), out intResult))
+            //{
+            //    req.PositionId = intResult;
 
-            if (!string.IsNullOrEmpty(divisionId.Text) && divisionId.Value.ToString() != "0" && int.TryParse(divisionId.Value.ToString(), out intResult))
-            {
-                req.DivisionId = intResult;
+
+            //}
+            //else
+            //{
+            //    req.PositionId = 0;
+
+            //}
+
+            //if (!string.IsNullOrEmpty(divisionId.Text) && divisionId.Value.ToString() != "0" && int.TryParse(divisionId.Value.ToString(), out intResult))
+            //{
+            //    req.DivisionId = intResult;
 
 
-            }
-            else
-            {
-                req.DivisionId = 0;
+            //}
+            //else
+            //{
+            //    req.DivisionId = 0;
 
-            }
+            //}
 
             if (!string.IsNullOrEmpty(esId.Text) && esId.Value.ToString() != "0" && int.TryParse(esId.Value.ToString(), out intResult))
             {
@@ -476,56 +445,14 @@ namespace AionHR.Web.UI.Forms
 
         {
             EmployeeCountRequest req = new EmployeeCountRequest();
-
+            var d = jobInfoFilter1.GetJobInfo();
+            req.BranchId = d.BranchId.HasValue ? d.BranchId.Value : 0;
+            req.DepartmentId = d.DepartmentId.HasValue ? d.DepartmentId.Value : 0;
+            req.DivisionId = d.DivisionId.HasValue ? d.DivisionId.Value : 0;
+            req.PositionId = d.PositionId.HasValue ? d.PositionId.Value : 0;
             int intResult;
 
-            if (!string.IsNullOrEmpty(branchId.Text) && branchId.Value.ToString() != "0" && int.TryParse(branchId.Value.ToString(), out intResult))
-            {
-                req.BranchId = intResult;
-
-
-
-            }
-            else
-            {
-                req.BranchId = 0;
-
-            }
-
-            if (!string.IsNullOrEmpty(departmentId.Text) && departmentId.Value.ToString() != "0" && int.TryParse(departmentId.Value.ToString(), out intResult))
-            {
-                req.DepartmentId = intResult;
-
-
-            }
-            else
-            {
-                req.DepartmentId = 0;
-
-            }
-            if (!string.IsNullOrEmpty(ComboBox1.Text) && ComboBox1.Value.ToString() != "0" && int.TryParse(ComboBox1.Value.ToString(), out intResult))
-            {
-                req.PositionId = intResult;
-
-
-            }
-            else
-            {
-                req.PositionId = 0;
-
-            }
-
-            if (!string.IsNullOrEmpty(divisionId.Text) && divisionId.Value.ToString() != "0" && int.TryParse(divisionId.Value.ToString(), out intResult))
-            {
-                req.DivisionId = intResult;
-
-
-            }
-            else
-            {
-                req.DivisionId = 0;
-
-            }
+           
 
             if (!string.IsNullOrEmpty(esId.Text) && esId.Value.ToString() != "0" && int.TryParse(esId.Value.ToString(), out intResult))
             {
@@ -575,24 +502,11 @@ namespace AionHR.Web.UI.Forms
         {
             TaskManagementListRequest req = new TaskManagementListRequest();
 
-            if (!string.IsNullOrEmpty(branchId.Text) && branchId.Value.ToString() != "0")
-            {
-                req.BranchId = Convert.ToInt32(branchId.Value);
-            }
-            else
-            {
-                req.BranchId = 0;
-            }
-
-            if (!string.IsNullOrEmpty(departmentId.Text) && departmentId.Value.ToString() != "0")
-            {
-                req.DepartmentId = Convert.ToInt32(departmentId.Value);
-            }
-            else
-            {
-                req.DepartmentId = 0;
-            }
-
+            
+            var d = jobInfoFilter1.GetJobInfo();
+            req.BranchId = d.BranchId.HasValue ? d.BranchId.Value : 0;
+            req.DepartmentId = d.DepartmentId.HasValue ? d.DepartmentId.Value : 0;
+            
 
 
             req.DivisionId = 0;
@@ -612,24 +526,10 @@ namespace AionHR.Web.UI.Forms
         private LoanManagementListRequest GetLoanManagementRequest()
         {
             LoanManagementListRequest req = new LoanManagementListRequest();
-
-            if (!string.IsNullOrEmpty(branchId.Text) && branchId.Value.ToString() != "0")
-            {
-                req.BranchId = Convert.ToInt32(branchId.Value);
-            }
-            else
-            {
-                req.BranchId = 0;
-            }
-
-            if (!string.IsNullOrEmpty(departmentId.Text) && departmentId.Value.ToString() != "0")
-            {
-                req.DepartmentId = Convert.ToInt32(departmentId.Value);
-            }
-            else
-            {
-                req.DepartmentId = 0;
-            }
+            var d = jobInfoFilter1.GetJobInfo();
+            req.BranchId = d.BranchId.HasValue ? d.BranchId.Value : 0;
+            req.DepartmentId = d.DepartmentId.HasValue ? d.DepartmentId.Value : 0;
+           
 
 
 
@@ -649,24 +549,9 @@ namespace AionHR.Web.UI.Forms
         {
             LeaveRequestListRequest req = new LeaveRequestListRequest();
 
-            if (!string.IsNullOrEmpty(branchId.Text) && branchId.Value.ToString() != "0")
-            {
-                req.BranchId = Convert.ToInt32(branchId.Value);
-            }
-            else
-            {
-                req.BranchId = 0;
-            }
-
-            if (!string.IsNullOrEmpty(departmentId.Text) && departmentId.Value.ToString() != "0")
-            {
-                req.DepartmentId = Convert.ToInt32(departmentId.Value);
-            }
-            else
-            {
-                req.DepartmentId = 0;
-            }
-
+            var d = jobInfoFilter1.GetJobInfo();
+            req.BranchId = d.BranchId.HasValue ? d.BranchId.Value : 0;
+            req.DepartmentId = d.DepartmentId.HasValue ? d.DepartmentId.Value : 0;
 
 
 
@@ -686,54 +571,13 @@ namespace AionHR.Web.UI.Forms
             DashboardRequest req = new DashboardRequest();
 
             int intResult;
+            var d = jobInfoFilter1.GetJobInfo();
+            req.BranchId = d.BranchId.HasValue ? d.BranchId.Value : 0;
+            req.DepartmentId = d.DepartmentId.HasValue ? d.DepartmentId.Value : 0;
+            req.PositionId = d.PositionId.HasValue ? d.PositionId.Value : 0;
+            req.DivisionId = d.DivisionId.HasValue ? d.DivisionId.Value : 0;
 
-            if (!string.IsNullOrEmpty(branchId.Text) && branchId.Value.ToString() != "0" && int.TryParse(branchId.Value.ToString(), out intResult))
-            {
-                req.BranchId = intResult;
-
-
-
-            }
-            else
-            {
-                req.BranchId = 0;
-
-            }
-
-            if (!string.IsNullOrEmpty(departmentId.Text) && departmentId.Value.ToString() != "0" && int.TryParse(departmentId.Value.ToString(), out intResult))
-            {
-                req.DepartmentId = intResult;
-
-
-            }
-            else
-            {
-                req.DepartmentId = 0;
-
-            }
-            if (!string.IsNullOrEmpty(ComboBox1.Text) && ComboBox1.Value.ToString() != "0" && int.TryParse(ComboBox1.Value.ToString(), out intResult))
-            {
-                req.PositionId = intResult;
-
-
-            }
-            else
-            {
-                req.PositionId = 0;
-
-            }
-
-            if (!string.IsNullOrEmpty(divisionId.Text) && divisionId.Value.ToString() != "0" && int.TryParse(divisionId.Value.ToString(), out intResult))
-            {
-                req.DivisionId = intResult;
-
-
-            }
-            else
-            {
-                req.DivisionId = 0;
-
-            }
+            
 
             if (!string.IsNullOrEmpty(esId.Text) && esId.Value.ToString() != "0" && int.TryParse(esId.Value.ToString(), out intResult))
             {

@@ -1,4 +1,6 @@
-﻿using AionHR.Model.Company.Structure;
+﻿using AionHR.Model.Access_Control;
+using AionHR.Model.Attributes;
+using AionHR.Model.Company.Structure;
 using AionHR.Services.Interfaces;
 using AionHR.Services.Messaging;
 using AionHR.Services.Messaging.Reports;
@@ -16,6 +18,8 @@ namespace AionHR.Web.UI.Forms.Reports
     public partial class JobInfoFilter : System.Web.UI.UserControl
     {
         ICompanyStructureService _companyStructureService = ServiceLocator.Current.GetInstance<ICompanyStructureService>();
+        IAccessControlService _accessControlService = ServiceLocator.Current.GetInstance<IAccessControlService>();
+        ISystemService _systemService = ServiceLocator.Current.GetInstance<ISystemService>();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -111,15 +115,31 @@ namespace AionHR.Web.UI.Forms.Reports
         }
         private void FillDepartment()
         {
+            if (!EnableDepartment)
+                return;
+           
             ListRequest departmentsRequest = new ListRequest();
             ListResponse<Department> resp = _companyStructureService.ChildGetAll<Department>(departmentsRequest);
             if (!resp.Success)
                 X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() : resp.Summary).Show();
             departmentStore.DataSource = resp.Items;
             departmentStore.DataBind();
+            UserDataRecordRequest ud = new UserDataRecordRequest();
+            ud.UserId = _systemService.SessionHelper.GetCurrentUserId();
+            ud.RecordID = "0";
+            ud.classId = ((ClassIdentifier)typeof(Department).GetCustomAttributes(true).Where(t=>t is ClassIdentifier).ToList()[0]).ClassID;
+            RecordResponse<UserDataAccess> udR = _accessControlService.ChildGetRecord<UserDataAccess>(ud);
+
+            if (udR.result == null|| !udR.result.hasAccess)
+            {
+                departmentId.Select(0);
+
+            }
         }
         private void FillBranch()
         {
+            if (!EnableBranch)
+                return;
             ListRequest branchesRequest = new ListRequest();
             ListResponse<Branch> resp = _companyStructureService.ChildGetAll<Branch>(branchesRequest);
             if (!resp.Success)
@@ -127,10 +147,22 @@ namespace AionHR.Web.UI.Forms.Reports
             branchStore.DataSource = resp.Items;
             branchStore.DataBind();
 
+            UserDataRecordRequest ud = new UserDataRecordRequest();
+            ud.UserId = _systemService.SessionHelper.GetCurrentUserId();
+            ud.RecordID = "0";
+            ud.classId = ((ClassIdentifier)typeof(Branch).GetCustomAttributes(true).Where(t => t is ClassIdentifier).ToList()[0]).ClassID;
+            RecordResponse<UserDataAccess> udR = _accessControlService.ChildGetRecord<UserDataAccess>(ud);
+            if (udR.result == null || !udR.result.hasAccess)
+            {
+                branchId.Select(0);
+
+            }
         }
 
         private void FillDivision()
         {
+            if (!EnableDivision)
+                return;
             ListRequest branchesRequest = new ListRequest();
             ListResponse<Division> resp = _companyStructureService.ChildGetAll<Division>(branchesRequest);
             if (!resp.Success)
@@ -140,6 +172,8 @@ namespace AionHR.Web.UI.Forms.Reports
         }
         private void FillPosition()
         {
+            if (!EnablePosition)
+                return;
             ListRequest branchesRequest = new ListRequest();
             ListResponse<Model.Company.Structure.Position> resp = _companyStructureService.ChildGetAll<Model.Company.Structure.Position>(branchesRequest);
             if (!resp.Success)

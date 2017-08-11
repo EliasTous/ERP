@@ -142,4 +142,9 @@ namespace AionHR.Model.Access_Control
         public string name { get; set; }
         public bool hasAccess { get; set; }
     }
+    public class UserDataAccess : DataAccessItem
+    {
+     
+        public bool hasAccess { get; set; }
+    }
 }

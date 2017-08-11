@@ -220,76 +220,13 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Panel root;
         
         /// <summary>
-        /// branchId control.
+        /// jobInfoFilter1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.ComboBox branchId;
-        
-        /// <summary>
-        /// branchStore control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Store branchStore;
-        
-        /// <summary>
-        /// departmentId control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.ComboBox departmentId;
-        
-        /// <summary>
-        /// departmentStore control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Store departmentStore;
-        
-        /// <summary>
-        /// ComboBox1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.ComboBox ComboBox1;
-        
-        /// <summary>
-        /// positionStore control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Store positionStore;
-        
-        /// <summary>
-        /// divisionId control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.ComboBox divisionId;
-        
-        /// <summary>
-        /// divisionStore control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Store divisionStore;
+        protected global::AionHR.Web.UI.Forms.Reports.JobInfoFilter jobInfoFilter1;
         
         /// <summary>
         /// esId control.

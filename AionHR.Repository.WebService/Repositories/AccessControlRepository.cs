@@ -18,6 +18,7 @@ namespace AionHR.Repository.WebService.Repositories
            
             ChildGetLookup.Add(typeof(SecurityGroup), "getSG");
             ChildGetLookup.Add(typeof(DataAccessItemView), "getDA");
+            ChildGetLookup.Add(typeof(UserDataAccess), "getUD");
             ChildGetLookup.Add(typeof(ModuleClass), "getUC");
             ChildGetAllLookup.Add(typeof(SecurityGroup), "qrySG");
             ChildGetAllLookup.Add(typeof(DataAccessItemView), "qryDA");

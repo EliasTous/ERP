@@ -184,3 +184,22 @@ public class DataAccessRecordRequest:RecordRequest
         }
     }
 }
+public class UserDataRecordRequest:RecordRequest
+{
+    public string UserId { get; set; }
+
+    public string classId { get; set; }
+    private Dictionary<string, string> parameters;
+
+    public override Dictionary<string, string> Parameters
+    {
+        get
+        {
+            parameters = base.Parameters;
+
+            parameters.Add("_userId", UserId);
+            parameters.Add("_classId", classId);
+            return parameters;
+        }
+    }
+}
