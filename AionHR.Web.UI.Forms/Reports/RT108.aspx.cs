@@ -199,22 +199,22 @@ namespace AionHR.Web.UI.Forms.Reports
             if (resp.Items.Count > 0)
             {
                 if (req.Parameters["_departmentId"] != "0")
-                    y.Parameters["Department"].Value = jobInfoFilter1.GetDepartment();
+                    y.Parameters["Department"].Value = jobInfo1.GetDepartment();
                 else
                     y.Parameters["Department"].Value = GetGlobalResourceObject("Common", "All");
 
                 if (req.Parameters["_branchId"] != "0")
-                    y.Parameters["Branch"].Value = jobInfoFilter1.GetBranch();
+                    y.Parameters["Branch"].Value = jobInfo1.GetBranch();
                 else
                     y.Parameters["Branch"].Value = GetGlobalResourceObject("Common", "All");
 
                 if (req.Parameters["_positionId"] != "0")
-                    y.Parameters["Position"].Value = jobInfoFilter1.GetPosition();
+                    y.Parameters["Position"].Value = jobInfo1.GetPosition();
                 else
                     y.Parameters["Position"].Value = GetGlobalResourceObject("Common", "All");
 
                 if (req.Parameters["_divisionId"] != "0")
-                    y.Parameters["Division"].Value = jobInfoFilter1.GetDivision();
+                    y.Parameters["Division"].Value = jobInfo1.GetDivision();
                 else
                     y.Parameters["Division"].Value = GetGlobalResourceObject("Common", "All");
             }
@@ -227,7 +227,7 @@ namespace AionHR.Web.UI.Forms.Reports
             request.Size = "1000";
             request.StartAt = "1";
             request.SortBy = "hireDate";
-            request.Add(jobInfoFilter1.GetJobInfo());
+            request.Add(jobInfo1.GetJobInfo());
             request.Add(activeControl.GetActiveStatus());
             return request;
 

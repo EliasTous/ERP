@@ -61,7 +61,7 @@
                             <Items>
                                 <ext:Container runat="server"  Layout="FitLayout">
                                     <Content>
-                                        <uc:jobInfo runat="server" ID="jobInfoFilter1" />
+                                        <uc:jobInfo runat="server" ID="jobInfo1" />
                                     </Content>
                                 </ext:Container>
                                   <ext:Container runat="server"  Layout="FitLayout">

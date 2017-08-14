@@ -133,7 +133,7 @@
     <value>تباينات الحضور</value>
   </data>
   <data name="xrLabel14.Text" xml:space="preserve">
-    <value>صافي</value>
+    <value>صافي التأخيرات</value>
   </data>
   <data name="xrLabel15.Text" xml:space="preserve">
     <value>بدون اذن</value>
@@ -142,7 +142,7 @@
     <value>دخول</value>
   </data>
   <data name="xrLabel17.Text" xml:space="preserve">
-    <value>خروج</value>
+    <value>خروج مبكر</value>
   </data>
   <data name="xrLabel18.Text" xml:space="preserve">
     <value>مجموع</value>
@@ -244,7 +244,7 @@
     <value>ساعات الغياب</value>
   </data>
   <data name="xrLabel57.Text" xml:space="preserve">
-    <value>حسم التأخير</value>
+    <value>صافي ساعات التأخير المخصومة</value>
   </data>
   <data name="xrLabel58.Text" xml:space="preserve">
     <value>المجموع</value>

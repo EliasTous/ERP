@@ -123,9 +123,7 @@ namespace AionHR.Web.UI.Forms
                 HideShowButtons();
                 HideShowColumns();
 
-                FillBranch();
-                FillDepartment();
-                FillDivision();
+             
                 statusPref.Select(0);
                 dateCol.Format = _systemService.SessionHelper.GetDateformat() + ": hh:mm:ss";
                 CasesClassId.Text = ClassId.CMCA.ToString();
@@ -637,32 +635,10 @@ namespace AionHR.Web.UI.Forms
         {
             CaseManagementListRequest req = new CaseManagementListRequest();
 
-            if (!string.IsNullOrEmpty(branchId.Text) && branchId.Value.ToString() != "0")
-            {
-                req.BranchId = Convert.ToInt32(branchId.Value);
-            }
-            else
-            {
-                req.BranchId = 0;
-            }
-
-            if (!string.IsNullOrEmpty(departmentId.Text) && departmentId.Value.ToString() != "0")
-            {
-                req.DepartmentId = Convert.ToInt32(departmentId.Value);
-            }
-            else
-            {
-                req.DepartmentId = 0;
-            }
-
-            if (!string.IsNullOrEmpty(divisionId.Text) && divisionId.Value.ToString() != "0")
-            {
-                req.DivisionId = Convert.ToInt32(divisionId.Value);
-            }
-            else
-            {
-                req.DivisionId = 0;
-            }
+            var d = jobInfo1.GetJobInfo();
+            req.BranchId = d.BranchId.HasValue ? d.BranchId.Value : 0;
+            req.DepartmentId = d.DepartmentId.HasValue ? d.DepartmentId.Value : 0;
+            req.DivisionId = d.DivisionId.HasValue ? d.DivisionId.Value : 0;
             if (!string.IsNullOrEmpty(statusPref.Text) && statusPref.Value.ToString() != "")
             {
                 req.Status = Convert.ToInt32(statusPref.Value);
@@ -853,34 +829,7 @@ namespace AionHR.Web.UI.Forms
         }
 
 
-        private void FillDepartment()
-        {
-            ListRequest departmentsRequest = new ListRequest();
-            ListResponse<Department> resp = _companyStructureService.ChildGetAll<Department>(departmentsRequest);
-            if (!resp.Success)
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() : resp.Summary).Show();
-            departmentStore.DataSource = resp.Items;
-            departmentStore.DataBind();
-        }
-        private void FillBranch()
-        {
-            ListRequest branchesRequest = new ListRequest();
-            ListResponse<Branch> resp = _companyStructureService.ChildGetAll<Branch>(branchesRequest);
-            if (!resp.Success)
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() : resp.Summary).Show();
-            branchStore.DataSource = resp.Items;
-            branchStore.DataBind();
-        }
-
-        private void FillDivision()
-        {
-            ListRequest branchesRequest = new ListRequest();
-            ListResponse<Division> resp = _companyStructureService.ChildGetAll<Division>(branchesRequest);
-            if (!resp.Success)
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() : resp.Summary).Show();
-            divisionStore.DataSource = resp.Items;
-            divisionStore.DataBind();
-        }
+       
 
         [DirectMethod]
         public object ValidateSave(bool isPhantom, string obj, JsonObject values)
