@@ -207,4 +207,7 @@
   <data name="IsSuperUser" xml:space="preserve">
     <value>صلاحيات كاملة</value>
   </data>
+  <data name="EntryDayOverTime" xml:space="preserve">
+    <value>ضمن اليوم</value>
+  </data>
 </root>

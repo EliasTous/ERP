@@ -19,6 +19,15 @@
         function setReadOnly(attr, state) {
 
 
+
+
+
+
+
+
+
+
+
             Ext.getCmp(attr).setDisabled(!state);
 
         }
@@ -69,6 +78,8 @@
                         <ext:ModelField Name="lco_max_el" />
                         <ext:ModelField Name="lco_min_ot" />
                         <ext:ModelField Name="lco_max_ot" />
+                         <ext:ModelField Name="b_min_ot" />
+                        <ext:ModelField Name="b_max_ot" />
 
 
 
@@ -154,6 +165,8 @@
                             <ext:Column ID="Collco_max_el" CellWrap="true" MenuDisabled="true" runat="server" Text="<%$ Resources: Fieldlco_max_el%>" DataIndex="lco_max_el" Hideable="false" Width="75" Align="Center" Flex="1" />
                             <ext:Column ID="Collco_min_ot" MenuDisabled="true" runat="server" Text="<%$ Resources: Fieldlco_min_ot%>" DataIndex="lco_min_ot" Hideable="false" Width="75" Align="Center" Flex="1" />
                             <ext:Column ID="Collco_max_ot" MenuDisabled="true" runat="server" Text="<%$ Resources: Fieldlco_max_ot%>" DataIndex="lco_max_ot" Hideable="false" Width="75" Align="Center" Flex="1" />
+                             <ext:Column ID="Colb_min_ot" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEd_min_ot%>" DataIndex="b_min_ot" Hideable="false" Width="75" Align="Center" Flex="1" />
+                            <ext:Column ID="Colb_max_ot" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEd_max_ot%>" DataIndex="b_max_ot" Hideable="false" Width="75" Align="Center" Flex="1" />
 
 
                             <ext:Column runat="server"
@@ -362,7 +375,7 @@
             Icon="PageEdit"
             Title="<%$ Resources:EditWindowsTitle %>"
             Width="450"
-            Height="430"
+            Height="540"
             AutoShow="false"
             Modal="true"
             Hidden="true"
@@ -410,6 +423,24 @@
                                         </ext:TextField>
                                     </Items>
                                 </ext:FieldSet>
+                                <ext:FieldSet runat="server" Title="<%$Resources:EntryDayOverTime %>">
+                                    <Items>
+                                        <ext:Checkbox LabelWidth="300" runat="server" ID="enableEntryDayCheckbox" Name="enableBOT" InputValue="true" FieldLabel="<%$ Resources:EnableEntryDayOverTime %>">
+                                            <Listeners>
+                                                <AfterRender Handler="this.next().setDisabled(!this.value); this.next().next().setDisabled(!this.value);" />
+                                                <Change Handler="this.next().setDisabled(!this.value); this.next().next().setDisabled(!this.value);" />
+                                            </Listeners>
+                                        </ext:Checkbox>
+                                        <ext:TextField LabelWidth="300" Width="360" ID="minEntryDayTextField" runat="server" FieldLabel="<%$ Resources:FieldEd_min_ot%>"  Name="b_min_ot" EmptyText="0"  DataIndex="b_min_ot" >
+                                            <Validator Handler="return this.value=='' || (!isNaN(this.value)&& this.value>=0);" />
+                                        </ext:TextField>
+                                        <ext:TextField LabelWidth="300" Width="360" ID="maxEntryDayTextField" runat="server" FieldLabel="<%$ Resources:FieldEd_max_ot%>"  Name="b_max_ot"  DataIndex="b_max_ot" EmptyText="0">
+                                            <Validator Handler="return this.value=='' || (!isNaN(this.value)&& this.value>=0);" />
+                                        </ext:TextField>
+                                    </Items>
+                                </ext:FieldSet>
+                     
+
                                 <ext:FieldSet runat="server" Title="<%$Resources:DepartureOvertime %>">
                                     <Items>
                                         <ext:Checkbox LabelWidth="300" runat="server" ID="enableDOT" Name="enableDOT" InputValue="true" FieldLabel="<%$ Resources:EnableDOT %>">
@@ -418,10 +449,10 @@
                                                 <Change Handler="this.next().setDisabled(!this.value); this.next().next().setDisabled(!this.value);" />
                                             </Listeners>
                                         </ext:Checkbox>
-                                        <ext:TextField LabelWidth="300" Width="360" ID="lco_min_ot" runat="server" FieldLabel="<%$ Resources:Fieldlco_min_ot%>" DataIndex="lco_min_ot" Name="lco_min_ot" EmptyText="0">
+                                        <ext:TextField LabelWidth="300" Width="360" ID="lco_min_ot" runat="server" FieldLabel="<%$ Resources:Fieldlco_min_ot%>"  Name="lco_min_ot" EmptyText="0">
                                             <Validator Handler="return this.value=='' || (!isNaN(this.value)&& this.value>=0);" />
                                         </ext:TextField>
-                                        <ext:TextField LabelWidth="300" Width="360" ID="lco_max_ot" runat="server" FieldLabel="<%$ Resources:Fieldlco_max_ot%>" DataIndex="lco_max_ot" Name="lco_max_ot" EmptyText="0">
+                                        <ext:TextField LabelWidth="300" Width="360" ID="lco_max_ot" runat="server" FieldLabel="<%$ Resources:Fieldlco_max_ot%>" Name="lco_max_ot" EmptyText="0">
                                             <Validator Handler="return this.value=='' || (!isNaN(this.value)&& this.value>=0);" />
                                         </ext:TextField>
                                     </Items>

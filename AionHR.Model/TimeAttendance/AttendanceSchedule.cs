@@ -41,5 +41,14 @@ namespace AionHR.Model.Attendance
         [PropertyID("41050_05")]
         [ApplySecurity]
         public bool? enableDOT { get; set; }
+        [PropertyID("41050_06")]
+        [ApplySecurity]
+        public short? b_min_ot { get; set; }
+        [PropertyID("41050_06")]
+        [ApplySecurity]
+        public short? b_max_ot { get; set; }
+
+
+
     }
 }
