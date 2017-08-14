@@ -255,4 +255,16 @@
   <data name="Lateness" xml:space="preserve">
     <value>Lateness</value>
   </data>
+  <data name="EnableEntryDayOverTime" xml:space="preserve">
+    <value>Enable Entry Day Over Time</value>
+  </data>
+  <data name="EntryDayOverTime" xml:space="preserve">
+    <value>Entry Day Over Time</value>
+  </data>
+  <data name="FieldEd_max_ot" xml:space="preserve">
+    <value>Entry Day Maximum Over Time (mins)</value>
+  </data>
+  <data name="FieldEd_min_ot" xml:space="preserve">
+    <value>Entry Day Minimum Over Time (mins)</value>
+  </data>
 </root>

@@ -319,6 +319,24 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Column Collco_max_ot;
         
         /// <summary>
+        /// Colb_min_ot control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Column Colb_min_ot;
+        
+        /// <summary>
+        /// Colb_max_ot control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Column Colb_max_ot;
+        
+        /// <summary>
         /// colEdit control.
         /// </summary>
         /// <remarks>
@@ -569,6 +587,33 @@ namespace AionHR.Web.UI.Forms {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.TextField fci_min_ot;
+        
+        /// <summary>
+        /// enableEntryDayCheckbox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Checkbox enableEntryDayCheckbox;
+        
+        /// <summary>
+        /// minEntryDayTextField control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.TextField minEntryDayTextField;
+        
+        /// <summary>
+        /// maxEntryDayTextField control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.TextField maxEntryDayTextField;
         
         /// <summary>
         /// enableDOT control.

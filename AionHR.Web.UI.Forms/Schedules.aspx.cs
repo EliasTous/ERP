@@ -207,6 +207,7 @@ namespace AionHR.Web.UI.Forms
                         return;
                     }
                     ////Step 2 : call setvalues with the retrieved object
+                    BasicInfoTab.Reset();
                     this.BasicInfoTab.SetValues(response.result);
                     //_systemService.SessionHelper.Set("currentSchedule",r.RecordID);
                     //// InitCombos(response.result);

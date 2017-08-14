@@ -258,4 +258,16 @@
   <data name="Lateness" xml:space="preserve">
     <value>التأخير</value>
   </data>
+  <data name="FieldEd_max_ot" xml:space="preserve">
+    <value>الحد الأقصى للتأخير المسموح به في الاستراحة </value>
+  </data>
+  <data name="FieldEd_min_ot" xml:space="preserve">
+    <value>الحد الادنى للتأخير المسموح به  في الاستراحة </value>
+  </data>
+  <data name="EnableEntryDayOverTime" xml:space="preserve">
+    <value>الوقت الإضافي في الاستراحة</value>
+  </data>
+  <data name="EntryDayOverTime" xml:space="preserve">
+    <value>الوقت الإضافي ضمن اليوم </value>
+  </data>
 </root>
