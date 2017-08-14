@@ -1,0 +1,10 @@
+36,Management,Zalka Highway,General Manager,CMC,,1/1/2017 12:00:00 AM,Error:data integrity error; reference:EPJIset; Description:The INSERT statement conflicted with the FOREIGN KEY constraint "FK_EPJI_CSPO". The conflict occurred in database "A103 "; table "dbo.CSPO"; column 'recordId'. 
+The statement has been terminated.; LogId:44970
+2236,Operations,Zalka Highway,Operations,CMC,,1/1/2017 12:00:00 AM,Error:data integrity error; reference:EPJIset; Description:The INSERT statement conflicted with the FOREIGN KEY constraint "FK_EPJI_EPEM". The conflict occurred in database "A103 "; table "dbo.EPEM"; column 'recordId'. 
+The statement has been terminated.; LogId:44971
+90,Management,Zalka Highway,Sales Director,CMC,,1/1/2017 12:00:00 AM,Error:data integrity error; reference:EPJIset; Description:The INSERT statement conflicted with the FOREIGN KEY constraint "FK_EPJI_CSPO". The conflict occurred in database "A103 "; table "dbo.CSPO"; column 'recordId'. 
+The statement has been terminated.; LogId:44972
+4048,Body and Paint-G1,Zalka Highway,Technician,CMC,,1/1/2017 12:00:00 AM,Error:data integrity error; reference:EPJIset; Description:The INSERT statement conflicted with the FOREIGN KEY constraint "FK_EPJI_EPEM". The conflict occurred in database "A103 "; table "dbo.EPEM"; column 'recordId'. 
+The statement has been terminated.; LogId:44973
+134,HHI,Zalka Highway,General Manager,CMC,,1/1/2017 12:00:00 AM,Error:data integrity error; reference:EPJIset; Description:The INSERT statement conflicted with the FOREIGN KEY constraint "FK_EPJI_CSPO". The conflict occurred in database "A103 "; table "dbo.CSPO"; column 'recordId'. 
+The statement has been terminated.; LogId:44974
