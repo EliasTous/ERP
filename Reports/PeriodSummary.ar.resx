@@ -118,7 +118,22 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="xrLabel10.Text" xml:space="preserve">
-    <value>اجمالي الراتب</value>
+    <value>غير مدفوع</value>
+  </data>
+  <data name="xrLabel13.Text" xml:space="preserve">
+    <value>العدد</value>
+  </data>
+  <data name="xrLabel14.Text" xml:space="preserve">
+    <value>ساعات</value>
+  </data>
+  <data name="xrLabel15.Text" xml:space="preserve">
+    <value>ساعات</value>
+  </data>
+  <data name="xrLabel16.Text" xml:space="preserve">
+    <value>العدد</value>
+  </data>
+  <data name="xrLabel17.Text" xml:space="preserve">
+    <value>التأخير</value>
   </data>
   <data name="xrLabel2.Text" xml:space="preserve">
     <value>الفرع</value>
@@ -139,7 +154,7 @@
     <value>القسم</value>
   </data>
   <data name="xrLabel3.Text" xml:space="preserve">
-    <value>إجمالي المستقطع</value>
+    <value>أيام التقويم</value>
   </data>
   <data name="xrLabel30.Text" xml:space="preserve">
     <value>الموظف</value>
@@ -147,14 +162,41 @@
   <data name="xrLabel31.Text" xml:space="preserve">
     <value>الفرع</value>
   </data>
+  <data name="xrLabel34.Text" xml:space="preserve">
+    <value>دخول متأخر</value>
+  </data>
+  <data name="xrLabel35.Text" xml:space="preserve">
+    <value>خروج خلال الدوام</value>
+  </data>
+  <data name="xrLabel36.Text" xml:space="preserve">
+    <value>خروج مبكر</value>
+  </data>
+  <data name="xrLabel37.Text" xml:space="preserve">
+    <value>إجمالي التأخير</value>
+  </data>
+  <data name="xrLabel38.Text" xml:space="preserve">
+    <value>أيام الغياب</value>
+  </data>
+  <data name="xrLabel39.Text" xml:space="preserve">
+    <value>Pending Days</value>
+  </data>
   <data name="xrLabel4.Text" xml:space="preserve">
     <value>مستقطع غياب بإذن</value>
+  </data>
+  <data name="xrLabel48.Text" xml:space="preserve">
+    <value>الرقم</value>
   </data>
   <data name="xrLabel5.Text" xml:space="preserve">
     <value>مستقطع غياب دون اذن </value>
   </data>
+  <data name="xrLabel5.Text1" xml:space="preserve">
+    <value>ساعات خارج الدوام</value>
+  </data>
   <data name="xrLabel6.Text" xml:space="preserve">
     <value>غياب باذن</value>
+  </data>
+  <data name="xrLabel6.Text1" xml:space="preserve">
+    <value>أيام الدوام</value>
   </data>
   <data name="xrLabel7.Text" xml:space="preserve">
     <value>ساعات العمل الفعلية</value>
@@ -164,6 +206,9 @@
   </data>
   <data name="xrLabel9.Text" xml:space="preserve">
     <value>اجمالي التأخير</value>
+  </data>
+  <data name="xrLabel9.Text1" xml:space="preserve">
+    <value>مدفوع</value>
   </data>
   <data name="xrPageInfo2.Format" xml:space="preserve">
     <value>صفحة {0} من {1}</value>

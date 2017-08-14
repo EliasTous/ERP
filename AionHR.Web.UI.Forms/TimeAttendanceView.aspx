@@ -153,10 +153,7 @@
                     <TopBar>
                         <ext:Toolbar ID="Toolbar1" runat="server" ClassicButtonStyle="false" Dock="Top">
 
-                            <Defaults>
-                                <ext:Parameter Name="width" Value="220" Mode="Raw" />
-                                <ext:Parameter Name="labelWidth" Value="70" Mode="Raw" />
-                            </Defaults>
+                           
                             <Items>
                               <ext:Container runat="server" Layout="FitLayout">
                                     <Content>

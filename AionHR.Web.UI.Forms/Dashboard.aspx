@@ -610,6 +610,7 @@
                                                                             InnerPadding="30">
 
                                                                             <Store>
+                                                                                
                                                                             </Store>
 
                                                                             <AnimationConfig Duration="500"></AnimationConfig>
@@ -623,11 +624,11 @@
                                                                                     HighlightMargin="20">
                                                                                     <%--                <Label Field="Name" Display="Rotate" FontSize="18" FontFamily="Arial" />
                                                             <Label Field="Name" Display="Over" FontSize="18" FontFamily="Arial" />--%>
-                                                                                    <Label Field="Department" Display="Under" FontSize="18" FontFamily="Arial" />
+                                                                                    <Label Field="emps" Display="Under" FontSize="18" FontFamily="Arial" />
                                                                                     <Tooltip runat="server" TrackMouse="true" Width="140" Height="28">
                                                                                         <Items>
                                                                                         </Items>
-                                                                                        <Renderer Fn="tipRenderer" />
+                                                                                        
                                                                                     </Tooltip>
                                                                                     <Listeners>
                                                                                     </Listeners>

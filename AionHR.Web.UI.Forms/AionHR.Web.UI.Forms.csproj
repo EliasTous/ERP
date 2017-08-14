@@ -219,13 +219,16 @@
     <Content Include="HtmlPage1.html" />
     <Content Include="Images\bg.png" />
     <Content Include="ARLogin.aspx" />
+    <Content Include="Images\calendar.gif" />
     <Content Include="Images\casemanagement.png" />
     <Content Include="Images\company.png" />
     <Content Include="Images\employees.png" />
     <Content Include="Images\empPhoto.jpg" />
     <Content Include="Images\home.png" />
     <Content Include="Images\language.png" />
+    <Content Include="Images\logo-light.png" />
     <Content Include="Images\logo.png" />
+    <Content Include="Images\logo2.png" />
     <Content Include="Images\logoff.png" />
     <Content Include="Images\reports.png" />
     <Content Include="Images\schedule.png" />

@@ -145,7 +145,7 @@
     <value>خروج مبكر</value>
   </data>
   <data name="xrLabel18.Text" xml:space="preserve">
-    <value>مجموع</value>
+    <value>العمل الإضافي</value>
   </data>
   <data name="xrLabel2.Text" xml:space="preserve">
     <value>التاريخ</value>
@@ -154,7 +154,7 @@
     <value>لم يتم العثور على نتائج مطابقة</value>
   </data>
   <data name="xrLabel21.Text" xml:space="preserve">
-    <value>الغياب</value>
+    <value>حالة اليوم</value>
   </data>
   <data name="xrLabel24.Text" xml:space="preserve">
     <value>عدد أيام الغياب بإذن</value>
@@ -253,7 +253,7 @@
     <value>خروج 2</value>
   </data>
   <data name="xrLabel62.Text" xml:space="preserve">
-    <value>الاستراحات</value>
+    <value>العمل الإضافي</value>
   </data>
   <data name="xrLabel63.Text" xml:space="preserve">
     <value>خلال الدوام</value>

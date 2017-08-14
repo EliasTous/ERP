@@ -232,24 +232,29 @@ namespace AionHR.Web.UI.Forms.Reports
                 x.dateString = date.ToString(_systemService.SessionHelper.GetDateformat());
                 x.dowString = GetGlobalResourceObject("Common", date.DayOfWeek.ToString() + "Text").ToString();
                 x.specialTasks = x.jobTasks = "00:00";
-                if (x.workingHours != "00:00")
+                x.specialTasks = x.unpaidLeaves;
+                x.jobTasks = x.paidLeaves;
+                //if (x.workingHours != "00:00")
+                //{
+
+                //    x.unpaidLeaves = "00:00";
+                //    x.jobTasks = x.paidLeaves;
+                //    x.paidLeaves = "00:00";
+                //    x.specialTasks = x.unpaidLeaves;
+
+                //}
+                //else
+                if (x.isWorkingDay && x.checkIn1 == "")
                 {
+                    if (x.paidLeaves == "00:00" && x.unpaidLeaves == "00:00" )
+                    {
+                        x.LeaveType = GetLocalResourceObject("Unpaid").ToString();
+                    }
+                    else if (x.paidLeaves != "00:00" || x.unpaidLeaves != "00:00")
+                        x.LeaveType = GetLocalResourceObject("Paid").ToString();
+                }
+                
                     
-                    x.unpaidLeaves = "00:00";
-                    x.jobTasks = x.paidLeaves;
-                    x.paidLeaves = "00:00";
-                    x.specialTasks = x.unpaidLeaves;
-
-                }
-                else
-
-                if (x.paidLeaves == "00:00" && x.unpaidLeaves == "00:00" && x.isWorkingDay && x.checkIn1 == "")
-                {
-                    x.LeaveType = GetLocalResourceObject("Unpaid").ToString();
-                }
-                else if (x.paidLeaves != "00:00" || x.unpaidLeaves != "00:00")
-                    x.LeaveType = GetLocalResourceObject("Paid").ToString();
-
               
                
             }

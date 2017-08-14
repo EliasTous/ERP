@@ -58,7 +58,14 @@ namespace AionHR.Model.Reports
         public TimeSpan OL_NET { get; set; }
 
         public string breaks { get; set; }
-       
+
+        public string overtime
+        {
+            get; set;
+        }
+
+        public string lateness { get; set; }
+        
         
 
 
