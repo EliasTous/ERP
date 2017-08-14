@@ -27,6 +27,7 @@ using AionHR.Model.Employees.Profile;
 using AionHR.Model.LeaveManagement;
 using AionHR.Services.Messaging.System;
 using AionHR.Infrastructure.JSON;
+using AionHR.Services.Messaging.Reports;
 
 namespace AionHR.Web.UI.Forms
 {
@@ -120,9 +121,8 @@ namespace AionHR.Web.UI.Forms
                 SetExtLanguage();
                 HideShowButtons();
                 HideShowColumns();
-                FillDepartment();
                 FillAssetCateg();
-                FillBranch();
+                
                 Column1.Format = Column2.Format = date.Format = returnedDate.Format = _systemService.SessionHelper.GetDateformat();
                 try
                 {
@@ -178,32 +178,6 @@ namespace AionHR.Web.UI.Forms
         }
 
 
-        private void FillDepartment()
-        {
-            ListRequest departmentsRequest = new ListRequest();
-            ListResponse<Department> resp = _companyStructureService.ChildGetAll<Department>(departmentsRequest);
-            if (!resp.Success)
-            {
-                string message = GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() : resp.Summary;
-                X.Msg.Alert(Resources.Common.Error, message).Show();
-            }
-            departmentStore.DataSource = resp.Items;
-            departmentStore.DataBind();
-        }
-        private void FillBranch()
-        {
-            ListRequest branchesRequest = new ListRequest();
-            ListResponse<Branch> resp = _companyStructureService.ChildGetAll<Branch>(branchesRequest);
-            if (!resp.Success)
-            {
-                string message = GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() : resp.Summary;
-                X.Msg.Alert(Resources.Common.Error, message).Show();
-                return;
-
-            }
-            branchStore.DataSource = resp.Items;
-            branchStore.DataBind();
-        }
 
         private void FillAssetCateg()
         {
@@ -431,29 +405,9 @@ namespace AionHR.Web.UI.Forms
         {
             AssetAllowanceListRequest req = new AssetAllowanceListRequest();
 
-            if (!string.IsNullOrEmpty(branchId.Text) && branchId.Value.ToString() != "0")
-            {
-                req.BranchId = Convert.ToInt32(branchId.Value);
-
-
-
-            }
-            else
-            {
-                req.BranchId = 0;
-
-            }
-
-            if (!string.IsNullOrEmpty(departmentId.Text) && departmentId.Value.ToString() != "0")
-            {
-                req.DepartmentId = Convert.ToInt32(departmentId.Value);
-
-
-            }
-            else
-            {
-                req.DepartmentId = 0;
-            }
+            var d = jobInfo1.GetJobInfo();
+            req.BranchId = d.BranchId.HasValue?d.BranchId.Value:0;
+            req.DepartmentId = d.DepartmentId.HasValue ? d.DepartmentId.Value : 0;
             if (!string.IsNullOrEmpty(assetCatId.Text) && assetCatId.Value.ToString() != "0")
             {
                 req.AcId = Convert.ToInt32(assetCatId.Value);

@@ -66,9 +66,7 @@ namespace AionHR.Web.UI.Forms
                 SetExtLanguage();
                 HideShowButtons();
                 HideShowColumns();
-                FillBranch();
-                FillDepartment();
-                FillDivision();
+             
                 format.Text = _systemService.SessionHelper.GetDateformat().ToUpper();
                startDayId.SelectedDate = DateTime.Today;
                 endDayId.SelectedDate = DateTime.Today;
@@ -352,9 +350,10 @@ namespace AionHR.Web.UI.Forms
         {
             AttendnanceDayListRequest req = new AttendnanceDayListRequest();
 
-            if (!string.IsNullOrEmpty(branchId.Text) && branchId.Value.ToString() != "0")
+            var d = jobInfo1.GetJobInfo();
+            if (d.BranchId.HasValue)
             {
-                req.BranchId = branchId.Value.ToString();
+                req.BranchId = d.BranchId.Value.ToString();
                 GridPanel1.ColumnModel.Columns.Where(a => a.ID == "ColBranchName").First().SetHidden(true);
 
 
@@ -364,9 +363,9 @@ namespace AionHR.Web.UI.Forms
                 req.BranchId = "0";
                 GridPanel1.ColumnModel.Columns.Where(a => a.ID == "ColBranchName").First().SetHidden(false);
             }
-            if (!string.IsNullOrEmpty(divisionId.Text) && divisionId.Value.ToString() != "0")
+            if (d.DivisionId.HasValue)
             {
-                req.DivisionId = divisionId.Value.ToString();
+                req.DivisionId = d.DivisionId.Value.ToString();
 
 
             }
@@ -374,9 +373,9 @@ namespace AionHR.Web.UI.Forms
             {
                 req.DivisionId = "0";
             }
-            if (!string.IsNullOrEmpty(departmentId.Text) && departmentId.Value.ToString() != "0")
+            if (d.DepartmentId.HasValue)
             {
-                req.DepartmentId = departmentId.Value.ToString();
+                req.DepartmentId = d.DepartmentId.Value.ToString();
                 GridPanel1.ColumnModel.Columns.Where(a => a.ID == "ColDepartmentName").First().SetHidden(true);
 
             }
@@ -479,36 +478,6 @@ namespace AionHR.Web.UI.Forms
                 this.Store1.DataBind();
             }
             e.Total = daysResponse.count;
-        }
-
-
-        private void FillDepartment()
-        {
-            ListRequest departmentsRequest = new ListRequest();
-            ListResponse<Department> resp = _companyStructureService.ChildGetAll<Department>(departmentsRequest);
-            if(!resp.Success)
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() : resp.Summary).Show();
-            departmentStore.DataSource = resp.Items;
-            departmentStore.DataBind();
-        }
-        private void FillBranch()
-        {
-            ListRequest branchesRequest = new ListRequest();
-            ListResponse<Branch> resp = _companyStructureService.ChildGetAll<Branch>(branchesRequest);
-            if(!resp.Success)
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() : resp.Summary).Show();
-            branchStore.DataSource = resp.Items;
-            branchStore.DataBind();
-        }
-
-        private void FillDivision()
-        {
-            ListRequest branchesRequest = new ListRequest();
-            ListResponse<Division> resp = _companyStructureService.ChildGetAll<Division>(branchesRequest);
-            if (!resp.Success)
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() : resp.Summary).Show();
-            divisionStore.DataSource = resp.Items;
-            divisionStore.DataBind();
         }
 
 

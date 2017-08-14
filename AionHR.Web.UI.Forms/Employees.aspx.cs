@@ -27,6 +27,8 @@ using AionHR.Model.Employees.Leaves;
 using AionHR.Model.Attendance;
 using AionHR.Services.Messaging.System;
 using AionHR.Infrastructure.Domain;
+using AionHR.Model.Attributes;
+using AionHR.Model.Access_Control;
 
 namespace AionHR.Web.UI.Forms
 {
@@ -38,7 +40,7 @@ namespace AionHR.Web.UI.Forms
         ICompanyStructureService _companyStructureService = ServiceLocator.Current.GetInstance<ICompanyStructureService>();
         ILeaveManagementService _leaveManagementService = ServiceLocator.Current.GetInstance<ILeaveManagementService>();
         ITimeAttendanceService _timeAttendanceService = ServiceLocator.Current.GetInstance<ITimeAttendanceService>();
-
+        IAccessControlService _accessControlService = ServiceLocator.Current.GetInstance<IAccessControlService>();
 
         protected override void InitializeCulture()
         {
@@ -82,7 +84,7 @@ namespace AionHR.Web.UI.Forms
 
                 inactivePref.Select("0");
                 CurrentClassId.Text = ClassId.EPEM.ToString();
-                InitFilters();
+               
                 BuildQuickViewTemplate();
                 try
                 {
@@ -163,17 +165,7 @@ namespace AionHR.Web.UI.Forms
             }
             return resp.Items;
         }
-        private void InitFilters()
-        {
-            filterBranchStore.DataSource = GetBranches();
-            filterBranchStore.DataBind();
-            filterDepartmentStore.DataSource = GetDepartments();
-            filterDepartmentStore.DataBind();
-            filterPositionStore.DataSource = GetPositions();
-            filterPositionStore.DataBind();
-            filterDivisionStore.DataSource = GetDivisions();
-            filterDivisionStore.DataBind();
-        }
+     
 
 
 
@@ -365,31 +357,10 @@ namespace AionHR.Web.UI.Forms
                 empRequest.IncludeIsInactive = 2;
             }
 
-            if (!string.IsNullOrEmpty(filterDepartment.Text) && filterDepartment.Value.ToString() != "")
-            {
-                empRequest.DepartmentId = (filterDepartment.Value).ToString();
-            }
-            else
-            {
-                empRequest.DepartmentId = "0";
-            }
-            if (!string.IsNullOrEmpty(filterBranch.Text) && filterBranch.Value.ToString() != "")
-            {
-                empRequest.BranchId = (filterBranch.Value).ToString();
-            }
-            else
-            {
-                empRequest.BranchId = "0";
-            }
-
-            if (!string.IsNullOrEmpty(filterPosition.Text) && filterPosition.Value.ToString() != "")
-            {
-                empRequest.PositionId = (filterPosition.Value).ToString();
-            }
-            else
-            {
-                empRequest.PositionId = "0";
-            }
+            var d = jobInfo1.GetJobInfo();
+            empRequest.BranchId = d.BranchId.HasValue ? d.BranchId.Value.ToString() : "0";
+            empRequest.DepartmentId = d.DepartmentId.HasValue ? d.DepartmentId.Value.ToString() : "0";
+            empRequest.PositionId = d.PositionId.HasValue ? d.PositionId.Value.ToString() : "0";
 
             if (e.Sort[0].Property == "name")
                 empRequest.SortBy = GetNameFormat();
@@ -483,17 +454,73 @@ namespace AionHR.Web.UI.Forms
             FillCalendars();
             FillSchedules();
             FillVS();
-            departmentStore.DataSource = GetDepartments();
-            departmentStore.DataBind();
-            branchStore.DataSource = GetBranches();
-            branchStore.DataBind();
-            divisionStore.DataSource = GetDivisions();
-            divisionStore.DataBind();
-            positionStore.DataSource = GetPositions();
-            positionStore.DataBind();
+            FillDepartments();
+            FillBranches();
+            FillDivisions();
+            FillPositions();
             batchWindow.Show();
         }
+        private void FillDepartments()
+        {
+            departmentStore.DataSource = GetDepartments();
+            departmentStore.DataBind();
+            if (_systemService.SessionHelper.CheckIfIsAdmin())
+                return;
+            UserDataRecordRequest ud = new UserDataRecordRequest();
+            ud.UserId = _systemService.SessionHelper.GetCurrentUserId();
+            ud.RecordID = "0";
+            ud.classId = ((ClassIdentifier)typeof(Department).GetCustomAttributes(true).Where(t => t is ClassIdentifier).ToList()[0]).ClassID;
+            RecordResponse<UserDataAccess> udR = _accessControlService.ChildGetRecord<UserDataAccess>(ud);
 
+            if (udR.result == null || !udR.result.hasAccess)
+            {
+                departmentId.Select(0);
+                X.Call("setDepartmentAllowBlank", true);
+            }
+        }
+        private void FillBranches()
+        {
+            branchStore.DataSource = GetBranches();
+            branchStore.DataBind();
+            if (_systemService.SessionHelper.CheckIfIsAdmin())
+                return;
+            UserDataRecordRequest ud = new UserDataRecordRequest();
+            ud.UserId = _systemService.SessionHelper.GetCurrentUserId();
+            ud.RecordID = "0";
+            ud.classId = ((ClassIdentifier)typeof(Branch).GetCustomAttributes(true).Where(t => t is ClassIdentifier).ToList()[0]).ClassID;
+            RecordResponse<UserDataAccess> udR = _accessControlService.ChildGetRecord<UserDataAccess>(ud);
+            if (udR.result == null || !udR.result.hasAccess)
+            {
+                branchId.Select(0);
+                X.Call("setBranchAllowBlank", true);
+            }
+        }
+
+        private void FillDivisions()
+        {
+            divisionStore.DataSource = GetDivisions();
+            divisionStore.DataBind();
+
+            if (_systemService.SessionHelper.CheckIfIsAdmin())
+                return;
+            UserDataRecordRequest ud = new UserDataRecordRequest();
+            ud.UserId = _systemService.SessionHelper.GetCurrentUserId();
+            ud.RecordID = "0";
+            ud.classId = ((ClassIdentifier)typeof(Division).GetCustomAttributes(true).Where(t => t is ClassIdentifier).ToList()[0]).ClassID;
+            RecordResponse<UserDataAccess> udR = _accessControlService.ChildGetRecord<UserDataAccess>(ud);
+            if (udR.result == null || !udR.result.hasAccess)
+            {
+                divisionId.Select(0);
+                X.Call("setDivisionAllowBlank", true);
+            }
+        }
+
+        private void FillPositions()
+        {
+
+            positionStore.DataSource = GetPositions();
+            positionStore.DataBind();
+        }
         private void FillCalendars()
         {
             ListRequest req = new ListRequest();

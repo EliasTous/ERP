@@ -124,9 +124,7 @@ namespace AionHR.Web.UI.Forms
                 HideShowButtons();
                 HideShowColumns();
 
-                FillBranchFilter();
-                FillDepartment();
-                FillDivision();
+               
                 statusPref.Select("0");
                 c.Format = cc.Format = date.Format= effectiveDate.Format= _systemService.SessionHelper.GetDateformat();
                 //if (string.IsNullOrEmpty(Request.QueryString["employeeId"]))
@@ -588,27 +586,8 @@ namespace AionHR.Web.UI.Forms
             }).Show();
         }
 
-        private void FillDepartment()
-        {
-            ListRequest departmentsRequest = new ListRequest();
-            ListResponse<Department> resp = _companyStructureService.ChildGetAll<Department>(departmentsRequest);
-            if (!resp.Success)
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() : resp.Summary).Show();
-            departmentStore.DataSource = resp.Items;
-            departmentStore.DataBind();
-        }
-        private void FillBranchFilter()
-        {
-            ListRequest branchesRequest = new ListRequest();
-            ListResponse<Branch> resp = _companyStructureService.ChildGetAll<Branch>(branchesRequest);
-            if (!resp.Success)
-            {
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() : resp.Summary).Show();
-                return;
-            }
-            branchFilterStore.DataSource = resp.Items;
-            branchFilterStore.DataBind();
-        }
+      
+        
 
         private void FillBranchField()
         {
@@ -622,15 +601,7 @@ namespace AionHR.Web.UI.Forms
             branchStore.DataSource = resp.Items;
             branchStore.DataBind();
         }
-        private void FillDivision()
-        {
-            ListRequest branchesRequest = new ListRequest();
-            ListResponse<Division> resp = _companyStructureService.ChildGetAll<Division>(branchesRequest);
-            if (!resp.Success)
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() : resp.Summary).Show();
-            divisionStore.DataSource = resp.Items;
-            divisionStore.DataBind();
-        }
+       
 
         private void FillCurrency()
         {
@@ -760,33 +731,11 @@ namespace AionHR.Web.UI.Forms
         private LoanManagementListRequest GetLoanManagementRequest()
         {
             LoanManagementListRequest req = new LoanManagementListRequest();
+            var d = jobInfo1.GetJobInfo();
+            req.BranchId = d.BranchId.HasValue ? d.BranchId.Value : 0;
+            req.DepartmentId = d.DepartmentId.HasValue ? d.DepartmentId.Value : 0;
+            req.DivisionId = d.DivisionId.HasValue ? d.DivisionId.Value : 0;
 
-            if (!string.IsNullOrEmpty(branchId.Text) && branchId.Value.ToString() != "0")
-            {
-                req.BranchId = Convert.ToInt32(branchId.Value);
-            }
-            else
-            {
-                req.BranchId = 0;
-            }
-
-            if (!string.IsNullOrEmpty(departmentId.Text) && departmentId.Value.ToString() != "0")
-            {
-                req.DepartmentId = Convert.ToInt32(departmentId.Value);
-            }
-            else
-            {
-                req.DepartmentId = 0;
-            }
-
-            if (!string.IsNullOrEmpty(divisionId.Text) && divisionId.Value.ToString() != "0")
-            {
-                req.DivisionId = Convert.ToInt32(divisionId.Value);
-            }
-            else
-            {
-                req.DivisionId = 0;
-            }
             if (!string.IsNullOrEmpty(employeeFilter.Text) && employeeFilter.Value.ToString() != "0")
             {
                 req.EmployeeId = Convert.ToInt32(employeeFilter.Value);

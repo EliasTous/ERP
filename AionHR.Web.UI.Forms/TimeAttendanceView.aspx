@@ -158,62 +158,13 @@
                                 <ext:Parameter Name="labelWidth" Value="70" Mode="Raw" />
                             </Defaults>
                             <Items>
-                                <ext:ComboBox AnyMatch="true" CaseSensitive="false" runat="server" Width="130" LabelAlign="Top" EmptyText="<%$ Resources:FieldBranch%>" ValueField="recordId" DisplayField="name" ID="branchId" Name="branchId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1">
-                                    <Store>
-                                        <ext:Store runat="server" ID="branchStore">
-                                            <Model>
-                                                <ext:Model runat="server">
-                                                    <Fields>
-                                                        <ext:ModelField Name="recordId" />
-                                                        <ext:ModelField Name="name" />
-                                                    </Fields>
-                                                </ext:Model>
-                                            </Model>
-                                        </ext:Store>
-                                    </Store>
-                                    <Listeners>
-                                        <Select Handler="#{Store1}.reload()" />
-                                    </Listeners>
+                              <ext:Container runat="server" Layout="FitLayout">
+                                    <Content>
+                                        <uc:jobInfo runat="server" ID="jobInfo1" EnablePosition="false" />
 
-                                </ext:ComboBox>
+                                    </Content>
 
-                                <ext:ComboBox AnyMatch="true" CaseSensitive="false" runat="server" Width="155" EmptyText="<%$ Resources:FieldDepartment%>" LabelAlign="Top" ValueField="recordId" DisplayField="name" ID="departmentId" Name="departmentId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1">
-                                    <Store>
-                                        <ext:Store runat="server" ID="departmentStore">
-                                            <Model>
-                                                <ext:Model runat="server">
-                                                    <Fields>
-                                                        <ext:ModelField Name="recordId" />
-                                                        <ext:ModelField Name="name" />
-                                                    </Fields>
-                                                </ext:Model>
-                                            </Model>
-                                        </ext:Store>
-                                    </Store>
-                                    <Listeners>
-                                        <Select Handler="#{Store1}.reload()" />
-                                    </Listeners>
-
-
-                                </ext:ComboBox>
-                                <ext:ComboBox AnyMatch="true" CaseSensitive="false" EmptyText="<%$ Resources: FieldDivision%>" runat="server" Width="130" LabelAlign="Top" ValueField="recordId" DisplayField="name" ID="divisionId" Name="divisionId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1">
-                                    <Store>
-                                        <ext:Store runat="server" ID="divisionStore">
-                                            <Model>
-                                                <ext:Model runat="server">
-                                                    <Fields>
-                                                        <ext:ModelField Name="recordId" />
-                                                        <ext:ModelField Name="name" />
-                                                    </Fields>
-                                                </ext:Model>
-                                            </Model>
-                                        </ext:Store>
-                                    </Store>
-                                    <Listeners>
-                                        <Select Handler="#{Store1}.reload()" />
-                                    </Listeners>
-
-                                </ext:ComboBox>
+                                </ext:Container>
                                 <ext:ComboBox AnyMatch="true" CaseSensitive="false" runat="server" ID="employeeId" Width="130" LabelAlign="Top"
                                     DisplayField="fullName"
                                     ValueField="recordId" AllowBlank="true"
@@ -236,9 +187,7 @@
                                             </Proxy>
                                         </ext:Store>
                                     </Store>
-                                    <Listeners>
-                                        <Select Handler="#{Store1}.reload()" />
-                                    </Listeners>
+                                  
                                     <Items>
                                         <ext:ListItem Text="-----All-----" Value="0" />
                                     </Items>
@@ -251,17 +200,12 @@
                                 </ext:DateField>
                                 <ext:DateField runat="server" ID="endDayId" EmptyText="<%$ Resources: FieldEndDate%>" Width="130" LabelAlign="Top">
                                     <Listeners>
-                                        <Change Handler="#{Store1}.reload()" />
+                                           <Change Handler="#{Store1}.reload()" />
                                         <FocusLeave Handler="#{Store1}.reload()" />
                                     </Listeners>
                                 </ext:DateField>
-                                <ext:Button runat="server" Text="<%$ Resources: ButtonClear%>" MarginSpec="0 0 0 0" Width="100">
-                                    <Listeners>
-                                        <Click Handler="#{departmentId}.clear();#{endDayId}.setValue(new Date()); #{startDayId}.setValue(new Date()); #{branchId}.clear(); #{divisionId}.clear(); #{Store1}.reload(); #{employeeId}.clear();">
-                                        </Click>
-                                    </Listeners>
-                                </ext:Button>
-                                <ext:Button runat="server" Text="<%$ Resources: ButtonRefresh%>" Width="100">
+                               
+                                <ext:Button runat="server" Text="<%$ Resources: Common,Go%>" Width="100">
                                     <Listeners>
                                         <Click Handler="#{Store1}.reload()" />
                                     </Listeners>
