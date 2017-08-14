@@ -368,7 +368,7 @@ namespace AionHR.Web.UI.Forms
         private ActiveAttendanceRequest GetActiveAttendanceRequest()
         {
             ActiveAttendanceRequest req = new ActiveAttendanceRequest();
-            var d = jobInfoFilter1.GetJobInfo();
+            var d = jobInfo1.GetJobInfo();
             req.BranchId = d.BranchId.HasValue?d.BranchId.Value:0;
             req.DepartmentId = d.DepartmentId.HasValue ? d.DepartmentId.Value : 0;
             req.DivisionId = d.DivisionId.HasValue ? d.DivisionId.Value : 0;
@@ -445,7 +445,7 @@ namespace AionHR.Web.UI.Forms
 
         {
             EmployeeCountRequest req = new EmployeeCountRequest();
-            var d = jobInfoFilter1.GetJobInfo();
+            var d = jobInfo1.GetJobInfo();
             req.BranchId = d.BranchId.HasValue ? d.BranchId.Value : 0;
             req.DepartmentId = d.DepartmentId.HasValue ? d.DepartmentId.Value : 0;
             req.DivisionId = d.DivisionId.HasValue ? d.DivisionId.Value : 0;
@@ -503,7 +503,7 @@ namespace AionHR.Web.UI.Forms
             TaskManagementListRequest req = new TaskManagementListRequest();
 
             
-            var d = jobInfoFilter1.GetJobInfo();
+            var d = jobInfo1.GetJobInfo();
             req.BranchId = d.BranchId.HasValue ? d.BranchId.Value : 0;
             req.DepartmentId = d.DepartmentId.HasValue ? d.DepartmentId.Value : 0;
             
@@ -526,7 +526,7 @@ namespace AionHR.Web.UI.Forms
         private LoanManagementListRequest GetLoanManagementRequest()
         {
             LoanManagementListRequest req = new LoanManagementListRequest();
-            var d = jobInfoFilter1.GetJobInfo();
+            var d = jobInfo1.GetJobInfo();
             req.BranchId = d.BranchId.HasValue ? d.BranchId.Value : 0;
             req.DepartmentId = d.DepartmentId.HasValue ? d.DepartmentId.Value : 0;
            
@@ -549,7 +549,7 @@ namespace AionHR.Web.UI.Forms
         {
             LeaveRequestListRequest req = new LeaveRequestListRequest();
 
-            var d = jobInfoFilter1.GetJobInfo();
+            var d = jobInfo1.GetJobInfo();
             req.BranchId = d.BranchId.HasValue ? d.BranchId.Value : 0;
             req.DepartmentId = d.DepartmentId.HasValue ? d.DepartmentId.Value : 0;
 
@@ -571,7 +571,7 @@ namespace AionHR.Web.UI.Forms
             DashboardRequest req = new DashboardRequest();
 
             int intResult;
-            var d = jobInfoFilter1.GetJobInfo();
+            var d = jobInfo1.GetJobInfo();
             req.BranchId = d.BranchId.HasValue ? d.BranchId.Value : 0;
             req.DepartmentId = d.DepartmentId.HasValue ? d.DepartmentId.Value : 0;
             req.PositionId = d.PositionId.HasValue ? d.PositionId.Value : 0;
@@ -728,55 +728,7 @@ namespace AionHR.Web.UI.Forms
                 X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() : resp.Summary).Show();
                 return;
             }
-            List<object> objs = new List<object>();
-            objs.Add(new { departmentName = "First", checkedOut = 2, checkedIn = 38 });
-            objs.Add(new { departmentName = "Second", checkedOut = 0, checkedIn = 30 });
-            objs.Add(new { departmentName = "Third", checkedOut = 5, checkedIn = 45 });
-            objs.Add(new { departmentName = "Fourth", checkedOut = 15, checkedIn = 20 });
-            objs.Add(new { departmentName = "Fifth", checkedOut = 6, checkedIn = 10 });
-            objs.Add(new { departmentName = "Sixth", checkedOut = 2, checkedIn = 25 });
-            objs.Add(new { departmentName = "trht", checkedOut = 2, checkedIn = 38 });
-            objs.Add(new { departmentName = "Serthtrcond", checkedOut = 10, checkedIn = 0 });
-            objs.Add(new { departmentName = "Thqweqwird", checkedOut = 4, checkedIn = 16 });
-            objs.Add(new { departmentName = "Fougrerth", checkedOut = 2, checkedIn = 33 });
-            objs.Add(new { departmentName = "gerg", checkedOut = 0, checkedIn = 15 });
-            objs.Add(new { departmentName = "Sixqweqth", checkedOut = 0, checkedIn = 25 });
-            objs.Add(new { departmentName = "gregr", checkedOut = 2, checkedIn = 38 });
-            objs.Add(new { departmentName = "wqe", checkedOut = 0, checkedIn = 30 });
-            objs.Add(new { departmentName = "Thirfregd", checkedOut = 5, checkedIn = 45 });
-            objs.Add(new { departmentName = "bgt", checkedOut = 15, checkedIn = 20 });
-            objs.Add(new { departmentName = "qwe", checkedOut = 6, checkedIn = 10 });
-            objs.Add(new { departmentName = "yu", checkedOut = 2, checkedIn = 25 });
-            objs.Add(new { departmentName = "iuiyuiuy", checkedOut = 2, checkedIn = 38 });
-            objs.Add(new { departmentName = "luioliul", checkedOut = 10, checkedIn = 0 });
-            objs.Add(new { departmentName = "mn,mn,", checkedOut = 4, checkedIn = 16 });
-            objs.Add(new { departmentName = "vbnvbn", checkedOut = 2, checkedIn = 33 });
-            objs.Add(new { departmentName = "gercbcvbg", checkedOut = 0, checkedIn = 15 });
-            objs.Add(new { departmentName = "xcv", checkedOut = 0, checkedIn = 25 });
-            objs.Add(new { departmentName = "gre", checkedOut = 2, checkedIn = 38 });
-            objs.Add(new { departmentName = "rt45", checkedOut = 0, checkedIn = 30 });
-            objs.Add(new { departmentName = "t434", checkedOut = 5, checkedIn = 45 });
-            objs.Add(new { departmentName = "gtrry345", checkedOut = 15, checkedIn = 20 });
-            objs.Add(new { departmentName = "ytujyt456", checkedOut = 6, checkedIn = 10 });
-            objs.Add(new { departmentName = "jui654", checkedOut = 2, checkedIn = 25 });
-            objs.Add(new { departmentName = "jtyjyt546", checkedOut = 2, checkedIn = 38 });
-            objs.Add(new { departmentName = "jyyh45", checkedOut = 10, checkedIn = 0 });
-            objs.Add(new { departmentName = "gtrfhtr324", checkedOut = 4, checkedIn = 16 });
-            objs.Add(new { departmentName = "gregter", checkedOut = 2, checkedIn = 33 });
-            objs.Add(new { departmentName = "ge234rg", checkedOut = 0, checkedIn = 15 });
-            objs.Add(new { departmentName = "324", checkedOut = 0, checkedIn = 25 });
-            objs.Add(new { departmentName = "greger", checkedOut = 2, checkedIn = 38 });
-            objs.Add(new { departmentName = "gregre12", checkedOut = 0, checkedIn = 30 });
-            objs.Add(new { departmentName = "efwdv ", checkedOut = 5, checkedIn = 45 });
-            objs.Add(new { departmentName = "324ht", checkedOut = 15, checkedIn = 20 });
-            objs.Add(new { departmentName = "qwhtrhtr4e", checkedOut = 6, checkedIn = 10 });
-            objs.Add(new { departmentName = "htr4334", checkedOut = 2, checkedIn = 25 });
-            objs.Add(new { departmentName = "jyt6554", checkedOut = 2, checkedIn = 38 });
-            objs.Add(new { departmentName = "jytyt34", checkedOut = 10, checkedIn = 0 });
-            objs.Add(new { departmentName = "mnhy4mn,", checkedOut = 4, checkedIn = 16 });
-            objs.Add(new { departmentName = "hythy43", checkedOut = 2, checkedIn = 33 });
-            objs.Add(new { departmentName = "hrt2432", checkedOut = 0, checkedIn = 15 });
-            objs.Add(new { departmentName = "hytjny5", checkedOut = 0, checkedIn = 25 });
+        
             Store1.DataSource = resp.Items;
             Store1.DataBind();
             X.Call("fixWidth", resp.Items.Count);

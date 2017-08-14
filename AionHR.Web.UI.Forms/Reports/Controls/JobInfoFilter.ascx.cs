@@ -26,6 +26,7 @@ namespace AionHR.Web.UI.Forms.Reports
             {
                 X.Call("setStatus", EnableDepartment, EnableBranch, EnablePosition, EnableDivision);
                 X.Call("setWidth", FieldWidth);
+
                 FillJobInfo();
             }
 
@@ -124,6 +125,8 @@ namespace AionHR.Web.UI.Forms.Reports
                 X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() : resp.Summary).Show();
             departmentStore.DataSource = resp.Items;
             departmentStore.DataBind();
+            if (_systemService.SessionHelper.CheckIfIsAdmin())
+                return;
             UserDataRecordRequest ud = new UserDataRecordRequest();
             ud.UserId = _systemService.SessionHelper.GetCurrentUserId();
             ud.RecordID = "0";
@@ -133,7 +136,7 @@ namespace AionHR.Web.UI.Forms.Reports
             if (udR.result == null|| !udR.result.hasAccess)
             {
                 departmentId.Select(0);
-
+                X.Call("setDepartmentAllowBlank", true);
             }
         }
         private void FillBranch()
@@ -146,7 +149,8 @@ namespace AionHR.Web.UI.Forms.Reports
                 X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() : resp.Summary).Show();
             branchStore.DataSource = resp.Items;
             branchStore.DataBind();
-
+            if (_systemService.SessionHelper.CheckIfIsAdmin())
+                return;
             UserDataRecordRequest ud = new UserDataRecordRequest();
             ud.UserId = _systemService.SessionHelper.GetCurrentUserId();
             ud.RecordID = "0";
@@ -155,7 +159,7 @@ namespace AionHR.Web.UI.Forms.Reports
             if (udR.result == null || !udR.result.hasAccess)
             {
                 branchId.Select(0);
-
+                X.Call("setBranchAllowBlank", true);
             }
         }
 
@@ -169,6 +173,18 @@ namespace AionHR.Web.UI.Forms.Reports
                 X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() : resp.Summary).Show();
             divisionStore.DataSource = resp.Items;
             divisionStore.DataBind();
+            if (_systemService.SessionHelper.CheckIfIsAdmin())
+                return;
+            UserDataRecordRequest ud = new UserDataRecordRequest();
+            ud.UserId = _systemService.SessionHelper.GetCurrentUserId();
+            ud.RecordID = "0";
+            ud.classId = ((ClassIdentifier)typeof(Division).GetCustomAttributes(true).Where(t => t is ClassIdentifier).ToList()[0]).ClassID;
+            RecordResponse<UserDataAccess> udR = _accessControlService.ChildGetRecord<UserDataAccess>(ud);
+            if (udR.result == null || !udR.result.hasAccess)
+            {
+                divisionId.Select(0);
+                X.Call("setDivisionAllowBlank", true);
+            }
         }
         private void FillPosition()
         {

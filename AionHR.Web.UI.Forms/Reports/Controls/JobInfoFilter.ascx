@@ -16,6 +16,24 @@
         App.jobInfo1_positionId.setWidth(width);
         App.jobInfo1_divisionId.setWidth(width);
     }
+    function setDepartmentAllowBlank(allowBlank) {
+        App.jobInfo1_departmentId.allowBlank = allowBlank;
+      
+    }
+    function setBranchAllowBlank(allowBlank)
+    {
+        App.jobInfo1_branchId.allowBlank=allowBlank;
+      
+    }
+    function setPositionAllowBlank(allowBlank)
+    {
+        App.jobInfo1_positionId.allowBlank=allowBlank;
+       
+    }
+    function setDivisionAllowBlank(allowBlank)
+    {
+        App.jobInfo1_divisionId.allowBlank=allowBlank;
+    }
 </script>
 <ext:Panel runat="server" Layout="HBoxLayout" >
     <Items>
@@ -37,7 +55,7 @@
 
         </ext:ComboBox>
         <ext:Panel runat="server" Width="10" />
-        <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" QueryMode="Local" Width="120" ForceSelection="true" TypeAhead="true" MinChars="1" ValueField="recordId" DisplayField="name" ID="branchId" Name="branchId" EmptyText="<%$ Resources:FieldBranch%>">
+        <ext:ComboBox   AnyMatch="true" CaseSensitive="false"    runat="server" QueryMode="Local" Width="120" ForceSelection="true" TypeAhead="true" MinChars="1" ValueField="recordId" DisplayField="name" ID="branchId" Name="branchId" EmptyText="<%$ Resources:FieldBranch%>">
             <Store>
                 <ext:Store runat="server" ID="branchStore">
                     <Model>

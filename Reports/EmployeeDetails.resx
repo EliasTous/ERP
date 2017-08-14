@@ -140,6 +140,9 @@
   <data name="xrTableCell2.Text" xml:space="preserve">
     <value>xrTableCell2</value>
   </data>
+  <data name="xrTableCell2.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v16.2">
+    <value>MiddleLeft</value>
+  </data>
   <data name="xrTableCell2.Weight" type="System.Double, mscorlib">
     <value>1.8720169151886998</value>
   </data>

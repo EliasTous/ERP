@@ -170,14 +170,7 @@
 
                 App.activeStore.reload();
                 App.Store1.reload();
-                //App.absenseStore.reload();
-                //App.latenessStore.reload();
-                //App.missingPunchesStore.reload();
-                //App.checkMontierStore.reload();
-                //App.outStore.reload();
-                //App.attendanceChartStore.reload();
-                //App.InChartStore.reload();
-                //App.OutChartStore.reload();
+               
                 App.LeaveRequestsStore.reload();
                 App.LoansStore.reload();
                 App.OverDueStore.reload();
@@ -427,7 +420,7 @@
                             <Items>
                                 <ext:Container runat="server"  Layout="FitLayout">
                                     <Content>
-                                        <uc:jobInfo runat="server" ID="jobInfoFilter1" />
+                                        <uc:jobInfo runat="server" ID="jobInfo1" />
                                     </Content>
                                 </ext:Container>
                                <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" ValueField="recordId" DisplayField="name" ID="esId" Name="esId" EmptyText="<%$ Resources:FieldEHStatus%>">
