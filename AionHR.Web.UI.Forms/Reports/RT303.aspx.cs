@@ -234,6 +234,7 @@ namespace AionHR.Web.UI.Forms.Reports
                 x.specialTasks = x.jobTasks = "00:00";
                 x.specialTasks = x.unpaidLeaves;
                 x.jobTasks = x.paidLeaves;
+                x.dayStatusString = GetLocalResourceObject("status" + x.dayStatus.ToString()).ToString();
                 //if (x.workingHours != "00:00")
                 //{
 
@@ -244,15 +245,7 @@ namespace AionHR.Web.UI.Forms.Reports
 
                 //}
                 //else
-                if (x.isWorkingDay && x.checkIn1 == "")
-                {
-                    if (x.paidLeaves == "00:00" && x.unpaidLeaves == "00:00" )
-                    {
-                        x.LeaveType = GetLocalResourceObject("Unpaid").ToString();
-                    }
-                    else if (x.paidLeaves != "00:00" || x.unpaidLeaves != "00:00")
-                        x.LeaveType = GetLocalResourceObject("Paid").ToString();
-                }
+              
                 
                     
               

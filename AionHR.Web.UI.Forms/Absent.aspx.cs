@@ -225,6 +225,13 @@ namespace AionHR.Web.UI.Forms
                 X.Msg.Alert(Resources.Common.Error, daysResponse.Summary).Show();
                 return;
             }
+            daysResponse.Items.ForEach(
+                x =>
+                {
+                    x.dayStatusString = GetLocalResourceObject("status" + x.dayStatus.ToString()).ToString();
+
+                }
+                );
             Store1.DataSource = daysResponse.Items;
             Store1.DataBind();
             e.Total = daysResponse.count;

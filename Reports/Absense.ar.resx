@@ -144,6 +144,9 @@
   <data name="xrLabel21.Text" xml:space="preserve">
     <value>من قبل</value>
   </data>
+  <data name="xrLabel24.Text" xml:space="preserve">
+    <value>نوع اليوم</value>
+  </data>
   <data name="xrLabel3.Text" xml:space="preserve">
     <value>القسم</value>
   </data>

@@ -138,6 +138,9 @@
   <data name="AbsenseGridTitle" xml:space="preserve">
     <value>الغائبين</value>
   </data>
+  <data name="Absent" xml:space="preserve">
+    <value>غياب</value>
+  </data>
   <data name="ActiveGridTitle" xml:space="preserve">
     <value>الموجودين</value>
   </data>
@@ -357,6 +360,9 @@
   <data name="MissingPunchesGridTitle" xml:space="preserve">
     <value>دوام غير مسجل</value>
   </data>
+  <data name="OnLeave" xml:space="preserve">
+    <value>في إجازة</value>
+  </data>
   <data name="OnTime" xml:space="preserve">
     <value>على الوقت</value>
   </data>
@@ -368,6 +374,12 @@
   </data>
   <data name="OverDue" xml:space="preserve">
     <value>متأخرة</value>
+  </data>
+  <data name="Paid" xml:space="preserve">
+    <value>مدفوع</value>
+  </data>
+  <data name="PaidLeaves" xml:space="preserve">
+    <value>إجازات مدفوعة</value>
   </data>
   <data name="Probation" xml:space="preserve">
     <value>الفترات التجريبية</value>
@@ -383,6 +395,12 @@
   </data>
   <data name="TotalLoans" xml:space="preserve">
     <value>إجمالي السلف</value>
+  </data>
+  <data name="Unpaid" xml:space="preserve">
+    <value>غير مدفوع</value>
+  </data>
+  <data name="UnpaidLeaves" xml:space="preserve">
+    <value>إجازات غير مدفوعة</value>
   </data>
   <data name="WindowTitle" xml:space="preserve">
     <value>الموظفين</value>

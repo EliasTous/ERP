@@ -158,11 +158,11 @@ namespace AionHR.Web.UI.Forms
             ActiveAttendanceRequest r = GetActiveAttendanceRequest();
 
             ListResponse<ActiveCheck> ACs = _timeAttendanceService.ChildGetAll<ActiveCheck>(r);
-            ListResponse<ActiveAbsence> ABs = _timeAttendanceService.ChildGetAll<ActiveAbsence>(r);
+            //ListResponse<ActiveAbsence> ABs = _timeAttendanceService.ChildGetAll<ActiveAbsence>(r);
             ListResponse<ActiveLate> ALs = _timeAttendanceService.ChildGetAll<ActiveLate>(r);
-            ListResponse<ActiveLeave> Leaves = _timeAttendanceService.ChildGetAll<ActiveLeave>(r);
-            ListResponse<MissedPunch> MPs = _timeAttendanceService.ChildGetAll<MissedPunch>(r);
-            ListResponse<ActiveOut> AOs = _timeAttendanceService.ChildGetAll<ActiveOut>(r);
+            //ListResponse<ActiveLeave> Leaves = _timeAttendanceService.ChildGetAll<ActiveLeave>(r);
+            //ListResponse<MissedPunch> MPs = _timeAttendanceService.ChildGetAll<MissedPunch>(r);
+            //ListResponse<ActiveOut> AOs = _timeAttendanceService.ChildGetAll<ActiveOut>(r);
             EmployeeCountRequest req = GetEmployeeCountRequest();
             RecordResponse<EmployeeCount> count = _employeeService.ChildGetRecord<EmployeeCount>(req);
             if (!ACs.Success)
@@ -172,10 +172,10 @@ namespace AionHR.Web.UI.Forms
             }
             List<object> b = new List<object>();
             b.Add(new { Name = GetLocalResourceObject("ActiveGridTitle").ToString(), Count = ACs.Items.Count });
-            b.Add(new { Name = GetLocalResourceObject("OutGridTitle").ToString(), Count = AOs.Items.Count });
-            b.Add(new { Name = GetLocalResourceObject("MissingPunchesGridTitle").ToString(), Count = MPs.Items.Count });
-            b.Add(new { Name = GetLocalResourceObject("LeavesGridTitle").ToString(), Count = Leaves.Items.Count });
-            b.Add(new { Name = GetLocalResourceObject("LatenessGridTitle").ToString(), Count = ALs.Items.Count });
+            //b.Add(new { Name = GetLocalResourceObject("OutGridTitle").ToString(), Count = AOs.Items.Count });
+            //b.Add(new { Name = GetLocalResourceObject("MissingPunchesGridTitle").ToString(), Count = MPs.Items.Count });
+            //b.Add(new { Name = GetLocalResourceObject("LeavesGridTitle").ToString(), Count = Leaves.Items.Count });
+            //b.Add(new { Name = GetLocalResourceObject("LatenessGridTitle").ToString(), Count = ALs.Items.Count });
 
 
             activeStore.DataSource = ACs.Items;
@@ -183,22 +183,22 @@ namespace AionHR.Web.UI.Forms
             activeCount.Text = ACs.Items.Count.ToString();
 
 
-            missingPunchesStore.DataSource = MPs.Items;
-            missingPunchesStore.DataBind();
+            //missingPunchesStore.DataSource = MPs.Items;
+            //missingPunchesStore.DataBind();
 
-            leavesStore.DataSource = Leaves.Items;
-            leavesStore.DataBind();
+            //leavesStore.DataSource = Leaves.Items;
+            //leavesStore.DataBind();
 
-            latenessStore.DataSource = ALs.Items;
-            latenessStore.DataBind();
+            //latenessStore.DataSource = ALs.Items;
+            //latenessStore.DataBind();
 
-            absenseStore.DataSource = ABs.Items;
-            absenseStore.DataBind();
+            //absenseStore.DataSource = ABs.Items;
+            //absenseStore.DataBind();
 
             int x = ALs.Items.Count;
             X.Call("lateChart", x, count.result.count);
-            int y = ABs.Items.Count;
-            X.Call("absentChart", y, count.result.count);
+            //int y = ABs.Items.Count;
+            //X.Call("absentChart", y, count.result.count);
             int z = ACs.Items.Count;
             X.Call("activeChart", z, count.result.count);
             BindAlerts();
@@ -236,7 +236,13 @@ namespace AionHR.Web.UI.Forms
             totalLoansLbl.Text = total.ToString();
             deductedLoansLbl.Text = paid.ToString();
             //X.Call("alerts", annev, annevTotal, birthdays, birthdaysTotal, empRW, empRWTotal, compRW, compRWTotal, scr, scrTotal, prob, probTotal);
+            List<object> objs = new List<object>();
+            objs.Add(new { Count = dashoard.Items.Where(x => x.itemId == 110).ToList()[0].count, emps = GetLocalResourceObject("Paid").ToString() });
+            objs.Add(new { Count = dashoard.Items.Where(x => x.itemId == 111).ToList()[0].count, emps = GetLocalResourceObject("Unpaid").ToString() });
+            objs.Add(new { Count = dashoard.Items.Where(x => x.itemId == 112).ToList()[0].count, emps = GetLocalResourceObject("Absent").ToString() });
 
+            AbsentLeaveStore.DataSource = objs;
+            AbsentLeaveStore.DataBind();
         }
 
         [DirectMethod]
@@ -286,7 +292,7 @@ namespace AionHR.Web.UI.Forms
         protected void leavesStore_ReadData(object sender, StoreReadDataEventArgs e)
         {
             ActiveAttendanceRequest r = GetActiveAttendanceRequest();
-
+            r.DayStatus = 2;
             ListResponse<ActiveLeave> Leaves = _timeAttendanceService.ChildGetAll<ActiveLeave>(r);
             if (!Leaves.Success)
             {
@@ -297,7 +303,7 @@ namespace AionHR.Web.UI.Forms
             //List<ActiveLeave> leaves = new List<ActiveLeave>();
             //leaves.Add(new ActiveLeave() { destination = "dc", employeeId = 8, employeeName = new Model.Employees.Profile.EmployeeName() { fullName = "vima" }, endDate = DateTime.Now.AddDays(10) });
 
-            leaveCount.Text = "12";
+            
             leavesStore.DataBind();
         }
 
@@ -762,6 +768,29 @@ namespace AionHR.Web.UI.Forms
             }
             totalLoansStore.DataSource = resp.Items;
             totalLoansStore.DataBind();
+        }
+
+        protected void OnLeaveStore_ReadData(object sender, StoreReadDataEventArgs e)
+        {
+
+        }
+
+        protected void UnpaidLeavesStore_ReadData(object sender, StoreReadDataEventArgs e)
+        {
+            ActiveAttendanceRequest r = GetActiveAttendanceRequest();
+            r.DayStatus = 4;
+            ListResponse<ActiveLeave> Leaves = _timeAttendanceService.ChildGetAll<ActiveLeave>(r);
+            if (!Leaves.Success)
+            {
+                X.Msg.Alert(Resources.Common.Error, Leaves.Summary).Show();
+                return;
+            }
+            UnpaidLeavesStore.DataSource = Leaves.Items;
+            //List<ActiveLeave> leaves = new List<ActiveLeave>();
+            //leaves.Add(new ActiveLeave() { destination = "dc", employeeId = 8, employeeName = new Model.Employees.Profile.EmployeeName() { fullName = "vima" }, endDate = DateTime.Now.AddDays(10) });
+
+
+            UnpaidLeavesStore.DataBind();
         }
     }
 }

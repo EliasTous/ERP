@@ -135,6 +135,9 @@
   <data name="AbsenseGridTitle" xml:space="preserve">
     <value>Absense</value>
   </data>
+  <data name="Absent" xml:space="preserve">
+    <value>Absent</value>
+  </data>
   <data name="ActiveGridTitle" xml:space="preserve">
     <value>Active</value>
   </data>
@@ -354,6 +357,9 @@
   <data name="MissingPunchesGridTitle" xml:space="preserve">
     <value>Missing Punches</value>
   </data>
+  <data name="OnLeave" xml:space="preserve">
+    <value>On leave</value>
+  </data>
   <data name="OnTime" xml:space="preserve">
     <value>On Time</value>
   </data>
@@ -365,6 +371,12 @@
   </data>
   <data name="OverDue" xml:space="preserve">
     <value>Over Due</value>
+  </data>
+  <data name="Paid" xml:space="preserve">
+    <value>Paid</value>
+  </data>
+  <data name="PaidLeaves" xml:space="preserve">
+    <value>Paid Leaves</value>
   </data>
   <data name="Probation" xml:space="preserve">
     <value>Probation</value>
@@ -380,6 +392,12 @@
   </data>
   <data name="TotalLoans" xml:space="preserve">
     <value>Total Loans</value>
+  </data>
+  <data name="Unpaid" xml:space="preserve">
+    <value>Unpaid</value>
+  </data>
+  <data name="UnpaidLeaves" xml:space="preserve">
+    <value>Unpaid Leaves</value>
   </data>
   <data name="WindowTitle" xml:space="preserve">
     <value>Employees</value>

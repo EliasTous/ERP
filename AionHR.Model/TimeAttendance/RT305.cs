@@ -28,6 +28,10 @@ namespace AionHR.Model.TimeAttendance
         [ApplySecurity]
         public string ltName { get; set; }
 
+        public int dayStatus { get; set; }
+
+        public string dayStatusString { get; set; }
+
         public string DateString { get; set; }
 
 

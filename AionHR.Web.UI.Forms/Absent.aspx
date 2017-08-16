@@ -77,7 +77,7 @@
             ID="Store1"
             runat="server"
            RemoteSort="false"
-          
+            RemotePaging="false"
             OnReadData="Store1_RefreshData"
             PageSize="30" IDMode="Explicit" Namespace="App" IsPagingStore="true">
             <Proxy>
@@ -96,7 +96,7 @@
                         <ext:ModelField Name="name" IsComplex="true" />
                         <ext:ModelField Name="branchName" />
                         <ext:ModelField Name="departmentName" />
-                       
+                        <ext:ModelField Name="dayStatusString" />
                         <ext:ModelField Name="ltName" />
 
 
@@ -182,7 +182,9 @@
                             
                             </ext:Column>
 
-                         
+                           <ext:Column ID="Column1" MenuDisabled="true" runat="server" Text="<%$ Resources: Status%>" DataIndex="dayStatusString" Width="150" Hideable="false">
+                            
+                            </ext:Column>
                             <ext:Column ID="Column2" MenuDisabled="true" runat="server" Text="<%$ Resources: LeaveType%>" DataIndex="ltName" Flex="2" Hideable="false">
                          </ext:Column>
 

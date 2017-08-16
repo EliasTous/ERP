@@ -230,7 +230,7 @@ namespace AionHR.Web.UI.Forms.Reports
             {
                 DateTime date = DateTime.ParseExact(x.dayId, "yyyyMMdd", new CultureInfo("en"));
                 x.DateString = DateTime.ParseExact(x.dayId, "yyyyMMdd", new CultureInfo("en")).ToString(_systemService.SessionHelper.GetDateformat(), new CultureInfo("en"));
-
+                x.dayStatusString = GetLocalResourceObject("status" + x.dayStatus.ToString()).ToString();
 
             }
             );

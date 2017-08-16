@@ -34,6 +34,8 @@ namespace AionHR.Model.Reports
         public string LeaveType { get; set; }
         public string jobTasks { get; set; }
 
+        public int dayStatus { get; set; }
+        public string dayStatusString { get; set; }
         public string specialTasks { get; set; }
 
         public string checkIn1 { get; set; }

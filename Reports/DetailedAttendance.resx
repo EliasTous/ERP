@@ -219,7 +219,7 @@
     <value>MiddleCenter</value>
   </data>
   <data name="xrTableCell13.Weight" type="System.Double, mscorlib">
-    <value>0.85062909999065606</value>
+    <value>1.1127996600616021</value>
   </data>
   <data name="xrTableCell11.Dpi" type="System.Single, mscorlib">
     <value>100</value>
@@ -231,7 +231,7 @@
     <value>MiddleCenter</value>
   </data>
   <data name="xrTableCell11.Weight" type="System.Double, mscorlib">
-    <value>0.45479485681299087</value>
+    <value>0.45479552438500553</value>
   </data>
   <data name="xrTableCell12.Dpi" type="System.Single, mscorlib">
     <value>100</value>
@@ -243,40 +243,7 @@
     <value>MiddleCenter</value>
   </data>
   <data name="xrTableCell12.Weight" type="System.Double, mscorlib">
-    <value>0.7547935673415922</value>
-  </data>
-  <data name="xrTableCell10.Dpi" type="System.Single, mscorlib">
-    <value>100</value>
-  </data>
-  <data name="xrTableCell10.Text" xml:space="preserve">
-    <value>xrTableCell10</value>
-  </data>
-  <data name="xrTableCell10.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v16.2">
-    <value>MiddleCenter</value>
-  </data>
-  <data name="xrTableCell10.Weight" type="System.Double, mscorlib">
-    <value>0.63086534422606422</value>
-  </data>
-  <data name="xrTableCell16.Dpi" type="System.Single, mscorlib">
-    <value>100</value>
-  </data>
-  <data name="xrTableCell16.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v16.2">
-    <value>MiddleCenter</value>
-  </data>
-  <data name="xrTableCell16.Weight" type="System.Double, mscorlib">
-    <value>0.60839343992969819</value>
-  </data>
-  <data name="xrTableCell18.Dpi" type="System.Single, mscorlib">
-    <value>100</value>
-  </data>
-  <data name="xrTableCell18.Text" xml:space="preserve">
-    <value>xrTableCell18</value>
-  </data>
-  <data name="xrTableCell18.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v16.2">
-    <value>MiddleCenter</value>
-  </data>
-  <data name="xrTableCell18.Weight" type="System.Double, mscorlib">
-    <value>0.73463183679959876</value>
+    <value>0.7547912594497701</value>
   </data>
   <data name="xrTableCell15.Dpi" type="System.Single, mscorlib">
     <value>100</value>
@@ -288,7 +255,7 @@
     <value>MiddleCenter</value>
   </data>
   <data name="xrTableCell15.Weight" type="System.Double, mscorlib">
-    <value>0.58201474005519072</value>
+    <value>0.6145983769605039</value>
   </data>
   <data name="xrTableCell3.Dpi" type="System.Single, mscorlib">
     <value>100</value>
@@ -300,7 +267,7 @@
     <value>MiddleCenter</value>
   </data>
   <data name="xrTableCell3.Weight" type="System.Double, mscorlib">
-    <value>0.61458852556729493</value>
+    <value>0.58200271428456252</value>
   </data>
   <data name="xrTableRow1.Dpi" type="System.Single, mscorlib">
     <value>100</value>
@@ -310,7 +277,7 @@
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="xrTable1.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>1024.62524, 21.4460773</value>
+    <value>853.4528, 21.4460773</value>
   </data>
   <data name="Detail.Dpi" type="System.Single, mscorlib">
     <value>100</value>
@@ -343,7 +310,7 @@
     <value>100</value>
   </data>
   <data name="xrLabel18.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v16.2">
-    <value>934.3817, 0.000158945724</value>
+    <value>824.66864, 0.000127156571</value>
   </data>
   <data name="xrLabel18.SizeF" type="System.Drawing.SizeF, System.Drawing">
     <value>58.2014771, 46.499794</value>
@@ -358,30 +325,15 @@
     <value>100</value>
   </data>
   <data name="xrLabel14.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v16.2">
-    <value>992.5834, 0.000158945724</value>
+    <value>763.209961, 0</value>
   </data>
   <data name="xrLabel14.SizeF" type="System.Drawing.SizeF, System.Drawing">
     <value>61.45874, 46.50046</value>
   </data>
   <data name="xrLabel14.Text" xml:space="preserve">
-    <value>Net</value>
+    <value>Lateness</value>
   </data>
   <data name="xrLabel14.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v16.2">
-    <value>MiddleCenter</value>
-  </data>
-  <data name="xrLabel63.Dpi" type="System.Single, mscorlib">
-    <value>100</value>
-  </data>
-  <data name="xrLabel63.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v16.2">
-    <value>800.079346, 23.000145</value>
-  </data>
-  <data name="xrLabel63.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>60.8394775, 23.4998055</value>
-  </data>
-  <data name="xrLabel63.Text" xml:space="preserve">
-    <value>Break</value>
-  </data>
-  <data name="xrLabel63.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v16.2">
     <value>MiddleCenter</value>
   </data>
   <data name="xrLabel21.Dpi" type="System.Single, mscorlib">
@@ -391,7 +343,7 @@
     <value>530.970764, 0.000158945724</value>
   </data>
   <data name="xrLabel21.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>85.06293, 46.4997749</value>
+    <value>111.279968, 46.4997749</value>
   </data>
   <data name="xrLabel21.Text" xml:space="preserve">
     <value>Status</value>
@@ -403,7 +355,7 @@
     <value>100</value>
   </data>
   <data name="xrLabel9.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v16.2">
-    <value>616.0337, 23.000145</value>
+    <value>642.2507, 23.0011616</value>
   </data>
   <data name="xrLabel9.SizeF" type="System.Drawing.SizeF, System.Drawing">
     <value>45.4796143, 23.4994583</value>
@@ -418,7 +370,7 @@
     <value>100</value>
   </data>
   <data name="xrLabel10.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v16.2">
-    <value>661.5133, 23.000145</value>
+    <value>687.730164, 23.0011616</value>
   </data>
   <data name="xrLabel10.SizeF" type="System.Drawing.SizeF, System.Drawing">
     <value>75.47925, 23.4994888</value>
@@ -429,56 +381,11 @@
   <data name="xrLabel10.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v16.2">
     <value>MiddleCenter</value>
   </data>
-  <data name="xrLabel17.Dpi" type="System.Single, mscorlib">
-    <value>100</value>
-  </data>
-  <data name="xrLabel17.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v16.2">
-    <value>860.9187, 22.9998913</value>
-  </data>
-  <data name="xrLabel17.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>73.46307, 23.5000343</value>
-  </data>
-  <data name="xrLabel17.Text" xml:space="preserve">
-    <value>Departure</value>
-  </data>
-  <data name="xrLabel17.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v16.2">
-    <value>MiddleCenter</value>
-  </data>
-  <data name="xrLabel16.Dpi" type="System.Single, mscorlib">
-    <value>100</value>
-  </data>
-  <data name="xrLabel16.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v16.2">
-    <value>736.992554, 23.000145</value>
-  </data>
-  <data name="xrLabel16.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>63.08661, 23.4991379</value>
-  </data>
-  <data name="xrLabel16.Text" xml:space="preserve">
-    <value>Arrival</value>
-  </data>
-  <data name="xrLabel16.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v16.2">
-    <value>MiddleCenter</value>
-  </data>
-  <data name="xrLabel13.Dpi" type="System.Single, mscorlib">
-    <value>100</value>
-  </data>
-  <data name="xrLabel13.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v16.2">
-    <value>736.9927, 0.000158945724</value>
-  </data>
-  <data name="xrLabel13.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>197.38916, 23</value>
-  </data>
-  <data name="xrLabel13.Text" xml:space="preserve">
-    <value>Time Attendance Variation</value>
-  </data>
-  <data name="xrLabel13.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v16.2">
-    <value>MiddleCenter</value>
-  </data>
   <data name="xrLabel12.Dpi" type="System.Single, mscorlib">
     <value>100</value>
   </data>
   <data name="xrLabel12.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v16.2">
-    <value>616.0337, 0.000158945724</value>
+    <value>642.2506, 0</value>
   </data>
   <data name="xrLabel12.SizeF" type="System.Drawing.SizeF, System.Drawing">
     <value>120.9588, 23</value>
@@ -601,7 +508,7 @@
     <value>100</value>
   </data>
   <data name="groupHeaderBand1.HeightF" type="System.Single, mscorlib">
-    <value>46.50062</value>
+    <value>46.50065</value>
   </data>
   <data name="User.Description" xml:space="preserve">
     <value>Parameter1</value>
@@ -646,7 +553,7 @@
     <value>Page {0} of {1}</value>
   </data>
   <data name="xrPageInfo2.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v16.2">
-    <value>864.8408, 44.5620842</value>
+    <value>788.370667, 44.5620842</value>
   </data>
   <data name="xrPageInfo2.SizeF" type="System.Drawing.SizeF, System.Drawing">
     <value>83.83344, 23</value>
@@ -721,7 +628,7 @@
     <value>100</value>
   </data>
   <data name="xrLabel38.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v16.2">
-    <value>557.6382, 46.00003</value>
+    <value>506.5965, 46.00007</value>
   </data>
   <data name="xrLabel38.SizeF" type="System.Drawing.SizeF, System.Drawing">
     <value>108.5283, 23</value>
@@ -736,7 +643,7 @@
     <value>100</value>
   </data>
   <data name="xrLabel39.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v16.2">
-    <value>666.1665, 46.00003</value>
+    <value>615.1248, 46.00007</value>
   </data>
   <data name="xrLabel39.SizeF" type="System.Drawing.SizeF, System.Drawing">
     <value>234.1626, 23</value>
@@ -775,7 +682,7 @@
     <value>100</value>
   </data>
   <data name="xrLabel34.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v16.2">
-    <value>557.6382, 22.9999943</value>
+    <value>506.5965, 23.0000172</value>
   </data>
   <data name="xrLabel34.SizeF" type="System.Drawing.SizeF, System.Drawing">
     <value>108.5283, 23.00001</value>
@@ -790,7 +697,7 @@
     <value>100</value>
   </data>
   <data name="xrLabel35.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v16.2">
-    <value>666.1665, 23.0000153</value>
+    <value>615.1248, 23.00005</value>
   </data>
   <data name="xrLabel35.SizeF" type="System.Drawing.SizeF, System.Drawing">
     <value>234.1626, 23</value>
@@ -805,7 +712,7 @@
     <value>100</value>
   </data>
   <data name="xrLabel30.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v16.2">
-    <value>666.1665, 2.119276E-05</value>
+    <value>615.1248, 3.17891427E-05</value>
   </data>
   <data name="xrLabel30.SizeF" type="System.Drawing.SizeF, System.Drawing">
     <value>234.1626, 23</value>
@@ -814,7 +721,7 @@
     <value>100</value>
   </data>
   <data name="xrLabel31.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v16.2">
-    <value>557.6382, 2.119276E-05</value>
+    <value>506.5965, 3.17891427E-05</value>
   </data>
   <data name="xrLabel31.SizeF" type="System.Drawing.SizeF, System.Drawing">
     <value>108.5283, 23.00001</value>
@@ -859,7 +766,7 @@
     <value>100</value>
   </data>
   <data name="xrLabel67.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v16.2">
-    <value>978.542847, 180.475616</value>
+    <value>807.144165, 180.475555</value>
   </data>
   <data name="xrLabel67.SizeF" type="System.Drawing.SizeF, System.Drawing">
     <value>75.72504, 23</value>
@@ -871,7 +778,7 @@
     <value>100</value>
   </data>
   <data name="xrLabel62.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v16.2">
-    <value>791.1006, 180.475677</value>
+    <value>619.928345, 180.475616</value>
   </data>
   <data name="xrLabel62.SizeF" type="System.Drawing.SizeF, System.Drawing">
     <value>187.21582, 23</value>
@@ -883,7 +790,7 @@
     <value>100</value>
   </data>
   <data name="xrLabel64.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v16.2">
-    <value>934.381653, 0</value>
+    <value>824.6691, 0</value>
   </data>
   <data name="xrLabel64.SizeF" type="System.Drawing.SizeF, System.Drawing">
     <value>58.2008057, 23</value>
@@ -919,52 +826,22 @@
     <value>530.9707, 0</value>
   </data>
   <data name="xrLabel15.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>85.0628052, 23</value>
-  </data>
-  <data name="totalOLBLbl.Dpi" type="System.Single, mscorlib">
-    <value>100</value>
-  </data>
-  <data name="totalOLBLbl.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v16.2">
-    <value>800.079, 0</value>
-  </data>
-  <data name="totalOLBLbl.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>60.8394165, 23</value>
-  </data>
-  <data name="xrSummary3.FormatString" xml:space="preserve">
-    <value>{0:-HH:mm}</value>
-  </data>
-  <data name="totalOLBLbl.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v16.2">
-    <value>MiddleCenter</value>
+    <value>111.280029, 23</value>
   </data>
   <data name="xrLabel61.Dpi" type="System.Single, mscorlib">
     <value>100</value>
   </data>
   <data name="xrLabel61.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v16.2">
-    <value>978.31665, 134.475586</value>
+    <value>807.1444, 134.475525</value>
   </data>
   <data name="xrLabel61.SizeF" type="System.Drawing.SizeF, System.Drawing">
     <value>75.72522, 23</value>
-  </data>
-  <data name="xrLabel60.Dpi" type="System.Single, mscorlib">
-    <value>100</value>
-  </data>
-  <data name="xrLabel60.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v16.2">
-    <value>631.850647, 228.225449</value>
-  </data>
-  <data name="xrLabel60.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>75.72522, 23</value>
-  </data>
-  <data name="xrLabel60.Text" xml:space="preserve">
-    <value>xrLabel55</value>
-  </data>
-  <data name="xrLabel60.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
   </data>
   <data name="xrLabel59.Dpi" type="System.Single, mscorlib">
     <value>100</value>
   </data>
   <data name="xrLabel59.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v16.2">
-    <value>978.31665, 111.475563</value>
+    <value>807.1444, 111.4755</value>
   </data>
   <data name="xrLabel59.SizeF" type="System.Drawing.SizeF, System.Drawing">
     <value>75.72522, 23</value>
@@ -976,7 +853,7 @@
     <value>100</value>
   </data>
   <data name="xrLabel55.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v16.2">
-    <value>978.316345, 88.47548</value>
+    <value>807.144165, 88.47542</value>
   </data>
   <data name="xrLabel55.SizeF" type="System.Drawing.SizeF, System.Drawing">
     <value>75.72571, 23</value>
@@ -988,7 +865,7 @@
     <value>100</value>
   </data>
   <data name="xrLabel46.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v16.2">
-    <value>791.1007, 134.475586</value>
+    <value>619.928467, 134.475525</value>
   </data>
   <data name="xrLabel46.SizeF" type="System.Drawing.SizeF, System.Drawing">
     <value>187.216, 23</value>
@@ -996,26 +873,11 @@
   <data name="xrLabel46.Text" xml:space="preserve">
     <value>Net Lateness</value>
   </data>
-  <data name="xrLabel45.Dpi" type="System.Single, mscorlib">
-    <value>100</value>
-  </data>
-  <data name="xrLabel45.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v16.2">
-    <value>444.6347, 228.225449</value>
-  </data>
-  <data name="xrLabel45.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>187.216, 23</value>
-  </data>
-  <data name="xrLabel45.Text" xml:space="preserve">
-    <value>Lateness</value>
-  </data>
-  <data name="xrLabel45.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
   <data name="xrLabel42.Dpi" type="System.Single, mscorlib">
     <value>100</value>
   </data>
   <data name="xrLabel42.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v16.2">
-    <value>791.1007, 111.475563</value>
+    <value>619.928467, 111.4755</value>
   </data>
   <data name="xrLabel42.SizeF" type="System.Drawing.SizeF, System.Drawing">
     <value>187.215942, 23</value>
@@ -1027,7 +889,7 @@
     <value>100</value>
   </data>
   <data name="xrLabel40.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v16.2">
-    <value>791.1007, 88.47548</value>
+    <value>619.928467, 88.47542</value>
   </data>
   <data name="xrLabel40.SizeF" type="System.Drawing.SizeF, System.Drawing">
     <value>187.2159, 23</value>
@@ -1056,41 +918,11 @@
   <data name="xrLabel24.Text" xml:space="preserve">
     <value>Approved Absense</value>
   </data>
-  <data name="xrLabel23.Dpi" type="System.Single, mscorlib">
-    <value>100</value>
-  </data>
-  <data name="xrLabel23.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v16.2">
-    <value>611.174, 180.4755</value>
-  </data>
-  <data name="xrLabel23.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>75.72571, 23</value>
-  </data>
-  <data name="xrLabel23.Text" xml:space="preserve">
-    <value>xrLabel23</value>
-  </data>
-  <data name="xrLabel23.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="xrLabel22.Dpi" type="System.Single, mscorlib">
-    <value>100</value>
-  </data>
-  <data name="xrLabel22.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v16.2">
-    <value>423.958344, 180.4755</value>
-  </data>
-  <data name="xrLabel22.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>187.215881, 23</value>
-  </data>
-  <data name="xrLabel22.Text" xml:space="preserve">
-    <value>Unpaid Out</value>
-  </data>
-  <data name="xrLabel22.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
   <data name="SpecialTaskLbl.Dpi" type="System.Single, mscorlib">
     <value>100</value>
   </data>
   <data name="SpecialTaskLbl.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v16.2">
-    <value>661.513245, 0</value>
+    <value>687.7301, 0</value>
   </data>
   <data name="SpecialTaskLbl.SizeF" type="System.Drawing.SizeF, System.Drawing">
     <value>75.47931, 23</value>
@@ -1102,25 +934,13 @@
     <value>100</value>
   </data>
   <data name="JobTaskLbl.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v16.2">
-    <value>616.0335, 0</value>
+    <value>642.250732, 0</value>
   </data>
   <data name="JobTaskLbl.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>45.4797363, 23</value>
+    <value>45.4794922, 23</value>
   </data>
   <data name="JobTaskLbl.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v16.2">
     <value>MiddleCenter</value>
-  </data>
-  <data name="xrLabel19.Dpi" type="System.Single, mscorlib">
-    <value>100</value>
-  </data>
-  <data name="xrLabel19.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v16.2">
-    <value>658.4093, 88.47548</value>
-  </data>
-  <data name="xrLabel19.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>75.72565, 22.9999924</value>
-  </data>
-  <data name="xrLabel19.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
   </data>
   <data name="xrLabel58.Dpi" type="System.Single, mscorlib">
     <value>100</value>
@@ -1141,7 +961,7 @@
     <value>100</value>
   </data>
   <data name="xrLabel48.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v16.2">
-    <value>791.1007, 42.47551</value>
+    <value>619.928467, 42.4754448</value>
   </data>
   <data name="xrLabel48.SizeF" type="System.Drawing.SizeF, System.Drawing">
     <value>187.2159, 23</value>
@@ -1153,31 +973,16 @@
     <value>100</value>
   </data>
   <data name="xrLabel49.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v16.2">
-    <value>978.31665, 42.47551</value>
+    <value>807.1444, 42.4754448</value>
   </data>
   <data name="xrLabel49.SizeF" type="System.Drawing.SizeF, System.Drawing">
     <value>75.7254639, 23</value>
-  </data>
-  <data name="xrLabel50.Dpi" type="System.Single, mscorlib">
-    <value>100</value>
-  </data>
-  <data name="xrLabel50.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v16.2">
-    <value>471.193451, 88.47548</value>
-  </data>
-  <data name="xrLabel50.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>187.2159, 23</value>
-  </data>
-  <data name="xrLabel50.Text" xml:space="preserve">
-    <value>Leave Hours</value>
-  </data>
-  <data name="xrLabel50.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
   </data>
   <data name="xrLabel51.Dpi" type="System.Single, mscorlib">
     <value>100</value>
   </data>
   <data name="xrLabel51.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v16.2">
-    <value>978.316345, 65.4754639</value>
+    <value>807.144165, 65.4754</value>
   </data>
   <data name="xrLabel51.SizeF" type="System.Drawing.SizeF, System.Drawing">
     <value>75.7254639, 23</value>
@@ -1186,7 +991,7 @@
     <value>100</value>
   </data>
   <data name="xrLabel52.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v16.2">
-    <value>791.1006, 65.4754639</value>
+    <value>619.928345, 65.4754</value>
   </data>
   <data name="xrLabel52.SizeF" type="System.Drawing.SizeF, System.Drawing">
     <value>187.2159, 23</value>
@@ -1194,38 +999,11 @@
   <data name="xrLabel52.Text" xml:space="preserve">
     <value>Working Time </value>
   </data>
-  <data name="xrLabel53.Dpi" type="System.Single, mscorlib">
-    <value>100</value>
-  </data>
-  <data name="xrLabel53.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v16.2">
-    <value>402.329834, 157.47554</value>
-  </data>
-  <data name="xrLabel53.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>187.2159, 23</value>
-  </data>
-  <data name="xrLabel53.Text" xml:space="preserve">
-    <value>Absense Hours</value>
-  </data>
-  <data name="xrLabel53.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="xrLabel54.Dpi" type="System.Single, mscorlib">
-    <value>100</value>
-  </data>
-  <data name="xrLabel54.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v16.2">
-    <value>589.5458, 157.47554</value>
-  </data>
-  <data name="xrLabel54.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>75.7254639, 22.9999924</value>
-  </data>
-  <data name="xrLabel54.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
   <data name="xrLabel56.Dpi" type="System.Single, mscorlib">
     <value>100</value>
   </data>
   <data name="xrLabel56.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v16.2">
-    <value>978.31665, 157.47554</value>
+    <value>807.1444, 157.475464</value>
   </data>
   <data name="xrLabel56.SizeF" type="System.Drawing.SizeF, System.Drawing">
     <value>75.7254639, 23</value>
@@ -1234,7 +1012,7 @@
     <value>100</value>
   </data>
   <data name="xrLabel57.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v16.2">
-    <value>791.1007, 157.4756</value>
+    <value>619.928467, 157.47554</value>
   </data>
   <data name="xrLabel57.SizeF" type="System.Drawing.SizeF, System.Drawing">
     <value>187.2159, 23</value>
@@ -1359,35 +1137,11 @@
   <data name="totalWorkingHoursLabel.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v16.2">
     <value>MiddleCenter</value>
   </data>
-  <data name="totalOLALabel.Dpi" type="System.Single, mscorlib">
-    <value>100</value>
-  </data>
-  <data name="totalOLALabel.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v16.2">
-    <value>736.9925, 0</value>
-  </data>
-  <data name="totalOLALabel.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>63.08673, 23</value>
-  </data>
-  <data name="totalOLALabel.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v16.2">
-    <value>MiddleCenter</value>
-  </data>
-  <data name="totalOLDLabel.Dpi" type="System.Single, mscorlib">
-    <value>100</value>
-  </data>
-  <data name="totalOLDLabel.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v16.2">
-    <value>860.918945, 0</value>
-  </data>
-  <data name="totalOLDLabel.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>73.46277, 23</value>
-  </data>
-  <data name="totalOLDLabel.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v16.2">
-    <value>MiddleCenter</value>
-  </data>
   <data name="totalLatenessLabel.Dpi" type="System.Single, mscorlib">
     <value>100</value>
   </data>
   <data name="totalLatenessLabel.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v16.2">
-    <value>992.583, 0</value>
+    <value>763.2102, 0</value>
   </data>
   <data name="totalLatenessLabel.SizeF" type="System.Drawing.SizeF, System.Drawing">
     <value>61.4589844, 23</value>
@@ -1414,12 +1168,12 @@
     <value>6, 1, 25, 27</value>
   </data>
   <data name="$this.PageHeight" type="System.Int32, mscorlib">
-    <value>1700</value>
+    <value>1268</value>
   </data>
   <data name="$this.PageWidth" type="System.Int32, mscorlib">
-    <value>1100</value>
+    <value>929</value>
   </data>
   <data name="$this.PaperKind" type="System.Drawing.Printing.PaperKind, System.Drawing">
-    <value>Standard11x17</value>
+    <value>A4Extra</value>
   </data>
 </root>
