@@ -966,4 +966,7 @@
   <data name="ImportOvertimeSettings" xml:space="preserve">
     <value>استيراد معلومات العمل الإضافي</value>
   </data>
+  <data name="Overtime_Lateness" xml:space="preserve">
+    <value>اعدادات الوقت الإضافي والتأخير</value>
+  </data>
 </root>

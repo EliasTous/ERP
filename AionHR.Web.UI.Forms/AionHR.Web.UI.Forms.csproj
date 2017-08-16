@@ -269,6 +269,7 @@
     <Content Include="Nationalities.aspx" />
     <Content Include="OrganizationChart.aspx" />
     <Content Include="OvertimeSettings.aspx" />
+    <Content Include="Overtime_Lateness.aspx" />
     <Content Include="packages.config" />
     <Content Include="PayrollDefaults.aspx" />
     <Content Include="PayrollGeneration.aspx" />
@@ -557,6 +558,13 @@
     </Compile>
     <Compile Include="OvertimeSettings.aspx.designer.cs">
       <DependentUpon>OvertimeSettings.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Overtime_Lateness.aspx.cs">
+      <DependentUpon>Overtime_Lateness.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Overtime_Lateness.aspx.designer.cs">
+      <DependentUpon>Overtime_Lateness.aspx</DependentUpon>
     </Compile>
     <Compile Include="Reports\Controls\WeekPicker.ascx.cs">
       <DependentUpon>WeekPicker.ascx</DependentUpon>
@@ -1812,6 +1820,8 @@
     <Content Include="App_LocalResources\TimeAttendanceView.aspx.ar.resx" />
     <Content Include="App_LocalResources\ImportOvertimeSettings.aspx.resx" />
     <Content Include="App_LocalResources\ImportOvertimeSettings.aspx.ar.resx" />
+    <Content Include="App_LocalResources\Overtime_Lateness.aspx.resx" />
+    <Content Include="App_LocalResources\Overtime_Lateness.aspx.ar.resx" />
     <EmbeddedResource Include="Properties\licenses.licx" />
     <Content Include="Reports\App_LocalResources\RT202.aspx.resx" />
     <Content Include="Reports\App_LocalResources\RT01.aspx.ar.resx" />
