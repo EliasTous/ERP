@@ -103,6 +103,7 @@
     <Compile Include="Payroll\FiscalYear.cs" />
     <Compile Include="Payroll\GenerationHeader.cs" />
     <Compile Include="Payroll\IPayrollRepository.cs" />
+    <Compile Include="Payroll\OvertimeLatenessSchedule.cs" />
     <Compile Include="Payroll\PayrollEntitlementDeduction.cs" />
     <Compile Include="Payroll\SyncED.cs" />
     <Compile Include="Reports\Attendance.cs" />

@@ -1717,6 +1717,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Overtime/Lateness.
+        /// </summary>
+        internal static string Overtime_Lateness {
+            get {
+                return ResourceManager.GetString("Overtime_Lateness", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Pattern Applied Successfully.
         /// </summary>
         internal static string PatternAppliedSucc {

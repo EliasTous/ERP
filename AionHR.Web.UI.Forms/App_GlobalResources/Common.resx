@@ -966,4 +966,7 @@
   <data name="ImportOvertimeSettings" xml:space="preserve">
     <value>Import Overtime Settings</value>
   </data>
+  <data name="Overtime_Lateness" xml:space="preserve">
+    <value>Overtime/Lateness</value>
+  </data>
 </root>
