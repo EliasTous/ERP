@@ -168,7 +168,7 @@
                             <ext:Column runat="server"
                                 ID="colDelete"  Visible="true"
                                 Text="<%$ Resources: Common , Delete %>"
-                                Width="60"
+                                Width="80"
                                 Align="Center"
                                 Fixed="true"
                                 Filterable="false"
@@ -257,8 +257,7 @@
             Layout="Fit">
 
             <Items>
-                <ext:TabPanel ID="panelRecordDetails" runat="server" ActiveTabIndex="0" Border="false" DeferredRender="false">
-                    <Items>
+              
                         <ext:FormPanel DefaultButton="SaveButton"
                             ID="BasicInfoTab"
                             runat="server"
@@ -368,8 +367,7 @@
 
                         </ext:FormPanel>
 
-                    </Items>
-                </ext:TabPanel>
+                
             </Items>
             <Buttons>
                 <ext:Button ID="SaveButton" runat="server" Text="<%$ Resources:Common, Save %>" Icon="Disk">
