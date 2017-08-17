@@ -166,8 +166,9 @@ var enterKeyPressSearchHandler = function (el, event) {
     }
 };
 
-var colorify = function (tdID, color) {
+var colorify = function (tdID, color,date,dow) {
     $("#" + tdID).attr("style", "background:" + color);
+    $("#" + tdID).attr("title", dow+" -"+ date);
 };
 var init = function () {
     $('#tbCalendar td').each(function () {
