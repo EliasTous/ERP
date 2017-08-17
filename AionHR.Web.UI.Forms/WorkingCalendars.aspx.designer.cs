@@ -94,6 +94,15 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Hidden CurrentYear;
         
         /// <summary>
+        /// CurrentCalenderLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Hidden CurrentCalenderLabel;
+        
+        /// <summary>
         /// Store1 control.
         /// </summary>
         /// <remarks>
@@ -328,6 +337,15 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Button Button5;
         
         /// <summary>
+        /// calendarName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Label calendarName;
+        
+        /// <summary>
         /// colCaId control.
         /// </summary>
         /// <remarks>
@@ -407,6 +425,24 @@ namespace AionHR.Web.UI.Forms {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.Button Button12;
+        
+        /// <summary>
+        /// lbCalenderName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Label lbCalenderName;
+        
+        /// <summary>
+        /// lbCalender control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Label lbCalender;
         
         /// <summary>
         /// tbCalendar control.

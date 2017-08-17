@@ -155,8 +155,8 @@ namespace AionHR.Web.UI.Forms
         }
         protected void PoPuP(object sender, DirectEventArgs e)
         {
-
-
+            CurrentCalenderLabel.Text= e.ExtraParams["calenderNamePar"];
+            calendarName.Text= e.ExtraParams["calenderNamePar"];
             int id = Convert.ToInt32(e.ExtraParams["id"]);
             string type = e.ExtraParams["type"];
             switch (type)
@@ -281,8 +281,8 @@ namespace AionHR.Web.UI.Forms
 
         protected void PoPuPYear(object sender, DirectEventArgs e)
         {
-
-
+            lbCalenderName.Text = CurrentCalenderLabel.Text;
+            lbCalender.Text =e.ExtraParams["CalenderYear"];
             int id = Convert.ToInt32(e.ExtraParams["id"]);
             string type = e.ExtraParams["type"];
             switch (type)
@@ -1106,6 +1106,7 @@ namespace AionHR.Web.UI.Forms
 
         protected void openCopyCalendar(object sender, DirectEventArgs e)
         {
+           
             copyCalendarForm.Reset();
             ListRequest calendars = new ListRequest();
             ListResponse<WorkingCalendar> cals = _branchService.ChildGetAll<WorkingCalendar>(calendars);
