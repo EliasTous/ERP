@@ -40,6 +40,7 @@
         <ext:Hidden ID="CurrentCalendar" runat="server" />
         <ext:Hidden ID="dayId" runat="server" />
         <ext:Hidden ID="CurrentYear" runat="server" />
+        <ext:Hidden ID="CurrentCalenderLabel" runat="server"/>
 
         <ext:Store
             ID="Store1"
@@ -243,6 +244,7 @@
                             <EventMask ShowMask="true" />
                             <ExtraParams>
                                 <ext:Parameter Name="id" Value="record.getId()" Mode="Raw" />
+                                <ext:Parameter Name="calenderNamePar" Value ="record.data['name']" Mode="Raw"/>
                                 <ext:Parameter Name="type" Value="getCellType( this, rowIndex, cellIndex)" Mode="Raw" />
                             </ExtraParams>
 
@@ -274,6 +276,7 @@
                             <EventMask ShowMask="true" />
                             <ExtraParams>
                                 <ext:Parameter Name="id" Value="record.getId()" Mode="Raw" />
+                                <ext:Parameter Name="CalenderYear" Value="record.data['year']" Mode="Raw"/>
                                 <ext:Parameter Name="type" Value="getCellType( this, rowIndex, cellIndex)" Mode="Raw" />
                             </ExtraParams>
 
@@ -314,6 +317,8 @@
                                         </Click>
                                     </DirectEvents>
                                 </ext:Button>
+                               <ext:ToolbarSeparator runat="server" />
+                                <ext:Label runat="server"  ID="calendarName" Disabled="false" Visible="true" ></ext:Label>
 
                             </Items>
                         </ext:Toolbar>
@@ -394,6 +399,12 @@
                                         </Click>
                                     </DirectEvents>
                                 </ext:Button>
+                                
+                                  <ext:label ID="lbCalenderName" runat="server"/>
+                                <ext:ToolbarSeparator runat="server" />
+                                  <ext:Label ID="lbCalender"  runat="server"/>
+                              
+                              
 
 
                             </Items>
