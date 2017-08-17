@@ -370,7 +370,7 @@ namespace AionHR.Web.UI.Forms
 
 
                 string color = dtypes.Where(x => x.recordId == item.dayTypeId.ToString()).First().color;
-                X.Call("colorify", "td" + Month + Day, "#" + color.Trim());
+                X.Call("colorify", "td" + Month + Day, "#" + color.Trim(), DateTime.ParseExact(item.dayId, "yyyyMMdd", new CultureInfo("en")).ToString(_systemService.SessionHelper.GetDateformat()), GetGlobalResourceObject("Common", ((DayOfWeek)(item.dow%7)).ToString() + "Text").ToString());
 
 
 
@@ -931,6 +931,7 @@ namespace AionHR.Web.UI.Forms
                 return;
             }
             dayConfigWindow.Show();
+            dayConfigForm.Title =  GetGlobalResourceObject("Common", ((DayOfWeek)(dayObj.result.dow % 7)).ToString() + "Text").ToString() + "- " + DateTime.ParseExact(dayObj.result.dayId, "yyyyMMdd", new CultureInfo("en")).ToString(_systemService.SessionHelper.GetDateformat());
             schedulesStore.DataSource = LoadSchedules();
             schedulesStore.DataBind();
             dayTypesStore.DataSource = LoadDayTypes();

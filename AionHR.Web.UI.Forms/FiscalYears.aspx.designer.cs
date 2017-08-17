@@ -409,6 +409,15 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.ComboBox periodType;
         
         /// <summary>
+        /// yearText control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Label yearText;
+        
+        /// <summary>
         /// periodFrom control.
         /// </summary>
         /// <remarks>

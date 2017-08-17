@@ -305,7 +305,8 @@
                                       </Select>
                                   </Listeners>
                                         </ext:ComboBox>
-                                
+                                <ext:ToolbarSeparator runat="server" />
+                                <ext:Label runat="server" ID="yearText" />
                             </Items>
                         </ext:Toolbar>
 

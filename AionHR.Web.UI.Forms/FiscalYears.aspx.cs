@@ -165,7 +165,7 @@ namespace AionHR.Web.UI.Forms
 
 
                     CurrentYear.Text = id.ToString();
-                    
+                    yearText.Text = id.ToString();
                     Viewport1.ActiveIndex = 1;
                     periodType.Select(3);
                     fiscalPeriodsStore.Reload();

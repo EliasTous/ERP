@@ -17,7 +17,7 @@
     <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
     <link rel="stylesheet" href="CSS/Calendars.css" />
-    <script type="text/javascript" src="Scripts/Calendars.js?id=1"></script>
+    <script type="text/javascript" src="Scripts/Calendars.js?id=2"></script>
 
     <script type="text/javascript">
 

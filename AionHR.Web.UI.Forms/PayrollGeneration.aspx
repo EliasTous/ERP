@@ -414,6 +414,8 @@
                                     </Listeners>
 
                                 </ext:ComboBox>
+                                <ext:ToolbarSeparator runat="server" />
+                                <ext:Label runat="server" ID="payrollHeader" />
                             </Items>
                         </ext:Toolbar>
                     </TopBar>

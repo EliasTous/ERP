@@ -302,6 +302,11 @@ namespace AionHR.Web.UI.Forms
             FillBranch();
             FillDepartment();
             Store1.Reload();
+            RecordRequest r = new RecordRequest();
+
+            r.RecordID = resp.recordId;
+
+            payrollHeader.Text = _payrollService.ChildGetRecord<GenerationHeader>(r).result.payRef;
             AddEDButton.Disabled = AddENButton.Disabled = SaveEDButton.Disabled = false;
         }
 
@@ -383,7 +388,7 @@ namespace AionHR.Web.UI.Forms
                     Viewport1.ActiveIndex = 2;
                     FillBranch();
                     FillDepartment();
-
+                    payrollHeader.Text = id.ToString();
                     Store1.Reload();
 
                     break;
