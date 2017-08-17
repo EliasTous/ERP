@@ -214,7 +214,7 @@
     <value>Schedule Name</value>
   </data>
   <data name="BasicInfoTabEditWindowTitle" xml:space="preserve">
-    <value>Router Info</value>
+    <value>OverTime lateness Schedual Info</value>
   </data>
   <data name="EditWindowsTitle" xml:space="preserve">
     <value>Edit Router</value>
@@ -248,5 +248,8 @@
   </data>
   <data name="PeriodHours" xml:space="preserve">
     <value>Period Hours</value>
+  </data>
+  <data name="FieldPeriodDays" xml:space="preserve">
+    <value>Period Days</value>
   </data>
 </root>

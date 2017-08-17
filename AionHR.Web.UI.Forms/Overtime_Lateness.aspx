@@ -248,7 +248,7 @@
             ID="EditRecordWindow"
             runat="server"
             Icon="PageEdit"
-            Title="<%$ Resources:EditWindowsTitle %>"
+            Title="<%$ Resources: BasicInfoTabEditWindowTitle %>"
             Width="450"
             Height="550"
             AutoShow="false"
@@ -261,14 +261,14 @@
                         <ext:FormPanel DefaultButton="SaveButton"
                             ID="BasicInfoTab"
                             runat="server"
-                           
+                            Title="<%$ Resources: BasicInfoTabEditWindowTitle %>"
                             Icon="ApplicationSideList"
                             DefaultAnchor="100%"
                             BodyPadding="5"
                             AutoScroll="true">
                             <Items>
                                  <ext:TextField LabelWidth="300" Width="360" ID="recordId" runat="server"   Hidden="true" />
-                                <ext:TextField LabelWidth="300" Width="360" ID="TextField1" runat="server" FieldLabel="<%$ Resources:schedualName%>" Name="name" />
+                                <ext:TextField LabelWidth="150" Width="360" ID="TextField1" runat="server" FieldLabel="<%$ Resources:schedualName%>" Name="name" flex="2"/>
 
                                 <ext:FieldSet runat="server" Title="<%$Resources:Overtime %>">
                                     <Items>
@@ -313,7 +313,7 @@
                                                 <Change Handler="this.next().setDisabled(!this.value);this.next().next().setDisabled(!this.value);" />
                                             </Listeners>
                                         </ext:Checkbox>
-                                        <ext:TextField LabelWidth="300" Width="360" ID="aPeriodDays" runat="server" FieldLabel="<%$ Resources:FieldPeriodHours%>" Name="aPeriodDays" EmptyText="0">
+                                        <ext:TextField LabelWidth="300" Width="360" ID="aPeriodDays" runat="server" FieldLabel="<%$ Resources:FieldPeriodDays%>" Name="aPeriodDays" EmptyText="0">
                                             <Validator Handler="return !isNaN(this.value)&& this.value>=0" />
                                         </ext:TextField>
                                         <ext:TextField LabelWidth="300" Width="360" ID="aMultiplier" runat="server" FieldLabel="<%$ Resources:FieldMultiplier%>" Name="aMultiplier" EmptyText="0">
@@ -329,7 +329,7 @@
                                                 <Change Handler="this.next().setDisabled(!this.value);this.next().next().setDisabled(!this.value);" />
                                             </Listeners>
                                         </ext:Checkbox>
-                                        <ext:TextField LabelWidth="300" Width="360" ID="dPeriodDays" runat="server" FieldLabel="<%$ Resources:FieldPeriodHours%>" Name="dPeriodDays" EmptyText="0">
+                                        <ext:TextField LabelWidth="300" Width="360" ID="dPeriodDays" runat="server" FieldLabel="<%$ Resources:FieldPeriodDays%>" Name="dPeriodDays" EmptyText="0">
                                             <Validator Handler="return !isNaN(this.value)&& this.value>=0" />
                                         </ext:TextField>
                                         <ext:TextField LabelWidth="300" Width="360" ID="dMultiplier" runat="server" FieldLabel="<%$ Resources:FieldMultiplier%>" Name="dMultiplier" EmptyText="0">
@@ -345,7 +345,7 @@
                                                 <Change Handler="this.next().setDisabled(!this.value);this.next().next().setDisabled(!this.value);" />
                                             </Listeners>
                                         </ext:Checkbox>
-                                        <ext:TextField LabelWidth="300" Width="360" ID="mPeriodDays" runat="server" FieldLabel="<%$ Resources:FieldPeriodHours%>" Name="mPeriodDays" EmptyText="0">
+                                        <ext:TextField LabelWidth="300" Width="360" ID="mPeriodDays" runat="server" FieldLabel="<%$ Resources:FieldPeriodDays%>" Name="mPeriodDays" EmptyText="0">
                                             <Validator Handler="return !isNaN(this.value)&& this.value>=0" />
                                         </ext:TextField>
                                         <ext:TextField LabelWidth="300" Width="360" ID="mMultiplier" runat="server" FieldLabel="<%$ Resources:FieldMultiplier%>" Name="mMultiplier" EmptyText="0">

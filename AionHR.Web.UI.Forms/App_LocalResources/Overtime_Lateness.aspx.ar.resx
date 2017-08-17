@@ -208,10 +208,10 @@
     <value>جدول العمل</value>
   </data>
   <data name="BasicInfoTabEditWindowTitle" xml:space="preserve">
-    <value>Router Info</value>
+    <value>الدوام الإضافي والتأخير</value>
   </data>
   <data name="EditWindowsTitle" xml:space="preserve">
-    <value>Edit Router</value>
+    <value>معلومات الدوام الإضافي والـاخير </value>
   </data>
   <data name="ErrorInvalidMacAddress" xml:space="preserve">
     <value>Router MAC address must be 12 characters</value>
@@ -223,7 +223,7 @@
     <value>Is Inactive</value>
   </data>
   <data name="FieldName" xml:space="preserve">
-    <value>Name</value>
+    <value>الأسم</value>
   </data>
   <data name="FieldRecordId" xml:space="preserve">
     <value>Record ID</value>
@@ -232,9 +232,21 @@
     <value>Reference</value>
   </data>
   <data name="WindowTitle1" xml:space="preserve">
-    <value>Routers</value>
+    <value>الدوام الإضافي والتأخير</value>
   </data>
   <data name="PeriodDays" xml:space="preserve">
     <value>أيام الدوام</value>
+  </data>
+  <data name="String1" xml:space="preserve">
+    <value />
+  </data>
+  <data name="FieldMultiplier" xml:space="preserve">
+    <value>مضاعف</value>
+  </data>
+  <data name="FieldPeriodDays" xml:space="preserve">
+    <value>الأيام</value>
+  </data>
+  <data name="FieldPeriodHours" xml:space="preserve">
+    <value>الفترة </value>
   </data>
 </root>
