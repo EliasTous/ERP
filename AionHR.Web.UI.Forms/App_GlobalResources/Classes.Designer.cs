@@ -952,6 +952,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Overtime/Lateness Schedule.
+        /// </summary>
+        internal static string Class51030 {
+            get {
+                return ResourceManager.GetString("Class51030", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Age Breakdown.
         /// </summary>
         internal static string Class80101 {

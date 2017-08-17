@@ -67,7 +67,7 @@ namespace AionHR.Web.UI.Forms
 
                 try
                 {
-                    AccessControlApplier.ApplyAccessControlOnPage(typeof(Router), BasicInfoTab, GridPanel1, btnAdd, SaveButton);
+                    AccessControlApplier.ApplyAccessControlOnPage(typeof(OvertimeLatenessSchedule), BasicInfoTab, GridPanel1, btnAdd, SaveButton);
                 }
                 catch (AccessDeniedException exp)
                 {
@@ -309,7 +309,6 @@ namespace AionHR.Web.UI.Forms
             //Reset all values of the relative object
             BasicInfoTab.Reset();
            // routerRef.ReadOnly = false;
-            FillBranch();
             this.EditRecordWindow.Title = Resources.Common.AddNewRecord;
 
 
@@ -469,42 +468,6 @@ namespace AionHR.Web.UI.Forms
             else return "1";
         }
 
-        protected void BasicInfoTab_Load(object sender, EventArgs e)
-        {
 
-        }
-
-        private void FillBranch()
-        {
-            ListRequest branchesRequest = new ListRequest();
-            ListResponse<Branch> resp = _companyStructureService.ChildGetAll<Branch>(branchesRequest);
-          //  BranchStore.DataSource = resp.Items;
-           // BranchStore.DataBind();
-        }
-
-        protected void addBranch(object sender, DirectEventArgs e)
-        {
-          
-            Branch dept = new Branch();
-          //  dept.name = branchId.Text;
-            dept.isInactive = false;
-            dept.timeZone = _systemService.SessionHelper.GetDefaultTimeZone();
-            PostRequest<Branch> depReq = new PostRequest<Branch>();
-            depReq.entity = dept;
-            PostResponse<Branch> response = _companyStructureService.ChildAddOrUpdate<Branch>(depReq);
-            if (response.Success)
-            {
-                dept.recordId = response.recordId;
-                FillBranch();
-            //    branchId.Select(dept.recordId);
-            }
-            else
-            {
-                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).ToString() : response.Summary).Show();
-                return;
-            }
-
-        }
     }
 }

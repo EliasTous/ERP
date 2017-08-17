@@ -211,7 +211,7 @@
     <value>missing punch</value>
   </data>
   <data name="schedualName" xml:space="preserve">
-    <value>Schedual Name</value>
+    <value>Schedule Name</value>
   </data>
   <data name="BasicInfoTabEditWindowTitle" xml:space="preserve">
     <value>Router Info</value>

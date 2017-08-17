@@ -261,9 +261,9 @@
                         <ext:FormPanel DefaultButton="SaveButton"
                             ID="BasicInfoTab"
                             runat="server"
-                            Title="<%$ Resources: BasicInfoTabEditWindowTitle %>"
+                           
                             Icon="ApplicationSideList"
-                            DefaultAnchor="100%" OnLoad="BasicInfoTab_Load"
+                            DefaultAnchor="100%"
                             BodyPadding="5"
                             AutoScroll="true">
                             <Items>
@@ -282,7 +282,7 @@
                                             <Validator Handler="return !isNaN(this.value)&& this.value>=0" />
                                         </ext:TextField>
                                         <ext:TextField LabelWidth="300" Width="360" ID="oMultiplier" runat="server" FieldLabel="<%$ Resources:FieldMultiplier%>" Name="oMultiplier" EmptyText="0">
-                                            <Validator Handler="return !isNaN(this.value)&& this.value>=0" />
+                                            <Validator Handler="return !isNaN(this.value)&& this.value>=0&&this.value<10" />
                                         </ext:TextField>
                                     </Items>
                                 </ext:FieldSet>
@@ -298,7 +298,7 @@
                                             <Validator Handler="return !isNaN(this.value)&& this.value>=0" />
                                         </ext:TextField>
                                         <ext:TextField LabelWidth="300" Width="360" ID="lMultiplier" runat="server" FieldLabel="<%$ Resources:FieldMultiplier%>" Name="lMultiplier" EmptyText="0">
-                                            <Validator Handler="return !isNaN(this.value)&& this.value>=0" />
+                                            <Validator Handler="return !isNaN(this.value)&& this.value>=0 &&this.value<10" />
                                         </ext:TextField>
                                         <ext:TextField LabelWidth="300" Width="360" ID="lAllowance" runat="server" FieldLabel="<%$ Resources:AllowedLateness%>" Name="lAllowance" EmptyText="0">
                                             <Validator Handler="return !isNaN(this.value)&& this.value>=0" />
@@ -317,7 +317,7 @@
                                             <Validator Handler="return !isNaN(this.value)&& this.value>=0" />
                                         </ext:TextField>
                                         <ext:TextField LabelWidth="300" Width="360" ID="aMultiplier" runat="server" FieldLabel="<%$ Resources:FieldMultiplier%>" Name="aMultiplier" EmptyText="0">
-                                            <Validator Handler="return !isNaN(this.value)&& this.value>=0" />
+                                            <Validator Handler="return !isNaN(this.value)&& this.value>=0 &&this.value<10" />
                                         </ext:TextField>
                                     </Items>
                                 </ext:FieldSet>
@@ -333,7 +333,7 @@
                                             <Validator Handler="return !isNaN(this.value)&& this.value>=0" />
                                         </ext:TextField>
                                         <ext:TextField LabelWidth="300" Width="360" ID="dMultiplier" runat="server" FieldLabel="<%$ Resources:FieldMultiplier%>" Name="dMultiplier" EmptyText="0">
-                                            <Validator Handler="return !isNaN(this.value)&& this.value>=0" />
+                                            <Validator Handler="return !isNaN(this.value)&& this.value>=0 &&this.value<10" />
                                         </ext:TextField>
                                     </Items>
                                 </ext:FieldSet>
@@ -349,7 +349,7 @@
                                             <Validator Handler="return !isNaN(this.value)&& this.value>=0" />
                                         </ext:TextField>
                                         <ext:TextField LabelWidth="300" Width="360" ID="mMultiplier" runat="server" FieldLabel="<%$ Resources:FieldMultiplier%>" Name="mMultiplier" EmptyText="0">
-                                            <Validator Handler="return !isNaN(this.value)&& this.value>=0" />
+                                            <Validator Handler="return !isNaN(this.value)&& this.value>=0 &&this.value<10" />
                                         </ext:TextField>
                                     </Items>
                                 </ext:FieldSet>

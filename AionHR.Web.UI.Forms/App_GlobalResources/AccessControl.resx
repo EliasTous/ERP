@@ -1257,4 +1257,22 @@
   <data name="Property4108004" xml:space="preserve">
     <value>Minimum Overtime</value>
   </data>
+  <data name="Property5103001" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="Property5103002" xml:space="preserve">
+    <value>Absense</value>
+  </data>
+  <data name="Property5103003" xml:space="preserve">
+    <value>Missing Punch</value>
+  </data>
+  <data name="Property5103004" xml:space="preserve">
+    <value>Overtime</value>
+  </data>
+  <data name="Property5103005" xml:space="preserve">
+    <value>Lateness</value>
+  </data>
+  <data name="Property5103006" xml:space="preserve">
+    <value>Disappear</value>
+  </data>
 </root>

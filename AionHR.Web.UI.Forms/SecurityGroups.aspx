@@ -577,13 +577,13 @@
 
                                             <ext:Column Visible="false" ID="Column3" MenuDisabled="true" runat="server" DataIndex="classId" Hideable="false" Width="75" />
                                             <ext:Column ID="Column5" MenuDisabled="true" runat="server" Text="<%$ Resources:Class%>" DataIndex="name" Hideable="false" Flex="1" />
-                                            <ext:Column ID="Column6" MenuDisabled="true" runat="server" Text="<%$ Resources:AccessLevel%>" DataIndex="accessLevel" Hideable="false" Width="150">
+                                            <ext:Column ID="Column6" MenuDisabled="true" runat="server" Text="<%$ Resources:AccessLevel%>" DataIndex="accessLevel" Hideable="false" Width="100">
                                                 <Renderer Handler="return getAccessLevelText(record.data['accessLevel']);" />
                                             </ext:Column>
                                             <ext:Column runat="server"
                                                 ID="Column7" Visible="true"
                                                 Text=""
-                                                Width="100"
+                                                Width="90"
                                                 Hideable="false"
                                                 Align="Center"
                                                 Fixed="true"

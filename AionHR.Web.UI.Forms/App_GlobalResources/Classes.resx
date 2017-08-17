@@ -414,6 +414,9 @@
   <data name="Class51022" xml:space="preserve">
     <value>Payroll Entitlements and Deductions</value>
   </data>
+  <data name="Class51030" xml:space="preserve">
+    <value>Overtime/Lateness Schedule</value>
+  </data>
   <data name="Class80101" xml:space="preserve">
     <value>Age Breakdown</value>
   </data>

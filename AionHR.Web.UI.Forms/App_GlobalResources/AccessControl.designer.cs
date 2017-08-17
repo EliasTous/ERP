@@ -3411,6 +3411,60 @@ namespace Resources {
         /// <summary>
         ///   Looks up a localized string similar to Name.
         /// </summary>
+        internal static string Property5103001 {
+            get {
+                return ResourceManager.GetString("Property5103001", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Absense.
+        /// </summary>
+        internal static string Property5103002 {
+            get {
+                return ResourceManager.GetString("Property5103002", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Missing Punch.
+        /// </summary>
+        internal static string Property5103003 {
+            get {
+                return ResourceManager.GetString("Property5103003", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Overtime.
+        /// </summary>
+        internal static string Property5103004 {
+            get {
+                return ResourceManager.GetString("Property5103004", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Lateness.
+        /// </summary>
+        internal static string Property5103005 {
+            get {
+                return ResourceManager.GetString("Property5103005", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Disappear.
+        /// </summary>
+        internal static string Property5103006 {
+            get {
+                return ResourceManager.GetString("Property5103006", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name.
+        /// </summary>
         internal static string Property9010101 {
             get {
                 return ResourceManager.GetString("Property9010101", resourceCulture);

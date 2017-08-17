@@ -144,10 +144,7 @@ namespace AionHR.Web.UI.Forms
                     default: break;
                 }
             }
-            UserPropertiesPermissions req = new UserPropertiesPermissions();
-            req.ClassId = type.GetCustomAttribute<ClassIdentifier>().ClassID;
-            req.UserId = _systemService.SessionHelper.GetCurrentUserId();
-            ListResponse<UC> resp = _accessControlService.ChildGetAll<UC>(req);
+           
             List<UC> properites = new List<UC>();
 
 
@@ -160,6 +157,10 @@ namespace AionHR.Web.UI.Forms
                 }
             });
 
+            UserPropertiesPermissions req = new UserPropertiesPermissions();
+            req.ClassId = type.GetCustomAttribute<ClassIdentifier>().ClassID;
+            req.UserId = _systemService.SessionHelper.GetCurrentUserId();
+            ListResponse<UC> resp = _accessControlService.ChildGetAll<UC>(req);
             resp.Items.ForEach(x =>
             {
                 properites.ForEach(y =>
@@ -169,7 +170,6 @@ namespace AionHR.Web.UI.Forms
                     
                 });
             });
-            // type.GetProperties().ToList<PropertyInfo>().ForEach(x => { if (x.GetCustomAttribute<PropertyID>() != null) { resp.Items.Where(d => d.propertyId == x.GetCustomAttribute<PropertyID>().ID).ToList().ForEach(y=>y.index = x.Name); } });
             int level = 2;
             if (form != null)
             {

@@ -1251,4 +1251,22 @@
   <data name="Property4108004" xml:space="preserve">
     <value>الحد الأدنى للعمل الإضافي</value>
   </data>
+  <data name="Property5103001" xml:space="preserve">
+    <value>الاسم</value>
+  </data>
+  <data name="Property5103002" xml:space="preserve">
+    <value>الغياب</value>
+  </data>
+  <data name="Property5103003" xml:space="preserve">
+    <value>حضور غير مكتمل</value>
+  </data>
+  <data name="Property5103004" xml:space="preserve">
+    <value>عمل إضافي</value>
+  </data>
+  <data name="Property5103005" xml:space="preserve">
+    <value>تأخير</value>
+  </data>
+  <data name="Property5103006" xml:space="preserve">
+    <value>غياب دون عذر</value>
+  </data>
 </root>
