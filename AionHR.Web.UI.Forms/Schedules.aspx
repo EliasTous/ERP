@@ -266,6 +266,7 @@
                             <EventMask ShowMask="true" />
                             <ExtraParams>
                                 <ext:Parameter Name="id" Value="record.getId()" Mode="Raw" />
+                                  <ext:Parameter Name="ScheduleNamePar" Value="record.data['name']" Mode="Raw" />
                                 <ext:Parameter Name="type" Value="getCellType( this, rowIndex, cellIndex)" Mode="Raw" />
                             </ExtraParams>
 
@@ -335,6 +336,8 @@
                                         </Click>
                                     </DirectEvents>
                                 </ext:Button>
+                                <ext:ToolbarSeparator runat="server"/>
+                                <ext:Label ID="ScheduleNamelb" runat ="server" />
 
                             </Items>
                         </ext:Toolbar>
