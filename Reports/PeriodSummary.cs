@@ -378,6 +378,7 @@ public class PeriodSummary : DevExpress.XtraReports.UI.XtraReport
             this.xrLabel12.Name = "xrLabel12";
             this.xrLabel12.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel12.StylePriority.UseBorders = false;
+            this.xrLabel12.BeforePrint += new System.Drawing.Printing.PrintEventHandler(this.xrLabel11_BeforePrint);
             // 
             // xrLabel11
             // 
@@ -390,6 +391,7 @@ public class PeriodSummary : DevExpress.XtraReports.UI.XtraReport
             this.xrLabel11.Name = "xrLabel11";
             this.xrLabel11.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel11.StylePriority.UseBorders = false;
+            this.xrLabel11.BeforePrint += new System.Drawing.Printing.PrintEventHandler(this.xrLabel11_BeforePrint);
             // 
             // xrLabel1
             // 
@@ -899,7 +901,7 @@ public class PeriodSummary : DevExpress.XtraReports.UI.XtraReport
     private void xrLabel45_BeforePrint(object sender, System.Drawing.Printing.PrintEventArgs e)
     {
         string formatted = FormatTime(Convert.ToInt32((sender as XRLabel).Text));
-        (sender as XRLabel).Text = formatted == "00:00" ? "" : formatted;
+        (sender as XRLabel).Text = formatted;
     }
 
     private string FormatTime(int v)
@@ -911,6 +913,12 @@ public class PeriodSummary : DevExpress.XtraReports.UI.XtraReport
     private void xrLabel34_BeforePrint(object sender, System.Drawing.Printing.PrintEventArgs e)
     {
         string formatted = FormatTime(Convert.ToInt32((sender as XRLabel).Text));
-        (sender as XRLabel).Text = formatted == "00:00" ? "" : formatted;
+        (sender as XRLabel).Text = formatted ;
+    }
+
+    private void xrLabel11_BeforePrint(object sender, System.Drawing.Printing.PrintEventArgs e)
+    {
+        int mins = Convert.ToInt32((sender as XRLabel).Text);
+        (sender as XRLabel).Text = (mins / 60).ToString().PadLeft(2, '0') + ":" + (mins % 60).ToString().PadLeft(2, '0');
     }
 }

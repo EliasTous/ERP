@@ -55,6 +55,8 @@
     <Compile Include="Implementations\EmployeeImportingService.cs" />
     <Compile Include="Implementations\EmployeeNotesBatchRunner.cs" />
     <Compile Include="Implementations\EmployeeNotesImportingService.cs" />
+    <Compile Include="Implementations\EmployeeRTWBatchRunner.cs" />
+    <Compile Include="Implementations\EmployeeRTWImportingService.cs" />
     <Compile Include="Implementations\ImportBatchRunner.cs" />
     <Compile Include="Implementations\CaseService.cs" />
     <Compile Include="Implementations\CommonErrors.cs" />

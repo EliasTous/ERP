@@ -329,8 +329,12 @@
                                             <Validator Fn="ValidateIPaddress" />
                                           
                                         </ext:TextField>
+                                           
                                             <ext:Label runat="server" MarginSpec="5 0 10 10" Text="  /AionWSLocal" />
-                                            </Items></ext:Panel>
+                                            </Items></ext:Panel> 
+                                          <ext:TextField runat="server" Name="lastGeneratedTADayId" ReadOnly="true" ID="lastGeneratedTADayId"  LabelWidth="150" FieldLabel="<%$Resources:lastGeneratedTADayId %>">
+                                          
+                                        </ext:TextField>
                                         <ext:Checkbox FieldLabel="<%$ Resources: FieldEnableCamera %>" LabelWidth="150" runat="server" InputValue="True" Name="enableCamera" ID="enableCameraCheck" />
                                         <ext:Checkbox FieldLabel="<%$ Resources: FieldEnableHijri %>" LabelWidth="150" runat="server" InputValue="True" Name="enableHijri" ID="enableHijri" />
                                         <ext:Checkbox FieldLabel="<%$ Resources: apply_ALDA_CSBR %>" LabelWidth="150" runat="server" InputValue="True" Name="apply_ALDA_CSBR" ID="apply_ALDA_CSBR" />

@@ -117,91 +117,22 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="xrLabel10.Text" xml:space="preserve">
-    <value>غير مدفوع</value>
+  <data name="Download" xml:space="preserve">
+    <value>Download</value>
   </data>
-  <data name="xrLabel13.Text" xml:space="preserve">
-    <value>العدد</value>
+  <data name="Import" xml:space="preserve">
+    <value>Import</value>
   </data>
-  <data name="xrLabel14.Text" xml:space="preserve">
-    <value>ساعات</value>
+  <data name="Pick" xml:space="preserve">
+    <value>Pick a file to import</value>
   </data>
-  <data name="xrLabel15.Text" xml:space="preserve">
-    <value>ساعات</value>
+  <data name="preprocessing" xml:space="preserve">
+    <value>Preprocessing</value>
   </data>
-  <data name="xrLabel16.Text" xml:space="preserve">
-    <value>العدد</value>
+  <data name="ResultReady" xml:space="preserve">
+    <value>Your Result is ready, click to download</value>
   </data>
-  <data name="xrLabel17.Text" xml:space="preserve">
-    <value>العمل الإضافي</value>
-  </data>
-  <data name="xrLabel2.Text" xml:space="preserve">
-    <value>الفرع</value>
-  </data>
-  <data name="xrLabel20.Text" xml:space="preserve">
-    <value>الاسم</value>
-  </data>
-  <data name="xrLabel21.Text" xml:space="preserve">
-    <value>ملخص الفترة</value>
-  </data>
-  <data name="xrLabel22.Text" xml:space="preserve">
-    <value>ساعات العمل المفترضة</value>
-  </data>
-  <data name="xrLabel23.Text" xml:space="preserve">
-    <value>القسم</value>
-  </data>
-  <data name="xrLabel29.Text" xml:space="preserve">
-    <value>القسم</value>
-  </data>
-  <data name="xrLabel3.Text" xml:space="preserve">
-    <value>أيام التقويم</value>
-  </data>
-  <data name="xrLabel30.Text" xml:space="preserve">
-    <value>الموظف</value>
-  </data>
-  <data name="xrLabel31.Text" xml:space="preserve">
-    <value>الفرع</value>
-  </data>
-  <data name="xrLabel34.Text" xml:space="preserve">
-    <value>دخول متأخر</value>
-  </data>
-  <data name="xrLabel35.Text" xml:space="preserve">
-    <value>خروج خلال الدوام</value>
-  </data>
-  <data name="xrLabel36.Text" xml:space="preserve">
-    <value>خروج مبكر</value>
-  </data>
-  <data name="xrLabel37.Text" xml:space="preserve">
-    <value>التأخير</value>
-  </data>
-  <data name="xrLabel38.Text" xml:space="preserve">
-    <value>أيام الغياب</value>
-  </data>
-  <data name="xrLabel39.Text" xml:space="preserve">
-    <value>أيام غير مكتملة</value>
-  </data>
-  <data name="xrLabel4.Text" xml:space="preserve">
-    <value>مستقطع غياب بإذن</value>
-  </data>
-  <data name="xrLabel48.Text" xml:space="preserve">
-    <value>الرقم</value>
-  </data>
-  <data name="xrLabel5.Text" xml:space="preserve">
-    <value>ساعات خارج الدوام</value>
-  </data>
-  <data name="xrLabel6.Text" xml:space="preserve">
-    <value>أيام العمل الفعلية</value>
-  </data>
-  <data name="xrLabel7.Text" xml:space="preserve">
-    <value>ساعات العمل الفعلية</value>
-  </data>
-  <data name="xrLabel8.Text" xml:space="preserve">
-    <value>غياب بدون اذن</value>
-  </data>
-  <data name="xrLabel9.Text" xml:space="preserve">
-    <value>مدفوع</value>
-  </data>
-  <data name="xrPageInfo2.Format" xml:space="preserve">
-    <value>صفحة {0} من {1}</value>
+  <data name="working" xml:space="preserve">
+    <value>Working</value>
   </data>
 </root>

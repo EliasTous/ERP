@@ -130,7 +130,7 @@
     <value>Paid Leave</value>
   </data>
   <data name="status3" xml:space="preserve">
-    <value>Incomplete(missed checkout)</value>
+    <value>Incomplete</value>
   </data>
   <data name="Unpaid" xml:space="preserve">
     <value>Unapproved</value>

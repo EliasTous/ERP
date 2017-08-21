@@ -103,38 +103,13 @@
                                         </Click>
                                     </DirectEvents>
                                 </ext:Button>
-                                <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" ValueField="recordId" DisplayField="name" ID="branchId" Name="branchId" EmptyText="<%$ Resources:FieldBranch%>" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1">
-                                    <Store>
-                                        <ext:Store runat="server" ID="branchStore">
-                                            <Model>
-                                                <ext:Model runat="server">
-                                                    <Fields>
-                                                        <ext:ModelField Name="recordId" />
-                                                        <ext:ModelField Name="name" />
-                                                    </Fields>
-                                                </ext:Model>
-                                            </Model>
-                                        </ext:Store>
-                                    </Store>
-                                   
+                                <ext:Container runat="server" Layout="FitLayout">
+                                    <Content>
+                                        <uc:jobInfo runat="server" ID="jobInfo1" EnablePosition="false" EnableDivision="false"/>
 
-                                </ext:ComboBox>
+                                    </Content>
 
-                                <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" ValueField="recordId" DisplayField="name" ID="departmentId" Name="departmentId" EmptyText="<%$ Resources:FieldDepartment%>" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1">
-                                    <Store>
-                                        <ext:Store runat="server" ID="departmentStore">
-                                            <Model>
-                                                <ext:Model runat="server">
-                                                    <Fields>
-                                                        <ext:ModelField Name="recordId" />
-                                                        <ext:ModelField Name="name" />
-                                                    </Fields>
-                                                </ext:Model>
-                                            </Model>
-                                        </ext:Store>
-                                    </Store>
-                                  
-                                </ext:ComboBox>
+                                </ext:Container>
                                 <%--   <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" ValueField="recordId" DisplayField="name" ID="monthCombo" Name="month" EmptyText="<%$ Resources:FieldMonth%>" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1">
                                        <Items>
                                            <ext:ListItem Text="<%$ Resources:Common,January%>" Value="1" />

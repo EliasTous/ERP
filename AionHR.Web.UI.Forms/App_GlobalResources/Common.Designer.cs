@@ -1141,6 +1141,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Import Right To Work.
+        /// </summary>
+        internal static string ImportRTW {
+            get {
+                return ResourceManager.GetString("ImportRTW", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Inactive.
         /// </summary>
         internal static string Inactive {

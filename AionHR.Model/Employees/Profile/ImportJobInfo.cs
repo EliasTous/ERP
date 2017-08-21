@@ -11,4 +11,9 @@ namespace AionHR.Model.Employees.Profile
     public class ImportJobInfo
     {
     }
+
+    [ClassIdentifier("31096", "31")]
+    public class ImportRTW
+    {
+    }
 }

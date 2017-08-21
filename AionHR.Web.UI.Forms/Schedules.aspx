@@ -17,18 +17,7 @@
 
     <script type="text/javascript">
         function setReadOnly(attr, state) {
-
-
-
-
-
-
-
-
-
-
-
-            Ext.getCmp(attr).setDisabled(!state);
+        Ext.getCmp(attr).setDisabled(!state);
 
         }
     </script>
@@ -259,7 +248,7 @@
 
                     </BottomBar>
                     <Listeners>
-                        <Render Handler="this.on('cellclick', cellClick);" />
+                        <Render Handler="this.on('cellclick',cellclick" />
                     </Listeners>
                     <DirectEvents>
                         <CellClick OnEvent="PoPuP">

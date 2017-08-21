@@ -9,7 +9,7 @@
     <title></title>
 
     <link rel="stylesheet" type="text/css" href="CSS/Common.css" />
-    <link rel="stylesheet" type="text/css" href="CSS/Dashboard.css?id=28" />
+    <link rel="stylesheet" type="text/css" href="CSS/Dashboard.css?id=29" />
     <link rel="stylesheet" href="CSS/LiveSearch.css" />
     <script type="text/javascript" src="Scripts/Dashboard.js"></script>
     <!--  <script type="text/javascript" src="Scripts/app.js"></script>-->
@@ -336,9 +336,9 @@
             }
         }
         var segmentRenderer = function (sprite, config, rendererData, index) {
+
             
-            var value = (rendererData.store.getAt(index).get('Data1') >> 0) % 9,
-                color = ["#6AA5DC", "#EE929D", "#FDBF00"][index];
+             var   color = ["#6AA5DC", "#EE929D", "#FDBF00"][index];
 
             return {
                 fillStyle: color
@@ -397,7 +397,7 @@
         <ext:Store
             ID="activeStore"
             runat="server" OnReadData="activeStore_refresh"
-            RemoteSort="false" PageSize="30"
+            RemoteSort="false" PageSize="200"
             RemoteFilter="false">
 
             <Model>
@@ -639,7 +639,9 @@
 
                                                                                     <%--                <Label Field="Name" Display="Rotate" FontSize="18" FontFamily="Arial" />
                                                             <Label Field="Name" Display="Over" FontSize="18" FontFamily="Arial" />--%>
-                                                                                    <Label Field="emps" Display="Inside" FontSize="12" FontFamily="Arial" />
+                                                                                    <Label Field="emps" Display="Inside" FontSize="12" FontFamily="Arial" >
+                                                                                        <Renderer Handler=" " />
+                                                                                        </Label>
                                                                                     <Tooltip runat="server" TrackMouse="true" Width="140" Height="28">
 
                                                                                         <Renderer Fn="tipRenderer" />

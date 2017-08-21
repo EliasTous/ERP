@@ -205,7 +205,7 @@
     <value>Multiplier</value>
   </data>
   <data name="FieldPeriodHours" xml:space="preserve">
-    <value>Period Hours</value>
+    <value>Allowed(Hours)</value>
   </data>
   <data name="missingPunch" xml:space="preserve">
     <value>missing punch</value>
@@ -244,12 +244,12 @@
     <value>Multiplier</value>
   </data>
   <data name="PeriodDays" xml:space="preserve">
-    <value>Period Days</value>
+    <value>Allowed(Days)</value>
   </data>
   <data name="PeriodHours" xml:space="preserve">
-    <value>Period Hours</value>
+    <value>Allowed(Hours)</value>
   </data>
   <data name="FieldPeriodDays" xml:space="preserve">
-    <value>Period Days</value>
+    <value>Allowed(Days)</value>
   </data>
 </root>

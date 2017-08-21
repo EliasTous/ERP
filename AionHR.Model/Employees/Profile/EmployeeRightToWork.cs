@@ -35,6 +35,8 @@ namespace AionHR.Model.Employees.Profile
         public string fileUrl { get; set; }
         public int employeeId { get; set; }
         public EmployeeName employeeName { get; set; }
+
+        public string employeeRef { get; set; }
         [PropertyID("31100_01")]
         [ApplySecurity]
         public string dtName { get; set; }

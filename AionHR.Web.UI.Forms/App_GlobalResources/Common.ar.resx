@@ -969,4 +969,7 @@
   <data name="Overtime_Lateness" xml:space="preserve">
     <value>اعدادات الوقت الإضافي والتأخير</value>
   </data>
+  <data name="ImportRTW" xml:space="preserve">
+    <value>استيراد المستندات القانونية</value>
+  </data>
 </root>

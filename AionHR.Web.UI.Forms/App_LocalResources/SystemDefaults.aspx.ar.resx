@@ -243,4 +243,7 @@
   <data name="YearMonthDay" xml:space="preserve">
     <value>سنة - شهر - يوم</value>
   </data>
+  <data name="lastGeneratedTADayId" xml:space="preserve">
+    <value>آخر يوم حضور مولّد</value>
+  </data>
 </root>

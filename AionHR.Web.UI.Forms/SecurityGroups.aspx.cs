@@ -84,7 +84,8 @@ namespace AionHR.Web.UI.Forms
                 userSelector.Buttons[0] = ItemSelectorButton.Add;
                 userSelector.Buttons[1] = ItemSelectorButton.Remove;
 
-
+                if ((bool)_systemService.SessionHelper.Get("IsAdmin"))
+                    return;
                 try
                 {
                     AccessControlApplier.ApplyAccessControlOnPage(typeof(SecurityGroup), GroupForm, groupsGrid, groupAddButton, SaveGroupButton);
@@ -137,29 +138,38 @@ namespace AionHR.Web.UI.Forms
                     c.Renderer.Handler = c.Renderer.Handler.Replace("propertiesRender()", "' '");
                     return;
                 }
-                var properties = AccessControlApplier.GetPropertiesLevels(typeof(ClassProperty));
-
-                var result = propertiesGrid.ColumnModel.Columns[propertiesGrid.ColumnModel.Columns.Count - 1];
-                var item = properties.Where(x => x.index == "accessLevel").ToList()[0];
-                switch (item.accessLevel)
+                try
                 {
-                    case 0:
+                    var properties = AccessControlApplier.GetPropertiesLevels(typeof(ClassProperty));
 
-                        ((result as WidgetColumn).Widget[0] as Field).InputType = InputType.Password;
-                        (result as WidgetColumn).Widget[0].Disabled = true;
+                    var result = propertiesGrid.ColumnModel.Columns[propertiesGrid.ColumnModel.Columns.Count - 1];
+                    var item = properties.Where(x => x.index == "accessLevel").ToList()[0];
+                    switch (item.accessLevel)
+                    {
+                        case 0:
 
-                        break;
-                    case 1:
+                            ((result as WidgetColumn).Widget[0] as Field).InputType = InputType.Password;
+                            (result as WidgetColumn).Widget[0].Disabled = true;
+
+                            break;
+                        case 1:
 
 
 
-                        (result as WidgetColumn).Widget[0].Disabled = true;
+                            (result as WidgetColumn).Widget[0].Disabled = true;
 
-                        break;
-                    default: break;
+                            break;
+                        default: break;
 
+                    }
                 }
-
+                catch (AccessDeniedException exp)
+                {
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorAccessDenied).Show();
+                    Viewport1.Hidden = true;
+                    return;
+                }
 
 
 

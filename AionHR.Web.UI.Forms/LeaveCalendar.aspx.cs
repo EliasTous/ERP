@@ -129,8 +129,7 @@ namespace AionHR.Web.UI.Forms
                 SetExtLanguage();
                 HideShowButtons();
                 HideShowColumns();
-                FillBranch();
-                FillDepartment();
+          
 
                 try
                 {
@@ -215,29 +214,9 @@ namespace AionHR.Web.UI.Forms
         {
             LeaveRequestListRequest req = new LeaveRequestListRequest();
 
-            if (!string.IsNullOrEmpty(branchId.Text) && branchId.Value.ToString() != "0")
-            {
-                req.BranchId = Convert.ToInt32(branchId.Value);
-
-
-
-            }
-            else
-            {
-                req.BranchId = 0;
-
-            }
-
-            if (!string.IsNullOrEmpty(departmentId.Text) && departmentId.Value.ToString() != "0")
-            {
-                req.DepartmentId = Convert.ToInt32(departmentId.Value);
-
-
-            }
-            else
-            {
-                req.DepartmentId = 0;
-            }
+            var d = jobInfo1.GetJobInfo();
+            req.BranchId = d.BranchId.HasValue ? d.BranchId.Value : 0;
+            req.DepartmentId = d.DepartmentId.HasValue ? d.DepartmentId.Value : 0;
 
 
 
@@ -311,24 +290,7 @@ namespace AionHR.Web.UI.Forms
         }
 
 
-        private void FillDepartment()
-        {
-            ListRequest departmentsRequest = new ListRequest();
-            ListResponse<Department> resp = _companyStructureService.ChildGetAll<Department>(departmentsRequest);
-            if (!resp.Success)
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() : resp.Summary).Show();
-            departmentStore.DataSource = resp.Items;
-            departmentStore.DataBind();
-        }
-        private void FillBranch()
-        {
-            ListRequest branchesRequest = new ListRequest();
-            ListResponse<Branch> resp = _companyStructureService.ChildGetAll<Branch>(branchesRequest);
-            if (!resp.Success)
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() : resp.Summary).Show();
-            branchStore.DataSource = resp.Items;
-            branchStore.DataBind();
-        }
+       
 
         private void RefreshCalendar()
         {

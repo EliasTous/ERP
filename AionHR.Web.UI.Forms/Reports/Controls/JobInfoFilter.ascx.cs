@@ -26,8 +26,8 @@ namespace AionHR.Web.UI.Forms.Reports
             {
                 X.Call("setStatus", EnableDepartment, EnableBranch, EnablePosition, EnableDivision);
                 X.Call("setWidth", FieldWidth);
-
                 FillJobInfo();
+             
             }
 
         }
@@ -162,7 +162,7 @@ namespace AionHR.Web.UI.Forms.Reports
                 X.Call("setBranchAllowBlank", true);
             }
         }
-
+        
         private void FillDivision()
         {
             if (!EnableDivision)

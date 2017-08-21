@@ -237,4 +237,7 @@
   <data name="YearMonthDay" xml:space="preserve">
     <value>Year - Month - Day</value>
   </data>
+  <data name="lastGeneratedTADayId" xml:space="preserve">
+    <value>Last Generated Attendance Day</value>
+  </data>
 </root>

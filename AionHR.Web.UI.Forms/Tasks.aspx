@@ -246,62 +246,13 @@
                             
 
 
-                                 <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" ValueField="recordId" DisplayField="name" ID="branchId" Name="branchId" EmptyText="<%$ Resources:FilterBranch%>" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" >
-                                    <Store>
-                                        <ext:Store runat="server" ID="branchStore">
-                                            <Model>
-                                                <ext:Model runat="server">
-                                                    <Fields>
-                                                        <ext:ModelField Name="recordId" />
-                                                        <ext:ModelField Name="name" />
-                                                    </Fields>
-                                                </ext:Model>
-                                            </Model>
-                                        </ext:Store>
-                                    </Store>
-                                    <Listeners>
-                                        <Select Handler="#{Store1}.reload()" />
-                                    </Listeners>
-                               
-                                </ext:ComboBox>
-                                 
-                                <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" ValueField="recordId" DisplayField="name" ID="departmentId" Name="departmentId" EmptyText="<%$ Resources:FilterDepartment%>" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" >
-                                    <Store>
-                                        <ext:Store runat="server" ID="departmentStore">
-                                            <Model>
-                                                <ext:Model runat="server">
-                                                    <Fields>
-                                                        <ext:ModelField Name="recordId" />
-                                                        <ext:ModelField Name="name" />
-                                                    </Fields>
-                                                </ext:Model>
-                                            </Model>
-                                        </ext:Store>
-                                    </Store>
-                                    <Listeners>
-                                        <Select Handler="#{Store1}.reload()" />
-                                    </Listeners>
-                                
+                                 <ext:Container runat="server" Layout="FitLayout">
+                                    <Content>
+                                        <uc:jobInfo runat="server" ID="jobInfo1" EnablePosition="false"/>
 
-                                </ext:ComboBox>
-                                 <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" ValueField="recordId" DisplayField="name" ID="divisionId" Name="divisionId" EmptyText="<%$ Resources:FilterDivision%>" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" >
-                                    <Store>
-                                        <ext:Store runat="server" ID="divisionStore">
-                                            <Model>
-                                                <ext:Model runat="server">
-                                                    <Fields>
-                                                        <ext:ModelField Name="recordId" />
-                                                        <ext:ModelField Name="name" />
-                                                    </Fields>
-                                                </ext:Model>
-                                            </Model>
-                                        </ext:Store>
-                                    </Store>
-                                    <Listeners>
-                                        <Select Handler="#{Store1}.reload()" />
-                                    </Listeners>
-                                    
-                                </ext:ComboBox>
+                                    </Content>
+
+                                </ext:Container>
                                <%-- <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" ID="statusPref" Editable="false" EmptyText="<%$ Resources: FilterStatus %>"  >
                                     <Items>
                                         <ext:ListItem Text="<%$ Resources: All %>" Value="3"  />
@@ -315,7 +266,7 @@
                                 </ext:ComboBox>--%>
                                   <ext:Button runat="server" Text="<%$ Resources: ButtonClear%>" MarginSpec="0 0 0 0"  Width="100">
                                     <Listeners>
-                                        <Click Handler="#{departmentId}.clear();#{branchId}.clear(); #{divisionId}.clear(); #{Store1}.reload();">
+                                        <Click Handler="#{Store1}.reload();">
 
                                         </Click>
                                     </Listeners>

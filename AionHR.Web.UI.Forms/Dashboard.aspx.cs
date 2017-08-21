@@ -233,10 +233,10 @@ namespace AionHR.Web.UI.Forms
             salaryChange.Text = scr.ToString();
             probation.Text = prob.ToString();
             employeeRW.Text = empRW.ToString();
-            totalLoansLbl.Text = total.ToString();
-            deductedLoansLbl.Text = paid.ToString();
+            totalLoansLbl.Text = total.ToString("N0");
+            deductedLoansLbl.Text = paid.ToString("N0");
             //X.Call("alerts", annev, annevTotal, birthdays, birthdaysTotal, empRW, empRWTotal, compRW, compRWTotal, scr, scrTotal, prob, probTotal);
-            List<object> objs = new List<object>();
+            List <object> objs = new List<object>();
             objs.Add(new { Count = dashoard.Items.Where(x => x.itemId == 110).ToList()[0].count, emps = GetLocalResourceObject("Paid").ToString() });
             objs.Add(new { Count = dashoard.Items.Where(x => x.itemId == 111).ToList()[0].count, emps = GetLocalResourceObject("Unpaid").ToString() });
             objs.Add(new { Count = dashoard.Items.Where(x => x.itemId == 112).ToList()[0].count, emps = GetLocalResourceObject("Absent").ToString() });

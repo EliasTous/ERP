@@ -10,7 +10,7 @@
 
     }
 
-    function setWidth(width) {
+    function setWidth(width, id) {
         App.jobInfo1_departmentId.setWidth(width);
         App.jobInfo1_branchId.setWidth(width);
         App.jobInfo1_positionId.setWidth(width);
@@ -54,6 +54,7 @@
 
 
         </ext:ComboBox>
+        
         <ext:Panel runat="server" Width="10" />
         <ext:ComboBox   AnyMatch="true" CaseSensitive="false"    runat="server" QueryMode="Local" Width="120" ForceSelection="true" TypeAhead="true" MinChars="1" ValueField="recordId" DisplayField="name" ID="branchId"  EmptyText="<%$ Resources:FieldBranch%>">
             <Store>

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AionHR.Model.Employees.Profile
 { 
-    [ClassIdentifier("31099","31")]
+    [ClassIdentifier("31098","31")]
    public class ImportNotes
     {
     }

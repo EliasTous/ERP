@@ -334,7 +334,7 @@
     <value>100</value>
   </data>
   <data name="BottomMargin.HeightF" type="System.Single, mscorlib">
-    <value>28</value>
+    <value>30.0649014</value>
   </data>
   <data name="BottomMargin.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v16.2">
     <value>TopLeft</value>
@@ -694,13 +694,13 @@
     <value>100</value>
   </data>
   <data name="pageFooterBand1.HeightF" type="System.Single, mscorlib">
-    <value>60.43509</value>
+    <value>60.4351044</value>
   </data>
   <data name="xrLabel21.Dpi" type="System.Single, mscorlib">
     <value>100</value>
   </data>
   <data name="xrLabel21.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v16.2">
-    <value>563.5232, 9.999985</value>
+    <value>705.1898, 10.0000067</value>
   </data>
   <data name="xrLabel21.SizeF" type="System.Drawing.SizeF, System.Drawing">
     <value>229.435043, 37.3148155</value>
@@ -730,7 +730,7 @@
     <value>100</value>
   </data>
   <data name="xrLabel30.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v16.2">
-    <value>746.7085, 44.08334</value>
+    <value>1075.87512, 42.2604256</value>
   </data>
   <data name="xrLabel30.SizeF" type="System.Drawing.SizeF, System.Drawing">
     <value>82.70813, 23.0000038</value>
@@ -742,7 +742,7 @@
     <value>100</value>
   </data>
   <data name="xrLabel29.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v16.2">
-    <value>746.7085, 0</value>
+    <value>1075.87512, 0</value>
   </data>
   <data name="xrLabel29.SizeF" type="System.Drawing.SizeF, System.Drawing">
     <value>82.70813, 23</value>
@@ -772,7 +772,7 @@
     <value>100</value>
   </data>
   <data name="xrLabel27.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v16.2">
-    <value>829.4167, 44.08334</value>
+    <value>1158.58337, 42.2604256</value>
   </data>
   <data name="xrLabel27.SizeF" type="System.Drawing.SizeF, System.Drawing">
     <value>195.833313, 23.0000038</value>
@@ -787,7 +787,7 @@
     <value>100</value>
   </data>
   <data name="xrLabel26.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v16.2">
-    <value>829.4167, 0</value>
+    <value>1158.58337, 0</value>
   </data>
   <data name="xrLabel26.SizeF" type="System.Drawing.SizeF, System.Drawing">
     <value>195.833313, 23</value>
@@ -832,7 +832,7 @@
     <value>True</value>
   </data>
   <data name="$this.Margins" type="System.Drawing.Printing.Margins, System.Drawing">
-    <value>0, 19, 32, 28</value>
+    <value>0, 19, 32, 30</value>
   </data>
   <data name="$this.PageHeight" type="System.Int32, mscorlib">
     <value>1554</value>

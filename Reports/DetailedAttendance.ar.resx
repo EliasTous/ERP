@@ -142,10 +142,13 @@
     <value>دخول</value>
   </data>
   <data name="xrLabel17.Text" xml:space="preserve">
-    <value>خروج مبكر</value>
+    <value>الدوام</value>
   </data>
   <data name="xrLabel18.Text" xml:space="preserve">
     <value>العمل الإضافي</value>
+  </data>
+  <data name="xrLabel19.Text" xml:space="preserve">
+    <value>مغادرة</value>
   </data>
   <data name="xrLabel2.Text" xml:space="preserve">
     <value>التاريخ</value>
@@ -163,7 +166,7 @@
     <value>إجمالي عدد الأيام</value>
   </data>
   <data name="xrLabel27.Text" xml:space="preserve">
-    <value>الحضور التفصيلي</value>
+    <value>تقرير الحضور والانصراف التفصيلي للموظفين</value>
   </data>
   <data name="xrLabel28.Text" xml:space="preserve">
     <value>الموظف</value>

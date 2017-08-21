@@ -1,0 +1,47 @@
+﻿using AionHR.Infrastructure.Importers;
+using AionHR.Model.Employees.Profile;
+using AionHR.Services.Interfaces;
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Globalization;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace AionHR.Services.Implementations
+{
+   public class EmployeeRTWImportingService : ImportingServiceBase<EmployeeRightToWork>, IImportaingService
+    {
+        public EmployeeRTWImportingService(IImporter imp) : base(imp)
+
+        {
+
+        }
+
+        public override List<EmployeeRightToWork> GetItem(DataRow row)
+        {
+            List<EmployeeRightToWork> depts = new List<EmployeeRightToWork>();
+            try
+            {
+                EmployeeRightToWork rw = new EmployeeRightToWork();
+                rw.employeeRef = row[0].ToString();
+                rw.hijriCal = row[1].ToString() == "1";
+                CultureInfo cu = rw.hijriCal? new CultureInfo("ar") : new CultureInfo("en");
+                rw.documentRef = row[2].ToString();
+                if (!string.IsNullOrEmpty(row[3].ToString()))
+                    rw.issueDate = DateTime.ParseExact(row[3].ToString(),"dd/MM/yyyy", cu);
+
+                rw.expiryDate = DateTime.ParseExact(row[4].ToString(), "dd/MM/yyyy", cu);
+                rw.dtId = Convert.ToInt32(row[5].ToString());
+                depts.Add(rw);
+
+
+
+            }
+            catch { }
+
+            return depts;
+        }
+    }
+}

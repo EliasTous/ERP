@@ -68,6 +68,7 @@
     <ext:Hidden runat="server" ID="importEmployeesTitle" Text="<%$Resources:Common , ImportEmployees %>" />
     <ext:Hidden runat="server" ID="importJobInfoTitle" Text="<%$Resources:Common , ImportJobInfo %>" />
     <ext:Hidden runat="server" ID="importOTTitle" Text="<%$Resources:Common , ImportOvertimeSettings %>" />
+    <ext:Hidden runat="server" ID="importEPRtW" Text="<%$Resources:Common , ImportRTW %>" />
     
     <ext:Hidden runat="server" ID="aaTitle" Text="<%$Resources:Common , SystemAlerts %>" />
     <ext:Hidden runat="server" ID="ttTitle" Text="<%$Resources:Common , TaskTypes %>" />
@@ -213,6 +214,11 @@
                                                                         <ext:MenuItem runat="server" Text="<%$Resources: Common , ImportJobInfo%>">
                                                             <Listeners>
                                                                 <Click Handler="openNewTab('importJobInfo', 'ImportJobInfo.aspx', #{importJobInfoTitle}.value, 'icon-Employees')" />
+                                                            </Listeners>
+                                                        </ext:MenuItem>
+                                                                     <ext:MenuItem runat="server" Text="<%$Resources: Common , ImportRTW%>">
+                                                            <Listeners>
+                                                                <Click Handler="openNewTab('importRTW', 'ImportRTW.aspx', #{importEPRTW}.value, 'icon-Employees')" />
                                                             </Listeners>
                                                         </ext:MenuItem>
                                                     </Items>

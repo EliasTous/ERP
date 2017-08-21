@@ -130,7 +130,7 @@
     <value>إجازة مدفوعة</value>
   </data>
   <data name="status3" xml:space="preserve">
-    <value>غير مكتمل(لم يتم تسجيل الخروج)</value>
+    <value>غير مكتمل</value>
   </data>
   <data name="Unpaid" xml:space="preserve">
     <value>غياب دون إذن</value>

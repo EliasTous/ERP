@@ -256,6 +256,7 @@
     <Content Include="ImportLeaves.aspx" />
     <Content Include="ImportLoans.aspx" />
     <Content Include="ImportOvertimeSettings.aspx" />
+    <Content Include="ImportRTW.aspx" />
     <Content Include="LeaveCalendar.aspx" />
     <Content Include="LeaveRequests.aspx" />
     <Content Include="LeaveTypes.aspx" />
@@ -464,6 +465,7 @@
     <Content Include="TrainingTypes.aspx" />
     <Content Include="Utilities\alerts.txt" />
     <Content Include="Utilities\modules.txt" />
+    <Content Include="WebForm1.aspx" />
     <Content Include="WorkingCalendars.aspx" />
     <Content Include="SystemAttachmentsUploader.ashx" />
     <Content Include="EmployeePhotoUploaderHandler.ashx" />
@@ -551,6 +553,13 @@
     </Compile>
     <Compile Include="ImportOvertimeSettings.aspx.designer.cs">
       <DependentUpon>ImportOvertimeSettings.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ImportRTW.aspx.cs">
+      <DependentUpon>ImportRTW.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ImportRTW.aspx.designer.cs">
+      <DependentUpon>ImportRTW.aspx</DependentUpon>
     </Compile>
     <Compile Include="OvertimeSettings.aspx.cs">
       <DependentUpon>OvertimeSettings.aspx</DependentUpon>
@@ -1491,6 +1500,13 @@
     <Compile Include="VacationSchedules.aspx.designer.cs">
       <DependentUpon>VacationSchedules.aspx</DependentUpon>
     </Compile>
+    <Compile Include="WebForm1.aspx.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForm1.aspx.designer.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+    </Compile>
     <Compile Include="WorkingCalendars.aspx.cs">
       <DependentUpon>WorkingCalendars.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1822,6 +1838,8 @@
     <Content Include="App_LocalResources\ImportOvertimeSettings.aspx.ar.resx" />
     <Content Include="App_LocalResources\Overtime_Lateness.aspx.resx" />
     <Content Include="App_LocalResources\Overtime_Lateness.aspx.ar.resx" />
+    <Content Include="App_LocalResources\ImportRTW.aspx.resx" />
+    <Content Include="App_LocalResources\ImportRTW.aspx.ar.resx" />
     <EmbeddedResource Include="Properties\licenses.licx" />
     <Content Include="Reports\App_LocalResources\RT202.aspx.resx" />
     <Content Include="Reports\App_LocalResources\RT01.aspx.ar.resx" />

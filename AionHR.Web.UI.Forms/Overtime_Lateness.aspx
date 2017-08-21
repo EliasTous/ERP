@@ -270,7 +270,7 @@
                                  <ext:TextField LabelWidth="300" Width="360" ID="recordId" runat="server"   Hidden="true" />
                                 <ext:TextField LabelWidth="150" Width="360" ID="TextField1" runat="server" FieldLabel="<%$ Resources:schedualName%>" Name="name" flex="2"/>
 
-                                <ext:FieldSet runat="server" Title="<%$Resources:Overtime %>">
+                                <ext:FieldSet runat="server" Title="<%$Resources:Overtime %>" Collapsible="true" >
                                     <Items>
                                         <ext:Checkbox LabelWidth="300" runat="server" ID="oEnable" Name="oEnable" InputValue="true" FieldLabel="<%$ Resources:lateness %>">
                                             <Listeners>
@@ -286,7 +286,7 @@
                                         </ext:TextField>
                                     </Items>
                                 </ext:FieldSet>
-                                <ext:FieldSet runat="server" Title="<%$Resources:lateness %>">
+                                <ext:FieldSet runat="server" Title="<%$Resources:lateness %>" Collapsible="true" >
                                     <Items>
                                         <ext:Checkbox LabelWidth="300" runat="server" ID="lEnable" Name="lEnable" InputValue="true" FieldLabel="<%$ Resources:lateness %>">
                                             <Listeners>
@@ -305,7 +305,7 @@
                                         </ext:TextField>
                                     </Items>
                                 </ext:FieldSet>
-                                <ext:FieldSet runat="server" Title="<%$Resources:Absence %>">
+                                <ext:FieldSet runat="server" Title="<%$Resources:Absence %>" Collapsible="true" >
                                     <Items>
                                         <ext:Checkbox LabelWidth="300" runat="server" ID="aEnable" Name="aEnable" InputValue="true" FieldLabel="<%$ Resources:absence %>">
                                             <Listeners>
@@ -321,7 +321,7 @@
                                         </ext:TextField>
                                     </Items>
                                 </ext:FieldSet>
-                                <ext:FieldSet runat="server" Title="<%$Resources:disappear %>">
+                                <ext:FieldSet runat="server" Title="<%$Resources:disappear %>" Collapsible="true" >
                                     <Items>
                                         <ext:Checkbox LabelWidth="300" runat="server" ID="dEnable" Name="dEnable" InputValue="true" FieldLabel="<%$ Resources:disappear %>">
                                             <Listeners>
@@ -337,7 +337,7 @@
                                         </ext:TextField>
                                     </Items>
                                 </ext:FieldSet>
-                                <ext:FieldSet runat="server" Title="<%$Resources:missingPunch %>">
+                                <ext:FieldSet runat="server" Title="<%$Resources:missingPunch %>" Collapsible="true" >
                                     <Items>
                                         <ext:Checkbox LabelWidth="300" runat="server" ID="mEnable" Name="mEnable" InputValue="true" FieldLabel="<%$ Resources:missingPunch %>">
                                             <Listeners>
