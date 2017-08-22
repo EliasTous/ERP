@@ -155,8 +155,8 @@ namespace AionHR.Web.UI.Forms
         }
         protected void PoPuP(object sender, DirectEventArgs e)
         {
-            CurrentCalenderLabel.Text= e.ExtraParams["calenderNamePar"];
-            calendarName.Text= e.ExtraParams["calenderNamePar"];
+            CurrentCalenderLabel.Text = e.ExtraParams["calenderNamePar"];
+            calendarName.Text = e.ExtraParams["calenderNamePar"];
             int id = Convert.ToInt32(e.ExtraParams["id"]);
             string type = e.ExtraParams["type"];
             switch (type)
@@ -282,7 +282,7 @@ namespace AionHR.Web.UI.Forms
         protected void PoPuPYear(object sender, DirectEventArgs e)
         {
             lbCalenderName.Text = CurrentCalenderLabel.Text;
-            lbCalender.Text =e.ExtraParams["CalenderYear"];
+            lbCalender.Text = e.ExtraParams["CalenderYear"];
             int id = Convert.ToInt32(e.ExtraParams["id"]);
             string type = e.ExtraParams["type"];
             switch (type)
@@ -370,7 +370,7 @@ namespace AionHR.Web.UI.Forms
 
 
                 string color = dtypes.Where(x => x.recordId == item.dayTypeId.ToString()).First().color;
-                X.Call("colorify", "td" + Month + Day, "#" + color.Trim(), DateTime.ParseExact(item.dayId, "yyyyMMdd", new CultureInfo("en")).ToString(_systemService.SessionHelper.GetDateformat()), GetGlobalResourceObject("Common", ((DayOfWeek)(item.dow%7)).ToString() + "Text").ToString());
+                X.Call("colorify", "td" + Month + Day, "#" + color.Trim(), DateTime.ParseExact(item.dayId, "yyyyMMdd", new CultureInfo("en")).ToString(_systemService.SessionHelper.GetDateformat()), GetGlobalResourceObject("Common", ((DayOfWeek)(item.dow % 7)).ToString() + "Text").ToString());
 
 
 
@@ -931,7 +931,16 @@ namespace AionHR.Web.UI.Forms
                 return;
             }
             dayConfigWindow.Show();
-            dayConfigForm.Title =  GetGlobalResourceObject("Common", ((DayOfWeek)(dayObj.result.dow % 7)).ToString() + "Text").ToString() + "- " + DateTime.ParseExact(dayObj.result.dayId, "yyyyMMdd", new CultureInfo("en")).ToString(_systemService.SessionHelper.GetDateformat());
+            if (dayObj.result == null)
+            {
+                DateTime t = DateTime.ParseExact(request.DayId, "yyyyMMdd", new CultureInfo("en"));
+                dayConfigForm.Title = GetGlobalResourceObject("Common", (t.DayOfWeek).ToString() + "Text").ToString() + "- " + t.ToString(_systemService.SessionHelper.GetDateformat());
+
+            }
+            else
+            {
+                dayConfigForm.Title = GetGlobalResourceObject("Common", ((DayOfWeek)(dayObj.result.dow % 7)).ToString() + "Text").ToString() + "- " + DateTime.ParseExact(dayObj.result.dayId, "yyyyMMdd", new CultureInfo("en")).ToString(_systemService.SessionHelper.GetDateformat());
+            }
             schedulesStore.DataSource = LoadSchedules();
             schedulesStore.DataBind();
             dayTypesStore.DataSource = LoadDayTypes();
@@ -1107,7 +1116,7 @@ namespace AionHR.Web.UI.Forms
 
         protected void openCopyCalendar(object sender, DirectEventArgs e)
         {
-           
+
             copyCalendarForm.Reset();
             ListRequest calendars = new ListRequest();
             ListResponse<WorkingCalendar> cals = _branchService.ChildGetAll<WorkingCalendar>(calendars);
@@ -1123,16 +1132,16 @@ namespace AionHR.Web.UI.Forms
             req.CalendarId = id;
             req.Year = CurrentYear.Text;
             ListResponse<Model.Attendance.CalendarDay> days = _branchService.ChildGetAll<Model.Attendance.CalendarDay>(req);
-            if(!days.Success)
+            if (!days.Success)
             {
                 X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
                 X.Msg.Alert(Resources.Common.ErrorUpdatingRecord, GetGlobalResourceObject("Errors", days.ErrorCode) != null ? GetGlobalResourceObject("Errors", days.ErrorCode).ToString() : days.Summary).Show();
                 return;
             }
-            else if(days.count==0)
+            else if (days.count == 0)
             {
                 X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.ErrorUpdatingRecord,GetLocalResourceObject("NoDays").ToString() ).Show();
+                X.Msg.Alert(Resources.Common.ErrorUpdatingRecord, GetLocalResourceObject("NoDays").ToString()).Show();
                 return;
             }
             else
@@ -1141,7 +1150,7 @@ namespace AionHR.Web.UI.Forms
                 days.Items.ForEach(x => x.caId = Convert.ToInt32(CurrentCalendar.Text));
                 copy.entity = days.Items.ToArray();
                 PostResponse<Model.Attendance.CalendarDay[]> response = _branchService.ChildAddOrUpdate<Model.Attendance.CalendarDay[]>(copy);
-                if(!response.Success)
+                if (!response.Success)
                 {
                     X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
                     X.Msg.Alert(Resources.Common.ErrorUpdatingRecord, GetGlobalResourceObject("Errors", days.ErrorCode) != null ? GetGlobalResourceObject("Errors", days.ErrorCode).ToString() : days.Summary).Show();

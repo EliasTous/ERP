@@ -22,8 +22,8 @@ namespace AionHR.Model.Reports
         public int OL_D { get; set; }
 
         public int overtime { get; set; }
-        public int lateness { get; set; }
-
+        public int netLateness { get; set; }
+        public int grossLateness { get; set; }
 
         public int lrPaid { get; set; }
         public int lrPaidCount { get; set; }
@@ -31,7 +31,9 @@ namespace AionHR.Model.Reports
         public int lrUnpaidCount { get; set; }
 
         public int netVariation { get; set; }
-        public int absentDays { get; set; }
+        public int absentDaysWithRequest { get; set; }
+
+        public int absentDaysWithoutRequest { get; set; }
 
         public int missedPunches { get; set; }
 
