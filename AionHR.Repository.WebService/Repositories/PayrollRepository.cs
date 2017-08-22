@@ -22,7 +22,8 @@ namespace AionHR.Repository.WebService.Repositories
             ChildGetAllLookup.Add(typeof(FiscalPeriod), "qryPE");
             ChildGetAllLookup.Add(typeof(EmployeePayroll), "qryEM");
             ChildGetAllLookup.Add(typeof(PayrollEntitlementDeduction), "qryED");
-            ChildGetAllLookup.Add(typeof(OvertimeLatenessSchedule), "qryOL");
+            ChildGetAllLookup.Add(typeof(TimeSchedule), "qryTS");
+            ChildGetAllLookup.Add(typeof(TimeCode), "qryTC");
 
             ChildAddOrUpdateLookup.Add(typeof(FiscalYear), "setYE");
             ChildAddOrUpdateLookup.Add(typeof(GenerationHeader), "setHE");
@@ -30,15 +31,17 @@ namespace AionHR.Repository.WebService.Repositories
             ChildAddOrUpdateLookup.Add(typeof(PayrollEntitlementDeduction[]), "arrED");
             ChildAddOrUpdateLookup.Add(typeof(PayrollEntitlementDeduction), "setED");
             ChildAddOrUpdateLookup.Add(typeof(SyncED), "syncED");
-            ChildAddOrUpdateLookup.Add(typeof(OvertimeLatenessSchedule), "setOL");
+            ChildAddOrUpdateLookup.Add(typeof(TimeSchedule), "setTS");
+            ChildAddOrUpdateLookup.Add(typeof(TimeCode[]), "arrTC");
 
             ChildDeleteLookup.Add(typeof(FiscalYear), "delYE");
             ChildDeleteLookup.Add(typeof(PayrollEntitlementDeduction), "delED");
             ChildDeleteLookup.Add(typeof(GenerationHeader), "delHE");
-            ChildDeleteLookup.Add(typeof(OvertimeLatenessSchedule), "delOL");
+            ChildDeleteLookup.Add(typeof(TimeSchedule), "delTS");
 
             ChildGetLookup.Add(typeof(GenerationHeader), "getHE");
-            ChildGetLookup.Add(typeof(OvertimeLatenessSchedule), "getOL");
+            ChildGetLookup.Add(typeof(TimeSchedule), "getTS");
+
         }
     }
 }

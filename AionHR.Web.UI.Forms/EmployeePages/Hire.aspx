@@ -80,6 +80,14 @@
                                 
                             </Validator>
                             </ext:TextField>
+                            <ext:TextField runat="server"  LabelWidth="200" ID="pyReference" Name="pyReference" FieldLabel="payReference" />
+                             <ext:TextField runat="server"  LabelWidth="200" ID="taReference" Name="taReference" FieldLabel="taReference" />
+                                 <ext:DateField  LabelWidth="200" runat="server" AllowBlank="false" ID="pyActiveDate" Name="pyActiveDate" FieldLabel="payActiveDate"></ext:DateField>
+
+                         
+                           
+                           
+                            
                             </Items></ext:Panel>
                          <ext:Panel runat="server"  flex="2"><Items></Items></ext:Panel>
                     </Items>

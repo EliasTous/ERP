@@ -63,6 +63,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorOperation).Show();
                 CurrentEmployee.Text = Request.QueryString["employeeId"];
                 FillNoticePeriod();
+                
                 HireInfoRecordRequest req = new HireInfoRecordRequest();
                 req.EmployeeId = Request.QueryString["employeeId"];
                 RecordResponse<HireInfo> resp = _employeeService.ChildGetRecord<HireInfo>(req);
@@ -76,7 +77,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     hireInfoForm.SetValues(resp.result);
                     npId.Select(resp.result.npId.ToString());
                 }
-                probationEndDate.Format = nextReviewDate.Format = termEndDate.Format = _systemService.SessionHelper.GetDateformat();
+                probationEndDate.Format = nextReviewDate.Format = termEndDate.Format = pyActiveDate.Format= _systemService.SessionHelper.GetDateformat();
 
                 EmployeeTerminated.Text = Request.QueryString["terminated"];
 

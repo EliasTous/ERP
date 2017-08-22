@@ -117,136 +117,40 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AllowedLateness" xml:space="preserve">
-    <value>التأخير المسموح</value>
-  </data>
-  <data name="DeductionFrom" xml:space="preserve">
-    <value>خصم من</value>
-  </data>
-  <data name="WindowTitle" xml:space="preserve">
-    <value>إعدادات العمل الاضافي والأيام </value>
-  </data>
-  <data name="EntitlementTo" xml:space="preserve">
-    <value>استحقاق على</value>
-  </data>
-  <data name="FieldLatenessDeduction" xml:space="preserve">
-    <value>خصم التأخير</value>
-  </data>
-  <data name="FieldLoan" xml:space="preserve">
-    <value>خصم القروض</value>
-  </data>
-  <data name="FieldOT" xml:space="preserve">
-    <value>زيادة العمل الإضافي</value>
-  </data>
-  <data name="FieldPE" xml:space="preserve">
-    <value>خصم جزائي</value>
-  </data>
-  <data name="FieldSS" xml:space="preserve">
-    <value>خصم الضمان الاجتماعي</value>
-  </data>
-  <data name="FieldUL" xml:space="preserve">
-    <value>خصم الإجازات غير المدفوعة</value>
-  </data>
-  <data name="FixedAmount" xml:space="preserve">
-    <value>قيمة ثابتة</value>
-  </data>
-  <data name="FixedPayment" xml:space="preserve">
-    <value>دفعة ثابتة</value>
-  </data>
-  <data name="Lateness" xml:space="preserve">
-    <value>التأخير</value>
-  </data>
-  <data name="LatenessAmount" xml:space="preserve">
-    <value>نسبة خصم التأخير %</value>
-  </data>
-  <data name="LoanCoverageType" xml:space="preserve">
-    <value>تغطية السلفة</value>
-  </data>
-  <data name="MinimumOvertime" xml:space="preserve">
-    <value>الساعات الإضافية الأصغرية</value>
-  </data>
-  <data name="Overtime" xml:space="preserve">
-    <value>الدوام الإضافي</value>
-  </data>
-  <data name="OvertimeAmount" xml:space="preserve">
-    <value>نسبة الاستحقاق%</value>
-  </data>
-  <data name="PaymentValue" xml:space="preserve">
-    <value>قيمة الدفعة</value>
-  </data>
-  <data name="PaymentValueP" xml:space="preserve">
-    <value>قيمة الدفعة %</value>
-  </data>
-  <data name="PFromBasicSalary" xml:space="preserve">
-    <value>نسبة مئوية من الراتب الأساسي</value>
-  </data>
-  <data name="PFromLoan" xml:space="preserve">
-    <value>نسبة مئوية من السلفة</value>
-  </data>
-  <data name="PFromNetSalary" xml:space="preserve">
-    <value>نسبة مئوية من الراتب النهائي</value>
-  </data>
-  <data name="Absence" xml:space="preserve">
-    <value>غياب </value>
-  </data>
-  <data name="disappear" xml:space="preserve">
-    <value>غياب بدون إذن</value>
-  </data>
-  <data name="EnableOverTimeCB" xml:space="preserve">
-    <value>تفعيل الدوام الإضافي</value>
-  </data>
-  <data name="missingPunch" xml:space="preserve">
-    <value>دوام غير مكتمل </value>
-  </data>
-  <data name="Multiplier" xml:space="preserve">
-    <value>مضاعف </value>
-  </data>
-  <data name="PeriodHours" xml:space="preserve">
-    <value>ساعات الدوام</value>
-  </data>
-  <data name="schedualName" xml:space="preserve">
-    <value>جدول العمل</value>
+  <data name="atext" xml:space="preserve">
+    <value>غياب بإذن</value>
   </data>
   <data name="BasicInfoTabEditWindowTitle" xml:space="preserve">
-    <value>الدوام الإضافي والتأخير</value>
+    <value>Document Type Info</value>
+  </data>
+  <data name="dtext" xml:space="preserve">
+    <value>غياب بدون إذن </value>
   </data>
   <data name="EditWindowsTitle" xml:space="preserve">
-    <value>معلومات الدوام الإضافي والـاخير </value>
-  </data>
-  <data name="ErrorInvalidMacAddress" xml:space="preserve">
-    <value>Router MAC address must be 12 characters</value>
-  </data>
-  <data name="FieldBranch" xml:space="preserve">
-    <value>Branch</value>
-  </data>
-  <data name="FieldIsInactive" xml:space="preserve">
-    <value>Is Inactive</value>
+    <value>تعديل الجدول الزمني</value>
   </data>
   <data name="FieldName" xml:space="preserve">
-    <value>الأسم</value>
+    <value>الاسم</value>
   </data>
   <data name="FieldRecordId" xml:space="preserve">
     <value>Record ID</value>
   </data>
-  <data name="FieldReference" xml:space="preserve">
-    <value>Reference</value>
+  <data name="intName" xml:space="preserve">
+    <value>Int Name</value>
   </data>
-  <data name="WindowTitle1" xml:space="preserve">
-    <value>الدوام الإضافي والتأخير</value>
+  <data name="ltext" xml:space="preserve">
+    <value>التأخير</value>
   </data>
-  <data name="PeriodDays" xml:space="preserve">
-    <value>أيام الدوام</value>
+  <data name="mtext" xml:space="preserve">
+    <value>يوم غير مغلق</value>
   </data>
-  <data name="String1" xml:space="preserve">
-    <value />
+  <data name="otext" xml:space="preserve">
+    <value>عمل إضافي</value>
   </data>
-  <data name="FieldMultiplier" xml:space="preserve">
-    <value>مضاعف</value>
+  <data name="TimeCodeTitle" xml:space="preserve">
+    <value>TimeCodeTitle</value>
   </data>
-  <data name="FieldPeriodDays" xml:space="preserve">
-    <value>الأيام</value>
-  </data>
-  <data name="FieldPeriodHours" xml:space="preserve">
-    <value>الفترة </value>
+  <data name="WindowTitle" xml:space="preserve">
+    <value>الجدول الزمني</value>
   </data>
 </root>
