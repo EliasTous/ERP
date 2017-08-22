@@ -969,6 +969,9 @@
   <data name="Overtime_Lateness" xml:space="preserve">
     <value>Overtime/Lateness</value>
   </data>
+  <data name="TimeSchedule" xml:space="preserve">
+    <value>Time Schedule</value>
+  </data>
   <data name="ImportRTW" xml:space="preserve">
     <value>Import Right To Work</value>
   </data>

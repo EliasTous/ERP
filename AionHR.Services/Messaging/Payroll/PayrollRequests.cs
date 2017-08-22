@@ -91,4 +91,22 @@ public class PayrollEntitlementsDeductionListRequest : ListRequest
             return parameters;
         }
     }
+   
+}
+public class PayrollTimeCodeRequest : ListRequest
+{
+    public int ScheduleId { set; get; }
+    private Dictionary<string, string> parameters;
+    public override Dictionary<string, string> Parameters
+    {
+        get
+        {
+            parameters = new Dictionary<string, string>();
+            parameters.Add("_tsId", ScheduleId.ToString());
+        
+
+            return parameters;
+        }
+    }
+
 }

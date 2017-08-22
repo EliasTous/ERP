@@ -35,6 +35,13 @@ namespace AionHR.Model.Employees.Profile
         [PropertyID("31141_06")]
         [ApplySecurity]
         public string recruitmentCost { get; set; }
-        
+        public string pyReference { set; get;}
+        public string taReference { set; get; }
+        public DateTime pyActiveDate { set; get; }
+
+
+
+
+
     }
 }

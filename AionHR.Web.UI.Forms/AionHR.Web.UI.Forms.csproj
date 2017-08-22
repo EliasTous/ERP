@@ -270,10 +270,10 @@
     <Content Include="Nationalities.aspx" />
     <Content Include="OrganizationChart.aspx" />
     <Content Include="OvertimeSettings.aspx" />
-    <Content Include="Overtime_Lateness.aspx" />
     <Content Include="packages.config" />
     <Content Include="PayrollDefaults.aspx" />
     <Content Include="PayrollGeneration.aspx" />
+    <Content Include="PayrollTimeSchedule.aspx" />
     <Content Include="RelationshipTypes.aspx" />
     <Content Include="Reports\App_LocalResources\Hirings.cs.resx" />
     <Content Include="Reports\App_LocalResources\Hirings.resx" />
@@ -465,7 +465,6 @@
     <Content Include="TrainingTypes.aspx" />
     <Content Include="Utilities\alerts.txt" />
     <Content Include="Utilities\modules.txt" />
-    <Content Include="WebForm1.aspx" />
     <Content Include="WorkingCalendars.aspx" />
     <Content Include="SystemAttachmentsUploader.ashx" />
     <Content Include="EmployeePhotoUploaderHandler.ashx" />
@@ -568,12 +567,12 @@
     <Compile Include="OvertimeSettings.aspx.designer.cs">
       <DependentUpon>OvertimeSettings.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Overtime_Lateness.aspx.cs">
-      <DependentUpon>Overtime_Lateness.aspx</DependentUpon>
+    <Compile Include="PayrollTimeSchedule.aspx.cs">
+      <DependentUpon>PayrollTimeSchedule.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Overtime_Lateness.aspx.designer.cs">
-      <DependentUpon>Overtime_Lateness.aspx</DependentUpon>
+    <Compile Include="PayrollTimeSchedule.aspx.designer.cs">
+      <DependentUpon>PayrollTimeSchedule.aspx</DependentUpon>
     </Compile>
     <Compile Include="Reports\Controls\WeekPicker.ascx.cs">
       <DependentUpon>WeekPicker.ascx</DependentUpon>
@@ -1500,13 +1499,6 @@
     <Compile Include="VacationSchedules.aspx.designer.cs">
       <DependentUpon>VacationSchedules.aspx</DependentUpon>
     </Compile>
-    <Compile Include="WebForm1.aspx.cs">
-      <DependentUpon>WebForm1.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="WebForm1.aspx.designer.cs">
-      <DependentUpon>WebForm1.aspx</DependentUpon>
-    </Compile>
     <Compile Include="WorkingCalendars.aspx.cs">
       <DependentUpon>WorkingCalendars.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1836,10 +1828,8 @@
     <Content Include="App_LocalResources\TimeAttendanceView.aspx.ar.resx" />
     <Content Include="App_LocalResources\ImportOvertimeSettings.aspx.resx" />
     <Content Include="App_LocalResources\ImportOvertimeSettings.aspx.ar.resx" />
-    <Content Include="App_LocalResources\Overtime_Lateness.aspx.resx" />
-    <Content Include="App_LocalResources\Overtime_Lateness.aspx.ar.resx" />
-    <Content Include="App_LocalResources\ImportRTW.aspx.resx" />
-    <Content Include="App_LocalResources\ImportRTW.aspx.ar.resx" />
+    <Content Include="App_LocalResources\PayrollTimeSchedule.aspx.resx" />
+    <Content Include="App_LocalResources\PayrollTimeSchedule.aspx.ar.resx" />
     <EmbeddedResource Include="Properties\licenses.licx" />
     <Content Include="Reports\App_LocalResources\RT202.aspx.resx" />
     <Content Include="Reports\App_LocalResources\RT01.aspx.ar.resx" />

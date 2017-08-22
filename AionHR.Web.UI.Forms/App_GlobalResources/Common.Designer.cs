@@ -2392,6 +2392,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Time Schedule.
+        /// </summary>
+        internal static string TimeSchedule {
+            get {
+                return ResourceManager.GetString("TimeSchedule", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Error Saving Record.
         /// </summary>
         internal static string TitleSavingError {

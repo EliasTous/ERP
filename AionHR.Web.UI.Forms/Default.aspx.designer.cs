@@ -310,13 +310,13 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Hidden loTitle;
         
         /// <summary>
-        /// OtLTitle control.
+        /// PYTSTitle control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Hidden OtLTitle;
+        protected global::Ext.Net.Hidden PYTSTitle;
         
         /// <summary>
         /// pyde control.
