@@ -15,6 +15,18 @@
         function display(code) {
             return document.getElementById(code + "text").value;
         }
+        function dump(obj) {
+            var out = '';
+            for (var i in obj) {
+                out += i + ": " + obj[i] + "\n";
+
+
+            }
+            return out;
+        }
+        var cellClick2 = function (view, cell, columnIndex, record, row, rowIndex, e) {
+            alert(dump(row.cells[1].setDisabled(true)));
+        }
     </script>
 
 </head>
@@ -241,8 +253,8 @@
             runat="server"
             Icon="PageEdit"
             Title="<%$ Resources:EditWindowsTitle %>"
-            Width="450"
-            Height="330"
+            Width="580"
+            Height="400"
             AutoShow="false"
             Modal="true"
             Hidden="true"
@@ -309,7 +321,7 @@
                             <TopBar>
                                 <ext:Toolbar ID="Toolbar3" runat="server" ClassicButtonStyle="false">
                                     <Items>
-                                        <ext:Button ID="Button1" runat="server" Text="<%$ Resources:Common , Add %>" Icon="Add">
+                                        <ext:Button Hidden="true" ID="Button1" runat="server" Text="<%$ Resources:Common , Add %>" Icon="Add">
                                             <Listeners>
                                                 <Click Handler="CheckSession();" />
                                             </Listeners>
@@ -319,7 +331,7 @@
                                                 </Click>
                                             </DirectEvents>
                                         </ext:Button>
-                                        <ext:ToolbarSeparator></ext:ToolbarSeparator>
+                                       
                                         <ext:Button Visible="false" ID="Button2" runat="server" Text="<%$ Resources:Common , DeleteAll %>" Icon="Delete">
                                             <Listeners>
                                                 <Click Handler="CheckSession();"></Click>
@@ -363,47 +375,47 @@
                                                 </Listeners>
                                             </ext:Checkbox>
                                         </Widget>
+                                        <Listeners>
+                                            
+                                        </Listeners>
                                     </ext:WidgetColumn>
                                     <ext:WidgetColumn ID="Column7" Visible="true" DataIndex="deductPeriod" runat="server" Text="deductPeriod">
                                         <Widget>
-                                            <ext:TextField runat="server" Name="deductPeriod" >
+                                            <ext:TextField runat="server" Name="deductPeriod">
                                                 <Listeners>
 
-                                                    <Change Handler="var rec = this.getWidgetRecord(); rec.set('deductPeriod',this.value); ">
+                                                    <Change Handler="   var rec = this.getWidgetRecord(); rec.set('deductPeriod',this.value); ">
                                                     </Change>
                                                 </Listeners>
                                                 <Validator Handler="return !isNaN(this.value)">
-
                                                 </Validator>
-                                                </ext:TextField>
+                                            </ext:TextField>
                                         </Widget>
                                     </ext:WidgetColumn>
                                     <ext:WidgetColumn ID="Column8" Visible="true" DataIndex="fullPeriod" runat="server" Text="fullPeriod">
                                         <Widget>
-                                            <ext:TextField runat="server" Name="fullPeriod" >
-                                                 <Listeners>
+                                            <ext:TextField runat="server" Name="fullPeriod">
+                                                <Listeners>
 
                                                     <Change Handler="var rec = this.getWidgetRecord(); rec.set('fullPeriod',this.value); ">
                                                     </Change>
                                                 </Listeners>
                                                 <Validator Handler="return !isNaN(this.value)">
-
                                                 </Validator>
-                                                </ext:TextField>
+                                            </ext:TextField>
                                         </Widget>
                                     </ext:WidgetColumn>
                                     <ext:WidgetColumn ID="Column9" Visible="true" DataIndex="multiplier" runat="server" Text="multiplier">
                                         <Widget>
-                                            <ext:TextField runat="server" Name="multiplier" >
-                                                 <Listeners>
+                                            <ext:TextField runat="server" Name="multiplier">
+                                                <Listeners>
 
                                                     <Change Handler="var rec = this.getWidgetRecord(); rec.set('multiplier',this.value); ">
                                                     </Change>
                                                 </Listeners>
                                                 <Validator Handler="return !isNaN(this.value)">
-
                                                 </Validator>
-                                                </ext:TextField>
+                                            </ext:TextField>
                                         </Widget>
                                     </ext:WidgetColumn>
 
@@ -425,17 +437,18 @@
                                 </ext:Toolbar>
 
                             </DockedItems>
-
+                            <Listeners>
+                                <CellClick Fn="cellClick2" />
+                            </Listeners>
 
                             <View>
                                 <ext:GridView ID="GridView2" runat="server" />
                             </View>
 
 
-                            <SelectionModel>
-                                <ext:RowSelectionModel ID="rowSelectionModel1" runat="server" Mode="Single" StopIDModeInheritance="true" />
-                                <%--<ext:CheckboxSelectionModel ID="CheckboxSelectionModel1" runat="server" Mode="Multi" StopIDModeInheritance="true" />--%>
-                            </SelectionModel>
+                                  <SelectionModel>
+                <ext:CheckboxSelectionModel runat="server" Mode="Multi" />
+            </SelectionModel>
                         </ext:GridPanel>
 
                     </Items>
@@ -453,7 +466,7 @@
                             <ExtraParams>
                                 <ext:Parameter Name="id" Value="#{recordId}.getValue()" Mode="Raw" />
                                 <ext:Parameter Name="values" Value="#{BasicInfoTab}.getForm().getValues()" Mode="Raw" Encode="true" />
-                                  <ext:Parameter Name="codes" Value="Ext.encode(#{TimeCodeGrid}.getRowsValues({dirtyRowsOnly : true}))" Mode="Raw"  />
+                                <ext:Parameter Name="codes" Value="Ext.encode(#{TimeCodeGrid}.getRowsValues({dirtyRowsOnly : true}))" Mode="Raw" />
                             </ExtraParams>
                         </Click>
                     </DirectEvents>
