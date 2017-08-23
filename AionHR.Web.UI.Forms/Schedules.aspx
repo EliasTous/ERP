@@ -17,7 +17,18 @@
 
     <script type="text/javascript">
         function setReadOnly(attr, state) {
-        Ext.getCmp(attr).setDisabled(!state);
+
+
+
+
+
+
+
+
+
+
+
+            Ext.getCmp(attr).setDisabled(!state);
 
         }
     </script>
@@ -67,7 +78,7 @@
                         <ext:ModelField Name="lco_max_el" />
                         <ext:ModelField Name="lco_min_ot" />
                         <ext:ModelField Name="lco_max_ot" />
-                         <ext:ModelField Name="b_min_ot" />
+                        <ext:ModelField Name="b_min_ot" />
                         <ext:ModelField Name="b_max_ot" />
 
 
@@ -154,7 +165,7 @@
                             <ext:Column ID="Collco_max_el" CellWrap="true" MenuDisabled="true" runat="server" Text="<%$ Resources: Fieldlco_max_el%>" DataIndex="lco_max_el" Hideable="false" Width="75" Align="Center" Flex="1" />
                             <ext:Column ID="Collco_min_ot" MenuDisabled="true" runat="server" Text="<%$ Resources: Fieldlco_min_ot%>" DataIndex="lco_min_ot" Hideable="false" Width="75" Align="Center" Flex="1" />
                             <ext:Column ID="Collco_max_ot" MenuDisabled="true" runat="server" Text="<%$ Resources: Fieldlco_max_ot%>" DataIndex="lco_max_ot" Hideable="false" Width="75" Align="Center" Flex="1" />
-                             <ext:Column ID="Colb_min_ot" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEd_min_ot%>" DataIndex="b_min_ot" Hideable="false" Width="75" Align="Center" Flex="1" />
+                            <ext:Column ID="Colb_min_ot" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEd_min_ot%>" DataIndex="b_min_ot" Hideable="false" Width="75" Align="Center" Flex="1" />
                             <ext:Column ID="Colb_max_ot" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEd_max_ot%>" DataIndex="b_max_ot" Hideable="false" Width="75" Align="Center" Flex="1" />
 
 
@@ -248,14 +259,14 @@
 
                     </BottomBar>
                     <Listeners>
-                        <Render Handler="this.on('cellclick',cellclick" />
+                        <Render Handler="this.on('cellclick', cellClick);" />
                     </Listeners>
                     <DirectEvents>
                         <CellClick OnEvent="PoPuP">
                             <EventMask ShowMask="true" />
                             <ExtraParams>
                                 <ext:Parameter Name="id" Value="record.getId()" Mode="Raw" />
-                                  <ext:Parameter Name="ScheduleNamePar" Value="record.data['name']" Mode="Raw" />
+                                <ext:Parameter Name="ScheduleNamePar" Value="record.data['name']" Mode="Raw" />
                                 <ext:Parameter Name="type" Value="getCellType( this, rowIndex, cellIndex)" Mode="Raw" />
                             </ExtraParams>
 
@@ -325,8 +336,8 @@
                                         </Click>
                                     </DirectEvents>
                                 </ext:Button>
-                                <ext:ToolbarSeparator runat="server"/>
-                                <ext:Label ID="ScheduleNamelb" runat ="server" />
+                                <ext:ToolbarSeparator runat="server" />
+                                <ext:Label ID="ScheduleNamelb" runat="server" />
 
                             </Items>
                         </ext:Toolbar>
@@ -391,7 +402,7 @@
                                 <ext:TextField ID="recordId" Hidden="true" runat="server" Disabled="true" DataIndex="recordId" />
                                 <ext:TextField ID="name" runat="server" FieldLabel="<%$ Resources:FieldName%>" DataIndex="name" AllowBlank="false" BlankText="<%$ Resources:Common, MandatoryField%>" />
 
-                                <ext:FieldSet runat="server" Title="<%$Resources:Lateness %>">
+                                <ext:FieldSet runat="server" Title="<%$Resources:Lateness %>" Collapsible="true">
                                     <Items>
 
                                         <ext:TextField LabelWidth="300" Width="360" ID="fci_max_lt" runat="server" FieldLabel="<%$ Resources:Fieldfci_max_lt%>" DataIndex="fci_max_lt" Name="fci_max_lt" EmptyText="0">
@@ -402,7 +413,7 @@
                                         </ext:TextField>
                                     </Items>
                                 </ext:FieldSet>
-                                <ext:FieldSet runat="server" Title="<%$Resources:ArrivalOvertime %>" >
+                                <ext:FieldSet runat="server" Title="<%$Resources:ArrivalOvertime %>" Collapsible="true">
                                     <Items>
                                         <ext:Checkbox LabelWidth="300" runat="server" ID="enableAOT" Name="enableAOT" InputValue="true" FieldLabel="<%$ Resources:EnableAOT %>">
                                             <Listeners>
@@ -415,7 +426,7 @@
                                         </ext:TextField>
                                     </Items>
                                 </ext:FieldSet>
-                                <ext:FieldSet runat="server" Title="<%$Resources:EntryDayOverTime %>">
+                                <ext:FieldSet runat="server" Title="<%$Resources:EntryDayOverTime %>" Collapsible="true">
                                     <Items>
                                         <ext:Checkbox LabelWidth="300" runat="server" ID="enableEntryDayCheckbox" Name="enableBOT" InputValue="true" FieldLabel="<%$ Resources:EnableEntryDayOverTime %>">
                                             <Listeners>
@@ -423,17 +434,17 @@
                                                 <Change Handler="this.next().setDisabled(!this.value); this.next().next().setDisabled(!this.value);" />
                                             </Listeners>
                                         </ext:Checkbox>
-                                        <ext:TextField LabelWidth="300" Width="360" ID="minEntryDayTextField" runat="server" FieldLabel="<%$ Resources:FieldEd_min_ot%>"  Name="b_min_ot" EmptyText="0"  DataIndex="b_min_ot" >
+                                        <ext:TextField LabelWidth="300" Width="360" ID="minEntryDayTextField" runat="server" FieldLabel="<%$ Resources:FieldEd_min_ot%>" Name="b_min_ot" EmptyText="0" DataIndex="b_min_ot">
                                             <Validator Handler="return this.value=='' || (!isNaN(this.value)&& this.value>=0);" />
                                         </ext:TextField>
-                                        <ext:TextField LabelWidth="300" Width="360" ID="maxEntryDayTextField" runat="server" FieldLabel="<%$ Resources:FieldEd_max_ot%>"  Name="b_max_ot"  DataIndex="b_max_ot" EmptyText="0">
+                                        <ext:TextField LabelWidth="300" Width="360" ID="maxEntryDayTextField" runat="server" FieldLabel="<%$ Resources:FieldEd_max_ot%>" Name="b_max_ot" DataIndex="b_max_ot" EmptyText="0">
                                             <Validator Handler="return this.value=='' || (!isNaN(this.value)&& this.value>=0);" />
                                         </ext:TextField>
                                     </Items>
                                 </ext:FieldSet>
-                     
 
-                                <ext:FieldSet runat="server" Title="<%$Resources:DepartureOvertime %>">
+
+                                <ext:FieldSet runat="server" Title="<%$Resources:DepartureOvertime %>" Collapsible="true">
                                     <Items>
                                         <ext:Checkbox LabelWidth="300" runat="server" ID="enableDOT" Name="enableDOT" InputValue="true" FieldLabel="<%$ Resources:EnableDOT %>">
                                             <Listeners>
@@ -441,7 +452,7 @@
                                                 <Change Handler="this.next().setDisabled(!this.value); this.next().next().setDisabled(!this.value);" />
                                             </Listeners>
                                         </ext:Checkbox>
-                                        <ext:TextField LabelWidth="300" Width="360" ID="lco_min_ot" runat="server" FieldLabel="<%$ Resources:Fieldlco_min_ot%>"  Name="lco_min_ot" EmptyText="0">
+                                        <ext:TextField LabelWidth="300" Width="360" ID="lco_min_ot" runat="server" FieldLabel="<%$ Resources:Fieldlco_min_ot%>" Name="lco_min_ot" EmptyText="0">
                                             <Validator Handler="return this.value=='' || (!isNaN(this.value)&& this.value>=0);" />
                                         </ext:TextField>
                                         <ext:TextField LabelWidth="300" Width="360" ID="lco_max_ot" runat="server" FieldLabel="<%$ Resources:Fieldlco_max_ot%>" Name="lco_max_ot" EmptyText="0">
