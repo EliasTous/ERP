@@ -229,6 +229,24 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Button Button4;
         
         /// <summary>
+        /// tsId control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.ComboBox tsId;
+        
+        /// <summary>
+        /// tsStore control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Store tsStore;
+        
+        /// <summary>
         /// dateFormatCombo control.
         /// </summary>
         /// <remarks>

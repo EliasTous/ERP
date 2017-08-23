@@ -199,6 +199,21 @@
                                                 <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
                                             </Listeners>
                                         </ext:ComboBox>
+                                         <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  QueryMode="Local"  LabelWidth="150" ForceSelection="true" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: FieldTSId %>" Name="tsId" DisplayField="name" ValueField="recordId" runat="server" ID="tsId">
+                                            <Store>
+                                                <ext:Store runat="server" ID="tsStore">
+                                                    <Model>
+                                                        <ext:Model runat="server">
+                                                            <Fields>
+                                                                <ext:ModelField Name="recordId" />
+                                                                <ext:ModelField Name="name" />
+                                                            </Fields>
+                                                        </ext:Model>
+                                                    </Model>
+                                                </ext:Store>
+                                            </Store>
+                                            
+                                        </ext:ComboBox>
                                         <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  QueryMode="Local" LabelWidth="150" ForceSelection="true" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: FieldDateFormat %>" Name="dateFormat" runat="server" ID="dateFormatCombo">
                                             <Items>
                                                 <ext:ListItem Text="Jan 31,2016" Value="MMM dd,yyyy" />
@@ -340,6 +355,8 @@
                                         <ext:Checkbox FieldLabel="<%$ Resources: apply_ALDA_CSBR %>" LabelWidth="150" runat="server" InputValue="True" Name="apply_ALDA_CSBR" ID="apply_ALDA_CSBR" />
                                         <ext:Checkbox FieldLabel="<%$ Resources: apply_ALDA_CSDE %>" LabelWidth="150" runat="server" InputValue="True" Name="apply_ALDA_CSDE" ID="apply_ALDA_CSDE" />
                                         <ext:Checkbox FieldLabel="<%$ Resources: apply_ALDA_CSDI %>" LabelWidth="150" runat="server" InputValue="True" Name="apply_ALDA_CSDI" ID="apply_ALDA_CSDI" />
+
+
                                     </Items>
 
                                 </ext:FormPanel>

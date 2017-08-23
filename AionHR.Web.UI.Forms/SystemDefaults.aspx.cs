@@ -24,6 +24,7 @@ using AionHR.Model.System;
 using AionHR.Model.Attendance;
 using AionHR.Model.Employees.Leaves;
 using AionHR.Model.Employees.Profile;
+using AionHR.Model.Payroll;
 
 namespace AionHR.Web.UI.Forms
 {
@@ -34,6 +35,7 @@ namespace AionHR.Web.UI.Forms
         ICompanyStructureService _companyStructureService = ServiceLocator.Current.GetInstance<ICompanyStructureService>();
         ITimeAttendanceService _timeAttendanceService = ServiceLocator.Current.GetInstance<ITimeAttendanceService>();
         IEmployeeService _employeeService = ServiceLocator.Current.GetInstance<IEmployeeService>();
+        IPayrollService _payrollService = ServiceLocator.Current.GetInstance<IPayrollService>();
         protected override void InitializeCulture()
         {
 
@@ -98,8 +100,21 @@ namespace AionHR.Web.UI.Forms
             FillIDs();
             FillPassports();
             FillSchedules();
+            FillTsId();
         }
 
+        private void FillTsId()
+        {
+            ListRequest vsRequest = new ListRequest();
+            ListResponse<TimeSchedule> resp = _payrollService.ChildGetAll<TimeSchedule>(vsRequest);
+            if (!resp.Success)
+            {
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() : resp.Summary).Show();
+                return;
+            }
+            tsStore.DataSource = resp.Items;
+            tsStore.DataBind();
+        }
         private void FillSchedules()
         {
             ListRequest vsRequest = new ListRequest();
@@ -177,6 +192,9 @@ namespace AionHR.Web.UI.Forms
 
             catch { }
             try { vsId.Select(items.Where(s => s.Key == "vsId").First().Value); }
+
+            catch { }
+            try { tsId.Select(items.Where(s => s.Key == "tsId").First().Value); }
 
             catch { }
             try
@@ -283,6 +301,8 @@ namespace AionHR.Web.UI.Forms
                 submittedValues.Add(new KeyValuePair<string, string>("caId", values.caId.ToString()));
             if (!string.IsNullOrEmpty(values.vsId.ToString()))
                 submittedValues.Add(new KeyValuePair<string, string>("vsId", values.vsId.ToString()));
+            if (!string.IsNullOrEmpty(values.tsId.ToString()))
+                submittedValues.Add(new KeyValuePair<string, string>("tsId", values.tsId.ToString()));
             if (!string.IsNullOrEmpty(values.passportCombo.ToString()))
                 submittedValues.Add(new KeyValuePair<string, string>("passportDocTypeId", values.passportCombo.ToString()));
             if (!string.IsNullOrEmpty(values.idCombo.ToString()))
