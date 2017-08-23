@@ -121,7 +121,7 @@
     <value>غياب بإذن</value>
   </data>
   <data name="BasicInfoTabEditWindowTitle" xml:space="preserve">
-    <value>Document Type Info</value>
+    <value>معلومات الجدول الزمني </value>
   </data>
   <data name="dtext" xml:space="preserve">
     <value>غياب بدون إذن </value>
@@ -148,9 +148,24 @@
     <value>عمل إضافي</value>
   </data>
   <data name="TimeCodeTitle" xml:space="preserve">
-    <value>TimeCodeTitle</value>
+    <value>نوع الغياب</value>
   </data>
   <data name="WindowTitle" xml:space="preserve">
     <value>الجدول الزمني</value>
+  </data>
+  <data name="deductPeriod" xml:space="preserve">
+    <value>فترة مخصومة</value>
+  </data>
+  <data name="fullPeriod" xml:space="preserve">
+    <value>فترة الكلية</value>
+  </data>
+  <data name="isEnable" xml:space="preserve">
+    <value>مفعل</value>
+  </data>
+  <data name="multiplier" xml:space="preserve">
+    <value>مضاعف</value>
+  </data>
+  <data name="timeCodeColumn" xml:space="preserve">
+    <value>نوع الغياب </value>
   </data>
 </root>

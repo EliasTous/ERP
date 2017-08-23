@@ -121,7 +121,7 @@
     <value>Absence</value>
   </data>
   <data name="BasicInfoTabEditWindowTitle" xml:space="preserve">
-    <value>Document Type Info</value>
+    <value>Payroll Time Schedule Info</value>
   </data>
   <data name="dtext" xml:space="preserve">
     <value>Disspear</value>
@@ -152,5 +152,23 @@
   </data>
   <data name="WindowTitle" xml:space="preserve">
     <value>Payroll Time Schedule</value>
+  </data>
+  <data name="deductPeriod" xml:space="preserve">
+    <value>Deduct Period</value>
+  </data>
+  <data name="fullPeriod" xml:space="preserve">
+    <value>Full Period</value>
+  </data>
+  <data name="isEnable" xml:space="preserve">
+    <value>Is Enable</value>
+  </data>
+  <data name="multiplier" xml:space="preserve">
+    <value>Multiplier</value>
+  </data>
+  <data name="String1" xml:space="preserve">
+    <value>attendance</value>
+  </data>
+  <data name="timeCodeColumn" xml:space="preserve">
+    <value>Time Code</value>
   </data>
 </root>

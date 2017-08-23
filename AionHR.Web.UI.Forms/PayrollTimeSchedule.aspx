@@ -15,6 +15,15 @@
         function display(code) {
             return document.getElementById(code + "text").value;
         }
+        function dump(obj) {
+            var out = '';
+            for (var i in obj) {
+                out += i + ": " + obj[i] + "\n";
+
+
+            }
+            return out;
+        }
     </script>
 
 </head>
@@ -241,8 +250,8 @@
             runat="server"
             Icon="PageEdit"
             Title="<%$ Resources:EditWindowsTitle %>"
-            Width="450"
-            Height="330"
+            Width="555"
+            Height="320"
             AutoShow="false"
             Modal="true"
             Hidden="true"
@@ -306,54 +315,16 @@
 
                             </Store>
 
-                            <TopBar>
-                                <ext:Toolbar ID="Toolbar3" runat="server" ClassicButtonStyle="false">
-                                    <Items>
-                                        <ext:Button ID="Button1" runat="server" Text="<%$ Resources:Common , Add %>" Icon="Add">
-                                            <Listeners>
-                                                <Click Handler="CheckSession();" />
-                                            </Listeners>
-                                            <DirectEvents>
-                                                <Click OnEvent="ADDNewRecord">
-                                                    <EventMask ShowMask="true" CustomTarget="={#{GridPanel1}.body}" />
-                                                </Click>
-                                            </DirectEvents>
-                                        </ext:Button>
-                                        <ext:ToolbarSeparator></ext:ToolbarSeparator>
-                                        <ext:Button Visible="false" ID="Button2" runat="server" Text="<%$ Resources:Common , DeleteAll %>" Icon="Delete">
-                                            <Listeners>
-                                                <Click Handler="CheckSession();"></Click>
-                                            </Listeners>
-                                            <DirectEvents>
-                                                <Click OnEvent="btnDeleteAll">
-                                                    <EventMask ShowMask="true" />
-                                                </Click>
-                                            </DirectEvents>
-                                        </ext:Button>
-                                        <ext:ToolbarFill ID="ToolbarFill1" runat="server" />
-                                        <ext:TextField ID="TextField1" runat="server" EnableKeyEvents="true" Width="180">
-                                            <Triggers>
-                                                <ext:FieldTrigger Icon="Search" />
-                                            </Triggers>
-                                            <Listeners>
-                                                <KeyPress Fn="enterKeyPressSearchHandler" Buffer="100" />
-                                                <TriggerClick Handler="#{Store1}.reload();" />
-                                            </Listeners>
-                                        </ext:TextField>
-
-                                    </Items>
-                                </ext:Toolbar>
-
-                            </TopBar>
+                     
 
                             <ColumnModel ID="ColumnModel2" runat="server" SortAscText="<%$ Resources:Common , SortAscText %>" SortDescText="<%$ Resources:Common ,SortDescText  %>" SortClearText="<%$ Resources:Common ,SortClearText  %>" ColumnsText="<%$ Resources:Common ,ColumnsText  %>" EnableColumnHide="false" Sortable="false">
                                 <Columns>
                                     <ext:Column ID="Column1" Visible="false" DataIndex="tsId" runat="server" />
-                                    <ext:Column ID="Column6" Visible="true" DataIndex="timeCode" runat="server" Width="150" Text="timeCode">
+                                    <ext:Column ID="Column6" Visible="true" DataIndex="timeCode" runat="server" Width="150" Text="<%$ Resources:timeCodeColumn  %>">
                                         <Renderer Handler="return display(record.data['timeCode']);">
                                         </Renderer>
                                     </ext:Column>
-                                    <ext:WidgetColumn ID="Column2" Visible="true" DataIndex="isEnabled" runat="server" Text="isEnabled">
+                                    <ext:WidgetColumn ID="Column2" Visible="true" DataIndex="isEnabled" runat="server" Text="<%$ Resources: isEnable  %>">
                                         <Widget>
                                             <ext:Checkbox runat="server" Name="isEnabled">
                                                 <Listeners>
@@ -364,12 +335,12 @@
                                             </ext:Checkbox>
                                         </Widget>
                                     </ext:WidgetColumn>
-                                    <ext:WidgetColumn ID="Column7" Visible="true" DataIndex="deductPeriod" runat="server" Text="deductPeriod">
+                                    <ext:WidgetColumn ID="Column7" Visible="true" DataIndex="deductPeriod" runat="server" Text="<%$ Resources:deductPeriod  %>">
                                         <Widget>
                                             <ext:TextField runat="server" Name="deductPeriod" >
                                                 <Listeners>
 
-                                                    <Change Handler="var rec = this.getWidgetRecord(); rec.set('deductPeriod',this.value); ">
+                                                    <Change Handler="var rec = this.getWidgetRecord();rec.set('deductPeriod',this.value); ">
                                                     </Change>
                                                 </Listeners>
                                                 <Validator Handler="return !isNaN(this.value)">
@@ -378,7 +349,7 @@
                                                 </ext:TextField>
                                         </Widget>
                                     </ext:WidgetColumn>
-                                    <ext:WidgetColumn ID="Column8" Visible="true" DataIndex="fullPeriod" runat="server" Text="fullPeriod">
+                                    <ext:WidgetColumn ID="Column8" Visible="true" DataIndex="fullPeriod" runat="server" Text="<%$ Resources: fullPeriod %>">
                                         <Widget>
                                             <ext:TextField runat="server" Name="fullPeriod" >
                                                  <Listeners>
@@ -392,7 +363,7 @@
                                                 </ext:TextField>
                                         </Widget>
                                     </ext:WidgetColumn>
-                                    <ext:WidgetColumn ID="Column9" Visible="true" DataIndex="multiplier" runat="server" Text="multiplier">
+                                    <ext:WidgetColumn ID="Column9" Visible="true" DataIndex="multiplier" runat="server" Text="<%$ Resources: multiplier  %>">
                                         <Widget>
                                             <ext:TextField runat="server" Name="multiplier" >
                                                  <Listeners>
@@ -414,17 +385,7 @@
 
                                 </Columns>
                             </ColumnModel>
-                            <DockedItems>
-
-                                <ext:Toolbar ID="Toolbar4" runat="server" Dock="Bottom">
-                                    <Items>
-                                        <ext:StatusBar ID="StatusBar2" runat="server" />
-                                        <ext:ToolbarFill />
-
-                                    </Items>
-                                </ext:Toolbar>
-
-                            </DockedItems>
+                        
 
 
                             <View>
