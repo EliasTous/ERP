@@ -2131,6 +2131,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Attendance Entitlements and Deductions.
+        /// </summary>
+        internal static string RT502 {
+            get {
+                return ResourceManager.GetString("RT502", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Leave List.
         /// </summary>
         internal static string RT601 {
@@ -2181,6 +2190,15 @@ namespace Resources {
         internal static string SalaryChangeReasons {
             get {
                 return ResourceManager.GetString("SalaryChangeReasons", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Salary Type.
+        /// </summary>
+        internal static string SalaryType {
+            get {
+                return ResourceManager.GetString("SalaryType", resourceCulture);
             }
         }
         

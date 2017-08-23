@@ -934,6 +934,24 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Time Schedule.
+        /// </summary>
+        internal static string Class51012 {
+            get {
+                return ResourceManager.GetString("Class51012", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Time Code.
+        /// </summary>
+        internal static string Class51013 {
+            get {
+                return ResourceManager.GetString("Class51013", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Payroll Header.
         /// </summary>
         internal static string Class51020 {
@@ -1092,6 +1110,15 @@ namespace Resources {
         internal static string Class80501 {
             get {
                 return ResourceManager.GetString("Class80501", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Attendance Entitlements and Deductions.
+        /// </summary>
+        internal static string Class80502 {
+            get {
+                return ResourceManager.GetString("Class80502", resourceCulture);
             }
         }
         

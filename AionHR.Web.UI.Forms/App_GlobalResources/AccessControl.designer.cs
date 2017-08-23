@@ -3193,6 +3193,24 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Name.
+        /// </summary>
+        internal static string Property5101201 {
+            get {
+                return ResourceManager.GetString("Property5101201", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Time Code.
+        /// </summary>
+        internal static string Property5101301 {
+            get {
+                return ResourceManager.GetString("Property5101301", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Ref.
         /// </summary>
         internal static string Property5102001 {

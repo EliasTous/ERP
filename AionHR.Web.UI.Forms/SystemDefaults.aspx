@@ -40,26 +40,13 @@
 
         <ext:Viewport ID="Viewport1" runat="server" Layout="Fit">
             <Items>
-                <ext:Panel
-                    ID="EditRecordWindow"
-                    runat="server"
-                    Icon="PageEdit"
-                    Title="<%$ Resources:EditWindowsTitle %>"
-                    Width="450"
-                    Height="330"
-                    AutoShow="false"
-                    Modal="true"
-                    Hidden="False"
-                    Layout="Fit">
-
-                    <Items>
-                        <ext:TabPanel ID="panelRecordDetails" runat="server" ActiveTabIndex="0" Border="false" DeferredRender="false">
-                            <Items>
+               
+                        
                                 <ext:FormPanel DefaultButton="SaveButton"
                                     ID="BasicInfoTab"
                                     runat="server"
                                     Title="<%$ Resources: BasicInfoTabEditWindowTitle %>"
-                                    Icon="ApplicationSideList"
+                                    Icon="ApplicationSideList" AutoScroll="true"
                                     DefaultAnchor="100%"
                                     BodyPadding="5">
                                     <Items>
@@ -358,13 +345,7 @@
 
 
                                     </Items>
-
-                                </ext:FormPanel>
-
-                            </Items>
-                        </ext:TabPanel>
-                    </Items>
-                    <Buttons>
+                                     <Buttons>
                         <ext:Button ID="SaveButton" runat="server" Text="<%$ Resources:Common, Save %>" Icon="Disk">
 
                             <Listeners>
@@ -382,7 +363,12 @@
                         </ext:Button>
 
                     </Buttons>
-                </ext:Panel>
+                                </ext:FormPanel>
+
+                         
+                   
+                   
+              
             </Items>
 
         </ext:Viewport>

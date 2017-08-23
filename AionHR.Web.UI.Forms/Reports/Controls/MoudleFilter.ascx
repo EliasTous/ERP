@@ -1,4 +1,5 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="MoudleFilter.ascx.cs" Inherits="AionHR.Web.UI.Forms.Reports.Controls.MoudleFilter" %>
+
 <ext:Panel runat="server" Layout="HBoxLayout" Width="120"  ><Items>
 <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" ID="moduleId" Editable="false" Width="120" FieldLabel="">
     <Items>

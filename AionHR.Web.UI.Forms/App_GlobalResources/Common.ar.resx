@@ -975,4 +975,10 @@
   <data name="ImportRTW" xml:space="preserve">
     <value>استيراد المستندات القانونية</value>
   </data>
+  <data name="RT502" xml:space="preserve">
+    <value>خصومات واستحقاقات الدوام</value>
+  </data>
+  <data name="SalaryType" xml:space="preserve">
+    <value>نوع الراتب</value>
+  </data>
 </root>

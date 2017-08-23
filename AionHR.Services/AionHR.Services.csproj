@@ -131,6 +131,7 @@
     <Compile Include="Messaging\Reports\ReportCompositeRequest.cs" />
     <Compile Include="Messaging\Reports\ReportParameterSet.cs" />
     <Compile Include="Messaging\Reports\SalaryChangeReasonParameterSet.cs" />
+    <Compile Include="Messaging\Reports\SalaryTypeParameterSet.cs" />
     <Compile Include="Messaging\Reports\TransactionTypeParameterSet.cs" />
     <Compile Include="Messaging\Reports\UserParameterSet.cs" />
     <Compile Include="Messaging\RequestBase.cs" />

@@ -131,6 +131,7 @@
     <Compile Include="Reports\RT304.cs" />
     <Compile Include="Reports\RT401.cs" />
     <Compile Include="Reports\RT501.cs" />
+    <Compile Include="Reports\RT502.cs" />
     <Compile Include="Reports\RT601.cs" />
     <Compile Include="Reports\RT602.cs" />
     <Compile Include="Reports\RT801.cs" />

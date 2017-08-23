@@ -80,9 +80,9 @@
                                 
                             </Validator>
                             </ext:TextField>
-                            <ext:TextField runat="server"  LabelWidth="200" ID="pyReference" Name="pyReference" FieldLabel="payReference" />
-                             <ext:TextField runat="server"  LabelWidth="200" ID="taReference" Name="taReference" FieldLabel="taReference" />
-                                 <ext:DateField  LabelWidth="200" runat="server" AllowBlank="false" ID="pyActiveDate" Name="pyActiveDate" FieldLabel="payActiveDate"></ext:DateField>
+                            <ext:TextField runat="server"  LabelWidth="200" ID="pyReference" Name="pyReference" FieldLabel="<%$ Resources:pyReference %>" />
+                             <ext:TextField runat="server"  LabelWidth="200" ID="taReference" Name="taReference" FieldLabel="<%$ Resources:taReference %>" />
+                                 <ext:DateField  LabelWidth="200" runat="server" AllowBlank="false" ID="pyActiveDate" Name="pyActiveDate" FieldLabel="<%$ Resources:pyActiveDate %>"></ext:DateField>
 
                          
                            

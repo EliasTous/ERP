@@ -1278,4 +1278,10 @@
   <data name="Property2103005" xml:space="preserve">
     <value>Time Schedule</value>
   </data>
+  <data name="Property5101201" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="Property5101301" xml:space="preserve">
+    <value>Time Code</value>
+  </data>
 </root>

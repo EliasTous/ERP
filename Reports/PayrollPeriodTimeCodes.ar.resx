@@ -117,31 +117,94 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="FieldNextReviewDate" xml:space="preserve">
-    <value>Next Review Date</value>
+  <data name="xrLabel1.Text" xml:space="preserve">
+    <value>خصومات واستحقاقات الدوام</value>
   </data>
-  <data name="FieldNP" xml:space="preserve">
-    <value>Notice Period</value>
+  <data name="xrLabel10.Text" xml:space="preserve">
+    <value>القيمة</value>
   </data>
-  <data name="FieldProbationEndDate" xml:space="preserve">
-    <value>Probation End Date</value>
+  <data name="xrLabel11.Text" xml:space="preserve">
+    <value>القيمة</value>
   </data>
-  <data name="FieldRecruitmentCost" xml:space="preserve">
-    <value>Recruitment Cost</value>
+  <data name="xrLabel12.Text" xml:space="preserve">
+    <value>الأيام</value>
   </data>
-  <data name="FieldRecruitmentInfo" xml:space="preserve">
-    <value>Recruitment Info</value>
+  <data name="xrLabel13.Text" xml:space="preserve">
+    <value>غياب</value>
   </data>
-  <data name="FieldTermEndDate" xml:space="preserve">
-    <value>Term End Date</value>
+  <data name="xrLabel14.Text" xml:space="preserve">
+    <value>القيمة</value>
   </data>
-  <data name="pyActiveDate" xml:space="preserve">
-    <value>Payroll Activivation Date </value>
+  <data name="xrLabel15.Text" xml:space="preserve">
+    <value>الأيام</value>
   </data>
-  <data name="pyReference" xml:space="preserve">
-    <value>Payroll Reference</value>
+  <data name="xrLabel16.Text" xml:space="preserve">
+    <value>اليوم غير المغلق</value>
   </data>
-  <data name="taReference" xml:space="preserve">
-    <value>Time Attendance Reference</value>
+  <data name="xrLabel17.Text" xml:space="preserve">
+    <value>القيمة</value>
+  </data>
+  <data name="xrLabel18.Text" xml:space="preserve">
+    <value>الأيام</value>
+  </data>
+  <data name="xrLabel19.Text" xml:space="preserve">
+    <value>غياب بدون إذن</value>
+  </data>
+  <data name="xrLabel2.Text" xml:space="preserve">
+    <value>الاسم</value>
+  </data>
+  <data name="xrLabel20.Text" xml:space="preserve">
+    <value>من</value>
+  </data>
+  <data name="xrLabel22.Text" xml:space="preserve">
+    <value>إلى</value>
+  </data>
+  <data name="xrLabel24.Text" xml:space="preserve">
+    <value>القسم</value>
+  </data>
+  <data name="xrLabel27.Text" xml:space="preserve">
+    <value>الفرع</value>
+  </data>
+  <data name="xrLabel29.Text" xml:space="preserve">
+    <value>الموظف</value>
+  </data>
+  <data name="xrLabel3.Text" xml:space="preserve">
+    <value>القسم</value>
+  </data>
+  <data name="xrLabel30.Text" xml:space="preserve">
+    <value>نوع الراتب</value>
+  </data>
+  <data name="xrLabel31.Text" xml:space="preserve">
+    <value>xrLabel20</value>
+  </data>
+  <data name="xrLabel32.Text" xml:space="preserve">
+    <value>من قبل</value>
+  </data>
+  <data name="xrLabel34.Text" xml:space="preserve">
+    <value>المجموع</value>
+  </data>
+  <data name="xrLabel4.Text" xml:space="preserve">
+    <value>الفرع</value>
+  </data>
+  <data name="xrLabel45.Text" xml:space="preserve">
+    <value>لم يتم العثور على نتائج</value>
+  </data>
+  <data name="xrLabel5.Text" xml:space="preserve">
+    <value>التأخير</value>
+  </data>
+  <data name="xrLabel6.Text" xml:space="preserve">
+    <value>الزمن</value>
+  </data>
+  <data name="xrLabel7.Text" xml:space="preserve">
+    <value>القيمة</value>
+  </data>
+  <data name="xrLabel8.Text" xml:space="preserve">
+    <value>العمل الإضافي</value>
+  </data>
+  <data name="xrLabel9.Text" xml:space="preserve">
+    <value>الزمن</value>
+  </data>
+  <data name="xrPageInfo2.Format" xml:space="preserve">
+    <value>صفحة {0} من {1}</value>
   </data>
 </root>

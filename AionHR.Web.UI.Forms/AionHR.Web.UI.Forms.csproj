@@ -306,6 +306,7 @@
     <Content Include="Reports\Controls\PaymentMethodFilter.ascx" />
     <Content Include="Reports\Controls\PayRefFilter.ascx" />
     <Content Include="Reports\Controls\SalaryChangeReasonFilter.ascx" />
+    <Content Include="Reports\Controls\SalaryTypeFilter.ascx" />
     <Content Include="Reports\Controls\TransactionTypeFilter.ascx" />
     <Content Include="Reports\Controls\UserComboFilter.ascx" />
     <Content Include="Reports\Controls\WeekPicker.ascx" />
@@ -328,6 +329,7 @@
     <Content Include="Reports\RT305.aspx" />
     <Content Include="Reports\RT401.aspx" />
     <Content Include="Reports\RT501.aspx" />
+    <Content Include="Reports\RT502.aspx" />
     <Content Include="Reports\RT601.aspx" />
     <Content Include="Reports\RT602.aspx" />
     <Content Include="Reports\RT801.aspx" />
@@ -574,6 +576,13 @@
     <Compile Include="PayrollTimeSchedule.aspx.designer.cs">
       <DependentUpon>PayrollTimeSchedule.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Reports\Controls\SalaryTypeFilter.ascx.cs">
+      <DependentUpon>SalaryTypeFilter.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reports\Controls\SalaryTypeFilter.ascx.designer.cs">
+      <DependentUpon>SalaryTypeFilter.ascx</DependentUpon>
+    </Compile>
     <Compile Include="Reports\Controls\WeekPicker.ascx.cs">
       <DependentUpon>WeekPicker.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -608,6 +617,13 @@
     </Compile>
     <Compile Include="Reports\RT305.aspx.designer.cs">
       <DependentUpon>RT305.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\RT502.aspx.cs">
+      <DependentUpon>RT502.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reports\RT502.aspx.designer.cs">
+      <DependentUpon>RT502.aspx</DependentUpon>
     </Compile>
     <Compile Include="Utilities\AccessControlApplier.cs" />
     <Compile Include="AllowanceTypes.aspx.cs">
@@ -1648,13 +1664,17 @@
     <Content Include="App_LocalResources\SalaryChangeReasons.aspx.resx" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="EmployeePages\App_LocalResources\JobInformation.aspx.resx" />
+    <Content Include="EmployeePages\App_LocalResources\JobInformation.aspx.resx">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_LocalResources\LeaveRequests.aspx.resx" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="EmployeePages\App_LocalResources\Payroll.aspx.resx" />
+    <Content Include="EmployeePages\App_LocalResources\Payroll.aspx.resx">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_LocalResources\OrganizationChart.aspx.resx" />
@@ -1666,7 +1686,9 @@
     <Content Include="App_LocalResources\Cases.aspx.resx" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="EmployeePages\App_LocalResources\Notes.aspx.resx" />
+    <Content Include="EmployeePages\App_LocalResources\Notes.aspx.resx">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_GlobalResources\Errors.resx">
@@ -1715,7 +1737,9 @@
     <Content Include="App_LocalResources\ARresetPW.aspx.resx" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="EmployeePages\App_LocalResources\Documents.aspx.ar.resx" />
+    <Content Include="EmployeePages\App_LocalResources\Documents.aspx.ar.resx">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_LocalResources\CompanyFiles.aspx.resx" />
@@ -1831,6 +1855,7 @@
     <Content Include="App_LocalResources\PayrollTimeSchedule.aspx.resx" />
     <Content Include="App_LocalResources\PayrollTimeSchedule.aspx.ar.resx" />
     <Content Include="App_LocalResources\Positions.aspx.ar.resx" />
+    <Content Include="EmployeePages\App_LocalResources\Hire.aspx.ar.resx" />
     <EmbeddedResource Include="Properties\licenses.licx" />
     <Content Include="Reports\App_LocalResources\RT202.aspx.resx" />
     <Content Include="Reports\App_LocalResources\RT01.aspx.ar.resx" />

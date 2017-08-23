@@ -408,6 +408,12 @@
   <data name="Class51011" xml:space="preserve">
     <value>الفترات المالية</value>
   </data>
+  <data name="Class51012" xml:space="preserve">
+    <value>الجدول الزمني</value>
+  </data>
+  <data name="Class51013" xml:space="preserve">
+    <value>النوع</value>
+  </data>
   <data name="Class51020" xml:space="preserve">
     <value>عملية الدفع</value>
   </data>
@@ -461,6 +467,9 @@
   </data>
   <data name="Class80501" xml:space="preserve">
     <value>تقرير الرواتب</value>
+  </data>
+  <data name="Class80502" xml:space="preserve">
+    <value>استحقاقات وخصومات الدوام</value>
   </data>
   <data name="Class80601" xml:space="preserve">
     <value>تقرير الإجازات</value>

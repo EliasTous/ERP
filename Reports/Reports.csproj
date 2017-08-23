@@ -91,6 +91,9 @@
     <Compile Include="MonthlyPayroll.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="PayrollPeriodTimeCodes.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="PeriodSummary.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -217,6 +220,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MonthlyPayroll.resx">
       <DependentUpon>MonthlyPayroll.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PayrollPeriodTimeCodes.ar.resx">
+      <DependentUpon>PayrollPeriodTimeCodes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PayrollPeriodTimeCodes.resx">
+      <DependentUpon>PayrollPeriodTimeCodes.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PeriodSummary.ar.resx">
       <DependentUpon>PeriodSummary.cs</DependentUpon>

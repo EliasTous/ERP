@@ -846,7 +846,7 @@ namespace AionHR.Web.UI.Forms
                 forSummary.departmentName + "<br />",
               forSummary.branchName + "<br />",
                forSummary.positionName + "<br />",
-               (forSummary.reportToName == null && !string.IsNullOrEmpty(forSummary.reportToName.fullName.Trim())) ? "" : "<br />" + GetLocalResourceObject("FieldReportsTo").ToString() + " :" + forSummary.reportToName.fullName + "<br />",
+               (forSummary.reportToName == null && !string.IsNullOrEmpty(forSummary.reportToName.fullName.Trim())) ? "": GetLocalResourceObject("FieldReportsTo").ToString() + " :<br/>" + forSummary.reportToName.fullName + "<br />",
 
                forSummary.eosBalance + "<br />",
                forSummary.paidLeavesYTD + "<br/>",
@@ -871,7 +871,7 @@ namespace AionHR.Web.UI.Forms
             allowedLeaveYtd.Html = forSummary.allowedLeaveYtd + "<br />";
             if (forSummary.reportToName != null && !string.IsNullOrEmpty(forSummary.reportToName.fullName.Trim()))
             {
-                reportsToLbl.Html = GetLocalResourceObject("FieldReportsTo").ToString() + " :<br/ >" + forSummary.reportToName.fullName + "<br />";
+                reportsToLbl.Html = GetLocalResourceObject("FieldReportsTo").ToString() +":"+ forSummary.reportToName.fullName + "<br />";
             }
             else
             {

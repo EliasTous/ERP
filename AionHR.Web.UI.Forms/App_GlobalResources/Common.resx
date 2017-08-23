@@ -975,4 +975,10 @@
   <data name="ImportRTW" xml:space="preserve">
     <value>Import Right To Work</value>
   </data>
+  <data name="RT502" xml:space="preserve">
+    <value>Attendance Entitlements and Deductions</value>
+  </data>
+  <data name="SalaryType" xml:space="preserve">
+    <value>Salary Type</value>
+  </data>
 </root>

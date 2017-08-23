@@ -1272,4 +1272,10 @@
   <data name="Property2103005" xml:space="preserve">
     <value>الجدول الزمني</value>
   </data>
+  <data name="Property5101201" xml:space="preserve">
+    <value>الاسم</value>
+  </data>
+  <data name="Property5101301" xml:space="preserve">
+    <value>النوع</value>
+  </data>
 </root>

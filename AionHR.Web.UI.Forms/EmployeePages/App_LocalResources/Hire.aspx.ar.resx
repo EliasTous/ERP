@@ -135,4 +135,13 @@
   <data name="FieldTermEndDate" xml:space="preserve">
     <value>نهاية العقد</value>
   </data>
+  <data name="pyActiveDate" xml:space="preserve">
+    <value>تاريخ تفعيل الراتب </value>
+  </data>
+  <data name="pyReference" xml:space="preserve">
+    <value>رقم في سجل الرواتب </value>
+  </data>
+  <data name="taReference" xml:space="preserve">
+    <value>الرقم في جهاز البصمة </value>
+  </data>
 </root>
