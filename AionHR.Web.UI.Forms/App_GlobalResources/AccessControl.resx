@@ -1275,4 +1275,7 @@
   <data name="Property5103006" xml:space="preserve">
     <value>Disappear</value>
   </data>
+  <data name="Property2103005" xml:space="preserve">
+    <value>Time Schedule</value>
+  </data>
 </root>

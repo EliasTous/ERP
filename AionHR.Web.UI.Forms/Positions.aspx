@@ -22,7 +22,7 @@
         <ext:Hidden ID="textLoadFailed" runat="server" Text="<%$ Resources:Common , LoadFailed %>" />
         <ext:Hidden ID="titleSavingError" runat="server" Text="<%$ Resources:Common , TitleSavingError %>" />
         <ext:Hidden ID="titleSavingErrorMessage" runat="server" Text="<%$ Resources:Common , TitleSavingErrorMessage %>" />
-        
+
         <ext:Store
             ID="Store1"
             runat="server"
@@ -47,6 +47,8 @@
                         <ext:ModelField Name="description" />
                         <ext:ModelField Name="referToPositionId" />
                         <ext:ModelField Name="referToPositionName" />
+                        <ext:ModelField Name="tsId" />
+                        <ext:ModelField Name="tsName" />
 
 
 
@@ -121,17 +123,16 @@
                             <ext:Column Visible="false" ID="ColrecordId" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldrecordId %>" DataIndex="recordId" Hideable="false" Width="75" Align="Center" />
                             <ext:Column ID="ColReference" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldReference%>" DataIndex="positionRef" Flex="1" Hideable="false" />
                             <ext:Column CellCls="cellLink" ID="ColName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldName%>" DataIndex="name" Flex="2" Hideable="false">
-                           
                             </ext:Column>
                             <ext:Column Visible="false" ID="ColrefererId" MenuDisabled="true" runat="server" DataIndex="referToPositionId" Flex="1" Hideable="false" />
                             <ext:Column Visible="true" ID="ColrefererName" MenuDisabled="true" runat="server" DataIndex="referToPositionName" Text="<%$ Resources: FieldReferer %>" Flex="1" Hideable="false" />
                             <ext:Column ID="ColDescription" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDescription %>" Flex="1" DataIndex="description" Hideable="false" />
-                          
 
 
-                            
 
-                           
+
+
+
                             <ext:Column runat="server"
                                 ID="colDelete" Flex="1" Visible="false"
                                 Text="<%$ Resources: Common , Delete %>"
@@ -169,8 +170,8 @@
                                 MenuDisabled="true"
                                 Resizable="false">
 
-                                <Renderer handler="return editRender()+'&nbsp;&nbsp;' +deleteRender(); " />
-                                 </ext:Column>
+                                <Renderer Handler="return editRender()+'&nbsp;&nbsp;' +deleteRender(); " />
+                            </ext:Column>
 
                         </Columns>
                     </ColumnModel>
@@ -180,7 +181,7 @@
                             <Items>
                                 <ext:StatusBar ID="StatusBar1" runat="server" />
                                 <ext:ToolbarFill />
-                             
+
                             </Items>
                         </ext:Toolbar>
 
@@ -225,7 +226,7 @@
                         <ext:GridView ID="GridView1" runat="server" />
                     </View>
 
-                    
+
                     <SelectionModel>
                         <ext:RowSelectionModel ID="rowSelectionModel" runat="server" Mode="Single" StopIDModeInheritance="true" />
                         <%--<ext:CheckboxSelectionModel ID="CheckboxSelectionModel1" runat="server" Mode="Multi" StopIDModeInheritance="true" />--%>
@@ -265,41 +266,62 @@
                                 <ext:TextField ID="description" runat="server" FieldLabel="<%$ Resources: FieldDescription %>" DataIndex="description" AllowBlank="true" />
 
 
-                                
-                                <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  Enabled="false" ValueField="recordId" AllowBlank="true" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" runat="server" ID="referToPositionId" Name="referToPositionId" FieldLabel="<%$ Resources:FieldReferer%>" SimpleSubmit="true">
-                                                    <Store>
-                                                        <ext:Store runat="server" ID="positionStore">
-                                                            <Model>
-                                                                <ext:Model runat="server">
-                                                                    <Fields>
-                                                                        <ext:ModelField Name="recordId" />
-                                                                        <ext:ModelField Name="name" />
-                                                                    </Fields>
-                                                                </ext:Model>
-                                                            </Model>
-                                                            <Proxy>
-                                                                <ext:PageProxy DirectFn="App.direct.FillParent" />
-                                                            </Proxy>
-                                                        </ext:Store>
-                                                    </Store>
-                                                    <RightButtons>
-                                                        <ext:Button ID="Button1" runat="server" Icon="Add" Hidden="true">
-                                                            <Listeners>
-                                                                <Click Handler="CheckSession();  " />
-                                                            </Listeners>
-                                                            <DirectEvents>
 
-                                                                <Click OnEvent="addPosition">
-                                                              
-                                                                </Click>
-                                                            </DirectEvents>
-                                                        </ext:Button>
-                                                    </RightButtons>
-                                                    <Listeners>
-                                                        <FocusEnter Handler=" if(!this.readOnly)this.rightButtons[0].setHidden(false);" />
-                                                        <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
-                                                    </Listeners>
-                                                </ext:ComboBox>
+                                <ext:ComboBox AnyMatch="true" CaseSensitive="false" Enabled="false" ValueField="recordId" AllowBlank="true" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" runat="server" ID="referToPositionId" Name="referToPositionId" FieldLabel="<%$ Resources:FieldReferer%>" SimpleSubmit="true">
+                                    <Store>
+                                        <ext:Store runat="server" ID="positionStore">
+                                            <Model>
+                                                <ext:Model runat="server">
+                                                    <Fields>
+                                                        <ext:ModelField Name="recordId" />
+                                                        <ext:ModelField Name="name" />
+                                                    </Fields>
+                                                </ext:Model>
+                                            </Model>
+                                            <Proxy>
+                                                <ext:PageProxy DirectFn="App.direct.FillParent" />
+                                            </Proxy>
+                                        </ext:Store>
+                                    </Store>
+                                    <RightButtons>
+                                        <ext:Button ID="Button1" runat="server" Icon="Add" Hidden="true">
+                                            <Listeners>
+                                                <Click Handler="CheckSession();  " />
+                                            </Listeners>
+                                            <DirectEvents>
+
+                                                <Click OnEvent="addPosition">
+                                                </Click>
+                                            </DirectEvents>
+                                        </ext:Button>
+                                    </RightButtons>
+                                    <Listeners>
+                                        <FocusEnter Handler=" if(!this.readOnly)this.rightButtons[0].setHidden(false);" />
+                                        <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
+                                    </Listeners>
+                                </ext:ComboBox>
+
+                                <ext:ComboBox AnyMatch="true" CaseSensitive="false" Enabled="false" ValueField="recordId" AllowBlank="true" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" runat="server" ID="tsId" Name="tsId" FieldLabel="<%$ Resources:FieldTimeSchedule%>" SimpleSubmit="true">
+                                    <Store>
+                                        <ext:Store runat="server" ID="tsStore">
+                                            <Model>
+                                                <ext:Model runat="server">
+                                                    <Fields>
+                                                        <ext:ModelField Name="recordId" />
+                                                        <ext:ModelField Name="name" />
+                                                    </Fields>
+                                                </ext:Model>
+                                            </Model>
+                                            <Proxy>
+                                                <ext:PageProxy DirectFn="App.direct.FillTS" />
+                                            </Proxy>
+                                        </ext:Store>
+                                    </Store>
+                                   
+                                  
+                                </ext:ComboBox>
+
+
                             </Items>
 
                         </ext:FormPanel>

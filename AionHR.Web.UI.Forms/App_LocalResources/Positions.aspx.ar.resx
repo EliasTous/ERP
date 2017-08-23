@@ -147,6 +147,9 @@
   <data name="FieldReferer" xml:space="preserve">
     <value>الوظيفة الأساسية</value>
   </data>
+  <data name="FieldTimeSchedule" xml:space="preserve">
+    <value>الجدول الزمني للرواتب</value>
+  </data>
   <data name="FieldTimeZone" xml:space="preserve">
     <value>المنطقة الزمنية</value>
   </data>

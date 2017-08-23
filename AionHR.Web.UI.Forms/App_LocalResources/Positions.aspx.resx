@@ -147,6 +147,9 @@
   <data name="FieldReferer" xml:space="preserve">
     <value>Referrer Name</value>
   </data>
+  <data name="FieldTimeSchedule" xml:space="preserve">
+    <value>Time Schedule</value>
+  </data>
   <data name="FieldTimeZone" xml:space="preserve">
     <value>Time Zone</value>
   </data>

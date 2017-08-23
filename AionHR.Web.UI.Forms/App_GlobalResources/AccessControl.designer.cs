@@ -610,6 +610,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Time Schedule.
+        /// </summary>
+        internal static string Property2103005 {
+            get {
+                return ResourceManager.GetString("Property2103005", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Name.
         /// </summary>
         internal static string Property2104001 {

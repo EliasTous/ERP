@@ -27,5 +27,11 @@ namespace AionHR.Model.Company.Structure
         [PropertyID("21030_04")]
         [ApplySecurity]
         public string referToPositionName { get; set; }
+
+        [PropertyID("21030_05")]
+        [ApplySecurity]
+        public int? tsId { get; set; }
+
+        public string tsName { get; set; }
     }
 }

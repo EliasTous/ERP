@@ -1269,4 +1269,7 @@
   <data name="Property5103006" xml:space="preserve">
     <value>غياب دون عذر</value>
   </data>
+  <data name="Property2103005" xml:space="preserve">
+    <value>الجدول الزمني</value>
+  </data>
 </root>

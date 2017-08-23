@@ -21,6 +21,7 @@ using AionHR.Model.Company.News;
 using AionHR.Services.Messaging;
 using AionHR.Model.Company.Structure;
 using AionHR.Model.Employees.Profile;
+using AionHR.Model.Payroll;
 
 namespace AionHR.Web.UI.Forms
 {
@@ -30,6 +31,7 @@ namespace AionHR.Web.UI.Forms
         ICompanyStructureService _branchService = ServiceLocator.Current.GetInstance<ICompanyStructureService>();
         ISystemService _systemService = ServiceLocator.Current.GetInstance<ISystemService>();
         IEmployeeService _employeeService = ServiceLocator.Current.GetInstance<IEmployeeService>();
+        IPayrollService _payrollService = ServiceLocator.Current.GetInstance<IPayrollService>();
         protected override void InitializeCulture()
         {
 
@@ -255,6 +257,30 @@ namespace AionHR.Web.UI.Forms
             };
 
         }
+
+        [DirectMethod]
+        public object FillTS(string action, Dictionary<string, object> extraParams)
+        {
+            StoreRequestParameters prms = new StoreRequestParameters(extraParams);
+
+
+
+            List<TimeSchedule> data;
+            ListRequest req = new ListRequest();
+
+            ListResponse<TimeSchedule> response = _payrollService.ChildGetAll<TimeSchedule>(req);
+            if (!response.Success)
+            {
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).ToString() : response.Summary).Show();
+                return new List<TimeSchedule>();
+            }
+            data = response.Items;
+            return new
+            {
+                data
+            };
+
+        }
         [DirectMethod]
         public object FillSupervisor(string action, Dictionary<string, object> extraParams)
         {
@@ -410,6 +436,8 @@ namespace AionHR.Web.UI.Forms
             Model.Company.Structure.Position b = JsonConvert.DeserializeObject<Model.Company.Structure.Position>(obj);
             if (referToPositionId.SelectedItem != null)
                 b.referToPositionName = referToPositionId.SelectedItem.Text;
+            if (tsId.SelectedItem != null)
+                b.tsName = tsId.SelectedItem.Text;
             b.recordId = id;
             // Define the object to add or edit as null
 
@@ -494,6 +522,7 @@ namespace AionHR.Web.UI.Forms
 
                         BasicInfoTab.UpdateRecord(record);
                         record.Set("referToPositionName", b.referToPositionName);
+                        record.Set("tsName", b.tsName);
                         record.Commit();
                         Notification.Show(new NotificationConfig
                         {

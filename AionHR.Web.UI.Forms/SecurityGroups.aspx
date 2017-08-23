@@ -318,17 +318,7 @@
                                 <ext:TextField LabelWidth="150" ID="recordId" Hidden="true" runat="server" Disabled="true" Name="recordId" />
                                 <ext:TextField LabelWidth="150" ID="name" runat="server" FieldLabel="<%$ Resources:FieldName%>" Name="name" AllowBlank="false" BlankText="<%$ Resources:Common, MandatoryField%>" />
                                 <ext:TextArea ID="description" LabelWidth="150" runat="server" FieldLabel="<%$ Resources:FieldDescription%>" Name="description" />
-                                <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  LabelWidth="150" runat="server" FieldLabel="<%$ Resources:DefaultAccessLevel%>" Editable="false" ID="defaultAccessLevel" Name="defaultAccessLevel">
-                                    <Items>
-
-                                        <ext:ListItem Text="<%$ Resources: NoAccess %>" Value="0" />
-                                        <ext:ListItem Text="<%$ Resources: Read %>" Value="1" />
-                                        <ext:ListItem Text="<%$ Resources: WriteClass %>" Value="2" />
-                                        <ext:ListItem Text="<%$ Resources: FullControl %>" Value="3" />
-                                    </Items>
-
-
-                                </ext:ComboBox>
+                              
 
                             </Items>
                             <Buttons>

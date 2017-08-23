@@ -231,27 +231,7 @@ namespace AionHR.Web.UI.Forms
 
                         //Add this record to the store 
                         this.groupsStore.Insert(0, b);
-                        int level = Convert.ToInt32(defaultAccessLevel.SelectedItem.Value);
-                        PostRequest<ModuleClass[]> batch = new PostRequest<ModuleClass[]>();
-                        List<ModuleClass> allClasses = new List<ModuleClass>();
-
-                        List<Type> types = AppDomain.CurrentDomain.GetAssemblies().Where(x => x.FullName.Contains("AionHR.Model")).ToList()[0].GetTypes().Where(x => x.GetCustomAttributes(typeof(ClassIdentifier), false).ToList().Count > 0).ToList();
-                        try
-                        {
-                            types.ForEach(x => allClasses.Add(new ModuleClass() { classId = (x.GetCustomAttribute(typeof(ClassIdentifier), false) as ClassIdentifier).ClassID, accessLevel = level, id = (x.GetCustomAttribute(typeof(ClassIdentifier), false) as ClassIdentifier).ClassID, sgId = b.recordId }));
-                            allClasses.Where(x => x.classId.StartsWith("80") || x.classId.EndsWith("99") || x.classId.EndsWith("98")).ToList().ForEach(x => x.accessLevel = Math.Min(1, x.accessLevel));
-                        }
-
-                        catch { }
-                        batch.entity = allClasses.ToArray();
-                        //PostResponse<ModuleClass[]> batResp = _accessControlService.ChildAddOrUpdate<ModuleClass[]>(batch);
-                        //if (!batResp.Success)
-                        //{
-                        //    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                        //    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() : r.Summary).Show();
-                        //    return;
-                        //}
-                        //Display successful notification
+                     
                         Notification.Show(new NotificationConfig
                         {
                             Title = Resources.Common.Notification,
@@ -503,8 +483,7 @@ namespace AionHR.Web.UI.Forms
             SetTabPanelActivated(false);
             this.GroupWindow.Show();
             panelRecordDetails.ActiveIndex = 0;
-            defaultAccessLevel.Hidden = false;
-            defaultAccessLevel.Select(0);
+
         }
 
         protected void ADDUsers(object sender, DirectEventArgs e)
@@ -582,7 +561,7 @@ namespace AionHR.Web.UI.Forms
             string type = e.ExtraParams["type"];
             CurrentGroup.Text = id.ToString();
             usersStore.Reload();
-            defaultAccessLevel.Hidden = true;
+          
             switch (type)
             {
 
