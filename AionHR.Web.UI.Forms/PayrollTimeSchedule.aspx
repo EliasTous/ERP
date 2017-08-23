@@ -24,9 +24,7 @@
             }
             return out;
         }
-        var cellClick2 = function (view, cell, columnIndex, record, row, rowIndex, e) {
-            alert(dump(row.cells[1].setDisabled(true)));
-        }
+     
     </script>
 
 </head>
@@ -437,9 +435,7 @@
                                 </ext:Toolbar>
 
                             </DockedItems>
-                            <Listeners>
-                                <CellClick Fn="cellClick2" />
-                            </Listeners>
+                   
 
                             <View>
                                 <ext:GridView ID="GridView2" runat="server" />
