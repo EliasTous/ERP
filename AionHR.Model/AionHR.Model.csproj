@@ -67,6 +67,7 @@
     <Compile Include="Employees\Profile\Dependant.cs" />
     <Compile Include="Employees\Profile\Employee.cs" />
     <Compile Include="Employees\Profile\EmployeeBackgroundCheck.cs" />
+    <Compile Include="Employees\Profile\EmployeeCalendar.cs" />
     <Compile Include="Employees\Profile\EmployeeCertificate.cs" />
     <Compile Include="Employees\Profile\EmployeeContact.cs" />
     <Compile Include="Employees\Profile\EmployeeCount.cs" />
