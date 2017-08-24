@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace AionHR.Model.Employees.Profile
 {
+
   public class EmployeeCalendar
     {
         public string caName { get; set; }
