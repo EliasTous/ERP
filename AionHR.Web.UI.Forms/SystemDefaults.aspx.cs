@@ -67,7 +67,7 @@ namespace AionHR.Web.UI.Forms
                 HideShowColumns();
                 try
                 {
-                    AccessControlApplier.ApplyAccessControlOnPage(typeof(SystemDefault), BasicInfoTab, null, null, SaveButton);
+                    AccessControlApplier.ApplyAccessControlOnPage(typeof(SystemDefault), EmployeeSettings, null, null, SaveButton);
                 }
                 catch (AccessDeniedException exp)
                 {
@@ -76,7 +76,50 @@ namespace AionHR.Web.UI.Forms
                     Viewport1.Hidden = true;
                     return;
                 }
-
+                try
+                {
+                    AccessControlApplier.ApplyAccessControlOnPage(typeof(SystemDefault), GeneralSettings, null, null, SaveButton);
+                }
+                catch (AccessDeniedException exp)
+                {
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorAccessDenied).Show();
+                    Viewport1.Hidden = true;
+                    return;
+                }
+                try
+                {
+                    AccessControlApplier.ApplyAccessControlOnPage(typeof(SystemDefault), PayrollSettings, null, null, SaveButton);
+                }
+                catch (AccessDeniedException exp)
+                {
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorAccessDenied).Show();
+                    Viewport1.Hidden = true;
+                    return;
+                }
+                try
+                {
+                    AccessControlApplier.ApplyAccessControlOnPage(typeof(SystemDefault), AttendanceSettings, null, null, SaveButton);
+                }
+                catch (AccessDeniedException exp)
+                {
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorAccessDenied).Show();
+                    Viewport1.Hidden = true;
+                    return;
+                }
+                try
+                {
+                    AccessControlApplier.ApplyAccessControlOnPage(typeof(SystemDefault), SecuritySettings, null, null, SaveButton);
+                }
+                catch (AccessDeniedException exp)
+                {
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorAccessDenied).Show();
+                    Viewport1.Hidden = true;
+                    return;
+                }
                 ListRequest req = new ListRequest();
                 ListResponse<KeyValuePair<string, string>> defaults = _systemService.ChildGetAll<KeyValuePair<string, string>>(req);
                 if (!defaults.Success)
@@ -101,6 +144,17 @@ namespace AionHR.Web.UI.Forms
             FillPassports();
             FillSchedules();
             FillTsId();
+            ulDeductionStore.DataSource = GetDeductions();
+            ulDeductionStore.DataBind();
+
+            ssDeductionStore.DataSource = GetDeductions();
+            ssDeductionStore.DataBind();
+
+            peDeductionStore.DataSource = GetDeductions();
+            peDeductionStore.DataBind();
+
+            loanDeductionStore.DataSource = GetDeductions();
+            loanDeductionStore.DataBind();
         }
 
         private void FillTsId()
@@ -153,6 +207,42 @@ namespace AionHR.Web.UI.Forms
 
         private void FillDefaults(List<KeyValuePair<string, string>> items)
         {
+            try
+            {
+                ulDeductionId.Select(items.Where(s => s.Key == "ulDeductionId").First().Value);
+            }
+            catch { }
+            try
+            {
+                ssDeductionId.Select(items.Where(s => s.Key == "ssDeductionId").First().Value);
+            }
+            catch { }
+            try
+            {
+                loanDeductionId.Select(items.Where(s => s.Key == "loanDeductionId").First().Value);
+            }
+            catch { }
+            try { peDeductionId.Select(items.Where(s => s.Key == "penaltyDeductionId").First().Value); }
+            catch { }
+          
+            try
+            {
+                ldMethod.Select(items.Where(s => s.Key == "ldMethod").First().Value);
+            }
+
+            catch { }
+          
+
+
+            try
+            {
+                ldValue.Text = (items.Where(s => s.Key == "ldValue").First().Value);
+            }
+
+            catch { }
+            
+
+
             try
             {
                 currencyIdCombo.Select(items.Where(s => s.Key == "currencyId").First().Value);
@@ -242,8 +332,7 @@ namespace AionHR.Web.UI.Forms
 
         }
 
-
-
+        
         /// <summary>
         /// the detailed tabs for the edit form. I put two tabs by default so hide unecessary or add addional
         /// </summary>
@@ -280,46 +369,71 @@ namespace AionHR.Web.UI.Forms
             }
         }
 
-
-        protected void SaveNewRecord(object sender, DirectEventArgs e)
+        private List<KeyValuePair<string,string>> GetEmployeeSettings(dynamic values)
         {
             List<KeyValuePair<string, string>> submittedValues = new List<KeyValuePair<string, string>>();
-            dynamic values = JsonConvert.DeserializeObject(e.ExtraParams["values"]);
-            if (!string.IsNullOrEmpty(values.countryId.ToString()))
-                submittedValues.Add(new KeyValuePair<string, string>("countryId", values.countryId.ToString()));
-            if (!string.IsNullOrEmpty(values.currencyId.ToString()))
-                submittedValues.Add(new KeyValuePair<string, string>("currencyId", values.currencyId.ToString()));
             if (!string.IsNullOrEmpty(values.nameFormat.ToString()))
                 submittedValues.Add(new KeyValuePair<string, string>("nameFormat", values.nameFormat.ToString()));
-            if (!string.IsNullOrEmpty(values.dateFormat.ToString()))
-                submittedValues.Add(new KeyValuePair<string, string>("dateFormat", values.dateFormat.ToString()));
-            if (!string.IsNullOrEmpty(values.timeZone.ToString()))
-                submittedValues.Add(new KeyValuePair<string, string>("timeZone", values.timeZone.ToString()));
-            if (!string.IsNullOrEmpty(values.fdow.ToString()))
-                submittedValues.Add(new KeyValuePair<string, string>("fdow", values.fdow.ToString()));
-            if (!string.IsNullOrEmpty(values.caId.ToString()))
-                submittedValues.Add(new KeyValuePair<string, string>("caId", values.caId.ToString()));
+
+
             if (!string.IsNullOrEmpty(values.vsId.ToString()))
                 submittedValues.Add(new KeyValuePair<string, string>("vsId", values.vsId.ToString()));
-            if (!string.IsNullOrEmpty(values.tsId.ToString()))
-                submittedValues.Add(new KeyValuePair<string, string>("tsId", values.tsId.ToString()));
+
             if (!string.IsNullOrEmpty(values.passportCombo.ToString()))
                 submittedValues.Add(new KeyValuePair<string, string>("passportDocTypeId", values.passportCombo.ToString()));
             if (!string.IsNullOrEmpty(values.idCombo.ToString()))
                 submittedValues.Add(new KeyValuePair<string, string>("resDocTypeId", values.idCombo.ToString()));
-            if (!string.IsNullOrEmpty(values.vsId.ToString()))
-                submittedValues.Add(new KeyValuePair<string, string>("vsId", values.vsId.ToString()));
-            if (!string.IsNullOrEmpty(values.scId.ToString()))
-                submittedValues.Add(new KeyValuePair<string, string>("scId", values.scId.ToString()));
 
-            if (values.localServerIP != null && !string.IsNullOrEmpty(values.localServerIP.ToString()))
-                submittedValues.Add(new KeyValuePair<string, string>("localServerIP", values.localServerIP.ToString()+"/AionWSLocal"));
+            return submittedValues;
+        }
+        private void SaveEmployeeSettings(dynamic values)
+        {
+            List<KeyValuePair<string,string>> submittedValues = GetEmployeeSettings(values);
+            KeyValuePair<string, string>[] valArr = submittedValues.ToArray();
+            PostRequest<KeyValuePair<string, string>[]> req = new PostRequest<KeyValuePair<string, string>[]>();
+            req.entity = valArr;
+            PostResponse<KeyValuePair<string, string>[]> resp = _systemService.ChildAddOrUpdate<KeyValuePair<string, string>[]>(req);
+            if (!resp.Success)
+            {
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() : resp.Summary).Show();
+                return;
+            }
+            else
+            {
+                FillDefaults(submittedValues);
 
-            submittedValues.Add(new KeyValuePair<string, string>("enableCamera", values.enableCamera == null ? "false" : "true"));
+                if (!string.IsNullOrEmpty(values.nameFormat.ToString()))
+                    _systemService.SessionHelper.SetNameFormat(values.nameFormat.ToString());
+
+
+                Notification.Show(new NotificationConfig
+                {
+                    Title = Resources.Common.Notification,
+                    Icon = Icon.Information,
+                    Html = Resources.Common.RecordUpdatedSucc
+                });
+            }
+        }
+        private List<KeyValuePair<string, string>> GetGeneralSettings(dynamic values)
+        {
+            List<KeyValuePair<string, string>> submittedValues = new List<KeyValuePair<string, string>>();
+            if (!string.IsNullOrEmpty(values.countryId.ToString()))
+                submittedValues.Add(new KeyValuePair<string, string>("countryId", values.countryId.ToString()));
+            if (!string.IsNullOrEmpty(values.currencyId.ToString()))
+                submittedValues.Add(new KeyValuePair<string, string>("currencyId", values.currencyId.ToString()));
+
+            if (!string.IsNullOrEmpty(values.dateFormat.ToString()))
+                submittedValues.Add(new KeyValuePair<string, string>("dateFormat", values.dateFormat.ToString()));
+            if (!string.IsNullOrEmpty(values.timeZone.ToString()))
+                submittedValues.Add(new KeyValuePair<string, string>("timeZone", values.timeZone.ToString()));
+
             submittedValues.Add(new KeyValuePair<string, string>("enableHijri", values.enableHijri == null ? "false" : "true"));
-            submittedValues.Add(new KeyValuePair<string, string>("apply-ALDA-CSBR", values.apply_ALDA_CSBR == null ? "false" : "true"));
-            submittedValues.Add(new KeyValuePair<string, string>("apply-ALDA-CSDE", values.apply_ALDA_CSDE == null ? "false" : "true"));
-            submittedValues.Add(new KeyValuePair<string, string>("apply-ALDA-CSDI", values.apply_ALDA_CSDI == null ? "false" : "true"));
+            return submittedValues;
+        }
+        private void SaveGeneralSettings(dynamic values)
+        {
+            List<KeyValuePair<string, string>> submittedValues = GetGeneralSettings(values);
             KeyValuePair<string, string>[] valArr = submittedValues.ToArray();
             PostRequest<KeyValuePair<string, string>[]> req = new PostRequest<KeyValuePair<string, string>[]>();
             req.entity = valArr;
@@ -335,8 +449,7 @@ namespace AionHR.Web.UI.Forms
                 FillDefaults(submittedValues);
                 if (!string.IsNullOrEmpty(values.dateFormat.ToString()))
                     _systemService.SessionHelper.SetDateformat(values.dateFormat.ToString());
-                if (!string.IsNullOrEmpty(values.nameFormat.ToString()))
-                    _systemService.SessionHelper.SetNameFormat(values.nameFormat.ToString());
+
                 if (!string.IsNullOrEmpty(values.countryId.ToString()))
                     _systemService.SessionHelper.SetDefaultCountry(values.countryId.ToString());
                 if (!string.IsNullOrEmpty(values.timeZone.ToString()))
@@ -351,7 +464,223 @@ namespace AionHR.Web.UI.Forms
                 });
             }
         }
+        private List<KeyValuePair<string, string>> GetAttendanceSettings(dynamic values)
+        {
+            List<KeyValuePair<string, string>> submittedValues = new List<KeyValuePair<string, string>>();
+            if (!string.IsNullOrEmpty(values.fdow.ToString()))
+                submittedValues.Add(new KeyValuePair<string, string>("fdow", values.fdow.ToString()));
+            if (!string.IsNullOrEmpty(values.caId.ToString()))
+                submittedValues.Add(new KeyValuePair<string, string>("caId", values.caId.ToString()));
 
+            if (!string.IsNullOrEmpty(values.tsId.ToString()))
+                submittedValues.Add(new KeyValuePair<string, string>("tsId", values.tsId.ToString()));
+
+            if (!string.IsNullOrEmpty(values.scId.ToString()))
+                submittedValues.Add(new KeyValuePair<string, string>("scId", values.scId.ToString()));
+
+            if (values.localServerIP != null && !string.IsNullOrEmpty(values.localServerIP.ToString()))
+                submittedValues.Add(new KeyValuePair<string, string>("localServerIP", values.localServerIP.ToString() + "/AionWSLocal"));
+
+            submittedValues.Add(new KeyValuePair<string, string>("enableCamera", values.enableCamera == null ? "false" : "true"));
+            return submittedValues;
+        }
+
+        private void SaveAttendanceSettings(dynamic values)
+        {
+            List<KeyValuePair<string, string>> submittedValues = GetAttendanceSettings(values);
+            KeyValuePair <string, string>[] valArr = submittedValues.ToArray();
+            PostRequest<KeyValuePair<string, string>[]> req = new PostRequest<KeyValuePair<string, string>[]>();
+            req.entity = valArr;
+            PostResponse<KeyValuePair<string, string>[]> resp = _systemService.ChildAddOrUpdate<KeyValuePair<string, string>[]>(req);
+            if (!resp.Success)
+            {
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() : resp.Summary).Show();
+                return;
+            }
+            else
+            {
+                FillDefaults(submittedValues);
+
+
+                Notification.Show(new NotificationConfig
+                {
+                    Title = Resources.Common.Notification,
+                    Icon = Icon.Information,
+                    Html = Resources.Common.RecordUpdatedSucc
+                });
+            }
+        }
+
+        private List<KeyValuePair<string, string>> GetPayrollSettings(dynamic values)
+        {
+            List<KeyValuePair<string, string>> submittedValues = new List<KeyValuePair<string, string>>();
+            if (values.ulDeductionId != null && !string.IsNullOrEmpty(values.ulDeductionId.ToString()))
+                submittedValues.Add(new KeyValuePair<string, string>("ulDeductionId", values.ulDeductionId.ToString()));
+            if (values.ssDeductionId != null && !string.IsNullOrEmpty(values.ssDeductionId.ToString()))
+                submittedValues.Add(new KeyValuePair<string, string>("ssDeductionId", values.ssDeductionId.ToString()));
+            if (values.loanDeductionId != null && !string.IsNullOrEmpty(values.loanDeductionId.ToString()))
+                submittedValues.Add(new KeyValuePair<string, string>("loanDeductionId", values.loanDeductionId.ToString()));
+            if (values.peDeductionId != null && !string.IsNullOrEmpty(values.peDeductionId.ToString()))
+                submittedValues.Add(new KeyValuePair<string, string>("penaltyDeductionId", values.peDeductionId.ToString()));
+
+            if (values.ldMethod != null && !string.IsNullOrEmpty(values.ldMethod.ToString()))
+                submittedValues.Add(new KeyValuePair<string, string>("ldMethod", values.ldMethod.ToString()));
+
+            if (values.ldValue != null && !string.IsNullOrEmpty(values.ldValue.ToString()))
+                submittedValues.Add(new KeyValuePair<string, string>("ldValue", values.ldValue.ToString()));
+
+            return submittedValues;
+        }
+        private void SavePayrollSettings(dynamic values)
+        {
+            List<KeyValuePair<string, string>> submittedValues = GetPayrollSettings(values);
+            KeyValuePair<string, string>[] valArr = submittedValues.ToArray();
+            PostRequest<KeyValuePair<string, string>[]> req = new PostRequest<KeyValuePair<string, string>[]>();
+            req.entity = valArr;
+            PostResponse<KeyValuePair<string, string>[]> resp = _systemService.ChildAddOrUpdate<KeyValuePair<string, string>[]>(req);
+            if (!resp.Success)
+            {
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() : resp.Summary).Show();
+                return;
+            }
+            else
+            {
+                FillDefaults(submittedValues);
+
+                Notification.Show(new NotificationConfig
+                {
+                    Title = Resources.Common.Notification,
+                    Icon = Icon.Information,
+                    Html = Resources.Common.RecordUpdatedSucc
+                });
+            }
+        }
+
+        private List<KeyValuePair<string, string>> GetSecuritySettings(dynamic values)
+        {
+            List<KeyValuePair<string, string>> submittedValues = new List<KeyValuePair<string, string>>();
+            submittedValues.Add(new KeyValuePair<string, string>("apply-ALDA-CSBR", values.apply_ALDA_CSBR == null ? "false" : "true"));
+            submittedValues.Add(new KeyValuePair<string, string>("apply-ALDA-CSDE", values.apply_ALDA_CSDE == null ? "false" : "true"));
+            submittedValues.Add(new KeyValuePair<string, string>("apply-ALDA-CSDI", values.apply_ALDA_CSDI == null ? "false" : "true"));
+            return submittedValues;
+        }
+        private void SaveSecuritySettings(dynamic values)
+        {
+            List<KeyValuePair<string, string>> submittedValues = GetSecuritySettings(values);
+            KeyValuePair <string, string>[] valArr = submittedValues.ToArray();
+            PostRequest<KeyValuePair<string, string>[]> req = new PostRequest<KeyValuePair<string, string>[]>();
+            req.entity = valArr;
+            PostResponse<KeyValuePair<string, string>[]> resp = _systemService.ChildAddOrUpdate<KeyValuePair<string, string>[]>(req);
+            if (!resp.Success)
+            {
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() : resp.Summary).Show();
+                return;
+            }
+            else
+            {
+                FillDefaults(submittedValues);
+
+
+
+                Notification.Show(new NotificationConfig
+                {
+                    Title = Resources.Common.Notification,
+                    Icon = Icon.Information,
+                    Html = Resources.Common.RecordUpdatedSucc
+                });
+            }
+        }
+
+
+        protected void SaveEmployeeSettings(object sender, DirectEventArgs e)
+        {
+            List<KeyValuePair<string, string>> submittedValues = new List<KeyValuePair<string, string>>();
+            dynamic values = JsonConvert.DeserializeObject(e.ExtraParams["values"]);
+            SaveEmployeeSettings(values);
+           
+        }
+        protected void SaveGeneralSettings(object sender, DirectEventArgs e)
+        {
+            
+            dynamic values = JsonConvert.DeserializeObject(e.ExtraParams["values"]);
+            SaveGeneralSettings(values);
+          
+        }
+        protected void SaveAttendanceSettings(object sender, DirectEventArgs e)
+        {
+           
+            dynamic values = JsonConvert.DeserializeObject(e.ExtraParams["values"]);
+            SaveAttendanceSettings(values);
+           
+        }
+
+        protected void SavePayrollSettings(object sender, DirectEventArgs e)
+        {
+           
+            dynamic values = JsonConvert.DeserializeObject(e.ExtraParams["values"]);
+            SavePayrollSettings(values);
+           
+        }
+
+        
+
+        protected void SaveSecuritySettings(object sender, DirectEventArgs e)
+        {
+            
+            dynamic values = JsonConvert.DeserializeObject(e.ExtraParams["values"]);
+            SaveSecuritySettings(values);
+            
+        }
+
+        protected void SaveAll(object sender, DirectEventArgs e)
+        {
+            List<KeyValuePair<string, string>> allValues = new List<KeyValuePair<string, string>>();
+            dynamic empValues = JsonConvert.DeserializeObject(e.ExtraParams["emp"]);
+            allValues.AddRange(GetEmployeeSettings(empValues));
+
+            dynamic taValues = JsonConvert.DeserializeObject(e.ExtraParams["ta"]);
+            allValues.AddRange(GetAttendanceSettings(taValues));
+            dynamic pyValues = JsonConvert.DeserializeObject(e.ExtraParams["py"]);
+            allValues.AddRange(GetPayrollSettings(pyValues));
+            dynamic genValues = JsonConvert.DeserializeObject(e.ExtraParams["gen"]);
+            allValues.AddRange(GetGeneralSettings(genValues));
+            dynamic secValues = JsonConvert.DeserializeObject(e.ExtraParams["sec"]);
+
+            allValues.AddRange(GetSecuritySettings(secValues));
+            
+            KeyValuePair<string, string>[] valArr = allValues.ToArray();
+            PostRequest<KeyValuePair<string, string>[]> req = new PostRequest<KeyValuePair<string, string>[]>();
+            req.entity = valArr;
+            PostResponse<KeyValuePair<string, string>[]> resp = _systemService.ChildAddOrUpdate<KeyValuePair<string, string>[]>(req);
+            if (!resp.Success)
+            {
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() : resp.Summary).Show();
+                return;
+            }
+            else
+            {
+                FillDefaults(allValues);
+                if (!string.IsNullOrEmpty(genValues.dateFormat.ToString()))
+                    _systemService.SessionHelper.SetDateformat(genValues.dateFormat.ToString());
+
+                if (!string.IsNullOrEmpty(genValues.countryId.ToString()))
+                    _systemService.SessionHelper.SetDefaultCountry(genValues.countryId.ToString());
+                if (!string.IsNullOrEmpty(genValues.timeZone.ToString()))
+                    _systemService.SessionHelper.SetDefaultTimeZone(Convert.ToInt32(genValues.timeZone.ToString()));
+                _systemService.SessionHelper.SetHijriSupport(empValues.enableHijri == null ? false : true);
+
+                Notification.Show(new NotificationConfig
+                {
+                    Title = Resources.Common.Notification,
+                    Icon = Icon.Information,
+                    Html = Resources.Common.RecordUpdatedSucc
+                });
+            }
+        }
 
         private void FillNationality()
         {
@@ -552,5 +881,120 @@ namespace AionHR.Web.UI.Forms
 
         }
 
+ 
+        protected void addDedUL(object sender, DirectEventArgs e)
+        {
+            if (string.IsNullOrEmpty(ulDeductionId.Text))
+                return;
+            EntitlementDeduction dept = new EntitlementDeduction();
+            dept.name = ulDeductionId.Text; ;
+            dept.type = 2;
+
+            PostRequest<EntitlementDeduction> depReq = new PostRequest<EntitlementDeduction>();
+            depReq.entity = dept;
+            PostResponse<EntitlementDeduction> response = _employeeService.ChildAddOrUpdate<EntitlementDeduction>(depReq);
+            if (response.Success)
+            {
+                dept.recordId = response.recordId;
+                FillCombos();
+                ulDeductionId.Value = dept.recordId;
+            }
+            else
+            {
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).ToString() : response.Summary).Show();
+                return;
+            }
+
+        }
+        protected void addDedSS(object sender, DirectEventArgs e)
+        {
+            if (string.IsNullOrEmpty(ssDeductionId.Text))
+                return;
+            EntitlementDeduction dept = new EntitlementDeduction();
+            dept.name = ssDeductionId.Text; ;
+            dept.type = 2;
+
+            PostRequest<EntitlementDeduction> depReq = new PostRequest<EntitlementDeduction>();
+            depReq.entity = dept;
+            PostResponse<EntitlementDeduction> response = _employeeService.ChildAddOrUpdate<EntitlementDeduction>(depReq);
+            if (response.Success)
+            {
+                dept.recordId = response.recordId;
+                FillCombos();
+                ssDeductionId.Value = dept.recordId;
+            }
+            else
+            {
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).ToString() : response.Summary).Show();
+                return;
+            }
+
+        }
+        protected void addDedpe(object sender, DirectEventArgs e)
+        {
+            if (string.IsNullOrEmpty(peDeductionId.Text))
+                return;
+            EntitlementDeduction dept = new EntitlementDeduction();
+            dept.name = peDeductionId.Text; ;
+            dept.type = 2;
+
+            PostRequest<EntitlementDeduction> depReq = new PostRequest<EntitlementDeduction>();
+            depReq.entity = dept;
+            PostResponse<EntitlementDeduction> response = _employeeService.ChildAddOrUpdate<EntitlementDeduction>(depReq);
+            if (response.Success)
+            {
+                dept.recordId = response.recordId;
+                FillCombos();
+                peDeductionId.Value = dept.recordId;
+            }
+            else
+            {
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).ToString() : response.Summary).Show();
+                return;
+            }
+
+        }
+        protected void addDedloan(object sender, DirectEventArgs e)
+        {
+            if (string.IsNullOrEmpty(loanDeductionId.Text))
+                return;
+            EntitlementDeduction dept = new EntitlementDeduction();
+            dept.name = loanDeductionId.Text; ;
+            dept.type = 2;
+
+            PostRequest<EntitlementDeduction> depReq = new PostRequest<EntitlementDeduction>();
+            depReq.entity = dept;
+            PostResponse<EntitlementDeduction> response = _employeeService.ChildAddOrUpdate<EntitlementDeduction>(depReq);
+            if (response.Success)
+            {
+                dept.recordId = response.recordId;
+                FillCombos();
+                loanDeductionId.Value = dept.recordId;
+            }
+            else
+            {
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).ToString() : response.Summary).Show();
+                return;
+            }
+
+        }
+
+        private List<EntitlementDeduction> GetEntitlements()
+        {
+            ListRequest req = new ListRequest();
+            ListResponse<EntitlementDeduction> eds = _employeeService.ChildGetAll<EntitlementDeduction>(req);
+            return eds.Items.Where(s => s.type == 1).ToList();
+        }
+        private List<EntitlementDeduction> GetDeductions()
+        {
+            ListRequest req = new ListRequest();
+            ListResponse<EntitlementDeduction> eds = _employeeService.ChildGetAll<EntitlementDeduction>(req);
+            return eds.Items.Where(s => s.type == 2).ToList();
+        }
+  
     }
 }

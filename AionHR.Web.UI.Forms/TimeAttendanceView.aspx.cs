@@ -426,7 +426,7 @@ namespace AionHR.Web.UI.Forms
             req.Size = "30";
             req.StartAt = "1";
             req.Filter = "";
-            req.SortBy = "checkIn";
+            req.SortBy = "dayId,checkIn";
             return req;
         }
 

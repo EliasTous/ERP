@@ -25,7 +25,7 @@ namespace AionHR.Services.Implementations
             PostResponse<LeaveDay> response;
             var headers = SessionHelper.GetAuthorizationHeadersForUser();
 
-            LeaveDay breaks = new LeaveDay() { leaveId = leaveId, dayId = "0"};
+            LeaveDay breaks = new LeaveDay() { leaveId = leaveId, dayId = ""};
             var webResponse = GetRepository().ChildDelete<LeaveDay>(breaks, headers);
             response = CreateServiceResponse<PostResponse<LeaveDay>>(webResponse);
 

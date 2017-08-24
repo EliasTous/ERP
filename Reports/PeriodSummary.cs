@@ -1027,7 +1027,7 @@ public class PeriodSummary : DevExpress.XtraReports.UI.XtraReport
     private string FormatTime(int v)
     {
         string sign = v < 0?"-":"";
-        return sign + Math.Abs((v / 60)).ToString().PadLeft(2, '0') + ":" + Math.Abs((v % 60)).ToString().PadLeft(2, '0');
+        return sign + (Math.Abs(v )/60).ToString().PadLeft(2, '0') + ":" + (Math.Abs(v )% 60).ToString().PadLeft(2, '0');
     }
 
     private void xrLabel34_BeforePrint(object sender, System.Drawing.Printing.PrintEventArgs e)
