@@ -206,6 +206,7 @@
     <Content Include="EmployeePages\Contacts.aspx" />
     <Content Include="EmployeePages\Dependants.aspx" />
     <Content Include="EmployeePages\Documents.aspx" />
+    <Content Include="EmployeePages\EmployeeCalendars.aspx" />
     <Content Include="EmployeePages\Hire.aspx" />
     <Content Include="EmployeePages\JobInformation.aspx" />
     <Content Include="EmployeePages\Legals.aspx" />
@@ -526,6 +527,13 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reports.resx</DependentUpon>
+    </Compile>
+    <Compile Include="EmployeePages\EmployeeCalendars.aspx.cs">
+      <DependentUpon>EmployeeCalendars.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EmployeePages\EmployeeCalendars.aspx.designer.cs">
+      <DependentUpon>EmployeeCalendars.aspx</DependentUpon>
     </Compile>
     <Compile Include="ImportDepartments.aspx.cs">
       <DependentUpon>ImportDepartments.aspx</DependentUpon>
@@ -1856,6 +1864,8 @@
     <Content Include="App_LocalResources\PayrollTimeSchedule.aspx.ar.resx" />
     <Content Include="App_LocalResources\Positions.aspx.ar.resx" />
     <Content Include="EmployeePages\App_LocalResources\Hire.aspx.ar.resx" />
+    <Content Include="EmployeePages\App_LocalResources\EmployeeCalendars.aspx.ar.resx" />
+    <Content Include="EmployeePages\App_LocalResources\EmployeeCalendars.aspx.resx" />
     <EmbeddedResource Include="Properties\licenses.licx" />
     <Content Include="Reports\App_LocalResources\RT202.aspx.resx" />
     <Content Include="Reports\App_LocalResources\RT01.aspx.ar.resx" />

@@ -357,4 +357,7 @@
   <data name="FieldSchedule" xml:space="preserve">
     <value>Attendance Schedule</value>
   </data>
+  <data name="EmployeeCalenderTab" xml:space="preserve">
+    <value>Employee Calender </value>
+  </data>
 </root>

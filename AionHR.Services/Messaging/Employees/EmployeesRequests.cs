@@ -492,4 +492,65 @@ public class EmployeeCountRequest:RecordRequest
 
     public int StatusId { get; set; }
     public int DivisionId { get; set; }
+
+}
+public class EmployeeCalendarRequest : ListRequest
+{
+    public int employeeId { get; set; }
+    public override Dictionary<string, string> Parameters
+    {
+        get
+        {
+            parameters = base.Parameters;
+            parameters.Add("_employeeId", employeeId.ToString());
+            return parameters;
+        }
+    }
+
+
+
+}
+public class EmployeeCalendarRecordRequest:RecordRequest
+{
+    public int employeeId { get; set; }
+    public string dayId { set; get; }
+    public override Dictionary<string, string> Parameters
+    {
+        get
+        {
+            parameters = new Dictionary<string, string>(); 
+            parameters.Add("_employeeId", employeeId.ToString());
+            parameters.Add("_dayId", dayId);
+
+            return parameters;
+        }
+    }
+
+
+}
+public class DeleteEmployeeCalenderRequest : RequestBase
+
+{
+    public int employeeId
+    { get; set; }
+    public string dayId
+    { get; set; }
+    public Dictionary<string, string> parameters;
+
+    /// <summary>
+    /// parameter list shipped with the web request
+    /// </summary>
+    public override Dictionary<string, string> Parameters
+    {
+
+        get
+        {
+            parameters = new Dictionary<string, string>();
+            parameters.Add("_employeeId", employeeId.ToString());
+            parameters.Add("_dayId", dayId);
+
+
+            return parameters;
+        }
+    }
 }

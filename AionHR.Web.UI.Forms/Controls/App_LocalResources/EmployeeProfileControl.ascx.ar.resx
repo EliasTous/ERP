@@ -351,4 +351,7 @@
   <data name="FieldSchedule" xml:space="preserve">
     <value>جدول الدوام</value>
   </data>
+  <data name="EmployeeCalenderTab" xml:space="preserve">
+    <value>تقاويم العمل </value>
+  </data>
 </root>
