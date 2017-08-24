@@ -445,9 +445,9 @@
                             DefaultAnchor="100%"
                             BodyPadding="5">
                             <Items>
-                                     <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  QueryMode="Local" ForceSelection="true" LabelWidth="160" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: FieldUL %>" Name="ulDeductionId" runat="server" DisplayField="name" ValueField="recordId" ID="ulDeductionId">
+                                <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  QueryMode="Local" ForceSelection="true" LabelWidth="160" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: absence %>" Name="py_aEDId" runat="server" DisplayField="name" ValueField="recordId" ID="py_aEDId">
                                     <Store>
-                                        <ext:Store runat="server" ID="ulDeductionStore">
+                                        <ext:Store runat="server" ID="absenceStore">
                                             <Model>
                                                 <ext:Model runat="server">
                                                     <Fields>
@@ -465,7 +465,7 @@
                                             </Listeners>
                                             <DirectEvents>
 
-                                                <Click OnEvent="addDedUL">
+                                                <Click OnEvent="addAbsenceDed">
                                                 </Click>
                                             </DirectEvents>
                                         </ext:Button>
@@ -475,6 +475,128 @@
                                         <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
                                     </Listeners>
                                 </ext:ComboBox>
+                                <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  QueryMode="Local" ForceSelection="true" LabelWidth="160" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: disappearance  %>" Name="py_dEDId" runat="server" DisplayField="name" ValueField="recordId" ID="py_dEDId">
+                                    <Store>
+                                        <ext:Store runat="server" ID="disappearanceStore">
+                                            <Model>
+                                                <ext:Model runat="server">
+                                                    <Fields>
+                                                        <ext:ModelField Name="recordId" />
+                                                        <ext:ModelField Name="name" />
+                                                    </Fields>
+                                                </ext:Model>
+                                            </Model>
+                                        </ext:Store>
+                                    </Store>
+                                    <RightButtons>
+                                        <ext:Button ID="Button12" runat="server" Icon="Add" Hidden="true">
+                                            <Listeners>
+                                                <Click Handler="CheckSession();  " />
+                                            </Listeners>
+                                            <DirectEvents>
+
+                                                <Click OnEvent="addDisappearanceDed">
+                                                </Click>
+                                            </DirectEvents>
+                                        </ext:Button>
+                                    </RightButtons>
+                                    <Listeners>
+                                        <FocusEnter Handler=" if(!this.readOnly)this.rightButtons[0].setHidden(false);" />
+                                        <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
+                                    </Listeners>
+                                </ext:ComboBox>
+                                <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  QueryMode="Local" ForceSelection="true" LabelWidth="160" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: missedPunch %>" Name="py_mEDId" runat="server" DisplayField="name" ValueField="recordId" ID="py_mEDId">
+                                    <Store>
+                                        <ext:Store runat="server" ID="missedPunchesStore">
+                                            <Model>
+                                                <ext:Model runat="server">
+                                                    <Fields>
+                                                        <ext:ModelField Name="recordId" />
+                                                        <ext:ModelField Name="name" />
+                                                    </Fields>
+                                                </ext:Model>
+                                            </Model>
+                                        </ext:Store>
+                                    </Store>
+                                    <RightButtons>
+                                        <ext:Button ID="Button13" runat="server" Icon="Add" Hidden="true">
+                                            <Listeners>
+                                                <Click Handler="CheckSession();  " />
+                                            </Listeners>
+                                            <DirectEvents>
+
+                                                <Click OnEvent="addmissedPunchesDed">
+                                                </Click>
+                                            </DirectEvents>
+                                        </ext:Button>
+                                    </RightButtons>
+                                    <Listeners>
+                                        <FocusEnter Handler=" if(!this.readOnly)this.rightButtons[0].setHidden(false);" />
+                                        <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
+                                    </Listeners>
+                                </ext:ComboBox>
+                                <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  QueryMode="Local" ForceSelection="true" LabelWidth="160" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: overtime %>" Name="py_oEDId" runat="server" DisplayField="name" ValueField="recordId" ID="py_oEDId">
+                                    <Store>
+                                        <ext:Store runat="server" ID="overtimeStore">
+                                            <Model>
+                                                <ext:Model runat="server">
+                                                    <Fields>
+                                                        <ext:ModelField Name="recordId" />
+                                                        <ext:ModelField Name="name" />
+                                                    </Fields>
+                                                </ext:Model>
+                                            </Model>
+                                        </ext:Store>
+                                    </Store>
+                                    <RightButtons>
+                                        <ext:Button ID="Button14" runat="server" Icon="Add" Hidden="true">
+                                            <Listeners>
+                                                <Click Handler="CheckSession();  " />
+                                            </Listeners>
+                                            <DirectEvents>
+
+                                                <Click OnEvent="addovertimee">
+                                                </Click>
+                                            </DirectEvents>
+                                        </ext:Button>
+                                    </RightButtons>
+                                    <Listeners>
+                                        <FocusEnter Handler=" if(!this.readOnly)this.rightButtons[0].setHidden(false);" />
+                                        <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
+                                    </Listeners>
+                                </ext:ComboBox>
+                                <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  QueryMode="Local" ForceSelection="true" LabelWidth="160" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: Lateness %>" Name="py_lEDId" runat="server" DisplayField="name" ValueField="recordId" ID="py_lEDId">
+                                    <Store>
+                                        <ext:Store runat="server" ID="latenessStore">
+                                            <Model>
+                                                <ext:Model runat="server">
+                                                    <Fields>
+                                                        <ext:ModelField Name="recordId" />
+                                                        <ext:ModelField Name="name" />
+                                                    </Fields>
+                                                </ext:Model>
+                                            </Model>
+                                        </ext:Store>
+                                    </Store>
+                                    <RightButtons>
+                                        <ext:Button ID="Button15" runat="server" Icon="Add" Hidden="true">
+                                            <Listeners>
+                                                <Click Handler="CheckSession();  " />
+                                            </Listeners>
+                                            <DirectEvents>
+
+                                                <Click OnEvent="addLatenessDed">
+                                                </Click>
+                                            </DirectEvents>
+                                        </ext:Button>
+                                    </RightButtons>
+                                    <Listeners>
+                                        <FocusEnter Handler=" if(!this.readOnly)this.rightButtons[0].setHidden(false);" />
+                                        <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
+                                    </Listeners>
+                                </ext:ComboBox>
+
+                                   
                                 <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  QueryMode="Local" ForceSelection="true" LabelWidth="160" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: FieldSS %>" Name="ssDeductionId" runat="server" DisplayField="name" ValueField="recordId" ID="ssDeductionId">
                                     <Store>
                                         <ext:Store runat="server" ID="ssDeductionStore">

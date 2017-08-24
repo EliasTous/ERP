@@ -333,4 +333,13 @@
   <data name="SecuritySettings" xml:space="preserve">
     <value>إعدادات الحماية</value>
   </data>
+  <data name="absence" xml:space="preserve">
+    <value>الغياب</value>
+  </data>
+  <data name="disappearance" xml:space="preserve">
+    <value>غياب بدون إذن</value>
+  </data>
+  <data name="missedPunch" xml:space="preserve">
+    <value>يوم غير مغلق</value>
+  </data>
 </root>

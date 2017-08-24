@@ -333,4 +333,13 @@
   <data name="SecuritySettings" xml:space="preserve">
     <value>Security Settings</value>
   </data>
+  <data name="absence" xml:space="preserve">
+    <value>Absence</value>
+  </data>
+  <data name="disappearance" xml:space="preserve">
+    <value>Disappearance</value>
+  </data>
+  <data name="missedPunch" xml:space="preserve">
+    <value>Missed Punch</value>
+  </data>
 </root>

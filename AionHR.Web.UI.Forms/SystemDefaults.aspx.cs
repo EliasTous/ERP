@@ -144,8 +144,16 @@ namespace AionHR.Web.UI.Forms
             FillPassports();
             FillSchedules();
             FillTsId();
-            ulDeductionStore.DataSource = GetDeductions();
-            ulDeductionStore.DataBind();
+          absenceStore.DataSource= GetDeductions();
+            absenceStore.DataBind();
+            disappearanceStore.DataSource = GetDeductions();
+            disappearanceStore.DataBind();
+            missedPunchesStore.DataSource = GetDeductions();
+            missedPunchesStore.DataBind();
+            overtimeStore.DataSource = GetEntitlements();
+            overtimeStore.DataBind();
+            latenessStore.DataSource = GetDeductions();
+            latenessStore.DataBind();
 
             ssDeductionStore.DataSource = GetDeductions();
             ssDeductionStore.DataBind();
@@ -169,6 +177,7 @@ namespace AionHR.Web.UI.Forms
             tsStore.DataSource = resp.Items;
             tsStore.DataBind();
         }
+   
         private void FillSchedules()
         {
             ListRequest vsRequest = new ListRequest();
@@ -209,7 +218,27 @@ namespace AionHR.Web.UI.Forms
         {
             try
             {
-                ulDeductionId.Select(items.Where(s => s.Key == "ulDeductionId").First().Value);
+                py_aEDId.Select(items.Where(s => s.Key == "py_aEDId").First().Value);
+            }
+            catch { }
+            try
+            {
+                py_dEDId.Select(items.Where(s => s.Key == "py_dEDId").First().Value);
+            }
+            catch { }
+            try
+            {
+                py_lEDId.Select(items.Where(s => s.Key == "py_lEDId").First().Value);
+            }
+            catch { }
+            try
+            {
+                py_oEDId.Select(items.Where(s => s.Key == "py_oEDId").First().Value);
+            }
+            catch { }
+            try
+            {
+                py_mEDId.Select(items.Where(s => s.Key == "py_mEDId").First().Value);
             }
             catch { }
             try
@@ -529,6 +558,20 @@ namespace AionHR.Web.UI.Forms
 
             if (values.ldValue != null && !string.IsNullOrEmpty(values.ldValue.ToString()))
                 submittedValues.Add(new KeyValuePair<string, string>("ldValue", values.ldValue.ToString()));
+
+            if (values.py_aEDId != null && !string.IsNullOrEmpty(values.py_aEDId.ToString()))
+                submittedValues.Add(new KeyValuePair<string, string>("py_aEDId", values.py_aEDId.ToString()));
+
+            if (values.py_dEDId != null && !string.IsNullOrEmpty(values.py_dEDId.ToString()))
+                submittedValues.Add(new KeyValuePair<string, string>("py_dEDId", values.py_dEDId.ToString()));
+
+            if (values.py_lEDId != null && !string.IsNullOrEmpty(values.py_lEDId.ToString()))
+                submittedValues.Add(new KeyValuePair<string, string>("py_lEDId", values.py_lEDId.ToString()));
+
+            if (values.py_oEDId != null && !string.IsNullOrEmpty(values.py_oEDId.ToString()))
+                submittedValues.Add(new KeyValuePair<string, string>("py_oEDId", values.py_oEDId.ToString()));
+            if (values.py_mEDId != null && !string.IsNullOrEmpty(values.py_mEDId.ToString()))
+                submittedValues.Add(new KeyValuePair<string, string>("py_mEDId", values.py_mEDId.ToString()));
 
             return submittedValues;
         }
@@ -882,31 +925,7 @@ namespace AionHR.Web.UI.Forms
         }
 
  
-        protected void addDedUL(object sender, DirectEventArgs e)
-        {
-            if (string.IsNullOrEmpty(ulDeductionId.Text))
-                return;
-            EntitlementDeduction dept = new EntitlementDeduction();
-            dept.name = ulDeductionId.Text; ;
-            dept.type = 2;
-
-            PostRequest<EntitlementDeduction> depReq = new PostRequest<EntitlementDeduction>();
-            depReq.entity = dept;
-            PostResponse<EntitlementDeduction> response = _employeeService.ChildAddOrUpdate<EntitlementDeduction>(depReq);
-            if (response.Success)
-            {
-                dept.recordId = response.recordId;
-                FillCombos();
-                ulDeductionId.Value = dept.recordId;
-            }
-            else
-            {
-                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).ToString() : response.Summary).Show();
-                return;
-            }
-
-        }
+     
         protected void addDedSS(object sender, DirectEventArgs e)
         {
             if (string.IsNullOrEmpty(ssDeductionId.Text))
@@ -995,6 +1014,138 @@ namespace AionHR.Web.UI.Forms
             ListResponse<EntitlementDeduction> eds = _employeeService.ChildGetAll<EntitlementDeduction>(req);
             return eds.Items.Where(s => s.type == 2).ToList();
         }
-  
+        protected void addAbsenceDed(object sender, DirectEventArgs e)
+        {
+            if (string.IsNullOrEmpty(py_aEDId.Text))
+                return;
+            EntitlementDeduction dept = new EntitlementDeduction();
+            dept.name = py_aEDId.Text; ;
+            dept.type = 2;
+
+            PostRequest<EntitlementDeduction> depReq = new PostRequest<EntitlementDeduction>();
+            depReq.entity = dept;
+            PostResponse<EntitlementDeduction> response = _employeeService.ChildAddOrUpdate<EntitlementDeduction>(depReq);
+            if (response.Success)
+            {
+                dept.recordId = response.recordId;
+                absenceStore.DataSource = GetDeductions();
+                absenceStore.DataBind();
+                py_aEDId.Value = dept.recordId;
+            }
+            else
+            {
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).ToString() : response.Summary).Show();
+                return;
+            }
+
+        }
+    
+        protected void addDisappearanceDed(object sender, DirectEventArgs e)
+        {
+            if (string.IsNullOrEmpty(py_dEDId.Text))
+                return;
+            EntitlementDeduction dept = new EntitlementDeduction();
+            dept.name = py_dEDId.Text; ;
+            dept.type = 2;
+
+            PostRequest<EntitlementDeduction> depReq = new PostRequest<EntitlementDeduction>();
+            depReq.entity = dept;
+            PostResponse<EntitlementDeduction> response = _employeeService.ChildAddOrUpdate<EntitlementDeduction>(depReq);
+            if (response.Success)
+            {
+                dept.recordId = response.recordId;
+               disappearanceStore.DataSource = GetDeductions();
+               disappearanceStore.DataBind();
+                py_dEDId.Value = dept.recordId;
+            }
+            else
+            {
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).ToString() : response.Summary).Show();
+                return;
+            }
+
+        }
+        protected void addmissedPunchesDed(object sender, DirectEventArgs e)
+        {
+            if (string.IsNullOrEmpty(py_mEDId.Text))
+                return;
+            EntitlementDeduction dept = new EntitlementDeduction();
+            dept.name = py_mEDId.Text; ;
+            dept.type = 2;
+
+            PostRequest<EntitlementDeduction> depReq = new PostRequest<EntitlementDeduction>();
+            depReq.entity = dept;
+            PostResponse<EntitlementDeduction> response = _employeeService.ChildAddOrUpdate<EntitlementDeduction>(depReq);
+            if (response.Success)
+            {
+                dept.recordId = response.recordId;
+                missedPunchesStore.DataSource = GetDeductions();
+                missedPunchesStore.DataBind();
+                py_mEDId.Value = dept.recordId;
+            }
+            else
+            {
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).ToString() : response.Summary).Show();
+                return;
+            }
+
+        }
+        protected void addovertimee(object sender, DirectEventArgs e)
+        {
+            if (string.IsNullOrEmpty(py_oEDId.Text))
+                return;
+            EntitlementDeduction dept = new EntitlementDeduction();
+            dept.name = py_oEDId.Text; ;
+            dept.type = 1;
+
+            PostRequest<EntitlementDeduction> depReq = new PostRequest<EntitlementDeduction>();
+            depReq.entity = dept;
+            PostResponse<EntitlementDeduction> response = _employeeService.ChildAddOrUpdate<EntitlementDeduction>(depReq);
+            if (response.Success)
+            {
+                dept.recordId = response.recordId;
+                overtimeStore.DataSource = GetEntitlements();
+                overtimeStore.DataBind();
+                py_oEDId.Value = dept.recordId;
+            }
+            else
+            {
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).ToString() : response.Summary).Show();
+                return;
+            }
+
+        }
+        protected void addLatenessDed(object sender, DirectEventArgs e)
+        {
+            if (string.IsNullOrEmpty(py_lEDId.Text))
+                return;
+            EntitlementDeduction dept = new EntitlementDeduction();
+            dept.name = py_lEDId.Text; ;
+            dept.type = 2;
+
+            PostRequest<EntitlementDeduction> depReq = new PostRequest<EntitlementDeduction>();
+            depReq.entity = dept;
+            PostResponse<EntitlementDeduction> response = _employeeService.ChildAddOrUpdate<EntitlementDeduction>(depReq);
+            if (response.Success)
+            {
+                dept.recordId = response.recordId;
+                latenessStore.DataSource = GetDeductions();
+                latenessStore.DataBind();
+                py_lEDId.Value = dept.recordId;
+            }
+            else
+            {
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).ToString() : response.Summary).Show();
+                return;
+            }
+
+        }
+
+
     }
 }
