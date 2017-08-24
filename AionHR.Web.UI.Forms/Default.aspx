@@ -429,11 +429,11 @@
                                             <Menu>
                                                 <ext:Menu runat="server">
                                                     <Items>
-                                                        <ext:MenuItem runat="server" Text="<%$Resources: Common , PayrollDefaults%>">
+                                                     <%--   <ext:MenuItem runat="server" Text="<%$Resources: Common , PayrollDefaults%>">
                                                             <Listeners>
                                                                 <Click Handler="openNewTab('payrollDefaults', 'PayrollDefaults.aspx', #{pyde}.value, 'icon-Employees')" />
                                                             </Listeners>
-                                                        </ext:MenuItem>
+                                                        </ext:MenuItem>--%>
                                                         <ext:MenuItem runat="server" Text="<%$Resources: Common , LoanOverrides%>">
                                                             <Listeners>
                                                                 <Click Handler="openNewTab('loanOverrides', 'LoanOverrides.aspx', #{loTitle}.value, 'icon-Employees')" />

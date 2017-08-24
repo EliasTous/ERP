@@ -170,7 +170,7 @@ namespace AionHR.Web.UI.Forms.Reports
             req.SortBy = "firstName";
 
 
-            req.Add(jobInfo1.GetJobInfo());
+            req.Add(jobInfo1.GetJobInfo());//jobInfo1 is a user control that displays combos for employee job information
             req.Add(activeStatus1.GetActiveStatus());
 
             //req.Add();

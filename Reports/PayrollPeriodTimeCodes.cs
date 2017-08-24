@@ -1146,7 +1146,7 @@ public class PayrollPeriodTimeCodes : DevExpress.XtraReports.UI.XtraReport
 
     private void xrTableCell11_BeforePrint(object sender, System.Drawing.Printing.PrintEventArgs e)
     {
-        int Time = Convert.ToInt32((sender as XRLabel).Text);
+        int Time = Math.Abs(Convert.ToInt32((sender as XRLabel).Text));
         (sender as XRLabel).Text = (Time / 60).ToString().PadLeft(2, '0') + ":" + (Time % 60).ToString().PadLeft(2, '0'); 
 
 
@@ -1159,13 +1159,15 @@ public class PayrollPeriodTimeCodes : DevExpress.XtraReports.UI.XtraReport
 
     private void xrLabel35_SummaryCalculated(object sender, TextFormatEventArgs e)
     {
-        e.Text = (Convert.ToInt32(e.Value.ToString()) / 60).ToString().PadLeft(2, '0') + ":" + (Convert.ToInt32(e.Value.ToString()) % 60).ToString().PadLeft(2, '0');
+        int valueAsInt = Math.Abs(Convert.ToInt32(e.Value.ToString()));
+        e.Text = (valueAsInt / 60).ToString().PadLeft(2, '0') + ":" + (valueAsInt % 60).ToString().PadLeft(2, '0');
         
     }
 
     private void xrLabel37_SummaryCalculated(object sender, TextFormatEventArgs e)
     {
-        e.Text = (Convert.ToInt32(e.Value.ToString()) / 60).ToString().PadLeft(2, '0') + ":" + (Convert.ToInt32(e.Value.ToString()) % 60).ToString().PadLeft(2, '0');
+        int valueAsInt = Math.Abs(Convert.ToInt32(e.Value.ToString()));
+        e.Text = (valueAsInt / 60).ToString().PadLeft(2, '0') + ":" + (valueAsInt % 60).ToString().PadLeft(2, '0');
     }
 
     private void xrLabel45_BeforePrint(object sender, System.Drawing.Printing.PrintEventArgs e)

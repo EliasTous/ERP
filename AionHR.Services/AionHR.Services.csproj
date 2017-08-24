@@ -155,7 +155,10 @@
     <Compile Include="Messaging\TimeAttendance\TimeAttendanceRequests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="ClassDiagram1.cd" />
+    <None Include="ClassDiagram2.cd" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AionHR.Infrastructure\AionHR.Infrastructure.csproj">
       <Project>{9955b92f-f16c-49b9-99f3-4919d3327263}</Project>
