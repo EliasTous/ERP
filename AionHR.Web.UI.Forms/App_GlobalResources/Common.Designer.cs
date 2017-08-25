@@ -2401,6 +2401,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Time Code.
+        /// </summary>
+        internal static string TimeCode {
+            get {
+                return ResourceManager.GetString("TimeCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Value is required and should be of form hh:mm.
         /// </summary>
         internal static string TimeFieldError {

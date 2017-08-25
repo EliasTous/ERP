@@ -445,6 +445,8 @@
                             DefaultAnchor="100%"
                             BodyPadding="5">
                             <Items>
+                                 <ext:FieldSet Collapsible="true" runat="server" Title="<%$ Resources:Common,TimeCode%>">
+                                 <Items>
                                 <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  QueryMode="Local" ForceSelection="true" LabelWidth="160" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: absence %>" Name="py_aEDId" runat="server" DisplayField="name" ValueField="recordId" ID="py_aEDId">
                                     <Store>
                                         <ext:Store runat="server" ID="absenceStore">
@@ -595,8 +597,9 @@
                                         <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
                                     </Listeners>
                                 </ext:ComboBox>
-
-                                   
+                                     </Items>
+                                     </ext:FieldSet>
+                                        
                                 <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  QueryMode="Local" ForceSelection="true" LabelWidth="160" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: FieldSS %>" Name="ssDeductionId" runat="server" DisplayField="name" ValueField="recordId" ID="ssDeductionId">
                                     <Store>
                                         <ext:Store runat="server" ID="ssDeductionStore">

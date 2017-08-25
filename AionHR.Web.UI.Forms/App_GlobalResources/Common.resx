@@ -981,4 +981,7 @@
   <data name="SalaryType" xml:space="preserve">
     <value>Salary Type</value>
   </data>
+  <data name="TimeCode" xml:space="preserve">
+    <value>Time Code</value>
+  </data>
 </root>
