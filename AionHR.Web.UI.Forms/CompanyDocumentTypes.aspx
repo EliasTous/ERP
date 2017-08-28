@@ -83,6 +83,12 @@
                                         </Click>
                                     </DirectEvents>
                                 </ext:Button>
+                                <ext:Button ID="btnReload" runat="server"  Icon="Reload">       
+                                     <Listeners>
+                                        <Click Handler="CheckSession();#{Store1}.reload();" />
+                                    </Listeners>                           
+                                   
+                                </ext:Button>
                                 <ext:ToolbarSeparator></ext:ToolbarSeparator>
                                 <ext:Button Visible="false" ID="btnDeleteSelected" runat="server" Text="<%$ Resources:Common , DeleteAll %>" Icon="Delete">
                                  <Listeners>

@@ -195,6 +195,13 @@
                                         </Click>
                                     </DirectEvents>
                                 </ext:Button>
+                                  <ext:ToolbarSeparator></ext:ToolbarSeparator>
+                                <ext:Button ID="btnReload" runat="server"  Icon="Reload">       
+                                     <Listeners>
+                                        <Click Handler="CheckSession();#{groupsStore}.reload();" />
+                                    </Listeners>                           
+                                   
+                                </ext:Button>
                             </Items>
                         </ext:Toolbar>
                     </TopBar>

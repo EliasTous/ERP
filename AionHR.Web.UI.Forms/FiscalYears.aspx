@@ -351,7 +351,8 @@
                            
                             Icon="ApplicationSideList"
                             DefaultAnchor="100%" 
-                            BodyPadding="5">
+                            BodyPadding="5"
+                             Title="<%$ Resources: BasicInfoTabEditWindowTitle %>">
                             <Items>
                     
                                 <ext:NumberField runat="server" FieldLabel="<%$ Resources:FieldYear %>" ID="fiscalYear" Name="fiscalYear" >

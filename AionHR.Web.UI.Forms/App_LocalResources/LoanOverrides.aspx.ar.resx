@@ -150,4 +150,7 @@
   <data name="PaymentValueP" xml:space="preserve">
     <value>نسبة الدفعة</value>
   </data>
+  <data name="BasicInfoTabEditWindowTitle" xml:space="preserve">
+    <value>استثناءات السلف</value>
+  </data>
 </root>
