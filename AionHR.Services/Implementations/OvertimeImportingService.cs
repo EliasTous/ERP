@@ -17,7 +17,7 @@ namespace AionHR.Services.Implementations
 
         }
 
-        public override List<OvertimeSetting> GetItem(DataRow row)
+        protected override List<OvertimeSetting> GetItem(DataRow row)
         {
             List<OvertimeSetting> result = new List<OvertimeSetting>();
             DateTime from = DateTime.Parse(row[1].ToString());

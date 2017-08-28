@@ -18,7 +18,7 @@ namespace AionHR.Services.Implementations
             this.nameDelimiter = nameDelimiter;
 
         }
-        public override List<Employee> GetItem(DataRow row)
+        protected override List<Employee> GetItem(DataRow row)
         {
             List<Employee> result = new List<Employee>();
             try

@@ -21,7 +21,7 @@ namespace AionHR.Services.Implementations
         Dictionary<string, string> dict;
 
 
-        public override List<EmployeeNote> GetItem(DataRow row)
+        protected override List<EmployeeNote> GetItem(DataRow row)
         {
             List<EmployeeNote> notes = new List<EmployeeNote>();
             try

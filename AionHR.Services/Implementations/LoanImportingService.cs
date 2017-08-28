@@ -17,7 +17,7 @@ namespace AionHR.Services.Implementations
         {
 
         }
-        public override List<Loan> GetItem(DataRow row)
+        protected override List<Loan> GetItem(DataRow row)
         {
             List<Loan> loans = new List<Loan>();
             try

@@ -61,7 +61,7 @@ namespace AionHR.Services.Interfaces
             return true;
         }
 
-        virtual public List<T> GetItem(DataRow row)
+        virtual protected List<T> GetItem(DataRow row)
         {
             return new List<T>();
         }

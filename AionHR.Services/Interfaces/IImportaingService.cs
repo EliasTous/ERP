@@ -8,6 +8,5 @@ namespace AionHR.Services.Interfaces
 {
     public interface IImportaingService
     {
-
     }
 }

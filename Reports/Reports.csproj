@@ -76,6 +76,9 @@
     <Compile Include="JobHistory.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="JobPositions.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="LeaveBalance.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -190,6 +193,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="JobHistory.resx">
       <DependentUpon>JobHistory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="JobPositions.ar.resx">
+      <DependentUpon>JobPositions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="JobPositions.resx">
+      <DependentUpon>JobPositions.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LeaveBalance.ar.resx">
       <DependentUpon>LeaveBalance.cs</DependentUpon>
