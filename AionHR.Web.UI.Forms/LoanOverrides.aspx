@@ -266,7 +266,8 @@
                             
                             Icon="ApplicationSideList"
                             DefaultAnchor="100%" OnLoad="BasicInfoTab_Load"
-                            BodyPadding="5">
+                            BodyPadding="5"
+                             Title="<%$ Resources: BasicInfoTabEditWindowTitle %>">
                             <Items>
                                 <ext:TextField runat="server" ID="isNew" Hidden="true" Enabled="false" />
                                 <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" LabelWidth="130" ID="employeeId" AllowBlank="false"

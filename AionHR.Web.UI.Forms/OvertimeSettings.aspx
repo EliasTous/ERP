@@ -282,7 +282,8 @@
                             runat="server"
                             Icon="ApplicationSideList"
                             DefaultAnchor="100%" OnLoad="BasicInfoTab_Load"
-                            BodyPadding="5">
+                            BodyPadding="5"
+                             Title="<%$ Resources: WindowTitle%>">
                             <Items>
 
                                 <ext:TextField runat="server" ID="recordId" Hidden="true" />

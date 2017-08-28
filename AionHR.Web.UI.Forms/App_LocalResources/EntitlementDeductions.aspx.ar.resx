@@ -138,6 +138,9 @@
   <data name="FieldType" xml:space="preserve">
     <value>النوع</value>
   </data>
+  <data name="paycodeRef" xml:space="preserve">
+    <value>رمز المالي</value>
+  </data>
   <data name="WindowTitle" xml:space="preserve">
     <value>الخصومات والاستحقاقات</value>
   </data>
