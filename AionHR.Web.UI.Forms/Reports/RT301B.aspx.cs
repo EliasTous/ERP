@@ -81,7 +81,7 @@ namespace AionHR.Web.UI.Forms.Reports
                         Viewport1.Hidden = true;
                         return;
                     }
-
+                    dateRange1.DefaultStartDate = DateTime.Now.AddDays(-DateTime.Now.Day);
                     format.Text = _systemService.SessionHelper.GetDateformat().ToUpper();
                     ASPxWebDocumentViewer1.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.Utils.DefaultBoolean.True : DevExpress.Utils.DefaultBoolean.False;
                     FillReport(false, false);
@@ -231,12 +231,12 @@ namespace AionHR.Web.UI.Forms.Reports
                 branchName = x.branchName,
                 departmentName = x.departmentName,
                 Date = DateTime.ParseExact(x.dayId, "yyyyMMdd", new CultureInfo("en")),
-                lateness = x.OL_A_SIGN[0] == '-' ? (new TimeSpan(-Convert.ToInt32(x.OL_A.Substring(0, 2)), -Convert.ToInt32(x.OL_A.Substring(3, 2)), 0)) : (new TimeSpan(Convert.ToInt32(x.OL_A.Substring(0, 2)), Convert.ToInt32(x.OL_A.Substring(3, 2)), 0)),
-                early = x.OL_D_SIGN[0] == '-' ? (new TimeSpan(-Convert.ToInt32(x.OL_D.Substring(0, 2)), -Convert.ToInt32(x.OL_D.Substring(3, 2)), 0)) : (new TimeSpan(Convert.ToInt32(x.OL_D.Substring(0, 2)), Convert.ToInt32(x.OL_D.Substring(3, 2)), 0)),
+                lateness = x.OL_A_SIGN[0] == '-' ? (new TimeSpan(Convert.ToInt32(x.OL_A.Substring(1, 2)), -Convert.ToInt32(x.OL_A.Substring(4, 2)), 0)) : (new TimeSpan(Convert.ToInt32(x.OL_A.Substring(0, 2)), Convert.ToInt32(x.OL_A.Substring(3, 2)), 0)),
+                early = x.OL_D_SIGN[0] == '-' ? (new TimeSpan(Convert.ToInt32(x.OL_D.Substring(1, 2)), Convert.ToInt32(x.OL_D.Substring(4, 2)), 0)) : (new TimeSpan(Convert.ToInt32(x.OL_D.Substring(0, 2)), Convert.ToInt32(x.OL_D.Substring(3, 2)), 0)),
                 workingHours = new TimeSpan(Convert.ToInt32(x.workingTime.Substring(0, 2)), Convert.ToInt32(x.workingTime.Substring(3, 2)), 0),
                 workingHoursString = x.workingTime,
-                earlyString = x.OL_D_SIGN[0] == '-' ? "-" + x.OL_D : x.OL_D,
-                latenessString = x.OL_A_SIGN[0] == '-' ? "-" + x.OL_A : x.OL_A
+                earlyString =  x.OL_D,
+                latenessString = x.OL_A
             }));
             atts.ForEach(x => { x.DOW = GetGlobalResourceObject("Common", x.Date.DayOfWeek.ToString() + "Text").ToString(); x.DateString = x.Date.ToString(_systemService.SessionHelper.GetDateformat(), new CultureInfo("en")); });
 

@@ -129,9 +129,6 @@
   <data name="xrLabel50.SizeF" type="System.Drawing.SizeF, System.Drawing">
     <value>66.66675, 23</value>
   </data>
-  <data name="xrLabel50.Text" xml:space="preserve">
-    <value>xrLabel50</value>
-  </data>
   <data name="xrLabel46.Dpi" type="System.Single, mscorlib">
     <value>100</value>
   </data>
@@ -140,9 +137,6 @@
   </data>
   <data name="xrLabel46.SizeF" type="System.Drawing.SizeF, System.Drawing">
     <value>53.5432129, 23</value>
-  </data>
-  <data name="xrLabel46.Text" xml:space="preserve">
-    <value>xrLabel46</value>
   </data>
   <data name="xrLabel45.Dpi" type="System.Single, mscorlib">
     <value>100</value>

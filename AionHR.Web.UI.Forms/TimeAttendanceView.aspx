@@ -168,7 +168,7 @@
                                     TypeAhead="false"
                                     HideTrigger="true" SubmitValue="true"
                                     MinChars="3" EmptyText="<%$ Resources: FieldEmployee%>"
-                                    TriggerAction="Query" ForceSelection="false">
+                                    TriggerAction="Query" ForceSelection="true">
                                     <Store>
                                         <ext:Store runat="server" ID="EmployeeStore" AutoLoad="false">
                                             <Model>

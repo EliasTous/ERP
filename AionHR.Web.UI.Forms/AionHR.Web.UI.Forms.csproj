@@ -1717,7 +1717,7 @@
     <Content Include="App_LocalResources\MediaCategories.aspx.resx" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Temp\" />
+    <Folder Include="Scripts\Temp\" />
     <Folder Include="Uploads\" />
   </ItemGroup>
   <ItemGroup>
