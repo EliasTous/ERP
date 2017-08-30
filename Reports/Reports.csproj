@@ -67,6 +67,12 @@
     <Compile Include="DailyAttendance.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="DepartmentsReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="DepartmentsReport.Designer.cs">
+      <DependentUpon>DepartmentsReport.cs</DependentUpon>
+    </Compile>
     <Compile Include="DetailedAttendance.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -175,6 +181,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DailyAttendance.resx">
       <DependentUpon>DailyAttendance.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DepartmentsReport.ar.resx">
+      <DependentUpon>DepartmentsReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DepartmentsReport.resx">
+      <DependentUpon>DepartmentsReport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DetailedAttendance.ar.resx">
       <DependentUpon>DetailedAttendance.cs</DependentUpon>

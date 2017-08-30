@@ -44,9 +44,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DayPilot, Version=8.1.3460.1, Culture=neutral, PublicKeyToken=426941954f05e7fe, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Users\User\Desktop\dlls\DayPilot.dll</HintPath>
+    <Reference Include="DayPilot">
+      <HintPath>..\..\..\..\Desktop\dlls\DayPilot.dll</HintPath>
     </Reference>
     <Reference Include="DevExpress.Charts.v16.2.Core, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <HintPath>..\..\..\Users\User\Desktop\dlls\DevExpress.Charts.v16.2.Core.dll</HintPath>
@@ -108,13 +107,11 @@
     <Reference Include="DevExpress.XtraReports.v16.2.Web, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <HintPath>..\..\..\Users\User\Desktop\dlls\DevExpress.XtraReports.v16.2.Web.dll</HintPath>
     </Reference>
-    <Reference Include="Ext.Net, Version=4.1.0.0, Culture=neutral, PublicKeyToken=2e12ce3d0176cd87, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Users\User\Desktop\dlls\Ext.Net.dll</HintPath>
+    <Reference Include="Ext.Net">
+      <HintPath>..\..\..\..\Desktop\dlls\Ext.Net.dll</HintPath>
     </Reference>
-    <Reference Include="Ext.Net.Utilities, Version=2.5.0.0, Culture=neutral, PublicKeyToken=2c34ac34702a3c23, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Users\User\Desktop\dlls\Ext.Net.Utilities.dll</HintPath>
+    <Reference Include="Ext.Net.Utilities">
+      <HintPath>..\..\..\..\Desktop\dlls\Ext.Net.Utilities.dll</HintPath>
     </Reference>
     <Reference Include="log4net">
       <HintPath>C:\Users\Issa.Mouawad\Desktop\dlls\log4net.dll</HintPath>
@@ -151,9 +148,8 @@
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
     <Reference Include="System.Xml.Linq" />
-    <Reference Include="Transformer.NET, Version=2.1.1.22883, Culture=neutral, PublicKeyToken=e274d618e7c603a7, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Users\User\Desktop\dlls\Transformer.NET.dll</HintPath>
+    <Reference Include="Transformer.NET">
+      <HintPath>..\..\..\..\Desktop\dlls\Transformer.NET.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
