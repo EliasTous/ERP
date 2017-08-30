@@ -75,3 +75,7 @@ var enterKeyPressSearchHandler = function (el, event) {
         App.Store1.reload();
     }
 };
+function openInNewTab() {
+    window.document.forms[0].target = '_blank';
+
+}

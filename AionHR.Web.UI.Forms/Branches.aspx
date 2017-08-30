@@ -60,7 +60,7 @@
             RemoteSort="False"
             RemoteFilter="true"
             OnReadData="Store1_RefreshData"
-            PageSize="1" IDMode="Explicit" Namespace="App" >
+            PageSize="30" IDMode="Explicit" Namespace="App" >
             <Proxy>
                 <ext:PageProxy>
                     <Listeners>
@@ -150,7 +150,7 @@
                                     <Menu>
                                         <ext:Menu runat="server">
                                             <Items>
-                                                <ext:MenuItem runat="server"  Text="Print" AutoPostBack="true" OnClick="printBtn_Click" OnClientClick="openInNewTab();"  >
+                                                <ext:MenuItem runat="server"  Text="<%$ Resources:Common , Print %>" AutoPostBack="true" OnClick="printBtn_Click" OnClientClick="openInNewTab();"  >
                                             
                                                     <Listeners>
                                                         <Click Handler="openInNewTab();" />

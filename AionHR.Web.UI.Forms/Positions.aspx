@@ -126,7 +126,7 @@
                                     <Menu>
                                         <ext:Menu runat="server">
                                             <Items>
-                                                <ext:MenuItem runat="server"  Text="Print" AutoPostBack="true" OnClick="printBtn_Click" OnClientClick="openInNewTab();"  >
+                                                <ext:MenuItem runat="server"  Text="<%$ Resources:Common , Print %>" AutoPostBack="true" OnClick="printBtn_Click" OnClientClick="openInNewTab();"  >
                                             
                                                     <Listeners>
                                                         <Click Handler="openInNewTab();" />
