@@ -163,7 +163,6 @@ public class PayrollPeriodTimeCodes : DevExpress.XtraReports.UI.XtraReport
             this.xrTableCell18 = new DevExpress.XtraReports.UI.XRTableCell();
             this.TopMargin = new DevExpress.XtraReports.UI.TopMarginBand();
             this.BottomMargin = new DevExpress.XtraReports.UI.BottomMarginBand();
-            this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
             this.pageHeaderBand1 = new DevExpress.XtraReports.UI.PageHeaderBand();
             this.xrLabel30 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel31 = new DevExpress.XtraReports.UI.XRLabel();
@@ -216,6 +215,7 @@ public class PayrollPeriodTimeCodes : DevExpress.XtraReports.UI.XtraReport
             this.xrPageInfo1 = new DevExpress.XtraReports.UI.XRPageInfo();
             this.xrPageInfo2 = new DevExpress.XtraReports.UI.XRPageInfo();
             this.reportHeaderBand1 = new DevExpress.XtraReports.UI.ReportHeaderBand();
+            this.xrLabel45 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel1 = new DevExpress.XtraReports.UI.XRLabel();
             this.Title = new DevExpress.XtraReports.UI.XRControlStyle();
             this.FieldCaption = new DevExpress.XtraReports.UI.XRControlStyle();
@@ -233,7 +233,7 @@ public class PayrollPeriodTimeCodes : DevExpress.XtraReports.UI.XtraReport
             this.xrLabel36 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel35 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel34 = new DevExpress.XtraReports.UI.XRLabel();
-            this.xrLabel45 = new DevExpress.XtraReports.UI.XRLabel();
+            this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.xrTable2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
@@ -401,11 +401,6 @@ public class PayrollPeriodTimeCodes : DevExpress.XtraReports.UI.XtraReport
             resources.ApplyResources(this.BottomMargin, "BottomMargin");
             this.BottomMargin.Name = "BottomMargin";
             this.BottomMargin.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
-            // 
-            // objectDataSource1
-            // 
-            this.objectDataSource1.DataSource = typeof(AionHR.Model.Reports.RT502);
-            this.objectDataSource1.Name = "objectDataSource1";
             // 
             // pageHeaderBand1
             // 
@@ -870,6 +865,14 @@ public class PayrollPeriodTimeCodes : DevExpress.XtraReports.UI.XtraReport
             resources.ApplyResources(this.reportHeaderBand1, "reportHeaderBand1");
             this.reportHeaderBand1.Name = "reportHeaderBand1";
             // 
+            // xrLabel45
+            // 
+            resources.ApplyResources(this.xrLabel45, "xrLabel45");
+            this.xrLabel45.Name = "xrLabel45";
+            this.xrLabel45.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel45.StylePriority.UseTextAlignment = false;
+            this.xrLabel45.BeforePrint += new System.Drawing.Printing.PrintEventHandler(this.xrLabel45_BeforePrint);
+            // 
             // xrLabel1
             // 
             resources.ApplyResources(this.xrLabel1, "xrLabel1");
@@ -1088,6 +1091,7 @@ public class PayrollPeriodTimeCodes : DevExpress.XtraReports.UI.XtraReport
             xrSummary10.Running = DevExpress.XtraReports.UI.SummaryRunning.Report;
             this.xrLabel35.Summary = xrSummary10;
             this.xrLabel35.SummaryCalculated += new DevExpress.XtraReports.UI.TextFormatEventHandler(this.xrLabel35_SummaryCalculated);
+            this.xrLabel35.SummaryGetResult += new DevExpress.XtraReports.UI.SummaryGetResultHandler(this.xrLabel35_SummaryGetResult);
             // 
             // xrLabel34
             // 
@@ -1100,13 +1104,10 @@ public class PayrollPeriodTimeCodes : DevExpress.XtraReports.UI.XtraReport
             this.xrLabel34.StylePriority.UseBorders = false;
             this.xrLabel34.StylePriority.UseTextAlignment = false;
             // 
-            // xrLabel45
+            // objectDataSource1
             // 
-            resources.ApplyResources(this.xrLabel45, "xrLabel45");
-            this.xrLabel45.Name = "xrLabel45";
-            this.xrLabel45.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96F);
-            this.xrLabel45.StylePriority.UseTextAlignment = false;
-            this.xrLabel45.BeforePrint += new System.Drawing.Printing.PrintEventHandler(this.xrLabel45_BeforePrint);
+            this.objectDataSource1.DataSource = typeof(AionHR.Model.Reports.RT502);
+            this.objectDataSource1.Name = "objectDataSource1";
             // 
             // PayrollPeriodTimeCodes
             // 
@@ -1178,5 +1179,10 @@ public class PayrollPeriodTimeCodes : DevExpress.XtraReports.UI.XtraReport
     private void pageHeaderBand1_BeforePrint(object sender, System.Drawing.Printing.PrintEventArgs e)
     {
         e.Cancel = RowCount == 0;
+    }
+
+    private void xrLabel35_SummaryGetResult(object sender, SummaryGetResultEventArgs e)
+    {
+     
     }
 }

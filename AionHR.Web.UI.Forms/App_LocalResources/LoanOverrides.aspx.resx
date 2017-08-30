@@ -150,4 +150,7 @@
   <data name="PaymentValueP" xml:space="preserve">
     <value>Payment Value %</value>
   </data>
+  <data name="BasicInfoTabEditWindowTitle" xml:space="preserve">
+    <value>Employee loan Setup</value>
+  </data>
 </root>

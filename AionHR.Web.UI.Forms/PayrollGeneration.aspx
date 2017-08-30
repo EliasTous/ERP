@@ -309,7 +309,7 @@
                                     </DirectEvents>
                                 </ext:ComboBox>
                                 <ext:TextField runat="server" ReadOnly="true" ID="startDate" Name="startDate" FieldLabel="<%$ Resources: FieldFrom %>" AllowBlank="false" />
-                                <ext:TextField runat="server" ReadOnly="true" ID="endDate" Name="endDate" FieldLabel="<%$ Resources: FieldTo %>" AllowBlank="false" />
+                                <ext:TextField runat="server" ReadOnly="true" ID="endDate" Name="endDate" FieldLabel="<%$ Resources: FieldTo %>" AllowBlank="false"  />
                                 <ext:DateField runat="server" ID="payDate" Name="payDate" FieldLabel="<%$ Resources: FieldPayDate %>" AllowBlank="false" />
                                 <ext:TextArea runat="server" ID="notes" Name="notes" FieldLabel="<%$ Resources: FieldNotes %>" />
                             </Items>
@@ -349,71 +349,27 @@
 
 
                                 </ext:Button>
-                                <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" Width="130" LabelAlign="Top" EmptyText="<%$ Resources:FieldBranch%>" ValueField="recordId" DisplayField="name" ID="branchId" Name="branchId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1">
-                                    <Store>
-                                        <ext:Store runat="server" ID="branchStore">
-                                            <Model>
-                                                <ext:Model runat="server">
-                                                    <Fields>
-                                                        <ext:ModelField Name="recordId" />
-                                                        <ext:ModelField Name="name" />
-                                                    </Fields>
-                                                </ext:Model>
-                                            </Model>
-                                        </ext:Store>
-                                    </Store>
+                                  <ext:Container runat="server" Layout="FitLayout">
+                                    <Content>
+                                        <uc:jobInfo runat="server" ID="jobInfo1" EnablePosition="false" EnableDivision="false" />
+
+                                    </Content>
+
+                                </ext:Container>
+                                <ext:Container runat="server" Layout="FitLayout">
+                                    <Content>
+                                        <uc:employeeCombo runat="server" ID="employeeCombo1"/>
+
+                                    </Content>
+
+                                </ext:Container>
+                               
+                                   <ext:Button runat="server" Text="<%$ Resources: Common,Go%>" MarginSpec="0 0 0 0" Width="100">
                                     <Listeners>
-                                        <Change Handler="#{Store1}.reload()" />
+                                        <Click Handler="#{Store1}.reload(); ">
+                                        </Click>
                                     </Listeners>
-
-                                </ext:ComboBox>
-
-                                <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" Width="155" EmptyText="<%$ Resources:FieldDepartment%>" LabelAlign="Top" ValueField="recordId" DisplayField="name" ID="departmentId" Name="departmentId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1">
-                                    <Store>
-                                        <ext:Store runat="server" ID="departmentStore">
-                                            <Model>
-                                                <ext:Model runat="server">
-                                                    <Fields>
-                                                        <ext:ModelField Name="recordId" />
-                                                        <ext:ModelField Name="name" />
-                                                    </Fields>
-                                                </ext:Model>
-                                            </Model>
-                                        </ext:Store>
-                                    </Store>
-                                    <Listeners>
-                                        <Change Handler="#{Store1}.reload()" />
-                                    </Listeners>
-
-
-                                </ext:ComboBox>
-                                <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" ID="employeeId" Width="130" LabelAlign="Top"
-                                    DisplayField="fullName"
-                                    ValueField="recordId" AllowBlank="true"
-                                    TypeAhead="false"
-                                    HideTrigger="true" SubmitValue="true"
-                                    MinChars="3" EmptyText="<%$ Resources: FieldEmployee%>"
-                                    TriggerAction="Query" ForceSelection="false">
-                                    <Store>
-                                        <ext:Store runat="server" ID="EmployeeStore" AutoLoad="false">
-                                            <Model>
-                                                <ext:Model runat="server">
-                                                    <Fields>
-                                                        <ext:ModelField Name="recordId" />
-                                                        <ext:ModelField Name="fullName" />
-                                                    </Fields>
-                                                </ext:Model>
-                                            </Model>
-                                            <Proxy>
-                                                <ext:PageProxy DirectFn="App.direct.FillEmployee"></ext:PageProxy>
-                                            </Proxy>
-                                        </ext:Store>
-                                    </Store>
-                                    <Listeners>
-                                        <Select Handler="#{Store1}.reload()" />
-                                    </Listeners>
-
-                                </ext:ComboBox>
+                                </ext:Button>
                                 <ext:ToolbarSeparator runat="server" />
                                 <ext:Label runat="server" ID="payrollHeader" />
                             </Items>

@@ -24,7 +24,7 @@ namespace AionHR.Services.Implementations
         Dictionary<string, string> dict;
 
 
-        public override List<AttendanceShift> GetItem(DataRow row)
+        protected override List<AttendanceShift> GetItem(DataRow row)
         {
             List<AttendanceShift> shifts = new List<AttendanceShift>();
             try

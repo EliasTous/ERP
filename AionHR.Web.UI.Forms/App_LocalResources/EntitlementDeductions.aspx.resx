@@ -138,6 +138,9 @@
   <data name="FieldType" xml:space="preserve">
     <value>Type</value>
   </data>
+  <data name="paycodeRef" xml:space="preserve">
+    <value>Pay code</value>
+  </data>
   <data name="WindowTitle" xml:space="preserve">
     <value>Entitlement Deductions</value>
   </data>

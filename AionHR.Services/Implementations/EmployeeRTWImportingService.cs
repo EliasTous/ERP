@@ -19,7 +19,7 @@ namespace AionHR.Services.Implementations
 
         }
 
-        public override List<EmployeeRightToWork> GetItem(DataRow row)
+        protected override List<EmployeeRightToWork> GetItem(DataRow row)
         {
             List<EmployeeRightToWork> depts = new List<EmployeeRightToWork>();
             try

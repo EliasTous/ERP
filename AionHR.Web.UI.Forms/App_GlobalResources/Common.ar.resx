@@ -984,4 +984,7 @@
   <data name="TimeCode" xml:space="preserve">
     <value>نوع الغياب </value>
   </data>
+  <data name="importSa" xml:space="preserve">
+    <value>استيراد الرواتب</value>
+  </data>
 </root>

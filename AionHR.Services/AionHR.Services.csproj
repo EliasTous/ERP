@@ -79,6 +79,8 @@
     <Compile Include="Implementations\OvertimeImportingService.cs" />
     <Compile Include="Implementations\PayrollService.cs" />
     <Compile Include="Implementations\ReportsService.cs" />
+    <Compile Include="Implementations\SalaryBatchRunner.cs" />
+    <Compile Include="Implementations\SalaryImportingService.cs" />
     <Compile Include="Implementations\TaskManagementService.cs" />
     <Compile Include="Implementations\TimeAttendanceService.cs" />
     <Compile Include="Interfaces\IAccessControlService.cs" />

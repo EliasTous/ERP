@@ -11,10 +11,15 @@
     <link rel="stylesheet" href="CSS/LiveSearch.css" />
     <script type="text/javascript" src="Scripts/Branches.js"></script>
     <script type="text/javascript" src="Scripts/common.js"></script>
-
+    <script type="text/javascript" >
+        function openInNewTab() {
+            window.document.forms[0].target = '_blank';
+            
+        }
+    </script>
 
 </head>
-<body style="background: url(Images/bg.png) repeat;" onload="getTimeZone();">
+<body style="background: url(Images/bg.png) repeat;" >
     <form id="Form1" runat="server">
         <ext:ResourceManager ID="ResourceManager1" runat="server" Theme="Neptune" AjaxTimeout="1200000" />
 
@@ -91,6 +96,12 @@
                                     </DirectEvents>
                                 </ext:Button>
                                 <ext:ToolbarSeparator></ext:ToolbarSeparator>
+                                <ext:Button ID="btnReload" runat="server"  Icon="Reload">       
+                                     <Listeners>
+                                        <Click Handler="CheckSession();#{Store1}.reload();" />
+                                    </Listeners>                           
+                                   
+                                </ext:Button>
                                 <ext:Button Visible="false" ID="btnDeleteSelected" runat="server" Text="<%$ Resources:Common , DeleteAll %>" Icon="Delete">
                                     <Listeners>
                                         <Click Handler="CheckSession();"></Click>
@@ -111,6 +122,30 @@
                                         <TriggerClick Handler="#{Store1}.reload();" />
                                     </Listeners>
                                 </ext:TextField>
+                                <ext:Button runat="server" Icon="Printer">
+                                    <Menu>
+                                        <ext:Menu runat="server">
+                                            <Items>
+                                                <ext:MenuItem runat="server"  Text="Print" AutoPostBack="true" OnClick="printBtn_Click" OnClientClick="openInNewTab();"  >
+                                            
+                                                    <Listeners>
+                                                        <Click Handler="openInNewTab();" />
+                                                    </Listeners>
+                                                </ext:MenuItem>
+                                                <ext:MenuItem runat="server"  Text="Pdf" AutoPostBack="true" OnClick="ExportPdfBtn_Click"  >
+                                            
+                                                    
+                                                </ext:MenuItem>
+                                                <ext:MenuItem runat="server"  Text="Excel" AutoPostBack="true" OnClick="ExportXLSBtn_Click"  >
+                                            
+                                                    
+                                                </ext:MenuItem>
+                                            </Items>
+                                        </ext:Menu>
+                                    </Menu>
+                                </ext:Button>
+                              
+                            
 
                             </Items>
                         </ext:Toolbar>

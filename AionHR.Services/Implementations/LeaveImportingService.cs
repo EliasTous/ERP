@@ -17,7 +17,7 @@ namespace AionHR.Services.Implementations
 
         }
 
-        public override List<LeaveRequest> GetItem(DataRow row)
+        protected override List<LeaveRequest> GetItem(DataRow row)
         {
             List<LeaveRequest> leaves = new List<LeaveRequest>();
             try

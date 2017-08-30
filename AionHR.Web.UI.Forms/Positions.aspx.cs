@@ -206,7 +206,7 @@ namespace AionHR.Web.UI.Forms
                 p.recordId = index;
                 req.entity = p;
                 PostResponse<Model.Company.Structure.Position> resp = _branchService.ChildDelete<Model.Company.Structure.Position>(req);
-                if(!resp.Success)
+                if (!resp.Success)
                 {
                     X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
                     X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() : resp.Summary).Show();
@@ -303,7 +303,7 @@ namespace AionHR.Web.UI.Forms
 
             req.Filter = prms.Query;
             ListResponse<Employee> response = _employeeService.GetAll<Employee>(req);
-            if(!response.Success)
+            if (!response.Success)
                 X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).ToString() : response.Summary).Show();
             data = response.Items;
             return new
@@ -417,7 +417,7 @@ namespace AionHR.Web.UI.Forms
             if (!branches.Success)
                 return;
             this.Store1.DataSource = branches.Items;
-           
+
 
             this.Store1.DataBind();
         }
@@ -585,6 +585,189 @@ namespace AionHR.Web.UI.Forms
 
         }
 
+        protected void printBtn_Click(object sender, EventArgs e)
+        {
+            JobPositions p = GetReport();
+            string format = "Pdf";
+            string fileName = String.Format("Report.{0}", format);
 
+            MemoryStream ms = new MemoryStream();
+            p.ExportToPdf(ms, new DevExpress.XtraPrinting.PdfExportOptions() { ShowPrintDialogOnOpen = true });
+            Response.Clear();
+            Response.Write("<script>");
+            Response.Write("window.document.forms[0].target = '_blank';");
+            Response.Write("setTimeout(function () { window.document.forms[0].target = ''; }, 0);");
+            Response.Write("</script>");
+            Response.ContentType = "application/pdf";
+            Response.AddHeader("Content-Disposition", String.Format("{0}; filename={1}", "inline", fileName));
+            Response.BinaryWrite(ms.ToArray());
+            Response.Flush();
+            Response.Close();
+            //Response.Redirect("Reports/RT301.aspx");
+        }
+        protected void ExportPdfBtn_Click(object sender, EventArgs e)
+        {
+            JobPositions p = GetReport();
+            string format = "Pdf";
+            string fileName = String.Format("Report.{0}", format);
+
+            MemoryStream ms = new MemoryStream();
+            p.ExportToPdf(ms );
+            Response.Clear();
+           
+            Response.ContentType = "application/pdf";
+            Response.AddHeader("Content-Disposition", String.Format("{0}; filename={1}", "attachment", fileName));
+            Response.BinaryWrite(ms.ToArray());
+            Response.Flush();
+            Response.Close();
+            //Response.Redirect("Reports/RT301.aspx");
+        }
+
+        protected void ExportXLSBtn_Click(object sender, EventArgs e)
+        {
+            JobPositions p = GetReport();
+            string format = "xls";
+            string fileName = String.Format("Report.{0}", format);
+
+            MemoryStream ms = new MemoryStream();
+            p.ExportToXls(ms);
+            
+            Response.Clear();
+            
+            Response.ContentType = "application/vnd.ms-excel";
+            Response.AddHeader("Content-Disposition", String.Format("{0}; filename={1}", "attachment", fileName));
+            Response.BinaryWrite(ms.ToArray());
+            Response.Flush();
+            Response.Close();
+            //Response.Redirect("Reports/RT301.aspx");
+        }
+
+        private JobPositions GetReport()
+        {
+
+            ListRequest req = new ListRequest();
+            ListResponse<Model.Company.Structure.Position> resp = _branchService.ChildGetAll<Model.Company.Structure.Position>(req);
+            if (!resp.Success)
+            {
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() : resp.Summary).Show();
+                return null;
+            }
+            JobPositions p = new JobPositions();
+            p.DataSource = resp.Items;
+            p.Parameters["User"].Value = _systemService.SessionHelper.GetCurrentUser();
+            p.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;
+            p.RightToLeftLayout = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeftLayout.Yes : DevExpress.XtraReports.UI.RightToLeftLayout.No;
+            return p;
+
+
+
+        }
+        public void DownloadFile(Stream stream)
+        {
+
+
+
+
+            //This controls how many bytes to read at a time and send to the client
+            int bytesToRead = 10000;
+
+            // Buffer to read bytes in chunk size specified above
+            byte[] buffer = new Byte[bytesToRead];
+
+            // The number of bytes read
+            try
+            {
+
+
+
+                //Get the Stream returned from the response
+
+                // prepare the response to the client. resp is the client Response
+
+                var resp = HttpContext.Current.Response;
+
+                //Indicate the type of data being sent
+                resp.ContentType = "application/octet-stream";
+
+
+                //Name the file 
+                resp.AddHeader("Content-Disposition", "attachment; filename=\"Report.pdf\"");
+                resp.AddHeader("Content-Length", stream.Length.ToString());
+
+                int length;
+                do
+                {
+                    // Verify that the client is connected.
+                    if (resp.IsClientConnected)
+                    {
+                        // Read data into the buffer.
+                        length = stream.Read(buffer, 0, bytesToRead);
+
+                        // and write it out to the response's output stream
+                        resp.OutputStream.Write(buffer, 0, length);
+
+                        // Flush the data
+
+
+                        //Clear the buffer
+                        buffer = new Byte[bytesToRead];
+                    }
+                    else
+                    {
+                        // cancel the download if client has disconnected
+                        length = -1;
+                    }
+                } while (length > 0); //Repeat until no data is read
+                resp.Flush();
+            }
+            catch (Exception exp)
+            {
+                X.Msg.Alert(Resources.Common.Error, exp.Message + "<br />" + exp.StackTrace).Show();
+                return;
+            }
+            finally
+            {
+                if (stream != null)
+                {
+                    //Close the input stream
+                    stream.Close();
+                }
+            }
+        }
+
+        protected void Unnamed_Event(object sender, DirectEventArgs e)
+        {
+            ListRequest req = new ListRequest();
+            ListResponse<Model.Company.Structure.Position> resp = _branchService.ChildGetAll<Model.Company.Structure.Position>(req);
+            if (!resp.Success)
+            {
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() : resp.Summary).Show();
+                return;
+            }
+            JobPositions p = new JobPositions();
+            p.DataSource = resp.Items;
+            p.Parameters["User"].Value = _systemService.SessionHelper.GetCurrentUser();
+            p.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;
+            p.RightToLeftLayout = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeftLayout.Yes : DevExpress.XtraReports.UI.RightToLeftLayout.No;
+            string format = "pdf";
+            string fileName = String.Format("Report.{0}", format);
+
+            MemoryStream ms = new MemoryStream();
+            p.ExportToPdf(ms);
+            Response.Clear();
+            Response.ContentType = "application/pdf";
+            Response.AddHeader("Content-Disposition", String.Format("{0}; filename={1}", "inline", fileName));
+            Response.Headers.Add("X-Content-Type-Options", "nosniff");
+            Response.BinaryWrite(ms.ToArray());
+            Response.Flush();
+            Response.Close();
+        }
+
+        protected void Unnamed_Event1()
+        {
+
+        }
     }
 }

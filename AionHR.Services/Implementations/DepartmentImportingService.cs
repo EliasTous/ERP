@@ -18,7 +18,7 @@ namespace AionHR.Services.Implementations
 
         }
 
-        public override List<Department> GetItem(DataRow row)
+        protected override List<Department> GetItem(DataRow row)
         {
             List<Department> depts = new List<Department>();
             try

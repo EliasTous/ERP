@@ -139,24 +139,7 @@ namespace AionHR.Web.UI.Forms
             return resp.Items;
         }
 
-        private void FillDepartment()
-        {
-            ListRequest departmentsRequest = new ListRequest();
-            ListResponse<Department> resp = _companyStructureService.ChildGetAll<Department>(departmentsRequest);
-            if (!resp.Success)
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() : resp.Summary).Show();
-            departmentStore.DataSource = resp.Items;
-            departmentStore.DataBind();
-        }
-        private void FillBranch()
-        {
-            ListRequest branchesRequest = new ListRequest();
-            ListResponse<Branch> resp = _companyStructureService.ChildGetAll<Branch>(branchesRequest);
-            if (!resp.Success)
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() : resp.Summary).Show();
-            branchStore.DataSource = resp.Items;
-            branchStore.DataBind();
-        }
+   
 
 
         [DirectMethod]
@@ -179,41 +162,14 @@ namespace AionHR.Web.UI.Forms
         private EmployeePayrollListRequest GetEmployeePayrollRequest()
         {
             EmployeePayrollListRequest req = new EmployeePayrollListRequest();
-
-            if (!string.IsNullOrEmpty(branchId.Text) && branchId.Value.ToString() != "0")
-            {
-                req.BranchId = branchId.Value.ToString();
-
-
-            }
-            else
-            {
-                req.BranchId = "0";
-            }
-
-            if (!string.IsNullOrEmpty(departmentId.Text) && departmentId.Value.ToString() != "0")
-            {
-                req.DepartmentId = departmentId.Value.ToString();
-
-            }
-            else
-            {
-                req.DepartmentId = "0";
-            }
+            var d = jobInfo1.GetJobInfo();
+            req.BranchId = d.BranchId.HasValue ? d.BranchId.Value.ToString() : "0";
+            req.DepartmentId = d.DepartmentId.HasValue ? d.DepartmentId.Value.ToString() : "0";
+            var d2 = employeeCombo1.GetEmployee();
+            req.EmployeeId = d2.employeeId.ToString();
 
 
 
-            if (!string.IsNullOrEmpty(employeeId.Text) && employeeId.Value.ToString() != "0")
-            {
-                req.EmployeeId = employeeId.Value.ToString();
-
-
-            }
-            else
-            {
-                req.EmployeeId = "0";
-
-            }
 
             req.PayId = CurrentPayId.Text;
             req.Size = "30";
@@ -285,7 +241,11 @@ namespace AionHR.Web.UI.Forms
         protected void SaveNewRecord(object sender, DirectEventArgs e)
         {
             string s = e.ExtraParams["values"];
-            GenerationHeader h = JsonConvert.DeserializeObject<GenerationHeader>(s);
+           
+            JsonSerializerSettings settings = new JsonSerializerSettings();
+
+            settings.DateFormatString = _systemService.SessionHelper.GetDateformat();
+            GenerationHeader h = JsonConvert.DeserializeObject<GenerationHeader>(s,settings);
             h.status = "1";
             PostRequest<GenerationHeader> req = new PostRequest<GenerationHeader>();
             req.entity = h;
@@ -299,8 +259,7 @@ namespace AionHR.Web.UI.Forms
             }
             CurrentPayId.Text = resp.recordId;
             Viewport1.ActiveIndex = 2;
-            FillBranch();
-            FillDepartment();
+          
             Store1.Reload();
             RecordRequest r = new RecordRequest();
 
@@ -386,8 +345,7 @@ namespace AionHR.Web.UI.Forms
                     //Step 1 : get the object from the Web Service 
                     CurrentPayId.Text = id;
                     Viewport1.ActiveIndex = 2;
-                    FillBranch();
-                    FillDepartment();
+                   
                     payrollHeader.Text = id.ToString();
                     Store1.Reload();
 
@@ -715,7 +673,7 @@ namespace AionHR.Web.UI.Forms
         private PayrollListRequest GetPayrollListRequest()
         {
             PayrollListRequest req = new PayrollListRequest();
-
+         
             if (!string.IsNullOrEmpty(year.Text) && !string.IsNullOrEmpty(year.Value.ToString()))
             {
                 req.Year = year.Value.ToString();
