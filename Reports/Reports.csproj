@@ -176,6 +176,9 @@
     <EmbeddedResource Include="DailyAttendance.resx">
       <DependentUpon>DailyAttendance.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="DepartmentsReport.ar.resx">
+      <DependentUpon>DepartmentsReport.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DepartmentsReport.resx">
       <DependentUpon>DepartmentsReport.cs</DependentUpon>
     </EmbeddedResource>
