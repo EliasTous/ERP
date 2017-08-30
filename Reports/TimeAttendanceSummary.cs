@@ -189,6 +189,7 @@ public class TimeAttendanceSummary : DevExpress.XtraReports.UI.XtraReport
             // groupHeaderBand1
             // 
             resources.ApplyResources(this.groupHeaderBand1, "groupHeaderBand1");
+            this.groupHeaderBand1.Expanded = false;
             this.groupHeaderBand1.Name = "groupHeaderBand1";
             // 
             // pageFooterBand1
@@ -610,6 +611,7 @@ public class TimeAttendanceSummary : DevExpress.XtraReports.UI.XtraReport
             this.xrLabel23,
             this.xrLabel21});
             resources.ApplyResources(this.PageHeader, "PageHeader");
+            this.PageHeader.Expanded = false;
             this.PageHeader.Name = "PageHeader";
             this.PageHeader.BeforePrint += new System.Drawing.Printing.PrintEventHandler(this.PageHeader_BeforePrint);
             // 

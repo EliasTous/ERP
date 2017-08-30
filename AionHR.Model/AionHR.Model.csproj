@@ -80,9 +80,11 @@
     <Compile Include="Employees\Profile\ImportEmployees.cs" />
     <Compile Include="Employees\Profile\ImportJobInfo.cs" />
     <Compile Include="Employees\Profile\ImportNotes.cs" />
+    <Compile Include="Employees\Profile\ImportSalary.cs" />
     <Compile Include="Employees\Profile\JobInfo.cs" />
     <Compile Include="Employees\Profile\NoticePeriod.cs" />
     <Compile Include="Employees\Profile\RelationshipType.cs" />
+    <Compile Include="Employees\Profile\SalaryTree.cs" />
     <Compile Include="Employees\Profile\TeamMember.cs" />
     <Compile Include="Employees\Profile\TerminationReason.cs" />
     <Compile Include="LeaveManagement\ILeaveManagementRepository.cs" />
