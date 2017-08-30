@@ -15,18 +15,20 @@ using System.Threading.Tasks;
 
 namespace AionHR.Services.Implementations
 {
-   public class SalaryBatchRunner: ImportBatchRunner<SalaryTree>
+    public class SalaryBatchRunner : ImportBatchRunner<SalaryTree>
     {
         private Dictionary<string, int> empRef;
-        private Dictionary<string, int> eds;
-        
-        public SalaryBatchRunner(ISessionStorage store, IEmployeeService employee, ISystemService system):base(system, employee)
+        private Dictionary<string, int> ents;
+        private Dictionary<string, int> deds;
+
+        public SalaryBatchRunner(ISessionStorage store, IEmployeeService employee, ISystemService system) : base(system, employee)
         {
             empRef = new Dictionary<string, int>();
-            eds = new Dictionary<string, int>();
-            FillEDS(); 
-            this.SessionStore = store;
-            SessionHelper h = new SessionHelper(store, new APIKeyBasedTokenGenerator());
+            ents = new Dictionary<string, int>();
+            deds = new Dictionary<string, int>();
+            FillEDS();
+            //   this.SessionStore = store;
+            //   SessionHelper h = new SessionHelper(store, new APIKeyBasedTokenGenerator());
 
 
             BatchStatus = new BatchOperationStatus() { classId = ClassId.EPSA, processed = 0, tableSize = 0, status = 0 };
@@ -41,7 +43,10 @@ namespace AionHR.Services.Implementations
             {
                 foreach (var item in branches.Items)
                 {
-                    this.eds.Add(item.name.Trim('\r', '\n'), Convert.ToInt32(item.recordId));
+                    if (item.type == 1)
+                        this.ents.Add(item.name.Trim('\r', '\n'), Convert.ToInt32(item.recordId));
+                    else
+                        this.deds.Add(item.name.Trim('\r', '\n'), Convert.ToInt32(item.recordId));
                 }
             }
         }
@@ -52,8 +57,8 @@ namespace AionHR.Services.Implementations
             int i = 0;
             foreach (var error in errors)
             {
-                //b.AppendLine(error.reference + "," + error.firstName + "," + error.lastName + "," + error.hireDate + "," + error.caId + "," + errorMessages[i++].Replace('\r', ' ').Replace(',', ';'));
-                b.AppendLine(errorMessages[i]);
+                b.AppendLine(error.Basic.employeeId.ToString()+","+error.Basic.EmpRef+","+errorMessages[i++].Replace('\r', ' ').Replace(',', ';'));
+             
             }
             string csv = b.ToString();
             string path = OutputPath + BatchStatus.classId.ToString() + ".csv";
@@ -71,7 +76,20 @@ namespace AionHR.Services.Implementations
             }
 
             item.Basic.employeeId = empRef[item.Basic.EmpRef];
-            item.Details.ForEach(x => x.edId = eds[x.edName.Trim()]);
+            item.Details.ForEach(x =>
+            {
+                if(ents.ContainsKey(x.edName))
+                {
+                    x.edId = ents[x.edName];
+                    x.type = 1;
+                }
+                else
+                {
+                    x.edId = deds[x.edName];
+                    x.type = 2;
+
+                }
+            });
 
 
         }
@@ -79,21 +97,30 @@ namespace AionHR.Services.Implementations
         protected override void ProcessElement(SalaryTree item)
         {
             PostRequest<EmployeeSalary> saReq = new PostRequest<EmployeeSalary>();
+            item.Basic.eAmount = item.Details.Where(x => x.type == 1).Sum(x => x.fixedAmount);
+            item.Basic.dAmount = item.Details.Where(x => x.type == 2).Sum(x => x.fixedAmount);
             saReq.entity = item.Basic;
             PostResponse<EmployeeSalary> saResp = service.ChildAddOrUpdate<EmployeeSalary>(saReq);
-            if(!saResp.Success)
+            if (!saResp.Success)
             {
                 errorMessages.Add(saResp.Summary);
+                errors.Add(item);
                 return;
             }
+            short i = 0;
+            foreach (var detail in item.Details)
+            {
+                detail.salaryId = Convert.ToInt32(saResp.recordId);
+                detail.seqNo = i++;
+            }
             
-            item.Details.ForEach(x => x.salaryId = Convert.ToInt32(saResp.recordId));
             PostRequest<SalaryDetail[]> detReq = new PostRequest<SalaryDetail[]>();
             detReq.entity = item.Details.ToArray();
             PostResponse<SalaryDetail[]> detResp = service.ChildAddOrUpdate<SalaryDetail[]>(detReq);
-            if(!detResp.Success)
+            if (!detResp.Success)
             {
                 errorMessages.Add(detResp.Summary);
+                errors.Add(item);
                 return;
             }
 

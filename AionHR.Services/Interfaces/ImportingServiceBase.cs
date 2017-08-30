@@ -32,17 +32,17 @@ namespace AionHR.Services.Interfaces
 
         //    return items;
         //}
-        public DataTable ImportWithValidation(string fileName)
-        {
-            DataTable t = importer.GetRows();
-            t.Columns[0].ColumnName = "employeeRef";
-            t.Columns[1].ColumnName = "dayId";
-            t.Columns[2].ColumnName = "checkIn";
-            t.Columns[3].ColumnName = "checkOut";
-            t.Rows[0].SetColumnError(t.Columns[0], "errrrror");
+        //public DataTable ImportWithValidation(string fileName)
+        //{
+        //    DataTable t = importer.GetRows();
+        //    t.Columns[0].ColumnName = "employeeRef";
+        //    t.Columns[1].ColumnName = "dayId";
+        //    t.Columns[2].ColumnName = "checkIn";
+        //    t.Columns[3].ColumnName = "checkOut";
+        //    t.Rows[0].SetColumnError(t.Columns[0], "errrrror");
 
-            return t;
-        }
+        //    return t;
+        //}
         public List<T> ImportUnvalidated(string fileName)
         {
             DataTable t = importer.GetRows();

@@ -80,6 +80,7 @@
     <Compile Include="Employees\Profile\ImportEmployees.cs" />
     <Compile Include="Employees\Profile\ImportJobInfo.cs" />
     <Compile Include="Employees\Profile\ImportNotes.cs" />
+    <Compile Include="Employees\Profile\ImportSalary.cs" />
     <Compile Include="Employees\Profile\JobInfo.cs" />
     <Compile Include="Employees\Profile\NoticePeriod.cs" />
     <Compile Include="Employees\Profile\RelationshipType.cs" />

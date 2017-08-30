@@ -258,6 +258,7 @@
     <Content Include="ImportLoans.aspx" />
     <Content Include="ImportOvertimeSettings.aspx" />
     <Content Include="ImportRTW.aspx" />
+    <Content Include="ImportSalaries.aspx" />
     <Content Include="LeaveCalendar.aspx" />
     <Content Include="LeaveRequests.aspx" />
     <Content Include="LeaveTypes.aspx" />
@@ -569,6 +570,13 @@
     </Compile>
     <Compile Include="ImportRTW.aspx.designer.cs">
       <DependentUpon>ImportRTW.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ImportSalaries.aspx.cs">
+      <DependentUpon>ImportSalaries.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ImportSalaries.aspx.designer.cs">
+      <DependentUpon>ImportSalaries.aspx</DependentUpon>
     </Compile>
     <Compile Include="OvertimeSettings.aspx.cs">
       <DependentUpon>OvertimeSettings.aspx</DependentUpon>
@@ -1867,6 +1875,8 @@
     <Content Include="EmployeePages\App_LocalResources\EmployeeCalendars.aspx.ar.resx" />
     <Content Include="EmployeePages\App_LocalResources\EmployeeCalendars.aspx.resx" />
     <Content Include="App_LocalResources\EntitlementDeductions.aspx.ar.resx" />
+    <Content Include="App_LocalResources\ImportSalaries.aspx.resx" />
+    <Content Include="App_LocalResources\ImportSalaries.aspx.ar.resx" />
     <EmbeddedResource Include="Properties\licenses.licx" />
     <Content Include="Reports\App_LocalResources\RT202.aspx.resx" />
     <Content Include="Reports\App_LocalResources\RT01.aspx.ar.resx" />

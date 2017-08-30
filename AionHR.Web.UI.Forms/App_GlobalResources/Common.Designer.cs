@@ -1150,6 +1150,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Import Salaries.
+        /// </summary>
+        internal static string importSa {
+            get {
+                return ResourceManager.GetString("importSa", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Inactive.
         /// </summary>
         internal static string Inactive {
