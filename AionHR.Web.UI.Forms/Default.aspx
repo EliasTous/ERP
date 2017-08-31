@@ -192,7 +192,11 @@
                                                                 <Click Handler="openNewTab('taskTypes', 'TaskTypes.aspx', #{ttTitle}.value, 'icon-Employees')" />
                                                             </Listeners>
                                                         </ext:MenuItem>
-                                                        <ext:MenuItem runat="server" Text="<%$Resources: Common , ImportLoans %>">
+                                                        <ext:MenuItem runat="server" Text="<%$Resources: Common , Import%>">
+                                                              <Menu>
+                                                                     <ext:Menu runat="server" >
+                                                                          <Items>
+                                                                                 <ext:MenuItem runat="server" Text="<%$Resources: Common , ImportLoans %>">
                                                             <Listeners>
                                                                 <Click Handler="openNewTab('importLoans', 'ImportLoans.aspx', #{importLoansTitle}.value, 'icon-Employees')" />
                                                             </Listeners>
@@ -227,6 +231,13 @@
                                                                 <Click Handler="openNewTab('importSa', 'ImportSalaries.aspx', #{importSa}.value, 'icon-Employees')" />
                                                             </Listeners>
                                                         </ext:MenuItem>
+                                                                              </Items>
+                                                                         </ext:Menu>
+                                                                  </Menu>
+
+                                                        </ext:MenuItem>
+
+                                                     
                                                     </Items>
                                                 </ext:Menu>
                                             </Menu>

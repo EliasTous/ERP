@@ -987,4 +987,13 @@
   <data name="importSa" xml:space="preserve">
     <value>Import Salaries</value>
   </data>
+  <data name="Import" xml:space="preserve">
+    <value>Import</value>
+  </data>
+  <data name="Deduction" xml:space="preserve">
+    <value>Deduction</value>
+  </data>
+  <data name="Entitlement" xml:space="preserve">
+    <value>Entitlement</value>
+  </data>
 </root>

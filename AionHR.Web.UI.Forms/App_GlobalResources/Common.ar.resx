@@ -987,4 +987,13 @@
   <data name="importSa" xml:space="preserve">
     <value>استيراد الرواتب</value>
   </data>
+  <data name="Import" xml:space="preserve">
+    <value>استيراد</value>
+  </data>
+  <data name="Deduction" xml:space="preserve">
+    <value>الخصومات</value>
+  </data>
+  <data name="Entitlement" xml:space="preserve">
+    <value>الاستحقاقات</value>
+  </data>
 </root>

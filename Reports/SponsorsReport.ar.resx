@@ -118,30 +118,78 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="xrLabel1.Text" xml:space="preserve">
-    <value>قائمة الأقسام</value>
+    <value>Sponsors</value>
   </data>
   <data name="xrLabel2.Text" xml:space="preserve">
-    <value>لم يتم العثور على نتائج</value>
+    <value>By :</value>
+  </data>
+  <data name="xrLabel3.Text" xml:space="preserve">
+    <value>xrLabel3</value>
   </data>
   <data name="xrLabel4.Text" xml:space="preserve">
-    <value>من قبل</value>
+    <value>No Data Found</value>
   </data>
   <data name="xrPageInfo2.Format" xml:space="preserve">
-    <value>صفحة {0} من {1}</value>
+    <value>Page {0} of {1}</value>
+  </data>
+  <data name="xrTableCell1.Text" xml:space="preserve">
+    <value>xrTableCell1</value>
+  </data>
+  <data name="xrTableCell10.Text" xml:space="preserve">
+    <value>Address</value>
   </data>
   <data name="xrTableCell11.Text" xml:space="preserve">
-    <value>القسم التابع له </value>
+    <value>Phone</value>
+  </data>
+  <data name="xrTableCell12.Text" xml:space="preserve">
+    <value>City</value>
   </data>
   <data name="xrTableCell13.Text" xml:space="preserve">
-    <value>المدير</value>
+    <value>Mobile</value>
+  </data>
+  <data name="xrTableCell14.Text" xml:space="preserve">
+    <value>Phone</value>
   </data>
   <data name="xrTableCell15.Text" xml:space="preserve">
-    <value>غير نشط</value>
+    <value>Fax</value>
+  </data>
+  <data name="xrTableCell16.Text" xml:space="preserve">
+    <value>Mobile</value>
+  </data>
+  <data name="xrTableCell17.Text" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="xrTableCell18.Text" xml:space="preserve">
+    <value>Fax</value>
+  </data>
+  <data name="xrTableCell19.Text" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="xrTableCell2.Text" xml:space="preserve">
+    <value>xrTableCell2</value>
+  </data>
+  <data name="xrTableCell20.Text" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="xrTableCell3.Text" xml:space="preserve">
+    <value>xrTableCell3</value>
+  </data>
+  <data name="xrTableCell4.Text" xml:space="preserve">
+    <value>xrTableCell4</value>
+  </data>
+  <data name="xrTableCell5.Text" xml:space="preserve">
+    <value>xrTableCell5</value>
+  </data>
+  <data name="xrTableCell6.Text" xml:space="preserve">
+    <value>xrTableCell6</value>
   </data>
   <data name="xrTableCell7.Text" xml:space="preserve">
-    <value>الرمز</value>
+    <value>Address</value>
+  </data>
+  <data name="xrTableCell8.Text" xml:space="preserve">
+    <value>Name</value>
   </data>
   <data name="xrTableCell9.Text" xml:space="preserve">
-    <value>الأسم</value>
+    <value>City</value>
   </data>
 </root>
