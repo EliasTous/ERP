@@ -121,27 +121,27 @@
     <value>قائمة الأقسام</value>
   </data>
   <data name="xrLabel2.Text" xml:space="preserve">
-    <value>No Results Found</value>
+    <value>لم يتم العثور على نتائج</value>
   </data>
   <data name="xrLabel4.Text" xml:space="preserve">
-    <value>By</value>
+    <value>من قبل</value>
   </data>
   <data name="xrPageInfo2.Format" xml:space="preserve">
-    <value>Page {0} of {1}</value>
+    <value>صفحة {0} من {1}</value>
   </data>
   <data name="xrTableCell11.Text" xml:space="preserve">
-    <value>parent Name</value>
+    <value>القسم التابع له </value>
   </data>
   <data name="xrTableCell13.Text" xml:space="preserve">
-    <value>supervisor Name</value>
+    <value>المدير</value>
   </data>
   <data name="xrTableCell15.Text" xml:space="preserve">
-    <value>is Inactive</value>
+    <value>غير نشط</value>
   </data>
   <data name="xrTableCell7.Text" xml:space="preserve">
-    <value>department Ref</value>
+    <value>الرمز</value>
   </data>
   <data name="xrTableCell9.Text" xml:space="preserve">
-    <value>name</value>
+    <value>الأسم</value>
   </data>
 </root>
