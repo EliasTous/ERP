@@ -592,6 +592,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Deduction.
+        /// </summary>
+        internal static string Deduction {
+            get {
+                return ResourceManager.GetString("Deduction", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Delete.
         /// </summary>
         internal static string Delete {
@@ -759,6 +768,15 @@ namespace Resources {
         internal static string EnglishLanguage {
             get {
                 return ResourceManager.GetString("EnglishLanguage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Entitlement.
+        /// </summary>
+        internal static string Entitlement {
+            get {
+                return ResourceManager.GetString("Entitlement", resourceCulture);
             }
         }
         
@@ -1065,6 +1083,15 @@ namespace Resources {
         internal static string Home {
             get {
                 return ResourceManager.GetString("Home", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Import.
+        /// </summary>
+        internal static string Import {
+            get {
+                return ResourceManager.GetString("Import", resourceCulture);
             }
         }
         

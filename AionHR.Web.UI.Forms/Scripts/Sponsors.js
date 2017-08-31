@@ -10,7 +10,10 @@ var attachRender = function () {
     return '<img class="imgAttach"  style="cursor:pointer;" src="Images/Tools/attach.png" />';
 };
 
+function openInNewTab() {
+    window.document.forms[0].target = '_blank';
 
+}
 function getTimeZone()
 {
    
@@ -79,4 +82,5 @@ var enterKeyPressSearchHandler = function (el, event) {
     if (enter === true) {
         App.Store1.reload();
     }
+
 };

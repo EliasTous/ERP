@@ -58,6 +58,10 @@ var getCellType = function (grid, rowIndex, cellIndex) {
 
     return columnId;
 };
+function openInNewTab() {
+    window.document.forms[0].target = '_blank';
+
+}
 
 
 var enterKeyPressSearchHandler = function (el, event) {

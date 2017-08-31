@@ -64,6 +64,9 @@
     <Compile Include="BranchesReport.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="CertificateLevelsReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="DailyAttendance.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -80,6 +83,9 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="EmployeeDetails.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="EntitlementDeductionsReport.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Hirings.cs">
@@ -126,6 +132,9 @@
       <DependentUpon>SalaryHistory.cs</DependentUpon>
     </Compile>
     <Compile Include="SignInTrail.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="SponsorsReport.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Terminations.cs">
@@ -176,6 +185,12 @@
     <EmbeddedResource Include="BranchesReport.resx">
       <DependentUpon>BranchesReport.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="CertificateLevelsReport.ar.resx">
+      <DependentUpon>CertificateLevelsReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CertificateLevelsReport.resx">
+      <DependentUpon>CertificateLevelsReport.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DailyAttendance.ar.resx">
       <DependentUpon>DailyAttendance.cs</DependentUpon>
     </EmbeddedResource>
@@ -205,6 +220,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="EmployeeDetails.resx">
       <DependentUpon>EmployeeDetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EntitlementDeductionsReport.ar.resx">
+      <DependentUpon>EntitlementDeductionsReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EntitlementDeductionsReport.resx">
+      <DependentUpon>EntitlementDeductionsReport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Hirings.ar.resx">
       <DependentUpon>Hirings.cs</DependentUpon>
@@ -308,6 +329,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SignInTrail.resx">
       <DependentUpon>SignInTrail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SponsorsReport.ar.resx">
+      <DependentUpon>SponsorsReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SponsorsReport.resx">
+      <DependentUpon>SponsorsReport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Terminations.ar.resx">
       <DependentUpon>Terminations.cs</DependentUpon>
