@@ -386,9 +386,20 @@
                                         <Click Handler="CheckSession();" />
                                     </Listeners>
                                     <DirectEvents>
-                                        <Click OnEvent="alternateWidnow_click">
+                                        <Click OnEvent="alternateDayWidnow_click">
                                         </Click>
                                     </DirectEvents>
+
+                                </ext:Button>
+                                <ext:Button ID="Button17" runat="server" Text="<%$ Resources:AlternateWeeksWindow %>" Icon="Help">
+                                    <Listeners>
+                                        <Click Handler="CheckSession();" />
+                                    </Listeners>
+                                    <DirectEvents>
+                                        <Click OnEvent="alternateWeekWidnow_click">
+                                        </Click>
+                                    </DirectEvents>
+
                                 </ext:Button>
                                   <ext:Button ID="Button12" runat="server" Text="<%$ Resources:ImportCalendar %>" Icon="DatabaseCopy">
                                     <Listeners>
@@ -2008,6 +2019,7 @@
                     DefaultAnchor="100%"
                     BodyPadding="5">
                     <Items>
+                        
                         <ext:DateField runat="server" AllowBlank="false" ID="startDate" Name="dateFrom" FieldLabel="<%$ Resources:From %>" />
                         <ext:DateField runat="server" AllowBlank="false" ID="endDate" Name="dateTo" FieldLabel="<%$ Resources:To %>" />
                         <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" AllowBlank="false" Name="dayTypeId" ID="dtId" DisplayField="name" ValueField="recordId" FieldLabel="<%$ Resources:DayType %>" SubmitValue="true">
@@ -2049,11 +2061,11 @@
                         <Click Handler="CheckSession(); if (!#{alternateDaysForm}.getForm().isValid()) {return false;} " />
                     </Listeners>
                     <DirectEvents>
-                        <Click OnEvent="SaveAlternation" Failure="Ext.MessageBox.alert('#{titleSavingError}.value', '#{titleSavingErrorMessage}.value');">
+                        <Click OnEvent="SaveDayAlternation" Failure="Ext.MessageBox.alert('#{titleSavingError}.value', '#{titleSavingErrorMessage}.value');">
                             <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="={#{alternateDaysWindow}.body}" />
                             <ExtraParams>
                                 <ext:Parameter Name="caId" Value="#{fieldCaId}.getValue()" Mode="Raw" />
-
+                                
                                 <ext:Parameter Name="alt" Value="#{alternateDaysForm}.getForm().getValues()" Mode="Raw" Encode="true" />
 
                             </ExtraParams>
@@ -2130,6 +2142,90 @@
                     </DirectEvents>
                 </ext:Button>
                 <ext:Button ID="Button14" runat="server" Text="<%$ Resources:Common , Cancel %>" Icon="Cancel">
+                    <Listeners>
+                        <Click Handler="this.up('window').hide();" />
+                    </Listeners>
+                </ext:Button>
+            </Buttons>
+        </ext:Window>
+
+               <ext:Window
+            ID="alternateWeekWindow"
+            runat="server"
+            Icon="PageEdit"
+            Title="<%$ Resources:AlternateWeeksWindow %>"
+            Width="450"
+            Height="330"
+            AutoShow="false"
+            Modal="true"
+            Hidden="true"
+            Layout="Fit">
+
+            <Items>
+
+                <ext:FormPanel DefaultButton="Button15"
+                    ID="alternateWeekForm"
+                    runat="server"
+                    Icon="ApplicationSideList"
+                    DefaultAnchor="100%"
+                    BodyPadding="5">
+                    <Items>
+                        
+                        <ext:DateField runat="server" AllowBlank="false" ID="DateField1" Name="dateFrom" FieldLabel="<%$ Resources:From %>" />
+                        <ext:DateField runat="server" AllowBlank="false" ID="DateField2" Name="dateTo" FieldLabel="<%$ Resources:To %>" />
+                        <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" AllowBlank="false" Name="sc1Id" ID="firstSched" DisplayField="name" ValueField="recordId" FieldLabel="<%$ Resources:Schedule1 %>" SubmitValue="true">
+                            <Store>
+                                <ext:Store runat="server" ID="sc1Store">
+                                    <Model>
+                                        <ext:Model runat="server" IDProperty="recordId">
+                                            <Fields>
+                                                <ext:ModelField Name="recordId" />
+                                                <ext:ModelField Name="name" />
+                                            </Fields>
+                                        </ext:Model>
+                                    </Model>
+                                </ext:Store>
+                            </Store>
+                        </ext:ComboBox>
+                           <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" AllowBlank="false" Name="sc2Id" ID="secondSched" DisplayField="name" ValueField="recordId" FieldLabel="<%$ Resources:Schedule2 %>" SubmitValue="true">
+                            <Store>
+                                <ext:Store runat="server" ID="sc2Store">
+                                    <Model>
+                                        <ext:Model runat="server" IDProperty="recordId">
+                                            <Fields>
+                                                <ext:ModelField Name="recordId" />
+                                                <ext:ModelField Name="name" />
+                                            </Fields>
+                                        </ext:Model>
+                                    </Model>
+                                </ext:Store>
+                            </Store>
+                        </ext:ComboBox>
+                    </Items>
+
+                </ext:FormPanel>
+
+
+            </Items>
+
+            <Buttons>
+                <ext:Button ID="Button15" runat="server" Text="<%$ Resources:Common, Save %>" Icon="Disk">
+
+                    <Listeners>
+                        <Click Handler="CheckSession(); if (!#{alternateWeekForm}.getForm().isValid()) {return false;} " />
+                    </Listeners>
+                    <DirectEvents>
+                        <Click OnEvent="SaveWeekAlternation" Failure="Ext.MessageBox.alert('#{titleSavingError}.value', '#{titleSavingErrorMessage}.value');">
+                            <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="={#{alternateWeekForm}.body}" />
+                            <ExtraParams>
+                                
+                                <ext:Parameter Name="alt" Value="#{alternateWeekForm}.getForm().getValues()" Mode="Raw" Encode="true" />
+
+                            </ExtraParams>
+                        </Click>
+                    </DirectEvents>
+                </ext:Button>
+                <ext:Button ID="Button16" runat="server" Text="<%$ Resources:Common , Cancel %>" Icon="Cancel">
                     <Listeners>
                         <Click Handler="this.up('window').hide();" />
                     </Listeners>

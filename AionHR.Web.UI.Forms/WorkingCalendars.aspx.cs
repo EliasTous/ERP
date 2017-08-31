@@ -990,7 +990,7 @@ namespace AionHR.Web.UI.Forms
             patternWindow.Show();
         }
 
-        protected void alternateWidnow_click(object sender, DirectEventArgs e)
+        protected void alternateDayWidnow_click(object sender, DirectEventArgs e)
         {
             alternateDTStore.DataSource = LoadDayTypes();
             alternateDTStore.DataBind();
@@ -1000,6 +1000,15 @@ namespace AionHR.Web.UI.Forms
             endDate.MaxDate = dateFrom.MaxDate = new DateTime(Convert.ToInt32(CurrentYear.Text), 12, 31);
 
             alternateDaysWindow.Show();
+        }
+
+        protected void alternateWeekWidnow_click(object sender, DirectEventArgs e)
+        {
+            sc1Store.DataSource = LoadSchedules();
+            sc1Store.DataBind();
+            sc2Store.DataSource = LoadSchedules();
+            sc2Store.DataBind();
+            alternateWeekWindow.Show();
         }
         protected void SavePattern(object sender, DirectEventArgs e)
         {
@@ -1048,13 +1057,14 @@ namespace AionHR.Web.UI.Forms
 
         }
 
-        protected void SaveAlternation(object sender, DirectEventArgs e)
+        protected void SaveDayAlternation(object sender, DirectEventArgs e)
         {
 
 
             string day = e.ExtraParams["alt"];
+           
             CalendarAlternation b = JSON.Deserialize<CalendarAlternation>(day);
-
+            b.type = 1;
             b.caId = CurrentCalendar.Text;
 
             b.year = CurrentYear.Text;
@@ -1089,6 +1099,55 @@ namespace AionHR.Web.UI.Forms
                 });
 
                 this.alternateDaysWindow.Close();
+
+
+
+            }
+
+        }
+
+        protected void SaveWeekAlternation(object sender, DirectEventArgs e)
+        {
+
+
+            string day = e.ExtraParams["alt"];
+
+            CalendarAlternation b = JSON.Deserialize<CalendarAlternation>(day);
+            b.type = 2;
+            b.caId = CurrentCalendar.Text;
+
+            b.year = CurrentYear.Text;
+
+            b.startDayId = b.dateFrom.ToString("yyyyMMdd");
+            b.endDayId = b.dateTo.ToString("yyyyMMdd");
+
+            PostRequest<CalendarAlternation> request = new PostRequest<CalendarAlternation>();
+            request.entity = b;
+            PostResponse<CalendarAlternation> response = _branchService.ChildAddOrUpdate<CalendarAlternation>(request);
+
+            if (!response.Success)//it maybe another check
+            {
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.ErrorUpdatingRecord, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).ToString() : response.Summary).Show();
+                return;
+            }
+
+            //Step 2 : saving to store
+
+
+            else
+            {
+
+                LoadDays();
+                //Display successful notification
+                Notification.Show(new NotificationConfig
+                {
+                    Title = Resources.Common.Notification,
+                    Icon = Icon.Information,
+                    Html = Resources.Common.RecordSavingSucc
+                });
+
+                this.alternateWeekWindow.Close();
 
 
 

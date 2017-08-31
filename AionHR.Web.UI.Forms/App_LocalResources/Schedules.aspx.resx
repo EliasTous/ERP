@@ -267,4 +267,7 @@
   <data name="FieldEd_min_ot" xml:space="preserve">
     <value>Entry Day Minimum Over Time (mins)</value>
   </data>
+  <data name="Batch" xml:space="preserve">
+    <value>Batch</value>
+  </data>
 </root>

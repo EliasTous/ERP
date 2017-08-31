@@ -270,4 +270,7 @@
   <data name="EntryDayOverTime" xml:space="preserve">
     <value>الوقت الإضافي ضمن اليوم </value>
   </data>
+  <data name="Batch" xml:space="preserve">
+    <value>تطبيق نمط الأيام</value>
+  </data>
 </root>

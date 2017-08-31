@@ -48,6 +48,7 @@ public class BranchesReport : DevExpress.XtraReports.UI.XtraReport
     private DevExpress.XtraReports.Parameters.Parameter No;
     private GroupHeaderBand GroupHeader1;
     private XRLabel xrLabel17;
+    private CalculatedField isInactiveString;
 
     /// <summary>
     /// Required designer variable.
@@ -124,6 +125,7 @@ public class BranchesReport : DevExpress.XtraReports.UI.XtraReport
             this.GroupHeader1 = new DevExpress.XtraReports.UI.GroupHeaderBand();
             this.xrLabel17 = new DevExpress.XtraReports.UI.XRLabel();
             this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
+            this.isInactiveString = new DevExpress.XtraReports.UI.CalculatedField();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
@@ -194,7 +196,7 @@ public class BranchesReport : DevExpress.XtraReports.UI.XtraReport
             this.xrTableCell9.Borders = DevExpress.XtraPrinting.BorderSide.None;
             this.xrTableCell9.CanGrow = false;
             this.xrTableCell9.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding("Text", null, "isInactive")});
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "isInactiveString")});
             resources.ApplyResources(this.xrTableCell9, "xrTableCell9");
             this.xrTableCell9.Name = "xrTableCell9";
             this.xrTableCell9.StylePriority.UseBorders = false;
@@ -442,6 +444,11 @@ public class BranchesReport : DevExpress.XtraReports.UI.XtraReport
             this.objectDataSource1.DataSource = typeof(AionHR.Model.Company.Structure.Branch);
             this.objectDataSource1.Name = "objectDataSource1";
             // 
+            // isInactiveString
+            // 
+            this.isInactiveString.Expression = "Iif([isInactive] == True,[Parameters.Yes]  , [Parameters.No])";
+            this.isInactiveString.Name = "isInactiveString";
+            // 
             // BranchesReport
             // 
             this.Bands.AddRange(new DevExpress.XtraReports.UI.Band[] {
@@ -452,6 +459,8 @@ public class BranchesReport : DevExpress.XtraReports.UI.XtraReport
             this.pageFooterBand1,
             this.reportHeaderBand1,
             this.GroupHeader1});
+            this.CalculatedFields.AddRange(new DevExpress.XtraReports.UI.CalculatedField[] {
+            this.isInactiveString});
             this.ComponentStorage.AddRange(new System.ComponentModel.IComponent[] {
             this.objectDataSource1});
             this.DataSource = this.objectDataSource1;
@@ -476,10 +485,19 @@ public class BranchesReport : DevExpress.XtraReports.UI.XtraReport
 
     private void xrTableCell9_BeforePrint(object sender, System.Drawing.Printing.PrintEventArgs e)
     {
-        if ((bool)GetCurrentColumnValue("isInactive"))
-            (sender as XRLabel).Text = Parameters["Yes"].Value.ToString();
-        else
-            (sender as XRLabel).Text = Parameters["No"].Value.ToString();
+        string result = string.Empty;
+        string currentColumnValue = ((XRLabel)sender).Text.ToLower();
+        if (currentColumnValue != null)
+        {
+            switch (currentColumnValue)
+            {
+                case "false": result = "No"; break;
+                case "true": result = "Yes"; break;
+                default: result = string.Empty; break;
+            }
+        }
+        if (!string.IsNullOrEmpty(result))
+            ((XRLabel)sender).Text = result;
 
     }
 

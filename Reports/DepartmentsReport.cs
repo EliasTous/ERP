@@ -25,10 +25,19 @@ namespace Reports
 
         private void xrTableCell16_BeforePrint(object sender, System.Drawing.Printing.PrintEventArgs e)
         {
-            if ((bool)GetCurrentColumnValue("isInactive"))
-                (sender as XRLabel).Text = Parameters["Yes"].Value.ToString();
-            else
-                (sender as XRLabel).Text = Parameters["No"].Value.ToString();
+            string result = string.Empty;
+            string currentColumnValue = ((XRLabel)sender).Text.ToLower();
+            if (currentColumnValue != null)
+            {
+                switch (currentColumnValue)
+                {
+                    case "false": result = "No"; break;
+                    case "true": result = "Yes"; break;
+                    default: result = string.Empty; break;
+                }
+            }
+            if (!string.IsNullOrEmpty(result))
+                ((XRLabel)sender).Text = result;
         }
     }
 }

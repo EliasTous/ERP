@@ -14,7 +14,7 @@ namespace AionHR.Model.TimeAttendance
 
         public string dayTypeId { get; set; }
 
-        public int dow { get; set; }
+        public int? dow { get; set; }
 
         public DateTime dateFrom { get; set; }
 
@@ -23,6 +23,12 @@ namespace AionHR.Model.TimeAttendance
         public string startDayId { get; set; }
 
         public string endDayId { get; set; }
+
+        public string sc1Id { get; set; }
+
+        public string sc2Id { get; set; }
+
+        public int type { get; set; }
 
 
     }

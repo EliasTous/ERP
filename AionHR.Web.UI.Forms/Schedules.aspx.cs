@@ -78,7 +78,7 @@ namespace AionHR.Web.UI.Forms
                     X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
                     X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorAccessDenied).Show();
                     Viewport1.Hidden = true;
-                    
+
                 }
                 try
                 {
@@ -86,9 +86,9 @@ namespace AionHR.Web.UI.Forms
                 }
                 catch (AccessDeniedException exp)
                 {
-                   
+
                     dayBreaksForm.Hidden = true;
-                    
+
                 }
                 try
                 {
@@ -96,11 +96,11 @@ namespace AionHR.Web.UI.Forms
                 }
                 catch (AccessDeniedException exp)
                 {
-                    
+
                     periodsGrid.Hidden = true;
                     return;
                 }
-                
+
                 ApplyAccessControlOnBreaks();
 
             }
@@ -114,7 +114,7 @@ namespace AionHR.Web.UI.Forms
             classReq.ClassId = (typeof(AttendanceBreak).GetCustomAttributes(typeof(ClassIdentifier), false).ToList()[0] as ClassIdentifier).ClassID;
             classReq.UserId = _systemService.SessionHelper.GetCurrentUserId();
             RecordResponse<ModuleClass> modClass = _accessControlService.ChildGetRecord<ModuleClass>(classReq);
-            switch(modClass.result.accessLevel)
+            switch (modClass.result.accessLevel)
             {
                 case 1: AddBreakButton.Disabled = true; editDisabled.Text = "1"; deleteDisabled.Value = "1"; break;
                 case 2: AddBreakButton.Disabled = true; deleteDisabled.Value = "1"; break;
@@ -125,7 +125,7 @@ namespace AionHR.Web.UI.Forms
             int i = 1;
             foreach (var item in properties)
             {
-                if (item.accessLevel < 2 && periodsGrid.ColumnModel.Columns[i].Editor.Count>0)
+                if (item.accessLevel < 2 && periodsGrid.ColumnModel.Columns[i].Editor.Count > 0)
                     periodsGrid.ColumnModel.Columns[i].Editor[0].ReadOnly = true;
                 if (item.accessLevel < 1 && periodsGrid.ColumnModel.Columns[i].Editor.Count > 0)
                     periodsGrid.ColumnModel.Columns[i].Editor[0].InputType = InputType.Password;
@@ -219,7 +219,7 @@ namespace AionHR.Web.UI.Forms
 
 
                     break;
-                
+
                 case "imgAttach":
                     //panelRecordDetails.ActiveIndex = 0;
 
@@ -238,7 +238,7 @@ namespace AionHR.Web.UI.Forms
                     scheduleDays.Store[0].DataSource = daysResponse.Items;
                     scheduleDays.Store[0].DataBind();
                     CurrentSchedule.Text = id.ToString();
-                    
+
                     Viewport1.ActiveIndex = 1;
                     // InitCombos(response.result);
                     break;
@@ -276,7 +276,7 @@ namespace AionHR.Web.UI.Forms
         protected void PoPuPDay(object sender, DirectEventArgs e)
         {
 
-        
+
             int id = Convert.ToInt32(e.ExtraParams["id"]);
             string type = e.ExtraParams["type"];
             switch (type)
@@ -286,6 +286,7 @@ namespace AionHR.Web.UI.Forms
                     //panelRecordDetails.ActiveIndex = 0;
                     try
                     {
+                        isBatch.Text = "0";
                         FillDow(id.ToString());
                     }
                     catch (Exception exp)
@@ -613,7 +614,7 @@ namespace AionHR.Web.UI.Forms
                         });
                         setDefaultBtn.Hidden = false;
                         recordId.Text = b.recordId;
-                        
+
                         RowSelectionModel sm = this.GridPanel1.GetSelectionModel() as RowSelectionModel;
                         sm.DeselectAll();
                         sm.Select(b.recordId.ToString());
@@ -813,13 +814,38 @@ namespace AionHR.Web.UI.Forms
                 day.firstIn = "00:00";
                 day.lastOut = "00:00";
             }
-            day.scId = Convert.ToInt32(e.ExtraParams["scId"]);
-            day.dow = Convert.ToInt16(CurrentDow.Text);
+            day.scId = Convert.ToInt32(CurrentSchedule.Text);
+            if (!string.IsNullOrEmpty(CurrentDow.Text))
+                day.dow = Convert.ToInt16(CurrentDow.Text);
 
             // Define the object to add or edit as null
 
+            if (isBatch.Text == "1")
+            {
+                for (short i = 1; i <= 7; i++)
+                {
+                    day.dow = i;
+                    SaveDay(day, workingDay, breaks);
+                }
+                ReloadDays();
+            }
+            else
+            {
+                SaveDay(day, workingDay, breaks);
+                ReloadDays();
+            }
+            Notification.Show(new NotificationConfig
+            {
+                Title = Resources.Common.Notification,
+                Icon = Icon.Information,
+                Html = Resources.Common.RecordUpdatedSucc
+            });
 
+            this.EditDayBreaks.Close();
+        }
 
+        private void SaveDay(AttendanceScheduleDay day, bool workingDay, List<AttendanceBreak> breaks)
+        {
             try
             {
                 //getting the id of the record
@@ -847,18 +873,18 @@ namespace AionHR.Web.UI.Forms
                     {
                         AddBreaksList(day.scId.ToString(), day.dow, breaks);
                     }
-                    catch(Exception ex)
+                    catch (Exception ex)
                     {
 
                         X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
                         X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() : r.Summary).Show();
                         return;
                     }
-                   
+
                 }
 
 
-                ReloadDays();
+
                 //ModelProxy record = this.scheduleStore.GetById(day.dow);
                 //dayBreaksForm.UpdateRecord(record);
                 //if (!workingDay)
@@ -867,13 +893,8 @@ namespace AionHR.Web.UI.Forms
                 //    record.Set("lastOut", "00:00");
                 //}
                 //record.Commit();
-                Notification.Show(new NotificationConfig
-                {
-                    Title = Resources.Common.Notification,
-                    Icon = Icon.Information,
-                    Html = Resources.Common.RecordUpdatedSucc
-                });
-                this.EditDayBreaks.Close();
+               
+
 
 
 
@@ -884,9 +905,6 @@ namespace AionHR.Web.UI.Forms
                 X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
                 X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorUpdatingRecord).Show();
             }
-
-
-
         }
 
         private void AddBreaksList(string scheduleIdString, short dow, List<AttendanceBreak> breaks)
@@ -942,7 +960,7 @@ namespace AionHR.Web.UI.Forms
         protected void Unnamed_Event(object sender, DirectEventArgs e)
         {
             string selectedDayTypeId = dayTypeId.Value.ToString();
-            if (string.IsNullOrEmpty(selectedDayTypeId)|| GetDayType(selectedDayTypeId)==null)
+            if (string.IsNullOrEmpty(selectedDayTypeId) || GetDayType(selectedDayTypeId) == null)
                 return;
             if (GetDayType(selectedDayTypeId).isWorkingDay)
                 SetDayFormEnabled(true);
@@ -1021,6 +1039,18 @@ namespace AionHR.Web.UI.Forms
             }
         }
 
+        protected void batchClicked(object sender, DirectEventArgs e)
+        {
+            dayBreaksForm.Reset();
+            isBatch.Text = "1";
+            fieldScId.Text = CurrentSchedule.Text;
 
+            List<DayType> dayTypes = LoadDayTypes();
+            dayTypesStore.DataSource = dayTypes;
+            dayTypesStore.DataBind();
+            this.EditDayBreaks.Title = Resources.Common.AddNewRecord;
+
+            this.EditDayBreaks.Show();
+        }
     }
 }

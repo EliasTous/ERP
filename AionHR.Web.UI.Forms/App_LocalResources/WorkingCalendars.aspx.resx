@@ -273,4 +273,13 @@
   <data name="Calendar" xml:space="preserve">
     <value>Calendar</value>
   </data>
+  <data name="AlternateWeeksWindow" xml:space="preserve">
+    <value>Alternate Weeks</value>
+  </data>
+  <data name="Schedule1" xml:space="preserve">
+    <value>Schedule 1</value>
+  </data>
+  <data name="Schedule2" xml:space="preserve">
+    <value>Schedule 2</value>
+  </data>
 </root>

@@ -337,8 +337,17 @@
                                     </DirectEvents>
                                 </ext:Button>
                                 <ext:ToolbarSeparator runat="server" />
-                                <ext:Label ID="ScheduleNamelb" runat="server" />
+                                   <ext:Button runat="server" Text="<%$Resources: Batch %>" >
+                                    <Listeners>
+                                        <Click Handler="CheckSession();" />
 
+                                    </Listeners>
+                                    <DirectEvents>
+                                        <Click OnEvent="batchClicked" ></Click>
+                                    </DirectEvents>
+                                    </ext:Button>
+                                <ext:Label ID="ScheduleNamelb" runat="server" />
+                             
                             </Items>
                         </ext:Toolbar>
 
@@ -532,6 +541,7 @@
                             DefaultAnchor="100%"
                             BodyPadding="5">
                             <Items>
+                                <ext:TextField ID="isBatch" runat="server" Hidden="true" />
                                 <ext:TextField ID="fieldScId" Hidden="true" runat="server" Disabled="true" DataIndex="scId" />
                                 <ext:TextField ID="fieldDow" Hidden="true" runat="server" Disabled="true" DataIndex="dow" />
                                 <ext:ComboBox AnyMatch="true" CaseSensitive="false" runat="server" AllowBlank="false" DisplayField="name" ValueField="recordId" Name="dayTypeId" ID="dayTypeId" FieldLabel="<%$ Resources:DayType %>" SubmitValue="true" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1">

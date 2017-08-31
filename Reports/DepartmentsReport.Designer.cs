@@ -72,6 +72,7 @@
             this.DataField = new DevExpress.XtraReports.UI.XRControlStyle();
             this.Yes = new DevExpress.XtraReports.Parameters.Parameter();
             this.No = new DevExpress.XtraReports.Parameters.Parameter();
+            this.inActiveText = new DevExpress.XtraReports.UI.CalculatedField();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).BeginInit();
@@ -157,7 +158,7 @@
             // 
             this.xrTableCell16.CanGrow = false;
             this.xrTableCell16.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding("Text", null, "isInactive")});
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "inActiveText")});
             resources.ApplyResources(this.xrTableCell16, "xrTableCell16");
             this.xrTableCell16.Name = "xrTableCell16";
             this.xrTableCell16.StyleName = "DataField";
@@ -425,6 +426,11 @@
             this.No.Name = "No";
             this.No.Visible = false;
             // 
+            // inActiveText
+            // 
+            this.inActiveText.Expression = "Iif([isInactive] == True,[Parameters.Yes]  , [Parameters.No])";
+            this.inActiveText.Name = "inActiveText";
+            // 
             // DepartmentsReport
             // 
             this.Bands.AddRange(new DevExpress.XtraReports.UI.Band[] {
@@ -434,6 +440,8 @@
             this.pageHeaderBand1,
             this.pageFooterBand1,
             this.reportHeaderBand1});
+            this.CalculatedFields.AddRange(new DevExpress.XtraReports.UI.CalculatedField[] {
+            this.inActiveText});
             this.ComponentStorage.AddRange(new System.ComponentModel.IComponent[] {
             this.objectDataSource1});
             this.DataSource = this.objectDataSource1;
@@ -499,5 +507,6 @@
         private DevExpress.XtraReports.UI.XRLabel xrLabel2;
         private DevExpress.XtraReports.Parameters.Parameter Yes;
         private DevExpress.XtraReports.Parameters.Parameter No;
+        private DevExpress.XtraReports.UI.CalculatedField inActiveText;
     }
 }

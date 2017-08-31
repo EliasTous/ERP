@@ -33,7 +33,7 @@
         <AfterLayout Handler="convertToWeekPicker($('#weekPicker1')); globalAdditionalFunction =called;  globalTriggeringElement=$('#weekPicker1'); " />
     </Listeners>
     <Content>
-        <div style="float:left!important;display:inline!important;" >
+        <div style="float:left!important;display:inline!important;width:400px!important" >
         <asp:Literal  runat="server" Text="<%$Resources:PickWeek %>" ></asp:Literal>
         <input type="text" id="weekPicker1"   placeholder="" />
             </div>
