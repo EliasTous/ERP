@@ -61,6 +61,12 @@
     <Compile Include="AuditTrail.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="BiometricDevicesReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="BiometricDevicesReport.Designer.cs">
+      <DependentUpon>BiometricDevicesReport.cs</DependentUpon>
+    </Compile>
     <Compile Include="BranchesReport.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -69,6 +75,12 @@
     </Compile>
     <Compile Include="DailyAttendance.cs">
       <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="DayTypesReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="DayTypesReport.Designer.cs">
+      <DependentUpon>DayTypesReport.cs</DependentUpon>
     </Compile>
     <Compile Include="DepartmentsReport.cs">
       <SubType>Component</SubType>
@@ -87,6 +99,12 @@
     </Compile>
     <Compile Include="EntitlementDeductionsReport.cs">
       <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="GoefencesReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="GoefencesReport.Designer.cs">
+      <DependentUpon>GoefencesReport.cs</DependentUpon>
     </Compile>
     <Compile Include="Hirings.cs">
       <SubType>Component</SubType>
@@ -112,6 +130,12 @@
     <Compile Include="MonthlyPayroll.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="OvertimeSettingsReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="OvertimeSettingsReport.Designer.cs">
+      <DependentUpon>OvertimeSettingsReport.cs</DependentUpon>
+    </Compile>
     <Compile Include="PayrollPeriodTimeCodes.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -122,6 +146,12 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RoutersReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="RoutersReport.Designer.cs">
+      <DependentUpon>RoutersReport.cs</DependentUpon>
+    </Compile>
     <Compile Include="SalaryChanges.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -179,6 +209,12 @@
     <EmbeddedResource Include="AuditTrail.resx">
       <DependentUpon>AuditTrail.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="BiometricDevicesReport.ar.resx">
+      <DependentUpon>BiometricDevicesReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BiometricDevicesReport.resx">
+      <DependentUpon>BiometricDevicesReport.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="BranchesReport.ar.resx">
       <DependentUpon>BranchesReport.cs</DependentUpon>
     </EmbeddedResource>
@@ -196,6 +232,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DailyAttendance.resx">
       <DependentUpon>DailyAttendance.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DayTypesReport.ar.resx">
+      <DependentUpon>DayTypesReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DayTypesReport.resx">
+      <DependentUpon>DayTypesReport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DepartmentsReport.ar.resx">
       <DependentUpon>DepartmentsReport.cs</DependentUpon>
@@ -226,6 +268,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="EntitlementDeductionsReport.resx">
       <DependentUpon>EntitlementDeductionsReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GoefencesReport.ar.resx">
+      <DependentUpon>GoefencesReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GoefencesReport.resx">
+      <DependentUpon>GoefencesReport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Hirings.ar.resx">
       <DependentUpon>Hirings.cs</DependentUpon>
@@ -281,6 +329,12 @@
     <EmbeddedResource Include="MonthlyPayroll.resx">
       <DependentUpon>MonthlyPayroll.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="OvertimeSettingsReport.ar.resx">
+      <DependentUpon>OvertimeSettingsReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OvertimeSettingsReport.resx">
+      <DependentUpon>OvertimeSettingsReport.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PayrollPeriodTimeCodes.ar.resx">
       <DependentUpon>PayrollPeriodTimeCodes.cs</DependentUpon>
     </EmbeddedResource>
@@ -303,6 +357,12 @@
       <DependentUpon>PointInTimeSalary.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="RoutersReport.ar.resx">
+      <DependentUpon>RoutersReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RoutersReport.resx">
+      <DependentUpon>RoutersReport.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SalaryChanges.ar.resx">
       <DependentUpon>SalaryChanges.cs</DependentUpon>
     </EmbeddedResource>
