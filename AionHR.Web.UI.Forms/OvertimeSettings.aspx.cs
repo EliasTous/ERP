@@ -617,8 +617,8 @@ namespace AionHR.Web.UI.Forms
         {
 
             ListRequest request = new ListRequest();
-
-            request.Filter = "";
+            request.Filter = "" + "&_employeeId=0&_dayId=";            
+            
             ListResponse<OvertimeSetting> resp = _timeAttendanceService.ChildGetAll<OvertimeSetting>(request);
             if (!resp.Success)
             {
