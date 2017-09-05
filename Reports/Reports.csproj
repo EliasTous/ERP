@@ -146,6 +146,12 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RightToWork.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="RightToWork.Designer.cs">
+      <DependentUpon>RightToWork.cs</DependentUpon>
+    </Compile>
     <Compile Include="RoutersReport.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -357,6 +363,12 @@
       <DependentUpon>PointInTimeSalary.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="RightToWork.ar.resx">
+      <DependentUpon>RightToWork.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RightToWork.resx">
+      <DependentUpon>RightToWork.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="RoutersReport.ar.resx">
       <DependentUpon>RoutersReport.cs</DependentUpon>
     </EmbeddedResource>
