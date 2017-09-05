@@ -10,6 +10,11 @@ var attachRender = function () {
     return '<img class="imgAttach"  style="cursor:pointer;" src="Images/Tools/attach.png" />';
 };
 
+function openInNewTab() {
+    window.document.forms[0].target = '_blank';
+
+}
+
 
 var commandName;
 var cellClick = function (view, cell, columnIndex, record, row, rowIndex, e) {

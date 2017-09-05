@@ -58,13 +58,22 @@
     <Compile Include="Absense.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="AssetCategoriesReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="AuditTrail.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="BonusTypesReport.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="BranchesReport.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="CertificateLevelsReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CheckTypesReport.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="DailyAttendance.cs">
@@ -80,6 +89,9 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="DivisonsReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="DocumentTypesReport.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="EmployeeDetails.cs">
@@ -106,13 +118,22 @@
     <Compile Include="LeaveRequestReport.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="LoanOverridesReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="LoansReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="LoanTypesReport.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="MonthlyPayroll.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="PayrollPeriodTimeCodes.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="PayrollTimeSchedulesReport.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="PeriodSummary.cs">
@@ -122,6 +143,12 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RelationshipTypesReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="SalaryChangeReasonsReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="SalaryChanges.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -135,6 +162,9 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="SponsorsReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="TaskTypesReport.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Terminations.cs">
@@ -170,6 +200,12 @@
     <EmbeddedResource Include="Absense.resx">
       <DependentUpon>Absense.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="AssetCategoriesReport.ar.resx">
+      <DependentUpon>AssetCategoriesReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AssetCategoriesReport.resx">
+      <DependentUpon>AssetCategoriesReport.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AuditTrail.ar.resx">
       <DependentUpon>AuditTrail.cs</DependentUpon>
     </EmbeddedResource>
@@ -178,6 +214,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AuditTrail.resx">
       <DependentUpon>AuditTrail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BonusTypesReport.ar.resx">
+      <DependentUpon>BonusTypesReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BonusTypesReport.resx">
+      <DependentUpon>BonusTypesReport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="BranchesReport.ar.resx">
       <DependentUpon>BranchesReport.cs</DependentUpon>
@@ -190,6 +232,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CertificateLevelsReport.resx">
       <DependentUpon>CertificateLevelsReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CheckTypesReport.ar.resx">
+      <DependentUpon>CheckTypesReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CheckTypesReport.resx">
+      <DependentUpon>CheckTypesReport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DailyAttendance.ar.resx">
       <DependentUpon>DailyAttendance.cs</DependentUpon>
@@ -214,6 +262,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DivisonsReport.resx">
       <DependentUpon>DivisonsReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DocumentTypesReport.ar.resx">
+      <DependentUpon>DocumentTypesReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DocumentTypesReport.resx">
+      <DependentUpon>DocumentTypesReport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="EmployeeDetails.ar.resx">
       <DependentUpon>EmployeeDetails.cs</DependentUpon>
@@ -269,11 +323,23 @@
     <EmbeddedResource Include="LeaveRequestReport.resx">
       <DependentUpon>LeaveRequestReport.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="LoanOverridesReport.ar.resx">
+      <DependentUpon>LoanOverridesReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LoanOverridesReport.resx">
+      <DependentUpon>LoanOverridesReport.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="LoansReport.ar.resx">
       <DependentUpon>LoansReport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LoansReport.resx">
       <DependentUpon>LoansReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LoanTypesReport.ar.resx">
+      <DependentUpon>LoanTypesReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LoanTypesReport.resx">
+      <DependentUpon>LoanTypesReport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MonthlyPayroll.ar.resx">
       <DependentUpon>MonthlyPayroll.cs</DependentUpon>
@@ -286,6 +352,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PayrollPeriodTimeCodes.resx">
       <DependentUpon>PayrollPeriodTimeCodes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PayrollTimeSchedulesReport.ar.resx">
+      <DependentUpon>PayrollTimeSchedulesReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PayrollTimeSchedulesReport.resx">
+      <DependentUpon>PayrollTimeSchedulesReport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PeriodSummary.ar.resx">
       <DependentUpon>PeriodSummary.cs</DependentUpon>
@@ -303,6 +375,18 @@
       <DependentUpon>PointInTimeSalary.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="RelationshipTypesReport.ar.resx">
+      <DependentUpon>RelationshipTypesReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RelationshipTypesReport.resx">
+      <DependentUpon>RelationshipTypesReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SalaryChangeReasonsReport.ar.resx">
+      <DependentUpon>SalaryChangeReasonsReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SalaryChangeReasonsReport.resx">
+      <DependentUpon>SalaryChangeReasonsReport.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SalaryChanges.ar.resx">
       <DependentUpon>SalaryChanges.cs</DependentUpon>
     </EmbeddedResource>
@@ -335,6 +419,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SponsorsReport.resx">
       <DependentUpon>SponsorsReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TaskTypesReport.ar.resx">
+      <DependentUpon>TaskTypesReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TaskTypesReport.resx">
+      <DependentUpon>TaskTypesReport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Terminations.ar.resx">
       <DependentUpon>Terminations.cs</DependentUpon>

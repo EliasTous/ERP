@@ -93,7 +93,7 @@
                     <ext:Container runat="server">
                         <Content>
                             <div class="logoImage">
-                                <img src="Images/logo-light.png" style="margin-top: 20px; margin-left: 5px; margin-right: 5px;" width="73" height="20" />
+                                <img  src="Images/logo-light.png" style="margin-top: 20px; margin-left: 5px; margin-right: 5px;" width="73" height="20" />
                             </div>
                             <div class="title">
                                 <asp:Literal ID="Literal3" runat="server" Text="<%$ Resources:Common ,ApplicationModule%>" /><asp:Literal ID="CompanyNameLiteral" runat="server" Text="" /></span>
@@ -456,6 +456,11 @@
                                                                 <Click Handler="openNewTab('loanOverrides', 'LoanOverrides.aspx', #{loTitle}.value, 'icon-Employees')" />
                                                             </Listeners>
                                                         </ext:MenuItem>
+                                                        <ext:MenuItem runat="server" Text="<%$Resources: Common ,TimeSchedule%>">
+                                                            <Listeners>
+                                                                <Click Handler="openNewTab('TimeSchedule Setup ', 'PayrollTimeSchedule.aspx', #{PYTStitle}.value, 'icon-Employees')" />
+                                                            </Listeners>
+                                                        </ext:MenuItem>
                                                         <ext:MenuItem runat="server" Text="<%$Resources: Common , FiscalYears%>">
                                                             <Listeners>
                                                                 <Click Handler="openNewTab('fiscalYears', 'FiscalYears.aspx', #{pyye}.value, 'icon-Employees')" />
@@ -466,11 +471,7 @@
                                                                 <Click OnEvent="SyncLoanDeductions" />
                                                             </DirectEvents>
                                                         </ext:MenuItem>
-                                                        <ext:MenuItem runat="server" Text="<%$Resources: Common ,TimeSchedule%>">
-                                                            <Listeners>
-                                                                <Click Handler="openNewTab('TimeSchedule Setup ', 'PayrollTimeSchedule.aspx', #{PYTStitle}.value, 'icon-Employees')" />
-                                                            </Listeners>
-                                                        </ext:MenuItem>
+                                                    
 
                                                     </Items>
                                                 </ext:Menu>

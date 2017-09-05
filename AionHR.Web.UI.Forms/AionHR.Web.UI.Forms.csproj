@@ -107,8 +107,9 @@
     <Reference Include="DevExpress.XtraReports.v16.2.Web, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <HintPath>..\..\..\Users\User\Desktop\dlls\DevExpress.XtraReports.v16.2.Web.dll</HintPath>
     </Reference>
-    <Reference Include="Ext.Net">
-      <HintPath>..\..\..\..\Desktop\dlls\Ext.Net.dll</HintPath>
+    <Reference Include="Ext.Net, Version=4.1.0.0, Culture=neutral, PublicKeyToken=2e12ce3d0176cd87, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Desktop\Issa\dlls\Ext.Net.dll</HintPath>
     </Reference>
     <Reference Include="Ext.Net.Utilities">
       <HintPath>..\..\..\..\Desktop\dlls\Ext.Net.Utilities.dll</HintPath>
@@ -127,7 +128,7 @@
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Users\Issa.Mouawad\Desktop\dlls\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\..\..\..\Desktop\Issa\dlls\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="StructureMap, Version=4.4.2.472, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\StructureMap.4.4.2\lib\net45\StructureMap.dll</HintPath>
@@ -450,6 +451,7 @@
     <Content Include="Scripts\SalaryChangeReasons.js" />
     <Content Include="Scripts\Skills.js" />
     <Content Include="Scripts\Sponsors.js" />
+    <Content Include="Scripts\TaskTypes.js" />
     <Content Include="Scripts\TrainingTypes.js" />
     <Content Include="Scripts\weekPicker.js" />
     <Content Include="Scripts\weekPicker.min.js" />
@@ -1873,6 +1875,7 @@
     <Content Include="App_LocalResources\EntitlementDeductions.aspx.ar.resx" />
     <Content Include="App_LocalResources\ImportSalaries.aspx.resx" />
     <Content Include="App_LocalResources\ImportSalaries.aspx.ar.resx" />
+    <Content Include="App_LocalResources\BonusTypes.aspx.ar.resx" />
     <EmbeddedResource Include="Properties\licenses.licx" />
     <Content Include="Reports\App_LocalResources\RT202.aspx.resx" />
     <Content Include="Reports\App_LocalResources\RT01.aspx.ar.resx" />

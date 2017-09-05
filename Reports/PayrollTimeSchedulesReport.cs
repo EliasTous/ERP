@@ -5,9 +5,9 @@ using System.ComponentModel;
 using DevExpress.XtraReports.UI;
 
 /// <summary>
-/// Summary description for EntitlementDeductionsReport
+/// Summary description for PayrollTimeSchedulesReport
 /// </summary>
-public class EntitlementDeductionsReport : DevExpress.XtraReports.UI.XtraReport
+public class PayrollTimeSchedulesReport : DevExpress.XtraReports.UI.XtraReport
 {
     private DevExpress.XtraReports.UI.DetailBand Detail;
     private DevExpress.XtraReports.UI.TopMarginBand TopMargin;
@@ -15,13 +15,11 @@ public class EntitlementDeductionsReport : DevExpress.XtraReports.UI.XtraReport
     private XRTable xrTable2;
     private XRTableRow xrTableRow4;
     private XRTableCell xrTableCell8;
-    private XRTableCell xrTableCell10;
     private DevExpress.DataAccess.ObjectBinding.ObjectDataSource objectDataSource1;
     private PageHeaderBand pageHeaderBand1;
     private XRTable xrTable1;
     private XRTableRow xrTableRow3;
     private XRTableCell xrTableCell7;
-    private XRTableCell xrTableCell9;
     private XRTableRow xrTableRow1;
     private XRTableCell xrTableCell1;
     private XRTableCell xrTableCell2;
@@ -39,21 +37,18 @@ public class EntitlementDeductionsReport : DevExpress.XtraReports.UI.XtraReport
     private XRControlStyle FieldCaption;
     private XRControlStyle PageInfo;
     private XRControlStyle DataField;
+    private XRLabel xrLabel3;
+    private DevExpress.XtraReports.Parameters.Parameter User;
+    private XRLabel xrLabel2;
     private GroupHeaderBand GroupHeader1;
     private XRLabel xrLabel17;
-    private XRLabel xrLabel6;
-    private XRLabel xrLabel7;
-    private DevExpress.XtraReports.Parameters.Parameter User;
-    private DevExpress.XtraReports.Parameters.Parameter Entitlement;
-    private DevExpress.XtraReports.Parameters.Parameter Deduction;
-    private CalculatedField calculatedField1;
 
     /// <summary>
     /// Required designer variable.
     /// </summary>
     private System.ComponentModel.IContainer components = null;
 
-    public EntitlementDeductionsReport()
+    public PayrollTimeSchedulesReport()
     {
         InitializeComponent();
         //
@@ -83,12 +78,11 @@ public class EntitlementDeductionsReport : DevExpress.XtraReports.UI.XtraReport
     private void InitializeComponent()
     {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EntitlementDeductionsReport));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PayrollTimeSchedulesReport));
             this.Detail = new DevExpress.XtraReports.UI.DetailBand();
             this.xrTable2 = new DevExpress.XtraReports.UI.XRTable();
             this.xrTableRow4 = new DevExpress.XtraReports.UI.XRTableRow();
             this.xrTableCell8 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.xrTableCell10 = new DevExpress.XtraReports.UI.XRTableCell();
             this.TopMargin = new DevExpress.XtraReports.UI.TopMarginBand();
             this.BottomMargin = new DevExpress.XtraReports.UI.BottomMarginBand();
             this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
@@ -96,7 +90,6 @@ public class EntitlementDeductionsReport : DevExpress.XtraReports.UI.XtraReport
             this.xrTable1 = new DevExpress.XtraReports.UI.XRTable();
             this.xrTableRow3 = new DevExpress.XtraReports.UI.XRTableRow();
             this.xrTableCell7 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.xrTableCell9 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableRow1 = new DevExpress.XtraReports.UI.XRTableRow();
             this.xrTableCell1 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell2 = new DevExpress.XtraReports.UI.XRTableCell();
@@ -106,9 +99,9 @@ public class EntitlementDeductionsReport : DevExpress.XtraReports.UI.XtraReport
             this.xrTableCell5 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell6 = new DevExpress.XtraReports.UI.XRTableCell();
             this.pageFooterBand1 = new DevExpress.XtraReports.UI.PageFooterBand();
-            this.xrLabel6 = new DevExpress.XtraReports.UI.XRLabel();
+            this.xrLabel3 = new DevExpress.XtraReports.UI.XRLabel();
             this.User = new DevExpress.XtraReports.Parameters.Parameter();
-            this.xrLabel7 = new DevExpress.XtraReports.UI.XRLabel();
+            this.xrLabel2 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrPageInfo1 = new DevExpress.XtraReports.UI.XRPageInfo();
             this.xrPageInfo2 = new DevExpress.XtraReports.UI.XRPageInfo();
             this.reportHeaderBand1 = new DevExpress.XtraReports.UI.ReportHeaderBand();
@@ -119,9 +112,6 @@ public class EntitlementDeductionsReport : DevExpress.XtraReports.UI.XtraReport
             this.DataField = new DevExpress.XtraReports.UI.XRControlStyle();
             this.GroupHeader1 = new DevExpress.XtraReports.UI.GroupHeaderBand();
             this.xrLabel17 = new DevExpress.XtraReports.UI.XRLabel();
-            this.Entitlement = new DevExpress.XtraReports.Parameters.Parameter();
-            this.Deduction = new DevExpress.XtraReports.Parameters.Parameter();
-            this.calculatedField1 = new DevExpress.XtraReports.UI.CalculatedField();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).BeginInit();
@@ -142,12 +132,12 @@ public class EntitlementDeductionsReport : DevExpress.XtraReports.UI.XtraReport
             this.xrTable2.Name = "xrTable2";
             this.xrTable2.Rows.AddRange(new DevExpress.XtraReports.UI.XRTableRow[] {
             this.xrTableRow4});
+            this.xrTable2.StylePriority.UseTextAlignment = false;
             // 
             // xrTableRow4
             // 
             this.xrTableRow4.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
-            this.xrTableCell8,
-            this.xrTableCell10});
+            this.xrTableCell8});
             resources.ApplyResources(this.xrTableRow4, "xrTableRow4");
             this.xrTableRow4.Name = "xrTableRow4";
             // 
@@ -159,18 +149,6 @@ public class EntitlementDeductionsReport : DevExpress.XtraReports.UI.XtraReport
             resources.ApplyResources(this.xrTableCell8, "xrTableCell8");
             this.xrTableCell8.Name = "xrTableCell8";
             this.xrTableCell8.StyleName = "DataField";
-            this.xrTableCell8.StylePriority.UseTextAlignment = false;
-            // 
-            // xrTableCell10
-            // 
-            this.xrTableCell10.CanGrow = false;
-            this.xrTableCell10.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding("Text", null, "calculatedField1")});
-            resources.ApplyResources(this.xrTableCell10, "xrTableCell10");
-            this.xrTableCell10.Name = "xrTableCell10";
-            this.xrTableCell10.StyleName = "DataField";
-            this.xrTableCell10.StylePriority.UseTextAlignment = false;
-            this.xrTableCell10.BeforePrint += new System.Drawing.Printing.PrintEventHandler(this.xrTableCell10_BeforePrint);
             // 
             // TopMargin
             // 
@@ -186,7 +164,7 @@ public class EntitlementDeductionsReport : DevExpress.XtraReports.UI.XtraReport
             // 
             // objectDataSource1
             // 
-            this.objectDataSource1.DataSource = typeof(AionHR.Model.Employees.Profile.EntitlementDeduction);
+            this.objectDataSource1.DataSource = typeof(AionHR.Model.Payroll.TimeSchedule);
             this.objectDataSource1.Name = "objectDataSource1";
             // 
             // pageHeaderBand1
@@ -203,12 +181,12 @@ public class EntitlementDeductionsReport : DevExpress.XtraReports.UI.XtraReport
             this.xrTable1.Name = "xrTable1";
             this.xrTable1.Rows.AddRange(new DevExpress.XtraReports.UI.XRTableRow[] {
             this.xrTableRow3});
+            this.xrTable1.StylePriority.UseTextAlignment = false;
             // 
             // xrTableRow3
             // 
             this.xrTableRow3.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
-            this.xrTableCell7,
-            this.xrTableCell9});
+            this.xrTableCell7});
             resources.ApplyResources(this.xrTableRow3, "xrTableRow3");
             this.xrTableRow3.Name = "xrTableRow3";
             // 
@@ -219,14 +197,6 @@ public class EntitlementDeductionsReport : DevExpress.XtraReports.UI.XtraReport
             this.xrTableCell7.Name = "xrTableCell7";
             this.xrTableCell7.StyleName = "FieldCaption";
             this.xrTableCell7.StylePriority.UseTextAlignment = false;
-            // 
-            // xrTableCell9
-            // 
-            this.xrTableCell9.CanGrow = false;
-            resources.ApplyResources(this.xrTableCell9, "xrTableCell9");
-            this.xrTableCell9.Name = "xrTableCell9";
-            this.xrTableCell9.StyleName = "FieldCaption";
-            this.xrTableCell9.StylePriority.UseTextAlignment = false;
             // 
             // xrTableRow1
             // 
@@ -279,34 +249,33 @@ public class EntitlementDeductionsReport : DevExpress.XtraReports.UI.XtraReport
             // pageFooterBand1
             // 
             this.pageFooterBand1.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
-            this.xrLabel6,
-            this.xrLabel7,
+            this.xrLabel3,
+            this.xrLabel2,
             this.xrPageInfo1,
             this.xrPageInfo2});
             resources.ApplyResources(this.pageFooterBand1, "pageFooterBand1");
             this.pageFooterBand1.Name = "pageFooterBand1";
             // 
-            // xrLabel6
+            // xrLabel3
             // 
-            this.xrLabel6.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
+            this.xrLabel3.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
             new DevExpress.XtraReports.UI.XRBinding(this.User, "Text", "")});
-            resources.ApplyResources(this.xrLabel6, "xrLabel6");
-            this.xrLabel6.Name = "xrLabel6";
-            this.xrLabel6.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel6.StylePriority.UseTextAlignment = false;
+            resources.ApplyResources(this.xrLabel3, "xrLabel3");
+            this.xrLabel3.Name = "xrLabel3";
+            this.xrLabel3.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel3.StylePriority.UseTextAlignment = false;
             // 
             // User
             // 
             this.User.Name = "User";
             this.User.Visible = false;
             // 
-            // xrLabel7
+            // xrLabel2
             // 
-            resources.ApplyResources(this.xrLabel7, "xrLabel7");
-            this.xrLabel7.Multiline = true;
-            this.xrLabel7.Name = "xrLabel7";
-            this.xrLabel7.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel7.StylePriority.UseTextAlignment = false;
+            resources.ApplyResources(this.xrLabel2, "xrLabel2");
+            this.xrLabel2.Name = "xrLabel2";
+            this.xrLabel2.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel2.StylePriority.UseTextAlignment = false;
             // 
             // xrPageInfo1
             // 
@@ -338,6 +307,7 @@ public class EntitlementDeductionsReport : DevExpress.XtraReports.UI.XtraReport
             this.xrLabel1.Name = "xrLabel1";
             this.xrLabel1.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel1.StyleName = "Title";
+            this.xrLabel1.StylePriority.UseTextAlignment = false;
             // 
             // Title
             // 
@@ -395,23 +365,7 @@ public class EntitlementDeductionsReport : DevExpress.XtraReports.UI.XtraReport
             this.xrLabel17.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel17.StylePriority.UseTextAlignment = false;
             // 
-            // Entitlement
-            // 
-            resources.ApplyResources(this.Entitlement, "Entitlement");
-            this.Entitlement.Name = "Entitlement";
-            this.Entitlement.Visible = false;
-            // 
-            // Deduction
-            // 
-            this.Deduction.Name = "Deduction";
-            this.Deduction.Visible = false;
-            // 
-            // calculatedField1
-            // 
-            this.calculatedField1.Expression = "Iif([type] == 1,[Parameters.Entitlement]  ,[Parameters.Deduction] )";
-            this.calculatedField1.Name = "calculatedField1";
-            // 
-            // EntitlementDeductionsReport
+            // PayrollTimeSchedulesReport
             // 
             this.Bands.AddRange(new DevExpress.XtraReports.UI.Band[] {
             this.Detail,
@@ -421,17 +375,12 @@ public class EntitlementDeductionsReport : DevExpress.XtraReports.UI.XtraReport
             this.pageFooterBand1,
             this.reportHeaderBand1,
             this.GroupHeader1});
-            this.CalculatedFields.AddRange(new DevExpress.XtraReports.UI.CalculatedField[] {
-            this.calculatedField1});
             this.ComponentStorage.AddRange(new System.ComponentModel.IComponent[] {
             this.objectDataSource1});
             this.DataSource = this.objectDataSource1;
-            this.ExportOptions.Xls.TextExportMode = DevExpress.XtraPrinting.TextExportMode.Text;
             resources.ApplyResources(this, "$this");
             this.Parameters.AddRange(new DevExpress.XtraReports.Parameters.Parameter[] {
-            this.User,
-            this.Entitlement,
-            this.Deduction});
+            this.User});
             this.StyleSheet.AddRange(new DevExpress.XtraReports.UI.XRControlStyle[] {
             this.Title,
             this.FieldCaption,
@@ -449,15 +398,6 @@ public class EntitlementDeductionsReport : DevExpress.XtraReports.UI.XtraReport
 
     private void GroupHeader1_BeforePrint(object sender, System.Drawing.Printing.PrintEventArgs e)
     {
-        e.Cancel = RowCount > 0; 
-    }
-
-    private void xrTableCell10_BeforePrint(object sender, System.Drawing.Printing.PrintEventArgs e)
-    {
-        if ((short) GetCurrentColumnValue("type")==1)
-            (sender as XRLabel).Text = Parameters["Entitlement"].Value.ToString();
-        else
-            (sender as XRLabel).Text = Parameters["Deduction"].Value.ToString();
-
+        e.Cancel = RowCount > 0;
     }
 }

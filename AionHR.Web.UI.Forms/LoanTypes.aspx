@@ -13,6 +13,11 @@
     <link rel="stylesheet" href="CSS/LiveSearch.css" />
     <script type="text/javascript" src="Scripts/LoanTypes.js?id=0" ></script>
     <script type="text/javascript" src="Scripts/common.js" ></script>
+    <script type="text/javascript">
+        function openInNewTab() {
+            window.document.forms[0].target = '_blank';
+        }
+    </script>
    
  
 </head>
@@ -111,6 +116,28 @@
                                             <TriggerClick Handler="#{Store1}.reload();" />
                                         </Listeners>
                                     </ext:TextField>
+                                  <ext:Button runat="server" Icon="Printer">
+                                    <Menu>
+                                        <ext:Menu runat="server">
+                                            <Items>
+                                                <ext:MenuItem runat="server"  Text="<%$ Resources:Common , Print %>" AutoPostBack="true" OnClick="printBtn_Click" OnClientClick="openInNewTab();"  >
+                                            
+                                                    <Listeners>
+                                                        <Click Handler="openInNewTab();" />
+                                                    </Listeners>
+                                                </ext:MenuItem>
+                                                <ext:MenuItem runat="server"  Text="Pdf" AutoPostBack="true" OnClick="ExportPdfBtn_Click"  >
+                                            
+                                                    
+                                                </ext:MenuItem>
+                                                <ext:MenuItem runat="server"  Text="Excel" AutoPostBack="true" OnClick="ExportXLSBtn_Click"  >
+                                            
+                                                    
+                                                </ext:MenuItem>
+                                            </Items>
+                                        </ext:Menu>
+                                    </Menu>
+                                </ext:Button>
                             
                             </Items>
                         </ext:Toolbar>

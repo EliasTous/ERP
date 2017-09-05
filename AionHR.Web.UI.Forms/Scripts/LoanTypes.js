@@ -12,6 +12,9 @@ var attachRender = function () {
 
 
 var commandName;
+function openInNewTab() {
+    window.document.forms[0].target = '_blank';
+} 
 var cellClick = function (view, cell, columnIndex, record, row, rowIndex, e) {
 
     CheckSession();
@@ -72,3 +75,4 @@ var enterKeyPressSearchHandler = function (el, event) {
         App.Store1.reload();
     }
 };
+
