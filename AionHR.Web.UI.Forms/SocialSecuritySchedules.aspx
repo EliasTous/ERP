@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="LoanOverrides.aspx.cs" Inherits="AionHR.Web.UI.Forms.LoanOverrides" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="SocialSecuritySchedules.aspx.cs" Inherits="AionHR.Web.UI.Forms.SocialSecuritySchedules" %>
 
 <%@ Register Assembly="Ext.Net" Namespace="Ext.Net" TagPrefix="ext" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -9,9 +9,26 @@
     <title></title>
     <link rel="stylesheet" type="text/css" href="CSS/Common.css" />
     <link rel="stylesheet" href="CSS/LiveSearch.css" />
-    <script type="text/javascript" src="Scripts/LoanOverrides.js?id=1"></script>
+    <script type="text/javascript" src="Scripts/DocumentTypes.js?id=1"></script>
     <script type="text/javascript" src="Scripts/common.js"></script>
+    <script type="text/javascript">
+        function display(code) {
+            return document.getElementById(code + "text").value;
+        }
+        function dump(obj) {
+            var out = '';
+            for (var i in obj) {
+                out += i + ": " + obj[i] + "\n";
 
+
+            }
+            return out;
+        }
+        function openInNewTab() {
+            window.document.forms[0].target = '_blank';
+
+        }
+    </script>
 
 </head>
 <body style="background: url(Images/bg.png) repeat;">
@@ -22,13 +39,9 @@
         <ext:Hidden ID="textLoadFailed" runat="server" Text="<%$ Resources:Common , LoadFailed %>" />
         <ext:Hidden ID="titleSavingError" runat="server" Text="<%$ Resources:Common , TitleSavingError %>" />
         <ext:Hidden ID="titleSavingErrorMessage" runat="server" Text="<%$ Resources:Common , TitleSavingErrorMessage %>" />
-        <ext:Hidden ID="ldMethod1" runat="server" Text="<%$ Resources: ldMethod1 %>" />
-        <ext:Hidden ID="ldMethod2" runat="server" Text="<%$ Resources: ldMethod2 %>" />
-        <ext:Hidden ID="ldMethod3" runat="server" Text="<%$ Resources: ldMethod3 %>" />
-        <ext:Hidden ID="ldMethod4" runat="server" Text="<%$ Resources: ldMethod4 %>" />
-        <ext:Hidden ID="ldMethod5" runat="server" Text="<%$ Resources: ldMethod5 %>" />
-        <ext:Hidden ID="paymentValue" runat="server" Text="<%$ Resources:PaymentValue %>" />
-        <ext:Hidden ID="paymentValueP" runat="server" Text="<%$ Resources:PaymentValueP %>" />
+        <ext:Hidden ID="ScheduleID" runat="server" />
+       
+
         <ext:Store
             ID="Store1"
             runat="server"
@@ -44,13 +57,14 @@
                 </ext:PageProxy>
             </Proxy>
             <Model>
-                <ext:Model ID="Model1" runat="server" IDProperty="employeeId">
+                <ext:Model ID="Model1" runat="server" IDProperty="recordId">
                     <Fields>
 
-                        <ext:ModelField Name="employeeId" />
-                        <ext:ModelField Name="name" IsComplex="true" />
-                        <ext:ModelField Name="ldMethod" />
-                        <ext:ModelField Name="ldValue" />
+                        <ext:ModelField Name="recordId" />
+                        <ext:ModelField Name="name" />
+                         <ext:ModelField Name="coPct" />
+                         <ext:ModelField Name="emPct" />
+                     
                     </Fields>
                 </ext:Model>
             </Model>
@@ -69,7 +83,7 @@
                     StoreID="Store1"
                     PaddingSpec="0 0 1 0"
                     Header="false"
-                    
+                    Title="<%$ Resources: WindowTitle %>"
                     Layout="FitLayout"
                     Scroll="Vertical"
                     Border="false"
@@ -110,7 +124,7 @@
                                         <TriggerClick Handler="#{Store1}.reload();" />
                                     </Listeners>
                                 </ext:TextField>
-                                  <ext:Button runat="server" Icon="Printer">
+                                   <ext:Button runat="server" Icon="Printer">
                                     <Menu>
                                         <ext:Menu runat="server">
                                             <Items>
@@ -140,21 +154,17 @@
 
                     <ColumnModel ID="ColumnModel1" runat="server" SortAscText="<%$ Resources:Common , SortAscText %>" SortDescText="<%$ Resources:Common ,SortDescText  %>" SortClearText="<%$ Resources:Common ,SortClearText  %>" ColumnsText="<%$ Resources:Common ,ColumnsText  %>" EnableColumnHide="false" Sortable="false">
                         <Columns>
-                            <ext:Column ID="ColRecordId" Visible="false" DataIndex="employeeId" runat="server" />
-                            <ext:Column CellCls="cellLink" ID="ColName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldName%>" DataIndex="name" Flex="2" Hideable="false">
-                                <Renderer Handler="return record.data['name'].fullName;" />
-                            </ext:Column>
+                            <ext:Column ID="ColRecordId" Visible="false" DataIndex="recordId" runat="server" />
+                            <ext:Column CellCls="cellLink" ID="ColName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldName %>" DataIndex="name" Flex="2" Hideable="false"/>
+                            <ext:Column CellCls="cellLink" ID="COLcoPct" MenuDisabled="true" runat="server" Text="<%$ Resources: CompanyPercentage %>" DataIndex="coPct" Flex="2" Hideable="false">
+                                  <Renderer Handler="return record.data['coPct']+ '%'; " />
+                                </ext:Column>
+                            <ext:Column CellCls="cellLink" ID="ColemPct" MenuDisabled="true" runat="server" Text="<%$ Resources: EmployeePercentage %>" DataIndex="emPct" Flex="2" Hideable="false">
+                             <Renderer Handler="return record.data['emPct']+ '%'; " />
+                                </ext:Column>
 
-                            <ext:Column  ID="Column1" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldLdMethod%>" DataIndex="ldMethod" Flex="2" Hideable="false">
-                                <Renderer Handler="return GetLdMethodText(record.data['ldMethod']);" />
-                            </ext:Column>
-                            
-                            <ext:Column  ID="Column2" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldLdValue%>" DataIndex="ldValue" Flex="2" Hideable="false">
-                                <Renderer Handler="var p ='%'; if(record.data['ldMethod']>3) p =' '; return record.data['ldValue']+ p; " />
-                            </ext:Column>
-                            
 
-                          
+
                             <ext:Column runat="server"
                                 ID="colDelete" Visible="false"
                                 Text="<%$ Resources: Common , Delete %>"
@@ -181,7 +191,7 @@
                                 <Renderer Fn="attachRender" />
                             </ext:Column>
 
-                              <ext:Column runat="server"
+                            <ext:Column runat="server"
                                 ID="colEdit" Visible="true"
                                 Text=""
                                 Width="100"
@@ -240,10 +250,8 @@
                         <CellClick OnEvent="PoPuP">
                             <EventMask ShowMask="true" />
                             <ExtraParams>
+
                                 <ext:Parameter Name="id" Value="record.getId()" Mode="Raw" />
-                                <ext:Parameter Name="ldMethod" Value="record.data['ldMethod']" Mode="Raw" />
-                                <ext:Parameter Name="ldValue" Value="record.data['ldValue']" Mode="Raw" />
-                                <ext:Parameter Name="name" Value="record.data['name'].fullName" Mode="Raw" />
                                 <ext:Parameter Name="type" Value="getCellType( this, rowIndex, cellIndex)" Mode="Raw" />
                             </ExtraParams>
 
@@ -268,14 +276,11 @@
             ID="EditRecordWindow"
             runat="server"
             Icon="PageEdit"
-            
-            Width="450"
-            Height="250"
+            Title="<%$ Resources:EditWindowsTitle %>"
+            Width="555"
+            Height="320"
             AutoShow="false"
             Modal="true"
-            Maximizable="false"
-            Resizable="false"
-            Draggable="false"
             Hidden="true"
             Layout="Fit">
 
@@ -285,59 +290,21 @@
                         <ext:FormPanel
                             ID="BasicInfoTab" DefaultButton="SaveButton"
                             runat="server"
-                            
+                            Title="<%$ Resources: BasicInfoTabEditWindowTitle %>"
                             Icon="ApplicationSideList"
                             DefaultAnchor="100%" OnLoad="BasicInfoTab_Load"
-                            BodyPadding="5"
-                             Title="<%$ Resources: BasicInfoTabEditWindowTitle %>">
+                            BodyPadding="5">
                             <Items>
-                                <ext:TextField runat="server" ID="isNew" Hidden="true" Enabled="false" />
-                                <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" LabelWidth="130" ID="employeeId" AllowBlank="false"
-                                    DisplayField="fullName"
-                                    ValueField="recordId"
-                                    TypeAhead="false"
-                                    FieldLabel="<%$ Resources: FieldName%>"
-                                    HideTrigger="true" SubmitValue="true"
-                                    MinChars="3"
-                                    TriggerAction="Query" ForceSelection="false">
-                                    <Store>
-                                        <ext:Store runat="server" ID="employeeStore" AutoLoad="false">
-                                            <Model>
-                                                <ext:Model runat="server">
-                                                    <Fields>
-                                                        <ext:ModelField Name="recordId" />
-                                                        <ext:ModelField Name="fullName" />
-                                                    </Fields>
-                                                </ext:Model>
-                                            </Model>
-                                            <Proxy>
-                                                <ext:PageProxy DirectFn="App.direct.FillEmployee"></ext:PageProxy>
-                                            </Proxy>
-
-                                        </ext:Store>
-
-                                    </Store>
-                                    
-                                </ext:ComboBox>
-                                <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  AllowBlank="false"  Width="400" QueryMode="Local" LabelWidth="130" ForceSelection="true" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: LoanCoverageType %>" Name="ldMethod" runat="server" ID="ldMethod">
-                                            <Items>
-                                                <ext:ListItem Text="<%$ Resources: ldMethod1 %>" Value="1" />
-                                                <ext:ListItem Text="<%$ Resources: ldMethod2 %>" Value="2" />
-                                                <ext:ListItem Text="<%$ Resources: ldMethod3 %>" Value="3" />
-                                                <ext:ListItem Text="<%$ Resources: ldMethod4 %>" Value="4" />
-                                                <ext:ListItem Text="<%$ Resources: ldMethod5 %>" Value="5" />
-                                                
-                                            </Items>
-                                            <Listeners>
-                                                <Change Handler="handlePayment();"></Change>
-                                            </Listeners>
-
-                                        </ext:ComboBox>
-                                <ext:NumberField Width="400" AllowBlank="false" runat="server" LabelWidth="130" ID="ldValue" Name="ldValue" FieldLabel="<%$ Resources: PaymentValue %>" MinValue="0"  />
-                                
+                                <ext:TextField ID="recordId" runat="server" Name="recordId" Hidden="true" />
+                                <ext:TextField  ID="name" runat="server" FieldLabel="<%$ Resources:FieldName%>" Name="name" AllowBlank="false" LabelWidth="160" />
+                                <ext:NumberField Width="400" AllowBlank="false" runat="server" LabelWidth="160" ID="lcoPct" Name="coPct" FieldLabel="<%$ Resources: CompanyPercentage %>" MinValue="0" MaxValue="100"/>
+                                 <ext:NumberField Width="400" AllowBlank="false" runat="server" LabelWidth="160" ID="lemPct" Name="emPct" FieldLabel="<%$ Resources: EmployeePercentage %>" MinValue="0"  MaxValue="100" />
+                                  
+                                <%--<ext:TextField ID="intName" runat="server" FieldLabel="<%$ Resources:IntName%>" Name="intName"   AllowBlank="false"/>--%>
                             </Items>
 
                         </ext:FormPanel>
+                      
 
                     </Items>
                 </ext:TabPanel>
@@ -352,8 +319,9 @@
                         <Click OnEvent="SaveNewRecord" Failure="Ext.MessageBox.alert('#{titleSavingError}.value', '#{titleSavingErrorMessage}.value');">
                             <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="={#{EditRecordWindow}.body}" />
                             <ExtraParams>
-                                <ext:Parameter Name="isNew" Value="#{isNew}.getValue()" Mode="Raw" />
+                                <ext:Parameter Name="id" Value="#{recordId}.getValue()" Mode="Raw" />
                                 <ext:Parameter Name="values" Value="#{BasicInfoTab}.getForm().getValues()" Mode="Raw" Encode="true" />
+                            
                             </ExtraParams>
                         </Click>
                     </DirectEvents>

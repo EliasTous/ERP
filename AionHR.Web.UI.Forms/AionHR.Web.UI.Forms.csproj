@@ -457,6 +457,7 @@
     <Content Include="Scripts\weekPicker.js" />
     <Content Include="Scripts\weekPicker.min.js" />
     <Content Include="SecurityGroups.aspx" />
+    <Content Include="SocialSecuritySchedules.aspx" />
     <Content Include="Sponsors.aspx" />
     <Content Include="States.aspx" />
     <Content Include="SystemAlerts.aspx" />
@@ -646,6 +647,13 @@
     </Compile>
     <Compile Include="Reports\RT502.aspx.designer.cs">
       <DependentUpon>RT502.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SocialSecuritySchedules.aspx.cs">
+      <DependentUpon>SocialSecuritySchedules.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SocialSecuritySchedules.aspx.designer.cs">
+      <DependentUpon>SocialSecuritySchedules.aspx</DependentUpon>
     </Compile>
     <Compile Include="Utilities\AccessControlApplier.cs" />
     <Compile Include="AllowanceTypes.aspx.cs">
@@ -1884,6 +1892,8 @@
     <Content Include="App_LocalResources\ImportSalaries.aspx.resx" />
     <Content Include="App_LocalResources\ImportSalaries.aspx.ar.resx" />
     <Content Include="App_LocalResources\BonusTypes.aspx.ar.resx" />
+    <Content Include="App_LocalResources\SocialSecuritySchedules.aspx.resx" />
+    <Content Include="App_LocalResources\SocialSecuritySchedules.aspx.ar.resx" />
     <EmbeddedResource Include="Properties\licenses.licx" />
     <Content Include="Reports\App_LocalResources\RT202.aspx.resx" />
     <Content Include="Reports\App_LocalResources\RT01.aspx.ar.resx" />

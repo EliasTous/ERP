@@ -996,4 +996,7 @@
   <data name="Entitlement" xml:space="preserve">
     <value>Entitlement</value>
   </data>
+  <data name="SocialSecuritySchedules" xml:space="preserve">
+    <value>Social Security Schedule</value>
+  </data>
 </root>

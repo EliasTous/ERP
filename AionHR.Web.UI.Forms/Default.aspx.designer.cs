@@ -319,6 +319,15 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Hidden PYTSTitle;
         
         /// <summary>
+        /// SSStitle control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Hidden SSStitle;
+        
+        /// <summary>
         /// pyde control.
         /// </summary>
         /// <remarks>

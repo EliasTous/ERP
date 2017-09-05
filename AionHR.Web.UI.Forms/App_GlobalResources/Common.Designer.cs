@@ -2302,6 +2302,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Social Security Schedule.
+        /// </summary>
+        internal static string SocialSecuritySchedules {
+            get {
+                return ResourceManager.GetString("SocialSecuritySchedules", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Sort Ascending.
         /// </summary>
         internal static string SortAscText {
