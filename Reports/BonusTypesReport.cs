@@ -37,11 +37,11 @@ public class BonusTypesReport : DevExpress.XtraReports.UI.XtraReport
     private XRControlStyle FieldCaption;
     private XRControlStyle PageInfo;
     private XRControlStyle DataField;
+    private XRLabel xrLabel7;
+    private XRLabel xrLabel6;
+    private DevExpress.XtraReports.Parameters.Parameter User;
     private GroupHeaderBand GroupHeader1;
     private XRLabel xrLabel17;
-    private XRLabel xrLabel2;
-    private XRLabel xrLabel3;
-    private DevExpress.XtraReports.Parameters.Parameter User;
 
     /// <summary>
     /// Required designer variable.
@@ -109,8 +109,8 @@ public class BonusTypesReport : DevExpress.XtraReports.UI.XtraReport
             this.DataField = new DevExpress.XtraReports.UI.XRControlStyle();
             this.GroupHeader1 = new DevExpress.XtraReports.UI.GroupHeaderBand();
             this.xrLabel17 = new DevExpress.XtraReports.UI.XRLabel();
-            this.xrLabel3 = new DevExpress.XtraReports.UI.XRLabel();
-            this.xrLabel2 = new DevExpress.XtraReports.UI.XRLabel();
+            this.xrLabel6 = new DevExpress.XtraReports.UI.XRLabel();
+            this.xrLabel7 = new DevExpress.XtraReports.UI.XRLabel();
             this.User = new DevExpress.XtraReports.Parameters.Parameter();
             ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).BeginInit();
@@ -248,8 +248,8 @@ public class BonusTypesReport : DevExpress.XtraReports.UI.XtraReport
             // pageFooterBand1
             // 
             this.pageFooterBand1.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
-            this.xrLabel2,
-            this.xrLabel3,
+            this.xrLabel7,
+            this.xrLabel6,
             this.xrPageInfo1,
             this.xrPageInfo2});
             resources.ApplyResources(this.pageFooterBand1, "pageFooterBand1");
@@ -334,7 +334,6 @@ public class BonusTypesReport : DevExpress.XtraReports.UI.XtraReport
             this.xrLabel17});
             resources.ApplyResources(this.GroupHeader1, "GroupHeader1");
             this.GroupHeader1.Name = "GroupHeader1";
-            this.GroupHeader1.BeforePrint += new System.Drawing.Printing.PrintEventHandler(this.GroupHeader1_BeforePrint);
             // 
             // xrLabel17
             // 
@@ -343,21 +342,22 @@ public class BonusTypesReport : DevExpress.XtraReports.UI.XtraReport
             this.xrLabel17.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel17.StylePriority.UseTextAlignment = false;
             // 
-            // xrLabel3
+            // xrLabel6
             // 
-            this.xrLabel3.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
+            this.xrLabel6.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
             new DevExpress.XtraReports.UI.XRBinding(this.User, "Text", "")});
-            resources.ApplyResources(this.xrLabel3, "xrLabel3");
-            this.xrLabel3.Name = "xrLabel3";
-            this.xrLabel3.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel3.StylePriority.UseTextAlignment = false;
+            resources.ApplyResources(this.xrLabel6, "xrLabel6");
+            this.xrLabel6.Name = "xrLabel6";
+            this.xrLabel6.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel6.StylePriority.UseTextAlignment = false;
             // 
-            // xrLabel2
+            // xrLabel7
             // 
-            resources.ApplyResources(this.xrLabel2, "xrLabel2");
-            this.xrLabel2.Name = "xrLabel2";
-            this.xrLabel2.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel2.StylePriority.UseTextAlignment = false;
+            resources.ApplyResources(this.xrLabel7, "xrLabel7");
+            this.xrLabel7.Multiline = true;
+            this.xrLabel7.Name = "xrLabel7";
+            this.xrLabel7.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel7.StylePriority.UseTextAlignment = false;
             // 
             // User
             // 
@@ -394,9 +394,4 @@ public class BonusTypesReport : DevExpress.XtraReports.UI.XtraReport
     }
 
     #endregion
-
-    private void GroupHeader1_BeforePrint(object sender, System.Drawing.Printing.PrintEventArgs e)
-    {
-        e.Cancel = RowCount > 0;
-    }
 }

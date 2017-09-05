@@ -471,7 +471,7 @@ namespace AionHR.Web.UI.Forms
         {
 
         }
-        protected void printBtn_Click(object sender, EventArgs e)
+       protected void printBtn_Click(object sender, EventArgs e)
         {
             BonusTypesReport p = GetReport();
             string format = "Pdf";
@@ -551,5 +551,6 @@ namespace AionHR.Web.UI.Forms
 
 
         }
+        
     }
 }

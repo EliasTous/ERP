@@ -118,19 +118,19 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="xrLabel1.Text" xml:space="preserve">
-    <value>Sponsors</value>
+    <value>الكفلاء</value>
   </data>
   <data name="xrLabel2.Text" xml:space="preserve">
-    <value>By :</value>
+    <value>من قبل </value>
   </data>
   <data name="xrLabel3.Text" xml:space="preserve">
     <value>xrLabel3</value>
   </data>
   <data name="xrLabel4.Text" xml:space="preserve">
-    <value>No Data Found</value>
+    <value>لم يتم العثور على نتائج</value>
   </data>
   <data name="xrPageInfo2.Format" xml:space="preserve">
-    <value>Page {0} of {1}</value>
+    <value>صفحة {0} من {1}</value>
   </data>
   <data name="xrTableCell1.Text" xml:space="preserve">
     <value>xrTableCell1</value>
@@ -139,31 +139,31 @@
     <value>Address</value>
   </data>
   <data name="xrTableCell11.Text" xml:space="preserve">
-    <value>Phone</value>
+    <value>الهاتف</value>
   </data>
   <data name="xrTableCell12.Text" xml:space="preserve">
     <value>City</value>
   </data>
   <data name="xrTableCell13.Text" xml:space="preserve">
-    <value>Mobile</value>
+    <value>الجوال</value>
   </data>
   <data name="xrTableCell14.Text" xml:space="preserve">
     <value>Phone</value>
   </data>
   <data name="xrTableCell15.Text" xml:space="preserve">
-    <value>Fax</value>
+    <value>الفاكس</value>
   </data>
   <data name="xrTableCell16.Text" xml:space="preserve">
     <value>Mobile</value>
   </data>
   <data name="xrTableCell17.Text" xml:space="preserve">
-    <value>Email</value>
+    <value>البريد الالكتروني</value>
   </data>
   <data name="xrTableCell18.Text" xml:space="preserve">
     <value>Fax</value>
   </data>
   <data name="xrTableCell19.Text" xml:space="preserve">
-    <value>Name</value>
+    <value>الاسم</value>
   </data>
   <data name="xrTableCell2.Text" xml:space="preserve">
     <value>xrTableCell2</value>
@@ -190,6 +190,6 @@
     <value>Name</value>
   </data>
   <data name="xrTableCell9.Text" xml:space="preserve">
-    <value>City</value>
+    <value>المدينة</value>
   </data>
 </root>

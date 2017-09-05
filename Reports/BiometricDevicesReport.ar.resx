@@ -118,42 +118,21 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="xrLabel1.Text" xml:space="preserve">
-    <value>انواع الحوافز</value>
+    <value>لائحة أجهزة البصمة</value>
   </data>
-  <data name="xrLabel17.Text" xml:space="preserve">
+  <data name="xrLabel2.Text" xml:space="preserve">
     <value>لم يتم العثور على نتائج</value>
   </data>
-  <data name="xrLabel6.Text" xml:space="preserve">
-    <value>xrLabel6</value>
-  </data>
-  <data name="xrLabel7.Text" xml:space="preserve">
-    <value>من قبل :</value>
+  <data name="xrLabel4.Text" xml:space="preserve">
+    <value>من قبل</value>
   </data>
   <data name="xrPageInfo2.Format" xml:space="preserve">
     <value>صفحة {0} من {1}</value>
   </data>
-  <data name="xrTableCell1.Text" xml:space="preserve">
-    <value>xrTableCell1</value>
-  </data>
-  <data name="xrTableCell2.Text" xml:space="preserve">
-    <value>xrTableCell2</value>
-  </data>
-  <data name="xrTableCell3.Text" xml:space="preserve">
-    <value>xrTableCell3</value>
-  </data>
-  <data name="xrTableCell4.Text" xml:space="preserve">
-    <value>xrTableCell4</value>
-  </data>
-  <data name="xrTableCell5.Text" xml:space="preserve">
-    <value>xrTableCell5</value>
-  </data>
-  <data name="xrTableCell6.Text" xml:space="preserve">
-    <value>xrTableCell6</value>
-  </data>
   <data name="xrTableCell7.Text" xml:space="preserve">
-    <value>الاسم</value>
+    <value>رمز</value>
   </data>
-  <data name="xrTableCell8.Text" xml:space="preserve">
-    <value>xrTableCell8</value>
+  <data name="xrTableCell9.Text" xml:space="preserve">
+    <value>إسم</value>
   </data>
 </root>

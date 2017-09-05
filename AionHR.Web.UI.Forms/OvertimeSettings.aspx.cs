@@ -25,6 +25,9 @@ using AionHR.Model.Attendance;
 using AionHR.Model.Employees.Leaves;
 using AionHR.Model.Employees.Profile;
 using AionHR.Model.TimeAttendance;
+using Reports;
+
+
 
 namespace AionHR.Web.UI.Forms
 {
@@ -549,6 +552,90 @@ namespace AionHR.Web.UI.Forms
 
         protected void BasicInfoTab_Load(object sender, EventArgs e)
         {
+
+        }
+
+
+
+        protected void printBtn_Click(object sender, EventArgs e)
+        {
+            OvertimeSettingsReport p = GetReport();
+            string format = "Pdf";
+            string fileName = String.Format("Report.{0}", format);
+
+            MemoryStream ms = new MemoryStream();
+            p.ExportToPdf(ms, new DevExpress.XtraPrinting.PdfExportOptions() { ShowPrintDialogOnOpen = true });
+            Response.Clear();
+            Response.Write("<script>");
+            Response.Write("window.document.forms[0].target = '_blank';");
+            Response.Write("setTimeout(function () { window.document.forms[0].target = ''; }, 0);");
+            Response.Write("</script>");
+            Response.ContentType = "application/pdf";
+            Response.AddHeader("Content-Disposition", String.Format("{0}; filename={1}", "inline", fileName));
+            Response.BinaryWrite(ms.ToArray());
+            Response.Flush();
+            Response.Close();
+            //Response.Redirect("Reports/RT301.aspx");
+        }
+        protected void ExportPdfBtn_Click(object sender, EventArgs e)
+        {
+            OvertimeSettingsReport p = GetReport();
+            string format = "Pdf";
+            string fileName = String.Format("Report.{0}", format);
+
+            MemoryStream ms = new MemoryStream();
+            p.ExportToPdf(ms);
+            Response.Clear();
+
+            Response.ContentType = "application/pdf";
+            Response.AddHeader("Content-Disposition", String.Format("{0}; filename={1}", "attachment", fileName));
+            Response.BinaryWrite(ms.ToArray());
+            Response.Flush();
+            Response.Close();
+            //Response.Redirect("Reports/RT301.aspx");
+        }
+
+        protected void ExportXLSBtn_Click(object sender, EventArgs e)
+        {
+            OvertimeSettingsReport p = GetReport();
+            string format = "xls";
+            string fileName = String.Format("Report.{0}", format);
+
+            MemoryStream ms = new MemoryStream();
+            p.ExportToXls(ms);
+
+            Response.Clear();
+
+            Response.ContentType = "application/vnd.ms-excel";
+            Response.AddHeader("Content-Disposition", String.Format("{0}; filename={1}", "attachment", fileName));
+            Response.BinaryWrite(ms.ToArray());
+            Response.Flush();
+            Response.Close();
+            //Response.Redirect("Reports/RT301.aspx");
+        }
+        private OvertimeSettingsReport GetReport()
+        {
+
+            ListRequest request = new ListRequest();
+
+            request.Filter = "";
+            ListResponse<OvertimeSetting> resp = _timeAttendanceService.ChildGetAll<OvertimeSetting>(request);
+            if (!resp.Success)
+            {
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() : resp.Summary).Show();
+                return null;
+            }
+            OvertimeSettingsReport p = new OvertimeSettingsReport();
+            p.DataSource = resp.Items;
+            p.Parameters["User"].Value = _systemService.SessionHelper.GetCurrentUser();
+            p.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;
+            p.RightToLeftLayout = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeftLayout.Yes : DevExpress.XtraReports.UI.RightToLeftLayout.No;
+            //p.Parameters["Yes"].Value = GetGlobalResourceObject("Common", "Yes").ToString();
+            //p.Parameters["No"].Value = GetGlobalResourceObject("Common", "No").ToString();
+            return p;
+
+
 
         }
     }
