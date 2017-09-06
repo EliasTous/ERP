@@ -342,4 +342,7 @@
   <data name="missedPunch" xml:space="preserve">
     <value>يوم غير مغلق</value>
   </data>
+  <data name="SocialSecuritySchedule" xml:space="preserve">
+    <value>جدول التأمينات الإجتماعية</value>
+  </data>
 </root>

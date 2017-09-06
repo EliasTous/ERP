@@ -189,14 +189,14 @@ namespace AionHR.Web.UI.Forms
             try
             {
                 //Step 1 Code to delete the object from the database 
-                DocumentType s = new DocumentType();
+                SocialSecuritySchedule s = new SocialSecuritySchedule();
                 s.recordId = index;
-                s.name = "";
-                //s.intName = "";
+              
+                   //s.intName = "";
 
-                PostRequest<DocumentType> req = new PostRequest<DocumentType>();
+                PostRequest<SocialSecuritySchedule> req = new PostRequest<SocialSecuritySchedule>();
                 req.entity = s;
-                PostResponse<DocumentType> r = _employeeService.ChildDelete<DocumentType>(req);
+                PostResponse<SocialSecuritySchedule> r = _PayrollService.ChildDelete<SocialSecuritySchedule>(req);
                 if (!r.Success)
                 {
                     X.MessageBox.ButtonText.Ok = Resources.Common.Ok;

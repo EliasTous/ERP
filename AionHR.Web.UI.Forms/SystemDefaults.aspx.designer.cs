@@ -562,31 +562,22 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Button Button15;
         
         /// <summary>
-        /// ssDeductionId control.
+        /// ssId control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.ComboBox ssDeductionId;
+        protected global::Ext.Net.ComboBox ssId;
         
         /// <summary>
-        /// ssDeductionStore control.
+        /// ssIdstore control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Store ssDeductionStore;
-        
-        /// <summary>
-        /// Button8 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Button Button8;
+        protected global::Ext.Net.Store ssIdstore;
         
         /// <summary>
         /// peDeductionId control.

@@ -144,6 +144,8 @@ namespace AionHR.Web.UI.Forms
             FillPassports();
             FillSchedules();
             FillTsId();
+            FillSsid(); 
+
           absenceStore.DataSource= GetDeductions();
             absenceStore.DataBind();
             disappearanceStore.DataSource = GetDeductions();
@@ -155,8 +157,8 @@ namespace AionHR.Web.UI.Forms
             latenessStore.DataSource = GetDeductions();
             latenessStore.DataBind();
 
-            ssDeductionStore.DataSource = GetDeductions();
-            ssDeductionStore.DataBind();
+           // ssDeductionStore.DataSource = GetDeductions();
+            //ssDeductionStore.DataBind();
 
             peDeductionStore.DataSource = GetDeductions();
             peDeductionStore.DataBind();
@@ -243,9 +245,14 @@ namespace AionHR.Web.UI.Forms
             catch { }
             try
             {
-                ssDeductionId.Select(items.Where(s => s.Key == "ssDeductionId").First().Value);
+               ssId.Select(items.Where(s => s.Key == "ssId").First().Value);
             }
             catch { }
+            //try
+            //{
+            //    //ssDeductionId.Select(items.Where(s => s.Key == "ssDeductionId").First().Value);
+            //}
+            //catch { }
             try
             {
                 loanDeductionId.Select(items.Where(s => s.Key == "loanDeductionId").First().Value);
@@ -552,6 +559,8 @@ namespace AionHR.Web.UI.Forms
                 submittedValues.Add(new KeyValuePair<string, string>("loanDeductionId", values.loanDeductionId.ToString()));
             if (values.peDeductionId != null && !string.IsNullOrEmpty(values.peDeductionId.ToString()))
                 submittedValues.Add(new KeyValuePair<string, string>("penaltyDeductionId", values.peDeductionId.ToString()));
+            if (values.ssId != null && !string.IsNullOrEmpty(values.ssId.ToString()))
+                submittedValues.Add(new KeyValuePair<string, string>("ssId", values.ssId.ToString()));
 
             if (values.ldMethod != null && !string.IsNullOrEmpty(values.ldMethod.ToString()))
                 submittedValues.Add(new KeyValuePair<string, string>("ldMethod", values.ldMethod.ToString()));
@@ -926,31 +935,31 @@ namespace AionHR.Web.UI.Forms
 
  
      
-        protected void addDedSS(object sender, DirectEventArgs e)
-        {
-            if (string.IsNullOrEmpty(ssDeductionId.Text))
-                return;
-            EntitlementDeduction dept = new EntitlementDeduction();
-            dept.name = ssDeductionId.Text; ;
-            dept.type = 2;
+        //protected void addDedSS(object sender, DirectEventArgs e)
+        //{
+        //    if (string.IsNullOrEmpty(ssDeductionId.Text))
+        //        return;
+        //    EntitlementDeduction dept = new EntitlementDeduction();
+        //    dept.name = ssDeductionId.Text; ;
+        //    dept.type = 2;
 
-            PostRequest<EntitlementDeduction> depReq = new PostRequest<EntitlementDeduction>();
-            depReq.entity = dept;
-            PostResponse<EntitlementDeduction> response = _employeeService.ChildAddOrUpdate<EntitlementDeduction>(depReq);
-            if (response.Success)
-            {
-                dept.recordId = response.recordId;
-                FillCombos();
-                ssDeductionId.Value = dept.recordId;
-            }
-            else
-            {
-                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).ToString() : response.Summary).Show();
-                return;
-            }
+        //    PostRequest<EntitlementDeduction> depReq = new PostRequest<EntitlementDeduction>();
+        //    depReq.entity = dept;
+        //    PostResponse<EntitlementDeduction> response = _employeeService.ChildAddOrUpdate<EntitlementDeduction>(depReq);
+        //    if (response.Success)
+        //    {
+        //        dept.recordId = response.recordId;
+        //        FillCombos();
+        //        ssDeductionId.Value = dept.recordId;
+        //    }
+        //    else
+        //    {
+        //        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+        //        X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).ToString() : response.Summary).Show();
+        //        return;
+        //    }
 
-        }
+        //}
         protected void addDedpe(object sender, DirectEventArgs e)
         {
             if (string.IsNullOrEmpty(peDeductionId.Text))
@@ -1143,6 +1152,22 @@ namespace AionHR.Web.UI.Forms
                 X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).ToString() : response.Summary).Show();
                 return;
             }
+
+        }
+        private void FillSsid()
+        {
+            ListRequest request = new ListRequest();
+
+            request.Filter = "";
+            ListResponse<SocialSecuritySchedule> routers = _payrollService.ChildGetAll<SocialSecuritySchedule>(request);
+            if (!routers.Success)
+            {
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", routers.ErrorCode) != null ? GetGlobalResourceObject("Errors", routers.ErrorCode).ToString() : routers.Summary).Show();
+                return;
+            }
+            this.ssIdstore.DataSource = routers.Items;
+            this.ssIdstore.DataBind();
+
 
         }
 

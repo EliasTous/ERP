@@ -22,6 +22,7 @@ using AionHR.Services.Messaging;
 using AionHR.Model.Company.Structure;
 using AionHR.Model.System;
 using AionHR.Infrastructure.Domain;
+using AionHR.Model.Payroll;
 
 namespace AionHR.Web.UI.Forms
 {
@@ -29,6 +30,8 @@ namespace AionHR.Web.UI.Forms
     {
         
         ISystemService _systemService = ServiceLocator.Current.GetInstance<ISystemService>();
+        IEmployeeService _employeeService = ServiceLocator.Current.GetInstance<IEmployeeService>();
+        IPayrollService _payrollService= ServiceLocator.Current.GetInstance<IPayrollService>();
         protected override void InitializeCulture()
         {
 
@@ -121,12 +124,15 @@ namespace AionHR.Web.UI.Forms
 
             int id = Convert.ToInt32(e.ExtraParams["id"]);
             string type = e.ExtraParams["type"];
+            FillSsid();
             switch (type)
             {
                 case "imgEdit":
                     //Step 1 : get the object from the Web Service 
                     RecordRequest r = new RecordRequest();
                     r.RecordID = id.ToString();
+                 
+                  
                     RecordResponse<Nationality> response = _systemService.ChildGetRecord<Nationality>(r);
                     if (!response.Success)
                     {
@@ -136,6 +142,9 @@ namespace AionHR.Web.UI.Forms
                     }
                     //Step 2 : call setvalues with the retrieved object
                     this.BasicInfoTab.SetValues(response.result);
+                    //if(!string.IsNullOrEmpty(response.result.ssId.ToString()))
+                    if (response.result.ssId != null)
+                    { ssIdCB.Select(response.result.ssId.ToString()); }
                     
                     this.EditRecordWindow.Title = Resources.Common.EditWindowsTitle;
                     this.EditRecordWindow.Show();
@@ -300,6 +309,7 @@ namespace AionHR.Web.UI.Forms
 
             //Reset all values of the relative object
             BasicInfoTab.Reset();
+            FillSsid();
             this.EditRecordWindow.Title = Resources.Common.AddNewRecord;
             string timeZone = Session["TimeZone"] as string;
          
@@ -323,7 +333,7 @@ namespace AionHR.Web.UI.Forms
             request.Filter = "";
             ListResponse<Nationality> nationalities = _systemService.ChildGetAll<Nationality>(request);
             if (!nationalities.Success)
-                X.Msg.Alert(Resources.Common.Error, nationalities.Summary).Show(); ;
+                X.Msg.Alert(Resources.Common.Error, nationalities.Summary).Show(); 
             this.Store1.DataSource = nationalities.Items;
             e.Total = nationalities.Items.Count;
 
@@ -459,7 +469,23 @@ namespace AionHR.Web.UI.Forms
         {
 
         }
+        private void FillSsid()
+        {
+            ListRequest request = new ListRequest();
 
-       
+            request.Filter = "";
+            ListResponse<SocialSecuritySchedule> routers = _payrollService.ChildGetAll<SocialSecuritySchedule>(request);
+            if (!routers.Success)
+            {
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", routers.ErrorCode) != null ? GetGlobalResourceObject("Errors", routers.ErrorCode).ToString() : routers.Summary).Show();
+                return;
+            }
+            this.ssIdstore.DataSource = routers.Items;
+            this.ssIdstore.DataBind(); 
+
+           
+        }
+
+
     }
 }

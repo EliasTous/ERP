@@ -599,8 +599,39 @@
                                 </ext:ComboBox>
                                      </Items>
                                      </ext:FieldSet>
-                                        
-                                <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  QueryMode="Local" ForceSelection="true" LabelWidth="160" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: FieldSS %>" Name="ssDeductionId" runat="server" DisplayField="name" ValueField="recordId" ID="ssDeductionId">
+                                        <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  Enabled="true" runat="server" AllowBlank="true" ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" ID="ssId" Name="ssId" FieldLabel="<%$ Resources: SocialSecuritySchedule%>" LabelWidth="150" SimpleSubmit="true">
+                                                    <Store>
+                                                        <ext:Store runat="server" ID="ssIdstore">
+                                                            <Model>
+                                                                <ext:Model runat="server">
+                                                                    <Fields>
+                                                                        <ext:ModelField Name="recordId" />
+                                                                        <ext:ModelField Name="name" />
+                                                                    </Fields>
+                                                                </ext:Model>
+                                                            </Model>
+                                                        </ext:Store>
+                                                    </Store>
+                                               <%--   <RightButtons>
+                                                        <ext:Button ID="Button3" runat="server" Icon="Add" Hidden="true" >
+                                                            <Listeners>
+                                                                <Click Handler="CheckSession();" />
+                                                            </Listeners>
+                                                            <DirectEvents>
+
+                                                              <%--  <Click OnEvent="addBranch">
+                                                                 
+                                                                </Click>>
+                                                            </DirectEvents>
+                                                        </ext:Button>
+                                                    </RightButtons>--%>
+                                                    <Listeners>
+                                                        <FocusEnter Handler="if(!this.readOnly) this.rightButtons[0].setHidden(false);" />
+                                                        <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
+                                                    </Listeners>
+                                                </ext:ComboBox>
+                                
+                              <%--  <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  QueryMode="Local" ForceSelection="true" LabelWidth="160" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: FieldSS %>" Name="ssDeductionId" runat="server" DisplayField="name" ValueField="recordId" ID="ssDeductionId">
                                     <Store>
                                         <ext:Store runat="server" ID="ssDeductionStore">
                                             <Model>
@@ -629,7 +660,7 @@
                                         <FocusEnter Handler=" if(!this.readOnly)this.rightButtons[0].setHidden(false);" />
                                         <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
                                     </Listeners>
-                                </ext:ComboBox>
+                                </ext:ComboBox>--%>
 
                                 <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  QueryMode="Local" ForceSelection="true" LabelWidth="160" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: FieldPE %>" Name="peDeductionId" runat="server" DisplayField="name" ValueField="recordId" ID="peDeductionId">
                                     <Store>

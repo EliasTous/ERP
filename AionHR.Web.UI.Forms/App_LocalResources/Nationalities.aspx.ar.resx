@@ -129,6 +129,9 @@
   <data name="FieldRecordId" xml:space="preserve">
     <value>الرقم</value>
   </data>
+  <data name="SocialSecuritySchedule" xml:space="preserve">
+    <value>جدول التأمين الاجتماعي </value>
+  </data>
   <data name="WindowTitle" xml:space="preserve">
     <value>الجنسيات</value>
   </data>

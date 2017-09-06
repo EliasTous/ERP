@@ -2095,6 +2095,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to RightToWork.
+        /// </summary>
+        internal static string RT204 {
+            get {
+                return ResourceManager.GetString("RT204", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Monthly Attendance.
         /// </summary>
         internal static string RT301 {

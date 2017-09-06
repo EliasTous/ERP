@@ -169,9 +169,9 @@
     <value>الجدول الزمني</value>
   </data>
   <data name="CompanyPercentage" xml:space="preserve">
-    <value>Company Percentage</value>
+    <value>نسبة الشركة</value>
   </data>
   <data name="EmployeePercentage" xml:space="preserve">
-    <value>Employee Percentage</value>
+    <value>نسبة الموظف</value>
   </data>
 </root>

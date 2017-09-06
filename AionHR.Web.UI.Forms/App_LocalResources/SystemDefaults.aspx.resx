@@ -342,4 +342,7 @@
   <data name="missedPunch" xml:space="preserve">
     <value>Missed Punch</value>
   </data>
+  <data name="SocialSecuritySchedule" xml:space="preserve">
+    <value>Social Security Schedule</value>
+  </data>
 </root>

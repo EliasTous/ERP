@@ -43,6 +43,7 @@
 
                         <ext:ModelField Name="recordId" />
                         <ext:ModelField Name="name" />
+                         <ext:ModelField Name="ssName" />
                       
                                </Fields>
                 </ext:Model>
@@ -120,9 +121,10 @@
 
                               <ext:Column  Visible="false" ID="ColrecordId" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldrecordId %>" DataIndex="recordId" Hideable="false" width="75" Align="Center"/>
                           
-                            <ext:Column   CellCls="cellLink" ID="ColName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldName%>" DataIndex="name" Flex="1" Hideable="false">
+                            <ext:Column   CellCls="cellLink" ID="ColName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldName%>" DataIndex="name" Flex="1" Hideable="false"/>
+                             <ext:Column   CellCls="cellLink" ID="ColSsid" MenuDisabled="true" runat="server" Text="<%$ Resources: SocialSecuritySchedule%>" DataIndex="ssName" Flex="1" Hideable="false"/>
                        
-                                </ext:Column>
+                            
                            
 
                           
@@ -257,7 +259,39 @@
                             BodyPadding="5">
                             <Items>
                                 <ext:TextField ID="recordId" Hidden="true" runat="server" FieldLabel="<%$ Resources:FieldrecordId%>" Disabled="true" Name="recordId" />
-                                <ext:TextField ID="name" runat="server" FieldLabel="<%$ Resources:FieldName%>" Name="name" AllowBlank="false" BlankText="<%$ Resources:Common, MandatoryField%>" />
+                                <ext:TextField ID="name" runat="server" FieldLabel="<%$ Resources:FieldName%>" Name="name" AllowBlank="false" BlankText="<%$ Resources:Common, MandatoryField%>" LabelWidth="150" />
+                                  <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  Enabled="true" runat="server" AllowBlank="true" ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" ID="ssIdCB" Name="ssId" FieldLabel="<%$ Resources: SocialSecuritySchedule%>" LabelWidth="150" SimpleSubmit="true">
+                                                    <Store>
+                                                        <ext:Store runat="server" ID="ssIdstore">
+                                                            <Model>
+                                                                <ext:Model runat="server">
+                                                                    <Fields>
+                                                                        <ext:ModelField Name="recordId" />
+                                                                        <ext:ModelField Name="name" />
+                                                                    </Fields>
+                                                                </ext:Model>
+                                                            </Model>
+                                                        </ext:Store>
+                                                    </Store>
+                                               <%--   <RightButtons>
+                                                        <ext:Button ID="Button3" runat="server" Icon="Add" Hidden="true" >
+                                                            <Listeners>
+                                                                <Click Handler="CheckSession();" />
+                                                            </Listeners>
+                                                            <DirectEvents>
+
+                                                              <%--  <Click OnEvent="addBranch">
+                                                                 
+                                                                </Click>>
+                                                            </DirectEvents>
+                                                        </ext:Button>
+                                                    </RightButtons>--%>
+                                                    <Listeners>
+                                                        <FocusEnter Handler="if(!this.readOnly) this.rightButtons[0].setHidden(false);" />
+                                                        <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
+                                                    </Listeners>
+                                                </ext:ComboBox>
+                               
                                
 
                             </Items>

@@ -170,9 +170,6 @@
     <Compile Include="RightToWork.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="RightToWork.Designer.cs">
-      <DependentUpon>RightToWork.cs</DependentUpon>
-    </Compile>
     <Compile Include="RoutersReport.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -441,17 +438,14 @@
     <EmbeddedResource Include="RelationshipTypesReport.resx">
       <DependentUpon>RelationshipTypesReport.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="RightToWork.resx">
+      <DependentUpon>RightToWork.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SalaryChangeReasonsReport.ar.resx">
       <DependentUpon>SalaryChangeReasonsReport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SalaryChangeReasonsReport.resx">
       <DependentUpon>SalaryChangeReasonsReport.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="RightToWork.ar.resx">
-      <DependentUpon>RightToWork.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="RightToWork.resx">
-      <DependentUpon>RightToWork.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="RoutersReport.ar.resx">
       <DependentUpon>RoutersReport.cs</DependentUpon>

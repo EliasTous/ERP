@@ -996,4 +996,10 @@
   <data name="Entitlement" xml:space="preserve">
     <value>الاستحقاقات</value>
   </data>
+  <data name="SocialSecuritySchedules" xml:space="preserve">
+    <value>جداول التأمينات الاجتماعية</value>
+  </data>
+  <data name="SocialSecuritySchedule" xml:space="preserve">
+    <value>جدول التأمينات الإجتماعية </value>
+  </data>
 </root>

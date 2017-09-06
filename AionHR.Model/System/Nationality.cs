@@ -14,5 +14,9 @@ namespace AionHR.Model.System
         [PropertyID("20040_01")]
         [ApplySecurity]
         public string name { get; set; }
+        [PropertyID("20040_02")]
+        [ApplySecurity]
+        public string ssId { get; set; }
+        public string ssName { get; set; }
     }
 }
