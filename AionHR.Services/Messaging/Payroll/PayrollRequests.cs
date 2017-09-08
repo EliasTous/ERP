@@ -110,3 +110,23 @@ public class PayrollTimeCodeRequest : ListRequest
     }
 
 }
+public class SocialSecurityScheduleSetupRequest:RecordRequest
+{
+    public int ssId { set; get; }
+    public int seqNo { set; get; }
+
+    private Dictionary<string, string> parameters;
+    public override Dictionary<string, string> Parameters
+    {
+        get
+        {
+            parameters = new Dictionary<string, string>();
+            parameters.Add("_ssId", ssId.ToString());
+            parameters.Add("_seqNo", seqNo.ToString());
+
+
+            return parameters;
+        }
+    }
+
+}

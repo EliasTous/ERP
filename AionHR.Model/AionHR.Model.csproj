@@ -108,6 +108,7 @@
     <Compile Include="Payroll\IPayrollRepository.cs" />
     <Compile Include="Payroll\PayrollEntitlementDeduction.cs" />
     <Compile Include="Payroll\SocialSecuritySchedule.cs" />
+    <Compile Include="Payroll\SocialSecurityScheduleSetup.cs" />
     <Compile Include="Payroll\SyncED.cs" />
     <Compile Include="Payroll\TimeCode.cs" />
     <Compile Include="Payroll\TimeSchedule.cs" />
@@ -126,6 +127,7 @@
     <Compile Include="Reports\RT107.cs" />
     <Compile Include="Reports\RT107B.cs" />
     <Compile Include="Reports\RT108.cs" />
+    <Compile Include="Reports\RT109.cs" />
     <Compile Include="Reports\RT201.cs" />
     <Compile Include="Reports\RT202.cs" />
     <Compile Include="Reports\RT203.cs" />

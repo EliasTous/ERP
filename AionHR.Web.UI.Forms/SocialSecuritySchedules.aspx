@@ -40,6 +40,8 @@
         <ext:Hidden ID="titleSavingError" runat="server" Text="<%$ Resources:Common , TitleSavingError %>" />
         <ext:Hidden ID="titleSavingErrorMessage" runat="server" Text="<%$ Resources:Common , TitleSavingErrorMessage %>" />
         <ext:Hidden ID="ScheduleID" runat="server" />
+        <ext:Hidden ID="SocailSecuritySchedulesId" runat="server"
+            /> 
        
 
         <ext:Store
@@ -124,7 +126,7 @@
                                         <TriggerClick Handler="#{Store1}.reload();" />
                                     </Listeners>
                                 </ext:TextField>
-                                   <ext:Button runat="server" Icon="Printer">
+                              <%--     <ext:Button runat="server" Icon="Printer">
                                     <Menu>
                                         <ext:Menu runat="server">
                                             <Items>
@@ -145,7 +147,7 @@
                                             </Items>
                                         </ext:Menu>
                                     </Menu>
-                                </ext:Button>
+                                </ext:Button>--%>
 
                             </Items>
                         </ext:Toolbar>
@@ -304,7 +306,185 @@
                             </Items>
 
                         </ext:FormPanel>
-                      
+                        <ext:GridPanel 
+                    ID="socialSetupGrid" AutoUpdateLayout="true" Collapsible="true"
+                    runat="server"
+                    PaddingSpec="0 0 1 0"
+                    Header="true"
+                    Title="socialSetupGridTitle "
+                    Layout="FitLayout"
+                    Flex="1"
+                    Scroll="Vertical"
+                    Border="false"
+                    Icon="User"
+                    ColumnLines="True" IDMode="Explicit" RenderXType="True">
+                    <Store>
+                        <ext:Store
+                            ID="socialSetupStore"
+                            runat="server"
+                            RemoteSort="False"
+                            RemoteFilter="true"
+                            OnReadData="socialSetupStore_Refresh"
+                            PageSize="50" IDMode="Explicit" Namespace="App">
+                            <Proxy>
+                                <ext:PageProxy>
+                                    <Listeners>
+                                        <Exception Handler="Ext.MessageBox.alert('#{textLoadFailed}.value', response.statusText);"  />
+                                    </Listeners>
+                                </ext:PageProxy>
+                            </Proxy>
+                            <Model>
+                                <ext:Model ID="Model2" runat="server" IDProperty="ssId" >
+                                    <Fields>
+
+                                        <ext:ModelField Name="ssId" />
+                                        <ext:ModelField Name="seqNo" />
+                                        <ext:ModelField Name="payCode" />
+                                        <ext:ModelField Name="name" />
+                                        <ext:ModelField Name="coPct" />
+                                        <ext:ModelField Name="emPct" />
+                                       <ext:ModelField Name="ceiling" />
+                                     
+
+
+
+
+                                    </Fields>
+                                </ext:Model>
+                            </Model>
+                            <Sorters>
+                                <ext:DataSorter Property="ssId" Direction="ASC" />
+                            </Sorters>
+                        </ext:Store>
+                    </Store>
+                    <TopBar>
+                        <ext:Toolbar ID="Toolbar3" runat="server" ClassicButtonStyle="false">
+                            <Items>
+                               <ext:Button ID="ADDNewsocialSetupBtn" runat="server" Text="<%$ Resources:Common , Add %>" Icon="Add">
+                                    <Listeners>
+                                        <Click Handler="CheckSession(); " />
+                                    </Listeners>
+                                    <DirectEvents>
+                                        <Click OnEvent="ADDNewsocialSetupRecord">
+                                            <EventMask ShowMask="true" CustomTarget="={#{GridPanel1}.body}" />
+                                        </Click>
+                                    </DirectEvents>
+                                </ext:Button>
+                                <ext:ToolbarSeparator></ext:ToolbarSeparator>
+
+                                <ext:ToolbarFill ID="ToolbarFill1" runat="server" />
+                                <ext:TextField ID="TextField1" runat="server" EnableKeyEvents="true" Width="180">
+                                    <Triggers>
+                                        <ext:FieldTrigger Icon="Search" />
+                                    </Triggers>
+                                    <Listeners>
+                                        <KeyPress Fn="enterKeyPressSearchHandler" Buffer="100" />
+                                        <TriggerClick Handler="#{socialSetupGrid}.reload();" />
+                                    </Listeners>
+                                </ext:TextField>
+
+                            </Items>
+                        </ext:Toolbar>
+
+                    </TopBar>
+
+                    <ColumnModel ID="ColumnModel2" runat="server" SortAscText="<%$ Resources:Common , SortAscText %>" SortDescText="<%$ Resources:Common ,SortDescText  %>" SortClearText="<%$ Resources:Common ,SortClearText  %>" ColumnsText="<%$ Resources:Common ,ColumnsText  %>" EnableColumnHide="false" Sortable="false">
+                        <Columns>
+
+                            <ext:Column Visible="false" ID="ssIdCol" MenuDisabled="true" runat="server" Text="ssId" DataIndex="ssId" Hideable="false" Width="75" Align="Center" />
+                            <ext:Column  ID="seqNoCol" Visible="false" MenuDisabled="true" runat="server" Text=" seqNoCol " DataIndex="seqNoCol" Hideable="false" Flex="1" Align="Center"/>
+                            
+
+                            <ext:Column ID="payCodeCol" MenuDisabled="true" runat="server" Text=" payCodeCol " DataIndex="payCode" Hideable="false" Flex="1" Align="Center" />
+                               <ext:Column ID="nameCol" MenuDisabled="true" runat="server" Text=" name " DataIndex="name" Hideable="false" Flex="1" Align="Center" />
+                             <ext:Column ID="coPctCol" MenuDisabled="true" runat="server" Text=" coPct " DataIndex="coPct" Hideable="false" Flex="1" Align="Center" />
+                            <ext:Column ID="emPctCol" MenuDisabled="true" runat="server" Text=" emPct " DataIndex="emPct" Hideable="false" Flex="1" Align="Center" />
+                            <ext:Column ID="ceiling" MenuDisabled="true" runat="server" Text=" ceiling " DataIndex="ceiling" Hideable="false" Flex="1" Align="Center" />
+                               
+                                   
+
+
+                        <ext:Column runat="server"
+                                ID="Column1" Visible="false"
+                                Text="<%$ Resources: Common , Delete %>"
+                                Width="100"
+                                Align="Center"
+                                Fixed="true"
+                                Filterable="false"
+                                Hideable="false"
+                                MenuDisabled="true"
+                                Resizable="false">
+                                <Renderer Fn="deleteRender" />
+
+                            </ext:Column>
+                            <ext:Column runat="server"
+                                ID="colAttachSetupGrid"
+                                Text="<%$ Resources:Common, Attach %>"
+                                Hideable="false"
+                                Width="60"
+                                Align="Center"
+                                Fixed="true"
+                                Filterable="false"
+                                MenuDisabled="true"
+                                Resizable="false">
+                                <Renderer Fn="attachRender" />
+                            </ext:Column>
+
+                            <ext:Column runat="server"
+                                ID="Column3" Visible="true"
+                                Text=""
+                                Width="100"
+                                Hideable="false"
+                                Align="Center"
+                                Fixed="true"
+                                Filterable="false"
+                                MenuDisabled="true"
+                                Resizable="false">
+
+                                <Renderer Handler="return editRender()+'&nbsp;&nbsp;' +deleteRender(); " />
+
+                            </ext:Column>
+
+
+
+                        </Columns>
+                    </ColumnModel>
+                    <DockedItems>
+
+                        <ext:Toolbar ID="Toolbar4" runat="server" Dock="Bottom">
+                            <Items>
+                                <ext:StatusBar ID="StatusBar2" runat="server" />
+                                <ext:ToolbarFill />
+
+                            </Items>
+                        </ext:Toolbar>
+
+                    </DockedItems>
+
+                    <Listeners>
+                        <Render Handler="this.on('cellclick', cellClick);" />
+                    </Listeners>
+                   <DirectEvents>
+                        <CellClick OnEvent="PoPuPSocialSetup">
+                            <EventMask ShowMask="true" />
+                            <ExtraParams>
+                                <ext:Parameter Name="id" Value="record.getId()" Mode="Raw" />
+                                <ext:Parameter Name="seqNo" Value="record.data['seqNo']" Mode="Raw" />
+                                <ext:Parameter Name="type" Value="getCellType( this, rowIndex, cellIndex)" Mode="Raw" />
+                            </ExtraParams>
+
+                        </CellClick>
+                    </DirectEvents>
+                    <View>
+                        <ext:GridView ID="GridView2" runat="server" />
+                    </View>
+
+
+                    <SelectionModel>
+                        <ext:RowSelectionModel ID="rowSelectionModel1" runat="server" Mode="Single" StopIDModeInheritance="true" />
+                        <%--<ext:CheckboxSelectionModel ID="CheckboxSelectionModel1" runat="server" Mode="Multi" StopIDModeInheritance="true" />--%>
+                    </SelectionModel>
+                </ext:GridPanel>
 
                     </Items>
                 </ext:TabPanel>
@@ -333,7 +513,78 @@
                 </ext:Button>
             </Buttons>
         </ext:Window>
+          <ext:Window
+            ID="EditSocialSecuritySetupWindow"
+            runat="server"
+            Icon="PageEdit"
+            Title="EditSocialSecuritySetupWindowTitle"
+            Width="400"
+            Height="300"
+            AutoShow="false"
+            Modal="true"
+            Closable="false"
+            Resizable="false"
+            Floatable="false"
+            Draggable="false"
+            FocusOnToFront="true"
+            Header="false"
+            Hidden="true"
+            Layout="Fit">
 
+            <Items>
+                <ext:TabPanel ID="TabPanel1" runat="server" ActiveTabIndex="0" Border="false" DeferredRender="false">
+                    <Items>
+                        <ext:FormPanel
+                            ID="socialSetupForm" DefaultButton="saveSocialbutton"
+                            runat="server"
+                            Title=" EditBOWindowTitle"
+                            Icon="ApplicationSideList"
+                            DefaultAnchor="100%" Layout="AutoLayout"
+                            BodyPadding="5">
+                            <Items>
+
+                                <ext:TextField ID="ssIdTF" Hidden="true" runat="server" FieldLabel="ssIdTF"  Name="ssId" />
+                                 <ext:TextField ID="seqNoTF" Hidden="true" runat="server" FieldLabel="seqNoTF" Name="seqNo" />
+                                <ext:TextField ID="payCodeTF" Hidden="false" runat="server" FieldLabel="payCodeTF" Name="payCode" LabelWidth="160" />
+                                <ext:TextField ID="nameTF" Hidden="false" runat="server" FieldLabel="nameTF" Name="name" LabelWidth="160" />
+                                  <ext:NumberField Width="400" AllowBlank="false" runat="server" LabelWidth="160" ID="coPctNF" Name="coPct" FieldLabel="<%$ Resources: CompanyPercentage %>" MinValue="0" MaxValue="100" />
+                                 <ext:NumberField  Width="400" AllowBlank="false" runat="server" LabelWidth="160" ID="emPctNF" Name="emPct" FieldLabel="<%$ Resources: EmployeePercentage %>" MinValue="0"  MaxValue="100" />
+                                 <ext:NumberField  Width="400" AllowBlank="false" runat="server" LabelWidth="160" ID="ceilingTF" Name="ceiling" FieldLabel="ceilingTF" />
+                                 
+                               
+
+
+                            </Items>
+
+                        </ext:FormPanel>
+
+                    </Items>
+                </ext:TabPanel>
+            </Items>
+            <Buttons>
+                <ext:Button ID="saveSocialbutton" runat="server" Text="<%$ Resources:Common, Save %>" Icon="Disk">
+
+                    <Listeners>
+                        <Click Handler="CheckSession(); if (!#{socialSetupForm}.getForm().isValid()) {return false;}  " />
+                    </Listeners>
+                    <DirectEvents>
+                        <Click OnEvent="saveSocialButton" Failure="Ext.MessageBox.alert('#{titleSavingError}.value', '#{titleSavingErrorMessage}.value');">
+                            <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="={#{EditSocialSecuritySetupWindow}.body}" />
+                            <ExtraParams>
+                                <ext:Parameter Name="id" Value="#{ssIdTF}.getValue()" Mode="Raw" />
+                                <ext:Parameter Name="values" Value="#{socialSetupForm}.getForm().getValues()" Mode="Raw" Encode="true" />
+                            
+                            </ExtraParams>
+                        </Click>
+                    </DirectEvents>
+                </ext:Button>
+                <ext:Button ID="Button5" runat="server" Text="<%$ Resources:Common , Cancel %>" Icon="Cancel">
+                    <Listeners>
+                        <Click Handler="this.up('window').hide();" />
+                    </Listeners>
+                </ext:Button>
+            </Buttons>
+        </ext:Window>
 
 
     </form>

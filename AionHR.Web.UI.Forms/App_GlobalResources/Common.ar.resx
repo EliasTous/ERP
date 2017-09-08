@@ -1002,4 +1002,13 @@
   <data name="SocialSecuritySchedule" xml:space="preserve">
     <value>جدول التأمينات الإجتماعية </value>
   </data>
+  <data name="RT109" xml:space="preserve">
+    <value>الوثائق القانونية لموظفين الشركة</value>
+  </data>
+  <data name="status" xml:space="preserve">
+    <value>مطلوب التجديد</value>
+  </data>
+  <data name="Renew" xml:space="preserve">
+    <value>تجديد</value>
+  </data>
 </root>

@@ -1,4 +1,4 @@
-﻿using AionHR.Infrastructure.Configuration;
+﻿ using AionHR.Infrastructure.Configuration;
 using AionHR.Infrastructure.Domain;
 using AionHR.Model.Payroll;
 using System;
@@ -25,6 +25,7 @@ namespace AionHR.Repository.WebService.Repositories
             ChildGetAllLookup.Add(typeof(TimeSchedule), "qryTS");
             ChildGetAllLookup.Add(typeof(TimeCode), "qryTC");
             ChildGetAllLookup.Add(typeof(SocialSecuritySchedule), "qrySS");
+            ChildGetAllLookup.Add(typeof(SocialSecurityScheduleSetup), "qrySC");
 
             ChildAddOrUpdateLookup.Add(typeof(FiscalYear), "setYE");
             ChildAddOrUpdateLookup.Add(typeof(GenerationHeader), "setHE");
@@ -35,16 +36,19 @@ namespace AionHR.Repository.WebService.Repositories
             ChildAddOrUpdateLookup.Add(typeof(TimeSchedule), "setTS");
             ChildAddOrUpdateLookup.Add(typeof(TimeCode[]), "arrTC");
             ChildAddOrUpdateLookup.Add(typeof(SocialSecuritySchedule), "setSS");
+            ChildAddOrUpdateLookup.Add(typeof(SocialSecurityScheduleSetup), "setSC");
 
             ChildDeleteLookup.Add(typeof(FiscalYear), "delYE");
             ChildDeleteLookup.Add(typeof(PayrollEntitlementDeduction), "delED");
             ChildDeleteLookup.Add(typeof(GenerationHeader), "delHE");
             ChildDeleteLookup.Add(typeof(TimeSchedule), "delTS");
             ChildDeleteLookup.Add(typeof(SocialSecuritySchedule), "delSS");
+            ChildDeleteLookup.Add(typeof(SocialSecurityScheduleSetup), "delSC");
 
             ChildGetLookup.Add(typeof(GenerationHeader), "getHE");
             ChildGetLookup.Add(typeof(TimeSchedule), "getTS");
             ChildGetLookup.Add(typeof(SocialSecuritySchedule), "getSS");
+            ChildGetLookup.Add(typeof(SocialSecurityScheduleSetup), "getSC");
         }
     }
 }

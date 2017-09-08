@@ -1960,6 +1960,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Renew.
+        /// </summary>
+        internal static string Renew {
+            get {
+                return ResourceManager.GetString("Renew", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Reports.
         /// </summary>
         internal static string Reports {
@@ -2064,6 +2073,15 @@ namespace Resources {
         internal static string RT108 {
             get {
                 return ResourceManager.GetString("RT108", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Right To Work.
+        /// </summary>
+        internal static string RT109 {
+            get {
+                return ResourceManager.GetString("RT109", resourceCulture);
             }
         }
         
@@ -2370,6 +2388,15 @@ namespace Resources {
         internal static string States {
             get {
                 return ResourceManager.GetString("States", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Status.
+        /// </summary>
+        internal static string status {
+            get {
+                return ResourceManager.GetString("status", resourceCulture);
             }
         }
         
