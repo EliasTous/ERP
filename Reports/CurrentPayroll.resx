@@ -654,11 +654,14 @@
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
+  <data name="$this.Landscape" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
   <data name="$this.PageHeight" type="System.Int32, mscorlib">
-    <value>1752</value>
+    <value>1268</value>
   </data>
   <data name="$this.PageWidth" type="System.Int32, mscorlib">
-    <value>1268</value>
+    <value>1752</value>
   </data>
   <data name="$this.PaperKind" type="System.Drawing.Printing.PaperKind, System.Drawing">
     <value>A3Extra</value>

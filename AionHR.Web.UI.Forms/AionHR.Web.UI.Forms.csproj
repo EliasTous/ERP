@@ -1941,6 +1941,8 @@
     <Content Include="Reports\App_LocalResources\RT303.aspx.ar.resx" />
     <Content Include="Reports\App_LocalResources\RT305.aspx.ar.resx" />
     <Content Include="Reports\App_LocalResources\RT305.aspx.resx" />
+    <Content Include="Reports\App_LocalResources\RT200.aspx.resx" />
+    <Content Include="Reports\App_LocalResources\RT200.aspx.ar.resx" />
     <EmbeddedResource Include="Reports\RT201.aspx.resx">
       <DependentUpon>RT201.aspx.cs</DependentUpon>
       <Generator>ResXFileCodeGenerator</Generator>

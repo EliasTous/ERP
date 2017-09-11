@@ -208,7 +208,7 @@ namespace AionHR.Web.UI.Forms.Reports
                 lines.Add(line);
             }
 
-            MonthlyPayrollCollection s = new MonthlyPayrollCollection();
+            CurrentPayrollCollection s = new CurrentPayrollCollection();
             if (lines.Count > 0)
             {
                 CurrentPayrollSet p = new CurrentPayrollSet(GetLocalResourceObject("Entitlements").ToString(), GetLocalResourceObject("Deductions").ToString());
