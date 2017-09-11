@@ -289,7 +289,7 @@ public class RightToWork : DevExpress.XtraReports.UI.XtraReport
             // 
             // objectDataSource1
             // 
-            this.objectDataSource1.DataSource = typeof(AionHR.Model.Reports.RT204);
+            //this.objectDataSource1.DataSource = typeof(AionHR.Model.Reports.RT204);
             this.objectDataSource1.Name = "objectDataSource1";
             // 
             // pageHeaderBand1

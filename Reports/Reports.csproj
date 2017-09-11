@@ -284,6 +284,9 @@
     <EmbeddedResource Include="CheckTypesReport.resx">
       <DependentUpon>CheckTypesReport.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="CurrentPayroll.ar.resx">
+      <DependentUpon>CurrentPayroll.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CurrentPayroll.resx">
       <DependentUpon>CurrentPayroll.cs</DependentUpon>
     </EmbeddedResource>
