@@ -1011,4 +1011,7 @@
   <data name="Renew" xml:space="preserve">
     <value>Renew</value>
   </data>
+  <data name="RT200" xml:space="preserve">
+    <value>Current Payroll</value>
+  </data>
 </root>
