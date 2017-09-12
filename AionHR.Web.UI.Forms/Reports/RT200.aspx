@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="RT204.aspx.cs" Inherits="AionHR.Web.UI.Forms.Reports.RT204" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="RT200.aspx.cs" Inherits="AionHR.Web.UI.Forms.Reports.RT200" %>
 
 
 <%@ Register Assembly="DevExpress.Web.v16.2, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web" TagPrefix="dx" %>
@@ -14,7 +14,7 @@
     <title></title>
 
     <link rel="stylesheet" type="text/css" href="../CSS/Common.css" />
-    <link rel="stylesheet" type="text/css" href="../CSS/RT101.css?id=2" />
+    <link rel="stylesheet" type="text/css" href="../CSS/RT200.css?id=2" />
     <link rel="stylesheet" href="../CSS/LiveSearch.css" />
     <script type="text/javascript" src="../Scripts/Dashboard.js"></script>
     <!--  <script type="text/javascript" src="Scripts/app.js"></script>-->
@@ -23,7 +23,7 @@
     <script src="https://superal.github.io/canvas2image/canvas2image.js" type="text/javascript"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js" type="text/javascript"></script>
     <script type="text/javascript" src="../Scripts/moment.js"></script>
-    <script type="text/javascript" src="../Scripts/RT101.js?id=18"></script>
+    <script type="text/javascript" src="../Scripts/RT200.js?id=18"></script>
     <script type="text/javascript">
         function alertNow(s, e) {
 
@@ -61,36 +61,20 @@
 
                             <Items>
                              
-                                        
-                               <%-- <ext:Container runat="server"  Layout="FitLayout">
-                                            <Content>
-                                            
-                                                <uc:employeeCombo runat="server" ID="employeeCombo1" />
-                                            </Content>
-                                        </ext:Container>--%>
-                                 <ext:Container runat="server"  Layout="FitLayout">
+                                        <ext:Container runat="server"  Layout="FitLayout">
                                             <Content>
                                                 <%--<uc:dateRange runat="server" ID="dateRange1" />--%>
-                                                <uc:jobInfo runat="server" ID="jobInfo1" EnableDivision="false"  />
+                                                <uc:jobInfo runat="server" ID="jobInfo1" EnablePosition="false" EnableDivision="false" />
                                             </Content>
                                         </ext:Container>
-                                 <ext:Container runat="server"  Layout="FitLayout">
+                                   <ext:Container runat="server"  Layout="FitLayout">
                                             <Content>
-                                  <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  AllowBlank="false"  Width="400" QueryMode="Local" LabelWidth="130" ForceSelection="true" TypeAhead="true" MinChars="1" FieldLabel="statusCombo" Name="statusCombo" runat="server" ID="statusCombo">
-                                            <Items>
-                                                <ext:ListItem Text="All" Value="0" />
-                                                <ext:ListItem Text="Renew" Value="1" />
-                                               
-                                                
-                                            </Items>
-                                            <Listeners>
-                                                <Change Handler="handlePayment();"></Change>
-                                            </Listeners>
-
-                                        </ext:ComboBox>
-                                      </Content>
+                                                <%--<uc:dateRange runat="server" ID="dateRange1" />--%>
+                                                <uc:paymentMethodCombo runat="server" ID="paymentMethodCombo" />
+                                            </Content>
                                         </ext:Container>
-                                
+
+                                   
                                 <ext:Container runat="server" Layout="FitLayout">
                                     <Content>
                                          <ext:Button runat="server" Text="<%$Resources:Common, Go %>" >
@@ -109,7 +93,9 @@
                     </TopBar>
                     <Content>
 
-                        <dx:ASPxCallbackPanel ID="ASPxCallbackPanel1" runat="server"  ClientSideEvents-CallbackError="alertNow" ClientInstanceName="callbackPanel"
+                        <dx:ASPxCallbackPanel ID="ASPxCallbackPanel1" runat="server" ClientInstanceName="callbackPanel"  ClientSideEvents-CallbackError="alertNow"
+
+
                             Width="100%" OnCallback="ASPxCallbackPanel1_Callback" OnLoad="ASPxCallbackPanel1_Load" >
                             <PanelCollection>
                                 <dx:PanelContent runat="server">

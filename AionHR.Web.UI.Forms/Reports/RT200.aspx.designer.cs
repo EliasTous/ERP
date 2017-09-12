@@ -10,7 +10,7 @@
 namespace AionHR.Web.UI.Forms.Reports {
     
     
-    public partial class RT204 {
+    public partial class RT200 {
         
         /// <summary>
         /// Form1 control.
@@ -112,13 +112,13 @@ namespace AionHR.Web.UI.Forms.Reports {
         protected global::AionHR.Web.UI.Forms.Reports.JobInfoFilter jobInfo1;
         
         /// <summary>
-        /// statusCombo control.
+        /// paymentMethodCombo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.ComboBox statusCombo;
+        protected global::AionHR.Web.UI.Forms.Reports.Controls.PaymentMethodFilter paymentMethodCombo;
         
         /// <summary>
         /// ASPxCallbackPanel1 control.

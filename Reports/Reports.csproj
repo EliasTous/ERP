@@ -82,6 +82,12 @@
     <Compile Include="CheckTypesReport.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="CurrentPayroll.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CurrentPayroll.Designer.cs">
+      <DependentUpon>CurrentPayroll.cs</DependentUpon>
+    </Compile>
     <Compile Include="DailyAttendance.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -277,6 +283,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CheckTypesReport.resx">
       <DependentUpon>CheckTypesReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CurrentPayroll.ar.resx">
+      <DependentUpon>CurrentPayroll.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CurrentPayroll.resx">
+      <DependentUpon>CurrentPayroll.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DailyAttendance.ar.resx">
       <DependentUpon>DailyAttendance.cs</DependentUpon>
