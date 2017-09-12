@@ -72,7 +72,7 @@ namespace AionHR.Repository.WebService.Repositories
                 request.QueryStringParams = QueryStringParams;
 
 
-            return request.GetAsync<ListWebServiceResponse<T>>();
+           return request.GetAsync<ListWebServiceResponse<T>>();
 
         }
 

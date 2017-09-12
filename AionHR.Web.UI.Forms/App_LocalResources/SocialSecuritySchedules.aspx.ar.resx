@@ -174,4 +174,13 @@
   <data name="EmployeePercentage" xml:space="preserve">
     <value>نسبة الموظف</value>
   </data>
+  <data name="ceiling" xml:space="preserve">
+    <value>الحد الأقصى</value>
+  </data>
+  <data name="EditSocialSecuritySetupWindowTitle" xml:space="preserve">
+    <value>تفاصيل التأمين الإجتماعي</value>
+  </data>
+  <data name="payCode" xml:space="preserve">
+    <value>تصنيف</value>
+  </data>
 </root>

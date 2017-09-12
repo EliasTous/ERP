@@ -213,6 +213,27 @@
   <data name="FilterStatus" xml:space="preserve">
     <value>Select a Status</value>
   </data>
+  <data name="FixedAmount" xml:space="preserve">
+    <value>Fixed Amount</value>
+  </data>
+  <data name="FixedPayment" xml:space="preserve">
+    <value>Fixed Payment</value>
+  </data>
+  <data name="LoanCoverageType" xml:space="preserve">
+    <value>Loan Coverage Type</value>
+  </data>
+  <data name="PaymentValue" xml:space="preserve">
+    <value>Payment Value</value>
+  </data>
+  <data name="PFromBasicSalary" xml:space="preserve">
+    <value>Percentage of Basic Salary</value>
+  </data>
+  <data name="PFromLoan" xml:space="preserve">
+    <value>Percentage of Loan</value>
+  </data>
+  <data name="PFromNetSalary" xml:space="preserve">
+    <value>Percentage of Net Salary</value>
+  </data>
   <data name="WindowTitle" xml:space="preserve">
     <value>Loans</value>
   </data>

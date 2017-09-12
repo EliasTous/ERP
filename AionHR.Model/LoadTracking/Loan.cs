@@ -67,5 +67,12 @@ namespace AionHR.Model.LoadTracking
         [PropertyID("45050_11")]
         [ApplySecurity]
         public double deductedAmount { get; set; }
+        [PropertyID("45050_12")]
+        [ApplySecurity]
+        public short ldMethod{ get; set; }
+        [PropertyID("45050_13")]
+        [ApplySecurity]
+        public int ldValue { get; set; }
+
     }
 }

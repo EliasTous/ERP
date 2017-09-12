@@ -59,11 +59,11 @@
                         <ext:Toolbar runat="server" Height="60">
 
                             <Items>
-                                  <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  AllowBlank="false"   QueryMode="Local" LabelWidth="130" ForceSelection="true" TypeAhead="true" MinChars="1"  Name="statusCombo" runat="server" ID="statusCombo" EmptyText="<%$Resources:Common, status %>">
+                                  <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  AllowBlank="false"   QueryMode="Local" LabelWidth="130" ForceSelection="true" TypeAhead="true" MinChars="1"   runat="server" ID="statusCombo" EmptyText="<%$Resources:Common, status %>">
                                             <Items>
-                                                <ext:ListItem Text="<%$Resources:Common, All %>" Value="0" />
+                                                <ext:ListItem Text="<%$Resources:Common, All %>"  Value="0" />
                                                 <ext:ListItem Text="<%$Resources:Common, Renew %>" Value="1" />
-                                                                                               
+                                                                                              
                                             </Items>
                                            
 

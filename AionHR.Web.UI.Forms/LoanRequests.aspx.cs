@@ -126,6 +126,7 @@ namespace AionHR.Web.UI.Forms
 
                
                 statusPref.Select("0");
+                ldMethod.Select("0");
                 c.Format = cc.Format = date.Format= effectiveDate.Format= _systemService.SessionHelper.GetDateformat();
                 //if (string.IsNullOrEmpty(Request.QueryString["employeeId"]))
                 //    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorOperation).Show();
@@ -371,6 +372,7 @@ namespace AionHR.Web.UI.Forms
                     CurrentAmountCurrency.Text = response.result.currencyRef;
                     currencyId.Select(response.result.currencyId.ToString());
                     status.Select(response.result.status.ToString());
+                    ldMethod.Select(response.result.ldMethod.ToString());
                     if (!string.IsNullOrEmpty(response.result.branchId))
                         branchId.Select(response.result.branchId);
                     loanComments_RefreshData(Convert.ToInt32(id));
@@ -752,6 +754,8 @@ namespace AionHR.Web.UI.Forms
             {
                 req.Status = 0;
             }
+            
+
             req.Size = "2000";
             req.StartAt = "1";
             req.Filter = "";
@@ -812,6 +816,8 @@ namespace AionHR.Web.UI.Forms
             // Define the object to add or edit as null
 
             b.employeeName = new EmployeeName();
+            //if (ldMethodCom.SelectedItem != null)
+            //    b.ldMethod = ldMethodCom.SelectedItem.Value; 
             if (employeeId.SelectedItem != null)
                 b.employeeName.fullName = employeeId.SelectedItem.Text;
 
@@ -914,6 +920,7 @@ namespace AionHR.Web.UI.Forms
                         record.Set("employeeName", b.employeeName);
                         
                         record.Set("branchName", b.branchName);
+                   
                         record.Commit();
                         Notification.Show(new NotificationConfig
                         {

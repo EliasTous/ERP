@@ -438,6 +438,9 @@
     <EmbeddedResource Include="RelationshipTypesReport.resx">
       <DependentUpon>RelationshipTypesReport.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="RightToWork.ar.resx">
+      <DependentUpon>RightToWork.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="RightToWork.resx">
       <DependentUpon>RightToWork.cs</DependentUpon>
     </EmbeddedResource>

@@ -2168,7 +2168,8 @@
                     runat="server"
                     Icon="ApplicationSideList"
                     DefaultAnchor="100%"
-                    BodyPadding="5">
+                    BodyPadding="5"
+                     Title="<%$ Resources:AlternateWeeksWindow %>" >
                     <Items>
                         
                         <ext:DateField runat="server" AllowBlank="false" ID="DateField1" Name="dateFrom" FieldLabel="<%$ Resources:From %>" />

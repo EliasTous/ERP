@@ -177,4 +177,13 @@
   <data name="EmployeePercentage" xml:space="preserve">
     <value>Employee Percentage</value>
   </data>
+  <data name="ceiling" xml:space="preserve">
+    <value>Ceiling</value>
+  </data>
+  <data name="EditSocialSecuritySetupWindowTitle" xml:space="preserve">
+    <value>Social Security Schedule Setup</value>
+  </data>
+  <data name="payCode" xml:space="preserve">
+    <value>Pay Code</value>
+  </data>
 </root>

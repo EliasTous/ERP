@@ -40,8 +40,9 @@
         <ext:Hidden ID="titleSavingError" runat="server" Text="<%$ Resources:Common , TitleSavingError %>" />
         <ext:Hidden ID="titleSavingErrorMessage" runat="server" Text="<%$ Resources:Common , TitleSavingErrorMessage %>" />
         <ext:Hidden ID="ScheduleID" runat="server" />
-        <ext:Hidden ID="SocailSecuritySchedulesId" runat="server"
-            /> 
+        <ext:Hidden ID="SocailSecurityrecordId" runat="server" /> 
+        <ext:Hidden ID="SocailSecurityseqId" runat="server" text="0"/> 
+
        
 
         <ext:Store
@@ -298,20 +299,22 @@
                             BodyPadding="5">
                             <Items>
                                 <ext:TextField ID="recordId" runat="server" Name="recordId" Hidden="true" />
-                                <ext:TextField  ID="name" runat="server" FieldLabel="<%$ Resources:FieldName%>" Name="name" AllowBlank="false" LabelWidth="160" />
-                                <ext:NumberField Width="400" AllowBlank="false" runat="server" LabelWidth="160" ID="lcoPct" Name="coPct" FieldLabel="<%$ Resources: CompanyPercentage %>" MinValue="0" MaxValue="100"/>
-                                 <ext:NumberField Width="400" AllowBlank="false" runat="server" LabelWidth="160" ID="lemPct" Name="emPct" FieldLabel="<%$ Resources: EmployeePercentage %>" MinValue="0"  MaxValue="100" />
+                                <ext:TextField  ID="name" runat="server" FieldLabel="<%$ Resources:FieldName%>" Name="name" AllowBlank="false" LabelWidth="160" ReadOnly="false" />
+                                <ext:NumberField Width="400" AllowBlank="true" runat="server" LabelWidth="160" ID="lcoPct" Name="coPct" FieldLabel="<%$ Resources: CompanyPercentage %>" MinValue="0" MaxValue="100" ReadOnly="true"/>
+                                 <ext:NumberField Width="400" AllowBlank="true" runat="server" LabelWidth="160" ID="lemPct" Name="emPct" FieldLabel="<%$ Resources: EmployeePercentage %>" MinValue="0"  MaxValue="100" ReadOnly="true" />
                                   
                                 <%--<ext:TextField ID="intName" runat="server" FieldLabel="<%$ Resources:IntName%>" Name="intName"   AllowBlank="false"/>--%>
                             </Items>
+                            
 
                         </ext:FormPanel>
+                        
                         <ext:GridPanel 
                     ID="socialSetupGrid" AutoUpdateLayout="true" Collapsible="true"
                     runat="server"
                     PaddingSpec="0 0 1 0"
                     Header="true"
-                    Title="socialSetupGridTitle "
+                    Title="<%$ Resources:EditSocialSecuritySetupWindowTitle %> "
                     Layout="FitLayout"
                     Flex="1"
                     Scroll="Vertical"
@@ -324,7 +327,7 @@
                             runat="server"
                             RemoteSort="False"
                             RemoteFilter="true"
-                            OnReadData="socialSetupStore_Refresh"
+                                   OnReadData="socialSetupStore_RefreshData"
                             PageSize="50" IDMode="Explicit" Namespace="App">
                             <Proxy>
                                 <ext:PageProxy>
@@ -334,7 +337,7 @@
                                 </ext:PageProxy>
                             </Proxy>
                             <Model>
-                                <ext:Model ID="Model2" runat="server" IDProperty="ssId" >
+                                <ext:Model ID="Model2" runat="server"  >
                                     <Fields>
 
                                         <ext:ModelField Name="ssId" />
@@ -353,7 +356,7 @@
                                 </ext:Model>
                             </Model>
                             <Sorters>
-                                <ext:DataSorter Property="ssId" Direction="ASC" />
+                                <ext:DataSorter  Direction="ASC" />
                             </Sorters>
                         </ext:Store>
                     </Store>
@@ -395,11 +398,11 @@
                             <ext:Column  ID="seqNoCol" Visible="false" MenuDisabled="true" runat="server" Text=" seqNoCol " DataIndex="seqNoCol" Hideable="false" Flex="1" Align="Center"/>
                             
 
-                            <ext:Column ID="payCodeCol" MenuDisabled="true" runat="server" Text=" payCodeCol " DataIndex="payCode" Hideable="false" Flex="1" Align="Center" />
-                               <ext:Column ID="nameCol" MenuDisabled="true" runat="server" Text=" name " DataIndex="name" Hideable="false" Flex="1" Align="Center" />
-                             <ext:Column ID="coPctCol" MenuDisabled="true" runat="server" Text=" coPct " DataIndex="coPct" Hideable="false" Flex="1" Align="Center" />
-                            <ext:Column ID="emPctCol" MenuDisabled="true" runat="server" Text=" emPct " DataIndex="emPct" Hideable="false" Flex="1" Align="Center" />
-                            <ext:Column ID="ceiling" MenuDisabled="true" runat="server" Text=" ceiling " DataIndex="ceiling" Hideable="false" Flex="1" Align="Center" />
+                            <ext:Column ID="payCodeCol" MenuDisabled="true" runat="server" Text="<%$ Resources:payCode%>" DataIndex="payCode" Hideable="false" Flex="1" Align="Center" />
+                               <ext:Column ID="nameCol" MenuDisabled="true" runat="server" Text="<%$ Resources:FieldName%> " DataIndex="name" Hideable="false" Flex="1" Align="Center" />
+                             <ext:Column ID="coPctCol" MenuDisabled="true" runat="server" Text=" <%$ Resources:CompanyPercentage%> " DataIndex="coPct" Hideable="false" Flex="1" Align="Center" />
+                            <ext:Column ID="emPctCol" MenuDisabled="true" runat="server" Text=" <%$ Resources:EmployeePercentage%> " DataIndex="emPct" Hideable="false" Flex="1" Align="Center" />
+                            <ext:Column ID="ceiling" MenuDisabled="true" runat="server" Text="<%$ Resources:ceiling%> " DataIndex="ceiling" Hideable="false" Flex="1" Align="Center" />
                                
                                    
 
@@ -468,7 +471,7 @@
                         <CellClick OnEvent="PoPuPSocialSetup">
                             <EventMask ShowMask="true" />
                             <ExtraParams>
-                                <ext:Parameter Name="id" Value="record.getId()" Mode="Raw" />
+                                <ext:Parameter Name="id" Value="record.data['ssId']"  Mode="Raw" />
                                 <ext:Parameter Name="seqNo" Value="record.data['seqNo']" Mode="Raw" />
                                 <ext:Parameter Name="type" Value="getCellType( this, rowIndex, cellIndex)" Mode="Raw" />
                             </ExtraParams>
@@ -488,6 +491,7 @@
 
                     </Items>
                 </ext:TabPanel>
+            
             </Items>
             <Buttons>
                 <ext:Button ID="SaveButton" runat="server" Text="<%$ Resources:Common, Save %>" Icon="Disk">
@@ -517,7 +521,7 @@
             ID="EditSocialSecuritySetupWindow"
             runat="server"
             Icon="PageEdit"
-            Title="EditSocialSecuritySetupWindowTitle"
+            Title=" <%$ Resources:EditSocialSecuritySetupWindowTitle %>"
             Width="400"
             Height="300"
             AutoShow="false"
@@ -537,7 +541,7 @@
                         <ext:FormPanel
                             ID="socialSetupForm" DefaultButton="saveSocialbutton"
                             runat="server"
-                            Title=" EditBOWindowTitle"
+                            Title="<%$ Resources:EditSocialSecuritySetupWindowTitle %>"
                             Icon="ApplicationSideList"
                             DefaultAnchor="100%" Layout="AutoLayout"
                             BodyPadding="5">
@@ -545,11 +549,11 @@
 
                                 <ext:TextField ID="ssIdTF" Hidden="true" runat="server" FieldLabel="ssIdTF"  Name="ssId" />
                                  <ext:TextField ID="seqNoTF" Hidden="true" runat="server" FieldLabel="seqNoTF" Name="seqNo" />
-                                <ext:TextField ID="payCodeTF" Hidden="false" runat="server" FieldLabel="payCodeTF" Name="payCode" LabelWidth="160" />
-                                <ext:TextField ID="nameTF" Hidden="false" runat="server" FieldLabel="nameTF" Name="name" LabelWidth="160" />
-                                  <ext:NumberField Width="400" AllowBlank="false" runat="server" LabelWidth="160" ID="coPctNF" Name="coPct" FieldLabel="<%$ Resources: CompanyPercentage %>" MinValue="0" MaxValue="100" />
+                                <ext:TextField ID="payCodeTF" Hidden="false" runat="server" FieldLabel=" <%$ Resources:payCode %>" Name="payCode" LabelWidth="160"  MaxLength="4" AllowBlank="false"/>
+                                <ext:TextField ID="nameTF" Hidden="false" runat="server" FieldLabel="<%$ Resources: FieldName %>" Name="name" LabelWidth="160" AllowBlank="false"/>
+                                 <ext:NumberField Width="400" AllowBlank="false" runat="server" LabelWidth="160" ID="coPctNF" Name="coPct" FieldLabel="<%$ Resources: CompanyPercentage %>" MinValue="0" MaxValue="100" />
                                  <ext:NumberField  Width="400" AllowBlank="false" runat="server" LabelWidth="160" ID="emPctNF" Name="emPct" FieldLabel="<%$ Resources: EmployeePercentage %>" MinValue="0"  MaxValue="100" />
-                                 <ext:NumberField  Width="400" AllowBlank="false" runat="server" LabelWidth="160" ID="ceilingTF" Name="ceiling" FieldLabel="ceilingTF" />
+                                 <ext:NumberField  Width="400" AllowBlank="false" runat="server" LabelWidth="160" ID="ceilingTF" Name="ceiling" FieldLabel="<%$ Resources:ceiling %>" />
                                  
                                
 

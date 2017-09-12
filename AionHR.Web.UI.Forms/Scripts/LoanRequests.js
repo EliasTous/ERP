@@ -88,6 +88,27 @@ function GetStatusName(index) {
         default: break;
     }
 }
+function GetldMethodName(index) {
+    switch (index) {
+        case "1": case 1:
+            return document.getElementById("PFromNetSalary").value;
+            break;
+        case "2": case 2:
+            return document.getElementById("PFromBasicSalary").value;
+            break;
+        case "3": case 3:
+            return document.getElementById("PFromLoan").value;
+            break;
+        case "4": case 4:
+            return document.getElementById("FixedAmount").value;
+            break;
+        case "5": case 5:
+            return document.getElementById("FixedPayment").value;
+            break;
+
+        default: break;
+    }
+}
 
 var validateSave = function () {
     var plugin = this.editingPlugin;

@@ -1011,4 +1011,7 @@
   <data name="Renew" xml:space="preserve">
     <value>Renew</value>
   </data>
+  <data name="RT2041" xml:space="preserve">
+    <value>RightToWork</value>
+  </data>
 </root>

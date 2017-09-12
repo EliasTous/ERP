@@ -213,6 +213,27 @@
   <data name="FilterStatus" xml:space="preserve">
     <value>اختر الحالة</value>
   </data>
+  <data name="FixedAmount" xml:space="preserve">
+    <value>قيمة ثابتة</value>
+  </data>
+  <data name="FixedPayment" xml:space="preserve">
+    <value>دفعة ثابتة</value>
+  </data>
+  <data name="LoanCoverageType" xml:space="preserve">
+    <value>تغطية السلفة </value>
+  </data>
+  <data name="PaymentValue" xml:space="preserve">
+    <value>قيمة الدفعة</value>
+  </data>
+  <data name="PFromBasicSalary" xml:space="preserve">
+    <value>نسبة مئوية من الراتب الأساسي</value>
+  </data>
+  <data name="PFromLoan" xml:space="preserve">
+    <value>نسبة مئوية من السلفة</value>
+  </data>
+  <data name="PFromNetSalary" xml:space="preserve">
+    <value>نسبة مئوية من الراتب النهائي</value>
+  </data>
   <data name="WindowTitle" xml:space="preserve">
     <value>السلف</value>
   </data>

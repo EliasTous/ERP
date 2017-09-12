@@ -11,12 +11,13 @@ namespace AionHR.Model.Reports
     [ClassIdentifier("80109", "80")]
     public class RT109
     {
+        public string expiryDateStringFormat { get; set; }
 
         public EmployeeName employeeName
         {
             get; set;
         }
-
+       
         public DateTime expiryDate
         {
             set;

@@ -267,4 +267,13 @@
   <data name="NoDays" xml:space="preserve">
     <value>لم يتم العثور على أيام في السنة الحالية </value>
   </data>
+  <data name="AlternateWeeksWindow" xml:space="preserve">
+    <value>تناوب الاسابيع </value>
+  </data>
+  <data name="Schedule1" xml:space="preserve">
+    <value>جدول العمل الأول</value>
+  </data>
+  <data name="Schedule2" xml:space="preserve">
+    <value>جدول العمل الثاني </value>
+  </data>
 </root>

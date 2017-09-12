@@ -1037,13 +1037,7 @@
                         <LoadMask ShowMask="true" />
                     </Loader>
                 </ext:Panel>
-                 <ext:Panel runat="server" Layout="FitLayout" Title="<%$ Resources: EmployeeCalenderTab %>" ID="Panel9" DefaultAnchor="100%">
-                    <Loader runat="server" Url="EmployeePages/EmployeeCalendars.aspx" Mode="Frame" ID="Loader9" TriggerEvent="show"
-                        ReloadOnEvent="true"
-                        DisableCaching="true">
-                        <LoadMask ShowMask="true" />
-                    </Loader>
-                </ext:Panel>
+                
                 <ext:Panel runat="server" Layout="FitLayout" Title="<%$ Resources: PayrollTab %>" ID="Panel1" DefaultAnchor="100%">
                     <Loader runat="server" Url="EmployeePages/Payroll.aspx" Mode="Frame" ID="Loader1" TriggerEvent="show"
                         ReloadOnEvent="true"
@@ -1090,6 +1084,13 @@
                 </ext:Panel>
                 <ext:Panel runat="server" Layout="FitLayout" Title="<%$ Resources: Dependants %>" ID="Panel8" DefaultAnchor="100%">
                     <Loader runat="server" Url="EmployeePages/Dependants.aspx" Mode="Frame" ID="Loader8" TriggerEvent="show"
+                        ReloadOnEvent="true"
+                        DisableCaching="true">
+                        <LoadMask ShowMask="true" />
+                    </Loader>
+                </ext:Panel>
+                 <ext:Panel runat="server" Layout="FitLayout" Title="<%$ Resources: EmployeeCalenderTab %>" ID="Panel9" DefaultAnchor="100%">
+                    <Loader runat="server" Url="EmployeePages/EmployeeCalendars.aspx" Mode="Frame" ID="Loader9" TriggerEvent="show"
                         ReloadOnEvent="true"
                         DisableCaching="true">
                         <LoadMask ShowMask="true" />

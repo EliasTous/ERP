@@ -14,7 +14,7 @@
     <link rel="stylesheet" type="text/css" href="CSS/Common.css" />
 
     <link rel="stylesheet" href="CSS/LiveSearch.css" />
-    <script type="text/javascript" src="Scripts/LoanRequests.js?id=1"></script>
+    <script type="text/javascript" src="Scripts/LoanRequests.js"></script>
 
 
     <script type="text/javascript" src="Scripts/common.js"></script>
@@ -52,6 +52,11 @@
         <ext:Hidden ID="CurrentLanguage" runat="server" />
         <ext:Hidden ID="CurrentAmountCurrency" runat="server" />
         <ext:Hidden ID="CurrentEmployee" runat="server" />
+        <ext:Hidden ID="PFromNetSalary" Text="<%$ Resources: PFromNetSalary %>" runat="server" />
+        <ext:Hidden ID="PFromBasicSalary" Text="<%$ Resources: PFromBasicSalary %>" runat="server"/>
+        <ext:Hidden ID="PFromLoan" Text="<%$ Resources: PFromLoan %>" runat="server"  />
+        <ext:Hidden ID="FixedAmount" Text="<%$ Resources: FixedAmount %>"  runat="server"  />
+        <ext:Hidden ID="FixedPayment" Text="<%$ Resources: FixedPayment %>"  runat="server" />
 
         <ext:Store
             ID="Store1"
@@ -86,6 +91,8 @@
                         <ext:ModelField Name="ltName" />
                         <ext:ModelField Name="currencyRef" />
                         <ext:ModelField Name="deductedAmount" />
+                         <ext:ModelField Name="ldMethod" />
+                         <ext:ModelField Name="ldValue" />
                         <ext:ModelField Name="employeeName" IsComplex="true" />
                     </Fields>
                 </ext:Model>
@@ -149,7 +156,7 @@
                                 </ext:Container>
                                 <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" ID="statusPref" Editable="false" EmptyText="<%$ Resources: FilterStatus %>">
                                     <Items>
-                                        <ext:ListItem Text="<%$ Resources: All %>" Value="0" />
+                                        <ext:ListItem Text="<%$ Resources: All %>" Value="0"  />
                                         <ext:ListItem Text="<%$ Resources: FieldNew %>" Value="1" />
                                         <ext:ListItem Text="<%$ Resources: FieldInProcess %>" Value="2" />
                                         <ext:ListItem Text="<%$ Resources: FieldApproved %>" Value="3" />
@@ -226,7 +233,13 @@
 
                             <ext:DateColumn ID="cc" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEffectiveDate %>" DataIndex="effectiveDate" Hideable="false" Width="120" Align="Center">
                             </ext:DateColumn>
+                             <ext:Column ID="ldMethodCo" DataIndex="ldMethod " Text="<%$ Resources: LoanCoverageType %>" runat="server" Flex="2"   >
+                                 <Renderer Handler="return GetldMethodName(record.data['ldMethod']);" />
+                                 </ext:Column>
 
+                             <ext:Column ID="ldValueCo" DataIndex="ldValue" Text="<%$ Resources: PaymentValue %>" runat="server" Flex="2" />
+                             
+                           
 
 
 
@@ -343,7 +356,7 @@
             Icon="PageEdit"
             Title="<%$ Resources:EditWindowsTitle %>"
             Width="600"
-            Height="500"
+            Height="525"
             AutoShow="false"
             Modal="true"
             Hidden="true"
@@ -511,7 +524,7 @@
                                 <ext:TextArea ID="purpose" runat="server" FieldLabel="<%$ Resources:FieldPurpose%>" Name="purpose" AllowBlank="false" />
                                  <ext:TextField ID="purposeField" InputType="Password" Visible="false" runat="server" FieldLabel="<%$ Resources:FieldPurpose%>" Name="purpose" AllowBlank="false" />
                                 <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" ID="status" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1"
-                                    FieldLabel="<%$ Resources: FieldStatus %>" AllowBlank="false">
+                                    FieldLabel="<%$ Resources: FieldStatus %>" AllowBlank="false" SubmitValue="true">
                                     <Items>
                                         <ext:ListItem Text="<%$ Resources: FieldNew %>" Value="1" />
                                         <ext:ListItem Text="<%$ Resources: FieldInProcess %>" Value="2" />
@@ -529,6 +542,24 @@
                         <ext:ConfigItem Name="startDateField" Value="date" Mode="Value" />
                     </CustomConfig>
                                     </ext:DateField>
+                                
+                                        <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" ID="ldMethod" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1"
+                                    FieldLabel="<%$ Resources: LoanCoverageType %>" AllowBlank="false" SubmitValue="true">
+                                    <Items>
+                                       
+                                              
+                                                <ext:ListItem Text="<%$ Resources: PFromNetSalary %>" Value="1"  />
+                                                <ext:ListItem Text="<%$ Resources: PFromBasicSalary %>" Value="2"  />
+                                                <ext:ListItem Text="<%$ Resources: PFromLoan %>" Value="3" />
+                                                <ext:ListItem Text="<%$ Resources: FixedAmount %>" Value="4"  />
+                                                <ext:ListItem Text="<%$ Resources: FixedPayment %>" Value="5" />
+
+                                            </Items>
+                                           <Listeners>
+
+                                           </Listeners>
+                                        </ext:ComboBox>
+                                        <ext:NumberField Width="400"  runat="server"  ID="ldValue" Name="ldValue" FieldLabel="<%$ Resources: PaymentValue %>" MinValue="0" MaxValue="100" AllowBlank="false" />
 
 
                             </Items>

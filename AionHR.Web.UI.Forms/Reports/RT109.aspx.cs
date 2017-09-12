@@ -59,9 +59,10 @@ namespace AionHR.Web.UI.Forms.Reports
         protected void Page_Load(object sender, EventArgs e)
         {
 
-            statusCombo.Value = "0";
             if (!X.IsAjaxRequest && !IsPostBack)
             {
+
+                statusCombo.Select(0);
 
                 SetExtLanguage();
                 HideShowButtons();
@@ -228,8 +229,16 @@ namespace AionHR.Web.UI.Forms.Reports
                 }
             }
 
-
-
+           
+            resp.Items.ForEach(s =>
+            {
+           
+                s.expiryDateStringFormat = s.expiryDate.ToString(_systemService.SessionHelper.GetDateformat());
+                
+                
+              
+            }
+            );
             RightToWork h = new RightToWork();
             h.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;
             h.RightToLeftLayout = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeftLayout.Yes : DevExpress.XtraReports.UI.RightToLeftLayout.No;
@@ -309,8 +318,8 @@ namespace AionHR.Web.UI.Forms.Reports
 
         protected void ASPxCallbackPanel1_Load(object sender, EventArgs e)
         {
-            ASPxWebDocumentViewer1.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.Utils.DefaultBoolean.True : DevExpress.Utils.DefaultBoolean.False;
-            FillReport(true);
+          // ASPxWebDocumentViewer1.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.Utils.DefaultBoolean.True : DevExpress.Utils.DefaultBoolean.False;
+           // FillReport(true);
         }
         public RightToworkReportParameter getStatus()
         {

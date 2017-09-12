@@ -14,7 +14,7 @@ namespace AionHR.Model.Payroll
       [ PropertyID("51014_1")]
         [ApplySecurity]
         public string name { get; set; }
-        public double coPct { get; set; }
-        public double emPct { get; set; }
+        public double? coPct { get; set; }
+        public double? emPct { get; set; }
     }
 }

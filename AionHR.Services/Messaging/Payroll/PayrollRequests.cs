@@ -130,3 +130,24 @@ public class SocialSecurityScheduleSetupRequest:RecordRequest
     }
 
 }
+public class SocialSecurityScheduleSetupListRequest : ListRequest
+{
+    public int ssId { set; get; }
+   
+
+    private Dictionary<string, string> parameters;
+    public override Dictionary<string, string> Parameters
+    {
+        get
+        {
+            parameters = new Dictionary<string, string>();
+            parameters.Add("_ssId", ssId.ToString());
+           
+
+
+            return parameters;
+        }
+    }
+
+}
+
