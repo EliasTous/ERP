@@ -20,17 +20,17 @@ namespace Reports
 
         private void DetailReport1_BeforePrint(object sender, System.Drawing.Printing.PrintEventArgs e)
         {
-            e.Cancel = RowCount > 0;
+            e.Cancel = RowCount == 0;
         }
 
         private void DetailReport2_BeforePrint(object sender, System.Drawing.Printing.PrintEventArgs e)
         {
-            e.Cancel = RowCount > 0;
+            e.Cancel = RowCount == 0;
         }
 
         private void DetailReport4_BeforePrint(object sender, System.Drawing.Printing.PrintEventArgs e)
         {
-            e.Cancel = RowCount > 0;
+            e.Cancel = RowCount == 0;
         }
     }
 }

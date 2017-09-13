@@ -190,7 +190,7 @@ namespace AionHR.Web.UI.Forms.Reports
                 }
             }
 
-            var d = resp.Items.GroupBy(x => x.seqNo);
+            var d = resp.Items.GroupBy(x => x.employeeName.reference);
             CurrentPayrollLineCollection lines = new CurrentPayrollLineCollection();
             HashSet<CurrentEntitlementDeduction> ens = new HashSet<CurrentEntitlementDeduction>(new CurrentEntitlementDeductionComparer());
             HashSet<CurrentEntitlementDeduction> des = new HashSet<CurrentEntitlementDeduction>(new CurrentEntitlementDeductionComparer());

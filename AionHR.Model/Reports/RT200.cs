@@ -187,7 +187,7 @@ namespace AionHR.Model.Reports
         public string departmentName { get; set; }
         public string countryName { get; set; }
 
-        public int seqNo { get; set; }
+        //public int seqNo { get; set; }
 
         public double eAmount { get; set; }
         public double dAmount { get; set; }
