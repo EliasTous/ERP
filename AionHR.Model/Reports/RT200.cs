@@ -112,7 +112,7 @@ namespace AionHR.Model.Reports
 
         public double DeductionsTotal { get { return deductions.Sum(x => x.amount); } }
 
-        public double NetSalary { get { return basicAmount + EntitlementsTotal + DeductionsTotal; } }
+        public double NetSalary { get { return basicAmount + EntitlementsTotal - DeductionsTotal; } }
 
         public void AddEn(CurrentEntitlementDeduction en)
         {
@@ -134,6 +134,10 @@ namespace AionHR.Model.Reports
 
             if (details.Count > 0)
             {
+                basicAmount = details[0].basicAmount;
+                branchName = details[0].branchName;
+                departmentName = details[0].departmentName;
+                countryName = details[0].countryName;
                 name = details[0].employeeName.fullName;
                 currencyRef = details[0].currencyRef;
             }
@@ -188,6 +192,8 @@ namespace AionHR.Model.Reports
         public string countryName { get; set; }
 
         //public int seqNo { get; set; }
+
+        public double basicAmount { get; set; }
 
         public double eAmount { get; set; }
         public double dAmount { get; set; }
