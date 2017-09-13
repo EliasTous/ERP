@@ -159,9 +159,6 @@
   <data name="BottomMargin.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v16.2">
     <value>TopLeft</value>
   </data>
-  <metadata name="objectDataSource1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
   <data name="Branch.Description" xml:space="preserve">
     <value>Parameter1</value>
   </data>
@@ -411,6 +408,9 @@
   <data name="Detail1.HeightF" type="System.Single, mscorlib">
     <value>23.9583473</value>
   </data>
+  <metadata name="objectDataSource1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
   <data name="DetailReport.Dpi" type="System.Single, mscorlib">
     <value>100</value>
   </data>
