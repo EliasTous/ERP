@@ -1014,4 +1014,7 @@
   <data name="RT200" xml:space="preserve">
     <value>الرواتب الحالية</value>
   </data>
+  <data name="RT2001" xml:space="preserve">
+    <value>رواتب الحالية </value>
+  </data>
 </root>
