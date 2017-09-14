@@ -952,6 +952,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Final Settlements.
+        /// </summary>
+        internal static string FinalSettlements {
+            get {
+                return ResourceManager.GetString("FinalSettlements", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to First Name , Last Name.
         /// </summary>
         internal static string FirstNameLastName {

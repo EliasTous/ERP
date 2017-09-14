@@ -48,6 +48,7 @@
     <ext:Hidden runat="server" ID="gfTitle" Text="<%$Resources:Common , Geofences %>" />
     <ext:Hidden runat="server" ID="vsTitle" Text="<%$Resources:Common , VacationSchedules %>" />
     <ext:Hidden runat="server" ID="pyye" Text="<%$Resources:Common , FiscalYears %>" />
+    <ext:Hidden runat="server" ID="pyfs" Text="<%$Resources:Common , FinalSettlements %>" />
     <ext:Hidden runat="server" ID="ltTitle" Text="<%$Resources:Common , LeaveTypes %>" />
     <ext:Hidden runat="server" ID="loTitle" Text="<%$Resources:Common , LoanOverrides %>" />
     <ext:Hidden runat="server" ID="PYTSTitle" Text="<%$Resources:Common , TimeSchedule %>" />
@@ -470,6 +471,11 @@
                                                         <ext:MenuItem runat="server" Text="<%$Resources: Common , FiscalYears%>">
                                                             <Listeners>
                                                                 <Click Handler="openNewTab('fiscalYears', 'FiscalYears.aspx', #{pyye}.value, 'icon-Employees')" />
+                                                            </Listeners>
+                                                        </ext:MenuItem>
+                                                        <ext:MenuItem runat="server" Text="<%$Resources: Common ,FinalSettlements %>">
+                                                            <Listeners>
+                                                                <Click Handler="openNewTab('FinalSettlements', 'FinalSettlements.aspx', #{pyfs}.value, 'icon-Employees')" />
                                                             </Listeners>
                                                         </ext:MenuItem>
                                                         <ext:MenuItem runat="server" Text="<%$Resources: Common , LoanSync%>">

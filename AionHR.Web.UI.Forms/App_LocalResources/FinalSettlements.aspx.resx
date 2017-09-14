@@ -117,31 +117,31 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="leaveType0" xml:space="preserve">
-    <value>Personal</value>
+  <data name="BasicInfoTabEditWindowTitle" xml:space="preserve">
+    <value>Overtime Setting</value>
   </data>
-  <data name="leaveType1" xml:space="preserve">
-    <value>Business</value>
+  <data name="DateFrom" xml:space="preserve">
+    <value>From</value>
   </data>
-  <data name="Paid0" xml:space="preserve">
-    <value>No</value>
+  <data name="DateTo" xml:space="preserve">
+    <value>To</value>
   </data>
-  <data name="Paid1" xml:space="preserve">
-    <value>Yes</value>
+  <data name="Day" xml:space="preserve">
+    <value>Day</value>
   </data>
-  <data name="Status0" xml:space="preserve">
-    <value>N/A</value>
+  <data name="EditWindowsTitle" xml:space="preserve">
+    <value>Overtime Setting</value>
   </data>
-  <data name="Status1" xml:space="preserve">
-    <value>Pending</value>
+  <data name="FieldName" xml:space="preserve">
+    <value>Employee</value>
   </data>
-  <data name="Status2" xml:space="preserve">
-    <value>Approved</value>
+  <data name="MaximumOvertime" xml:space="preserve">
+    <value>Maximum Overtime</value>
   </data>
-  <data name="Status3" xml:space="preserve">
-    <value>Used</value>
+  <data name="MinimumOvertime" xml:space="preserve">
+    <value>Minimum Overtime</value>
   </data>
-  <data name="StatusRejected" xml:space="preserve">
-    <value>Rejected</value>
+  <data name="WindowTitle" xml:space="preserve">
+    <value>Overtime Settings</value>
   </data>
 </root>

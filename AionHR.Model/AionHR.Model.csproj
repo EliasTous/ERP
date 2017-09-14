@@ -102,6 +102,7 @@
     <Compile Include="MediaGallery\MediaItem.cs" />
     <Compile Include="ModelBase.cs" />
     <Compile Include="Payroll\EmployeePayroll.cs" />
+    <Compile Include="Payroll\FinalSettlement.cs" />
     <Compile Include="Payroll\FiscalPeriod.cs" />
     <Compile Include="Payroll\FiscalYear.cs" />
     <Compile Include="Payroll\GenerationHeader.cs" />
