@@ -1017,4 +1017,7 @@
   <data name="RT2001" xml:space="preserve">
     <value>رواتب الحالية </value>
   </data>
+  <data name="FinalSettlements" xml:space="preserve">
+    <value>Final Settlements</value>
+  </data>
 </root>

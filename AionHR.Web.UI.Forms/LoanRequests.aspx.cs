@@ -666,10 +666,22 @@ namespace AionHR.Web.UI.Forms
 
         protected void ADDNewRecord(object sender, DirectEventArgs e)
         {
+            BasicInfoTab.Reset();
+            ListRequest req = new ListRequest();
+            ListResponse<KeyValuePair<string, string>> defaults = _systemService.ChildGetAll<KeyValuePair<string, string>>(req);
+            if (!defaults.Success)
+            {
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, defaults.Summary).Show();
+                return;
+            }
+          
+            ldMethod.Select(defaults.Items.Where(s => s.Key == "ldMethod").First().Value);
+            ldValue.Text= defaults.Items.Where(s => s.Key == "ldValue").First().Value.ToString();
             caseCommentStore.DataSource = new List<CaseComment>();
             caseCommentStore.DataBind();
             //Reset all values of the relative object
-            BasicInfoTab.Reset();
+           
             this.EditRecordWindow.Title = Resources.Common.AddNewRecord;
             date.SelectedDate = DateTime.Now;
             panelRecordDetails.ActiveIndex = 0;

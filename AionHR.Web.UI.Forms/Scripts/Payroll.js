@@ -77,17 +77,17 @@ function getPaymentTypeString(index) {
 }
 function getPaymentMethodString(index) {
     switch (index) {
-        case "0":
-        case 0: return document.getElementById("PaymentMethodCash").value; break;
         case "1":
-        case 1: return document.getElementById("PaymentMethodBank").value; break;
+        case 1: return document.getElementById("PaymentMethodCash").value; break;
+        case "2":
+        case 2: return document.getElementById("PaymentMethodBank").value; break;
 
         default: return index;
     }
 }
 function TogglePaymentMethod(index) {
-    App.accountNumber.setDisabled(index == 0);
-    App.bankName.setDisabled(index == 0);
+    App.accountNumber.setDisabled(index == 1);
+    App.bankName.setDisabled(index == 1);
 
 }
 

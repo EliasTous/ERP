@@ -216,6 +216,7 @@
     <Content Include="Employees.aspx" />
     <Content Include="EmployeesOrgChart.aspx" />
     <Content Include="EntitlementDeductions.aspx" />
+    <Content Include="FinalSettlements.aspx" />
     <Content Include="FiscalYears.aspx" />
     <Content Include="Folders.aspx" />
     <Content Include="ForgotAccount.aspx" />
@@ -537,6 +538,13 @@
     </Compile>
     <Compile Include="EmployeePages\EmployeeCalendars.aspx.designer.cs">
       <DependentUpon>EmployeeCalendars.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="FinalSettlements.aspx.cs">
+      <DependentUpon>FinalSettlements.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="FinalSettlements.aspx.designer.cs">
+      <DependentUpon>FinalSettlements.aspx</DependentUpon>
     </Compile>
     <Compile Include="ImportDepartments.aspx.cs">
       <DependentUpon>ImportDepartments.aspx</DependentUpon>
@@ -1904,6 +1912,8 @@
     <Content Include="App_LocalResources\SocialSecuritySchedules.aspx.resx" />
     <Content Include="App_LocalResources\SocialSecuritySchedules.aspx.ar.resx" />
     <Content Include="App_LocalResources\Nationalities.aspx.ar.resx" />
+    <Content Include="App_LocalResources\FinalSettlements.aspx.resx" />
+    <Content Include="App_LocalResources\FinalSettlements.aspx.ar.resx" />
     <EmbeddedResource Include="Properties\licenses.licx" />
     <Content Include="Reports\App_LocalResources\RT202.aspx.resx" />
     <Content Include="Reports\App_LocalResources\RT01.aspx.ar.resx" />

@@ -9,7 +9,7 @@
     <title></title>
     <link rel="stylesheet" type="text/css" href="../CSS/Common.css?id=1" />
     <link rel="stylesheet" href="../CSS/LiveSearch.css" />
-    <script type="text/javascript" src="../Scripts/Payroll.js?id=39"></script>
+    <script type="text/javascript" src="../Scripts/Payroll.js?id=38"></script>
     <script type="text/javascript" src="../Scripts/common.js?id=0"></script>
 
 
@@ -572,8 +572,8 @@
 
                                         <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  LabelWidth="130" Width="275" AllowBlank="false" ID="paymentMethod" runat="server" FieldLabel="<%$ Resources:FieldPaymentMethod%>" Name="paymentMethod" IDMode="Static" SubmitValue="true">
                                             <Items>
-                                                <ext:ListItem Text="<%$ Resources: SalaryCash%>" Value="0"></ext:ListItem>
-                                                <ext:ListItem Text="<%$ Resources: SalaryBank%>" Value="1"></ext:ListItem>
+                                                <ext:ListItem Text="<%$ Resources: SalaryCash%>" Value="1"></ext:ListItem>
+                                                <ext:ListItem Text="<%$ Resources: SalaryBank%>" Value="2"></ext:ListItem>
                                             </Items>
                                             <Listeners>
                                                 <Select Handler="TogglePaymentMethod(this.value)" />
