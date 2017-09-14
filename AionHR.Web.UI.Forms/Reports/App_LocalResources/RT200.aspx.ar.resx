@@ -135,4 +135,10 @@
   <data name="PaidAt" xml:space="preserve">
     <value>دفع في</value>
   </data>
+  <data name="Taxable" xml:space="preserve">
+    <value>خاضع للتأمينات</value>
+  </data>
+  <data name="taxableeAmount" xml:space="preserve">
+    <value>مجموع الخاضع للتأمينات</value>
+  </data>
 </root>

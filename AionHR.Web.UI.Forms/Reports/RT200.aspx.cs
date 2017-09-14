@@ -204,18 +204,19 @@ namespace AionHR.Web.UI.Forms.Reports
             foreach (var item in d)
             {
                 var list = item.ToList();
-                CurrentPayrollLine line = new CurrentPayrollLine(ens, des, list, GetLocalResourceObject("eAmount").ToString(), GetLocalResourceObject("dAmount").ToString(), GetLocalResourceObject("netSalary").ToString());                
+                CurrentPayrollLine line = new CurrentPayrollLine(ens, des, list, GetLocalResourceObject("taxableeAmount").ToString(), GetLocalResourceObject("eAmount").ToString(), GetLocalResourceObject("dAmount").ToString(), GetLocalResourceObject("netSalary").ToString());                
                 lines.Add(line);
             }
 
             CurrentPayrollCollection s = new CurrentPayrollCollection();
             if (lines.Count > 0)
             {
-                CurrentPayrollSet p = new CurrentPayrollSet(GetLocalResourceObject("Entitlements").ToString(), GetLocalResourceObject("Deductions").ToString());
+                CurrentPayrollSet p = new CurrentPayrollSet(GetLocalResourceObject("Entitlements").ToString(), GetLocalResourceObject("Taxable").ToString(), GetLocalResourceObject("Deductions").ToString());
                 //p.PayPeriodString = resp.Items[0].startDate.ToString(_systemService.SessionHelper.GetDateformat()) + " - " + resp.Items[0].endDate.ToString(_systemService.SessionHelper.GetDateformat());
                 //p.PayDate = GetLocalResourceObject("PaidAt") + " " + resp.Items[0].payDate.ToString(_systemService.SessionHelper.GetDateformat());
                 p.Names = (lines[0] as CurrentPayrollLine).Entitlements;
                 p.DIndex = ens.Count;
+                p.taxableIndex = ens.Count(x => x.isTaxable);
                 p.Payrolls = lines;
                 s.Add(p);
             }
