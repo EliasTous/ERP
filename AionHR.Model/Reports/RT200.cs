@@ -20,6 +20,8 @@ namespace AionHR.Model.Reports
 
         public string AmountString { get; set; }
 
+        public bool isTaxable { get; set; }
+
         public override Boolean Equals(Object obj)
         {
             return (obj as CurrentEntitlementDeduction).name.ToLower() == name.ToLower();
@@ -90,7 +92,9 @@ namespace AionHR.Model.Reports
             get
             {
                 List<CurrentEntitlementDeduction> all = new List<CurrentEntitlementDeduction>();
-                all.AddRange(entitlements);
+                all.AddRange(entitlements.Where(x=>x.isTaxable));
+                all.Add(new CurrentEntitlementDeduction() { name = taxableTotalString, amount = TaxableEntitlementsTotal, AmountString = currencyRef + String.Format("{0:n0}", TaxableEntitlementsTotal) });
+                all.AddRange(entitlements.Where(x => !x.isTaxable));
                 all.Add(new CurrentEntitlementDeduction() { name = eAmountString, amount = EntitlementsTotal, AmountString = currencyRef + String.Format("{0:n0}", EntitlementsTotal) });
 
                 all.AddRange(deductions);
@@ -102,11 +106,13 @@ namespace AionHR.Model.Reports
 
         private string eAmountString;
         private string dAmountString;
+        private string taxableTotalString;
         private string netSalary;
-
+        
         public string currencyRef { get; set; }
 
-        public double EntitlementsTotal { get { return entitlements.Sum(x => x.amount); } }
+        public double EntitlementsTotal { get { return entitlements.Sum(x => x.isTaxable?0:x.amount ); } }
+        public double TaxableEntitlementsTotal { get { return entitlements.Sum(x => x.isTaxable ?  x.amount:0); } }
 
         public CurrentEntitlementDeductionCollection Deductions { get { return new CurrentEntitlementDeductionCollection(deductions); } }
 
@@ -119,13 +125,13 @@ namespace AionHR.Model.Reports
             entitlements[entitlements.IndexOf(en)].amount = en.amount;
             entitlements[entitlements.IndexOf(en)].AmountString = currencyRef + String.Format("{0:n0}", en.amount);
         }
-
+        
         public void AddDe(CurrentEntitlementDeduction de)
         {
             deductions[deductions.IndexOf(de)].amount = de.amount;
             deductions[deductions.IndexOf(de)].AmountString = currencyRef + String.Format("{0:n0}", de.amount);
         }
-        public CurrentPayrollLine(HashSet<CurrentEntitlementDeduction> en, HashSet<CurrentEntitlementDeduction> de, List<RT200> details, string eString, string dString, string netString)
+        public CurrentPayrollLine(HashSet<CurrentEntitlementDeduction> en, HashSet<CurrentEntitlementDeduction> de, List<RT200> details,string taxable, string eString, string dString, string netString)
         {
             entitlements = new List<CurrentEntitlementDeduction>();
             deductions = new List<CurrentEntitlementDeduction>();
@@ -153,6 +159,7 @@ namespace AionHR.Model.Reports
             eAmountString = eString;
             dAmountString = dString;
             netSalary = netString;
+            taxableTotalString = taxable;
         }
 
     }
@@ -202,6 +209,7 @@ namespace AionHR.Model.Reports
 
         public int paymentMethod { get; set; }
         public double edAmount { get; set; }
+        public bool isTaxable { get; set; }
 
         public string currencyRef { get; set; }
 
@@ -238,12 +246,14 @@ namespace AionHR.Model.Reports
             get
             {
                 List<CurrentEntitlementDeduction> l = new List<CurrentEntitlementDeduction>();
-                l.Add(new CurrentEntitlementDeduction() { name = EnString });
+                l.Add(new CurrentEntitlementDeduction() { name = taxableString });
                 for (int i = 0; i < Names.Count; i++)
                 {
-                    if (i == DIndex)
+                    if(i== taxableIndex)
+                        l.Add(new CurrentEntitlementDeduction() { name =EnString });
+                    else if (i == DIndex+1)
                         l.Add(new CurrentEntitlementDeduction() { name = DeString });
-
+                    
                     else
                         l.Add(new CurrentEntitlementDeduction());
 
@@ -253,6 +263,7 @@ namespace AionHR.Model.Reports
         }
 
         public int DIndex { get; set; }
+        public int taxableIndex { get; set; }
         public double TotalBasics
         {
             get
@@ -263,10 +274,12 @@ namespace AionHR.Model.Reports
         }
         private string EnString;
         private string DeString;
-        public CurrentPayrollSet(string entitlementsString, string deductionsString)
+        private string taxableString;
+        public CurrentPayrollSet(string entitlementsString,string taxable, string deductionsString)
         {
             EnString = entitlementsString;
             DeString = deductionsString;
+            taxableString = taxable;
         }
 
         public string branchName { get; set; }
