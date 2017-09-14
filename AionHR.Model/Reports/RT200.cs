@@ -118,11 +118,12 @@ namespace AionHR.Model.Reports
 
         public double DeductionsTotal { get { return deductions.Sum(x => x.amount); } }
 
-        public double NetSalary { get { return basicAmount + EntitlementsTotal - DeductionsTotal; } }
+        public double NetSalary { get { return basicAmount + EntitlementsTotal + TaxableEntitlementsTotal - DeductionsTotal; } }
 
         public void AddEn(CurrentEntitlementDeduction en)
         {
             entitlements[entitlements.IndexOf(en)].amount = en.amount;
+            entitlements[entitlements.IndexOf(en)].isTaxable = en.isTaxable;
             entitlements[entitlements.IndexOf(en)].AmountString = currencyRef + String.Format("{0:n0}", en.amount);
         }
         
@@ -150,9 +151,9 @@ namespace AionHR.Model.Reports
             foreach (var item in details)
             {
                 if (item.edType == 1)
-                    AddEn(new CurrentEntitlementDeduction() { amount = item.edAmount, name = item.edName });
+                    AddEn(new CurrentEntitlementDeduction() { amount = item.edAmount, name = item.edName, isTaxable=item.isTaxable });
                 else
-                    AddDe(new CurrentEntitlementDeduction() { amount = item.edAmount, name = item.edName });
+                    AddDe(new CurrentEntitlementDeduction() { amount = item.edAmount, name = item.edName , isTaxable=item.isTaxable});
 
 
             }
