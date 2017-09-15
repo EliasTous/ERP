@@ -197,7 +197,7 @@ namespace AionHR.Web.UI.Forms.Reports
             resp.Items.ForEach(x =>
             {
                 if (x.edType == 1)
-                    ens.Add(new CurrentEntitlementDeduction() { name = x.edName, amount = 0 });
+                    ens.Add(new CurrentEntitlementDeduction() { name = x.edName, amount = 0 , isTaxable = x.isTaxable});
                 else
                     des.Add(new CurrentEntitlementDeduction() { name = x.edName, amount = 0 });
             });
