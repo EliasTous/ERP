@@ -1111,15 +1111,6 @@ namespace AionHR.Web.UI.Forms.EmployeePages {
         protected global::Ext.Net.ComboBox entEdId;
         
         /// <summary>
-        /// Button10 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Button Button10;
-        
-        /// <summary>
         /// EnIncludeInTotal control.
         /// </summary>
         /// <remarks>
@@ -1262,15 +1253,6 @@ namespace AionHR.Web.UI.Forms.EmployeePages {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.ComboBox dedEdId;
-        
-        /// <summary>
-        /// Button9 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Button Button9;
         
         /// <summary>
         /// Checkbox1 control.

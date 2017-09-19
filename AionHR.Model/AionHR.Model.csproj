@@ -102,11 +102,13 @@
     <Compile Include="MediaGallery\MediaItem.cs" />
     <Compile Include="ModelBase.cs" />
     <Compile Include="Payroll\EmployeePayroll.cs" />
+    <Compile Include="Payroll\FinalEntitlementsDeductions.cs" />
     <Compile Include="Payroll\FinalSettlement.cs" />
     <Compile Include="Payroll\FiscalPeriod.cs" />
     <Compile Include="Payroll\FiscalYear.cs" />
     <Compile Include="Payroll\GenerationHeader.cs" />
     <Compile Include="Payroll\IPayrollRepository.cs" />
+    <Compile Include="Payroll\PayCode.cs" />
     <Compile Include="Payroll\PayrollEntitlementDeduction.cs" />
     <Compile Include="Payroll\SocialSecuritySchedule.cs" />
     <Compile Include="Payroll\SocialSecurityScheduleSetup.cs" />

@@ -144,4 +144,7 @@
   <data name="WindowTitle" xml:space="preserve">
     <value>Entitlement Deductions</value>
   </data>
+  <data name="isTaxable" xml:space="preserve">
+    <value>is Taxable</value>
+  </data>
 </root>

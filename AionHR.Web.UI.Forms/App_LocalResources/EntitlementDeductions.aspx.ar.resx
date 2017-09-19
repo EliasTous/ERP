@@ -144,4 +144,7 @@
   <data name="WindowTitle" xml:space="preserve">
     <value>الخصومات والاستحقاقات</value>
   </data>
+  <data name="isTaxable" xml:space="preserve">
+    <value>خاضع للتأمينات </value>
+  </data>
 </root>

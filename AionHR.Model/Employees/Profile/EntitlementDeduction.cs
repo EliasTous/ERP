@@ -20,5 +20,8 @@ namespace AionHR.Model.Employees.Profile
         [PropertyID("31061_03")]
         [ApplySecurity]
         public string paycodeRef { get; set; }
+        [PropertyID("31061_04")]
+        [ApplySecurity]
+        public bool isTaxable { get; set; }
     }
 }

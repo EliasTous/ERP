@@ -117,6 +117,12 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="BasicInfoTabEditWindowTitle" xml:space="preserve">
+    <value>معلومات العملة</value>
+  </data>
+  <data name="BOGridTitle" xml:space="preserve">
+    <value>الحوافز</value>
+  </data>
   <data name="DateFrom" xml:space="preserve">
     <value>من </value>
   </data>
@@ -126,11 +132,107 @@
   <data name="Day" xml:space="preserve">
     <value>اليوم</value>
   </data>
+  <data name="Deductions" xml:space="preserve">
+    <value>الخصومات</value>
+  </data>
+  <data name="DeductionsEntitlements" xml:space="preserve">
+    <value>الخصومات والاستحقاقات</value>
+  </data>
+  <data name="EditBOWindowTitle" xml:space="preserve">
+    <value>الحوافز</value>
+  </data>
+  <data name="EditSAWindowTitle" xml:space="preserve">
+    <value>تعديل الراتب</value>
+  </data>
   <data name="EditWindowsTitle" xml:space="preserve">
     <value>إعداد الوقت الاضافي</value>
   </data>
+  <data name="Entitlements" xml:space="preserve">
+    <value>الاستحقاقات</value>
+  </data>
+  <data name="ErrorWithPCTOf" xml:space="preserve">
+    <value>خطأ في مصدر حساب النسبة،سيتم الاعتماد على الراتب الأساسي في حساب نسبة الحسم</value>
+  </data>
+  <data name="FieldAccountNumber" xml:space="preserve">
+    <value>رقم الحساب</value>
+  </data>
+  <data name="FieldAmount" xml:space="preserve">
+    <value>المبلغ</value>
+  </data>
+  <data name="FieldBankName" xml:space="preserve">
+    <value>اسم البنك</value>
+  </data>
+  <data name="FieldBasicAmount" xml:space="preserve">
+    <value>الراتب الأساسي</value>
+  </data>
+  <data name="FieldBTName" xml:space="preserve">
+    <value>نوع الحافز</value>
+  </data>
+  <data name="FieldComment" xml:space="preserve">
+    <value>التعليق</value>
+  </data>
+  <data name="FieldComments" xml:space="preserve">
+    <value>التعليقات</value>
+  </data>
+  <data name="FieldDate" xml:space="preserve">
+    <value>التاريخ</value>
+  </data>
+  <data name="FieldDeduction" xml:space="preserve">
+    <value>الخصم</value>
+  </data>
+  <data name="FieldEffectiveDate" xml:space="preserve">
+    <value>التاريخ</value>
+  </data>
+  <data name="FieldEntitlement" xml:space="preserve">
+    <value>الاستحقاق</value>
+  </data>
+  <data name="FieldFinalAmount" xml:space="preserve">
+    <value>المبلغ النهائي</value>
+  </data>
+  <data name="FieldFixedAmount" xml:space="preserve">
+    <value>المبلغ</value>
+  </data>
+  <data name="FieldIncludeInTotal" xml:space="preserve">
+    <value>يحسب ضمن الإجمالي</value>
+  </data>
+  <data name="FieldIsPercentage" xml:space="preserve">
+    <value>نسبة مئوية؟</value>
+  </data>
+  <data name="FieldIsTaxable" xml:space="preserve">
+    <value>خاضع للتأمينات؟</value>
+  </data>
   <data name="FieldName" xml:space="preserve">
     <value>الموظف</value>
+  </data>
+  <data name="FieldName1" xml:space="preserve">
+    <value>الاسم</value>
+  </data>
+  <data name="FieldPaymentFrequency" xml:space="preserve">
+    <value>طريقة حساب الراتب</value>
+  </data>
+  <data name="FieldPaymentMethod" xml:space="preserve">
+    <value>آلية الدفع</value>
+  </data>
+  <data name="FieldPCT" xml:space="preserve">
+    <value>النسبة المئوية</value>
+  </data>
+  <data name="FieldPctOf" xml:space="preserve">
+    <value>نسبة من</value>
+  </data>
+  <data name="FieldRecordId" xml:space="preserve">
+    <value>الرقم</value>
+  </data>
+  <data name="FieldReference" xml:space="preserve">
+    <value>الرمز</value>
+  </data>
+  <data name="FieldSACurrencyName" xml:space="preserve">
+    <value>العملة</value>
+  </data>
+  <data name="FieldSalaryType" xml:space="preserve">
+    <value>نوع الراتب</value>
+  </data>
+  <data name="FieldScrName" xml:space="preserve">
+    <value>سبب تغيير الراتب</value>
   </data>
   <data name="MaximumOvertime" xml:space="preserve">
     <value>الوقت الإضافي الأقصى</value>
@@ -138,7 +240,82 @@
   <data name="MinimumOvertime" xml:space="preserve">
     <value>الوقت الإضافي الأدنى</value>
   </data>
+  <data name="PaymentMethodBank" xml:space="preserve">
+    <value>حساب بنكي</value>
+  </data>
+  <data name="PaymentMethodCash" xml:space="preserve">
+    <value>نقدي</value>
+  </data>
+  <data name="PaymentTypeDaily" xml:space="preserve">
+    <value>يومي</value>
+  </data>
+  <data name="PaymentTypeMonthly" xml:space="preserve">
+    <value>شهري</value>
+  </data>
+  <data name="PaymentTypeWeekly" xml:space="preserve">
+    <value>أسبوعي</value>
+  </data>
+  <data name="pctof1" xml:space="preserve">
+    <value>الراتب الأساسي</value>
+  </data>
+  <data name="pctof2" xml:space="preserve">
+    <value>الراتب الأساسي+الاستحقاقات</value>
+  </data>
+  <data name="SAGridTitle" xml:space="preserve">
+    <value>الراتب</value>
+  </data>
+  <data name="SalaryBank" xml:space="preserve">
+    <value>حساب بنكي</value>
+  </data>
+  <data name="SalaryBiWeekly" xml:space="preserve">
+    <value>كل أسبوعين</value>
+  </data>
+  <data name="SalaryCash" xml:space="preserve">
+    <value>نقدي</value>
+  </data>
+  <data name="SalaryDaily" xml:space="preserve">
+    <value>يومي</value>
+  </data>
+  <data name="SalaryFourWeekly" xml:space="preserve">
+    <value>كل أربعة أسابيع</value>
+  </data>
+  <data name="SalaryMonthly" xml:space="preserve">
+    <value>شهري</value>
+  </data>
+  <data name="SalaryWeekly" xml:space="preserve">
+    <value>أسبوعي</value>
+  </data>
+  <data name="TotalDeductions" xml:space="preserve">
+    <value>إجمالي الخصومات</value>
+  </data>
+  <data name="TotalEntitlements" xml:space="preserve">
+    <value>إجمالي الاستحقاقات</value>
+  </data>
   <data name="WindowTitle" xml:space="preserve">
     <value>إعدادات الوقت الإضافي</value>
+  </data>
+  <data name="WindowTitle1" xml:space="preserve">
+    <value>العملات</value>
+  </data>
+  <data name="DeductionEditWindow" xml:space="preserve">
+    <value>Edit Deduction</value>
+  </data>
+  <data name="deductionGrid" xml:space="preserve">
+    <value>Deductions</value>
+  </data>
+  <data name="DeductionName" xml:space="preserve">
+    <value>Deduction</value>
+  </data>
+  <data name="edName" xml:space="preserve">
+    <value>EntitlEntitlement / Deduction Name</value>
+  </data>
+  <data name="EntitlementEditWindow" xml:space="preserve">
+    <value>Edit Entitlement</value>
+  </data>
+  <data name="entitlementName" xml:space="preserve">
+    <value>Entitlement </value>
+  </data>
+  <data name="seqNo" xml:space="preserve">
+    <value>seqNo</value>
   </data>
 </root>

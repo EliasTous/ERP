@@ -1020,4 +1020,7 @@
   <data name="FinalSettlements" xml:space="preserve">
     <value>Final Settlements</value>
   </data>
+  <data name="finalSettlement" xml:space="preserve">
+    <value>Final Settlement</value>
+  </data>
 </root>

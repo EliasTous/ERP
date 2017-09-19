@@ -358,8 +358,12 @@ namespace AionHR.Web.UI.Forms.Utilities
             Ext.Net.Node timeAt = BuildParentNode("standard", Resources.Common.Payroll, true, rootParent);
 
             Ext.Net.Node gen = BuildLeafNode("gen", Resources.Common.GeneratePayroll, "Group", true, timeAt);
-
             FillConfigItem(gen, "gen", "PayrollGeneration.aspx", Resources.Common.GeneratePayroll, "icon-Employees", "1");
+
+
+            Ext.Net.Node finalSettlement = BuildLeafNode("finalSettlement", Resources.Common.finalSettlement, "Group", true, timeAt);       
+
+            FillConfigItem(finalSettlement, "finalSettlement", "FinalSettlements.aspx", Resources.Common.finalSettlement, "icon-Employees", "1");
 
             nodes.Add(rootParent);
             return nodes;

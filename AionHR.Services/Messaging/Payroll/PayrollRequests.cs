@@ -150,4 +150,53 @@ public class SocialSecurityScheduleSetupListRequest : ListRequest
     }
 
 }
+public class FinalEntitlementsDeductionsListRequest:ListRequest
+{
+    
+   
+        public int fsId { set; get; }
+    public int type { get; set; }
+
+
+    private Dictionary<string, string> parameters;
+    public override Dictionary<string, string> Parameters
+    {
+        get
+        {
+            parameters = new Dictionary<string, string>();
+            parameters.Add("_fsId", fsId.ToString());
+            parameters.Add("_type", type.ToString());
+
+
+
+            return parameters;
+        }
+    }
+
+}
+public class FinalEntitlementsDeductionsRecordRequest : RecordRequest
+{
+
+
+    public int fsId { set; get; }
+    public int seqNo { get; set; }
+
+
+    private Dictionary<string, string> parameters;
+    public override Dictionary<string, string> Parameters
+    {
+        get
+        {
+            parameters = new Dictionary<string, string>();
+            parameters.Add("_fsId", fsId.ToString());
+            parameters.Add("_seqNo", seqNo.ToString());
+
+
+
+            return parameters;
+        }
+    }
+
+}
+
 

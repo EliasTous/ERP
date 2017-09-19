@@ -117,8 +117,17 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AllowedLateness" xml:space="preserve">
+    <value>Allowed Lateness</value>
+  </data>
   <data name="BasicInfoTabEditWindowTitle" xml:space="preserve">
-    <value>Overtime Setting</value>
+    <value>Final settlement</value>
+  </data>
+  <data name="BasicInfoTabEditWindowTitle1" xml:space="preserve">
+    <value>Currency Info</value>
+  </data>
+  <data name="BOGridTitle" xml:space="preserve">
+    <value>Bonus</value>
   </data>
   <data name="DateFrom" xml:space="preserve">
     <value>From</value>
@@ -129,11 +138,116 @@
   <data name="Day" xml:space="preserve">
     <value>Day</value>
   </data>
+  <data name="Deductions" xml:space="preserve">
+    <value>Deductions</value>
+  </data>
+  <data name="DeductionsEntitlements" xml:space="preserve">
+    <value>DeductionsEntitlements</value>
+  </data>
+  <data name="EditBOWindowTitle" xml:space="preserve">
+    <value>Bonus</value>
+  </data>
+  <data name="EditSAWindowTitle" xml:space="preserve">
+    <value>Edit Salary</value>
+  </data>
   <data name="EditWindowsTitle" xml:space="preserve">
-    <value>Overtime Setting</value>
+    <value>Edit Final settlement </value>
+  </data>
+  <data name="Entitlements" xml:space="preserve">
+    <value>Entitlements</value>
+  </data>
+  <data name="ErrorWithPCTOf" xml:space="preserve">
+    <value>PCTOF value is invalid, the PCTOF will be set to Percentage of basic salary</value>
+  </data>
+  <data name="FieldAccountNumber" xml:space="preserve">
+    <value>Account Number</value>
+  </data>
+  <data name="FieldAmount" xml:space="preserve">
+    <value>Amount</value>
+  </data>
+  <data name="FieldBankName" xml:space="preserve">
+    <value>Bank</value>
+  </data>
+  <data name="FieldBasicAmount" xml:space="preserve">
+    <value>Basic Amount</value>
+  </data>
+  <data name="FieldBTName" xml:space="preserve">
+    <value>Bonus Type</value>
+  </data>
+  <data name="FieldComment" xml:space="preserve">
+    <value>Comment</value>
+  </data>
+  <data name="FieldComments" xml:space="preserve">
+    <value>Comments</value>
+  </data>
+  <data name="FieldDate" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="FieldDeduction" xml:space="preserve">
+    <value>Deduction</value>
+  </data>
+  <data name="FieldEffectiveDate" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="FieldEntitlement" xml:space="preserve">
+    <value>Entitlement</value>
+  </data>
+  <data name="FieldFinalAmount" xml:space="preserve">
+    <value>Final Amount</value>
+  </data>
+  <data name="FieldFixedAmount" xml:space="preserve">
+    <value>amount</value>
+  </data>
+  <data name="FieldIncludeInTotal" xml:space="preserve">
+    <value>Include In total</value>
+  </data>
+  <data name="FieldIsPercentage" xml:space="preserve">
+    <value>Is Percentage</value>
+  </data>
+  <data name="FieldIsTaxable" xml:space="preserve">
+    <value>IsTaxable</value>
+  </data>
+  <data name="FieldLatenessDeduction" xml:space="preserve">
+    <value>Lateness Deduction</value>
   </data>
   <data name="FieldName" xml:space="preserve">
     <value>Employee</value>
+  </data>
+  <data name="FieldName1" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="FieldOvertimeEntitlement" xml:space="preserve">
+    <value>Overtime Entitlement</value>
+  </data>
+  <data name="FieldPaymentFrequency" xml:space="preserve">
+    <value>Payment Frequency</value>
+  </data>
+  <data name="FieldPaymentMethod" xml:space="preserve">
+    <value>Payment Method</value>
+  </data>
+  <data name="FieldPCT" xml:space="preserve">
+    <value>percentage</value>
+  </data>
+  <data name="FieldPctOf" xml:space="preserve">
+    <value>Pct Of</value>
+  </data>
+  <data name="FieldRecordId" xml:space="preserve">
+    <value>Record ID</value>
+  </data>
+  <data name="FieldReference" xml:space="preserve">
+    <value>Reference</value>
+  </data>
+  <data name="FieldSACurrencyName" xml:space="preserve">
+    <value>Currency</value>
+  </data>
+  <data name="FieldSalaryType" xml:space="preserve">
+    <value>SalaryType</value>
+  </data>
+  <data name="FieldScrName" xml:space="preserve">
+    <value>Change Reason</value>
+  </data>
+  <data name="Lateness" xml:space="preserve">
+    <value>Lateness</value>
   </data>
   <data name="MaximumOvertime" xml:space="preserve">
     <value>Maximum Overtime</value>
@@ -141,7 +255,112 @@
   <data name="MinimumOvertime" xml:space="preserve">
     <value>Minimum Overtime</value>
   </data>
+  <data name="MinimumOvertime1" xml:space="preserve">
+    <value>Minimum Overtime</value>
+  </data>
+  <data name="Overtime" xml:space="preserve">
+    <value>Overtime</value>
+  </data>
+  <data name="PaymentMethodBank" xml:space="preserve">
+    <value>Bank</value>
+  </data>
+  <data name="PaymentMethodCash" xml:space="preserve">
+    <value>Cash</value>
+  </data>
+  <data name="PaymentTypeDaily" xml:space="preserve">
+    <value>Daily</value>
+  </data>
+  <data name="PaymentTypeMonthly" xml:space="preserve">
+    <value>Monthly</value>
+  </data>
+  <data name="PaymentTypeWeekly" xml:space="preserve">
+    <value>Weekly</value>
+  </data>
+  <data name="pctof1" xml:space="preserve">
+    <value>Basic Salary</value>
+  </data>
+  <data name="pctof2" xml:space="preserve">
+    <value>Basic Salary +Entitlmenets</value>
+  </data>
+  <data name="SAGridTitle" xml:space="preserve">
+    <value>Salary </value>
+  </data>
+  <data name="SalaryBank" xml:space="preserve">
+    <value>Bank</value>
+  </data>
+  <data name="SalaryBiWeekly" xml:space="preserve">
+    <value>Bi-weekly</value>
+  </data>
+  <data name="SalaryCash" xml:space="preserve">
+    <value>Cash</value>
+  </data>
+  <data name="SalaryDaily" xml:space="preserve">
+    <value>Daily</value>
+  </data>
+  <data name="SalaryFourWeekly" xml:space="preserve">
+    <value>Four Weekly</value>
+  </data>
+  <data name="SalaryMonthly" xml:space="preserve">
+    <value>Monthly</value>
+  </data>
+  <data name="SalaryWeekly" xml:space="preserve">
+    <value>Weekly</value>
+  </data>
+  <data name="TotalDeductions" xml:space="preserve">
+    <value>Total Deductions</value>
+  </data>
+  <data name="TotalEntitlements" xml:space="preserve">
+    <value>Total Entitlements</value>
+  </data>
   <data name="WindowTitle" xml:space="preserve">
-    <value>Overtime Settings</value>
+    <value>Final settlement</value>
+  </data>
+  <data name="WindowTitle1" xml:space="preserve">
+    <value>Currencies</value>
+  </data>
+  <data name="amount" xml:space="preserve">
+    <value>Amount</value>
+  </data>
+  <data name="DeductionEditWindow" xml:space="preserve">
+    <value>Edit Deduction</value>
+  </data>
+  <data name="deductionGrid" xml:space="preserve">
+    <value>Deductions</value>
+  </data>
+  <data name="DeductionName" xml:space="preserve">
+    <value>Deduction</value>
+  </data>
+  <data name="edName" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="EntitlementEditWindow" xml:space="preserve">
+    <value>Edit Entitlement</value>
+  </data>
+  <data name="entitlementName" xml:space="preserve">
+    <value>Entitlement </value>
+  </data>
+  <data name="entitlementsGrid" xml:space="preserve">
+    <value>Entitlements</value>
+  </data>
+  <data name="seqNo" xml:space="preserve">
+    <value>seqNo</value>
+  </data>
+  <data name="branchName" xml:space="preserve">
+    <value>Branch</value>
+  </data>
+  <data name="departmentName" xml:space="preserve">
+    <value>Department</value>
+  </data>
+  <data name="fsRef" xml:space="preserve">
+    <value>Referance</value>
+  </data>
+  <data name="hireDate" xml:space="preserve">
+    <value>HireDate</value>
+  </data>
+  <data name="nationality" xml:space="preserve">
+    <value>Nationality</value>
+  </data>
+  <data name="positionName" xml:space="preserve">
+    <value>Position</value>
   </data>
 </root>

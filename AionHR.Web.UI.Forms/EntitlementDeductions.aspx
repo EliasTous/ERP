@@ -294,6 +294,7 @@
                                     </Items>
                                 </ext:ComboBox>
                                 <ext:TextField ID="paycodeRef" runat="server" FieldLabel="<%$ Resources:paycodeRef%>" Name="paycodeRef"   AllowBlank="false"/>
+                                 <ext:Checkbox FieldLabel="<%$ Resources: isTaxable %>" runat="server" InputValue="True" Name="isTaxable" ID="isTaxable" />
                             </Items>
 
                         </ext:FormPanel>

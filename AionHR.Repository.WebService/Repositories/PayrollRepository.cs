@@ -27,7 +27,9 @@ namespace AionHR.Repository.WebService.Repositories
             ChildGetAllLookup.Add(typeof(SocialSecuritySchedule), "qrySS");
             ChildGetAllLookup.Add(typeof(SocialSecurityScheduleSetup), "qrySC");
             ChildGetAllLookup.Add(typeof(FinalSettlement), "qryFS");
-           
+            ChildGetAllLookup.Add(typeof(FinalEntitlementsDeductions), "qryFD");
+            ChildGetAllLookup.Add(typeof(PayCode), "qryPC");
+
 
             ChildAddOrUpdateLookup.Add(typeof(FiscalYear), "setYE");
             ChildAddOrUpdateLookup.Add(typeof(GenerationHeader), "setHE");
@@ -40,6 +42,8 @@ namespace AionHR.Repository.WebService.Repositories
             ChildAddOrUpdateLookup.Add(typeof(SocialSecuritySchedule), "setSS");
             ChildAddOrUpdateLookup.Add(typeof(SocialSecurityScheduleSetup), "setSC");
             ChildAddOrUpdateLookup.Add(typeof(FinalSettlement), "setFS");
+            ChildAddOrUpdateLookup.Add(typeof(FinalEntitlementsDeductions), "setFD");
+            ChildAddOrUpdateLookup.Add(typeof(PayCode), "setPC");
 
             ChildDeleteLookup.Add(typeof(FiscalYear), "delYE");
             ChildDeleteLookup.Add(typeof(PayrollEntitlementDeduction), "delED");
@@ -48,12 +52,16 @@ namespace AionHR.Repository.WebService.Repositories
             ChildDeleteLookup.Add(typeof(SocialSecuritySchedule), "delSS");
             ChildDeleteLookup.Add(typeof(SocialSecurityScheduleSetup), "delSC");
             ChildDeleteLookup.Add(typeof(FinalSettlement), "delFS");
+            ChildDeleteLookup.Add(typeof(FinalEntitlementsDeductions), "delFD");
+            ChildDeleteLookup.Add(typeof(PayCode), "delPC");
 
             ChildGetLookup.Add(typeof(GenerationHeader), "getHE");
             ChildGetLookup.Add(typeof(TimeSchedule), "getTS");
             ChildGetLookup.Add(typeof(SocialSecuritySchedule), "getSS");
             ChildGetLookup.Add(typeof(SocialSecurityScheduleSetup), "getSC");
             ChildGetLookup.Add(typeof(FinalSettlement), "getFS");
+            ChildGetLookup.Add(typeof(FinalEntitlementsDeductions), "getFD");
+            ChildGetLookup.Add(typeof(PayCode), "getPC");
         }
     }
 }

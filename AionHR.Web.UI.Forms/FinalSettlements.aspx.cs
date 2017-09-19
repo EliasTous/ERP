@@ -258,10 +258,14 @@ namespace AionHR.Web.UI.Forms
 
             //Reset all values of the relative object
             BasicInfoTab.Reset();
-            
 
+            panelRecordDetails.ActiveIndex = 0;
             this.EditRecordWindow.Title = Resources.Common.AddNewRecord;
             recordId.Text = "";
+            deductionGrid.Disabled = true;
+            entitlementsGrid.Disabled = true;
+            finalSetlemntRecordId.Text = "";
+            dateId.Value = DateTime.Now;
             this.setFillEmployeeInfoDisable(true);
             this.EditRecordWindow.Show();
         }
@@ -352,6 +356,7 @@ namespace AionHR.Web.UI.Forms
             FinalSettlement b = JsonConvert.DeserializeObject<FinalSettlement>(obj);
 
             string id = e.ExtraParams["id"];
+          
            
             // Define the object to add or edit as null
            
@@ -364,9 +369,10 @@ namespace AionHR.Web.UI.Forms
                     //New Mode
                     //Step 1 : Fill The object and insert in the store 
                     PostRequest<FinalSettlement> request = new PostRequest<FinalSettlement>();
-                    if (totalFsCount.Text == "0")
-                        b.fsRef = "001";
+                    
+                    
                     request.entity = b;
+                    request.entity.recordId = finalSetlemntRecordId.Text;
                     PostResponse<FinalSettlement> r = _payrollService.ChildAddOrUpdate<FinalSettlement>(request);
 
 
@@ -392,8 +398,20 @@ namespace AionHR.Web.UI.Forms
                             Html = Resources.Common.RecordSavingSucc
                         });
                         Store1.Reload();
-                        this.EditRecordWindow.Close();
-                        this.setFillEmployeeInfoDisable(true);
+
+
+                        entitlementsGrid.Disabled = false;
+                        deductionGrid.Disabled = false;
+
+                        if (!string.IsNullOrEmpty(finalSetlemntRecordId.Text))
+                        {
+                          
+                            this.EditRecordWindow.Close();
+                            this.setFillEmployeeInfoDisable(true);
+                        }
+                        finalSetlemntRecordId.Text = r.recordId;
+                        entitlementsStore.Reload();
+                        deductionStore.Reload(); 
                         //RowSelectionModel sm = this.GridPanel1.GetSelectionModel() as RowSelectionModel;
                         //sm.DeselectAll();
                         //sm.Select(b.recordId.ToString());
@@ -475,16 +493,24 @@ namespace AionHR.Web.UI.Forms
 
         protected void PoPuP(object sender, DirectEventArgs e)
         {
-
-
+            panelRecordDetails.ActiveIndex = 0;
+            deductionGrid.Disabled = false;
+            entitlementsGrid.Disabled = false;
             this.setFillEmployeeInfoDisable(true);
             string type = e.ExtraParams["type"];
             string id =e.ExtraParams["recordId"];
-           string totalCount= e.ExtraParams["totalCount"];
+            finalSetlemntRecordId.Text = id;
+
+            dateId.Value = DateTime.Now;
+            string totalCount= e.ExtraParams["totalCount"];
 
             switch (type)
             {
                 case "imgEdit":
+                    entitlementsStore.Reload();
+                    deductionStore.Reload();
+                    setFillEmployeeInfoDisable(false);
+                    
                     //Step 1 : get the object from the Web Service 
                     RecordRequest req = new RecordRequest();
                     req.RecordID = id;
@@ -508,6 +534,7 @@ namespace AionHR.Web.UI.Forms
                                 }
                       });
                         employeeId.SetValue(r.result.employeeId);
+                        FillEmployeeInfo(sender,e);
                         this.BasicInfoTab.SetValues(r.result);
                         this.EditRecordWindow.Title = Resources.Common.EditWindowsTitle;
                         this.EditRecordWindow.Show();
@@ -541,87 +568,87 @@ namespace AionHR.Web.UI.Forms
 
         }
 
-        protected void printBtn_Click(object sender, EventArgs e)
-        {
-            OvertimeSettingsReport p = GetReport();
-            string format = "Pdf";
-            string fileName = String.Format("Report.{0}", format);
+        //protected void printBtn_Click(object sender, EventArgs e)
+        //{
+        //    OvertimeSettingsReport p = GetReport();
+        //    string format = "Pdf";
+        //    string fileName = String.Format("Report.{0}", format);
 
-            MemoryStream ms = new MemoryStream();
-            p.ExportToPdf(ms, new DevExpress.XtraPrinting.PdfExportOptions() { ShowPrintDialogOnOpen = true });
-            Response.Clear();
-            Response.Write("<script>");
-            Response.Write("window.document.forms[0].target = '_blank';");
-            Response.Write("setTimeout(function () { window.document.forms[0].target = ''; }, 0);");
-            Response.Write("</script>");
-            Response.ContentType = "application/pdf";
-            Response.AddHeader("Content-Disposition", String.Format("{0}; filename={1}", "inline", fileName));
-            Response.BinaryWrite(ms.ToArray());
-            Response.Flush();
-            Response.Close();
-            //Response.Redirect("Reports/RT301.aspx");
-        }
-        protected void ExportPdfBtn_Click(object sender, EventArgs e)
-        {
-            OvertimeSettingsReport p = GetReport();
-            string format = "Pdf";
-            string fileName = String.Format("Report.{0}", format);
+        //    MemoryStream ms = new MemoryStream();
+        //    p.ExportToPdf(ms, new DevExpress.XtraPrinting.PdfExportOptions() { ShowPrintDialogOnOpen = true });
+        //    Response.Clear();
+        //    Response.Write("<script>");
+        //    Response.Write("window.document.forms[0].target = '_blank';");
+        //    Response.Write("setTimeout(function () { window.document.forms[0].target = ''; }, 0);");
+        //    Response.Write("</script>");
+        //    Response.ContentType = "application/pdf";
+        //    Response.AddHeader("Content-Disposition", String.Format("{0}; filename={1}", "inline", fileName));
+        //    Response.BinaryWrite(ms.ToArray());
+        //    Response.Flush();
+        //    Response.Close();
+        //    //Response.Redirect("Reports/RT301.aspx");
+        //}
+        //protected void ExportPdfBtn_Click(object sender, EventArgs e)
+        //{
+        //    OvertimeSettingsReport p = GetReport();
+        //    string format = "Pdf";
+        //    string fileName = String.Format("Report.{0}", format);
 
-            MemoryStream ms = new MemoryStream();
-            p.ExportToPdf(ms);
-            Response.Clear();
+        //    MemoryStream ms = new MemoryStream();
+        //    p.ExportToPdf(ms);
+        //    Response.Clear();
 
-            Response.ContentType = "application/pdf";
-            Response.AddHeader("Content-Disposition", String.Format("{0}; filename={1}", "attachment", fileName));
-            Response.BinaryWrite(ms.ToArray());
-            Response.Flush();
-            Response.Close();
-            //Response.Redirect("Reports/RT301.aspx");
-        }
+        //    Response.ContentType = "application/pdf";
+        //    Response.AddHeader("Content-Disposition", String.Format("{0}; filename={1}", "attachment", fileName));
+        //    Response.BinaryWrite(ms.ToArray());
+        //    Response.Flush();
+        //    Response.Close();
+        //    //Response.Redirect("Reports/RT301.aspx");
+        //}
 
-        protected void ExportXLSBtn_Click(object sender, EventArgs e)
-        {
-            OvertimeSettingsReport p = GetReport();
-            string format = "xls";
-            string fileName = String.Format("Report.{0}", format);
+        //protected void ExportXLSBtn_Click(object sender, EventArgs e)
+        //{
+        //    OvertimeSettingsReport p = GetReport();
+        //    string format = "xls";
+        //    string fileName = String.Format("Report.{0}", format);
 
-            MemoryStream ms = new MemoryStream();
-            p.ExportToXls(ms);
+        //    MemoryStream ms = new MemoryStream();
+        //    p.ExportToXls(ms);
 
-            Response.Clear();
+        //    Response.Clear();
 
-            Response.ContentType = "application/vnd.ms-excel";
-            Response.AddHeader("Content-Disposition", String.Format("{0}; filename={1}", "attachment", fileName));
-            Response.BinaryWrite(ms.ToArray());
-            Response.Flush();
-            Response.Close();
-            //Response.Redirect("Reports/RT301.aspx");
-        }
-        private OvertimeSettingsReport GetReport()
-        {
+        //    Response.ContentType = "application/vnd.ms-excel";
+        //    Response.AddHeader("Content-Disposition", String.Format("{0}; filename={1}", "attachment", fileName));
+        //    Response.BinaryWrite(ms.ToArray());
+        //    Response.Flush();
+        //    Response.Close();
+        //    //Response.Redirect("Reports/RT301.aspx");
+        //}
+        //private OvertimeSettingsReport GetReport()
+        //{
 
-            ListRequest request = new ListRequest();
-            request.Filter = "" + "&_employeeId=0&_dayId=";
+        //    ListRequest request = new ListRequest();
+        //    request.Filter = "" + "&_employeeId=0&_dayId=";
 
-            ListResponse<OvertimeSetting> resp = _timeAttendanceService.ChildGetAll<OvertimeSetting>(request);
-            if (!resp.Success)
-            {
-                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() : resp.Summary).Show();
-                return null;
-            }
-            OvertimeSettingsReport p = new OvertimeSettingsReport();
-            p.DataSource = resp.Items;
-            p.Parameters["User"].Value = _systemService.SessionHelper.GetCurrentUser();
-            p.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;
-            p.RightToLeftLayout = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeftLayout.Yes : DevExpress.XtraReports.UI.RightToLeftLayout.No;
-            //p.Parameters["Yes"].Value = GetGlobalResourceObject("Common", "Yes").ToString();
-            //p.Parameters["No"].Value = GetGlobalResourceObject("Common", "No").ToString();
-            return p;
+        //    ListResponse<OvertimeSetting> resp = _timeAttendanceService.ChildGetAll<OvertimeSetting>(request);
+        //    if (!resp.Success)
+        //    {
+        //        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+        //        X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() : resp.Summary).Show();
+        //        return null;
+        //    }
+        //    OvertimeSettingsReport p = new OvertimeSettingsReport();
+        //    p.DataSource = resp.Items;
+        //    p.Parameters["User"].Value = _systemService.SessionHelper.GetCurrentUser();
+        //    p.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;
+        //    p.RightToLeftLayout = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeftLayout.Yes : DevExpress.XtraReports.UI.RightToLeftLayout.No;
+        //    //p.Parameters["Yes"].Value = GetGlobalResourceObject("Common", "Yes").ToString();
+        //    //p.Parameters["No"].Value = GetGlobalResourceObject("Common", "No").ToString();
+        //    return p;
 
 
 
-        }
+        //}
 
         protected void FillEmployeeInfo(object sender, DirectEventArgs e)
         {
@@ -662,6 +689,577 @@ namespace AionHR.Web.UI.Forms
                 nationalityTx.Disabled = true;
             }
 
+        }
+        protected void PoPuPEN(object sender, DirectEventArgs e)
+        {
+            
+            isAddEn.Text = "";
+            int fsId = Convert.ToInt32(e.ExtraParams["fsId"]);
+            int seqNo = Convert.ToInt32(e.ExtraParams["seqNo"]);
+            string entitlement = "";
+            
+            string type = e.ExtraParams["type"];
+           
+            switch (type)
+            {
+
+
+                case "imgEdit":
+
+                    string record = e.ExtraParams["values"];
+                    FinalEntitlementsDeductionsRecordRequest req = new FinalEntitlementsDeductionsRecordRequest(); 
+                   
+                    req.fsId = fsId;
+                    req.seqNo = seqNo;
+                    RecordResponse<FinalEntitlementsDeductions> res = _payrollService.ChildGetRecord<FinalEntitlementsDeductions>(req);
+                    //entsStore.Reload();
+                    if (!res.Success)
+                    {
+                        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                        X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", res.ErrorCode) != null ? GetGlobalResourceObject("Errors", res.ErrorCode).ToString() : res.Summary).Show();
+                        return;
+                    }
+                   
+                    this.ENForm.SetValues(res.result);
+
+                    //  recordId.Text = ssId;
+                    this.ENForm.Title = Resources.Common.EditWindowsTitle;
+                    entEdId.GetStore().Add(new object[]
+                      {
+                                new
+                                {
+                                    recordId = res.result.edId,
+                                    name =res.result.edName
+                                }
+                      });
+                    entEdId.SetValue(res.result.edId);
+                    
+                    EditENWindow.Show();
+                    break;
+                case "imgDelete":
+                    entitlement = e.ExtraParams["values"];
+                   // FinalEntitlementsDeductions = JsonConvert.DeserializeObject<FinalEntitlementsDeductions>(entitlement)[0];
+                 
+                    X.Msg.Confirm(Resources.Common.Confirmation, Resources.Common.DeleteOneRecord, new MessageBoxButtonsConfig
+                    {
+                        Yes = new MessageBoxButtonConfig
+                        {
+                            //We are call a direct request metho for deleting a record
+                            Handler = String.Format("App.direct.DeleteEN({0},{1})", fsId, seqNo),
+                            Text = Resources.Common.Yes
+                        },
+                        No = new MessageBoxButtonConfig
+                        {
+                            Text = Resources.Common.No
+                        }
+
+                    }).Show();
+                    break;
+
+                default:
+                    break;
+            }
+
+
+        }
+
+        protected void PoPuPDE(object sender, DirectEventArgs e)
+        {
+
+
+            isAddEn.Text = "";
+            int fsId = Convert.ToInt32(e.ExtraParams["fsId"]);
+            int seqNo = Convert.ToInt32(e.ExtraParams["seqNo"]);
+            string entitlement = "";
+
+            string type = e.ExtraParams["type"];
+
+            switch (type)
+            {
+
+
+                case "imgEdit":
+
+                    string record = e.ExtraParams["values"];
+                    FinalEntitlementsDeductionsRecordRequest req = new FinalEntitlementsDeductionsRecordRequest();
+
+                    req.fsId = fsId;
+                    req.seqNo = seqNo;
+                    RecordResponse<FinalEntitlementsDeductions> res = _payrollService.ChildGetRecord<FinalEntitlementsDeductions>(req);
+                    //entsStore.Reload();
+                    if (!res.Success)
+                    {
+                        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                        X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", res.ErrorCode) != null ? GetGlobalResourceObject("Errors", res.ErrorCode).ToString() : res.Summary).Show();
+                        return;
+                    }
+                    this.DEForm.SetValues(res.result);
+                   
+                    //  recordId.Text = ssId;
+                    this.DEForm.Title = Resources.Common.EditWindowsTitle;
+                    dedEdId.GetStore().Add(new object[]
+                      {
+                                new
+                                {
+                                    recordId = res.result.edId,
+                                    name =res.result.edName
+                                }
+                      });
+                    dedEdId.SetValue(res.result.edId);
+                    EditDEWindow.Show();
+                    break;
+                case "imgDelete":
+                    entitlement = e.ExtraParams["values"];
+                    // FinalEntitlementsDeductions = JsonConvert.DeserializeObject<FinalEntitlementsDeductions>(entitlement)[0];
+
+                    X.Msg.Confirm(Resources.Common.Confirmation, Resources.Common.DeleteOneRecord, new MessageBoxButtonsConfig
+                    {
+                        Yes = new MessageBoxButtonConfig
+                        {
+                            //We are call a direct request metho for deleting a record
+                             Handler = String.Format("App.direct.DeleteDE({0},{1})", fsId, seqNo),
+                            Text = Resources.Common.Yes
+                        },
+                        No = new MessageBoxButtonConfig
+                        {
+                            Text = Resources.Common.No
+                        }
+
+                    }).Show();
+                    break;
+
+                default:
+                    break;
+            }
+
+
+        }
+        [DirectMethod]
+        public void DeleteEN(string fsId, string seqNo)
+        {
+            try
+            {
+                //Step 1 Code to delete the object from the database 
+                FinalEntitlementsDeductions s = new FinalEntitlementsDeductions();
+                s.fsId = Convert.ToInt32(fsId);
+                s.seqNo= Convert.ToInt32(seqNo);
+
+                PostRequest<FinalEntitlementsDeductions> req = new PostRequest<FinalEntitlementsDeductions>();
+                req.entity = s;
+                PostResponse<FinalEntitlementsDeductions> r = _payrollService.ChildDelete<FinalEntitlementsDeductions>(req);
+                if (!r.Success)
+                {
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() : r.Summary).Show();
+                    return;
+                }
+                else
+                {
+                    //Step 2 :  remove the object from the store
+                    ENSeq.Text = (Convert.ToInt32(ENSeq.Text) - 1).ToString(); 
+                    entitlementsStore.Reload();
+         
+                    //Step 3 : Showing a notification for the user 
+                    Notification.Show(new NotificationConfig
+                    {
+                        Title = Resources.Common.Notification,
+                        Icon = Icon.Information,
+                        Html = Resources.Common.RecordDeletedSucc
+                    });
+                }
+
+            }
+            catch (Exception ex)
+            {
+                //In case of error, showing a message box to the user
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorDeletingRecord).Show();
+
+            }
+
+        }
+        [DirectMethod]
+        public void DeleteDE(string fsId, string seqNo)
+        {
+            try
+            {
+                //Step 1 Code to delete the object from the database 
+                FinalEntitlementsDeductions s = new FinalEntitlementsDeductions();
+                s.fsId = Convert.ToInt32(fsId);
+                s.seqNo = Convert.ToInt32(seqNo);
+
+                PostRequest<FinalEntitlementsDeductions> req = new PostRequest<FinalEntitlementsDeductions>();
+                req.entity = s;
+                PostResponse<FinalEntitlementsDeductions> r = _payrollService.ChildDelete<FinalEntitlementsDeductions>(req);
+                if (!r.Success)
+                {
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() : r.Summary).Show();
+                    return;
+                }
+                else
+                {
+                    //Step 2 :  remove the object from the store
+                    DESeq.Text = (Convert.ToInt32(DESeq.Text) - 1).ToString();
+                
+                    deductionStore.Reload();
+                    //Step 3 : Showing a notification for the user 
+                    Notification.Show(new NotificationConfig
+                    {
+                        Title = Resources.Common.Notification,
+                        Icon = Icon.Information,
+                        Html = Resources.Common.RecordDeletedSucc
+                    });
+                }
+
+            }
+            catch (Exception ex)
+            {
+                //In case of error, showing a message box to the user
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorDeletingRecord).Show();
+
+            }
+
+        }
+       
+        protected void ADDNewEN(object sender, DirectEventArgs e)
+        {
+            isAddEn.Text = "1"; 
+            //Reset all values of the relative object
+            ENForm.Reset();
+            this.EditENWindow.Title = Resources.Common.AddNewRecord;
+            
+            entsStore.Reload();
+            entEdId.ReadOnly = false;
+
+            this.EditENWindow.Show();
+        }
+
+        protected void ADDNewDE(object sender, DirectEventArgs e)
+        {
+            isAddEn.Text = "1";
+            //Reset all values of the relative object
+            DEForm.Reset();
+            this.EditDEWindow.Title = Resources.Common.AddNewRecord;
+            dedsStore.Reload();
+            dedEdId.ReadOnly = false; 
+
+            this.EditDEWindow.Show();
+        }
+        protected void SaveEN(object sender, DirectEventArgs e)
+        {
+          
+            string obj = e.ExtraParams["values"];                   
+            FinalEntitlementsDeductions b = JsonConvert.DeserializeObject<FinalEntitlementsDeductions>(obj);
+            b.fsId =Convert.ToInt32( finalSetlemntRecordId.Text);                  
+            if ( !string.IsNullOrEmpty(isAddEn.Text))
+            {
+                try
+                {                 
+                    PostRequest<FinalEntitlementsDeductions> request = new PostRequest<FinalEntitlementsDeductions>();
+                    request.entity = b;
+                    request.entity.seqNo = Convert.ToInt32(Convert.ToInt32(ENSeq.Text) + 1);
+                    PostResponse<FinalEntitlementsDeductions> r = _payrollService.ChildAddOrUpdate<FinalEntitlementsDeductions>(request);
+                    if (!r.Success)
+                    {
+                        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                        X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() : r.Summary).Show();
+                        return;
+
+                    }
+                    else
+                    {
+                        ENSeq.Text = (Convert.ToUInt32(ENSeq.Text) + 1).ToString();
+
+                        //Add this record to the store 
+                        entitlementsStore.Reload();
+                        
+
+                        //Display successful notification
+                        Notification.Show(new NotificationConfig
+                        {
+                            Title = Resources.Common.Notification,
+                            Icon = Icon.Information,
+                            Html = Resources.Common.RecordSavingSucc
+                        });
+                        this.EditENWindow.Close();
+                       
+                        
+                    }
+                    
+                }
+
+                catch (Exception ex)
+                {
+                    //Error exception displaying a messsage box
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorSavingRecord).Show();
+                }
+
+
+            }
+            else
+            {
+                //Update Mode
+              
+                try
+                {
+                    PostRequest<FinalEntitlementsDeductions> request = new PostRequest<FinalEntitlementsDeductions>();
+                    request.entity = b;
+                    PostResponse<FinalEntitlementsDeductions> r = _payrollService.ChildAddOrUpdate<FinalEntitlementsDeductions>(request);
+                    if (!r.Success)
+                    {
+                        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                        X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() : r.Summary).Show();
+                        return;
+
+                    }
+                    else
+                    {
+
+
+                        Notification.Show(new NotificationConfig
+                        {
+                            Title = Resources.Common.Notification,
+                            Icon = Icon.Information,
+                            Html = Resources.Common.RecordUpdatedSucc
+                        });
+                        entitlementsStore.Reload();
+                      
+                        this.EditENWindow.Close();
+                      
+                        //RefreshFinalForEntitlement(oldAmountDouble, oldInclude, b.includeInTotal.Value, amount);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorUpdatingRecord).Show();
+                }
+            }
+            
+        }
+        protected void SaveDE(object sender, DirectEventArgs e)
+        {
+
+            string obj = e.ExtraParams["values"];
+            FinalEntitlementsDeductions b = JsonConvert.DeserializeObject<FinalEntitlementsDeductions>(obj);
+            b.fsId = Convert.ToInt32(finalSetlemntRecordId.Text);
+                
+            if (!string.IsNullOrEmpty(isAddEn.Text))
+            {
+                try
+                {
+                    PostRequest<FinalEntitlementsDeductions> request = new PostRequest<FinalEntitlementsDeductions>();
+                    request.entity = b;
+                    request.entity.seqNo = Convert.ToInt32(Convert.ToInt32(DESeq.Text) + 1);
+                    PostResponse<FinalEntitlementsDeductions> r = _payrollService.ChildAddOrUpdate<FinalEntitlementsDeductions>(request);
+                    if (!r.Success)
+                    {
+                        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                        X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() : r.Summary).Show();
+                        return;
+
+                    }
+                    else
+                    {
+                        DESeq.Text = (Convert.ToUInt32(DESeq.Text) + 1).ToString();
+
+                        //Add this record to the store 
+                        deductionStore.Reload();
+
+                        //Display successful notification
+                        Notification.Show(new NotificationConfig
+                        {
+                            Title = Resources.Common.Notification,
+                            Icon = Icon.Information,
+                            Html = Resources.Common.RecordSavingSucc
+                        });
+                   
+                        this.EditDEWindow.Close();
+
+                    }
+
+                }
+
+                catch (Exception ex)
+                {
+                    //Error exception displaying a messsage box
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorSavingRecord).Show();
+                }
+
+
+            }
+            else
+            {
+                //Update Mode
+
+                try
+                {
+                    PostRequest<FinalEntitlementsDeductions> request = new PostRequest<FinalEntitlementsDeductions>();
+                    request.entity = b;
+
+                    PostResponse<FinalEntitlementsDeductions> r = _payrollService.ChildAddOrUpdate<FinalEntitlementsDeductions>(request);
+                    if (!r.Success)
+                    {
+                        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                        X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() : r.Summary).Show();
+                        return;
+
+                    }
+                    else
+                    {
+
+                        Notification.Show(new NotificationConfig
+                        {
+                            Title = Resources.Common.Notification,
+                            Icon = Icon.Information,
+                            Html = Resources.Common.RecordUpdatedSucc
+                        });
+                       
+                        deductionStore.Reload();
+                  
+                        this.EditDEWindow.Close();
+                        //RefreshFinalForEntitlement(oldAmountDouble, oldInclude, b.includeInTotal.Value, amount);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorUpdatingRecord).Show();
+                }
+            }
+
+        }
+       
+        protected void ensStore_ReadData(object sender, StoreReadDataEventArgs e)
+        {
+
+            ListRequest req = new ListRequest();
+            ListResponse<EntitlementDeduction> eds = _employeeService.ChildGetAll<EntitlementDeduction>(req);
+          
+            entsStore.DataSource = eds.Items.Where(s => s.type == 1).ToList();
+            entsStore.DataBind();
+
+        }
+        protected void dedsStore_ReadData(object sender, StoreReadDataEventArgs e)
+        {
+
+            ListRequest req = new ListRequest();
+            ListResponse<EntitlementDeduction> eds = _employeeService.ChildGetAll<EntitlementDeduction>(req);
+           
+            dedsStore.DataSource = eds.Items.Where(s => s.type == 2).ToList();
+            dedsStore.DataBind();
+
+        }
+
+
+        protected void addEnt(object sender, DirectEventArgs e)
+        {
+            if (string.IsNullOrEmpty(entEdId.Text))
+                return;
+            EntitlementDeduction dept = new EntitlementDeduction();
+            dept.name = entEdId.Text;
+            dept.type = 1;
+
+            PostRequest<EntitlementDeduction> depReq = new PostRequest<EntitlementDeduction>();
+            depReq.entity = dept;
+            PostResponse<EntitlementDeduction> response = _employeeService.ChildAddOrUpdate<EntitlementDeduction>(depReq);
+            if (response.Success)
+            {
+                dept.recordId = response.recordId;
+                entsStore.Reload();
+                entEdId.Value = response.recordId;
+            }
+            else
+            {
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).ToString() : response.Summary).Show();
+                return;
+            }
+
+        }
+
+        protected void addDed(object sender, DirectEventArgs e)
+        {
+            if (string.IsNullOrEmpty(dedEdId.Text))
+                return;
+            EntitlementDeduction dept = new EntitlementDeduction();
+            dept.name = dedEdId.Text;
+            dept.type = 2;
+
+            PostRequest<EntitlementDeduction> depReq = new PostRequest<EntitlementDeduction>();
+            depReq.entity = dept;
+            PostResponse<EntitlementDeduction> response = _employeeService.ChildAddOrUpdate<EntitlementDeduction>(depReq);
+            if (response.Success)
+            {
+                dept.recordId = response.recordId;
+                dedsStore.Reload();
+                dedEdId.Value = dept.recordId;
+            }
+            else
+            {
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).ToString() : response.Summary).Show();
+                return;
+            }
+
+        }
+
+        protected void entitlementsStore_ReadData(object sender, StoreReadDataEventArgs e)
+        {
+            
+            string filter = string.Empty;
+
+            //Fetching the corresponding list
+
+            //in this test will take a list of News
+            FinalEntitlementsDeductionsListRequest req = new FinalEntitlementsDeductionsListRequest();
+            req.type = 1;
+            req.fsId = Convert.ToInt32( finalSetlemntRecordId.Text);
+
+            ListResponse<FinalEntitlementsDeductions> routers = _payrollService.ChildGetAll<FinalEntitlementsDeductions>(req);
+            if (!routers.Success)
+            {
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", routers.ErrorCode) != null ? GetGlobalResourceObject("Errors", routers.ErrorCode).ToString() : routers.Summary).Show();
+                return;
+            }
+            ENSeq.Text = routers.Items.Count.ToString();
+            this.entitlementsStore.DataSource = routers.Items;
+            e.Total = routers.Items.Count;
+            totalFsCount.Text = routers.Items.Count.ToString();
+
+            this.entitlementsStore.DataBind();
+        }
+
+       
+
+        protected void deductionStore_ReadData(object sender, StoreReadDataEventArgs e)
+        {
+           
+            string filter = string.Empty;
+
+            //Fetching the corresponding list
+
+            //in this test will take a list of News
+            FinalEntitlementsDeductionsListRequest req = new FinalEntitlementsDeductionsListRequest();
+            req.type = 2;
+            req.fsId = Convert.ToInt32(finalSetlemntRecordId.Text);
+
+            ListResponse<FinalEntitlementsDeductions> routers = _payrollService.ChildGetAll<FinalEntitlementsDeductions>(req);
+            if (!routers.Success)
+            {
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", routers.ErrorCode) != null ? GetGlobalResourceObject("Errors", routers.ErrorCode).ToString() : routers.Summary).Show();
+                return;
+            }
+
+            this.deductionStore.DataSource = routers.Items;
+            e.Total = routers.Items.Count;
+            totalFsCount.Text = routers.Items.Count.ToString();
+            DESeq.Text =  (routers.Items.Count+1000) .ToString();
+            this.deductionStore.DataBind();
         }
     }
 }

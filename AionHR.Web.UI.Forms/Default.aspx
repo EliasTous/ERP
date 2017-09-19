@@ -473,11 +473,7 @@
                                                                 <Click Handler="openNewTab('fiscalYears', 'FiscalYears.aspx', #{pyye}.value, 'icon-Employees')" />
                                                             </Listeners>
                                                         </ext:MenuItem>
-                                                        <ext:MenuItem runat="server" Text="<%$Resources: Common ,FinalSettlements %>">
-                                                            <Listeners>
-                                                                <Click Handler="openNewTab('FinalSettlements', 'FinalSettlements.aspx', #{pyfs}.value, 'icon-Employees')" />
-                                                            </Listeners>
-                                                        </ext:MenuItem>
+                                                       
                                                         <ext:MenuItem runat="server" Text="<%$Resources: Common , LoanSync%>">
                                                             <DirectEvents>
                                                                 <Click OnEvent="SyncLoanDeductions" />

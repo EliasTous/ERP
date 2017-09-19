@@ -1183,19 +1183,7 @@
                               
                               <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" AllowBlank="false" DisplayField="name" ID="entEdId" Name="edId" FieldLabel="<%$ Resources:FieldEntitlement%>" SimpleSubmit="true" StoreID="entsStore">
                                             
-                                             <RightButtons>
-                                                        <ext:Button ID="Button10" runat="server" Icon="Add" Hidden="true">
-                                                            <Listeners>
-                                                                <Click Handler="CheckSession();  " />
-                                                            </Listeners>
-                                                            <DirectEvents>
-
-                                                                <Click OnEvent="addEnt">
-                                                            
-                                                                </Click>
-                                                            </DirectEvents>
-                                                        </ext:Button>
-                                                    </RightButtons>
+                                        
                                             <Listeners>
                                                 <FocusEnter Handler="this.rightButtons[0].setHidden(false);" />
                                                 <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
@@ -1302,18 +1290,7 @@
                                 <ext:Checkbox ID="oldDEIncludeInFinal" Hidden="true" runat="server" disabled="true" />
                                 
                                 <ext:ComboBox   AnyMatch="true" CaseSensitive="false"   runat="server" ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" AllowBlank="false" DisplayField="name" ID="dedEdId" Name="DEedId" FieldLabel="<%$ Resources:FieldDeduction%>" SimpleSubmit="true" StoreID="dedsStore">
-                                    <RightButtons>
-                                        <ext:Button ID="Button9" runat="server" Icon="Add" Hidden="true">
-                                            <Listeners>
-                                                <Click Handler="CheckSession();  " />
-                                            </Listeners>
-                                            <DirectEvents>
-
-                                                <Click OnEvent="addDed">
-                                                </Click>
-                                            </DirectEvents>
-                                        </ext:Button>
-                                    </RightButtons>
+                                    
                                     <Listeners>
                                         <FocusEnter Handler="this.rightButtons[0].setHidden(false);" />
                                         <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />

@@ -662,7 +662,7 @@
                                     </Listeners>
                                 </ext:ComboBox>--%>
 
-                                <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  QueryMode="Local" ForceSelection="true" LabelWidth="160" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: FieldPE %>" Name="peDeductionId" runat="server" DisplayField="name" ValueField="recordId" ID="peDeductionId">
+                               <%-- <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  QueryMode="Local" ForceSelection="true" LabelWidth="160" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: FieldPE %>" Name="peDeductionId" runat="server" DisplayField="name" ValueField="recordId" ID="peDeductionId">
                                     <Store>
                                         <ext:Store runat="server" ID="peDeductionStore">
                                             <Model>
@@ -691,7 +691,7 @@
                                         <FocusEnter Handler=" if(!this.readOnly)this.rightButtons[0].setHidden(false);" />
                                         <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
                                     </Listeners>
-                                </ext:ComboBox>
+                                </ext:ComboBox>--%>
                                
                                 <ext:FieldSet Collapsible="true" runat="server" Title="<%$ Resources:Common, Loans %>">
                                     <Items>

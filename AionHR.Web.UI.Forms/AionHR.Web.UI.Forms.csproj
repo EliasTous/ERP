@@ -346,6 +346,7 @@
     <Content Include="Scripts\CompanyFiles.js" />
     <Content Include="Scripts\CompanyNews.js" />
     <Content Include="Scripts\Contacts.js" />
+    <Content Include="Scripts\FinalSettlements.js" />
     <Content Include="Scripts\HighCharts.js" />
     <Content Include="Scripts\jquery-ui-min.js" />
     <Content Include="Scripts\OvertimeSettings.js" />
@@ -1914,6 +1915,7 @@
     <Content Include="App_LocalResources\Nationalities.aspx.ar.resx" />
     <Content Include="App_LocalResources\FinalSettlements.aspx.resx" />
     <Content Include="App_LocalResources\FinalSettlements.aspx.ar.resx" />
+    <Content Include="EmployeePages\App_LocalResources\Payroll.aspx.ar.resx" />
     <EmbeddedResource Include="Properties\licenses.licx" />
     <Content Include="Reports\App_LocalResources\RT202.aspx.resx" />
     <Content Include="Reports\App_LocalResources\RT01.aspx.ar.resx" />

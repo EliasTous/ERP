@@ -160,8 +160,8 @@ namespace AionHR.Web.UI.Forms
            // ssDeductionStore.DataSource = GetDeductions();
             //ssDeductionStore.DataBind();
 
-            peDeductionStore.DataSource = GetDeductions();
-            peDeductionStore.DataBind();
+            //peDeductionStore.DataSource = GetDeductions();
+            //peDeductionStore.DataBind();
 
             loanDeductionStore.DataSource = GetDeductions();
             loanDeductionStore.DataBind();
@@ -258,8 +258,8 @@ namespace AionHR.Web.UI.Forms
                 loanDeductionId.Select(items.Where(s => s.Key == "loanDeductionId").First().Value);
             }
             catch { }
-            try { peDeductionId.Select(items.Where(s => s.Key == "penaltyDeductionId").First().Value); }
-            catch { }
+            //try { peDeductionId.Select(items.Where(s => s.Key == "penaltyDeductionId").First().Value); }
+            //catch { }
           
             try
             {
@@ -960,31 +960,31 @@ namespace AionHR.Web.UI.Forms
         //    }
 
         //}
-        protected void addDedpe(object sender, DirectEventArgs e)
-        {
-            if (string.IsNullOrEmpty(peDeductionId.Text))
-                return;
-            EntitlementDeduction dept = new EntitlementDeduction();
-            dept.name = peDeductionId.Text; ;
-            dept.type = 2;
+        //protected void addDedpe(object sender, DirectEventArgs e)
+        //{
+        //    if (string.IsNullOrEmpty(peDeductionId.Text))
+        //        return;
+        //    EntitlementDeduction dept = new EntitlementDeduction();
+        //    dept.name = peDeductionId.Text; ;
+        //    dept.type = 2;
 
-            PostRequest<EntitlementDeduction> depReq = new PostRequest<EntitlementDeduction>();
-            depReq.entity = dept;
-            PostResponse<EntitlementDeduction> response = _employeeService.ChildAddOrUpdate<EntitlementDeduction>(depReq);
-            if (response.Success)
-            {
-                dept.recordId = response.recordId;
-                FillCombos();
-                peDeductionId.Value = dept.recordId;
-            }
-            else
-            {
-                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).ToString() : response.Summary).Show();
-                return;
-            }
+        //    PostRequest<EntitlementDeduction> depReq = new PostRequest<EntitlementDeduction>();
+        //    depReq.entity = dept;
+        //    PostResponse<EntitlementDeduction> response = _employeeService.ChildAddOrUpdate<EntitlementDeduction>(depReq);
+        //    if (response.Success)
+        //    {
+        //        dept.recordId = response.recordId;
+        //        FillCombos();
+        //        peDeductionId.Value = dept.recordId;
+        //    }
+        //    else
+        //    {
+        //        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+        //        X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).ToString() : response.Summary).Show();
+        //        return;
+        //    }
 
-        }
+        //}
         protected void addDedloan(object sender, DirectEventArgs e)
         {
             if (string.IsNullOrEmpty(loanDeductionId.Text))
