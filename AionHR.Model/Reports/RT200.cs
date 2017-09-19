@@ -248,11 +248,11 @@ namespace AionHR.Model.Reports
             {
                 List<CurrentEntitlementDeduction> l = new List<CurrentEntitlementDeduction>();
                 l.Add(new CurrentEntitlementDeduction() { name = taxableString });
-                for (int i = 0; i < Names.Count; i++)
+                for (int i = 1; i < Names.Count; i++)
                 {
-                    if(i== taxableIndex)
+                    if(i == taxableIndex + 1)
                         l.Add(new CurrentEntitlementDeduction() { name =EnString });
-                    else if (i == DIndex+1)
+                    else if (i == DIndex+2)
                         l.Add(new CurrentEntitlementDeduction() { name = DeString });
                     
                     else

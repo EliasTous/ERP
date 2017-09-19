@@ -127,7 +127,7 @@
     <value>إجمالي الاستحقاقات</value>
   </data>
   <data name="Entitlements" xml:space="preserve">
-    <value>الاستحقاقات</value>
+    <value>الراتب الغير الخاضع</value>
   </data>
   <data name="netSalary" xml:space="preserve">
     <value>صافي الراتب</value>
@@ -136,7 +136,7 @@
     <value>دفع في</value>
   </data>
   <data name="Taxable" xml:space="preserve">
-    <value>خاضع للتأمينات</value>
+    <value>الراتب الخاضع</value>
   </data>
   <data name="taxableeAmount" xml:space="preserve">
     <value>مجموع الخاضع للتأمينات</value>

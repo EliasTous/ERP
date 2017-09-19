@@ -124,10 +124,10 @@
     <value>Deductions</value>
   </data>
   <data name="eAmount" xml:space="preserve">
-    <value>Entitlements</value>
+    <value>Total Non Taxables</value>
   </data>
   <data name="Entitlements" xml:space="preserve">
-    <value>Entitlements</value>
+    <value>Non Taxable Entitlements</value>
   </data>
   <data name="netSalary" xml:space="preserve">
     <value>Net </value>
