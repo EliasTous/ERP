@@ -155,6 +155,8 @@ namespace AionHR.Model.Reports
                 countryName = details[0].countryName;
                 name = details[0].employeeName.fullName;
                 currencyRef = details[0].currencyRef;
+                essAmount = details[0].essAmount;
+                cssAmount = details[0].cssAmount;
                
             }
             foreach (var item in details)
@@ -219,9 +221,9 @@ namespace AionHR.Model.Reports
         public double netSalary { get; set; }
         public string edName { get; set; }
 
-        public string essAmount { get; set; }
+        public double essAmount { get; set; }
 
-        public string cssAmount { get; set; }
+        public double cssAmount { get; set; }
 
         public int paymentMethod { get; set; }
         public double edAmount { get; set; }
