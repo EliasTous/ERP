@@ -315,9 +315,6 @@
   <data name="WindowTitle" xml:space="preserve">
     <value>Final settlement</value>
   </data>
-  <data name="WindowTitle1" xml:space="preserve">
-    <value>Currencies</value>
-  </data>
   <data name="amount" xml:space="preserve">
     <value>Amount</value>
   </data>
@@ -330,17 +327,8 @@
   <data name="DeductionName" xml:space="preserve">
     <value>Deduction</value>
   </data>
-  <data name="edName" xml:space="preserve">
-    <value>Name</value>
-  </data>
   <data name="EntitlementEditWindow" xml:space="preserve">
     <value>Edit Entitlement</value>
-  </data>
-  <data name="entitlementName" xml:space="preserve">
-    <value>Entitlement </value>
-  </data>
-  <data name="entitlementsGrid" xml:space="preserve">
-    <value>Entitlements</value>
   </data>
   <data name="seqNo" xml:space="preserve">
     <value>seqNo</value>
@@ -350,9 +338,6 @@
   </data>
   <data name="departmentName" xml:space="preserve">
     <value>Department</value>
-  </data>
-  <data name="fsRef" xml:space="preserve">
-    <value>Referance</value>
   </data>
   <data name="hireDate" xml:space="preserve">
     <value>HireDate</value>

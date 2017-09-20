@@ -856,7 +856,7 @@ namespace AionHR.Web.UI.Forms
                 else
                 {
                     //Step 2 :  remove the object from the store
-                    ENSeq.Text = (Convert.ToInt32(ENSeq.Text) - 1).ToString(); 
+                   // ENSeq.Text = (Convert.ToInt32(ENSeq.Text) - 1).ToString(); 
                     entitlementsStore.Reload();
          
                     //Step 3 : Showing a notification for the user 
@@ -900,7 +900,7 @@ namespace AionHR.Web.UI.Forms
                 else
                 {
                     //Step 2 :  remove the object from the store
-                    DESeq.Text = (Convert.ToInt32(DESeq.Text) - 1).ToString();
+                   
                 
                     deductionStore.Reload();
                     //Step 3 : Showing a notification for the user 
@@ -956,10 +956,11 @@ namespace AionHR.Web.UI.Forms
             if ( !string.IsNullOrEmpty(isAddEn.Text))
             {
                 try
-                {                 
+                {
+                    ENSeq.Text = (Convert.ToUInt32(ENSeq.Text) + 1).ToString();
                     PostRequest<FinalEntitlementsDeductions> request = new PostRequest<FinalEntitlementsDeductions>();
                     request.entity = b;
-                    request.entity.seqNo = Convert.ToInt32(Convert.ToInt32(ENSeq.Text) + 1);
+                    request.entity.seqNo = Convert.ToInt32(ENSeq.Text);
                     PostResponse<FinalEntitlementsDeductions> r = _payrollService.ChildAddOrUpdate<FinalEntitlementsDeductions>(request);
                     if (!r.Success)
                     {
@@ -970,7 +971,7 @@ namespace AionHR.Web.UI.Forms
                     }
                     else
                     {
-                        ENSeq.Text = (Convert.ToUInt32(ENSeq.Text) + 1).ToString();
+                      
 
                         //Add this record to the store 
                         entitlementsStore.Reload();
@@ -1051,9 +1052,10 @@ namespace AionHR.Web.UI.Forms
             {
                 try
                 {
+                    DESeq.Text = (Convert.ToUInt32(DESeq.Text) + 1).ToString();
                     PostRequest<FinalEntitlementsDeductions> request = new PostRequest<FinalEntitlementsDeductions>();
                     request.entity = b;
-                    request.entity.seqNo = Convert.ToInt32(Convert.ToInt32(DESeq.Text) + 1);
+                    request.entity.seqNo = Convert.ToInt32(DESeq.Text);
                     PostResponse<FinalEntitlementsDeductions> r = _payrollService.ChildAddOrUpdate<FinalEntitlementsDeductions>(request);
                     if (!r.Success)
                     {
@@ -1064,7 +1066,7 @@ namespace AionHR.Web.UI.Forms
                     }
                     else
                     {
-                        DESeq.Text = (Convert.ToUInt32(DESeq.Text) + 1).ToString();
+                     
 
                         //Add this record to the store 
                         deductionStore.Reload();
@@ -1219,6 +1221,8 @@ namespace AionHR.Web.UI.Forms
             FinalEntitlementsDeductionsListRequest req = new FinalEntitlementsDeductionsListRequest();
             req.type = 1;
             req.fsId = Convert.ToInt32( finalSetlemntRecordId.Text);
+            req.sortBy = "seqNo";
+
 
             ListResponse<FinalEntitlementsDeductions> routers = _payrollService.ChildGetAll<FinalEntitlementsDeductions>(req);
             if (!routers.Success)
@@ -1226,10 +1230,15 @@ namespace AionHR.Web.UI.Forms
                 X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", routers.ErrorCode) != null ? GetGlobalResourceObject("Errors", routers.ErrorCode).ToString() : routers.Summary).Show();
                 return;
             }
-            ENSeq.Text = routers.Items.Count.ToString();
+          
+         
             this.entitlementsStore.DataSource = routers.Items;
             e.Total = routers.Items.Count;
             totalFsCount.Text = routers.Items.Count.ToString();
+            if (routers.Items.Count != 0)
+                ENSeq.Text = routers.Items[routers.Items.Count - 1].seqNo.ToString();
+            else
+                ENSeq.Text = "0";
 
             this.entitlementsStore.DataBind();
         }
@@ -1247,6 +1256,7 @@ namespace AionHR.Web.UI.Forms
             FinalEntitlementsDeductionsListRequest req = new FinalEntitlementsDeductionsListRequest();
             req.type = 2;
             req.fsId = Convert.ToInt32(finalSetlemntRecordId.Text);
+            req.sortBy = "seqNo";
 
             ListResponse<FinalEntitlementsDeductions> routers = _payrollService.ChildGetAll<FinalEntitlementsDeductions>(req);
             if (!routers.Success)
@@ -1254,12 +1264,16 @@ namespace AionHR.Web.UI.Forms
                 X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", routers.ErrorCode) != null ? GetGlobalResourceObject("Errors", routers.ErrorCode).ToString() : routers.Summary).Show();
                 return;
             }
-
+            if (routers.Items.Count != 0)
+                DESeq.Text = routers.Items[routers.Items.Count - 1].seqNo.ToString();
+            else
+                DESeq.Text = "0";
             this.deductionStore.DataSource = routers.Items;
             e.Total = routers.Items.Count;
-            totalFsCount.Text = routers.Items.Count.ToString();
-            DESeq.Text =  (routers.Items.Count+1000) .ToString();
+          
+                totalFsCount.Text = routers.Items.Count.ToString();
             this.deductionStore.DataBind();
+
         }
     }
 }

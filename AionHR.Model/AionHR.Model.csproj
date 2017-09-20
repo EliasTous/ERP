@@ -110,6 +110,7 @@
     <Compile Include="Payroll\IPayrollRepository.cs" />
     <Compile Include="Payroll\PayCode.cs" />
     <Compile Include="Payroll\PayrollEntitlementDeduction.cs" />
+    <Compile Include="Payroll\PayrollSocialSecurity.cs" />
     <Compile Include="Payroll\SocialSecuritySchedule.cs" />
     <Compile Include="Payroll\SocialSecurityScheduleSetup.cs" />
     <Compile Include="Payroll\SyncED.cs" />

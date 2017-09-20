@@ -29,6 +29,7 @@ namespace AionHR.Repository.WebService.Repositories
             ChildGetAllLookup.Add(typeof(FinalSettlement), "qryFS");
             ChildGetAllLookup.Add(typeof(FinalEntitlementsDeductions), "qryFD");
             ChildGetAllLookup.Add(typeof(PayCode), "qryPC");
+            ChildGetAllLookup.Add(typeof(PayrollSocialSecurity), "qryES");
 
 
             ChildAddOrUpdateLookup.Add(typeof(FiscalYear), "setYE");
@@ -44,6 +45,7 @@ namespace AionHR.Repository.WebService.Repositories
             ChildAddOrUpdateLookup.Add(typeof(FinalSettlement), "setFS");
             ChildAddOrUpdateLookup.Add(typeof(FinalEntitlementsDeductions), "setFD");
             ChildAddOrUpdateLookup.Add(typeof(PayCode), "setPC");
+        
 
             ChildDeleteLookup.Add(typeof(FiscalYear), "delYE");
             ChildDeleteLookup.Add(typeof(PayrollEntitlementDeduction), "delED");
@@ -54,6 +56,7 @@ namespace AionHR.Repository.WebService.Repositories
             ChildDeleteLookup.Add(typeof(FinalSettlement), "delFS");
             ChildDeleteLookup.Add(typeof(FinalEntitlementsDeductions), "delFD");
             ChildDeleteLookup.Add(typeof(PayCode), "delPC");
+         
 
             ChildGetLookup.Add(typeof(GenerationHeader), "getHE");
             ChildGetLookup.Add(typeof(TimeSchedule), "getTS");

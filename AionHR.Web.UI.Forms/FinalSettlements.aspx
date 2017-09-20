@@ -9,11 +9,11 @@
     <title></title>
     <link rel="stylesheet" type="text/css" href="CSS/Common.css" />
     <link rel="stylesheet" href="CSS/LiveSearch.css" />
-    <script type="text/javascript" src="Scripts/DocumentTypes.js?id=1"></script>
-    <script type="text/javascript" src="Scripts/common.js?id=8"></script>
+  
+    <script type="text/javascript" src="Scripts/common.js?id=10"></script>
     <script type="text/javascript" src="Scripts/Payroll.js?id=5"></script>
     <script  type="text/javascript" src="Scripts/FinalSettlements.js?id=10"></script>
-    <script src="Scripts/moment.js" type="text/javascript"></script>
+    <script type="text/javascript" src="Scripts/moment.js"></script>
 
 
     <script  type="text/javascript">
@@ -37,7 +37,7 @@
          <ext:Hidden ID="totalFsCount" runat="server" />
         <ext:Hidden ID="dateFormat" runat="server" />
          <ext:Hidden ID="ENSeq" runat="server" Text="0" />
-        <ext:Hidden ID="DESeq" runat="server" Text="0" />
+        <ext:Hidden ID="DESeq" runat="server" Text="1000" />
         <ext:Hidden ID="Seq" runat="server" Text="0" />
         <ext:Hidden ID="isAddEn" runat="server" Text="" />
 
@@ -171,7 +171,7 @@
                         <Columns>
                              <ext:Column CellCls="cellLink" ID="ColrecordId" MenuDisabled="true" runat="server" Text="" DataIndex="recordId" Width="150" Hideable="false" Visible="false">
                             </ext:Column>
-                             <ext:Column CellCls="cellLink" ID="ColfsRef" MenuDisabled="true" runat="server" Text="<%$ Resources: fsRef%>" DataIndex="fsRef" Width="150" Hideable="false">
+                             <ext:Column CellCls="cellLink" ID="ColfsRef" MenuDisabled="true" runat="server" Text="<%$ Resources:FieldReference%>" DataIndex="fsRef" Width="150" Hideable="false">
                             </ext:Column>
 
                             <ext:Column CellCls="cellLink" ID="ColName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldName%>" DataIndex="name" Flex="2" Hideable="false">
@@ -313,7 +313,7 @@
                             <Items>
 
                                 <ext:TextField runat="server" ID="recordId" Name="recordId" Hidden="true" />
-                                 <ext:TextField runat="server" ID="fsRefid" Name="fsRef"  FieldLabel="<%$ Resources:fsRef%>"  />
+                                 <ext:TextField runat="server" ID="fsRefid" Name="fsRef"  FieldLabel="<%$ Resources:FieldReference%>"  />
                                    <ext:DateField runat="server" ID="dateId" FieldLabel="<%$ Resources:Day%>" Name="date" AllowBlank="false" />
                                 <ext:ComboBox AnyMatch="true" CaseSensitive="false" runat="server" ID="employeeId" Name="employeeId"
                                     DisplayField="fullName"
@@ -375,7 +375,7 @@
                         </ext:FormPanel>
                           
                                 <ext:GridPanel
-                                    Title="<%$ Resources: entitlementsGrid%>"
+                                    Title="<%$ Resources: Entitlements%>"
                                     ID="entitlementsGrid"
                                     runat="server"
                                     Width="600" Header="false"
@@ -428,9 +428,9 @@
                                                                                   
                                            
                                          
-                                         <ext:Column CellCls="cellLink" ID="nameCol" MenuDisabled="true" runat="server" Text="<%$ Resources: edName%>" DataIndex="edName" Width="150" Hideable="false" Visible="true"/>
+                                         <ext:Column CellCls="cellLink" ID="nameCol" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldName1%>" DataIndex="edName" Width="150" Hideable="false" Visible="true" Flex="2"/>
                                          <ext:Column CellCls="cellLink" ID="seqNoCol" MenuDisabled="true" runat="server" Text="<%$ Resources: seqNo%>" DataIndex="seqNo" Width="150" Hideable="false" Visible="false"/>
-                                         <ext:Column CellCls="cellLink" ID="enAmountCol" MenuDisabled="true" runat="server" Text="<%$ Resources: amount%>" DataIndex="amount" Width="150" Hideable="false" Visible="true"/>
+                                         <ext:Column CellCls="cellLink" ID="enAmountCol" MenuDisabled="true" runat="server" Text="<%$ Resources: amount%>" DataIndex="amount" Width="150" Hideable="false" Visible="true"  Flex="1"/>
                                          <ext:Column CellCls="cellLink" ID="edIdCol" MenuDisabled="true" runat="server" Text="edId" DataIndex="edId" Width="150" Hideable="false" Visible="false"/>
                                                  
                                             <ext:Column CellCls="cellLink" ID="typeCol" MenuDisabled="true" runat="server" Text="type" DataIndex="type" Width="150" Hideable="false" Visible="false"/>
@@ -497,7 +497,7 @@
                         
                       
                                 <ext:GridPanel
-                                    Title="<%$ Resources: deductionGrid%>"
+                                    Title="<%$ Resources: Deductions%>"
                                     ID="deductionGrid"
                                     runat="server"
                                     Width="600" Header="false"
@@ -548,9 +548,9 @@
                                     <ColumnModel>
                                         <Columns>
 
-                                         <ext:Column CellCls="cellLink" ID="Column1" MenuDisabled="true" runat="server" Text="<%$ Resources: edName%>" DataIndex="edName" Width="150" Hideable="false" Visible="true"/>
-                                         <ext:Column CellCls="cellLink" ID="Column2" MenuDisabled="true" runat="server" Text="<%$ Resources: seqNo%>" DataIndex="seqNo" Width="150" Hideable="false" Visible="false"/>
-                                         <ext:Column CellCls="cellLink" ID="Column3" MenuDisabled="true" runat="server" Text="<%$ Resources: amount%>" DataIndex="amount" Width="150" Hideable="false" Visible="true"/>
+                                         <ext:Column CellCls="cellLink" ID="Column1" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldName1%>" DataIndex="edName" Width="150" Hideable="false" Visible="true" Flex="2"/>
+                                         <ext:Column CellCls="cellLink" ID="Column2" MenuDisabled="true" runat="server" Text="" DataIndex="seqNo" Width="150" Hideable="false" Visible="false"/>
+                                         <ext:Column CellCls="cellLink" ID="Column3" MenuDisabled="true" runat="server" Text="<%$ Resources: amount%>" DataIndex="amount" Width="150" Hideable="false" Visible="true" Flex="1"/>
                                          <ext:Column CellCls="cellLink" ID="Column4" MenuDisabled="true" runat="server" Text="edId" DataIndex="edId" Width="150" Hideable="false" Visible="false" />                                                             
                                             <ext:Column CellCls="cellLink" ID="Column5" MenuDisabled="true" runat="server" Text="type" DataIndex="type" Width="150" Hideable="false" Visible="false"/>
                                                 <ext:Column runat="server" ID="Column8" Visible="false" Text="<%$ Resources: Common , Delete %>" Width="100" Align="Center" Fixed="true"  Filterable="false"  Hideable="false"
@@ -643,9 +643,9 @@
             ID="EditENWindow"
             runat="server"
             Icon="PageEdit"
-           Title="<%$ Resources:EntitlementEditWindow %>"
-            Width="650"
-            Height="320"
+             Title="<%$ Resources:EntitlementEditWindow %>"
+            Width="400"
+            Height="150"
             AutoShow="false"
             Modal="true"
             Closable="false"
@@ -730,8 +730,8 @@
             runat="server"
             Icon="PageEdit"
             Title="<%$ Resources:DeductionEditWindow %>"
-            Width="650"
-            Height="340"
+            Width="400"
+            Height="150"
             AutoShow="false"
             Modal="true"
             Closable="false"
@@ -744,18 +744,18 @@
             Layout="Fit">
 
             <Items>
-                <ext:TabPanel ID="TabPanel4" runat="server" ActiveTabIndex="0" Border="false" DeferredRender="false" Header="false"  TitleCollapse="true">
+                <ext:TabPanel ID="TabPanel4"  runat="server" ActiveTabIndex="0" Border="false" DeferredRender="false" Header="false"  TitleCollapse="true">
                     <Items>
                         <ext:FormPanel
                             ID="DEForm" DefaultButton="SaveDEButton"
                             runat="server"
-                            
+                            Title="<%$ Resources:DeductionEditWindow %>"
                             Icon="ApplicationSideList"
                             Header="false" TitleCollapse="true"
                             DefaultAnchor="100%" Layout="AutoLayout"
                             BodyPadding="5">
                             <Items>
-                                    <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" AllowBlank="false" DisplayField="name" ID="dedEdId" Name="edId" FieldLabel="<%$ Resources:DeductionName%>" SimpleSubmit="true" StoreID="dedsStore">
+                                    <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" AllowBlank="false" DisplayField="name" ID="dedEdId" Name="edId" FieldLabel="<%$ Resources:FieldDeduction%>" SimpleSubmit="true" StoreID="dedsStore">
                       
                                    
                                     <Listeners>

@@ -547,9 +547,47 @@
                             BodyPadding="5">
                             <Items>
 
+                                 <ext:ComboBox
+                                      LabelWidth="160" 
+                                         SubmitValue="true"
+                                         AnyMatch="true"
+                                        CaseSensitive="false" 
+                                        runat="server" ValueField="payCode"
+                                        QueryMode="Local" ForceSelection="true"
+                                        TypeAhead="true" MinChars="1" AllowBlank="false"
+                                        DisplayField="name"  ID="payCodeCB" 
+                                       Name="payCode" FieldLabel="<%$ Resources:payCode %>" 
+                                       SimpleSubmit="true"  ReadOnly="false">
+                                       <Store>
+                                        <ext:Store   ID="Store2"
+                                            runat="server"
+                                            RemoteSort="False"
+                                            RemoteFilter="true"
+                                            OnReadData="PayCode_ReadData"
+                                            PageSize="50" IDMode="Explicit" Namespace="App">
+                                            <Proxy>
+                                                <ext:PageProxy>
+                                                    <Listeners>
+                                                        <Exception Handler="Ext.MessageBox.alert('#{textLoadFailed}.value', response.statusText);" />
+                                                    </Listeners>
+                                                </ext:PageProxy>
+                                            </Proxy>
+                                            <Model>
+                                             <ext:Model ID="Model3" runat="server" >
+                                                <Fields>                                                                                                
+                                                            <ext:ModelField Name="name" />
+                                                            <ext:ModelField Name="payCode" />
+                                                                               
+                                                        </Fields>
+                                                    </ext:Model>
+                                                </Model>
+                                                
+                                                 </ext:Store>
+                                           </Store>
+                                       </ext:ComboBox>
                                 <ext:TextField ID="ssIdTF" Hidden="true" runat="server" FieldLabel="ssIdTF"  Name="ssId" />
                                  <ext:TextField ID="seqNoTF" Hidden="true" runat="server" FieldLabel="seqNoTF" Name="seqNo" />
-                                <ext:TextField ID="payCodeTF" Hidden="false" runat="server" FieldLabel=" <%$ Resources:payCode %>" Name="payCode" LabelWidth="160"  MaxLength="4" AllowBlank="false"/>
+                           <%--  <ext:TextField ID="payCodeTF" Hidden="false" runat="server" FieldLabel=" <%$ Resources:payCode %>" Name="payCode" LabelWidth="160"  MaxLength="4" AllowBlank="false"/>--%>
                                 <ext:TextField ID="nameTF" Hidden="false" runat="server" FieldLabel="<%$ Resources: FieldName %>" Name="name" LabelWidth="160" AllowBlank="false"/>
                                  <ext:NumberField Width="400" AllowBlank="false" runat="server" LabelWidth="160" ID="coPctNF" Name="coPct" FieldLabel="<%$ Resources: CompanyPercentage %>" MinValue="0" MaxValue="100" />
                                  <ext:NumberField  Width="400" AllowBlank="false" runat="server" LabelWidth="160" ID="emPctNF" Name="emPct" FieldLabel="<%$ Resources: EmployeePercentage %>" MinValue="0"  MaxValue="100" />

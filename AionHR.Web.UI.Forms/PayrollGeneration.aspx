@@ -769,6 +769,81 @@
                             </Items>
 
                         </ext:FormPanel>
+                         <ext:FormPanel
+                            ID="PayCodeFormPanel"
+                            runat="server"
+                            Title="<%$ Resources: socialsecurity %>"
+                            Icon="ApplicationSideList"
+                            DefaultAnchor="100%"
+                            BodyPadding="5">
+                            <Items>
+                                <ext:GridPanel
+                                    ID="payCodeGrid" SortableColumns="false"  EnableColumnResize="false" EnableColumnHide="false"
+                                    runat="server"
+                                    Width="600" Header="false"
+                                    Height="350" Layout="FitLayout"
+                                    Frame="true" TitleCollapse="true" Scroll="Vertical">
+                                    <Store>
+                                        <ext:Store ID="PayCodeStore" runat="server">
+                                            <Model>
+                                                <ext:Model runat="server" >
+                                                    <Fields>
+                                                        <ext:ModelField Name="payCode" />
+                                                        <ext:ModelField Name="pcName" />
+                                                        <ext:ModelField Name="pct" />
+                                                        <ext:ModelField Name="amount" />
+                                                         
+
+                                                    </Fields>
+                                                </ext:Model>
+                                            </Model>
+                                        </ext:Store>
+                                    </Store>
+
+                                    
+                                   
+                                    <ColumnModel>
+                                        <Columns>
+                                            <ext:Column ID="Column3" Visible="false"
+                                                runat="server" Flex="2"
+                                                Text=""
+                                                DataIndex="payCode"
+                                                Align="Center">
+                                                
+                                            </ext:Column>
+                                              <ext:Column ID="Column5"
+                                                runat="server" Flex="2"
+                                                Text="<%$ Resources:PayCode%>"
+                                                DataIndex="pcName"
+                                                Align="Center">
+                                                
+                                            </ext:Column>
+                                              <ext:Column ID="Column6"
+                                                runat="server" Flex="2"
+                                                Text="<%$ Resources:pct%>"
+                                                DataIndex="pct"
+                                                Align="Center">
+                                                
+                                            </ext:Column>
+                                              <ext:Column ID="Column7"
+                                                runat="server" Flex="2"
+                                                Text="<%$ Resources:amount%>"
+                                                DataIndex="amount"
+                                                Align="Center">
+                                                
+                                            </ext:Column>
+
+                                          
+
+                                        </Columns>
+                                    </ColumnModel>
+                                   
+                                    
+                                   
+                                </ext:GridPanel>
+                            </Items>
+
+                        </ext:FormPanel>
 
                     </Items>
                     <Buttons>

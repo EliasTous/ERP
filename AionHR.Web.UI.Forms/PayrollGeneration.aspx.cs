@@ -442,6 +442,8 @@ namespace AionHR.Web.UI.Forms
                     entitlementsStore.DataBind();
                     deductionStore.DataSource = GetPayrollDeductions();
                     deductionStore.DataBind();
+                    PayCodeStore.DataSource = GetPayrollSocialSecurity();
+                    PayCodeStore.DataBind(); 
                     EDWindow.Show();
 
                     break;
@@ -959,6 +961,23 @@ namespace AionHR.Web.UI.Forms
         private List<PayrollEntitlementDeduction> GetPayrollDeductions()
         {
             return GetPayrollEntitlementsDeductions().Where(x => x.type == 2).ToList();
+        }
+        private List<PayrollSocialSecurity> GetPayrollSocialSecurity()
+        {
+           
+            PayrollSocialSecurityListRequest req = new PayrollSocialSecurityListRequest();
+           
+            req.payId = CurrentPayId.Text;
+            req.seqNo = CurrentSeqNo.Text;
+
+            ListResponse<PayrollSocialSecurity> resp = _payrollService.ChildGetAll<PayrollSocialSecurity>(req);
+            if (!resp.Success)
+            {
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() : resp.Summary).Show();
+                return new List<PayrollSocialSecurity>();
+            }
+            return resp.Items;
         }
 
     }

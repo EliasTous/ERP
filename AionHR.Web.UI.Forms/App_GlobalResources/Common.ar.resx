@@ -1018,9 +1018,9 @@
     <value>رواتب الحالية </value>
   </data>
   <data name="FinalSettlements" xml:space="preserve">
-    <value>Final Settlements</value>
+    <value>نهاية الخدمة </value>
   </data>
-  <data name="finalSettlement" xml:space="preserve">
-    <value>Final Settlement</value>
+  <data name="PayCodes" xml:space="preserve">
+    <value>الرموز المالية</value>
   </data>
 </root>

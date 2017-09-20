@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="amount" xml:space="preserve">
+    <value>المبلغ </value>
+  </data>
   <data name="Deductions" xml:space="preserve">
     <value>الخصومات</value>
   </data>
@@ -192,6 +195,12 @@
   <data name="Month" xml:space="preserve">
     <value>الشهر</value>
   </data>
+  <data name="PayCode" xml:space="preserve">
+    <value>رمز المالي </value>
+  </data>
+  <data name="pct" xml:space="preserve">
+    <value>النسبة</value>
+  </data>
   <data name="SalaryBiWeekly" xml:space="preserve">
     <value>اسبوعين</value>
   </data>
@@ -230,5 +239,8 @@
   </data>
   <data name="Weeks" xml:space="preserve">
     <value>الأسابيع</value>
+  </data>
+  <data name="socialsecurity" xml:space="preserve">
+    <value>الـتأمينات الاجتماعية</value>
   </data>
 </root>

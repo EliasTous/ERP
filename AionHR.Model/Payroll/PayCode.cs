@@ -9,6 +9,6 @@ namespace AionHR.Model.Payroll
    public class PayCode
     {
         public string name { get; set; }
-        public int payCode { get; set; }
+        public string  payCode { get; set; }
     }
 }

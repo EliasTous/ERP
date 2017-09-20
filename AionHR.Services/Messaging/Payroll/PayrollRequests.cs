@@ -156,6 +156,7 @@ public class FinalEntitlementsDeductionsListRequest:ListRequest
    
         public int fsId { set; get; }
     public int type { get; set; }
+    public string sortBy { set; get; }
 
 
     private Dictionary<string, string> parameters;
@@ -166,6 +167,7 @@ public class FinalEntitlementsDeductionsListRequest:ListRequest
             parameters = new Dictionary<string, string>();
             parameters.Add("_fsId", fsId.ToString());
             parameters.Add("_type", type.ToString());
+            parameters.Add("_sortBy", type.ToString());
 
 
 
@@ -198,5 +200,49 @@ public class FinalEntitlementsDeductionsRecordRequest : RecordRequest
     }
 
 }
+public class PayCodeRecordRequest : RecordRequest
+{
 
+
+   
+    public string payCode { get; set; }
+
+
+    private Dictionary<string, string> parameters;
+    public override Dictionary<string, string> Parameters
+    {
+        get
+        {
+            parameters = new Dictionary<string, string>();
+            parameters.Add("_payCode", payCode);
+            
+
+
+
+            return parameters;
+        }
+    }
+
+}
+public class PayrollSocialSecurityListRequest:ListRequest
+{ 
+    public string payId { get; set; }
+
+    public string seqNo { get; set; }
+            
+
+    private Dictionary<string, string> parameters;
+    public override Dictionary<string, string> Parameters
+    {
+        get
+        {
+            parameters = new Dictionary<string, string>();
+            parameters.Add("_payId", payId);
+            parameters.Add("_seqNo", seqNo);
+                       
+            return parameters;
+        }
+    }
+
+}
 

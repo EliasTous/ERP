@@ -580,6 +580,33 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.FormPanel socialSetupForm;
         
         /// <summary>
+        /// payCodeCB control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.ComboBox payCodeCB;
+        
+        /// <summary>
+        /// Store2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Store Store2;
+        
+        /// <summary>
+        /// Model3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Model Model3;
+        
+        /// <summary>
         /// ssIdTF control.
         /// </summary>
         /// <remarks>
@@ -596,15 +623,6 @@ namespace AionHR.Web.UI.Forms {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.TextField seqNoTF;
-        
-        /// <summary>
-        /// payCodeTF control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.TextField payCodeTF;
         
         /// <summary>
         /// nameTF control.

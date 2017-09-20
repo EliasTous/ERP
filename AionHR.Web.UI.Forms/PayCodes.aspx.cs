@@ -24,17 +24,16 @@ using AionHR.Model.System;
 using AionHR.Model.Attendance;
 using AionHR.Model.Employees.Leaves;
 using AionHR.Model.Employees.Profile;
-using AionHR.Model.Payroll;
+using AionHR.Model.Payroll; 
+
 namespace AionHR.Web.UI.Forms
 {
-    public partial class SocialSecuritySchedules : System.Web.UI.Page
+    public partial class PayCodes : System.Web.UI.Page
     {
         ISystemService _systemService = ServiceLocator.Current.GetInstance<ISystemService>();
-        IPayrollService _PayrollService = ServiceLocator.Current.GetInstance<IPayrollService>();
 
         IEmployeeService _employeeService = ServiceLocator.Current.GetInstance<IEmployeeService>();
-       
-     
+        IPayrollService _payrollService= ServiceLocator.Current.GetInstance<IPayrollService>();
         protected override void InitializeCulture()
         {
 
@@ -66,7 +65,7 @@ namespace AionHR.Web.UI.Forms
                 HideShowColumns();
                 try
                 {
-                    AccessControlApplier.ApplyAccessControlOnPage(typeof(SocialSecuritySchedule), BasicInfoTab, GridPanel1, btnAdd, SaveButton);
+                    AccessControlApplier.ApplyAccessControlOnPage(typeof(DocumentType), BasicInfoTab, GridPanel1, btnAdd, SaveButton);
                 }
                 catch (AccessDeniedException exp)
                 {
@@ -75,8 +74,6 @@ namespace AionHR.Web.UI.Forms
                     Viewport1.Hidden = true;
                     return;
                 }
-
-               
 
 
             }
@@ -107,7 +104,6 @@ namespace AionHR.Web.UI.Forms
         private void HideShowColumns()
         {
             this.colAttach.Visible = false;
-            this.colAttachSetupGrid.Visible = false;
         }
 
 
@@ -127,22 +123,19 @@ namespace AionHR.Web.UI.Forms
         protected void PoPuP(object sender, DirectEventArgs e)
         {
 
-            panelRecordDetails.ActiveIndex = 0;
-            string id = e.ExtraParams["id"];
-            SocailSecurityrecordId.Text = id;
+            paycode.ReadOnly = true;
+            string payCode = e.ExtraParams["payCode"];
+            string name = e.ExtraParams["name"];
             string type = e.ExtraParams["type"];
-            socialSetupStore.Reload();
-          
+
             switch (type)
             {
                 case "imgEdit":
+                    //Step 1 : get the object from the Web Service 
+                    PayCodeRecordRequest r = new PayCodeRecordRequest();
+                    r.payCode = payCode; 
 
-                   
-                        //Step 1 : get the object from the Web Service 
-                        RecordRequest r = new RecordRequest();
-                    r.RecordID = id;
-
-                    RecordResponse<SocialSecuritySchedule> response = _PayrollService.ChildGetRecord<SocialSecuritySchedule>(r);
+                    RecordResponse<PayCode> response = _payrollService.ChildGetRecord<PayCode>(r);
                     if (!response.Success)
                     {
                         X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
@@ -152,9 +145,8 @@ namespace AionHR.Web.UI.Forms
                     //Step 2 : call setvalues with the retrieved object
                     this.BasicInfoTab.SetValues(response.result);
 
-                    recordId.Text = id;
+
                     this.EditRecordWindow.Title = Resources.Common.EditWindowsTitle;
-                   
                     this.EditRecordWindow.Show();
                     break;
 
@@ -164,67 +156,7 @@ namespace AionHR.Web.UI.Forms
                         Yes = new MessageBoxButtonConfig
                         {
                             //We are call a direct request metho for deleting a record
-                            Handler = String.Format("App.direct.DeleteRecord({0})", id),
-                            Text = Resources.Common.Yes
-                        },
-                        No = new MessageBoxButtonConfig
-                        {
-                            Text = Resources.Common.No
-                        }
-
-                    }).Show();
-                    break;
-
-                case "imgAttach":
-
-                    //Here will show up a winow relatice to attachement depending on the case we are working on
-                    break;
-                default:
-                    break;
-            }
-
-
-        }
-        protected void PoPuPSocialSetup(object sender, DirectEventArgs e)
-        {
-
-
-            string ssId = e.ExtraParams["id"];
-            string seqNo = e.ExtraParams["seqNo"];
-       
-            string type = e.ExtraParams["type"];
-
-            switch (type)
-            {
-                case "imgEdit":
-                    //Step 1 : get the object from the Web Service 
-                    SocialSecurityScheduleSetupRequest r = new SocialSecurityScheduleSetupRequest();
-                    r.ssId = Convert.ToInt32(ssId);
-                    r.seqNo = Convert.ToInt32(seqNo);
-
-                    RecordResponse<SocialSecurityScheduleSetup> response = _PayrollService.ChildGetRecord<SocialSecurityScheduleSetup>(r);
-                    if (!response.Success)
-                    {
-                        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                        X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).ToString() : response.Summary).Show();
-                        return;
-                    }
-                    //Step 2 : call setvalues with the retrieved object
-                    this.socialSetupForm.SetValues(response.result);
-
-                  //  recordId.Text = ssId;
-                    this.socialSetupForm.Title = Resources.Common.EditWindowsTitle;
-                   
-                    this.EditSocialSecuritySetupWindow.Show();
-                    break;
-
-                case "imgDelete":
-                    X.Msg.Confirm(Resources.Common.Confirmation, Resources.Common.DeleteOneRecord, new MessageBoxButtonsConfig
-                    {
-                        Yes = new MessageBoxButtonConfig
-                        {
-                            //We are call a direct request metho for deleting a record
-                            Handler = String.Format("App.direct.DeleteSocialRecord({0},{1})", ssId,seqNo),
+                            Handler = String.Format("App.direct.DeleteRecord('{0}','{1}')", payCode,name),
                             Text = Resources.Common.Yes
                         },
                         No = new MessageBoxButtonConfig
@@ -251,66 +183,19 @@ namespace AionHR.Web.UI.Forms
         /// </summary>
         /// <param name="index">the ID of the object to delete</param>
         [DirectMethod]
-        public void DeleteRecord(string index)
+        public void DeleteRecord(string paycode,string name)
         {
             try
             {
                 //Step 1 Code to delete the object from the database 
-                SocialSecuritySchedule s = new SocialSecuritySchedule();
-                s.recordId = index;
-              
-                   //s.intName = "";
-
-                PostRequest<SocialSecuritySchedule> req = new PostRequest<SocialSecuritySchedule>();
-                req.entity = s;
-                PostResponse<SocialSecuritySchedule> r = _PayrollService.ChildDelete<SocialSecuritySchedule>(req);
-                if (!r.Success)
-                {
-                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() : r.Summary).Show();
-                    return;
-                }
-                else
-                {
-                    //Step 2 :  remove the object from the store
-                    Store1.Remove(index);
-
-                    //Step 3 : Showing a notification for the user 
-                    Notification.Show(new NotificationConfig
-                    {
-                        Title = Resources.Common.Notification,
-                        Icon = Icon.Information,
-                        Html = Resources.Common.RecordDeletedSucc
-                    });
-                }
-
-            }
-            catch (Exception ex)
-            {
-                //In case of error, showing a message box to the user
-                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorDeletingRecord).Show();
-
-            }
-
-        }
-
-        [DirectMethod]
-        public void DeleteSocialRecord(string ssId,string seqNo)
-        {
-            try
-            {
-                //Step 1 Code to delete the object from the database 
-                SocialSecurityScheduleSetup s = new SocialSecurityScheduleSetup();
-                s.ssId =Convert.ToInt32( ssId);
-                s.seqNo = Convert.ToInt32(seqNo);
-
-
+                PayCode s = new PayCode();
+                s.payCode = paycode;
+                s.name = name;
                 //s.intName = "";
 
-                PostRequest<SocialSecurityScheduleSetup> req = new PostRequest<SocialSecurityScheduleSetup>();
+                PostRequest<PayCode> req = new PostRequest<PayCode>();
                 req.entity = s;
-                PostResponse<SocialSecurityScheduleSetup> r = _PayrollService.ChildDelete<SocialSecurityScheduleSetup>(req);
+                PostResponse<PayCode> r = _payrollService.ChildDelete<PayCode>(req);
                 if (!r.Success)
                 {
                     X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
@@ -320,7 +205,7 @@ namespace AionHR.Web.UI.Forms
                 else
                 {
                     //Step 2 :  remove the object from the store
-                    socialSetupStore.Reload(); 
+                    Store1.Reload(); 
 
                     //Step 3 : Showing a notification for the user 
                     Notification.Show(new NotificationConfig
@@ -422,48 +307,23 @@ namespace AionHR.Web.UI.Forms
         /// <param name="e"></param>
         protected void ADDNewRecord(object sender, DirectEventArgs e)
         {
-            
 
             //Reset all values of the relative object
             BasicInfoTab.Reset();
-            SocailSecurityrecordId.Text = "";
-            panelRecordDetails.ActiveIndex = 0;
-            
-            
-
-
+            paycode.ReadOnly = false;
 
             this.EditRecordWindow.Title = Resources.Common.AddNewRecord;
-         
-            
-                socialSetupGrid.Disabled = true;
-           
-        
+
 
             this.EditRecordWindow.Show();
         }
-        protected void ADDNewsocialSetupRecord(object sender, DirectEventArgs e)
-        {
-
-          
-
-            //Reset all values of the relative object
-            socialSetupForm.Reset();
-
-
-            this.EditSocialSecuritySetupWindow.Title = Resources.Common.AddNewRecord;
-
-
-            this.EditSocialSecuritySetupWindow.Show();
-        }
-
 
         protected void Store1_RefreshData(object sender, StoreReadDataEventArgs e)
         {
 
             //GEtting the filter from the page
             string filter = string.Empty;
-
+            int totalCount = 1;
 
 
 
@@ -473,7 +333,7 @@ namespace AionHR.Web.UI.Forms
             ListRequest request = new ListRequest();
 
             request.Filter = "";
-            ListResponse<SocialSecuritySchedule> routers = _PayrollService.ChildGetAll<SocialSecuritySchedule>(request);
+            ListResponse<Model.Payroll.PayCode> routers = _payrollService.ChildGetAll<Model.Payroll.PayCode>(request);
             if (!routers.Success)
             {
                 X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", routers.ErrorCode) != null ? GetGlobalResourceObject("Errors", routers.ErrorCode).ToString() : routers.Summary).Show();
@@ -487,167 +347,33 @@ namespace AionHR.Web.UI.Forms
 
 
 
-       
+
         protected void SaveNewRecord(object sender, DirectEventArgs e)
         {
 
-            socialSetupStore.Reload();
-
 
             //Getting the id to check if it is an Add or an edit as they are managed within the same form.
 
+
             string obj = e.ExtraParams["values"];
-            SocialSecuritySchedule b = JsonConvert.DeserializeObject<SocialSecuritySchedule>(obj);
-           
-            string id = e.ExtraParams["id"];
+            PayCode b = JsonConvert.DeserializeObject<PayCode>(obj);
+
+   
             // Define the object to add or edit as null
 
-            if (string.IsNullOrEmpty(id))
+            if (string.IsNullOrEmpty(b.payCode))
             {
 
                 try
                 {
                     //New Mode
                     //Step 1 : Fill The object and insert in the store 
-                    PostRequest<SocialSecuritySchedule> request = new PostRequest<SocialSecuritySchedule>();
+                    PostRequest<PayCode> request = new PostRequest<PayCode>();
 
                     request.entity = b;
-                    request.entity.recordId = SocailSecurityrecordId.Text; 
+                    PostResponse<PayCode> r = _payrollService.ChildAddOrUpdate<PayCode>(request);
 
 
-                    PostResponse<SocialSecuritySchedule> r = _PayrollService.ChildAddOrUpdate<SocialSecuritySchedule>(request);
-                   
-                    //check if the insert failed
-                    if (!r.Success)//it maybe be another condition
-                    {
-                        //Show an error saving...
-                        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                        X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() : r.Summary).Show();
-                        return;
-                    }                  
-                        else
-                        {
-                        if (!string.IsNullOrEmpty(SocailSecurityrecordId.Text))
-                        {
-                            b.recordId = r.recordId;
-                            //Add this record to the store 
-                            this.Store1.Insert(0, b);
-
-                            this.EditRecordWindow.Close();
-                            RowSelectionModel sm = this.GridPanel1.GetSelectionModel() as RowSelectionModel;
-                            sm.DeselectAll();
-                            sm.Select(b.recordId.ToString());
-                            
-                            socialSetupStore.Reload();
-                          
-                        }
-
-                        Store1.Reload();
-                        SocailSecurityrecordId.Text = r.recordId;
-                        
-                        socialSetupGrid.Disabled = false;
-
-                      
-
-                            //Display successful notification
-                            Notification.Show(new NotificationConfig
-                            {
-                                Title = Resources.Common.Notification,
-                                Icon = Icon.Information,
-                                Html = Resources.Common.RecordSavingSucc
-                            });
-
-                     
-                           
-                           
-                        }
-                   
-
-                }
-                catch (Exception ex)
-                {
-                    //Error exception displaying a messsage box
-                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorSavingRecord).Show();
-                }
-
-
-            }
-            else
-            {
-                //Update Mode
-
-                try
-                {
-                    //getting the id of the record
-                    PostRequest<SocialSecuritySchedule> request = new PostRequest<SocialSecuritySchedule>();
-                    request.entity = b;
-                    PostResponse<SocialSecuritySchedule> r = _PayrollService.ChildAddOrUpdate<SocialSecuritySchedule>(request);                      //Step 1 Selecting the object or building up the object for update purpose
-
-                    //Step 2 : saving to store
-
-                    //Step 3 :  Check if request fails
-                    if (!r.Success)//it maybe another check
-                    {
-                        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                        X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() : r.Summary).Show();
-                        return;
-                    }
-                   
-                        else
-                        {
-                            ModelProxy record = this.Store1.GetById(id);
-                            BasicInfoTab.UpdateRecord(record);
-                            record.Commit();
-                            Notification.Show(new NotificationConfig
-                            {
-                                Title = Resources.Common.Notification,
-                                Icon = Icon.Information,
-                                Html = Resources.Common.RecordUpdatedSucc
-                            });
-                            this.EditRecordWindow.Close();
-
-
-                        }
-                    
-                }
-                catch (Exception ex)
-                {
-                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorUpdatingRecord).Show();
-                }
-            }
-        }
-        protected void saveSocialButton(object sender, DirectEventArgs e)
-        {
-
-
-            //Getting the id to check if it is an Add or an edit as they are managed within the same form.
-
-            string obj = e.ExtraParams["values"];
-            SocialSecurityScheduleSetup b = JsonConvert.DeserializeObject<SocialSecurityScheduleSetup>(obj);
-
-            string id = e.ExtraParams["id"];
-            
-            // Define the object to add or edit as null
-
-            if (string.IsNullOrEmpty(id))
-            {
-
-                try
-                {
-                    SocailSecurityseqId.Text = Convert.ToString(Convert.ToInt32(SocailSecurityseqId.Text) + 1); 
-                    //New Mode
-                    //Step 1 : Fill The object and insert in the store 
-                    PostRequest<SocialSecurityScheduleSetup> request = new PostRequest<SocialSecurityScheduleSetup>();
-
-                    request.entity = b;
-                    request.entity.ssId =Convert.ToInt32( SocailSecurityrecordId.Text); 
-                    request.entity.seqNo= Convert.ToInt32(SocailSecurityseqId.Text);
-
-
-                    PostResponse<SocialSecurityScheduleSetup> r = _PayrollService.ChildAddOrUpdate<SocialSecurityScheduleSetup>(request);
-                 
                     //check if the insert failed
                     if (!r.Success)//it maybe be another condition
                     {
@@ -658,10 +384,8 @@ namespace AionHR.Web.UI.Forms
                     }
                     else
                     {
+                        
 
-                        //Add this record to the store 
-
-                        socialSetupStore.Reload();
                         //Display successful notification
                         Notification.Show(new NotificationConfig
                         {
@@ -669,14 +393,13 @@ namespace AionHR.Web.UI.Forms
                             Icon = Icon.Information,
                             Html = Resources.Common.RecordSavingSucc
                         });
-                       
-                        this.EditSocialSecuritySetupWindow.Close();
-                      
-                           
+
+                        this.EditRecordWindow.Close();
+                        Store1.Reload();
+
+
 
                     }
-
-
                 }
                 catch (Exception ex)
                 {
@@ -694,11 +417,9 @@ namespace AionHR.Web.UI.Forms
                 try
                 {
                     //getting the id of the record
-                    PostRequest<SocialSecurityScheduleSetup> request = new PostRequest<SocialSecurityScheduleSetup>();
+                    PostRequest<PayCode> request = new PostRequest<PayCode>();
                     request.entity = b;
-                    request.entity.ssId = b.ssId;
-                    request.entity.seqNo = b.seqNo;
-                    PostResponse<SocialSecurityScheduleSetup> r = _PayrollService.ChildAddOrUpdate<SocialSecurityScheduleSetup>(request);                      //Step 1 Selecting the object or building up the object for update purpose
+                    PostResponse<PayCode> r = _payrollService.ChildAddOrUpdate<PayCode>(request);                      //Step 1 Selecting the object or building up the object for update purpose
 
                     //Step 2 : saving to store
 
@@ -709,17 +430,19 @@ namespace AionHR.Web.UI.Forms
                         X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() : r.Summary).Show();
                         return;
                     }
-
                     else
                     {
-                        socialSetupStore.Reload();
+
+
+
+                        Store1.Reload();
                         Notification.Show(new NotificationConfig
                         {
                             Title = Resources.Common.Notification,
                             Icon = Icon.Information,
                             Html = Resources.Common.RecordUpdatedSucc
                         });
-                        this.EditSocialSecuritySetupWindow.Close();
+                        this.EditRecordWindow.Close();
 
 
                     }
@@ -747,11 +470,9 @@ namespace AionHR.Web.UI.Forms
         {
 
         }
-
-      
         protected void printBtn_Click(object sender, EventArgs e)
         {
-            PayrollTimeSchedulesReport p = GetReport();
+            DocumentTypesReport p = GetReport();
             string format = "Pdf";
             string fileName = String.Format("Report.{0}", format);
 
@@ -771,7 +492,7 @@ namespace AionHR.Web.UI.Forms
         }
         protected void ExportPdfBtn_Click(object sender, EventArgs e)
         {
-            PayrollTimeSchedulesReport p = GetReport();
+            DocumentTypesReport p = GetReport();
             string format = "Pdf";
             string fileName = String.Format("Report.{0}", format);
 
@@ -789,7 +510,7 @@ namespace AionHR.Web.UI.Forms
 
         protected void ExportXLSBtn_Click(object sender, EventArgs e)
         {
-            PayrollTimeSchedulesReport p = GetReport();
+            DocumentTypesReport p = GetReport();
             string format = "xls";
             string fileName = String.Format("Report.{0}", format);
 
@@ -805,21 +526,21 @@ namespace AionHR.Web.UI.Forms
             Response.Close();
             //Response.Redirect("Reports/RT301.aspx");
         }
-        private PayrollTimeSchedulesReport GetReport()
+        private DocumentTypesReport GetReport()
         {
 
             ListRequest request = new ListRequest();
 
             request.Filter = "";
-            ListResponse<TimeSchedule> routers = _PayrollService.ChildGetAll<TimeSchedule>(request);
-            if (!routers.Success)
+            ListResponse<DocumentType> resp = _employeeService.ChildGetAll<DocumentType>(request);
+            if (!resp.Success)
             {
                 X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", routers.ErrorCode) != null ? GetGlobalResourceObject("Errors", routers.ErrorCode).ToString() : routers.Summary).Show();
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() : resp.Summary).Show();
                 return null;
             }
-            PayrollTimeSchedulesReport p = new PayrollTimeSchedulesReport();
-            p.DataSource = routers.Items;
+            DocumentTypesReport p = new DocumentTypesReport();
+            p.DataSource = resp.Items;
             p.Parameters["User"].Value = _systemService.SessionHelper.GetCurrentUser();
             p.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;
             p.RightToLeftLayout = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeftLayout.Yes : DevExpress.XtraReports.UI.RightToLeftLayout.No;
@@ -829,39 +550,6 @@ namespace AionHR.Web.UI.Forms
 
 
         }
-        public void socialSetupStore_RefreshData(object sender, StoreReadDataEventArgs e)
-        {
-            
 
-            if (!string.IsNullOrEmpty(SocailSecurityrecordId.Text))
-            {
-                SocialSecurityScheduleSetupListRequest request = new SocialSecurityScheduleSetupListRequest();
-
-                request.Filter = "";
-                request.ssId = Convert.ToInt32(SocailSecurityrecordId.Text);
-
-
-                ListResponse<SocialSecurityScheduleSetup> routers = _PayrollService.ChildGetAll<SocialSecurityScheduleSetup>(request);
-                if (!routers.Success)
-                {
-                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", routers.ErrorCode) != null ? GetGlobalResourceObject("Errors", routers.ErrorCode).ToString() : routers.Summary).Show();
-                    return;
-                }
-                this.socialSetupStore.DataSource = routers.Items;
-                e.Total = routers.Items.Count; ;
-
-                this.socialSetupStore.DataBind();
-            }
-        }
-
-        protected void PayCode_ReadData(object sender, StoreReadDataEventArgs e)
-        {
-            ListRequest req = new ListRequest();
-            ListResponse<PayCode> eds = _PayrollService.ChildGetAll<PayCode>(req);
-
-            Store2.DataSource = eds.Items;
-            Store2.DataBind();
-
-        }
     }
 }

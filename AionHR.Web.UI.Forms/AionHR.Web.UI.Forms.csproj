@@ -272,6 +272,7 @@
     <Content Include="OrganizationChart.aspx" />
     <Content Include="OvertimeSettings.aspx" />
     <Content Include="packages.config" />
+    <Content Include="PayCodes.aspx" />
     <Content Include="PayrollDefaults.aspx" />
     <Content Include="PayrollGeneration.aspx" />
     <Content Include="PayrollTimeSchedule.aspx" />
@@ -350,6 +351,7 @@
     <Content Include="Scripts\HighCharts.js" />
     <Content Include="Scripts\jquery-ui-min.js" />
     <Content Include="Scripts\OvertimeSettings.js" />
+    <Content Include="Scripts\PayCodes.js" />
     <Content Include="Scripts\SecurityGroups.js" />
     <Content Include="Scripts\ImportAttendance.js" />
     <Content Include="Scripts\EmployeeComplaints.js" />
@@ -595,6 +597,13 @@
     </Compile>
     <Compile Include="OvertimeSettings.aspx.designer.cs">
       <DependentUpon>OvertimeSettings.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PayCodes.aspx.cs">
+      <DependentUpon>PayCodes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PayCodes.aspx.designer.cs">
+      <DependentUpon>PayCodes.aspx</DependentUpon>
     </Compile>
     <Compile Include="PayrollTimeSchedule.aspx.cs">
       <DependentUpon>PayrollTimeSchedule.aspx</DependentUpon>
@@ -1609,6 +1618,7 @@
     <Content Include="App_GlobalResources\Common.ar.resx">
       <Generator>GlobalResourceProxyGenerator</Generator>
       <LastGenOutput>Common.ar.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </Content>
   </ItemGroup>
   <ItemGroup>
@@ -1916,6 +1926,9 @@
     <Content Include="App_LocalResources\FinalSettlements.aspx.resx" />
     <Content Include="App_LocalResources\FinalSettlements.aspx.ar.resx" />
     <Content Include="EmployeePages\App_LocalResources\Payroll.aspx.ar.resx" />
+    <Content Include="App_LocalResources\PayCodes.aspx.ar.resx" />
+    <Content Include="App_LocalResources\PayCodes.aspx.resx" />
+    <Content Include="App_LocalResources\PayrollGeneration.aspx.ar.resx" />
     <EmbeddedResource Include="Properties\licenses.licx" />
     <Content Include="Reports\App_LocalResources\RT202.aspx.resx" />
     <Content Include="Reports\App_LocalResources\RT01.aspx.ar.resx" />

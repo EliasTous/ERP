@@ -144,9 +144,6 @@
   <data name="EditSAWindowTitle" xml:space="preserve">
     <value>تعديل الراتب</value>
   </data>
-  <data name="EditWindowsTitle" xml:space="preserve">
-    <value>إعداد الوقت الاضافي</value>
-  </data>
   <data name="Entitlements" xml:space="preserve">
     <value>الاستحقاقات</value>
   </data>
@@ -292,30 +289,30 @@
     <value>إجمالي الاستحقاقات</value>
   </data>
   <data name="WindowTitle" xml:space="preserve">
-    <value>إعدادات الوقت الإضافي</value>
-  </data>
-  <data name="WindowTitle1" xml:space="preserve">
-    <value>العملات</value>
+    <value>إعدادات نهاية الخدمة</value>
   </data>
   <data name="DeductionEditWindow" xml:space="preserve">
-    <value>Edit Deduction</value>
-  </data>
-  <data name="deductionGrid" xml:space="preserve">
-    <value>Deductions</value>
-  </data>
-  <data name="DeductionName" xml:space="preserve">
-    <value>Deduction</value>
-  </data>
-  <data name="edName" xml:space="preserve">
-    <value>EntitlEntitlement / Deduction Name</value>
+    <value>تعديل الخصومات </value>
   </data>
   <data name="EntitlementEditWindow" xml:space="preserve">
-    <value>Edit Entitlement</value>
+    <value>تعديل الاستحقاقات</value>
   </data>
-  <data name="entitlementName" xml:space="preserve">
-    <value>Entitlement </value>
+  <data name="amount" xml:space="preserve">
+    <value>المبلغ</value>
   </data>
-  <data name="seqNo" xml:space="preserve">
-    <value>seqNo</value>
+  <data name="branchName" xml:space="preserve">
+    <value>الفرع </value>
+  </data>
+  <data name="departmentName" xml:space="preserve">
+    <value>القسم </value>
+  </data>
+  <data name="hireDate" xml:space="preserve">
+    <value>تاريخ التوظيف</value>
+  </data>
+  <data name="nationality" xml:space="preserve">
+    <value>الجنسية</value>
+  </data>
+  <data name="positionName" xml:space="preserve">
+    <value>الوظيفة</value>
   </data>
 </root>
