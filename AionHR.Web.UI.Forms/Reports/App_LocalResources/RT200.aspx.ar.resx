@@ -141,4 +141,10 @@
   <data name="taxableeAmount" xml:space="preserve">
     <value>مجموع الخاضع للتأمينات</value>
   </data>
+  <data name="cssString" xml:space="preserve">
+    <value>التأمينات للشركة</value>
+  </data>
+  <data name="essString" xml:space="preserve">
+    <value>التأمينات للموظف</value>
+  </data>
 </root>

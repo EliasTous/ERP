@@ -141,4 +141,10 @@
   <data name="taxableeAmount" xml:space="preserve">
     <value>Total Taxables</value>
   </data>
+  <data name="cssString" xml:space="preserve">
+    <value>Company Social Security</value>
+  </data>
+  <data name="essString" xml:space="preserve">
+    <value>Employee Social Security</value>
+  </data>
 </root>

@@ -204,7 +204,7 @@ namespace AionHR.Web.UI.Forms.Reports
             foreach (var item in d)
             {
                 var list = item.ToList();
-                CurrentPayrollLine line = new CurrentPayrollLine(ens, des, list, GetLocalResourceObject("taxableeAmount").ToString(), GetLocalResourceObject("eAmount").ToString(), GetLocalResourceObject("dAmount").ToString(), GetLocalResourceObject("netSalary").ToString());                
+                CurrentPayrollLine line = new CurrentPayrollLine(ens, des, list, GetLocalResourceObject("taxableeAmount").ToString(), GetLocalResourceObject("eAmount").ToString(), GetLocalResourceObject("dAmount").ToString(), GetLocalResourceObject("netSalary").ToString(), GetLocalResourceObject("essString").ToString(), GetLocalResourceObject("cssString").ToString());                
                 lines.Add(line);
             }
 

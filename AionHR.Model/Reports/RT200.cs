@@ -70,6 +70,10 @@ namespace AionHR.Model.Reports
         public string departmentName { get; set; }
         public string countryName { get; set; }
 
+        public double essAmount { get; set; }
+
+        public double cssAmount { get; set; }
+
         //public int days { get; set; }
 
         //public int calendarDays { get; set; }
@@ -100,6 +104,8 @@ namespace AionHR.Model.Reports
                 all.AddRange(deductions);
                 all.Add(new CurrentEntitlementDeduction() { name = dAmountString, amount = DeductionsTotal, AmountString = currencyRef + String.Format("{0:n0}", DeductionsTotal) });
                 all.Add(new CurrentEntitlementDeduction() { name = netSalary, amount = NetSalary, AmountString = currencyRef + String.Format("{0:n0}", NetSalary) });
+                all.Add(new CurrentEntitlementDeduction() { name = essString, amount = essAmount, AmountString = currencyRef + String.Format("{0:n0}", essAmount) });
+                all.Add(new CurrentEntitlementDeduction() { name = cssString, amount = cssAmount, AmountString = currencyRef + String.Format("{0:n0}", cssAmount) });
                 return new CurrentEntitlementDeductionCollection(all);
             }
         }
@@ -108,7 +114,9 @@ namespace AionHR.Model.Reports
         private string dAmountString;
         private string taxableTotalString;
         private string netSalary;
-        
+        private string essString;
+        private string cssString;
+       
         public string currencyRef { get; set; }
 
         public double EntitlementsTotal { get { return entitlements.Sum(x => x.isTaxable?0:x.amount ); } }
@@ -132,7 +140,7 @@ namespace AionHR.Model.Reports
             deductions[deductions.IndexOf(de)].amount = de.amount;
             deductions[deductions.IndexOf(de)].AmountString = currencyRef + String.Format("{0:n0}", de.amount);
         }
-        public CurrentPayrollLine(HashSet<CurrentEntitlementDeduction> en, HashSet<CurrentEntitlementDeduction> de, List<RT200> details,string taxable, string eString, string dString, string netString)
+        public CurrentPayrollLine(HashSet<CurrentEntitlementDeduction> en, HashSet<CurrentEntitlementDeduction> de, List<RT200> details,string taxable, string eString, string dString, string netString,string ess, string css)
         {
             entitlements = new List<CurrentEntitlementDeduction>();
             deductions = new List<CurrentEntitlementDeduction>();
@@ -147,6 +155,7 @@ namespace AionHR.Model.Reports
                 countryName = details[0].countryName;
                 name = details[0].employeeName.fullName;
                 currencyRef = details[0].currencyRef;
+               
             }
             foreach (var item in details)
             {
@@ -161,6 +170,8 @@ namespace AionHR.Model.Reports
             dAmountString = dString;
             netSalary = netString;
             taxableTotalString = taxable;
+            cssString = css;
+            essString = ess;
         }
 
     }
@@ -207,6 +218,10 @@ namespace AionHR.Model.Reports
         public double dAmount { get; set; }
         public double netSalary { get; set; }
         public string edName { get; set; }
+
+        public string essAmount { get; set; }
+
+        public string cssAmount { get; set; }
 
         public int paymentMethod { get; set; }
         public double edAmount { get; set; }
