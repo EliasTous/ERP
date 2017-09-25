@@ -384,6 +384,8 @@
                                             <Fields>
                                                 <ext:ModelField Name="basicAmount" />
                                                 <ext:ModelField Name="taxAmount" />
+                                                  <ext:ModelField Name="ssAmount" />
+
                                                 <ext:ModelField Name="netSalary" />
                                                 <ext:ModelField Name="name" IsComplex="true" />
                                                 <ext:ModelField Name="branchName" />
@@ -415,9 +417,7 @@
                                     <ext:Column runat="server" DataIndex="basicAmount" Text="<%$ Resources: FieldBasicAmount%>" >
                                         <Renderer Handler="return record.data['currencyRef']+'&nbsp; '+ record.data['basicAmount'] ;" />
                                         </ext:Column>
-                                    <ext:Column runat="server" DataIndex="taxAmount" Text="<%$ Resources: FieldTaxAmount%>" >
-                                        <Renderer Handler="if(record.data['taxAmount']==0) return '-';return record.data['currencyRef'] +'&nbsp;'  + record.data['taxAmount']; " />
-                                        </ext:Column>
+                                    
                                     <ext:Column runat="server" DataIndex="eAmount" Text="<%$ Resources: Entitlements%>" >
                                         <Renderer Handler="if(record.data['eAmount']==0) return '-';return  record.data['currencyRef'] +' &nbsp;'+ record.data['eAmount'];" />
                                         </ext:Column>
@@ -427,6 +427,9 @@
                                      </ext:Column>
                                     <ext:Column runat="server" DataIndex="netSalary" Text="<%$ Resources: FieldNetSalary%>" >
                                         <Renderer Handler="if(record.data['netSalary']==0) return '-'; return record.data['currencyRef'] +'&nbsp; '+ record.data['netSalary'] ;" />
+                                        </ext:Column>
+                                    <ext:Column runat="server" DataIndex="ssAmount" Text="<%$ Resources: FieldSocialSecurity%>" >
+                                      <Renderer Handler="if(record.data['ssAmount']==0) return '-';return record.data['currencyRef'] +'&nbsp;'  + record.data['ssAmount']; " />
                                         </ext:Column>
                                     <ext:Column runat="server"
                                         ID="Column1" Visible="true"
@@ -452,6 +455,9 @@
                                     <EventMask ShowMask="true" />
                                     <ExtraParams>
                                         <ext:Parameter Name="id" Value="record.getId()" Mode="Raw" />
+                                        <ext:Parameter Name="eAmount" Value="record.data['eAmount']" Mode="Raw" />
+                                        <ext:Parameter Name="dAmount" Value="record.data['dAmount']" Mode="Raw" />
+                                        <ext:Parameter Name="ssAmount" Value="record.data['ssAmount']" Mode="Raw" />
                                         <ext:Parameter Name="basicAmount" Value="record.data['basicAmount']" Mode="Raw" />
                                         <ext:Parameter Name="taxAmount" Value="record.data['taxAmount']" Mode="Raw" />
                                         <ext:Parameter Name="netSalary" Value="record.data['netSalary']" Mode="Raw" />
@@ -480,7 +486,7 @@
             Draggable="false"
             Maximizable="false" Resizable="false"
             Width="300"
-            Height="200"
+            Height="260"
             AutoShow="false"
             Modal="true"
             Hidden="true"
@@ -494,11 +500,13 @@
                     DefaultAnchor="100%"
                     BodyPadding="5">
                     <Items>
-                        <ext:TextField runat="server" Name="seqNo" ID="seqNo" Hidden="true" Disabled="true" />
-
-                        <ext:TextField runat="server" Name="basicAmount" ID="basicAmount" FieldLabel="<%$ Resources: FieldBasicAmount %>" />
-                        <ext:TextField runat="server" ReadOnly="true" Name="taxAmount" ID="taxAmount" FieldLabel="<%$ Resources: FieldTaxAmount %>" />
-                        <ext:TextField runat="server" ReadOnly="true" Name="netSalary" ID="netSalary" FieldLabel="<%$ Resources: FieldNetSalary %>" />
+                        <ext:TextField runat="server" Name="seqNo" ID="seqNo" Hidden="true" Disabled="true" />                                                                 
+                        <ext:TextField runat="server" Name="basicAmount" ID="basicAmount" FieldLabel="<%$ Resources: FieldBasicAmount %>" ReadOnly="true"  />
+                        <ext:TextField runat="server" Name="eAmount"   ID="eAmount"  FieldLabel="<%$ Resources: Entitlements%>" ReadOnly="true"  />
+                        <ext:TextField runat="server" Name="dAmount"   ID="dAmount"  FieldLabel="<%$ Resources: Deductions%>" ReadOnly="true"  />
+                        <ext:TextField runat="server" Name="taxAmount" ID="taxAmount" FieldLabel="<%$ Resources: FieldTaxAmount %>"  ReadOnly="true" />
+                        <ext:TextField runat="server" Name="ssAmount"  ID="ssAmount" FieldLabel="<%$ Resources: FieldSocialSecurity%>" ReadOnly="true"/>
+                        <ext:TextField runat="server" Name="netSalary" ID="netSalary" FieldLabel="<%$ Resources: FieldNetSalary %>" ReadOnly="true" />
 
 
                     </Items>
@@ -804,16 +812,16 @@
                                    
                                     <ColumnModel>
                                         <Columns>
-                                            <ext:Column ID="Column3" Visible="false"
+                                            <ext:Column ID="Column3" Visible="true"
                                                 runat="server" Flex="2"
-                                                Text=""
+                                                Text="<%$ Resources:PayCodeName%>"
                                                 DataIndex="payCode"
                                                 Align="Center">
                                                 
                                             </ext:Column>
                                               <ext:Column ID="Column5"
                                                 runat="server" Flex="2"
-                                                Text="<%$ Resources:PayCode%>"
+                                                Text="<%$ Resources:PayCodeName%>"
                                                 DataIndex="pcName"
                                                 Align="Center">
                                                 
