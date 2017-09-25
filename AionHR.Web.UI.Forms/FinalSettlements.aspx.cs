@@ -69,7 +69,18 @@ namespace AionHR.Web.UI.Forms
                 HideShowColumns();
                 try
                 {
-                    AccessControlApplier.ApplyAccessControlOnPage(typeof(OvertimeSetting), BasicInfoTab, GridPanel1, btnAdd, SaveButton);
+                    AccessControlApplier.ApplyAccessControlOnPage(typeof(FinalSettlement), BasicInfoTab, GridPanel1, btnAdd, SaveButton);
+                }
+                catch (AccessDeniedException exp)
+                {
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorAccessDenied).Show();
+                    Viewport1.Hidden = true;
+                    return;
+                }
+                try
+                {
+                    AccessControlApplier.ApplyAccessControlOnPage(typeof(FinalEntitlementsDeductions), ENForm, entitlementsGrid, Button11, SaveENButton);
                 }
                 catch (AccessDeniedException exp)
                 {
@@ -79,8 +90,22 @@ namespace AionHR.Web.UI.Forms
                     return;
                 }
 
+                try
+                {
+                    AccessControlApplier.ApplyAccessControlOnPage(typeof(FinalEntitlementsDeductions), DEForm, deductionGrid, Button14, SaveDEButton);
+                }
+                catch (AccessDeniedException exp)
+                {
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorAccessDenied).Show();
+                    Viewport1.Hidden = true;
+                    return;
+                }
+
+
                 dateFormat.Text = _systemService.SessionHelper.GetDateformat().ToUpper(); ;
             }
+
 
         }
 

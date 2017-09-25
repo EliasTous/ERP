@@ -11,7 +11,7 @@ namespace AionHR.Model.Payroll
     public class SocialSecuritySchedule: ModelBase
     {
         
-      [ PropertyID("51014_1")]
+        [ PropertyID("51014_1")]
         [ApplySecurity]
         public string name { get; set; }
         public double? coPct { get; set; }

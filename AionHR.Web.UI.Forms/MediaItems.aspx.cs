@@ -225,6 +225,7 @@ namespace AionHR.Web.UI.Forms
                     mcId.Select(response.result.mcId.ToString());
 
                     FillDepartment();
+                    if(!string.IsNullOrEmpty(response.result.departmentId.ToString()))
                     departmentId.Select(response.result.departmentId.Value.ToString());
 
                     this.EditRecordWindow.Title = Resources.Common.EditWindowsTitle;
