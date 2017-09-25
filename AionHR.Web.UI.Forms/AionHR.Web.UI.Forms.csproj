@@ -45,7 +45,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="DayPilot">
-      <HintPath>..\..\..\..\Desktop\dlls\DayPilot.dll</HintPath>
+      <HintPath>..\..\..\..\Desktop\Issa\dlls\DayPilot.dll</HintPath>
     </Reference>
     <Reference Include="DevExpress.Charts.v16.2.Core, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <HintPath>..\..\..\Users\User\Desktop\dlls\DevExpress.Charts.v16.2.Core.dll</HintPath>

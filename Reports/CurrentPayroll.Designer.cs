@@ -90,7 +90,27 @@
             this.xrLabel17 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel16 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel15 = new DevExpress.XtraReports.UI.XRLabel();
+            this.xrCrossBandBox1 = new DevExpress.XtraReports.UI.XRCrossBandBox();
             this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
+            this.xrCrossBandLine1 = new DevExpress.XtraReports.UI.XRCrossBandLine();
+            this.xrCrossBandLine2 = new DevExpress.XtraReports.UI.XRCrossBandLine();
+            this.xrCrossBandBox2 = new DevExpress.XtraReports.UI.XRCrossBandBox();
+            this.xrCrossBandLine3 = new DevExpress.XtraReports.UI.XRCrossBandLine();
+            this.xrCrossBandLine4 = new DevExpress.XtraReports.UI.XRCrossBandLine();
+            this.xrCrossBandLine5 = new DevExpress.XtraReports.UI.XRCrossBandLine();
+            this.xrCrossBandLine7 = new DevExpress.XtraReports.UI.XRCrossBandLine();
+            this.xrCrossBandLine8 = new DevExpress.XtraReports.UI.XRCrossBandLine();
+            this.xrCrossBandLine9 = new DevExpress.XtraReports.UI.XRCrossBandLine();
+            this.xrCrossBandLine10 = new DevExpress.XtraReports.UI.XRCrossBandLine();
+            this.xrCrossBandLine6 = new DevExpress.XtraReports.UI.XRCrossBandLine();
+            this.xrCrossBandLine11 = new DevExpress.XtraReports.UI.XRCrossBandLine();
+            this.xrCrossBandBox3 = new DevExpress.XtraReports.UI.XRCrossBandBox();
+            this.xrCrossBandLine12 = new DevExpress.XtraReports.UI.XRCrossBandLine();
+            this.xrCrossBandLine13 = new DevExpress.XtraReports.UI.XRCrossBandLine();
+            this.xrCrossBandBox4 = new DevExpress.XtraReports.UI.XRCrossBandBox();
+            this.xrCrossBandLine14 = new DevExpress.XtraReports.UI.XRCrossBandLine();
+            this.xrCrossBandLine15 = new DevExpress.XtraReports.UI.XRCrossBandLine();
+            this.xrCrossBandLine16 = new DevExpress.XtraReports.UI.XRCrossBandLine();
             ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             // 
@@ -140,6 +160,7 @@
             resources.ApplyResources(this.xrLabel24, "xrLabel24");
             this.xrLabel24.Name = "xrLabel24";
             this.xrLabel24.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel24.StylePriority.UseFont = false;
             // 
             // Branch
             // 
@@ -154,6 +175,7 @@
             resources.ApplyResources(this.xrLabel22, "xrLabel22");
             this.xrLabel22.Name = "xrLabel22";
             this.xrLabel22.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel22.StylePriority.UseFont = false;
             // 
             // Payment
             // 
@@ -168,6 +190,7 @@
             resources.ApplyResources(this.xrLabel18, "xrLabel18");
             this.xrLabel18.Name = "xrLabel18";
             this.xrLabel18.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel18.StylePriority.UseFont = false;
             // 
             // Department
             // 
@@ -180,18 +203,21 @@
             resources.ApplyResources(this.xrLabel21, "xrLabel21");
             this.xrLabel21.Name = "xrLabel21";
             this.xrLabel21.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel21.StylePriority.UseFont = false;
             // 
             // xrLabel19
             // 
             resources.ApplyResources(this.xrLabel19, "xrLabel19");
             this.xrLabel19.Name = "xrLabel19";
             this.xrLabel19.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel19.StylePriority.UseFont = false;
             // 
             // xrLabel20
             // 
             resources.ApplyResources(this.xrLabel20, "xrLabel20");
             this.xrLabel20.Name = "xrLabel20";
             this.xrLabel20.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel20.StylePriority.UseFont = false;
             // 
             // xrTableRow1
             // 
@@ -299,6 +325,7 @@
             this.xrLabel1.Name = "xrLabel1";
             this.xrLabel1.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel1.StyleName = "Title";
+            this.xrLabel1.StylePriority.UseFont = false;
             this.xrLabel1.StylePriority.UseTextAlignment = false;
             // 
             // Title
@@ -364,11 +391,15 @@
             // 
             // xrLabel7
             // 
+            resources.ApplyResources(this.xrLabel7, "xrLabel7");
             this.xrLabel7.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "Headers.name")});
-            resources.ApplyResources(this.xrLabel7, "xrLabel7");
             this.xrLabel7.Name = "xrLabel7";
-            this.xrLabel7.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel7.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
+            this.xrLabel7.StylePriority.UseBackColor = false;
+            this.xrLabel7.StylePriority.UseFont = false;
+            this.xrLabel7.StylePriority.UsePadding = false;
+            this.xrLabel7.StylePriority.UseTextAlignment = false;
             // 
             // DetailReport1
             // 
@@ -404,6 +435,7 @@
             this.xrLabel13.ProcessDuplicatesMode = DevExpress.XtraReports.UI.ProcessDuplicatesMode.Suppress;
             this.xrLabel13.StylePriority.UseBackColor = false;
             this.xrLabel13.StylePriority.UseFont = false;
+            this.xrLabel13.StylePriority.UseTextAlignment = false;
             // 
             // xrLabel6
             // 
@@ -411,8 +443,10 @@
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "Names.name")});
             resources.ApplyResources(this.xrLabel6, "xrLabel6");
             this.xrLabel6.Name = "xrLabel6";
-            this.xrLabel6.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel6.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
             this.xrLabel6.StylePriority.UseFont = false;
+            this.xrLabel6.StylePriority.UsePadding = false;
+            this.xrLabel6.StylePriority.UseTextAlignment = false;
             // 
             // xrLabel5
             // 
@@ -421,6 +455,7 @@
             this.xrLabel5.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel5.ProcessDuplicatesMode = DevExpress.XtraReports.UI.ProcessDuplicatesMode.Suppress;
             this.xrLabel5.StylePriority.UseFont = false;
+            this.xrLabel5.StylePriority.UseTextAlignment = false;
             // 
             // xrLabel4
             // 
@@ -429,6 +464,7 @@
             this.xrLabel4.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel4.ProcessDuplicatesMode = DevExpress.XtraReports.UI.ProcessDuplicatesMode.Suppress;
             this.xrLabel4.StylePriority.UseFont = false;
+            this.xrLabel4.StylePriority.UseTextAlignment = false;
             // 
             // xrLabel3
             // 
@@ -437,6 +473,7 @@
             this.xrLabel3.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel3.ProcessDuplicatesMode = DevExpress.XtraReports.UI.ProcessDuplicatesMode.Suppress;
             this.xrLabel3.StylePriority.UseFont = false;
+            this.xrLabel3.StylePriority.UseTextAlignment = false;
             // 
             // xrLabel2
             // 
@@ -445,6 +482,7 @@
             this.xrLabel2.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel2.ProcessDuplicatesMode = DevExpress.XtraReports.UI.ProcessDuplicatesMode.Suppress;
             this.xrLabel2.StylePriority.UseFont = false;
+            this.xrLabel2.StylePriority.UseTextAlignment = false;
             // 
             // DetailReport2
             // 
@@ -494,8 +532,11 @@
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "Payrolls.basicAmount")});
             resources.ApplyResources(this.xrLabel14, "xrLabel14");
             this.xrLabel14.Name = "xrLabel14";
-            this.xrLabel14.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel14.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
             this.xrLabel14.ProcessDuplicatesMode = DevExpress.XtraReports.UI.ProcessDuplicatesMode.Suppress;
+            this.xrLabel14.StylePriority.UseFont = false;
+            this.xrLabel14.StylePriority.UsePadding = false;
+            this.xrLabel14.StylePriority.UseTextAlignment = false;
             // 
             // xrLabel12
             // 
@@ -503,7 +544,10 @@
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "Payrolls.Entitlements.AmountString")});
             resources.ApplyResources(this.xrLabel12, "xrLabel12");
             this.xrLabel12.Name = "xrLabel12";
-            this.xrLabel12.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel12.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
+            this.xrLabel12.StylePriority.UseFont = false;
+            this.xrLabel12.StylePriority.UsePadding = false;
+            this.xrLabel12.StylePriority.UseTextAlignment = false;
             // 
             // xrLabel11
             // 
@@ -511,8 +555,11 @@
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "Payrolls.departmentName")});
             resources.ApplyResources(this.xrLabel11, "xrLabel11");
             this.xrLabel11.Name = "xrLabel11";
-            this.xrLabel11.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel11.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
             this.xrLabel11.ProcessDuplicatesMode = DevExpress.XtraReports.UI.ProcessDuplicatesMode.Suppress;
+            this.xrLabel11.StylePriority.UseFont = false;
+            this.xrLabel11.StylePriority.UsePadding = false;
+            this.xrLabel11.StylePriority.UseTextAlignment = false;
             // 
             // xrLabel10
             // 
@@ -520,8 +567,11 @@
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "Payrolls.branchName")});
             resources.ApplyResources(this.xrLabel10, "xrLabel10");
             this.xrLabel10.Name = "xrLabel10";
-            this.xrLabel10.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel10.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
             this.xrLabel10.ProcessDuplicatesMode = DevExpress.XtraReports.UI.ProcessDuplicatesMode.Suppress;
+            this.xrLabel10.StylePriority.UseFont = false;
+            this.xrLabel10.StylePriority.UsePadding = false;
+            this.xrLabel10.StylePriority.UseTextAlignment = false;
             // 
             // xrLabel9
             // 
@@ -529,8 +579,11 @@
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "Payrolls.countryName")});
             resources.ApplyResources(this.xrLabel9, "xrLabel9");
             this.xrLabel9.Name = "xrLabel9";
-            this.xrLabel9.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel9.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
             this.xrLabel9.ProcessDuplicatesMode = DevExpress.XtraReports.UI.ProcessDuplicatesMode.Suppress;
+            this.xrLabel9.StylePriority.UseFont = false;
+            this.xrLabel9.StylePriority.UsePadding = false;
+            this.xrLabel9.StylePriority.UseTextAlignment = false;
             // 
             // xrLabel8
             // 
@@ -538,8 +591,11 @@
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "Payrolls.name")});
             resources.ApplyResources(this.xrLabel8, "xrLabel8");
             this.xrLabel8.Name = "xrLabel8";
-            this.xrLabel8.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel8.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
             this.xrLabel8.ProcessDuplicatesMode = DevExpress.XtraReports.UI.ProcessDuplicatesMode.Suppress;
+            this.xrLabel8.StylePriority.UseFont = false;
+            this.xrLabel8.StylePriority.UsePadding = false;
+            this.xrLabel8.StylePriority.UseTextAlignment = false;
             // 
             // DetailReport4
             // 
@@ -570,16 +626,21 @@
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "TotalBasics")});
             resources.ApplyResources(this.xrLabel17, "xrLabel17");
             this.xrLabel17.Name = "xrLabel17";
-            this.xrLabel17.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel17.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
             this.xrLabel17.ProcessDuplicatesMode = DevExpress.XtraReports.UI.ProcessDuplicatesMode.Suppress;
+            this.xrLabel17.StylePriority.UsePadding = false;
+            this.xrLabel17.StylePriority.UseTextAlignment = false;
             // 
             // xrLabel16
             // 
+            resources.ApplyResources(this.xrLabel16, "xrLabel16");
             this.xrLabel16.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "Totals.amount")});
-            resources.ApplyResources(this.xrLabel16, "xrLabel16");
             this.xrLabel16.Name = "xrLabel16";
-            this.xrLabel16.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel16.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
+            this.xrLabel16.StylePriority.UseBackColor = false;
+            this.xrLabel16.StylePriority.UsePadding = false;
+            this.xrLabel16.StylePriority.UseTextAlignment = false;
             // 
             // xrLabel15
             // 
@@ -587,11 +648,177 @@
             this.xrLabel15.Name = "xrLabel15";
             this.xrLabel15.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel15.ProcessDuplicatesMode = DevExpress.XtraReports.UI.ProcessDuplicatesMode.Suppress;
+            this.xrLabel15.StylePriority.UseTextAlignment = false;
+            // 
+            // xrCrossBandBox1
+            // 
+            this.xrCrossBandBox1.BorderDashStyle = DevExpress.XtraPrinting.BorderDashStyle.Solid;
+            this.xrCrossBandBox1.BorderWidth = 1F;
+            resources.ApplyResources(this.xrCrossBandBox1, "xrCrossBandBox1");
+            this.xrCrossBandBox1.EndBand = this.Detail4;
+            this.xrCrossBandBox1.Name = "xrCrossBandBox1";
+            this.xrCrossBandBox1.StartBand = this.Detail4;
+            this.xrCrossBandBox1.WidthF = 1712F;
             // 
             // objectDataSource1
             // 
             this.objectDataSource1.DataSource = typeof(AionHR.Model.Reports.CurrentPayrollCollection);
             this.objectDataSource1.Name = "objectDataSource1";
+            // 
+            // xrCrossBandLine1
+            // 
+            resources.ApplyResources(this.xrCrossBandLine1, "xrCrossBandLine1");
+            this.xrCrossBandLine1.EndBand = this.Detail4;
+            this.xrCrossBandLine1.Name = "xrCrossBandLine1";
+            this.xrCrossBandLine1.StartBand = this.Detail4;
+            this.xrCrossBandLine1.WidthF = 1F;
+            // 
+            // xrCrossBandLine2
+            // 
+            resources.ApplyResources(this.xrCrossBandLine2, "xrCrossBandLine2");
+            this.xrCrossBandLine2.EndBand = this.Detail4;
+            this.xrCrossBandLine2.Name = "xrCrossBandLine2";
+            this.xrCrossBandLine2.StartBand = this.Detail4;
+            this.xrCrossBandLine2.WidthF = 1.041667F;
+            // 
+            // xrCrossBandBox2
+            // 
+            this.xrCrossBandBox2.BorderWidth = 1F;
+            resources.ApplyResources(this.xrCrossBandBox2, "xrCrossBandBox2");
+            this.xrCrossBandBox2.EndBand = this.Detail1;
+            this.xrCrossBandBox2.Name = "xrCrossBandBox2";
+            this.xrCrossBandBox2.StartBand = this.Detail1;
+            this.xrCrossBandBox2.WidthF = 1712F;
+            // 
+            // xrCrossBandLine3
+            // 
+            resources.ApplyResources(this.xrCrossBandLine3, "xrCrossBandLine3");
+            this.xrCrossBandLine3.EndBand = this.Detail4;
+            this.xrCrossBandLine3.Name = "xrCrossBandLine3";
+            this.xrCrossBandLine3.StartBand = this.Detail4;
+            this.xrCrossBandLine3.WidthF = 1.041667F;
+            // 
+            // xrCrossBandLine4
+            // 
+            resources.ApplyResources(this.xrCrossBandLine4, "xrCrossBandLine4");
+            this.xrCrossBandLine4.EndBand = this.Detail4;
+            this.xrCrossBandLine4.Name = "xrCrossBandLine4";
+            this.xrCrossBandLine4.StartBand = this.Detail4;
+            this.xrCrossBandLine4.WidthF = 1.041667F;
+            // 
+            // xrCrossBandLine5
+            // 
+            resources.ApplyResources(this.xrCrossBandLine5, "xrCrossBandLine5");
+            this.xrCrossBandLine5.EndBand = this.Detail4;
+            this.xrCrossBandLine5.Name = "xrCrossBandLine5";
+            this.xrCrossBandLine5.StartBand = this.Detail4;
+            this.xrCrossBandLine5.WidthF = 1F;
+            // 
+            // xrCrossBandLine7
+            // 
+            resources.ApplyResources(this.xrCrossBandLine7, "xrCrossBandLine7");
+            this.xrCrossBandLine7.EndBand = this.Detail2;
+            this.xrCrossBandLine7.Name = "xrCrossBandLine7";
+            this.xrCrossBandLine7.StartBand = this.Detail2;
+            this.xrCrossBandLine7.WidthF = 1.041672F;
+            // 
+            // xrCrossBandLine8
+            // 
+            resources.ApplyResources(this.xrCrossBandLine8, "xrCrossBandLine8");
+            this.xrCrossBandLine8.EndBand = this.Detail2;
+            this.xrCrossBandLine8.Name = "xrCrossBandLine8";
+            this.xrCrossBandLine8.StartBand = this.Detail2;
+            this.xrCrossBandLine8.WidthF = 1.041667F;
+            // 
+            // xrCrossBandLine9
+            // 
+            resources.ApplyResources(this.xrCrossBandLine9, "xrCrossBandLine9");
+            this.xrCrossBandLine9.EndBand = this.Detail2;
+            this.xrCrossBandLine9.Name = "xrCrossBandLine9";
+            this.xrCrossBandLine9.StartBand = this.Detail2;
+            this.xrCrossBandLine9.WidthF = 1.041687F;
+            // 
+            // xrCrossBandLine10
+            // 
+            resources.ApplyResources(this.xrCrossBandLine10, "xrCrossBandLine10");
+            this.xrCrossBandLine10.EndBand = this.Detail2;
+            this.xrCrossBandLine10.Name = "xrCrossBandLine10";
+            this.xrCrossBandLine10.StartBand = this.Detail2;
+            this.xrCrossBandLine10.WidthF = 1.041656F;
+            // 
+            // xrCrossBandLine6
+            // 
+            resources.ApplyResources(this.xrCrossBandLine6, "xrCrossBandLine6");
+            this.xrCrossBandLine6.EndBand = this.Detail2;
+            this.xrCrossBandLine6.Name = "xrCrossBandLine6";
+            this.xrCrossBandLine6.StartBand = this.Detail2;
+            this.xrCrossBandLine6.WidthF = 1.041667F;
+            // 
+            // xrCrossBandLine11
+            // 
+            resources.ApplyResources(this.xrCrossBandLine11, "xrCrossBandLine11");
+            this.xrCrossBandLine11.EndBand = this.Detail2;
+            this.xrCrossBandLine11.Name = "xrCrossBandLine11";
+            this.xrCrossBandLine11.StartBand = this.Detail2;
+            this.xrCrossBandLine11.WidthF = 1.041667F;
+            // 
+            // xrCrossBandBox3
+            // 
+            this.xrCrossBandBox3.BorderWidth = 1F;
+            resources.ApplyResources(this.xrCrossBandBox3, "xrCrossBandBox3");
+            this.xrCrossBandBox3.EndBand = this.Detail5;
+            this.xrCrossBandBox3.Name = "xrCrossBandBox3";
+            this.xrCrossBandBox3.StartBand = this.Detail5;
+            this.xrCrossBandBox3.WidthF = 1712F;
+            // 
+            // xrCrossBandLine12
+            // 
+            resources.ApplyResources(this.xrCrossBandLine12, "xrCrossBandLine12");
+            this.xrCrossBandLine12.EndBand = this.Detail5;
+            this.xrCrossBandLine12.Name = "xrCrossBandLine12";
+            this.xrCrossBandLine12.StartBand = this.Detail5;
+            this.xrCrossBandLine12.WidthF = 1F;
+            // 
+            // xrCrossBandLine13
+            // 
+            resources.ApplyResources(this.xrCrossBandLine13, "xrCrossBandLine13");
+            this.xrCrossBandLine13.EndBand = this.Detail5;
+            this.xrCrossBandLine13.Name = "xrCrossBandLine13";
+            this.xrCrossBandLine13.StartBand = this.Detail5;
+            this.xrCrossBandLine13.WidthF = 1F;
+            // 
+            // xrCrossBandBox4
+            // 
+            this.xrCrossBandBox4.BorderWidth = 2F;
+            resources.ApplyResources(this.xrCrossBandBox4, "xrCrossBandBox4");
+            this.xrCrossBandBox4.EndBand = this.pageHeaderBand1;
+            this.xrCrossBandBox4.Name = "xrCrossBandBox4";
+            this.xrCrossBandBox4.StartBand = this.pageHeaderBand1;
+            this.xrCrossBandBox4.WidthF = 918.7501F;
+            // 
+            // xrCrossBandLine14
+            // 
+            resources.ApplyResources(this.xrCrossBandLine14, "xrCrossBandLine14");
+            this.xrCrossBandLine14.EndBand = this.pageHeaderBand1;
+            this.xrCrossBandLine14.Name = "xrCrossBandLine14";
+            this.xrCrossBandLine14.StartBand = this.pageHeaderBand1;
+            this.xrCrossBandLine14.WidthF = 916.6667F;
+            // 
+            // xrCrossBandLine15
+            // 
+            resources.ApplyResources(this.xrCrossBandLine15, "xrCrossBandLine15");
+            this.xrCrossBandLine15.EndBand = this.pageHeaderBand1;
+            this.xrCrossBandLine15.Name = "xrCrossBandLine15";
+            this.xrCrossBandLine15.StartBand = this.pageHeaderBand1;
+            this.xrCrossBandLine15.WidthF = 1.041667F;
+            // 
+            // xrCrossBandLine16
+            // 
+            resources.ApplyResources(this.xrCrossBandLine16, "xrCrossBandLine16");
+            this.xrCrossBandLine16.EndBand = this.Detail2;
+            this.xrCrossBandLine16.Name = "xrCrossBandLine16";
+            this.xrCrossBandLine16.StartBand = this.Detail2;
+            this.xrCrossBandLine16.WidthF = 1.041748F;
             // 
             // CurrentPayroll
             // 
@@ -608,6 +835,27 @@
             this.DetailReport4});
             this.ComponentStorage.AddRange(new System.ComponentModel.IComponent[] {
             this.objectDataSource1});
+            this.CrossBandControls.AddRange(new DevExpress.XtraReports.UI.XRCrossBandControl[] {
+            this.xrCrossBandLine16,
+            this.xrCrossBandLine15,
+            this.xrCrossBandLine14,
+            this.xrCrossBandBox4,
+            this.xrCrossBandLine13,
+            this.xrCrossBandLine12,
+            this.xrCrossBandBox3,
+            this.xrCrossBandLine11,
+            this.xrCrossBandLine6,
+            this.xrCrossBandLine10,
+            this.xrCrossBandLine9,
+            this.xrCrossBandLine8,
+            this.xrCrossBandLine7,
+            this.xrCrossBandLine5,
+            this.xrCrossBandLine4,
+            this.xrCrossBandLine3,
+            this.xrCrossBandBox2,
+            this.xrCrossBandLine2,
+            this.xrCrossBandLine1,
+            this.xrCrossBandBox1});
             this.DataSource = this.objectDataSource1;
             resources.ApplyResources(this, "$this");
             this.Parameters.AddRange(new DevExpress.XtraReports.Parameters.Parameter[] {
@@ -689,5 +937,25 @@
         private DevExpress.XtraReports.UI.XRLabel xrLabel21;
         private DevExpress.XtraReports.UI.XRLabel xrLabel25;
         private DevExpress.XtraReports.UI.XRLabel xrLabel26;
+        private DevExpress.XtraReports.UI.XRCrossBandBox xrCrossBandBox1;
+        private DevExpress.XtraReports.UI.XRCrossBandLine xrCrossBandLine1;
+        private DevExpress.XtraReports.UI.XRCrossBandLine xrCrossBandLine2;
+        private DevExpress.XtraReports.UI.XRCrossBandBox xrCrossBandBox2;
+        private DevExpress.XtraReports.UI.XRCrossBandLine xrCrossBandLine3;
+        private DevExpress.XtraReports.UI.XRCrossBandLine xrCrossBandLine4;
+        private DevExpress.XtraReports.UI.XRCrossBandLine xrCrossBandLine5;
+        private DevExpress.XtraReports.UI.XRCrossBandLine xrCrossBandLine7;
+        private DevExpress.XtraReports.UI.XRCrossBandLine xrCrossBandLine8;
+        private DevExpress.XtraReports.UI.XRCrossBandLine xrCrossBandLine9;
+        private DevExpress.XtraReports.UI.XRCrossBandLine xrCrossBandLine10;
+        private DevExpress.XtraReports.UI.XRCrossBandLine xrCrossBandLine6;
+        private DevExpress.XtraReports.UI.XRCrossBandLine xrCrossBandLine11;
+        private DevExpress.XtraReports.UI.XRCrossBandBox xrCrossBandBox3;
+        private DevExpress.XtraReports.UI.XRCrossBandLine xrCrossBandLine12;
+        private DevExpress.XtraReports.UI.XRCrossBandLine xrCrossBandLine13;
+        private DevExpress.XtraReports.UI.XRCrossBandBox xrCrossBandBox4;
+        private DevExpress.XtraReports.UI.XRCrossBandLine xrCrossBandLine14;
+        private DevExpress.XtraReports.UI.XRCrossBandLine xrCrossBandLine15;
+        private DevExpress.XtraReports.UI.XRCrossBandLine xrCrossBandLine16;
     }
 }

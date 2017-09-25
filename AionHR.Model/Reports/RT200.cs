@@ -84,7 +84,8 @@ namespace AionHR.Model.Reports
         {
             get
             {
-                return currencyRef + String.Format("{0:n0}", basicAmount);
+                //return currencyRef + String.Format("{0:n0}", basicAmount);
+                return basicAmount.ToString();
             }
         }
 
@@ -96,16 +97,16 @@ namespace AionHR.Model.Reports
             get
             {
                 List<CurrentEntitlementDeduction> all = new List<CurrentEntitlementDeduction>();
-                all.AddRange(entitlements.Where(x=>x.isTaxable));
-                all.Add(new CurrentEntitlementDeduction() { name = taxableTotalString, amount = TaxableEntitlementsTotal, AmountString = currencyRef + String.Format("{0:n0}", TaxableEntitlementsTotal) });
+                all.AddRange(entitlements.Where(x => x.isTaxable));
+                all.Add(new CurrentEntitlementDeduction() { name = taxableTotalString, amount = TaxableEntitlementsTotal, AmountString = String.Format("{0:n0}", TaxableEntitlementsTotal) });
                 all.AddRange(entitlements.Where(x => !x.isTaxable));
-                all.Add(new CurrentEntitlementDeduction() { name = eAmountString, amount = EntitlementsTotal, AmountString = currencyRef + String.Format("{0:n0}", EntitlementsTotal) });
+                all.Add(new CurrentEntitlementDeduction() { name = eAmountString, amount = EntitlementsTotal, AmountString =  String.Format("{0:n0}", EntitlementsTotal) });
 
                 all.AddRange(deductions);
-                all.Add(new CurrentEntitlementDeduction() { name = dAmountString, amount = DeductionsTotal, AmountString = currencyRef + String.Format("{0:n0}", DeductionsTotal) });
-                all.Add(new CurrentEntitlementDeduction() { name = netSalary, amount = NetSalary, AmountString = currencyRef + String.Format("{0:n0}", NetSalary) });
-                all.Add(new CurrentEntitlementDeduction() { name = essString, amount = essAmount, AmountString = currencyRef + String.Format("{0:n0}", essAmount) });
-                all.Add(new CurrentEntitlementDeduction() { name = cssString, amount = cssAmount, AmountString = currencyRef + String.Format("{0:n0}", cssAmount) });
+                all.Add(new CurrentEntitlementDeduction() { name = dAmountString, amount = DeductionsTotal, AmountString =  String.Format("{0:n0}", DeductionsTotal) });
+                all.Add(new CurrentEntitlementDeduction() { name = netSalary, amount = NetSalary, AmountString =  String.Format("{0:n0}", NetSalary) });
+                all.Add(new CurrentEntitlementDeduction() { name = essString, amount = essAmount, AmountString = String.Format("{0:n0}", essAmount) });
+                all.Add(new CurrentEntitlementDeduction() { name = cssString, amount = cssAmount, AmountString = String.Format("{0:n0}", cssAmount) });
                 return new CurrentEntitlementDeductionCollection(all);
             }
         }
@@ -132,13 +133,13 @@ namespace AionHR.Model.Reports
         {
             entitlements[entitlements.IndexOf(en)].amount = en.amount;
             entitlements[entitlements.IndexOf(en)].isTaxable = en.isTaxable;
-            entitlements[entitlements.IndexOf(en)].AmountString = currencyRef + String.Format("{0:n0}", en.amount);
+            entitlements[entitlements.IndexOf(en)].AmountString = String.Format("{0:n0}", en.amount);
         }
         
         public void AddDe(CurrentEntitlementDeduction de)
         {
             deductions[deductions.IndexOf(de)].amount = de.amount;
-            deductions[deductions.IndexOf(de)].AmountString = currencyRef + String.Format("{0:n0}", de.amount);
+            deductions[deductions.IndexOf(de)].AmountString = String.Format("{0:n0}", de.amount);
         }
         public CurrentPayrollLine(HashSet<CurrentEntitlementDeduction> en, HashSet<CurrentEntitlementDeduction> de, List<RT200> details,string taxable, string eString, string dString, string netString,string ess, string css)
         {
