@@ -265,7 +265,7 @@
     <value>100</value>
   </data>
   <data name="BottomMargin.HeightF" type="System.Single, mscorlib">
-    <value>47</value>
+    <value>0</value>
   </data>
   <data name="BottomMargin.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v16.2">
     <value>TopLeft</value>
@@ -529,7 +529,7 @@
     <value>100</value>
   </data>
   <data name="pageFooterBand1.HeightF" type="System.Single, mscorlib">
-    <value>85.24996</value>
+    <value>41.4999657</value>
   </data>
   <data name="Status.Description" xml:space="preserve">
     <value>Parameter1</value>
@@ -703,7 +703,7 @@
     <value>True</value>
   </metadata>
   <data name="$this.Margins" type="System.Drawing.Printing.Margins, System.Drawing">
-    <value>16, 12, 28, 47</value>
+    <value>16, 12, 28, 0</value>
   </data>
   <data name="$this.PageHeight" type="System.Int32, mscorlib">
     <value>1169</value>
