@@ -337,7 +337,7 @@
     <value>100</value>
   </data>
   <data name="BottomMargin.HeightF" type="System.Single, mscorlib">
-    <value>27</value>
+    <value>0</value>
   </data>
   <data name="BottomMargin.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v16.2">
     <value>TopLeft</value>
@@ -613,7 +613,7 @@
     <value>100</value>
   </data>
   <data name="xrLabel76.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v16.2">
-    <value>211.153763, 44.56209</value>
+    <value>234.570313, 0.444412231</value>
   </data>
   <data name="xrLabel76.SizeF" type="System.Drawing.SizeF, System.Drawing">
     <value>342.288025, 23</value>
@@ -625,7 +625,7 @@
     <value>100</value>
   </data>
   <data name="xrLabel75.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v16.2">
-    <value>129.4167, 44.1176453</value>
+    <value>152.833237, 0</value>
   </data>
   <data name="xrLabel75.SizeF" type="System.Drawing.SizeF, System.Drawing">
     <value>81.73706, 23</value>
@@ -637,7 +637,7 @@
     <value>100</value>
   </data>
   <data name="xrPageInfo1.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v16.2">
-    <value>6.000032, 44.1176453</value>
+    <value>29.4165859, 0</value>
   </data>
   <data name="xrPageInfo1.SizeF" type="System.Drawing.SizeF, System.Drawing">
     <value>123.4167, 23</value>
@@ -649,7 +649,7 @@
     <value>Page {0} of {1}</value>
   </data>
   <data name="xrPageInfo2.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v16.2">
-    <value>991.495667, 44.117672</value>
+    <value>1014.91217, 0</value>
   </data>
   <data name="xrPageInfo2.SizeF" type="System.Drawing.SizeF, System.Drawing">
     <value>83.83344, 23</value>
@@ -661,7 +661,7 @@
     <value>100</value>
   </data>
   <data name="pageFooterBand1.HeightF" type="System.Single, mscorlib">
-    <value>67.5620956</value>
+    <value>27.97877</value>
   </data>
   <data name="xrLabel20.Dpi" type="System.Single, mscorlib">
     <value>100</value>
@@ -1303,7 +1303,7 @@
     <value>True</value>
   </data>
   <data name="$this.Margins" type="System.Drawing.Printing.Margins, System.Drawing">
-    <value>6, 1, 25, 27</value>
+    <value>6, 1, 25, 0</value>
   </data>
   <data name="$this.PageHeight" type="System.Int32, mscorlib">
     <value>827</value>

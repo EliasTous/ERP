@@ -419,9 +419,13 @@ namespace AionHR.Web.UI.Forms
 
             string id = e.ExtraParams["id"];
             string type = e.ExtraParams["type"];
+            string entitlementAmount = e.ExtraParams["eAmount"];
+            string deductionAmount= e.ExtraParams["dAmount"];
+            string saocialAmount = e.ExtraParams["ssAmount"];
             string basic = e.ExtraParams["basicAmount"];
             string tax = e.ExtraParams["taxAmount"];
             string net = e.ExtraParams["netSalary"];
+
             string currencyRef = e.ExtraParams["currency"];
             CurrentCurrencyRef.Text = currencyRef;
             CurrentSeqNo.Text = id;
@@ -433,6 +437,9 @@ namespace AionHR.Web.UI.Forms
                     basicAmount.Text = basic;
                     taxAmount.Text = tax;
                     netSalary.Text = net;
+                    eAmount.Text = entitlementAmount;
+                    dAmount.Text = deductionAmount;
+                    ssAmount.Text = saocialAmount; 
                     seqNo.Text = id;
                     EditEMWindow.Show();
                     break;

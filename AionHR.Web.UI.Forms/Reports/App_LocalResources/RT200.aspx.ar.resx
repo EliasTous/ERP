@@ -124,7 +124,7 @@
     <value>الخصومات</value>
   </data>
   <data name="eAmount" xml:space="preserve">
-    <value>إجمالي الاستحقاقات</value>
+    <value>مجموع غير خاضع </value>
   </data>
   <data name="Entitlements" xml:space="preserve">
     <value>الراتب الغير الخاضع</value>
