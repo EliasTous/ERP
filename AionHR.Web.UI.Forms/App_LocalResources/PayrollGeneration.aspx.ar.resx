@@ -240,7 +240,13 @@
   <data name="Weeks" xml:space="preserve">
     <value>الأسابيع</value>
   </data>
+  <data name="PayCodeName" xml:space="preserve">
+    <value>اسم الرمز المالي</value>
+  </data>
   <data name="socialsecurity" xml:space="preserve">
     <value>الـتأمينات الاجتماعية</value>
+  </data>
+  <data name="FieldSocialSecurity" xml:space="preserve">
+    <value>التأمينات الاجتماعية</value>
   </data>
 </root>

@@ -8,28 +8,28 @@ using System.Threading.Tasks;
 namespace AionHR.Model.Payroll
 {
 
-    [ClassIdentifier("51050", "50")]
+    [ClassIdentifier("51015", "51")]
     public class SocialSecurityScheduleSetup
     {
-        [PropertyID("51050_01")]
+        [PropertyID("51015_01")]
         [ApplySecurity]
         public int? ssId { get; set; }
-        [PropertyID("51050_02")]
+        [PropertyID("51015_02")]
         [ApplySecurity]
         public int? seqNo { get; set; }
-        [PropertyID("51050_03")]
+        [PropertyID("51015_03")]
         [ApplySecurity]
         public string payCode { get; set; }
-        [PropertyID("51050_04")]
+        [PropertyID("51015_04")]
         [ApplySecurity]
         public string name { get; set; }
-        [PropertyID("51050_05")]
+        [PropertyID("51015_05")]
         [ApplySecurity]
         public double coPct { get; set; }
-        [PropertyID("51050_06")]
+        [PropertyID("51015_06")]
         [ApplySecurity]
         public double emPct { get; set; }
-        [PropertyID("51050_07")]
+        [PropertyID("51015_07")]
         [ApplySecurity]
         public  int? ceiling { set; get; }
     }

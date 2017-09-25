@@ -75,8 +75,18 @@ namespace AionHR.Web.UI.Forms
                     Viewport1.Hidden = true;
                     return;
                 }
+                try
+                {
+                    AccessControlApplier.ApplyAccessControlOnPage(typeof(SocialSecurityScheduleSetup), socialSetupForm, socialSetupGrid, ADDNewsocialSetupBtn, saveSocialbutton);
+                }
+                catch (AccessDeniedException exp)
+                {
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorAccessDenied).Show();
+                    Viewport1.Hidden = true;
+                    return;
+                }
 
-               
 
 
             }

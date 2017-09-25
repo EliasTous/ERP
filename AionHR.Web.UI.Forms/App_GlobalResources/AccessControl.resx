@@ -1284,4 +1284,43 @@
   <data name="Property5101301" xml:space="preserve">
     <value>Time Code</value>
   </data>
+  <data name="Property5101503" xml:space="preserve">
+    <value>Pay code</value>
+  </data>
+  <data name="Property5101504" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="Property5101505" xml:space="preserve">
+    <value>Company percentage</value>
+  </data>
+  <data name="Property5101506" xml:space="preserve">
+    <value>Employee Percentage</value>
+  </data>
+  <data name="Property5101507" xml:space="preserve">
+    <value>Ceiling</value>
+  </data>
+  <data name="Property5101601" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="Property5101602" xml:space="preserve">
+    <value>Pay code</value>
+  </data>
+  <data name="Property5102114" xml:space="preserve">
+    <value>Social Security Amount</value>
+  </data>
+  <data name="Property5103007" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="Property5103008" xml:space="preserve">
+    <value>Referance</value>
+  </data>
+  <data name="Property5103009" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="Property5103101" xml:space="preserve">
+    <value>Amount</value>
+  </data>
+  <data name="Property5103102" xml:space="preserve">
+    <value>Name</value>
+  </data>
 </root>

@@ -1278,4 +1278,40 @@
   <data name="Property5101301" xml:space="preserve">
     <value>النوع</value>
   </data>
+  <data name="Property5101503" xml:space="preserve">
+    <value>التصنيف </value>
+  </data>
+  <data name="Property5101504" xml:space="preserve">
+    <value>الأسم</value>
+  </data>
+  <data name="Property5101505" xml:space="preserve">
+    <value>نسبة الشركة</value>
+  </data>
+  <data name="Property5101506" xml:space="preserve">
+    <value>نسبة الموظف</value>
+  </data>
+  <data name="Property5101507" xml:space="preserve">
+    <value>الحد الأقصى</value>
+  </data>
+  <data name="Property5101601" xml:space="preserve">
+    <value>الأسم </value>
+  </data>
+  <data name="Property5102114" xml:space="preserve">
+    <value>التأمينات الأجتماعية </value>
+  </data>
+  <data name="Property5103007" xml:space="preserve">
+    <value>الأسم</value>
+  </data>
+  <data name="Property5103008" xml:space="preserve">
+    <value>الرمز </value>
+  </data>
+  <data name="Property5103009" xml:space="preserve">
+    <value>التاريخ</value>
+  </data>
+  <data name="Property5103101" xml:space="preserve">
+    <value>مبلغ</value>
+  </data>
+  <data name="Property5103102" xml:space="preserve">
+    <value>الاسم </value>
+  </data>
 </root>

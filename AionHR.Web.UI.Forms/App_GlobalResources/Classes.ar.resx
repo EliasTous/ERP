@@ -414,6 +414,15 @@
   <data name="Class51013" xml:space="preserve">
     <value>النوع</value>
   </data>
+  <data name="Class51014" xml:space="preserve">
+    <value>جداول الـتأمينات الاجتماعية</value>
+  </data>
+  <data name="Class51015" xml:space="preserve">
+    <value>تفاصيل التأمين الاجتماعي</value>
+  </data>
+  <data name="Class51016" xml:space="preserve">
+    <value>الرموز المالية </value>
+  </data>
   <data name="Class51020" xml:space="preserve">
     <value>عملية الدفع</value>
   </data>
@@ -424,7 +433,10 @@
     <value>الاستحقاقات والخصومات</value>
   </data>
   <data name="Class51030" xml:space="preserve">
-    <value>جدول التأخير و العمل الإضافي</value>
+    <value>نهاية الخدمة</value>
+  </data>
+  <data name="Class51031" xml:space="preserve">
+    <value>نهاية الخدمة استحقاقات / مستحقات</value>
   </data>
   <data name="Class80101" xml:space="preserve">
     <value>مخطط الأعمار</value>

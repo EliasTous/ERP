@@ -417,6 +417,15 @@
   <data name="Class51013" xml:space="preserve">
     <value>Time Code</value>
   </data>
+  <data name="Class51014" xml:space="preserve">
+    <value>Social Security Schedule</value>
+  </data>
+  <data name="Class51015" xml:space="preserve">
+    <value>Social Security Schedule Setup</value>
+  </data>
+  <data name="Class51016" xml:space="preserve">
+    <value>Pay Codes</value>
+  </data>
   <data name="Class51020" xml:space="preserve">
     <value>Payroll Header</value>
   </data>
@@ -427,7 +436,10 @@
     <value>Payroll Entitlements and Deductions</value>
   </data>
   <data name="Class51030" xml:space="preserve">
-    <value>Overtime/Lateness Schedule</value>
+    <value>Final Settlement</value>
+  </data>
+  <data name="Class51031" xml:space="preserve">
+    <value>Final settlement Entitlement / Deduction</value>
   </data>
   <data name="Class80101" xml:space="preserve">
     <value>Age Breakdown</value>

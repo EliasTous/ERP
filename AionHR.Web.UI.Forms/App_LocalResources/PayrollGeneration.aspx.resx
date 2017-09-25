@@ -252,7 +252,13 @@
   <data name="Weeks" xml:space="preserve">
     <value>Weeks</value>
   </data>
+  <data name="PayCodeName" xml:space="preserve">
+    <value>Pay Code Name</value>
+  </data>
   <data name="socialSecurity" xml:space="preserve">
+    <value>Social Security</value>
+  </data>
+  <data name="FieldSocialSecurity" xml:space="preserve">
     <value>Social Security</value>
   </data>
 </root>

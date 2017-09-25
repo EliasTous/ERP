@@ -961,6 +961,33 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Social Security Schedule.
+        /// </summary>
+        internal static string Class51014 {
+            get {
+                return ResourceManager.GetString("Class51014", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Social Security Schedule Setup.
+        /// </summary>
+        internal static string Class51015 {
+            get {
+                return ResourceManager.GetString("Class51015", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pay Codes.
+        /// </summary>
+        internal static string Class51016 {
+            get {
+                return ResourceManager.GetString("Class51016", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Payroll Header.
         /// </summary>
         internal static string Class51020 {
@@ -988,11 +1015,20 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Overtime/Lateness Schedule.
+        ///   Looks up a localized string similar to Final Settlement.
         /// </summary>
         internal static string Class51030 {
             get {
                 return ResourceManager.GetString("Class51030", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Final settlement Entitlement / Deduction.
+        /// </summary>
+        internal static string Class51031 {
+            get {
+                return ResourceManager.GetString("Class51031", resourceCulture);
             }
         }
         
