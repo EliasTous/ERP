@@ -435,6 +435,9 @@
   <data name="Class51022" xml:space="preserve">
     <value>Payroll Entitlements and Deductions</value>
   </data>
+  <data name="Class51023" xml:space="preserve">
+    <value>Social Security</value>
+  </data>
   <data name="Class51030" xml:space="preserve">
     <value>Final Settlement</value>
   </data>
@@ -461,6 +464,12 @@
   </data>
   <data name="Class80107" xml:space="preserve">
     <value>Employee Missing Details</value>
+  </data>
+  <data name="Class80109" xml:space="preserve">
+    <value>Right To Work</value>
+  </data>
+  <data name="Class80200" xml:space="preserve">
+    <value>Current Salaries</value>
   </data>
   <data name="Class80201" xml:space="preserve">
     <value>Salary History</value>

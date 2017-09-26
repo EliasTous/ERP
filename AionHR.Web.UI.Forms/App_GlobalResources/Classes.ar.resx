@@ -432,6 +432,9 @@
   <data name="Class51022" xml:space="preserve">
     <value>الاستحقاقات والخصومات</value>
   </data>
+  <data name="Class51023" xml:space="preserve">
+    <value>التأمينات الاجتماعية</value>
+  </data>
   <data name="Class51030" xml:space="preserve">
     <value>نهاية الخدمة</value>
   </data>
@@ -458,6 +461,12 @@
   </data>
   <data name="Class80107" xml:space="preserve">
     <value>معلومات الموظفين الناقصة</value>
+  </data>
+  <data name="Class80109" xml:space="preserve">
+    <value>الوثائق القانونية لموظفي الشركة</value>
+  </data>
+  <data name="Class80200" xml:space="preserve">
+    <value>الرواتب الحالية </value>
   </data>
   <data name="Class80201" xml:space="preserve">
     <value>تاريخ الاجور</value>

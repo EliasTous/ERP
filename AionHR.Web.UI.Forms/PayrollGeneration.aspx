@@ -814,7 +814,7 @@
                                         <Columns>
                                             <ext:Column ID="Column3" Visible="true"
                                                 runat="server" Flex="2"
-                                                Text="<%$ Resources:PayCodeName%>"
+                                                Text="<%$ Resources:PayCode%>"
                                                 DataIndex="payCode"
                                                 Align="Center">
                                                 

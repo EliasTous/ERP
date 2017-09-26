@@ -113,6 +113,16 @@ namespace AionHR.Web.UI.Forms
                     deductionGrid.Hidden = true;
 
                 }
+                try
+                {
+                    AccessControlApplier.ApplyAccessControlOnPage(typeof(PayrollSocialSecurity), null, payCodeGrid, null, null);
+                }
+                catch (AccessDeniedException exp)
+                {
+
+                    deductionGrid.Hidden = true;
+
+                }
                 var properties = AccessControlApplier.GetPropertiesLevels(typeof(PayrollEntitlementDeduction));
 
                 entitlementDisabled.Text = deductionDisabled.Text = (properties.Where(x => x.index == "amount").ToList()[0].accessLevel == 0).ToString();

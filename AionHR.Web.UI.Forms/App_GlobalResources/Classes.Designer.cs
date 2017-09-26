@@ -1015,6 +1015,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Social Security.
+        /// </summary>
+        internal static string Class51023 {
+            get {
+                return ResourceManager.GetString("Class51023", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Final Settlement.
         /// </summary>
         internal static string Class51030 {
@@ -1092,6 +1101,24 @@ namespace Resources {
         internal static string Class80107 {
             get {
                 return ResourceManager.GetString("Class80107", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Right To Work.
+        /// </summary>
+        internal static string Class80109 {
+            get {
+                return ResourceManager.GetString("Class80109", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Current Salaries.
+        /// </summary>
+        internal static string Class80200 {
+            get {
+                return ResourceManager.GetString("Class80200", resourceCulture);
             }
         }
         

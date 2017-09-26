@@ -285,6 +285,7 @@ public class PeriodSummary : DevExpress.XtraReports.UI.XtraReport
             this.xrLabel12.Name = "xrLabel12";
             this.xrLabel12.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel12.StylePriority.UseBorders = false;
+            this.xrLabel12.BeforePrint += new System.Drawing.Printing.PrintEventHandler(this.xrLabel4_BeforePrint);
             // 
             // xrLabel11
             // 
@@ -297,6 +298,7 @@ public class PeriodSummary : DevExpress.XtraReports.UI.XtraReport
             this.xrLabel11.Name = "xrLabel11";
             this.xrLabel11.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel11.StylePriority.UseBorders = false;
+            this.xrLabel11.BeforePrint += new System.Drawing.Printing.PrintEventHandler(this.xrLabel4_BeforePrint);
             // 
             // xrLabel34
             // 
@@ -333,6 +335,7 @@ public class PeriodSummary : DevExpress.XtraReports.UI.XtraReport
             this.xrLabel47.Name = "xrLabel47";
             this.xrLabel47.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel47.StylePriority.UseBorders = false;
+            this.xrLabel47.BeforePrint += new System.Drawing.Printing.PrintEventHandler(this.xrLabel4_BeforePrint);
             // 
             // xrLabel41
             // 
@@ -358,6 +361,7 @@ public class PeriodSummary : DevExpress.XtraReports.UI.XtraReport
             this.xrLabel40.Name = "xrLabel40";
             this.xrLabel40.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel40.StylePriority.UseBorders = false;
+            this.xrLabel40.BeforePrint += new System.Drawing.Printing.PrintEventHandler(this.xrLabel4_BeforePrint);
             // 
             // xrLabel19
             // 
@@ -383,6 +387,7 @@ public class PeriodSummary : DevExpress.XtraReports.UI.XtraReport
             this.xrLabel18.Name = "xrLabel18";
             this.xrLabel18.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel18.StylePriority.UseBorders = false;
+            this.xrLabel18.BeforePrint += new System.Drawing.Printing.PrintEventHandler(this.xrLabel4_BeforePrint);
             // 
             // xrLabel8
             // 
@@ -395,6 +400,7 @@ public class PeriodSummary : DevExpress.XtraReports.UI.XtraReport
             this.xrLabel8.Name = "xrLabel8";
             this.xrLabel8.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel8.StylePriority.UseBorders = false;
+            this.xrLabel8.BeforePrint += new System.Drawing.Printing.PrintEventHandler(this.xrLabel4_BeforePrint);
             // 
             // xrLabel4
             // 
@@ -407,6 +413,7 @@ public class PeriodSummary : DevExpress.XtraReports.UI.XtraReport
             this.xrLabel4.Name = "xrLabel4";
             this.xrLabel4.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel4.StylePriority.UseBorders = false;
+            this.xrLabel4.BeforePrint += new System.Drawing.Printing.PrintEventHandler(this.xrLabel4_BeforePrint);
             // 
             // xrLabel25
             // 
@@ -1020,10 +1027,15 @@ public class PeriodSummary : DevExpress.XtraReports.UI.XtraReport
 
     private void xrLabel45_BeforePrint(object sender, System.Drawing.Printing.PrintEventArgs e)
     {
-        if (!string.IsNullOrEmpty((sender as XRLabel).Text))
+        if ((sender as XRLabel).Text == "0")
+            (sender as XRLabel).Text = "";
+        else
         {
-            string formatted = FormatTime(Convert.ToInt32((sender as XRLabel).Text));
-            (sender as XRLabel).Text = formatted;
+            if (!string.IsNullOrEmpty((sender as XRLabel).Text))
+            {
+                string formatted = FormatTime(Convert.ToInt32((sender as XRLabel).Text));
+                (sender as XRLabel).Text = formatted;
+            }
         }
     }
 
@@ -1035,16 +1047,33 @@ public class PeriodSummary : DevExpress.XtraReports.UI.XtraReport
 
     private void xrLabel34_BeforePrint(object sender, System.Drawing.Printing.PrintEventArgs e)
     {
-        if (!string.IsNullOrEmpty((sender as XRLabel).Text))
+        if ((sender as XRLabel).Text == "0")
+            (sender as XRLabel).Text = "";
+        else
         {
-            string formatted = FormatTime(Convert.ToInt32((sender as XRLabel).Text));
-            (sender as XRLabel).Text = formatted;
+            if (!string.IsNullOrEmpty((sender as XRLabel).Text))
+            {
+                string formatted = FormatTime(Convert.ToInt32((sender as XRLabel).Text));
+                (sender as XRLabel).Text = formatted;
+            }
         }
     }
 
     private void xrLabel11_BeforePrint(object sender, System.Drawing.Printing.PrintEventArgs e)
     {
+        if ((sender as XRLabel).Text == "0")
+            (sender as XRLabel).Text = "";
+        else
+        { 
         int mins = Convert.ToInt32((sender as XRLabel).Text);
         (sender as XRLabel).Text = (mins / 60).ToString().PadLeft(2, '0') + ":" + (mins % 60).ToString().PadLeft(2, '0');
+        }
+    }
+
+    private void xrLabel4_BeforePrint(object sender, System.Drawing.Printing.PrintEventArgs e)
+    {
+         if ( (sender as XRLabel).Text == "0")
+            (sender as XRLabel).Text = "";
+
     }
 }
