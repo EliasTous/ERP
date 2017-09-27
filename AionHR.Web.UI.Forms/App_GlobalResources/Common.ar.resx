@@ -745,7 +745,7 @@
     <value>تغييرات الراتب</value>
   </data>
   <data name="RT203" xml:space="preserve">
-    <value>تفاصيل الراتب</value>
+    <value>رواتب في يوم محدد</value>
   </data>
   <data name="RT801" xml:space="preserve">
     <value>سجل تسجيل الدخول</value>
@@ -1012,7 +1012,7 @@
     <value>تجديد</value>
   </data>
   <data name="RT200" xml:space="preserve">
-    <value>الرواتب الحالية</value>
+    <value>تفاصيل رواتب الموظفين</value>
   </data>
   <data name="RT2001" xml:space="preserve">
     <value>رواتب الحالية </value>

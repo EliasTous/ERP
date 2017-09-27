@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace AionHR.Model.Reports
@@ -107,6 +108,11 @@ namespace AionHR.Model.Reports
                 all.Add(new CurrentEntitlementDeduction() { name = netSalary, amount = NetSalary, AmountString =  String.Format("{0:n0}", NetSalary) });
                 all.Add(new CurrentEntitlementDeduction() { name = essString, amount = essAmount, AmountString = String.Format("{0:n0}", essAmount) });
                 all.Add(new CurrentEntitlementDeduction() { name = cssString, amount = cssAmount, AmountString = String.Format("{0:n0}", cssAmount) });
+                //all = all.Select(item => {
+                //    item.AmountString = Regex.Replace(item.AmountString, @"\s+", ""); // remove all white spaces
+                //    item.name = Regex.Replace(item.name, @"\s+", ""); // remove all white spaces
+                //    return item; // return processed item...
+                //}).ToList();
                 return new CurrentEntitlementDeductionCollection(all);
             }
         }

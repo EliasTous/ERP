@@ -32,5 +32,10 @@ namespace Reports
         {
             e.Cancel = RowCount == 0;
         }
+
+        private void Detail2_BeforePrint(object sender, System.Drawing.Printing.PrintEventArgs e)
+        {
+           // (sender as DetailBand).MultiColumn.ColumnCount =Convert.ToInt32( this.Parameters["columnCount"].Value); 
+        }
     }
 }

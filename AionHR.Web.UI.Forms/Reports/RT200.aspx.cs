@@ -26,7 +26,7 @@ using AionHR.Services.Messaging.Reports;
 using System.Threading;
 using Reports;
 using AionHR.Model.Reports;
-
+using AionHR.Model.Employees.Profile;
 
 namespace AionHR.Web.UI.Forms.Reports
 {
@@ -37,6 +37,7 @@ namespace AionHR.Web.UI.Forms.Reports
         ITimeAttendanceService _timeAttendanceService = ServiceLocator.Current.GetInstance<ITimeAttendanceService>();
         ICompanyStructureService _companyStructureService = ServiceLocator.Current.GetInstance<ICompanyStructureService>();
         IReportsService _reportsService = ServiceLocator.Current.GetInstance<IReportsService>();
+        IEmployeeService _employeeService = ServiceLocator.Current.GetInstance<IEmployeeService>();
         protected override void InitializeCulture()
         {
 
@@ -167,11 +168,40 @@ namespace AionHR.Web.UI.Forms.Reports
 
             req.Add(paymentMethodCombo.GetPaymentMethod());
             req.Add(jobInfo1.GetJobInfo());
+            req.Add(employeeFilter.GetEmployee());
 
             return req;
         }
+        [DirectMethod]
+        public object FillEmployee(string action, Dictionary<string, object> extraParams)
+        {
+            StoreRequestParameters prms = new StoreRequestParameters(extraParams);
+            List<Employee> data = GetEmployeesFiltered(prms.Query);
+            data.ForEach(s => { s.fullName = s.name.fullName; });
+            //  return new
+            // {
+            return data;
+        }
+        private List<Employee> GetEmployeesFiltered(string query)
+        {
 
+            EmployeeListRequest req = new EmployeeListRequest();
+            req.DepartmentId = "0";
+            req.BranchId = "0";
+            req.IncludeIsInactive = 2;
+            req.SortBy = GetNameFormat();
 
+            req.StartAt = "1";
+            req.Size = "20";
+            req.Filter = query;
+
+            ListResponse<Employee> response = _employeeService.GetAll<Employee>(req);
+            return response.Items;
+        }
+        private string GetNameFormat()
+        {
+            return _systemService.SessionHelper.Get("nameFormat").ToString();
+        }
         private void FillReport(bool isInitial = false, bool throwException = true)
         {
 
@@ -222,8 +252,9 @@ namespace AionHR.Web.UI.Forms.Reports
             }
 
             CurrentPayroll h = new CurrentPayroll();
-            h.DataSource = s;
 
+            h.DataSource = s;
+            h.Parameters["columnCount"].Value = ens.Count + des.Count; 
             h.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;
             h.RightToLeftLayout = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeftLayout.Yes : DevExpress.XtraReports.UI.RightToLeftLayout.No;
             string user = _systemService.SessionHelper.GetCurrentUser();
@@ -244,7 +275,10 @@ namespace AionHR.Web.UI.Forms.Reports
                     h.Parameters["Payment"].Value = paymentMethodCombo.GetPaymentMethodString();
                 else
                     h.Parameters["Payment"].Value = GetGlobalResourceObject("Common", "All");
-
+                if (req.Parameters["_employeeId"] != "0")
+                    h.Parameters["EmployeeName"].Value = resp.Items[0].employeeName.fullName;
+                else
+                    h.Parameters["EmployeeName"].Value = GetGlobalResourceObject("Common", "All");
 
             }
 

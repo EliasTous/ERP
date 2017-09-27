@@ -61,9 +61,18 @@
                         <ext:Toolbar runat="server" Height="60">
 
                             <Items>
-                             
+                             <ext:Container runat="server"  Layout="FitLayout">
+                                            <Content>
+                                               
+                                                <%--<uc:dateRange runat="server" ID="dateRange1" />--%>
+                                                  <uc:employeeCombo runat="server" ID="employeeFilter" />
+                                            </Content>
+                                        </ext:Container>
+
+                               
                                         <ext:Container runat="server"  Layout="FitLayout">
                                             <Content>
+                                               
                                                 <%--<uc:dateRange runat="server" ID="dateRange1" />--%>
                                                 <uc:jobInfo runat="server" ID="jobInfo1" EnablePosition="false" EnableDivision="false" />
                                             </Content>
