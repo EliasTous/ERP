@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="xrLabel1.Text" xml:space="preserve">
-    <value>الراتب الحالي</value>
+    <value>تفاصيل رواتب الموظفين </value>
   </data>
   <data name="xrLabel13.Text" xml:space="preserve">
     <value>الراتب الأساسي</value>
@@ -143,6 +143,9 @@
   </data>
   <data name="xrLabel25.Text" xml:space="preserve">
     <value>لم يتم العثور على نتائج</value>
+  </data>
+  <data name="xrLabel27.Text" xml:space="preserve">
+    <value>الموظف</value>
   </data>
   <data name="xrLabel3.Text" xml:space="preserve">
     <value>الجنسية</value>
