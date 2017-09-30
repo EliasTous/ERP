@@ -3,6 +3,7 @@ using System.Drawing;
 using System.Collections;
 using System.ComponentModel;
 using DevExpress.XtraReports.UI;
+using AionHR.Model.Reports;
 
 namespace Reports
 {
@@ -35,7 +36,21 @@ namespace Reports
 
         private void Detail2_BeforePrint(object sender, System.Drawing.Printing.PrintEventArgs e)
         {
-           // (sender as DetailBand).MultiColumn.ColumnCount =Convert.ToInt32( this.Parameters["columnCount"].Value); 
+            if (RowCount == 0)
+            {
+                e.Cancel = true;
+                return;
+            }
+            CurrentPayrollSet at = (CurrentPayrollSet)GetCurrentRow();
+            if (at != null)
+            {
+
+                Detail1.MultiColumn.ColumnCount = at.Names.Count +7;
+                Detail2.MultiColumn.ColumnCount =at.Names.Count + 7;
+                Detail4.MultiColumn.ColumnCount = at.Names.Count + 7;
+                Detail5.MultiColumn.ColumnCount = at.Names.Count +7;
+
+            }
         }
     }
 }
