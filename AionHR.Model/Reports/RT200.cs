@@ -127,7 +127,7 @@ namespace AionHR.Model.Reports
         public string currencyRef { get; set; }
 
         public double EntitlementsTotal { get { return entitlements.Sum(x => x.isTaxable?0:x.amount ); } }
-        public double TaxableEntitlementsTotal { get { return entitlements.Sum(x => x.isTaxable ?  x.amount:0); } }
+        public double TaxableEntitlementsTotal { get { return basicAmount + entitlements.Sum(x => x.isTaxable ?  x.amount:0); } }
 
         public CurrentEntitlementDeductionCollection Deductions { get { return new CurrentEntitlementDeductionCollection(deductions); } }
 

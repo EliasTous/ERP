@@ -62,6 +62,7 @@
             this.xrPageInfo1 = new DevExpress.XtraReports.UI.XRPageInfo();
             this.xrPageInfo2 = new DevExpress.XtraReports.UI.XRPageInfo();
             this.reportHeaderBand1 = new DevExpress.XtraReports.UI.ReportHeaderBand();
+            this.xrPageInfo3 = new DevExpress.XtraReports.UI.XRPageInfo();
             this.xrLabel1 = new DevExpress.XtraReports.UI.XRLabel();
             this.Title = new DevExpress.XtraReports.UI.XRControlStyle();
             this.FieldCaption = new DevExpress.XtraReports.UI.XRControlStyle();
@@ -314,6 +315,7 @@
             this.xrPageInfo1.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrPageInfo1.PageInfo = DevExpress.XtraPrinting.PageInfo.DateTime;
             this.xrPageInfo1.StyleName = "PageInfo";
+            this.xrPageInfo1.PrintOnPage += new DevExpress.XtraReports.UI.PrintOnPageEventHandler(this.xrPageInfo1_PrintOnPage);
             // 
             // xrPageInfo2
             // 
@@ -325,13 +327,24 @@
             // reportHeaderBand1
             // 
             this.reportHeaderBand1.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
+            this.xrPageInfo3,
             this.xrLabel1});
             resources.ApplyResources(this.reportHeaderBand1, "reportHeaderBand1");
             this.reportHeaderBand1.Name = "reportHeaderBand1";
             // 
+            // xrPageInfo3
+            // 
+            resources.ApplyResources(this.xrPageInfo3, "xrPageInfo3");
+            this.xrPageInfo3.Name = "xrPageInfo3";
+            this.xrPageInfo3.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrPageInfo3.PageInfo = DevExpress.XtraPrinting.PageInfo.DateTime;
+            this.xrPageInfo3.StylePriority.UseFont = false;
+            this.xrPageInfo3.StylePriority.UseTextAlignment = false;
+            // 
             // xrLabel1
             // 
             resources.ApplyResources(this.xrLabel1, "xrLabel1");
+            this.xrLabel1.Multiline = true;
             this.xrLabel1.Name = "xrLabel1";
             this.xrLabel1.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel1.StyleName = "Title";
@@ -383,6 +396,7 @@
             // 
             this.DetailReport.Bands.AddRange(new DevExpress.XtraReports.UI.Band[] {
             this.Detail1});
+            this.DetailReport.Borders = DevExpress.XtraPrinting.BorderSide.None;
             this.DetailReport.DataMember = "Headers";
             this.DetailReport.DataSource = this.objectDataSource1;
             resources.ApplyResources(this.DetailReport, "DetailReport");
@@ -395,10 +409,12 @@
             this.Detail1.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
             this.xrLabel7});
             resources.ApplyResources(this.Detail1, "Detail1");
-            this.Detail1.MultiColumn.ColumnCount = 19;
+            this.Detail1.MultiColumn.ColumnCount = 13;
+            this.Detail1.MultiColumn.ColumnWidth = 60F;
             this.Detail1.MultiColumn.Layout = DevExpress.XtraPrinting.ColumnLayout.AcrossThenDown;
-            this.Detail1.MultiColumn.Mode = DevExpress.XtraReports.UI.MultiColumnMode.UseColumnCount;
+            this.Detail1.MultiColumn.Mode = DevExpress.XtraReports.UI.MultiColumnMode.UseColumnWidth;
             this.Detail1.Name = "Detail1";
+            this.Detail1.SnapLinePadding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
             this.Detail1.StylePriority.UseBorders = false;
             // 
             // xrLabel7
@@ -414,6 +430,8 @@
             this.xrLabel7.StylePriority.UseFont = false;
             this.xrLabel7.StylePriority.UsePadding = false;
             this.xrLabel7.StylePriority.UseTextAlignment = false;
+            this.xrLabel7.AfterPrint += new System.EventHandler(this.xrLabel7_AfterPrint);
+            this.xrLabel7.LocationChanged += new DevExpress.XtraReports.UI.ChangeEventHandler(this.xrLabel7_LocationChanged);
             // 
             // objectDataSource1
             // 
@@ -446,10 +464,10 @@
             resources.ApplyResources(this.Detail2, "Detail2");
             this.Detail2.KeepTogether = true;
             this.Detail2.KeepTogetherWithDetailReports = true;
-            this.Detail2.MultiColumn.ColumnCount = 19;
-            this.Detail2.MultiColumn.ColumnWidth = 100F;
+            this.Detail2.MultiColumn.ColumnCount = 13;
+            this.Detail2.MultiColumn.ColumnWidth = 60F;
             this.Detail2.MultiColumn.Layout = DevExpress.XtraPrinting.ColumnLayout.AcrossThenDown;
-            this.Detail2.MultiColumn.Mode = DevExpress.XtraReports.UI.MultiColumnMode.UseColumnCount;
+            this.Detail2.MultiColumn.Mode = DevExpress.XtraReports.UI.MultiColumnMode.UseColumnWidth;
             this.Detail2.Name = "Detail2";
             this.Detail2.SnapLinePadding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
             this.Detail2.StylePriority.UseBorders = false;
@@ -569,10 +587,11 @@
             this.xrLabel9,
             this.xrLabel8});
             resources.ApplyResources(this.Detail4, "Detail4");
-            this.Detail4.MultiColumn.ColumnCount = 19;
-            this.Detail4.MultiColumn.ColumnWidth = 100F;
+            this.Detail4.KeepTogether = true;
+            this.Detail4.MultiColumn.ColumnCount = 13;
+            this.Detail4.MultiColumn.ColumnWidth = 60F;
             this.Detail4.MultiColumn.Layout = DevExpress.XtraPrinting.ColumnLayout.AcrossThenDown;
-            this.Detail4.MultiColumn.Mode = DevExpress.XtraReports.UI.MultiColumnMode.UseColumnCount;
+            this.Detail4.MultiColumn.Mode = DevExpress.XtraReports.UI.MultiColumnMode.UseColumnWidth;
             this.Detail4.Name = "Detail4";
             this.Detail4.StylePriority.UseBorders = false;
             this.Detail4.StylePriority.UseBorderWidth = false;
@@ -581,7 +600,7 @@
             // 
             this.xrLabel14.Borders = ((DevExpress.XtraPrinting.BorderSide)((DevExpress.XtraPrinting.BorderSide.Right | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.xrLabel14.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding("Text", null, "Payrolls.basicAmount")});
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "Payrolls.basicAmount", "{0:#,#}")});
             resources.ApplyResources(this.xrLabel14, "xrLabel14");
             this.xrLabel14.Name = "xrLabel14";
             this.xrLabel14.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
@@ -682,19 +701,18 @@
             this.xrLabel16,
             this.xrLabel15});
             resources.ApplyResources(this.Detail5, "Detail5");
-            this.Detail5.MultiColumn.ColumnCount = 19;
-            this.Detail5.MultiColumn.ColumnWidth = 100F;
+            this.Detail5.MultiColumn.ColumnCount = 13;
+            this.Detail5.MultiColumn.ColumnWidth = 60F;
             this.Detail5.MultiColumn.Layout = DevExpress.XtraPrinting.ColumnLayout.AcrossThenDown;
-            this.Detail5.MultiColumn.Mode = DevExpress.XtraReports.UI.MultiColumnMode.UseColumnCount;
+            this.Detail5.MultiColumn.Mode = DevExpress.XtraReports.UI.MultiColumnMode.UseColumnWidth;
             this.Detail5.Name = "Detail5";
             this.Detail5.StylePriority.UseBorders = false;
             // 
             // xrLabel17
             // 
-            this.xrLabel17.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
-            | DevExpress.XtraPrinting.BorderSide.Bottom)));
+            this.xrLabel17.Borders = ((DevExpress.XtraPrinting.BorderSide)((DevExpress.XtraPrinting.BorderSide.Top | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.xrLabel17.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding("Text", null, "TotalBasics")});
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "TotalBasics", "{0:#,#}")});
             resources.ApplyResources(this.xrLabel17, "xrLabel17");
             this.xrLabel17.Name = "xrLabel17";
             this.xrLabel17.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
@@ -711,7 +729,7 @@
             | DevExpress.XtraPrinting.BorderSide.Right) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.xrLabel16.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding("Text", null, "Totals.amount")});
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "Totals.amount", "{0:#,#}")});
             this.xrLabel16.Name = "xrLabel16";
             this.xrLabel16.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
             this.xrLabel16.StylePriority.UseBackColor = false;
@@ -722,10 +740,13 @@
             // 
             // xrLabel15
             // 
+            this.xrLabel15.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Right) 
+            | DevExpress.XtraPrinting.BorderSide.Bottom)));
             resources.ApplyResources(this.xrLabel15, "xrLabel15");
             this.xrLabel15.Name = "xrLabel15";
             this.xrLabel15.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel15.ProcessDuplicatesMode = DevExpress.XtraReports.UI.ProcessDuplicatesMode.Suppress;
+            this.xrLabel15.StylePriority.UseBorders = false;
             this.xrLabel15.StylePriority.UseFont = false;
             this.xrLabel15.StylePriority.UseTextAlignment = false;
             // 
@@ -870,5 +891,6 @@
         private DevExpress.XtraReports.UI.XRLabel xrLabel28;
         private DevExpress.XtraReports.Parameters.Parameter EmployeeName;
         private DevExpress.XtraReports.UI.XRLabel xrLabel27;
+        private DevExpress.XtraReports.UI.XRPageInfo xrPageInfo3;
     }
 }
