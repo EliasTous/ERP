@@ -1023,4 +1023,10 @@
   <data name="PayCodes" xml:space="preserve">
     <value>Pay Codes</value>
   </data>
+  <data name="PayrollIndemnity" xml:space="preserve">
+    <value>Payroll Indemnity</value>
+  </data>
+  <data name="RT503" xml:space="preserve">
+    <value>Department Payroll</value>
+  </data>
 </root>

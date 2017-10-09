@@ -30,6 +30,8 @@ namespace AionHR.Repository.WebService.Repositories
             ChildGetAllLookup.Add(typeof(FinalEntitlementsDeductions), "qryFD");
             ChildGetAllLookup.Add(typeof(PayCode), "qryPC");
             ChildGetAllLookup.Add(typeof(PayrollSocialSecurity), "qryES");
+            ChildGetAllLookup.Add(typeof(PayrollIndemnity), "qryIS");
+            ChildGetAllLookup.Add(typeof(PayrollIndemnityDetails), "qryID");
 
 
             ChildAddOrUpdateLookup.Add(typeof(FiscalYear), "setYE");
@@ -45,7 +47,10 @@ namespace AionHR.Repository.WebService.Repositories
             ChildAddOrUpdateLookup.Add(typeof(FinalSettlement), "setFS");
             ChildAddOrUpdateLookup.Add(typeof(FinalEntitlementsDeductions), "setFD");
             ChildAddOrUpdateLookup.Add(typeof(PayCode), "setPC");
-        
+            ChildAddOrUpdateLookup.Add(typeof(PayrollIndemnity), "setIS");
+            ChildAddOrUpdateLookup.Add(typeof(PayrollIndemnityDetails), "setID");
+            ChildAddOrUpdateLookup.Add(typeof(PayrollIndemnityDetails[]), "arrID");
+
 
             ChildDeleteLookup.Add(typeof(FiscalYear), "delYE");
             ChildDeleteLookup.Add(typeof(PayrollEntitlementDeduction), "delED");
@@ -56,7 +61,9 @@ namespace AionHR.Repository.WebService.Repositories
             ChildDeleteLookup.Add(typeof(FinalSettlement), "delFS");
             ChildDeleteLookup.Add(typeof(FinalEntitlementsDeductions), "delFD");
             ChildDeleteLookup.Add(typeof(PayCode), "delPC");
-         
+            ChildDeleteLookup.Add(typeof(PayrollIndemnity), "delIS");
+            ChildDeleteLookup.Add(typeof(PayrollIndemnityDetails), "delID");
+
 
             ChildGetLookup.Add(typeof(GenerationHeader), "getHE");
             ChildGetLookup.Add(typeof(TimeSchedule), "getTS");
@@ -65,6 +72,8 @@ namespace AionHR.Repository.WebService.Repositories
             ChildGetLookup.Add(typeof(FinalSettlement), "getFS");
             ChildGetLookup.Add(typeof(FinalEntitlementsDeductions), "getFD");
             ChildGetLookup.Add(typeof(PayCode), "getPC");
+            ChildGetLookup.Add(typeof(PayrollIndemnity), "getIS");
+            ChildGetLookup.Add(typeof(PayrollIndemnityDetails), "getID");
         }
     }
 }

@@ -10,7 +10,7 @@
 namespace AionHR.Web.UI.Forms.Reports {
     
     
-    public partial class RT109 {
+    public partial class RT503 {
         
         /// <summary>
         /// Form1 control.
@@ -67,15 +67,6 @@ namespace AionHR.Web.UI.Forms.Reports {
         protected global::Ext.Net.Hidden titleSavingErrorMessage;
         
         /// <summary>
-        /// dtIdValue control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Hidden dtIdValue;
-        
-        /// <summary>
         /// rtl control.
         /// </summary>
         /// <remarks>
@@ -112,31 +103,13 @@ namespace AionHR.Web.UI.Forms.Reports {
         protected global::Ext.Net.Panel Center;
         
         /// <summary>
-        /// statusCombo control.
+        /// employeeFilter control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.ComboBox statusCombo;
-        
-        /// <summary>
-        /// dtId control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.ComboBox dtId;
-        
-        /// <summary>
-        /// RWDocumentTypeStore control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Store RWDocumentTypeStore;
+        protected global::AionHR.Web.UI.Forms.Reports.Controls.EmployeeFilter employeeFilter;
         
         /// <summary>
         /// jobInfo1 control.
@@ -146,6 +119,15 @@ namespace AionHR.Web.UI.Forms.Reports {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::AionHR.Web.UI.Forms.Reports.JobInfoFilter jobInfo1;
+        
+        /// <summary>
+        /// paymentMethodCombo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AionHR.Web.UI.Forms.Reports.Controls.PaymentMethodFilter paymentMethodCombo;
         
         /// <summary>
         /// ASPxCallbackPanel1 control.

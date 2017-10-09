@@ -28,10 +28,12 @@ using Reports;
 using AionHR.Model.Reports;
 using AionHR.Model.Employees.Profile;
 
+
 namespace AionHR.Web.UI.Forms.Reports
 {
-    public partial class RT109 : System.Web.UI.Page
+    public partial class RT503 : System.Web.UI.Page
     {
+
         ISystemService _systemService = ServiceLocator.Current.GetInstance<ISystemService>();
         ITimeAttendanceService _timeAttendanceService = ServiceLocator.Current.GetInstance<ITimeAttendanceService>();
         ICompanyStructureService _companyStructureService = ServiceLocator.Current.GetInstance<ICompanyStructureService>();
@@ -58,11 +60,8 @@ namespace AionHR.Web.UI.Forms.Reports
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
             if (!X.IsAjaxRequest && !IsPostBack)
             {
-
-                statusCombo.Select(0);
 
                 SetExtLanguage();
                 HideShowButtons();
@@ -71,28 +70,24 @@ namespace AionHR.Web.UI.Forms.Reports
                 try
                 {
 
+
                     try
                     {
-                        AccessControlApplier.ApplyAccessControlOnPage(typeof(AionHR.Model.Reports.RT109), null, null, null, null);
+                        AccessControlApplier.ApplyAccessControlOnPage(typeof(AionHR.Model.Reports.RT200), null, null, null, null);
                     }
                     catch (AccessDeniedException exp)
                     {
                         X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
                         X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorAccessDenied).Show();
                         Viewport1.Hidden = true;
-
                         return;
                     }
-                    //dateRange1.DefaultStartDate = DateTime.Now.AddDays(-DateTime.Now.Day);
                     format.Text = _systemService.SessionHelper.GetDateformat().ToUpper();
                     ASPxWebDocumentViewer1.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.Utils.DefaultBoolean.True : DevExpress.Utils.DefaultBoolean.False;
-                    FillRWDocumentType();
                     FillReport(false, false);
                 }
                 catch { }
             }
-         
-
         }
 
 
@@ -118,7 +113,6 @@ namespace AionHR.Web.UI.Forms.Reports
         {
 
         }
-
 
         /// <summary>
         /// hiding uncessary column in the grid. 
@@ -153,6 +147,8 @@ namespace AionHR.Web.UI.Forms.Reports
 
 
 
+
+
         [DirectMethod]
         public string CheckSession()
         {
@@ -171,17 +167,13 @@ namespace AionHR.Web.UI.Forms.Reports
             req.Size = "1000";
             req.StartAt = "1";
 
-
-            // req.Add(dateRange1.GetRange());
-            //  req.Add(employeeCombo1.GetEmployee());
+            req.Add(paymentMethodCombo.GetPaymentMethod());
             req.Add(jobInfo1.GetJobInfo());
-            req.Add(getStatus());
-           
-
+            req.Add(employeeFilter.GetEmployee());
+            
 
             return req;
         }
-
         [DirectMethod]
         public object FillEmployee(string action, Dictionary<string, object> extraParams)
         {
@@ -192,7 +184,6 @@ namespace AionHR.Web.UI.Forms.Reports
             // {
             return data;
         }
-
         private List<Employee> GetEmployeesFiltered(string query)
         {
 
@@ -209,7 +200,6 @@ namespace AionHR.Web.UI.Forms.Reports
             ListResponse<Employee> response = _employeeService.GetAll<Employee>(req);
             return response.Items;
         }
-
         private string GetNameFormat()
         {
             return _systemService.SessionHelper.Get("nameFormat").ToString();
@@ -219,7 +209,7 @@ namespace AionHR.Web.UI.Forms.Reports
 
             ReportCompositeRequest req = GetRequest();
 
-            ListResponse<AionHR.Model.Reports.RT109> resp = _reportsService.ChildGetAll<AionHR.Model.Reports.RT109>(req);
+            ListResponse<AionHR.Model.Reports.RT503> resp = _reportsService.ChildGetAll<AionHR.Model.Reports.RT503>(req);
             if (!resp.Success)
             {
                 if (throwException)
@@ -232,66 +222,69 @@ namespace AionHR.Web.UI.Forms.Reports
                 }
             }
 
-           
-            resp.Items.ForEach(s =>
+            var d = resp.Items.GroupBy(x => x.departmentName);
+            DepartmentPayrollLineCollection lines = new DepartmentPayrollLineCollection();
+            HashSet<DepartmentEntitlementDeduction> ens = new HashSet<DepartmentEntitlementDeduction>(new DepartmentEntitlementDeductionComparer());
+            HashSet<DepartmentEntitlementDeduction> des = new HashSet<DepartmentEntitlementDeduction>(new DepartmentEntitlementDeductionComparer());
+            resp.Items.ForEach(x =>
             {
-           
-                s.expiryDateStringFormat = s.expiryDate.ToString(_systemService.SessionHelper.GetDateformat());
-                
-                
-              
+                if (x.edType == 1)
+                    ens.Add(new DepartmentEntitlementDeduction() { name = x.edName, amount = 0, isTaxable = x.isTaxable });
+                else
+                    des.Add(new DepartmentEntitlementDeduction() { name = x.edName, amount = 0 });
+            });
+            foreach (var item in d)
+            {
+                var list = item.ToList();
+                DepartmentPayrollLine line = new DepartmentPayrollLine(ens, des, list, GetLocalResourceObject("taxableeAmount").ToString(), GetLocalResourceObject("eAmount").ToString(), GetLocalResourceObject("dAmount").ToString(), GetLocalResourceObject("netSalary").ToString(), GetLocalResourceObject("essString").ToString(), GetLocalResourceObject("cssString").ToString());
+                lines.Add(line);
             }
-            );
-            RightToWork h = new RightToWork();
+
+           DepartmentPayrollCollection s = new DepartmentPayrollCollection();
+            if (lines.Count > 0)
+            {                         
+                           
+                DepartmentPayrollSet p = new DepartmentPayrollSet(GetLocalResourceObject("Entitlements").ToString(), GetLocalResourceObject("Taxable").ToString(), GetLocalResourceObject("Deductions").ToString());
+                //p.PayPeriodString = resp.Items[0].startDate.ToString(_systemService.SessionHelper.GetDateformat()) + " - " + resp.Items[0].endDate.ToString(_systemService.SessionHelper.GetDateformat());
+                //p.PayDate = GetLocalResourceObject("PaidAt") + " " + resp.Items[0].payDate.ToString(_systemService.SessionHelper.GetDateformat());
+                p.Names = (lines[0] as DepartmentPayrollLine).Entitlements;
+                p.DIndex = ens.Count;
+                p.taxableIndex = ens.Count(x => x.isTaxable);
+                p.Payrolls = lines;
+                s.Add(p);
+            }
+
+            DepartmentPayroll h = new DepartmentPayroll();
+
+            h.DataSource = s;
+            h.Parameters["columnCount"].Value = ens.Count + des.Count;
             h.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;
             h.RightToLeftLayout = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeftLayout.Yes : DevExpress.XtraReports.UI.RightToLeftLayout.No;
-            h.DataSource = resp.Items;
-
-            //  string from = DateTime.Parse(req.Parameters["_fromDate"]).ToString(_systemService.SessionHelper.GetDateformat(), new CultureInfo("en"));
-            //  string to = DateTime.Parse(req.Parameters["_toDate"]).ToString(_systemService.SessionHelper.GetDateformat(), new CultureInfo("en"));
             string user = _systemService.SessionHelper.GetCurrentUser();
-
-
-            h.Parameters["BranchName"].Value = jobInfo1.GetBranch();
-            h.Parameters["PositionName"].Value = jobInfo1.GetPosition();
             h.Parameters["User"].Value = user;
-            h.Parameters["DepartmentName"].Value = jobInfo1.GetDepartment();
-            h.Parameters["Status"].Value = statusCombo.SelectedItem.Text;
+            //if (resp.Items.Count > 0)
+            //{
+            //    if (req.Parameters["_departmentId"] != "0")
+            //        h.Parameters["Department"].Value = jobInfo1.GetDepartment();
+            //    else
+            //        h.Parameters["Department"].Value = GetGlobalResourceObject("Common", "All");
 
+            //    if (req.Parameters["_branchId"] != "0")
+            //        h.Parameters["Branch"].Value = jobInfo1.GetBranch();
+            //    else
+            //        h.Parameters["Branch"].Value = GetGlobalResourceObject("Common", "All");
 
+            //    if (req.Parameters["_paymentMethod"] != "0")
+            //        h.Parameters["Payment"].Value = paymentMethodCombo.GetPaymentMethodString();
+            //    else
+            //        h.Parameters["Payment"].Value = GetGlobalResourceObject("Common", "All");
+            //    //if (req.Parameters["_employeeId"] != "0")
+            //    //   h.Parameters["EmployeeName"].Value = resp.Items[0].employeeName.fullName;
+            //    //else
+            //    //    h.Parameters["EmployeeName"].Value = GetGlobalResourceObject("Common", "All");
 
+            //}
 
-
-
-            if (resp.Items.Count > 0)
-            {
-                if (req.Parameters["_departmentId"] != "0")
-                    h.Parameters["DepartmentName"].Value = resp.Items[0].departmentName;
-                else
-                    h.Parameters["DepartmentName"].Value = GetGlobalResourceObject("Common", "All");
-
-                if (req.Parameters["_branchId"] != "0")
-                    h.Parameters["BranchName"].Value = resp.Items[0].branchName;
-                else
-                    h.Parameters["BranchName"].Value = GetGlobalResourceObject("Common", "All");
-
-                if (req.Parameters["_positionId"] != "0")
-                    h.Parameters["PositionName"].Value = resp.Items[0].positionName;
-                else
-                    h.Parameters["PositionName"].Value = GetGlobalResourceObject("Common", "All");
-
-
-                //if (req.Parameters["_status"] != "0")
-                //    h.Parameters["Status"].Value = resp.Items[0];
-                //else
-                //    h.Parameters["Status"].Value = GetGlobalResourceObject("Common", "All");
-
-
-                //if (req.Parameters["_employeeId"] != "0")
-                //    h.Parameters["Employee"].Value = resp.Items[0].name.fullName;
-                //else
-                //    h.Parameters["Employee"].Value = GetGlobalResourceObject("Common", "All");
-            }
 
             h.CreateDocument();
 
@@ -312,6 +305,9 @@ namespace AionHR.Web.UI.Forms.Reports
             }
 
         }
+
+
+
         protected void Unnamed_Click(object sender, EventArgs e)
         {
 
@@ -321,34 +317,10 @@ namespace AionHR.Web.UI.Forms.Reports
 
         protected void ASPxCallbackPanel1_Load(object sender, EventArgs e)
         {
-          // ASPxWebDocumentViewer1.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.Utils.DefaultBoolean.True : DevExpress.Utils.DefaultBoolean.False;
-           // FillReport(true);
+            //ASPxWebDocumentViewer1.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.Utils.DefaultBoolean.True : DevExpress.Utils.DefaultBoolean.False;
+            //FillReport(true);
         }
-        public RightToworkReportParameter getStatus()
-        {
-            
-            RightToworkReportParameter r = new RightToworkReportParameter();
-            if (statusCombo.SelectedItem.Value == null)
-                r.status = "0";
-            else
-            r.status = statusCombo.SelectedItem.Value;
-            if (dtId.SelectedItem.Value == null)
-                r.dtId = "0";
-            else
-                r.dtId = dtId.SelectedItem.Value;
 
-            return r;
-        }
-        private void FillRWDocumentType()
-        {
-            ListRequest RWDocumentType = new ListRequest();
-            ListResponse<DocumentType> resp = _employeeService.ChildGetAll<DocumentType>(RWDocumentType);
-            if (!resp.Success)
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() : resp.Summary).Show();
-            RWDocumentTypeStore.DataSource = resp.Items;
-            RWDocumentTypeStore.DataBind();
-
-        }
-      
+        
     }
 }

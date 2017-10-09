@@ -54,6 +54,7 @@
     <ext:Hidden runat="server" ID="PYTSTitle" Text="<%$Resources:Common , TimeSchedule %>" />
      <ext:Hidden runat="server" ID="SSStitle" Text="<%$Resources:Common , SocialSecuritySchedules %>" />
       <ext:Hidden runat="server" ID="PCTitle" Text="<%$Resources:Common , PayCodes %>" />
+      <ext:Hidden runat="server" ID="PITitle" Text="<%$Resources:Common , PayrollIndemnity %>" />
     <ext:Hidden runat="server" ID="pyde" Text="<%$Resources:Common , PayrollDefaults %>" />
     <ext:Hidden runat="server" ID="foTitle" Text="<%$Resources:Common , Folders %>" />
     <ext:Hidden runat="server" ID="rtTitle" Text="<%$Resources:Common , RelationshipTypes %>" />
@@ -472,6 +473,11 @@
                                                          <ext:MenuItem runat="server" Text="<%$Resources: Common ,PayCodes%>">
                                                             <Listeners>
                                                                 <Click Handler="openNewTab('Pay Codes ', 'PayCodes.aspx', #{PCTitle}.value, 'icon-Employees')" />
+                                                            </Listeners>
+                                                             </ext:MenuItem>
+                                                              <ext:MenuItem runat="server" Text="<%$Resources: Common ,PayrollIndemnity%>">
+                                                            <Listeners>
+                                                                <Click Handler="openNewTab('Payroll Indemnities ', 'PayrollIndemnities.aspx', #{PITitle}.value, 'icon-Employees')" />
                                                             </Listeners>
                                                         </ext:MenuItem>
                                                         <ext:MenuItem runat="server" Text="<%$Resources: Common , FiscalYears%>">

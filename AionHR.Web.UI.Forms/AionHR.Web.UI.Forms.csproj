@@ -275,6 +275,7 @@
     <Content Include="PayCodes.aspx" />
     <Content Include="PayrollDefaults.aspx" />
     <Content Include="PayrollGeneration.aspx" />
+    <Content Include="PayrollIndemnities.aspx" />
     <Content Include="PayrollTimeSchedule.aspx" />
     <Content Include="RelationshipTypes.aspx" />
     <Content Include="Reports\App_LocalResources\Hirings.cs.resx" />
@@ -334,6 +335,7 @@
     <Content Include="Reports\RT401.aspx" />
     <Content Include="Reports\RT501.aspx" />
     <Content Include="Reports\RT502.aspx" />
+    <Content Include="Reports\RT503.aspx" />
     <Content Include="Reports\RT601.aspx" />
     <Content Include="Reports\RT602.aspx" />
     <Content Include="Reports\RT801.aspx" />
@@ -352,6 +354,7 @@
     <Content Include="Scripts\jquery-ui-min.js" />
     <Content Include="Scripts\OvertimeSettings.js" />
     <Content Include="Scripts\PayCodes.js" />
+    <Content Include="Scripts\Payrollindemnities.js" />
     <Content Include="Scripts\SecurityGroups.js" />
     <Content Include="Scripts\ImportAttendance.js" />
     <Content Include="Scripts\EmployeeComplaints.js" />
@@ -505,7 +508,9 @@
     <Content Include="Scripts\jquery.min.js" />
     <Content Include="Users.aspx" />
     <Content Include="VacationSchedules.aspx" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Absent.aspx.cs">
@@ -605,6 +610,13 @@
     <Compile Include="PayCodes.aspx.designer.cs">
       <DependentUpon>PayCodes.aspx</DependentUpon>
     </Compile>
+    <Compile Include="PayrollIndemnities.aspx.cs">
+      <DependentUpon>PayrollIndemnities.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PayrollIndemnities.aspx.designer.cs">
+      <DependentUpon>PayrollIndemnities.aspx</DependentUpon>
+    </Compile>
     <Compile Include="PayrollTimeSchedule.aspx.cs">
       <DependentUpon>PayrollTimeSchedule.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -674,6 +686,13 @@
     </Compile>
     <Compile Include="Reports\RT502.aspx.designer.cs">
       <DependentUpon>RT502.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\RT503.aspx.cs">
+      <DependentUpon>RT503.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reports\RT503.aspx.designer.cs">
+      <DependentUpon>RT503.aspx</DependentUpon>
     </Compile>
     <Compile Include="SocialSecuritySchedules.aspx.cs">
       <DependentUpon>SocialSecuritySchedules.aspx</DependentUpon>
@@ -1929,6 +1948,8 @@
     <Content Include="App_LocalResources\PayCodes.aspx.ar.resx" />
     <Content Include="App_LocalResources\PayCodes.aspx.resx" />
     <Content Include="App_LocalResources\PayrollGeneration.aspx.ar.resx" />
+    <Content Include="App_LocalResources\PayrollIndemnities.aspx.resx" />
+    <Content Include="App_LocalResources\PayrollIndemnities.aspx.ar.resx" />
     <EmbeddedResource Include="Properties\licenses.licx" />
     <Content Include="Reports\App_LocalResources\RT202.aspx.resx" />
     <Content Include="Reports\App_LocalResources\RT01.aspx.ar.resx" />
@@ -1968,6 +1989,9 @@
     <Content Include="Reports\App_LocalResources\RT305.aspx.resx" />
     <Content Include="Reports\App_LocalResources\RT200.aspx.resx" />
     <Content Include="Reports\App_LocalResources\RT200.aspx.ar.resx" />
+    <Content Include="Reports\App_LocalResources\RT109.aspx.resx" />
+    <Content Include="Reports\App_LocalResources\RT109.aspx.ar.resx" />
+    <Content Include="Reports\App_LocalResources\RT503.aspx.resx" />
     <EmbeddedResource Include="Reports\RT201.aspx.resx">
       <DependentUpon>RT201.aspx.cs</DependentUpon>
       <Generator>ResXFileCodeGenerator</Generator>

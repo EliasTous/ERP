@@ -32,6 +32,7 @@ namespace AionHR.Web.UI.Forms.Reports.Controls
                 p.paymentMethod = 0;
 
             }
+            p.payref = 201701; 
             return p;
         }
 

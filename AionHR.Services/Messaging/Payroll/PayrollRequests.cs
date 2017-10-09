@@ -245,4 +245,23 @@ public class PayrollSocialSecurityListRequest:ListRequest
     }
 
 }
+public class PayrollIndemnityDetailsListRequest : ListRequest
+{
+    public string inId { get; set; }
+
+
+    public override Dictionary<string, string> Parameters
+    {
+        get
+        {
+            parameters = base.Parameters;
+            parameters.Add("_inId", inId);
+
+
+            return parameters;
+        }
+    }
+
+}
+
 

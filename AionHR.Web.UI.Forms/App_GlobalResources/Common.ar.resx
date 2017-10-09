@@ -1023,4 +1023,7 @@
   <data name="PayCodes" xml:space="preserve">
     <value>الرموز المالية</value>
   </data>
+  <data name="PayrollIndemnity" xml:space="preserve">
+    <value>جدول مكافأة نهاية الخدمة</value>
+  </data>
 </root>

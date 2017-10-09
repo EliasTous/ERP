@@ -97,6 +97,9 @@
     <Compile Include="DayTypesReport.Designer.cs">
       <DependentUpon>DayTypesReport.cs</DependentUpon>
     </Compile>
+    <Compile Include="DepartmentPayroll.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="DepartmentsReport.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -301,6 +304,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DayTypesReport.resx">
       <DependentUpon>DayTypesReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DepartmentPayroll.resx">
+      <DependentUpon>DepartmentPayroll.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DepartmentsReport.ar.resx">
       <DependentUpon>DepartmentsReport.cs</DependentUpon>

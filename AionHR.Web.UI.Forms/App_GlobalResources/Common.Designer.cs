@@ -1816,6 +1816,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Payroll Indemnity.
+        /// </summary>
+        internal static string PayrollIndemnity {
+            get {
+                return ResourceManager.GetString("PayrollIndemnity", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Positions.
         /// </summary>
         internal static string Positions {
@@ -2235,6 +2244,15 @@ namespace Resources {
         internal static string RT502 {
             get {
                 return ResourceManager.GetString("RT502", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Department Payroll.
+        /// </summary>
+        internal static string RT503 {
+            get {
+                return ResourceManager.GetString("RT503", resourceCulture);
             }
         }
         

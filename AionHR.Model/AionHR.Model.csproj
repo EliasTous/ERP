@@ -110,6 +110,7 @@
     <Compile Include="Payroll\IPayrollRepository.cs" />
     <Compile Include="Payroll\PayCode.cs" />
     <Compile Include="Payroll\PayrollEntitlementDeduction.cs" />
+    <Compile Include="Payroll\PayrollIndemnity.cs" />
     <Compile Include="Payroll\PayrollSocialSecurity.cs" />
     <Compile Include="Payroll\SocialSecuritySchedule.cs" />
     <Compile Include="Payroll\SocialSecurityScheduleSetup.cs" />
@@ -143,6 +144,7 @@
     <Compile Include="Reports\RT401.cs" />
     <Compile Include="Reports\RT501.cs" />
     <Compile Include="Reports\RT502.cs" />
+    <Compile Include="Reports\RT503.cs" />
     <Compile Include="Reports\RT601.cs" />
     <Compile Include="Reports\RT602.cs" />
     <Compile Include="Reports\RT801.cs" />

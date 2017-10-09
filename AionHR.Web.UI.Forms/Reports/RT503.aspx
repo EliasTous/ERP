@@ -1,4 +1,5 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="RT109.aspx.cs" Inherits="AionHR.Web.UI.Forms.Reports.RT109" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="RT503.aspx.cs" Inherits="AionHR.Web.UI.Forms.Reports.RT503" %>
+
 
 <%@ Register Assembly="DevExpress.Web.v16.2, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web" TagPrefix="dx" %>
 
@@ -13,7 +14,7 @@
     <title></title>
 
     <link rel="stylesheet" type="text/css" href="../CSS/Common.css" />
-    <link rel="stylesheet" type="text/css" href="../CSS/RT101.css?id=2" />
+    <link rel="stylesheet" type="text/css" href="../CSS/RT200.css?id=2" />
     <link rel="stylesheet" href="../CSS/LiveSearch.css" />
     <script type="text/javascript" src="../Scripts/Dashboard.js"></script>
     <!--  <script type="text/javascript" src="Scripts/app.js"></script>-->
@@ -22,7 +23,7 @@
     <script src="https://superal.github.io/canvas2image/canvas2image.js" type="text/javascript"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js" type="text/javascript"></script>
     <script type="text/javascript" src="../Scripts/moment.js"></script>
-    <script type="text/javascript" src="../Scripts/RT101.js?id=18"></script>
+    <script type="text/javascript" src="../Scripts/RT200.js?id=18"></script>
     <script type="text/javascript">
         function alertNow(s, e) {
 
@@ -39,9 +40,6 @@
         <ext:Hidden ID="textLoadFailed" runat="server" Text="<%$ Resources:Common , LoadFailed %>" />
         <ext:Hidden ID="titleSavingError" runat="server" Text="<%$ Resources:Common , TitleSavingError %>" />
         <ext:Hidden ID="titleSavingErrorMessage" runat="server" Text="<%$ Resources:Common , TitleSavingErrorMessage %>" />
-         <ext:Hidden ID="dtIdValue" runat="server" Text="" />
-
-        
 
         <ext:Hidden ID="rtl" runat="server" />
         <ext:Hidden ID="format" runat="server" />
@@ -62,50 +60,30 @@
                         <ext:Toolbar runat="server" Height="60">
 
                             <Items>
-                                  
-                                  <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  AllowBlank="false"   QueryMode="Local" LabelWidth="130" ForceSelection="true" TypeAhead="true" MinChars="1"   runat="server" ID="statusCombo" EmptyText="<%$Resources:Common, status %>">
-                                            <Items>
-                                                <ext:ListItem Text="<%$Resources:Common, All %>"  Value="0" />
-                                                <ext:ListItem Text="<%$Resources:Common, Renew %>" Value="1" />
-                                                                                              
-                                            </Items>
-                                           
-
-                                        </ext:ComboBox>
-                              
-                                                                     
-                                                                     
-                                <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  ValueField="recordId" AllowBlank="true" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" runat="server" ID="dtId" Name="dtId" EmptyText="<%$ Resources:FieldRWDocumentType%>" >
-                                    <Store>
-                                        <ext:Store runat="server" ID="RWDocumentTypeStore">
-                                            <Model>
-                                                <ext:Model runat="server" IDProperty="recordId">
-                                                    <Fields>
-                                                        <ext:ModelField Name="recordId" />
-                                                        <ext:ModelField Name="name" />
-                                                    </Fields>
-                                                </ext:Model>
-                                            </Model>
-                                        </ext:Store>
-                                    </Store>
-                                  
-                                   
-                                </ext:ComboBox>
-                                                                    
-                               <%-- <ext:Container runat="server"  Layout="FitLayout">
+                             <ext:Container runat="server"  Layout="FitLayout">
                                             <Content>
-                                            
-                                                <uc:employeeCombo runat="server" ID="employeeCombo1" />
-                                            </Content>
-                                        </ext:Container>--%>
-                                 <ext:Container runat="server"  Layout="FitLayout">
-                                            <Content>
+                                               
                                                 <%--<uc:dateRange runat="server" ID="dateRange1" />--%>
-                                                <uc:jobInfo runat="server" ID="jobInfo1" EnableDivision="false" EnableBranch="true" EnableDepartment="true" EnablePosition="true"  />
+                                                  <uc:employeeCombo runat="server" ID="employeeFilter" />
                                             </Content>
                                         </ext:Container>
-                                
-                                
+
+                               
+                                        <ext:Container runat="server"  Layout="FitLayout">
+                                            <Content>
+                                               
+                                                <%--<uc:dateRange runat="server" ID="dateRange1" />--%>
+                                                <uc:jobInfo runat="server" ID="jobInfo1" EnablePosition="false" EnableDivision="false" />
+                                            </Content>
+                                        </ext:Container>
+                                   <ext:Container runat="server"  Layout="FitLayout">
+                                            <Content>
+                                                <%--<uc:dateRange runat="server" ID="dateRange1" />--%>
+                                                <uc:paymentMethodCombo runat="server" ID="paymentMethodCombo" />
+                                            </Content>
+                                        </ext:Container>
+
+                                   
                                 <ext:Container runat="server" Layout="FitLayout">
                                     <Content>
                                          <ext:Button runat="server" Text="<%$Resources:Common, Go %>" >
@@ -124,7 +102,9 @@
                     </TopBar>
                     <Content>
 
-                        <dx:ASPxCallbackPanel ID="ASPxCallbackPanel1" runat="server"  ClientSideEvents-CallbackError="alertNow" ClientInstanceName="callbackPanel"
+                        <dx:ASPxCallbackPanel ID="ASPxCallbackPanel1" runat="server" ClientInstanceName="callbackPanel"  ClientSideEvents-CallbackError="alertNow"
+
+
                             Width="100%" OnCallback="ASPxCallbackPanel1_Callback" OnLoad="ASPxCallbackPanel1_Load" >
                             <PanelCollection>
                                 <dx:PanelContent runat="server">
