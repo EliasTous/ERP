@@ -190,32 +190,35 @@ namespace AionHR.Web.UI.Forms.Reports
                 }
             }
 
-            var d = resp.Items.GroupBy(x => x.seqNo);
+            var d = resp.Items.GroupBy(x => x.employeeName.fullName);
             PayrollLineCollection lines = new PayrollLineCollection();
             HashSet<EntitlementDeduction> ens = new HashSet<EntitlementDeduction>(new EntitlementDeductionComparer());
             HashSet<EntitlementDeduction> des = new HashSet<EntitlementDeduction>(new EntitlementDeductionComparer());
             resp.Items.ForEach(x =>
             {
                 if (x.edType == 1)
-                    ens.Add(new EntitlementDeduction() { name = x.edName, amount = 0 });
+                    ens.Add(new EntitlementDeduction() { name = x.edName, amount = 0, isTaxable = x.isTaxable });
                 else
                     des.Add(new EntitlementDeduction() { name = x.edName, amount = 0 });
             });
             foreach (var item in d)
             {
                 var list = item.ToList();
-                PayrollLine line = new PayrollLine(ens, des, list, GetLocalResourceObject("eAmount").ToString(), GetLocalResourceObject("dAmount").ToString(), GetLocalResourceObject("netSalary").ToString());
+                PayrollLine line = new PayrollLine(ens, des, list, GetLocalResourceObject("taxableeAmount").ToString(), GetLocalResourceObject("eAmount").ToString(), GetLocalResourceObject("dAmount").ToString(), GetLocalResourceObject("netSalary").ToString(), GetLocalResourceObject("essString").ToString(), GetLocalResourceObject("cssString").ToString());
                 lines.Add(line);
             }
 
             MonthlyPayrollCollection s = new MonthlyPayrollCollection();
+            
+
             if (lines.Count > 0)
             {
-                MonthlyPayrollSet p = new MonthlyPayrollSet(GetLocalResourceObject("Entitlements").ToString(),GetLocalResourceObject("Deductions").ToString());
+                MonthlyPayrollSet p = new MonthlyPayrollSet(GetLocalResourceObject("Entitlements").ToString(), GetLocalResourceObject("Taxable").ToString(), GetLocalResourceObject("Deductions").ToString());
                 p.PayPeriodString = resp.Items[0].startDate.ToString(_systemService.SessionHelper.GetDateformat()) + " - " + resp.Items[0].endDate.ToString(_systemService.SessionHelper.GetDateformat());
                 p.PayDate = GetLocalResourceObject("PaidAt")+" "+ resp.Items[0].payDate.ToString(_systemService.SessionHelper.GetDateformat());
                 p.Names = (lines[0] as PayrollLine).Entitlements;
                 p.DIndex = ens.Count;
+                p.taxableIndex = ens.Count(x => x.isTaxable);
                 p.Payrolls = lines;
                 s.Add(p);
             }
@@ -229,11 +232,11 @@ namespace AionHR.Web.UI.Forms.Reports
             h.Parameters["User"].Value = user;
             if (resp.Items.Count > 0)
             {
-                if (req.Parameters["_departmentId"] != "0")
-                    h.Parameters["Department"].Value = jobInfo1.GetDepartment();
-                else
-                    h.Parameters["Department"].Value = GetGlobalResourceObject("Common", "All");
 
+                if (req.Parameters["_departmentId"] != "0")
+                    h.Parameters["department"].Value = jobInfo1.GetDepartment();
+                else
+                    h.Parameters["Branch"].Value = GetGlobalResourceObject("Common", "All");
                 if (req.Parameters["_branchId"] != "0")
                     h.Parameters["Branch"].Value = jobInfo1.GetBranch();
                 else

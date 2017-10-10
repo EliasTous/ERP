@@ -17,9 +17,22 @@ namespace AionHR.Web.UI.Forms.Reports.Controls
 
        public PayRefParameterSet GetPayRef()
         {
-            PayRefParameterSet s = new PayRefParameterSet();
-            s.payRef = payRef.Text;
-            return s;
+            PayRefParameterSet p = new PayRefParameterSet();
+
+
+            if (!string.IsNullOrEmpty(payRef.Text) && payRef.Value.ToString() != "0")
+            {
+                p.payRef = payRef.Value.ToString(); ;
+
+
+
+            }
+            else
+            {
+                p.payRef = "0";
+
+            }
+            return p;
         }
     }
 }

@@ -9,6 +9,7 @@ namespace AionHR.Services.Messaging.Reports
     public class PayRefParameterSet:ReportParameterSet
     {
         public string payRef { get; set; }
+     
 
         protected Dictionary<string, string> parameters;
 
@@ -18,6 +19,7 @@ namespace AionHR.Services.Messaging.Reports
             {
                 parameters = new Dictionary<string, string>();
                 parameters.Add("_payRef", payRef);
+               
 
                 return parameters;
             }

@@ -21,6 +21,7 @@ namespace AionHR.Model.Reports
         {
             return (obj as EntitlementDeduction).name.ToLower() == name.ToLower();
         }
+        public bool isTaxable { get; set; }
 
     }
     public class EntitlementDeductionComparer : IEqualityComparer<EntitlementDeduction>
@@ -41,6 +42,7 @@ namespace AionHR.Model.Reports
     }
     public class PayrollLine
     {
+
         public string name { get; set; }
 
         public int days { get; set; }
@@ -54,7 +56,9 @@ namespace AionHR.Model.Reports
                 return currencyRef + String.Format("{0:n0}", basicAmount);
             }
         }
+        public double essAmount { get; set; }
 
+        public double cssAmount { get; set; }
         private List<EntitlementDeduction> entitlements;
         private List<EntitlementDeduction> deductions;
 
@@ -62,20 +66,35 @@ namespace AionHR.Model.Reports
         {
             get
             {
+
+
                 List<EntitlementDeduction> all = new List<EntitlementDeduction>();
-                all.AddRange(entitlements);
-                all.Add(new EntitlementDeduction() { name = eAmountString, amount = EntitlementsTotal, AmountString= currencyRef+ String.Format("{0:n0}", EntitlementsTotal) });
+                all.AddRange(entitlements.Where(x => x.isTaxable));
+                all.Add(new EntitlementDeduction() { name = taxableTotalString, amount = TaxableEntitlementsTotal, AmountString = String.Format("{0:n0}", TaxableEntitlementsTotal) });
+                all.AddRange(entitlements.Where(x => !x.isTaxable));
+                all.Add(new EntitlementDeduction() { name = eAmountString, amount = EntitlementsTotal, AmountString = String.Format("{0:n0}", EntitlementsTotal) });
 
                 all.AddRange(deductions);
-                all.Add(new EntitlementDeduction() { name = dAmountString, amount = DeductionsTotal, AmountString = currencyRef + String.Format("{0:n0}", DeductionsTotal) });
-                all.Add(new EntitlementDeduction() { name = netSalary, amount = NetSalary, AmountString = currencyRef + String.Format("{0:n0}", NetSalary) });
+                all.Add(new EntitlementDeduction() { name = dAmountString, amount = DeductionsTotal, AmountString = String.Format("{0:n0}", DeductionsTotal) });
+                all.Add(new EntitlementDeduction() { name = netSalary, amount = NetSalary, AmountString = String.Format("{0:n0}", NetSalary) });
+                all.Add(new EntitlementDeduction() { name = essString, amount = essAmount, AmountString = String.Format("{0:n0}", essAmount) });
+                all.Add(new EntitlementDeduction() { name = cssString, amount = cssAmount, AmountString = String.Format("{0:n0}", cssAmount) });
+                //all = all.Select(item => {
+                //    item.AmountString = Regex.Replace(item.AmountString, @"\s+", ""); // remove all white spaces
+                //    item.name = Regex.Replace(item.name, @"\s+", ""); // remove all white spaces
+                //    return item; // return processed item...
+                //}).ToList();
                 return new EntitlementDeductionCollection(all);
             }
         }
 
-        private string eAmountString;
+            private string eAmountString;
         private string dAmountString;
         private string netSalary;
+        private string taxableTotalString;
+        private string essString;
+        private string cssString;
+        public double TaxableEntitlementsTotal { get { return basicAmount + entitlements.Sum(x => x.isTaxable ? x.amount : 0); } }
 
         public string currencyRef { get; set; }
 
@@ -90,15 +109,17 @@ namespace AionHR.Model.Reports
         public void AddEn(EntitlementDeduction en)
         {
             entitlements[entitlements.IndexOf(en)].amount = en.amount;
-            entitlements[entitlements.IndexOf(en)].AmountString = currencyRef+ String.Format("{0:n0}", en.amount);
+      
+           entitlements[entitlements.IndexOf(en)].isTaxable = en.isTaxable;
+            entitlements[entitlements.IndexOf(en)].AmountString = String.Format("{0:n0}", en.amount);
         }
 
         public void AddDe(EntitlementDeduction de)
         {
             deductions[deductions.IndexOf(de)].amount = de.amount;
-            deductions[deductions.IndexOf(de)].AmountString = currencyRef + String.Format("{0:n0}", de.amount);
+            deductions[deductions.IndexOf(de)].AmountString =  String.Format("{0:n0}", de.amount);
         }
-        public PayrollLine(HashSet<EntitlementDeduction> en, HashSet<EntitlementDeduction> de, List<RT501> details, string eString, string dString, string netString)
+        public PayrollLine(HashSet<EntitlementDeduction> en, HashSet<EntitlementDeduction> de, List<RT501> details, string taxable, string eString, string dString, string netString, string ess, string css)
         {
             entitlements = new List<EntitlementDeduction>();
             deductions = new List<EntitlementDeduction>();
@@ -112,19 +133,29 @@ namespace AionHR.Model.Reports
                 days = details[0].days;
                 currencyRef = details[0].currencyRef;
                 calendarDays = details[0].calendarDays;
+              
+              
+               
+                name = details[0].employeeName.fullName;
+                currencyRef = details[0].currencyRef;
+                essAmount = details[0].essAmount;
+                cssAmount = details[0].cssAmount;
             }
             foreach (var item in details)
             {
                 if (item.edType == 1)
-                    AddEn(new EntitlementDeduction() { amount = item.edAmount, name = item.edName });
+                    AddEn(new EntitlementDeduction() { amount = item.edAmount, name = item.edName, isTaxable = item.isTaxable });
                 else
-                    AddDe(new EntitlementDeduction() { amount = item.edAmount, name = item.edName });
+                    AddDe(new EntitlementDeduction() { amount = item.edAmount, name = item.edName, isTaxable = item.isTaxable });
 
 
             }
             eAmountString = eString;
             dAmountString = dString;
             netSalary = netString;
+            taxableTotalString = taxable;
+            cssString = css;
+            essString = ess;
         }
 
     }
@@ -200,6 +231,10 @@ namespace AionHR.Model.Reports
         public string currencyRef { get; set; }
 
         public int edType { get; set; }
+        public double cssAmount { set; get;}
+        public double essAmount { set; get;  }
+        public bool isTaxable { get; set; }
+
     }
 
     public class MonthlyPayrollSet
@@ -229,13 +264,30 @@ namespace AionHR.Model.Reports
         }
         public EntitlementDeductionCollection Headers
         {
+            //get
+            //{
+            //    List<EntitlementDeduction> l = new List<EntitlementDeduction>();
+            //    l.Add(new EntitlementDeduction() { name = EnString });
+            //    for (int i = 0; i < Names.Count; i++)
+            //    {
+            //        if (i == DIndex)
+            //            l.Add(new EntitlementDeduction() { name = DeString });
+
+            //        else
+            //            l.Add(new EntitlementDeduction());
+
+            //    }
+            //    return new EntitlementDeductionCollection(l);
+            //}
             get
             {
                 List<EntitlementDeduction> l = new List<EntitlementDeduction>();
-                l.Add(new EntitlementDeduction() { name = EnString });
-                for (int i = 0; i < Names.Count; i++)
+                l.Add(new EntitlementDeduction() { name = taxableString });
+                for (int i = 1; i < Names.Count; i++)
                 {
-                    if (i == DIndex)
+                    if (i == taxableIndex + 1)
+                        l.Add(new EntitlementDeduction() { name = EnString });
+                    else if (i == DIndex + 2)
                         l.Add(new EntitlementDeduction() { name = DeString });
 
                     else
@@ -257,16 +309,20 @@ namespace AionHR.Model.Reports
         }
         private string EnString;
         private string DeString;
-        public MonthlyPayrollSet(string entitlementsString, string deductionsString)
+        private string taxableString;
+
+        public MonthlyPayrollSet(string entitlementsString, string taxable,  string deductionsString )
         {
             EnString = entitlementsString;
             DeString = deductionsString;
+            taxableString = taxable;
 
         }
          
         public string PayPeriodString { get; set; }
 
         public string PayDate { get; set; }
+        public int taxableIndex { get; set; }
     }
 
     public class MonthlyPayrollCollection : ArrayList, ITypedList

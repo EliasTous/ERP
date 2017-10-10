@@ -127,12 +127,27 @@
     <value>Entitlements</value>
   </data>
   <data name="Entitlements" xml:space="preserve">
-    <value>Entitlements</value>
+    <value>Non Taxable Entitlements</value>
   </data>
   <data name="netSalary" xml:space="preserve">
     <value>Net </value>
   </data>
   <data name="PaidAt" xml:space="preserve">
     <value>Paid at</value>
+  </data>
+  <data name="cssString" xml:space="preserve">
+    <value>Company Social Security</value>
+  </data>
+  <data name="essString" xml:space="preserve">
+    <value>Employee Social Security</value>
+  </data>
+  <data name="PaidAt1" xml:space="preserve">
+    <value>Paid at</value>
+  </data>
+  <data name="Taxable" xml:space="preserve">
+    <value>Taxable Entitlements</value>
+  </data>
+  <data name="taxableeAmount" xml:space="preserve">
+    <value>Total Taxables</value>
   </data>
 </root>

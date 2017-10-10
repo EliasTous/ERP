@@ -103,13 +103,13 @@ namespace AionHR.Web.UI.Forms.Reports {
         protected global::Ext.Net.Panel Center;
         
         /// <summary>
-        /// employeeFilter control.
+        /// payRefFilter control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AionHR.Web.UI.Forms.Reports.Controls.EmployeeFilter employeeFilter;
+        protected global::AionHR.Web.UI.Forms.Reports.Controls.PayRefFilter payRefFilter;
         
         /// <summary>
         /// jobInfo1 control.

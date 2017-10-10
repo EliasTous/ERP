@@ -169,7 +169,8 @@ namespace AionHR.Web.UI.Forms.Reports
 
             req.Add(paymentMethodCombo.GetPaymentMethod());
             req.Add(jobInfo1.GetJobInfo());
-            req.Add(employeeFilter.GetEmployee());
+            req.Add(payRefFilter.GetPayRef());
+         
             
 
             return req;
@@ -262,29 +263,26 @@ namespace AionHR.Web.UI.Forms.Reports
             h.RightToLeftLayout = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeftLayout.Yes : DevExpress.XtraReports.UI.RightToLeftLayout.No;
             string user = _systemService.SessionHelper.GetCurrentUser();
             h.Parameters["User"].Value = user;
-            //if (resp.Items.Count > 0)
-            //{
-            //    if (req.Parameters["_departmentId"] != "0")
-            //        h.Parameters["Department"].Value = jobInfo1.GetDepartment();
-            //    else
-            //        h.Parameters["Department"].Value = GetGlobalResourceObject("Common", "All");
+            if (resp.Items.Count > 0)
+            {
 
-            //    if (req.Parameters["_branchId"] != "0")
-            //        h.Parameters["Branch"].Value = jobInfo1.GetBranch();
-            //    else
-            //        h.Parameters["Branch"].Value = GetGlobalResourceObject("Common", "All");
 
-            //    if (req.Parameters["_paymentMethod"] != "0")
-            //        h.Parameters["Payment"].Value = paymentMethodCombo.GetPaymentMethodString();
-            //    else
-            //        h.Parameters["Payment"].Value = GetGlobalResourceObject("Common", "All");
-            //    //if (req.Parameters["_employeeId"] != "0")
-            //    //   h.Parameters["EmployeeName"].Value = resp.Items[0].employeeName.fullName;
-            //    //else
-            //    //    h.Parameters["EmployeeName"].Value = GetGlobalResourceObject("Common", "All");
+                if (req.Parameters["_branchId"] != "0")
+                    h.Parameters["Branch"].Value = jobInfo1.GetBranch();
+                else
+                    h.Parameters["Branch"].Value = GetGlobalResourceObject("Common", "All");
 
-            //}
+                if (req.Parameters["_paymentMethod"] != "0")
+                    h.Parameters["Payment"].Value = paymentMethodCombo.GetPaymentMethodString();
+                else
+                    h.Parameters["Payment"].Value = GetGlobalResourceObject("Common", "All");
 
+                if (req.Parameters["_payRef"] != "0")
+                    h.Parameters["Ref"].Value = req.Parameters["_payRef"];
+                else
+                    h.Parameters["Ref"].Value = GetGlobalResourceObject("Common", "All");
+
+            }
 
             h.CreateDocument();
 

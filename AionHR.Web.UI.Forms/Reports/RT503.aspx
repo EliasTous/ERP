@@ -64,7 +64,8 @@
                                             <Content>
                                                
                                                 <%--<uc:dateRange runat="server" ID="dateRange1" />--%>
-                                                  <uc:employeeCombo runat="server" ID="employeeFilter" />
+                                                 
+                                                <uc:payRefCombo runat="server" ID="payRefFilter" />
                                             </Content>
                                         </ext:Container>
 
@@ -73,7 +74,7 @@
                                             <Content>
                                                
                                                 <%--<uc:dateRange runat="server" ID="dateRange1" />--%>
-                                                <uc:jobInfo runat="server" ID="jobInfo1" EnablePosition="false" EnableDivision="false" />
+                                                <uc:jobInfo runat="server" ID="jobInfo1" EnablePosition="false" EnableDivision="false" EnableDepartment="false" />
                                             </Content>
                                         </ext:Container>
                                    <ext:Container runat="server"  Layout="FitLayout">
