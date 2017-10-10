@@ -305,6 +305,9 @@
     <EmbeddedResource Include="DayTypesReport.resx">
       <DependentUpon>DayTypesReport.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="DepartmentPayroll.ar.resx">
+      <DependentUpon>DepartmentPayroll.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DepartmentPayroll.resx">
       <DependentUpon>DepartmentPayroll.cs</DependentUpon>
     </EmbeddedResource>
