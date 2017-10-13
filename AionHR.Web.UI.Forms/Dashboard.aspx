@@ -27,10 +27,13 @@
 
             App.CartesianChart1.setWidth(Math.max(App.att.getWidth(), s * 50));
             App.CartesianChart1.setHeight(App.att.getHeight() - 40);
+            App.LocalRateChart.setHeight(App.att.getHeight() - 40);
+            App.LocalCount.setHeight(App.att.getHeight() - 40);
             App.barPanel.setWidth(Math.max(App.att.getWidth(), s * 50));
 
             App.barPanel.setHeight(App.att.getHeight() - 40);
         }
+        
         function getStyle() {
             var dir = document.getElementById('rtl').value == 'True' ? 'right' : 'left';
             var s = 'text-align:' + dir;
@@ -171,7 +174,7 @@
                 App.LeaveRequestsStore.reload();
                 App.LoansStore.reload();
                 App.OverDueStore.reload();
-
+                App.LocalRateStore.reload();
                 /*Chained*/
 
                 //App.activeStore.reload(
@@ -337,8 +340,8 @@
         }
         var segmentRenderer = function (sprite, config, rendererData, index) {
 
-            
-             var   color = ["#6AA5DC", "#EE929D", "#FDBF00"][index];
+
+            var color = ["#6AA5DC", "#EE929D", "#FDBF00"][index];
 
             return {
                 fillStyle: color
@@ -639,16 +642,16 @@
 
                                                                                     <%--                <Label Field="Name" Display="Rotate" FontSize="18" FontFamily="Arial" />
                                                             <Label Field="Name" Display="Over" FontSize="18" FontFamily="Arial" />--%>
-                                                                                    <Label Field="emps" Display="Inside" FontSize="12" FontFamily="Arial" >
+                                                                                    <Label Field="emps" Display="Inside" FontSize="12" FontFamily="Arial">
                                                                                         <Renderer Handler=" " />
-                                                                                        </Label>
+                                                                                    </Label>
                                                                                     <Tooltip runat="server" TrackMouse="true" Width="140" Height="28">
 
                                                                                         <Renderer Fn="tipRenderer" />
                                                                                     </Tooltip>
                                                                                     <Renderer Fn="segmentRenderer" />
                                                                                 </ext:PieSeries>
-                                                                                
+
                                                                             </Series>
                                                                             <Items>
                                                                             </Items>
@@ -672,10 +675,8 @@
 
                                                                                             </Items>
                                                                                         </ext:Panel>
-                                                                                        <ext:Panel runat="server" Flex="1"  >
+                                                                                        <ext:Panel runat="server" Flex="1">
                                                                                             <Items>
-                                                                                                
-
                                                                                             </Items>
                                                                                         </ext:Panel>
                                                                                         <ext:Panel runat="server" Flex="3">
@@ -688,10 +689,8 @@
 
                                                                                             </Items>
                                                                                         </ext:Panel>
-                                                                                        <ext:Panel runat="server" Flex="1"  >
+                                                                                        <ext:Panel runat="server" Flex="1">
                                                                                             <Items>
-                                                                                                
-
                                                                                             </Items>
                                                                                         </ext:Panel>
                                                                                         <ext:Panel runat="server" Flex="5">
@@ -796,7 +795,159 @@
                                                             </Items>
                                                         </ext:Panel>
 
+                                                        <ext:Panel runat="server" AutoScroll="true" ID="Panel1" Layout="FitLayout" Title="<%$Resources: DepartmentsCount %>">
+                                                            <Listeners>
+                                                                <AfterLayout Handler=" " />
 
+                                                            </Listeners>
+
+                                                            <Items>
+                                                                <ext:Panel runat="server" Layout="HBoxLayout">
+                                                                    <LayoutConfig>
+                                                                        <ext:HBoxLayoutConfig Align="Stretch" />
+                                                                    </LayoutConfig>
+                                                                    <Items>
+                                                                        <ext:Panel runat="server" Flex="1">
+
+                                                                            <Items>
+                                                                                <ext:CartesianChart
+                                                                                    ID="LocalRateChart"
+                                                                                    runat="server"
+                                                                                    FlipXY="false" 
+                                                                                    AutoScroll="true">
+                                                                                    <Store>
+                                                                                        <ext:Store ID="LocalRateStore" OnReadData="LocalRateStore_ReadData"
+                                                                                            runat="server">
+                                                                                            <Model>
+                                                                                                <ext:Model runat="server">
+                                                                                                    <Fields>
+                                                                                                        <ext:ModelField Name="category" />
+                                                                                                        <ext:ModelField Name="number" />
+
+                                                                                                    </Fields>
+                                                                                                </ext:Model>
+                                                                                            </Model>
+                                                                                        </ext:Store>
+                                                                                    </Store>
+                                                                                   
+
+                                                                                    <AnimationConfig Duration="500" Easing="EaseOut" />
+
+                                                                                    <Items>
+                                                                                    </Items>
+                                                                                    <Axes>
+                                                                                        <%--   <ext:NumericAxis
+                                                                            Fields="Count"
+                                                                            Position="Left" 
+                                                                            Grid="true"
+                                                                            >
+                                                                            <Renderer Handler="return label.toFixed(0);" />
+                                                                        </ext:NumericAxis>--%>
+
+                                                                                        <ext:CategoryAxis
+                                                                                            Fields="category"
+                                                                                            Position="Bottom">
+                                                                                        </ext:CategoryAxis>
+                                                                                    </Axes>
+
+                                                                                    <Series>
+                                                                                        <ext:BarSeries
+                                                                                            XField="category"
+                                                                                            YField="number">
+
+                                                                                            <StyleSpec>
+
+                                                                                                <ext:SeriesSprite Opacity="0.8" BarWidth="50" MinBarWidth="50" MinGapWidth="10" BaseColor="#33ABAA" />
+                                                                                            </StyleSpec>
+                                                                                            <%--<Renderer Handler="return {fill:'rgb(51, 171, 170)'};" />--%>
+                                                                                             <Tooltip runat="server">
+                                                                                <Renderer Handler="var browser = context.series.getTitle()[Ext.Array.indexOf(context.series.getYField(), context.field)]; toolTip.setHtml(browser + ' for ' + record.get('category') + ': ' + record.get(context.field));" />
+                                                                            </Tooltip>
+                                                                                            <HighlightConfig>
+                                                                                                <ext:Sprite FillStyle="rgba(69, 143, 210, 1.0)" StrokeStyle="black" LineWidth="2" />
+                                                                                            </HighlightConfig>
+                                                                                            <Tooltip runat="server" TrackMouse="true">
+                                                                                <Renderer Handler="toolTip.setHtml(record.get('category') + ': '+record.get('number' ));" />
+                                                                            </Tooltip>
+                                                                                        </ext:BarSeries>
+
+                                                                                    </Series>
+                                                                                </ext:CartesianChart>
+                                                                            </Items>
+                                                                        </ext:Panel>
+                                                                        <ext:Panel runat="server" Flex="1">
+                                                                            <Items>
+                                                                                <ext:CartesianChart
+                                                                                    ID="LocalCount" 
+                                                                                    runat="server"
+                                                                                    FlipXY="false"
+                                                                                    AutoScroll="true">
+                                                                                    <Store>
+                                                                                        <ext:Store ID="LocalCountStore"
+                                                                                            runat="server">
+                                                                                            <Model>
+                                                                                                <ext:Model runat="server">
+                                                                                                    <Fields>
+                                                                                                        <ext:ModelField Name="category" />
+                                                                                                        <ext:ModelField Name="number" />
+
+                                                                                                    </Fields>
+                                                                                                </ext:Model>
+                                                                                            </Model>
+                                                                                        </ext:Store>
+                                                                                    </Store>
+
+                                                                                    <AnimationConfig Duration="500" Easing="EaseOut" />
+
+                                                                                    <Items>
+                                                                                    </Items>
+                                                                                    <Axes>
+                                                                                        <%--   <ext:NumericAxis
+                                                                            Fields="Count"
+                                                                            Position="Left" 
+                                                                            Grid="true"
+                                                                            >
+                                                                            <Renderer Handler="return label.toFixed(0);" />
+                                                                        </ext:NumericAxis>--%>
+
+                                                                                        <ext:CategoryAxis
+                                                                                            Fields="category"
+                                                                                            Position="Bottom">
+                                                                                            
+                                                                                        </ext:CategoryAxis>
+                                                                                    </Axes>
+
+                                                                                    <Series>
+                                                                                        <ext:BarSeries
+                                                                                            XField="category"
+                                                                                            YField="number">
+
+                                                                                            <StyleSpec>
+
+                                                                                                <ext:SeriesSprite Opacity="0.8" BarWidth="50" MinBarWidth="50" MinGapWidth="10" BaseColor="#33ABAA" />
+                                                                                            </StyleSpec>
+                                                                                            <Renderer Handler="return {fill:'rgb(51, 171, 170)'};" />
+                                                                                             <Tooltip runat="server">
+                                                                                <Renderer Handler="var browser = context.series.getTitle()[Ext.Array.indexOf(context.series.getYField(), context.field)]; toolTip.setHtml(browser + ' for ' + record.get('category') + ': ' + record.get(context.field));" />
+                                                                            </Tooltip>
+                                                                                            <HighlightConfig>
+                                                                                                <ext:Sprite FillStyle="rgba(69, 143, 210, 1.0)" StrokeStyle="black" LineWidth="2" />
+                                                                                            </HighlightConfig>
+                                                                                            <Tooltip runat="server" TrackMouse="true">
+                                                                                <Renderer Handler="toolTip.setHtml(record.get('category') + ': ' + record.get('number'));" />
+                                                                            </Tooltip>
+                                                                                        </ext:BarSeries>
+
+                                                                                    </Series>
+                                                                                </ext:CartesianChart>
+                                                                            </Items>
+                                                                        </ext:Panel>
+                                                                    </Items>
+                                                                </ext:Panel>
+
+
+                                                            </Items>
+                                                        </ext:Panel>
 
 
                                                         <ext:GridPanel MarginSpec="0 0 0 0"
@@ -2023,7 +2174,7 @@
             Hidden="true" AutoShow="false" ID="onLeavewindow" Width="400" Height="300" Layout="FitLayout">
             <Items>
                 <ext:GridPanel MarginSpec="0 0 0 0"
-                    ID="leaveGrid" 
+                    ID="leaveGrid"
                     runat="server" HideHeaders="true"
                     PaddingSpec="0 0 1 0"
                     Header="false"
@@ -2087,11 +2238,11 @@
                 </ext:GridPanel>
             </Items>
         </ext:Window>
-         <ext:Window runat="server" Modal="true" Title="<%$ Resources: UnpaidLeaves %>"
+        <ext:Window runat="server" Modal="true" Title="<%$ Resources: UnpaidLeaves %>"
             Hidden="true" AutoShow="false" ID="unpaidLeavesWindow" Width="400" Height="300" Layout="FitLayout">
             <Items>
                 <ext:GridPanel MarginSpec="0 0 0 0"
-                    ID="GridPanel13" 
+                    ID="GridPanel13"
                     runat="server" HideHeaders="true"
                     PaddingSpec="0 0 1 0"
                     Header="false"

@@ -357,6 +357,9 @@
   <data name="Loans" xml:space="preserve">
     <value>السلف</value>
   </data>
+  <data name="MinLocalRate" xml:space="preserve">
+    <value>نسبة الموظفين المحليين الصغرى</value>
+  </data>
   <data name="MissingPunchesGridTitle" xml:space="preserve">
     <value>دوام غير مسجل</value>
   </data>
