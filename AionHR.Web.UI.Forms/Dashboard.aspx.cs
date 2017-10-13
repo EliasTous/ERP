@@ -792,5 +792,47 @@ namespace AionHR.Web.UI.Forms
 
             UnpaidLeavesStore.DataBind();
         }
+
+        protected void LocalRate_ReadData(object sender, StoreReadDataEventArgs e)
+        {
+            DashboardRequest req = LocalRateRequest();
+            ListResponse<LocalRate> resp = _systemService.ChildGetAll<LocalRate>(req);
+            if (!resp.Success)
+            {
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() : resp.Summary).Show();
+                return;
+            }
+
+            Store2.DataSource = resp.Items;
+            Store2.DataBind();
+            X.Call("fixWidth", resp.Items.Count);
+
+        }
+        private DashboardRequest LocalRateRequest()
+        {
+            DashboardRequest req = new DashboardRequest();
+            var d = jobInfo1.GetJobInfo();
+            req.BranchId = d.BranchId.HasValue ? d.BranchId.Value : 0;
+            req.DepartmentId = d.DepartmentId.HasValue ? d.DepartmentId.Value : 0;
+            req.DivisionId = d.DivisionId.HasValue ? d.DivisionId.Value : 0;
+            req.PositionId = d.PositionId.HasValue ? d.PositionId.Value : 0;
+            int intResult;
+
+          
+            if (!string.IsNullOrEmpty(esId.SelectedItem.Value))
+            {
+                req.EsId = Convert.ToInt32(esId.SelectedItem.Value);
+                
+            }
+            else
+            {
+                req.EsId = 0;
+
+            }
+
+
+
+            return req;
+        }
     }
 }

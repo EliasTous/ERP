@@ -82,6 +82,7 @@ namespace AionHR.Repository.WebService.Repositories
             ChildGetAllLookup.Add(typeof(SalaryChange), "qrySC");
             ChildGetAllLookup.Add(typeof(ProbationEnd), "qryPR");
             ChildGetAllLookup.Add(typeof(DepartmentActivity), "qryAD");
+            ChildGetAllLookup.Add(typeof(LocalRate), "qryLR");
 
 
 

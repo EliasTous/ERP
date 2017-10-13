@@ -795,7 +795,84 @@
                                                                 </ext:CartesianChart>
                                                             </Items>
                                                         </ext:Panel>
+                                                          <ext:Panel runat="server" AutoScroll="true" ID="Panel1" Title="elias">
+                                                            <Listeners>
+                                                                <AfterLayout Handler=" " />
+                                                            </Listeners>
+                                                            <Items>
+                                                                <ext:CartesianChart
+                                                                    ID="CartesianChart2"
+                                                                    runat="server"
+                                                                    FlipXY="false"
+                                                                    AutoScroll="true">
+                                                                    <Store>
+                                                                        <ext:Store ID="Store2" OnReadData="LocalRate_ReadData"
+                                                                            runat="server">
+                                                                            <Model>
+                                                                                <ext:Model runat="server">
+                                                                                    <Fields>
+                                                                                        <ext:ModelField Name="minLocalsRate" />
+                                                                                        <ext:ModelField Name="localsrate" />
+                                                                                        <ext:ModelField Name="empCount" />
+                                                                                        <ext:ModelField Name="localsCount" />
+                                                                                    </Fields>
+                                                                                </ext:Model>
+                                                                            </Model>
+                                                                        </ext:Store>
+                                                                    </Store>
+                                                                    <LegendConfig runat="server" Dock="Bottom" />
 
+                                                                    <AnimationConfig Duration="500" Easing="EaseOut" />
+
+                                                                    <Items>
+                                                                    </Items>
+                                                                    <Axes>
+                                                                        <%--   <ext:NumericAxis
+                                                                            Fields="Count"
+                                                                            Position="Left" 
+                                                                            Grid="true"
+                                                                            >
+                                                                            <Renderer Handler="return label.toFixed(0);" />
+                                                                        </ext:NumericAxis>--%>
+
+                                                                        <ext:CategoryAxis
+                                                                            Fields="departmentName"
+                                                                            Position="Bottom">
+                                                                            <Label RotationDegrees="-45" />
+                                                                        </ext:CategoryAxis>
+                                                                    </Axes>
+
+                                                                    <Series>
+                                                                        <ext:BarSeries
+                                                                            XField="departmentName" Stacked="true"
+                                                                            YField="minLocalsRate,localsrate,empCount,localsCount" Titles="minLocalsRate,localsrate,empCount,localsCount">
+
+                                                                            <StyleSpec>
+
+                                                                                <ext:SeriesSprite Opacity="0.8" BarWidth="50" MinBarWidth="50" MinGapWidth="10" BaseColor="#33ABAA" />
+                                                                            </StyleSpec>
+                                                                            <%--<Renderer Handler="return {fill:'rgb(51, 171, 170)'};" />--%>
+                                                                            <Tooltip runat="server">
+                                                                                <Renderer Handler="var browser = context.series.getTitle()[Ext.Array.indexOf(context.series.getYField(), context.field)]; toolTip.setHtml(browser + ' for ' + record.get('departmentName') + ': ' + record.get(context.field));" />
+                                                                            </Tooltip>
+                                                                            <HighlightConfig>
+                                                                                <ext:Sprite FillStyle="rgba(69, 143, 210, 1.0)" StrokeStyle="black" LineWidth="2" />
+                                                                            </HighlightConfig>
+                                                                            <%--<Tooltip runat="server" TrackMouse="true">
+                                                                                <Renderer Handler="toolTip.setHtml(record.get('Department') + ': ' + record.get('In')+' /'+ parseInt(parseInt(record.get('In'))+parseInt(record.get('Out' ))));" />
+                                                                            </Tooltip>--%>
+
+                                                                            <Label
+                                                                                Display="Under" Field="checkedOut,checkedIn" Orientation="Horizontal">
+                                                                                <Renderer Fn="suppressZeros" />
+                                                                            </Label>
+
+                                                                        </ext:BarSeries>
+
+                                                                    </Series>
+                                                                </ext:CartesianChart>
+                                                            </Items>
+                                                        </ext:Panel>
 
 
 
@@ -1547,15 +1624,25 @@
                 <AfterLayout Handler="App.EmployeeRightToWorkStore.reload()" />
             </Listeners>
             <Items>
+                
+                   
+                   
+                   
+                    
+                   
+                   
+                    
+                   
+                   
                 <ext:GridPanel MarginSpec="0 0 0 0"
                     ID="GridPanel8"
-                    runat="server" HideHeaders="true"
+                    runat="server" HideHeaders="false"
                     PaddingSpec="0 0 0 0"
                     Header="false"
                     Layout="FitLayout"
                     Scroll="Vertical"
-                    Border="false"
-                    ColumnLines="True" IDMode="Explicit" RenderXType="True">
+                    Border="false" Title=" RightToWork "
+                    ColumnLines="True" IDMode="Explicit" RenderXType="True" Icon="User">
 
                     <Store>
                         <ext:Store
@@ -1572,6 +1659,12 @@
                                         <ext:ModelField Name="documentRef" />
                                         <ext:ModelField Name="expiryDate" />
                                         <ext:ModelField Name="days" />
+                                         <ext:ModelField Name="positionName" />
+                                         <ext:ModelField Name="departmentName" />
+                                        <ext:ModelField Name="branchName" />
+                                        <ext:ModelField Name="dtName" />
+
+
 
                                     </Fields>
                                 </ext:Model>
@@ -1583,25 +1676,16 @@
                     <ColumnModel ID="ColumnModel13" runat="server" SortAscText="<%$ Resources:Common , SortAscText %>" SortDescText="<%$ Resources:Common ,SortDescText  %>" SortClearText="<%$ Resources:Common ,SortClearText  %>" ColumnsText="<%$ Resources:Common ,ColumnsText  %>" EnableColumnHide="false" Sortable="false">
                         <Columns>
 
-                            <ext:Column Visible="false" ID="Column13" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldrecordId %>" DataIndex="recordId" Hideable="false" Width="75" />
-                            <ext:Column Flex="2" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEmployee %>" DataIndex="name" Hideable="false" Width="75">
-                                <Renderer Handler=" return displayEmployeeRTW(record.data);  ">
-                                </Renderer>
-                            </ext:Column>
-                            <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDaysLeft %>" DataIndex="days" Hideable="false" Width="120">
-
-                                <Renderer Handler="return record.data['days'] + ' ' + document.getElementById('daysLeft').value;" />
-
-                            </ext:Column>
-
-
-
-
-
-
-
-
-                        </Columns>
+                              <ext:Column Visible="false" ID="Column13" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldrecordId %>" DataIndex="recordId" Hideable="false" Width="75" />
+                               <ext:Column Flex="2" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEmployee %>" DataIndex="name" Hideable="false"  />
+                               <ext:Column Flex="2" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldPosition %>" DataIndex="positionName" Hideable="false" />
+                               <ext:Column Flex="2" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldBranch %>" DataIndex="branchName" Hideable="false"  />
+                               <ext:Column Flex="2" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDepartment %>" DataIndex="departmentName" Hideable="false"  />
+                               <ext:Column Flex="2" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDocument %>" DataIndex="dtName" Hideable="false" />
+                               <ext:Column Flex="2" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDocumentRef %>" DataIndex="documentRef" Hideable="false"  />
+                                                                   
+                                                      
+                                                    </Columns>
                     </ColumnModel>
 
 
@@ -1895,7 +1979,7 @@
                 <ext:GridPanel ExpandToolText="expand"
                     ID="latenessGrid" MarginSpec="0 0 0 0"
                     runat="server"
-                    PaddingSpec="0 0 0 0" HideHeaders="true"
+                    PaddingSpec="0 0 0 0" HideHeaders="false"
                     Header="false" CollapseMode="Header" Collapsible="true" CollapseDirection="Right"
                     Title="<%$ Resources: LatenessGridTitle %>"
                     Layout="FitLayout"
@@ -1908,6 +1992,13 @@
                             runat="server" OnReadData="latenessStore_ReadData"
                             RemoteSort="false"
                             RemoteFilter="false">
+                             <Proxy>
+                                 <ext:PageProxy>
+                                 <Listeners>
+                                    <Exception Handler="Ext.MessageBox.alert('#{textLoadFailed}.value', response.statusText);" />
+                             </Listeners>
+                              </ext:PageProxy>
+                                  </Proxy>
 
                             <Model>
                                 <ext:Model ID="Model3" runat="server" IDProperty="recordId">
@@ -1925,15 +2016,22 @@
                             </Model>
 
                         </ext:Store>
+
                     </Store>
 
 
                     <ColumnModel ID="ColumnModel3" runat="server" SortAscText="<%$ Resources:Common , SortAscText %>" SortDescText="<%$ Resources:Common ,SortDescText  %>" SortClearText="<%$ Resources:Common ,SortClearText  %>" ColumnsText="<%$ Resources:Common ,ColumnsText  %>" EnableColumnHide="false" Sortable="false">
                         <Columns>
-                            <ext:Column Flex="2" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEmployee %>" DataIndex="name" Hideable="false" Width="75">
-                                <Renderer Handler=" return displayLate(record.data);  ">
-                                </Renderer>
-                            </ext:Column>
+                            <ext:Column Visible="false" Flex="2" MenuDisabled="true" runat="server" Text="employeeId" DataIndex="employeeId" Hideable="false" />
+                             <ext:Column Flex="2" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEmployee %>" DataIndex="name" Hideable="false" />
+                             <ext:Column Flex="2" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldPosition %>" DataIndex="positionName" Hideable="false" />
+                             <ext:Column Flex="2" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldBranch %>" DataIndex="branchName" Hideable="false"/>
+                             <ext:Column Flex="2" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDepartment %>" DataIndex="departmentName" Hideable="false"/>
+                             <ext:Column Flex="2" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldTime %>" DataIndex="time" Hideable="false"/>
+
+
+                              
+                           
                         </Columns>
                     </ColumnModel>
 
@@ -2164,7 +2262,7 @@
                     PaddingSpec="0 0 0 0"
                     Header="false"
                     Title="<%$ Resources: ActiveGridTitle %>"
-                    Scroll="Vertical" HideHeaders="true"
+                    Scroll="Vertical" HideHeaders="false"
                     Border="false"
                     StoreID="activeStore"
                     ColumnLines="True">
@@ -2181,10 +2279,16 @@
                                                     <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldPosition%>" DataIndex="positionName" Flex="3" Hideable="false" />
                                                     <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDepartment%>" DataIndex="departmentName" Flex="3" Hideable="false" />
                                                     <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldBranch%>" DataIndex="branchName" Flex="3" Hideable="false" />
-                            --%><ext:Column Flex="2" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEmployee %>" DataIndex="name" Hideable="false" Width="75">
-                                <Renderer Handler=" return displayActive(record.data);  ">
-                                </Renderer>
-                            </ext:Column>
+                            --%>
+                            <ext:Column Visible="false" Flex="2" MenuDisabled="true" runat="server" Text="employeeId" DataIndex="employeeId" Hideable="false" />
+                            <ext:Column Flex="2" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEmployee %>" DataIndex="name" Hideable="false" />
+                            <ext:Column Flex="2" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldPosition%>" DataIndex="positionName" Hideable="false" />
+                            <ext:Column Flex="2" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldBranch%>" DataIndex="branchName" Hideable="false"/>
+                            <ext:Column Flex="2" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDepartment%>" DataIndex="departmentName" Hideable="false" />
+                            <ext:Column Flex="2" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldTime%>" DataIndex="time" Hideable="false" />
+                          
+                                
+                            
 
 
 

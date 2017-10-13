@@ -213,6 +213,12 @@
   <data name="FieldDivision" xml:space="preserve">
     <value>Division</value>
   </data>
+  <data name="FieldDocument" xml:space="preserve">
+    <value>Document Name</value>
+  </data>
+  <data name="FieldDocumentRef" xml:space="preserve">
+    <value>Document Referance</value>
+  </data>
   <data name="FieldDueDate" xml:space="preserve">
     <value>Due Date</value>
   </data>

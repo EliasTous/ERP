@@ -147,4 +147,19 @@
   <data name="taxableeAmount" xml:space="preserve">
     <value>Total Taxables</value>
   </data>
+  <data name="Absence" xml:space="preserve">
+    <value>Absence</value>
+  </data>
+  <data name="Disappear" xml:space="preserve">
+    <value>Disappear</value>
+  </data>
+  <data name="Lateness" xml:space="preserve">
+    <value>Lateness</value>
+  </data>
+  <data name="Missed Punch" xml:space="preserve">
+    <value>Missed Punch </value>
+  </data>
+  <data name="Overtime" xml:space="preserve">
+    <value>Overtime</value>
+  </data>
 </root>

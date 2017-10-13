@@ -60,7 +60,11 @@ namespace AionHR.Model.Payroll
         public string currencyName { get; set; }
         [PropertyID("51021_14")]
         [ApplySecurity]
-        public double ssAmount { get; set; }
+        public double cssAmount { get; set; }
+        [PropertyID("51021_15")]
+        [ApplySecurity]
+        public double essAmount { get; set; }
+
         public string seqNo { get; set; }
        
 

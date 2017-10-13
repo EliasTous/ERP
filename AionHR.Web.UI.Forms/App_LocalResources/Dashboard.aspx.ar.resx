@@ -216,6 +216,12 @@
   <data name="FieldDivision" xml:space="preserve">
     <value>الإدارة</value>
   </data>
+  <data name="FieldDocument" xml:space="preserve">
+    <value>نوع الوثيقة </value>
+  </data>
+  <data name="FieldDocumentRef" xml:space="preserve">
+    <value>رقم الوثيقة</value>
+  </data>
   <data name="FieldDueDate" xml:space="preserve">
     <value>تاريخ الاستحقاق</value>
   </data>

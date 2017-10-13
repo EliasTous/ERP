@@ -1026,4 +1026,7 @@
   <data name="PayrollIndemnity" xml:space="preserve">
     <value>جدول مكافأة نهاية الخدمة</value>
   </data>
+  <data name="RT503" xml:space="preserve">
+    <value>رواتب الأقسام </value>
+  </data>
 </root>

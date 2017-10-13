@@ -12,8 +12,11 @@ namespace AionHR.Model.Payroll
     {
         public string payCode { get; set; }
         public string pcName { get; set; }
-        public string pct { get; set; }
+        public string cpct { get; set; }
         public string amount { get; set; }
+        public string cssAmount { get; set; }
+        public string essAmount { get; set; }
+        public string epct { get; set; }
     }
 }
 

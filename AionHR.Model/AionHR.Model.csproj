@@ -54,6 +54,7 @@
     <Compile Include="Dashboard\DepartmentActivity.cs" />
     <Compile Include="Dashboard\EmployeeBirthday.cs" />
     <Compile Include="Dashboard\EmpRTW.cs" />
+    <Compile Include="Dashboard\LocalRate.cs" />
     <Compile Include="Dashboard\ProbationEnd.cs" />
     <Compile Include="Dashboard\SalaryChange.cs" />
     <Compile Include="Dashboard\WorkAnniversary.cs" />
