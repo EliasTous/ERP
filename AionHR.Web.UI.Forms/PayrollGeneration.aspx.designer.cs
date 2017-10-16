@@ -166,6 +166,15 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Hidden deductionDisabled;
         
         /// <summary>
+        /// payRefHidden control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Hidden payRefHidden;
+        
+        /// <summary>
         /// Viewport1 control.
         /// </summary>
         /// <remarks>
@@ -328,13 +337,13 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.FormPanel BasicInfoTab;
         
         /// <summary>
-        /// payRef control.
+        /// payRefTF control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.TextField payRef;
+        protected global::Ext.Net.TextField payRefTF;
         
         /// <summary>
         /// fiscalYear control.
@@ -571,22 +580,22 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.TextField dAmount;
         
         /// <summary>
-        /// taxAmount control.
+        /// cssAmount control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.TextField taxAmount;
+        protected global::Ext.Net.TextField cssAmount;
         
         /// <summary>
-        /// ssAmount control.
+        /// essAmount control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.TextField ssAmount;
+        protected global::Ext.Net.TextField essAmount;
         
         /// <summary>
         /// netSalary control.
@@ -805,6 +814,24 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Column Column5;
         
         /// <summary>
+        /// Column8 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Column Column8;
+        
+        /// <summary>
+        /// Column4 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Column Column4;
+        
+        /// <summary>
         /// Column6 control.
         /// </summary>
         /// <remarks>
@@ -814,13 +841,13 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Column Column6;
         
         /// <summary>
-        /// Column7 control.
+        /// Column9 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Column Column7;
+        protected global::Ext.Net.Column Column9;
         
         /// <summary>
         /// SaveEDButton control.

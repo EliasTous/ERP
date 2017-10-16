@@ -87,6 +87,7 @@ namespace AionHR.Web.UI.Forms
                 
 
                     FillStatus();
+                    Store2.Reload();
 
                     //outStore.Reload();
                     //activeStore.Reload();

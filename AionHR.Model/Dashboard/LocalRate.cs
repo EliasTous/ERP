@@ -8,9 +8,9 @@ namespace AionHR.Model.Dashboard
 {
    public class LocalRate
     {
-        public int minLocalsRate { get; set; }
-        public int localsrate { get; set; }
-        public int empCount { get; set; }
-        public int localsCount { get; set; }
+        public string minLocalsRate { get; set; }
+        public string localsrate { get; set; }
+        public string empCount { get; set; }
+        public string localsCount { get; set; }
     }
 }

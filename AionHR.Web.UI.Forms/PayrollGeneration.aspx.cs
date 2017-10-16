@@ -26,6 +26,12 @@ using AionHR.Model.Employees.Leaves;
 using AionHR.Model.Employees.Profile;
 using AionHR.Model.Payroll;
 using AionHR.Infrastructure.JSON;
+using AionHR.Services.Messaging.Reports;
+using AionHR.Model.Reports;
+using Reports;
+using AionHR.Model.TimeAttendance;
+using DevExpress;
+using DevExpress.XtraPrinting;
 
 namespace AionHR.Web.UI.Forms
 {
@@ -37,6 +43,7 @@ namespace AionHR.Web.UI.Forms
         ITimeAttendanceService _timeAttendanceService = ServiceLocator.Current.GetInstance<ITimeAttendanceService>();
         IEmployeeService _employeeService = ServiceLocator.Current.GetInstance<IEmployeeService>();
         IPayrollService _payrollService = ServiceLocator.Current.GetInstance<IPayrollService>();
+        IReportsService _reportsService = ServiceLocator.Current.GetInstance<IReportsService>();
         protected override void InitializeCulture()
         {
 
@@ -343,11 +350,13 @@ namespace AionHR.Web.UI.Forms
         protected void PoPuPHeader(object sender, DirectEventArgs e)
         {
 
-
+           
             string id = e.ExtraParams["id"];
             string type = e.ExtraParams["type"];
             string status = e.ExtraParams["status"];
-            IsPayrollPosted.Text = status;
+            string payRef = e.ExtraParams["payRef"];
+                payRefHidden.Text = payRef; 
+                   IsPayrollPosted.Text = status;
             AddEDButton.Disabled = AddENButton.Disabled = SaveEDButton.Disabled = status == "2";
             switch (type)
             {
@@ -393,7 +402,9 @@ namespace AionHR.Web.UI.Forms
                         }
 
                     }).Show();
+
                     break;
+               
                 default:
                     break;
             }
@@ -431,7 +442,8 @@ namespace AionHR.Web.UI.Forms
             string type = e.ExtraParams["type"];
             string entitlementAmount = e.ExtraParams["eAmount"];
             string deductionAmount= e.ExtraParams["dAmount"];
-            string saocialAmount = e.ExtraParams["ssAmount"];
+            string EmployeeSaocialAmount = e.ExtraParams["essAmount"];
+            string CompanySaocialAmount = e.ExtraParams["cssAmount"];
             string basic = e.ExtraParams["basicAmount"];
             string tax = e.ExtraParams["taxAmount"];
             string net = e.ExtraParams["netSalary"];
@@ -445,11 +457,12 @@ namespace AionHR.Web.UI.Forms
                 case "imgEdit":
                     //Step 1 : get the object from the Web Service 
                     basicAmount.Text = basic;
-                    taxAmount.Text = tax;
+                   // taxAmount.Text = tax;
                     netSalary.Text = net;
                     eAmount.Text = entitlementAmount;
                     dAmount.Text = deductionAmount;
-                    ssAmount.Text = saocialAmount; 
+                    essAmount.Text = EmployeeSaocialAmount;
+                    cssAmount.Text = CompanySaocialAmount;
                     seqNo.Text = id;
                     EditEMWindow.Show();
                     break;
@@ -781,19 +794,19 @@ namespace AionHR.Web.UI.Forms
             edId.FieldLabel = GetLocalResourceObject("FieldEntitlement").ToString();
             this.EditEDWindow.Show();
         }
-        private List<EntitlementDeduction> GetAllEntitlements()
+        private List<Model.Employees.Profile.EntitlementDeduction> GetAllEntitlements()
         {
             ListRequest req = new ListRequest();
-            ListResponse<EntitlementDeduction> eds = _employeeService.ChildGetAll<EntitlementDeduction>(req);
+            ListResponse<Model.Employees.Profile.EntitlementDeduction> eds = _employeeService.ChildGetAll<Model.Employees.Profile.EntitlementDeduction>(req);
             return eds.Items.Where(s => s.type == 1).ToList();
 
 
 
         }
-        private List<EntitlementDeduction> GetAllDeductions()
+        private List<Model.Employees.Profile.EntitlementDeduction> GetAllDeductions()
         {
             ListRequest req = new ListRequest();
-            ListResponse<EntitlementDeduction> eds = _employeeService.ChildGetAll<EntitlementDeduction>(req);
+            ListResponse<Model.Employees.Profile.EntitlementDeduction> eds = _employeeService.ChildGetAll<Model.Employees.Profile.EntitlementDeduction>(req);
             return eds.Items.Where(s => s.type == 2).ToList();
 
 
@@ -996,6 +1009,199 @@ namespace AionHR.Web.UI.Forms
             }
             return resp.Items;
         }
+     
+        
+        public void printBtn_Click(object sender, EventArgs e)
+        {
+            MonthlyPayroll p = GetReport(payRefHidden.Text);
+            string format = "Pdf";
+            string fileName = String.Format("Report.{0}", format);
+
+            MemoryStream ms = new MemoryStream();
+            p.ExportToPdf(ms, new DevExpress.XtraPrinting.PdfExportOptions() { ShowPrintDialogOnOpen = true });
+            Response.Clear();
+            Response.Write("<script>");
+            Response.Write("window.document.forms[0].target = '_blank';");
+            Response.Write("setTimeout(function () { window.document.forms[0].target = ''; }, 0);");
+            Response.Write("</script>");
+            Response.ContentType = "application/pdf";
+            Response.AddHeader("Content-Disposition", String.Format("{0}; filename={1}", "inline", fileName));
+            Response.BinaryWrite(ms.ToArray());
+            Response.Flush();
+            Response.Close();
+        }
+        protected void ExportPdfBtn_Click(object sender, EventArgs e)
+        {
+            MonthlyPayroll p = GetReport(payRefHidden.Text);
+            string format = "Pdf";
+            string fileName = String.Format("Report.{0}", format);
+
+            MemoryStream ms = new MemoryStream();
+            p.ExportToPdf(ms);
+            Response.Clear();
+
+            Response.ContentType = "application/pdf";
+            Response.AddHeader("Content-Disposition", String.Format("{0}; filename={1}", "attachment", fileName));
+            Response.BinaryWrite(ms.ToArray());
+            Response.Flush();
+            Response.Close();
+            //Response.Redirect("Reports/RT301.aspx");
+        }
+
+        protected void ExportXLSBtn_Click(object sender, EventArgs e)
+        {
+            MonthlyPayroll p = GetReport(payRefHidden.Text);
+            string format = "xls";
+            string fileName = String.Format("Report.{0}", format);
+
+            MemoryStream ms = new MemoryStream();
+            p.ExportToXls(ms);
+
+            Response.Clear();
+
+            Response.ContentType = "application/vnd.ms-excel";
+            Response.AddHeader("Content-Disposition", String.Format("{0}; filename={1}", "attachment", fileName));
+            Response.BinaryWrite(ms.ToArray());
+            Response.Flush();
+            Response.Close();
+            //Response.Redirect("Reports/RT301.aspx");
+        }
+        private MonthlyPayroll GetReport(string payRef)
+        {
+
+            ReportCompositeRequest req = GetRequest(payRef);
+
+            ListResponse<AionHR.Model.Reports.RT501> resp = _reportsService.ChildGetAll<AionHR.Model.Reports.RT501>(req);
+            //if (!resp.Success)
+            //{
+            //    if (throwException)
+            //        throw new Exception(resp.Summary);
+            //    else
+            //    {
+            //        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+            //        X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() : resp.Summary).Show();
+            //        return;
+            //    }
+            //}
+
+            var d = resp.Items.GroupBy(x => x.employeeName.fullName);
+            PayrollLineCollection lines = new PayrollLineCollection();
+            HashSet<Model.Reports.EntitlementDeduction> ens = new HashSet<Model.Reports.EntitlementDeduction>(new EntitlementDeductionComparer());
+            HashSet<Model.Reports.EntitlementDeduction> des = new HashSet<Model.Reports.EntitlementDeduction>(new EntitlementDeductionComparer());
+            resp.Items.ForEach(x =>
+            {
+                Model.Reports.EntitlementDeduction DE = new Model.Reports.EntitlementDeduction();
+
+                if (x.edType == 1)
+                {
+
+                    try
+                    {
+                        DE.name = GetLocalResourceObject(x.edName.Trim()).ToString().TrimEnd();
+                        DE.amount = 0; DE.isTaxable = x.isTaxable;
+                    }
+                    catch { DE.name = x.edName; DE.amount = 0; DE.isTaxable = x.isTaxable; }
+                    ens.Add(DE);
+                }
+                else
+                {
+
+                    try
+                    {
+                        DE.name = GetLocalResourceObject(x.edName.Trim()).ToString().TrimEnd();
+                        DE.amount = 0;
+                    }
+                    catch { DE.name = x.edName; DE.amount = 0; }
+                    des.Add(DE);
+                }
+            });
+            foreach (var item in d)
+            {
+                var list = item.ToList();
+                list.ForEach(y =>
+                {
+                    try
+                    {
+                        y.edName = GetLocalResourceObject(y.edName.Trim()).ToString().TrimEnd();
+
+                    }
+                    catch { y.edName = y.edName; }
+                });
+                PayrollLine line = new PayrollLine(ens, des, list, GetLocalResourceObject("taxableeAmount").ToString(), GetLocalResourceObject("eAmount").ToString(), GetLocalResourceObject("dAmount").ToString(), GetLocalResourceObject("netSalary").ToString(), GetLocalResourceObject("essString").ToString(), GetLocalResourceObject("cssString").ToString(),_systemService.SessionHelper.GetDateformat());
+                lines.Add(line);
+            }
+
+            MonthlyPayrollCollection s = new MonthlyPayrollCollection();
+
+
+            if (lines.Count > 0)
+            {
+                MonthlyPayrollSet p = new MonthlyPayrollSet(GetLocalResourceObject("Entitlements").ToString(), GetLocalResourceObject("Taxable").ToString(), GetLocalResourceObject("Deductions").ToString());
+                p.PayPeriodString = resp.Items[0].startDate.ToString(_systemService.SessionHelper.GetDateformat()) + " - " + resp.Items[0].endDate.ToString(_systemService.SessionHelper.GetDateformat());
+                p.PayDate = GetLocalResourceObject("PaidAt") + " " + resp.Items[0].payDate.ToString(_systemService.SessionHelper.GetDateformat());
+                p.Names = (lines[0] as PayrollLine).Entitlements;
+                p.DIndex = ens.Count;
+                p.taxableIndex = ens.Count(x => x.isTaxable);
+                p.Payrolls = lines;
+                s.Add(p);
+            }
+
+            MonthlyPayroll h = new MonthlyPayroll();
+            h.DataSource = s;
+
+            h.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;
+            h.RightToLeftLayout = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeftLayout.Yes : DevExpress.XtraReports.UI.RightToLeftLayout.No;
+            string user = _systemService.SessionHelper.GetCurrentUser();
+            h.Parameters["User"].Value = user;
+            if (resp.Items.Count > 0)
+            {
+
+
+
+                h.Parameters["Branch"].Value = GetGlobalResourceObject("Common", "All");
+
+
+
+                h.Parameters["Branch"].Value = GetGlobalResourceObject("Common", "All");
+
+
+
+                h.Parameters["Payment"].Value = GetGlobalResourceObject("Common", "All");
+
+                if (req.Parameters["_payRef"] != "0")
+                    h.Parameters["Ref"].Value = req.Parameters["_payRef"];
+                else
+                    h.Parameters["Ref"].Value = GetGlobalResourceObject("Common", "All");
+
+            }
+
+
+            return h;
+
+
+
+        }
+        private ReportCompositeRequest GetRequest(string payRef)
+        {
+            ReportCompositeRequest req = new ReportCompositeRequest();
+
+            req.Size = "1000";
+            req.StartAt = "1";
+            PayRefParameterSet p = new PayRefParameterSet();
+            p.payRef = payRef;
+            PaymentMethodParameterSet Pm = new PaymentMethodParameterSet();
+            Pm.paymentMethod = 0;
+            JobInfoParameterSet jp = new JobInfoParameterSet();
+            jp.BranchId = 0;
+            jp.DepartmentId = 0;
+            req.Add(p);
+            req.Add(Pm);
+            req.Add(jp);
+
+            return req;
+        }
+      
+
 
     }
 }

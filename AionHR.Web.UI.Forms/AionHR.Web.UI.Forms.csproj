@@ -248,6 +248,7 @@
     <Content Include="Images\Tools\edit.png" />
     <Content Include="Images\Tools\expand-all.gif" />
     <Content Include="Images\Tools\group.png" />
+    <Content Include="Images\Tools\print.png" />
     <Content Include="ImportAttendance.aspx" />
     <Content Include="ImportDepartments.aspx" />
     <Content Include="ImportEmployeeNotes.aspx" />
@@ -1992,6 +1993,7 @@
     <Content Include="Reports\App_LocalResources\RT109.aspx.resx" />
     <Content Include="Reports\App_LocalResources\RT109.aspx.ar.resx" />
     <Content Include="Reports\App_LocalResources\RT503.aspx.resx" />
+    <Content Include="Reports\App_LocalResources\RT503.aspx.ar.resx" />
     <EmbeddedResource Include="Reports\RT201.aspx.resx">
       <DependentUpon>RT201.aspx.cs</DependentUpon>
       <Generator>ResXFileCodeGenerator</Generator>
