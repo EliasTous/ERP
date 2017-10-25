@@ -354,6 +354,9 @@
   <data name="Loans" xml:space="preserve">
     <value>Loans</value>
   </data>
+  <data name="MinLocalRate" xml:space="preserve">
+    <value>Min Locals Rate</value>
+  </data>
   <data name="MissingPunchesGridTitle" xml:space="preserve">
     <value>Missing Punches</value>
   </data>

@@ -792,5 +792,29 @@ namespace AionHR.Web.UI.Forms
 
             UnpaidLeavesStore.DataBind();
         }
+
+        protected void LocalRateStore_ReadData(object sender, StoreReadDataEventArgs e)
+        {
+            ActiveAttendanceRequest req = new ActiveAttendanceRequest();
+            ListResponse<LocalsRate> resp = _systemService.ChildGetAll<LocalsRate>(req);
+            if (!resp.Success)
+            {
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() : resp.Summary).Show();
+                return;
+            }
+
+            List<object> RateObjs = new List<object>();
+            RateObjs.Add(new {category=GetLocalResourceObject("MinLocalRate").ToString(),number=resp.Items[0].minLocalsRate });//Should use GetLocalResource(MinLocalsRate) and translate in resources
+            RateObjs.Add(new { category = "LocalsRate", number= resp.Items[0].localsrate });//here too
+
+            LocalRateStore.DataSource = RateObjs;
+            LocalRateStore.DataBind();
+
+            List<object> CountObjs = new List<object>();
+            CountObjs.Add(new { category = "Locals Count", resp.Items[0].localsCount });//here 
+            CountObjs.Add(new { category = "Total Count", resp.Items[0].empCount });//here
+            LocalCountStore.DataSource = CountObjs;
+            LocalCountStore.DataBind();
+        }
     }
 }
