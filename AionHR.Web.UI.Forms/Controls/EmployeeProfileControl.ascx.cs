@@ -63,6 +63,7 @@ namespace AionHR.Web.UI.Forms
 
         public void Add()
         {
+            SaveButton.Disabled = false;
             BasicInfoTab.Reset();
             panelRecordDetails.ActiveIndex = 0;
             picturePath.Clear();
@@ -109,7 +110,7 @@ namespace AionHR.Web.UI.Forms
 
                 CurrentClassId.Text = ClassId.EPEM.ToString();
 
-                birthDate.Format = hireDate.Format = _systemService.SessionHelper.GetDateformat();
+                date.Format= birthDate.Format = hireDate.Format = _systemService.SessionHelper.GetDateformat();
 
 
                 pRTL.Text = _systemService.SessionHelper.CheckIfArabicSession().ToString();
@@ -831,7 +832,7 @@ namespace AionHR.Web.UI.Forms
         {
             if (isInactive)
             {
-                Button6.Hidden = isInactive;
+                saveTerminationButton.Hidden = isInactive;
                 TextField1.ReadOnly = isInactive;
                 date.ReadOnly = isInactive;
                 ttId.ReadOnly = isInactive;
@@ -841,7 +842,7 @@ namespace AionHR.Web.UI.Forms
             }
            if (!isInactive)
             {
-                Button6.Hidden = isInactive;
+                saveTerminationButton.Hidden = isInactive;
                 TextField1.ReadOnly = isInactive;
                 date.ReadOnly = isInactive;
                 ttId.ReadOnly = isInactive;
@@ -1092,7 +1093,7 @@ namespace AionHR.Web.UI.Forms
             
             try
             {
-                AccessControlApplier.ApplyAccessControlOnPage(typeof(EmployeeTermination), terminationForm, null, null, Button6);
+                AccessControlApplier.ApplyAccessControlOnPage(typeof(EmployeeTermination), terminationForm, null, null, saveTerminationButton);
 
             }
             catch (AccessDeniedException exp)
@@ -1167,54 +1168,63 @@ namespace AionHR.Web.UI.Forms
             }
             trStore.DataSource = resp1.Items;
             trStore.DataBind();
-            if (resp.rowCount > 0)
+
+            if (resp.result!=null)
             {
                 if (resp.result.date != null)
                     date.Value = resp.result.date;
-                switch (resp.result.ttId)
-                {
-                    case 0:
-                        ttId.Text = GetLocalResourceObject("Worker").ToString();
+                ttId.Select(resp.result.ttId);
+                rehire.Select(resp.result.rehire);
+                //switch (resp.result.ttId)
+                //{
+                //    case 0:
+                //        ttId.AddItem( GetLocalResourceObject("Worker").ToString(),0);
+                //        ttId.Select(0);
 
-                        break;
-                    case 1:
-                        ttId.Text = GetLocalResourceObject("Company").ToString();
+                //        break;
+                //    case 1:
+                //        ttId.AddItem(GetLocalResourceObject("Company").ToString(),1);
+                //        ttId.Select(1);
+                //        break;
+                //    case 2:
+                //        ttId.AddItem(GetLocalResourceObject("Other").ToString(),2);
+                //        ttId.Select(2);
+                //        break;
+                //    default:
+                                           
+                //        break;
 
-                        break;
-                    case 2:
-                        ttId.Text = GetLocalResourceObject("Other").ToString();
-
-                        break;
-                    default:
-                        ttId.Text = "";
-                        break;
-
-                }
+                //}
                
                 if (!string.IsNullOrEmpty(resp.result.trId.ToString()))
                     trId.Select(resp.result.trId);
 
-                switch (resp.result.rehire)
-                {
-                    case 0:
-                        rehire.Text = GetLocalResourceObject("No").ToString();
+                //switch (resp.result.rehire)
+                //{
+                //    case 0:
+                //        rehire.Text = GetLocalResourceObject("No").ToString();
 
-                        break;
-                    case 1:
-                        rehire.Text = GetLocalResourceObject("Yes").ToString();
+                //        break;
+                //    case 1:
+                //        rehire.Text = GetLocalResourceObject("Yes").ToString();
 
-                        break;
-                    case 2:
-                        rehire.Text = GetLocalResourceObject("NotYetKnown").ToString();
+                //        break;
+                //    case 2:
+                //        rehire.Text = GetLocalResourceObject("NotYetKnown").ToString();
 
-                        break;
-                    default:
-                        rehire.Text = "";
-                        break;
+                //        break;
+                //    default:
+                //        rehire.Text = "";
+                //        break;
 
-                }
+                //}
 
             }
+            else
+            {
+                date.Value = DateTime.Now;
+            }
+
         }
         
 

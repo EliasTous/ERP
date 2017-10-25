@@ -1041,4 +1041,7 @@
   <data name="Generate" xml:space="preserve">
     <value>Generate</value>
   </data>
+  <data name="FieldEHStatus" xml:space="preserve">
+    <value>Status</value>
+  </data>
 </root>

@@ -1123,7 +1123,7 @@
             <Items>
                 <ext:FormPanel
                     ID="terminationForm"
-                    runat="server" DefaultButton="SaveButton"
+                    runat="server" DefaultButton="saveTerminationButton"
                     Title="<%$ Resources: terminationWindowTitle %>"
                     Icon="ApplicationSideList"
                     DefaultAnchor="100%"
@@ -1194,7 +1194,7 @@
         </ext:TabPanel>
     </Items>
     <Buttons>
-        <ext:Button ID="Button6" runat="server" Text="<%$ Resources:Common, Save %>" Icon="Disk">
+        <ext:Button ID="saveTerminationButton" runat="server" Text="<%$ Resources:Common, Save %>" Icon="Disk">
 
             <Listeners>
                 <Click Handler="CheckSession(); if (!#{terminationForm}.getForm().isValid()) {return false;} " />

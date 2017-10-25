@@ -457,10 +457,7 @@ namespace AionHR.Web.UI.Forms
                 submittedValues.Add(new KeyValuePair<string, string>("resDocTypeId", values.idCombo.ToString()));
 
 
-            if (!string.IsNullOrEmpty(values.exemptMarriageTRId.ToString()))
-                submittedValues.Add(new KeyValuePair<string, string>("exemptMarriageTRId", values.exemptMarriageTRId.ToString()));
-            if (!string.IsNullOrEmpty(values.exemptDeliveryTRId.ToString()))
-                submittedValues.Add(new KeyValuePair<string, string>("exemptDeliveryTRId", values.exemptDeliveryTRId.ToString()));
+         
 
           
 
@@ -635,6 +632,10 @@ namespace AionHR.Web.UI.Forms
                 submittedValues.Add(new KeyValuePair<string, string>("PYISmale", values.PYISmale.ToString()));
             if (values.PYISfemale != null && !string.IsNullOrEmpty(values.PYISfemale.ToString()))
                 submittedValues.Add(new KeyValuePair<string, string>("PYISfemale", values.PYISfemale.ToString()));
+            if (!string.IsNullOrEmpty(values.exemptMarriageTRId.ToString()))
+                submittedValues.Add(new KeyValuePair<string, string>("exemptMarriageTRId", values.exemptMarriageTRId.ToString()));
+            if (!string.IsNullOrEmpty(values.exemptDeliveryTRId.ToString()))
+                submittedValues.Add(new KeyValuePair<string, string>("exemptDeliveryTRId", values.exemptDeliveryTRId.ToString()));
 
             return submittedValues;
         }

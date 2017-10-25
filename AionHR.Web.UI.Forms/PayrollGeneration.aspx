@@ -9,7 +9,7 @@
     <title></title>
     <link rel="stylesheet" type="text/css" href="CSS/Common.css" />
     <link rel="stylesheet" href="CSS/LiveSearch.css" />
-    <script type="text/javascript" src="Scripts/PayrollGeneration.js?id=110"></script>
+    <script type="text/javascript" src="Scripts/PayrollGeneration.js?id=785"></script>
     <script type="text/javascript" src="Scripts/common.js"></script>
     <script type="text/javascript" src="Scripts/moment.js"></script>
     <script type="text/javascript">
@@ -75,6 +75,10 @@
         <ext:Hidden ID="entitlementDisabled" runat="server" />
         <ext:Hidden ID="deductionDisabled" runat="server" />
         <ext:Hidden ID="payRefHidden" runat="server" />
+         <ext:Hidden ID="salaryTypeHidden" runat="server" />
+        <ext:Hidden ID="fiscalYearHidden" runat="server" />
+
+      
         <ext:Viewport ID="Viewport1" runat="server" Layout="CardLayout" ActiveIndex="0">
             
             <Items>
@@ -159,7 +163,7 @@
                             </Store>
                             <ColumnModel>
                                 <Columns>
-                                    <ext:Column Visible="false" runat="server" ID="recordHeaderID" Text="" DataIndex="recordId" Width="200" />
+                                    <ext:Column Visible="true" runat="server" ID="recordHeaderID" text="" DataIndex="recordId" Width="200" />
                                     <ext:Column runat="server" ID="c1" Text="<%$ Resources: FieldRef%>" DataIndex="payRef" Width="200"  />
                                     <ext:DateColumn runat="server" ID="periodFrom" Text="<%$ Resources: FieldFrom%>" DataIndex="startDate" Width="150" />
 
@@ -201,7 +205,9 @@
                                     <EventMask ShowMask="true" />
                                     <ExtraParams>
                                         <ext:Parameter Name="id" Value="record.getId()" Mode="Raw" />
-                                        
+                                        <ext:Parameter Name="salaryType" Value="record.data['salaryType']" Mode="Raw" />
+                                         <ext:Parameter Name="fiscalYear" Value="record.data['fiscalYear']" Mode="Raw" />
+
                                         <ext:Parameter Name="payRef" Value="record.data['payRef']" Mode="Raw" />
                                         <ext:Parameter Name="status" Value="record.data['status']" Mode="Raw" />
                                         <ext:Parameter Name="type" Value="getCellType( this, rowIndex, cellIndex)" Mode="Raw" />
@@ -410,7 +416,7 @@
                                     </Menu>
                                 </ext:Button>
                                 <ext:ToolbarSeparator runat="server" />
-                                <ext:Label runat="server" ID="payrollHeader" />
+                               
                             </Items>
                         </ext:Toolbar>
                     </TopBar>
@@ -1112,10 +1118,10 @@
                     <Items>
                         
                         <ext:TextField runat="server" Name="recordId" ID="recordIdTF" Hidden="true" Disabled="true" />
-                        <ext:TextField FieldLabel ="generatePayRef" runat="server" Name="generatePayRef" ID="generatePayRef" Hidden="false" Disabled="false"  ReadOnly="true"/>
+                        <ext:TextField FieldLabel ="<%$ Resources: FieldPayRef%>" runat="server" Name="generatePayRef" ID="generatePayRef" Hidden="false" Disabled="false"  ReadOnly="true"/>
                            <ext:ComboBox  AnyMatch="true" CaseSensitive="false" runat="server" ID="employeeId" Name="employeeId"
                                     DisplayField="fullName"
-                                    ValueField="recordId" AllowBlank="false"
+                                    ValueField="recordId" AllowBlank="true"
                                     TypeAhead="false"
                                     HideTrigger="true" SubmitValue="true"
                                     MinChars="3" FieldLabel="<%$ Resources: FieldEmployee%>"
@@ -1186,7 +1192,7 @@
                         <Click Handler="CheckSession(); if (!#{EditGenerateForm}.getForm().isValid()) {return false;} " />
                     </Listeners>
                     <DirectEvents>
-                        <Click OnEvent="GeneratePayroll" Failure="Ext.MessageBox.alert('#{titleSavingError}.value', '#{titleSavingErrorMessage}.value');">
+                        <Click OnEvent="GeneratePayroll1" Failure="Ext.MessageBox.alert('#{titleSavingError}.value', '#{titleSavingErrorMessage}.value');">
                             <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="={#{EditGenerateForm}.body}" />
                             <ExtraParams>
                                  <ext:Parameter Name="id" Value="#{recordId}.getValue()" Mode="Raw" />

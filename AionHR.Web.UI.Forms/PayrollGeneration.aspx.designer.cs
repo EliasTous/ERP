@@ -184,6 +184,24 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Hidden payRefHidden;
         
         /// <summary>
+        /// salaryTypeHidden control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Hidden salaryTypeHidden;
+        
+        /// <summary>
+        /// fiscalYearHidden control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Hidden fiscalYearHidden;
+        
+        /// <summary>
         /// Viewport1 control.
         /// </summary>
         /// <remarks>
@@ -497,15 +515,6 @@ namespace AionHR.Web.UI.Forms {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::AionHR.Web.UI.Forms.Reports.Controls.EmployeeFilter employeeCombo1;
-        
-        /// <summary>
-        /// payrollHeader control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Label payrollHeader;
         
         /// <summary>
         /// employeePayrolls control.

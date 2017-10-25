@@ -1041,4 +1041,7 @@
   <data name="Generate" xml:space="preserve">
     <value>انشاء </value>
   </data>
+  <data name="FieldEHStatus" xml:space="preserve">
+    <value>الحالة </value>
+  </data>
 </root>

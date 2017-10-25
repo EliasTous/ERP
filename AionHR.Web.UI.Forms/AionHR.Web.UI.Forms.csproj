@@ -471,6 +471,7 @@
     <Content Include="SocialSecuritySchedules.aspx" />
     <Content Include="Sponsors.aspx" />
     <Content Include="States.aspx" />
+    <Content Include="Status.aspx" />
     <Content Include="SystemAlerts.aspx" />
     <Content Include="SystemDefaults.aspx" />
     <Content Include="Tasks.aspx" />
@@ -710,6 +711,13 @@
     </Compile>
     <Compile Include="SocialSecuritySchedules.aspx.designer.cs">
       <DependentUpon>SocialSecuritySchedules.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Status.aspx.cs">
+      <DependentUpon>Status.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Status.aspx.designer.cs">
+      <DependentUpon>Status.aspx</DependentUpon>
     </Compile>
     <Compile Include="TerminationReasons.aspx.cs">
       <DependentUpon>TerminationReasons.aspx</DependentUpon>
@@ -1971,6 +1979,8 @@
     <Content Include="App_LocalResources\TerminationReason.aspx.ar.resx" />
     <Content Include="App_LocalResources\NoticePeriods.aspx.resx" />
     <Content Include="App_LocalResources\NoticePeriods.aspx.ar.resx" />
+    <Content Include="App_LocalResources\Status.aspx.resx" />
+    <Content Include="App_LocalResources\Status.aspx.ar.resx" />
     <EmbeddedResource Include="Properties\licenses.licx" />
     <Content Include="Reports\App_LocalResources\RT202.aspx.resx" />
     <Content Include="Reports\App_LocalResources\RT01.aspx.ar.resx" />

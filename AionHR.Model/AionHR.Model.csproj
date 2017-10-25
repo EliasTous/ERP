@@ -107,6 +107,7 @@
     <Compile Include="Payroll\FinalSettlement.cs" />
     <Compile Include="Payroll\FiscalPeriod.cs" />
     <Compile Include="Payroll\FiscalYear.cs" />
+    <Compile Include="Payroll\GeneratePayroll.cs" />
     <Compile Include="Payroll\GenerationHeader.cs" />
     <Compile Include="Payroll\IPayrollRepository.cs" />
     <Compile Include="Payroll\PayCode.cs" />

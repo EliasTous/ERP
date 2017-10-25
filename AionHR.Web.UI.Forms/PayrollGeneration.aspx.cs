@@ -199,36 +199,33 @@ namespace AionHR.Web.UI.Forms
 
             return req;
         }
-        private EmployeePayrollListRequest GetEmployeePayrollRequest1(string generatePayRef,string  departmentId, string branchId,string employeeId)
-        {
-            EmployeePayrollListRequest req = new EmployeePayrollListRequest();
-            if (string.IsNullOrEmpty(CurrentPayId1.Text))
-                req.PayId = "0";
-            else
-                req.PayId = CurrentPayId1.Text;
-            if (branchId == "null")
-                req.BranchId = "0";
-            else
-                req.BranchId = branchId;
-            if (departmentId == "null")
-                req.DepartmentId = "0";
-            else
-                req.DepartmentId = departmentId;
-            if (generatePayRef == "null")
-                req.payRef = "0";
-            else
-                req.payRef = generatePayRef;
-            if (employeeId == "null")
-                req.EmployeeId = "0";
-            else
-                req.EmployeeId = employeeId;
+        //private EmployeePayrollListRequest GetEmployeePayrollRequest1(string generatePayRef,string  departmentId, string branchId,string employeeId)
+        //{
+        //    EmployeePayrollListRequest req = new EmployeePayrollListRequest();
+        //       req.PayId = CurrentPayId1.Text;
+        //    if (branchId == "null")
+        //        req.BranchId = "0";
+        //    else
+        //        req.BranchId = branchId;
+        //    if (departmentId == "null")
+        //        req.DepartmentId = "0";
+        //    else
+        //        req.DepartmentId = departmentId;
+        //    //if (generatePayRef == "null")
+        //    //    req.payRef = "0";
+        //    //else
+        //    //    req.payRef = generatePayRef;
+        //    if (employeeId == "null")
+        //        req.EmployeeId = "0";
+        //    else
+        //        req.EmployeeId = employeeId;
 
-            req.Size = "30";
-            req.StartAt = "1";
-            req.Filter = "";
+        //    req.Size = "30";
+        //    req.StartAt = "1";
+        //    req.Filter = "";
 
-            return req;
-        }
+        //    return req;
+        //}
         private List<Employee> GetEmployeesFiltered(string query)
         {
 
@@ -316,7 +313,7 @@ namespace AionHR.Web.UI.Forms
 
             r.RecordID = resp.recordId;
 
-            payrollHeader.Text = _payrollService.ChildGetRecord<GenerationHeader>(r).result.payRef;
+           
             AddEDButton.Disabled = AddENButton.Disabled = SaveEDButton.Disabled = false;
         }
 
@@ -329,7 +326,7 @@ namespace AionHR.Web.UI.Forms
             settings.ContractResolver = res;
             res.AddRule("statusCombo", "status");
             GenerationHeader h = JsonConvert.DeserializeObject<GenerationHeader>(s, settings);
-            h.recordId = recordId.Text;
+            h.recordId = CurrentPayId.Text;
             PostRequest<GenerationHeader> req = new PostRequest<GenerationHeader>();
             req.entity = h;
 
@@ -389,9 +386,12 @@ namespace AionHR.Web.UI.Forms
             string type = e.ExtraParams["type"];
             string status = e.ExtraParams["status"];
             string payRef = e.ExtraParams["payRef"];
-            string recordHeaderID = e.ExtraParams["recordHeaderID"];
-            CurrentPayId1.Text = id; 
-                payRefHidden.Text = payRef; 
+            string salaryType = e.ExtraParams["salaryType"];
+            string fiscalYear = e.ExtraParams["fiscalYear"];
+            CurrentPayId.Text = id;
+            salaryTypeHidden.Text = salaryType;
+            fiscalYearHidden.Text = fiscalYear; 
+                   payRefHidden.Text = payRef; 
                    IsPayrollPosted.Text = status;
             AddEDButton.Disabled = AddENButton.Disabled = SaveEDButton.Disabled = status == "2";
             switch (type)
@@ -401,7 +401,7 @@ namespace AionHR.Web.UI.Forms
                     CurrentPayId.Text = id;
                     Viewport1.ActiveIndex = 2;
                    
-                    payrollHeader.Text = id.ToString();
+                
                     Store1.Reload();
 
                     break;
@@ -418,7 +418,7 @@ namespace AionHR.Web.UI.Forms
                     statusCombo.Select(resp.result.status);
                     fromDate.SelectedDate = resp.result.startDate;
                     toDate.SelectedDate = resp.result.endDate;
-                    recordId.Text = id;
+                    
                     EditHeaderWindow.Show();
 
                     break;
@@ -441,7 +441,7 @@ namespace AionHR.Web.UI.Forms
 
                     break;
                 case "imgGenerate":
-
+                    CurrentPayId1.Text = id;
                     //Step 1 : get the object from the Web Service 
                     EditGenerateForm.Reset();
                     FillDepartment();
@@ -1250,17 +1250,24 @@ namespace AionHR.Web.UI.Forms
             return req;
         }
 
-        protected void GeneratePayroll(object sender, DirectEventArgs e)
+        protected void GeneratePayroll1(object sender, DirectEventArgs e)
         {
-             
-            string id= e.ExtraParams["id"];
-            string generatePayRef = e.ExtraParams["generatePayRef"];
+
+            string id = CurrentPayId1.Text;
             string departmentId = e.ExtraParams["departmentId"];
             string branchId = e.ExtraParams["branchId"];
             string employeeId = e.ExtraParams["employeeId"];
+            GeneratePayroll h = new GeneratePayroll();
+            h.branchId = branchId;
+            h.departmentId = departmentId;
+            h.employeeId = employeeId;
+            h.payId = id; 
+         
+             
+            PostRequest<GeneratePayroll> req = new PostRequest<GeneratePayroll>();
+            req.entity = h;
 
-            EmployeePayrollListRequest req = GetEmployeePayrollRequest1( generatePayRef, departmentId, branchId, employeeId);
-            ListResponse<EmployeePayroll> resp = _payrollService.ChildGetAll<EmployeePayroll>(req);
+            PostResponse<GeneratePayroll> resp = _payrollService.ChildAddOrUpdate<GeneratePayroll>(req);
             if (!resp.Success)
             {
 
@@ -1268,9 +1275,9 @@ namespace AionHR.Web.UI.Forms
                 X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() : resp.Summary).Show();
                 return;
             }
-            Store1.DataSource = resp.Items;
-            Store1.DataBind();
+           
             EditGenerateWindow.Close();
+            Store1.Reload();
             Viewport1.ActiveIndex = 2; 
 
         }

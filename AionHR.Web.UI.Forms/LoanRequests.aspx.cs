@@ -126,8 +126,8 @@ namespace AionHR.Web.UI.Forms
 
                
                 statusPref.Select("0");
-                ldMethod.Select("0");
-                c.Format = cc.Format = date.Format= effectiveDate.Format= _systemService.SessionHelper.GetDateformat();
+                //ldMethod.Select("0");
+                c.Format  = date.Format= /*effectiveDate.Format=*/ _systemService.SessionHelper.GetDateformat();
                 //if (string.IsNullOrEmpty(Request.QueryString["employeeId"]))
                 //    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorOperation).Show();
                 //CurrentEmployee.Text = Request.QueryString["employeeId"];
@@ -157,11 +157,11 @@ namespace AionHR.Web.UI.Forms
                     caseCommentsTab.Hidden = true;
 
                 }
-                if (purpose.InputType == InputType.Password)
-                {
-                    purpose.Visible = false;
-                    purposeField.Visible = true;
-                }
+                //if (purpose.InputType == InputType.Password)
+                //{
+                //    purpose.Visible = false;
+                //    purposeField.Visible = true;
+                //}
             }
 
         }
@@ -169,7 +169,7 @@ namespace AionHR.Web.UI.Forms
         protected void addLoanType(object sender, DirectEventArgs e)
         {
             LoanType obj = new LoanType();
-            obj.name = ltId.Text;
+            //obj.name = ltId.Text;
 
             PostRequest<LoanType> req = new PostRequest<LoanType>();
             req.entity = obj;
@@ -177,8 +177,8 @@ namespace AionHR.Web.UI.Forms
             if (response.Success)
             {
                 obj.recordId = response.recordId;
-                FillLoanType();
-                ltId.Select(obj.recordId);
+                //FillLoanType();
+                //ltId.Select(obj.recordId);
             }
             else
             {
@@ -213,15 +213,15 @@ namespace AionHR.Web.UI.Forms
 
         }
 
-        private void FillLoanType()
-        {
-            ListRequest branchesRequest = new ListRequest();
-            ListResponse<LoanType> resp = _loanService.ChildGetAll<LoanType>(branchesRequest);
-            if (!resp.Success)
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() : resp.Summary).Show();
-            ltStore.DataSource = resp.Items;
-            ltStore.DataBind();
-        }
+        //private void FillLoanType()
+        //{
+        //    ListRequest branchesRequest = new ListRequest();
+        //    ListResponse<LoanType> resp = _loanService.ChildGetAll<LoanType>(branchesRequest);
+        //    if (!resp.Success)
+        //        X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() : resp.Summary).Show();
+        //    ltStore.DataSource = resp.Items;
+        //    ltStore.DataBind();
+        //}
         private void ApplyAccessControlOnLoanComments()
         {
             var properties = AccessControlApplier.GetPropertiesLevels(typeof(LoanComment));
@@ -360,19 +360,19 @@ namespace AionHR.Web.UI.Forms
                                 }
                        });
                     employeeId.SetValue(response.result.employeeId);
-                    effectiveDate.Disabled = response.result.status != 3;
+                    //effectiveDate.Disabled = response.result.status != 3;
                     //FillFilesStore(Convert.ToInt32(id));
 
                     //Step 2 : call setvalues with the retrieved object
                     this.BasicInfoTab.SetValues(response.result);
                     FillCurrency();
                     FillBranchField();
-                    FillLoanType();
-                    ltId.Select(response.result.ltId.ToString());
+                    //FillLoanType();
+                    //ltId.Select(response.result.ltId.ToString());
                     CurrentAmountCurrency.Text = response.result.currencyRef;
                     currencyId.Select(response.result.currencyId.ToString());
                     status.Select(response.result.status.ToString());
-                    ldMethod.Select(response.result.ldMethod.ToString());
+                    //ldMethod.Select(response.result.ldMethod.ToString());
                     if (!string.IsNullOrEmpty(response.result.branchId))
                         branchId.Select(response.result.branchId);
                     loanComments_RefreshData(Convert.ToInt32(id));
@@ -676,8 +676,8 @@ namespace AionHR.Web.UI.Forms
                 return;
             }
            
-          if (defaults.Items.Where(s => s.Key == "ldMethod").Count()!=0)
-                ldMethod.Select(defaults.Items.Where(s => s.Key == "ldMethod").First().Value);
+          //if (defaults.Items.Where(s => s.Key == "ldMethod").Count()!=0)
+          //      ldMethod.Select(defaults.Items.Where(s => s.Key == "ldMethod").First().Value);
             if (defaults.Items.Where(s => s.Key == "ldValue").Count() != 0)
                 ldValue.Text= defaults.Items.Where(s => s.Key == "ldValue").First().Value.ToString();
             caseCommentStore.DataSource = new List<CaseComment>();
@@ -688,10 +688,10 @@ namespace AionHR.Web.UI.Forms
             date.SelectedDate = DateTime.Now;
             panelRecordDetails.ActiveIndex = 0;
             SetTabPanelEnable(false);
-            FillLoanType();
+            //FillLoanType();
             FillBranchField();
             FillCurrency();
-            effectiveDate.Disabled = true;
+            //effectiveDate.Disabled = true;
             this.EditRecordWindow.Show();
         }
 
@@ -844,8 +844,8 @@ namespace AionHR.Web.UI.Forms
             {
                 b.branchName = branchId.SelectedItem.Text;
             }
-            if (ltId.SelectedItem != null)
-                b.ltName = ltId.SelectedItem.Text;
+            //if (ltId.SelectedItem != null)
+            //    b.ltName = ltId.SelectedItem.Text;
 
             if (string.IsNullOrEmpty(id))
             {

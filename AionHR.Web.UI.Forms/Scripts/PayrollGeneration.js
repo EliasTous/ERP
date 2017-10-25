@@ -9,7 +9,10 @@ var deleteRender = function () {
 var attachRender = function (e) {
     if (e != 2) {
         
-        return '<img class="imgAttach"  style="cursor:pointer;" src="Images/Tools/application_edit.png" />&nbsp;&nbsp;<img class="imgGenerate"  style="cursor:pointer;" src="Images/Tools/collapse-all.gif" />';
+        return '<img class="imgGenerate"  style="cursor:pointer;" src="Images/Tools/collapse-all.gif" />&nbsp;&nbsp;<img class="imgAttach"  style="cursor:pointer;" src="Images/Tools/application_edit.png" />';
+            
+            
+           
     }
     return '<img class="imgAttach"  style="cursor:pointer;" src="Images/Tools/application_edit.png" />';
 };

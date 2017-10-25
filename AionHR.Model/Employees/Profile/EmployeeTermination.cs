@@ -13,7 +13,7 @@ namespace AionHR.Model.Employees.Profile
 
         [PropertyID("31131_01")]
         [ApplySecurity]
-        public DateTime date { get; set; }
+        public DateTime? date { get; set; }
         [PropertyID("31131_02")]
         [ApplySecurity]
         public int? ttId { get; set; }
@@ -26,6 +26,6 @@ namespace AionHR.Model.Employees.Profile
         public int? rehire { get; set; }
         
 
-        public int employeeId { get; set; }
+        public int? employeeId { get; set; }
     }
 }
