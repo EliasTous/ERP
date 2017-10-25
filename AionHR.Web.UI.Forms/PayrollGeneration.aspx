@@ -9,7 +9,7 @@
     <title></title>
     <link rel="stylesheet" type="text/css" href="CSS/Common.css" />
     <link rel="stylesheet" href="CSS/LiveSearch.css" />
-    <script type="text/javascript" src="Scripts/PayrollGeneration.js?id=150"></script>
+    <script type="text/javascript" src="Scripts/PayrollGeneration.js?id=110"></script>
     <script type="text/javascript" src="Scripts/common.js"></script>
     <script type="text/javascript" src="Scripts/moment.js"></script>
     <script type="text/javascript">
@@ -64,6 +64,7 @@
 
         <ext:Hidden ID="DateFormat" runat="server" />
         <ext:Hidden ID="CurrentPayId" runat="server" />
+        <ext:Hidden ID="CurrentPayId1" runat="server" />
         <ext:Hidden ID="CurrentSeqNo" runat="server" />
         <ext:Hidden ID="CurrentCurrencyRef" runat="server" />
         <ext:Hidden ID="PeriodStatus0" runat="server" Text="<%$ Resources: Status0 %>" />
@@ -158,7 +159,8 @@
                             </Store>
                             <ColumnModel>
                                 <Columns>
-                                    <ext:Column runat="server" ID="c1" Text="<%$ Resources: FieldRef%>" DataIndex="payRef" Width="200" />
+                                    <ext:Column Visible="false" runat="server" ID="recordHeaderID" Text="" DataIndex="recordId" Width="200" />
+                                    <ext:Column runat="server" ID="c1" Text="<%$ Resources: FieldRef%>" DataIndex="payRef" Width="200"  />
                                     <ext:DateColumn runat="server" ID="periodFrom" Text="<%$ Resources: FieldFrom%>" DataIndex="startDate" Width="150" />
 
                                     <ext:DateColumn runat="server" ID="periodTo" Text="<%$ Resources: FieldTo%>" DataIndex="endDate" Width="150" />
@@ -178,7 +180,7 @@
                                         MenuDisabled="true"
                                         Resizable="false">
 
-                                        <Renderer Handler="var d= (record.data['status']==2)?'&nbsp;&nbsp;&nbsp;&nbsp;':editRender()+ '&nbsp;&nbsp;'+ deleteRender(); return d+ '&nbsp;&nbsp;'+ attachRender();" />
+                                        <Renderer Handler="var d= (record.data['status']==2)?'&nbsp;&nbsp;&nbsp;&nbsp;':editRender()+ '&nbsp;&nbsp;'+ deleteRender(); return d+ '&nbsp;&nbsp;'+ attachRender(record.data['status']);" />
 
                                       
 
@@ -199,6 +201,7 @@
                                     <EventMask ShowMask="true" />
                                     <ExtraParams>
                                         <ext:Parameter Name="id" Value="record.getId()" Mode="Raw" />
+                                        
                                         <ext:Parameter Name="payRef" Value="record.data['payRef']" Mode="Raw" />
                                         <ext:Parameter Name="status" Value="record.data['status']" Mode="Raw" />
                                         <ext:Parameter Name="type" Value="getCellType( this, rowIndex, cellIndex)" Mode="Raw" />
@@ -1080,6 +1083,127 @@
                     </DirectEvents>
                 </ext:Button>
                 <ext:Button ID="Button12" runat="server" Text="<%$ Resources:Common , Cancel %>" Icon="Cancel">
+                    <Listeners>
+                        <Click Handler="this.up('window').hide();" />
+                    </Listeners>
+                </ext:Button>
+            </Buttons>
+        </ext:Window>
+         <ext:Window
+            ID="EditGenerateWindow"
+            runat="server"
+            Icon="PageEdit"
+            Draggable="false"
+            Maximizable="false" Resizable="false"
+            Width="450"
+            Height="250"
+            AutoShow="false"
+            Modal="true"
+            Hidden="true"
+            Layout="Fit">
+
+            <Items>
+                <ext:FormPanel
+                    ID="EditGenerateForm" DefaultButton="GenerateButton"
+                    runat="server"
+                    Header="false"
+                    DefaultAnchor="100%"
+                    BodyPadding="5">
+                    <Items>
+                        
+                        <ext:TextField runat="server" Name="recordId" ID="recordIdTF" Hidden="true" Disabled="true" />
+                        <ext:TextField FieldLabel ="generatePayRef" runat="server" Name="generatePayRef" ID="generatePayRef" Hidden="false" Disabled="false"  ReadOnly="true"/>
+                           <ext:ComboBox  AnyMatch="true" CaseSensitive="false" runat="server" ID="employeeId" Name="employeeId"
+                                    DisplayField="fullName"
+                                    ValueField="recordId" AllowBlank="false"
+                                    TypeAhead="false"
+                                    HideTrigger="true" SubmitValue="true"
+                                    MinChars="3" FieldLabel="<%$ Resources: FieldEmployee%>"
+                                    TriggerAction="Query" ForceSelection="false">
+                                    <Store>
+                                        <ext:Store runat="server" ID="Store2" AutoLoad="false">
+                                            <Model>
+                                                <ext:Model runat="server">
+                                                    <Fields>
+                                                        <ext:ModelField Name="recordId" />
+                                                        <ext:ModelField Name="fullName" />
+                                                    </Fields>
+                                                </ext:Model>
+                                            </Model>
+                                            <Proxy>
+                                                <ext:PageProxy DirectFn="App.direct.FillEmployee"></ext:PageProxy>
+                                            </Proxy>
+                                        </ext:Store>
+                                    </Store>
+                                    <Listeners>
+                                        <Select Handler="#{Store2}.reload()" />
+                                    </Listeners>
+                                    <Items>
+                                    </Items>
+                                    
+                                </ext:ComboBox>
+                           <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" QueryMode="Local"  Width="120" ForceSelection="true" TypeAhead="true" MinChars="1" ValueField="recordId" DisplayField="name" ID="departmentId"  FieldLabel="<%$ Resources:FieldDepartment%>">
+            <Store>
+                <ext:Store runat="server" ID="departmentStore">
+                    <Model>
+                        <ext:Model runat="server">
+                            <Fields>
+                                <ext:ModelField Name="recordId" />
+                                <ext:ModelField Name="name" />
+                            </Fields>
+                        </ext:Model>
+                    </Model>
+                </ext:Store>
+            </Store>
+            
+
+
+        </ext:ComboBox>
+                           <ext:ComboBox   AnyMatch="true" CaseSensitive="false"    runat="server" QueryMode="Local" Width="120" ForceSelection="true" TypeAhead="true" MinChars="1" ValueField="recordId" DisplayField="name" ID="branchId"  FieldLabel="<%$ Resources:FieldBranch%>">
+                              <Store>
+                <ext:Store runat="server" ID="branchStore">
+                    <Model>
+                        <ext:Model runat="server">
+                            <Fields>
+                                <ext:ModelField Name="recordId" />
+                                <ext:ModelField Name="name" />
+                            </Fields>
+                        </ext:Model>
+                    </Model>
+                </ext:Store>
+            </Store>
+
+                      </ext:ComboBox>
+                       
+                    </Items>
+
+                </ext:FormPanel>
+            </Items>
+            <Buttons>
+                <ext:Button ID="GenerateButton" runat="server" Text="<%$ Resources:Common, Generate %>" Icon="ApplicationGo">
+
+                    <Listeners>
+                        <Click Handler="CheckSession(); if (!#{EditGenerateForm}.getForm().isValid()) {return false;} " />
+                    </Listeners>
+                    <DirectEvents>
+                        <Click OnEvent="GeneratePayroll" Failure="Ext.MessageBox.alert('#{titleSavingError}.value', '#{titleSavingErrorMessage}.value');">
+                            <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="={#{EditGenerateForm}.body}" />
+                            <ExtraParams>
+                                 <ext:Parameter Name="id" Value="#{recordId}.getValue()" Mode="Raw" />
+                                 <ext:Parameter Name="generatePayRef" Value="#{generatePayRef}.getValue()" Mode="Raw" />
+                                 <ext:Parameter Name="departmentId" Value="#{departmentId}.getValue()" Mode="Raw" />
+                                 <ext:Parameter Name="branchId" Value="#{branchId}.getValue()" Mode="Raw" />
+                                 <ext:Parameter Name="employeeId" Value="#{employeeId}.getValue()" Mode="Raw" />
+                                                          
+                                                           
+                               
+                                        
+                                        
+                            </ExtraParams>
+                        </Click>
+                    </DirectEvents>
+                </ext:Button>
+                <ext:Button ID="Button8" runat="server" Text="<%$ Resources:Common , Cancel %>" Icon="Cancel">
                     <Listeners>
                         <Click Handler="this.up('window').hide();" />
                     </Listeners>

@@ -675,9 +675,11 @@ namespace AionHR.Web.UI.Forms
                 X.Msg.Alert(Resources.Common.Error, defaults.Summary).Show();
                 return;
             }
-          
-            ldMethod.Select(defaults.Items.Where(s => s.Key == "ldMethod").First().Value);
-            ldValue.Text= defaults.Items.Where(s => s.Key == "ldValue").First().Value.ToString();
+           
+          if (defaults.Items.Where(s => s.Key == "ldMethod").Count()!=0)
+                ldMethod.Select(defaults.Items.Where(s => s.Key == "ldMethod").First().Value);
+            if (defaults.Items.Where(s => s.Key == "ldValue").Count() != 0)
+                ldValue.Text= defaults.Items.Where(s => s.Key == "ldValue").First().Value.ToString();
             caseCommentStore.DataSource = new List<CaseComment>();
             caseCommentStore.DataBind();
             //Reset all values of the relative object

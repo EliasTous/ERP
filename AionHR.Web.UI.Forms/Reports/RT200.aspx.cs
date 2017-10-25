@@ -169,6 +169,7 @@ namespace AionHR.Web.UI.Forms.Reports
             req.Add(paymentMethodCombo.GetPaymentMethod());
             req.Add(jobInfo1.GetJobInfo());
             req.Add(employeeFilter.GetEmployee());
+            req.Add(inactivePref.GetActiveStatus());
 
             return req;
         }

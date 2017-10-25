@@ -255,4 +255,7 @@
   <data name="FieldEmployeeSocialSecurity" xml:space="preserve">
     <value>التأمينات الإجتماعية للموظف</value>
   </data>
+  <data name="FieldName" xml:space="preserve">
+    <value>الاسم </value>
+  </data>
 </root>

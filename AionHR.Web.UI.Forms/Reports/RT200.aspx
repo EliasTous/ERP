@@ -83,6 +83,12 @@
                                                 <uc:paymentMethodCombo runat="server" ID="paymentMethodCombo" />
                                             </Content>
                                         </ext:Container>
+                                  <ext:Container runat="server"  Layout="FitLayout">
+                                            <Content>
+                                                <%--<uc:dateRange runat="server" ID="dateRange1" />--%>
+                                                <uc:activeStatus runat="server" ID="inactivePref" />
+                                            </Content>
+                                        </ext:Container>
 
                                    
                                 <ext:Container runat="server" Layout="FitLayout">

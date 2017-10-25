@@ -6,9 +6,14 @@ var editRender = function () {
 var deleteRender = function () {
     return '<img class="imgDelete"  style="cursor:pointer;" src="Images/Tools/delete.png" />';
 };
-var attachRender = function () {
+var attachRender = function (e) {
+    if (e != 2) {
+        
+        return '<img class="imgAttach"  style="cursor:pointer;" src="Images/Tools/application_edit.png" />&nbsp;&nbsp;<img class="imgGenerate"  style="cursor:pointer;" src="Images/Tools/collapse-all.gif" />';
+    }
     return '<img class="imgAttach"  style="cursor:pointer;" src="Images/Tools/application_edit.png" />';
 };
+
 
 
 function openInNewTab() {
@@ -133,6 +138,11 @@ var cellClick = function (view, cell, columnIndex, record, row, rowIndex, e) {
         return true;
     }
     if (t.className == "imgAttach") {
+        //the ajax call is allowed
+        commandName = t.className;
+        return true;
+    }
+    if (t.className == "imgGenerate") {
         //the ajax call is allowed
         commandName = t.className;
         return true;

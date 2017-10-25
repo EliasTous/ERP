@@ -118,60 +118,18 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="BasicInfoTabEditWindowTitle" xml:space="preserve">
-    <value>Payroll indemnity Info</value>
-  </data>
-  <data name="BtnAddPeriod" xml:space="preserve">
-    <value>ADD Indemnity</value>
-  </data>
-  <data name="BtnRemovePeriod" xml:space="preserve">
-    <value>Remove Indemnity</value>
-  </data>
-  <data name="BtnUpdate" xml:space="preserve">
-    <value>Save</value>
+    <value>Termination Reasons Info</value>
   </data>
   <data name="EditWindowsTitle" xml:space="preserve">
-    <value>Edit Payroll indemnity</value>
-  </data>
-  <data name="FieldDays" xml:space="preserve">
-    <value>Vacation Days</value>
-  </data>
-  <data name="FieldFrom" xml:space="preserve">
-    <value>From Months</value>
+    <value>Edit Termination Reason</value>
   </data>
   <data name="FieldName" xml:space="preserve">
     <value>Name</value>
   </data>
-  <data name="FieldTo" xml:space="preserve">
-    <value>To Months</value>
-  </data>
-  <data name="MonthsFieldError" xml:space="preserve">
-    <value>The months is a required field and should be from 0 to 1000</value>
-  </data>
-  <data name="percentage" xml:space="preserve">
-    <value>Percentage</value>
-  </data>
-  <data name="Periods" xml:space="preserve">
-    <value>Payroll indemnities</value>
-  </data>
-  <data name="PeriodsTab" xml:space="preserve">
-    <value>Payroll Indemnity Details</value>
+  <data name="FieldRecordId" xml:space="preserve">
+    <value>Record ID</value>
   </data>
   <data name="WindowTitle" xml:space="preserve">
-    <value>Vacation Schedules</value>
-  </data>
-  <data name="From" xml:space="preserve">
-    <value>From</value>
-  </data>
-  <data name="To" xml:space="preserve">
-    <value>To</value>
-  </data>
-  <data name="exemptDeliveryPeriod" xml:space="preserve">
-    <value>Exempt Delivery Period</value>
-  </data>
-  <data name="exemptMarriagePeriod" xml:space="preserve">
-    <value>Exempt Marriage Period</value>
-  </data>
-  <data name="IndemnityRecognitiontabs" xml:space="preserve">
-    <value>Indemnity Resignation</value>
+    <value>Termination Reason</value>
   </data>
 </root>

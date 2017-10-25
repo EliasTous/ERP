@@ -12,7 +12,7 @@
    
     <script type="text/javascript" src="Scripts/common.js"></script>
    
-    <script type="text/javascript" src="Scripts/Payrollindemnities.js"></script>
+    <script type="text/javascript" src="Scripts/Payrollindemnities.js?id=95"></script>
 </head>
 <body style="background: url(Images/bg.png) repeat;" >
     <form id="Form1" runat="server">
@@ -46,6 +46,8 @@
 
                         <ext:ModelField Name="recordId" />
                         <ext:ModelField Name="name" />
+                        <ext:ModelField Name="exemptMarriagePrd" />
+                        <ext:ModelField Name="exemptDeliveryPrd" />
 
 
 
@@ -123,6 +125,14 @@
                             <ext:Column Visible="false" ID="ColrecordId" MenuDisabled="true" runat="server"  DataIndex="recordId" Hideable="false" Width="75" Align="Center" />
 
                             <ext:Column CellCls="cellLink" Sortable="true" ID="ColName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldName%>" DataIndex="name" Flex="1" Hideable="false">
+                               <%-- <Renderer Handler="return record.data['name']">
+                                </Renderer>--%>
+                            </ext:Column>
+                              <ext:Column CellCls="cellLink" Sortable="true" ID="exemptMarriagePrdCol" MenuDisabled="true" runat="server" Text="<%$ Resources: exemptMarriagePeriod%>" DataIndex="exemptMarriagePrd" Flex="1" Hideable="false">
+                               <%-- <Renderer Handler="return record.data['name']">
+                                </Renderer>--%>
+                            </ext:Column>
+                              <ext:Column CellCls="cellLink" Sortable="true" ID="exemptDeliveryPrdCol" MenuDisabled="true" runat="server" Text="<%$ Resources: exemptDeliveryPeriod%>" DataIndex="exemptDeliveryPrd" Flex="1" Hideable="false">
                                <%-- <Renderer Handler="return record.data['name']">
                                 </Renderer>--%>
                             </ext:Column>
@@ -241,7 +251,7 @@
             runat="server"
             Icon="PageEdit"
             Title="<%$ Resources:EditWindowsTitle %>"
-            Width="450"
+            Width="600"
             Height="330"
             AutoShow="false"
             Modal="true"
@@ -260,7 +270,9 @@
                             BodyPadding="5">
                             <Items>
                                 <ext:TextField ID="recordId" Hidden="true" runat="server"  Disabled="true" DataIndex="recordId" />
-                                <ext:TextField ID="name" runat="server" FieldLabel="<%$ Resources:FieldName%>" DataIndex="name" AllowBlank="false" BlankText="<%$ Resources:Common, MandatoryField%>" />
+                                <ext:TextField LabelWidth="150" ID="name" runat="server" FieldLabel="<%$ Resources:FieldName%>" DataIndex="name" AllowBlank="false" BlankText="<%$ Resources:Common, MandatoryField%>" />
+                                 <ext:TextField LabelWidth="150" ID="exemptMarriagePrd" runat="server" FieldLabel="<%$ Resources: exemptMarriagePeriod%>" Name="exemptMarriagePrd" AllowBlank="false" BlankText="0"  />
+                                 <ext:TextField LabelWidth="150" ID="exemptDeliveryPrd" runat="server" FieldLabel="<%$ Resources: exemptDeliveryPeriod%> " Name="exemptDeliveryPrd" AllowBlank="false" BlankText="0 " />
 
                             </Items>
 
@@ -395,6 +407,139 @@
                             </Items>
 
                         </ext:FormPanel>
+                        <ext:FormPanel
+                            ID="IndemnityRecognitionForm"
+                            runat="server"
+                            Title="<%$ Resources: IndemnityRecognitiontabs %>"
+                            Icon="ApplicationSideList"
+                            DefaultAnchor="100%" OnLoad="BasicInfoTab_Load"
+                            BodyPadding="5">
+                            <Items>
+                                <ext:GridPanel
+                                    ID="IndemnityRecognitionGrid"  
+                                    runat="server"
+                                    Width="600" Header="false"
+                                    Height="210" Layout="FitLayout"
+                                    Frame="true" TitleCollapse="true"  Scroll="Vertical"
+                                    >
+                                    <Store>
+                                        <ext:Store ID="IndemnityRecognitionStore" runat="server">
+                                           <Model>
+                                                <ext:Model runat="server" Name="Employee">
+                                                    <Fields>
+                                                        <ext:ModelField Name="from"  />
+                                                        <ext:ModelField Name="to" />
+                                                        <ext:ModelField Name="pct" />
+                                                          <ext:ModelField Name="inId" />
+                                                          <ext:ModelField Name="seqNo" />
+                                                                                                                                                                      
+                                                       
+                                                    </Fields>
+                                                </ext:Model>
+                                            </Model>
+                                        </ext:Store>
+                                    </Store>
+                                    <Plugins>
+                                        <ext:RowEditing runat="server" ClicksToMoveEditor="1" AutoCancel="false" SaveBtnText="<%$ Resources:Common , Save %>" CancelBtnText="<%$ Resources:Common , Cancel %>" >
+                                            <Listeners>
+                                                <BeforeEdit Handler="if(App.editDisabled.value=='1') return false;" />
+                                            </Listeners>
+                                            </ext:RowEditing>
+                                    </Plugins>
+                                    <TopBar>
+                                        <ext:Toolbar runat="server">
+                                            <Items>
+                                                <ext:Button runat="server" Text="<%$ Resources: BtnAddPeriod %>" Icon="UserAdd" ID="btnAddResignation">
+                                                    <Listeners>
+                                                        <Click Fn="addResignation" />
+                                                    </Listeners>
+                                                </ext:Button>
+                                                <ext:Button
+                                                    ID="btnRemoveResignation"
+                                                    runat="server"
+                                                    Text="<%$ Resources:Common , Delete %>" 
+                                                    Icon="UserDelete"
+                                                    Disabled="true">
+                                                    <Listeners>
+                                                        <Click Fn="removeResignation" />
+                                                    </Listeners>
+                                                </ext:Button>
+                                            </Items>
+                                        </ext:Toolbar>
+                                    </TopBar>
+                                    <ColumnModel>
+                                        <Columns>
+                                            <ext:RowNumbererColumn runat="server" Width="25" />
+                                            <ext:NumberColumn
+                                                runat="server"
+                                                Text="<%$ Resources:From %>" 
+                                                DataIndex="from"
+                                                 Flex="1"
+                                                Align="Center">
+                                                <Editor>
+                                                     <%-- Vtype="numberrange"
+                                                        EndNumberField="toField"--%>
+                                                    <ext:TextField
+                                                        runat="server"
+                                                         ID="TextField1"
+                                                        AllowBlank="false"
+                                                        InvalidText="<%$Resources:MonthsFieldError %>"
+                                                         >
+                                                        <Validator Handler="if(isNaN(this.value)) return false; return true;">
+                                                            
+                                                        </Validator>
+                                                        </ext:TextField>
+                                                </Editor>
+                                            </ext:NumberColumn>
+                                            <ext:NumberColumn
+                                                runat="server"
+                                                Text="<%$ Resources:To %>" 
+                                                DataIndex="to"
+                                                 Flex="1"
+                                                Align="Center">
+                                                <Editor>
+                                                       <%--   StartNumberField="fromField"
+                                                         Vtype="numberrange"--%>
+                                                    <ext:TextField
+                                                        runat="server"
+                                                        ID="TextField2"
+                                                        AllowBlank="false"
+                                                        
+                                                         InvalidText="<%$Resources:MonthsFieldError %>"
+                                                        >
+                                                        <Validator Handler="if(isNaN(this.value)) return false; return true;"/>
+                                                        </ext:TextField>
+
+                                                </Editor>
+                                                
+                                            </ext:NumberColumn>
+                                            
+                                            
+                                            <ext:NumberColumn
+                                                runat="server"
+                                                Text="<%$Resources:percentage %>" 
+                                                DataIndex="pct"
+                                                 Flex="1"
+                                                Align="Center" >
+                                                <Editor>
+                                                    <ext:TextField
+                                                        runat="server"
+                                                        AllowBlank="false" 
+                                                         >
+                                                         <Validator Handler="if((!isNaN(this.value))&this.value<=100&this.value>=0) return true; return false;"/>
+                                                        </ext:TextField>
+                                                </Editor>
+                                            </ext:NumberColumn>
+                                            
+                                        </Columns>
+                                    </ColumnModel>
+                                    <Listeners>
+                                        <SelectionChange Handler="if(App.deleteDisabled.value=='1') return; App.btnRemoveResignation.setDisabled(!selected.length);" />
+                                    </Listeners>
+                                </ext:GridPanel>
+                            </Items>
+
+                        </ext:FormPanel>
                     </Items>
                 </ext:TabPanel>
             </Items>
@@ -411,6 +556,7 @@
                                 <ext:Parameter Name="id" Value="#{recordId}.getValue()" Mode="Raw" />
                                 <ext:Parameter Name="schedule" Value="#{BasicInfoTab}.getForm().getValues()" Mode="Raw" Encode="true" />
                                 <ext:Parameter Name="periods" Value="Ext.encode(#{periodsGrid}.getRowsValues({selectedOnly : false}))" Mode="Raw"  />
+                                 <ext:Parameter Name="indemnities" Value="Ext.encode(#{IndemnityRecognitionGrid}.getRowsValues({selectedOnly : false}))" Mode="Raw"  />
                             </ExtraParams>
                         </Click>
                     </DirectEvents>

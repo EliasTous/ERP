@@ -35,4 +35,24 @@ namespace AionHR.Services.Messaging.Reports
         }
 
     }
+    public class CountryParameterSet : ReportParameterSet
+    {
+        public int? countryId { get; set; }
+
+      
+        protected Dictionary<string, string> parameters;
+        public override Dictionary<string, string> Parameters
+        {
+
+            get
+            {
+                parameters = new Dictionary<string, string>();
+                if (countryId.HasValue)
+                    parameters.Add("_countryId", countryId.ToString());
+               
+                return parameters;
+            }
+        }
+
+    }
 }

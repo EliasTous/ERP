@@ -35,6 +35,7 @@ public class EmployeePayrollListRequest : ListRequest
     public string EmployeeId { get; set; }
 
     public string PayId { get; set; }
+    public string payRef { get; set; }
 
     public override Dictionary<string, string> Parameters
     {
@@ -45,6 +46,8 @@ public class EmployeePayrollListRequest : ListRequest
             parameters.Add("_departmentId", DepartmentId);
             parameters.Add("_branchId", BranchId);
             parameters.Add("_employeeId", EmployeeId);
+            parameters.Add("_payRef", payRef);
+           
             return parameters;
         }
     }
@@ -263,5 +266,6 @@ public class PayrollIndemnityDetailsListRequest : ListRequest
     }
 
 }
+
 
 

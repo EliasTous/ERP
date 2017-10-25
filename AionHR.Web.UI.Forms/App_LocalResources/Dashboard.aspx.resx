@@ -180,6 +180,9 @@
   <data name="EditWindowsTitle" xml:space="preserve">
     <value>Edit Branch</value>
   </data>
+  <data name="empCount" xml:space="preserve">
+    <value>Employees count </value>
+  </data>
   <data name="EmployeeRightToWork" xml:space="preserve">
     <value>Employee Right To Work</value>
   </data>
@@ -360,6 +363,15 @@
   <data name="Loans" xml:space="preserve">
     <value>Loans</value>
   </data>
+  <data name="LocalsCount" xml:space="preserve">
+    <value>Locals Count</value>
+  </data>
+  <data name="LocalsRate" xml:space="preserve">
+    <value>Locals Rate</value>
+  </data>
+  <data name="MinLocalRate" xml:space="preserve">
+    <value>Min Locals Rate</value>
+  </data>
   <data name="MissingPunchesGridTitle" xml:space="preserve">
     <value>Missing Punches</value>
   </data>
@@ -407,5 +419,8 @@
   </data>
   <data name="WindowTitle" xml:space="preserve">
     <value>Employees</value>
+  </data>
+  <data name="LocalRate" xml:space="preserve">
+    <value>Locals Rate</value>
   </data>
 </root>

@@ -165,6 +165,19 @@ namespace AionHR.Web.UI.Forms
 
             loanDeductionStore.DataSource = GetDeductions();
             loanDeductionStore.DataBind();
+            PYFSLeaveBalEDId_Store.DataSource = GetEntitlements();
+            PYFSLeaveBalEDId_Store.DataBind();
+            PYINEDId_store.DataSource= GetEntitlements();
+            PYINEDId_store.DataBind();
+            PYISmale_store.DataSource = GetIndemnitySchedules();
+            PYISmale_store.DataBind();
+            PYISfemale_store.DataSource = GetIndemnitySchedules();
+            PYISfemale_store.DataBind();
+            exemptMarriageTR_Store.DataSource = GetTerminationReasons();
+            exemptMarriageTR_Store.DataBind();
+            exemptDeliveryTR_Store.DataSource = GetTerminationReasons();
+            exemptDeliveryTR_Store.DataBind();
+
         }
 
         private void FillTsId()
@@ -365,10 +378,33 @@ namespace AionHR.Web.UI.Forms
                 lastGeneratedTADayId.Text = DateTime.ParseExact(items.Where(s => s.Key == "lastGeneratedTADayId").First().Value, "yyyyMMdd", new CultureInfo("en")).ToString(_systemService.SessionHelper.GetDateformat()); ;
             }
             catch { }
+            try { PYFSLeaveBalEDId.Select(items.Where(s => s.Key == "PYFSLeaveBalEDId").First().Value); }
+
+            catch { }
+            try { PYINEDId.Select(items.Where(s => s.Key == "PYINEDId").First().Value); }
+
+            catch { }
+
+            try { PYISmale.Select(items.Where(s => s.Key == "PYISmale").First().Value); }
+
+            catch { }
+            try { PYISfemale.Select(items.Where(s => s.Key == "PYISfemale").First().Value); }
+
+            catch { }
+
+
+            try { exemptMarriageTRId.Select(items.Where(s => s.Key == "exemptMarriageTRId").First().Value); }
+
+            catch { }
+            try { exemptDeliveryTRId.Select(items.Where(s => s.Key == "exemptDeliveryTRId").First().Value); }
+
+            catch { }
+
+
 
         }
 
-        
+
         /// <summary>
         /// the detailed tabs for the edit form. I put two tabs by default so hide unecessary or add addional
         /// </summary>
@@ -419,6 +455,14 @@ namespace AionHR.Web.UI.Forms
                 submittedValues.Add(new KeyValuePair<string, string>("passportDocTypeId", values.passportCombo.ToString()));
             if (!string.IsNullOrEmpty(values.idCombo.ToString()))
                 submittedValues.Add(new KeyValuePair<string, string>("resDocTypeId", values.idCombo.ToString()));
+
+
+            if (!string.IsNullOrEmpty(values.exemptMarriageTRId.ToString()))
+                submittedValues.Add(new KeyValuePair<string, string>("exemptMarriageTRId", values.exemptMarriageTRId.ToString()));
+            if (!string.IsNullOrEmpty(values.exemptDeliveryTRId.ToString()))
+                submittedValues.Add(new KeyValuePair<string, string>("exemptDeliveryTRId", values.exemptDeliveryTRId.ToString()));
+
+          
 
             return submittedValues;
         }
@@ -581,6 +625,16 @@ namespace AionHR.Web.UI.Forms
                 submittedValues.Add(new KeyValuePair<string, string>("py_oEDId", values.py_oEDId.ToString()));
             if (values.py_mEDId != null && !string.IsNullOrEmpty(values.py_mEDId.ToString()))
                 submittedValues.Add(new KeyValuePair<string, string>("py_mEDId", values.py_mEDId.ToString()));
+            if (values.PYFSLeaveBalEDId != null && !string.IsNullOrEmpty(values.PYFSLeaveBalEDId.ToString()))
+                submittedValues.Add(new KeyValuePair<string, string>("PYFSLeaveBalEDId", values.PYFSLeaveBalEDId.ToString()));
+            if (values.PYINEDId != null && !string.IsNullOrEmpty(values.PYINEDId.ToString()))
+                submittedValues.Add(new KeyValuePair<string, string>("PYINEDId", values.PYINEDId.ToString()));
+
+
+            if (values.PYISmale != null && !string.IsNullOrEmpty(values.PYISmale.ToString()))
+                submittedValues.Add(new KeyValuePair<string, string>("PYISmale", values.PYISmale.ToString()));
+            if (values.PYISfemale != null && !string.IsNullOrEmpty(values.PYISfemale.ToString()))
+                submittedValues.Add(new KeyValuePair<string, string>("PYISfemale", values.PYISfemale.ToString()));
 
             return submittedValues;
         }
@@ -1170,6 +1224,22 @@ namespace AionHR.Web.UI.Forms
 
 
         }
+        private List<PayrollIndemnity> GetIndemnitySchedules()
+        {
+            ListRequest req = new ListRequest();
+            ListResponse<PayrollIndemnity> eds = _payrollService.ChildGetAll<PayrollIndemnity>(req);
+            return eds.Items.ToList();
+        }
+        private List<TerminationReason> GetTerminationReasons()
+        {
+            ListRequest caRequest = new ListRequest();
+            ListResponse<TerminationReason> resp = _employeeService.ChildGetAll<TerminationReason>(caRequest);
+          
+            return resp.Items.ToList(); 
+           
+
+        }
+
 
 
     }

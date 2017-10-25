@@ -77,6 +77,8 @@
     
     <ext:Hidden runat="server" ID="aaTitle" Text="<%$Resources:Common , SystemAlerts %>" />
     <ext:Hidden runat="server" ID="ttTitle" Text="<%$Resources:Common , TaskTypes %>" />
+    <ext:Hidden runat="server" ID="tRTitle" Text="<%$Resources:Common , TerminationReasons %>" />
+     <ext:Hidden runat="server" ID="NPTitle" Text="<%$Resources:Common , NoticePeriods %>" />
     <ext:Hidden runat="server" ID="TrType1" Text="<%$Resources:Common , TrType1 %>" />
     <ext:Hidden runat="server" ID="TrType2" Text="<%$Resources:Common , TrType2 %>" />
     <ext:Hidden runat="server" ID="TrType3" Text="<%$Resources:Common , TrType3 %>" />
@@ -194,6 +196,16 @@
                                                         <ext:MenuItem runat="server" Text="<%$Resources: Common , TaskTypes%>">
                                                             <Listeners>
                                                                 <Click Handler="openNewTab('taskTypes', 'TaskTypes.aspx', #{ttTitle}.value, 'icon-Employees')" />
+                                                            </Listeners>
+                                                        </ext:MenuItem>
+                                                           <ext:MenuItem runat="server" Text="<%$Resources: Common , TerminationReasons%>">
+                                                            <Listeners>
+                                                                <Click Handler="openNewTab('TerminationReasons', 'TerminationReasons.aspx', #{tRTitle}.value, 'icon-Employees')" />
+                                                            </Listeners>
+                                                        </ext:MenuItem>
+                                                         <ext:MenuItem runat="server" Text="<%$Resources: Common , NoticePeriods%>">
+                                                            <Listeners>
+                                                                <Click Handler="openNewTab('NoticePeriods', 'NoticePeriods.aspx', #{NPTitle}.value, 'icon-Employees')" />
                                                             </Listeners>
                                                         </ext:MenuItem>
                                                         <ext:MenuItem runat="server" Text="<%$Resources: Common , Import%>">

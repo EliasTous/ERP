@@ -32,6 +32,8 @@ using Reports;
 using AionHR.Model.TimeAttendance;
 using DevExpress;
 using DevExpress.XtraPrinting;
+using AionHR.Model.Attributes;
+using AionHR.Model.Access_Control;
 
 namespace AionHR.Web.UI.Forms
 {
@@ -44,6 +46,7 @@ namespace AionHR.Web.UI.Forms
         IEmployeeService _employeeService = ServiceLocator.Current.GetInstance<IEmployeeService>();
         IPayrollService _payrollService = ServiceLocator.Current.GetInstance<IPayrollService>();
         IReportsService _reportsService = ServiceLocator.Current.GetInstance<IReportsService>();
+        IAccessControlService _accessControlService = ServiceLocator.Current.GetInstance<IAccessControlService>();
         protected override void InitializeCulture()
         {
 
@@ -133,6 +136,7 @@ namespace AionHR.Web.UI.Forms
                 var properties = AccessControlApplier.GetPropertiesLevels(typeof(PayrollEntitlementDeduction));
 
                 entitlementDisabled.Text = deductionDisabled.Text = (properties.Where(x => x.index == "amount").ToList()[0].accessLevel == 0).ToString();
+              
             }
 
         }
@@ -189,6 +193,36 @@ namespace AionHR.Web.UI.Forms
 
 
             req.PayId = CurrentPayId.Text;
+            req.Size = "30";
+            req.StartAt = "1";
+            req.Filter = "";
+
+            return req;
+        }
+        private EmployeePayrollListRequest GetEmployeePayrollRequest1(string generatePayRef,string  departmentId, string branchId,string employeeId)
+        {
+            EmployeePayrollListRequest req = new EmployeePayrollListRequest();
+            if (string.IsNullOrEmpty(CurrentPayId1.Text))
+                req.PayId = "0";
+            else
+                req.PayId = CurrentPayId1.Text;
+            if (branchId == "null")
+                req.BranchId = "0";
+            else
+                req.BranchId = branchId;
+            if (departmentId == "null")
+                req.DepartmentId = "0";
+            else
+                req.DepartmentId = departmentId;
+            if (generatePayRef == "null")
+                req.payRef = "0";
+            else
+                req.payRef = generatePayRef;
+            if (employeeId == "null")
+                req.EmployeeId = "0";
+            else
+                req.EmployeeId = employeeId;
+
             req.Size = "30";
             req.StartAt = "1";
             req.Filter = "";
@@ -275,7 +309,7 @@ namespace AionHR.Web.UI.Forms
                 return;
             }
             CurrentPayId.Text = resp.recordId;
-            Viewport1.ActiveIndex = 2;
+            Viewport1.ActiveIndex = 0;
           
             Store1.Reload();
             RecordRequest r = new RecordRequest();
@@ -355,6 +389,8 @@ namespace AionHR.Web.UI.Forms
             string type = e.ExtraParams["type"];
             string status = e.ExtraParams["status"];
             string payRef = e.ExtraParams["payRef"];
+            string recordHeaderID = e.ExtraParams["recordHeaderID"];
+            CurrentPayId1.Text = id; 
                 payRefHidden.Text = payRef; 
                    IsPayrollPosted.Text = status;
             AddEDButton.Disabled = AddENButton.Disabled = SaveEDButton.Disabled = status == "2";
@@ -404,7 +440,20 @@ namespace AionHR.Web.UI.Forms
                     }).Show();
 
                     break;
-               
+                case "imgGenerate":
+
+                    //Step 1 : get the object from the Web Service 
+                    EditGenerateForm.Reset();
+                    FillDepartment();
+                    FillBranch();
+                    generatePayRef.Text = payRef;
+
+                    EditGenerateWindow.Show();
+                    
+                   // Store1.Reload();
+
+                    break;
+
                 default:
                     break;
             }
@@ -1200,8 +1249,56 @@ namespace AionHR.Web.UI.Forms
 
             return req;
         }
-      
 
+        protected void GeneratePayroll(object sender, DirectEventArgs e)
+        {
+             
+            string id= e.ExtraParams["id"];
+            string generatePayRef = e.ExtraParams["generatePayRef"];
+            string departmentId = e.ExtraParams["departmentId"];
+            string branchId = e.ExtraParams["branchId"];
+            string employeeId = e.ExtraParams["employeeId"];
+
+            EmployeePayrollListRequest req = GetEmployeePayrollRequest1( generatePayRef, departmentId, branchId, employeeId);
+            ListResponse<EmployeePayroll> resp = _payrollService.ChildGetAll<EmployeePayroll>(req);
+            if (!resp.Success)
+            {
+
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() : resp.Summary).Show();
+                return;
+            }
+            Store1.DataSource = resp.Items;
+            Store1.DataBind();
+            EditGenerateWindow.Close();
+            Viewport1.ActiveIndex = 2; 
+
+        }
+        private void FillDepartment()
+        {
+            
+
+            ListRequest departmentsRequest = new ListRequest();
+            ListResponse<Department> resp = _companyStructureService.ChildGetAll<Department>(departmentsRequest);
+            if (!resp.Success)
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() : resp.Summary).Show();
+            departmentStore.DataSource = resp.Items;
+            departmentStore.DataBind();
+         
+        }
+        private void FillBranch()
+        {
+         
+            ListRequest branchesRequest = new ListRequest();
+            ListResponse<Branch> resp = _companyStructureService.ChildGetAll<Branch>(branchesRequest);
+            if (!resp.Success)
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() : resp.Summary).Show();
+            branchStore.DataSource = resp.Items;
+            branchStore.DataBind();
+            if (_systemService.SessionHelper.CheckIfIsAdmin())
+                return;
+          
+        }
 
     }
 }

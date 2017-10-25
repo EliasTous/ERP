@@ -16,14 +16,14 @@ namespace AionHR.Model.Employees.Profile
         public DateTime date { get; set; }
         [PropertyID("31131_02")]
         [ApplySecurity]
-        public int ttId { get; set; }
+        public int? ttId { get; set; }
         [PropertyID("31131_03")]
         [ApplySecurity]
-        public int trId { get; set; }
+        public int? trId { get; set; }
 
         [PropertyID("31131_04")]
         [ApplySecurity]
-        public int rehire { get; set; }
+        public int? rehire { get; set; }
         
 
         public int employeeId { get; set; }

@@ -373,6 +373,51 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Store Store1;
         
         /// <summary>
+        /// Panel1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Panel Panel1;
+        
+        /// <summary>
+        /// LocalRateChart control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.CartesianChart LocalRateChart;
+        
+        /// <summary>
+        /// LocalRateStore control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Store LocalRateStore;
+        
+        /// <summary>
+        /// LocalCount control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.CartesianChart LocalCount;
+        
+        /// <summary>
+        /// LocalCountStore control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Store LocalCountStore;
+        
+        /// <summary>
         /// missingPunchesGrid control.
         /// </summary>
         /// <remarks>
@@ -949,13 +994,13 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Model Model13;
         
         /// <summary>
-        /// Column13 control.
+        /// Column21 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Column Column13;
+        protected global::Ext.Net.Column Column21;
         
         /// <summary>
         /// GridView13 control.
@@ -1255,6 +1300,15 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Model Model3;
         
         /// <summary>
+        /// Column19 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Column Column19;
+        
+        /// <summary>
         /// GridView3 control.
         /// </summary>
         /// <remarks>
@@ -1478,6 +1532,15 @@ namespace AionHR.Web.UI.Forms {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.GridPanel activeGrid;
+        
+        /// <summary>
+        /// ColrecordId control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Column ColrecordId;
         
         /// <summary>
         /// GridView1 control.

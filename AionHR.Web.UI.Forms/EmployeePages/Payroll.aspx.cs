@@ -227,6 +227,8 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             {
 
                 case "imgEdit":
+                    entitlementsForm.Disabled = false;
+                    DeductionForm.Disabled = false;
                     RecordRequest r3 = new RecordRequest();
                     r3.RecordID = id.ToString();
                     RecordResponse<EmployeeSalary> response3 = _employeeService.ChildGetRecord<EmployeeSalary>(r3);
@@ -691,6 +693,9 @@ namespace AionHR.Web.UI.Forms.EmployeePages
 
         protected void ADDNewSA(object sender, DirectEventArgs e)
         {
+            CurrentSalary.Text = "";
+            entitlementsForm.Disabled = true;
+            DeductionForm.Disabled = true; 
 
             //Reset all values of the relative object
             EditSAForm.Reset();
@@ -706,7 +711,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             currencyId.Select(_systemService.SessionHelper.GetDefaultCurrency());
             dedsStore.Reload();
             entsStore.Reload();
-            paymentMethod.Select("0");
+            paymentMethod.Select("1");
             effectiveDate.SelectedDate = DateTime.Today;
             ENSeq.Text = "0";
             DESeq.Text = "0";
@@ -799,7 +804,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
         protected void SaveSA(object sender, DirectEventArgs e)
         {
 
-
+            
             //Getting the id to check if it is an Add or an edit as they are managed within the same form.
             string id = e.ExtraParams["id"];
 
@@ -810,6 +815,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             List<SalaryDetail> deductions = null;
             EmployeeSalary b = JsonConvert.DeserializeObject<EmployeeSalary>(obj);
             b.employeeId = Convert.ToInt32(CurrentEmployee.Text);
+           
             b.recordId = id;
             b.effectiveDate = new DateTime(b.effectiveDate.Year, b.effectiveDate.Month, b.effectiveDate.Day, 14, 0, 0);
             try
@@ -843,6 +849,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     //Step 1 : Fill The object and insert in the store 
                     PostRequest<EmployeeSalary> request = new PostRequest<EmployeeSalary>();
                     request.entity = b;
+                    request.entity.recordId = CurrentSalary.Text;
                     PostResponse<EmployeeSalary> r = _employeeService.ChildAddOrUpdate<EmployeeSalary>(request);
                     if (!r.Success)//it maybe be another condition
                     {
@@ -851,6 +858,16 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                         X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() : r.Summary).Show();
                         return;
                     }
+                    if(!string.IsNullOrEmpty(CurrentSalary.Text))
+                    {
+                        this.EditSAWindow.Close();
+                        RowSelectionModel sm = this.SalaryGrid.GetSelectionModel() as RowSelectionModel;
+                        sm.DeselectAll();
+                        sm.Select(b.recordId.ToString());
+                       
+                    }
+                    entitlementsForm.Disabled = false;
+                    DeductionForm.Disabled = false;
                     b.recordId = r.recordId;
                     CurrentSalary.Text = b.recordId;
                     entitlements = JsonConvert.DeserializeObject<List<SalaryDetail>>(ents);
@@ -885,10 +902,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                             Html = Resources.Common.RecordSavingSucc
                         });
 
-                        this.EditSAWindow.Close();
-                        RowSelectionModel sm = this.SalaryGrid.GetSelectionModel() as RowSelectionModel;
-                        sm.DeselectAll();
-                        sm.Select(b.recordId.ToString());
+                       
 
 
 

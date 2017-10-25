@@ -518,7 +518,9 @@
                                 </Listeners>
                                 <DirectEvents>
                                     <Click OnEvent="ShowTermination" />
+                                    
                                 </DirectEvents>
+                                
                             </ext:MenuItem>
                             <ext:MenuItem runat="server" ID="deleteGear" Text="<%$ Resources:Common,Delete %>" Icon="Cancel">
                                 <Listeners>

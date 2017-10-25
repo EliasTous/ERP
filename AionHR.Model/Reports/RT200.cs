@@ -133,7 +133,7 @@ namespace AionHR.Model.Reports
 
         public double DeductionsTotal { get { return deductions.Sum(x => x.amount); } }
 
-        public double NetSalary { get { return basicAmount + EntitlementsTotal + TaxableEntitlementsTotal - DeductionsTotal; } }
+        public double NetSalary { get { return /*basicAmount +*/ EntitlementsTotal + TaxableEntitlementsTotal - DeductionsTotal; } }
 
         public void AddEn(CurrentEntitlementDeduction en)
         {

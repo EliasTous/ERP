@@ -165,4 +165,13 @@
   <data name="To" xml:space="preserve">
     <value>الى</value>
   </data>
+  <data name="exemptDeliveryPeriod" xml:space="preserve">
+    <value>مدة الولادة المسموح بها </value>
+  </data>
+  <data name="exemptMarriagePeriod" xml:space="preserve">
+    <value>مدة الزواج المسموح بها </value>
+  </data>
+  <data name="IndemnityRecognitiontabs" xml:space="preserve">
+    <value>جدول الاستقالة </value>
+  </data>
 </root>

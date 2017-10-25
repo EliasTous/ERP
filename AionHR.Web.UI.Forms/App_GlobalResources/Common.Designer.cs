@@ -1033,6 +1033,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Generate.
+        /// </summary>
+        internal static string Generate {
+            get {
+                return ResourceManager.GetString("Generate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Generate Payroll.
         /// </summary>
         internal static string GeneratePayroll {
@@ -1110,6 +1119,15 @@ namespace Resources {
         internal static string ImportAttendance {
             get {
                 return ResourceManager.GetString("ImportAttendance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Import Calendar.
+        /// </summary>
+        internal static string importCalendar {
+            get {
+                return ResourceManager.GetString("importCalendar", resourceCulture);
             }
         }
         
@@ -1713,6 +1731,15 @@ namespace Resources {
         internal static string No {
             get {
                 return ResourceManager.GetString("No", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Notice Periods.
+        /// </summary>
+        internal static string NoticePeriods {
+            get {
+                return ResourceManager.GetString("NoticePeriods", resourceCulture);
             }
         }
         
@@ -2514,6 +2541,15 @@ namespace Resources {
         internal static string TaskTypes {
             get {
                 return ResourceManager.GetString("TaskTypes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Termination Reason.
+        /// </summary>
+        internal static string TerminationReasons {
+            get {
+                return ResourceManager.GetString("TerminationReasons", resourceCulture);
             }
         }
         

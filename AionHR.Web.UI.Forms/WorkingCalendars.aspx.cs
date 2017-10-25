@@ -1218,7 +1218,7 @@ namespace AionHR.Web.UI.Forms
                 else
                 {
                     X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.ErrorUpdatingRecord, GetLocalResourceObject("CopiedSucc").ToString()).Show();
+                    X.Msg.Alert(Resources.Common.importCalendar, GetLocalResourceObject("CopiedSucc").ToString()).Show();
                     LoadDays();
                     return;
                 }

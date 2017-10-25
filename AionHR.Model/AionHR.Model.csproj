@@ -54,7 +54,7 @@
     <Compile Include="Dashboard\DepartmentActivity.cs" />
     <Compile Include="Dashboard\EmployeeBirthday.cs" />
     <Compile Include="Dashboard\EmpRTW.cs" />
-    <Compile Include="Dashboard\LocalRate.cs" />
+    <Compile Include="Dashboard\LocalsRate.cs" />
     <Compile Include="Dashboard\ProbationEnd.cs" />
     <Compile Include="Dashboard\SalaryChange.cs" />
     <Compile Include="Dashboard\WorkAnniversary.cs" />
@@ -112,6 +112,7 @@
     <Compile Include="Payroll\PayCode.cs" />
     <Compile Include="Payroll\PayrollEntitlementDeduction.cs" />
     <Compile Include="Payroll\PayrollIndemnity.cs" />
+    <Compile Include="Payroll\PayrollIndemnityRecognition.cs" />
     <Compile Include="Payroll\PayrollSocialSecurity.cs" />
     <Compile Include="Payroll\SocialSecuritySchedule.cs" />
     <Compile Include="Payroll\SocialSecurityScheduleSetup.cs" />

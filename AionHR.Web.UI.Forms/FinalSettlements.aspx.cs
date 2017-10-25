@@ -1292,7 +1292,7 @@ namespace AionHR.Web.UI.Forms
             if (routers.Items.Count != 0)
                 DESeq.Text = routers.Items[routers.Items.Count - 1].seqNo.ToString();
             else
-                DESeq.Text = "0";
+                DESeq.Text = "1000";
             this.deductionStore.DataSource = routers.Items;
             e.Total = routers.Items.Count;
           

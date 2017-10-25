@@ -20,17 +20,17 @@ using AionHR.Web.UI.Forms.Utilities;
 using AionHR.Model.Company.News;
 using AionHR.Services.Messaging;
 using AionHR.Model.Company.Structure;
+using AionHR.Model.System;
+using AionHR.Model.Attendance;
+using AionHR.Model.Employees.Leaves;
 using AionHR.Model.Employees.Profile;
-using AionHR.Services.Messaging.System;
-using Reports;
 
 namespace AionHR.Web.UI.Forms
 {
-    public partial class Departments : System.Web.UI.Page
+    public partial class TerminationReasons : System.Web.UI.Page
     {
-
-        ICompanyStructureService _branchService = ServiceLocator.Current.GetInstance<ICompanyStructureService>();
         ISystemService _systemService = ServiceLocator.Current.GetInstance<ISystemService>();
+
         IEmployeeService _employeeService = ServiceLocator.Current.GetInstance<IEmployeeService>();
         protected override void InitializeCulture()
         {
@@ -55,8 +55,6 @@ namespace AionHR.Web.UI.Forms
         {
 
 
-
-
             if (!X.IsAjaxRequest && !IsPostBack)
             {
 
@@ -65,7 +63,7 @@ namespace AionHR.Web.UI.Forms
                 HideShowColumns();
                 try
                 {
-                    AccessControlApplier.ApplyAccessControlOnPage(typeof(Department), BasicInfoTab, GridPanel1, btnAdd, SaveButton);
+                    AccessControlApplier.ApplyAccessControlOnPage(typeof(DocumentType), BasicInfoTab, GridPanel1, btnAdd, SaveButton);
                 }
                 catch (AccessDeniedException exp)
                 {
@@ -74,6 +72,7 @@ namespace AionHR.Web.UI.Forms
                     Viewport1.Hidden = true;
                     return;
                 }
+
 
             }
 
@@ -123,42 +122,27 @@ namespace AionHR.Web.UI.Forms
         {
 
 
-            int id = Convert.ToInt32(e.ExtraParams["id"]);
+            string id = e.ExtraParams["id"];
             string type = e.ExtraParams["type"];
-            CurrentDepartment.Text = id.ToString();
+
             switch (type)
             {
                 case "imgEdit":
                     //Step 1 : get the object from the Web Service 
                     RecordRequest r = new RecordRequest();
-                    r.RecordID = id.ToString();
-                    RecordResponse<Department> response = _branchService.ChildGetRecord<Department>(r);
+                    r.RecordID = id;
+
+                    RecordResponse<TerminationReason> response = _employeeService.ChildGetRecord<TerminationReason>(r);
                     if (!response.Success)
                     {
                         X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
                         X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).ToString() : response.Summary).Show();
                         return;
                     }
-                    //FillParent();
                     //Step 2 : call setvalues with the retrieved object
-
-
-                    if (response.result.supervisorId.HasValue)
-                    {
-
-                        supervisorId.GetStore().Add(new object[]
-                           {
-                                new
-                                {
-                                    recordId = response.result.supervisorId,
-                                    fullName =response.result.supervisorName.fullName
-                                }
-                           });
-                        supervisorId.SetValue(response.result.supervisorId);
-
-                    }
                     this.BasicInfoTab.SetValues(response.result);
-                    // InitCombos(response.result);
+
+
                     this.EditRecordWindow.Title = Resources.Common.EditWindowsTitle;
                     this.EditRecordWindow.Show();
                     break;
@@ -191,7 +175,6 @@ namespace AionHR.Web.UI.Forms
 
         }
 
-
         /// <summary>
         /// This direct method will be called after confirming the delete
         /// </summary>
@@ -202,20 +185,18 @@ namespace AionHR.Web.UI.Forms
             try
             {
                 //Step 1 Code to delete the object from the database 
-                Department n = new Department();
-                n.recordId = index;
-                n.name = "";
-                n.departmentRef = "";
+                TerminationReason s = new TerminationReason();
+                s.recordId = index;
+                s.name = "";
+                //s.intName = "";
 
-
-                PostRequest<Department> req = new PostRequest<Department>();
-                req.entity = n;
-                PostResponse<Department> res = _branchService.ChildDelete<Department>(req);
-                if (!res.Success)
+                PostRequest<TerminationReason> req = new PostRequest<TerminationReason>();
+                req.entity = s;
+                PostResponse<TerminationReason> r = _employeeService.ChildDelete<TerminationReason>(req);
+                if (!r.Success)
                 {
-                    //Show an error saving...
                     X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.Error, res.Summary).Show();
+                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() : r.Summary).Show();
                     return;
                 }
                 else
@@ -231,6 +212,7 @@ namespace AionHR.Web.UI.Forms
                         Html = Resources.Common.RecordDeletedSucc
                     });
                 }
+
             }
             catch (Exception ex)
             {
@@ -242,96 +224,8 @@ namespace AionHR.Web.UI.Forms
 
         }
 
-        private void FillParent()
-        {
-            ListRequest req = new ListRequest();
-
-            ListResponse<Department> response = _branchService.ChildGetAll<Department>(req);
-            if (!response.Success)
-            {
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).ToString() : response.Summary).Show();
-                departmentStore.DataSource = new List<Department>();
-            }
-            departmentStore.DataSource = response.Items;
-            departmentStore.DataBind();
-        }
-        [DirectMethod]
-        public object FillParent(string action, Dictionary<string, object> extraParams)
-        {
-            StoreRequestParameters prms = new StoreRequestParameters(extraParams);
 
 
-
-            List<Department> data;
-            ListRequest req = new ListRequest();
-
-            ListResponse<Department> response = _branchService.ChildGetAll<Department>(req);
-            if (!response.Success)
-            {
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).ToString() : response.Summary).Show();
-                return new List<Department>();
-            }
-            data = response.Items;
-            return new
-            {
-                data
-            };
-
-        }
-        [DirectMethod]
-        public object FillSupervisor(string action, Dictionary<string, object> extraParams)
-        {
-
-            StoreRequestParameters prms = new StoreRequestParameters(extraParams);
-
-
-
-            List<Employee> data = GetEmployeesFiltered(prms.Query);
-            if (data == null)
-                data = new List<Employee>();
-            data.ForEach(s => { s.fullName = s.name.fullName; });
-            //  return new
-            // {
-            return data;
-            //};
-
-        }
-
-        private List<Employee> GetEmployeeByID(string id)
-        {
-
-            RecordRequest req = new RecordRequest();
-            req.RecordID = id;
-
-
-
-            List<Employee> emps = new List<Employee>();
-            RecordResponse<Employee> emp = _employeeService.Get<Employee>(req);
-            emps.Add(emp.result);
-            return emps;
-        }
-        private List<Employee> GetEmployeesFiltered(string query)
-        {
-
-            EmployeeListRequest req = new EmployeeListRequest();
-            if (string.IsNullOrEmpty(CurrentDepartment.Text))
-                req.DepartmentId = "0";
-            else
-            req.DepartmentId = CurrentDepartment.Text;
-            req.BranchId = "0";
-            req.IncludeIsInactive = 2;
-            req.SortBy = GetNameFormat();
-
-            req.StartAt = "1";
-            req.Size = "20";
-            req.Filter = query;
-
-
-
-
-            ListResponse<Employee> response = _employeeService.GetAll<Employee>(req);
-            return response.Items;
-        }
 
 
         /// <summary>
@@ -413,14 +307,17 @@ namespace AionHR.Web.UI.Forms
 
             //Reset all values of the relative object
             BasicInfoTab.Reset();
-           // FillParent();
+
+
             this.EditRecordWindow.Title = Resources.Common.AddNewRecord;
+
 
             this.EditRecordWindow.Show();
         }
 
         protected void Store1_RefreshData(object sender, StoreReadDataEventArgs e)
         {
+
 
             //GEtting the filter from the page
             string filter = string.Empty;
@@ -431,16 +328,15 @@ namespace AionHR.Web.UI.Forms
             //Fetching the corresponding list
 
             //in this test will take a list of News
-            ListRequest request = new ListRequest();
-            request.Filter = searchTrigger.Text;
-            ListResponse<Department> branches = _branchService.ChildGetAll<Department>(request);
-            if (!branches.Success)
+            ListRequest caRequest = new ListRequest();
+            ListResponse<TerminationReason> resp = _employeeService.ChildGetAll<TerminationReason>(caRequest);
+            if (!resp.Success)
             {
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", branches.ErrorCode) != null ? GetGlobalResourceObject("Errors", branches.ErrorCode).ToString() : branches.Summary).Show();
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() : resp.Summary).Show();
                 return;
             }
-            this.Store1.DataSource = branches.Items;
-            e.Total = branches.count;
+            this.Store1.DataSource = resp.Items;
+            e.Total = resp.Items.Count; ;
 
             this.Store1.DataBind();
         }
@@ -453,22 +349,14 @@ namespace AionHR.Web.UI.Forms
 
 
             //Getting the id to check if it is an Add or an edit as they are managed within the same form.
-            string id = e.ExtraParams["id"];
+
 
             string obj = e.ExtraParams["values"];
+            TerminationReason b = JsonConvert.DeserializeObject<TerminationReason>(obj);
 
-            Department b = JsonConvert.DeserializeObject<Department>(obj);
-
-            b.recordId = id;
-            b.supervisorName = new EmployeeName();
+            string id = e.ExtraParams["id"];
             // Define the object to add or edit as null
-            if (supervisorId.SelectedItem.Text != null)
 
-                b.supervisorName.fullName = supervisorId.SelectedItem.Text;
-            if (parentId.SelectedItem != null)
-                b.parentName = parentId.SelectedItem.Text;
-            if (!b.isInactive.HasValue)
-                b.isInactive = false;
             if (string.IsNullOrEmpty(id))
             {
 
@@ -476,10 +364,12 @@ namespace AionHR.Web.UI.Forms
                 {
                     //New Mode
                     //Step 1 : Fill The object and insert in the store 
-                    PostRequest<Department> request = new PostRequest<Department>();
+               
+                    PostRequest<TerminationReason> request = new PostRequest<TerminationReason>();
+
                     request.entity = b;
-                    PostResponse<Department> r = _branchService.ChildAddOrUpdate<Department>(request);
-                    b.recordId = r.recordId;
+                    PostResponse<TerminationReason> r = _employeeService.ChildAddOrUpdate<TerminationReason>(request);
+
 
                     //check if the insert failed
                     if (!r.Success)//it maybe be another condition
@@ -491,7 +381,7 @@ namespace AionHR.Web.UI.Forms
                     }
                     else
                     {
-
+                        b.recordId = r.recordId;
                         //Add this record to the store 
                         this.Store1.Insert(0, b);
 
@@ -527,10 +417,10 @@ namespace AionHR.Web.UI.Forms
 
                 try
                 {
-                    int index = Convert.ToInt32(id);//getting the id of the record
-                    PostRequest<Department> request = new PostRequest<Department>();
+                    //getting the id of the record
+                    PostRequest<TerminationReason> request = new PostRequest<TerminationReason>();
                     request.entity = b;
-                    PostResponse<Department> r = _branchService.ChildAddOrUpdate<Department>(request);                   //Step 1 Selecting the object or building up the object for update purpose
+                    PostResponse<TerminationReason> r = _employeeService.ChildAddOrUpdate<TerminationReason>(request);                      //Step 1 Selecting the object or building up the object for update purpose
 
                     //Step 2 : saving to store
 
@@ -538,18 +428,15 @@ namespace AionHR.Web.UI.Forms
                     if (!r.Success)//it maybe another check
                     {
                         X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                        X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorUpdatingRecord).Show();
+                        X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() : r.Summary).Show();
                         return;
                     }
                     else
                     {
 
 
-                        ModelProxy record = this.Store1.GetById(index);
+                        ModelProxy record = this.Store1.GetById(id);
                         BasicInfoTab.UpdateRecord(record);
-
-                        record.Set("svFullName", b.supervisorName.fullName);
-                        record.Set("parentName", b.parentName);
                         record.Commit();
                         Notification.Show(new NotificationConfig
                         {
@@ -557,8 +444,8 @@ namespace AionHR.Web.UI.Forms
                             Icon = Icon.Information,
                             Html = Resources.Common.RecordUpdatedSucc
                         });
-
                         this.EditRecordWindow.Close();
+
 
                     }
 
@@ -585,133 +472,86 @@ namespace AionHR.Web.UI.Forms
         {
 
         }
-        private string GetNameFormat()
-        {
-            SystemDefaultRecordRequest req = new SystemDefaultRecordRequest();
-            req.Key = "nameFormat";
-            RecordResponse<KeyValuePair<string, string>> response = _systemService.ChildGetRecord<KeyValuePair<string, string>>(req);
-            if (!response.Success)
-            {
+        //protected void printBtn_Click(object sender, EventArgs e)
+        //{
+        //    DocumentTypesReport p = GetReport();
+        //    string format = "Pdf";
+        //    string fileName = String.Format("Report.{0}", format);
 
-            }
-            string paranthized = response.result.Value;
-            paranthized = paranthized.Replace('{', ' ');
-            paranthized = paranthized.Replace('}', ',');
-            paranthized = paranthized.Substring(0, paranthized.Length - 1);
-            paranthized = paranthized.Replace(" ", string.Empty);
-            return paranthized;
+        //    MemoryStream ms = new MemoryStream();
+        //    p.ExportToPdf(ms, new DevExpress.XtraPrinting.PdfExportOptions() { ShowPrintDialogOnOpen = true });
+        //    Response.Clear();
+        //    Response.Write("<script>");
+        //    Response.Write("window.document.forms[0].target = '_blank';");
+        //    Response.Write("setTimeout(function () { window.document.forms[0].target = ''; }, 0);");
+        //    Response.Write("</script>");
+        //    Response.ContentType = "application/pdf";
+        //    Response.AddHeader("Content-Disposition", String.Format("{0}; filename={1}", "inline", fileName));
+        //    Response.BinaryWrite(ms.ToArray());
+        //    Response.Flush();
+        //    Response.Close();
+        //    //Response.Redirect("Reports/RT301.aspx");
+        //}
+        //protected void ExportPdfBtn_Click(object sender, EventArgs e)
+        //{
+        //    DocumentTypesReport p = GetReport();
+        //    string format = "Pdf";
+        //    string fileName = String.Format("Report.{0}", format);
 
-        }
+        //    MemoryStream ms = new MemoryStream();
+        //    p.ExportToPdf(ms);
+        //    Response.Clear();
 
-        protected void addDepartment(object sender, DirectEventArgs e)
-        {
-            Department dept = new Department();
-            if (string.IsNullOrEmpty(parentId.Text))
-                return;
-            dept.name = parentId.Text;
-            
-            PostRequest<Department> depReq = new PostRequest<Department>();
-            depReq.entity = dept;
-            PostResponse<Department> response = _branchService.ChildAddOrUpdate<Department>(depReq);
-            if (response.Success)
-            {
-                dept.recordId = response.recordId;
-                departmentStore.Reload();
-                parentId.Select(dept.recordId);
-                Store1.Insert(0, dept);
-            }
-            else
-            {
-                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).ToString() : response.Summary).Show();
-                return;
-            }
+        //    Response.ContentType = "application/pdf";
+        //    Response.AddHeader("Content-Disposition", String.Format("{0}; filename={1}", "attachment", fileName));
+        //    Response.BinaryWrite(ms.ToArray());
+        //    Response.Flush();
+        //    Response.Close();
+        //    //Response.Redirect("Reports/RT301.aspx");
+        //}
 
-        }
+        //protected void ExportXLSBtn_Click(object sender, EventArgs e)
+        //{
+        //    DocumentTypesReport p = GetReport();
+        //    string format = "xls";
+        //    string fileName = String.Format("Report.{0}", format);
 
+        //    MemoryStream ms = new MemoryStream();
+        //    p.ExportToXls(ms);
 
+        //    Response.Clear();
 
-        protected void printBtn_Click(object sender, EventArgs e)
-        {
-            DepartmentsReport p = GetReport();
-            string format = "Pdf";
-            string fileName = String.Format("Report.{0}", format);
+        //    Response.ContentType = "application/vnd.ms-excel";
+        //    Response.AddHeader("Content-Disposition", String.Format("{0}; filename={1}", "attachment", fileName));
+        //    Response.BinaryWrite(ms.ToArray());
+        //    Response.Flush();
+        //    Response.Close();
+        //    //Response.Redirect("Reports/RT301.aspx");
+        //}
+        //private DocumentTypesReport GetReport()
+        //{
 
-            MemoryStream ms = new MemoryStream();
-            p.ExportToPdf(ms, new DevExpress.XtraPrinting.PdfExportOptions() { ShowPrintDialogOnOpen = true });
-            Response.Clear();
-            Response.Write("<script>");
-            Response.Write("window.document.forms[0].target = '_blank';");
-            Response.Write("setTimeout(function () { window.document.forms[0].target = ''; }, 0);");
-            Response.Write("</script>");
-            Response.ContentType = "application/pdf";
-            Response.AddHeader("Content-Disposition", String.Format("{0}; filename={1}", "inline", fileName));
-            Response.BinaryWrite(ms.ToArray());
-            Response.Flush();
-            Response.Close();
-            //Response.Redirect("Reports/RT301.aspx");
-        }
-        protected void ExportPdfBtn_Click(object sender, EventArgs e)
-        {
-            DepartmentsReport p = GetReport();
-            string format = "Pdf";
-            string fileName = String.Format("Report.{0}", format);
+        //    ListRequest request = new ListRequest();
 
-            MemoryStream ms = new MemoryStream();
-            p.ExportToPdf(ms);
-            Response.Clear();
+        //    request.Filter = "";
+        //    ListResponse<DocumentType> resp = _employeeService.ChildGetAll<DocumentType>(request);
+        //    if (!resp.Success)
+        //    {
+        //        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+        //        X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() : resp.Summary).Show();
+        //        return null;
+        //    }
+        //    DocumentTypesReport p = new DocumentTypesReport();
+        //    p.DataSource = resp.Items;
+        //    p.Parameters["User"].Value = _systemService.SessionHelper.GetCurrentUser();
+        //    p.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;
+        //    p.RightToLeftLayout = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeftLayout.Yes : DevExpress.XtraReports.UI.RightToLeftLayout.No;
 
-            Response.ContentType = "application/pdf";
-            Response.AddHeader("Content-Disposition", String.Format("{0}; filename={1}", "attachment", fileName));
-            Response.BinaryWrite(ms.ToArray());
-            Response.Flush();
-            Response.Close();
-            //Response.Redirect("Reports/RT301.aspx");
-        }
-
-        protected void ExportXLSBtn_Click(object sender, EventArgs e)
-        {
-            DepartmentsReport p = GetReport();
-            string format = "xls";
-            string fileName = String.Format("Report.{0}", format);
-
-            MemoryStream ms = new MemoryStream();
-            p.ExportToXls(ms);
-
-            Response.Clear();
-
-            Response.ContentType = "application/vnd.ms-excel";
-            Response.AddHeader("Content-Disposition", String.Format("{0}; filename={1}", "attachment", fileName));
-            Response.BinaryWrite(ms.ToArray());
-            Response.Flush();
-            Response.Close();
-            //Response.Redirect("Reports/RT301.aspx");
-        }
-        private DepartmentsReport GetReport()
-        {
-
-            ListRequest request = new ListRequest();
-
-            request.Filter = "";
-            ListResponse<Department> resp = _branchService.ChildGetAll<Department>(request);
-            if (!resp.Success)
-            {
-                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() : resp.Summary).Show();
-                return null;
-            }
-            DepartmentsReport p = new DepartmentsReport();
-            p.DataSource = resp.Items;
-            p.Parameters["User"].Value = _systemService.SessionHelper.GetCurrentUser();
-            p.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;
-            p.RightToLeftLayout = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeftLayout.Yes : DevExpress.XtraReports.UI.RightToLeftLayout.No;
-            p.Parameters["Yes"].Value = GetGlobalResourceObject("Common", "Yes").ToString();
-            p.Parameters["No"].Value = GetGlobalResourceObject("Common", "No").ToString();
-            return p;
+        //    return p;
 
 
 
-        }
+        //}
 
     }
 }

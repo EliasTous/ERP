@@ -544,6 +544,24 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Hidden ttTitle;
         
         /// <summary>
+        /// tRTitle control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Hidden tRTitle;
+        
+        /// <summary>
+        /// NPTitle control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Hidden NPTitle;
+        
+        /// <summary>
         /// TrType1 control.
         /// </summary>
         /// <remarks>

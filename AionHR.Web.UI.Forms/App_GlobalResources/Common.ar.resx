@@ -1029,4 +1029,16 @@
   <data name="RT503" xml:space="preserve">
     <value>رواتب الأقسام </value>
   </data>
+  <data name="importCalendar" xml:space="preserve">
+    <value>نسخ من تقويم لأخر</value>
+  </data>
+  <data name="TerminationReasons" xml:space="preserve">
+    <value>انهاء الخدمة </value>
+  </data>
+  <data name="NoticePeriods" xml:space="preserve">
+    <value>فترات تبليغ انتهاء الخدمة </value>
+  </data>
+  <data name="Generate" xml:space="preserve">
+    <value>انشاء </value>
+  </data>
 </root>

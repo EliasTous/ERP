@@ -183,6 +183,9 @@
   <data name="EditWindowsTitle" xml:space="preserve">
     <value>تعديل الفرع</value>
   </data>
+  <data name="empCount" xml:space="preserve">
+    <value>عدد موظفين </value>
+  </data>
   <data name="EmployeeRightToWork" xml:space="preserve">
     <value>وثائق الموظفين</value>
   </data>
@@ -363,6 +366,15 @@
   <data name="Loans" xml:space="preserve">
     <value>السلف</value>
   </data>
+  <data name="LocalsCount" xml:space="preserve">
+    <value>عدد موظفين محلين </value>
+  </data>
+  <data name="LocalsRate" xml:space="preserve">
+    <value>نسبة المحليين</value>
+  </data>
+  <data name="MinLocalRate" xml:space="preserve">
+    <value>نسبة مطلوبة</value>
+  </data>
   <data name="MissingPunchesGridTitle" xml:space="preserve">
     <value>دوام غير مسجل</value>
   </data>
@@ -410,5 +422,8 @@
   </data>
   <data name="WindowTitle" xml:space="preserve">
     <value>الموظفين</value>
+  </data>
+  <data name="LocalRate" xml:space="preserve">
+    <value>نسبة المحليين</value>
   </data>
 </root>

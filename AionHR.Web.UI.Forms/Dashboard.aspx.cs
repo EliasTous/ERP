@@ -87,7 +87,6 @@ namespace AionHR.Web.UI.Forms
                 
 
                     FillStatus();
-                    Store2.Reload();
 
                     //outStore.Reload();
                     //activeStore.Reload();
@@ -794,46 +793,32 @@ namespace AionHR.Web.UI.Forms
             UnpaidLeavesStore.DataBind();
         }
 
-        protected void LocalRate_ReadData(object sender, StoreReadDataEventArgs e)
+        protected void LocalRateStore_ReadData(object sender, StoreReadDataEventArgs e)
         {
-            DashboardRequest req = LocalRateRequest();
-            ListResponse<LocalRate> resp = _systemService.ChildGetAll<LocalRate>(req);
+            ActiveAttendanceRequest req = new ActiveAttendanceRequest();
+            ListResponse<LocalsRate> resp = _systemService.ChildGetAll<LocalsRate>(req);
             if (!resp.Success)
             {
                 X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() : resp.Summary).Show();
                 return;
             }
 
-            Store2.DataSource = resp.Items;
-            Store2.DataBind();
-            X.Call("fixWidth", resp.Items.Count);
-
-        }
-        private DashboardRequest LocalRateRequest()
-        {
-            DashboardRequest req = new DashboardRequest();
-            var d = jobInfo1.GetJobInfo();
-            req.BranchId = d.BranchId.HasValue ? d.BranchId.Value : 0;
-            req.DepartmentId = d.DepartmentId.HasValue ? d.DepartmentId.Value : 0;
-            req.DivisionId = d.DivisionId.HasValue ? d.DivisionId.Value : 0;
-            req.PositionId = d.PositionId.HasValue ? d.PositionId.Value : 0;
-            int intResult;
+            List<object> RateObjs = new List<object>();
+            RateObjs.Add(new {category=GetLocalResourceObject("MinLocalRate").ToString(),number=resp.Items[0].minLocalsRate });//Should use GetLocalResource(MinLocalsRate) and translate in resources
+            RateObjs.Add(new { category = GetLocalResourceObject("LocalsRate").ToString(), number = resp.Items[0].localsrate });//Should use GetLocalResource(MinLocalsRate) and translate in resources
 
           
-            if (!string.IsNullOrEmpty(esId.SelectedItem.Value))
-            {
-                req.EsId = Convert.ToInt32(esId.SelectedItem.Value);
-                
-            }
-            else
-            {
-                req.EsId = 0;
 
-            }
+            LocalRateStore.DataSource = RateObjs;
+            LocalRateStore.DataBind();
 
-
-
-            return req;
+            List<object> CountObjs = new List<object>();
+            CountObjs.Add(new {category = GetLocalResourceObject("LocalsCount").ToString(), number = resp.Items[0].localsCount });//here 
+            
+            CountObjs.Add(new {category = GetLocalResourceObject("empCount").ToString(), number = resp.Items[0].empCount });//here
+           
+            LocalCountStore.DataSource = CountObjs;
+            LocalCountStore.DataBind();
         }
     }
 }

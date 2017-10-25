@@ -270,6 +270,7 @@
     <Content Include="MediaCategories.aspx" />
     <Content Include="MediaItems.aspx" />
     <Content Include="Nationalities.aspx" />
+    <Content Include="NoticePeriods.aspx" />
     <Content Include="OrganizationChart.aspx" />
     <Content Include="OvertimeSettings.aspx" />
     <Content Include="packages.config" />
@@ -474,6 +475,7 @@
     <Content Include="SystemDefaults.aspx" />
     <Content Include="Tasks.aspx" />
     <Content Include="TaskTypes.aspx" />
+    <Content Include="TerminationReasons.aspx" />
     <Content Include="Test.aspx" />
     <Content Include="TimeAttendanceView.aspx" />
     <Content Include="TrainingTypes.aspx" />
@@ -597,6 +599,13 @@
     <Compile Include="ImportSalaries.aspx.designer.cs">
       <DependentUpon>ImportSalaries.aspx</DependentUpon>
     </Compile>
+    <Compile Include="NoticePeriods.aspx.cs">
+      <DependentUpon>NoticePeriods.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="NoticePeriods.aspx.designer.cs">
+      <DependentUpon>NoticePeriods.aspx</DependentUpon>
+    </Compile>
     <Compile Include="OvertimeSettings.aspx.cs">
       <DependentUpon>OvertimeSettings.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -701,6 +710,13 @@
     </Compile>
     <Compile Include="SocialSecuritySchedules.aspx.designer.cs">
       <DependentUpon>SocialSecuritySchedules.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="TerminationReasons.aspx.cs">
+      <DependentUpon>TerminationReasons.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TerminationReasons.aspx.designer.cs">
+      <DependentUpon>TerminationReasons.aspx</DependentUpon>
     </Compile>
     <Compile Include="Utilities\AccessControlApplier.cs" />
     <Compile Include="AllowanceTypes.aspx.cs">
@@ -1951,6 +1967,10 @@
     <Content Include="App_LocalResources\PayrollGeneration.aspx.ar.resx" />
     <Content Include="App_LocalResources\PayrollIndemnities.aspx.resx" />
     <Content Include="App_LocalResources\PayrollIndemnities.aspx.ar.resx" />
+    <Content Include="App_LocalResources\TerminationReasons.aspx.resx" />
+    <Content Include="App_LocalResources\TerminationReason.aspx.ar.resx" />
+    <Content Include="App_LocalResources\NoticePeriods.aspx.resx" />
+    <Content Include="App_LocalResources\NoticePeriods.aspx.ar.resx" />
     <EmbeddedResource Include="Properties\licenses.licx" />
     <Content Include="Reports\App_LocalResources\RT202.aspx.resx" />
     <Content Include="Reports\App_LocalResources\RT01.aspx.ar.resx" />
@@ -1994,6 +2014,8 @@
     <Content Include="Reports\App_LocalResources\RT109.aspx.ar.resx" />
     <Content Include="Reports\App_LocalResources\RT503.aspx.resx" />
     <Content Include="Reports\App_LocalResources\RT503.aspx.ar.resx" />
+    <Content Include="Reports\App_LocalResources\RT108.aspx.resx" />
+    <Content Include="Reports\App_LocalResources\RT108.aspx.ar.resx" />
     <EmbeddedResource Include="Reports\RT201.aspx.resx">
       <DependentUpon>RT201.aspx.cs</DependentUpon>
       <Generator>ResXFileCodeGenerator</Generator>
