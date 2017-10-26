@@ -132,7 +132,7 @@
     <Compile Include="Messaging\Reports\PayRefParameterSet.cs" />
     <Compile Include="Messaging\Reports\ReportCompositeRequest.cs" />
     <Compile Include="Messaging\Reports\ReportParameterSet.cs" />
-    <Compile Include="Messaging\Reports\RightToworkReportParameter.cs" />
+    <Compile Include="Messaging\Reports\RightToWorkParameterSet.cs" />
     <Compile Include="Messaging\Reports\SalaryChangeReasonParameterSet.cs" />
     <Compile Include="Messaging\Reports\SalaryTypeParameterSet.cs" />
     <Compile Include="Messaging\Reports\TransactionTypeParameterSet.cs" />
