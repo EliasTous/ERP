@@ -50,6 +50,7 @@ namespace AionHR.Web.UI.Forms
 
         private List<Employee> GetEmployeesFiltered(string query)
         {
+            //fill employee request 
 
             EmployeeListRequest req = new EmployeeListRequest();
             req.DepartmentId = "0";
@@ -124,10 +125,10 @@ namespace AionHR.Web.UI.Forms
                 HideShowButtons();
                 HideShowColumns();
 
-               
+
                 statusPref.Select("0");
-                //ldMethod.Select("0");
-                c.Format  = date.Format= /*effectiveDate.Format=*/ _systemService.SessionHelper.GetDateformat();
+                ldMethod.Select("0");
+                c.Format = /*cc.Format =*/ date.Format = effectiveDate.Format = _systemService.SessionHelper.GetDateformat();
                 //if (string.IsNullOrEmpty(Request.QueryString["employeeId"]))
                 //    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorOperation).Show();
                 //CurrentEmployee.Text = Request.QueryString["employeeId"];
@@ -157,11 +158,11 @@ namespace AionHR.Web.UI.Forms
                     caseCommentsTab.Hidden = true;
 
                 }
-                //if (purpose.InputType == InputType.Password)
-                //{
-                //    purpose.Visible = false;
-                //    purposeField.Visible = true;
-                //}
+                if (purpose.InputType == InputType.Password)
+                {
+                    purpose.Visible = false;
+                    purposeField.Visible = true;
+                }
             }
 
         }
@@ -169,7 +170,7 @@ namespace AionHR.Web.UI.Forms
         protected void addLoanType(object sender, DirectEventArgs e)
         {
             LoanType obj = new LoanType();
-            //obj.name = ltId.Text;
+            obj.name = ltId.Text;
 
             PostRequest<LoanType> req = new PostRequest<LoanType>();
             req.entity = obj;
@@ -177,8 +178,8 @@ namespace AionHR.Web.UI.Forms
             if (response.Success)
             {
                 obj.recordId = response.recordId;
-                //FillLoanType();
-                //ltId.Select(obj.recordId);
+                FillLoanType();
+                ltId.Select(obj.recordId);
             }
             else
             {
@@ -213,15 +214,15 @@ namespace AionHR.Web.UI.Forms
 
         }
 
-        //private void FillLoanType()
-        //{
-        //    ListRequest branchesRequest = new ListRequest();
-        //    ListResponse<LoanType> resp = _loanService.ChildGetAll<LoanType>(branchesRequest);
-        //    if (!resp.Success)
-        //        X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() : resp.Summary).Show();
-        //    ltStore.DataSource = resp.Items;
-        //    ltStore.DataBind();
-        //}
+        private void FillLoanType()
+        {
+            ListRequest branchesRequest = new ListRequest();
+            ListResponse<LoanType> resp = _loanService.ChildGetAll<LoanType>(branchesRequest);
+            if (!resp.Success)
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() : resp.Summary).Show();
+            ltStore.DataSource = resp.Items;
+            ltStore.DataBind();
+        }
         private void ApplyAccessControlOnLoanComments()
         {
             var properties = AccessControlApplier.GetPropertiesLevels(typeof(LoanComment));
@@ -340,7 +341,7 @@ namespace AionHR.Web.UI.Forms
                     //Step 1 : get the object from the Web Service 
                     RecordRequest r = new RecordRequest();
                     r.RecordID = id;
-                    
+
                     RecordResponse<Loan> response = _loanService.Get<Loan>(r);
                     if (!response.Success)
                     {
@@ -360,19 +361,19 @@ namespace AionHR.Web.UI.Forms
                                 }
                        });
                     employeeId.SetValue(response.result.employeeId);
-                    //effectiveDate.Disabled = response.result.status != 3;
+                    effectiveDate.Disabled = response.result.status != 3;
                     //FillFilesStore(Convert.ToInt32(id));
 
                     //Step 2 : call setvalues with the retrieved object
                     this.BasicInfoTab.SetValues(response.result);
                     FillCurrency();
                     FillBranchField();
-                    //FillLoanType();
-                    //ltId.Select(response.result.ltId.ToString());
+                    FillLoanType();
+                    ltId.Select(response.result.ltId.ToString());
                     CurrentAmountCurrency.Text = response.result.currencyRef;
                     currencyId.Select(response.result.currencyId.ToString());
                     status.Select(response.result.status.ToString());
-                    //ldMethod.Select(response.result.ldMethod.ToString());
+                    ldMethod.Select(response.result.ldMethod.ToString());
                     if (!string.IsNullOrEmpty(response.result.branchId))
                         branchId.Select(response.result.branchId);
                     loanComments_RefreshData(Convert.ToInt32(id));
@@ -470,7 +471,7 @@ namespace AionHR.Web.UI.Forms
                 s.ltId = 0;
                 s.ltName = "";
                 s.amount = 0;
-                
+
                 s.currencyId = 0;
 
                 PostRequest<Loan> req = new PostRequest<Loan>();
@@ -588,8 +589,8 @@ namespace AionHR.Web.UI.Forms
             }).Show();
         }
 
-      
-        
+
+
 
         private void FillBranchField()
         {
@@ -603,7 +604,7 @@ namespace AionHR.Web.UI.Forms
             branchStore.DataSource = resp.Items;
             branchStore.DataBind();
         }
-       
+
 
         private void FillCurrency()
         {
@@ -675,23 +676,21 @@ namespace AionHR.Web.UI.Forms
                 X.Msg.Alert(Resources.Common.Error, defaults.Summary).Show();
                 return;
             }
-           
-          //if (defaults.Items.Where(s => s.Key == "ldMethod").Count()!=0)
-          //      ldMethod.Select(defaults.Items.Where(s => s.Key == "ldMethod").First().Value);
-            if (defaults.Items.Where(s => s.Key == "ldValue").Count() != 0)
-                ldValue.Text= defaults.Items.Where(s => s.Key == "ldValue").First().Value.ToString();
+
+            ldMethod.Select(defaults.Items.Where(s => s.Key == "ldMethod").First().Value);
+            ldValue.Text = defaults.Items.Where(s => s.Key == "ldValue").First().Value.ToString();
             caseCommentStore.DataSource = new List<CaseComment>();
             caseCommentStore.DataBind();
             //Reset all values of the relative object
-           
+
             this.EditRecordWindow.Title = Resources.Common.AddNewRecord;
             date.SelectedDate = DateTime.Now;
             panelRecordDetails.ActiveIndex = 0;
             SetTabPanelEnable(false);
-            //FillLoanType();
+            FillLoanType();
             FillBranchField();
             FillCurrency();
-            //effectiveDate.Disabled = true;
+            effectiveDate.Disabled = true;
             this.EditRecordWindow.Show();
         }
 
@@ -768,13 +767,13 @@ namespace AionHR.Web.UI.Forms
             {
                 req.Status = 0;
             }
-            
+
 
             req.Size = "2000";
             req.StartAt = "1";
             req.Filter = "";
             req.SortBy = "employeeId";
-           
+
             return req;
         }
 
@@ -794,14 +793,14 @@ namespace AionHR.Web.UI.Forms
             //ListRequest request = new ListRequest();
             LoanManagementListRequest request = GetLoanManagementRequest();
             request.Filter = "";
-            
+
             request.SortBy = e.Sort[0].Property;
             if (e.Sort[0].Property == "employeeName")
                 request.SortBy = _systemService.SessionHelper.GetNameformat();
-            
-            
+
+
             request.Filter = "";
-            
+
             request.Size = e.Limit.ToString();
             request.StartAt = e.Start.ToString();
             ListResponse<Loan> routers = _loanService.GetAll<Loan>(request);
@@ -840,12 +839,12 @@ namespace AionHR.Web.UI.Forms
             //b.effectiveDate = new DateTime(b.effectiveDate.Year, b.effectiveDate.Month, b.effectiveDate.Day, 14, 0, 0);
             if (currencyId.SelectedItem != null)
                 b.currencyRef = currencyId.SelectedItem.Text;
-            if(branchId.SelectedItem!= null)
+            if (branchId.SelectedItem != null)
             {
                 b.branchName = branchId.SelectedItem.Text;
             }
-            //if (ltId.SelectedItem != null)
-            //    b.ltName = ltId.SelectedItem.Text;
+            if (ltId.SelectedItem != null)
+                b.ltName = ltId.SelectedItem.Text;
 
             if (string.IsNullOrEmpty(id))
             {
@@ -932,9 +931,9 @@ namespace AionHR.Web.UI.Forms
                             record.Set("date", null);
 
                         record.Set("employeeName", b.employeeName);
-                        
+
                         record.Set("branchName", b.branchName);
-                   
+
                         record.Commit();
                         Notification.Show(new NotificationConfig
                         {

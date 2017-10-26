@@ -535,6 +535,33 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Button Button3;
         
         /// <summary>
+        /// ltId control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.ComboBox ltId;
+        
+        /// <summary>
+        /// ltStore control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Store ltStore;
+        
+        /// <summary>
+        /// Button9 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Button Button9;
+        
+        /// <summary>
         /// date control.
         /// </summary>
         /// <remarks>
@@ -580,6 +607,15 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.TextField amount;
         
         /// <summary>
+        /// purpose control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.TextArea purpose;
+        
+        /// <summary>
         /// purposeField control.
         /// </summary>
         /// <remarks>
@@ -596,6 +632,24 @@ namespace AionHR.Web.UI.Forms {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.ComboBox status;
+        
+        /// <summary>
+        /// effectiveDate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.DateField effectiveDate;
+        
+        /// <summary>
+        /// ldMethod control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.ComboBox ldMethod;
         
         /// <summary>
         /// ldValue control.

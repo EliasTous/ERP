@@ -9,7 +9,7 @@
     <title></title>
     <link rel="stylesheet" type="text/css" href="CSS/Common.css" />
     <link rel="stylesheet" href="CSS/LiveSearch.css" />
-    <script type="text/javascript" src="Scripts/LeaveTypes.js?id=4"></script>
+    <script type="text/javascript" src="Scripts/LeaveTypes.js?id=15"></script>
     <script type="text/javascript" src="Scripts/common.js"></script>
 
 
@@ -258,7 +258,7 @@
                                 <ext:TextField ID="name" runat="server" FieldLabel="<%$ Resources:FieldName%>" Name="name" AllowBlank="false" />
                                 <ext:TextField ID="reference" runat="server" FieldLabel="<%$ Resources:FieldReference%>" Name="reference" />
 
-                                <ext:ComboBox AnyMatch="true" CaseSensitive="false" runat="server" FieldLabel="<%$ Resources:LeaveType%>" Editable="false" ID="leaveType" DataIndex="leaveType" Name="leaveType">
+                                <ext:ComboBox AnyMatch="true" CaseSensitive="false" runat="server" FieldLabel="<%$ Resources:LeaveType%>" Editable="false" ID="leaveType" DataIndex="leaveType" Name="leaveType" AllowBlank="false">
                                     <Items>
 
                                         <ext:ListItem Text="<%$ Resources: Personal %>" Value="1" />

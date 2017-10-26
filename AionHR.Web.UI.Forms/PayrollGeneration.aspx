@@ -163,7 +163,7 @@
                             </Store>
                             <ColumnModel>
                                 <Columns>
-                                    <ext:Column Visible="true" runat="server" ID="recordHeaderID" text="" DataIndex="recordId" Width="200" />
+                                    <ext:Column Visible="false" runat="server" ID="recordHeaderID" text="" DataIndex="recordId" Width="200" />
                                     <ext:Column runat="server" ID="c1" Text="<%$ Resources: FieldRef%>" DataIndex="payRef" Width="200"  />
                                     <ext:DateColumn runat="server" ID="periodFrom" Text="<%$ Resources: FieldFrom%>" DataIndex="startDate" Width="150" />
 
