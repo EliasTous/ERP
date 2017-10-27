@@ -64,7 +64,7 @@
             RemoteSort="True"
             RemoteFilter="true"
             OnReadData="Store1_RefreshData"
-            PageSize="50" IDMode="Explicit" Namespace="App">
+            PageSize="40" IDMode="Explicit" Namespace="App">
             <Proxy>
                 <ext:PageProxy>
                     <Listeners>
