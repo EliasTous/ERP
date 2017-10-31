@@ -870,7 +870,7 @@ namespace AionHR.Web.UI.Forms.Controls
 
             }
             req.BranchId = req.DepartmentId = 0;
-            req.OpenRequests = 0;
+            req.status = 0;
             req.StartAt = "1";
             req.Size = "1";
             req.SortBy = "endDate";

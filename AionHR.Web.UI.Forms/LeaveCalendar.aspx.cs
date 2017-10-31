@@ -234,13 +234,13 @@ namespace AionHR.Web.UI.Forms
 
             if (!string.IsNullOrEmpty(includeOpen.Text))
             {
-                req.OpenRequests = Convert.ToInt32(includeOpen.Value);
+                req.status = Convert.ToInt32(includeOpen.Value);
 
 
             }
             else
             {
-                req.OpenRequests = 0;
+                req.status = 0;
 
             }
 

@@ -558,8 +558,8 @@ namespace AionHR.Web.UI.Forms
             var d = jobInfo1.GetJobInfo();
             req.BranchId = d.BranchId.HasValue ? d.BranchId.Value : 0;
             req.DepartmentId = d.DepartmentId.HasValue ? d.DepartmentId.Value : 0;
-
-
+            req.raEmployeeId = _systemService.SessionHelper.GetCurrentUserId();
+            req.status = 1; 
 
 
 
