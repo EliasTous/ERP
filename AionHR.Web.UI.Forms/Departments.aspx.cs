@@ -23,6 +23,7 @@ using AionHR.Model.Company.Structure;
 using AionHR.Model.Employees.Profile;
 using AionHR.Services.Messaging.System;
 using Reports;
+using AionHR.Model.Attendance;
 
 namespace AionHR.Web.UI.Forms
 {
@@ -32,6 +33,7 @@ namespace AionHR.Web.UI.Forms
         ICompanyStructureService _branchService = ServiceLocator.Current.GetInstance<ICompanyStructureService>();
         ISystemService _systemService = ServiceLocator.Current.GetInstance<ISystemService>();
         IEmployeeService _employeeService = ServiceLocator.Current.GetInstance<IEmployeeService>();
+        ITimeAttendanceService _timeAttendanceService= ServiceLocator.Current.GetInstance<ITimeAttendanceService>();
         protected override void InitializeCulture()
         {
 
@@ -126,6 +128,7 @@ namespace AionHR.Web.UI.Forms
             int id = Convert.ToInt32(e.ExtraParams["id"]);
             string type = e.ExtraParams["type"];
             CurrentDepartment.Text = id.ToString();
+
             switch (type)
             {
                 case "imgEdit":
@@ -140,6 +143,7 @@ namespace AionHR.Web.UI.Forms
                         return;
                     }
                     //FillParent();
+                    Store2.Reload();
                     //Step 2 : call setvalues with the retrieved object
 
 
@@ -155,8 +159,11 @@ namespace AionHR.Web.UI.Forms
                                 }
                            });
                         supervisorId.SetValue(response.result.supervisorId);
+                       
 
                     }
+                    if (!string.IsNullOrEmpty(response.result.scId))
+                     scId.SetValue(response.result.scId);
                     this.BasicInfoTab.SetValues(response.result);
                     // InitCombos(response.result);
                     this.EditRecordWindow.Title = Resources.Common.EditWindowsTitle;
@@ -215,7 +222,8 @@ namespace AionHR.Web.UI.Forms
                 {
                     //Show an error saving...
                     X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.Error, res.Summary).Show();
+                   
+                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", res.ErrorCode) != null ? GetGlobalResourceObject("Errors", res.ErrorCode).ToString() : res.Summary).Show();
                     return;
                 }
                 else
@@ -415,7 +423,7 @@ namespace AionHR.Web.UI.Forms
             BasicInfoTab.Reset();
            // FillParent();
             this.EditRecordWindow.Title = Resources.Common.AddNewRecord;
-
+            Store2.Reload();
             this.EditRecordWindow.Show();
         }
 
@@ -469,6 +477,8 @@ namespace AionHR.Web.UI.Forms
                 b.parentName = parentId.SelectedItem.Text;
             if (!b.isInactive.HasValue)
                 b.isInactive = false;
+            if (scId.SelectedItem != null)
+                b.scId = scId.SelectedItem.Value;
             if (string.IsNullOrEmpty(id))
             {
 
@@ -550,6 +560,7 @@ namespace AionHR.Web.UI.Forms
 
                         record.Set("svFullName", b.supervisorName.fullName);
                         record.Set("parentName", b.parentName);
+                      
                         record.Commit();
                         Notification.Show(new NotificationConfig
                         {
@@ -711,6 +722,20 @@ namespace AionHR.Web.UI.Forms
 
 
 
+        }
+        [DirectMethod]
+        public void FillAttendanceScheduleStore(object sender, StoreReadDataEventArgs e)
+        {
+            ListRequest req = new ListRequest();
+
+            ListResponse<AttendanceSchedule> response = _timeAttendanceService.ChildGetAll<AttendanceSchedule>(req);
+            if (!response.Success)
+            {
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).ToString() : response.Summary).Show();
+                departmentStore.DataSource = new List<Department>();
+            }
+            Store2.DataSource = response.Items;
+            Store2.DataBind();
         }
 
     }

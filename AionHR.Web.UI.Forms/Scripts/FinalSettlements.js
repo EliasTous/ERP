@@ -42,9 +42,12 @@ var cellClick = function (view, cell, columnIndex, record, row, rowIndex, e) {
         return true;
     }
 
+    //App.RowExpander1.toggleRow(rowIndex, record);
 
     //forbidden
     return false;
+    //forbidden
+  
 };
 
 

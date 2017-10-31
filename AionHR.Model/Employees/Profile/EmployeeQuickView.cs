@@ -50,5 +50,7 @@ namespace AionHR.Model.Employees.Profile
 
            
         }
+        public string countryName { get; set; }
+
     }
 }

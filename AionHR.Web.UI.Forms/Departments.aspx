@@ -58,6 +58,7 @@
 
                         <ext:ModelField Name="parentName" />
                         <ext:ModelField Name="parentId" />
+                         <ext:ModelField Name="scName" />
 
 
 
@@ -163,6 +164,7 @@
 
                             <ext:Column Visible="false" ID="ColrecordId" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldrecordId %>" DataIndex="recordId" Hideable="false" Width="75" Align="Center" />
                             <ext:Column ID="ColReference" MenuDisabled="true" Sortable="true" runat="server" Text="<%$ Resources: FieldReference%>" DataIndex="departmentRef" width="150" Hideable="false" />
+                           
                             <ext:Column CellCls="cellLink" Sortable="true" ID="ColName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldName%>" DataIndex="name" Flex="2" Hideable="false">
                                 <Renderer Handler="return  record.data['name']"/>
                                 
@@ -173,7 +175,7 @@
                             <ext:Column ID="ColSvName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldSvFullName%>" DataIndex="supervisorName" Flex="1" Hideable="false" >
                                 <Renderer Handler="return record.data['supervisorName'].fullName;" />
                                 </ext:Column>
-
+                             <ext:Column ID="scName" MenuDisabled="true" Sortable="true" runat="server" Text="<%$ Resources: FieldAttendanceSchedule%>" DataIndex="scName" width="150" Hideable="false" />
 
 
                       
@@ -372,6 +374,26 @@
                                         <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
                                     </Listeners>
                                 </ext:ComboBox>
+                                
+                                <ext:ComboBox   AnyMatch="true"  CaseSensitive="false"  runat="server" AllowBlank="true" ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" ID="scId" Name="scId" FieldLabel="<%$ Resources:FieldAttendanceSchedule%>" >
+                                
+                                    <Store>
+                                        <ext:Store OnReadData="FillAttendanceScheduleStore"  runat="server" ID="Store2" AutoLoad="false">
+                                            <Model>
+                                                <ext:Model runat="server">
+                                                    <Fields>
+                                                        <ext:ModelField Name="recordId" />
+                                                        <ext:ModelField Name="name" />
+                                                    </Fields>
+                                                </ext:Model>
+                                            </Model>
+                                           
+                                            
+                                        </ext:Store>
+
+                                    </Store>
+                                </ext:ComboBox>
+
                             </Items>
 
                         </ext:FormPanel>

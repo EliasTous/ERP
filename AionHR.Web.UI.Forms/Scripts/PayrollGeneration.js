@@ -16,6 +16,9 @@ var attachRender = function (e) {
     }
     return '<img class="imgAttach"  style="cursor:pointer;" src="Images/Tools/application_edit.png" />';
 };
+var attachRender1 = function (e) {
+       return '<img class="imgAttach"  style="cursor:pointer;" src="Images/Tools/application_edit.png" />';
+};
 
 
 

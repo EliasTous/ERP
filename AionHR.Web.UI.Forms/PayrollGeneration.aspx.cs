@@ -227,7 +227,7 @@ namespace AionHR.Web.UI.Forms
         //    return req;
         //}
         private List<Employee> GetEmployeesFiltered(string query)
-        {
+      {
 
             EmployeeListRequest req = new EmployeeListRequest();
             req.DepartmentId = "0";
@@ -1258,9 +1258,18 @@ namespace AionHR.Web.UI.Forms
             string branchId = e.ExtraParams["branchId"];
             string employeeId = e.ExtraParams["employeeId"];
             GeneratePayroll h = new GeneratePayroll();
-            h.branchId = branchId;
-            h.departmentId = departmentId;
-            h.employeeId = employeeId;
+            if(departmentId=="null")
+                h.departmentId = "0";
+            else
+                h.departmentId = departmentId;
+            if (branchId=="null")
+                h.branchId = "0"; 
+            else
+                h.branchId = branchId;
+            if (employeeId=="null")
+                h.employeeId = "0";
+            else
+              h.employeeId = employeeId;
             h.payId = id; 
          
              

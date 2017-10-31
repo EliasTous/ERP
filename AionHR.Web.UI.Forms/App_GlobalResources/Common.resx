@@ -1044,4 +1044,10 @@
   <data name="FieldEHStatus" xml:space="preserve">
     <value>Status</value>
   </data>
+  <data name="GenerateAttendanceDaySucc" xml:space="preserve">
+    <value>Attendance Days Synced  Successfully</value>
+  </data>
+  <data name="GenerateAttendanceDays" xml:space="preserve">
+    <value>Generate Attendance Days</value>
+  </data>
 </root>

@@ -315,4 +315,46 @@
   <data name="positionName" xml:space="preserve">
     <value>الوظيفة</value>
   </data>
+  <data name="FieldBranch" xml:space="preserve">
+    <value>الفرع</value>
+  </data>
+  <data name="FieldDepartment" xml:space="preserve">
+    <value>القسم</value>
+  </data>
+  <data name="FieldDivision" xml:space="preserve">
+    <value>الإدارة العليا</value>
+  </data>
+  <data name="FieldPosition" xml:space="preserve">
+    <value>المنصب</value>
+  </data>
+  <data name="serviceDuration" xml:space="preserve">
+    <value>مدة الخدمة</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>الحالة </value>
+  </data>
+  <data name="allowedLeaveYtdTitle" xml:space="preserve">
+    <value>الاجازات المسموحة: </value>
+  </data>
+  <data name="eosBalanceTitle" xml:space="preserve">
+    <value>رصيد نهاية الخدمة: </value>
+  </data>
+  <data name="FieldReportsTo" xml:space="preserve">
+    <value>المدير: </value>
+  </data>
+  <data name="lastLeaveEndDateTitle" xml:space="preserve">
+    <value>تاريخ العودة من اخر اجازة</value>
+  </data>
+  <data name="lastLeaveStartDateTitle" xml:space="preserve">
+    <value>تاريخ اخر اجازة: </value>
+  </data>
+  <data name="leavesBalanceTitle" xml:space="preserve">
+    <value>رصيد الاجازات: </value>
+  </data>
+  <data name="paidLeavesYTDTitle" xml:space="preserve">
+    <value>الاجازات المدفوعة: </value>
+  </data>
+  <data name="esName" xml:space="preserve">
+    <value>حالة الموظف :</value>
+  </data>
 </root>

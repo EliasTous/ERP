@@ -123,6 +123,9 @@
   <data name="EditWindowsTitle" xml:space="preserve">
     <value>تعديل القسم</value>
   </data>
+  <data name="FieldAttendanceSchedule" xml:space="preserve">
+    <value>جدول الدوام</value>
+  </data>
   <data name="FieldIsInactive" xml:space="preserve">
     <value>غير نشط؟</value>
   </data>

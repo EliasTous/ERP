@@ -1051,6 +1051,24 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Generate Attendance Days.
+        /// </summary>
+        internal static string GenerateAttendanceDays {
+            get {
+                return ResourceManager.GetString("GenerateAttendanceDays", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Attendance Days Synced  Successfully.
+        /// </summary>
+        internal static string GenerateAttendanceDaySucc {
+            get {
+                return ResourceManager.GetString("GenerateAttendanceDaySucc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Generate Payroll.
         /// </summary>
         internal static string GeneratePayroll {
