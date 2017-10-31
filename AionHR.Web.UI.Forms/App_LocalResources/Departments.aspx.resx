@@ -153,6 +153,9 @@
   <data name="FieldTimeZone" xml:space="preserve">
     <value>Time Zone</value>
   </data>
+  <data name="isLeaveAuth" xml:space="preserve">
+    <value>Is leave authenticator</value>
+  </data>
   <data name="WindowTitle" xml:space="preserve">
     <value>Departments</value>
   </data>

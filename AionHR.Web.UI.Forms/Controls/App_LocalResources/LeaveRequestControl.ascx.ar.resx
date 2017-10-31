@@ -258,4 +258,10 @@
   <data name="Print" xml:space="preserve">
     <value>طباعة</value>
   </data>
+  <data name="Approvals" xml:space="preserve">
+    <value>تعميد</value>
+  </data>
+  <data name="Department" xml:space="preserve">
+    <value>القسم </value>
+  </data>
 </root>

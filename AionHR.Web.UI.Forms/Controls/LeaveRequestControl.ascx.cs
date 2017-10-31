@@ -203,6 +203,7 @@ namespace AionHR.Web.UI.Forms.Controls
             leaveDaysStore.DataSource = resp.Items;
             resp.Items.ForEach(x => x.dow = (short)DateTime.ParseExact(x.dayId, "yyyyMMdd", new CultureInfo("en")).DayOfWeek);
             leaveDaysStore.DataBind();
+            FillApprovals(id);
             LeaveChanged.Text = "0";
             X.Call("CalcSum");
             panelRecordDetails.ActiveTabIndex = 0;
@@ -1118,5 +1119,38 @@ namespace AionHR.Web.UI.Forms.Controls
                 }
             }
         }
+        public void FillApprovals(string Id)
+        {
+            LeaveDayListRequest req = new LeaveDayListRequest();
+            req.LeaveId = Id;
+            ListResponse<Approvals> response = _leaveManagementService.ChildGetAll<Approvals>(req);
+            if (!response.Success)
+            {
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).ToString() : response.Summary).Show();
+                return;
+            }
+            response.Items.ForEach(x =>
+            {
+                switch (x.status)
+                {
+                    case 1: x.stringStatus = "New";
+                        break;
+                    case 2: x.stringStatus = "Approved";
+                        break;
+                    case -1:x.stringStatus = "Rejected";
+                        break;
+                    default: x.stringStatus = "";
+                        break;
+
+
+                }
+            }
+            );
+            ApprovalsStore.DataSource = response.Items;
+            ApprovalsStore.DataBind();
+
+
+        }
+
     }
 }

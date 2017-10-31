@@ -9,7 +9,7 @@
     <title></title>
     <link rel="stylesheet" type="text/css" href="CSS/Common.css" />
     <link rel="stylesheet" href="CSS/LiveSearch.css" />
-    <script type="text/javascript" src="Scripts/LeaveTypes.js?id=15"></script>
+    <script type="text/javascript" src="Scripts/LeaveTypes.js?id=110"></script>
     <script type="text/javascript" src="Scripts/common.js"></script>
 
 
@@ -237,7 +237,7 @@
             Icon="PageEdit"
             Title="<%$ Resources:EditWindowsTitle %>"
             Width="450"
-            Height="330"
+            Height="450"
             AutoShow="false"
             Modal="true"
             Hidden="true"
@@ -267,7 +267,22 @@
 
 
                                 </ext:ComboBox>
-                                <ext:Checkbox runat="server" Name="requireApproval" InputValue="true" ID="requiresApprovalCheck" DataIndex="requireApproval" FieldLabel="<%$ Resources:FieldRequiresApproval%>" />
+                                <ext:Checkbox runat="server" Name="requireApproval" InputValue="true" ID="requiresApprovalCheck" DataIndex="requireApproval" FieldLabel="<%$ Resources:FieldRequiresApproval%>" >
+                                 <Listeners>
+                                         <Change Handler="#{ApprovalLevelFS}.setDisabled (!this.getValue());setApprovalLevel(this.getValue());"  >
+                                         </Change>
+                                     </Listeners>
+                                     </ext:Checkbox>
+                                 <ext:Checkbox runat="server" Name="isPaid" InputValue="true" ID="isPaid" DataIndex="isPaid" FieldLabel="<%$ Resources:isPaid%>" />
+                                    
+                                <ext:FieldSet ID="ApprovalLevelFS" runat="server" Disabled="true" Title="<%$ Resources:Approvallevel %>" >
+                                    <Items>
+                                       <ext:Checkbox runat="server" Name="raReportTo" InputValue="true" ID="raReportTo" DataIndex="raReportTo" FieldLabel="<%$ Resources:raReportTo %>" />
+                                       <ext:Checkbox runat="server" Name="raDepHead" InputValue="true" ID="raDepHead" DataIndex="raDepHead" FieldLabel="<%$ Resources:raDepHead %>" />
+                                       <ext:Checkbox runat="server" Name="raDepHierarchy" InputValue="true" ID="raDepHierarchy" DataIndex="raDepHierarchy" FieldLabel="<%$ Resources:raDepHierarchy %>" />
+                                       <ext:Checkbox runat="server" Name="raDepLA" InputValue="true" ID="raDepLA" DataIndex="raDepLA" FieldLabel="<%$ Resources:raDepLA%>" />
+                                        </Items>
+                                </ext:FieldSet>
 
 
 

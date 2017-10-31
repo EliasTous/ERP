@@ -60,6 +60,8 @@
                         <ext:ModelField Name="parentId" />
                          <ext:ModelField Name="scName" />
 
+                        
+
 
 
                     </Fields>
@@ -313,7 +315,7 @@
                                 <ext:TextField ID="departmentRef" runat="server" FieldLabel="<%$ Resources: FieldReference %>" DataIndex="departmentRef" />
 
 
-                                <ext:Checkbox ID="isInactiveCheck" runat="server" FieldLabel="<%$ Resources: FieldIsInactive%>" DataIndex="isInactive" Name="isInactive" InputValue="true" />
+                                
                                 <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" ID="supervisorId"
                                     DisplayField="fullName"
                                     ValueField="recordId"
@@ -393,6 +395,9 @@
 
                                     </Store>
                                 </ext:ComboBox>
+                               
+                                   <ext:Checkbox ID="isLeaveAuth" runat="server" FieldLabel="<%$ Resources: isLeaveAuth%>" DataIndex="isLeaveAuth" Name="isLeaveAuth" InputValue="true" />
+                                 <ext:Checkbox ID="isInactiveCheck" runat="server" FieldLabel="<%$ Resources: FieldIsInactive%>" DataIndex="isInactive" Name="isInactive" InputValue="true" />
 
                             </Items>
 

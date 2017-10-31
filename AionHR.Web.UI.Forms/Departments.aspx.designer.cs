@@ -364,15 +364,6 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.TextField departmentRef;
         
         /// <summary>
-        /// isInactiveCheck control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Checkbox isInactiveCheck;
-        
-        /// <summary>
         /// supervisorId control.
         /// </summary>
         /// <remarks>
@@ -434,6 +425,24 @@ namespace AionHR.Web.UI.Forms {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.Store Store2;
+        
+        /// <summary>
+        /// isLeaveAuth control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Checkbox isLeaveAuth;
+        
+        /// <summary>
+        /// isInactiveCheck control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Checkbox isInactiveCheck;
         
         /// <summary>
         /// SaveButton control.

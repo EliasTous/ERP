@@ -479,6 +479,7 @@ namespace AionHR.Web.UI.Forms
                 b.isInactive = false;
             if (scId.SelectedItem != null)
                 b.scId = scId.SelectedItem.Value;
+           
             if (string.IsNullOrEmpty(id))
             {
 

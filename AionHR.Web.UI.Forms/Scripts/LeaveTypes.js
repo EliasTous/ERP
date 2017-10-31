@@ -89,3 +89,15 @@ function getLeaveTypeString(index)
 {
     return document.getElementById("leaveType" + index).value;
 }
+function setApprovalLevel(ApprovalLevel)
+{
+    if (!ApprovalLevel) {
+       
+        App.raReportTo.setValue(ApprovalLevel);
+
+        App.raDepHead.setValue(ApprovalLevel);
+        App.raDepHierarchy.setValue(ApprovalLevel);
+        App.raDepLA.setValue(ApprovalLevel);
+    }
+       
+}

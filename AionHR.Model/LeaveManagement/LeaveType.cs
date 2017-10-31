@@ -24,5 +24,20 @@ namespace AionHR.Model.Employees.Leaves
         [PropertyID("42000_04")]
         [ApplySecurity]
         public int leaveType { get; set; }
+        [PropertyID("42000_05")]
+        [ApplySecurity]
+        public bool isPaid { get; set; }
+        [PropertyID("42000_06")]
+        [ApplySecurity]
+        public bool raReportTo { get; set; }
+        [PropertyID("42000_06")]
+        [ApplySecurity]
+        public bool raDepHead { get; set; }
+        [PropertyID("42000_06")]
+        [ApplySecurity]
+        public bool raDepHierarchy { get; set; }
+        [PropertyID("42000_06")]
+        [ApplySecurity]
+        public bool raDepLA { get; set; }
     }
 }

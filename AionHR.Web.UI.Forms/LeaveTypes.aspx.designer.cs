@@ -346,6 +346,60 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Checkbox requiresApprovalCheck;
         
         /// <summary>
+        /// isPaid control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Checkbox isPaid;
+        
+        /// <summary>
+        /// ApprovalLevelFS control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.FieldSet ApprovalLevelFS;
+        
+        /// <summary>
+        /// raReportTo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Checkbox raReportTo;
+        
+        /// <summary>
+        /// raDepHead control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Checkbox raDepHead;
+        
+        /// <summary>
+        /// raDepHierarchy control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Checkbox raDepHierarchy;
+        
+        /// <summary>
+        /// raDepLA control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Checkbox raDepLA;
+        
+        /// <summary>
         /// SaveButton control.
         /// </summary>
         /// <remarks>

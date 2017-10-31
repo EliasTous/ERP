@@ -470,6 +470,96 @@
                     </Items>
 
                 </ext:FormPanel>
+                <ext:FormPanel ID="ApprovalsForm" runat="server" OnLoad="LeaveDays_Load" Title="<%$ Resources: Approvals %>">
+                    <Items>
+                        <ext:GridPanel
+                            ID="ApprovalsGridPanel"
+                            runat="server"
+                            PaddingSpec="0 0 1 0"
+                            Header="false"
+                            MaxHeight="350"
+                            Layout="FitLayout"
+                            Scroll="Vertical"
+                            Border="false"
+                            Icon="User"
+                            ColumnLines="True" IDMode="Explicit" RenderXType="True">
+
+                            <Store>
+                                <ext:Store runat="server" ID="ApprovalsStore">
+                                    <Model>
+                                        <ext:Model runat="server">
+                                            <Fields>
+                                                <ext:ModelField Name="employeeName" IsComplex="true" />
+                                                <ext:ModelField Name="departmentName" />
+                                                <ext:ModelField Name="stringStatus" />
+                                                <ext:ModelField Name="notes" />
+                                                 <ext:ModelField Name="leaveId" />
+                                                
+                                                
+                                            </Fields>
+                                        </ext:Model>
+                                    </Model>
+                                </ext:Store>
+                            </Store>
+
+
+                            <ColumnModel ID="ColumnModel1" runat="server" SortAscText="<%$ Resources:Common , SortAscText %>" SortDescText="<%$ Resources:Common ,SortDescText  %>" SortClearText="<%$ Resources:Common ,SortClearText  %>" ColumnsText="<%$ Resources:Common ,ColumnsText  %>" EnableColumnHide="false" Sortable="false">
+                                <Columns>
+                                    <ext:Column ID="leaveIdCO" Visible="false" DataIndex="leaveId" runat="server">
+                                    </ext:Column>
+                                        <ext:Column ID="ColName" DataIndex="employeeName" Text="<%$ Resources: FieldEmployeeName%>" runat="server" Flex="4">
+                                           <Renderer Handler=" return record.data['employeeName'].fullName; ">
+                                           </Renderer>
+                                         </ext:Column>
+                                    <ext:Column ID="departmentName" DataIndex="departmentName" Text="<%$ Resources: Department%>" runat="server" Width="100"/>
+                                    <ext:Column ID="stringStatus" Visible="true" DataIndex="stringStatus" runat="server" text="<%$ Resources: FieldStatus%>" >
+                                    </ext:Column>
+                                      
+                                    <ext:Column ID="notes" DataIndex="notes" Text="<%$ Resources: ReturnNotes%>" runat="server" Width="100">
+                                       
+                                    </ext:Column>
+                                   
+
+
+
+                                </Columns>
+                            </ColumnModel>
+                            <%--  alert(last.dayId);
+                                                        if(App.leaveRequest1_shouldDisableLastDay.value=='1')
+                                                             if(last.dayId==rec.data['dayId'])  
+                                                                        this.setDisabled(false);
+                                                            else this.setDisabled(true); 
+                                                        else
+                                                            this.setDisabled(true); --%>
+                            <DockedItems>
+
+                                <ext:Toolbar ID="Toolbar1" runat="server" Dock="Bottom">
+                                    <Items>
+                                        <ext:StatusBar ID="StatusBar1" runat="server" />
+                                        <ext:ToolbarFill />
+
+                                    </Items>
+                                </ext:Toolbar>
+
+                            </DockedItems>
+
+
+                            <View>
+                                <ext:GridView ID="GridView1" runat="server" />
+                            </View>
+
+
+                            <SelectionModel>
+                                <ext:RowSelectionModel ID="rowSelectionModel2" runat="server" Mode="Single" StopIDModeInheritance="true" />
+                                <%--<ext:CheckboxSelectionModel ID="CheckboxSelectionModel1" runat="server" Mode="Multi" StopIDModeInheritance="true" />--%>
+                            </SelectionModel>
+                         
+                        </ext:GridPanel>
+
+
+                    </Items>
+
+                </ext:FormPanel>
 
             </Items>
         </ext:TabPanel>
