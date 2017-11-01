@@ -84,7 +84,7 @@ namespace AionHR.Web.UI.Forms
                 try
                 {
 
-                
+
 
                     FillStatus();
 
@@ -102,7 +102,7 @@ namespace AionHR.Web.UI.Forms
 
         }
 
-      
+
 
         private void FillStatus()
         {
@@ -236,7 +236,7 @@ namespace AionHR.Web.UI.Forms
             totalLoansLbl.Text = total.ToString("N0");
             deductedLoansLbl.Text = paid.ToString("N0");
             //X.Call("alerts", annev, annevTotal, birthdays, birthdaysTotal, empRW, empRWTotal, compRW, compRWTotal, scr, scrTotal, prob, probTotal);
-            List <object> objs = new List<object>();
+            List<object> objs = new List<object>();
             objs.Add(new { Count = dashoard.Items.Where(x => x.itemId == 110).ToList()[0].count, emps = GetLocalResourceObject("Paid").ToString() });
             objs.Add(new { Count = dashoard.Items.Where(x => x.itemId == 111).ToList()[0].count, emps = GetLocalResourceObject("Unpaid").ToString() });
             objs.Add(new { Count = dashoard.Items.Where(x => x.itemId == 112).ToList()[0].count, emps = GetLocalResourceObject("Absent").ToString() });
@@ -303,7 +303,7 @@ namespace AionHR.Web.UI.Forms
             //List<ActiveLeave> leaves = new List<ActiveLeave>();
             //leaves.Add(new ActiveLeave() { destination = "dc", employeeId = 8, employeeName = new Model.Employees.Profile.EmployeeName() { fullName = "vima" }, endDate = DateTime.Now.AddDays(10) });
 
-            
+
             leavesStore.DataBind();
         }
 
@@ -375,7 +375,7 @@ namespace AionHR.Web.UI.Forms
         {
             ActiveAttendanceRequest req = new ActiveAttendanceRequest();
             var d = jobInfo1.GetJobInfo();
-            req.BranchId = d.BranchId.HasValue?d.BranchId.Value:0;
+            req.BranchId = d.BranchId.HasValue ? d.BranchId.Value : 0;
             req.DepartmentId = d.DepartmentId.HasValue ? d.DepartmentId.Value : 0;
             req.DivisionId = d.DivisionId.HasValue ? d.DivisionId.Value : 0;
             req.PositionId = d.PositionId.HasValue ? d.PositionId.Value : 0;
@@ -458,7 +458,7 @@ namespace AionHR.Web.UI.Forms
             req.PositionId = d.PositionId.HasValue ? d.PositionId.Value : 0;
             int intResult;
 
-           
+
 
             if (!string.IsNullOrEmpty(esId.Text) && esId.Value.ToString() != "0" && int.TryParse(esId.Value.ToString(), out intResult))
             {
@@ -508,11 +508,11 @@ namespace AionHR.Web.UI.Forms
         {
             TaskManagementListRequest req = new TaskManagementListRequest();
 
-            
+
             var d = jobInfo1.GetJobInfo();
             req.BranchId = d.BranchId.HasValue ? d.BranchId.Value : 0;
             req.DepartmentId = d.DepartmentId.HasValue ? d.DepartmentId.Value : 0;
-            
+
 
 
             req.DivisionId = 0;
@@ -535,7 +535,7 @@ namespace AionHR.Web.UI.Forms
             var d = jobInfo1.GetJobInfo();
             req.BranchId = d.BranchId.HasValue ? d.BranchId.Value : 0;
             req.DepartmentId = d.DepartmentId.HasValue ? d.DepartmentId.Value : 0;
-           
+
 
 
 
@@ -559,7 +559,8 @@ namespace AionHR.Web.UI.Forms
             req.BranchId = d.BranchId.HasValue ? d.BranchId.Value : 0;
             req.DepartmentId = d.DepartmentId.HasValue ? d.DepartmentId.Value : 0;
             req.raEmployeeId = _systemService.SessionHelper.GetCurrentUserId();
-            req.status = 1; 
+            req.raEmployeeId = "71";
+            req.status = 1;
 
 
 
@@ -583,7 +584,7 @@ namespace AionHR.Web.UI.Forms
             req.PositionId = d.PositionId.HasValue ? d.PositionId.Value : 0;
             req.DivisionId = d.DivisionId.HasValue ? d.DivisionId.Value : 0;
 
-            
+
 
             if (!string.IsNullOrEmpty(esId.Text) && esId.Value.ToString() != "0" && int.TryParse(esId.Value.ToString(), out intResult))
             {
@@ -637,8 +638,8 @@ namespace AionHR.Web.UI.Forms
         {
             LeaveRequestListRequest req = GetLeaveManagementRequest();
             ListResponse<LeaveRequest> loans = _leaveManagementService.ChildGetAll<LeaveRequest>(req);
-            List<LeaveRequest> OpenLoans = loans.Items.Where(t => t.status == 1).ToList();
-            LeaveRequestsStore.DataSource = OpenLoans;
+
+            LeaveRequestsStore.DataSource = loans.Items;
             LeaveRequestsStore.DataBind();
 
         }
@@ -734,7 +735,7 @@ namespace AionHR.Web.UI.Forms
                 X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() : resp.Summary).Show();
                 return;
             }
-        
+
             Store1.DataSource = resp.Items;
             Store1.DataBind();
             X.Call("fixWidth", resp.Items.Count);
@@ -804,21 +805,73 @@ namespace AionHR.Web.UI.Forms
             }
 
             List<object> RateObjs = new List<object>();
-            RateObjs.Add(new {category=GetLocalResourceObject("MinLocalRate").ToString(),number=resp.Items[0].minLocalsRate });//Should use GetLocalResource(MinLocalsRate) and translate in resources
+            RateObjs.Add(new { category = GetLocalResourceObject("MinLocalRate").ToString(), number = resp.Items[0].minLocalsRate });//Should use GetLocalResource(MinLocalsRate) and translate in resources
             RateObjs.Add(new { category = GetLocalResourceObject("LocalsRate").ToString(), number = resp.Items[0].localsrate });//Should use GetLocalResource(MinLocalsRate) and translate in resources
 
-          
+
 
             LocalRateStore.DataSource = RateObjs;
             LocalRateStore.DataBind();
 
             List<object> CountObjs = new List<object>();
-            CountObjs.Add(new {category = GetLocalResourceObject("LocalsCount").ToString(), number = resp.Items[0].localsCount });//here 
-            
-            CountObjs.Add(new {category = GetLocalResourceObject("empCount").ToString(), number = resp.Items[0].empCount });//here
-           
+            CountObjs.Add(new { category = GetLocalResourceObject("LocalsCount").ToString(), number = resp.Items[0].localsCount });//here 
+
+            CountObjs.Add(new { category = GetLocalResourceObject("empCount").ToString(), number = resp.Items[0].empCount });//here
+
             LocalCountStore.DataSource = CountObjs;
             LocalCountStore.DataBind();
         }
+        [DirectMethod]
+        protected void leavePoPUP(object sender, DirectEventArgs e)
+        {
+            string id = e.ExtraParams["id"];
+            string type = e.ExtraParams["type"];
+
+            switch (type)
+            {
+                case "imgEdit":
+                    //Step 1 : get the object from the Web Service 
+                    RecordRequest r = new RecordRequest();
+                    r.RecordID = id;
+                                   
+
+                    RecordResponse<LeaveRequest> response = _leaveManagementService.ChildGetRecord<LeaveRequest>(r);
+                    if (!response.Success)
+                    {
+                        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                        X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).ToString() : response.Summary).Show();
+                        return;
+                    }
+                    //Step 2 : call setvalues with the retrieved object
+                    this.LeaveRecordTab.SetValues(response.result);
+
+
+                    this.LeaveRecordWindow.Title = Resources.Common.EditWindowsTitle;
+                    this.LeaveRecordWindow.Show();
+                    break;
+
+                case "imgDelete":
+                    X.Msg.Confirm(Resources.Common.Confirmation, Resources.Common.DeleteOneRecord, new MessageBoxButtonsConfig
+                    {
+                        Yes = new MessageBoxButtonConfig
+                        {
+                            //We are call a direct request metho for deleting a record
+                            Handler = String.Format("App.direct.DeleteRecord({0})", id),
+                            Text = Resources.Common.Yes
+                        },
+                        No = new MessageBoxButtonConfig
+                        {
+                            Text = Resources.Common.No
+                        }
+
+                    }).Show();
+                    break;
+            }
+        }
+        [DirectMethod]
+        protected void LeaveRecordTab_Load(object sender, EventArgs e)
+        {
+
+        }
     }
-}
+    }

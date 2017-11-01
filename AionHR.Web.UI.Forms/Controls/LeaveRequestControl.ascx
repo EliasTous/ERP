@@ -126,7 +126,7 @@
     Icon="PageEdit"
     Title="<%$ Resources:EditWindowsTitle %>"
     Width="450"
-    Height="650"
+    Height="500"
     AutoShow="false"
     Modal="true"
     Hidden="true"
@@ -156,6 +156,7 @@
                     runat="server"
                     Title="<%$ Resources: BasicInfoTabEditWindowTitle %>"
                     Icon="ApplicationSideList"
+                    AutoScroll="true"
                     DefaultAnchor="100%" OnLoad="BasicInfoTab_Load"
                     BodyPadding="5">
                     <Items>

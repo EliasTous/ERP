@@ -426,4 +426,43 @@
   <data name="LocalRate" xml:space="preserve">
     <value>نسبة المحليين</value>
   </data>
+  <data name="FieldApproved" xml:space="preserve">
+    <value>مقبولة</value>
+  </data>
+  <data name="FieldIsPaid" xml:space="preserve">
+    <value>مدفوعة؟</value>
+  </data>
+  <data name="FieldJustification" xml:space="preserve">
+    <value>السبب</value>
+  </data>
+  <data name="FieldLeaveRef" xml:space="preserve">
+    <value>الرقم</value>
+  </data>
+  <data name="FieldPending" xml:space="preserve">
+    <value>قيد المعالجة</value>
+  </data>
+  <data name="FieldRefused" xml:space="preserve">
+    <value>مرفوضة</value>
+  </data>
+  <data name="FieldReturnDate" xml:space="preserve">
+    <value>تاريخ انتهاء الإجازة</value>
+  </data>
+  <data name="FieldStatus" xml:space="preserve">
+    <value>الحالة</value>
+  </data>
+  <data name="FieldUsed" xml:space="preserve">
+    <value>مستخدمة</value>
+  </data>
+  <data name="LeaveBalance" xml:space="preserve">
+    <value>رصيد الإجازات</value>
+  </data>
+  <data name="ReturnNotes" xml:space="preserve">
+    <value>ملاحظات</value>
+  </data>
+  <data name="TotalText" xml:space="preserve">
+    <value>مجموع الساعات</value>
+  </data>
+  <data name="YearsInService" xml:space="preserve">
+    <value>فترة الخدمة</value>
+  </data>
 </root>

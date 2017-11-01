@@ -703,7 +703,7 @@ namespace AionHR.Web.UI.Forms
             branchNameTx.Text = routers.result.branchName;
             departmentNameTx.Text = routers.result.departmentName;
             positionNameTx.Text = routers.result.positionName;
-            //hireDateDf.Value = routers.result.;
+            hireDateDf.Value = routers.result.hireDate;
             nationalityTx.Text = routers.result.countryName; 
             divisionName.Text = routers.result.divisionName;
             reportToName.Text = routers.result.reportToName.fullName;

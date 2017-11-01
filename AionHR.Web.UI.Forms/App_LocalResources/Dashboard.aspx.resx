@@ -423,4 +423,43 @@
   <data name="LocalRate" xml:space="preserve">
     <value>Locals Rate</value>
   </data>
+  <data name="FieldApproved" xml:space="preserve">
+    <value>Approved</value>
+  </data>
+  <data name="FieldIsPaid" xml:space="preserve">
+    <value>Is Paid?</value>
+  </data>
+  <data name="FieldJustification" xml:space="preserve">
+    <value>Justification</value>
+  </data>
+  <data name="FieldLeaveRef" xml:space="preserve">
+    <value>Ref</value>
+  </data>
+  <data name="FieldPending" xml:space="preserve">
+    <value>Pending</value>
+  </data>
+  <data name="FieldRefused" xml:space="preserve">
+    <value>Refused</value>
+  </data>
+  <data name="FieldReturnDate" xml:space="preserve">
+    <value>Return Date</value>
+  </data>
+  <data name="FieldStatus" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="FieldUsed" xml:space="preserve">
+    <value>Used</value>
+  </data>
+  <data name="LeaveBalance" xml:space="preserve">
+    <value>Leave Balance</value>
+  </data>
+  <data name="ReturnNotes" xml:space="preserve">
+    <value>Notes</value>
+  </data>
+  <data name="TotalText" xml:space="preserve">
+    <value>Total Hours</value>
+  </data>
+  <data name="YearsInService" xml:space="preserve">
+    <value>Years In Service</value>
+  </data>
 </root>

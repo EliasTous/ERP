@@ -293,7 +293,45 @@
                                         <ext:ListItem Text="<%$ Resources:Deduction%>" Value="2"></ext:ListItem>
                                     </Items>
                                 </ext:ComboBox>
-                                <ext:TextField ID="paycodeRef" runat="server" FieldLabel="<%$ Resources:paycodeRef%>" Name="paycodeRef"   AllowBlank="false"/>
+                                <ext:ComboBox
+                                      
+                                         SubmitValue="true"
+                                         AnyMatch="true"
+                                        CaseSensitive="false" 
+                                        runat="server" ValueField="payCode"
+                                        QueryMode="Local" ForceSelection="true"
+                                        TypeAhead="true" MinChars="1" AllowBlank="false"
+                                        DisplayField="name"  ID="paycodeRef" 
+                                       Name="paycodeRef" FieldLabel="<%$ Resources:paycodeRef %>" 
+                                       SimpleSubmit="true"  ReadOnly="false">
+                                       <Store>
+                                        <ext:Store   ID="Store2"
+                                            runat="server"
+                                            RemoteSort="False"
+                                            RemoteFilter="true"
+                                            OnReadData="PayCode_ReadData"
+                                            PageSize="50" IDMode="Explicit" Namespace="App">
+                                            <Proxy>
+                                                <ext:PageProxy>
+                                                    <Listeners>
+                                                        <Exception Handler="Ext.MessageBox.alert('#{textLoadFailed}.value', response.statusText);" />
+                                                    </Listeners>
+                                                </ext:PageProxy>
+                                            </Proxy>
+                                            <Model>
+                                             <ext:Model ID="Model3" runat="server" >
+                                                <Fields>                                                                                                
+                                                            <ext:ModelField Name="name" />
+                                                            <ext:ModelField Name="payCode" />
+                                                                               
+                                                        </Fields>
+                                                    </ext:Model>
+                                                </Model>
+                                                
+                                                 </ext:Store>
+                                           </Store>
+                                       </ext:ComboBox>
+                               <%-- <ext:TextField ID="paycodeRef" runat="server" FieldLabel="<%$ Resources:paycodeRef%>" Name="paycodeRef"   AllowBlank="false"/>--%>
                                  <ext:Checkbox FieldLabel="<%$ Resources: isTaxable %>" runat="server" InputValue="True" Name="isTaxable" ID="isTaxable" />
                             </Items>
 
