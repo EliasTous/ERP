@@ -133,7 +133,7 @@
     <value>Basic Amount</value>
   </data>
   <data name="FieldBranch" xml:space="preserve">
-    <value>Select a Branch</value>
+    <value>Branch</value>
   </data>
   <data name="FieldCalDays" xml:space="preserve">
     <value>Cal Days</value>
@@ -148,13 +148,13 @@
     <value>Deduction</value>
   </data>
   <data name="FieldDepartment" xml:space="preserve">
-    <value>Select a Department</value>
+    <value>Department</value>
   </data>
   <data name="FieldEDAmount" xml:space="preserve">
     <value>ED</value>
   </data>
   <data name="FieldEmployee" xml:space="preserve">
-    <value>Select an Employee</value>
+    <value>Employee</value>
   </data>
   <data name="FieldEntitlement" xml:space="preserve">
     <value>Entitlement</value>

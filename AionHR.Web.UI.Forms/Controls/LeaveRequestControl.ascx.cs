@@ -82,21 +82,21 @@ namespace AionHR.Web.UI.Forms.Controls
                 {
                     AccessControlApplier.ApplyAccessControlOnPage(typeof(LeaveRequest), BasicInfoTab, null, null, SaveButton);
                     ClassPermissionRecordRequest classReq = new ClassPermissionRecordRequest();
-                    classReq.ClassId = (typeof(LeaveRequest).GetCustomAttributes(typeof(ClassIdentifier), false).ToList()[0]as ClassIdentifier).ClassID;
+                    classReq.ClassId = (typeof(LeaveRequest).GetCustomAttributes(typeof(ClassIdentifier), false).ToList()[0] as ClassIdentifier).ClassID;
                     classReq.UserId = _systemService.SessionHelper.GetCurrentUserId();
                     RecordResponse<ModuleClass> modClass = _accessControlService.ChildGetRecord<ModuleClass>(classReq);
-                    if (modClass != null && modClass.result != null && modClass.result.accessLevel<2 )
+                    if (modClass != null && modClass.result != null && modClass.result.accessLevel < 2)
                     {
                         ViewOnly.Text = "1";
                     }
-                    if(returnNotes.InputType== InputType.Password)
+                    if (returnNotes.InputType == InputType.Password)
                     {
                         returnNotes.Visible = false;
                         notesField.Visible = true;
                         textField1.Visible = false;
                         textField2.Visible = true;
                     }
-                  
+
                 }
                 catch (AccessDeniedException exp)
                 {
@@ -106,7 +106,7 @@ namespace AionHR.Web.UI.Forms.Controls
                     return;
                 }
 
-              
+
 
             }
 
@@ -119,7 +119,7 @@ namespace AionHR.Web.UI.Forms.Controls
         protected void Page_Init(object sender, EventArgs e)
         {
             LeaveDaysGrid = new GridPanel();
-            
+
         }
 
         private void ImgButton_Click(object sender, ImageClickEventArgs e)
@@ -175,9 +175,9 @@ namespace AionHR.Web.UI.Forms.Controls
             FillLeaveType();
 
             ltId.Select(response.result.ltId.ToString());
-            status.Select(response.result.status.ToString());
+            //status.Select(response.result.status);
             StoredLeaveChanged.Text = "0";
-            if (response.result.employeeId != "0"  )
+            if (response.result.employeeId != "0")
             {
 
                 employeeId.GetStore().Add(new object[]
@@ -217,7 +217,7 @@ namespace AionHR.Web.UI.Forms.Controls
                 setUsed(true);
             else
             { setNormal(); }
-            if (ViewOnly.Text=="1")
+            if (ViewOnly.Text == "1")
                 SaveButton.Disabled = true;
             RefreshSecurityForControls();
             this.EditRecordWindow.Title = Resources.Common.EditWindowsTitle;
@@ -284,13 +284,13 @@ namespace AionHR.Web.UI.Forms.Controls
         {
             GridDisabled.Text = disabled.ToString();
             startDate.Disabled = disabled;
-            endDate.Disabled = employeeId.Disabled = justification.Disabled = destination.Disabled = isPaid.Disabled = ltId.Disabled = status.Disabled = TotalText.Disabled = disabled;
+            endDate.Disabled = employeeId.Disabled = justification.Disabled = destination.Disabled = isPaid.Disabled = ltId.Disabled =  TotalText.Disabled = disabled;
             returnDate.Disabled = !disabled;
             approved.Text = disabled.ToString();
             leavePeriod.Disabled = disabled;
             calDays.Disabled = disabled;
             leaveRef.Disabled = disabled;
-            
+
         }
 
 
@@ -298,7 +298,7 @@ namespace AionHR.Web.UI.Forms.Controls
         {
             GridDisabled.Text = "False";
             startDate.Disabled = false;
-            endDate.Disabled = employeeId.Disabled = justification.Disabled = destination.Disabled = isPaid.Disabled = ltId.Disabled = status.Disabled = TotalText.Disabled = false;
+            endDate.Disabled = employeeId.Disabled = justification.Disabled = destination.Disabled = isPaid.Disabled = ltId.Disabled =TotalText.Disabled = false;
             returnDate.Disabled = true;
             leavePeriod.Disabled = false;
             approved.Text = "False";
@@ -311,7 +311,7 @@ namespace AionHR.Web.UI.Forms.Controls
         {
             GridDisabled.Text = disabled.ToString();
             startDate.Disabled = disabled;
-            endDate.Disabled = employeeId.Disabled = justification.Disabled = destination.Disabled = isPaid.Disabled = ltId.Disabled = status.Disabled = TotalText.Disabled = disabled;
+            endDate.Disabled = employeeId.Disabled = justification.Disabled = destination.Disabled = isPaid.Disabled = ltId.Disabled  = TotalText.Disabled = disabled;
             returnDate.Disabled = disabled;
             SaveButton.Disabled = disabled;
             leavePeriod.Disabled = disabled;
@@ -332,7 +332,7 @@ namespace AionHR.Web.UI.Forms.Controls
             RecordRequest r = new RecordRequest();
             r.RecordID = employeeId;
             RecordResponse<EmployeeQuickView> resp = _employeeService.ChildGetRecord<EmployeeQuickView>(r);
-            if(!resp.Success)
+            if (!resp.Success)
             {
                 X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
                 X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() : resp.Summary).Show();
@@ -344,7 +344,7 @@ namespace AionHR.Web.UI.Forms.Controls
 
         }
 
-  
+
 
 
 
@@ -371,15 +371,16 @@ namespace AionHR.Web.UI.Forms.Controls
 
 
             string obj = e.ExtraParams["values"];
+            string status1 = e.ExtraParams["status"];
             JsonSerializerSettings settings = new JsonSerializerSettings();
             CustomResolver res = new CustomResolver();
-          //  res.AddRule("leaveRequest1_employeeId", "employeeId");
+            //  res.AddRule("leaveRequest1_employeeId", "employeeId");
             //res.AddRule("leaveRequest1_ltId", "ltId");
-           // res.AddRule("leaveRequest1_status", "status");
+            // res.AddRule("leaveRequest1_status", "status");
 
             settings.ContractResolver = res;
             LeaveRequest b = JsonConvert.DeserializeObject<LeaveRequest>(obj, settings);
-
+            b.status = Convert.ToInt16(status1); 
             string id = e.ExtraParams["id"];
             // Define the object to add or edit as null
             if (!b.isPaid.HasValue)
@@ -391,7 +392,7 @@ namespace AionHR.Web.UI.Forms.Controls
             if (ltId.SelectedItem != null)
 
                 b.ltName = ltId.SelectedItem.Text;
-
+         
             List<LeaveDay> days = GenerateLeaveDays(e.ExtraParams["days"]);
 
             if (string.IsNullOrEmpty(id))
@@ -482,7 +483,7 @@ namespace AionHR.Web.UI.Forms.Controls
                         recordResponse.result.leavePeriod = leavePeriod.Text;
                         b = recordResponse.result;
                         b.status = 3;
-                       
+
                         //postReq.entity = recordResponse.result;
                         //postReq.entity.returnDate = b.returnDate;
                         //postReq.entity.status = 3;
@@ -539,7 +540,7 @@ namespace AionHR.Web.UI.Forms.Controls
                         }
                         days.ForEach(x => x.leaveId = Convert.ToInt32(b.recordId));
                         AddDays(days);
-                        if(Store1!= null)
+                        if (Store1 != null)
                         {
                             ModelProxy record = this.Store1.GetById(id);
                             BasicInfoTab.UpdateRecord(record);
@@ -550,9 +551,10 @@ namespace AionHR.Web.UI.Forms.Controls
                         }
                         else
                         {
-                            RefreshLeaveCalendarCallBack();
+                            if (RefreshLeaveCalendarCallBack != null)
+                                RefreshLeaveCalendarCallBack();
                         }
-                      
+
                         Notification.Show(new NotificationConfig
                         {
                             Title = Resources.Common.Notification,
@@ -775,7 +777,7 @@ namespace AionHR.Web.UI.Forms.Controls
         [DirectMethod]
         public void CalcReturnDate(object sender, DirectEventArgs e)
         {
-            DateTime startDate, endDate,returnDate;
+            DateTime startDate, endDate, returnDate;
             try
             {
                 startDate = DateTime.Parse(e.ExtraParams["startDate"]);
@@ -815,19 +817,19 @@ namespace AionHR.Web.UI.Forms.Controls
                 return;
 
             }
-            
+
             ListResponse<LeaveCalendarDay> days = _timeAttendanceService.ChildGetAll<LeaveCalendarDay>(req);
             if (!days.Success)
             {
                 X.Msg.Alert(Resources.Common.Error, days.Summary).Show();
-                return ;
+                return;
             }
             List<LeaveDay> leaveDays = new List<LeaveDay>();
             days.Items.ForEach(x => leaveDays.Add(new LeaveDay() { dow = (short)DateTime.ParseExact(x.dayId, "yyyyMMdd", new CultureInfo("en")).DayOfWeek, dayId = x.dayId, workingHours = x.workingHours, leaveHours = x.workingHours }));
             leaveDaysStore.DataSource = leaveDays;
             leaveDaysStore.DataBind();
             X.Call("CalcSum");
-            if(returnDate>endDate)
+            if (returnDate > endDate)
             {
                 X.Call("EnableLast");
             }
@@ -904,7 +906,7 @@ namespace AionHR.Web.UI.Forms.Controls
             }
             CustomResolver res = new CustomResolver();
             res.AddRule("DateField3", "returnDate");
-           // res.AddRule("Notes", "returnNotes");
+            // res.AddRule("Notes", "returnNotes");
             JsonSerializerSettings settings = new JsonSerializerSettings();
             settings.ContractResolver = res;
             LeaveRequest temp = JsonConvert.DeserializeObject<LeaveRequest>(values, settings);
@@ -949,9 +951,9 @@ namespace AionHR.Web.UI.Forms.Controls
             leaveDaysStore.DataBind();
         }
 
-        protected void Unnamed_Event1(object sender, EventArgs  e)
+        protected void Unnamed_Event1(object sender, EventArgs e)
         {
-           
+
         }
 
         protected void Button3_Click(object sender, EventArgs e)
@@ -961,7 +963,7 @@ namespace AionHR.Web.UI.Forms.Controls
             LeaveRequestReport y = new LeaveRequestReport();
             RecordRequest r = new RecordRequest();
             r.RecordID = CurrentLeave.Text;
-            
+
             RecordResponse<LeaveRequest> response = _leaveManagementService.ChildGetRecord<LeaveRequest>(r);
             if (response.result == null)
                 return;
@@ -974,7 +976,8 @@ namespace AionHR.Web.UI.Forms.Controls
                 X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() : resp.Summary).Show();
                 return;
             }
-            try {
+            try
+            {
                 leaveBalance.Text = resp.result.leavesBalance.ToString();
                 yearsInService.Text = resp.result.serviceDuration;
                 LeaveRequest request = response.result;
@@ -1049,9 +1052,9 @@ namespace AionHR.Web.UI.Forms.Controls
 
         public void DownloadFile(Stream stream)
         {
-           
 
-          
+
+
 
             //This controls how many bytes to read at a time and send to the client
             int bytesToRead = 10000;
@@ -1062,19 +1065,19 @@ namespace AionHR.Web.UI.Forms.Controls
             // The number of bytes read
             try
             {
-              
 
-                
+
+
                 //Get the Stream returned from the response
-        
+
                 // prepare the response to the client. resp is the client Response
 
                 var resp = HttpContext.Current.Response;
 
                 //Indicate the type of data being sent
                 resp.ContentType = "application/octet-stream";
-               
-              
+
+
                 //Name the file 
                 resp.AddHeader("Content-Disposition", "attachment; filename=\"Report.pdf\"");
                 resp.AddHeader("Content-Length", stream.Length.ToString());
@@ -1133,13 +1136,17 @@ namespace AionHR.Web.UI.Forms.Controls
             {
                 switch (x.status)
                 {
-                    case 1: x.stringStatus = "New";
+                    case 1:
+                        x.stringStatus = "New";
                         break;
-                    case 2: x.stringStatus = "Approved";
+                    case 2:
+                        x.stringStatus = "Approved";
                         break;
-                    case -1:x.stringStatus = "Rejected";
+                    case -1:
+                        x.stringStatus = "Rejected";
                         break;
-                    default: x.stringStatus = "";
+                    default:
+                        x.stringStatus = "";
                         break;
 
 

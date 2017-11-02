@@ -51,6 +51,7 @@
     <Compile Include="Company\Structure\ImportDepartments.cs" />
     <Compile Include="Dashboard\CompanyRTW.cs" />
     <Compile Include="Dashboard\Dashboard.cs" />
+    <Compile Include="Dashboard\DashboardLeave.cs" />
     <Compile Include="Dashboard\DepartmentActivity.cs" />
     <Compile Include="Dashboard\EmployeeBirthday.cs" />
     <Compile Include="Dashboard\EmpRTW.cs" />

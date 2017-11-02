@@ -239,7 +239,9 @@ namespace AionHR.Web.UI.Forms
                         Html = Resources.Common.RecordDeletedSucc
                     });
                 }
+                departmentStore.Reload();
             }
+
             catch (Exception ex)
             {
                 //In case of error, showing a message box to the user
@@ -581,6 +583,7 @@ namespace AionHR.Web.UI.Forms
                     X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorUpdatingRecord).Show();
                 }
             }
+            departmentStore.Reload();
         }
 
         [DirectMethod]

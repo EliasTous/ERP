@@ -184,6 +184,15 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Hidden daysLeft;
         
         /// <summary>
+        /// userSessionEmployeeId control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Hidden userSessionEmployeeId;
+        
+        /// <summary>
         /// OverDueStore control.
         /// </summary>
         /// <remarks>
@@ -1696,13 +1705,13 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.TabPanel panelRecordDetails;
         
         /// <summary>
-        /// LeaveRecordTab control.
+        /// LeaveRecordForm control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.FormPanel LeaveRecordTab;
+        protected global::Ext.Net.FormPanel LeaveRecordForm;
         
         /// <summary>
         /// TextField1 control.
@@ -1750,22 +1759,13 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.DateField endDate;
         
         /// <summary>
-        /// leavePeriod control.
+        /// ltName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.TextField leavePeriod;
-        
-        /// <summary>
-        /// justification control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.TextArea justification;
+        protected global::Ext.Net.TextField ltName;
         
         /// <summary>
         /// destination control.
@@ -1777,24 +1777,6 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.TextField destination;
         
         /// <summary>
-        /// isPaid control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Checkbox isPaid;
-        
-        /// <summary>
-        /// ltName control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.TextField ltName;
-        
-        /// <summary>
         /// status control.
         /// </summary>
         /// <remarks>
@@ -1802,33 +1784,6 @@ namespace AionHR.Web.UI.Forms {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.ComboBox status;
-        
-        /// <summary>
-        /// leaveBalance control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.TextField leaveBalance;
-        
-        /// <summary>
-        /// yearsInService control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.TextField yearsInService;
-        
-        /// <summary>
-        /// returnDate control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.DateField returnDate;
         
         /// <summary>
         /// returnNotes control.
@@ -1840,6 +1795,15 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.TextArea returnNotes;
         
         /// <summary>
+        /// SaveButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Button SaveButton;
+        
+        /// <summary>
         /// CancelButton control.
         /// </summary>
         /// <remarks>
@@ -1847,5 +1811,14 @@ namespace AionHR.Web.UI.Forms {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.Button CancelButton;
+        
+        /// <summary>
+        /// leaveRequest1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AionHR.Web.UI.Forms.Controls.LeaveRequestControl leaveRequest1;
     }
 }

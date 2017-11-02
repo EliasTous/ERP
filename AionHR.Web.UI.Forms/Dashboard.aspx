@@ -11,12 +11,12 @@
     <link rel="stylesheet" type="text/css" href="CSS/Common.css" />
     <link rel="stylesheet" type="text/css" href="CSS/Dashboard.css?id=29" />
     <link rel="stylesheet" href="CSS/LiveSearch.css" />
-    <script type="text/javascript" src="Scripts/Dashboard.js"></script>
+    <script type="text/javascript" src="Scripts/Dashboard.js?id=12"></script>
     <!--  <script type="text/javascript" src="Scripts/app.js"></script>-->
     <script type="text/javascript" src="Scripts/common.js"></script>
     <script type="text/javascript" src="Scripts/moment.js"></script>
-    <script type="text/javascript" src="Scripts/CircileProgress.js?id=110"></script>
-    <script type="text/javascript" src="Scripts/jquery-new.js?id=1"></script>
+    <script type="text/javascript" src="Scripts/CircileProgress.js?id=98"></script>
+    <script type="text/javascript" src="Scripts/jquery-new.js?id=45"></script>
     <script type="text/javascript">
         function fixWidth(s) {
             //App.CartesianChart1.setWidth(s * 50);
@@ -371,6 +371,8 @@
         <ext:Hidden ID="onleave" runat="server" Text="<%$ Resources:OnLeave %>" />
 
         <ext:Hidden ID="daysLeft" runat="server" Text="<%$ Resources: FieldDaysLeft %>" />
+         <ext:Hidden ID="userSessionEmployeeId" runat="server" Text="" />
+        
         <ext:Store PageSize="30"
             ID="OverDueStore"
             runat="server" OnReadData="OverDueStore_ReadData"
@@ -632,6 +634,7 @@
 
                                                                             <AnimationConfig Duration="500"></AnimationConfig>
                                                                             <Interactions>
+                                                                                <ext:ItemHighlightInteraction />
                                                                             </Interactions>
                                                                             <Series>
                                                                                 <ext:PieSeries
@@ -1091,7 +1094,7 @@
                                                                             MenuDisabled="true"
                                                                             Resizable="false">
 
-                                                                            <Renderer handler="return editRender()+'&nbsp;&nbsp;' +deleteRender(); " />
+                                                                            <Renderer handler="return editRender()+'&nbsp;&nbsp;' +attachRender(); " />
                                                                           </ext:Column>
                                                                                                                                  
 
@@ -1099,7 +1102,7 @@
                                                                                     </Columns>
                                                                                 </ColumnModel>
                                                                                   <Listeners>
-                                                                                    <Render Handler="this.on('cellclick', cellClick1);" />
+                                                                                    <Render Handler="this.on('cellclick', cellClick);" />
                                                                                 </Listeners>
                                                                                 <DirectEvents>
                                                                                     <CellClick OnEvent="leavePoPUP">
@@ -2547,12 +2550,7 @@
                                 <Renderer Handler=" return displayCompletedLoans(record.data);  ">
                                 </Renderer>
                             </ext:Column>
-
-
-
-
-
-
+                                                                                 
 
 
 
@@ -2578,9 +2576,9 @@
             ID="LeaveRecordWindow"
             runat="server"
             Icon="PageEdit"
-            Title="LeaveRecordWindow"
+            Title="<%$ Resources:LeaveRecordForm%>"
             Width="450"
-            Height="650"
+            Height="500"
             AutoShow="false"
             Modal="true"
             Hidden="true"
@@ -2596,16 +2594,16 @@
            
             <Items>
                 <ext:FormPanel
-                    ID="LeaveRecordTab" DefaultButton="SaveButton"
+                    ID="LeaveRecordForm" DefaultButton="SaveButton"
                     runat="server"
-                    Title="LeaveRecordTab"
+                    Title="<%$ Resources:LeaveRecordForm%>"
                     Icon="ApplicationSideList"
                     DefaultAnchor="100%" OnLoad="LeaveRecordTab_Load"
                     BodyPadding="5">
                     <Items>
-                        <ext:TextField ID="TextField1" runat="server" Name="recordId" Hidden="true" />
-                        <ext:TextField ID="leaveRef" runat="server" Name="leaveRef"  FieldLabel="<%$ Resources:FieldLeaveRef%>" />
-                         <ext:TextField ID="employeeName" runat="server" Name="employeeName.fullName"  FieldLabel="employeeName" />
+                        <ext:TextField ID="TextField1" runat="server" Name="recordId" Hidden="true"   />
+                        <ext:TextField ID="leaveRef" runat="server" Name="leaveRef"  FieldLabel="<%$ Resources:FieldLeaveRef%>" ReadOnly="true"  />
+                         <ext:TextField ID="employeeName" runat="server" Name="employeeName.fullName"  FieldLabel="<%$ Resources:FieldEmployeeName%>" ReadOnly="true"  />
 
 
                         <%--   <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" ID="employeeId" AllowBlank="false"
@@ -2643,43 +2641,34 @@
                             </DirectEvents>
 
                         </ext:ComboBox>--%>
-                        <ext:DateField ID="startDate"   runat="server" FieldLabel="<%$ Resources:FieldStartDate%>" Name="startDate" AllowBlank="false"/>
-                        <ext:DateField ID="endDate"   runat="server" FieldLabel="<%$ Resources:FieldendDate%>" Name="endDate" AllowBlank="false"/>
+                        <ext:DateField ID="startDate"   runat="server" FieldLabel="<%$ Resources:FieldStartDate%>" Name="startDate" ReadOnly="true" />
+                        <ext:DateField ID="endDate"   runat="server" FieldLabel="<%$ Resources:FieldendDate%>" Name="endDate" ReadOnly="true"/>
                                                  
                                             
                      
-                        <ext:TextField runat="server" ID="leavePeriod" Name="leavePeriod" ReadOnly="true" FieldLabel="<%$ Resources:TotalText%>" />
-                        <ext:TextArea ID="justification" runat="server" FieldLabel="<%$ Resources:FieldJustification%>" Name="justification" MaxHeight="5" />
-                        <ext:TextField ID="destination" runat="server" FieldLabel="<%$ Resources:FieldDestination%>" Name="destination" AllowBlank="false" />
-
-
-                        <ext:Checkbox runat="server" Name="isPaid" InputValue="true" ID="isPaid" DataIndex="isPaid" FieldLabel="<%$ Resources:FieldIsPaid%>" />
-
-
-                        <ext:TextField ID="ltName" runat="server" FieldLabel="ltName" Name="ltName" AllowBlank="true" />
+                        
+                        <ext:TextField ID="ltName" runat="server" FieldLabel="<%$ Resources:FieldLtName %>" Name="ltName" ReadOnly="true" />  
+                        <ext:TextField ID="destination" runat="server" FieldLabel="<%$ Resources:FieldDestination%>" Name="destination" ReadOnly="true" />
+                                                                    
+                                         
 
                      
 
-                        <ext:ComboBox Disabled="true"   AnyMatch="true" CaseSensitive="false"  runat="server" ID="status" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" AllowBlank="false" Name="status"
+                        <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" ID="status" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" AllowBlank="false" Name="status"
                             FieldLabel="<%$ Resources: FieldStatus %>">
                             <Items>
 
-                                <ext:ListItem Text="<%$ Resources: FieldPending %>" Value="1" />
+                                <ext:ListItem Text="<%$ Resources: FieldNew %>" Value="1"  />
                                 <ext:ListItem Text="<%$ Resources: FieldApproved %>" Value="2" />
-                                <ext:ListItem Text="<%$ Resources: FieldUsed %>" Value="3" />
                                 <ext:ListItem Text="<%$ Resources: FieldRefused %>" Value="-1" />
                             </Items>
-                            <Listeners>
-                                <Change Handler="SetReturnDateState();" />
-                            </Listeners>
+                           
                         </ext:ComboBox>
                        
-                                <ext:TextField runat="server" ID="leaveBalance" FieldLabel="<%$Resources: LeaveBalance %>" Name="leaveBalance" />
-                                <ext:TextField runat="server" ID="yearsInService" FieldLabel="<%$Resources: YearsInService %>" Name="yearsInService" />
-                                 <ext:DateField Disabled="true" runat="server" Name="returnDate" ID="returnDate" FieldLabel="<%$ Resources: FieldReturnDate %>">
+                               
                                   
                                    
-                                </ext:DateField>
+                            
                                 <ext:TextArea runat="server" FieldLabel="<%$Resources: ReturnNotes %>" ID="returnNotes" Name="returnNotes" MaxHeight="5" />
                                
                           
@@ -2692,8 +2681,22 @@
         </ext:TabPanel>
     </Items>
    
-     <Buttons>
-               
+       <Buttons>
+                <ext:Button ID="SaveButton" runat="server" Text="<%$ Resources:Common, Save %>" Icon="Disk">
+
+                    <Listeners>
+                        <Click Handler="CheckSession(); if (!#{LeaveRecordForm}.getForm().isValid()) {return false;}  " />
+                    </Listeners>
+                    <DirectEvents>
+                        <Click OnEvent="SaveNewRecord" Failure="Ext.MessageBox.alert('#{titleSavingError}.value', '#{titleSavingErrorMessage}.value');">
+                            <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="={#{LeaveRecordWindow}.body}" />
+                            <ExtraParams>
+                                <ext:Parameter Name="id" Value="#{recordId}.getValue()" Mode="Raw" />
+                                <ext:Parameter Name="values" Value ="#{LeaveRecordForm}.getForm().getValues()" Mode="Raw" Encode="true" />
+                            </ExtraParams>
+                        </Click>
+                    </DirectEvents>
+                </ext:Button>
                 <ext:Button ID="CancelButton" runat="server" Text="<%$ Resources:Common , Cancel %>" Icon="Cancel">
                     <Listeners>
                         <Click Handler="this.up('window').hide();" />
@@ -2702,6 +2705,9 @@
             </Buttons>
    
 </ext:Window>
+          <uc:leaveControl runat="server" ID="leaveRequest1" />
+
+         
     </form>
 </body>
 </html>

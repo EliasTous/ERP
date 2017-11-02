@@ -230,6 +230,7 @@
     <Content Include="Controls\HijriGregDatePicker.ascx" />
     <Content Include="Home.aspx" />
     <Content Include="HtmlPage1.html" />
+    <Content Include="Images\ajax-loader.gif" />
     <Content Include="Images\bg.png" />
     <Content Include="ARLogin.aspx" />
     <Content Include="Images\calendar.gif" />
@@ -245,6 +246,7 @@
     <Content Include="Images\logoff.png" />
     <Content Include="Images\reports.png" />
     <Content Include="Images\schedule.png" />
+    <Content Include="Images\Tools\accept.png" />
     <Content Include="Images\Tools\application_edit.png" />
     <Content Include="Images\Tools\attach.png" />
     <Content Include="Images\Tools\collapse-all.gif" />

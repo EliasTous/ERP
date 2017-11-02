@@ -462,4 +462,10 @@
   <data name="YearsInService" xml:space="preserve">
     <value>Years In Service</value>
   </data>
+  <data name="LeaveRecordForm" xml:space="preserve">
+    <value>Approve Leave Request</value>
+  </data>
+  <data name="FieldNew" xml:space="preserve">
+    <value>New</value>
+  </data>
 </root>

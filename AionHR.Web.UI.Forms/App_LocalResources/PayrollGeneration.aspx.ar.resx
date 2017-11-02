@@ -133,7 +133,7 @@
     <value>البلغ الاساسي</value>
   </data>
   <data name="FieldBranch" xml:space="preserve">
-    <value>اختيار فرع</value>
+    <value>الفرع</value>
   </data>
   <data name="FieldCalDays" xml:space="preserve">
     <value>الأيام</value>
@@ -148,10 +148,10 @@
     <value>الخصم</value>
   </data>
   <data name="FieldDepartment" xml:space="preserve">
-    <value>اختيار القسم</value>
+    <value>القسم</value>
   </data>
   <data name="FieldEmployee" xml:space="preserve">
-    <value>اختيار الموظف</value>
+    <value>الموظف</value>
   </data>
   <data name="FieldEntitlement" xml:space="preserve">
     <value>الاستحقاق</value>

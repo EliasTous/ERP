@@ -8,6 +8,17 @@
     .print-button{
         padding:3px;
     }
+    .x-grid-row .x-grid-cell-inner {
+    white-space: normal;
+    border-bottom: none
+}
+.x-grid-row-over .x-grid-cell-inner {
+    white-space: normal;
+    border-bottom: none
+}
+
+
+
 </style>
 <script type="text/javascript">
 
@@ -125,7 +136,7 @@
     runat="server"
     Icon="PageEdit"
     Title="<%$ Resources:EditWindowsTitle %>"
-    Width="450"
+    Width="600"
     Height="500"
     AutoShow="false"
     Modal="true"
@@ -292,13 +303,13 @@
                         </ext:ComboBox>
 
 
-                        <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" ID="status" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" AllowBlank="false" Name="status"
+                        <ext:ComboBox Disabled="true"  AnyMatch="true" CaseSensitive="false"  runat="server" ID="status" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" AllowBlank="false" Name="status" 
                             FieldLabel="<%$ Resources: FieldStatus %>">
                             <Items>
 
-                                <ext:ListItem Text="<%$ Resources: FieldPending %>" Value="1" />
-                                <ext:ListItem Text="<%$ Resources: FieldApproved %>" Value="2" />
-                                <ext:ListItem Text="<%$ Resources: FieldUsed %>" Value="3" />
+                                <ext:ListItem Text="<%$ Resources: FieldPending %>" Value="1"  />
+                                <ext:ListItem Text="<%$ Resources: FieldApproved %>" Value="2"  />
+                                <ext:ListItem Text="<%$ Resources: FieldUsed %>" Value="3"/>
                                 <ext:ListItem Text="<%$ Resources: FieldRefused %>" Value="-1" />
                             </Items>
                             <Listeners>
@@ -471,6 +482,7 @@
                     </Items>
 
                 </ext:FormPanel>
+                
                 <ext:FormPanel ID="ApprovalsForm" runat="server" OnLoad="LeaveDays_Load" Title="<%$ Resources: Approvals %>">
                     <Items>
                         <ext:GridPanel
@@ -483,8 +495,8 @@
                             Scroll="Vertical"
                             Border="false"
                             Icon="User"
-                            ColumnLines="True" IDMode="Explicit" RenderXType="True">
-
+                            ColumnLines="True" IDMode="Explicit" RenderXType="True" RenderTo="playcontainer">
+                            
                             <Store>
                                 <ext:Store runat="server" ID="ApprovalsStore">
                                     <Model>
@@ -508,15 +520,15 @@
                                 <Columns>
                                     <ext:Column ID="leaveIdCO" Visible="false" DataIndex="leaveId" runat="server">
                                     </ext:Column>
-                                        <ext:Column ID="ColName" DataIndex="employeeName" Text="<%$ Resources: FieldEmployeeName%>" runat="server" Flex="4">
+                                        <ext:Column ID="ColName" DataIndex="employeeName" Text="<%$ Resources: FieldEmployeeName%>" runat="server" Flex="1">
                                            <Renderer Handler=" return record.data['employeeName'].fullName; ">
                                            </Renderer>
                                          </ext:Column>
-                                    <ext:Column ID="departmentName" DataIndex="departmentName" Text="<%$ Resources: Department%>" runat="server" Width="100"/>
-                                    <ext:Column ID="stringStatus" Visible="true" DataIndex="stringStatus" runat="server" text="<%$ Resources: FieldStatus%>" >
+                                    <ext:Column ID="departmentName" DataIndex="departmentName" Text="<%$ Resources: Department%>" runat="server" Flex="1"/>
+                                    <ext:Column ID="stringStatus" Visible="true" DataIndex="stringStatus" runat="server" Width="100" text="<%$ Resources: FieldStatus%> " >
                                     </ext:Column>
                                       
-                                    <ext:Column ID="notes" DataIndex="notes" Text="<%$ Resources: ReturnNotes%>" runat="server" Width="100">
+                                    <ext:Column ID="notes" DataIndex="notes" Text="<%$ Resources: ReturnNotes%>" runat="server" Flex="2">
                                        
                                     </ext:Column>
                                    
@@ -525,6 +537,7 @@
 
                                 </Columns>
                             </ColumnModel>
+
                             <%--  alert(last.dayId);
                                                         if(App.leaveRequest1_shouldDisableLastDay.value=='1')
                                                              if(last.dayId==rec.data['dayId'])  
@@ -587,6 +600,8 @@
                     <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="={#{EditRecordWindow}.body}" />
                     <ExtraParams>
                         <ext:Parameter Name="id" Value="#{recordId}.getValue()" Mode="Raw" />
+                         <ext:Parameter Name="status" Value="#{status}.getValue()" Mode="Raw" />
+                        
                         <ext:Parameter Name="values" Value="#{BasicInfoTab}.getForm().getValues()" Mode="Raw" Encode="true" />
                         <ext:Parameter Name="days" Value="Ext.encode(#{LeaveDaysGrid}.getRowsValues({selectedOnly : false}))" Mode="Raw" />
                     </ExtraParams>
@@ -719,3 +734,11 @@
         </ext:FormPanel>
     </Items>
 </ext:Window>
+ <ext:Container runat="server" Width="60" Height="25">
+                    <Content>
+                       <%--<asp:ImageButton runat="server"  ID="imgButton"  CausesValidation="false"  ImageUrl="~/Images/Tools/expand-all.gif" OnClientClick="openInNewTab();"   />--%>
+                 <div id="myGrid">
+                     <div id="playcontainer" style="margin:50px;border-bottom: none"></div>
+                  </div>
+            </Content>
+                </ext:Container>

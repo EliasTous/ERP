@@ -112,6 +112,13 @@ namespace AionHR.Web.UI.Forms
             statusStore.DataBind();
         }
 
+        protected void Page_Init(object sender, EventArgs e)
+        {
+
+            leaveRequest1.Store1 = this.LeaveRequestsStore;
+            leaveRequest1.GrigPanel1 = this.leaveGrid;
+
+        }
 
 
         /// <summary>
@@ -558,8 +565,14 @@ namespace AionHR.Web.UI.Forms
             var d = jobInfo1.GetJobInfo();
             req.BranchId = d.BranchId.HasValue ? d.BranchId.Value : 0;
             req.DepartmentId = d.DepartmentId.HasValue ? d.DepartmentId.Value : 0;
-            req.raEmployeeId = _systemService.SessionHelper.GetCurrentUserId();
-            req.raEmployeeId = "71";
+            RecordRequest r = new RecordRequest();
+            r.RecordID = _systemService.SessionHelper.GetCurrentUserId();
+            RecordResponse<UserInfo> response = _systemService.ChildGetRecord<UserInfo>(r);
+
+            req.raEmployeeId = response.result.employeeId;
+            if (string.IsNullOrEmpty(response.result.employeeId))
+                return null; 
+            userSessionEmployeeId.Text= response.result.employeeId;
             req.status = 1;
 
 
@@ -636,12 +649,15 @@ namespace AionHR.Web.UI.Forms
 
         protected void LeaveRequestsStore_ReadData(object sender, StoreReadDataEventArgs e)
         {
+
             LeaveRequestListRequest req = GetLeaveManagementRequest();
-            ListResponse<LeaveRequest> loans = _leaveManagementService.ChildGetAll<LeaveRequest>(req);
+            if (req != null)
+            {
+                ListResponse<LeaveRequest> loans = _leaveManagementService.ChildGetAll<LeaveRequest>(req);
 
-            LeaveRequestsStore.DataSource = loans.Items;
-            LeaveRequestsStore.DataBind();
-
+                LeaveRequestsStore.DataSource = loans.Items;
+                LeaveRequestsStore.DataBind();
+            }
         }
 
         protected void BirthdaysStore_ReadData(object sender, StoreReadDataEventArgs e)
@@ -829,11 +845,14 @@ namespace AionHR.Web.UI.Forms
 
             switch (type)
             {
-                case "imgEdit":
+
+
+
+                case "imgAttach":
                     //Step 1 : get the object from the Web Service 
                     RecordRequest r = new RecordRequest();
                     r.RecordID = id;
-                                   
+
 
                     RecordResponse<LeaveRequest> response = _leaveManagementService.ChildGetRecord<LeaveRequest>(r);
                     if (!response.Success)
@@ -843,28 +862,16 @@ namespace AionHR.Web.UI.Forms
                         return;
                     }
                     //Step 2 : call setvalues with the retrieved object
-                    this.LeaveRecordTab.SetValues(response.result);
-
-
-                    this.LeaveRecordWindow.Title = Resources.Common.EditWindowsTitle;
+                 
+                    this.LeaveRecordForm.SetValues(response.result);
+                    employeeName.Text = response.result.employeeName.fullName;
+                   
+                   this.LeaveRecordWindow.Title = Resources.Common.EditWindowsTitle;
                     this.LeaveRecordWindow.Show();
                     break;
 
-                case "imgDelete":
-                    X.Msg.Confirm(Resources.Common.Confirmation, Resources.Common.DeleteOneRecord, new MessageBoxButtonsConfig
-                    {
-                        Yes = new MessageBoxButtonConfig
-                        {
-                            //We are call a direct request metho for deleting a record
-                            Handler = String.Format("App.direct.DeleteRecord({0})", id),
-                            Text = Resources.Common.Yes
-                        },
-                        No = new MessageBoxButtonConfig
-                        {
-                            Text = Resources.Common.No
-                        }
-
-                    }).Show();
+                case "imgEdit":
+                    leaveRequest1.Update(id);
                     break;
             }
         }
@@ -873,5 +880,60 @@ namespace AionHR.Web.UI.Forms
         {
 
         }
-    }
+        protected void SaveNewRecord(object sender, DirectEventArgs e)
+        {
+            string obj = e.ExtraParams["values"];
+            string id = e.ExtraParams["id"];
+            LeaveRequest LV = JsonConvert.DeserializeObject<LeaveRequest>(obj);
+            try
+                {
+                //New Mode
+                //Step 1 : Fill The object and insert in the store 
+               
+                PostRequest<DashboardLeave> request = new PostRequest<DashboardLeave>();
+                request.entity = new DashboardLeave(); 
+                request.entity.leaveId =Convert.ToInt32( LV.recordId);
+                request.entity.employeeId =Convert.ToInt32( userSessionEmployeeId.Text);
+                request.entity.status = LV.status;
+                if (!string.IsNullOrEmpty(LV.returnNotes))
+                    request.entity.notes = LV.returnNotes;
+                else
+                    request.entity.notes = " "; 
+
+
+                PostResponse<DashboardLeave> r = _leaveManagementService.ChildAddOrUpdate<DashboardLeave>(request);
+
+
+                    //check if the insert failed
+                    if (!r.Success)//it maybe be another condition
+                    {
+                        //Show an error saving...
+                        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                        X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() : r.Summary).Show();
+                        return;
+                    }
+                    else
+                    {
+                       
+                        leavesStore.Reload(); 
+                        Notification.Show(new NotificationConfig
+                        {
+                            Title = Resources.Common.Notification,
+                            Icon = Icon.Information,
+                            Html = Resources.Common.RecordSavingSucc
+                        });
+
+                        this.LeaveRecordWindow.Close();
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    //Error exception displaying a messsage box
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorSavingRecord).Show();
+                }
+
+            }
+        }
     }
