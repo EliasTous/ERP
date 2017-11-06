@@ -556,11 +556,18 @@
 
                                             </Items>
                                            <Listeners>
+                                               <Change Handler=" #{ldValue}.setValue(0);"></Change>
 
                                            </Listeners>
                                         </ext:ComboBox>
-                                        <ext:NumberField Width="400"  runat="server"  ID="ldValue" Name="ldValue" FieldLabel="<%$ Resources: PaymentValue %>" MinValue="0" MaxValue="100" AllowBlank="false" />
-
+                                        <ext:NumberField Width="400"  runat="server"  ID="ldValue" Name="ldValue" FieldLabel="<%$ Resources: PaymentValue %>"  AllowBlank="false" >
+                                        
+                                         <validator Handler="if(#{ldMethod}.getValue()!=5 && #{ldMethod}.getValue()!=4 ){  if (this.value>0&& this.value<100) return true ; else return false; } else return true; ">
+                                             
+                                         </validator>
+                                           
+                                            </ext:NumberField>
+                                
 
                             </Items>
                             <Buttons>

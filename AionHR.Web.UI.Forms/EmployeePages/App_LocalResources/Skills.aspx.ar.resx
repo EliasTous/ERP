@@ -147,6 +147,9 @@
   <data name="FieldInst" xml:space="preserve">
     <value>المؤسسة التعليمية</value>
   </data>
+  <data name="FieldMajor" xml:space="preserve">
+    <value>الاختصاص</value>
+  </data>
   <data name="FieldRemarks" xml:space="preserve">
     <value>الملاحظات</value>
   </data>

@@ -8,10 +8,10 @@ namespace AionHR.Model.Payroll
 {
   public class GeneratePayroll
     {
-     public  string payId { set; get;  }
-       public string employeeId { set; get; }
-        public string departmentId { set; get; }
-        public string branchId { set; get; }
+     public  int payId { set; get;  }
+       public int employeeId { set; get; }
+        public int departmentId { set; get; }
+        public int branchId { set; get; }
       
     }
 }
