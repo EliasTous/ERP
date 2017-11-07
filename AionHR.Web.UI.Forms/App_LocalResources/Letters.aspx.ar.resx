@@ -117,82 +117,49 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="CGridTitle" xml:space="preserve">
-    <value>Contacts</value>
+  <data name="addressedTo" xml:space="preserve">
+    <value>مرسل الى </value>
   </data>
-  <data name="ECGridTitle" xml:space="preserve">
-    <value>Emergency Contacts</value>
+  <data name="BasicInfoTabEditWindowTitle" xml:space="preserve">
+    <value>معلومات المحافظة</value>
   </data>
-  <data name="EditContactWindowTitle" xml:space="preserve">
-    <value>Contacts</value>
+  <data name="bodyText" xml:space="preserve">
+    <value>نص الرسالة</value>
   </data>
-  <data name="EditEmergencyContactWindowTitle" xml:space="preserve">
-    <value>Emergency Contacts</value>
+  <data name="companyUsage" xml:space="preserve">
+    <value>شركة </value>
   </data>
-  <data name="FieldCCellPhone" xml:space="preserve">
-    <value>Cell Phone</value>
+  <data name="EditWindowsTitle" xml:space="preserve">
+    <value>تعديل المحافظة</value>
   </data>
-  <data name="FieldCCity" xml:space="preserve">
-    <value>City</value>
+  <data name="employeeUsage" xml:space="preserve">
+    <value>موظف</value>
   </data>
-  <data name="FieldCCountryId" xml:space="preserve">
-    <value>Country Id</value>
+  <data name="FieldEmployeeFullName" xml:space="preserve">
+    <value>الموظف</value>
   </data>
-  <data name="FieldCCountryName" xml:space="preserve">
-    <value>Country Name</value>
+  <data name="FieldLanguageId" xml:space="preserve">
+    <value>اللغة</value>
   </data>
-  <data name="FieldCPostalCode" xml:space="preserve">
-    <value>Postal Code</value>
+  <data name="FieldName" xml:space="preserve">
+    <value>الاسم</value>
   </data>
-  <data name="FieldCStreet1" xml:space="preserve">
-    <value>Street 1</value>
+  <data name="FieldRecordId" xml:space="preserve">
+    <value>الرقم</value>
   </data>
-  <data name="FieldCStreet2" xml:space="preserve">
-    <value>Street 2</value>
+  <data name="Fieldusage" xml:space="preserve">
+    <value>الاستخدام </value>
   </data>
-  <data name="FieldEMAddressName" xml:space="preserve">
-    <value>Address</value>
+  <data name="ltId" xml:space="preserve">
+    <value>قالب الرسالة </value>
   </data>
-  <data name="FieldEMCellPhone" xml:space="preserve">
-    <value>Cell Phone</value>
+  <data name="notes" xml:space="preserve">
+    <value>ملاحظات </value>
   </data>
-  <data name="FieldEMCity" xml:space="preserve">
-    <value>City</value>
+  <data name="reference" xml:space="preserve">
+    <value>الرمز</value>
   </data>
-  <data name="FieldEMCountryId" xml:space="preserve">
-    <value>Country Id</value>
-  </data>
-  <data name="FieldEMCountryName" xml:space="preserve">
-    <value>Country Name</value>
-  </data>
-  <data name="FieldEMEmail" xml:space="preserve">
-    <value>Email</value>
-  </data>
-  <data name="FieldEMHomePhone" xml:space="preserve">
-    <value>Home Phone</value>
-  </data>
-  <data name="FieldEMInst" xml:space="preserve">
-    <value>Name</value>
-  </data>
-  <data name="FieldEMPostalCode" xml:space="preserve">
-    <value>Postal Code</value>
-  </data>
-  <data name="FieldEMRTName" xml:space="preserve">
-    <value>Relationship</value>
-  </data>
-  <data name="FieldEMStreet1" xml:space="preserve">
-    <value>Street 1</value>
-  </data>
-  <data name="FieldEMStreet2" xml:space="preserve">
-    <value>Street 2</value>
-  </data>
-  <data name="FieldEMWorkPhone" xml:space="preserve">
-    <value>Work Phone</value>
-  </data>
-  <data name="FieldState" xml:space="preserve">
-    <value>State</value>
-  </data>
-  <data name="phone" xml:space="preserve">
-    <value>Phone</value>
+  <data name="WindowTitle" xml:space="preserve">
+    <value>المحافظات</value>
   </data>
 </root>

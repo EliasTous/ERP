@@ -30,7 +30,8 @@
             App.city.allowBlank = d;
             App.costreet1.allowBlank = d;
             App.stId.allowBlank=d;
-            App.naId.allowBlank=d;
+            App.naId.allowBlank = d;
+            App.phone.allowBlank = d;
         }
         function openInNewTab() {
             window.document.forms[0].target = '_blank';
@@ -54,6 +55,10 @@
         <ext:Hidden ID="timeZoneOffset" runat="server" EnableViewState="true" />
           <ext:Hidden ID="Yes" runat="server" Text="<%$ Resources:Common , Yes %>"  />
           <ext:Hidden ID="No" runat="server" Text="<%$ Resources:Common , No %>"  />
+          <ext:Hidden ID="branchId" runat="server" Text=""  />
+        
+      
+      
         <ext:Store
             ID="Store1"
             runat="server"
@@ -451,10 +456,170 @@
                                                 <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
                                             </Listeners>
                                         </ext:ComboBox>
+                                 <ext:TextField runat="server" Name="phone" AllowBlank="true" ID="phone" FieldLabel="<%$ Resources:phone%>" />
 
 
                             </Items>
                         </ext:FormPanel>
+                        <ext:GridPanel
+                            ID="legalReferenceGrid" AutoUpdateLayout="true" Collapsible="true"
+                            runat="server"
+                            PaddingSpec="0 0 1 0"
+                            Header="true"
+                            Title="<%$ Resources:legalReferenceWindowTitle %> "
+                            Layout="FitLayout"
+                            Flex="1"
+                            Scroll="Vertical"
+                            Border="false"
+                            Icon="User"
+                            ColumnLines="True" IDMode="Explicit" RenderXType="True">
+                            <Store>
+                                <ext:Store
+                                    ID="legalReferenceStore"
+                                    runat="server"
+                                    RemoteSort="False"
+                                    RemoteFilter="true"
+                                    OnReadData="legalReference_RefreshData"
+                                    PageSize="50" IDMode="Explicit" Namespace="App">
+                                     <Model>
+                                        <ext:Model ID="Model2" runat="server">
+                                            <Fields>
+
+                                                <ext:ModelField Name="goId" />
+                                                <ext:ModelField Name="goName" />
+                                                <ext:ModelField Name="reference" />
+                                                <ext:ModelField Name="releaseDate" />
+
+
+
+
+
+
+                                            </Fields>
+                                        </ext:Model>
+                                    </Model>
+                                    <Sorters>
+                                        <ext:DataSorter Direction="ASC" />
+                                    </Sorters>
+                                </ext:Store>
+                            </Store>
+                            <TopBar>
+                            <%--    <ext:Toolbar ID="Toolbar3" runat="server" ClassicButtonStyle="false">
+                                    <Items>
+                                        
+                                      
+
+                                        <ext:ToolbarFill ID="ToolbarFill1" runat="server" />
+                                        <ext:TextField ID="TextField1" runat="server" EnableKeyEvents="true" Width="180">
+                                            <Triggers>
+                                                <ext:FieldTrigger Icon="Search" />
+                                            </Triggers>
+                                            <Listeners>
+                                                <KeyPress Fn="enterKeyPressSearchHandler" Buffer="100" />
+                                                <TriggerClick Handler="#{socialSetupGrid}.reload();" />
+                                            </Listeners>
+                                        </ext:TextField>
+
+                                    </Items>
+                                </ext:Toolbar>--%>
+
+                            </TopBar>
+
+                            <ColumnModel ID="ColumnModel2" runat="server" SortAscText="<%$ Resources:Common , SortAscText %>" SortDescText="<%$ Resources:Common ,SortDescText  %>" SortClearText="<%$ Resources:Common ,SortClearText  %>" ColumnsText="<%$ Resources:Common ,ColumnsText  %>" EnableColumnHide="false" Sortable="false">
+                                <Columns>
+
+                                    <ext:Column Visible="false" ID="goId" MenuDisabled="true" runat="server" Text="goId" DataIndex="goId" Hideable="false" Width="75" Align="Center" />
+
+
+
+                                    <ext:Column ID="goName" MenuDisabled="true" runat="server" Text="<%$ Resources:goName%>" DataIndex="goName" Hideable="false" Flex="1" Align="Center" />
+                                    <ext:Column ID="referenceCol" MenuDisabled="true" runat="server" Text="<%$ Resources:FieldReference%> " DataIndex="reference" Hideable="false" Flex="1" Align="Center" />
+                                    <ext:DateColumn ID="releaseDate" MenuDisabled="true" runat="server" Text=" <%$ Resources:releaseDate%> " DataIndex="releaseDate" Hideable="false" Flex="1" Align="Center" />
+
+
+
+                                    <ext:Column runat="server"
+                                        ID="Column1" Visible="false"
+                                        Text="<%$ Resources: Common , Delete %>"
+                                        Width="100"
+                                        Align="Center"
+                                        Fixed="true"
+                                        Filterable="false"
+                                        Hideable="false"
+                                        MenuDisabled="true"
+                                        Resizable="false">
+                                        <Renderer Fn="deleteRender" />
+
+                                    </ext:Column>
+                                    <ext:Column runat="server"
+                                        Visible="false"
+                                        ID="colAttachSetupGrid"
+                                        Text="<%$ Resources:Common, Attach %>"
+                                        Hideable="false"
+                                        Width="60"
+                                        Align="Center"
+                                        Fixed="true"
+                                        Filterable="false"
+                                        MenuDisabled="true"
+                                        Resizable="false">
+                                        <Renderer Fn="attachRender" />
+                                    </ext:Column>
+
+                                    <ext:Column runat="server"
+                                        ID="Column3" Visible="true"
+                                        Text=""
+                                        Width="100"
+                                        Hideable="false"
+                                        Align="Center"
+                                        Fixed="true"
+                                        Filterable="false"
+                                        MenuDisabled="true"
+                                        Resizable="false">
+
+                                        <Renderer Handler="return editRender(); " />
+
+                                    </ext:Column>
+
+
+
+                                </Columns>
+                            </ColumnModel>
+                            <DockedItems>
+
+                                <ext:Toolbar ID="Toolbar4" runat="server" Dock="Bottom">
+                                    <Items>
+                                        <ext:StatusBar ID="StatusBar2" runat="server" />
+                                        <ext:ToolbarFill />
+
+                                    </Items>
+                                </ext:Toolbar>
+
+                            </DockedItems>
+
+                            <Listeners>
+                                <Render Handler="this.on('cellclick', cellClick);" />
+                            </Listeners>
+                            <DirectEvents>
+                                <CellClick OnEvent="PoPuPlegalReference">
+                                    <EventMask ShowMask="true" />
+                                    <ExtraParams>
+                                        <ext:Parameter Name="id" Value="record.data['goId']" Mode="Raw" />
+                                       
+                                        <ext:Parameter Name="type" Value="getCellType( this, rowIndex, cellIndex)" Mode="Raw" />
+                                    </ExtraParams>
+
+                                </CellClick>
+                            </DirectEvents>
+                            <View>
+                                <ext:GridView ID="GridView2" runat="server" />
+                            </View>
+
+
+                            <SelectionModel>
+                                <ext:RowSelectionModel ID="rowSelectionModel1" runat="server" Mode="Single" StopIDModeInheritance="true" />
+                                <%--<ext:CheckboxSelectionModel ID="CheckboxSelectionModel1" runat="server" Mode="Multi" StopIDModeInheritance="true" />--%>
+                            </SelectionModel>
+                        </ext:GridPanel>
                     </Items>
                     
                 </ext:TabPanel>
@@ -484,6 +649,79 @@
             </Buttons>
         </ext:Window>
 
+           <ext:Window
+            ID="EditlegalReferenceWindow"
+            runat="server"
+            Icon="PageEdit"
+            Title=" <%$ Resources:EditlegalReferenceWindowTitle %>"
+            Width="400"
+            Height="300"
+            AutoShow="false"
+            Modal="true"
+            Closable="false"
+            Resizable="false"
+            Floatable="false"
+            Draggable="false"
+            FocusOnToFront="true"
+            Header="false"
+            Hidden="true"
+            Layout="Fit">
+
+            <Items>
+                <ext:TabPanel ID="TabPanel1" runat="server" ActiveTabIndex="0" Border="false" DeferredRender="false">
+                    <Items>
+                        <ext:FormPanel
+                            ID="legalReferenceForm" DefaultButton="saveLegalReference"
+                            runat="server"
+                            Title="<%$ Resources:EditlegalReferenceWindowTitle %>"
+                            Icon="ApplicationSideList"
+                            DefaultAnchor="100%" Layout="AutoLayout"
+                            BodyPadding="5">
+                            <Items>
+
+                                  <ext:TextField ID="goIdd" Hidden="true" runat="server" FieldLabel="<%$ Resources:FieldrecordId%>" Disabled="true" Name="goId" />
+                              <ext:TextField ID="branchIdd" Hidden="true" runat="server" FieldLabel="<%$ Resources:FieldrecordId%>" Disabled="true" Name="goId" />
+                                <ext:TextField  ID="goNameTF" runat="server" ReadOnly="true" FieldLabel="<%$ Resources:goName %>"  Name="goName" />
+                                 <ext:TextField   ID="referenceTF"  runat="server" FieldLabel="<%$ Resources:FieldReference %>" Name="reference" />
+                                <ext:DateField   ID="releaseDateDF" AllowBlank="false"   runat="server" FieldLabel="<%$ Resources:releaseDate %>" Name="releaseDate" />
+                         
+                                 
+                               
+
+
+                            </Items>
+
+                        </ext:FormPanel>
+
+                    </Items>
+                </ext:TabPanel>
+            </Items>
+            <Buttons>
+                <ext:Button ID="saveLegalbutton" runat="server" Text="<%$ Resources:Common, Save %>" Icon="Disk">
+
+                    <Listeners>
+                        <Click Handler="CheckSession(); if (!#{legalReferenceForm}.getForm().isValid()) {return false;}  " />
+                    </Listeners>
+                    <DirectEvents>
+                        <Click OnEvent="saveLegalRecord" Failure="Ext.MessageBox.alert('#{titleSavingError}.value', '#{titleSavingErrorMessage}.value');">
+                            <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="={#{EditlegalReferenceWindow}.body}" />
+                            <ExtraParams>
+                                <ext:Parameter Name="id" Value="#{goIdd}.getValue()" Mode="Raw" />
+                                <ext:Parameter Name="values" Value="#{legalReferenceForm}.getForm().getValues()" Mode="Raw" Encode="true" />
+                            
+                            </ExtraParams>
+                        </Click>
+                    </DirectEvents>
+                </ext:Button>
+                <ext:Button ID="Button1" runat="server" Text="<%$ Resources:Common , Cancel %>" Icon="Cancel">
+                    <Listeners>
+                        <Click Handler="this.up('window').hide();" />
+                    </Listeners>
+                </ext:Button>
+            </Buttons>
+        </ext:Window>
+
+        
 
 
     </form>

@@ -252,4 +252,7 @@
   <data name="FieldFolderName" xml:space="preserve">
     <value>المجلد</value>
   </data>
+  <data name="phone" xml:space="preserve">
+    <value>الهاتف</value>
+  </data>
 </root>

@@ -511,6 +511,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             res.AddRule("conaId", "naId");
             res.AddRule("costId", "stateId");
             res.AddRule("costreet1", "addressId.street1");
+            res.AddRule("localphone", "addressId.phone");
             settings.ContractResolver = res;
             EmployeeContact b = JsonConvert.DeserializeObject<EmployeeContact>(obj, settings);
             b.employeeId = Convert.ToInt32(CurrentEmployee.Text);
@@ -519,7 +520,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             // Define the object to add or edit as null
             b.rtName = rtId.SelectedItem.Text;
 
-            b.addressId = new AddressBook() { street1 = costreet1.Text, street2 = costreet2.Text, city = cocity.Text, postalCode = copostalCode.Text, countryId = b.naId, stateId = b.stateId, countryName = conaId.SelectedItem.Text };
+            b.addressId = new AddressBook() { street1 = costreet1.Text, street2 = costreet2.Text, city = cocity.Text, postalCode = copostalCode.Text, countryId = b.naId, stateId = b.stateId, countryName = conaId.SelectedItem.Text, phone= localphone.Text };
             b.addressId.recordId = coaddressId.Text;
             b.employeeId = Convert.ToInt32(CurrentEmployee.Text);
             if (string.IsNullOrEmpty(id))

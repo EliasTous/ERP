@@ -63,7 +63,8 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorOperation).Show();
                 CurrentEmployee.Text = Request.QueryString["employeeId"];
                 FillNoticePeriod();
-                
+                FillBranchField();
+
                 HireInfoRecordRequest req = new HireInfoRecordRequest();
                 req.EmployeeId = Request.QueryString["employeeId"];
                 RecordResponse<HireInfo> resp = _employeeService.ChildGetRecord<HireInfo>(req);
@@ -76,6 +77,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                 {
                     hireInfoForm.SetValues(resp.result);
                     npId.Select(resp.result.npId.ToString());
+                    regBranchId.Select(resp.result.regBranchId);
                 }
                 probationEndDate.Format = nextReviewDate.Format = termEndDate.Format = pyActiveDate.Format= _systemService.SessionHelper.GetDateformat();
 
@@ -215,6 +217,41 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                 return;
             }
 
+        }
+        protected void addBranch(object sender, DirectEventArgs e)
+        {
+            Branch obj = new Branch();
+            obj.name = regBranchId.Text;
+
+            PostRequest<Branch> req = new PostRequest<Branch>();
+            req.entity = obj;
+            PostResponse<Branch> response = _companyStructureService.ChildAddOrUpdate<Branch>(req);
+            if (response.Success)
+            {
+                obj.recordId = response.recordId;
+                FillBranchField();
+                regBranchId.Select(obj.recordId);
+            }
+            else
+            {
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).ToString() : response.Summary).Show();
+                return;
+            }
+
+
+        }
+        private void FillBranchField()
+        {
+            ListRequest branchesRequest = new ListRequest();
+            ListResponse<Branch> resp = _companyStructureService.ChildGetAll<Branch>(branchesRequest);
+            if (!resp.Success)
+            {
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() : resp.Summary).Show();
+                return;
+            }
+            branchStore.DataSource = resp.Items;
+            branchStore.DataBind();
         }
 
     }

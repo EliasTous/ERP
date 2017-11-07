@@ -232,6 +232,7 @@
                                         <ext:ListItem Text="<%$ Resources:ReferenceFirstNameMiddleNameLastName %>" Value="{reference} {firstName} {middleName} {lastName}" />
                                         <ext:ListItem Text="<%$ Resources:ReferenceFirstNameMiddleNameFamilyNameLastName %>" Value="{reference} {firstName} {middleName} {familyName} {lastName}" />
                                         <ext:ListItem Text="<%$ Resources:ReferenceLastNameFirstName %>" Value="{reference} {lastName} {firstName}" />
+                                         <ext:ListItem Text="<%$ Resources:ReferenceFirstNameMiddleNameFamilyName %>" Value="{reference} {firstName} {middleName} {familyName} " />
 
 
                                     </Items>

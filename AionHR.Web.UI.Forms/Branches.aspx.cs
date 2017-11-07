@@ -171,6 +171,10 @@ namespace AionHR.Web.UI.Forms
                         return;
                     }
                     //Step 2 : call setvalues with the retrieved object
+                    branchId.Text = response.result.recordId;
+                   
+                  
+                    legalReferenceStore.Reload();
                     this.BasicInfoTab.SetValues(response.result);
                     timeZoneCombo.Select(response.result.timeZone.ToString());
                     FillNationality();
@@ -345,14 +349,18 @@ namespace AionHR.Web.UI.Forms
 
             //Reset all values of the relative object
             BasicInfoTab.Reset();
+         
             addressForm.Reset();
             this.EditRecordWindow.Title = Resources.Common.AddNewRecord;
             FillNationality();
             FillState();
+
             timeZoneCombo.Select(timeZoneOffset.Text);
             this.EditRecordWindow.Show();
         }
 
+       
+      
         protected void Store1_RefreshData(object sender, StoreReadDataEventArgs e)
         {
 
@@ -403,13 +411,13 @@ namespace AionHR.Web.UI.Forms
             settings.ContractResolver = res;
 
             AddressBook add = JsonConvert.DeserializeObject<AddressBook>(addr, settings);
-            if (string.IsNullOrEmpty(add.city) && string.IsNullOrEmpty(add.countryId) && string.IsNullOrEmpty(add.street1) && string.IsNullOrEmpty(add.stateId))
+            if (string.IsNullOrEmpty(add.city) && string.IsNullOrEmpty(add.countryId) && string.IsNullOrEmpty(add.street1) && string.IsNullOrEmpty(add.stateId) && string.IsNullOrEmpty(add.phone))
             {
                 b.addressId = null;
             }
             else
             {
-                if (string.IsNullOrEmpty(add.city) || string.IsNullOrEmpty(add.countryId) || string.IsNullOrEmpty(add.street1) || string.IsNullOrEmpty(add.stateId))
+                if (string.IsNullOrEmpty(add.city) || string.IsNullOrEmpty(add.countryId) || string.IsNullOrEmpty(add.street1) || string.IsNullOrEmpty(add.stateId) || string.IsNullOrEmpty(add.phone))
                 {
                     X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
                     X.Msg.Alert(Resources.Common.Error, GetLocalResourceObject("ErrorAddressMissing")).Show();
@@ -441,22 +449,28 @@ namespace AionHR.Web.UI.Forms
                     }
                     else
                     {
+                        if(!string.IsNullOrEmpty(branchId.Text))
+                        {
+                            this.Store1.Insert(0, b);
+                          
 
-                        //Add this record to the store 
-                        this.Store1.Insert(0, b);
+                            this.EditRecordWindow.Close();
+                            RowSelectionModel sm = this.GridPanel1.GetSelectionModel() as RowSelectionModel;
+                            sm.DeselectAll();
+                            sm.Select(b.recordId.ToString());
+                        }
 
-                        //Display successful notification
                         Notification.Show(new NotificationConfig
                         {
                             Title = Resources.Common.Notification,
                             Icon = Icon.Information,
                             Html = Resources.Common.RecordSavingSucc
                         });
+                        //Add this record to the store 
 
-                        this.EditRecordWindow.Close();
-                        RowSelectionModel sm = this.GridPanel1.GetSelectionModel() as RowSelectionModel;
-                        sm.DeselectAll();
-                        sm.Select(b.recordId.ToString());
+
+                        //Display successful notification
+                        branchId.Text = b.recordId;
 
 
 
@@ -697,6 +711,222 @@ namespace AionHR.Web.UI.Forms
 
 
         }
+
+        protected void legalReference_RefreshData(object sender, StoreReadDataEventArgs e)
+        {
+
+            //GEtting the filter from the page
+            string filter = string.Empty;
+            int totalCount = 1;
+
+
+
+            //Fetching the corresponding list
+
+            //in this test will take a list of News
+            LegalReferenceListRequest request = new LegalReferenceListRequest();
+
+            request.Filter = "";
+            request.branchId = branchId.Text;
+            ListResponse<LegalReference> branches = _branchService.ChildGetAll<LegalReference>(request);
+            if (!branches.Success)
+            {
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", branches.ErrorCode) != null ? GetGlobalResourceObject("Errors", branches.ErrorCode).ToString() : branches.Summary).Show();
+                return;
+            }
+          
+            this.legalReferenceStore.DataSource = branches.Items;
+            e.Total = branches.count;
+
+            this.legalReferenceStore.DataBind();
+        }
+        protected void PoPuPlegalReference(object sender, DirectEventArgs e)
+        {
+
+
+            int id = Convert.ToInt32(e.ExtraParams["id"]);
+            string type = e.ExtraParams["type"];
+
+            switch (type)
+            {
+                case "imgEdit":
+                    //Step 1 : get the object from the Web Service 
+                    LegalReferenceRecordRequest r = new LegalReferenceRecordRequest();
+                    r.branchId = branchId.Text;
+                    r.goId = id.ToString();
+                    RecordResponse<LegalReference> response = _branchService.ChildGetRecord<LegalReference>(r);
+                    if (!response.Success)
+                    {
+                        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                        X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).ToString() : response.Summary).Show();
+                        return;
+                    }
+                    //Step 2 : call setvalues with the retrieved object
+                    goNameTF.ReadOnly = true;
+
+                    this.legalReferenceForm.SetValues(response.result);
+                                      
+                    this.EditlegalReferenceWindow.Title = Resources.Common.EditWindowsTitle;
+                    this.EditlegalReferenceWindow.Show();
+                    break;
+
+                //case "imgDelete":
+                //    X.Msg.Confirm(Resources.Common.Confirmation, Resources.Common.DeleteOneRecord, new MessageBoxButtonsConfig
+                //    {
+                //        Yes = new MessageBoxButtonConfig
+                //        {
+                //            //We are call a direct request metho for deleting a record
+                //            Handler = String.Format("App.direct.DeleteRecord({0})", id),
+                //            Text = Resources.Common.Yes
+                //        },
+                //        No = new MessageBoxButtonConfig
+                //        {
+                //            Text = Resources.Common.No
+                //        }
+
+                //    }).Show();
+                //    break;
+
+                //case "imgAttach":
+
+                //    //Here will show up a winow relatice to attachement depending on the case we are working on
+                //    break;
+                //default:
+                //    break;
+            }
+
+
+        }
+        protected void saveLegalRecord(object sender, DirectEventArgs e)
+        {
+
+
+            //Getting the id to check if it is an Add or an edit as they are managed within the same form.
+            string id = e.ExtraParams["id"];
+
+            string obj = e.ExtraParams["values"];
+           
+            LegalReference b = JsonConvert.DeserializeObject<LegalReference>(obj);
+            b.branchId =Convert.ToInt32( branchId.Text);
+          
+
+            // Define the object to add or edit as null
+
+
+            if (string.IsNullOrEmpty(id))
+            {
+
+                try
+                {
+                    //New Mode
+                    //Step 1 : Fill The object and insert in the store 
+                  
+                    PostRequest<LegalReference> request = new PostRequest<LegalReference>();
+                    request.entity = b;
+                    PostResponse<LegalReference> r = _branchService.ChildAddOrUpdate<LegalReference>(request);
+                 
+
+                    //check if the insert failed
+                    if (!r.Success)//it maybe be another condition
+                    {
+                        //Show an error saving...
+                        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                        X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() : r.Summary).Show();
+                        return;
+                    }
+                    else
+                    {
+
+                        legalReferenceStore.Reload(); 
+
+
+                        this.EditlegalReferenceWindow.Close();
+                     
+                        Notification.Show(new NotificationConfig
+                        {
+                            Title = Resources.Common.Notification,
+                            Icon = Icon.Information,
+                            Html = Resources.Common.RecordSavingSucc
+                        });
+                        //Add this record to the store 
+
+
+                        //Display successful notification
+                     
+
+
+
+                    }
+                }
+                catch (Exception ex)
+                {
+                    //Error exception displaying a messsage box
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorSavingRecord).Show();
+                }
+
+
+            }
+            else
+            {
+                //Update Mode
+
+                try
+                {
+
+                    b.goId= Convert.ToInt32(id);
+                    PostRequest<LegalReference> request = new PostRequest<LegalReference>();
+                    request.entity = b;
+                    PostResponse<LegalReference> r = _branchService.ChildAddOrUpdate<LegalReference>(request);                      //Step 1 Selecting the object or building up the object for update purpose
+
+                    //Step 2 : saving to store
+
+                    //Step 3 :  Check if request fails
+                    if (!r.Success)//it maybe another check
+                    {
+                        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                        X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() : r.Summary).Show();
+                        return;
+                    }
+                    else
+                    {
+
+                        legalReferenceStore.Reload(); 
+
+                        Notification.Show(new NotificationConfig
+                        {
+                            Title = Resources.Common.Notification,
+                            Icon = Icon.Information,
+                            Html = Resources.Common.RecordUpdatedSucc
+                        });
+
+                        this.EditlegalReferenceWindow.Close();
+
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorUpdatingRecord).Show();
+                }
+            }
+        }
+        //protected void ADDNewlegalReferenceRecord(object sender, DirectEventArgs e)
+        //{
+
+        //    //Reset all values of the relative object
+        //    legalReferenceForm.Reset();
+        //    goNameTF.ReadOnly = false;
+
+
+
+        //    this.EditlegalReferenceWindow.Title = Resources.Common.AddNewRecord;
+           
+
+           
+        //    this.EditlegalReferenceWindow.Show();
+        //}
 
     }
 }

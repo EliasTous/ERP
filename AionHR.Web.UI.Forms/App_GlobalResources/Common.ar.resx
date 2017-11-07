@@ -1050,4 +1050,16 @@
   <data name="GenerateAttendanceDays" xml:space="preserve">
     <value>تزامن الحضور اليومي </value>
   </data>
+  <data name="GovernmentOrganisations" xml:space="preserve">
+    <value>هيئات حكومية</value>
+  </data>
+  <data name="LetterTemplates" xml:space="preserve">
+    <value>Letter Templates</value>
+  </data>
+  <data name="CompanyLetter" xml:space="preserve">
+    <value>Letter</value>
+  </data>
+  <data name="Letters" xml:space="preserve">
+    <value>Letters</value>
+  </data>
 </root>

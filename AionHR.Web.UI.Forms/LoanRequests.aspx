@@ -118,7 +118,7 @@
                     Scroll="Vertical"
                     Border="false"
                     Icon="User"
-                    ColumnLines="True" IDMode="Explicit" RenderXType="True">
+                    ColumnLines="True" IDMode="Explicit" RenderXType="True" ForceFit="true">
 
                     <TopBar>
                         <ext:Toolbar ID="Toolbar1" runat="server" ClassicButtonStyle="false">
@@ -271,9 +271,9 @@
                                 <Renderer Fn="attachRender" />
                             </ext:Column>
                              <ext:Column runat="server"
-                                ID="colDelete" Flex="1" Visible="true"
+                                ID="colDelete"  Visible="true"
                                 Text="<%$ Resources: Common , Delete %>"
-                                Width="60"
+                                MinWidth="60"
                                 Align="Center"
                                 Fixed="true"
                                 Filterable="false"
@@ -374,7 +374,7 @@
                             Title="<%$ Resources: BasicInfoTabEditWindowTitle %>"
                             Icon="ApplicationSideList"
                             DefaultAnchor="100%" OnLoad="BasicInfoTab_Load"
-                            BodyPadding="5">
+                            BodyPadding="5"  AutoScroll="true">
                             <Items>
                                 <ext:TextField ID="recordId" runat="server" Name="recordId" Hidden="true" />
                                 <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" ID="employeeId"
