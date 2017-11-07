@@ -310,49 +310,31 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.TabPanel att;
         
         /// <summary>
-        /// active control.
+        /// activeHighChart control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Panel active;
+        protected global::Ext.Net.Panel activeHighChart;
         
         /// <summary>
-        /// late control.
+        /// lateHighChart control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Panel late;
+        protected global::Ext.Net.Panel lateHighChart;
         
         /// <summary>
-        /// absense control.
+        /// breakHighChart control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Panel absense;
-        
-        /// <summary>
-        /// PolarChart6 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.PolarChart PolarChart6;
-        
-        /// <summary>
-        /// AbsentLeaveStore control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Store AbsentLeaveStore;
+        protected global::Ext.Net.Panel breakHighChart;
         
         /// <summary>
         /// barPanel control.

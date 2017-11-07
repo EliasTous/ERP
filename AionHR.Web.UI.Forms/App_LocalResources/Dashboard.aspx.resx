@@ -468,4 +468,34 @@
   <data name="FieldNew" xml:space="preserve">
     <value>New</value>
   </data>
+  <data name="NAttendance" xml:space="preserve">
+    <value>Other</value>
+  </data>
+  <data name="NLate" xml:space="preserve">
+    <value>Other</value>
+  </data>
+  <data name="Today" xml:space="preserve">
+    <value>Today</value>
+  </data>
+  <data name="Break" xml:space="preserve">
+    <value>Break</value>
+  </data>
+  <data name="BusinessLeave" xml:space="preserve">
+    <value>Business Leave</value>
+  </data>
+  <data name="LeaveNoExcuse" xml:space="preserve">
+    <value>Leave Without Excuse</value>
+  </data>
+  <data name="NBreak" xml:space="preserve">
+    <value>Other</value>
+  </data>
+  <data name="NLeaves" xml:space="preserve">
+    <value>Other</value>
+  </data>
+  <data name="NPaidLeaves" xml:space="preserve">
+    <value>Not Paid</value>
+  </data>
+  <data name="Vacation" xml:space="preserve">
+    <value>Vacation</value>
+  </data>
 </root>

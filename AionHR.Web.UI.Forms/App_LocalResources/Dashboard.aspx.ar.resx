@@ -471,4 +471,34 @@
   <data name="FieldNew" xml:space="preserve">
     <value>جديد</value>
   </data>
+  <data name="NAttendance" xml:space="preserve">
+    <value>الغياب</value>
+  </data>
+  <data name="NLate" xml:space="preserve">
+    <value>الملتزمين</value>
+  </data>
+  <data name="Today" xml:space="preserve">
+    <value>اليوم</value>
+  </data>
+  <data name="Break" xml:space="preserve">
+    <value>استراحة</value>
+  </data>
+  <data name="BusinessLeave" xml:space="preserve">
+    <value>غياب عملي</value>
+  </data>
+  <data name="LeaveNoExcuse" xml:space="preserve">
+    <value>غياب بدون عذر</value>
+  </data>
+  <data name="NBreak" xml:space="preserve">
+    <value>مكتبهم</value>
+  </data>
+  <data name="NLeaves" xml:space="preserve">
+    <value>اخرى</value>
+  </data>
+  <data name="NPaidLeaves" xml:space="preserve">
+    <value>غير مدفوعة</value>
+  </data>
+  <data name="Vacation" xml:space="preserve">
+    <value>عطلة</value>
+  </data>
 </root>
