@@ -123,6 +123,9 @@
   <data name="xrLabel12.Text" xml:space="preserve">
     <value>لم يتم العثور على نتائج</value>
   </data>
+  <data name="xrLabel14.Text" xml:space="preserve">
+    <value>أيام العمل</value>
+  </data>
   <data name="xrLabel15.Text" xml:space="preserve">
     <value>كشف الرواتب </value>
   </data>

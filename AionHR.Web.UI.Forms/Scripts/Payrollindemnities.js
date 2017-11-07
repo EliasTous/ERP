@@ -37,8 +37,7 @@ var attachRender = function () {
 //    }
 //});
 function addEmployee() {
-    var periodsGrid = App.periodsGrid,
-        store = periodsGrid.getStore();
+    var periodsGrid = App.periodsGrid,store = periodsGrid.getStore();
 
     periodsGrid.editingPlugin.cancelEdit();
 
@@ -48,8 +47,8 @@ function addEmployee() {
     store.insert(0, {
 
         from: '0',
-        to: '1',
-        pct: '2'
+        to: '0',
+        pct: '0'
 
     });
 
@@ -62,6 +61,40 @@ function removeEmployee() {
         store = periodsGrid.getStore();
 
     periodsGrid.editingPlugin.cancelEdit();
+    store.remove(sm.getSelection());
+
+    if (store.getCount() > 0) {
+        sm.select(0);
+    }
+}
+function addResignation() {
+   
+    var IndemnityRecognitionGrid = App.IndemnityRecognitionGrid,
+        store = IndemnityRecognitionGrid.getStore();
+
+    IndemnityRecognitionGrid.editingPlugin.cancelEdit();
+
+    store.getSorters().removeAll();
+    IndemnityRecognitionGrid.getView().headerCt.setSortState(); // To update columns sort UI
+
+    store.insert(0, {
+
+        from: '0',
+        to: '0',
+        pct: '0'
+
+    });
+
+    IndemnityRecognitionGrid.editingPlugin.startEdit(0, 0);
+}
+
+function removeResignation() {
+    
+    var IndemnityRecognitionGrid = App.IndemnityRecognitionGrid,
+        sm = IndemnityRecognitionGrid.getSelectionModel(),
+        store = IndemnityRecognitionGrid.getStore();
+
+    IndemnityRecognitionGrid.editingPlugin.cancelEdit();
     store.remove(sm.getSelection());
 
     if (store.getCount() > 0) {

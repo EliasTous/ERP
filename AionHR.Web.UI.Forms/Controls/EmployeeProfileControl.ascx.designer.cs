@@ -976,13 +976,13 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.ComboBox rehire;
         
         /// <summary>
-        /// Button6 control.
+        /// saveTerminationButton control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Button Button6;
+        protected global::Ext.Net.Button saveTerminationButton;
         
         /// <summary>
         /// Button9 control.

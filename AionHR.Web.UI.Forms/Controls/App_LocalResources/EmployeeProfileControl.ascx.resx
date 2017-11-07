@@ -360,4 +360,7 @@
   <data name="EmployeeCalenderTab" xml:space="preserve">
     <value>Employee Calender </value>
   </data>
+  <data name="Emplo" xml:space="preserve">
+    <value />
+  </data>
 </root>

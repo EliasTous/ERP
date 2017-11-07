@@ -123,6 +123,9 @@
   <data name="EditWindowsTitle" xml:space="preserve">
     <value>Edit Department</value>
   </data>
+  <data name="FieldAttendanceSchedule" xml:space="preserve">
+    <value>Attendance Schedule</value>
+  </data>
   <data name="FieldIsInactive" xml:space="preserve">
     <value>Is Inactive?</value>
   </data>
@@ -149,6 +152,9 @@
   </data>
   <data name="FieldTimeZone" xml:space="preserve">
     <value>Time Zone</value>
+  </data>
+  <data name="isLeaveAuth" xml:space="preserve">
+    <value>Is leave authenticator</value>
   </data>
   <data name="WindowTitle" xml:space="preserve">
     <value>Departments</value>

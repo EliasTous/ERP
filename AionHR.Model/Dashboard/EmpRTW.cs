@@ -18,5 +18,10 @@ namespace AionHR.Model.Dashboard
         public DateTime expiryDate { get; set; }
 
         public int days { get; set; }
+       public string positionName { get; set;  }
+        public string departmentName { get; set;  }
+        public string branchName { set; get;  }
+
+
     }
 }

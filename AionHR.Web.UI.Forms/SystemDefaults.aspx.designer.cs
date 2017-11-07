@@ -625,6 +625,114 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.NumberField ldValue;
         
         /// <summary>
+        /// PYFSLeaveBalEDId control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.ComboBox PYFSLeaveBalEDId;
+        
+        /// <summary>
+        /// PYFSLeaveBalEDId_Store control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Store PYFSLeaveBalEDId_Store;
+        
+        /// <summary>
+        /// PYINEDId control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.ComboBox PYINEDId;
+        
+        /// <summary>
+        /// PYINEDId_store control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Store PYINEDId_store;
+        
+        /// <summary>
+        /// PYISmale control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.ComboBox PYISmale;
+        
+        /// <summary>
+        /// PYISmale_store control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Store PYISmale_store;
+        
+        /// <summary>
+        /// PYISfemale control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.ComboBox PYISfemale;
+        
+        /// <summary>
+        /// PYISfemale_store control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Store PYISfemale_store;
+        
+        /// <summary>
+        /// exemptMarriageTRId control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.ComboBox exemptMarriageTRId;
+        
+        /// <summary>
+        /// exemptMarriageTR_Store control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Store exemptMarriageTR_Store;
+        
+        /// <summary>
+        /// exemptDeliveryTRId control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.ComboBox exemptDeliveryTRId;
+        
+        /// <summary>
+        /// exemptDeliveryTR_Store control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Store exemptDeliveryTR_Store;
+        
+        /// <summary>
         /// SavePayrollSettingsBtn control.
         /// </summary>
         /// <remarks>

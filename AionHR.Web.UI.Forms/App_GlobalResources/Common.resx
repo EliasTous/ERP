@@ -1029,4 +1029,37 @@
   <data name="RT503" xml:space="preserve">
     <value>Department Payroll</value>
   </data>
+  <data name="importCalendar" xml:space="preserve">
+    <value>Import Calendar</value>
+  </data>
+  <data name="TerminationReasons" xml:space="preserve">
+    <value>Termination Reason</value>
+  </data>
+  <data name="NoticePeriods" xml:space="preserve">
+    <value>Notice Periods</value>
+  </data>
+  <data name="Generate" xml:space="preserve">
+    <value>Generate</value>
+  </data>
+  <data name="FieldEHStatus" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="GenerateAttendanceDaySucc" xml:space="preserve">
+    <value>Attendance Days Synced  Successfully</value>
+  </data>
+  <data name="GenerateAttendanceDays" xml:space="preserve">
+    <value>Generate Attendance Days</value>
+  </data>
+  <data name="GovernmentOrganisations" xml:space="preserve">
+    <value>Government Organisations</value>
+  </data>
+  <data name="LetterTemplates" xml:space="preserve">
+    <value>Letter Templates</value>
+  </data>
+  <data name="CompanyLetter" xml:space="preserve">
+    <value>Letter</value>
+  </data>
+  <data name="Letters" xml:space="preserve">
+    <value>Letters</value>
+  </data>
 </root>

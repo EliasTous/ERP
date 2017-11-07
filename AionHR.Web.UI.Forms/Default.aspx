@@ -39,6 +39,8 @@
     <ext:Hidden runat="server" ID="sysdeTitle" Text="<%$Resources:Common , SystemDefaults %>" />
     <ext:Hidden runat="server" ID="cuTitle" Text="<%$Resources:Common , Currencies %>" />
     <ext:Hidden runat="server" ID="usTitle" Text="<%$Resources:Common , Users %>" />
+       <ext:Hidden runat="server" ID="goTitle" Text="<%$Resources:Common , GovernmentOrganisations %>" />
+      <ext:Hidden runat="server" ID="ltemplateTitle" Text="<%$Resources:Common , LetterTemplates %>" />
     <ext:Hidden runat="server" ID="mcTitle" Text="<%$Resources:Common , MediaCategory %>" />
     <ext:Hidden runat="server" ID="caTitle" Text="<%$Resources:Common , WorkingCalendars %>" />
     <ext:Hidden runat="server" ID="roTitle" Text="<%$Resources:Common , Routers %>" />
@@ -77,6 +79,9 @@
     
     <ext:Hidden runat="server" ID="aaTitle" Text="<%$Resources:Common , SystemAlerts %>" />
     <ext:Hidden runat="server" ID="ttTitle" Text="<%$Resources:Common , TaskTypes %>" />
+    <ext:Hidden runat="server" ID="tRTitle" Text="<%$Resources:Common , TerminationReasons %>" />
+     <ext:Hidden runat="server" ID="NPTitle" Text="<%$Resources:Common , NoticePeriods %>" />
+     <ext:Hidden runat="server" ID="StatusTitle" Text="<%$Resources:Common , FieldEHStatus %>" />
     <ext:Hidden runat="server" ID="TrType1" Text="<%$Resources:Common , TrType1 %>" />
     <ext:Hidden runat="server" ID="TrType2" Text="<%$Resources:Common , TrType2 %>" />
     <ext:Hidden runat="server" ID="TrType3" Text="<%$Resources:Common , TrType3 %>" />
@@ -194,6 +199,21 @@
                                                         <ext:MenuItem runat="server" Text="<%$Resources: Common , TaskTypes%>">
                                                             <Listeners>
                                                                 <Click Handler="openNewTab('taskTypes', 'TaskTypes.aspx', #{ttTitle}.value, 'icon-Employees')" />
+                                                            </Listeners>
+                                                        </ext:MenuItem>
+                                                           <ext:MenuItem runat="server" Text="<%$Resources: Common , TerminationReasons%>">
+                                                            <Listeners>
+                                                                <Click Handler="openNewTab('TerminationReasons', 'TerminationReasons.aspx', #{tRTitle}.value, 'icon-Employees')" />
+                                                            </Listeners>
+                                                        </ext:MenuItem>
+                                                         <ext:MenuItem runat="server" Text="<%$Resources: Common , NoticePeriods%>">
+                                                            <Listeners>
+                                                                <Click Handler="openNewTab('NoticePeriods', 'NoticePeriods.aspx', #{NPTitle}.value, 'icon-Employees')" />
+                                                            </Listeners>
+                                                        </ext:MenuItem>
+                                                        <ext:MenuItem runat="server" Text="<%$Resources: Common , FieldEHStatus%>">
+                                                            <Listeners>
+                                                                <Click Handler="openNewTab('Status', 'Status.aspx', #{StatusTitle}.value, 'icon-Employees')" />
                                                             </Listeners>
                                                         </ext:MenuItem>
                                                         <ext:MenuItem runat="server" Text="<%$Resources: Common , Import%>">
@@ -316,6 +336,16 @@
                                                                         <ext:MenuItem runat="server" Text="<%$Resources: Common , Users%>">
                                                                             <Listeners>
                                                                                 <Click Handler="openNewTab('users', 'Users.aspx', #{usTitle}.value, 'icon-Employees')" />
+                                                                            </Listeners>
+                                                                        </ext:MenuItem>
+                                                                         <ext:MenuItem runat="server" Text="<%$Resources: Common , GovernmentOrganisations%>">
+                                                                            <Listeners>
+                                                                                <Click Handler="openNewTab('GovernmentOrganisations', 'GovernmentOrganisations.aspx', #{goTitle}.value, 'icon-Employees')" />
+                                                                            </Listeners>
+                                                                        </ext:MenuItem>
+                                                                         <ext:MenuItem runat="server" Text="<%$Resources: Common , LetterTemplates%>">
+                                                                            <Listeners>
+                                                                                <Click Handler="openNewTab('LetterTemplates', 'LetterTemplates.aspx', #{ltemplateTitle}.value, 'icon-Employees')" />
                                                                             </Listeners>
                                                                         </ext:MenuItem>
                                                                         <ext:MenuItem runat="server" Text="<%$Resources:Common,AccessControl %>">

@@ -183,6 +183,9 @@
   <data name="EditWindowsTitle" xml:space="preserve">
     <value>تعديل الفرع</value>
   </data>
+  <data name="empCount" xml:space="preserve">
+    <value>عدد موظفين </value>
+  </data>
   <data name="EmployeeRightToWork" xml:space="preserve">
     <value>وثائق الموظفين</value>
   </data>
@@ -215,6 +218,12 @@
   </data>
   <data name="FieldDivision" xml:space="preserve">
     <value>الإدارة</value>
+  </data>
+  <data name="FieldDocument" xml:space="preserve">
+    <value>نوع الوثيقة </value>
+  </data>
+  <data name="FieldDocumentRef" xml:space="preserve">
+    <value>رقم الوثيقة</value>
   </data>
   <data name="FieldDueDate" xml:space="preserve">
     <value>تاريخ الاستحقاق</value>
@@ -357,8 +366,14 @@
   <data name="Loans" xml:space="preserve">
     <value>السلف</value>
   </data>
+  <data name="LocalsCount" xml:space="preserve">
+    <value>عدد موظفين محلين </value>
+  </data>
+  <data name="LocalsRate" xml:space="preserve">
+    <value>نسبة المحليين</value>
+  </data>
   <data name="MinLocalRate" xml:space="preserve">
-    <value>نسبة الموظفين المحليين الصغرى</value>
+    <value>نسبة مطلوبة</value>
   </data>
   <data name="MissingPunchesGridTitle" xml:space="preserve">
     <value>دوام غير مسجل</value>
@@ -407,5 +422,83 @@
   </data>
   <data name="WindowTitle" xml:space="preserve">
     <value>الموظفين</value>
+  </data>
+  <data name="LocalRate" xml:space="preserve">
+    <value>نسبة المحليين</value>
+  </data>
+  <data name="FieldApproved" xml:space="preserve">
+    <value>مقبولة</value>
+  </data>
+  <data name="FieldIsPaid" xml:space="preserve">
+    <value>مدفوعة؟</value>
+  </data>
+  <data name="FieldJustification" xml:space="preserve">
+    <value>السبب</value>
+  </data>
+  <data name="FieldLeaveRef" xml:space="preserve">
+    <value>الرقم</value>
+  </data>
+  <data name="FieldPending" xml:space="preserve">
+    <value>قيد المعالجة</value>
+  </data>
+  <data name="FieldRefused" xml:space="preserve">
+    <value>مرفوضة</value>
+  </data>
+  <data name="FieldReturnDate" xml:space="preserve">
+    <value>تاريخ انتهاء الإجازة</value>
+  </data>
+  <data name="FieldStatus" xml:space="preserve">
+    <value>الحالة</value>
+  </data>
+  <data name="FieldUsed" xml:space="preserve">
+    <value>مستخدمة</value>
+  </data>
+  <data name="LeaveBalance" xml:space="preserve">
+    <value>رصيد الإجازات</value>
+  </data>
+  <data name="ReturnNotes" xml:space="preserve">
+    <value>ملاحظات</value>
+  </data>
+  <data name="TotalText" xml:space="preserve">
+    <value>مجموع الساعات</value>
+  </data>
+  <data name="YearsInService" xml:space="preserve">
+    <value>فترة الخدمة</value>
+  </data>
+  <data name="LeaveRecordForm" xml:space="preserve">
+    <value>الموافقه على طلب الإجازة </value>
+  </data>
+  <data name="FieldNew" xml:space="preserve">
+    <value>جديد</value>
+  </data>
+  <data name="NAttendance" xml:space="preserve">
+    <value>الغياب</value>
+  </data>
+  <data name="NLate" xml:space="preserve">
+    <value>الملتزمين</value>
+  </data>
+  <data name="Today" xml:space="preserve">
+    <value>اليوم</value>
+  </data>
+  <data name="Break" xml:space="preserve">
+    <value>استراحة</value>
+  </data>
+  <data name="BusinessLeave" xml:space="preserve">
+    <value>غياب عملي</value>
+  </data>
+  <data name="LeaveNoExcuse" xml:space="preserve">
+    <value>غياب بدون عذر</value>
+  </data>
+  <data name="NBreak" xml:space="preserve">
+    <value>مكتبهم</value>
+  </data>
+  <data name="NLeaves" xml:space="preserve">
+    <value>اخرى</value>
+  </data>
+  <data name="NPaidLeaves" xml:space="preserve">
+    <value>غير مدفوعة</value>
+  </data>
+  <data name="Vacation" xml:space="preserve">
+    <value>عطلة</value>
   </data>
 </root>

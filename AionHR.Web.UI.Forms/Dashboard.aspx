@@ -9,15 +9,395 @@
     <title></title>
 
     <link rel="stylesheet" type="text/css" href="CSS/Common.css" />
-    <link rel="stylesheet" type="text/css" href="CSS/Dashboard.css?id=29" />
+    <link rel="stylesheet" type="text/css" href="CSS/Dashboard.css?id=32" />
     <link rel="stylesheet" href="CSS/LiveSearch.css" />
-    <script type="text/javascript" src="Scripts/Dashboard.js"></script>
+    <script type="text/javascript" src="Scripts/Dashboard.js?id=12"></script>
     <!--  <script type="text/javascript" src="Scripts/app.js"></script>-->
     <script type="text/javascript" src="Scripts/common.js"></script>
     <script type="text/javascript" src="Scripts/moment.js"></script>
-    <script type="text/javascript" src="Scripts/CircileProgress.js?id=1"></script>
-    <script type="text/javascript" src="Scripts/jquery-new.js?id=1"></script>
+    <script type="text/javascript" src="Scripts/CircileProgress.js?id=98"></script>
+    <script type="text/javascript" src="Scripts/jquery-new.js?id=45"></script>
+    <script type="text/javascript" src="Scripts/plugins/highcharts.js"></script>
+
+
     <script type="text/javascript">
+
+        var drawActiveHightChartPie = function (dataObject, rtl) {
+            // Build the chart
+
+            Highcharts.chart('activeHighChart', {
+                chart: {
+                    plotBackgroundColor: null,
+                    plotBorderWidth: null,
+                    plotShadow: false,
+                    type: 'pie'
+                },
+                title: {
+                    text: '',
+                    style: {
+                        display: 'none'
+                    }
+                },
+                legend: {
+                    itemStyle: { fontSize: '11px' },
+                    itemDistance: 5,
+                    useHTML: rtl,
+                    rtl: rtl
+
+
+
+                },
+                tooltip: {
+                    enabled: false
+                },
+                subtitle: {
+                    text: '',
+                    style: {
+                        display: 'none'
+                    }
+                },
+                plotOptions: {
+                    pie: {
+
+                        showInLegend: true,
+                        point: {
+                            events: {
+                                legendItemClick: function (e) {
+                                    
+                                    clickActiveHightChartPieSeries(e.target.options.index);
+                                    return false;
+                                }
+                            }
+                        }
+                    },
+                    series: {
+                        dataLabels: {
+                            enabled: true,
+                            formatter: function () {
+                                return this.point.y;
+                            }
+
+                        }
+                    }
+                },
+                series: [{
+                    data: dataObject
+                }]
+            })
+        };
+        var clickActiveHightChartPieSeries = function (val) {
+            if (val == 0) {
+                App.activeWindow.show();
+            }
+            else {
+                //  App.lateWindow.show();
+
+            }
+        }
+
+
+        var drawLateHightChartPie = function (dataObject, rtl) {
+            // Build the chart
+
+            Highcharts.chart('lateHighChart', {
+                chart: {
+                    plotBackgroundColor: null,
+                    plotBorderWidth: null,
+                    plotShadow: false,
+                    type: 'pie'
+                },
+                title: {
+                    text: '',
+                    style: {
+                        display: 'none'
+                    }
+                },
+                legend: {
+                    itemStyle: { fontSize: '11px' },
+                    itemDistance: 5,
+                    useHTML: rtl,
+                    rtl: rtl
+
+
+
+                },
+                tooltip: {
+                    enabled: false
+                },
+                subtitle: {
+                    text: '',
+                    style: {
+                        display: 'none'
+                    }
+                },
+                plotOptions: {
+                    pie: {
+
+                        showInLegend: true,
+                        point: {
+                            events: {
+                                legendItemClick: function (e) {
+                                    clickLateHightChartPieSeries(e.target.options.index);
+                                    return false;
+                                }
+                            }
+                        }
+                    },
+                    series: {
+                        dataLabels: {
+                            enabled: true,
+                            formatter: function () {
+                                return this.point.y;
+                            },
+                            distance: -30,
+
+                        }
+                    }
+                },
+                series: [{
+                    data: dataObject
+                }]
+            })
+        };
+        var clickLateHightChartPieSeries = function (val) {
+            if (val == 0) {
+                App.lateWindow.show();
+            }
+            else {
+                //  App.lateWindow.show();
+
+            }
+        }
+
+        var drawBreakHightChartPie = function (dataObject, rtl) {
+            // Build the chart
+
+            Highcharts.chart('breakHighChart', {
+                chart: {
+                    plotBackgroundColor: null,
+                    plotBorderWidth: null,
+                    plotShadow: false,
+                    type: 'pie'
+                },
+                title: {
+                    text: '',
+                    style: {
+                        display: 'none'
+                    }
+                },
+                legend: {
+                    itemStyle: { fontSize: '11px' },
+                    itemDistance: 5,
+                    useHTML: rtl,
+                    rtl: rtl
+
+
+
+                },
+                tooltip: {
+                    enabled: false
+                },
+                subtitle: {
+                    text: '',
+                    style: {
+                        display: 'none'
+                    }
+                },
+                plotOptions: {
+                    pie: {
+
+                        showInLegend: true,
+                        point: {
+                            events: {
+                                legendItemClick: function (e) {
+                                    clickBreakHightChartPieSeries(e.target.options.index);
+                                    return false;
+                                }
+                            }
+                        }
+                    },
+                    series: {
+                        dataLabels: {
+                            enabled: true,
+                            formatter: function () {
+                                return this.point.y;
+                            },
+                            distance: -30,
+
+                        }
+                    }
+                },
+                series: [{
+                    data: dataObject
+                }]
+            })
+        };
+        var clickBreakHightChartPieSeries = function (val) {
+            if (val == 0) {
+                App.lateWindow.show();
+            }
+            else {
+                //  App.lateWindow.show();
+
+            }
+        }
+
+
+     //   var drawLeaveHightChartPie = function (dataObject, rtl) {
+     //       // Build the chart
+
+     //       Highcharts.chart('leaveHighChart', {
+     //           chart: {
+     //               plotBackgroundColor: null,
+     //               plotBorderWidth: null,
+     //               plotShadow: false,
+     //               type: 'pie'
+     //           },
+     //           title: {
+     //               text: '',
+     //               style: {
+     //                   display: 'none'
+     //               }
+     //           },
+     //           legend: {
+     //               itemStyle: { fontSize: '11px' },
+     //               itemDistance: 5,
+     //               useHTML: rtl,
+     //               rtl: rtl
+
+
+
+     //           },
+     //           tooltip: {
+     //               enabled: false
+     //           },
+     //           subtitle: {
+     //               text: '',
+     //               style: {
+     //                   display: 'none'
+     //               }
+     //           },
+     //           plotOptions: {
+     //               pie: {
+
+     //                   showInLegend: true,
+     //                   point: {
+     //                       events: {
+     //                           legendItemClick: function (e) {
+     //                               clickLeaveHightChartPieSeries(e.target.options.index);
+     //                               return false;
+     //                           }
+     //                       }
+     //                   }
+     //               },
+     //               series: {
+     //                   dataLabels: {
+     //                       enabled: true,
+     //                       formatter: function () {
+     //                           return this.point.y;
+     //                       },
+     //                       distance: -30,
+
+     //                   }
+     //               }
+     //           },
+     //           series: [{
+     //               data: dataObject
+     //           }]
+     //       })
+     //   };
+     //   var clickLeaveHightChartPieSeries = function (val) {
+     //       if (val == 0) {
+     //           // App.lateWindow.show();
+     //       }
+     //       else {
+     //           //  App.lateWindow.show();
+
+     //       }
+     //   }
+
+     //var drawPaidUnPaidHightChartPie = function (dataObject, rtl) {
+     //       // Build the chart
+
+     //    Highcharts.chart('paidUnpaidHighChart', {
+     //           chart: {
+     //               plotBackgroundColor: null,
+     //               plotBorderWidth: null,
+     //               plotShadow: false,
+     //               type: 'pie'
+     //           },
+     //           title: {
+     //               text: '',
+     //               style: {
+     //                   display: 'none'
+     //               }
+     //           },
+     //           legend: {
+     //               itemStyle: { fontSize: '11px' },
+     //               itemDistance: 5,
+     //               useHTML: rtl,
+     //               rtl: rtl
+
+
+
+     //           },
+     //           tooltip: {
+     //               enabled: false
+     //           },
+     //           subtitle: {
+     //               text: '',
+     //               style: {
+     //                   display: 'none'
+     //               }
+     //           },
+     //           plotOptions: {
+     //               pie: {
+
+     //                   showInLegend: true,
+     //                   point: {
+     //                       events: {
+     //                           legendItemClick: function (e) {
+     //                               clickPaidUnPaidHightChartPieSeries(e.target.options.index);
+     //                               return false;
+     //                           }
+     //                       }
+     //                   }
+     //               },
+     //               series: {
+     //                   dataLabels: {
+     //                       enabled: true,
+     //                       formatter: function () {
+     //                           return this.point.y;
+     //                       },
+     //                       distance: -30,
+
+     //                   }
+     //               }
+     //           },
+     //           series: [{
+     //               data: dataObject
+     //           }]
+     //       })
+     //   };
+     //var clickPaidUnPaidHightChartPieSeries = function (val) {
+     //       if (val == 0) {
+     //           // App.lateWindow.show();
+     //       }
+     //       else {
+     //           //  App.lateWindow.show();
+
+     //       }
+     //   }
+
+        var tipRendererActive = function (toolTip, record, context) {
+            var total = 0;
+
+            App.activeChart.getStore().each(function (rec) {
+                total += rec.get('Count');
+            });
+
+            toolTip.setTitle(record.get('Name') + ': ' + Math.round(record.get('Count') / total * 100) + '%');
+        };
         function fixWidth(s) {
             //App.CartesianChart1.setWidth(s * 50);
             //App.CartesianChart1.setHeight(App.att.getHeight()-40);
@@ -33,7 +413,7 @@
 
             App.barPanel.setHeight(App.att.getHeight() - 40);
         }
-        
+
         function getStyle() {
             var dir = document.getElementById('rtl').value == 'True' ? 'right' : 'left';
             var s = 'text-align:' + dir;
@@ -349,7 +729,7 @@
         };
     </script>
 </head>
-<body style="background: url(Images/bg.png) repeat;">
+<body style="background-color: #fff">
     <form id="Form1" runat="server">
         <ext:ResourceManager ID="ResourceManager1" runat="server" Theme="Neptune" AjaxTimeout="1200000" />
 
@@ -371,6 +751,8 @@
         <ext:Hidden ID="onleave" runat="server" Text="<%$ Resources:OnLeave %>" />
 
         <ext:Hidden ID="daysLeft" runat="server" Text="<%$ Resources: FieldDaysLeft %>" />
+        <ext:Hidden ID="userSessionEmployeeId" runat="server" Text="" />
+
         <ext:Store PageSize="30"
             ID="OverDueStore"
             runat="server" OnReadData="OverDueStore_ReadData"
@@ -423,7 +805,8 @@
         <ext:Viewport ID="Viewport1" runat="server" Layout="FitLayout">
 
             <Items>
-                <ext:Panel runat="server" Layout="FitLayout" ID="root">
+
+                <ext:Panel runat="server" Layout="FitLayout" ID="root" PaddingSpec="5 5 5 5">
                     <TopBar>
                         <ext:Toolbar runat="server">
                             <Items>
@@ -475,27 +858,54 @@
                             </LayoutConfig>
                             <Items>
 
-                                <ext:Panel runat="server" Flex="1" StyleHtmlCls="withBackground" BodyCls="withBackground"></ext:Panel>
-                                <ext:Panel runat="server" ID="right" BodyCls="withBackground" Cls="withBackground" StyleHtmlCls="withBackground" Layout="FitLayout" Flex="30">
+                                <%--      <ext:Panel ID="spacePanel" UI="Danger" runat="server" Flex="1" ></ext:Panel>--%>
+                                <ext:Panel runat="server" ID="right" BodyCls="withBackground" Cls="withBackground" StyleHtmlCls="withBackground" Layout="FitLayout" Flex="6" MarginSpec="0 5 0 5">
                                     <Items>
                                         <ext:Panel ID="rightPanel" BodyCls="withBackground" Cls="withBackground" StyleHtmlCls="withBackground" runat="server" AutoScroll="true" Layout="VBoxLayout" Flex="1" StyleSpec="padding-top:20px;">
-                                            <Listeners>
+                                            <%--  <Listeners>
                                                 <AfterLayout Handler="  App.active.setWidth(App.att.getWidth()/7);App.active.setHeight(App.att.getWidth()/7); App.PolarChart6.setWidth(App.att.getWidth()/4); App.PolarChart6.setHeight(App.att.getWidth()/4); App.absense.setWidth(App.att.getWidth()/7);App.late.setWidth(App.att.getWidth()/7);App.overdue.setWidth(App.belowt.getWidth()/4);App.today.setWidth(App.belowt.getWidth()/4);"></AfterLayout>
-                                            </Listeners>
+                                            </Listeners>--%>
                                             <LayoutConfig>
                                                 <ext:VBoxLayoutConfig Pack="End" Align="Stretch"></ext:VBoxLayoutConfig>
                                             </LayoutConfig>
                                             <Items>
 
-                                                <ext:TabPanel ID="att" Plain="true" Flex="15" Layout="FitLayout" StyleHtmlCls="withBackground" BodyCls="withBackground" runat="server" PaddingSpec="0 0 0 0" StyleSpec="border-radius: 25px;" MinHeight="250">
+                                                <ext:TabPanel ID="att" Plain="true" Flex="1" Layout="FitLayout" StyleHtmlCls="withBackground" BodyCls="withBackground topper" runat="server" PaddingSpec="0 0 0 0" StyleSpec="border-radius: 0px; " MinHeight="250" MarginSpec="0 0 5 0">
                                                     <Items>
-                                                        <ext:Panel runat="server" Title="<%$Resources:Attendance %>" Layout="HBoxLayout" Flex="1">
+                                                        <ext:Panel runat="server" Title="<%$Resources:Today %>" StyleSpec=" border: 1px solid #add2ed !important;" Layout="HBoxLayout" Flex="1">
+                                                            <Defaults>
+                                                                <ext:Parameter Name="margin" Value="0 5 0 0" Mode="Value" />
+                                                            </Defaults>
                                                             <LayoutConfig>
-                                                                <ext:HBoxLayoutConfig Align="Stretch"></ext:HBoxLayoutConfig>
+                                                                <ext:HBoxLayoutConfig Align="Stretch" />
                                                             </LayoutConfig>
                                                             <Items>
 
-                                                                <ext:Panel runat="server" Layout="BorderLayout" Flex="4">
+                                                                <ext:Panel
+                                                                    runat="server"
+                                                                    Header="false" ID="activeHighChart" ClientIDMode="Static" PaddingSpec="5 5 5 5"
+                                                                    Layout="FitLayout" Flex="1">
+                                                                </ext:Panel>
+
+                                                                <ext:Panel
+                                                                    runat="server"
+                                                                    Header="false" ID="lateHighChart" ClientIDMode="Static" PaddingSpec="5 5 5 5"
+                                                                    Layout="FitLayout" Flex="1">
+                                                                </ext:Panel>
+
+                                                                <ext:Panel
+                                                                    runat="server"
+                                                                    Header="false" ID="breakHighChart" ClientIDMode="Static" PaddingSpec="5 5 5 5"
+                                                                    Layout="FitLayout" Flex="1">
+                                                                </ext:Panel>
+
+
+                                                           
+
+
+
+
+                                                                <%--           <ext:Panel runat="server" Layout="BorderLayout" Flex="1">
                                                                     <LayoutConfig>
                                                                     </LayoutConfig>
                                                                     <Items>
@@ -532,9 +942,9 @@
                                                                         </ext:Panel>
 
                                                                     </Items>
-                                                                </ext:Panel>
-                                                                <ext:Panel runat="server" Flex="1" />
-                                                                <ext:Panel runat="server" Layout="BorderLayout" Flex="4">
+                                                                </ext:Panel>--%>
+
+                                                                <%--                                                                <ext:Panel runat="server" Layout="BorderLayout" ID="leavesHighChart" Flex="1">
                                                                     <LayoutConfig>
                                                                     </LayoutConfig>
                                                                     <Items>
@@ -570,8 +980,8 @@
 
                                                                     </Items>
                                                                 </ext:Panel>
-                                                                <ext:Panel runat="server" Flex="1" />
-                                                                <ext:Panel runat="server" Layout="BorderLayout" Flex="4 " Hidden="true">
+
+                                                                <ext:Panel runat="server" Layout="BorderLayout" Flex="1" Hidden="true">
                                                                     <LayoutConfig>
                                                                     </LayoutConfig>
                                                                     <Items>
@@ -603,12 +1013,11 @@
                                                                                 </ext:Panel>
                                                                             </Items>
                                                                         </ext:Panel>
-                                                                        <ext:Panel runat="server" Height="10" />
                                                                     </Items>
-                                                                </ext:Panel>
+                                                                </ext:Panel>--%>
 
 
-                                                                <ext:Panel runat="server" Layout="BorderLayout" Flex="4">
+<%--                                                                <ext:Panel runat="server" Layout="BorderLayout" Flex="1" Hidden="true">
                                                                     <Items>
                                                                         <ext:PolarChart Region="Center"
                                                                             ID="PolarChart6"
@@ -632,6 +1041,7 @@
 
                                                                             <AnimationConfig Duration="500"></AnimationConfig>
                                                                             <Interactions>
+                                                                                <ext:ItemHighlightInteraction />
                                                                             </Interactions>
                                                                             <Series>
                                                                                 <ext:PieSeries
@@ -641,7 +1051,7 @@
                                                                                     HighlightMargin="0">
 
                                                                                     <%--                <Label Field="Name" Display="Rotate" FontSize="18" FontFamily="Arial" />
-                                                            <Label Field="Name" Display="Over" FontSize="18" FontFamily="Arial" />--%>
+                                                            <Label Field="Name" Display="Over" FontSize="18" FontFamily="Arial" />
                                                                                     <Label Field="emps" Display="Inside" FontSize="12" FontFamily="Arial">
                                                                                         <Renderer Handler=" " />
                                                                                     </Label>
@@ -711,13 +1121,13 @@
                                                                         <ext:Panel runat="server" Height="10" />
                                                                     </Items>
                                                                 </ext:Panel>
-
+--%>
 
 
                                                             </Items>
 
                                                         </ext:Panel>
-                                                        <ext:Panel runat="server" AutoScroll="true" ID="barPanel" Title="<%$Resources: DepartmentsCount %>">
+                                                        <ext:Panel runat="server" AutoScroll="false" ID="barPanel" Title="<%$Resources: DepartmentsCount %>" StyleSpec=" border: 1px solid #add2ed !important;">
                                                             <Listeners>
                                                                 <AfterLayout Handler=" " />
                                                             </Listeners>
@@ -795,7 +1205,7 @@
                                                             </Items>
                                                         </ext:Panel>
 
-                                                        <ext:Panel runat="server" AutoScroll="true" ID="Panel1" Layout="FitLayout" Title="<%$Resources: DepartmentsCount %>">
+                                                        <ext:Panel runat="server" AutoScroll="true" ID="Panel1" Layout="FitLayout" Title="<%$Resources: LocalRate %>" StyleSpec=" border: 1px solid #add2ed !important;">
                                                             <Listeners>
                                                                 <AfterLayout Handler=" " />
 
@@ -813,7 +1223,7 @@
                                                                                 <ext:CartesianChart
                                                                                     ID="LocalRateChart"
                                                                                     runat="server"
-                                                                                    FlipXY="false" 
+                                                                                    FlipXY="false"
                                                                                     AutoScroll="true">
                                                                                     <Store>
                                                                                         <ext:Store ID="LocalRateStore" OnReadData="LocalRateStore_ReadData"
@@ -829,7 +1239,7 @@
                                                                                             </Model>
                                                                                         </ext:Store>
                                                                                     </Store>
-                                                                                   
+
 
                                                                                     <AnimationConfig Duration="500" Easing="EaseOut" />
 
@@ -860,15 +1270,15 @@
                                                                                                 <ext:SeriesSprite Opacity="0.8" BarWidth="50" MinBarWidth="50" MinGapWidth="10" BaseColor="#33ABAA" />
                                                                                             </StyleSpec>
                                                                                             <%--<Renderer Handler="return {fill:'rgb(51, 171, 170)'};" />--%>
-                                                                                             <Tooltip runat="server">
-                                                                                <Renderer Handler="var browser = context.series.getTitle()[Ext.Array.indexOf(context.series.getYField(), context.field)]; toolTip.setHtml(browser + ' for ' + record.get('category') + ': ' + record.get(context.field));" />
-                                                                            </Tooltip>
+                                                                                            <Tooltip runat="server">
+                                                                                                <Renderer Handler="var browser = context.series.getTitle()[Ext.Array.indexOf(context.series.getYField(), context.field)]; toolTip.setHtml(browser + ' for ' + record.get('category') + ': ' + record.get(context.field));" />
+                                                                                            </Tooltip>
                                                                                             <HighlightConfig>
                                                                                                 <ext:Sprite FillStyle="rgba(69, 143, 210, 1.0)" StrokeStyle="black" LineWidth="2" />
                                                                                             </HighlightConfig>
                                                                                             <Tooltip runat="server" TrackMouse="true">
-                                                                                <Renderer Handler="toolTip.setHtml(record.get('category') + ': '+record.get('number' ));" />
-                                                                            </Tooltip>
+                                                                                                <Renderer Handler="toolTip.setHtml(record.get('category') + ': '+record.get('number' ));" />
+                                                                                            </Tooltip>
                                                                                         </ext:BarSeries>
 
                                                                                     </Series>
@@ -878,7 +1288,7 @@
                                                                         <ext:Panel runat="server" Flex="1">
                                                                             <Items>
                                                                                 <ext:CartesianChart
-                                                                                    ID="LocalCount" 
+                                                                                    ID="LocalCount"
                                                                                     runat="server"
                                                                                     FlipXY="false"
                                                                                     AutoScroll="true">
@@ -913,7 +1323,6 @@
                                                                                         <ext:CategoryAxis
                                                                                             Fields="category"
                                                                                             Position="Bottom">
-                                                                                            
                                                                                         </ext:CategoryAxis>
                                                                                     </Axes>
 
@@ -927,15 +1336,15 @@
                                                                                                 <ext:SeriesSprite Opacity="0.8" BarWidth="50" MinBarWidth="50" MinGapWidth="10" BaseColor="#33ABAA" />
                                                                                             </StyleSpec>
                                                                                             <Renderer Handler="return {fill:'rgb(51, 171, 170)'};" />
-                                                                                             <Tooltip runat="server">
-                                                                                <Renderer Handler="var browser = context.series.getTitle()[Ext.Array.indexOf(context.series.getYField(), context.field)]; toolTip.setHtml(browser + ' for ' + record.get('category') + ': ' + record.get(context.field));" />
-                                                                            </Tooltip>
+                                                                                            <Tooltip runat="server">
+                                                                                                <Renderer Handler="var browser = context.series.getTitle()[Ext.Array.indexOf(context.series.getYField(), context.field)]; toolTip.setHtml(browser + ' for ' + record.get('category') + ': ' + record.get(context.field));" />
+                                                                                            </Tooltip>
                                                                                             <HighlightConfig>
                                                                                                 <ext:Sprite FillStyle="rgba(69, 143, 210, 1.0)" StrokeStyle="black" LineWidth="2" />
                                                                                             </HighlightConfig>
                                                                                             <Tooltip runat="server" TrackMouse="true">
-                                                                                <Renderer Handler="toolTip.setHtml(record.get('category') + ': ' + record.get('number'));" />
-                                                                            </Tooltip>
+                                                                                                <Renderer Handler="toolTip.setHtml(record.get('category') + ': ' + record.get('number'));" />
+                                                                                            </Tooltip>
                                                                                         </ext:BarSeries>
 
                                                                                     </Series>
@@ -1017,8 +1426,8 @@
 
                                                     </Items>
                                                 </ext:TabPanel>
-                                                <ext:Panel runat="server" Flex="1" StyleHtmlCls="withBackground" BodyCls="withBackground" />
-                                                <ext:TabPanel ID="belowt" IDMode="Client" EnableTheming="false" Plain="true" runat="server" Flex="15" PaddingSpec="0 0 0 0" StyleSpec="border-radius: 25px;">
+
+                                                <ext:TabPanel ID="belowt" IDMode="Client" EnableTheming="false" BodyCls="topper" Plain="true" runat="server" Flex="15" PaddingSpec="0 0 0 0" StyleSpec="border-radius: 0px;">
                                                     <Defaults>
                                                     </Defaults>
                                                     <Items>
@@ -1033,7 +1442,7 @@
                                                             Layout="FitLayout"
                                                             Scroll="Vertical"
                                                             Border="false"
-                                                            ColumnLines="True" IDMode="Explicit" RenderXType="True">
+                                                            ColumnLines="True" IDMode="Explicit" RenderXType="True" StyleSpec=" border: 1px solid #add2ed !important;">
                                                             <Store>
                                                                 <ext:Store PageSize="30"
                                                                     ID="LeaveRequestsStore"
@@ -1060,6 +1469,7 @@
                                                                                 <ext:ModelField Name="endDate" />
                                                                                 <ext:ModelField Name="branchName" />
                                                                                 <ext:ModelField Name="departmentName" />
+                                                                                <ext:ModelField Name="elias" />
 
                                                                             </Fields>
                                                                         </ext:Model>
@@ -1079,14 +1489,37 @@
                                                                     <ext:DateColumn ID="DateColumn2" DataIndex="endDate" Text="<%$ Resources: FieldEndDate%>" runat="server" Width="100" />
 
                                                                     <ext:Column ID="Column8" DataIndex="ltName" Text="<%$ Resources: FieldLtName%>" runat="server" Flex="1" />
+                                                                    <ext:Column runat="server"
+                                                                        ID="colEdit" Visible="true"
+                                                                        Text=""
+                                                                        Width="100"
+                                                                        Hideable="false"
+                                                                        Align="Center"
+                                                                        Fixed="true"
+                                                                        Filterable="false"
+                                                                        MenuDisabled="true"
+                                                                        Resizable="false">
 
-
-
+                                                                        <Renderer Handler="return editRender()+'&nbsp;&nbsp;' +attachRender(); " />
+                                                                    </ext:Column>
 
 
 
                                                                 </Columns>
                                                             </ColumnModel>
+                                                            <Listeners>
+                                                                <Render Handler="this.on('cellclick', cellClick);" />
+                                                            </Listeners>
+                                                            <DirectEvents>
+                                                                <CellClick OnEvent="leavePoPUP">
+                                                                    <EventMask ShowMask="true" />
+                                                                    <ExtraParams>
+                                                                        <ext:Parameter Name="id" Value="record.getId()" Mode="Raw" />
+                                                                        <ext:Parameter Name="type" Value="getCellType( this, rowIndex, cellIndex)" Mode="Raw" />
+                                                                    </ExtraParams>
+
+                                                                </CellClick>
+                                                            </DirectEvents>
 
 
                                                             <View>
@@ -1108,7 +1541,7 @@
                                                             Layout="FitLayout"
                                                             Scroll="Vertical"
                                                             Border="false"
-                                                            ColumnLines="True" IDMode="Explicit" RenderXType="True">
+                                                            ColumnLines="True" IDMode="Explicit" RenderXType="True" StyleSpec=" border: 1px solid #add2ed !important;">
 
                                                             <Store>
                                                                 <ext:Store
@@ -1179,7 +1612,7 @@
                                                                 <%--<ext:CheckboxSelectionModel ID="CheckboxSelectionModel1" runat="server" Mode="Multi" StopIDModeInheritance="true" />--%>
                                                             </SelectionModel>
                                                         </ext:GridPanel>
-                                                        <ext:Panel runat="server" Layout="HBoxLayout" Title="<%$Resources:Tasks %>">
+                                                        <ext:Panel runat="server" Layout="HBoxLayout" Title="<%$Resources:Tasks %>" StyleSpec=" border: 1px solid #add2ed !important;">
                                                             <LayoutConfig>
                                                                 <ext:HBoxLayoutConfig Align="Stretch"></ext:HBoxLayoutConfig>
                                                             </LayoutConfig>
@@ -1262,14 +1695,14 @@
                                                     </Items>
 
                                                 </ext:TabPanel>
-                                                <ext:Panel runat="server" Flex="1" StyleHtmlCls="withBackground" BodyCls="withBackground" />
+
 
                                             </Items>
                                         </ext:Panel>
                                     </Items>
                                 </ext:Panel>
-                                <ext:Panel runat="server" Flex="1" BodyCls="withBackground" Cls="withBackground" StyleHtmlCls="withBackground" />
-                                <ext:Panel runat="server" Flex="15" Layout="FitLayout" Region="West" PaddingSpec="20 0 0 0" BodyCls="withBackground" Cls="withBackground" AnchorHorizontal="true" AnchorVertical="true" StyleHtmlCls="withBackground" StyleSpec="border-radius: 25px;">
+
+                                <ext:Panel runat="server" Flex="2" Layout="FitLayout" Region="West" PaddingSpec="20 0 0 0" BodyCls="withBackground" Cls="withBackground" AnchorHorizontal="true" AnchorVertical="true" StyleHtmlCls="withBackground" StyleSpec="border-radius: 0px;">
 
                                     <Listeners>
                                         <AfterRender Handler="startRefresh(); $('.flashing').fadeTo(1000, 0.1, function() { $(this).fadeTo(2000, 1.0); });" />
@@ -1281,9 +1714,9 @@
                                                 <ext:VBoxLayoutConfig Align="Stretch" />
                                             </LayoutConfig>
                                             <Items>
-                                                <ext:TabPanel ID="alerts" runat="server" Flex="30" Layout="FitLayout" Plain="true" StyleSpec="border-radius: 25px;">
+                                                <ext:TabPanel ID="alerts" runat="server" Flex="30" Layout="FitLayout" Plain="true" BodyCls="topper" StyleSpec="border-radius: 0px;">
                                                     <Items>
-                                                        <ext:Panel runat="server" Layout="VBoxLayout" Title="<%$Resources:Alerts %>">
+                                                        <ext:Panel runat="server" Layout="VBoxLayout" Title="<%$Resources:Alerts %>" StyleSpec=" border: 1px solid #add2ed !important;">
                                                             <LayoutConfig>
                                                                 <ext:VBoxLayoutConfig Align="Stretch" />
                                                             </LayoutConfig>
@@ -1450,18 +1883,16 @@
                                                         </ext:Panel>
                                                     </Items>
                                                 </ext:TabPanel>
-                                                <ext:Panel runat="server" Flex="1" BodyCls="withBackground" PaddingSpec="0 0 0 0" />
+
                                             </Items>
                                         </ext:Panel>
                                     </Items>
                                 </ext:Panel>
-                                <ext:Panel runat="server" Flex="1" BodyCls="withBackground" PaddingSpec="0 0 0 0" />
+
                             </Items>
                         </ext:Panel>
                     </Items>
                 </ext:Panel>
-
-
 
             </Items>
         </ext:Viewport>
@@ -1693,14 +2124,14 @@
             </Items>
         </ext:Window>
         <ext:Window runat="server" Modal="true" Layout="FitLayout"
-            Hidden="true" AutoShow="false" ID="EmployeeRightToWorkWindow" Width="400" Height="200" Title="<%$ Resources: EmployeeRightToWork %>">
+            Hidden="true" AutoShow="false" ID="EmployeeRightToWorkWindow" Width="600" Height="200" Title="<%$ Resources: EmployeeRightToWork %>">
             <Listeners>
                 <AfterLayout Handler="App.EmployeeRightToWorkStore.reload()" />
             </Listeners>
             <Items>
                 <ext:GridPanel MarginSpec="0 0 0 0"
                     ID="GridPanel8"
-                    runat="server" HideHeaders="true"
+                    runat="server"
                     PaddingSpec="0 0 0 0"
                     Header="false"
                     Layout="FitLayout"
@@ -1723,6 +2154,11 @@
                                         <ext:ModelField Name="documentRef" />
                                         <ext:ModelField Name="expiryDate" />
                                         <ext:ModelField Name="days" />
+                                        <ext:ModelField Name="positionName" />
+                                        <ext:ModelField Name="departmentName" />
+                                        <ext:ModelField Name="branchName" />
+                                        <ext:ModelField Name="dtName" />
+
 
                                     </Fields>
                                 </ext:Model>
@@ -1733,8 +2169,17 @@
 
                     <ColumnModel ID="ColumnModel13" runat="server" SortAscText="<%$ Resources:Common , SortAscText %>" SortDescText="<%$ Resources:Common ,SortDescText  %>" SortClearText="<%$ Resources:Common ,SortClearText  %>" ColumnsText="<%$ Resources:Common ,ColumnsText  %>" EnableColumnHide="false" Sortable="false">
                         <Columns>
+                            <ext:Column Visible="false" ID="Column21" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldrecordId %>" DataIndex="recordId" Hideable="false" Width="75" />
+                            <ext:Column Flex="2" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEmployee %>" DataIndex="name" Hideable="false" />
 
-                            <ext:Column Visible="false" ID="Column13" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldrecordId %>" DataIndex="recordId" Hideable="false" Width="75" />
+
+                            <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldPosition%>" DataIndex="positionName" Flex="3" Hideable="false" />
+                            <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDepartment%>" DataIndex="departmentName" Flex="3" Hideable="false" />
+                            <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldBranch%>" DataIndex="branchName" Flex="3" Hideable="false" />
+                            <ext:Column Flex="2" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDocument %>" DataIndex="dtName" Hideable="false" />
+                            <ext:Column Flex="2" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDocumentRef %>" DataIndex="documentRef" Hideable="false" />
+
+                            <%--<ext:Column Visible="false" ID="Column13" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldrecordId %>" DataIndex="recordId" Hideable="false" Width="75" />
                             <ext:Column Flex="2" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEmployee %>" DataIndex="name" Hideable="false" Width="75">
                                 <Renderer Handler=" return displayEmployeeRTW(record.data);  ">
                                 </Renderer>
@@ -1743,15 +2188,7 @@
 
                                 <Renderer Handler="return record.data['days'] + ' ' + document.getElementById('daysLeft').value;" />
 
-                            </ext:Column>
-
-
-
-
-
-
-
-
+                            </ext:Column>--%>
                         </Columns>
                     </ColumnModel>
 
@@ -2041,12 +2478,12 @@
         </ext:Window>
 
         <ext:Window runat="server" Modal="true" Title="<%$ Resources: LatenessGridTitle %>" Layout="FitLayout"
-            Hidden="true" AutoShow="false" ID="lateWindow" Width="400" Height="300">
+            Hidden="true" AutoShow="false" ID="lateWindow" Width="650" Height="300">
             <Items>
                 <ext:GridPanel ExpandToolText="expand"
                     ID="latenessGrid" MarginSpec="0 0 0 0"
                     runat="server"
-                    PaddingSpec="0 0 0 0" HideHeaders="true"
+                    PaddingSpec="0 0 0 0"
                     Header="false" CollapseMode="Header" Collapsible="true" CollapseDirection="Right"
                     Title="<%$ Resources: LatenessGridTitle %>"
                     Layout="FitLayout"
@@ -2059,6 +2496,13 @@
                             runat="server" OnReadData="latenessStore_ReadData"
                             RemoteSort="false"
                             RemoteFilter="false">
+                            <Proxy>
+                                <ext:PageProxy>
+                                    <Listeners>
+                                        <Exception Handler="Ext.MessageBox.alert('#{textLoadFailed}.value', response.statusText);" />
+                                    </Listeners>
+                                </ext:PageProxy>
+                            </Proxy>
 
                             <Model>
                                 <ext:Model ID="Model3" runat="server" IDProperty="recordId">
@@ -2081,10 +2525,16 @@
 
                     <ColumnModel ID="ColumnModel3" runat="server" SortAscText="<%$ Resources:Common , SortAscText %>" SortDescText="<%$ Resources:Common ,SortDescText  %>" SortClearText="<%$ Resources:Common ,SortClearText  %>" ColumnsText="<%$ Resources:Common ,ColumnsText  %>" EnableColumnHide="false" Sortable="false">
                         <Columns>
-                            <ext:Column Flex="2" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEmployee %>" DataIndex="name" Hideable="false" Width="75">
+                            <ext:Column Visible="false" ID="Column19" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldrecordId %>" DataIndex="recordId" Hideable="false" Width="75" />
+                            <ext:Column Flex="2" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEmployee %>" DataIndex="name" Hideable="false" />
+                            <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldTime%>" DataIndex="time" Width="55" Hideable="false" />
+                            <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldPosition%>" DataIndex="positionName" Flex="3" Hideable="false" />
+                            <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDepartment%>" DataIndex="departmentName" Flex="3" Hideable="false" />
+                            <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldBranch%>" DataIndex="branchName" Flex="3" Hideable="false" />
+                            <%--  <ext:Column Flex="2" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEmployee %>" DataIndex="name" Hideable="false" Width="75">
                                 <Renderer Handler=" return displayLate(record.data);  ">
                                 </Renderer>
-                            </ext:Column>
+                            </ext:Column>--%>
                         </Columns>
                     </ColumnModel>
 
@@ -2307,7 +2757,7 @@
             </Items>
         </ext:Window>
         <ext:Window runat="server" Modal="true" Title="<%$ Resources: ActiveGridTitle %>"
-            Hidden="true" Layout="FitLayout" AutoShow="false" ID="activeWindow" Width="400" Height="300">
+            Hidden="true" Layout="FitLayout" AutoShow="false" ID="activeWindow" Width="600" Height="300">
             <Items>
                 <ext:GridPanel MarginSpec="0 0 0 0"
                     ID="activeGrid" Layout="FitLayout"
@@ -2315,7 +2765,7 @@
                     PaddingSpec="0 0 0 0"
                     Header="false"
                     Title="<%$ Resources: ActiveGridTitle %>"
-                    Scroll="Vertical" HideHeaders="true"
+                    Scroll="Vertical"
                     Border="false"
                     StoreID="activeStore"
                     ColumnLines="True">
@@ -2326,26 +2776,16 @@
                     <ColumnModel ID="ColumnModel1" runat="server" SortAscText="<%$ Resources:Common , SortAscText %>" SortDescText="<%$ Resources:Common ,SortDescText  %>" SortClearText="<%$ Resources:Common ,SortClearText  %>" ColumnsText="<%$ Resources:Common ,ColumnsText  %>" EnableColumnHide="false" Sortable="false">
                         <Columns>
 
-                            <%--                                                   <ext:Column Visible="false" ID="ColrecordId" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldrecordId %>" DataIndex="recordId" Hideable="false" Width="75" />
-                                                    <ext:Column Flex="2" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEmployee %>" DataIndex="name" Hideable="false" />
-                                                    <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldTime%>" DataIndex="time" Width="55" Hideable="false" />
-                                                    <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldPosition%>" DataIndex="positionName" Flex="3" Hideable="false" />
-                                                    <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDepartment%>" DataIndex="departmentName" Flex="3" Hideable="false" />
-                                                    <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldBranch%>" DataIndex="branchName" Flex="3" Hideable="false" />
-                            --%><ext:Column Flex="2" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEmployee %>" DataIndex="name" Hideable="false" Width="75">
+                            <ext:Column Visible="false" ID="ColrecordId" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldrecordId %>" DataIndex="recordId" Hideable="false" Width="75" />
+                            <ext:Column Flex="2" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEmployee %>" DataIndex="name" Hideable="false" />
+                            <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldTime%>" DataIndex="time" Width="55" Hideable="false" />
+                            <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldPosition%>" DataIndex="positionName" Flex="3" Hideable="false" />
+                            <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDepartment%>" DataIndex="departmentName" Flex="3" Hideable="false" />
+                            <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldBranch%>" DataIndex="branchName" Flex="3" Hideable="false" />
+                            <%--  <ext:Column Flex="2" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEmployee %>" DataIndex="name" Hideable="false" Width="75">
                                 <Renderer Handler=" return displayActive(record.data);  ">
                                 </Renderer>
-                            </ext:Column>
-
-
-
-
-
-
-
-
-
-
+                            </ext:Column>--%>
                         </Columns>
                     </ColumnModel>
 
@@ -2501,11 +2941,6 @@
 
 
 
-
-
-
-
-
                         </Columns>
                     </ColumnModel>
 
@@ -2522,6 +2957,143 @@
                 </ext:GridPanel>
             </Items>
         </ext:Window>
+
+        <ext:Window
+            ID="LeaveRecordWindow"
+            runat="server"
+            Icon="PageEdit"
+            Title="<%$ Resources:LeaveRecordForm%>"
+            Width="450"
+            Height="500"
+            AutoShow="false"
+            Modal="true"
+            Hidden="true"
+            Resizable="false"
+            Maximizable="false"
+            Draggable="false"
+            Layout="Fit">
+
+            <Items>
+                <ext:TabPanel ID="panelRecordDetails" runat="server" ActiveTabIndex="0" Border="false" DeferredRender="false">
+
+
+
+                    <Items>
+                        <ext:FormPanel
+                            ID="LeaveRecordForm" DefaultButton="SaveButton"
+                            runat="server"
+                            Title="<%$ Resources:LeaveRecordForm%>"
+                            Icon="ApplicationSideList"
+                            DefaultAnchor="100%" OnLoad="LeaveRecordTab_Load"
+                            BodyPadding="5">
+                            <Items>
+                                <ext:TextField ID="TextField1" runat="server" Name="recordId" Hidden="true" />
+                                <ext:TextField ID="leaveRef" runat="server" Name="leaveRef" FieldLabel="<%$ Resources:FieldLeaveRef%>" ReadOnly="true" />
+                                <ext:TextField ID="employeeName" runat="server" Name="employeeName.fullName" FieldLabel="<%$ Resources:FieldEmployeeName%>" ReadOnly="true" />
+
+
+                                <%--   <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" ID="employeeId" AllowBlank="false"
+                            DisplayField="fullName" Name="employeeId"
+                            ValueField="recordId"
+                            TypeAhead="false"
+                            FieldLabel="<%$ Resources: FieldEmployeeName%>"
+                            HideTrigger="true" SubmitValue="true"
+                            MinChars="3"
+                            TriggerAction="Query" ForceSelection="false">
+                            <Store>
+                                <ext:Store runat="server" ID="employeeStore" AutoLoad="false">
+                                    <Model>
+                                        <ext:Model runat="server">
+                                            <Fields>
+                                                <ext:ModelField Name="recordId" />
+                                                <ext:ModelField Name="fullName" />
+                                            </Fields>
+                                        </ext:Model>
+                                    </Model>
+                                    <Proxy>
+                                        <ext:PageProxy DirectFn="App.direct.FillEmployee"></ext:PageProxy>
+                                    </Proxy>
+
+                                </ext:Store>
+
+                            </Store>
+                            <DirectEvents>
+                                <Select OnEvent="MarkLeaveChanged">
+                                    <ExtraParams>
+                                        <ext:Parameter Name="startDate" Value="#{startDate}.getValue()" Mode="Raw" />
+                                        <ext:Parameter Name="endDate" Value="#{endDate}.getValue()" Mode="Raw" />
+                                    </ExtraParams>
+                                </Select>
+                            </DirectEvents>
+
+                        </ext:ComboBox>--%>
+                                <ext:DateField ID="startDate" runat="server" FieldLabel="<%$ Resources:FieldStartDate%>" Name="startDate" ReadOnly="true" />
+                                <ext:DateField ID="endDate" runat="server" FieldLabel="<%$ Resources:FieldendDate%>" Name="endDate" ReadOnly="true" />
+
+
+
+
+                                <ext:TextField ID="ltName" runat="server" FieldLabel="<%$ Resources:FieldLtName %>" Name="ltName" ReadOnly="true" />
+                                <ext:TextField ID="destination" runat="server" FieldLabel="<%$ Resources:FieldDestination%>" Name="destination" ReadOnly="true" />
+
+
+
+
+
+                                <ext:ComboBox AnyMatch="true" CaseSensitive="false" runat="server" ID="status" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" AllowBlank="false" Name="status"
+                                    FieldLabel="<%$ Resources: FieldStatus %>">
+                                    <Items>
+
+                                        <ext:ListItem Text="<%$ Resources: FieldNew %>" Value="1" />
+                                        <ext:ListItem Text="<%$ Resources: FieldApproved %>" Value="2" />
+                                        <ext:ListItem Text="<%$ Resources: FieldRefused %>" Value="-1" />
+                                    </Items>
+
+                                </ext:ComboBox>
+
+
+
+
+
+                                <ext:TextArea runat="server" FieldLabel="<%$Resources: ReturnNotes %>" ID="returnNotes" Name="returnNotes" MaxHeight="5" />
+
+
+                            </Items>
+
+                        </ext:FormPanel>
+
+
+                    </Items>
+                </ext:TabPanel>
+            </Items>
+
+            <Buttons>
+                <ext:Button ID="SaveButton" runat="server" Text="<%$ Resources:Common, Save %>" Icon="Disk">
+
+                    <Listeners>
+                        <Click Handler="CheckSession(); if (!#{LeaveRecordForm}.getForm().isValid()) {return false;}  " />
+                    </Listeners>
+                    <DirectEvents>
+                        <Click OnEvent="SaveNewRecord" Failure="Ext.MessageBox.alert('#{titleSavingError}.value', '#{titleSavingErrorMessage}.value');">
+                            <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="={#{LeaveRecordWindow}.body}" />
+                            <ExtraParams>
+                                <ext:Parameter Name="id" Value="#{recordId}.getValue()" Mode="Raw" />
+                                <ext:Parameter Name="values" Value="#{LeaveRecordForm}.getForm().getValues()" Mode="Raw" Encode="true" />
+                            </ExtraParams>
+                        </Click>
+                    </DirectEvents>
+                </ext:Button>
+                <ext:Button ID="CancelButton" runat="server" Text="<%$ Resources:Common , Cancel %>" Icon="Cancel">
+                    <Listeners>
+                        <Click Handler="this.up('window').hide();" />
+                    </Listeners>
+                </ext:Button>
+            </Buttons>
+
+        </ext:Window>
+        <uc:leaveControl runat="server" ID="leaveRequest1" />
+
+
     </form>
 </body>
 </html>

@@ -89,3 +89,34 @@ public class DepartmentByReference:RecordRequest
         }
     }
 }
+public class LegalReferenceListRequest : ListRequest
+{
+    public string branchId  { get; set; }
+
+    public override Dictionary<string, string> Parameters
+    {
+        get
+        {
+            parameters = new Dictionary<string, string>();
+            parameters.Add("_branchId", branchId);
+            return parameters;
+        }
+    }
+}
+public class LegalReferenceRecordRequest :RecordRequest
+{
+    
+    public string branchId { get; set; }
+    public string goId { get; set; }
+
+    public override Dictionary<string, string> Parameters
+    {
+        get
+        {
+            parameters = new Dictionary<string, string>();
+            parameters.Add("_branchId", branchId);
+            parameters.Add("_goId", goId);
+            return parameters;
+        }
+    }
+}

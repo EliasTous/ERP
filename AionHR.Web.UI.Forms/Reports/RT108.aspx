@@ -59,6 +59,7 @@
                         <ext:Toolbar runat="server" Height="60">
 
                             <Items>
+
                                 <ext:Container runat="server"  Layout="FitLayout">
                                     <Content>
                                         <uc:jobInfo runat="server" ID="jobInfo1" />
@@ -69,8 +70,28 @@
                                         <uc:activeStatus runat="server" ID="activeControl" />
                                     </Content>
                                 </ext:Container>
+                                 <ext:ComboBox AnyMatch="true" CaseSensitive="false"  QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" EmptyText="<%$ Resources: FieldCountry %>" Name="countryId" runat="server" DisplayField="name" ValueField="recordId" ID="countryIdCombo">
+                                    <Store>
+                                        <ext:Store runat="server" ID="NationalityStore">
+                                            <Model>
+                                                <ext:Model runat="server">
+                                                    <Fields>
+                                                        <ext:ModelField Name="recordId" />
+                                                        <ext:ModelField Name="name" />
+                                                    </Fields>
+                                                </ext:Model>
+                                            </Model>
+                                        </ext:Store>
+                                    </Store>
+                                   
+                                    <Listeners>
+                                        <FocusEnter Handler=" if(!this.readOnly)this.rightButtons[0].setHidden(false);" />
+                                        <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
+                                    </Listeners>
+                                </ext:ComboBox>
                                 <ext:Container runat="server" Layout="FitLayout">
                                     <Content>
+                                        
                                         <ext:Button runat="server" Text="<%$Resources:Common, Go %>"> 
                                             <Listeners>
                                                 <Click Handler="callbackPanel.PerformCallback('1');" />
@@ -78,9 +99,10 @@
                                         </ext:Button>
                                     </Content>
                                 </ext:Container>
+                                
 
 
-
+                                
                             </Items>
                         </ext:Toolbar>
 

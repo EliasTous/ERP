@@ -180,6 +180,9 @@
   <data name="EditWindowsTitle" xml:space="preserve">
     <value>Edit Branch</value>
   </data>
+  <data name="empCount" xml:space="preserve">
+    <value>Employees count </value>
+  </data>
   <data name="EmployeeRightToWork" xml:space="preserve">
     <value>Employee Right To Work</value>
   </data>
@@ -212,6 +215,12 @@
   </data>
   <data name="FieldDivision" xml:space="preserve">
     <value>Division</value>
+  </data>
+  <data name="FieldDocument" xml:space="preserve">
+    <value>Document Name</value>
+  </data>
+  <data name="FieldDocumentRef" xml:space="preserve">
+    <value>Document Referance</value>
   </data>
   <data name="FieldDueDate" xml:space="preserve">
     <value>Due Date</value>
@@ -354,6 +363,12 @@
   <data name="Loans" xml:space="preserve">
     <value>Loans</value>
   </data>
+  <data name="LocalsCount" xml:space="preserve">
+    <value>Locals Count</value>
+  </data>
+  <data name="LocalsRate" xml:space="preserve">
+    <value>Locals Rate</value>
+  </data>
   <data name="MinLocalRate" xml:space="preserve">
     <value>Min Locals Rate</value>
   </data>
@@ -404,5 +419,83 @@
   </data>
   <data name="WindowTitle" xml:space="preserve">
     <value>Employees</value>
+  </data>
+  <data name="LocalRate" xml:space="preserve">
+    <value>Locals Rate</value>
+  </data>
+  <data name="FieldApproved" xml:space="preserve">
+    <value>Approved</value>
+  </data>
+  <data name="FieldIsPaid" xml:space="preserve">
+    <value>Is Paid?</value>
+  </data>
+  <data name="FieldJustification" xml:space="preserve">
+    <value>Justification</value>
+  </data>
+  <data name="FieldLeaveRef" xml:space="preserve">
+    <value>Ref</value>
+  </data>
+  <data name="FieldPending" xml:space="preserve">
+    <value>Pending</value>
+  </data>
+  <data name="FieldRefused" xml:space="preserve">
+    <value>Refused</value>
+  </data>
+  <data name="FieldReturnDate" xml:space="preserve">
+    <value>Return Date</value>
+  </data>
+  <data name="FieldStatus" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="FieldUsed" xml:space="preserve">
+    <value>Used</value>
+  </data>
+  <data name="LeaveBalance" xml:space="preserve">
+    <value>Leave Balance</value>
+  </data>
+  <data name="ReturnNotes" xml:space="preserve">
+    <value>Notes</value>
+  </data>
+  <data name="TotalText" xml:space="preserve">
+    <value>Total Hours</value>
+  </data>
+  <data name="YearsInService" xml:space="preserve">
+    <value>Years In Service</value>
+  </data>
+  <data name="LeaveRecordForm" xml:space="preserve">
+    <value>Approve Leave Request</value>
+  </data>
+  <data name="FieldNew" xml:space="preserve">
+    <value>New</value>
+  </data>
+  <data name="NAttendance" xml:space="preserve">
+    <value>Other</value>
+  </data>
+  <data name="NLate" xml:space="preserve">
+    <value>Other</value>
+  </data>
+  <data name="Today" xml:space="preserve">
+    <value>Today</value>
+  </data>
+  <data name="Break" xml:space="preserve">
+    <value>Break</value>
+  </data>
+  <data name="BusinessLeave" xml:space="preserve">
+    <value>Business Leave</value>
+  </data>
+  <data name="LeaveNoExcuse" xml:space="preserve">
+    <value>Leave Without Excuse</value>
+  </data>
+  <data name="NBreak" xml:space="preserve">
+    <value>Other</value>
+  </data>
+  <data name="NLeaves" xml:space="preserve">
+    <value>Other</value>
+  </data>
+  <data name="NPaidLeaves" xml:space="preserve">
+    <value>Not Paid</value>
+  </data>
+  <data name="Vacation" xml:space="preserve">
+    <value>Vacation</value>
   </data>
 </root>

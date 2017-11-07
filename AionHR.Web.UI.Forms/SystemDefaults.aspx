@@ -232,6 +232,7 @@
                                         <ext:ListItem Text="<%$ Resources:ReferenceFirstNameMiddleNameLastName %>" Value="{reference} {firstName} {middleName} {lastName}" />
                                         <ext:ListItem Text="<%$ Resources:ReferenceFirstNameMiddleNameFamilyNameLastName %>" Value="{reference} {firstName} {middleName} {familyName} {lastName}" />
                                         <ext:ListItem Text="<%$ Resources:ReferenceLastNameFirstName %>" Value="{reference} {lastName} {firstName}" />
+                                         <ext:ListItem Text="<%$ Resources:ReferenceFirstNameMiddleNameFamilyName %>" Value="{reference} {firstName} {middleName} {familyName} " />
 
 
                                     </Items>
@@ -300,7 +301,7 @@
                                         <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
                                     </Listeners>
                                 </ext:ComboBox>
-                        
+                                  
                          
 
                             </Items>
@@ -739,9 +740,203 @@
                                             </Listeners>
                                         </ext:ComboBox>
                                         <ext:NumberField Width="400" runat="server" LabelWidth="160" ID="ldValue" Name="ldValue" FieldLabel="<%$ Resources: PaymentValue %>" MinValue="0" />
-                                    </Items>
-                                </ext:FieldSet>
+                                        </Items>
+                                  </ext:FieldSet>
                                
+                                        <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  QueryMode="Local" Width="400" LabelWidth="160" ForceSelection="true" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: PYFSLeaveBalEDId %>" Name="PYFSLeaveBalEDId" runat="server" DisplayField="name" ValueField="recordId" ID="PYFSLeaveBalEDId">
+                                            <Store>
+                                                <ext:Store runat="server" ID="PYFSLeaveBalEDId_Store">
+                                                    <Model>
+                                                        <ext:Model runat="server">
+                                                            <Fields>
+                                                                <ext:ModelField Name="recordId" />
+                                                                <ext:ModelField Name="name" />
+                                                            </Fields>
+                                                        </ext:Model>
+                                                    </Model>
+                                                </ext:Store>
+                                            </Store>
+                                           <%-- <RightButtons>
+                                                <ext:Button ID="Button8" runat="server" Icon="Add" Hidden="true">
+                                                    <Listeners>
+                                                        <Click Handler="CheckSession();  " />
+                                                    </Listeners>
+                                                    <DirectEvents>
+
+                                                        <Click OnEvent="addDedloan">
+                                                        </Click>
+                                                    </DirectEvents>
+                                                </ext:Button>
+                                            </RightButtons>--%>
+                                            <Listeners>
+                                                <FocusEnter Handler=" if(!this.readOnly)this.rightButtons[0].setHidden(false);" />
+                                                <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
+                                            </Listeners>
+                                        </ext:ComboBox>
+                                        <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  QueryMode="Local" Width="400" LabelWidth="160" ForceSelection="true" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: payrollIndemnityEntitlement  %>" Name="PYINEDId" runat="server" DisplayField="name" ValueField="recordId" ID="PYINEDId">
+                                            <Store>
+                                                <ext:Store runat="server" ID="PYINEDId_store">
+                                                    <Model>
+                                                        <ext:Model runat="server">
+                                                            <Fields>
+                                                                <ext:ModelField Name="recordId" />
+                                                                <ext:ModelField Name="name" />
+                                                            </Fields>
+                                                        </ext:Model>
+                                                    </Model>
+                                                </ext:Store>
+                                            </Store>
+                                           <%-- <RightButtons>
+                                                <ext:Button ID="Button8" runat="server" Icon="Add" Hidden="true">
+                                                    <Listeners>
+                                                        <Click Handler="CheckSession();  " />
+                                                    </Listeners>
+                                                    <DirectEvents>
+
+                                                        <Click OnEvent="addDedloan">
+                                                        </Click>
+                                                    </DirectEvents>
+                                                </ext:Button>
+                                            </RightButtons>--%>
+                                            <Listeners>
+                                                <FocusEnter Handler=" if(!this.readOnly)this.rightButtons[0].setHidden(false);" />
+                                                <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
+                                            </Listeners>
+                                        </ext:ComboBox>
+                                
+                                 <ext:FieldSet Collapsible="true" runat="server" Title="<%$ Resources: IndemnitySchedules %>">
+                                    <Items>
+                                  <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  QueryMode="Local" Width="400" LabelWidth="160" ForceSelection="true" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: PYISmale  %>" Name="PYISmale" runat="server" DisplayField="name" ValueField="recordId" ID="PYISmale">
+                                            <Store>
+                                                <ext:Store runat="server" ID="PYISmale_store">
+                                                    <Model>
+                                                        <ext:Model runat="server">
+                                                            <Fields>
+                                                                <ext:ModelField Name="recordId" />
+                                                                <ext:ModelField Name="name" />
+                                                            </Fields>
+                                                        </ext:Model>
+                                                    </Model>
+                                                </ext:Store>
+                                            </Store>
+                                           <%-- <RightButtons>
+                                                <ext:Button ID="Button8" runat="server" Icon="Add" Hidden="true">
+                                                    <Listeners>
+                                                        <Click Handler="CheckSession();  " />
+                                                    </Listeners>
+                                                    <DirectEvents>
+
+                                                        <Click OnEvent="addDedloan">
+                                                        </Click>
+                                                    </DirectEvents>
+                                                </ext:Button>
+                                            </RightButtons>--%>
+                                            <Listeners>
+                                                <FocusEnter Handler=" if(!this.readOnly)this.rightButtons[0].setHidden(false);" />
+                                                <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
+                                            </Listeners>
+                                        </ext:ComboBox>
+                                      
+                                  <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  QueryMode="Local" Width="400" LabelWidth="160" ForceSelection="true" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: PYISfemale  %>" Name="PYISfemale" runat="server" DisplayField="name" ValueField="recordId" ID="PYISfemale">
+                                            <Store>
+                                                <ext:Store runat="server" ID="PYISfemale_store">
+                                                    <Model>
+                                                        <ext:Model runat="server">
+                                                            <Fields>
+                                                                <ext:ModelField Name="recordId" />
+                                                                <ext:ModelField Name="name" />
+                                                            </Fields>
+                                                        </ext:Model>
+                                                    </Model>
+                                                </ext:Store>
+                                            </Store>
+                                           <%-- <RightButtons>
+                                                <ext:Button ID="Button8" runat="server" Icon="Add" Hidden="true">
+                                                    <Listeners>
+                                                        <Click Handler="CheckSession();  " />
+                                                    </Listeners>
+                                                    <DirectEvents>
+
+                                                        <Click OnEvent="addDedloan">
+                                                        </Click>
+                                                    </DirectEvents>
+                                                </ext:Button>
+                                            </RightButtons>--%>
+                                            <Listeners>
+                                                <FocusEnter Handler=" if(!this.readOnly)this.rightButtons[0].setHidden(false);" />
+                                                <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
+                                            </Listeners>
+                                        </ext:ComboBox>
+                                        </Items>
+                                        </ext:FieldSet>
+                                <ext:FieldSet Collapsible="true" runat="server" Title="<%$ Resources: TerminationReason %>">
+                                 <Items>
+
+                                   <ext:ComboBox AnyMatch="true" CaseSensitive="false" QueryMode="Local" LabelWidth="150" ForceSelection="true" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: exemptMarriageTRId %>" Name="exemptMarriageTRId" DisplayField="name" ValueField="recordId" runat="server" ID="exemptMarriageTRId">
+                                    <Store>
+                                        <ext:Store runat="server" ID="exemptMarriageTR_Store">
+                                            <Model>
+                                                <ext:Model runat="server">
+                                                    <Fields>
+                                                        <ext:ModelField Name="recordId" />
+                                                        <ext:ModelField Name="name" />
+                                                    </Fields>
+                                                </ext:Model>
+                                            </Model>
+                                        </ext:Store>
+                                    </Store>
+                                  <%--  <RightButtons>
+                                        <ext:Button ID="Button8" runat="server" Icon="Add" Hidden="true">
+                                            <Listeners>
+                                                <Click Handler="CheckSession();  " />
+                                            </Listeners>
+                                            <DirectEvents>
+
+                                                <Click OnEvent="addId">
+                                                </Click>
+                                            </DirectEvents>
+                                        </ext:Button>
+                                    </RightButtons>--%>
+                                    <Listeners>
+                                        <FocusEnter Handler=" if(!this.readOnly)this.rightButtons[0].setHidden(false);" />
+                                        <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
+                                    </Listeners>
+                                </ext:ComboBox>
+                                   <ext:ComboBox AnyMatch="true" CaseSensitive="false" QueryMode="Local" LabelWidth="150" ForceSelection="true" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: exemptDeliveryTRId %>" Name="exemptDeliveryTRId" DisplayField="name" ValueField="recordId" runat="server" ID="exemptDeliveryTRId">
+                                    <Store>
+                                        <ext:Store runat="server" ID="exemptDeliveryTR_Store">
+                                            <Model>
+                                                <ext:Model runat="server">
+                                                    <Fields>
+                                                        <ext:ModelField Name="recordId" />
+                                                        <ext:ModelField Name="name" />
+                                                    </Fields>
+                                                </ext:Model>
+                                            </Model>
+                                        </ext:Store>
+                                    </Store>
+                                 <%--   <RightButtons>
+                                        <ext:Button ID="Button9" runat="server" Icon="Add" Hidden="true">
+                                            <Listeners>
+                                                <Click Handler="CheckSession();  " />
+                                            </Listeners>
+                                            <DirectEvents>
+
+                                                <Click OnEvent="addId">
+                                                </Click>
+                                            </DirectEvents>
+                                        </ext:Button>
+                                    </RightButtons>--%>
+                                    <Listeners>
+                                        <FocusEnter Handler=" if(!this.readOnly)this.rightButtons[0].setHidden(false);" />
+                                        <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
+                                    </Listeners>
+                                </ext:ComboBox>
+                                     </Items>
+                                  </ext:FieldSet>
+
+                                    
+                                                                  
                             </Items>
                             <Buttons>
                                 <ext:Button Hidden="true"  ID="SavePayrollSettingsBtn" runat="server" Text="<%$ Resources:Common, Save %>" Icon="Disk">

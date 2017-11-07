@@ -1,5 +1,6 @@
 ﻿using AionHR.Infrastructure.Configuration;
 using AionHR.Model.Attendance;
+using AionHR.Model.Dashboard;
 using AionHR.Model.Employees.Leaves;
 using AionHR.Model.LeaveManagement;
 using System;
@@ -34,6 +35,7 @@ namespace AionHR.Repository.WebService.Repositories
             ChildGetAllLookup.Add(typeof(LeaveType), "qryLT");
             ChildGetAllLookup.Add(typeof(LeaveRequest), "qryLR");
             ChildGetAllLookup.Add(typeof(LeaveDay), "qryLD");
+            ChildGetAllLookup.Add(typeof(Approvals), "qryLA");
 
             ChildAddOrUpdateLookup.Add(typeof(VacationSchedule), "setVS");
             ChildAddOrUpdateLookup.Add(typeof(VacationSchedulePeriod[]), "arrVP");
@@ -43,6 +45,7 @@ namespace AionHR.Repository.WebService.Repositories
             ChildAddOrUpdateLookup.Add(typeof(LeaveRequest), "setLR");
             ChildAddOrUpdateLookup.Add(typeof(AttendanceBreak[]), "arrSB");
             ChildAddOrUpdateLookup.Add(typeof(LeaveDay[]), "arrLD");
+            ChildAddOrUpdateLookup.Add(typeof(DashboardLeave), "setLA");
 
             ChildDeleteLookup.Add(typeof(VacationSchedulePeriod), "delVP");
             ChildDeleteLookup.Add(typeof(LeaveDay), "delLD");

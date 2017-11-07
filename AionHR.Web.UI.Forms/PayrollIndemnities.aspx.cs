@@ -170,7 +170,7 @@ namespace AionHR.Web.UI.Forms
         protected void PoPuP(object sender, DirectEventArgs e)
         {
 
-
+            panelRecordDetails.ActiveIndex = 0; 
             int id = Convert.ToInt32(e.ExtraParams["id"]);
             string type = e.ExtraParams["type"];
             switch (type)
@@ -196,6 +196,13 @@ namespace AionHR.Web.UI.Forms
                     periodsGrid.Store[0].DataSource = periods.Items;
                     periodsGrid.Store[0].DataBind();
                     periodsGrid.DataBind();
+                    PayrollIndemnityDetailsListRequest req1 = new PayrollIndemnityDetailsListRequest();
+                    req1.inId = r.RecordID;
+                    ListResponse<PayrollIndemnityRecognition> PayrollIndemnityList = _payrollService.ChildGetAll<PayrollIndemnityRecognition>(req);
+
+                    IndemnityRecognitionGrid.Store[0].DataSource = PayrollIndemnityList.Items;
+                    IndemnityRecognitionGrid.Store[0].DataBind();
+                    IndemnityRecognitionStore.DataBind();
                     // InitCombos(response.result);
                     this.EditRecordWindow.Title = Resources.Common.EditWindowsTitle;
                     this.EditRecordWindow.Show();
@@ -424,11 +431,13 @@ namespace AionHR.Web.UI.Forms
         /// <param name="e"></param>
         protected void ADDNewRecord(object sender, DirectEventArgs e)
         {
-
+            panelRecordDetails.ActiveIndex = 0;
             //Reset all values of the relative object
             BasicInfoTab.Reset();
             periodsGrid.Store[0].DataSource = new List<PayrollIndemnityDetails>();
             periodsGrid.Store[0].DataBind();
+            IndemnityRecognitionGrid.Store[0].DataSource = new List<PayrollIndemnityRecognition>();
+            IndemnityRecognitionGrid.Store[0].DataBind();
             this.EditRecordWindow.Title = Resources.Common.AddNewRecord;
 
             this.EditRecordWindow.Show();
@@ -470,6 +479,7 @@ namespace AionHR.Web.UI.Forms
             string obj = e.ExtraParams["schedule"];
             PayrollIndemnity b = JsonConvert.DeserializeObject<PayrollIndemnity>(obj);
             string pers = e.ExtraParams["periods"];
+            string indemnities = e.ExtraParams["indemnities"];
             b.recordId = id;
             // Define the object to add or edit as null
 
@@ -499,6 +509,16 @@ namespace AionHR.Web.UI.Forms
 
 
                     if (!result.Success)
+                    {
+                        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                        X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", result.ErrorCode) != null ? GetGlobalResourceObject("Errors", result.ErrorCode).ToString() : GetGlobalResourceObject("Errors", result.ErrorCode) != null ? GetGlobalResourceObject("Errors", result.ErrorCode).ToString() : result.Summary).Show();
+                        return;
+                    }
+                    List<PayrollIndemnityRecognition> indemnitiesList = JsonConvert.DeserializeObject<List<PayrollIndemnityRecognition>>(indemnities);
+                    PostResponse<PayrollIndemnityRecognition[]> result1 = AddindemnitiesList(b.recordId, indemnitiesList);
+                    //  AddPeriodsList1(b.recordId, periods);
+                    
+                    if (!result1.Success)
                     {
                         X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
                         X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", result.ErrorCode) != null ? GetGlobalResourceObject("Errors", result.ErrorCode).ToString() : GetGlobalResourceObject("Errors", result.ErrorCode) != null ? GetGlobalResourceObject("Errors", result.ErrorCode).ToString() : result.Summary).Show();
@@ -546,6 +566,7 @@ namespace AionHR.Web.UI.Forms
                     int index = Convert.ToInt32(id);//getting the id of the record
                     PostRequest<PayrollIndemnity> modifyHeaderRequest = new PostRequest<PayrollIndemnity>();
                     modifyHeaderRequest.entity = b;
+                
                     PostResponse<PayrollIndemnity> r = _payrollService.ChildAddOrUpdate<PayrollIndemnity>(modifyHeaderRequest);               //Step 1 Selecting the object or building up the object for update purpose
                     if (!r.Success)//it maybe another check
                     {
@@ -572,6 +593,17 @@ namespace AionHR.Web.UI.Forms
                     {
                         X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
                         X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", result.ErrorCode) != null ? GetGlobalResourceObject("Errors", result.ErrorCode).ToString() : result.Summary).Show();
+                        return;
+                    }
+
+                    List<PayrollIndemnityRecognition> indemnitiesList = JsonConvert.DeserializeObject<List<PayrollIndemnityRecognition>>(indemnities);
+                    PostResponse<PayrollIndemnityRecognition[]> result1 = AddindemnitiesList(b.recordId, indemnitiesList);
+                    //  AddPeriodsList1(b.recordId, periods);
+
+                    if (!result1.Success)
+                    {
+                        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                        X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", result.ErrorCode) != null ? GetGlobalResourceObject("Errors", result.ErrorCode).ToString() : GetGlobalResourceObject("Errors", result.ErrorCode) != null ? GetGlobalResourceObject("Errors", result.ErrorCode).ToString() : result.Summary).Show();
                         return;
                     }
                     else
@@ -616,24 +648,39 @@ namespace AionHR.Web.UI.Forms
             PostResponse<PayrollIndemnityDetails[]> response = _payrollService.ChildAddOrUpdate<PayrollIndemnityDetails[]>(periodRequest);
             return response;
         }
-        private void AddPeriodsList1(string scheduleIdString, List<PayrollIndemnityDetails> periods)
+        //private void AddPeriodsList1(string scheduleIdString, List<PayrollIndemnityDetails> periods)
+        //{
+        //    short i = 1;
+        //    int scheduleId = Convert.ToInt32(scheduleIdString);
+        //    foreach (var period in periods)
+        //    {
+        //        period.seqNo = i++;
+        //        period.inId = scheduleId;
+
+
+        //        PostRequest<PayrollIndemnityDetails> periodRequest = new PostRequest<PayrollIndemnityDetails>();
+        //        periodRequest.entity = period;
+        //        PostResponse<PayrollIndemnityDetails> response = _payrollService.ChildAddOrUpdate<PayrollIndemnityDetails>(periodRequest);
+        //    }
+
+
+
+
+        //}
+        private PostResponse<PayrollIndemnityRecognition[]> AddindemnitiesList(string scheduleIdString, List<PayrollIndemnityRecognition> indemnities)
         {
             short i = 1;
             int scheduleId = Convert.ToInt32(scheduleIdString);
-            foreach (var period in periods)
+            foreach (var indemnity in indemnities)
             {
-                period.seqNo = i++;
-                period.inId = scheduleId;
+                indemnity.seqNo = i++;
+                indemnity.inId = scheduleId;
 
-
-                PostRequest<PayrollIndemnityDetails> periodRequest = new PostRequest<PayrollIndemnityDetails>();
-                periodRequest.entity = period;
-                PostResponse<PayrollIndemnityDetails> response = _payrollService.ChildAddOrUpdate<PayrollIndemnityDetails>(periodRequest);
             }
-
-
-
-
+            PostRequest<PayrollIndemnityRecognition[]> indemnityRequest = new PostRequest<PayrollIndemnityRecognition[]>();
+            indemnityRequest.entity = indemnities.ToArray();
+            PostResponse<PayrollIndemnityRecognition[]> response = _payrollService.ChildAddOrUpdate<PayrollIndemnityRecognition[]>(indemnityRequest);
+            return response;
         }
         [DirectMethod]
         public string CheckSession()
@@ -660,6 +707,17 @@ namespace AionHR.Web.UI.Forms
             {
                 req.entity = period;
                 PostResponse<PayrollIndemnityDetails> r = _payrollService.ChildDelete<PayrollIndemnityDetails>(req);
+            }
+
+
+            PayrollIndemnityDetailsListRequest reqs1 = new PayrollIndemnityDetailsListRequest();
+            reqs1.inId = vacationScheduleId.ToString();
+            ListResponse<PayrollIndemnityRecognition> Recognitions = _payrollService.ChildGetAll<PayrollIndemnityRecognition>(reqs1);
+            PostRequest<PayrollIndemnityRecognition> req1 = new PostRequest<PayrollIndemnityRecognition>();
+            foreach (var Recognition in Recognitions.Items)
+            {
+                req1.entity = Recognition;
+                PostResponse<PayrollIndemnityRecognition> r = _payrollService.ChildDelete<PayrollIndemnityRecognition>(req1);
             }
 
 

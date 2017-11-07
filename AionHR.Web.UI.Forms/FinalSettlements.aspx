@@ -12,7 +12,7 @@
   
     <script type="text/javascript" src="Scripts/common.js?id=10"></script>
     <script type="text/javascript" src="Scripts/Payroll.js?id=5"></script>
-    <script  type="text/javascript" src="Scripts/FinalSettlements.js?id=10"></script>
+    <script  type="text/javascript" src="Scripts/FinalSettlements.js?id=78"></script>
     <script type="text/javascript" src="Scripts/moment.js"></script>
 
 
@@ -119,6 +119,29 @@
                     Icon="User"
                     ColumnLines="True" IDMode="Explicit" RenderXType="True">
 
+                     <%-- <Plugins>
+                        <ext:RowExpander ID="RowExpander1" runat="server" HiddenColumn="true" ExpandOnEnter="false" ExpandOnDblClick="false" SingleExpand="true" >
+                            <Loader runat="server" Mode="Data" DirectMethod="App.direct.GetQuickView">
+                                <LoadMask ShowMask="true" />
+                                <Params>
+                                    <ext:Parameter Name="id" Value="this.record.getId()" Mode="Raw" />
+                                     </Params>
+                            </Loader>
+
+                            <Template ID="Template1" runat="server">
+
+                                <Html>
+                                    <table width="200">
+
+                                    </table>
+                                </Html>
+                            </Template>
+                            <Listeners>
+
+                             
+                            </Listeners>
+                        </ext:RowExpander>
+                    </Plugins>--%>
                     <TopBar>
                         <ext:Toolbar ID="Toolbar1" runat="server" ClassicButtonStyle="false">
                             <Items>
@@ -219,6 +242,7 @@
                                 MenuDisabled="true"
                                 Resizable="false">
 
+                                    <Renderer Handler="var x = editRender(); x=x+'&nbsp&nbsp'; return x;" />
                                 <Renderer Handler="return editRender()+'&nbsp;&nbsp;' +deleteRender(); " />
 
                             </ext:Column>
@@ -293,8 +317,8 @@
             runat="server"
             Icon="PageEdit"
             Title="<%$ Resources:EditWindowsTitle %>"
-            Width="450"
-            Height="350"
+            Width="600"
+            Height="400"
             AutoShow="false"
             Modal="true"
             Hidden="true"
@@ -309,9 +333,12 @@
                             Icon="ApplicationSideList"
                             DefaultAnchor="100%" OnLoad="BasicInfoTab_Load"
                             BodyPadding="5"
+                            Layout="TableLayout"
                              Title="<%$ Resources: WindowTitle%>">
                             <Items>
-
+                                   <ext:Panel runat="server" MarginSpec="0 20 0 0" ID="left">
+                                       <Items>
+                          
                                 <ext:TextField runat="server" ID="recordId" Name="recordId" Hidden="true" />
                                  <ext:TextField runat="server" ID="fsRefid" Name="fsRef"  FieldLabel="<%$ Resources:FieldReference%>"  />
                                    <ext:DateField runat="server" ID="dateId" FieldLabel="<%$ Resources:Day%>" Name="date" AllowBlank="false" />
@@ -351,7 +378,7 @@
                                 </ext:ComboBox>
                              
 
-                                <ext:TextField ReadOnly="true" Disabled="true" ID="nationalityTx" runat="server" FieldLabel="<%$ Resources:nationality%>" Name="nationality" AllowBlank="true">
+                                <ext:TextField  ReadOnly="true" Disabled="true" ID="nationalityTx" runat="server" FieldLabel="<%$ Resources:nationality%>" Name="nationality" AllowBlank="true">
                                     
                                 </ext:TextField>
                                 <ext:TextField ReadOnly="true" Disabled="true" ID="branchNameTx" runat="server" FieldLabel="<%$ Resources:branchName%>" Name="branchName" AllowBlank="true">
@@ -366,6 +393,47 @@
                                  <ext:DateField ReadOnly="true" Disabled="true"  ID="hireDateDf" runat="server" FieldLabel="<%$ Resources:hireDate%>" Name="hireDate" AllowBlank="true">
                                     
                                 </ext:DateField>
+                                        
+                                 <ext:TextField ReadOnly="true" Disabled="true" ID="esName" runat="server" FieldLabel="<%$ Resources:esName%>" Name="esName" AllowBlank="true">
+                                    
+                                </ext:TextField>
+                                              </Items>
+                                   </ext:Panel>
+                                   <ext:Panel runat="server" MarginSpec="0 0 0 0" ID="rightPanel">
+                                  <Items>
+                                 <ext:TextField ReadOnly="true" Disabled="true" ID="divisionName" runat="server" FieldLabel="<%$ Resources:FieldDivision%>" Name="divisionName" AllowBlank="true">
+                                    
+                                </ext:TextField>
+                                 <ext:TextField ReadOnly="true" Disabled="true" ID="reportToName" runat="server" FieldLabel="<%$ Resources:FieldReportsTo%>" Name="reportToName" AllowBlank="true">
+                                    
+                                </ext:TextField>
+                                  <ext:TextField ReadOnly="true" Disabled="true" ID="eosBalance" runat="server" FieldLabel="<%$ Resources:eosBalanceTitle%>" Name="eosBalance" AllowBlank="true">
+                                    
+                                </ext:TextField>
+                                  <ext:DateField  ReadOnly="true" Disabled="true"  ID="lastLeaveStartDate" runat="server" FieldLabel="<%$ Resources:lastLeaveStartDateTitle%>" Name="lastLeaveStartDateTitle" AllowBlank="true">
+                                    
+                                </ext:DateField>
+                                <ext:DateField  ReadOnly="true" Disabled="true"  ID="lastLeaveEndDate" runat="server" FieldLabel="<%$ Resources:lastLeaveEndDateTitle%>" Name="lastLeaveEndDate" AllowBlank="true">
+                                    
+                                </ext:DateField>
+                                 <ext:TextField ReadOnly="true" Disabled="true" ID="paidLeavesYTD" runat="server" FieldLabel="<%$ Resources:paidLeavesYTDTitle%>" Name="paidLeavesYTD" AllowBlank="true">
+                                    
+                                </ext:TextField>
+                                  <ext:TextField ReadOnly="true" Disabled="true" ID="leavesBalance" runat="server" FieldLabel="<%$ Resources:leavesBalanceTitle%>" Name="leavesBalance" AllowBlank="true">
+                                    
+                                </ext:TextField>
+                                  <ext:TextField ReadOnly="true" Disabled="true" ID="allowedLeaveYtd" runat="server" FieldLabel="<%$ Resources:allowedLeaveYtdTitle%>" Name="allowedLeaveYtd" AllowBlank="true">
+                                    
+                                </ext:TextField>
+                                <ext:TextField  ReadOnly="true" Disabled="true" ID="serviceDuration" runat="server" FieldLabel="<%$ Resources:serviceDuration%>" Name="serviceDuration" AllowBlank="true">
+                                    
+                                </ext:TextField>
+                                </Items>
+                                     </ext:Panel>
+                                 
+
+
+
                                
 
                                 

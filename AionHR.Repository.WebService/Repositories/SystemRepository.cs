@@ -36,6 +36,9 @@ namespace AionHR.Repository.WebService.Repositories
             ChildAddOrUpdateLookup.Add(typeof(Attachement), "setAT");
             ChildAddOrUpdateLookup.Add(typeof(State), "setST");
             ChildAddOrUpdateLookup.Add(typeof(BatchOperationStatus), "setIM");
+            ChildAddOrUpdateLookup.Add(typeof(GovernmentOrganisation), "setGO");
+            ChildAddOrUpdateLookup.Add(typeof(LetterTemplate), "setLT");
+            ChildAddOrUpdateLookup.Add(typeof(Letter), "setLE");
 
 
 
@@ -49,6 +52,10 @@ namespace AionHR.Repository.WebService.Repositories
             ChildGetLookup.Add(typeof(CompanyRightToWork), "getRW");
             ChildGetLookup.Add(typeof(State), "getST");
             ChildGetLookup.Add(typeof(BatchOperationStatus), "getIM");
+            ChildGetLookup.Add(typeof(GovernmentOrganisation), "getGO");
+            ChildGetLookup.Add(typeof(LetterTemplate), "getLT");
+            ChildGetLookup.Add(typeof(Letter), "getLE");
+
 
 
             ChildDeleteLookup.Add(typeof(Nationality) ,"delNA");
@@ -59,6 +66,10 @@ namespace AionHR.Repository.WebService.Repositories
             ChildDeleteLookup.Add(typeof(CompanyDocumentType), "delDT");
             ChildDeleteLookup.Add(typeof(CompanyRightToWork), "delRW");
             ChildDeleteLookup.Add(typeof(State), "delST");
+            ChildDeleteLookup.Add(typeof(GovernmentOrganisation), "delGO");
+            ChildDeleteLookup.Add(typeof(LetterTemplate), "delLT");
+            ChildDeleteLookup.Add(typeof(Letter), "delLE");
+
 
 
 
@@ -82,6 +93,10 @@ namespace AionHR.Repository.WebService.Repositories
             ChildGetAllLookup.Add(typeof(SalaryChange), "qrySC");
             ChildGetAllLookup.Add(typeof(ProbationEnd), "qryPR");
             ChildGetAllLookup.Add(typeof(DepartmentActivity), "qryAD");
+            ChildGetAllLookup.Add(typeof(LocalsRate), "qryLR");
+            ChildGetAllLookup.Add(typeof(GovernmentOrganisation), "qryGO");
+            ChildGetAllLookup.Add(typeof(LetterTemplate), "qryLT");
+            ChildGetAllLookup.Add(typeof(Letter), "qryLE");
 
 
 

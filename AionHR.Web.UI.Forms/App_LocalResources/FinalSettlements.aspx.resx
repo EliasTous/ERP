@@ -334,10 +334,10 @@
     <value>seqNo</value>
   </data>
   <data name="branchName" xml:space="preserve">
-    <value>Branch</value>
+    <value>Branch :</value>
   </data>
   <data name="departmentName" xml:space="preserve">
-    <value>Department</value>
+    <value>Department :</value>
   </data>
   <data name="hireDate" xml:space="preserve">
     <value>HireDate</value>
@@ -347,5 +347,59 @@
   </data>
   <data name="positionName" xml:space="preserve">
     <value>Position</value>
+  </data>
+  <data name="allowedLeaveYtdTitle" xml:space="preserve">
+    <value>Allowed Leave:</value>
+  </data>
+  <data name="eosBalanceTitle" xml:space="preserve">
+    <value>Balance:</value>
+  </data>
+  <data name="FieldReportsTo" xml:space="preserve">
+    <value>Manager</value>
+  </data>
+  <data name="lastLeaveStartDateTitle" xml:space="preserve">
+    <value>Last Leave:</value>
+  </data>
+  <data name="leavesBalanceTitle" xml:space="preserve">
+    <value>Leave Balance:</value>
+  </data>
+  <data name="paidLeavesYTDTitle" xml:space="preserve">
+    <value>Paid Leaves:</value>
+  </data>
+  <data name="paidLeavesYTDTitle1" xml:space="preserve">
+    <value>Paid Leaves:</value>
+  </data>
+  <data name="FieldBranch" xml:space="preserve">
+    <value>Branch :</value>
+  </data>
+  <data name="FieldDepartment" xml:space="preserve">
+    <value>Department :</value>
+  </data>
+  <data name="FieldDivision" xml:space="preserve">
+    <value>Division</value>
+  </data>
+  <data name="FieldPosition" xml:space="preserve">
+    <value>Position:</value>
+  </data>
+  <data name="serviceDuration" xml:space="preserve">
+    <value>Service Duration:</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="lastLeaveEndDate" xml:space="preserve">
+    <value>Last Leave End Date:</value>
+  </data>
+  <data name="lastLeaveStartDate" xml:space="preserve">
+    <value>Last Leave Start Date:</value>
+  </data>
+  <data name="esName" xml:space="preserve">
+    <value>Employee Status:</value>
+  </data>
+  <data name="lastLeaveEndDateTitle" xml:space="preserve">
+    <value>Last Leave End Date</value>
+  </data>
+  <data name="lastLeaveStartDateTitle1" xml:space="preserve">
+    <value>Last Leave:</value>
   </data>
 </root>

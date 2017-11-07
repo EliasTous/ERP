@@ -6,9 +6,26 @@ var editRender = function () {
 var deleteRender = function () {
     return '<img class="imgDelete"  style="cursor:pointer;" src="Images/Tools/delete.png" />';
 };
-var attachRender = function () {
+var attachRender = function (e) {
+    if (e != 2) {
+        
+        return '<img class="imgGenerate"  style="cursor:pointer;" src="Images/Tools/collapse-all.gif" />&nbsp;&nbsp;<img class="imgAttach"  style="cursor:pointer;" src="Images/Tools/application_edit.png" />';
+            
+            
+           
+    }
     return '<img class="imgAttach"  style="cursor:pointer;" src="Images/Tools/application_edit.png" />';
 };
+var attachRender1 = function (e) {
+       return '<img class="imgAttach"  style="cursor:pointer;" src="Images/Tools/application_edit.png" />';
+};
+
+
+
+function openInNewTab() {
+    window.document.forms[0].target = '_blank';
+
+}
 //Ext.apply(Ext.form.VTypes, {
 //    numberrange: function (val, field) {
 //        if (!val) {
@@ -131,6 +148,12 @@ var cellClick = function (view, cell, columnIndex, record, row, rowIndex, e) {
         commandName = t.className;
         return true;
     }
+    if (t.className == "imgGenerate") {
+        //the ajax call is allowed
+        commandName = t.className;
+        return true;
+    }
+   
     commandName = "";
 
     //forbidden

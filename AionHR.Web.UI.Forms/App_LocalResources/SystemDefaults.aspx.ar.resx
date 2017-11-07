@@ -345,4 +345,34 @@
   <data name="SocialSecuritySchedule" xml:space="preserve">
     <value>جدول التأمينات الإجتماعية</value>
   </data>
+  <data name="MinEPLocalRate" xml:space="preserve">
+    <value>نسبة المطلوبة </value>
+  </data>
+  <data name="payrollIndemnityEntitlement" xml:space="preserve">
+    <value>إستحقاق مكافأة نهاية الخدمة</value>
+  </data>
+  <data name="PYFSLeaveBalEDId" xml:space="preserve">
+    <value>إستحقاق رصيد الإجازات </value>
+  </data>
+  <data name="IndemnitySchedules" xml:space="preserve">
+    <value>جداول التعويضات</value>
+  </data>
+  <data name="PYISfemale" xml:space="preserve">
+    <value>جدول مكافأة نهاية الخدمة - نساء</value>
+  </data>
+  <data name="PYISmale" xml:space="preserve">
+    <value>جدول مكافأة نهاية الخدمة - رجال</value>
+  </data>
+  <data name="exemptDeliveryTRId" xml:space="preserve">
+    <value>إنهاء عمل بسبب الولادة</value>
+  </data>
+  <data name="exemptMarriageTRId" xml:space="preserve">
+    <value>إنهاء عمل بسبب الزواج</value>
+  </data>
+  <data name="TerminationReason" xml:space="preserve">
+    <value>سبب انهاء الخدمة </value>
+  </data>
+  <data name="ReferenceFirstNameMiddleNameFamilyNameLastName1" xml:space="preserve">
+    <value>الرمز،الاسم الأول،الاسم الأوسط،اسم العائلة </value>
+  </data>
 </root>

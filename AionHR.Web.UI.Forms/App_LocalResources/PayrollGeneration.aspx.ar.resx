@@ -130,10 +130,10 @@
     <value>المبلغ</value>
   </data>
   <data name="FieldBasicAmount" xml:space="preserve">
-    <value>المبلغ الأساسي</value>
+    <value>المبلغ الاساسي</value>
   </data>
   <data name="FieldBranch" xml:space="preserve">
-    <value>اختيار فرع</value>
+    <value>الفرع</value>
   </data>
   <data name="FieldCalDays" xml:space="preserve">
     <value>الأيام</value>
@@ -148,10 +148,10 @@
     <value>الخصم</value>
   </data>
   <data name="FieldDepartment" xml:space="preserve">
-    <value>اختيار القسم</value>
+    <value>القسم</value>
   </data>
   <data name="FieldEmployee" xml:space="preserve">
-    <value>اختيار الموظف</value>
+    <value>الموظف</value>
   </data>
   <data name="FieldEntitlement" xml:space="preserve">
     <value>الاستحقاق</value>
@@ -248,5 +248,17 @@
   </data>
   <data name="FieldSocialSecurity" xml:space="preserve">
     <value>التأمينات الاجتماعية</value>
+  </data>
+  <data name="FieldCompanySocialSecurity" xml:space="preserve">
+    <value>التأمينات الإجتماعية للشركة </value>
+  </data>
+  <data name="FieldEmployeeSocialSecurity" xml:space="preserve">
+    <value>التأمينات الإجتماعية للموظف</value>
+  </data>
+  <data name="FieldName" xml:space="preserve">
+    <value>الاسم </value>
+  </data>
+  <data name="FieldRef" xml:space="preserve">
+    <value>الرمز</value>
   </data>
 </root>

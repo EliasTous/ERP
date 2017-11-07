@@ -24,12 +24,14 @@ using AionHR.Model.System;
 using AionHR.Model.Attendance;
 using AionHR.Model.Employees.Leaves;
 using AionHR.Model.Employees.Profile;
+using AionHR.Model.Payroll;
 
 namespace AionHR.Web.UI.Forms
 {
     public partial class EntitlementDeductions : System.Web.UI.Page
     {
         ISystemService _systemService = ServiceLocator.Current.GetInstance<ISystemService>();
+        IPayrollService _PayrollService = ServiceLocator.Current.GetInstance<IPayrollService>();
 
         IEmployeeService _employeeService = ServiceLocator.Current.GetInstance<IEmployeeService>();
         protected override void InitializeCulture()
@@ -61,7 +63,7 @@ namespace AionHR.Web.UI.Forms
                 SetExtLanguage();
                 HideShowButtons();
                 HideShowColumns();
-
+                Store2.Reload();
                 try
                 {
                     AccessControlApplier.ApplyAccessControlOnPage(typeof(EntitlementDeduction), BasicInfoTab, GridPanel1, btnAdd, SaveButton);
@@ -141,7 +143,7 @@ namespace AionHR.Web.UI.Forms
                     }
                     //Step 2 : call setvalues with the retrieved object
                     this.BasicInfoTab.SetValues(response.result);
-
+                    paycodeRef.Select(response.result.paycodeRef); 
 
                     this.EditRecordWindow.Title = Resources.Common.EditWindowsTitle;
                     this.EditRecordWindow.Show();
@@ -549,6 +551,15 @@ namespace AionHR.Web.UI.Forms
             return p;
 
 
+
+        }
+        protected void PayCode_ReadData(object sender, StoreReadDataEventArgs e)
+        {
+            ListRequest req = new ListRequest();
+            ListResponse<PayCode> eds = _PayrollService.ChildGetAll<PayCode>(req);
+
+            Store2.DataSource = eds.Items;
+            Store2.DataBind();
 
         }
     }

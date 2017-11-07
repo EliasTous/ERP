@@ -169,6 +169,7 @@ namespace AionHR.Web.UI.Forms.Reports
             req.Add(paymentMethodCombo.GetPaymentMethod());
             req.Add(jobInfo1.GetJobInfo());
             req.Add(employeeFilter.GetEmployee());
+            req.Add(inactivePref.GetActiveStatus());
 
             return req;
         }
@@ -251,12 +252,13 @@ namespace AionHR.Web.UI.Forms.Reports
                 s.Add(p);
             }
 
-            CurrentPayroll h = new CurrentPayroll();
-
-            h.DataSource = s;
-            h.Parameters["columnCount"].Value = ens.Count + des.Count; 
+            //CurrentPayroll h = new CurrentPayroll();
+            CurrentPayrollV1 h = new CurrentPayrollV1();
+            h.DataSource = resp.Items;
+            //h.Parameters["columnCount"].Value = ens.Count + des.Count; 
             h.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;
             h.RightToLeftLayout = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeftLayout.Yes : DevExpress.XtraReports.UI.RightToLeftLayout.No;
+
             string user = _systemService.SessionHelper.GetCurrentUser();
             h.Parameters["User"].Value = user;
             if (resp.Items.Count > 0)

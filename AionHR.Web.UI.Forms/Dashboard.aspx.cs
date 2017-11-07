@@ -84,7 +84,7 @@ namespace AionHR.Web.UI.Forms
                 try
                 {
 
-                
+
 
                     FillStatus();
 
@@ -102,7 +102,7 @@ namespace AionHR.Web.UI.Forms
 
         }
 
-      
+
 
         private void FillStatus()
         {
@@ -112,6 +112,13 @@ namespace AionHR.Web.UI.Forms
             statusStore.DataBind();
         }
 
+        protected void Page_Init(object sender, EventArgs e)
+        {
+
+            leaveRequest1.Store1 = this.LeaveRequestsStore;
+            leaveRequest1.GrigPanel1 = this.leaveGrid;
+
+        }
 
 
         /// <summary>
@@ -155,6 +162,12 @@ namespace AionHR.Web.UI.Forms
 
         protected void activeStore_refresh(object sender, StoreReadDataEventArgs e)
         {
+
+         
+
+
+
+
             ActiveAttendanceRequest r = GetActiveAttendanceRequest();
 
             ListResponse<ActiveCheck> ACs = _timeAttendanceService.ChildGetAll<ActiveCheck>(r);
@@ -195,17 +208,52 @@ namespace AionHR.Web.UI.Forms
             //absenseStore.DataSource = ABs.Items;
             //absenseStore.DataBind();
 
-            int x = ALs.Items.Count;
-            X.Call("lateChart", x, count.result.count);
-            //int y = ABs.Items.Count;
-            //X.Call("absentChart", y, count.result.count);
-            int z = ACs.Items.Count;
-            X.Call("activeChart", z, count.result.count);
+            //List<ChartData> activeChartData = new List<ChartData>();
+            //activeChartData.Add(new ChartData() { name = GetLocalResourceObject("Attendance").ToString(), y = 70, index = 0 });// ACs.Items.Count
+            //activeChartData.Add(new ChartData() { name = GetLocalResourceObject("NAttendance").ToString(), y = 100 - 70, index = 1 });//count.result.count - ACs.Items.Count
+                                                                                                                                                                 
+            //X.Call("drawActiveHightChartPie", JSON.JavaScriptSerialize(activeChartData), rtl ? true : false);
+
+
+            //List<ChartData> lateChartData = new List<ChartData>();
+            //lateChartData.Add(new ChartData() { name = GetLocalResourceObject("Late").ToString(), y =20, index = 0 });//  ALs.Items.Count
+            //lateChartData.Add(new ChartData() { name = GetLocalResourceObject("NLate").ToString(), y =50 , index = 1 });//ACs.Items.Count - ALs.Items.Count                                                                                                                                                                 
+            //X.Call("drawLateHightChartPie", JSON.JavaScriptSerialize(lateChartData), rtl ? true : false);
+
+
+
+            //List<ChartData> breaksChartData = new List<ChartData>();
+            //breaksChartData.Add(new ChartData() { name = GetLocalResourceObject("Break").ToString(), y = 20, index = 0 });// 
+            //breaksChartData.Add(new ChartData() { name = GetLocalResourceObject("NBreak").ToString(), y = 50, index = 1 });//
+
+            //X.Call("drawBreakHightChartPie", JSON.JavaScriptSerialize(breaksChartData), rtl ? true : false);
+
+
+            //List<ChartData> leaveChartData = new List<ChartData>();
+            //leaveChartData.Add(new ChartData() { name = GetLocalResourceObject("Leaves").ToString(), y = 20, index = 0 });// count.result.count - ACs.Items.Count
+            //leaveChartData.Add(new ChartData() { name = GetLocalResourceObject("NLeaves").ToString(), y = 80, index = 1 });//
+
+            //X.Call("drawLeaveHightChartPie", JSON.JavaScriptSerialize(leaveChartData), rtl ? true : false);
+
+
+            //List<ChartData> paidUnPaidChartData = new List<ChartData>();
+            //paidUnPaidChartData.Add(new ChartData() { name = GetLocalResourceObject("PaidLeaves").ToString(), y = 15, index = 0 });// count.result.count - ACs.Items.Count
+            //paidUnPaidChartData.Add(new ChartData() { name = GetLocalResourceObject("NPaidLeaves").ToString(), y = 5, index = 1 });//
+            //X.Call("drawPaidUnPaidHightChartPie", JSON.JavaScriptSerialize(paidUnPaidChartData), rtl ? true : false);
+         
+            //int x = ALs.Items.Count;
+            //X.Call("lateChart", x, count.result.count);
+            ////int y = ABs.Items.Count;
+            ////X.Call("absentChart", y, count.result.count);
+            //int z = ACs.Items.Count;
+            //X.Call("activeChart", z, count.result.count);
             BindAlerts();
         }
 
         private void BindAlerts()
         {
+
+            bool rtl = _systemService.SessionHelper.CheckIfArabicSession();
             ListRequest req = new ListRequest();
             ListResponse<DashboardItem> dashoard = _systemService.ChildGetAll<DashboardItem>(req);
             if (!dashoard.Success)
@@ -236,13 +284,61 @@ namespace AionHR.Web.UI.Forms
             totalLoansLbl.Text = total.ToString("N0");
             deductedLoansLbl.Text = paid.ToString("N0");
             //X.Call("alerts", annev, annevTotal, birthdays, birthdaysTotal, empRW, empRWTotal, compRW, compRWTotal, scr, scrTotal, prob, probTotal);
-            List <object> objs = new List<object>();
+            List<object> objs = new List<object>();
             objs.Add(new { Count = dashoard.Items.Where(x => x.itemId == 110).ToList()[0].count, emps = GetLocalResourceObject("Paid").ToString() });
             objs.Add(new { Count = dashoard.Items.Where(x => x.itemId == 111).ToList()[0].count, emps = GetLocalResourceObject("Unpaid").ToString() });
             objs.Add(new { Count = dashoard.Items.Where(x => x.itemId == 112).ToList()[0].count, emps = GetLocalResourceObject("Absent").ToString() });
 
-            AbsentLeaveStore.DataSource = objs;
-            AbsentLeaveStore.DataBind();
+
+
+
+
+
+            List<ChartData> activeChartData = new List<ChartData>();
+            activeChartData.Add(new ChartData() { name = GetLocalResourceObject("Attendance").ToString(), y = dashoard.Items.Where(x => x.itemId == 10).ToList()[0].count, index = 0 });// 10 - Attended
+            activeChartData.Add(new ChartData() { name = GetLocalResourceObject("Vacation").ToString(), y = dashoard.Items.Where(x => x.itemId == 110).ToList()[0].count, index = 1 });// 110 - Vacations
+            activeChartData.Add(new ChartData() { name = GetLocalResourceObject("UnpaidLeaves").ToString(), y = dashoard.Items.Where(x => x.itemId == 111).ToList()[0].count, index = 2 });// 111 - Unpaid leave
+            activeChartData.Add(new ChartData() { name = GetLocalResourceObject("LeaveNoExcuse").ToString(), y = dashoard.Items.Where(x => x.itemId == 112).ToList()[0].count, index =3});// 112 - Leave without excuse
+          //  activeChartData.Add(new ChartData() { name = GetLocalResourceObject("BusinessLeave").ToString(), y = dashoard.Items.Where(x => x.itemId == 113).ToList()[0].count, index =4 });// 113 - business leave
+
+
+            X.Call("drawActiveHightChartPie", JSON.JavaScriptSerialize(activeChartData), rtl ? true : false);
+
+
+            List<ChartData> lateChartData = new List<ChartData>();
+            lateChartData.Add(new ChartData() { name = GetLocalResourceObject("Late").ToString(), y = dashoard.Items.Where(x => x.itemId == 12).ToList()[0].count, index = 0 });//  ALs.Items.Count
+            lateChartData.Add(new ChartData() { name = GetLocalResourceObject("NLate").ToString(), y = dashoard.Items.Where(x => x.itemId == 10).ToList()[0].count - dashoard.Items.Where(x => x.itemId == 12).ToList()[0].count, index = 1 });//ACs.Items.Count - ALs.Items.Count                                                                                                                                                                 
+            X.Call("drawLateHightChartPie", JSON.JavaScriptSerialize(lateChartData), rtl ? true : false);
+
+
+
+            List<ChartData> breaksChartData = new List<ChartData>();
+            breaksChartData.Add(new ChartData() { name = GetLocalResourceObject("Leaves").ToString(), y = dashoard.Items.Where(x => x.itemId == 13).ToList()[0].count, index = 0 });// count.result.count - ACs.Items.Count
+            breaksChartData.Add(new ChartData() { name = GetLocalResourceObject("NLeaves").ToString(), y = dashoard.Items.Where(x => x.itemId == 10).ToList()[0].count - dashoard.Items.Where(x => x.itemId == 13).ToList()[0].count, index = 1 });//
+
+            X.Call("drawBreakHightChartPie", JSON.JavaScriptSerialize(breaksChartData), rtl ? true : false);
+
+
+            //List<ChartData> leaveChartData = new List<ChartData>();
+            //leaveChartData.Add(new ChartData() { name = GetLocalResourceObject("Leaves").ToString(), y = dashoard.Items.Where(x => x.itemId == 13).ToList()[0].count, index = 0 });// count.result.count - ACs.Items.Count
+            //leaveChartData.Add(new ChartData() { name = GetLocalResourceObject("NLeaves").ToString(), y = dashoard.Items.Where(x => x.itemId == 10).ToList()[0].count - dashoard.Items.Where(x => x.itemId == 13).ToList()[0].count, index = 1 });//
+
+            //X.Call("drawLeaveHightChartPie", JSON.JavaScriptSerialize(leaveChartData), rtl ? true : false);
+
+
+            //List<ChartData> paidUnPaidChartData = new List<ChartData>();
+            //paidUnPaidChartData.Add(new ChartData() { name = GetLocalResourceObject("PaidLeaves").ToString(), y = 15, index = 0 });// count.result.count - ACs.Items.Count
+            //paidUnPaidChartData.Add(new ChartData() { name = GetLocalResourceObject("NPaidLeaves").ToString(), y = 5, index = 1 });//
+            //X.Call("drawPaidUnPaidHightChartPie", JSON.JavaScriptSerialize(paidUnPaidChartData), rtl ? true : false);
+
+
+
+
+
+
+
+          //  AbsentLeaveStore.DataSource = objs;
+          //  AbsentLeaveStore.DataBind();
         }
 
         [DirectMethod]
@@ -303,7 +399,7 @@ namespace AionHR.Web.UI.Forms
             //List<ActiveLeave> leaves = new List<ActiveLeave>();
             //leaves.Add(new ActiveLeave() { destination = "dc", employeeId = 8, employeeName = new Model.Employees.Profile.EmployeeName() { fullName = "vima" }, endDate = DateTime.Now.AddDays(10) });
 
-            
+
             leavesStore.DataBind();
         }
 
@@ -375,7 +471,7 @@ namespace AionHR.Web.UI.Forms
         {
             ActiveAttendanceRequest req = new ActiveAttendanceRequest();
             var d = jobInfo1.GetJobInfo();
-            req.BranchId = d.BranchId.HasValue?d.BranchId.Value:0;
+            req.BranchId = d.BranchId.HasValue ? d.BranchId.Value : 0;
             req.DepartmentId = d.DepartmentId.HasValue ? d.DepartmentId.Value : 0;
             req.DivisionId = d.DivisionId.HasValue ? d.DivisionId.Value : 0;
             req.PositionId = d.PositionId.HasValue ? d.PositionId.Value : 0;
@@ -458,7 +554,7 @@ namespace AionHR.Web.UI.Forms
             req.PositionId = d.PositionId.HasValue ? d.PositionId.Value : 0;
             int intResult;
 
-           
+
 
             if (!string.IsNullOrEmpty(esId.Text) && esId.Value.ToString() != "0" && int.TryParse(esId.Value.ToString(), out intResult))
             {
@@ -508,11 +604,11 @@ namespace AionHR.Web.UI.Forms
         {
             TaskManagementListRequest req = new TaskManagementListRequest();
 
-            
+
             var d = jobInfo1.GetJobInfo();
             req.BranchId = d.BranchId.HasValue ? d.BranchId.Value : 0;
             req.DepartmentId = d.DepartmentId.HasValue ? d.DepartmentId.Value : 0;
-            
+
 
 
             req.DivisionId = 0;
@@ -535,7 +631,7 @@ namespace AionHR.Web.UI.Forms
             var d = jobInfo1.GetJobInfo();
             req.BranchId = d.BranchId.HasValue ? d.BranchId.Value : 0;
             req.DepartmentId = d.DepartmentId.HasValue ? d.DepartmentId.Value : 0;
-           
+
 
 
 
@@ -558,8 +654,15 @@ namespace AionHR.Web.UI.Forms
             var d = jobInfo1.GetJobInfo();
             req.BranchId = d.BranchId.HasValue ? d.BranchId.Value : 0;
             req.DepartmentId = d.DepartmentId.HasValue ? d.DepartmentId.Value : 0;
+            RecordRequest r = new RecordRequest();
+            r.RecordID = _systemService.SessionHelper.GetCurrentUserId();
+            RecordResponse<UserInfo> response = _systemService.ChildGetRecord<UserInfo>(r);
 
-
+            req.raEmployeeId = response.result.employeeId;
+            if (string.IsNullOrEmpty(response.result.employeeId))
+                return null;
+            userSessionEmployeeId.Text = response.result.employeeId;
+            req.status = 1;
 
 
 
@@ -583,7 +686,7 @@ namespace AionHR.Web.UI.Forms
             req.PositionId = d.PositionId.HasValue ? d.PositionId.Value : 0;
             req.DivisionId = d.DivisionId.HasValue ? d.DivisionId.Value : 0;
 
-            
+
 
             if (!string.IsNullOrEmpty(esId.Text) && esId.Value.ToString() != "0" && int.TryParse(esId.Value.ToString(), out intResult))
             {
@@ -635,12 +738,15 @@ namespace AionHR.Web.UI.Forms
 
         protected void LeaveRequestsStore_ReadData(object sender, StoreReadDataEventArgs e)
         {
-            LeaveRequestListRequest req = GetLeaveManagementRequest();
-            ListResponse<LeaveRequest> loans = _leaveManagementService.ChildGetAll<LeaveRequest>(req);
-            List<LeaveRequest> OpenLoans = loans.Items.Where(t => t.status == 1).ToList();
-            LeaveRequestsStore.DataSource = OpenLoans;
-            LeaveRequestsStore.DataBind();
 
+            LeaveRequestListRequest req = GetLeaveManagementRequest();
+            if (req != null)
+            {
+                ListResponse<LeaveRequest> loans = _leaveManagementService.ChildGetAll<LeaveRequest>(req);
+
+                LeaveRequestsStore.DataSource = loans.Items;
+                LeaveRequestsStore.DataBind();
+            }
         }
 
         protected void BirthdaysStore_ReadData(object sender, StoreReadDataEventArgs e)
@@ -734,7 +840,7 @@ namespace AionHR.Web.UI.Forms
                 X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() : resp.Summary).Show();
                 return;
             }
-        
+
             Store1.DataSource = resp.Items;
             Store1.DataBind();
             X.Call("fixWidth", resp.Items.Count);
@@ -804,17 +910,129 @@ namespace AionHR.Web.UI.Forms
             }
 
             List<object> RateObjs = new List<object>();
-            RateObjs.Add(new {category=GetLocalResourceObject("MinLocalRate").ToString(),number=resp.Items[0].minLocalsRate });//Should use GetLocalResource(MinLocalsRate) and translate in resources
-            RateObjs.Add(new { category = "LocalsRate", number= resp.Items[0].localsrate });//here too
+            RateObjs.Add(new { category = GetLocalResourceObject("MinLocalRate").ToString(), number = resp.Items[0].minLocalsRate });//Should use GetLocalResource(MinLocalsRate) and translate in resources
+            RateObjs.Add(new { category = GetLocalResourceObject("LocalsRate").ToString(), number = resp.Items[0].localsrate });//Should use GetLocalResource(MinLocalsRate) and translate in resources
+
+
 
             LocalRateStore.DataSource = RateObjs;
             LocalRateStore.DataBind();
 
             List<object> CountObjs = new List<object>();
-            CountObjs.Add(new { category = "Locals Count", resp.Items[0].localsCount });//here 
-            CountObjs.Add(new { category = "Total Count", resp.Items[0].empCount });//here
+            CountObjs.Add(new { category = GetLocalResourceObject("LocalsCount").ToString(), number = resp.Items[0].localsCount });//here 
+
+            CountObjs.Add(new { category = GetLocalResourceObject("empCount").ToString(), number = resp.Items[0].empCount });//here
+
             LocalCountStore.DataSource = CountObjs;
             LocalCountStore.DataBind();
         }
+        [DirectMethod]
+        protected void leavePoPUP(object sender, DirectEventArgs e)
+        {
+            string id = e.ExtraParams["id"];
+            string type = e.ExtraParams["type"];
+
+            switch (type)
+            {
+
+
+
+                case "imgAttach":
+                    //Step 1 : get the object from the Web Service 
+                    RecordRequest r = new RecordRequest();
+                    r.RecordID = id;
+
+
+                    RecordResponse<LeaveRequest> response = _leaveManagementService.ChildGetRecord<LeaveRequest>(r);
+                    if (!response.Success)
+                    {
+                        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                        X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).ToString() : response.Summary).Show();
+                        return;
+                    }
+                    //Step 2 : call setvalues with the retrieved object
+
+                    this.LeaveRecordForm.SetValues(response.result);
+                    employeeName.Text = response.result.employeeName.fullName;
+
+                    this.LeaveRecordWindow.Title = Resources.Common.EditWindowsTitle;
+                    this.LeaveRecordWindow.Show();
+                    break;
+
+                case "imgEdit":
+                    leaveRequest1.Update(id);
+                    break;
+            }
+        }
+        [DirectMethod]
+        protected void LeaveRecordTab_Load(object sender, EventArgs e)
+        {
+
+        }
+        protected void SaveNewRecord(object sender, DirectEventArgs e)
+        {
+            string obj = e.ExtraParams["values"];
+            string id = e.ExtraParams["id"];
+            LeaveRequest LV = JsonConvert.DeserializeObject<LeaveRequest>(obj);
+            try
+            {
+                //New Mode
+                //Step 1 : Fill The object and insert in the store 
+
+                PostRequest<DashboardLeave> request = new PostRequest<DashboardLeave>();
+                request.entity = new DashboardLeave();
+                request.entity.leaveId = Convert.ToInt32(LV.recordId);
+                request.entity.employeeId = Convert.ToInt32(userSessionEmployeeId.Text);
+                request.entity.status = LV.status;
+                if (!string.IsNullOrEmpty(LV.returnNotes))
+                    request.entity.notes = LV.returnNotes;
+                else
+                    request.entity.notes = " ";
+
+
+                PostResponse<DashboardLeave> r = _leaveManagementService.ChildAddOrUpdate<DashboardLeave>(request);
+
+
+                //check if the insert failed
+                if (!r.Success)//it maybe be another condition
+                {
+                    //Show an error saving...
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() : r.Summary).Show();
+                    return;
+                }
+                else
+                {
+
+                    leavesStore.Reload();
+                    Notification.Show(new NotificationConfig
+                    {
+                        Title = Resources.Common.Notification,
+                        Icon = Icon.Information,
+                        Html = Resources.Common.RecordSavingSucc
+                    });
+
+                    this.LeaveRecordWindow.Close();
+                }
+
+            }
+            catch (Exception ex)
+            {
+                //Error exception displaying a messsage box
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorSavingRecord).Show();
+            }
+
+        }
     }
+
+
+    #region Classes to be moved to a client folder model 
+    public class ChartData
+    {
+        public string name { get; set; }
+        public double y { get; set; }
+        public int index { get; set; }
+    }
+    #endregion
 }

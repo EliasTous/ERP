@@ -611,7 +611,6 @@ public class TimeAttendanceSummary : DevExpress.XtraReports.UI.XtraReport
             this.xrLabel23,
             this.xrLabel21});
             resources.ApplyResources(this.PageHeader, "PageHeader");
-            this.PageHeader.Expanded = false;
             this.PageHeader.Name = "PageHeader";
             this.PageHeader.BeforePrint += new System.Drawing.Printing.PrintEventHandler(this.PageHeader_BeforePrint);
             // 

@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Approvallevel" xml:space="preserve">
+    <value>مستوى الموافقة </value>
+  </data>
   <data name="BasicInfoTabEditWindowTitle" xml:space="preserve">
     <value>معلومات نوع الإجازة</value>
   </data>
@@ -138,11 +141,26 @@
   <data name="FieldRequiresApproval" xml:space="preserve">
     <value>تحتاج إلى موافقة؟</value>
   </data>
+  <data name="isPaid" xml:space="preserve">
+    <value>مدفوع</value>
+  </data>
   <data name="LeaveType" xml:space="preserve">
     <value>نوع الإجازة</value>
   </data>
   <data name="Personal" xml:space="preserve">
     <value>شخصية</value>
+  </data>
+  <data name="raDepHead" xml:space="preserve">
+    <value>مدير القسم</value>
+  </data>
+  <data name="raDepHierarchy" xml:space="preserve">
+    <value>هيكل الأقسام</value>
+  </data>
+  <data name="raDepLA" xml:space="preserve">
+    <value>أقسام إخلاء الطرف</value>
+  </data>
+  <data name="raReportTo" xml:space="preserve">
+    <value>المدير المباشر</value>
   </data>
   <data name="WindowTitle" xml:space="preserve">
     <value>أنواع الإجازات</value>

@@ -481,7 +481,7 @@
                 <ext:Button ID="SaveButton" runat="server" Text="<%$ Resources:Common, Save %>" Icon="Disk">
 
                     <Listeners>
-                        <Click Handler=" alert('hi');CheckSession(); if (!#{BasicInfoTab}.getForm().isValid()) {return false;} if(#{issueDateMulti}.value =='' && #{issueDate}.value=='') return false;  " />
+                        <Click Handler=" CheckSession(); if (!#{BasicInfoTab}.getForm().isValid()) {return false;} if(#{issueDateMulti}.value =='' && #{issueDate}.value=='') return false;  " />
                     </Listeners>
                     <DirectEvents>
                         <Click OnEvent="SaveNewRecord" Failure="Ext.MessageBox.alert('#{titleSavingError}.value', #{titleSavingErrorMessage}.value);">

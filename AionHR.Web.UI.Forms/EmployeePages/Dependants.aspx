@@ -17,6 +17,7 @@
             App.street1.allowBlank = d;
             App.stateId.allowBlank = d;
             App.countryId.allowBlank = d;
+            App.phone.allowBlank = d;
         }
     </script>
 
@@ -359,6 +360,7 @@
                                         <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
                                     </Listeners>
                                 </ext:ComboBox>
+                                <ext:TextField runat="server" Name="phone" AllowBlank="true" ID="phone" FieldLabel="<%$ Resources:phone%>" />
 
                             </Items>
                         </ext:FormPanel>

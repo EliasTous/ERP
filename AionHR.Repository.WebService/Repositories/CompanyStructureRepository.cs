@@ -22,17 +22,20 @@ namespace AionHR.Repository.WebService.Repositories
             base.ChildGetLookup.Add(typeof(Department), "getDE");
             base.ChildGetLookup.Add(typeof(Position), "getPO");
             base.ChildGetLookup.Add(typeof(Division), "getDI");
+            base.ChildGetLookup.Add(typeof(LegalReference), "getBL");
 
             base.ChildGetAllLookup.Add(typeof(Branch), "qryBR");
             base.ChildGetAllLookup.Add(typeof(Department), "qryDE");
             base.ChildGetAllLookup.Add(typeof(Position), "qryPO");
             base.ChildGetAllLookup.Add(typeof(Division), "qryDI");
+            base.ChildGetAllLookup.Add(typeof(LegalReference), "qryBL");
 
 
             base.ChildAddOrUpdateLookup.Add(typeof(Branch), "setBR");
             base.ChildAddOrUpdateLookup.Add(typeof(Department), "setDE");
             base.ChildAddOrUpdateLookup.Add(typeof(Position), "setPO");
             base.ChildAddOrUpdateLookup.Add(typeof(Division), "setDI");
+            base.ChildAddOrUpdateLookup.Add(typeof(LegalReference), "setBL");
 
             ChildDeleteLookup.Add(typeof(Branch), "delBR");
             ChildDeleteLookup.Add(typeof(Department), "delDE");

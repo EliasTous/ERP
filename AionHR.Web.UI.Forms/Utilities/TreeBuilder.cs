@@ -176,6 +176,8 @@ namespace AionHR.Web.UI.Forms.Utilities
             Ext.Net.Node files = BuildLeafNode("rootParent_CS_Files", Resources.Common.Files, "FolderTable", true, companyStructure);
             Ext.Net.Node companyNews = BuildLeafNode("rootParent_CS_CompanyNews", Resources.Common.CompanyNews, "Newspaper", true, companyStructure);
             Ext.Net.Node companyRightToWork = BuildLeafNode("rootParent_CS_CompanyRightTowork", Resources.Common.CompanyRightToWorks, "ScriptStart", true, companyStructure);
+            Ext.Net.Node companyLetter = BuildLeafNode("rootParent_CS_CompanyLetter", Resources.Common.Letters, "EmailLink" , true, companyStructure);
+            
 
             //Ext.Net.Node departments = BuildLeafNode("rootParent_CS_DE", Resources.Common.Departments, "Group", true, setup);
             //Ext.Net.Node branches = BuildLeafNode("rootParent_CS_BR", Resources.Common.Branches, "Group", true, setup);
@@ -197,6 +199,7 @@ namespace AionHR.Web.UI.Forms.Utilities
             FillConfigItem(companyNews, "companyNews", "CompanyNews.aspx", Resources.Common.CompanyNews, "icon-Employees", "1");
             //FillConfigItem(dashboard, "dashboard", "MainDashboard.aspx", Resources.Common.Dashboard, "icon-Employees", "1");
             FillConfigItem(companyRightToWork, "companyRightToWorks", "CompanyRightToWorks.aspx", Resources.Common.CompanyRightToWorks, "icon-Employees", "1");
+            FillConfigItem(companyLetter, "companyLetter", "Letters.aspx", Resources.Common.Letters, "icon-Employees", "1");
 
             //FillConfigItem(branches, "branches", "Branches.aspx", Resources.Common.Branches, "icon-Employees", "1");
             //FillConfigItem(divisions, "divisions", "Divisions.aspx", Resources.Common.Divisions, "icon-Employees", "1");
@@ -229,15 +232,27 @@ namespace AionHR.Web.UI.Forms.Utilities
             Ext.Net.Node rootParent = BuildRootParentNode("rootParent", Resources.Common.Company, true);
             Ext.Net.Node timeAt = BuildParentNode("rootParent_TA", Resources.Common.TimeAttendance, true, rootParent);
             Ext.Net.Node leaveMgmt = BuildParentNode("rootParent_LM", Resources.Common.LeaveManagement, true, rootParent);
+            Ext.Net.Node lr = BuildLeafNode("rootParent_LM_LR", Resources.Common.LeaveRequests, "UserGo", true, leaveMgmt);
+            Ext.Net.Node lc = BuildLeafNode("rootParent_LM_LC", Resources.Common.LeaveCalendar, "DateNext", true, leaveMgmt);
+            Ext.Net.Node ad = BuildLeafNode("rootParent_TA_AD", Resources.Common.AttendanceDay, "CalendarViewDay", true, timeAt);
+            Ext.Net.Node ab = BuildLeafNode("rootParent_TA_AB", Resources.Common.RT305, "CalendarViewDay", true, timeAt);
+
+
+            Ext.Net.Node GA = BuildLeafNode("rootParent_TA_GA", Resources.Common.GenerateAttendanceDays, "UserGo", true, timeAt);
+            FillConfigItem(lr, "lr", "LeaveRequests.aspx", Resources.Common.LeaveRequests, "icon-Employees", "1");
+            FillConfigItem(lc, "lc", "LeaveCalendar.aspx", Resources.Common.LeaveCalendar, "icon-Employees", "1");
+            FillConfigItem(ad, "ad", "TimeAttendanceView.aspx", Resources.Common.AttendanceDay, "icon-Employees", "1");
+            FillConfigItem(ab, "ab", "Absent.aspx", Resources.Common.RT305, "icon-Employees", "1");
+            FillConfigItem(GA, "GA", "GenerateAttendanceDays.aspx", Resources.Common.GenerateAttendanceDays, "icon-Employees", "1");
+            nodes.Add(rootParent);
+            return nodes;
             //Ext.Net.Node lvsetup = BuildParentNode("rootParent_LMS", Resources.Common.Setup, false, leaveMgmt);
             //Ext.Net.Node tasetup = BuildParentNode("rootParent_TAS", Resources.Common.Setup, false, timeAt);
             //Ext.Net.Node vs = BuildLeafNode("rootParent_LM_VS", Resources.Common.VacationSchedules, "Group", true, lvsetup);
             //Ext.Net.Node lt = BuildLeafNode("rootParent_LM_LT", Resources.Common.LeaveTypes, "Group", true, lvsetup);
-            Ext.Net.Node lr = BuildLeafNode("rootParent_LM_LR", Resources.Common.LeaveRequests, "UserGo", true, leaveMgmt);
-            Ext.Net.Node lc = BuildLeafNode("rootParent_LM_LC", Resources.Common.LeaveCalendar, "DateNext", true, leaveMgmt);
+
             //Ext.Net.Node dts = BuildLeafNode("rootParent_TA_DT", Resources.Common.DayTypes, "Group", true, tasetup);
-            Ext.Net.Node ad = BuildLeafNode("rootParent_TA_AD", Resources.Common.AttendanceDay, "CalendarViewDay", true, timeAt);
-            Ext.Net.Node ab = BuildLeafNode("rootParent_TA_AB", Resources.Common.RT305, "CalendarViewDay", true, timeAt);
+
             //Ext.Net.Node sc = BuildLeafNode("rootParent_TA_SC", Resources.Common.AttendanceSchedule, "Group", true, tasetup);
             //Ext.Net.Node ca = BuildLeafNode("rootParent_TA_CA", Resources.Common.WorkingCalendars, "Group", true, tasetup);
             //Ext.Net.Node bm = BuildLeafNode("rootParent_TA_BM", Resources.Common.BiometricDevices, "Group", true, tasetup);
@@ -246,19 +261,16 @@ namespace AionHR.Web.UI.Forms.Utilities
             //Ext.Net.Node gf = BuildLeafNode("rootParent_TA_GF", Resources.Common.Geofences, "Group", true, tasetup);
             //FillConfigItem(vs, "vacationSchedules", "VacationSchedules.aspx", Resources.Common.VacationSchedules, "icon-Employees", "1");
             //FillConfigItem(lt, "lt", "LeaveTypes.aspx", Resources.Common.LeaveTypes, "icon-Employees", "1");
-            FillConfigItem(lr, "lr", "LeaveRequests.aspx", Resources.Common.LeaveRequests, "icon-Employees", "1");
-            FillConfigItem(lc, "lc", "LeaveCalendar.aspx", Resources.Common.LeaveCalendar, "icon-Employees", "1");
+
             //FillConfigItem(dts, "dayTypes", "DayTypes.aspx", Resources.Common.DayTypes, "icon-Employees", "1");
             //FillConfigItem(sc, "schedules", "Schedules.aspx", Resources.Common.AttendanceSchedule, "icon-Employees", "1");
             //FillConfigItem(ca, "calendars", "WorkingCalendars.aspx", Resources.Common.WorkingCalendars, "icon-Employees", "1");
             //FillConfigItem(bm, "bm", "BiometricDevices.aspx", Resources.Common.BiometricDevices, "icon-Employees", "1");
             //FillConfigItem(ro, "ro", "Routers.aspx", Resources.Common.Routers, "icon-Employees", "1");
-            FillConfigItem(ad, "ad", "TimeAttendanceView.aspx", Resources.Common.AttendanceDay, "icon-Employees", "1");
-            FillConfigItem(ab, "ab", "Absent.aspx", Resources.Common.RT305, "icon-Employees", "1");
+
             //FillConfigItem(dashboard, "dashboard", "Dashboard.aspx", Resources.Common.Dashboard, "icon-Employees", "1");
             //FillConfigItem(gf, "geofences", "Geofences.aspx", Resources.Common.Geofences, "icon-Employees", "1");
-            nodes.Add(rootParent);
-            return nodes;
+
         }
 
         internal NodeCollection BuildReportsTree(NodeCollection nodes)
@@ -286,7 +298,8 @@ namespace AionHR.Web.UI.Forms.Utilities
             Ext.Net.Node rt202 = BuildLeafNode("report_rt202", Resources.Common.RT202, "", true, rt1);
             Ext.Net.Node rt203 = BuildLeafNode("report_rt203", Resources.Common.RT203, "", true, rt1);
             Ext.Net.Node rt109 = BuildLeafNode("report_rt109", Resources.Common.RT109, "", true, rt1);
-            
+            Ext.Net.Node rt200 = BuildLeafNode("report_rt200", Resources.Common.RT200, "", true, rt1);
+
 
             Ext.Net.Node rt3 = BuildParentNode("report_rt3", Resources.Common.TimeAttendance, true, timeAt, "CalendarViewMonth");
             Ext.Net.Node rt301 = BuildLeafNode("report_rt301", Resources.Common.RT301, "", true, rt3);
@@ -302,7 +315,7 @@ namespace AionHR.Web.UI.Forms.Utilities
             Ext.Net.Node rt5 = BuildParentNode("report_rt5", Resources.Common.Payroll, true, timeAt, "MoneyDollar");
             Ext.Net.Node rt501 = BuildLeafNode("report_rt501", Resources.Common.RT501, "", true, rt5);
             Ext.Net.Node rt502 = BuildLeafNode("report_rt502", Resources.Common.RT502, "", true, rt5);
-            Ext.Net.Node rt200 = BuildLeafNode("report_rt200", Resources.Common.RT200, "", true, rt5);
+           
             Ext.Net.Node rt503 = BuildLeafNode("report_rt503", Resources.Common.RT503, "", true, rt5);
 
             Ext.Net.Node rt6 = BuildParentNode("report_rt6", Resources.Common.LeaveReports, true, timeAt, "UserGo");

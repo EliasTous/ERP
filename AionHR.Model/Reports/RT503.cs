@@ -73,9 +73,13 @@ namespace AionHR.Model.Reports
 
         public double cssAmount { get; set; }
         public DateTime payDate { get; set; }
+        public string payDateString { get; set; }
         public int calendarDays { get; set; }
         public DateTime startDate { get; set; }
+        public string startDateString { get; set; }
+
         public DateTime endDate { get; set; }
+        public string endDateString { get; set; }
         public int fiscalYear { get; set; }
 
         //public int days { get; set; }
@@ -150,7 +154,7 @@ namespace AionHR.Model.Reports
             deductions[deductions.IndexOf(de)].amount = de.amount;
             deductions[deductions.IndexOf(de)].AmountString = String.Format("{0:n0}", de.amount);
         }
-        public DepartmentPayrollLine(HashSet<DepartmentEntitlementDeduction> en, HashSet<DepartmentEntitlementDeduction> de, List<RT503> details, string taxable, string eString, string dString, string netString, string ess, string css)
+        public DepartmentPayrollLine(HashSet<DepartmentEntitlementDeduction> en, HashSet<DepartmentEntitlementDeduction> de, List<RT503> details, string taxable, string eString, string dString, string netString, string ess, string css,string format)
         {
             entitlements = new List<DepartmentEntitlementDeduction>();
             deductions = new List<DepartmentEntitlementDeduction>();
@@ -161,9 +165,12 @@ namespace AionHR.Model.Reports
             {
                 basicAmount = details[0].basicAmount;
                 payDate= details[0].payDate;
+                payDateString = payDate.ToString(format);
                 calendarDays = details[0].calendarDays;
                 endDate = details[0].endDate;
+                endDateString = endDate.ToString(format); 
                 startDate = details[0].startDate;
+                startDateString = startDate.ToString(format); 
                 fiscalYear = details[0].fiscalYear;
                 basicAmount = details[0].basicAmount;
                 departmentName = details[0].departmentName;

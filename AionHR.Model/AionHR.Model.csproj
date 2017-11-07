@@ -49,8 +49,10 @@
     <Compile Include="Company\Structure\ICompanyStructureRepository.cs" />
     <Compile Include="Company\Structure\IDepartmentRepository.cs" />
     <Compile Include="Company\Structure\ImportDepartments.cs" />
+    <Compile Include="Company\Structure\LegalReference.cs" />
     <Compile Include="Dashboard\CompanyRTW.cs" />
     <Compile Include="Dashboard\Dashboard.cs" />
+    <Compile Include="Dashboard\DashboardLeave.cs" />
     <Compile Include="Dashboard\DepartmentActivity.cs" />
     <Compile Include="Dashboard\EmployeeBirthday.cs" />
     <Compile Include="Dashboard\EmpRTW.cs" />
@@ -88,6 +90,7 @@
     <Compile Include="Employees\Profile\SalaryTree.cs" />
     <Compile Include="Employees\Profile\TeamMember.cs" />
     <Compile Include="Employees\Profile\TerminationReason.cs" />
+    <Compile Include="LeaveManagement\Approvals.cs" />
     <Compile Include="LeaveManagement\ILeaveManagementRepository.cs" />
     <Compile Include="LeaveManagement\ImportLeaves.cs" />
     <Compile Include="LeaveManagement\LeaveDay.cs" />
@@ -107,11 +110,13 @@
     <Compile Include="Payroll\FinalSettlement.cs" />
     <Compile Include="Payroll\FiscalPeriod.cs" />
     <Compile Include="Payroll\FiscalYear.cs" />
+    <Compile Include="Payroll\GeneratePayroll.cs" />
     <Compile Include="Payroll\GenerationHeader.cs" />
     <Compile Include="Payroll\IPayrollRepository.cs" />
     <Compile Include="Payroll\PayCode.cs" />
     <Compile Include="Payroll\PayrollEntitlementDeduction.cs" />
     <Compile Include="Payroll\PayrollIndemnity.cs" />
+    <Compile Include="Payroll\PayrollIndemnityRecognition.cs" />
     <Compile Include="Payroll\PayrollSocialSecurity.cs" />
     <Compile Include="Payroll\SocialSecuritySchedule.cs" />
     <Compile Include="Payroll\SocialSecurityScheduleSetup.cs" />
@@ -157,6 +162,9 @@
     <Compile Include="System\CompanyOrgChart.cs" />
     <Compile Include="System\CompanyRightToWork.cs" />
     <Compile Include="System\Dashboard.cs" />
+    <Compile Include="System\GovernmentOrganisation.cs" />
+    <Compile Include="System\Letter.cs" />
+    <Compile Include="System\LetterTemplate.cs" />
     <Compile Include="System\OrgCharts.cs" />
     <Compile Include="System\State.cs" />
     <Compile Include="System\SystemAlert.cs" />
@@ -181,6 +189,7 @@
     <Compile Include="TimeAttendance\CalendarYear.cs" />
     <Compile Include="TimeAttendance\Check.cs" />
     <Compile Include="TimeAttendance\DayType.cs" />
+    <Compile Include="TimeAttendance\GenerateAttendanceDay.cs" />
     <Compile Include="TimeAttendance\Geofence.cs" />
     <Compile Include="TimeAttendance\ImportAttendance.cs" />
     <Compile Include="TimeAttendance\ImportOvertimeSetting.cs" />

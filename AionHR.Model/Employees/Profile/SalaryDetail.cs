@@ -37,7 +37,7 @@ namespace AionHR.Model.Employees.Profile
     {
         [PropertyID("31063_01")]
         [ApplySecurity]
-        public int edId { get; set; }
+        public int? edId { get; set; }
 
         [PropertyID("31063_02")]
         [ApplySecurity]

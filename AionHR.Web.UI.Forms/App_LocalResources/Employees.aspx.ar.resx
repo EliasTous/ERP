@@ -366,4 +366,7 @@
   <data name="Condition" xml:space="preserve">
     <value>اختر الشروط(الفارغ يعني الكل)</value>
   </data>
+  <data name="FieldRef" xml:space="preserve">
+    <value>الرمز</value>
+  </data>
 </root>

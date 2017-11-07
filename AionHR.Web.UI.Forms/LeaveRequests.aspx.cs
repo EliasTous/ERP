@@ -306,7 +306,8 @@ namespace AionHR.Web.UI.Forms
             var d = jobInfo1.GetJobInfo();
             req.BranchId = d.BranchId.HasValue ? d.BranchId.Value : 0;
             req.DepartmentId = d.DepartmentId.HasValue ? d.DepartmentId.Value : 0;
-
+            req.raEmployeeId = "0";
+          
             if (!string.IsNullOrEmpty(employeeFilter.Text) && employeeFilter.Value.ToString() != "0")
             {
                 req.EmployeeId = Convert.ToInt32(employeeFilter.Value);
@@ -321,13 +322,13 @@ namespace AionHR.Web.UI.Forms
 
             if (!string.IsNullOrEmpty(includeOpen.Text))
             {
-                req.OpenRequests = Convert.ToInt32(includeOpen.Value);
+                req.status = Convert.ToInt32(includeOpen.Value);
 
 
             }
             else
             {
-                req.OpenRequests = 0;
+                req.status = 0;
 
             }
 
@@ -356,7 +357,7 @@ namespace AionHR.Web.UI.Forms
 
             request.Filter = "";
             ListResponse<LeaveRequest> routers = _leaveManagementService.ChildGetAll<LeaveRequest>(request);
-            if (!routers.Success)
+           if (!routers.Success)
             {
                 X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", routers.ErrorCode) != null ? GetGlobalResourceObject("Errors", routers.ErrorCode).ToString() : routers.Summary).Show();
                 return;

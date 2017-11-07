@@ -124,7 +124,7 @@
                     Scroll="Vertical"
                     Border="false"
                     Icon="User"
-                    ColumnLines="True" IDMode="Explicit" RenderXType="True">
+                    ColumnLines="True" IDMode="Explicit" RenderXType="True" ForceFit="true">
 
                     <TopBar>
                         <ext:Toolbar ID="Toolbar1" runat="server" ClassicButtonStyle="false">
@@ -285,7 +285,7 @@
                              <ext:Column runat="server"
                                 ID="colDelete" Visible="true"
                                 Text="<%$ Resources: Common , Delete %>"
-                                Width="80"
+                                MinWidth="80"
                                 Align="Center"
                                 Fixed="true"
                                 Filterable="false"

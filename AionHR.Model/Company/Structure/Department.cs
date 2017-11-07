@@ -42,7 +42,15 @@ namespace AionHR.Model.Company.Structure
         [PropertyID("21040_04")]
         [ApplySecurity]
         public EmployeeName supervisorName { get; set; }
-
+        [PropertyID("21040_06")]
+        [ApplySecurity]
+        public string scId { get; set; }
+        [PropertyID("21040_06")]
+        [ApplySecurity]
+        public string scName { set; get; }
+        [PropertyID("21040_07")]
+        [ApplySecurity]
+        public bool? isLeaveAuth { get; set; }
 
 
     }

@@ -78,7 +78,7 @@ namespace AionHR.Web.UI.Forms.Reports
                         return;
                     }
 
-
+                    FillCountry(); 
                     format.Text = _systemService.SessionHelper.GetDateformat().ToUpper();
                     ASPxWebDocumentViewer1.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.Utils.DefaultBoolean.True : DevExpress.Utils.DefaultBoolean.False;
                     FillReport(false);
@@ -229,6 +229,8 @@ namespace AionHR.Web.UI.Forms.Reports
             request.SortBy = "hireDate";
             request.Add(jobInfo1.GetJobInfo());
             request.Add(activeControl.GetActiveStatus());
+            request.Add(GetCountryInfo()); 
+            
             return request;
 
         }
@@ -250,6 +252,59 @@ namespace AionHR.Web.UI.Forms.Reports
         {
             //ASPxWebDocumentViewer1.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.Utils.DefaultBoolean.True : DevExpress.Utils.DefaultBoolean.False;
             //FillReport();
+        }
+        [DirectMethod]
+        protected void addCountry(object sender, DirectEventArgs e)
+        {
+            if (string.IsNullOrEmpty(countryIdCombo.Text))
+                return;
+            Nationality obj = new Nationality();
+            obj.name = countryIdCombo.Text;
+
+            PostRequest<Nationality> req = new PostRequest<Nationality>();
+            req.entity = obj;
+
+            PostResponse<Nationality> response = _systemService.ChildAddOrUpdate<Nationality>(req);
+            if (response.Success)
+            {
+                obj.recordId = response.recordId;
+                FillCountry();
+                countryIdCombo.Select(obj.recordId);
+            }
+            else
+            {
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).ToString() : response.Summary).Show();
+                return;
+            }
+
+        }
+        private void FillCountry()
+        {
+            ListRequest nationalityRequest = new ListRequest();
+            ListResponse<Nationality> resp = _systemService.ChildGetAll<Nationality>(nationalityRequest);
+            NationalityStore.DataSource = resp.Items;
+            NationalityStore.DataBind();
+
+        }
+        public CountryParameterSet GetCountryInfo()
+        {
+            CountryParameterSet p = new CountryParameterSet();
+           
+           
+                if (!string.IsNullOrEmpty(countryIdCombo.Text) && countryIdCombo.Value.ToString() != "0")
+                {
+                    p.countryId = Convert.ToInt32(countryIdCombo.Value);
+                
+
+                }
+                else
+                {
+                p.countryId = 0;
+
+                }
+           
+            return p;
         }
     }
 }

@@ -345,4 +345,37 @@
   <data name="SocialSecuritySchedule" xml:space="preserve">
     <value>Social Security Schedule</value>
   </data>
+  <data name="MinEPLocalRate" xml:space="preserve">
+    <value>Min Locals Rate</value>
+  </data>
+  <data name="FieldEntitlement" xml:space="preserve">
+    <value>Entitlement</value>
+  </data>
+  <data name="payrollIndemnityEntitlement" xml:space="preserve">
+    <value>Payroll Indemnity Entitlement</value>
+  </data>
+  <data name="PYFSLeaveBalEDId" xml:space="preserve">
+    <value>Entitlement For The Final Settlement Leave Balance</value>
+  </data>
+  <data name="IndemnitySchedules" xml:space="preserve">
+    <value>Indemnity Schedules</value>
+  </data>
+  <data name="PYISfemale" xml:space="preserve">
+    <value>Default Indemnity Schedules For Females </value>
+  </data>
+  <data name="PYISmale" xml:space="preserve">
+    <value>Default Indemnity Schedules For Males</value>
+  </data>
+  <data name="exemptDeliveryTRId" xml:space="preserve">
+    <value>Exempt Delivery Termination Reason</value>
+  </data>
+  <data name="exemptMarriageTRId" xml:space="preserve">
+    <value>Exempt Marriage Termination Reason</value>
+  </data>
+  <data name="TerminationReason" xml:space="preserve">
+    <value>Termination Reason</value>
+  </data>
+  <data name="ReferenceFirstNameMiddleNameFamilyName" xml:space="preserve">
+    <value>Reference, First Name, Middle Name, Family Name</value>
+  </data>
 </root>

@@ -63,6 +63,7 @@ namespace AionHR.Web.UI.Forms
 
         public void Add()
         {
+            SaveButton.Disabled = false;
             BasicInfoTab.Reset();
             panelRecordDetails.ActiveIndex = 0;
             picturePath.Clear();
@@ -82,7 +83,7 @@ namespace AionHR.Web.UI.Forms
             FillProfileInfo(id.ToString());
             CurrentEmployee.Text = id.ToString();
             FillLeftPanel();
-
+           
             hireDate.ReadOnly = true;
 
             //employeePanel.Loader.Url = "EmployeePages/EmployeeProfile.aspx?employeeId="+CurrentEmployee.Text;
@@ -93,6 +94,7 @@ namespace AionHR.Web.UI.Forms
             this.EditRecordWindow.Title = Resources.Common.EditWindowsTitle;
             reference.IsRemoteValidation = false;
             this.EditRecordWindow.Show();
+            
         }
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -108,7 +110,7 @@ namespace AionHR.Web.UI.Forms
 
                 CurrentClassId.Text = ClassId.EPEM.ToString();
 
-                birthDate.Format = hireDate.Format = _systemService.SessionHelper.GetDateformat();
+                date.Format= birthDate.Format = hireDate.Format = _systemService.SessionHelper.GetDateformat();
 
 
                 pRTL.Text = _systemService.SessionHelper.CheckIfArabicSession().ToString();
@@ -379,7 +381,7 @@ namespace AionHR.Web.UI.Forms
 
 
             DeleteButton.Hidden = !active;
-            terminationGear.Disabled = !active;
+            //terminationGear.Disabled = !active;
             resetPasswordGear.Disabled = !active;
             terminated.Text = active ? "0" : "1";
 
@@ -820,10 +822,35 @@ namespace AionHR.Web.UI.Forms
             InitCombos(false);
             SelectCombos(response.result);
             SetActivated(!response.result.isInactive);
+            setTerminationWindow(response.result.isInactive);
+           
+
             FixLoaderUrls(r.RecordID, response.result.hireDate.HasValue? response.result.hireDate.Value.ToString("yyyy/MM/dd"):"", response.result.isInactive);
 
         }
+        private void setTerminationWindow (bool isInactive)
+        {
+            if (isInactive)
+            {
+                saveTerminationButton.Hidden = isInactive;
+                TextField1.ReadOnly = isInactive;
+                date.ReadOnly = isInactive;
+                ttId.ReadOnly = isInactive;
+                trId.ReadOnly = isInactive;
+                rehire.ReadOnly = isInactive;
 
+            }
+           if (!isInactive)
+            {
+                saveTerminationButton.Hidden = isInactive;
+                TextField1.ReadOnly = isInactive;
+                date.ReadOnly = isInactive;
+                ttId.ReadOnly = isInactive;
+                trId.ReadOnly = isInactive;
+                rehire.ReadOnly = isInactive;
+                
+            }
+        }
         [DirectMethod]
         public void FillLeftPanel(bool shouldUpdateGrid = false)
         {
@@ -1063,9 +1090,10 @@ namespace AionHR.Web.UI.Forms
 
         protected void ShowTermination(object sender, DirectEventArgs e)
         {
+            
             try
             {
-                AccessControlApplier.ApplyAccessControlOnPage(typeof(EmployeeTermination), terminationForm, null, null, Button6);
+                AccessControlApplier.ApplyAccessControlOnPage(typeof(EmployeeTermination), terminationForm, null, null, saveTerminationButton);
 
             }
             catch (AccessDeniedException exp)
@@ -1076,10 +1104,11 @@ namespace AionHR.Web.UI.Forms
                 return;
             }
             terminationForm.Reset();
-            FillTerminationReasons();
-            date.SelectedDate = DateTime.Today;
+            FillTerminationReasons1(CurrentEmployee.Text);
+            //date.SelectedDate = DateTime.Today;
             terminationWindow.Show();
         }
+        
 
         [DirectMethod]
         public object GetQuickView(Dictionary<string, string> parameters)
@@ -1120,6 +1149,85 @@ namespace AionHR.Web.UI.Forms
             trStore.DataBind();
 
         }
+        private void FillTerminationReasons1(string id)
+        {
+            RecordRequest caRequest = new RecordRequest();
+            caRequest.RecordID = id;
+            RecordResponse<EmployeeTermination> resp = _employeeService.ChildGetRecord<EmployeeTermination>(caRequest);
+            if (!resp.Success)
+            {
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() : resp.Summary).Show();
+                return;
+            }
+            ListRequest caRequest1 = new ListRequest();
+            ListResponse<TerminationReason> resp1 = _employeeService.ChildGetAll<TerminationReason>(caRequest1);
+            if (!resp1.Success)
+            {
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() : resp.Summary).Show();
+                return;
+            }
+            trStore.DataSource = resp1.Items;
+            trStore.DataBind();
+
+            if (resp.result!=null)
+            {
+                if (resp.result.date != null)
+                    date.Value = resp.result.date;
+                ttId.Select(resp.result.ttId);
+                rehire.Select(resp.result.rehire);
+                //switch (resp.result.ttId)
+                //{
+                //    case 0:
+                //        ttId.AddItem( GetLocalResourceObject("Worker").ToString(),0);
+                //        ttId.Select(0);
+
+                //        break;
+                //    case 1:
+                //        ttId.AddItem(GetLocalResourceObject("Company").ToString(),1);
+                //        ttId.Select(1);
+                //        break;
+                //    case 2:
+                //        ttId.AddItem(GetLocalResourceObject("Other").ToString(),2);
+                //        ttId.Select(2);
+                //        break;
+                //    default:
+                                           
+                //        break;
+
+                //}
+               
+                if (!string.IsNullOrEmpty(resp.result.trId.ToString()))
+                    trId.Select(resp.result.trId);
+
+                //switch (resp.result.rehire)
+                //{
+                //    case 0:
+                //        rehire.Text = GetLocalResourceObject("No").ToString();
+
+                //        break;
+                //    case 1:
+                //        rehire.Text = GetLocalResourceObject("Yes").ToString();
+
+                //        break;
+                //    case 2:
+                //        rehire.Text = GetLocalResourceObject("NotYetKnown").ToString();
+
+                //        break;
+                //    default:
+                //        rehire.Text = "";
+                //        break;
+
+                //}
+
+            }
+            else
+            {
+                date.Value = DateTime.Now;
+            }
+
+        }
+        
+
 
         [DirectMethod]
         public void promptDelete(object sender, DirectEventArgs e)

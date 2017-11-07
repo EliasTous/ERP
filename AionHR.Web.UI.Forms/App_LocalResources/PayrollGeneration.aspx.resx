@@ -133,7 +133,7 @@
     <value>Basic Amount</value>
   </data>
   <data name="FieldBranch" xml:space="preserve">
-    <value>Select a Branch</value>
+    <value>Branch</value>
   </data>
   <data name="FieldCalDays" xml:space="preserve">
     <value>Cal Days</value>
@@ -148,13 +148,13 @@
     <value>Deduction</value>
   </data>
   <data name="FieldDepartment" xml:space="preserve">
-    <value>Select a Department</value>
+    <value>Department</value>
   </data>
   <data name="FieldEDAmount" xml:space="preserve">
     <value>ED</value>
   </data>
   <data name="FieldEmployee" xml:space="preserve">
-    <value>Select an Employee</value>
+    <value>Employee</value>
   </data>
   <data name="FieldEntitlement" xml:space="preserve">
     <value>Entitlement</value>
@@ -207,8 +207,8 @@
   <data name="pcName" xml:space="preserve">
     <value>Pay Code</value>
   </data>
-  <data name="percentage" xml:space="preserve">
-    <value>Percentage</value>
+  <data name="pct" xml:space="preserve">
+    <value>percentage</value>
   </data>
   <data name="SalaryBiWeekly" xml:space="preserve">
     <value>Bi-weekly</value>
@@ -261,7 +261,10 @@
   <data name="FieldSocialSecurity" xml:space="preserve">
     <value>Social Security</value>
   </data>
-  <data name="pct" xml:space="preserve">
-    <value>pct</value>
+  <data name="FieldCompanySocialSecurity" xml:space="preserve">
+    <value>Company Social Security</value>
+  </data>
+  <data name="FieldEmployeeSocialSecurity" xml:space="preserve">
+    <value>Employee Social Security</value>
   </data>
 </root>

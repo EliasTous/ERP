@@ -501,7 +501,7 @@
                             <Items>
                                 <ext:TextField ID="JIID" Hidden="true" runat="server" FieldLabel="<%$ Resources:FieldrecordId%>" Disabled="true" Name="recordId" />
                                 <ext:DateField runat="server" ID="date" Name="date" FieldLabel="<%$ Resources:FieldJIDate%>" />
-                           <ext:ComboBox   AnyMatch="true" CaseSensitive="false" EnableRegEx="true"     runat="server" AllowBlank="false" ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" ID="departmentId" Name="departmentId" FieldLabel="<%$ Resources:FieldJIDepartment%>" SimpleSubmit="true">
+                           <ext:ComboBox   AnyMatch="true" CaseSensitive="false" EnableRegEx="true"     runat="server" AllowBlank="false" ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" ID="departmentId" Name="departmentId" FieldLabel="<%$ Resources:FieldJIDepartment%>" >
                                                 <Store>
                                                     <ext:Store runat="server" ID="departmentStore">
                                                         <Model>
@@ -532,7 +532,7 @@
                                                     <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
                                                 </Listeners>
                                             </ext:ComboBox>
-                           <ext:ComboBox      AnyMatch="true" CaseSensitive="false"  runat="server" EnableRegEx="true"  AllowBlank="false" ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" ID="branchId" Name="branchId" FieldLabel="<%$ Resources:FieldJIBranch%>" SimpleSubmit="true">
+                           <ext:ComboBox      AnyMatch="true" CaseSensitive="false"  runat="server" EnableRegEx="true"  AllowBlank="false" ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" ID="branchId" Name="branchId" FieldLabel="<%$ Resources:FieldJIBranch%>" >
                                                 <Store>
                                                     <ext:Store runat="server" ID="BranchStore">
                                                         <Model>
@@ -563,7 +563,7 @@
                                                     <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
                                                 </Listeners>
                                             </ext:ComboBox>
-                                  <ext:ComboBox     AnyMatch="true" CaseSensitive="false"  EnableRegEx="true"   runat="server" AllowBlank="true" ValueField="recordId" QueryMode="Local"   ForceSelection="true"  TypeAhead="true" MinChars="1" DisplayField="name" ID="divisionId" Name="divisionId" FieldLabel="<%$ Resources:FieldJIDivision%>" SimpleSubmit="true">
+                                  <ext:ComboBox     AnyMatch="true" CaseSensitive="false"  EnableRegEx="true"   runat="server" AllowBlank="true" ValueField="recordId" QueryMode="Local"   ForceSelection="true"  TypeAhead="true" MinChars="1" DisplayField="name" ID="divisionId" Name="divisionId" FieldLabel="<%$ Resources:FieldJIDivision%>" >
                                                 <Store>
                                                     <ext:Store runat="server" ID="divisionStore">
                                                         <Model>
@@ -596,7 +596,7 @@
                                                 </Listeners>
                                       
                                             </ext:ComboBox>
-                        <ext:ComboBox      AnyMatch="true" CaseSensitive="false"   ValueField="recordId" AllowBlank="false" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" runat="server" ID="positionId" Name="positionId" FieldLabel="<%$ Resources:FieldJIPosition%>" SimpleSubmit="true">
+                        <ext:ComboBox      AnyMatch="true" CaseSensitive="false"   ValueField="recordId" AllowBlank="false" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" runat="server" ID="positionId" Name="positionId" FieldLabel="<%$ Resources:FieldJIPosition%>" >
                                                 <Store>
                                                     <ext:Store runat="server" ID="positionStore">
                                                         <Model>

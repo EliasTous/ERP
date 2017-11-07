@@ -144,4 +144,7 @@
   <data name="taReference" xml:space="preserve">
     <value>الرقم في جهاز البصمة </value>
   </data>
+  <data name="FieldBranch" xml:space="preserve">
+    <value>الفرع</value>
+  </data>
 </root>

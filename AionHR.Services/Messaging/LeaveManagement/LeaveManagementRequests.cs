@@ -45,22 +45,25 @@ public class VacationPeriodsListRequest : ListRequest
 }
 public class LeaveRequestListRequest : ListRequest
 {
-    public int OpenRequests { get; set; }
+    public int status { get; set; }
     public int BranchId { get; set; }
     public int DepartmentId { get; set; }
     public int EmployeeId { get; set; }
 
     public string SortBy { get; set; }
+    public string raEmployeeId { get; set; }
     public override Dictionary<string, string> Parameters
     {
         get
         {
             parameters = base.Parameters;
-            parameters.Add("_openRequests", OpenRequests.ToString());
+            parameters.Add("_status", status.ToString());
             parameters.Add("_branchId", BranchId.ToString());
             parameters.Add("_departmentId", DepartmentId.ToString());
             parameters.Add("_employeeId", EmployeeId.ToString());
             parameters.Add("_sortBy", SortBy.ToString());
+            parameters.Add("_raEmployeeId", raEmployeeId.ToString());
+
 
 
             return parameters;
@@ -112,4 +115,5 @@ public class LeaveDayListRequest : ListRequest
         }
     }
 }
+
 

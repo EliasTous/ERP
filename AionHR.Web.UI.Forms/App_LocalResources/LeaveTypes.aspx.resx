@@ -138,13 +138,31 @@
   <data name="FieldRequiresApproval" xml:space="preserve">
     <value>Requires Approval?</value>
   </data>
+  <data name="isPaid" xml:space="preserve">
+    <value>is Paid </value>
+  </data>
   <data name="LeaveType" xml:space="preserve">
     <value>Leave Type</value>
   </data>
   <data name="Personal" xml:space="preserve">
     <value>Personal</value>
   </data>
+  <data name="raDepHead" xml:space="preserve">
+    <value>Department Head</value>
+  </data>
+  <data name="raDepHierarchy" xml:space="preserve">
+    <value>Department Hierarchy</value>
+  </data>
+  <data name="raDepLA" xml:space="preserve">
+    <value>Leave Authenticators</value>
+  </data>
+  <data name="raReportTo" xml:space="preserve">
+    <value>Reports To</value>
+  </data>
   <data name="WindowTitle" xml:space="preserve">
     <value>Leave Types</value>
+  </data>
+  <data name="Approvallevel" xml:space="preserve">
+    <value>Approval Level</value>
   </data>
 </root>

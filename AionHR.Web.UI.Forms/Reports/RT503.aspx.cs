@@ -83,6 +83,7 @@ namespace AionHR.Web.UI.Forms.Reports
                         return;
                     }
                     format.Text = _systemService.SessionHelper.GetDateformat().ToUpper();
+                    
                     ASPxWebDocumentViewer1.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.Utils.DefaultBoolean.True : DevExpress.Utils.DefaultBoolean.False;
                     FillReport(false, false);
                 }
@@ -229,15 +230,46 @@ namespace AionHR.Web.UI.Forms.Reports
             HashSet<DepartmentEntitlementDeduction> des = new HashSet<DepartmentEntitlementDeduction>(new DepartmentEntitlementDeductionComparer());
             resp.Items.ForEach(x =>
             {
+                DepartmentEntitlementDeduction DE = new DepartmentEntitlementDeduction();
+
                 if (x.edType == 1)
-                    ens.Add(new DepartmentEntitlementDeduction() { name = x.edName, amount = 0, isTaxable = x.isTaxable });
+                {
+
+                    try
+                    {
+                        DE.name = GetLocalResourceObject(x.edName.Trim()).ToString().TrimEnd() ;
+                        DE.amount = 0; DE.isTaxable = x.isTaxable;
+                    }
+                    catch { DE.name = x.edName; DE.amount = 0; DE.isTaxable = x.isTaxable; }
+                    ens.Add(DE);
+                }
                 else
-                    des.Add(new DepartmentEntitlementDeduction() { name = x.edName, amount = 0 });
+                {
+
+                    try
+                    {
+                        DE.name = GetLocalResourceObject(x.edName.Trim()).ToString().TrimEnd();
+                        DE.amount = 0; 
+                    }
+                    catch { DE.name = x.edName; DE.amount = 0;  }
+                    des.Add(DE);
+                }
             });
+            
             foreach (var item in d)
             {
+                
                 var list = item.ToList();
-                DepartmentPayrollLine line = new DepartmentPayrollLine(ens, des, list, GetLocalResourceObject("taxableeAmount").ToString(), GetLocalResourceObject("eAmount").ToString(), GetLocalResourceObject("dAmount").ToString(), GetLocalResourceObject("netSalary").ToString(), GetLocalResourceObject("essString").ToString(), GetLocalResourceObject("cssString").ToString());
+                list.ForEach(y =>
+                {
+                    try
+                    {
+                  y.edName = GetLocalResourceObject(y.edName.Trim()).ToString().TrimEnd();
+                      
+                    }
+                    catch { y.edName = y.edName; }
+                });
+                DepartmentPayrollLine line = new DepartmentPayrollLine(ens, des, list, GetLocalResourceObject("taxableeAmount").ToString(), GetLocalResourceObject("eAmount").ToString(), GetLocalResourceObject("dAmount").ToString(), GetLocalResourceObject("netSalary").ToString(), GetLocalResourceObject("essString").ToString(), GetLocalResourceObject("cssString").ToString(), _systemService.SessionHelper.GetDateformat());
                 lines.Add(line);
             }
 

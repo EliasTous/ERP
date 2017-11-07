@@ -255,4 +255,10 @@
   <data name="Print" xml:space="preserve">
     <value>Print</value>
   </data>
+  <data name="Approvals" xml:space="preserve">
+    <value>Approvals</value>
+  </data>
+  <data name="Department" xml:space="preserve">
+    <value>Department</value>
+  </data>
 </root>

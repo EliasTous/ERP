@@ -1026,4 +1026,40 @@
   <data name="PayrollIndemnity" xml:space="preserve">
     <value>جدول مكافأة نهاية الخدمة</value>
   </data>
+  <data name="RT503" xml:space="preserve">
+    <value>رواتب الأقسام </value>
+  </data>
+  <data name="importCalendar" xml:space="preserve">
+    <value>نسخ من تقويم لأخر</value>
+  </data>
+  <data name="TerminationReasons" xml:space="preserve">
+    <value>انهاء الخدمة </value>
+  </data>
+  <data name="NoticePeriods" xml:space="preserve">
+    <value>فترات تبليغ انتهاء الخدمة </value>
+  </data>
+  <data name="Generate" xml:space="preserve">
+    <value>انشاء </value>
+  </data>
+  <data name="FieldEHStatus" xml:space="preserve">
+    <value>الحالة </value>
+  </data>
+  <data name="GenerateAttendanceDaySucc" xml:space="preserve">
+    <value>تم تحديث الحضور اليومي بنجاح </value>
+  </data>
+  <data name="GenerateAttendanceDays" xml:space="preserve">
+    <value>تزامن الحضور اليومي </value>
+  </data>
+  <data name="GovernmentOrganisations" xml:space="preserve">
+    <value>هيئات حكومية</value>
+  </data>
+  <data name="LetterTemplates" xml:space="preserve">
+    <value>Letter Templates</value>
+  </data>
+  <data name="CompanyLetter" xml:space="preserve">
+    <value>Letter</value>
+  </data>
+  <data name="Letters" xml:space="preserve">
+    <value>Letters</value>
+  </data>
 </root>

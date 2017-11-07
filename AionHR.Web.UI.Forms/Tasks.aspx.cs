@@ -288,6 +288,8 @@ namespace AionHR.Web.UI.Forms
 
         protected void PoPuP(object sender, DirectEventArgs e)
         {
+            caseCommentsTab.Disabled = false;
+            filesGrid.Disabled = false;
 
             panelRecordDetails.ActiveIndex = 0;
             //SetTabPanelEnable(true);
@@ -620,14 +622,16 @@ namespace AionHR.Web.UI.Forms
 
         protected void ADDNewRecord(object sender, DirectEventArgs e)
         {
+            caseCommentsTab.Disabled = true;
+            filesGrid.Disabled = true;
             caseCommentStore.DataSource = new List<TaskComment>();
             caseCommentStore.DataBind();
             //Reset all values of the relative object
             BasicInfoTab.Reset();
             dueDate.SelectedDate = DateTime.Now;
-
+            
             panelRecordDetails.ActiveIndex = 0;
-            FillTaskType();
+               FillTaskType();
             //SetTabPanelEnable(false);
             this.EditRecordWindow.Title = Resources.Common.AddNewRecord;
             this.EditRecordWindow.Show();
@@ -743,8 +747,6 @@ namespace AionHR.Web.UI.Forms
                     request.entity = b;
 
                     PostResponse<Model.TaskManagement.Task> r = _taskService.AddOrUpdate<Model.TaskManagement.Task>(request);
-
-
                     //check if the insert failed
                     if (!r.Success)//it maybe be another condition
                     {
@@ -755,11 +757,11 @@ namespace AionHR.Web.UI.Forms
                     }
                     else
                     {
+                        caseCommentsTab.Disabled = false;
+                        filesGrid.Disabled = false;
                         b.recordId = r.recordId;
-
                         //Add this record to the store 
                         this.Store1.Insert(0, b);
-
                         //Display successful notification
                         Notification.Show(new NotificationConfig
                         {
@@ -793,6 +795,8 @@ namespace AionHR.Web.UI.Forms
 
                 try
                 {
+                    caseCommentsTab.Disabled = false;
+                    filesGrid.Disabled = false;
                     //getting the id of the record
                     PostRequest<Model.TaskManagement.Task> request = new PostRequest<Model.TaskManagement.Task>();
                     request.entity = b;

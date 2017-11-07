@@ -123,6 +123,9 @@
   <data name="EditWindowsTitle" xml:space="preserve">
     <value>تعديل القسم</value>
   </data>
+  <data name="FieldAttendanceSchedule" xml:space="preserve">
+    <value>جدول الدوام</value>
+  </data>
   <data name="FieldIsInactive" xml:space="preserve">
     <value>غير نشط؟</value>
   </data>
@@ -149,6 +152,9 @@
   </data>
   <data name="FieldTimeZone" xml:space="preserve">
     <value>المنطقة الزمنية</value>
+  </data>
+  <data name="isLeaveAuth" xml:space="preserve">
+    <value>معمد إخلاء طرف</value>
   </data>
   <data name="WindowTitle" xml:space="preserve">
     <value>الأقسام</value>

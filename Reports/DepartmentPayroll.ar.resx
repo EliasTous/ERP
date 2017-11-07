@@ -135,6 +135,9 @@
   <data name="xrLabel16.Text" xml:space="preserve">
     <value>إلى تاريخ</value>
   </data>
+  <data name="xrLabel19.Text" xml:space="preserve">
+    <value>رقم عملية الدفع </value>
+  </data>
   <data name="xrLabel20.Text" xml:space="preserve">
     <value>فرع</value>
   </data>
@@ -146,6 +149,12 @@
   </data>
   <data name="xrLabel25.Text" xml:space="preserve">
     <value>لم يتم العثور على نتائج</value>
+  </data>
+  <data name="xrLabel27.Text" xml:space="preserve">
+    <value>تاريخ البداية</value>
+  </data>
+  <data name="xrLabel28.Text" xml:space="preserve">
+    <value>تاريخ النهاية</value>
   </data>
   <data name="xrLabel7.Text" xml:space="preserve">
     <value>الراتب الأساسي</value>

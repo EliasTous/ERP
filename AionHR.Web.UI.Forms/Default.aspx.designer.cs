@@ -211,6 +211,24 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Hidden usTitle;
         
         /// <summary>
+        /// goTitle control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Hidden goTitle;
+        
+        /// <summary>
+        /// ltemplateTitle control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Hidden ltemplateTitle;
+        
+        /// <summary>
         /// mcTitle control.
         /// </summary>
         /// <remarks>
@@ -542,6 +560,33 @@ namespace AionHR.Web.UI.Forms {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.Hidden ttTitle;
+        
+        /// <summary>
+        /// tRTitle control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Hidden tRTitle;
+        
+        /// <summary>
+        /// NPTitle control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Hidden NPTitle;
+        
+        /// <summary>
+        /// StatusTitle control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Hidden StatusTitle;
         
         /// <summary>
         /// TrType1 control.

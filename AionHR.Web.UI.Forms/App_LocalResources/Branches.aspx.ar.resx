@@ -168,7 +168,22 @@
   <data name="FieldTimeZone" xml:space="preserve">
     <value>المنطقة الزمنية</value>
   </data>
+  <data name="phone" xml:space="preserve">
+    <value>الهاتف</value>
+  </data>
   <data name="WindowTitle" xml:space="preserve">
     <value>الفروع</value>
+  </data>
+  <data name="EditlegalReferenceWindowTitle" xml:space="preserve">
+    <value>تعديل أرقام التراخيص</value>
+  </data>
+  <data name="goName" xml:space="preserve">
+    <value>الاسم</value>
+  </data>
+  <data name="legalReferenceWindowTitle" xml:space="preserve">
+    <value>أرقام التراخيص</value>
+  </data>
+  <data name="releaseDate" xml:space="preserve">
+    <value>تاريخ الاصدار </value>
   </data>
 </root>

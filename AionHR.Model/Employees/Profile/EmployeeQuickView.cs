@@ -50,5 +50,8 @@ namespace AionHR.Model.Employees.Profile
 
            
         }
+        public string countryName { get; set; }
+        public DateTime? hireDate { get; set; }
+
     }
 }

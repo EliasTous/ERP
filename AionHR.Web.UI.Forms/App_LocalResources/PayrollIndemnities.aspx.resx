@@ -165,4 +165,13 @@
   <data name="To" xml:space="preserve">
     <value>To</value>
   </data>
+  <data name="exemptDeliveryPeriod" xml:space="preserve">
+    <value>Exempt Delivery Period</value>
+  </data>
+  <data name="exemptMarriagePeriod" xml:space="preserve">
+    <value>Exempt Marriage Period</value>
+  </data>
+  <data name="IndemnityRecognitiontabs" xml:space="preserve">
+    <value>Indemnity Resignation</value>
+  </data>
 </root>

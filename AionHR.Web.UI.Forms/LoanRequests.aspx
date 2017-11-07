@@ -64,7 +64,7 @@
             RemoteSort="True"
             RemoteFilter="true"
             OnReadData="Store1_RefreshData"
-            PageSize="50" IDMode="Explicit" Namespace="App">
+            PageSize="40" IDMode="Explicit" Namespace="App">
             <Proxy>
                 <ext:PageProxy>
                     <Listeners>
@@ -118,7 +118,7 @@
                     Scroll="Vertical"
                     Border="false"
                     Icon="User"
-                    ColumnLines="True" IDMode="Explicit" RenderXType="True">
+                    ColumnLines="True" IDMode="Explicit" RenderXType="True" ForceFit="true">
 
                     <TopBar>
                         <ext:Toolbar ID="Toolbar1" runat="server" ClassicButtonStyle="false">
@@ -207,37 +207,37 @@
                     <ColumnModel ID="ColumnModel1" runat="server" SortAscText="<%$ Resources:Common , SortAscText %>" SortDescText="<%$ Resources:Common ,SortDescText  %>" SortClearText="<%$ Resources:Common ,SortClearText  %>" ColumnsText="<%$ Resources:Common ,ColumnsText  %>" EnableColumnHide="false" Sortable="false">
                         <Columns>
                             <ext:Column ID="ColRecordId" Visible="false" DataIndex="recordId" runat="server" />
-                            <ext:Column ID="ColName" DataIndex="employeeName" Text="<%$ Resources: FieldEmployeeName%>" runat="server" Flex="3">
+                            <ext:Column ID="ColName" DataIndex="employeeName" Text="<%$ Resources: FieldEmployeeName%>" runat="server" Flex="4">
                                 <Renderer Handler=" return record.data['employeeName'].fullName; ">
                                 </Renderer>
                             </ext:Column>
-                            <ext:Column ID="Column5" DataIndex="loanRef" Text="<%$ Resources: FieldReference%>" runat="server" width="50" />
-                            <ext:Column ID="Column7" DataIndex="ltName" Text="<%$ Resources: FieldLtName%>" runat="server" Flex="1" />
+                            <ext:Column ID="Column5" DataIndex="loanRef" Text="<%$ Resources: FieldReference%>" runat="server" />
+                           <%-- <ext:Column ID="Column7" DataIndex="ltName" Text="<%$ Resources: FieldLtName%>" runat="server" Flex="1" />--%>
                             <ext:Column ID="Column6" DataIndex="branchName" Text="<%$ Resources: FieldBranch%>" runat="server" Flex="1" />
 
                             <ext:DateColumn ID="c" DataIndex="date" Text="<%$ Resources: FieldDate%>" runat="server" Width="100" />
 
-                            <ext:Column ID="Column20" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldAmount %>" DataIndex="amount" Hideable="false" Width="100">
+                            <ext:Column ID="Column20" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldAmount %>" DataIndex="amount" Hideable="false" Width="140">
                                 <Renderer Handler="return record.data['currencyRef']+ '&nbsp;'+record.data['amount']; "></Renderer>
                             </ext:Column>
-                            <ext:Column ID="Column4" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDeductedAmount %>" DataIndex="deductedAmount" Hideable="false" Width="100">
+                            <ext:Column ID="Column4" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDeductedAmount %>" DataIndex="deductedAmount" Hideable="false" Width="140">
                                 <Renderer Handler="return  record.data['currencyRef']+ '&nbsp;'+record.data['deductedAmount'] ;"></Renderer>
                             </ext:Column>
 
-                            <ext:Column ID="Column12" DataIndex="purpose" Text="<%$ Resources: FieldPurpose%>" runat="server" Flex="1" />
+                           <%-- <ext:Column ID="Column12" DataIndex="purpose" Text="<%$ Resources: FieldPurpose%>" runat="server" Flex="2" />--%>
 
 
-                            <ext:Column ID="colStatus" DataIndex="status" Text="<%$ Resources: FieldStatus%>" runat="server" Width="70">
+                            <ext:Column ID="colStatus" DataIndex="status" Text="<%$ Resources: FieldStatus%>" runat="server" Width="100">
                                 <Renderer Handler="return GetStatusName(record.data['status']);" />
                             </ext:Column>
 
-                            <ext:DateColumn ID="cc" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEffectiveDate %>" DataIndex="effectiveDate" Hideable="false" Width="120" Align="Center">
-                            </ext:DateColumn>
-                             <ext:Column ID="ldMethodCo" DataIndex="ldMethod " Text="<%$ Resources: LoanCoverageType %>" runat="server" Flex="2"   >
+                           <%-- <ext:DateColumn ID="cc" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEffectiveDate %>" DataIndex="effectiveDate" Hideable="false" Width="120" Align="Center">
+                            </ext:DateColumn>--%>
+                            <%-- <ext:Column ID="ldMethodCo" DataIndex="ldMethod " Text="<%$ Resources: LoanCoverageType %>" runat="server" Flex="2"   >
                                  <Renderer Handler="return GetldMethodName(record.data['ldMethod']);" />
-                                 </ext:Column>
+                                 </ext:Column>--%>
 
-                             <ext:Column ID="ldValueCo" DataIndex="ldValue" Text="<%$ Resources: PaymentValue %>" runat="server" width="50" />
+                             <ext:Column ID="ldValueCo" DataIndex="ldValue" Text="<%$ Resources: PaymentValue %>" runat="server" Flex="2" />
                              
                            
 
@@ -271,9 +271,9 @@
                                 <Renderer Fn="attachRender" />
                             </ext:Column>
                              <ext:Column runat="server"
-                                ID="colDelete" Flex="1" Visible="true"
+                                ID="colDelete"  Visible="true"
                                 Text="<%$ Resources: Common , Delete %>"
-                                Width="100"
+                                MinWidth="60"
                                 Align="Center"
                                 Fixed="true"
                                 Filterable="false"
@@ -356,7 +356,7 @@
             Icon="PageEdit"
             Title="<%$ Resources:EditWindowsTitle %>"
             Width="600"
-            Height="525"
+            Height="526"
             AutoShow="false"
             Modal="true"
             Hidden="true"
@@ -374,7 +374,7 @@
                             Title="<%$ Resources: BasicInfoTabEditWindowTitle %>"
                             Icon="ApplicationSideList"
                             DefaultAnchor="100%" OnLoad="BasicInfoTab_Load"
-                            BodyPadding="5">
+                            BodyPadding="5"  AutoScroll="true">
                             <Items>
                                 <ext:TextField ID="recordId" runat="server" Name="recordId" Hidden="true" />
                                 <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" ID="employeeId"
@@ -556,11 +556,18 @@
 
                                             </Items>
                                            <Listeners>
+                                               <Change Handler=" #{ldValue}.setValue(0);"></Change>
 
                                            </Listeners>
                                         </ext:ComboBox>
-                                        <ext:NumberField Width="400"  runat="server"  ID="ldValue" Name="ldValue" FieldLabel="<%$ Resources: PaymentValue %>" MinValue="0" MaxValue="100" AllowBlank="false" />
-
+                                        <ext:NumberField Width="400"  runat="server"  ID="ldValue" Name="ldValue" FieldLabel="<%$ Resources: PaymentValue %>"  AllowBlank="false" >
+                                        
+                                         <validator Handler="if(#{ldMethod}.getValue()!=5 && #{ldMethod}.getValue()!=4 ){  if (this.value>0&& this.value<100) return true ; else return false; } else return true; ">
+                                             
+                                         </validator>
+                                           
+                                            </ext:NumberField>
+                                
 
                             </Items>
                             <Buttons>

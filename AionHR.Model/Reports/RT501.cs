@@ -53,7 +53,7 @@ namespace AionHR.Model.Reports
 
         public string BasicAmountString { get
             {
-                return currencyRef + String.Format("{0:n0}", basicAmount);
+                return  String.Format("{0:n0}", basicAmount);
             }
         }
         public double essAmount { get; set; }
@@ -119,7 +119,7 @@ namespace AionHR.Model.Reports
             deductions[deductions.IndexOf(de)].amount = de.amount;
             deductions[deductions.IndexOf(de)].AmountString =  String.Format("{0:n0}", de.amount);
         }
-        public PayrollLine(HashSet<EntitlementDeduction> en, HashSet<EntitlementDeduction> de, List<RT501> details, string taxable, string eString, string dString, string netString, string ess, string css)
+        public PayrollLine(HashSet<EntitlementDeduction> en, HashSet<EntitlementDeduction> de, List<RT501> details, string taxable, string eString, string dString, string netString, string ess, string css,string format)
         {
             entitlements = new List<EntitlementDeduction>();
             deductions = new List<EntitlementDeduction>();
@@ -322,6 +322,7 @@ namespace AionHR.Model.Reports
         public string PayPeriodString { get; set; }
 
         public string PayDate { get; set; }
+        public string PayDateString { set; get; }
         public int taxableIndex { get; set; }
     }
 
