@@ -19,7 +19,7 @@ namespace AionHR.Services.Implementations
         ICompanyStructureService companyStructure;
         Dictionary<string, int> branches;
         Dictionary<string, int> positions;
-        Dictionary<int, int> emps;
+        Dictionary<string, int> emps;
         Dictionary<string, int> divisions;
         Dictionary<string, int> departments;
         public JobInfoBatchRunner(ISessionStorage store, ISystemService system, ICompanyStructureService main, IEmployeeService employeeService) : base(system, employeeService)
@@ -30,7 +30,7 @@ namespace AionHR.Services.Implementations
             errors = new List<JobInfo>();
             branches = new Dictionary<string, int>();
             positions = new Dictionary<string, int>();
-            emps = new Dictionary<int, int>();
+            emps = new Dictionary<string, int>();
             divisions = new Dictionary<string, int>();
             departments = new Dictionary<string, int>();
             FillDepartments();
@@ -77,23 +77,23 @@ namespace AionHR.Services.Implementations
                 item.positionId = positions[item.positionName];
             if (divisions.ContainsKey(item.divisionName))
                 item.divisionId = divisions[item.divisionName];
-            if (item.reportToId.HasValue)
+            if (!string.IsNullOrEmpty(item.reportToRef))
             {
-                if (!emps.ContainsKey(item.reportToId.Value))
+                if (!emps.ContainsKey(item.reportToRef))
                 {
-                    emps.Add(item.reportToId.Value, Convert.ToInt32(GetEmployeeId(item.reportToId.ToString())));
+                    emps.Add(item.reportToRef, Convert.ToInt32(GetEmployeeId(item.reportToRef)));
 
                 }
 
-                item.reportToId = emps[item.reportToId.Value];
+                item.reportToId = emps[item.reportToRef];
             }
-            if (!emps.ContainsKey(item.employeeId))
+            if (!emps.ContainsKey(item.employeeRef))
             {
-                emps.Add(item.employeeId, Convert.ToInt32(GetEmployeeId(item.employeeId.ToString())));
+                emps.Add(item.employeeRef, Convert.ToInt32(GetEmployeeId(item.employeeRef)));
 
             }
 
-            item.employeeId = emps[item.employeeId];
+            item.employeeId = emps[item.employeeRef];
 
         }
         private void FillBranches()
@@ -145,6 +145,43 @@ namespace AionHR.Services.Implementations
                 return employeeRef;
             else
                 return resp.result.recordId;
+        }
+
+        protected override void ProcessElement(JobInfo item)
+        {
+            bool okToGo = true;
+            if (item.branchId == 0)
+            {
+                errorMessages.Add("Branch Not Found");
+                okToGo = false;
+            }
+            else if (item.departmentId == 0)
+            {
+                errorMessages.Add("Department Not Found");
+                okToGo = false;
+            }
+            else if (item.divisionId == 0)
+            {
+                errorMessages.Add("Division Not Found");
+                okToGo = false;
+            }
+            else if (item.employeeId == 0)
+            {
+                errorMessages.Add("Employee Not Found");
+                okToGo = false;
+            }
+            else if (item.positionId == 0)
+            {
+                errorMessages.Add("Position Not Found");
+                okToGo = false;
+            }
+
+            if (okToGo)
+                base.ProcessElement(item);
+            else
+            {
+                errors.Add(item);
+            }
         }
     }
 }
