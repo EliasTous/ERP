@@ -45,7 +45,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="DayPilot">
-      <HintPath>..\..\Aion\dlls\dlls\DayPilot.dll</HintPath>
+      <HintPath>..\..\..\AionASP\dlls\DayPilot.dll</HintPath>
     </Reference>
     <Reference Include="DevExpress.Charts.v16.2.Core, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <HintPath>..\..\Aion\dlls\dlls\DevExpress.Charts.v16.2.Core.dll</HintPath>
@@ -108,10 +108,10 @@
       <HintPath>..\..\Aion\dlls\dlls\DevExpress.XtraReports.v16.2.Web.dll</HintPath>
     </Reference>
     <Reference Include="Ext.Net">
-      <HintPath>..\..\Aion\dlls\dlls\Ext.Net.dll</HintPath>
+      <HintPath>..\..\..\AionGitHub\AionLibrary\Ext.Net.dll</HintPath>
     </Reference>
     <Reference Include="Ext.Net.Utilities">
-      <HintPath>..\..\Aion\dlls\dlls\Ext.Net.Utilities.dll</HintPath>
+      <HintPath>..\..\..\AionGitHub\AionLibrary\Ext.Net.Utilities.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
@@ -122,8 +122,9 @@
       <HintPath>..\packages\CommonServiceLocator.1.3\lib\portable-net4+sl5+netcore45+wpa81+wp8\Microsoft.Practices.ServiceLocation.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\..\Aion\dlls\dlls\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\AionGitHub\AionLibrary\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="StructureMap, Version=4.4.2.472, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\StructureMap.4.4.2\lib\net45\StructureMap.dll</HintPath>
@@ -145,7 +146,7 @@
     <Reference Include="System.EnterpriseServices" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="Transformer.NET">
-      <HintPath>..\..\Aion\dlls\dlls\Transformer.NET.dll</HintPath>
+      <HintPath>..\..\..\AionGitHub\AionLibrary\Transformer.NET.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

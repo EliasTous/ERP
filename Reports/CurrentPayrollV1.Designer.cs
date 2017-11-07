@@ -138,7 +138,7 @@
             this.xrPivotGrid1.OptionsView.ShowRowGrandTotalHeader = false;
             this.xrPivotGrid1.OptionsView.ShowRowGrandTotals = false;
             this.xrPivotGrid1.OptionsView.ShowRowTotals = false;
-            this.xrPivotGrid1.SizeF = new System.Drawing.SizeF(1254F, 38.66673F);
+            this.xrPivotGrid1.SizeF = new System.Drawing.SizeF(1254F, 78.25006F);
             // 
             // pivotGridField1
             // 
@@ -147,15 +147,6 @@
             this.pivotGridField1.Appearance.Cell.TextHorizontalAlignment = DevExpress.Utils.HorzAlignment.Near;
             this.pivotGridField1.Appearance.Cell.TextVerticalAlignment = DevExpress.Utils.VertAlignment.Center;
             this.pivotGridField1.Appearance.Cell.WordWrap = true;
-            this.pivotGridField1.Appearance.FieldHeader.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
-            this.pivotGridField1.Appearance.FieldHeader.ForeColor = System.Drawing.Color.Maroon;
-            this.pivotGridField1.Appearance.FieldHeader.TextHorizontalAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.pivotGridField1.Appearance.FieldHeader.TextVerticalAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.pivotGridField1.Appearance.FieldHeader.WordWrap = true;
-            this.pivotGridField1.Appearance.FieldValue.Font = new System.Drawing.Font("Tahoma", 9F);
-            this.pivotGridField1.Appearance.FieldValue.TextHorizontalAlignment = DevExpress.Utils.HorzAlignment.Near;
-            this.pivotGridField1.Appearance.FieldValue.TextVerticalAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.pivotGridField1.Appearance.FieldValue.WordWrap = true;
             this.pivotGridField1.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea;
             this.pivotGridField1.AreaIndex = 0;
             this.pivotGridField1.FieldName = "employeeName.fullName";
@@ -172,15 +163,6 @@
             this.pivotGridField7.Appearance.Cell.TextHorizontalAlignment = DevExpress.Utils.HorzAlignment.Near;
             this.pivotGridField7.Appearance.Cell.TextVerticalAlignment = DevExpress.Utils.VertAlignment.Center;
             this.pivotGridField7.Appearance.Cell.WordWrap = true;
-            this.pivotGridField7.Appearance.FieldHeader.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
-            this.pivotGridField7.Appearance.FieldHeader.ForeColor = System.Drawing.Color.Maroon;
-            this.pivotGridField7.Appearance.FieldHeader.TextHorizontalAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.pivotGridField7.Appearance.FieldHeader.TextVerticalAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.pivotGridField7.Appearance.FieldHeader.WordWrap = true;
-            this.pivotGridField7.Appearance.FieldValue.Font = new System.Drawing.Font("Tahoma", 9F);
-            this.pivotGridField7.Appearance.FieldValue.TextHorizontalAlignment = DevExpress.Utils.HorzAlignment.Near;
-            this.pivotGridField7.Appearance.FieldValue.TextVerticalAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.pivotGridField7.Appearance.FieldValue.WordWrap = true;
             this.pivotGridField7.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea;
             this.pivotGridField7.AreaIndex = 1;
             this.pivotGridField7.FieldName = "countryName";
@@ -197,15 +179,6 @@
             this.pivotGridField6.Appearance.Cell.TextHorizontalAlignment = DevExpress.Utils.HorzAlignment.Near;
             this.pivotGridField6.Appearance.Cell.TextVerticalAlignment = DevExpress.Utils.VertAlignment.Center;
             this.pivotGridField6.Appearance.Cell.WordWrap = true;
-            this.pivotGridField6.Appearance.FieldHeader.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
-            this.pivotGridField6.Appearance.FieldHeader.ForeColor = System.Drawing.Color.Maroon;
-            this.pivotGridField6.Appearance.FieldHeader.TextHorizontalAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.pivotGridField6.Appearance.FieldHeader.TextVerticalAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.pivotGridField6.Appearance.FieldHeader.WordWrap = true;
-            this.pivotGridField6.Appearance.FieldValue.Font = new System.Drawing.Font("Tahoma", 9F);
-            this.pivotGridField6.Appearance.FieldValue.TextHorizontalAlignment = DevExpress.Utils.HorzAlignment.Near;
-            this.pivotGridField6.Appearance.FieldValue.TextVerticalAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.pivotGridField6.Appearance.FieldValue.WordWrap = true;
             this.pivotGridField6.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea;
             this.pivotGridField6.AreaIndex = 2;
             this.pivotGridField6.FieldName = "departmentName";
@@ -222,15 +195,6 @@
             this.pivotGridField5.Appearance.Cell.TextHorizontalAlignment = DevExpress.Utils.HorzAlignment.Near;
             this.pivotGridField5.Appearance.Cell.TextVerticalAlignment = DevExpress.Utils.VertAlignment.Center;
             this.pivotGridField5.Appearance.Cell.WordWrap = true;
-            this.pivotGridField5.Appearance.FieldHeader.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
-            this.pivotGridField5.Appearance.FieldHeader.ForeColor = System.Drawing.Color.Maroon;
-            this.pivotGridField5.Appearance.FieldHeader.TextHorizontalAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.pivotGridField5.Appearance.FieldHeader.TextVerticalAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.pivotGridField5.Appearance.FieldHeader.WordWrap = true;
-            this.pivotGridField5.Appearance.FieldValue.Font = new System.Drawing.Font("Tahoma", 9F);
-            this.pivotGridField5.Appearance.FieldValue.TextHorizontalAlignment = DevExpress.Utils.HorzAlignment.Near;
-            this.pivotGridField5.Appearance.FieldValue.TextVerticalAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.pivotGridField5.Appearance.FieldValue.WordWrap = true;
             this.pivotGridField5.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea;
             this.pivotGridField5.AreaIndex = 3;
             this.pivotGridField5.FieldName = "branchName";
@@ -247,15 +211,6 @@
             this.pivotGridField2.Appearance.Cell.TextHorizontalAlignment = DevExpress.Utils.HorzAlignment.Near;
             this.pivotGridField2.Appearance.Cell.TextVerticalAlignment = DevExpress.Utils.VertAlignment.Center;
             this.pivotGridField2.Appearance.Cell.WordWrap = true;
-            this.pivotGridField2.Appearance.FieldHeader.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
-            this.pivotGridField2.Appearance.FieldHeader.ForeColor = System.Drawing.Color.Maroon;
-            this.pivotGridField2.Appearance.FieldHeader.TextHorizontalAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.pivotGridField2.Appearance.FieldHeader.TextVerticalAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.pivotGridField2.Appearance.FieldHeader.WordWrap = true;
-            this.pivotGridField2.Appearance.FieldValue.Font = new System.Drawing.Font("Tahoma", 9F);
-            this.pivotGridField2.Appearance.FieldValue.TextHorizontalAlignment = DevExpress.Utils.HorzAlignment.Near;
-            this.pivotGridField2.Appearance.FieldValue.TextVerticalAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.pivotGridField2.Appearance.FieldValue.WordWrap = true;
             this.pivotGridField2.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea;
             this.pivotGridField2.AreaIndex = 4;
             this.pivotGridField2.FieldName = "basicAmount";
@@ -272,17 +227,8 @@
             this.pivotGridField12.Appearance.Cell.TextHorizontalAlignment = DevExpress.Utils.HorzAlignment.Near;
             this.pivotGridField12.Appearance.Cell.TextVerticalAlignment = DevExpress.Utils.VertAlignment.Center;
             this.pivotGridField12.Appearance.Cell.WordWrap = true;
-            this.pivotGridField12.Appearance.FieldHeader.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
-            this.pivotGridField12.Appearance.FieldHeader.ForeColor = System.Drawing.Color.Maroon;
-            this.pivotGridField12.Appearance.FieldHeader.TextHorizontalAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.pivotGridField12.Appearance.FieldHeader.TextVerticalAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.pivotGridField12.Appearance.FieldHeader.WordWrap = true;
-            this.pivotGridField12.Appearance.FieldValue.Font = new System.Drawing.Font("Tahoma", 9F);
-            this.pivotGridField12.Appearance.FieldValue.TextHorizontalAlignment = DevExpress.Utils.HorzAlignment.Near;
-            this.pivotGridField12.Appearance.FieldValue.TextVerticalAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.pivotGridField12.Appearance.FieldValue.WordWrap = true;
-            this.pivotGridField12.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea;
-            this.pivotGridField12.AreaIndex = 7;
+            this.pivotGridField12.Area = DevExpress.XtraPivotGrid.PivotArea.ColumnArea;
+            this.pivotGridField12.AreaIndex = 0;
             this.pivotGridField12.Caption = "is Tax.";
             this.pivotGridField12.FieldName = "isTaxable";
             this.pivotGridField12.Name = "pivotGridField12";
@@ -298,17 +244,8 @@
             this.pivotGridField3.Appearance.Cell.TextHorizontalAlignment = DevExpress.Utils.HorzAlignment.Near;
             this.pivotGridField3.Appearance.Cell.TextVerticalAlignment = DevExpress.Utils.VertAlignment.Center;
             this.pivotGridField3.Appearance.Cell.WordWrap = true;
-            this.pivotGridField3.Appearance.FieldHeader.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
-            this.pivotGridField3.Appearance.FieldHeader.ForeColor = System.Drawing.Color.Maroon;
-            this.pivotGridField3.Appearance.FieldHeader.TextHorizontalAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.pivotGridField3.Appearance.FieldHeader.TextVerticalAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.pivotGridField3.Appearance.FieldHeader.WordWrap = true;
-            this.pivotGridField3.Appearance.FieldValue.Font = new System.Drawing.Font("Tahoma", 9F);
-            this.pivotGridField3.Appearance.FieldValue.TextHorizontalAlignment = DevExpress.Utils.HorzAlignment.Near;
-            this.pivotGridField3.Appearance.FieldValue.TextVerticalAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.pivotGridField3.Appearance.FieldValue.WordWrap = true;
             this.pivotGridField3.Area = DevExpress.XtraPivotGrid.PivotArea.ColumnArea;
-            this.pivotGridField3.AreaIndex = 0;
+            this.pivotGridField3.AreaIndex = 1;
             this.pivotGridField3.FieldName = "edName";
             this.pivotGridField3.Name = "pivotGridField3";
             this.pivotGridField3.Options.ShowGrandTotal = false;
@@ -323,15 +260,6 @@
             this.pivotGridField4.Appearance.Cell.TextHorizontalAlignment = DevExpress.Utils.HorzAlignment.Near;
             this.pivotGridField4.Appearance.Cell.TextVerticalAlignment = DevExpress.Utils.VertAlignment.Center;
             this.pivotGridField4.Appearance.Cell.WordWrap = true;
-            this.pivotGridField4.Appearance.FieldHeader.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
-            this.pivotGridField4.Appearance.FieldHeader.ForeColor = System.Drawing.Color.Maroon;
-            this.pivotGridField4.Appearance.FieldHeader.TextHorizontalAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.pivotGridField4.Appearance.FieldHeader.TextVerticalAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.pivotGridField4.Appearance.FieldHeader.WordWrap = true;
-            this.pivotGridField4.Appearance.FieldValue.Font = new System.Drawing.Font("Tahoma", 9F);
-            this.pivotGridField4.Appearance.FieldValue.TextHorizontalAlignment = DevExpress.Utils.HorzAlignment.Near;
-            this.pivotGridField4.Appearance.FieldValue.TextVerticalAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.pivotGridField4.Appearance.FieldValue.WordWrap = true;
             this.pivotGridField4.Area = DevExpress.XtraPivotGrid.PivotArea.DataArea;
             this.pivotGridField4.AreaIndex = 0;
             this.pivotGridField4.FieldName = "edAmount";
@@ -348,15 +276,6 @@
             this.pivotGridField8.Appearance.Cell.TextHorizontalAlignment = DevExpress.Utils.HorzAlignment.Near;
             this.pivotGridField8.Appearance.Cell.TextVerticalAlignment = DevExpress.Utils.VertAlignment.Center;
             this.pivotGridField8.Appearance.Cell.WordWrap = true;
-            this.pivotGridField8.Appearance.FieldHeader.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
-            this.pivotGridField8.Appearance.FieldHeader.ForeColor = System.Drawing.Color.Maroon;
-            this.pivotGridField8.Appearance.FieldHeader.TextHorizontalAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.pivotGridField8.Appearance.FieldHeader.TextVerticalAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.pivotGridField8.Appearance.FieldHeader.WordWrap = true;
-            this.pivotGridField8.Appearance.FieldValue.Font = new System.Drawing.Font("Tahoma", 9F);
-            this.pivotGridField8.Appearance.FieldValue.TextHorizontalAlignment = DevExpress.Utils.HorzAlignment.Near;
-            this.pivotGridField8.Appearance.FieldValue.TextVerticalAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.pivotGridField8.Appearance.FieldValue.WordWrap = true;
             this.pivotGridField8.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea;
             this.pivotGridField8.AreaIndex = 5;
             this.pivotGridField8.FieldName = "netSalary";
@@ -373,15 +292,6 @@
             this.pivotGridField9.Appearance.Cell.TextHorizontalAlignment = DevExpress.Utils.HorzAlignment.Near;
             this.pivotGridField9.Appearance.Cell.TextVerticalAlignment = DevExpress.Utils.VertAlignment.Center;
             this.pivotGridField9.Appearance.Cell.WordWrap = true;
-            this.pivotGridField9.Appearance.FieldHeader.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
-            this.pivotGridField9.Appearance.FieldHeader.ForeColor = System.Drawing.Color.Maroon;
-            this.pivotGridField9.Appearance.FieldHeader.TextHorizontalAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.pivotGridField9.Appearance.FieldHeader.TextVerticalAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.pivotGridField9.Appearance.FieldHeader.WordWrap = true;
-            this.pivotGridField9.Appearance.FieldValue.Font = new System.Drawing.Font("Tahoma", 9F);
-            this.pivotGridField9.Appearance.FieldValue.TextHorizontalAlignment = DevExpress.Utils.HorzAlignment.Near;
-            this.pivotGridField9.Appearance.FieldValue.TextVerticalAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.pivotGridField9.Appearance.FieldValue.WordWrap = true;
             this.pivotGridField9.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea;
             this.pivotGridField9.AreaIndex = 6;
             this.pivotGridField9.Caption = "Curr.";
@@ -392,6 +302,7 @@
             this.pivotGridField9.Options.ShowTotals = false;
             this.pivotGridField9.Tag = "";
             this.pivotGridField9.TotalsVisibility = DevExpress.XtraPivotGrid.PivotTotalsVisibility.None;
+            this.pivotGridField9.Visible = false;
             this.pivotGridField9.Width = 40;
             // 
             // pivotGridField13
@@ -401,15 +312,6 @@
             this.pivotGridField13.Appearance.Cell.TextHorizontalAlignment = DevExpress.Utils.HorzAlignment.Near;
             this.pivotGridField13.Appearance.Cell.TextVerticalAlignment = DevExpress.Utils.VertAlignment.Center;
             this.pivotGridField13.Appearance.Cell.WordWrap = true;
-            this.pivotGridField13.Appearance.FieldHeader.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
-            this.pivotGridField13.Appearance.FieldHeader.ForeColor = System.Drawing.Color.Maroon;
-            this.pivotGridField13.Appearance.FieldHeader.TextHorizontalAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.pivotGridField13.Appearance.FieldHeader.TextVerticalAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.pivotGridField13.Appearance.FieldHeader.WordWrap = true;
-            this.pivotGridField13.Appearance.FieldValue.Font = new System.Drawing.Font("Tahoma", 9F);
-            this.pivotGridField13.Appearance.FieldValue.TextHorizontalAlignment = DevExpress.Utils.HorzAlignment.Near;
-            this.pivotGridField13.Appearance.FieldValue.TextVerticalAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.pivotGridField13.Appearance.FieldValue.WordWrap = true;
             this.pivotGridField13.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea;
             this.pivotGridField13.AreaIndex = 8;
             this.pivotGridField13.Caption = "Pay. mtd.";
@@ -418,6 +320,7 @@
             this.pivotGridField13.Options.ShowGrandTotal = false;
             this.pivotGridField13.Options.ShowTotals = false;
             this.pivotGridField13.TotalsVisibility = DevExpress.XtraPivotGrid.PivotTotalsVisibility.None;
+            this.pivotGridField13.Visible = false;
             this.pivotGridField13.Width = 60;
             // 
             // pivotGridField10
@@ -427,15 +330,6 @@
             this.pivotGridField10.Appearance.Cell.TextHorizontalAlignment = DevExpress.Utils.HorzAlignment.Near;
             this.pivotGridField10.Appearance.Cell.TextVerticalAlignment = DevExpress.Utils.VertAlignment.Center;
             this.pivotGridField10.Appearance.Cell.WordWrap = true;
-            this.pivotGridField10.Appearance.FieldHeader.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
-            this.pivotGridField10.Appearance.FieldHeader.ForeColor = System.Drawing.Color.Maroon;
-            this.pivotGridField10.Appearance.FieldHeader.TextHorizontalAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.pivotGridField10.Appearance.FieldHeader.TextVerticalAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.pivotGridField10.Appearance.FieldHeader.WordWrap = true;
-            this.pivotGridField10.Appearance.FieldValue.Font = new System.Drawing.Font("Tahoma", 9F);
-            this.pivotGridField10.Appearance.FieldValue.TextHorizontalAlignment = DevExpress.Utils.HorzAlignment.Near;
-            this.pivotGridField10.Appearance.FieldValue.TextVerticalAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.pivotGridField10.Appearance.FieldValue.WordWrap = true;
             this.pivotGridField10.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea;
             this.pivotGridField10.AreaIndex = 5;
             this.pivotGridField10.FieldName = "eAmount";
@@ -453,15 +347,6 @@
             this.pivotGridField11.Appearance.Cell.TextHorizontalAlignment = DevExpress.Utils.HorzAlignment.Near;
             this.pivotGridField11.Appearance.Cell.TextVerticalAlignment = DevExpress.Utils.VertAlignment.Center;
             this.pivotGridField11.Appearance.Cell.WordWrap = true;
-            this.pivotGridField11.Appearance.FieldHeader.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
-            this.pivotGridField11.Appearance.FieldHeader.ForeColor = System.Drawing.Color.Maroon;
-            this.pivotGridField11.Appearance.FieldHeader.TextHorizontalAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.pivotGridField11.Appearance.FieldHeader.TextVerticalAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.pivotGridField11.Appearance.FieldHeader.WordWrap = true;
-            this.pivotGridField11.Appearance.FieldValue.Font = new System.Drawing.Font("Tahoma", 9F);
-            this.pivotGridField11.Appearance.FieldValue.TextHorizontalAlignment = DevExpress.Utils.HorzAlignment.Near;
-            this.pivotGridField11.Appearance.FieldValue.TextVerticalAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.pivotGridField11.Appearance.FieldValue.WordWrap = true;
             this.pivotGridField11.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea;
             this.pivotGridField11.AreaIndex = 5;
             this.pivotGridField11.FieldName = "dAmount";
@@ -824,7 +709,7 @@
             this.PageHeader.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
             this.xrPivotGrid1});
             this.PageHeader.Dpi = 100F;
-            this.PageHeader.HeightF = 38.66673F;
+            this.PageHeader.HeightF = 78.25006F;
             this.PageHeader.Name = "PageHeader";
             // 
             // objectDataSource1
