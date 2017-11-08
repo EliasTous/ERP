@@ -39,6 +39,9 @@ namespace AionHR.Model.Employees.Profile
         public string taReference { set; get; }
         public DateTime pyActiveDate { set; get; }
 
+        public int regBranchId { set; get; }
+
+
 
 
 

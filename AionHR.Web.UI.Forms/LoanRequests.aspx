@@ -118,7 +118,7 @@
                     Scroll="Vertical"
                     Border="false"
                     Icon="User"
-                    ColumnLines="True" IDMode="Explicit" RenderXType="True">
+                    ColumnLines="True" IDMode="Explicit" RenderXType="True" ForceFit="true">
 
                     <TopBar>
                         <ext:Toolbar ID="Toolbar1" runat="server" ClassicButtonStyle="false">
@@ -271,9 +271,9 @@
                                 <Renderer Fn="attachRender" />
                             </ext:Column>
                              <ext:Column runat="server"
-                                ID="colDelete" Flex="1" Visible="true"
+                                ID="colDelete"  Visible="true"
                                 Text="<%$ Resources: Common , Delete %>"
-                                Width="60"
+                                MinWidth="60"
                                 Align="Center"
                                 Fixed="true"
                                 Filterable="false"
@@ -374,7 +374,7 @@
                             Title="<%$ Resources: BasicInfoTabEditWindowTitle %>"
                             Icon="ApplicationSideList"
                             DefaultAnchor="100%" OnLoad="BasicInfoTab_Load"
-                            BodyPadding="5">
+                            BodyPadding="5"  AutoScroll="true">
                             <Items>
                                 <ext:TextField ID="recordId" runat="server" Name="recordId" Hidden="true" />
                                 <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" ID="employeeId"
@@ -556,11 +556,18 @@
 
                                             </Items>
                                            <Listeners>
+                                               <Change Handler=" #{ldValue}.setValue(0);"></Change>
 
                                            </Listeners>
                                         </ext:ComboBox>
-                                        <ext:NumberField Width="400"  runat="server"  ID="ldValue" Name="ldValue" FieldLabel="<%$ Resources: PaymentValue %>" MinValue="0" MaxValue="100" AllowBlank="false" />
-
+                                        <ext:NumberField Width="400"  runat="server"  ID="ldValue" Name="ldValue" FieldLabel="<%$ Resources: PaymentValue %>"  AllowBlank="false" >
+                                        
+                                         <validator Handler="if(#{ldMethod}.getValue()!=5 && #{ldMethod}.getValue()!=4 ){  if (this.value>0&& this.value<100) return true ; else return false; } else return true; ">
+                                             
+                                         </validator>
+                                           
+                                            </ext:NumberField>
+                                
 
                             </Items>
                             <Buttons>

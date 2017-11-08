@@ -176,6 +176,8 @@ namespace AionHR.Web.UI.Forms.Utilities
             Ext.Net.Node files = BuildLeafNode("rootParent_CS_Files", Resources.Common.Files, "FolderTable", true, companyStructure);
             Ext.Net.Node companyNews = BuildLeafNode("rootParent_CS_CompanyNews", Resources.Common.CompanyNews, "Newspaper", true, companyStructure);
             Ext.Net.Node companyRightToWork = BuildLeafNode("rootParent_CS_CompanyRightTowork", Resources.Common.CompanyRightToWorks, "ScriptStart", true, companyStructure);
+            Ext.Net.Node companyLetter = BuildLeafNode("rootParent_CS_CompanyLetter", Resources.Common.Letters, "EmailLink" , true, companyStructure);
+            
 
             //Ext.Net.Node departments = BuildLeafNode("rootParent_CS_DE", Resources.Common.Departments, "Group", true, setup);
             //Ext.Net.Node branches = BuildLeafNode("rootParent_CS_BR", Resources.Common.Branches, "Group", true, setup);
@@ -197,6 +199,7 @@ namespace AionHR.Web.UI.Forms.Utilities
             FillConfigItem(companyNews, "companyNews", "CompanyNews.aspx", Resources.Common.CompanyNews, "icon-Employees", "1");
             //FillConfigItem(dashboard, "dashboard", "MainDashboard.aspx", Resources.Common.Dashboard, "icon-Employees", "1");
             FillConfigItem(companyRightToWork, "companyRightToWorks", "CompanyRightToWorks.aspx", Resources.Common.CompanyRightToWorks, "icon-Employees", "1");
+            FillConfigItem(companyLetter, "companyLetter", "Letters.aspx", Resources.Common.Letters, "icon-Employees", "1");
 
             //FillConfigItem(branches, "branches", "Branches.aspx", Resources.Common.Branches, "icon-Employees", "1");
             //FillConfigItem(divisions, "divisions", "Divisions.aspx", Resources.Common.Divisions, "icon-Employees", "1");
@@ -295,7 +298,8 @@ namespace AionHR.Web.UI.Forms.Utilities
             Ext.Net.Node rt202 = BuildLeafNode("report_rt202", Resources.Common.RT202, "", true, rt1);
             Ext.Net.Node rt203 = BuildLeafNode("report_rt203", Resources.Common.RT203, "", true, rt1);
             Ext.Net.Node rt109 = BuildLeafNode("report_rt109", Resources.Common.RT109, "", true, rt1);
-            
+            Ext.Net.Node rt200 = BuildLeafNode("report_rt200", Resources.Common.RT200, "", true, rt1);
+
 
             Ext.Net.Node rt3 = BuildParentNode("report_rt3", Resources.Common.TimeAttendance, true, timeAt, "CalendarViewMonth");
             Ext.Net.Node rt301 = BuildLeafNode("report_rt301", Resources.Common.RT301, "", true, rt3);
@@ -311,7 +315,7 @@ namespace AionHR.Web.UI.Forms.Utilities
             Ext.Net.Node rt5 = BuildParentNode("report_rt5", Resources.Common.Payroll, true, timeAt, "MoneyDollar");
             Ext.Net.Node rt501 = BuildLeafNode("report_rt501", Resources.Common.RT501, "", true, rt5);
             Ext.Net.Node rt502 = BuildLeafNode("report_rt502", Resources.Common.RT502, "", true, rt5);
-            Ext.Net.Node rt200 = BuildLeafNode("report_rt200", Resources.Common.RT200, "", true, rt5);
+           
             Ext.Net.Node rt503 = BuildLeafNode("report_rt503", Resources.Common.RT503, "", true, rt5);
 
             Ext.Net.Node rt6 = BuildParentNode("report_rt6", Resources.Common.LeaveReports, true, timeAt, "UserGo");

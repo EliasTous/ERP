@@ -317,8 +317,8 @@
             runat="server"
             Icon="PageEdit"
             Title="<%$ Resources:EditWindowsTitle %>"
-            Width="450"
-            Height="680"
+            Width="600"
+            Height="400"
             AutoShow="false"
             Modal="true"
             Hidden="true"
@@ -333,9 +333,12 @@
                             Icon="ApplicationSideList"
                             DefaultAnchor="100%" OnLoad="BasicInfoTab_Load"
                             BodyPadding="5"
+                            Layout="TableLayout"
                              Title="<%$ Resources: WindowTitle%>">
                             <Items>
-
+                                   <ext:Panel runat="server" MarginSpec="0 20 0 0" ID="left">
+                                       <Items>
+                          
                                 <ext:TextField runat="server" ID="recordId" Name="recordId" Hidden="true" />
                                  <ext:TextField runat="server" ID="fsRefid" Name="fsRef"  FieldLabel="<%$ Resources:FieldReference%>"  />
                                    <ext:DateField runat="server" ID="dateId" FieldLabel="<%$ Resources:Day%>" Name="date" AllowBlank="false" />
@@ -390,9 +393,14 @@
                                  <ext:DateField ReadOnly="true" Disabled="true"  ID="hireDateDf" runat="server" FieldLabel="<%$ Resources:hireDate%>" Name="hireDate" AllowBlank="true">
                                     
                                 </ext:DateField>
+                                        
                                  <ext:TextField ReadOnly="true" Disabled="true" ID="esName" runat="server" FieldLabel="<%$ Resources:esName%>" Name="esName" AllowBlank="true">
                                     
                                 </ext:TextField>
+                                              </Items>
+                                   </ext:Panel>
+                                   <ext:Panel runat="server" MarginSpec="0 0 0 0" ID="rightPanel">
+                                  <Items>
                                  <ext:TextField ReadOnly="true" Disabled="true" ID="divisionName" runat="server" FieldLabel="<%$ Resources:FieldDivision%>" Name="divisionName" AllowBlank="true">
                                     
                                 </ext:TextField>
@@ -402,10 +410,10 @@
                                   <ext:TextField ReadOnly="true" Disabled="true" ID="eosBalance" runat="server" FieldLabel="<%$ Resources:eosBalanceTitle%>" Name="eosBalance" AllowBlank="true">
                                     
                                 </ext:TextField>
-                                  <ext:DateField  ReadOnly="true" Disabled="true"  ID="lastLeaveStartDate" runat="server" FieldLabel="<%$ Resources:lastLeaveStartDate%>" Name="lastLeaveStartDate" AllowBlank="true">
+                                  <ext:DateField  ReadOnly="true" Disabled="true"  ID="lastLeaveStartDate" runat="server" FieldLabel="<%$ Resources:lastLeaveStartDateTitle%>" Name="lastLeaveStartDateTitle" AllowBlank="true">
                                     
                                 </ext:DateField>
-                                <ext:DateField  ReadOnly="true" Disabled="true"  ID="lastLeaveEndDate" runat="server" FieldLabel="<%$ Resources:lastLeaveEndDate%>" Name="lastLeaveEndDate" AllowBlank="true">
+                                <ext:DateField  ReadOnly="true" Disabled="true"  ID="lastLeaveEndDate" runat="server" FieldLabel="<%$ Resources:lastLeaveEndDateTitle%>" Name="lastLeaveEndDate" AllowBlank="true">
                                     
                                 </ext:DateField>
                                  <ext:TextField ReadOnly="true" Disabled="true" ID="paidLeavesYTD" runat="server" FieldLabel="<%$ Resources:paidLeavesYTDTitle%>" Name="paidLeavesYTD" AllowBlank="true">
@@ -420,6 +428,8 @@
                                 <ext:TextField  ReadOnly="true" Disabled="true" ID="serviceDuration" runat="server" FieldLabel="<%$ Resources:serviceDuration%>" Name="serviceDuration" AllowBlank="true">
                                     
                                 </ext:TextField>
+                                </Items>
+                                     </ext:Panel>
                                  
 
 

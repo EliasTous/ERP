@@ -229,6 +229,33 @@ namespace AionHR.Web.UI.Forms.EmployeePages {
         protected global::Ext.Net.DateField pyActiveDate;
         
         /// <summary>
+        /// regBranchId control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.ComboBox regBranchId;
+        
+        /// <summary>
+        /// branchStore control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Store branchStore;
+        
+        /// <summary>
+        /// Button3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Button Button3;
+        
+        /// <summary>
         /// saveButton control.
         /// </summary>
         /// <remarks>

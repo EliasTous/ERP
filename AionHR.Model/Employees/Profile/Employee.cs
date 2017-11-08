@@ -170,6 +170,7 @@ namespace AionHR.Model.Employees.Profile
         public string countryId { get; set; }
 
         public string countryName { get; set; }
+        public string phone { get; set; }
 
 
 

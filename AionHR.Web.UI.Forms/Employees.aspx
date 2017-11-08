@@ -76,7 +76,7 @@
                     Region="Center"
                     Border="false"
                     Icon="User" HideHeaders="false"
-                    ColumnLines="false" IDMode="Explicit" RenderXType="True">
+                    ColumnLines="false" IDMode="Explicit" RenderXType="True" ForceFit="true" >
                     <Plugins>
                         <ext:RowExpander ID="RowExpander1" runat="server" HiddenColumn="true" ExpandOnEnter="false" ExpandOnDblClick="false" SingleExpand="true">
                             <Loader runat="server" Mode="Data" DirectMethod="App.direct.GetQuickView">
@@ -282,7 +282,7 @@
                             <ext:Column runat="server"
                                 ID="colEdit" Visible="true"
                                 Text="<%$ Resources:Common, Edit %>"
-                                Width="100"
+                                MinWidth="100"
                                 Hideable="false"
                                 Align="Center"
                                 Fixed="true"

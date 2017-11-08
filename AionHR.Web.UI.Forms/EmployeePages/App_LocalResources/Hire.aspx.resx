@@ -144,4 +144,7 @@
   <data name="taReference" xml:space="preserve">
     <value>Time Attendance Reference</value>
   </data>
+  <data name="FieldBranch" xml:space="preserve">
+    <value>Branch</value>
+  </data>
 </root>

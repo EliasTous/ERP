@@ -360,9 +360,6 @@
   <data name="lastLeaveStartDateTitle" xml:space="preserve">
     <value>Last Leave:</value>
   </data>
-  <data name="lastLeaveStartDateTitle1" xml:space="preserve">
-    <value>Last Leave:</value>
-  </data>
   <data name="leavesBalanceTitle" xml:space="preserve">
     <value>Leave Balance:</value>
   </data>
@@ -398,5 +395,11 @@
   </data>
   <data name="esName" xml:space="preserve">
     <value>Employee Status:</value>
+  </data>
+  <data name="lastLeaveEndDateTitle" xml:space="preserve">
+    <value>Last Leave End Date</value>
+  </data>
+  <data name="lastLeaveStartDateTitle1" xml:space="preserve">
+    <value>Last Leave:</value>
   </data>
 </root>

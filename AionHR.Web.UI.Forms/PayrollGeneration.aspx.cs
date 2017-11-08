@@ -136,7 +136,7 @@ namespace AionHR.Web.UI.Forms
                 var properties = AccessControlApplier.GetPropertiesLevels(typeof(PayrollEntitlementDeduction));
 
                 entitlementDisabled.Text = deductionDisabled.Text = (properties.Where(x => x.index == "amount").ToList()[0].accessLevel == 0).ToString();
-              
+
             }
 
         }
@@ -160,7 +160,7 @@ namespace AionHR.Web.UI.Forms
             return resp.Items;
         }
 
-   
+
 
 
         [DirectMethod]
@@ -227,7 +227,7 @@ namespace AionHR.Web.UI.Forms
         //    return req;
         //}
         private List<Employee> GetEmployeesFiltered(string query)
-      {
+        {
 
             EmployeeListRequest req = new EmployeeListRequest();
             req.DepartmentId = "0";
@@ -289,11 +289,11 @@ namespace AionHR.Web.UI.Forms
         protected void SaveNewRecord(object sender, DirectEventArgs e)
         {
             string s = e.ExtraParams["values"];
-           
+
             JsonSerializerSettings settings = new JsonSerializerSettings();
 
             settings.DateFormatString = _systemService.SessionHelper.GetDateformat();
-            GenerationHeader h = JsonConvert.DeserializeObject<GenerationHeader>(s,settings);
+            GenerationHeader h = JsonConvert.DeserializeObject<GenerationHeader>(s, settings);
             h.status = "1";
             PostRequest<GenerationHeader> req = new PostRequest<GenerationHeader>();
             req.entity = h;
@@ -307,13 +307,13 @@ namespace AionHR.Web.UI.Forms
             }
             CurrentPayId.Text = resp.recordId;
             Viewport1.ActiveIndex = 0;
-          
+
             Store1.Reload();
             RecordRequest r = new RecordRequest();
 
             r.RecordID = resp.recordId;
 
-           
+
             AddEDButton.Disabled = AddENButton.Disabled = SaveEDButton.Disabled = false;
         }
 
@@ -381,7 +381,7 @@ namespace AionHR.Web.UI.Forms
         protected void PoPuPHeader(object sender, DirectEventArgs e)
         {
 
-           
+
             string id = e.ExtraParams["id"];
             string type = e.ExtraParams["type"];
             string status = e.ExtraParams["status"];
@@ -390,9 +390,9 @@ namespace AionHR.Web.UI.Forms
             string fiscalYear = e.ExtraParams["fiscalYear"];
             CurrentPayId.Text = id;
             salaryTypeHidden.Text = salaryType;
-            fiscalYearHidden.Text = fiscalYear; 
-                   payRefHidden.Text = payRef; 
-                   IsPayrollPosted.Text = status;
+            fiscalYearHidden.Text = fiscalYear;
+            payRefHidden.Text = payRef;
+            IsPayrollPosted.Text = status;
             AddEDButton.Disabled = AddENButton.Disabled = SaveEDButton.Disabled = status == "2";
             switch (type)
             {
@@ -400,8 +400,8 @@ namespace AionHR.Web.UI.Forms
                     //Step 1 : get the object from the Web Service 
                     CurrentPayId.Text = id;
                     Viewport1.ActiveIndex = 2;
-                   
-                
+
+
                     Store1.Reload();
 
                     break;
@@ -418,7 +418,7 @@ namespace AionHR.Web.UI.Forms
                     statusCombo.Select(resp.result.status);
                     fromDate.SelectedDate = resp.result.startDate;
                     toDate.SelectedDate = resp.result.endDate;
-                    
+
                     EditHeaderWindow.Show();
 
                     break;
@@ -449,8 +449,8 @@ namespace AionHR.Web.UI.Forms
                     generatePayRef.Text = payRef;
 
                     EditGenerateWindow.Show();
-                    
-                   // Store1.Reload();
+
+                    // Store1.Reload();
 
                     break;
 
@@ -490,7 +490,7 @@ namespace AionHR.Web.UI.Forms
             string id = e.ExtraParams["id"];
             string type = e.ExtraParams["type"];
             string entitlementAmount = e.ExtraParams["eAmount"];
-            string deductionAmount= e.ExtraParams["dAmount"];
+            string deductionAmount = e.ExtraParams["dAmount"];
             string EmployeeSaocialAmount = e.ExtraParams["essAmount"];
             string CompanySaocialAmount = e.ExtraParams["cssAmount"];
             string basic = e.ExtraParams["basicAmount"];
@@ -506,7 +506,7 @@ namespace AionHR.Web.UI.Forms
                 case "imgEdit":
                     //Step 1 : get the object from the Web Service 
                     basicAmount.Text = basic;
-                   // taxAmount.Text = tax;
+                    // taxAmount.Text = tax;
                     netSalary.Text = net;
                     eAmount.Text = entitlementAmount;
                     dAmount.Text = deductionAmount;
@@ -522,7 +522,7 @@ namespace AionHR.Web.UI.Forms
                     deductionStore.DataSource = GetPayrollDeductions();
                     deductionStore.DataBind();
                     PayCodeStore.DataSource = GetPayrollSocialSecurity();
-                    PayCodeStore.DataBind(); 
+                    PayCodeStore.DataBind();
                     EDWindow.Show();
 
                     break;
@@ -754,7 +754,7 @@ namespace AionHR.Web.UI.Forms
         private PayrollListRequest GetPayrollListRequest()
         {
             PayrollListRequest req = new PayrollListRequest();
-         
+
             if (!string.IsNullOrEmpty(year.Text) && !string.IsNullOrEmpty(year.Value.ToString()))
             {
                 req.Year = year.Value.ToString();
@@ -1043,9 +1043,9 @@ namespace AionHR.Web.UI.Forms
         }
         private List<PayrollSocialSecurity> GetPayrollSocialSecurity()
         {
-           
+
             PayrollSocialSecurityListRequest req = new PayrollSocialSecurityListRequest();
-           
+
             req.payId = CurrentPayId.Text;
             req.seqNo = CurrentSeqNo.Text;
 
@@ -1058,8 +1058,8 @@ namespace AionHR.Web.UI.Forms
             }
             return resp.Items;
         }
-     
-        
+
+
         public void printBtn_Click(object sender, EventArgs e)
         {
             MonthlyPayroll p = GetReport(payRefHidden.Text);
@@ -1176,7 +1176,7 @@ namespace AionHR.Web.UI.Forms
                     }
                     catch { y.edName = y.edName; }
                 });
-                PayrollLine line = new PayrollLine(ens, des, list, GetLocalResourceObject("taxableeAmount").ToString(), GetLocalResourceObject("eAmount").ToString(), GetLocalResourceObject("dAmount").ToString(), GetLocalResourceObject("netSalary").ToString(), GetLocalResourceObject("essString").ToString(), GetLocalResourceObject("cssString").ToString(),_systemService.SessionHelper.GetDateformat());
+                PayrollLine line = new PayrollLine(ens, des, list, GetLocalResourceObject("taxableeAmount").ToString(), GetLocalResourceObject("eAmount").ToString(), GetLocalResourceObject("dAmount").ToString(), GetLocalResourceObject("netSalary").ToString(), GetLocalResourceObject("essString").ToString(), GetLocalResourceObject("cssString").ToString(), _systemService.SessionHelper.GetDateformat());
                 lines.Add(line);
             }
 
@@ -1258,19 +1258,20 @@ namespace AionHR.Web.UI.Forms
             string branchId = e.ExtraParams["branchId"];
             string employeeId = e.ExtraParams["employeeId"];
             GeneratePayroll h = new GeneratePayroll();
-            if(departmentId=="null")
-                h.departmentId = "0";
+            if (departmentId == "" || departmentId == "null" || string.IsNullOrEmpty(departmentId))
+                h.departmentId = 0;
             else
-                h.departmentId = departmentId;
-            if (branchId=="null")
-                h.branchId = "0"; 
+                h.departmentId =Convert.ToInt32(departmentId);
+            if (branchId=="" || branchId == "null" || string.IsNullOrEmpty(branchId))
+                h.branchId = 0; 
             else
-                h.branchId = branchId;
-            if (employeeId=="null")
-                h.employeeId = "0";
+                h.branchId = Convert.ToInt32(branchId);
+            if (employeeId=="" || employeeId == "null" || string.IsNullOrEmpty(employeeId))
+                h.employeeId = 0;
             else
-              h.employeeId = employeeId;
-            h.payId = id; 
+              h.employeeId = Convert.ToInt32(employeeId);
+            if (id != "" || id != "null" || !string.IsNullOrEmpty(id)) 
+                h.payId = Convert.ToInt32(id); 
          
              
             PostRequest<GeneratePayroll> req = new PostRequest<GeneratePayroll>();

@@ -243,4 +243,16 @@
   <data name="WindowTitle" xml:space="preserve">
     <value>العملات</value>
   </data>
+  <data name="FieldDate" xml:space="preserve">
+    <value>التاريخ </value>
+  </data>
+  <data name="FieldDocumentRef" xml:space="preserve">
+    <value>الرمز </value>
+  </data>
+  <data name="FieldFolderName" xml:space="preserve">
+    <value>المجلد</value>
+  </data>
+  <data name="phone" xml:space="preserve">
+    <value>الهاتف</value>
+  </data>
 </root>

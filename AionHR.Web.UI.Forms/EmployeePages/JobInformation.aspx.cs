@@ -172,6 +172,9 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     this.EditEHForm.SetValues(response.result);
                     FillEHStatus();
                     statusId.Select(response.result.statusId.ToString());
+                    RecordRequest request = new RecordRequest();
+                    r.RecordID = id.ToString();
+                    RecordResponse<EmploymentHistory> elias = _employeeService.ChildGetRecord<EmploymentHistory>(request);
 
                     this.EditEHwindow.Title = Resources.Common.EditWindowsTitle;
                     this.EditEHwindow.Show();
@@ -473,7 +476,15 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             FillBranch();
             FillPosition();
             date.SelectedDate = DateTime.Today;
-
+            RecordRequest req = new RecordRequest();
+            req.RecordID = CurrentEmployee.Text;
+            RecordResponse<EmployeeQuickView> qv = _employeeService.ChildGetRecord<EmployeeQuickView>(req);
+            departmentId.Select(qv.result.departmentName);
+            branchId.Select(qv.result.branchName.ToString());
+            divisionId.Select(qv.result.divisionName.ToString());
+            positionId.Select(qv.result.positionName.ToString());
+            reportToId.Select(qv.result.reportToName.ToString());
+        
             this.EditJobInfoWindow.Show();
         }
 

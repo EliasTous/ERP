@@ -412,6 +412,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Letter.
+        /// </summary>
+        internal static string CompanyLetter {
+            get {
+                return ResourceManager.GetString("CompanyLetter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to News.
         /// </summary>
         internal static string CompanyNews {
@@ -1096,6 +1105,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Government Organisations.
+        /// </summary>
+        internal static string GovernmentOrganisations {
+            get {
+                return ResourceManager.GetString("GovernmentOrganisations", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Gregorian.
         /// </summary>
         internal static string Gregorian {
@@ -1353,6 +1371,24 @@ namespace Resources {
         internal static string Legals {
             get {
                 return ResourceManager.GetString("Legals", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Letters.
+        /// </summary>
+        internal static string Letters {
+            get {
+                return ResourceManager.GetString("Letters", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Letter Templates.
+        /// </summary>
+        internal static string LetterTemplates {
+            get {
+                return ResourceManager.GetString("LetterTemplates", resourceCulture);
             }
         }
         

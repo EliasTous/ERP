@@ -404,7 +404,7 @@
             Icon="PageEdit"
             Title="<%$ Resources:EditContactWindowTitle %>"
             Width="340"
-            Height="320"
+            Height="370"
             AutoShow="false"
             Modal="true"
             Hidden="true"
@@ -504,7 +504,12 @@
                                                 <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
                                             </Listeners>
                                         </ext:ComboBox>
-
+                                         <ext:TextField runat="server" Name="copostalCode" AllowBlank="true" MaxLength="6" ID="TextField6" FieldLabel="<%$ Resources:FieldCPostalCode%>" />
+                                        <ext:TextField runat="server" Name="localphone" AllowBlank="false" ID="localphone" FieldLabel="<%$ Resources:phone%>" >
+                                             <Plugins>
+                                                <ext:InputMask Mask="9999999?999" />
+                                            </Plugins>
+                                            </ext:TextField>
 
                                     </Items>
                                 </ext:Panel>

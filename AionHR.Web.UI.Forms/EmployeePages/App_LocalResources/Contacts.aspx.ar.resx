@@ -192,4 +192,7 @@
   <data name="FieldState" xml:space="preserve">
     <value>المنطقة</value>
   </data>
+  <data name="phone" xml:space="preserve">
+    <value>الهاتف</value>
+  </data>
 </root>

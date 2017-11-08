@@ -130,7 +130,7 @@
     <value>المبلغ</value>
   </data>
   <data name="FieldBasicAmount" xml:space="preserve">
-    <value>البلغ الاساسي</value>
+    <value>المبلغ الاساسي</value>
   </data>
   <data name="FieldBranch" xml:space="preserve">
     <value>الفرع</value>
@@ -257,5 +257,8 @@
   </data>
   <data name="FieldName" xml:space="preserve">
     <value>الاسم </value>
+  </data>
+  <data name="FieldRef" xml:space="preserve">
+    <value>الرمز</value>
   </data>
 </root>
