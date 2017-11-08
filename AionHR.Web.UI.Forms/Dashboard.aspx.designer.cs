@@ -229,6 +229,33 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Model Model1;
         
         /// <summary>
+        /// Store1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Store Store1;
+        
+        /// <summary>
+        /// LocalRateStore control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Store LocalRateStore;
+        
+        /// <summary>
+        /// LocalCountStore control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Store LocalCountStore;
+        
+        /// <summary>
         /// Viewport1 control.
         /// </summary>
         /// <remarks>
@@ -337,76 +364,49 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Panel breakHighChart;
         
         /// <summary>
-        /// barPanel control.
+        /// pnlDepartmentCount control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Panel barPanel;
+        protected global::Ext.Net.Panel pnlDepartmentCount;
         
         /// <summary>
-        /// CartesianChart1 control.
+        /// deparmentsCountHighChart control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.CartesianChart CartesianChart1;
+        protected global::Ext.Net.Panel deparmentsCountHighChart;
         
         /// <summary>
-        /// Store1 control.
+        /// pnlRate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Store Store1;
+        protected global::Ext.Net.Panel pnlRate;
         
         /// <summary>
-        /// Panel1 control.
+        /// localRateCountHighChart control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Panel Panel1;
+        protected global::Ext.Net.Panel localRateCountHighChart;
         
         /// <summary>
-        /// LocalRateChart control.
+        /// localCountHighChart control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.CartesianChart LocalRateChart;
-        
-        /// <summary>
-        /// LocalRateStore control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Store LocalRateStore;
-        
-        /// <summary>
-        /// LocalCount control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.CartesianChart LocalCount;
-        
-        /// <summary>
-        /// LocalCountStore control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Store LocalCountStore;
+        protected global::Ext.Net.Panel localCountHighChart;
         
         /// <summary>
         /// missingPunchesGrid control.
