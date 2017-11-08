@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            DevExpress.XtraReports.UI.PivotGrid.XRPivotGridCustomTotal xrPivotGridCustomTotal1 = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridCustomTotal();
             this.Detail = new DevExpress.XtraReports.UI.DetailBand();
             this.xrPivotGrid1 = new DevExpress.XtraReports.UI.XRPivotGrid();
             this.pivotGridField1 = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
@@ -42,8 +43,6 @@
             this.pivotGridField8 = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
             this.pivotGridField9 = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
             this.pivotGridField13 = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
-            this.pivotGridField10 = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
-            this.pivotGridField11 = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
             this.TopMargin = new DevExpress.XtraReports.UI.TopMarginBand();
             this.BottomMargin = new DevExpress.XtraReports.UI.BottomMarginBand();
             this.xrTableRow1 = new DevExpress.XtraReports.UI.XRTableRow();
@@ -121,24 +120,17 @@
             this.pivotGridField4,
             this.pivotGridField8,
             this.pivotGridField9,
-            this.pivotGridField13,
-            this.pivotGridField10,
-            this.pivotGridField11});
+            this.pivotGridField13});
             this.xrPivotGrid1.LocationFloat = new DevExpress.Utils.PointFloat(4.768372E-05F, 0F);
             this.xrPivotGrid1.Name = "xrPivotGrid1";
             this.xrPivotGrid1.OptionsPrint.FilterSeparatorBarPadding = 3;
-            this.xrPivotGrid1.OptionsPrint.MergeColumnFieldValues = false;
-            this.xrPivotGrid1.OptionsView.ShowColumnGrandTotalHeader = false;
-            this.xrPivotGrid1.OptionsView.ShowColumnGrandTotals = false;
             this.xrPivotGrid1.OptionsView.ShowColumnHeaders = false;
-            this.xrPivotGrid1.OptionsView.ShowColumnTotals = false;
             this.xrPivotGrid1.OptionsView.ShowDataHeaders = false;
             this.xrPivotGrid1.OptionsView.ShowFilterHeaders = false;
             this.xrPivotGrid1.OptionsView.ShowHorzLines = false;
-            this.xrPivotGrid1.OptionsView.ShowRowGrandTotalHeader = false;
-            this.xrPivotGrid1.OptionsView.ShowRowGrandTotals = false;
-            this.xrPivotGrid1.OptionsView.ShowRowTotals = false;
             this.xrPivotGrid1.SizeF = new System.Drawing.SizeF(1254F, 78.25006F);
+            this.xrPivotGrid1.FieldValueDisplayText += new System.EventHandler<DevExpress.XtraReports.UI.PivotGrid.PivotFieldDisplayTextEventArgs>(this.xrPivotGrid1_FieldValueDisplayText);
+            this.xrPivotGrid1.BeforePrint += new System.Drawing.Printing.PrintEventHandler(this.xrPivotGrid1_BeforePrint);
             // 
             // pivotGridField1
             // 
@@ -230,11 +222,11 @@
             this.pivotGridField12.Area = DevExpress.XtraPivotGrid.PivotArea.ColumnArea;
             this.pivotGridField12.AreaIndex = 0;
             this.pivotGridField12.Caption = "is Tax.";
+            this.pivotGridField12.CustomTotals.AddRange(new DevExpress.XtraPivotGrid.PivotGridCustomTotalBase[] {
+            xrPivotGridCustomTotal1});
             this.pivotGridField12.FieldName = "isTaxable";
             this.pivotGridField12.Name = "pivotGridField12";
-            this.pivotGridField12.Options.ShowGrandTotal = false;
-            this.pivotGridField12.Options.ShowTotals = false;
-            this.pivotGridField12.TotalsVisibility = DevExpress.XtraPivotGrid.PivotTotalsVisibility.None;
+            this.pivotGridField12.TotalsVisibility = DevExpress.XtraPivotGrid.PivotTotalsVisibility.CustomTotals;
             this.pivotGridField12.Width = 45;
             // 
             // pivotGridField3
@@ -250,7 +242,6 @@
             this.pivotGridField3.Name = "pivotGridField3";
             this.pivotGridField3.Options.ShowGrandTotal = false;
             this.pivotGridField3.Options.ShowTotals = false;
-            this.pivotGridField3.TotalsVisibility = DevExpress.XtraPivotGrid.PivotTotalsVisibility.None;
             this.pivotGridField3.Width = 90;
             // 
             // pivotGridField4
@@ -265,8 +256,6 @@
             this.pivotGridField4.FieldName = "edAmount";
             this.pivotGridField4.Name = "pivotGridField4";
             this.pivotGridField4.Options.ShowGrandTotal = false;
-            this.pivotGridField4.Options.ShowTotals = false;
-            this.pivotGridField4.TotalsVisibility = DevExpress.XtraPivotGrid.PivotTotalsVisibility.None;
             this.pivotGridField4.Width = 70;
             // 
             // pivotGridField8
@@ -282,7 +271,6 @@
             this.pivotGridField8.Name = "pivotGridField8";
             this.pivotGridField8.Options.ShowGrandTotal = false;
             this.pivotGridField8.Options.ShowTotals = false;
-            this.pivotGridField8.TotalsVisibility = DevExpress.XtraPivotGrid.PivotTotalsVisibility.None;
             this.pivotGridField8.Width = 65;
             // 
             // pivotGridField9
@@ -294,15 +282,12 @@
             this.pivotGridField9.Appearance.Cell.WordWrap = true;
             this.pivotGridField9.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea;
             this.pivotGridField9.AreaIndex = 6;
-            this.pivotGridField9.Caption = "Curr.";
             this.pivotGridField9.EmptyValueText = "NON";
-            this.pivotGridField9.FieldName = "currencyRef";
+            this.pivotGridField9.FieldName = "essAmount";
             this.pivotGridField9.Name = "pivotGridField9";
             this.pivotGridField9.Options.ShowGrandTotal = false;
             this.pivotGridField9.Options.ShowTotals = false;
             this.pivotGridField9.Tag = "";
-            this.pivotGridField9.TotalsVisibility = DevExpress.XtraPivotGrid.PivotTotalsVisibility.None;
-            this.pivotGridField9.Visible = false;
             this.pivotGridField9.Width = 40;
             // 
             // pivotGridField13
@@ -313,49 +298,12 @@
             this.pivotGridField13.Appearance.Cell.TextVerticalAlignment = DevExpress.Utils.VertAlignment.Center;
             this.pivotGridField13.Appearance.Cell.WordWrap = true;
             this.pivotGridField13.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea;
-            this.pivotGridField13.AreaIndex = 8;
-            this.pivotGridField13.Caption = "Pay. mtd.";
-            this.pivotGridField13.FieldName = "paymentMethod";
+            this.pivotGridField13.AreaIndex = 7;
+            this.pivotGridField13.FieldName = "cssAmount";
             this.pivotGridField13.Name = "pivotGridField13";
             this.pivotGridField13.Options.ShowGrandTotal = false;
             this.pivotGridField13.Options.ShowTotals = false;
-            this.pivotGridField13.TotalsVisibility = DevExpress.XtraPivotGrid.PivotTotalsVisibility.None;
-            this.pivotGridField13.Visible = false;
             this.pivotGridField13.Width = 60;
-            // 
-            // pivotGridField10
-            // 
-            this.pivotGridField10.Appearance.Cell.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold);
-            this.pivotGridField10.Appearance.Cell.ForeColor = System.Drawing.Color.Maroon;
-            this.pivotGridField10.Appearance.Cell.TextHorizontalAlignment = DevExpress.Utils.HorzAlignment.Near;
-            this.pivotGridField10.Appearance.Cell.TextVerticalAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.pivotGridField10.Appearance.Cell.WordWrap = true;
-            this.pivotGridField10.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea;
-            this.pivotGridField10.AreaIndex = 5;
-            this.pivotGridField10.FieldName = "eAmount";
-            this.pivotGridField10.Name = "pivotGridField10";
-            this.pivotGridField10.Options.ShowGrandTotal = false;
-            this.pivotGridField10.Options.ShowTotals = false;
-            this.pivotGridField10.TotalsVisibility = DevExpress.XtraPivotGrid.PivotTotalsVisibility.None;
-            this.pivotGridField10.Visible = false;
-            this.pivotGridField10.Width = 60;
-            // 
-            // pivotGridField11
-            // 
-            this.pivotGridField11.Appearance.Cell.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold);
-            this.pivotGridField11.Appearance.Cell.ForeColor = System.Drawing.Color.Maroon;
-            this.pivotGridField11.Appearance.Cell.TextHorizontalAlignment = DevExpress.Utils.HorzAlignment.Near;
-            this.pivotGridField11.Appearance.Cell.TextVerticalAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.pivotGridField11.Appearance.Cell.WordWrap = true;
-            this.pivotGridField11.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea;
-            this.pivotGridField11.AreaIndex = 5;
-            this.pivotGridField11.FieldName = "dAmount";
-            this.pivotGridField11.Name = "pivotGridField11";
-            this.pivotGridField11.Options.ShowGrandTotal = false;
-            this.pivotGridField11.Options.ShowTotals = false;
-            this.pivotGridField11.TotalsVisibility = DevExpress.XtraPivotGrid.PivotTotalsVisibility.None;
-            this.pivotGridField11.Visible = false;
-            this.pivotGridField11.Width = 60;
             // 
             // TopMargin
             // 
@@ -787,8 +735,6 @@
         private DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField pivotGridField12;
         private DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField pivotGridField9;
         private DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField pivotGridField13;
-        private DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField pivotGridField10;
-        private DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField pivotGridField11;
         private DevExpress.XtraReports.UI.CalculatedField cfPaymethode;
         public DevExpress.XtraReports.UI.XRPivotGrid xrPivotGrid1;
         private DevExpress.XtraReports.UI.XRLabel xrLabel1;
