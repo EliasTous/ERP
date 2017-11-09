@@ -9,7 +9,7 @@
     <title></title>
 
     <link rel="stylesheet" type="text/css" href="CSS/Common.css" />
-    <link rel="stylesheet" type="text/css" href="CSS/Dashboard.css?id=32" />
+    <link rel="stylesheet" type="text/css" href="CSS/Dashboard.css?id=36" />
     <link rel="stylesheet" href="CSS/LiveSearch.css" />
     <script type="text/javascript" src="Scripts/Dashboard.js?id=12"></script>
     <!--  <script type="text/javascript" src="Scripts/app.js"></script>-->
@@ -19,7 +19,22 @@
     <script type="text/javascript" src="Scripts/jquery-new.js?id=45"></script>
     <script type="text/javascript" src="Scripts/plugins/highcharts.js"></script>
 
-
+    <style type="text/css">
+        .styleContainer{
+            padding:5px;
+            border:1px solid #eee;
+        }
+          .styleContainer:hover{
+        background-color:#eee;
+        }
+          .lblStyle{
+              font-size:10pt;
+              text-decoration: none !important;
+              font-weight: bold;
+                  /*color: #159fcc !important;*/
+                  color: rgb(124, 181, 236) !important;
+          }
+    </style>
     <script type="text/javascript">
 
         var drawActiveHightChartPie = function (dataObject, rtl) {
@@ -256,15 +271,14 @@
                 });
             }
 
-            if(id == "pnlRate")
-            {
+            if (id == "pnlRate") {
                 Ext.net.Mask.show({ el: App.pnlRate.id });
                 App.LocalRateStore.reload({
                     callback: function () {
                         Ext.net.Mask.hide();
                     }
                 });
-                
+
 
             }
         }
@@ -311,7 +325,7 @@
                 },
                 tooltip: {
                     useHTML: true
-                    
+
                 },
                 plotOptions: {
                     bar: {
@@ -340,7 +354,7 @@
 
         };
 
-        var drawMinLocalRateCountHightChartColumn = function ( objectValues, dataCategoriesObject, rtl) {
+        var drawMinLocalRateCountHightChartColumn = function (objectValues, dataCategoriesObject, rtl) {
             // Build the chart  deparmentsCountHighChart
             Highcharts.chart('localRateCountHighChart', {
                 chart: {
@@ -364,15 +378,15 @@
                     labels: {
                         useHTML: Highcharts.hasBidiBug,
                         useHTML: rtl
-                     
+
                     }
                 },
                 yAxis: {
                     min: 0,
                     opposite: rtl,
-                   
+
                     title: { text: null }
-                    
+
 
                 },
                 tooltip: {
@@ -389,16 +403,16 @@
                     }
                 },
                 legend: {
-                    enabled:false,
+                    enabled: false,
                     useHTML: rtl,
                     rtl: rtl
-                    
+
                 },
                 credits: {
                     enabled: false
                 },
                 series: [{
-                
+
                     data: objectValues
                 }]
             });
@@ -407,7 +421,7 @@
         };
 
 
-        var drawLocalCountHightChartColumn = function ( objectValues, dataCategoriesObject, rtl) {
+        var drawLocalCountHightChartColumn = function (objectValues, dataCategoriesObject, rtl) {
             // Build the chart  deparmentsCountHighChart
             Highcharts.chart('localCountHighChart', {
                 chart: {
@@ -431,7 +445,7 @@
                     labels: {
                         useHTML: Highcharts.hasBidiBug,
                         useHTML: rtl
-                       
+
                     }
                 },
                 yAxis: {
@@ -462,7 +476,7 @@
                     enabled: false
                 },
                 series: [{
-                 
+
                     data: objectValues
                 }]
             });
@@ -641,7 +655,7 @@
                 App.LeaveRequestsStore.reload();
                 App.LoansStore.reload();
                 App.OverDueStore.reload();
-               // App.LocalRateStore.reload();
+                // App.LocalRateStore.reload();
                 /*Chained*/
 
                 //App.activeStore.reload(
@@ -1280,12 +1294,12 @@
 
                                                             <Items>
 
-                                                                  <ext:Panel AutoUpdateLayout="true"
+                                                                <ext:Panel AutoUpdateLayout="true"
                                                                     runat="server"
                                                                     Header="false" ID="localRateCountHighChart" ClientIDMode="Static" PaddingSpec="5 5 5 5"
                                                                     Layout="FitLayout" Flex="1">
                                                                 </ext:Panel>
-                                                                  <ext:Panel AutoUpdateLayout="true"
+                                                                <ext:Panel AutoUpdateLayout="true"
                                                                     runat="server"
                                                                     Header="false" ID="localCountHighChart" ClientIDMode="Static" PaddingSpec="5 5 5 5"
                                                                     Layout="FitLayout" Flex="1">
@@ -1643,190 +1657,241 @@
                                     </Items>
                                 </ext:Panel>
 
-                                <ext:Panel runat="server" Flex="2" Layout="FitLayout" Region="West" PaddingSpec="20 0 0 0" BodyCls="withBackground" Cls="withBackground" AnchorHorizontal="true" AnchorVertical="true" StyleHtmlCls="withBackground" StyleSpec="border-radius: 0px;">
+                                <ext:Panel runat="server" Flex="3" Layout="FitLayout" Region="West" PaddingSpec="10 0 0 0" BodyCls="withBackground" Cls="withBackground" StyleHtmlCls="withBackground" StyleSpec="border-radius: 0px;">
 
                                     <Listeners>
                                         <AfterRender Handler="startRefresh(); $('.flashing').fadeTo(1000, 0.1, function() { $(this).fadeTo(2000, 1.0); });" />
                                         <%--<AfterLayout Handler="$('.flashing').fadeTo(1000, 0.1, function() { $(this).fadeTo(2000, 1.0); });" />--%>
                                     </Listeners>
                                     <Items>
-                                        <ext:Panel runat="server" Layout="VBoxLayout" BodyCls="withBackground" Cls="withBackground" StyleHtmlCls="withBackground">
-                                            <LayoutConfig>
-                                                <ext:VBoxLayoutConfig Align="Stretch" />
-                                            </LayoutConfig>
+
+                                        <ext:TabPanel ID="alerts" runat="server" Layout="FitLayout" Plain="true" BodyCls="topper" StyleSpec="border-radius: 0px;">
                                             <Items>
-                                                <ext:TabPanel ID="alerts" runat="server" Flex="30" Layout="FitLayout" Plain="true" BodyCls="topper" StyleSpec="border-radius: 0px;">
+                                                <ext:Panel runat="server" Layout="VBoxLayout" Title="<%$Resources:Alerts %>" StyleSpec=" border: 1px solid #add2ed !important;">
+                                                    <LayoutConfig>
+                                                        <ext:VBoxLayoutConfig Align="Stretch" />
+                                                    </LayoutConfig>
                                                     <Items>
-                                                        <ext:Panel runat="server" Layout="VBoxLayout" Title="<%$Resources:Alerts %>" StyleSpec=" border: 1px solid #add2ed !important;">
+
+
+                                                        <ext:Panel runat="server" Layout="HBoxLayout" Flex="1">
                                                             <LayoutConfig>
-                                                                <ext:VBoxLayoutConfig Align="Stretch" />
+                                                                <ext:HBoxLayoutConfig Align="Stretch"></ext:HBoxLayoutConfig>
                                                             </LayoutConfig>
                                                             <Items>
-                                                                <ext:Panel runat="server" Flex="1" />
 
-                                                                <ext:Panel runat="server" Layout="HBoxLayout" Flex="10">
+                                                                <ext:Panel runat="server" Layout="VBoxLayout" Flex="1" PaddingSpec="2 2 2 2">
                                                                     <LayoutConfig>
-                                                                        <ext:HBoxLayoutConfig Align="Middle"></ext:HBoxLayoutConfig>
+                                                                        <ext:VBoxLayoutConfig Align="Center" Pack="Center" />
                                                                     </LayoutConfig>
                                                                     <Items>
-                                                                        <ext:Panel runat="server" Flex="1" />
-                                                                        <ext:Panel runat="server" Layout="VBoxLayout" Flex="10">
-                                                                            <LayoutConfig>
-                                                                                <ext:VBoxLayoutConfig Align="Center" />
-                                                                            </LayoutConfig>
-                                                                            <Items>
-                                                                                <ext:Label runat="server" ID="companyRW" Cls="number flashing" StyleHtmlCls="number" PaddingSpec="30 0 0 0" Height="100" />
-                                                                                <ext:HyperlinkButton runat="server" Text="<%$Resources:ComapnyRightToWork %>" ShrinkWrap="Both" PaddingSpec="0 0 0 0" StyleSpec="font-size:10pt;" Height="80">
+                                                                       <ext:Container runat="server" Cls="styleContainer">
+                                                                              <LayoutConfig>
+                                                                        <ext:VBoxLayoutConfig Align="Center" Pack="Center" />
+                                                                    </LayoutConfig>
+                                                                           <items>
+                                                                                <ext:Label runat="server" ID="companyRW" Cls="number flashing"  PaddingSpec="0 0 0 0" MarginSpec="10 0 20 0" />
+                                                                                <ext:HyperlinkButton runat="server" Text="<%$Resources:ComapnyRightToWork %>" ShrinkWrap="Both" PaddingSpec="0 0 0 0" cls="lblStyle">
                                                                                     <Listeners>
                                                                                         <Click Handler="App.CompanyRightToWorkWindow.show();" />
                                                                                     </Listeners>
                                                                                 </ext:HyperlinkButton>
-                                                                            </Items>
-                                                                        </ext:Panel>
-                                                                        <ext:Panel runat="server" Flex="1" />
-                                                                        <ext:Panel runat="server" Layout="VBoxLayout" Flex="10">
-                                                                            <LayoutConfig>
-                                                                                <ext:VBoxLayoutConfig Align="Center" />
-                                                                            </LayoutConfig>
-                                                                            <Items>
-                                                                                <ext:Label runat="server" ID="employeeRW" Cls="number flashing" StyleHtmlCls="number" PaddingSpec="30 0 0 0" Height="100" />
-                                                                                <ext:HyperlinkButton runat="server" PaddingSpec="0 0 0 0" Text="<%$Resources:EmployeeRightToWork %>" StyleSpec="font-size:10pt;" Height="80">
-                                                                                    <Listeners>
-                                                                                        <Click Handler="App.EmployeeRightToWorkWindow.show();" />
-                                                                                    </Listeners>
-                                                                                </ext:HyperlinkButton>
-                                                                            </Items>
-                                                                        </ext:Panel>
-                                                                        <ext:Panel runat="server" Flex="1" />
-                                                                    </Items>
+                                                                               </items>
+                                                                           </ext:Container>
+                                                                   </Items>   
                                                                 </ext:Panel>
-                                                                <ext:Panel runat="server" Flex="1" />
-                                                                <ext:Panel runat="server" Layout="HBoxLayout" Flex="10">
+
+                                                                <ext:Panel runat="server" Layout="VBoxLayout" Flex="1" PaddingSpec="2 2 2 2">
                                                                     <LayoutConfig>
-                                                                        <ext:HBoxLayoutConfig Align="Middle"></ext:HBoxLayoutConfig>
-                                                                    </LayoutConfig>
-
-                                                                    <Items>
-                                                                        <ext:Panel runat="server" Flex="1" />
-                                                                        <ext:Panel runat="server" Layout="VBoxLayout" Flex="10">
-                                                                            <LayoutConfig>
-                                                                                <ext:VBoxLayoutConfig Align="Center" />
-                                                                            </LayoutConfig>
-                                                                            <Items>
-
-                                                                                <ext:Label runat="server" ID="salaryChange" Cls="number flashing" StyleHtmlCls="number" PaddingSpec="30 0 0 0" Height="100" />
-                                                                                <ext:HyperlinkButton runat="server" Text="<%$Resources:SalaryChange %>" StyleSpec="font-size:12pt;" Height="80">
-                                                                                    <Listeners>
-                                                                                        <Click Handler="App.SCRWindow.show();" />
-                                                                                    </Listeners>
-                                                                                </ext:HyperlinkButton>
-                                                                            </Items>
-                                                                        </ext:Panel>
-                                                                        <ext:Panel runat="server" Flex="1" />
-                                                                        <ext:Panel runat="server" Layout="VBoxLayout" Flex="10">
-                                                                            <LayoutConfig>
-                                                                                <ext:VBoxLayoutConfig Align="Center" />
-                                                                            </LayoutConfig>
-                                                                            <Items>
-                                                                                <ext:Label runat="server" ID="probation" Cls="number flashing" StyleHtmlCls="number" PaddingSpec="30 0 0 0" Height="100" />
-                                                                                <ext:HyperlinkButton runat="server" Text="<%$Resources:Probation %>" StyleSpec="font-size:12pt;" Height="80" StyleHtmlCls="flashing">
-                                                                                    <Listeners>
-                                                                                        <Click Handler="App.ProbationWindow.show();" />
-                                                                                    </Listeners>
-                                                                                </ext:HyperlinkButton>
-                                                                            </Items>
-                                                                        </ext:Panel>
-                                                                        <ext:Panel runat="server" Flex="1" />
-                                                                    </Items>
-                                                                </ext:Panel>
-                                                                <ext:Panel runat="server" Flex="1" />
-                                                                <ext:Panel runat="server" Layout="HBoxLayout" Flex="10">
-                                                                    <LayoutConfig>
-                                                                        <ext:HBoxLayoutConfig Align="Middle"></ext:HBoxLayoutConfig>
-                                                                    </LayoutConfig>
-
-                                                                    <Items>
-                                                                        <ext:Panel runat="server" Flex="1" />
-                                                                        <ext:Panel runat="server" Layout="VBoxLayout" Flex="10">
-                                                                            <LayoutConfig>
-                                                                                <ext:VBoxLayoutConfig Align="Center" />
-                                                                            </LayoutConfig>
-                                                                            <Items>
-
-                                                                                <ext:Label runat="server" ID="totalLoansLbl" Cls="number flashing" StyleHtmlCls="number" PaddingSpec="30 0 0 0" Height="100" />
-                                                                                <ext:HyperlinkButton runat="server" Text="<%$Resources:TotalLoans %>" StyleSpec="font-size:12pt;" Height="80">
-                                                                                    <Listeners>
-                                                                                        <Click Handler="App.totalLoansWindow.show();" />
-                                                                                    </Listeners>
-                                                                                </ext:HyperlinkButton>
-                                                                            </Items>
-                                                                        </ext:Panel>
-                                                                        <ext:Panel runat="server" Flex="1" />
-                                                                        <ext:Panel runat="server" Layout="VBoxLayout" Flex="10">
-                                                                            <LayoutConfig>
-                                                                                <ext:VBoxLayoutConfig Align="Center" />
-                                                                            </LayoutConfig>
-                                                                            <Items>
-                                                                                <ext:Label runat="server" ID="deductedLoansLbl" Cls="number flashing" StyleHtmlCls="number" PaddingSpec="30 0 0 0" Height="100" />
-                                                                                <ext:HyperlinkButton runat="server" Text="<%$Resources:CompletedLoans %>" StyleSpec="font-size:12pt;" Height="80" StyleHtmlCls="flashing">
-                                                                                    <Listeners>
-                                                                                        <Click Handler="App.completedLoansWindow.show();" />
-                                                                                    </Listeners>
-                                                                                </ext:HyperlinkButton>
-                                                                            </Items>
-                                                                        </ext:Panel>
-                                                                        <ext:Panel runat="server" Flex="1" />
-                                                                    </Items>
-                                                                </ext:Panel>
-                                                                <ext:Panel runat="server" Layout="HBoxLayout" Flex="10">
-                                                                    <LayoutConfig>
-                                                                        <ext:HBoxLayoutConfig Align="Middle"></ext:HBoxLayoutConfig>
+                                                                        <ext:VBoxLayoutConfig Align="Center" Pack="Center" />
                                                                     </LayoutConfig>
                                                                     <Items>
-                                                                        <ext:Panel runat="server" Flex="1" />
-                                                                        <ext:Panel runat="server" Layout="VBoxLayout" Flex="10">
-                                                                            <LayoutConfig>
-                                                                                <ext:VBoxLayoutConfig Align="Center" />
-                                                                            </LayoutConfig>
-                                                                            <Items>
-
-
-                                                                                <ext:Label runat="server" ID="annversaries" Cls="number flashing" StyleHtmlCls="number" PaddingSpec="30 0 0 0" Height="100" />
-
-                                                                                <ext:HyperlinkButton runat="server" Text="<%$Resources:Anneversaries %>" Height="80" PaddingSpec="0 0 0 0" StyleSpec="font-size:12pt;">
-                                                                                    <Listeners>
-                                                                                        <Click Handler="App.anniversaryWindow.show();" />
-                                                                                    </Listeners>
-                                                                                </ext:HyperlinkButton>
-                                                                            </Items>
-                                                                        </ext:Panel>
-                                                                        <ext:Panel runat="server" Flex="1" />
-                                                                        <ext:Panel runat="server" Layout="VBoxLayout" Flex="10">
-                                                                            <LayoutConfig>
-                                                                                <ext:VBoxLayoutConfig Align="Center" />
-                                                                            </LayoutConfig>
-                                                                            <Items>
-
-                                                                                <ext:Label runat="server" ID="birthdays" Cls="number flashing" StyleHtmlCls="number" PaddingSpec="30 0 0 0" Height="100" />
-                                                                                <ext:HyperlinkButton runat="server" PaddingSpec="0 0 0 0" Text="<%$Resources:Birthdays %>" StyleSpec="font-size:12pt;" Height="80">
-                                                                                    <Listeners>
-                                                                                        <Click Handler="App.BirthdaysWindow.show();" />
-                                                                                    </Listeners>
-                                                                                </ext:HyperlinkButton>
-                                                                            </Items>
-                                                                        </ext:Panel>
-                                                                        <ext:Panel runat="server" Flex="1" />
+                                                                            <ext:Container runat="server" Cls="styleContainer">
+                                                                              <LayoutConfig>
+                                                                        <ext:VBoxLayoutConfig Align="Center" Pack="Center" />
+                                                                    </LayoutConfig>
+                                                                           <items>
+                                                                                  <ext:Label runat="server" ID="employeeRW" Cls="number flashing" StyleHtmlCls="number" PaddingSpec="0 0 0 0" MarginSpec="10 0 20 0" />
+                                                                        <ext:HyperlinkButton runat="server" PaddingSpec="0 0 0 0" Text="<%$Resources:EmployeeRightToWork %>" StyleSpec="font-size:12pt;" Cls="lblStyle">
+                                                                            <Listeners>
+                                                                                <Click Handler="App.EmployeeRightToWorkWindow.show();" />
+                                                                            </Listeners>
+                                                                        </ext:HyperlinkButton>
+                                                                               </items>
+                                                                           </ext:Container>
+                                                                    
                                                                     </Items>
                                                                 </ext:Panel>
-                                                                <ext:Panel runat="server" Flex="1" />
 
                                                             </Items>
                                                         </ext:Panel>
-                                                    </Items>
-                                                </ext:TabPanel>
 
+                                                        <ext:Panel runat="server" Layout="HBoxLayout" Flex="1">
+                                                            <LayoutConfig>
+                                                                <ext:HBoxLayoutConfig Align="Stretch"></ext:HBoxLayoutConfig>
+                                                            </LayoutConfig>
+
+                                                            <Items>
+
+                                                                <ext:Panel runat="server" Layout="VBoxLayout" Flex="1" PaddingSpec="2 2 2 2">
+                                                                    <LayoutConfig>
+                                                                        <ext:VBoxLayoutConfig Align="Center" Pack="Center" />
+                                                                    </LayoutConfig>
+                                                                    <Items>
+                                                                         <ext:Container runat="server" Cls="styleContainer">
+                                                                              <LayoutConfig>
+                                                                        <ext:VBoxLayoutConfig Align="Center" Pack="Center" />
+                                                                    </LayoutConfig>
+                                                                           <items>
+                                                                          <ext:Label runat="server" ID="salaryChange" Cls="number flashing" StyleHtmlCls="number" PaddingSpec="0 0 0 0" MarginSpec="10 0 20 0" />
+                                                                        <ext:HyperlinkButton runat="server" Text="<%$Resources:SalaryChange %>" StyleSpec="font-size:12pt;" Cls="lblStyle">
+                                                                            <Listeners>
+                                                                                <Click Handler="App.SCRWindow.show();" />
+                                                                            </Listeners>
+                                                                        </ext:HyperlinkButton>
+                                                                               </items>
+                                                                           </ext:Container>
+                                                                       
+                                                                    </Items>
+                                                                </ext:Panel>
+
+                                                                <ext:Panel runat="server" Layout="VBoxLayout" Flex="1" PaddingSpec="2 2 2 2">
+                                                                    <LayoutConfig>
+                                                                        <ext:VBoxLayoutConfig Align="Center" Pack="Center" />
+                                                                    </LayoutConfig>
+                                                                    <Items>
+                                                                               <ext:Container runat="server" Cls="styleContainer">
+                                                                              <LayoutConfig>
+                                                                        <ext:VBoxLayoutConfig Align="Center" Pack="Center" />
+                                                                    </LayoutConfig>
+                                                                           <items>
+                                                                        <ext:Label runat="server" ID="probation" Cls="number flashing" StyleHtmlCls="number" PaddingSpec="0 0 0 0" MarginSpec="10 0 20 0" />
+                                                                        <ext:HyperlinkButton runat="server" Text="<%$Resources:Probation %>" StyleSpec="font-size:12pt;" StyleHtmlCls="flashing" Cls="lblStyle">
+                                                                            <Listeners>
+                                                                                <Click Handler="App.ProbationWindow.show();" />
+                                                                            </Listeners>
+                                                                        </ext:HyperlinkButton>
+                                                                                   </items>
+                                                                           </ext:Container>
+                                                                    </Items>
+                                                                </ext:Panel>
+
+                                                            </Items>
+                                                        </ext:Panel>
+
+                                                        <ext:Panel runat="server" Layout="HBoxLayout" Flex="1">
+                                                            <LayoutConfig>
+                                                                <ext:HBoxLayoutConfig Align="Stretch"></ext:HBoxLayoutConfig>
+                                                            </LayoutConfig>
+
+                                                            <Items>
+
+                                                                <ext:Panel runat="server" Layout="VBoxLayout" Flex="1" PaddingSpec="2 2 2 2">
+                                                                    <LayoutConfig>
+                                                                        <ext:VBoxLayoutConfig Align="Center" Pack="Center" />
+                                                                    </LayoutConfig>
+                                                                    <Items>
+                                                                                 <ext:Container runat="server" Cls="styleContainer">
+                                                                              <LayoutConfig>
+                                                                        <ext:VBoxLayoutConfig Align="Center" Pack="Center" />
+                                                                    </LayoutConfig>
+                                                                           <items>
+                                                                        <ext:Label runat="server" ID="totalLoansLbl" Cls="number flashing" StyleHtmlCls="number" PaddingSpec="0 0 0 0" MarginSpec="10 0 20 0" />
+                                                                        <ext:HyperlinkButton runat="server" Text="<%$Resources:TotalLoans %>" StyleSpec="font-size:12pt;" Cls="lblStyle">
+                                                                            <Listeners>
+                                                                                <Click Handler="App.totalLoansWindow.show();" />
+                                                                            </Listeners>
+                                                                        </ext:HyperlinkButton>
+                                                                                 </items>
+                                                                           </ext:Container>
+                                                                    </Items>
+                                                                </ext:Panel>
+
+                                                                <ext:Panel runat="server" Layout="VBoxLayout" Flex="1" PaddingSpec="2 2 2 2">
+                                                                    <LayoutConfig>
+                                                                        <ext:VBoxLayoutConfig Align="Center" Pack="Center" />
+                                                                    </LayoutConfig>
+                                                                    <Items>
+                                                                               <ext:Container runat="server" Cls="styleContainer">
+                                                                              <LayoutConfig>
+                                                                        <ext:VBoxLayoutConfig Align="Center" Pack="Center" />
+                                                                    </LayoutConfig>
+                                                                           <items>
+                                                                        <ext:Label runat="server" ID="deductedLoansLbl" Cls="number flashing" StyleHtmlCls="number" PaddingSpec="0 0 0 0" MarginSpec="10 0 20 0" />
+                                                                        <ext:HyperlinkButton runat="server" Text="<%$Resources:CompletedLoans %>" StyleSpec="font-size:12pt;" StyleHtmlCls="flashing" Cls="lblStyle">
+                                                                            <Listeners>
+                                                                                <Click Handler="App.completedLoansWindow.show();" />
+                                                                            </Listeners>
+                                                                        </ext:HyperlinkButton>
+                                                                                 </items>
+                                                                           </ext:Container>
+                                                                    </Items>
+                                                                </ext:Panel>
+
+                                                            </Items>
+                                                        </ext:Panel>
+
+                                                        <ext:Panel runat="server" Layout="HBoxLayout" Flex="1">
+                                                            <LayoutConfig>
+                                                                <ext:HBoxLayoutConfig Align="Stretch"></ext:HBoxLayoutConfig>
+                                                            </LayoutConfig>
+                                                            <Items>
+
+                                                                <ext:Panel runat="server" Layout="VBoxLayout" Flex="1" PaddingSpec="2 2 2 2">
+                                                                    <LayoutConfig>
+                                                                        <ext:VBoxLayoutConfig Align="Center" Pack="Center" />
+                                                                    </LayoutConfig>
+                                                                    <Items>
+                                                                              <ext:Container runat="server" Cls="styleContainer">
+                                                                              <LayoutConfig>
+                                                                        <ext:VBoxLayoutConfig Align="Center" Pack="Center" />
+                                                                    </LayoutConfig>
+                                                                           <items>
+
+                                                                        <ext:Label runat="server" ID="annversaries" Cls="number flashing" StyleHtmlCls="number" PaddingSpec="0 0 0 0" MarginSpec="10 0 20 0" />
+
+                                                                        <ext:HyperlinkButton runat="server" Text="<%$Resources:Anneversaries %>" PaddingSpec="0 0 0 0" StyleSpec="font-size:12pt;" Cls="lblStyle">
+                                                                            <Listeners>
+                                                                                <Click Handler="App.anniversaryWindow.show();" />
+                                                                            </Listeners>
+                                                                        </ext:HyperlinkButton>
+                                                                                         </items>
+                                                                           </ext:Container>
+                                                                    </Items>
+                                                                </ext:Panel>
+
+                                                                <ext:Panel runat="server" Layout="VBoxLayout" Flex="1" PaddingSpec="2 2 2 2">
+                                                                    <LayoutConfig>
+                                                                        <ext:VBoxLayoutConfig Align="Center" Pack="Center" />
+                                                                    </LayoutConfig>
+                                                                    <Items>
+                                                                                 <ext:Container runat="server" Cls="styleContainer">
+                                                                              <LayoutConfig>
+                                                                        <ext:VBoxLayoutConfig Align="Center" Pack="Center" />
+                                                                    </LayoutConfig>
+                                                                           <items>
+
+                                                                        <ext:Label runat="server" ID="birthdays" Cls="number flashing" StyleHtmlCls="number" PaddingSpec="0 0 0 0" MarginSpec="10 0 20 0" />
+                                                                        <ext:HyperlinkButton runat="server" PaddingSpec="0 0 0 0" Text="<%$Resources:Birthdays %>" StyleSpec="font-size:12pt;" Cls="lblStyle">
+                                                                            <Listeners>
+                                                                                <Click Handler="App.BirthdaysWindow.show();" />
+                                                                            </Listeners>
+                                                                        </ext:HyperlinkButton>
+                                                                                          </items>
+                                                                           </ext:Container>
+                                                                    </Items>
+                                                                </ext:Panel>
+
+                                                            </Items>
+                                                        </ext:Panel>
+
+
+                                                    </Items>
+                                                </ext:Panel>
                                             </Items>
-                                        </ext:Panel>
+                                        </ext:TabPanel>
+
+
                                     </Items>
                                 </ext:Panel>
 
