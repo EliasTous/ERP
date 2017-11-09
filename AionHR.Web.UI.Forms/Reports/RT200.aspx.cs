@@ -221,7 +221,7 @@ namespace AionHR.Web.UI.Forms.Reports
                 }
             }
 
-            var d = resp.Items.GroupBy(x => x.employeeName.reference);
+            var d = resp.Items.GroupBy(x =>  x.employeeName.reference );
             CurrentPayrollLineCollection lines = new CurrentPayrollLineCollection();
             HashSet<CurrentEntitlementDeduction> ens = new HashSet<CurrentEntitlementDeduction>(new CurrentEntitlementDeductionComparer());
             HashSet<CurrentEntitlementDeduction> des = new HashSet<CurrentEntitlementDeduction>(new CurrentEntitlementDeductionComparer());
@@ -251,7 +251,7 @@ namespace AionHR.Web.UI.Forms.Reports
                 p.Payrolls = lines;
                 s.Add(p);
             }
-
+            
             //CurrentPayroll h = new CurrentPayroll();
             CurrentPayrollV1 h = new CurrentPayrollV1();
             h.DataSource = resp.Items;

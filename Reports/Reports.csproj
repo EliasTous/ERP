@@ -266,6 +266,10 @@
       <Project>{ecb87836-818f-45f5-ab7f-f46cde3c447f}</Project>
       <Name>AionHR.Model</Name>
     </ProjectReference>
+    <ProjectReference Include="..\AionHR.Services\AionHR.Services.csproj">
+      <Project>{F60BFEAF-3B3B-47C5-9DA0-AC8892DC9BE8}</Project>
+      <Name>AionHR.Services</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Absense.ar.resx">
