@@ -34,15 +34,16 @@
             this.xrPivotGrid1 = new DevExpress.XtraReports.UI.XRPivotGrid();
             this.pivotGridField1 = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
             this.pivotGridField7 = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
-            this.pivotGridField6 = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
             this.pivotGridField5 = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
+            this.pivotGridField6 = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
             this.pivotGridField2 = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
             this.pivotGridField12 = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
             this.pivotGridField3 = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
             this.pivotGridField4 = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
-            this.pivotGridField8 = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
             this.pivotGridField9 = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
             this.pivotGridField13 = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
+            this.pivotGridField8 = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
+            this.pivotGridField10 = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
             this.TopMargin = new DevExpress.XtraReports.UI.TopMarginBand();
             this.BottomMargin = new DevExpress.XtraReports.UI.BottomMarginBand();
             this.xrTableRow1 = new DevExpress.XtraReports.UI.XRTableRow();
@@ -99,9 +100,12 @@
             // 
             // xrPivotGrid1
             // 
+            this.xrPivotGrid1.AnchorHorizontal = ((DevExpress.XtraReports.UI.HorizontalAnchorStyles)((DevExpress.XtraReports.UI.HorizontalAnchorStyles.Left | DevExpress.XtraReports.UI.HorizontalAnchorStyles.Right)));
             this.xrPivotGrid1.Appearance.Cell.Font = new System.Drawing.Font("Tahoma", 8F);
-            this.xrPivotGrid1.Appearance.CustomTotalCell.Font = new System.Drawing.Font("Tahoma", 8F);
-            this.xrPivotGrid1.Appearance.FieldHeader.Font = new System.Drawing.Font("Tahoma", 8F);
+            this.xrPivotGrid1.Appearance.CustomTotalCell.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold);
+            this.xrPivotGrid1.Appearance.CustomTotalCell.ForeColor = System.Drawing.Color.Maroon;
+            this.xrPivotGrid1.Appearance.FieldHeader.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Bold);
+            this.xrPivotGrid1.Appearance.FieldHeader.TextHorizontalAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.xrPivotGrid1.Appearance.FieldValue.Font = new System.Drawing.Font("Tahoma", 8F);
             this.xrPivotGrid1.Appearance.FieldValueGrandTotal.Font = new System.Drawing.Font("Tahoma", 8F);
             this.xrPivotGrid1.Appearance.FieldValueTotal.Font = new System.Drawing.Font("Tahoma", 8F);
@@ -112,15 +116,16 @@
             this.xrPivotGrid1.Fields.AddRange(new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField[] {
             this.pivotGridField1,
             this.pivotGridField7,
-            this.pivotGridField6,
             this.pivotGridField5,
+            this.pivotGridField6,
             this.pivotGridField2,
             this.pivotGridField12,
             this.pivotGridField3,
             this.pivotGridField4,
-            this.pivotGridField8,
             this.pivotGridField9,
-            this.pivotGridField13});
+            this.pivotGridField13,
+            this.pivotGridField8,
+            this.pivotGridField10});
             this.xrPivotGrid1.LocationFloat = new DevExpress.Utils.PointFloat(4.768372E-05F, 0F);
             this.xrPivotGrid1.Name = "xrPivotGrid1";
             this.xrPivotGrid1.OptionsPrint.FilterSeparatorBarPadding = 3;
@@ -139,8 +144,10 @@
             this.pivotGridField1.Appearance.Cell.TextHorizontalAlignment = DevExpress.Utils.HorzAlignment.Near;
             this.pivotGridField1.Appearance.Cell.TextVerticalAlignment = DevExpress.Utils.VertAlignment.Center;
             this.pivotGridField1.Appearance.Cell.WordWrap = true;
+            this.pivotGridField1.Appearance.FieldHeader.WordWrap = true;
             this.pivotGridField1.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea;
             this.pivotGridField1.AreaIndex = 0;
+            this.pivotGridField1.Caption = "Name";
             this.pivotGridField1.FieldName = "employeeName.fullName";
             this.pivotGridField1.Name = "pivotGridField1";
             this.pivotGridField1.Options.ShowGrandTotal = false;
@@ -155,30 +162,16 @@
             this.pivotGridField7.Appearance.Cell.TextHorizontalAlignment = DevExpress.Utils.HorzAlignment.Near;
             this.pivotGridField7.Appearance.Cell.TextVerticalAlignment = DevExpress.Utils.VertAlignment.Center;
             this.pivotGridField7.Appearance.Cell.WordWrap = true;
+            this.pivotGridField7.Appearance.FieldHeader.WordWrap = true;
             this.pivotGridField7.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea;
             this.pivotGridField7.AreaIndex = 1;
+            this.pivotGridField7.Caption = "Country";
             this.pivotGridField7.FieldName = "countryName";
             this.pivotGridField7.Name = "pivotGridField7";
             this.pivotGridField7.Options.ShowGrandTotal = false;
             this.pivotGridField7.Options.ShowTotals = false;
             this.pivotGridField7.TotalsVisibility = DevExpress.XtraPivotGrid.PivotTotalsVisibility.None;
             this.pivotGridField7.Width = 90;
-            // 
-            // pivotGridField6
-            // 
-            this.pivotGridField6.Appearance.Cell.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold);
-            this.pivotGridField6.Appearance.Cell.ForeColor = System.Drawing.Color.Maroon;
-            this.pivotGridField6.Appearance.Cell.TextHorizontalAlignment = DevExpress.Utils.HorzAlignment.Near;
-            this.pivotGridField6.Appearance.Cell.TextVerticalAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.pivotGridField6.Appearance.Cell.WordWrap = true;
-            this.pivotGridField6.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea;
-            this.pivotGridField6.AreaIndex = 2;
-            this.pivotGridField6.FieldName = "departmentName";
-            this.pivotGridField6.Name = "pivotGridField6";
-            this.pivotGridField6.Options.ShowGrandTotal = false;
-            this.pivotGridField6.Options.ShowTotals = false;
-            this.pivotGridField6.TotalsVisibility = DevExpress.XtraPivotGrid.PivotTotalsVisibility.None;
-            this.pivotGridField6.Width = 150;
             // 
             // pivotGridField5
             // 
@@ -187,14 +180,34 @@
             this.pivotGridField5.Appearance.Cell.TextHorizontalAlignment = DevExpress.Utils.HorzAlignment.Near;
             this.pivotGridField5.Appearance.Cell.TextVerticalAlignment = DevExpress.Utils.VertAlignment.Center;
             this.pivotGridField5.Appearance.Cell.WordWrap = true;
+            this.pivotGridField5.Appearance.FieldHeader.WordWrap = true;
             this.pivotGridField5.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea;
-            this.pivotGridField5.AreaIndex = 3;
+            this.pivotGridField5.AreaIndex = 2;
+            this.pivotGridField5.Caption = "Branch";
             this.pivotGridField5.FieldName = "branchName";
             this.pivotGridField5.Name = "pivotGridField5";
             this.pivotGridField5.Options.ShowGrandTotal = false;
             this.pivotGridField5.Options.ShowTotals = false;
             this.pivotGridField5.TotalsVisibility = DevExpress.XtraPivotGrid.PivotTotalsVisibility.None;
             this.pivotGridField5.Width = 85;
+            // 
+            // pivotGridField6
+            // 
+            this.pivotGridField6.Appearance.Cell.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold);
+            this.pivotGridField6.Appearance.Cell.ForeColor = System.Drawing.Color.Maroon;
+            this.pivotGridField6.Appearance.Cell.TextHorizontalAlignment = DevExpress.Utils.HorzAlignment.Near;
+            this.pivotGridField6.Appearance.Cell.TextVerticalAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.pivotGridField6.Appearance.Cell.WordWrap = true;
+            this.pivotGridField6.Appearance.FieldHeader.WordWrap = true;
+            this.pivotGridField6.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea;
+            this.pivotGridField6.AreaIndex = 3;
+            this.pivotGridField6.Caption = "Department";
+            this.pivotGridField6.FieldName = "departmentName";
+            this.pivotGridField6.Name = "pivotGridField6";
+            this.pivotGridField6.Options.ShowGrandTotal = false;
+            this.pivotGridField6.Options.ShowTotals = false;
+            this.pivotGridField6.TotalsVisibility = DevExpress.XtraPivotGrid.PivotTotalsVisibility.None;
+            this.pivotGridField6.Width = 150;
             // 
             // pivotGridField2
             // 
@@ -203,8 +216,10 @@
             this.pivotGridField2.Appearance.Cell.TextHorizontalAlignment = DevExpress.Utils.HorzAlignment.Near;
             this.pivotGridField2.Appearance.Cell.TextVerticalAlignment = DevExpress.Utils.VertAlignment.Center;
             this.pivotGridField2.Appearance.Cell.WordWrap = true;
+            this.pivotGridField2.Appearance.FieldHeader.WordWrap = true;
             this.pivotGridField2.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea;
             this.pivotGridField2.AreaIndex = 4;
+            this.pivotGridField2.Caption = "Basic Amount";
             this.pivotGridField2.FieldName = "basicAmount";
             this.pivotGridField2.Name = "pivotGridField2";
             this.pivotGridField2.Options.ShowGrandTotal = false;
@@ -219,8 +234,11 @@
             this.pivotGridField12.Appearance.Cell.TextHorizontalAlignment = DevExpress.Utils.HorzAlignment.Near;
             this.pivotGridField12.Appearance.Cell.TextVerticalAlignment = DevExpress.Utils.VertAlignment.Center;
             this.pivotGridField12.Appearance.Cell.WordWrap = true;
+            this.pivotGridField12.Appearance.FieldHeader.WordWrap = true;
+            this.pivotGridField12.Appearance.FieldValue.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Bold);
+            this.pivotGridField12.Appearance.FieldValue.WordWrap = true;
             this.pivotGridField12.Area = DevExpress.XtraPivotGrid.PivotArea.ColumnArea;
-            this.pivotGridField12.AreaIndex = 0;
+            this.pivotGridField12.AreaIndex = 1;
             this.pivotGridField12.Caption = "is Tax.";
             this.pivotGridField12.CustomTotals.AddRange(new DevExpress.XtraPivotGrid.PivotGridCustomTotalBase[] {
             xrPivotGridCustomTotal1});
@@ -236,8 +254,10 @@
             this.pivotGridField3.Appearance.Cell.TextHorizontalAlignment = DevExpress.Utils.HorzAlignment.Near;
             this.pivotGridField3.Appearance.Cell.TextVerticalAlignment = DevExpress.Utils.VertAlignment.Center;
             this.pivotGridField3.Appearance.Cell.WordWrap = true;
+            this.pivotGridField3.Appearance.FieldValue.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Bold);
+            this.pivotGridField3.Appearance.FieldValue.WordWrap = true;
             this.pivotGridField3.Area = DevExpress.XtraPivotGrid.PivotArea.ColumnArea;
-            this.pivotGridField3.AreaIndex = 1;
+            this.pivotGridField3.AreaIndex = 2;
             this.pivotGridField3.FieldName = "edName";
             this.pivotGridField3.Name = "pivotGridField3";
             this.pivotGridField3.Options.ShowGrandTotal = false;
@@ -251,27 +271,14 @@
             this.pivotGridField4.Appearance.Cell.TextHorizontalAlignment = DevExpress.Utils.HorzAlignment.Near;
             this.pivotGridField4.Appearance.Cell.TextVerticalAlignment = DevExpress.Utils.VertAlignment.Center;
             this.pivotGridField4.Appearance.Cell.WordWrap = true;
+            this.pivotGridField4.Appearance.CustomTotalCell.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold);
+            this.pivotGridField4.Appearance.CustomTotalCell.ForeColor = System.Drawing.Color.Maroon;
             this.pivotGridField4.Area = DevExpress.XtraPivotGrid.PivotArea.DataArea;
             this.pivotGridField4.AreaIndex = 0;
             this.pivotGridField4.FieldName = "edAmount";
             this.pivotGridField4.Name = "pivotGridField4";
             this.pivotGridField4.Options.ShowGrandTotal = false;
             this.pivotGridField4.Width = 70;
-            // 
-            // pivotGridField8
-            // 
-            this.pivotGridField8.Appearance.Cell.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold);
-            this.pivotGridField8.Appearance.Cell.ForeColor = System.Drawing.Color.Maroon;
-            this.pivotGridField8.Appearance.Cell.TextHorizontalAlignment = DevExpress.Utils.HorzAlignment.Near;
-            this.pivotGridField8.Appearance.Cell.TextVerticalAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.pivotGridField8.Appearance.Cell.WordWrap = true;
-            this.pivotGridField8.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea;
-            this.pivotGridField8.AreaIndex = 5;
-            this.pivotGridField8.FieldName = "netSalary";
-            this.pivotGridField8.Name = "pivotGridField8";
-            this.pivotGridField8.Options.ShowGrandTotal = false;
-            this.pivotGridField8.Options.ShowTotals = false;
-            this.pivotGridField8.Width = 65;
             // 
             // pivotGridField9
             // 
@@ -280,8 +287,10 @@
             this.pivotGridField9.Appearance.Cell.TextHorizontalAlignment = DevExpress.Utils.HorzAlignment.Near;
             this.pivotGridField9.Appearance.Cell.TextVerticalAlignment = DevExpress.Utils.VertAlignment.Center;
             this.pivotGridField9.Appearance.Cell.WordWrap = true;
+            this.pivotGridField9.Appearance.FieldHeader.WordWrap = true;
             this.pivotGridField9.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea;
-            this.pivotGridField9.AreaIndex = 6;
+            this.pivotGridField9.AreaIndex = 5;
+            this.pivotGridField9.Caption = "Employee Social Security";
             this.pivotGridField9.EmptyValueText = "NON";
             this.pivotGridField9.FieldName = "essAmount";
             this.pivotGridField9.Name = "pivotGridField9";
@@ -297,13 +306,40 @@
             this.pivotGridField13.Appearance.Cell.TextHorizontalAlignment = DevExpress.Utils.HorzAlignment.Near;
             this.pivotGridField13.Appearance.Cell.TextVerticalAlignment = DevExpress.Utils.VertAlignment.Center;
             this.pivotGridField13.Appearance.Cell.WordWrap = true;
+            this.pivotGridField13.Appearance.FieldHeader.WordWrap = true;
             this.pivotGridField13.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea;
-            this.pivotGridField13.AreaIndex = 7;
+            this.pivotGridField13.AreaIndex = 6;
+            this.pivotGridField13.Caption = "Company Social Security";
             this.pivotGridField13.FieldName = "cssAmount";
             this.pivotGridField13.Name = "pivotGridField13";
             this.pivotGridField13.Options.ShowGrandTotal = false;
             this.pivotGridField13.Options.ShowTotals = false;
             this.pivotGridField13.Width = 60;
+            // 
+            // pivotGridField8
+            // 
+            this.pivotGridField8.Appearance.Cell.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold);
+            this.pivotGridField8.Appearance.Cell.ForeColor = System.Drawing.Color.Maroon;
+            this.pivotGridField8.Appearance.Cell.TextHorizontalAlignment = DevExpress.Utils.HorzAlignment.Near;
+            this.pivotGridField8.Appearance.Cell.TextVerticalAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.pivotGridField8.Appearance.Cell.WordWrap = true;
+            this.pivotGridField8.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea;
+            this.pivotGridField8.AreaIndex = 7;
+            this.pivotGridField8.Caption = "Net";
+            this.pivotGridField8.FieldName = "netSalary";
+            this.pivotGridField8.Name = "pivotGridField8";
+            this.pivotGridField8.Options.ShowGrandTotal = false;
+            this.pivotGridField8.Options.ShowTotals = false;
+            this.pivotGridField8.Width = 65;
+            // 
+            // pivotGridField10
+            // 
+            this.pivotGridField10.Appearance.FieldHeader.WordWrap = true;
+            this.pivotGridField10.Appearance.FieldValue.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Bold);
+            this.pivotGridField10.Area = DevExpress.XtraPivotGrid.PivotArea.ColumnArea;
+            this.pivotGridField10.AreaIndex = 0;
+            this.pivotGridField10.FieldName = "edType";
+            this.pivotGridField10.Name = "pivotGridField10";
             // 
             // TopMargin
             // 
@@ -681,9 +717,9 @@
             this.DataSource = this.objectDataSource1;
             this.Landscape = true;
             this.Margins = new System.Drawing.Printing.Margins(4, 0, 6, 0);
-            this.PageHeight = 929;
-            this.PageWidth = 1268;
-            this.PaperKind = System.Drawing.Printing.PaperKind.A4Extra;
+            this.PageHeight = 1169;
+            this.PageWidth = 1654;
+            this.PaperKind = System.Drawing.Printing.PaperKind.A3;
             this.Parameters.AddRange(new DevExpress.XtraReports.Parameters.Parameter[] {
             this.Department,
             this.Branch,
@@ -758,5 +794,6 @@
         private DevExpress.XtraReports.UI.XRLabel xrLabel26;
         private DevExpress.XtraReports.Parameters.Parameter User;
         private DevExpress.XtraReports.UI.PageHeaderBand PageHeader;
+        private DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField pivotGridField10;
     }
 }

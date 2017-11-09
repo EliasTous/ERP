@@ -28,13 +28,10 @@ namespace Reports
             else if (e.Field.FieldName == "isTaxable" && Convert.ToBoolean(e.Value) == false)
                 e.DisplayText = "Non Taxable";
 
-            //if (e.Field.FieldName=="edAmount" && e.ValueType== DevExpress.XtraPivotGrid.PivotGridValueType.CustomTotal)
-            //{
-            //    if (Convert.ToBoolean(e.GetFieldValue(pivotGridField12, 0)) == true)
-            //    {
-            //        e.DisplayText += (decimal)Convert.ToDecimal(e.GetFieldValue(pivotGridField2, 0));
-            //    }
-            //}
+            if (e.Field.FieldName == "edType" && Convert.ToInt16(e.Value) == 1)
+                e.DisplayText = "Entitlements";
+            else if (e.Field.FieldName == "edType" && Convert.ToInt16(e.Value) == 2)
+                e.DisplayText = "Deductions";
         }
     }
 }
