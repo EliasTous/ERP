@@ -105,6 +105,11 @@
         }
         App.leaveRequest1_calDays.setValue(parseInt(moment(App.leaveRequest1_endDate.getValue()).diff(moment(App.leaveRequest1_startDate.getValue()), 'days')) + 1);
     }
+    function onHourFocusLeave(context)
+
+    {
+        if (context == null || context.column == null) return false; var rec = context.column.record; if (parseInt(rec.data['workingHours']) < parseInt(context.value)) { context.setValue(rec.data['workingHours']); } if (1 > context.value) { context.setValue(1); } rec.set('leaveHours', context.value); rec.commit(); CalcSum();
+    }
 </script>
 <ext:Hidden ID="textMatch" runat="server" Text="<%$ Resources:Common , MatchFound %>" />
 <ext:Hidden ID="textLoadFailed" runat="server" Text="<%$ Resources:Common , LoadFailed %>" />
@@ -423,7 +428,7 @@
                                                     <AfterLayoutAnimation Handler=" this.maxValue=this.getWidgetRecord().data['workingHours'];" />
                                                     --%>
                                                     <%--<DirtyChange Handler="var rec = this.column.record; rec.set('leaveHours',this.value); rec.commit(); CalcSum(); " />--%>
-                                                    <FocusLeave Handler=" var rec = this.column.record;  if(rec.data['workingHours']<this.value){this.setValue(rec.data['workingHours']); }if(1>this.value){this.setValue(1);}  rec.set('leaveHours',this.value); rec.commit(); CalcSum();" />
+                                                    <FocusLeave Handler="onHourFocusLeave(this);" />
                                                 </Listeners>
                                             </ext:NumberField>
                                         </Component>

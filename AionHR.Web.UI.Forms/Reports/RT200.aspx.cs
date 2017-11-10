@@ -221,7 +221,7 @@ namespace AionHR.Web.UI.Forms.Reports
                 }
             }
 
-            var d = resp.Items.GroupBy(x => x.employeeName.reference);
+            var d = resp.Items.GroupBy(x =>  x.employeeName.reference );
             CurrentPayrollLineCollection lines = new CurrentPayrollLineCollection();
             HashSet<CurrentEntitlementDeduction> ens = new HashSet<CurrentEntitlementDeduction>(new CurrentEntitlementDeductionComparer());
             HashSet<CurrentEntitlementDeduction> des = new HashSet<CurrentEntitlementDeduction>(new CurrentEntitlementDeductionComparer());
@@ -252,10 +252,10 @@ namespace AionHR.Web.UI.Forms.Reports
                 s.Add(p);
             }
 
-            //CurrentPayroll h = new CurrentPayroll();
-            CurrentPayrollV1 h = new CurrentPayrollV1();
-            h.DataSource = resp.Items;
-            //h.Parameters["columnCount"].Value = ens.Count + des.Count; 
+            CurrentPayroll h = new CurrentPayroll();
+            //CurrentPayrollV1 h = new CurrentPayrollV1();
+            h.DataSource = s;
+            h.Parameters["columnCount"].Value = ens.Count + des.Count;
             h.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;
             h.RightToLeftLayout = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeftLayout.Yes : DevExpress.XtraReports.UI.RightToLeftLayout.No;
 

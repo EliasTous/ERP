@@ -63,7 +63,7 @@
                         point: {
                             events: {
                                 legendItemClick: function (e) {
-                                    
+
                                     clickActiveHightChartPieSeries(e.target.options.index);
                                     return false;
                                 }
@@ -83,7 +83,8 @@
                 series: [{
                     data: dataObject
                 }]
-            })
+            });
+
         };
         var clickActiveHightChartPieSeries = function (val) {
             if (val == 0) {
@@ -243,151 +244,237 @@
         }
 
 
-     //   var drawLeaveHightChartPie = function (dataObject, rtl) {
-     //       // Build the chart
+        // Second Tab
 
-     //       Highcharts.chart('leaveHighChart', {
-     //           chart: {
-     //               plotBackgroundColor: null,
-     //               plotBorderWidth: null,
-     //               plotShadow: false,
-     //               type: 'pie'
-     //           },
-     //           title: {
-     //               text: '',
-     //               style: {
-     //                   display: 'none'
-     //               }
-     //           },
-     //           legend: {
-     //               itemStyle: { fontSize: '11px' },
-     //               itemDistance: 5,
-     //               useHTML: rtl,
-     //               rtl: rtl
+        var Load = function (id) {
+            if (id == "pnlDepartmentCount") {
+                Ext.net.Mask.show({ el: App.att.id });
+                App.Store1.reload({
+                    callback: function () {
+                        Ext.net.Mask.hide();
+                    }
+                });
+            }
 
+            if(id == "pnlRate")
+            {
+                Ext.net.Mask.show({ el: App.pnlRate.id });
+                App.LocalRateStore.reload({
+                    callback: function () {
+                        Ext.net.Mask.hide();
+                    }
+                });
+                
 
-
-     //           },
-     //           tooltip: {
-     //               enabled: false
-     //           },
-     //           subtitle: {
-     //               text: '',
-     //               style: {
-     //                   display: 'none'
-     //               }
-     //           },
-     //           plotOptions: {
-     //               pie: {
-
-     //                   showInLegend: true,
-     //                   point: {
-     //                       events: {
-     //                           legendItemClick: function (e) {
-     //                               clickLeaveHightChartPieSeries(e.target.options.index);
-     //                               return false;
-     //                           }
-     //                       }
-     //                   }
-     //               },
-     //               series: {
-     //                   dataLabels: {
-     //                       enabled: true,
-     //                       formatter: function () {
-     //                           return this.point.y;
-     //                       },
-     //                       distance: -30,
-
-     //                   }
-     //               }
-     //           },
-     //           series: [{
-     //               data: dataObject
-     //           }]
-     //       })
-     //   };
-     //   var clickLeaveHightChartPieSeries = function (val) {
-     //       if (val == 0) {
-     //           // App.lateWindow.show();
-     //       }
-     //       else {
-     //           //  App.lateWindow.show();
-
-     //       }
-     //   }
-
-     //var drawPaidUnPaidHightChartPie = function (dataObject, rtl) {
-     //       // Build the chart
-
-     //    Highcharts.chart('paidUnpaidHighChart', {
-     //           chart: {
-     //               plotBackgroundColor: null,
-     //               plotBorderWidth: null,
-     //               plotShadow: false,
-     //               type: 'pie'
-     //           },
-     //           title: {
-     //               text: '',
-     //               style: {
-     //                   display: 'none'
-     //               }
-     //           },
-     //           legend: {
-     //               itemStyle: { fontSize: '11px' },
-     //               itemDistance: 5,
-     //               useHTML: rtl,
-     //               rtl: rtl
+            }
+        }
 
 
 
-     //           },
-     //           tooltip: {
-     //               enabled: false
-     //           },
-     //           subtitle: {
-     //               text: '',
-     //               style: {
-     //                   display: 'none'
-     //               }
-     //           },
-     //           plotOptions: {
-     //               pie: {
 
-     //                   showInLegend: true,
-     //                   point: {
-     //                       events: {
-     //                           legendItemClick: function (e) {
-     //                               clickPaidUnPaidHightChartPieSeries(e.target.options.index);
-     //                               return false;
-     //                           }
-     //                       }
-     //                   }
-     //               },
-     //               series: {
-     //                   dataLabels: {
-     //                       enabled: true,
-     //                       formatter: function () {
-     //                           return this.point.y;
-     //                       },
-     //                       distance: -30,
+        var drawDepartmentsCountHightChartColumn = function (IN, OUT, objectIn, objectOut, dataCategoriesObject, rtl) {
+            // Build the chart  deparmentsCountHighChart
+            Highcharts.chart('deparmentsCountHighChart', {
+                chart: {
+                    type: 'column'
+                },
+                title: {
+                    text: '',
+                    style: {
+                        display: 'none'
+                    }
+                },
+                subtitle: {
+                    text: ''
+                },
+                xAxis: {
+                    categories: dataCategoriesObject,
+                    reversed: rtl,
+                    title: {
+                        text: null
+                    },
+                    labels: {
+                        useHTML: Highcharts.hasBidiBug,
+                        useHTML: rtl,
+                        rotation: -45,
+                        style: {
+                            fontSize: '8px',
+                            fontFamily: 'Verdana, sans-serif'
+                        }
+                    }
+                },
+                yAxis: {
+                    min: 0,
+                    opposite: rtl,
+                    title: { text: null }
 
-     //                   }
-     //               }
-     //           },
-     //           series: [{
-     //               data: dataObject
-     //           }]
-     //       })
-     //   };
-     //var clickPaidUnPaidHightChartPieSeries = function (val) {
-     //       if (val == 0) {
-     //           // App.lateWindow.show();
-     //       }
-     //       else {
-     //           //  App.lateWindow.show();
+                },
+                tooltip: {
+                    useHTML: true
+                    
+                },
+                plotOptions: {
+                    bar: {
+                        dataLabels: {
+                            enabled: true
+                        }
+                    }
+                },
+                legend: {
 
-     //       }
-     //   }
+                    useHTML: rtl,
+                    rtl: rtl
+                },
+                credits: {
+                    enabled: false
+                },
+                series: [{
+                    name: IN,
+                    data: objectIn
+                }, {
+                    name: OUT,
+                    data: objectOut
+                }]
+            });
+
+
+        };
+
+        var drawMinLocalRateCountHightChartColumn = function ( objectValues, dataCategoriesObject, rtl) {
+            // Build the chart  deparmentsCountHighChart
+            Highcharts.chart('localRateCountHighChart', {
+                chart: {
+                    type: 'column'
+                },
+                title: {
+                    text: '',
+                    style: {
+                        display: 'none'
+                    }
+                },
+                subtitle: {
+                    text: ''
+                },
+                xAxis: {
+                    categories: dataCategoriesObject,
+                    reversed: rtl,
+                    title: {
+                        text: null
+                    },
+                    labels: {
+                        useHTML: Highcharts.hasBidiBug,
+                        useHTML: rtl
+                     
+                    }
+                },
+                yAxis: {
+                    min: 0,
+                    opposite: rtl,
+                   
+                    title: { text: null }
+                    
+
+                },
+                tooltip: {
+                    useHTML: true,
+                    formatter: function () {
+                        return this.x + '</b> : <b>' + this.y;
+                    }
+                },
+                plotOptions: {
+                    bar: {
+                        dataLabels: {
+                            enabled: true
+                        }
+                    }
+                },
+                legend: {
+                    enabled:false,
+                    useHTML: rtl,
+                    rtl: rtl
+                    
+                },
+                credits: {
+                    enabled: false
+                },
+                series: [{
+                
+                    data: objectValues
+                }]
+            });
+
+
+        };
+
+
+        var drawLocalCountHightChartColumn = function ( objectValues, dataCategoriesObject, rtl) {
+            // Build the chart  deparmentsCountHighChart
+            Highcharts.chart('localCountHighChart', {
+                chart: {
+                    type: 'column'
+                },
+                title: {
+                    text: '',
+                    style: {
+                        display: 'none'
+                    }
+                },
+                subtitle: {
+                    text: ''
+                },
+                xAxis: {
+                    categories: dataCategoriesObject,
+                    reversed: rtl,
+                    title: {
+                        text: null
+                    },
+                    labels: {
+                        useHTML: Highcharts.hasBidiBug,
+                        useHTML: rtl
+                       
+                    }
+                },
+                yAxis: {
+                    min: 0,
+                    opposite: rtl,
+                    title: { text: null }
+
+                },
+                tooltip: {
+                    useHTML: true,
+                    formatter: function () {
+                        return this.x + '</b> : <b>' + this.y;
+                    }
+                },
+                plotOptions: {
+                    bar: {
+                        dataLabels: {
+                            enabled: true
+                        }
+                    }
+                },
+                legend: {
+                    enabled: false,
+                    useHTML: rtl,
+                    rtl: rtl
+                },
+                credits: {
+                    enabled: false
+                },
+                series: [{
+                 
+                    data: objectValues
+                }]
+            });
+
+
+        };
+
+
+
+        //
+
+
 
         var tipRendererActive = function (toolTip, record, context) {
             var total = 0;
@@ -549,12 +636,12 @@
                 //Not Chained
 
                 App.activeStore.reload();
-                App.Store1.reload();
+                // App.Store1.reload();
 
                 App.LeaveRequestsStore.reload();
                 App.LoansStore.reload();
                 App.OverDueStore.reload();
-                App.LocalRateStore.reload();
+               // App.LocalRateStore.reload();
                 /*Chained*/
 
                 //App.activeStore.reload(
@@ -802,6 +889,45 @@
             </Model>
 
         </ext:Store>
+
+        <ext:Store ID="Store1" OnReadData="departments2Count_ReadData"
+            runat="server">
+            <Model>
+                <ext:Model runat="server">
+                    <Fields>
+                        <ext:ModelField Name="departmentName" />
+                        <ext:ModelField Name="checkedOut" />
+                        <ext:ModelField Name="checkedIn" />
+                    </Fields>
+                </ext:Model>
+            </Model>
+        </ext:Store>
+
+        <ext:Store ID="LocalRateStore" OnReadData="LocalRateStore_ReadData"
+            runat="server">
+            <Model>
+                <ext:Model runat="server">
+                    <Fields>
+                        <ext:ModelField Name="category" />
+                        <ext:ModelField Name="number" />
+
+                    </Fields>
+                </ext:Model>
+            </Model>
+        </ext:Store>
+        <ext:Store ID="LocalCountStore"
+            runat="server">
+            <Model>
+                <ext:Model runat="server">
+                    <Fields>
+                        <ext:ModelField Name="category" />
+                        <ext:ModelField Name="number" />
+
+                    </Fields>
+                </ext:Model>
+            </Model>
+        </ext:Store>
+
         <ext:Viewport ID="Viewport1" runat="server" Layout="FitLayout">
 
             <Items>
@@ -870,7 +996,7 @@
                                             </LayoutConfig>
                                             <Items>
 
-                                                <ext:TabPanel ID="att" Plain="true" Flex="1" Layout="FitLayout" StyleHtmlCls="withBackground" BodyCls="withBackground topper" runat="server" PaddingSpec="0 0 0 0" StyleSpec="border-radius: 0px; " MinHeight="250" MarginSpec="0 0 5 0">
+                                                <ext:TabPanel ID="att" Plain="true" Flex="1" Layout="FitLayout" StyleHtmlCls="withBackground" BodyCls="withBackground topper" runat="server" PaddingSpec="0 0 0 0" StyleSpec="border-radius: 0px; " MinHeight="250" MarginSpec="0 0 5 0" DeferredRender="false">
                                                     <Items>
                                                         <ext:Panel runat="server" Title="<%$Resources:Today %>" StyleSpec=" border: 1px solid #add2ed !important;" Layout="HBoxLayout" Flex="1">
                                                             <Defaults>
@@ -900,7 +1026,7 @@
                                                                 </ext:Panel>
 
 
-                                                           
+
 
 
 
@@ -1017,7 +1143,7 @@
                                                                 </ext:Panel>--%>
 
 
-<%--                                                                <ext:Panel runat="server" Layout="BorderLayout" Flex="1" Hidden="true">
+                                                                <%--                                                                <ext:Panel runat="server" Layout="BorderLayout" Flex="1" Hidden="true">
                                                                     <Items>
                                                                         <ext:PolarChart Region="Center"
                                                                             ID="PolarChart6"
@@ -1121,237 +1247,48 @@
                                                                         <ext:Panel runat="server" Height="10" />
                                                                     </Items>
                                                                 </ext:Panel>
---%>
-
-
+                                                                --%>
                                                             </Items>
 
                                                         </ext:Panel>
-                                                        <ext:Panel runat="server" AutoScroll="false" ID="barPanel" Title="<%$Resources: DepartmentsCount %>" StyleSpec=" border: 1px solid #add2ed !important;">
-                                                            <Listeners>
-                                                                <AfterLayout Handler=" " />
-                                                            </Listeners>
+
+
+
+                                                        <ext:Panel ID="pnlDepartmentCount" AutoUpdateLayout="true" runat="server" Title="<%$Resources: DepartmentsCount %>" StyleSpec=" border: 1px solid #add2ed !important;" Layout="HBoxLayout" Flex="1">
+                                                            <Defaults>
+                                                                <ext:Parameter Name="margin" Value="0 5 0 0" Mode="Value" />
+                                                            </Defaults>
+                                                            <LayoutConfig>
+                                                                <ext:HBoxLayoutConfig Align="Stretch" />
+                                                            </LayoutConfig>
                                                             <Items>
-                                                                <ext:CartesianChart
-                                                                    ID="CartesianChart1"
+                                                                <ext:Panel AutoUpdateLayout="true"
                                                                     runat="server"
-                                                                    FlipXY="false"
-                                                                    AutoScroll="true">
-                                                                    <Store>
-                                                                        <ext:Store ID="Store1" OnReadData="departments2Count_ReadData"
-                                                                            runat="server">
-                                                                            <Model>
-                                                                                <ext:Model runat="server">
-                                                                                    <Fields>
-                                                                                        <ext:ModelField Name="departmentName" />
-                                                                                        <ext:ModelField Name="checkedOut" />
-                                                                                        <ext:ModelField Name="checkedIn" />
-                                                                                    </Fields>
-                                                                                </ext:Model>
-                                                                            </Model>
-                                                                        </ext:Store>
-                                                                    </Store>
-                                                                    <LegendConfig runat="server" Dock="Bottom" />
-
-                                                                    <AnimationConfig Duration="500" Easing="EaseOut" />
-
-                                                                    <Items>
-                                                                    </Items>
-                                                                    <Axes>
-                                                                        <%--   <ext:NumericAxis
-                                                                            Fields="Count"
-                                                                            Position="Left" 
-                                                                            Grid="true"
-                                                                            >
-                                                                            <Renderer Handler="return label.toFixed(0);" />
-                                                                        </ext:NumericAxis>--%>
-
-                                                                        <ext:CategoryAxis
-                                                                            Fields="departmentName"
-                                                                            Position="Bottom">
-                                                                            <Label RotationDegrees="-45" />
-                                                                        </ext:CategoryAxis>
-                                                                    </Axes>
-
-                                                                    <Series>
-                                                                        <ext:BarSeries
-                                                                            XField="departmentName" Stacked="true"
-                                                                            YField="checkedIn,checkedOut" Titles="In,Out">
-
-                                                                            <StyleSpec>
-
-                                                                                <ext:SeriesSprite Opacity="0.8" BarWidth="50" MinBarWidth="50" MinGapWidth="10" BaseColor="#33ABAA" />
-                                                                            </StyleSpec>
-                                                                            <%--<Renderer Handler="return {fill:'rgb(51, 171, 170)'};" />--%>
-                                                                            <Tooltip runat="server">
-                                                                                <Renderer Handler="var browser = context.series.getTitle()[Ext.Array.indexOf(context.series.getYField(), context.field)]; toolTip.setHtml(browser + ' for ' + record.get('departmentName') + ': ' + record.get(context.field));" />
-                                                                            </Tooltip>
-                                                                            <HighlightConfig>
-                                                                                <ext:Sprite FillStyle="rgba(69, 143, 210, 1.0)" StrokeStyle="black" LineWidth="2" />
-                                                                            </HighlightConfig>
-                                                                            <%--<Tooltip runat="server" TrackMouse="true">
-                                                                                <Renderer Handler="toolTip.setHtml(record.get('Department') + ': ' + record.get('In')+' /'+ parseInt(parseInt(record.get('In'))+parseInt(record.get('Out' ))));" />
-                                                                            </Tooltip>--%>
-
-                                                                            <Label
-                                                                                Display="Under" Field="checkedOut,checkedIn" Orientation="Horizontal">
-                                                                                <Renderer Fn="suppressZeros" />
-                                                                            </Label>
-
-                                                                        </ext:BarSeries>
-
-                                                                    </Series>
-                                                                </ext:CartesianChart>
+                                                                    Header="false" ID="deparmentsCountHighChart" ClientIDMode="Static" PaddingSpec="5 5 5 5"
+                                                                    Layout="FitLayout" Flex="1">
+                                                                </ext:Panel>
                                                             </Items>
                                                         </ext:Panel>
 
-                                                        <ext:Panel runat="server" AutoScroll="true" ID="Panel1" Layout="FitLayout" Title="<%$Resources: LocalRate %>" StyleSpec=" border: 1px solid #add2ed !important;">
-                                                            <Listeners>
-                                                                <AfterLayout Handler=" " />
-
-                                                            </Listeners>
+                                                        <ext:Panel runat="server" AutoUpdateLayout="true" AutoScroll="true" ID="pnlRate" Title="<%$Resources: LocalRate %>" StyleSpec=" border: 1px solid #add2ed !important;" Layout="HBoxLayout" Flex="1">
+                                                            <Defaults>
+                                                                <ext:Parameter Name="margin" Value="0 5 0 0" Mode="Value" />
+                                                            </Defaults>
+                                                            <LayoutConfig>
+                                                                <ext:HBoxLayoutConfig Align="Stretch" />
+                                                            </LayoutConfig>
 
                                                             <Items>
-                                                                <ext:Panel runat="server" Layout="HBoxLayout">
-                                                                    <LayoutConfig>
-                                                                        <ext:HBoxLayoutConfig Align="Stretch" />
-                                                                    </LayoutConfig>
-                                                                    <Items>
-                                                                        <ext:Panel runat="server" Flex="1">
 
-                                                                            <Items>
-                                                                                <ext:CartesianChart
-                                                                                    ID="LocalRateChart"
-                                                                                    runat="server"
-                                                                                    FlipXY="false"
-                                                                                    AutoScroll="true">
-                                                                                    <Store>
-                                                                                        <ext:Store ID="LocalRateStore" OnReadData="LocalRateStore_ReadData"
-                                                                                            runat="server">
-                                                                                            <Model>
-                                                                                                <ext:Model runat="server">
-                                                                                                    <Fields>
-                                                                                                        <ext:ModelField Name="category" />
-                                                                                                        <ext:ModelField Name="number" />
-
-                                                                                                    </Fields>
-                                                                                                </ext:Model>
-                                                                                            </Model>
-                                                                                        </ext:Store>
-                                                                                    </Store>
-
-
-                                                                                    <AnimationConfig Duration="500" Easing="EaseOut" />
-
-                                                                                    <Items>
-                                                                                    </Items>
-                                                                                    <Axes>
-                                                                                        <%--   <ext:NumericAxis
-                                                                            Fields="Count"
-                                                                            Position="Left" 
-                                                                            Grid="true"
-                                                                            >
-                                                                            <Renderer Handler="return label.toFixed(0);" />
-                                                                        </ext:NumericAxis>--%>
-
-                                                                                        <ext:CategoryAxis
-                                                                                            Fields="category"
-                                                                                            Position="Bottom">
-                                                                                        </ext:CategoryAxis>
-                                                                                    </Axes>
-
-                                                                                    <Series>
-                                                                                        <ext:BarSeries
-                                                                                            XField="category"
-                                                                                            YField="number">
-
-                                                                                            <StyleSpec>
-
-                                                                                                <ext:SeriesSprite Opacity="0.8" BarWidth="50" MinBarWidth="50" MinGapWidth="10" BaseColor="#33ABAA" />
-                                                                                            </StyleSpec>
-                                                                                            <%--<Renderer Handler="return {fill:'rgb(51, 171, 170)'};" />--%>
-                                                                                            <Tooltip runat="server">
-                                                                                                <Renderer Handler="var browser = context.series.getTitle()[Ext.Array.indexOf(context.series.getYField(), context.field)]; toolTip.setHtml(browser + ' for ' + record.get('category') + ': ' + record.get(context.field));" />
-                                                                                            </Tooltip>
-                                                                                            <HighlightConfig>
-                                                                                                <ext:Sprite FillStyle="rgba(69, 143, 210, 1.0)" StrokeStyle="black" LineWidth="2" />
-                                                                                            </HighlightConfig>
-                                                                                            <Tooltip runat="server" TrackMouse="true">
-                                                                                                <Renderer Handler="toolTip.setHtml(record.get('category') + ': '+record.get('number' ));" />
-                                                                                            </Tooltip>
-                                                                                        </ext:BarSeries>
-
-                                                                                    </Series>
-                                                                                </ext:CartesianChart>
-                                                                            </Items>
-                                                                        </ext:Panel>
-                                                                        <ext:Panel runat="server" Flex="1">
-                                                                            <Items>
-                                                                                <ext:CartesianChart
-                                                                                    ID="LocalCount"
-                                                                                    runat="server"
-                                                                                    FlipXY="false"
-                                                                                    AutoScroll="true">
-                                                                                    <Store>
-                                                                                        <ext:Store ID="LocalCountStore"
-                                                                                            runat="server">
-                                                                                            <Model>
-                                                                                                <ext:Model runat="server">
-                                                                                                    <Fields>
-                                                                                                        <ext:ModelField Name="category" />
-                                                                                                        <ext:ModelField Name="number" />
-
-                                                                                                    </Fields>
-                                                                                                </ext:Model>
-                                                                                            </Model>
-                                                                                        </ext:Store>
-                                                                                    </Store>
-
-                                                                                    <AnimationConfig Duration="500" Easing="EaseOut" />
-
-                                                                                    <Items>
-                                                                                    </Items>
-                                                                                    <Axes>
-                                                                                        <%--   <ext:NumericAxis
-                                                                            Fields="Count"
-                                                                            Position="Left" 
-                                                                            Grid="true"
-                                                                            >
-                                                                            <Renderer Handler="return label.toFixed(0);" />
-                                                                        </ext:NumericAxis>--%>
-
-                                                                                        <ext:CategoryAxis
-                                                                                            Fields="category"
-                                                                                            Position="Bottom">
-                                                                                        </ext:CategoryAxis>
-                                                                                    </Axes>
-
-                                                                                    <Series>
-                                                                                        <ext:BarSeries
-                                                                                            XField="category"
-                                                                                            YField="number">
-
-                                                                                            <StyleSpec>
-
-                                                                                                <ext:SeriesSprite Opacity="0.8" BarWidth="50" MinBarWidth="50" MinGapWidth="10" BaseColor="#33ABAA" />
-                                                                                            </StyleSpec>
-                                                                                            <Renderer Handler="return {fill:'rgb(51, 171, 170)'};" />
-                                                                                            <Tooltip runat="server">
-                                                                                                <Renderer Handler="var browser = context.series.getTitle()[Ext.Array.indexOf(context.series.getYField(), context.field)]; toolTip.setHtml(browser + ' for ' + record.get('category') + ': ' + record.get(context.field));" />
-                                                                                            </Tooltip>
-                                                                                            <HighlightConfig>
-                                                                                                <ext:Sprite FillStyle="rgba(69, 143, 210, 1.0)" StrokeStyle="black" LineWidth="2" />
-                                                                                            </HighlightConfig>
-                                                                                            <Tooltip runat="server" TrackMouse="true">
-                                                                                                <Renderer Handler="toolTip.setHtml(record.get('category') + ': ' + record.get('number'));" />
-                                                                                            </Tooltip>
-                                                                                        </ext:BarSeries>
-
-                                                                                    </Series>
-                                                                                </ext:CartesianChart>
-                                                                            </Items>
-                                                                        </ext:Panel>
-                                                                    </Items>
+                                                                  <ext:Panel AutoUpdateLayout="true"
+                                                                    runat="server"
+                                                                    Header="false" ID="localRateCountHighChart" ClientIDMode="Static" PaddingSpec="5 5 5 5"
+                                                                    Layout="FitLayout" Flex="1">
+                                                                </ext:Panel>
+                                                                  <ext:Panel AutoUpdateLayout="true"
+                                                                    runat="server"
+                                                                    Header="false" ID="localCountHighChart" ClientIDMode="Static" PaddingSpec="5 5 5 5"
+                                                                    Layout="FitLayout" Flex="1">
                                                                 </ext:Panel>
 
 
@@ -1425,6 +1362,10 @@
                                                         </ext:GridPanel>
 
                                                     </Items>
+                                                    <Listeners>
+
+                                                        <TabChange Handler="Load(#{att}.activeTab.id);" />
+                                                    </Listeners>
                                                 </ext:TabPanel>
 
                                                 <ext:TabPanel ID="belowt" IDMode="Client" EnableTheming="false" BodyCls="topper" Plain="true" runat="server" Flex="15" PaddingSpec="0 0 0 0" StyleSpec="border-radius: 0px;">

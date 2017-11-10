@@ -248,6 +248,7 @@ namespace AionHR.Web.UI.Forms
             //int z = ACs.Items.Count;
             //X.Call("activeChart", z, count.result.count);
             BindAlerts();
+            //BindDepartmentsCount();
         }
 
         private void BindAlerts()
@@ -299,7 +300,7 @@ namespace AionHR.Web.UI.Forms
             activeChartData.Add(new ChartData() { name = GetLocalResourceObject("Vacation").ToString(), y = dashoard.Items.Where(x => x.itemId == 110).ToList()[0].count, index = 1 });// 110 - Vacations
             activeChartData.Add(new ChartData() { name = GetLocalResourceObject("UnpaidLeaves").ToString(), y = dashoard.Items.Where(x => x.itemId == 111).ToList()[0].count, index = 2 });// 111 - Unpaid leave
             activeChartData.Add(new ChartData() { name = GetLocalResourceObject("LeaveNoExcuse").ToString(), y = dashoard.Items.Where(x => x.itemId == 112).ToList()[0].count, index =3});// 112 - Leave without excuse
-          //  activeChartData.Add(new ChartData() { name = GetLocalResourceObject("BusinessLeave").ToString(), y = dashoard.Items.Where(x => x.itemId == 113).ToList()[0].count, index =4 });// 113 - business leave
+            //activeChartData.Add(new ChartData() { name = GetLocalResourceObject("BusinessLeave").ToString(), y = dashoard.Items.Where(x => x.itemId == 113).ToList()[0].count, index =4 });// 113 - business leave
 
 
             X.Call("drawActiveHightChartPie", JSON.JavaScriptSerialize(activeChartData), rtl ? true : false);
@@ -833,6 +834,12 @@ namespace AionHR.Web.UI.Forms
 
         protected void departments2Count_ReadData(object sender, StoreReadDataEventArgs e)
         {
+            BindDepartmentsCount();
+        }
+
+        private void BindDepartmentsCount()
+        {
+            bool rtl = _systemService.SessionHelper.CheckIfArabicSession();
             ListRequest req = new ListRequest();
             ListResponse<DepartmentActivity> resp = _systemService.ChildGetAll<DepartmentActivity>(req);
             if (!resp.Success)
@@ -841,9 +848,15 @@ namespace AionHR.Web.UI.Forms
                 return;
             }
 
-            Store1.DataSource = resp.Items;
-            Store1.DataBind();
-            X.Call("fixWidth", resp.Items.Count);
+            List<string> listCategories = resp.Items.Select(a => a.departmentName).ToList();
+            List<int> listIn = resp.Items.Select(a => a.checkedIn).ToList();
+            List<int> listOut = resp.Items.Select(a => a.checkedOut).ToList();
+
+
+           // Store1.DataSource = resp.Items;
+           // Store1.DataBind();
+            X.Call("drawDepartmentsCountHightChartColumn", GetLocalResourceObject("In").ToString(), GetLocalResourceObject("Out").ToString(), JSON.JavaScriptSerialize(listIn), JSON.JavaScriptSerialize(listOut), JSON.JavaScriptSerialize(listCategories), rtl ? true : false);
+       
         }
 
         protected void CompletedLoansStore_ReadData(object sender, StoreReadDataEventArgs e)
@@ -901,6 +914,7 @@ namespace AionHR.Web.UI.Forms
 
         protected void LocalRateStore_ReadData(object sender, StoreReadDataEventArgs e)
         {
+            bool rtl = _systemService.SessionHelper.CheckIfArabicSession();
             ActiveAttendanceRequest req = new ActiveAttendanceRequest();
             ListResponse<LocalsRate> resp = _systemService.ChildGetAll<LocalsRate>(req);
             if (!resp.Success)
@@ -914,17 +928,28 @@ namespace AionHR.Web.UI.Forms
             RateObjs.Add(new { category = GetLocalResourceObject("LocalsRate").ToString(), number = resp.Items[0].localsrate });//Should use GetLocalResource(MinLocalsRate) and translate in resources
 
 
+            List<string> listCategories = new List<string>() { GetLocalResourceObject("MinLocalRate").ToString(), GetLocalResourceObject("LocalsRate").ToString() };
+            List<double> listValues = new List<double>() { resp.Items[0].minLocalsRate, resp.Items[0].localsrate };
+          
+            X.Call("drawMinLocalRateCountHightChartColumn", JSON.JavaScriptSerialize(listValues), JSON.JavaScriptSerialize(listCategories), rtl ? true : false);
 
-            LocalRateStore.DataSource = RateObjs;
-            LocalRateStore.DataBind();
+
+            //  LocalRateStore.DataSource = RateObjs;
+            //  LocalRateStore.DataBind();
 
             List<object> CountObjs = new List<object>();
             CountObjs.Add(new { category = GetLocalResourceObject("LocalsCount").ToString(), number = resp.Items[0].localsCount });//here 
-
             CountObjs.Add(new { category = GetLocalResourceObject("empCount").ToString(), number = resp.Items[0].empCount });//here
 
-            LocalCountStore.DataSource = CountObjs;
-            LocalCountStore.DataBind();
+            List<string> listCount = new List<string>() { GetLocalResourceObject("LocalsCount").ToString(), GetLocalResourceObject("empCount").ToString() };
+            List<double> listempValues = new List<double>() { resp.Items[0].localsCount, resp.Items[0].empCount };
+
+            X.Call("drawLocalCountHightChartColumn", JSON.JavaScriptSerialize(listempValues), JSON.JavaScriptSerialize(listCount), rtl ? true : false);
+
+
+
+            //LocalCountStore.DataSource = CountObjs;
+            //LocalCountStore.DataBind();
         }
         [DirectMethod]
         protected void leavePoPUP(object sender, DirectEventArgs e)

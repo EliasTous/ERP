@@ -49,5 +49,9 @@ namespace AionHR.Model.Employees.Profile
         public EmployeeName reportToName { get; set; }
         public int employeeId { get; set; }
 
+        public string employeeRef { get; set; }
+
+        public string reportToRef { get; set; }
+
     }
 }
