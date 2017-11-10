@@ -251,11 +251,11 @@ namespace AionHR.Web.UI.Forms.Reports
                 p.Payrolls = lines;
                 s.Add(p);
             }
-            
-            //CurrentPayroll h = new CurrentPayroll();
-            CurrentPayrollV1 h = new CurrentPayrollV1();
-            h.DataSource = resp.Items;
-            //h.Parameters["columnCount"].Value = ens.Count + des.Count; 
+
+            CurrentPayroll h = new CurrentPayroll();
+            //CurrentPayrollV1 h = new CurrentPayrollV1();
+            h.DataSource = s;
+            h.Parameters["columnCount"].Value = ens.Count + des.Count;
             h.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;
             h.RightToLeftLayout = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeftLayout.Yes : DevExpress.XtraReports.UI.RightToLeftLayout.No;
 
