@@ -52,6 +52,8 @@ namespace AionHR.Model.Company.Structure
         [ApplySecurity]
         public bool? isLeaveAuth { get; set; }
 
+        public short? type { get; set; }
+
 
     }
 }

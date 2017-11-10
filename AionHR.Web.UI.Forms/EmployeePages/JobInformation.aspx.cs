@@ -289,6 +289,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     FillBranch();
                     FillDivision();
                     FillPosition();
+                  
 
                     departmentId.Select(response2.result.departmentId.ToString());
                     branchId.Select(response2.result.branchId.ToString());
@@ -476,14 +477,14 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             FillBranch();
             FillPosition();
             date.SelectedDate = DateTime.Today;
-            RecordRequest req = new RecordRequest();
-            req.RecordID = CurrentEmployee.Text;
-            RecordResponse<EmployeeQuickView> qv = _employeeService.ChildGetRecord<EmployeeQuickView>(req);
-            departmentId.Select(qv.result.departmentName);
-            branchId.Select(qv.result.branchName.ToString());
-            divisionId.Select(qv.result.divisionName.ToString());
-            positionId.Select(qv.result.positionName.ToString());
-            reportToId.Select(qv.result.reportToName.ToString());
+            RecordRequest request = new RecordRequest();
+            request.RecordID = CurrentEmployee.Text;
+            RecordResponse<Employee> qv = _employeeService.Get<Employee>(request);
+            departmentId.Select(qv.result.departmentId);
+            branchId.Select(qv.result.branchId);
+            divisionId.Select(qv.result.divisionId);
+            positionId.Select(qv.result.positionId);
+            reportToId.Select(qv.result.reportToId);
         
             this.EditJobInfoWindow.Show();
         }

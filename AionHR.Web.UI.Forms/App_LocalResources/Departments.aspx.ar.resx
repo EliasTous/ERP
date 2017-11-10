@@ -159,4 +159,10 @@
   <data name="WindowTitle" xml:space="preserve">
     <value>الأقسام</value>
   </data>
+  <data name="administrationType" xml:space="preserve">
+    <value>إدارة</value>
+  </data>
+  <data name="type" xml:space="preserve">
+    <value>النوع</value>
+  </data>
 </root>

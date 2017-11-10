@@ -1,0 +1,477 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="All" xml:space="preserve">
+    <value>الكل</value>
+  </data>
+  <data name="BasicInfoTabEditWindowTitle" xml:space="preserve">
+    <value>معلومات السلفة</value>
+  </data>
+  <data name="ButtonClear" xml:space="preserve">
+    <value>مسح</value>
+  </data>
+  <data name="CaseCommentsTabTitle" xml:space="preserve">
+    <value>التعليقات</value>
+  </data>
+  <data name="EditWindowsTitle" xml:space="preserve">
+    <value>تعديل السلفة</value>
+  </data>
+  <data name="EmptyComment" xml:space="preserve">
+    <value>يرجى إدخال تعليق قبل ضغط زر الإضافة</value>
+  </data>
+  <data name="FieldAmount" xml:space="preserve">
+    <value>المبلغ المستحق</value>
+  </data>
+  <data name="FieldApproved" xml:space="preserve">
+    <value>موافق عليه</value>
+  </data>
+  <data name="FieldBranch" xml:space="preserve">
+    <value>الفرع</value>
+  </data>
+  <data name="FieldCurrencyId" xml:space="preserve">
+    <value>العملة</value>
+  </data>
+  <data name="FieldCurrencyRef" xml:space="preserve">
+    <value>العملة</value>
+  </data>
+  <data name="FieldDate" xml:space="preserve">
+    <value>التاريخ</value>
+  </data>
+  <data name="FieldDeductedAmount" xml:space="preserve">
+    <value>المبلغ المدفوع</value>
+  </data>
+  <data name="FieldDepartment" xml:space="preserve">
+    <value>القسم</value>
+  </data>
+  <data name="FieldDivision" xml:space="preserve">
+    <value>الادارة العليا</value>
+  </data>
+  <data name="FieldEffectiveDate" xml:space="preserve">
+    <value>التاريخ</value>
+  </data>
+  <data name="FieldEmployeeId" xml:space="preserve">
+    <value>الموظف</value>
+  </data>
+  <data name="FieldEmployeeName" xml:space="preserve">
+    <value>اسم الموظف</value>
+  </data>
+  <data name="FieldInProcess" xml:space="preserve">
+    <value>قيد المعالجة</value>
+  </data>
+  <data name="FieldLtName" xml:space="preserve">
+    <value>نوع السلفة</value>
+  </data>
+  <data name="FieldNew" xml:space="preserve">
+    <value>جديد</value>
+  </data>
+  <data name="FieldPayments" xml:space="preserve">
+    <value>مدفوعات</value>
+  </data>
+  <data name="FieldPurpose" xml:space="preserve">
+    <value>السبب</value>
+  </data>
+  <data name="FieldRecordId" xml:space="preserve">
+    <value>Record ID</value>
+  </data>
+  <data name="FieldReference" xml:space="preserve">
+    <value>الرمز</value>
+  </data>
+  <data name="FieldRejected" xml:space="preserve">
+    <value>مرفوض</value>
+  </data>
+  <data name="FieldSACurrencyName" xml:space="preserve">
+    <value>العملة</value>
+  </data>
+  <data name="FieldStatus" xml:space="preserve">
+    <value>الحالة</value>
+  </data>
+  <data name="FilterBranch" xml:space="preserve">
+    <value>اختر فرع</value>
+  </data>
+  <data name="FilterDepartment" xml:space="preserve">
+    <value>اختر قسم</value>
+  </data>
+  <data name="FilterDivision" xml:space="preserve">
+    <value>اختر الادارة العليا</value>
+  </data>
+  <data name="FilterStatus" xml:space="preserve">
+    <value>اختر الحالة</value>
+  </data>
+  <data name="FixedAmount" xml:space="preserve">
+    <value>قيمة ثابتة</value>
+  </data>
+  <data name="FixedPayment" xml:space="preserve">
+    <value>دفعة ثابتة</value>
+  </data>
+  <data name="LoanCoverageType" xml:space="preserve">
+    <value>تغطية السلفة </value>
+  </data>
+  <data name="PaymentValue" xml:space="preserve">
+    <value>قيمة الدفعة</value>
+  </data>
+  <data name="PFromBasicSalary" xml:space="preserve">
+    <value>نسبة مئوية من الراتب الأساسي</value>
+  </data>
+  <data name="PFromLoan" xml:space="preserve">
+    <value>نسبة مئوية من السلفة</value>
+  </data>
+  <data name="PFromNetSalary" xml:space="preserve">
+    <value>نسبة مئوية من الراتب النهائي</value>
+  </data>
+  <data name="WindowTitle" xml:space="preserve">
+    <value>السلف</value>
+  </data>
+  <data name="FieldBalanceLeaves" xml:space="preserve">
+    <value>رصيد اجازات</value>
+  </data>
+  <data name="FieldDays" xml:space="preserve">
+    <value>تسديد اجازات</value>
+  </data>
+  <data name="FieldEarnedLeaves" xml:space="preserve">
+    <value>مستحقات إجازة</value>
+  </data>
+  <data name="FieldHireDate" xml:space="preserve">
+    <value>تاريخ التعيين</value>
+  </data>
+  <data name="FieldPaidLeaves" xml:space="preserve">
+    <value>بدل اجازات</value>
+  </data>
+  <data name="FieldPostingStatus" xml:space="preserve">
+    <value>Posting Status</value>
+  </data>
+  <data name="FieldSalary" xml:space="preserve">
+    <value>الراتب</value>
+  </data>
+  <data name="FieldUsedLeaves" xml:space="preserve">
+    <value>اجازات</value>
+  </data>
+  <data name="allowedLeaveYtdTitle" xml:space="preserve">
+    <value>الاجازات المسموحة</value>
+  </data>
+  <data name="amount" xml:space="preserve">
+    <value>المبلغ</value>
+  </data>
+  <data name="BOGridTitle" xml:space="preserve">
+    <value>الحوافز</value>
+  </data>
+  <data name="branchName" xml:space="preserve">
+    <value>الفرع </value>
+  </data>
+  <data name="DateFrom" xml:space="preserve">
+    <value>من </value>
+  </data>
+  <data name="DateTo" xml:space="preserve">
+    <value>إلى</value>
+  </data>
+  <data name="Day" xml:space="preserve">
+    <value>اليوم</value>
+  </data>
+  <data name="DeductionEditWindow" xml:space="preserve">
+    <value>تعديل الخصومات </value>
+  </data>
+  <data name="Deductions" xml:space="preserve">
+    <value>الخصومات</value>
+  </data>
+  <data name="DeductionsEntitlements" xml:space="preserve">
+    <value>الخصومات والاستحقاقات</value>
+  </data>
+  <data name="departmentName" xml:space="preserve">
+    <value>القسم </value>
+  </data>
+  <data name="EditBOWindowTitle" xml:space="preserve">
+    <value>الحوافز</value>
+  </data>
+  <data name="EditSAWindowTitle" xml:space="preserve">
+    <value>تعديل الراتب</value>
+  </data>
+  <data name="EntitlementEditWindow" xml:space="preserve">
+    <value>تعديل الاستحقاقات</value>
+  </data>
+  <data name="Entitlements" xml:space="preserve">
+    <value>الاستحقاقات</value>
+  </data>
+  <data name="eosBalanceTitle" xml:space="preserve">
+    <value>رصيد نهاية الخدمة</value>
+  </data>
+  <data name="ErrorWithPCTOf" xml:space="preserve">
+    <value>خطأ في مصدر حساب النسبة،سيتم الاعتماد على الراتب الأساسي في حساب نسبة الحسم</value>
+  </data>
+  <data name="esName" xml:space="preserve">
+    <value>حالة الموظف </value>
+  </data>
+  <data name="FieldAccountNumber" xml:space="preserve">
+    <value>رقم الحساب</value>
+  </data>
+  <data name="FieldBankName" xml:space="preserve">
+    <value>اسم البنك</value>
+  </data>
+  <data name="FieldBasicAmount" xml:space="preserve">
+    <value>الراتب الأساسي</value>
+  </data>
+  <data name="FieldBTName" xml:space="preserve">
+    <value>نوع الحافز</value>
+  </data>
+  <data name="FieldComment" xml:space="preserve">
+    <value>التعليق</value>
+  </data>
+  <data name="FieldComments" xml:space="preserve">
+    <value>التعليقات</value>
+  </data>
+  <data name="FieldDeduction" xml:space="preserve">
+    <value>الخصم</value>
+  </data>
+  <data name="FieldDivision1" xml:space="preserve">
+    <value>الإدارة العليا</value>
+  </data>
+  <data name="FieldEntitlement" xml:space="preserve">
+    <value>الاستحقاق</value>
+  </data>
+  <data name="FieldFinalAmount" xml:space="preserve">
+    <value>المبلغ النهائي</value>
+  </data>
+  <data name="FieldFixedAmount" xml:space="preserve">
+    <value>المبلغ</value>
+  </data>
+  <data name="FieldIncludeInTotal" xml:space="preserve">
+    <value>يحسب ضمن الإجمالي</value>
+  </data>
+  <data name="FieldIsPercentage" xml:space="preserve">
+    <value>نسبة مئوية؟</value>
+  </data>
+  <data name="FieldIsTaxable" xml:space="preserve">
+    <value>خاضع للتأمينات؟</value>
+  </data>
+  <data name="FieldName" xml:space="preserve">
+    <value>الموظف</value>
+  </data>
+  <data name="FieldPaymentFrequency" xml:space="preserve">
+    <value>طريقة حساب الراتب</value>
+  </data>
+  <data name="FieldPaymentMethod" xml:space="preserve">
+    <value>آلية الدفع</value>
+  </data>
+  <data name="FieldPCT" xml:space="preserve">
+    <value>النسبة المئوية</value>
+  </data>
+  <data name="FieldPctOf" xml:space="preserve">
+    <value>نسبة من</value>
+  </data>
+  <data name="FieldPosition" xml:space="preserve">
+    <value>المنصب</value>
+  </data>
+  <data name="FieldReportsTo" xml:space="preserve">
+    <value>المدير</value>
+  </data>
+  <data name="FieldSACurrencyName1" xml:space="preserve">
+    <value>العملة</value>
+  </data>
+  <data name="FieldSalaryType" xml:space="preserve">
+    <value>نوع الراتب</value>
+  </data>
+  <data name="FieldScrName" xml:space="preserve">
+    <value>سبب تغيير الراتب</value>
+  </data>
+  <data name="hireDate" xml:space="preserve">
+    <value>تاريخ التوظيف</value>
+  </data>
+  <data name="lastLeaveEndDateTitle" xml:space="preserve">
+    <value>تاريخ العودة من اخر اجازة</value>
+  </data>
+  <data name="lastLeaveStartDateTitle" xml:space="preserve">
+    <value>تاريخ اخر اجازة</value>
+  </data>
+  <data name="leavesBalanceTitle" xml:space="preserve">
+    <value>رصيد الاجازات</value>
+  </data>
+  <data name="MaximumOvertime" xml:space="preserve">
+    <value>الوقت الإضافي الأقصى</value>
+  </data>
+  <data name="MinimumOvertime" xml:space="preserve">
+    <value>الوقت الإضافي الأدنى</value>
+  </data>
+  <data name="nationality" xml:space="preserve">
+    <value>الجنسية</value>
+  </data>
+  <data name="paidLeavesYTDTitle" xml:space="preserve">
+    <value>الاجازات المدفوعة</value>
+  </data>
+  <data name="PaymentMethodBank" xml:space="preserve">
+    <value>حساب بنكي</value>
+  </data>
+  <data name="PaymentMethodCash" xml:space="preserve">
+    <value>نقدي</value>
+  </data>
+  <data name="PaymentTypeDaily" xml:space="preserve">
+    <value>يومي</value>
+  </data>
+  <data name="PaymentTypeMonthly" xml:space="preserve">
+    <value>شهري</value>
+  </data>
+  <data name="PaymentTypeWeekly" xml:space="preserve">
+    <value>أسبوعي</value>
+  </data>
+  <data name="pctof1" xml:space="preserve">
+    <value>الراتب الأساسي</value>
+  </data>
+  <data name="pctof2" xml:space="preserve">
+    <value>الراتب الأساسي+الاستحقاقات</value>
+  </data>
+  <data name="positionName" xml:space="preserve">
+    <value>الوظيفة</value>
+  </data>
+  <data name="SAGridTitle" xml:space="preserve">
+    <value>الراتب</value>
+  </data>
+  <data name="SalaryBank" xml:space="preserve">
+    <value>حساب بنكي</value>
+  </data>
+  <data name="SalaryBiWeekly" xml:space="preserve">
+    <value>كل أسبوعين</value>
+  </data>
+  <data name="SalaryCash" xml:space="preserve">
+    <value>نقدي</value>
+  </data>
+  <data name="SalaryDaily" xml:space="preserve">
+    <value>يومي</value>
+  </data>
+  <data name="SalaryFourWeekly" xml:space="preserve">
+    <value>كل أربعة أسابيع</value>
+  </data>
+  <data name="SalaryMonthly" xml:space="preserve">
+    <value>شهري</value>
+  </data>
+  <data name="SalaryWeekly" xml:space="preserve">
+    <value>أسبوعي</value>
+  </data>
+  <data name="serviceDuration" xml:space="preserve">
+    <value>مدة الخدمة</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>الحالة </value>
+  </data>
+  <data name="TotalDeductions" xml:space="preserve">
+    <value>إجمالي الخصومات</value>
+  </data>
+  <data name="TotalEntitlements" xml:space="preserve">
+    <value>إجمالي الاستحقاقات</value>
+  </data>
+  <data name="WindowTitle1" xml:space="preserve">
+    <value>إعدادات نهاية الخدمة</value>
+  </data>
+</root>

@@ -293,7 +293,7 @@
             Icon="PageEdit"
             Title="<%$ Resources:EditWindowsTitle %>"
             Width="450"
-            Height="330"
+            Height="350"
             AutoShow="false"
             Modal="true"
             Hidden="true"
@@ -394,6 +394,15 @@
                                         </ext:Store>
 
                                     </Store>
+                                </ext:ComboBox>
+                                 <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  ID="type"  Name="type" runat="server" EmptyText="<%$ Resources:type%>"  ForceSelection="true" >
+                                    <Items>
+
+                                        <ext:ListItem Text="<%$ Resources: administrationType%>" Value="1"></ext:ListItem>
+                                        <ext:ListItem Text="<%$ Resources: sectionType%>" Value="2"></ext:ListItem>
+                                     
+                                    </Items>
+                                   
                                 </ext:ComboBox>
                                
                                    <ext:Checkbox ID="isLeaveAuth" runat="server" FieldLabel="<%$ Resources: isLeaveAuth%>" DataIndex="isLeaveAuth" Name="isLeaveAuth" InputValue="true" />

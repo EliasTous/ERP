@@ -67,8 +67,8 @@ namespace AionHR.Web.UI.Forms
                 SetExtLanguage();
                 HideShowButtons();
                 HideShowColumns();
-
-                FillHirarichy();
+                type.Select(0);
+                FillHirarichy(sender, new DirectEventArgs(new Ext.Net.ParameterCollection()));
 
             }
 
@@ -87,10 +87,12 @@ namespace AionHR.Web.UI.Forms
             }
             return result; 
         }
-        private void FillHirarichy()
+     
+        protected void FillHirarichy(object sender, DirectEventArgs e)
         {
 
-            ListRequest req = new ListRequest();
+            DepartmentListRequest req = new DepartmentListRequest();
+            req.type = type.SelectedItem.Value; 
             ListResponse<Department> response = _companyStructureService.ChildGetAll<Department>(req);
             if (!response.Success)
             {
@@ -165,5 +167,9 @@ namespace AionHR.Web.UI.Forms
             else return "1";
         }
 
+        protected void Unnamed_Event()
+        {
+
+        }
     }
 }

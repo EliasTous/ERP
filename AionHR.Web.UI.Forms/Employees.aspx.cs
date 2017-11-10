@@ -437,10 +437,10 @@ namespace AionHR.Web.UI.Forms
             return new
             {
                 reportsTo = qv.result.reportToName.fullName,
-                eosBalance = qv.result.eosBalance,
-                paidLeavesYTD = qv.result.paidLeavesYTD,
-                leavesBalance = qv.result.leavesBalance,
-                allowedLeaveYtd = qv.result.allowedLeaveYtd,
+                eosBalance = qv.result.indemnity,
+                paidLeavesYTD = qv.result.usedLeavesLeg,
+                leavesBalance = qv.result.leaveBalance,
+                allowedLeaveYtd = qv.result.earnedLeavesLeg,
                 lastleave = qv.result.LastLeave(_systemService.SessionHelper.GetDateformat())
 
 

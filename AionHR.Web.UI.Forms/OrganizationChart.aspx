@@ -40,6 +40,21 @@
                     </Listeners>
                    
                 </ext:Button>
+                <ext:ToolbarSeparator></ext:ToolbarSeparator>
+                  <ext:ComboBox AnyMatch="true" CaseSensitive="false" runat="server" ID="type" Editable="false" FieldLabel="<%$ Resources: type %>" AllowBlank="false" ForceSelection="true"  >
+                                    <Items>
+                                        <ext:ListItem Text="<%$ Resources: All %>" Value="0"   />
+                                        <ext:ListItem Text="<%$ Resources: adminType %>" Value="1" />
+                                        <ext:ListItem Text="<%$ Resources: sectionType %>" Value="2" />
+                                    </Items>
+                                 
+                                </ext:ComboBox>
+
+                   <ext:Button runat="server" Text="<%$ Resources: Common,Go%>" MarginSpec="0 0 0 0" Width="100">
+                                    <DirectEvents>
+                                        <Click OnEvent="FillHirarichy"></Click>
+                                    </DirectEvents>
+                                </ext:Button>
             </Items>
         </ext:Toolbar><div id="chart_div" ></div>
 

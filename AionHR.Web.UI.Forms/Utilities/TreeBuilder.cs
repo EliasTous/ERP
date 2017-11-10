@@ -381,6 +381,10 @@ namespace AionHR.Web.UI.Forms.Utilities
 
             FillConfigItem(finalSettlement, "FinalSettlements", "FinalSettlements.aspx", Resources.Common.FinalSettlements, "icon-Employees", "1");
 
+            Ext.Net.Node LeavePayment = BuildLeafNode("LeavePayments", Resources.Common.LeavePayment, "Group", true, timeAt);
+
+            FillConfigItem(LeavePayment, "LeavePayments", "LeavePayments.aspx", Resources.Common.LeavePayment, "icon-Employees", "1");
+
             nodes.Add(rootParent);
             return nodes;
         }

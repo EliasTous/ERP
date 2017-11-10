@@ -3,6 +3,7 @@ using AionHR.Model.Employees.Profile;
 using AionHR.Model.System;
 using AionHR.Services.Messaging;
 using AionHR.Services.Messaging.System;
+using System;
 using System.Collections.Generic;
 
 public class EmployeeListRequest:ListRequest
@@ -553,4 +554,27 @@ public class DeleteEmployeeCalenderRequest : RequestBase
             return parameters;
         }
     }
+    
+}
+
+public class EmployeeQuickViewRecordRequest : RecordRequest
+{
+   
+
+   
+
+    public DateTime asOfDate { get; set; }
+
+    public override Dictionary<string, string> Parameters
+    {
+        get
+        {
+            parameters = base.Parameters;
+            parameters.Add("_asOfDate", asOfDate.ToString());
+            return parameters;
+        }
+    }
+
+   
+
 }

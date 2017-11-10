@@ -875,11 +875,11 @@ namespace AionHR.Web.UI.Forms
                forSummary.positionName + "<br />",
                (forSummary.reportToName == null && !string.IsNullOrEmpty(forSummary.reportToName.fullName.Trim())) ? "": GetLocalResourceObject("FieldReportsTo").ToString() + " :<br/>" + forSummary.reportToName.fullName + "<br />",
 
-               forSummary.eosBalance + "<br />",
-               forSummary.paidLeavesYTD + "<br/>",
+               forSummary.indemnity + "<br />",
+               forSummary.usedLeavesLeg + "<br/>",
                 forSummary.LastLeave(_systemService.SessionHelper.GetDateformat()) + "<br />",
-               forSummary.leavesBalance + "<br />",
-               forSummary.allowedLeaveYtd + "<br />",
+               forSummary.leaveBalance + "<br />",
+               forSummary.earnedLeavesLeg + "<br />",
                forSummary.esName,
                forSummary.serviceDuractionFriendly(GetGlobalResourceObject("Common", "Day").ToString(), GetGlobalResourceObject("Common", "Month").ToString(), GetGlobalResourceObject("Common", "Year").ToString())
             );
@@ -889,13 +889,13 @@ namespace AionHR.Web.UI.Forms
             branchLbl.Html = forSummary.branchName + "<br />";
             positionLbl.Html = forSummary.positionName + "<br />";
             esName.Html = forSummary.esName + "<br /><br />";
-            eosBalanceLbl.Html = forSummary.eosBalance + "<br />";
+            eosBalanceLbl.Html = forSummary.indemnity + "<br />";
             serviceDuration.Html = forSummary.serviceDuration + "<br />";// Friendly(GetGlobalResourceObject("Common", "Day").ToString(), GetGlobalResourceObject("Common", "Month").ToString(), GetGlobalResourceObject("Common", "Year").ToString())+"<br />";
 
-            paidLeavesYTDLbl.Html = forSummary.paidLeavesYTD + "<br/>";
+            paidLeavesYTDLbl.Html = forSummary.usedLeavesLeg + "<br/>";
             lastLeaveStartDateLbl.Html = forSummary.LastLeave(_systemService.SessionHelper.GetDateformat()) + "<br />";
-            leavesBalance.Html = forSummary.leavesBalance + "<br />";
-            allowedLeaveYtd.Html = forSummary.allowedLeaveYtd + "<br />";
+            leavesBalance.Html = forSummary.leaveBalance + "<br />";
+            allowedLeaveYtd.Html = forSummary.earnedLeavesLeg + "<br />";
             if (forSummary.reportToName != null && !string.IsNullOrEmpty(forSummary.reportToName.fullName.Trim()))
             {
                 reportsToLbl.Html = GetLocalResourceObject("FieldReportsTo").ToString() +":"+ forSummary.reportToName.fullName + "<br />";
@@ -1125,10 +1125,10 @@ namespace AionHR.Web.UI.Forms
             return new
             {
                 reportsTo = qv.result.reportToName.fullName,
-                eosBalance = qv.result.eosBalance,
-                paidLeavesYTD = qv.result.paidLeavesYTD,
-                leavesBalance = qv.result.leavesBalance,
-                allowedLeaveYtd = qv.result.allowedLeaveYtd,
+                eosBalance = qv.result.indemnity,
+                paidLeavesYTD = qv.result.usedLeavesLeg,
+                leavesBalance = qv.result.leaveBalance,
+                allowedLeaveYtd = qv.result.earnedLeavesLeg,
                 lastleave = qv.result.LastLeave(_systemService.SessionHelper.GetDateformat())
 
 
