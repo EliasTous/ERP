@@ -113,6 +113,7 @@
     <Compile Include="Payroll\GeneratePayroll.cs" />
     <Compile Include="Payroll\GenerationHeader.cs" />
     <Compile Include="Payroll\IPayrollRepository.cs" />
+    <Compile Include="Payroll\LeavePayment.cs" />
     <Compile Include="Payroll\PayCode.cs" />
     <Compile Include="Payroll\PayrollEntitlementDeduction.cs" />
     <Compile Include="Payroll\PayrollIndemnity.cs" />

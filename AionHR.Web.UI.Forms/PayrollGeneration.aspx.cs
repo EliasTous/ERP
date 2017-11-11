@@ -196,6 +196,7 @@ namespace AionHR.Web.UI.Forms
             req.Size = "30";
             req.StartAt = "1";
             req.Filter = "";
+            
 
             return req;
         }
@@ -232,7 +233,7 @@ namespace AionHR.Web.UI.Forms
             EmployeeListRequest req = new EmployeeListRequest();
             req.DepartmentId = "0";
             req.BranchId = "0";
-            req.IncludeIsInactive = 2;
+            req.IncludeIsInactive = 0;
             req.SortBy = "firstName";
 
             req.StartAt = "1";

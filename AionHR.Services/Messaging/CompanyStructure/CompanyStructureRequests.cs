@@ -120,3 +120,24 @@ public class LegalReferenceRecordRequest :RecordRequest
         }
     }
 }
+public class DepartmentListRequest : ListRequest
+{
+
+   public string type
+    {
+        set { }
+        get { return "0";  }
+    }
+   
+
+    public override Dictionary<string, string> Parameters
+    {
+        get
+        {
+            parameters = base.Parameters;
+            parameters.Add("_type", type);
+           
+            return parameters;
+        }
+    }
+}

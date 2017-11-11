@@ -707,14 +707,14 @@ namespace AionHR.Web.UI.Forms
             nationalityTx.Text = routers.result.countryName; 
             divisionName.Text = routers.result.divisionName;
             reportToName.Text = routers.result.reportToName.fullName;
-            eosBalance.Text = routers.result.eosBalance.ToString() ;
+            eosBalance.Text = routers.result.indemnity.ToString() ;
             lastLeaveStartDate.Value = routers.result.lastLeaveStartDate; 
             lastLeaveEndDate.Value = routers.result.lastLeaveEndDate;
-            leavesBalance.Text = routers.result.leavesBalance.ToString();
-            allowedLeaveYtd.Text = routers.result.allowedLeaveYtd.ToString();
+            leavesBalance.Text = routers.result.leaveBalance.ToString();
+            allowedLeaveYtd.Text = routers.result.earnedLeavesLeg.ToString();
             serviceDuration.Text = routers.result.serviceDuration;
             esName.Text = routers.result.esName;
-            paidLeavesYTD.Text = routers.result.paidLeavesYTD.ToString(); 
+            paidLeavesYTD.Text = routers.result.usedLeavesLeg.ToString(); 
 
         }
         private void setFillEmployeeInfoDisable(bool YES)
@@ -1363,10 +1363,10 @@ namespace AionHR.Web.UI.Forms
                 return new
                 {
                     reportsTo = qv.result.reportToName.fullName,
-                    eosBalance = qv.result.eosBalance,
-                    paidLeavesYTD = qv.result.paidLeavesYTD,
-                    leavesBalance = qv.result.leavesBalance,
-                    allowedLeaveYtd = qv.result.allowedLeaveYtd,
+                    eosBalance = qv.result.indemnity,
+                    paidLeavesYTD = qv.result.usedLeavesLeg,
+                    leavesBalance = qv.result.leaveBalance,
+                    allowedLeaveYtd = qv.result.earnedLeavesLeg,
                     lastleave = qv.result.LastLeave(_systemService.SessionHelper.GetDateformat()),
                     departmentName = qv.result.departmentName,
                     branchName = qv.result.branchName,

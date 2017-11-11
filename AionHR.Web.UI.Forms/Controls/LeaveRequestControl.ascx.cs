@@ -339,7 +339,7 @@ namespace AionHR.Web.UI.Forms.Controls
                 return;
             }
 
-            leaveBalance.Text = resp.result.leavesBalance.ToString();
+            leaveBalance.Text = resp.result.leaveBalance.ToString();
             yearsInService.Text = resp.result.serviceDuration;
 
         }
@@ -978,7 +978,7 @@ namespace AionHR.Web.UI.Forms.Controls
             }
             try
             {
-                leaveBalance.Text = resp.result.leavesBalance.ToString();
+                leaveBalance.Text = resp.result.leaveBalance.ToString();
                 yearsInService.Text = resp.result.serviceDuration;
                 LeaveRequest request = response.result;
                 y.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;
@@ -993,7 +993,7 @@ namespace AionHR.Web.UI.Forms.Controls
                 y.Parameters["Justification"].Value = request.justification;
                 y.Parameters["Destination"].Value = request.destination;
                 y.Parameters["LeaveType"].Value = request.ltName;
-                y.Parameters["LeaveBalance"].Value = resp.result.leavesBalance;
+                y.Parameters["LeaveBalance"].Value = resp.result.leaveBalance;
                 y.Parameters["YearsInService"].Value = resp.result.serviceDuration;
                 y.Parameters["IsPaid"].Value = request.isPaid.HasValue && request.isPaid.Value ? "Yes" : "No";
                 string format = "Pdf";

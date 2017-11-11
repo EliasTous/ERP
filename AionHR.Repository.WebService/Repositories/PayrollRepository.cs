@@ -34,6 +34,7 @@ namespace AionHR.Repository.WebService.Repositories
             ChildGetAllLookup.Add(typeof(PayrollIndemnity), "qryIS");
             ChildGetAllLookup.Add(typeof(PayrollIndemnityDetails), "qryID");
             ChildGetAllLookup.Add(typeof(PayrollIndemnityRecognition), "qryIR");
+            ChildGetAllLookup.Add(typeof(LeavePayment), "qryLP");
 
 
             ChildAddOrUpdateLookup.Add(typeof(FiscalYear), "setYE");
@@ -53,7 +54,8 @@ namespace AionHR.Repository.WebService.Repositories
             ChildAddOrUpdateLookup.Add(typeof(PayrollIndemnityDetails), "setID");
             ChildAddOrUpdateLookup.Add(typeof(PayrollIndemnityDetails[]), "arrID");
             ChildAddOrUpdateLookup.Add(typeof(PayrollIndemnityRecognition[]), "arrIR");
-         
+            ChildAddOrUpdateLookup.Add(typeof(LeavePayment), "setLP");
+
             ChildAddOrUpdateLookup.Add(typeof(GeneratePayroll), "genEM");
 
             ChildDeleteLookup.Add(typeof(FiscalYear), "delYE");
@@ -68,6 +70,7 @@ namespace AionHR.Repository.WebService.Repositories
             ChildDeleteLookup.Add(typeof(PayrollIndemnity), "delIS");
             ChildDeleteLookup.Add(typeof(PayrollIndemnityDetails), "delID");
             ChildDeleteLookup.Add(typeof(PayrollIndemnityRecognition), "delIR");
+            ChildDeleteLookup.Add(typeof(LeavePayment), "delLP");
 
 
             ChildGetLookup.Add(typeof(GenerationHeader), "getHE");
@@ -80,6 +83,7 @@ namespace AionHR.Repository.WebService.Repositories
             ChildGetLookup.Add(typeof(PayrollIndemnity), "getIS");
             ChildGetLookup.Add(typeof(PayrollIndemnityDetails), "getID");
             ChildGetLookup.Add(typeof(PayrollIndemnityRecognition), "getIR");
+            ChildGetLookup.Add(typeof(LeavePayment), "getLP");
         }
     }
 }

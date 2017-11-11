@@ -360,7 +360,9 @@
                                         <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
                                     </Listeners>
                                 </ext:ComboBox>
-                                <ext:TextField runat="server" Name="phone" AllowBlank="true" ID="phone" FieldLabel="<%$ Resources:phone%>" />
+                                <ext:TextField runat="server" Name="phone" AllowBlank="true" ID="phone" FieldLabel="<%$ Resources:phone%>" >
+                                     <Validator Handler="return !isNaN(this.value);" />
+                                    </ext:TextField>
 
                             </Items>
                         </ext:FormPanel>

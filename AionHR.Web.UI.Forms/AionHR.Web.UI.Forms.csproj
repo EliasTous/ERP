@@ -259,6 +259,7 @@
     <Content Include="ImportRTW.aspx" />
     <Content Include="ImportSalaries.aspx" />
     <Content Include="LeaveCalendar.aspx" />
+    <Content Include="LeavePayments.aspx" />
     <Content Include="LeaveRequests.aspx" />
     <Content Include="LeaveTypes.aspx" />
     <Content Include="Letters.aspx" />
@@ -615,6 +616,13 @@
     </Compile>
     <Compile Include="ImportSalaries.aspx.designer.cs">
       <DependentUpon>ImportSalaries.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LeavePayments.aspx.cs">
+      <DependentUpon>LeavePayments.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LeavePayments.aspx.designer.cs">
+      <DependentUpon>LeavePayments.aspx</DependentUpon>
     </Compile>
     <Compile Include="Letters.aspx.cs">
       <DependentUpon>Letters.aspx</DependentUpon>
@@ -2020,6 +2028,9 @@
     <Content Include="App_LocalResources\Letters.aspx.ar.resx" />
     <Content Include="App_LocalResources\Letters.aspx.resx" />
     <Content Include="EmployeePages\App_LocalResources\Contacts.aspx.ar.resx" />
+    <Content Include="App_LocalResources\leavePayments.aspx.ar.resx" />
+    <Content Include="App_LocalResources\LeavePayments.aspx.resx" />
+    <Content Include="App_LocalResources\OrganizationChart.aspx.ar.resx" />
     <EmbeddedResource Include="Properties\licenses.licx" />
     <Content Include="Reports\App_LocalResources\RT202.aspx.resx" />
     <Content Include="Reports\App_LocalResources\RT01.aspx.ar.resx" />

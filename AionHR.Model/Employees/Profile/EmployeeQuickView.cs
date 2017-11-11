@@ -24,14 +24,14 @@ namespace AionHR.Model.Employees.Profile
         public string branchName { get; set; }
 
         public EmployeeName reportToName { get; set; }
-        public int eosBalance { get; set; }
+        public int indemnity { get; set; }
         public DateTime? lastLeaveStartDate { get; set; }
         public DateTime? lastLeaveEndDate { get; set; }
-        public short paidLeavesYTD { get; set; }
+        public short usedLeavesLeg { get; set; }
 
         public string serviceDuration { get; set; }
-        public short leavesBalance { get; set; }
-        public short allowedLeaveYtd { get; set; }
+        public short leaveBalance { get; set; }
+        public short earnedLeavesLeg { get; set; }
 
         public string LastLeave(string format)
         {
@@ -52,6 +52,10 @@ namespace AionHR.Model.Employees.Profile
         }
         public string countryName { get; set; }
         public DateTime? hireDate { get; set; }
+        public int earnedLeaves { get;  set; }
+        public int usedLeaves { get; set;  }
+        public int paidLeaves { get; set; }
+        public int salary { get; set; }
 
     }
 }

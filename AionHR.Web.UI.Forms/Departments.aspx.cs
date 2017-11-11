@@ -126,10 +126,10 @@ namespace AionHR.Web.UI.Forms
 
 
             int id = Convert.ToInt32(e.ExtraParams["id"]);
-            string type = e.ExtraParams["type"];
+            string buttontype = e.ExtraParams["type"];
             CurrentDepartment.Text = id.ToString();
 
-            switch (type)
+            switch (buttontype)
             {
                 case "imgEdit":
                     //Step 1 : get the object from the Web Service 
@@ -164,6 +164,8 @@ namespace AionHR.Web.UI.Forms
                     }
                     if (!string.IsNullOrEmpty(response.result.scId))
                      scId.SetValue(response.result.scId);
+                    if (response.result.type != null)
+                        type.Select(response.result.type); 
                     this.BasicInfoTab.SetValues(response.result);
                     // InitCombos(response.result);
                     this.EditRecordWindow.Title = Resources.Common.EditWindowsTitle;
@@ -441,7 +443,7 @@ namespace AionHR.Web.UI.Forms
             //Fetching the corresponding list
 
             //in this test will take a list of News
-            ListRequest request = new ListRequest();
+            DepartmentListRequest request = new DepartmentListRequest();
             request.Filter = searchTrigger.Text;
             ListResponse<Department> branches = _branchService.ChildGetAll<Department>(request);
             if (!branches.Success)
