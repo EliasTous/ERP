@@ -92,12 +92,18 @@ function drawChart() {
         
         for (i = 0 ; i < DeptsData.length; i++) {
             var row = [];
-            
+           
             row.push(DeptsData[i].name);
             
             row.push(DeptsData[i].parent);
             row.push('');
             data.addRow(row);
+           
+            if (DeptsData[i].type == 2) {
+                data.setRowProperty(i, 'style', 'background:-webkit-gradient(linear, 0% 0%, 0% 100%, from(rgba(88, 197, 32, 0.63)), to(rgb(105, 230, 120)));border:1px solid #4acc4a');
+                
+            }
+        
 
         }
 

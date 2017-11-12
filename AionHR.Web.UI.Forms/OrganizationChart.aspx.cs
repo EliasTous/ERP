@@ -82,7 +82,7 @@ namespace AionHR.Web.UI.Forms
             List<object> result = new List<object>();
             foreach (var item in depts)
             {
-                result.Add(new { name = item.name, parent = item.parentName, tooltip = "''" });
+                result.Add(new { name = item.name, parent = item.parentName, tooltip = "''",type=item.type.Value });
 
             }
             return result;
