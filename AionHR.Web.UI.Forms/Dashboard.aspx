@@ -18,29 +18,34 @@
     <script type="text/javascript" src="Scripts/CircileProgress.js?id=98"></script>
     <script type="text/javascript" src="Scripts/jquery-new.js?id=45"></script>
     <script type="text/javascript" src="Scripts/plugins/highcharts.js"></script>
+   
 
     <style type="text/css">
-        .styleContainer{
-            padding:5px;
-            border:1px solid #eee;
+        .styleContainer {
+            padding: 5px;
+            border: 1px solid #eee;
         }
-          .styleContainer:hover{
-        background-color:#eee;
+
+            .styleContainer:hover {
+                background-color: #eee;
+            }
+
+        .lblStyle {
+            font-size: 10pt;
+            text-decoration: none !important;
+            font-weight: bold;
+            /*color: #159fcc !important;*/
+            color: rgb(124, 181, 236) !important;
         }
-          .lblStyle{
-              font-size:10pt;
-              text-decoration: none !important;
-              font-weight: bold;
-                  /*color: #159fcc !important;*/
-                  color: rgb(124, 181, 236) !important;
-          }
     </style>
     <script type="text/javascript">
 
-        var drawActiveHightChartPie = function (dataObject, rtl) {
+        var drawActiveHightChartPie = function (dataObject, rtl, normal) {
             // Build the chart
-
-            Highcharts.chart('activeHighChart', {
+            var divName = 'activeHighChart';
+            if (!normal)
+                divName = 'maximumChart';
+            Highcharts.chart(divName, {
                 chart: {
                     plotBackgroundColor: null,
                     plotBorderWidth: null,
@@ -77,9 +82,11 @@
                         showInLegend: true,
                         point: {
                             events: {
+                                
                                 legendItemClick: function (e) {
-
-                                    clickActiveHightChartPieSeries(e.target.options.index);
+                                   
+                                    if (e.target.options.y > 0)
+                                        clickActiveHightChartPieSeries(e.target.options.index);
                                     return false;
                                 }
                             }
@@ -102,20 +109,23 @@
 
         };
         var clickActiveHightChartPieSeries = function (val) {
-            if (val == 0) {
-                App.activeWindow.show();
+     
+            switch (val) {
+                case 0: App.activeWindow.show(); break;
+                case 1: App.lateWindow.show(); break;
+                case 2: App.onLeavewindow.show(); break;
+                case 3: App.absentWindow.show(); break;
             }
-            else {
-                //  App.lateWindow.show();
 
-            }
         }
 
 
-        var drawLateHightChartPie = function (dataObject, rtl) {
+        var drawLateHightChartPie = function (dataObject, rtl, normal) {
             // Build the chart
-
-            Highcharts.chart('lateHighChart', {
+            var divName = 'lateHighChart';
+            if (!normal)
+                divName = 'maximumChart';
+            Highcharts.chart(divName, {
                 chart: {
                     plotBackgroundColor: null,
                     plotBorderWidth: null,
@@ -176,8 +186,9 @@
             })
         };
         var clickLateHightChartPieSeries = function (val) {
+            App.lateWindow.show();
             if (val == 0) {
-                App.lateWindow.show();
+
             }
             else {
                 //  App.lateWindow.show();
@@ -185,10 +196,12 @@
             }
         }
 
-        var drawBreakHightChartPie = function (dataObject, rtl) {
+        var drawBreakHightChartPie = function (dataObject, rtl, normal) {
             // Build the chart
-
-            Highcharts.chart('breakHighChart', {
+            var divName = 'breakHighChart';
+            if (!normal)
+                divName = 'maximumChart';
+            Highcharts.chart(divName, {
                 chart: {
                     plotBackgroundColor: null,
                     plotBorderWidth: null,
@@ -249,8 +262,10 @@
             })
         };
         var clickBreakHightChartPieSeries = function (val) {
+            alert(val);
+            App.lateWindow.show();
             if (val == 0) {
-                App.lateWindow.show();
+
             }
             else {
                 //  App.lateWindow.show();
@@ -278,17 +293,47 @@
                         Ext.net.Mask.hide();
                     }
                 });
+            }
+            if (id == "pnlAttendancePeriod") {
 
 
+                App.periodToDate.selectedDate = (new Date());
+
+                Ext.net.Mask.show({ el: App.pnlAttendancePeriod.id });
+                App.AttendancePeriodStore.reload({
+                    callback: function () {
+                        Ext.net.Mask.hide();
+                    }
+                });
+            }
+            if (id == "pnlHeadCount") {
+
+
+                App.CountDateTo.selectedDate = (new Date());
+
+                Ext.net.Mask.show({ el: App.pnlHeadCount.id });
+                App.DimensionalHeadCountStore.reload({
+                    callback: function () {
+                        Ext.net.Mask.hide();
+                    }
+                });
+                App.CompanyHeadCountStore.reload({
+                    callback: function () {
+                        Ext.net.Mask.hide();
+                    }
+                });
             }
         }
 
 
 
 
-        var drawDepartmentsCountHightChartColumn = function (IN, OUT, objectIn, objectOut, dataCategoriesObject, rtl) {
+        var drawDepartmentsCountHightChartColumn = function (IN, OUT, objectIn, objectOut, dataCategoriesObject, rtl, normal) {
             // Build the chart  deparmentsCountHighChart
-            Highcharts.chart('deparmentsCountHighChart', {
+            var divName = 'deparmentsCountHighChart';
+            if (!normal)
+                divName = 'maximumChart';
+            Highcharts.chart(divName, {
                 chart: {
                     type: 'column'
                 },
@@ -353,10 +398,148 @@
 
 
         };
-
-        var drawMinLocalRateCountHightChartColumn = function (objectValues, dataCategoriesObject, rtl) {
+        var drawCompanyHeadCountChart = function (objectIn, dataCategoriesObject, rtl, normal) {
             // Build the chart  deparmentsCountHighChart
-            Highcharts.chart('localRateCountHighChart', {
+            var divName = 'CompanyHeadCountChart';
+            if (!normal)
+                divName = 'maximumChart';
+            Highcharts.chart(divName, {
+                chart: {
+                    type: 'column',
+                    zoomType: 'x'
+                },
+                legend: {
+                    enabled: false
+                },
+                title: {
+                    text: '',
+                    style: {
+                        display: 'none'
+                    }
+                },
+                subtitle: {
+                    text: ''
+                },
+                xAxis: {
+                    categories: dataCategoriesObject,
+                    reversed: rtl,
+                    title: {
+                        text: null
+                    },
+                    labels: {
+                        useHTML: Highcharts.hasBidiBug,
+                        useHTML: rtl,
+                        rotation: -45,
+                        style: {
+                            fontSize: '8px',
+                            fontFamily: 'Verdana, sans-serif'
+                        }
+                    }
+                },
+                yAxis: {
+                    min: 0,
+                    opposite: rtl,
+                    title: { text: null }
+
+                },
+                tooltip: {
+                    useHTML: true
+
+                },
+                plotOptions: {
+                    bar: {
+                        dataLabels: {
+                            enabled: true
+                        }
+                    }
+                },
+
+                credits: {
+                    enabled: false
+                },
+                series: [{
+
+                    data: objectIn
+                }]
+            });
+
+
+        };
+
+        var drawDimensionalHeadCountChart = function (objectIn, dataCategoriesObject, rtl, normal) {
+            // Build the chart  deparmentsCountHighChart
+            var divName = 'DimensionalHeadCountChart';
+            if (!normal)
+                divName = 'maximumChart';
+            Highcharts.chart(divName, {
+                chart: {
+                    type: 'column',
+                    zoomType: 'x'
+                },
+                title: {
+                    text: '',
+                    style: {
+                        display: 'none'
+                    }
+                },
+                subtitle: {
+                    text: ''
+                },
+                legend: {
+                    enabled: false
+                },
+                xAxis: {
+                    categories: dataCategoriesObject,
+                    reversed: rtl,
+                    title: {
+                        text: null
+                    },
+                    labels: {
+                        useHTML: Highcharts.hasBidiBug,
+                        useHTML: rtl,
+                        rotation: -45,
+                        style: {
+                            fontSize: '8px',
+                            fontFamily: 'Verdana, sans-serif'
+                        }
+                    }
+                },
+                yAxis: {
+                    min: 0,
+                    opposite: rtl,
+                    title: { text: null }
+
+                },
+                tooltip: {
+                    useHTML: true
+
+                },
+                plotOptions: {
+                    bar: {
+                        dataLabels: {
+                            enabled: true
+                        }
+                    }
+                },
+
+                credits: {
+                    enabled: false
+                },
+                series: [{
+
+                    data: objectIn
+                }]
+            });
+
+
+        };
+
+        var drawMinLocalRateCountHightChartColumn = function (objectValues, dataCategoriesObject, rtl, normal) {
+            // Build the chart  deparmentsCountHighChart
+            var divName = 'localRateCountHighChart';
+            if (!normal)
+                divName = 'maximumChart';
+            Highcharts.chart(divName, {
                 chart: {
                     type: 'column'
                 },
@@ -421,9 +604,12 @@
         };
 
 
-        var drawLocalCountHightChartColumn = function (objectValues, dataCategoriesObject, rtl) {
+        var drawLocalCountHightChartColumn = function (objectValues, dataCategoriesObject, rtl, normal) {
             // Build the chart  deparmentsCountHighChart
-            Highcharts.chart('localCountHighChart', {
+            var divName = 'localCountHighChart';
+            if (!normal)
+                divName = 'maximumChart';
+            Highcharts.chart(divName, {
                 chart: {
                     type: 'column'
                 },
@@ -484,7 +670,87 @@
 
         };
 
+        var drawAttendancePeriodChart = function (dataCategoriesObject, IN1, IN2, IN3, IN4, objectIn1, objectIn2, objectIn3, objectIn4, rtl, normal) {
+            // Build the chart  deparmentsCountHighChart
+            var divName = 'AttendancePeriodChart';
 
+            if (!normal)
+                divName = 'maximumChart';
+            Highcharts.chart(divName, {
+                chart: { zoomType: 'x' }
+                ,
+                title: {
+                    text: '',
+                    style: {
+                        display: 'none'
+                    }
+                },
+                subtitle: {
+                    text: ''
+                },
+                xAxis: {
+
+                    categories: dataCategoriesObject,
+                    reversed: rtl,
+                    title: {
+                        text: null
+                    },
+                    labels: {
+                        useHTML: Highcharts.hasBidiBug,
+                        useHTML: rtl,
+                        rotation: -45,
+                        style: {
+                            fontSize: '8px',
+                            fontFamily: 'Verdana, sans-serif'
+                        }
+                    }
+                },
+                yAxis: {
+                    min: 0,
+                    opposite: rtl,
+                    title: { text: null }
+
+                },
+                tooltip: {
+                    useHTML: true
+
+                },
+                plotOptions: {
+                    bar: {
+                        dataLabels: {
+                            enabled: true
+                        }
+                    }
+                },
+                legend: {
+
+                    useHTML: rtl,
+                    rtl: rtl
+                },
+                credits: {
+                    enabled: false
+                },
+                series: [{
+                    name: IN1,
+                    data: objectIn1
+                },
+                {
+                    name: IN2,
+                    data: objectIn2
+                },
+                {
+                    name: IN3,
+                    data: objectIn3
+                },
+                {
+                    name: IN4,
+                    data: objectIn4
+                }
+                ]
+            });
+
+
+        };
 
         //
 
@@ -904,7 +1170,7 @@
 
         </ext:Store>
 
-        <ext:Store ID="Store1" OnReadData="departments2Count_ReadData"
+        <ext:Store ID="Store1"
             runat="server">
             <Model>
                 <ext:Model runat="server">
@@ -918,6 +1184,42 @@
         </ext:Store>
 
         <ext:Store ID="LocalRateStore" OnReadData="LocalRateStore_ReadData"
+            runat="server">
+            <Model>
+                <ext:Model runat="server">
+                    <Fields>
+                        <ext:ModelField Name="category" />
+                        <ext:ModelField Name="number" />
+
+                    </Fields>
+                </ext:Model>
+            </Model>
+        </ext:Store>
+        <ext:Store ID="AttendancePeriodStore" OnReadData="AttendancePeriodStore_ReadData"
+            runat="server">
+            <Model>
+                <ext:Model runat="server">
+                    <Fields>
+                        <ext:ModelField Name="category" />
+                        <ext:ModelField Name="number" />
+
+                    </Fields>
+                </ext:Model>
+            </Model>
+        </ext:Store>
+        <ext:Store ID="CompanyHeadCountStore" OnReadData="CompanyHeadCountStore_ReadData"
+            runat="server">
+            <Model>
+                <ext:Model runat="server">
+                    <Fields>
+                        <ext:ModelField Name="category" />
+                        <ext:ModelField Name="number" />
+
+                    </Fields>
+                </ext:Model>
+            </Model>
+        </ext:Store>
+        <ext:Store ID="DimensionalHeadCountStore" OnReadData="DimensionalHeadCountStore_ReadData"
             runat="server">
             <Model>
                 <ext:Model runat="server">
@@ -1019,6 +1321,7 @@
                                                             <LayoutConfig>
                                                                 <ext:HBoxLayoutConfig Align="Stretch" />
                                                             </LayoutConfig>
+
                                                             <Items>
 
                                                                 <ext:Panel
@@ -1045,7 +1348,7 @@
 
 
 
-                                                                <%--           <ext:Panel runat="server" Layout="BorderLayout" Flex="1">
+                                                                <%--   <%--           <ext:Panel runat="server" Layout="BorderLayout" Flex="1">
                                                                     <LayoutConfig>
                                                                     </LayoutConfig>
                                                                     <Items>
@@ -1260,21 +1563,38 @@
                                                                         </ext:Panel>
                                                                         <ext:Panel runat="server" Height="10" />
                                                                     </Items>
-                                                                </ext:Panel>
-                                                                --%>
+                                                                </ext:Panel>--%>
                                                             </Items>
 
                                                         </ext:Panel>
 
 
 
-                                                        <ext:Panel ID="pnlDepartmentCount" AutoUpdateLayout="true" runat="server" Title="<%$Resources: DepartmentsCount %>" StyleSpec=" border: 1px solid #add2ed !important;" Layout="HBoxLayout" Flex="1">
+                                                        <ext:Panel ID="pnlDepartmentCount" AutoUpdateLayout="true" Hidden="true" runat="server" Title="<%$Resources: DepartmentsCount %>" StyleSpec=" border: 1px solid #add2ed !important;" Layout="HBoxLayout" Flex="1">
                                                             <Defaults>
                                                                 <ext:Parameter Name="margin" Value="0 5 0 0" Mode="Value" />
                                                             </Defaults>
                                                             <LayoutConfig>
                                                                 <ext:HBoxLayoutConfig Align="Stretch" />
                                                             </LayoutConfig>
+                                                            <TopBar>
+                                                                <ext:Toolbar runat="server">
+                                                                    <Items>
+                                                                        <ext:Button runat="server" Icon="ZoomIn">
+                                                                            <Listeners>
+                                                                                <Click Handler="App.MaximumChartWindow.show();" />
+                                                                            </Listeners>
+                                                                            <DirectEvents>
+
+                                                                                <Click OnEvent="zoomDepartmentCount" />
+                                                                            </DirectEvents>
+
+                                                                        </ext:Button>
+
+
+                                                                    </Items>
+                                                                </ext:Toolbar>
+                                                            </TopBar>
                                                             <Items>
                                                                 <ext:Panel AutoUpdateLayout="true"
                                                                     runat="server"
@@ -1283,32 +1603,109 @@
                                                                 </ext:Panel>
                                                             </Items>
                                                         </ext:Panel>
+                                                        <ext:Panel Header="true" Resizable="true" ID="pnlAttendancePeriod" AutoUpdateLayout="true" runat="server" Title="<%$Resources: AttendancePeriod %>" StyleSpec=" border: 1px solid #add2ed !important;" Layout="HBoxLayout" Flex="1">
+                                                            <TopBar>
+                                                                <ext:Toolbar runat="server">
+                                                                    <Items>
+                                                                        <ext:DateField runat="server" ID="periodToDate" Width="150" LabelWidth="30" FieldLabel="<%$Resources:FieldFrom %>">
+                                                                            <Listeners>
+                                                                                <Change Handler="App.AttendancePeriodStore.reload()" />
+                                                                            </Listeners>
+                                                                        </ext:DateField>
+                                                                        <ext:Button runat="server" Icon="ZoomIn">
+                                                                            <Listeners>
+                                                                                <Click Handler="App.MaximumChartWindow.show();" />
+                                                                            </Listeners>
+                                                                            <DirectEvents>
 
-                                                        <ext:Panel runat="server" AutoUpdateLayout="true" AutoScroll="true" ID="pnlRate" Title="<%$Resources: LocalRate %>" StyleSpec=" border: 1px solid #add2ed !important;" Layout="HBoxLayout" Flex="1">
+                                                                                <Click OnEvent="zoomAttendancePeriod" />
+                                                                            </DirectEvents>
+
+                                                                        </ext:Button>
+                                                                    </Items>
+                                                                </ext:Toolbar>
+                                                            </TopBar>
                                                             <Defaults>
                                                                 <ext:Parameter Name="margin" Value="0 5 0 0" Mode="Value" />
                                                             </Defaults>
                                                             <LayoutConfig>
                                                                 <ext:HBoxLayoutConfig Align="Stretch" />
                                                             </LayoutConfig>
-
                                                             <Items>
-
                                                                 <ext:Panel AutoUpdateLayout="true"
                                                                     runat="server"
-                                                                    Header="false" ID="localRateCountHighChart" ClientIDMode="Static" PaddingSpec="5 5 5 5"
+                                                                    Header="true" ID="AttendancePeriodChart" ClientIDMode="Static" PaddingSpec="5 5 5 5"
                                                                     Layout="FitLayout" Flex="1">
                                                                 </ext:Panel>
-                                                                <ext:Panel AutoUpdateLayout="true"
-                                                                    runat="server"
-                                                                    Header="false" ID="localCountHighChart" ClientIDMode="Static" PaddingSpec="5 5 5 5"
-                                                                    Layout="FitLayout" Flex="1">
-                                                                </ext:Panel>
-
-
                                                             </Items>
                                                         </ext:Panel>
 
+                                                        <ext:Panel ID="pnlHeadCount" AutoUpdateLayout="true" runat="server" Title="<%$Resources: HeadCount %>" StyleSpec=" border: 1px solid #add2ed !important;" Layout="HBoxLayout" Flex="1">
+                                                            <TopBar>
+                                                                <ext:Toolbar runat="server">
+                                                                    <Items>
+                                                                        <ext:DateField runat="server" ID="CountDateTo" Width="150" LabelWidth="30" FieldLabel="<%$Resources:FieldTo %>">
+                                                                            <Listeners>
+                                                                                <Change Handler="App.CompanyHeadCountStore.reload(); App.DimensionalHeadCountStore.reload();" />
+                                                                            </Listeners>
+
+                                                                        </ext:DateField>
+                                                                        <ext:Button runat="server" Icon="ZoomIn">
+                                                                            <Listeners>
+                                                                                <Click Handler="App.MaximumChartWindow.show();" />
+                                                                            </Listeners>
+                                                                            <DirectEvents>
+
+                                                                                <Click OnEvent="zoomCompanyHeadCount" />
+                                                                            </DirectEvents>
+                                                                        </ext:Button>
+                                                                        <ext:ToolbarFill runat="server" />
+                                                                        <ext:ComboBox Name="dimension" runat="server" FieldLabel="<%$Resources: Group %>" ID="dimension" Width="150" LabelWidth="40">
+                                                                            <Items>
+                                                                                <ext:ListItem Text="<%$Resources: FieldDepartment %>" Value="1" />
+                                                                                <ext:ListItem Text="<%$Resources: FieldBranch %>" Value="2" />
+                                                                                <ext:ListItem Text="<%$Resources: FieldDivision  %>" Value="3" />
+                                                                                <ext:ListItem Text="<%$Resources: FieldPosition %>" Value="4" />
+                                                                                <ext:ListItem Text="<%$Resources: FieldEHStatus %>" Value="5" />
+                                                                            </Items>
+                                                                            <Listeners>
+                                                                                <Select Handler="App.DimensionalHeadCountStore.reload();" />
+                                                                            </Listeners>
+
+
+                                                                        </ext:ComboBox>
+                                                                        <ext:Button runat="server" Icon="ZoomIn">
+                                                                            <Listeners>
+                                                                                <Click Handler="App.MaximumChartWindow.show();" />
+                                                                            </Listeners>
+                                                                            <DirectEvents>
+
+                                                                                <Click OnEvent="zoomDimensionalHeadCount" />
+                                                                            </DirectEvents>
+
+                                                                        </ext:Button>
+                                                                    </Items>
+                                                                </ext:Toolbar>
+                                                            </TopBar>
+                                                            <Defaults>
+                                                                <ext:Parameter Name="margin" Value="0 5 0 0" Mode="Value" />
+                                                            </Defaults>
+                                                            <LayoutConfig>
+                                                                <ext:HBoxLayoutConfig Align="Stretch" />
+                                                            </LayoutConfig>
+                                                            <Items>
+                                                                <ext:Panel AutoUpdateLayout="true"
+                                                                    runat="server"
+                                                                    Header="false" ID="CompanyHeadCountChart" ClientIDMode="Static" PaddingSpec="5 5 5 5"
+                                                                    Layout="FitLayout" Flex="1">
+                                                                </ext:Panel>
+                                                                <ext:Panel AutoUpdateLayout="true"
+                                                                    runat="server"
+                                                                    Header="false" ID="DimensionalHeadCountChart" ClientIDMode="Static" PaddingSpec="5 5 5 5"
+                                                                    Layout="FitLayout" Flex="1">
+                                                                </ext:Panel>
+                                                            </Items>
+                                                        </ext:Panel>
 
                                                         <ext:GridPanel MarginSpec="0 0 0 0"
                                                             ID="missingPunchesGrid" Hidden="true"
@@ -1567,7 +1964,31 @@
                                                                 <%--<ext:CheckboxSelectionModel ID="CheckboxSelectionModel1" runat="server" Mode="Multi" StopIDModeInheritance="true" />--%>
                                                             </SelectionModel>
                                                         </ext:GridPanel>
-                                                        <ext:Panel runat="server" Layout="HBoxLayout" Title="<%$Resources:Tasks %>" StyleSpec=" border: 1px solid #add2ed !important;">
+                                                        <ext:Panel runat="server" AutoUpdateLayout="true" AutoScroll="true" ID="pnlRate" Title="<%$Resources: LocalRate %>" StyleSpec=" border: 1px solid #add2ed !important;" Layout="HBoxLayout" Flex="1">
+                                                            <Defaults>
+                                                                <ext:Parameter Name="margin" Value="0 5 0 0" Mode="Value" />
+                                                            </Defaults>
+                                                            <LayoutConfig>
+                                                                <ext:HBoxLayoutConfig Align="Stretch" />
+                                                            </LayoutConfig>
+
+                                                            <Items>
+
+                                                                <ext:Panel AutoUpdateLayout="true"
+                                                                    runat="server"
+                                                                    Header="false" ID="localRateCountHighChart" ClientIDMode="Static" PaddingSpec="5 5 5 5"
+                                                                    Layout="FitLayout" Flex="1">
+                                                                </ext:Panel>
+                                                                <ext:Panel AutoUpdateLayout="true"
+                                                                    runat="server"
+                                                                    Header="false" ID="localCountHighChart" ClientIDMode="Static" PaddingSpec="5 5 5 5"
+                                                                    Layout="FitLayout" Flex="1">
+                                                                </ext:Panel>
+
+
+                                                            </Items>
+                                                        </ext:Panel>
+                                                        <ext:Panel runat="server" Hidden="true" Layout="HBoxLayout" Title="<%$Resources:Tasks %>" StyleSpec=" border: 1px solid #add2ed !important;">
                                                             <LayoutConfig>
                                                                 <ext:HBoxLayoutConfig Align="Stretch"></ext:HBoxLayoutConfig>
                                                             </LayoutConfig>
@@ -1648,7 +2069,10 @@
                                                             </Items>
                                                         </ext:Panel>
                                                     </Items>
+                                                    <Listeners>
 
+                                                        <TabChange Handler="Load(#{belowt}.activeTab.id);" />
+                                                    </Listeners>
                                                 </ext:TabPanel>
 
 
@@ -1685,20 +2109,20 @@
                                                                         <ext:VBoxLayoutConfig Align="Center" Pack="Center" />
                                                                     </LayoutConfig>
                                                                     <Items>
-                                                                       <ext:Container runat="server" Cls="styleContainer">
-                                                                              <LayoutConfig>
-                                                                        <ext:VBoxLayoutConfig Align="Center" Pack="Center" />
-                                                                    </LayoutConfig>
-                                                                           <items>
-                                                                                <ext:Label runat="server" ID="companyRW" Cls="number flashing"  PaddingSpec="0 0 0 0" MarginSpec="10 0 20 0" />
-                                                                                <ext:HyperlinkButton runat="server" Text="<%$Resources:ComapnyRightToWork %>" ShrinkWrap="Both" PaddingSpec="0 0 0 0" cls="lblStyle">
+                                                                        <ext:Container runat="server" Cls="styleContainer">
+                                                                            <LayoutConfig>
+                                                                                <ext:VBoxLayoutConfig Align="Center" Pack="Center" />
+                                                                            </LayoutConfig>
+                                                                            <Items>
+                                                                                <ext:Label runat="server" ID="companyRW" Cls="number flashing" PaddingSpec="0 0 0 0" MarginSpec="10 0 20 0" />
+                                                                                <ext:HyperlinkButton runat="server" Text="<%$Resources:ComapnyRightToWork %>" ShrinkWrap="Both" PaddingSpec="0 0 0 0" Cls="lblStyle">
                                                                                     <Listeners>
                                                                                         <Click Handler="App.CompanyRightToWorkWindow.show();" />
                                                                                     </Listeners>
                                                                                 </ext:HyperlinkButton>
-                                                                               </items>
-                                                                           </ext:Container>
-                                                                   </Items>   
+                                                                            </Items>
+                                                                        </ext:Container>
+                                                                    </Items>
                                                                 </ext:Panel>
 
                                                                 <ext:Panel runat="server" Layout="VBoxLayout" Flex="1" PaddingSpec="2 2 2 2">
@@ -1706,20 +2130,20 @@
                                                                         <ext:VBoxLayoutConfig Align="Center" Pack="Center" />
                                                                     </LayoutConfig>
                                                                     <Items>
-                                                                            <ext:Container runat="server" Cls="styleContainer">
-                                                                              <LayoutConfig>
-                                                                        <ext:VBoxLayoutConfig Align="Center" Pack="Center" />
-                                                                    </LayoutConfig>
-                                                                           <items>
-                                                                                  <ext:Label runat="server" ID="employeeRW" Cls="number flashing" StyleHtmlCls="number" PaddingSpec="0 0 0 0" MarginSpec="10 0 20 0" />
-                                                                        <ext:HyperlinkButton runat="server" PaddingSpec="0 0 0 0" Text="<%$Resources:EmployeeRightToWork %>" StyleSpec="font-size:12pt;" Cls="lblStyle">
-                                                                            <Listeners>
-                                                                                <Click Handler="App.EmployeeRightToWorkWindow.show();" />
-                                                                            </Listeners>
-                                                                        </ext:HyperlinkButton>
-                                                                               </items>
-                                                                           </ext:Container>
-                                                                    
+                                                                        <ext:Container runat="server" Cls="styleContainer">
+                                                                            <LayoutConfig>
+                                                                                <ext:VBoxLayoutConfig Align="Center" Pack="Center" />
+                                                                            </LayoutConfig>
+                                                                            <Items>
+                                                                                <ext:Label runat="server" ID="employeeRW" Cls="number flashing" StyleHtmlCls="number" PaddingSpec="0 0 0 0" MarginSpec="10 0 20 0" />
+                                                                                <ext:HyperlinkButton runat="server" PaddingSpec="0 0 0 0" Text="<%$Resources:EmployeeRightToWork %>" StyleSpec="font-size:12pt;" Cls="lblStyle">
+                                                                                    <Listeners>
+                                                                                        <Click Handler="App.EmployeeRightToWorkWindow.show();" />
+                                                                                    </Listeners>
+                                                                                </ext:HyperlinkButton>
+                                                                            </Items>
+                                                                        </ext:Container>
+
                                                                     </Items>
                                                                 </ext:Panel>
 
@@ -1738,20 +2162,20 @@
                                                                         <ext:VBoxLayoutConfig Align="Center" Pack="Center" />
                                                                     </LayoutConfig>
                                                                     <Items>
-                                                                         <ext:Container runat="server" Cls="styleContainer">
-                                                                              <LayoutConfig>
-                                                                        <ext:VBoxLayoutConfig Align="Center" Pack="Center" />
-                                                                    </LayoutConfig>
-                                                                           <items>
-                                                                          <ext:Label runat="server" ID="salaryChange" Cls="number flashing" StyleHtmlCls="number" PaddingSpec="0 0 0 0" MarginSpec="10 0 20 0" />
-                                                                        <ext:HyperlinkButton runat="server" Text="<%$Resources:SalaryChange %>" StyleSpec="font-size:12pt;" Cls="lblStyle">
-                                                                            <Listeners>
-                                                                                <Click Handler="App.SCRWindow.show();" />
-                                                                            </Listeners>
-                                                                        </ext:HyperlinkButton>
-                                                                               </items>
-                                                                           </ext:Container>
-                                                                       
+                                                                        <ext:Container runat="server" Cls="styleContainer">
+                                                                            <LayoutConfig>
+                                                                                <ext:VBoxLayoutConfig Align="Center" Pack="Center" />
+                                                                            </LayoutConfig>
+                                                                            <Items>
+                                                                                <ext:Label runat="server" ID="salaryChange" Cls="number flashing" StyleHtmlCls="number" PaddingSpec="0 0 0 0" MarginSpec="10 0 20 0" />
+                                                                                <ext:HyperlinkButton runat="server" Text="<%$Resources:SalaryChange %>" StyleSpec="font-size:12pt;" Cls="lblStyle">
+                                                                                    <Listeners>
+                                                                                        <Click Handler="App.SCRWindow.show();" />
+                                                                                    </Listeners>
+                                                                                </ext:HyperlinkButton>
+                                                                            </Items>
+                                                                        </ext:Container>
+
                                                                     </Items>
                                                                 </ext:Panel>
 
@@ -1760,19 +2184,19 @@
                                                                         <ext:VBoxLayoutConfig Align="Center" Pack="Center" />
                                                                     </LayoutConfig>
                                                                     <Items>
-                                                                               <ext:Container runat="server" Cls="styleContainer">
-                                                                              <LayoutConfig>
-                                                                        <ext:VBoxLayoutConfig Align="Center" Pack="Center" />
-                                                                    </LayoutConfig>
-                                                                           <items>
-                                                                        <ext:Label runat="server" ID="probation" Cls="number flashing" StyleHtmlCls="number" PaddingSpec="0 0 0 0" MarginSpec="10 0 20 0" />
-                                                                        <ext:HyperlinkButton runat="server" Text="<%$Resources:Probation %>" StyleSpec="font-size:12pt;" StyleHtmlCls="flashing" Cls="lblStyle">
-                                                                            <Listeners>
-                                                                                <Click Handler="App.ProbationWindow.show();" />
-                                                                            </Listeners>
-                                                                        </ext:HyperlinkButton>
-                                                                                   </items>
-                                                                           </ext:Container>
+                                                                        <ext:Container runat="server" Cls="styleContainer">
+                                                                            <LayoutConfig>
+                                                                                <ext:VBoxLayoutConfig Align="Center" Pack="Center" />
+                                                                            </LayoutConfig>
+                                                                            <Items>
+                                                                                <ext:Label runat="server" ID="probation" Cls="number flashing" StyleHtmlCls="number" PaddingSpec="0 0 0 0" MarginSpec="10 0 20 0" />
+                                                                                <ext:HyperlinkButton runat="server" Text="<%$Resources:Probation %>" StyleSpec="font-size:12pt;" StyleHtmlCls="flashing" Cls="lblStyle">
+                                                                                    <Listeners>
+                                                                                        <Click Handler="App.ProbationWindow.show();" />
+                                                                                    </Listeners>
+                                                                                </ext:HyperlinkButton>
+                                                                            </Items>
+                                                                        </ext:Container>
                                                                     </Items>
                                                                 </ext:Panel>
 
@@ -1791,19 +2215,19 @@
                                                                         <ext:VBoxLayoutConfig Align="Center" Pack="Center" />
                                                                     </LayoutConfig>
                                                                     <Items>
-                                                                                 <ext:Container runat="server" Cls="styleContainer">
-                                                                              <LayoutConfig>
-                                                                        <ext:VBoxLayoutConfig Align="Center" Pack="Center" />
-                                                                    </LayoutConfig>
-                                                                           <items>
-                                                                        <ext:Label runat="server" ID="totalLoansLbl" Cls="number flashing" StyleHtmlCls="number" PaddingSpec="0 0 0 0" MarginSpec="10 0 20 0" />
-                                                                        <ext:HyperlinkButton runat="server" Text="<%$Resources:TotalLoans %>" StyleSpec="font-size:12pt;" Cls="lblStyle">
-                                                                            <Listeners>
-                                                                                <Click Handler="App.totalLoansWindow.show();" />
-                                                                            </Listeners>
-                                                                        </ext:HyperlinkButton>
-                                                                                 </items>
-                                                                           </ext:Container>
+                                                                        <ext:Container runat="server" Cls="styleContainer">
+                                                                            <LayoutConfig>
+                                                                                <ext:VBoxLayoutConfig Align="Center" Pack="Center" />
+                                                                            </LayoutConfig>
+                                                                            <Items>
+                                                                                <ext:Label runat="server" ID="totalLoansLbl" Cls="number flashing" StyleHtmlCls="number" PaddingSpec="0 0 0 0" MarginSpec="10 0 20 0" />
+                                                                                <ext:HyperlinkButton runat="server" Text="<%$Resources:TotalLoans %>" StyleSpec="font-size:12pt;" Cls="lblStyle">
+                                                                                    <Listeners>
+                                                                                        <Click Handler="App.totalLoansWindow.show();" />
+                                                                                    </Listeners>
+                                                                                </ext:HyperlinkButton>
+                                                                            </Items>
+                                                                        </ext:Container>
                                                                     </Items>
                                                                 </ext:Panel>
 
@@ -1812,19 +2236,19 @@
                                                                         <ext:VBoxLayoutConfig Align="Center" Pack="Center" />
                                                                     </LayoutConfig>
                                                                     <Items>
-                                                                               <ext:Container runat="server" Cls="styleContainer">
-                                                                              <LayoutConfig>
-                                                                        <ext:VBoxLayoutConfig Align="Center" Pack="Center" />
-                                                                    </LayoutConfig>
-                                                                           <items>
-                                                                        <ext:Label runat="server" ID="deductedLoansLbl" Cls="number flashing" StyleHtmlCls="number" PaddingSpec="0 0 0 0" MarginSpec="10 0 20 0" />
-                                                                        <ext:HyperlinkButton runat="server" Text="<%$Resources:CompletedLoans %>" StyleSpec="font-size:12pt;" StyleHtmlCls="flashing" Cls="lblStyle">
-                                                                            <Listeners>
-                                                                                <Click Handler="App.completedLoansWindow.show();" />
-                                                                            </Listeners>
-                                                                        </ext:HyperlinkButton>
-                                                                                 </items>
-                                                                           </ext:Container>
+                                                                        <ext:Container runat="server" Cls="styleContainer">
+                                                                            <LayoutConfig>
+                                                                                <ext:VBoxLayoutConfig Align="Center" Pack="Center" />
+                                                                            </LayoutConfig>
+                                                                            <Items>
+                                                                                <ext:Label runat="server" ID="deductedLoansLbl" Cls="number flashing" StyleHtmlCls="number" PaddingSpec="0 0 0 0" MarginSpec="10 0 20 0" />
+                                                                                <ext:HyperlinkButton runat="server" Text="<%$Resources:CompletedLoans %>" StyleSpec="font-size:12pt;" StyleHtmlCls="flashing" Cls="lblStyle">
+                                                                                    <Listeners>
+                                                                                        <Click Handler="App.completedLoansWindow.show();" />
+                                                                                    </Listeners>
+                                                                                </ext:HyperlinkButton>
+                                                                            </Items>
+                                                                        </ext:Container>
                                                                     </Items>
                                                                 </ext:Panel>
 
@@ -1842,21 +2266,21 @@
                                                                         <ext:VBoxLayoutConfig Align="Center" Pack="Center" />
                                                                     </LayoutConfig>
                                                                     <Items>
-                                                                              <ext:Container runat="server" Cls="styleContainer">
-                                                                              <LayoutConfig>
-                                                                        <ext:VBoxLayoutConfig Align="Center" Pack="Center" />
-                                                                    </LayoutConfig>
-                                                                           <items>
+                                                                        <ext:Container runat="server" Cls="styleContainer">
+                                                                            <LayoutConfig>
+                                                                                <ext:VBoxLayoutConfig Align="Center" Pack="Center" />
+                                                                            </LayoutConfig>
+                                                                            <Items>
 
-                                                                        <ext:Label runat="server" ID="annversaries" Cls="number flashing" StyleHtmlCls="number" PaddingSpec="0 0 0 0" MarginSpec="10 0 20 0" />
+                                                                                <ext:Label runat="server" ID="annversaries" Cls="number flashing" StyleHtmlCls="number" PaddingSpec="0 0 0 0" MarginSpec="10 0 20 0" />
 
-                                                                        <ext:HyperlinkButton runat="server" Text="<%$Resources:Anneversaries %>" PaddingSpec="0 0 0 0" StyleSpec="font-size:12pt;" Cls="lblStyle">
-                                                                            <Listeners>
-                                                                                <Click Handler="App.anniversaryWindow.show();" />
-                                                                            </Listeners>
-                                                                        </ext:HyperlinkButton>
-                                                                                         </items>
-                                                                           </ext:Container>
+                                                                                <ext:HyperlinkButton runat="server" Text="<%$Resources:Anneversaries %>" PaddingSpec="0 0 0 0" StyleSpec="font-size:12pt;" Cls="lblStyle">
+                                                                                    <Listeners>
+                                                                                        <Click Handler="App.anniversaryWindow.show();" />
+                                                                                    </Listeners>
+                                                                                </ext:HyperlinkButton>
+                                                                            </Items>
+                                                                        </ext:Container>
                                                                     </Items>
                                                                 </ext:Panel>
 
@@ -1865,20 +2289,20 @@
                                                                         <ext:VBoxLayoutConfig Align="Center" Pack="Center" />
                                                                     </LayoutConfig>
                                                                     <Items>
-                                                                                 <ext:Container runat="server" Cls="styleContainer">
-                                                                              <LayoutConfig>
-                                                                        <ext:VBoxLayoutConfig Align="Center" Pack="Center" />
-                                                                    </LayoutConfig>
-                                                                           <items>
+                                                                        <ext:Container runat="server" Cls="styleContainer">
+                                                                            <LayoutConfig>
+                                                                                <ext:VBoxLayoutConfig Align="Center" Pack="Center" />
+                                                                            </LayoutConfig>
+                                                                            <Items>
 
-                                                                        <ext:Label runat="server" ID="birthdays" Cls="number flashing" StyleHtmlCls="number" PaddingSpec="0 0 0 0" MarginSpec="10 0 20 0" />
-                                                                        <ext:HyperlinkButton runat="server" PaddingSpec="0 0 0 0" Text="<%$Resources:Birthdays %>" StyleSpec="font-size:12pt;" Cls="lblStyle">
-                                                                            <Listeners>
-                                                                                <Click Handler="App.BirthdaysWindow.show();" />
-                                                                            </Listeners>
-                                                                        </ext:HyperlinkButton>
-                                                                                          </items>
-                                                                           </ext:Container>
+                                                                                <ext:Label runat="server" ID="birthdays" Cls="number flashing" StyleHtmlCls="number" PaddingSpec="0 0 0 0" MarginSpec="10 0 20 0" />
+                                                                                <ext:HyperlinkButton runat="server" PaddingSpec="0 0 0 0" Text="<%$Resources:Birthdays %>" StyleSpec="font-size:12pt;" Cls="lblStyle">
+                                                                                    <Listeners>
+                                                                                        <Click Handler="App.BirthdaysWindow.show();" />
+                                                                                    </Listeners>
+                                                                                </ext:HyperlinkButton>
+                                                                            </Items>
+                                                                        </ext:Container>
                                                                     </Items>
                                                                 </ext:Panel>
 
@@ -1902,6 +2326,30 @@
 
             </Items>
         </ext:Viewport>
+        <ext:Window
+            ID="MaximumChartWindow"
+            runat="server"
+            Icon="PageEdit"
+            Title="<%$ Resources:LeaveRecordForm%>"
+            Width="450"
+            Height="500"
+            IDMode="Static"
+            AutoShow="false"
+            Modal="true"
+            Hidden="true"
+            Resizable="false"
+            Maximized="true"
+            Draggable="false"
+            Layout="Fit">
+            <Items>
+                <ext:Panel AutoUpdateLayout="true"
+                    runat="server"
+                    ID="maximumChart" ClientIDMode="Static" PaddingSpec="5 5 5 5"
+                    Layout="FitLayout" Flex="1">
+                </ext:Panel>
+            </Items>
+
+        </ext:Window>
         <ext:Window runat="server" Modal="true" Layout="FitLayout"
             Hidden="true" AutoShow="false" ID="BirthdaysWindow" Width="400" Height="250" Title="<%$ Resources: Birthdays %>">
             <Listeners>
@@ -2963,6 +3411,8 @@
                 </ext:GridPanel>
             </Items>
         </ext:Window>
+
+
 
         <ext:Window
             ID="LeaveRecordWindow"

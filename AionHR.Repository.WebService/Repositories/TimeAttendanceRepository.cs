@@ -49,6 +49,7 @@ namespace AionHR.Repository.WebService.Repositories
             ChildGetAllLookup.Add(typeof(AttendanceShift), "qryAS");
             ChildGetAllLookup.Add(typeof(LeaveCalendarDay), "qryCD2");
             ChildGetAllLookup.Add(typeof(OvertimeSetting), "qryOT");
+            
 
             ChildAddOrUpdateLookup.Add(typeof(DayType), "setDT");
             ChildAddOrUpdateLookup.Add(typeof(AttendanceSchedule), "setSC");

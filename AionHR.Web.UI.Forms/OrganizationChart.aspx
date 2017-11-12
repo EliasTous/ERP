@@ -41,11 +41,11 @@
                    
                 </ext:Button>
                 <ext:ToolbarSeparator></ext:ToolbarSeparator>
-                  <ext:ComboBox AnyMatch="true" CaseSensitive="false" runat="server" ID="type" Editable="false" FieldLabel="<%$ Resources: type %>" AllowBlank="false" ForceSelection="true"  >
+                  <ext:ComboBox AnyMatch="true" CaseSensitive="false" runat="server" ID="type" Editable="false" Name="type" FieldLabel="<%$ Resources: type %>" AllowBlank="false" ForceSelection="true"  >
                                     <Items>
                                         <ext:ListItem Text="<%$ Resources: All %>" Value="0"   />
-                                        <ext:ListItem Text="<%$ Resources: adminType %>" Value="1" />
-                                        <ext:ListItem Text="<%$ Resources: sectionType %>" Value="2" />
+                                        <ext:ListItem Text="<%$ Resources: adminType %>" Value="2" />
+                                        
                                     </Items>
                                  
                                 </ext:ComboBox>

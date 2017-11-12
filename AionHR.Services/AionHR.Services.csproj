@@ -120,6 +120,7 @@
     <Compile Include="Messaging\Reports\ClassIdParameterSet.cs" />
     <Compile Include="Messaging\Reports\DateParameterSet.cs" />
     <Compile Include="Messaging\Reports\DateRangeParameterSet.cs" />
+    <Compile Include="Messaging\Reports\DayIdParameterSet.cs" />
     <Compile Include="Messaging\Reports\EmployeeParameterSet.cs" />
     <Compile Include="Messaging\Reports\EmployeeStatusParameterSet.cs" />
     <Compile Include="Messaging\Reports\JobInfoParameterSet.cs" />

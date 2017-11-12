@@ -255,6 +255,24 @@ public class ActiveAttendanceRequest : ListRequest
 
     public int? DayStatus { get; set; }
 }
+public class TimeBoundedActiveAttendanceRequest : ActiveAttendanceRequest
+{
+
+
+    public string startingDayId { get; set; }
+    public override Dictionary<string, string> Parameters
+    {
+        get
+        {
+            parameters = base.Parameters;
+           
+            parameters.Add("_startingDayId", startingDayId);
+            return parameters;
+        }
+    }
+
+    
+}
 
 public class GetRouterRequest : RecordRequest
 {

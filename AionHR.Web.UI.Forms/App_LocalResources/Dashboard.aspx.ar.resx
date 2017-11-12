@@ -501,4 +501,13 @@
   <data name="Vacation" xml:space="preserve">
     <value>عطلة</value>
   </data>
+  <data name="AttendancePeriod" xml:space="preserve">
+    <value>حضور فترة</value>
+  </data>
+  <data name="Group" xml:space="preserve">
+    <value>المجموعة</value>
+  </data>
+  <data name="HeadCount" xml:space="preserve">
+    <value>عدد الموظفين</value>
+  </data>
 </root>

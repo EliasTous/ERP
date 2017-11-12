@@ -247,6 +247,33 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Store LocalRateStore;
         
         /// <summary>
+        /// AttendancePeriodStore control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Store AttendancePeriodStore;
+        
+        /// <summary>
+        /// CompanyHeadCountStore control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Store CompanyHeadCountStore;
+        
+        /// <summary>
+        /// DimensionalHeadCountStore control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Store DimensionalHeadCountStore;
+        
+        /// <summary>
         /// LocalCountStore control.
         /// </summary>
         /// <remarks>
@@ -382,31 +409,76 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Panel deparmentsCountHighChart;
         
         /// <summary>
-        /// pnlRate control.
+        /// pnlAttendancePeriod control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Panel pnlRate;
+        protected global::Ext.Net.Panel pnlAttendancePeriod;
         
         /// <summary>
-        /// localRateCountHighChart control.
+        /// periodToDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Panel localRateCountHighChart;
+        protected global::Ext.Net.DateField periodToDate;
         
         /// <summary>
-        /// localCountHighChart control.
+        /// AttendancePeriodChart control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Panel localCountHighChart;
+        protected global::Ext.Net.Panel AttendancePeriodChart;
+        
+        /// <summary>
+        /// pnlHeadCount control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Panel pnlHeadCount;
+        
+        /// <summary>
+        /// CountDateTo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.DateField CountDateTo;
+        
+        /// <summary>
+        /// dimension control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.ComboBox dimension;
+        
+        /// <summary>
+        /// CompanyHeadCountChart control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Panel CompanyHeadCountChart;
+        
+        /// <summary>
+        /// DimensionalHeadCountChart control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Panel DimensionalHeadCountChart;
         
         /// <summary>
         /// missingPunchesGrid control.
@@ -670,6 +742,33 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.RowSelectionModel rowSelectionModel11;
         
         /// <summary>
+        /// pnlRate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Panel pnlRate;
+        
+        /// <summary>
+        /// localRateCountHighChart control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Panel localRateCountHighChart;
+        
+        /// <summary>
+        /// localCountHighChart control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Panel localCountHighChart;
+        
+        /// <summary>
         /// today control.
         /// </summary>
         /// <remarks>
@@ -767,6 +866,24 @@ namespace AionHR.Web.UI.Forms {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.Label birthdays;
+        
+        /// <summary>
+        /// MaximumChartWindow control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Window MaximumChartWindow;
+        
+        /// <summary>
+        /// maximumChart control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Panel maximumChart;
         
         /// <summary>
         /// BirthdaysWindow control.

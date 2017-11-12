@@ -82,17 +82,26 @@ namespace AionHR.Web.UI.Forms
             List<object> result = new List<object>();
             foreach (var item in depts)
             {
-                result.Add(new { name = item.name, parent = item.parentName, tooltip="''" });
-                
+                result.Add(new { name = item.name, parent = item.parentName, tooltip = "''" });
+
             }
-            return result; 
+            return result;
         }
-     
+
         protected void FillHirarichy(object sender, DirectEventArgs e)
         {
 
             DepartmentListRequest req = new DepartmentListRequest();
-            req.type = type.SelectedItem.Value; 
+
+            try
+            {
+                req.type = Convert.ToInt32(type.SelectedItem.Value);
+            } 
+            catch (Exception)
+            {
+
+                
+            }
             ListResponse<Department> response = _companyStructureService.ChildGetAll<Department>(req);
             if (!response.Success)
             {
@@ -137,7 +146,7 @@ namespace AionHR.Web.UI.Forms
             if (rtl)
             {
                 this.ResourceManager1.RTL = true;
-              
+
 
             }
         }

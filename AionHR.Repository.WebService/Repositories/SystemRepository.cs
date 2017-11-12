@@ -10,6 +10,7 @@ using AionHR.Infrastructure.Domain;
 using AionHR.Model.MasterModule;
 using AionHR.Model.Employees.Profile;
 using AionHR.Model.Dashboard;
+using AionHR.Model.TimeAttendance;
 
 namespace AionHR.Repository.WebService.Repositories
 {
@@ -97,7 +98,7 @@ namespace AionHR.Repository.WebService.Repositories
             ChildGetAllLookup.Add(typeof(GovernmentOrganisation), "qryGO");
             ChildGetAllLookup.Add(typeof(LetterTemplate), "qryLT");
             ChildGetAllLookup.Add(typeof(Letter), "qryLE");
-
+            ChildGetAllLookup.Add(typeof(AttendancePeriod), "qryAP");
 
 
             ChildAddOrUpdateLookup.Add(typeof(KeyValuePair<string, string>), "setDE");

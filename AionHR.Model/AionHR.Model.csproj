@@ -140,6 +140,7 @@
     <Compile Include="Reports\RT107B.cs" />
     <Compile Include="Reports\RT108.cs" />
     <Compile Include="Reports\RT109.cs" />
+    <Compile Include="Reports\RT110.cs" />
     <Compile Include="Reports\RT200.cs" />
     <Compile Include="Reports\RT201.cs" />
     <Compile Include="Reports\RT202.cs" />
@@ -179,6 +180,7 @@
     <Compile Include="TimeAttendance\ActiveDashboardModel.cs" />
     <Compile Include="TimeAttendance\AttendanceBreak.cs" />
     <Compile Include="TimeAttendance\AttendanceDay.cs" />
+    <Compile Include="TimeAttendance\AttendancePeriod.cs" />
     <Compile Include="TimeAttendance\AttendanceSchedule.cs" />
     <Compile Include="TimeAttendance\AttendanceScheduleDay.cs" />
     <Compile Include="TimeAttendance\AttendanceShift.cs" />
