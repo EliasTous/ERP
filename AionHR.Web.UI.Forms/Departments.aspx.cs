@@ -258,7 +258,7 @@ namespace AionHR.Web.UI.Forms
         private void FillParent()
         {
             DepartmentListRequest req = new DepartmentListRequest();
-            req.type = "0"; 
+            req.type = 0;
 
             ListResponse<Department> response = _branchService.ChildGetAll<Department>(req);
             if (!response.Success)
@@ -278,7 +278,7 @@ namespace AionHR.Web.UI.Forms
 
             List<Department> data;
             DepartmentListRequest req = new DepartmentListRequest();
-            req.type = "0";
+            req.type = 0;
 
             ListResponse<Department> response = _branchService.ChildGetAll<Department>(req);
             if (!response.Success)
@@ -448,7 +448,7 @@ namespace AionHR.Web.UI.Forms
             //in this test will take a list of News
             DepartmentListRequest request = new DepartmentListRequest();
             request.Filter = searchTrigger.Text;
-            request.type = "0";
+            request.type = 0;
             ListResponse<Department> branches = _branchService.ChildGetAll<Department>(request);
             if (!branches.Success)
             {
