@@ -1065,4 +1065,7 @@
   <data name="LeavePayment" xml:space="preserve">
     <value>Leave Payment</value>
   </data>
+  <data name="RT402" xml:space="preserve">
+    <value>Loan Statement</value>
+  </data>
 </root>

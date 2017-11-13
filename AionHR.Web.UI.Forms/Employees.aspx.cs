@@ -108,15 +108,28 @@ namespace AionHR.Web.UI.Forms
         }
 
         private void BuildQuickViewTemplate()
+                                                
+
+               
+                           
+              
+
+
         {
             string html = "<table width='50%' style='font-weight:bold;'><tr><td> ";
-            html += GetLocalResourceObject("FieldReportsTo").ToString() + " {reportsTo}</td><td>";
-            html += GetLocalResourceObject("eosBalanceTitle").ToString() + " {eosBalance}</td></tr><tr><td>";
+           
+            html += GetLocalResourceObject("eosBalanceTitle").ToString() + " {eosBalance}</td><td>";
 
             html += GetLocalResourceObject("lastLeaveStartDateTitle").ToString() + " {lastLeave}</td><td>";
             html += GetLocalResourceObject("paidLeavesYTDTitle").ToString() + " {paidLeavesYTD}</td></tr><tr><td>";
 
             html += GetLocalResourceObject("leavesBalanceTitle").ToString() + " {leavesBalance}</td><td>";
+
+          
+            html += GetLocalResourceObject("earnedLeaves").ToString() + " {earnedLeaves}</td><td>";
+            html += GetLocalResourceObject("usedLeaves").ToString() + " {usedLeaves}</td></tr><tr><td>";
+            html += GetLocalResourceObject("paidLeaves").ToString() + " {paidLeaves}</td><td>";
+
             html += GetLocalResourceObject("allowedLeaveYtdTitle").ToString() + " {allowedLeaveYtd}</td></tr></table>";
             RowExpander1.Template.Html = html;
         }
@@ -425,8 +438,9 @@ namespace AionHR.Web.UI.Forms
         [DirectMethod]
         public object GetQuickView(Dictionary<string, string> parameters)
         {
-            RecordRequest req = new RecordRequest();
+            EmployeeQuickViewRecordRequest req = new EmployeeQuickViewRecordRequest();
             req.RecordID = parameters["id"];
+            req.asOfDate = DateTime.Now;
             RecordResponse<EmployeeQuickView> qv = _employeeService.ChildGetRecord<EmployeeQuickView>(req);
             if (!qv.Success)
             {
@@ -441,7 +455,11 @@ namespace AionHR.Web.UI.Forms
                 paidLeavesYTD = qv.result.usedLeavesLeg,
                 leavesBalance = qv.result.leaveBalance,
                 allowedLeaveYtd = qv.result.earnedLeavesLeg,
+                earnedLeaves = qv.result.earnedLeaves,
+                usedLeaves = qv.result.usedLeaves,
+                paidLeaves = qv.result.paidLeaves,
                 lastleave = qv.result.LastLeave(_systemService.SessionHelper.GetDateformat())
+               
 
 
             };

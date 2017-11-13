@@ -117,31 +117,13 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="apply" xml:space="preserve">
-    <value>تطبيق</value>
+  <data name="FilterEmployee" xml:space="preserve">
+    <value>Employee</value>
   </data>
-  <data name="BasicInfoTabEditWindowTitle" xml:space="preserve">
-    <value>معلومات سبب انهاء الخدمة </value>
+  <data name="loan" xml:space="preserve">
+    <value>Loan</value>
   </data>
-  <data name="default" xml:space="preserve">
-    <value>إفتراضي</value>
-  </data>
-  <data name="EditWindowsTitle" xml:space="preserve">
-    <value>تعديل سبب انهاء الخدمة </value>
-  </data>
-  <data name="FieldName" xml:space="preserve">
-    <value>الاسم</value>
-  </data>
-  <data name="FieldRecordId" xml:space="preserve">
-    <value>الرقم</value>
-  </data>
-  <data name="penaltyStatus" xml:space="preserve">
-    <value>تطبيق الجزاء</value>
-  </data>
-  <data name="unapply" xml:space="preserve">
-    <value>عدم تطبيق</value>
-  </data>
-  <data name="WindowTitle" xml:space="preserve">
-    <value>اسباب انهاء الخدمة </value>
+  <data name="loanPayment" xml:space="preserve">
+    <value>Loan Payment</value>
   </data>
 </root>

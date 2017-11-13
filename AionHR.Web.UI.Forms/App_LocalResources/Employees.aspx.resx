@@ -372,4 +372,13 @@
   <data name="Condition" xml:space="preserve">
     <value>Choose Conditions (Empty means all)</value>
   </data>
+  <data name="earnedLeaves" xml:space="preserve">
+    <value>Earned Leaves</value>
+  </data>
+  <data name="paidLeaves" xml:space="preserve">
+    <value>Paid Leaves</value>
+  </data>
+  <data name="usedLeaves" xml:space="preserve">
+    <value>Used Leaves</value>
+  </data>
 </root>

@@ -144,6 +144,7 @@ namespace AionHR.Web.UI.Forms
                     }
                     //FillParent();
                     Store2.Reload();
+                    Store3.Reload();
                     //Step 2 : call setvalues with the retrieved object
 
 
@@ -256,7 +257,8 @@ namespace AionHR.Web.UI.Forms
 
         private void FillParent()
         {
-            ListRequest req = new ListRequest();
+            DepartmentListRequest req = new DepartmentListRequest();
+            req.type = "0"; 
 
             ListResponse<Department> response = _branchService.ChildGetAll<Department>(req);
             if (!response.Success)
@@ -275,7 +277,8 @@ namespace AionHR.Web.UI.Forms
 
 
             List<Department> data;
-            ListRequest req = new ListRequest();
+            DepartmentListRequest req = new DepartmentListRequest();
+            req.type = "0";
 
             ListResponse<Department> response = _branchService.ChildGetAll<Department>(req);
             if (!response.Success)
@@ -445,6 +448,7 @@ namespace AionHR.Web.UI.Forms
             //in this test will take a list of News
             DepartmentListRequest request = new DepartmentListRequest();
             request.Filter = searchTrigger.Text;
+            request.type = "0";
             ListResponse<Department> branches = _branchService.ChildGetAll<Department>(request);
             if (!branches.Success)
             {
@@ -742,6 +746,20 @@ namespace AionHR.Web.UI.Forms
             }
             Store2.DataSource = response.Items;
             Store2.DataBind();
+        }
+        [DirectMethod]
+        public void FillWorkingCalendarStore(object sender, StoreReadDataEventArgs e)
+        {
+            ListRequest req = new ListRequest();
+
+            ListResponse<WorkingCalendar> response = _timeAttendanceService.ChildGetAll<WorkingCalendar>(req);
+            if (!response.Success)
+            {
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).ToString() : response.Summary).Show();
+                departmentStore.DataSource = new List<Department>();
+            }
+            Store3.DataSource = response.Items;
+            Store3.DataBind();
         }
 
     }

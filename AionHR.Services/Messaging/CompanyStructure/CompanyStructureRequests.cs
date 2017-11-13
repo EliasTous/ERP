@@ -123,12 +123,7 @@ public class LegalReferenceRecordRequest :RecordRequest
 public class DepartmentListRequest : ListRequest
 {
 
-   public string type
-    {
-        set { }
-        get { return "0";  }
-    }
-   
+    public string type { get; set; }
 
     public override Dictionary<string, string> Parameters
     {

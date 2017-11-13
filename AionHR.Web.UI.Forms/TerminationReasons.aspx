@@ -280,6 +280,14 @@
                             <Items>
                                 <ext:TextField ID="recordId" runat="server"  Name="recordId"  Hidden="true"/>
                                 <ext:TextField ID="name" runat="server" FieldLabel="<%$ Resources:FieldName%>" Name="name"   AllowBlank="false"/>
+                                 <ext:ComboBox AnyMatch="true"  CaseSensitive="false" runat="server" ID="penaltyStatus" Editable="false" FieldLabel="<%$ Resources: penaltyStatus %>" AllowBlank="false" ForceSelection="true"  >
+                                    <Items>
+                                        <ext:ListItem Text="<%$ Resources: default  %>" Value="1"   />
+                                        <ext:ListItem Text="<%$ Resources: apply %>" Value="2" />
+                                        <ext:ListItem Text="<%$ Resources: unapply  %>" Value="3" />
+                                    </Items>
+                                 
+                                </ext:ComboBox>
                                 <%--<ext:TextField ID="intName" runat="server" FieldLabel="<%$ Resources:IntName%>" Name="intName"   AllowBlank="false"/>--%>
                             </Items>
 

@@ -120,6 +120,8 @@ namespace AionHR.Web.UI.Forms.Reports
                 return;
 
             DepartmentListRequest departmentsRequest = new DepartmentListRequest();
+
+            departmentsRequest.type = "0";
             ListResponse<Department> resp = _companyStructureService.ChildGetAll<Department>(departmentsRequest);
             if (!resp.Success)
                 X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() : resp.Summary).Show();

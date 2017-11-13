@@ -136,7 +136,12 @@ namespace AionHR.Web.UI.Forms
                         return;
                     }
                     //Step 2 : call setvalues with the retrieved object
+                   
+                   
                     this.BasicInfoTab.SetValues(response.result);
+                    //ltId.Select(response.result.ltId);
+
+
 
                     this.EditRecordWindow.Title = Resources.Common.EditWindowsTitle;
                     this.EditRecordWindow.Show();
@@ -510,11 +515,11 @@ namespace AionHR.Web.UI.Forms
         {
             X.Call("SetNameEnabled", false, employeeId.SelectedItem.Text);
         }
-
+        [DirectMethod]
         protected void ltId_ReadData(object sender, StoreReadDataEventArgs e)
         {
             ListRequest req = new ListRequest();
-            ListResponse<Letter> eds = _systemService.ChildGetAll<Letter>(req);
+            ListResponse<LetterTemplate> eds = _systemService.ChildGetAll<LetterTemplate>(req);
 
             Store2.DataSource = eds.Items;
             Store2.DataBind();

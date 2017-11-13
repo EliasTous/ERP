@@ -408,11 +408,13 @@
                                         <Select OnEvent="FillEmployeeInfo">
                                               <ExtraParams>
                                                 <ext:Parameter Name="effectiveDate" Value="#{effectiveDate}.getValue()" Mode="Raw" />
-                                                  
-                                                
+                                                                                                 
                                             </ExtraParams>
                                         </Select>
                                     </DirectEvents>
+                                    <Listeners>
+                                        <Change Handler="#{days}.setValue(0); #{amount}.setValue(0);  "></Change>
+                                    </Listeners>
                                 </ext:ComboBox>
                                 
                                   <ext:DateField AllowBlank="false"  runat="server" ID="effectiveDate" Name="effectiveDate" FieldLabel="<%$ Resources:FieldEffectiveDate%>"  SubmitValue="true"  >
@@ -426,6 +428,9 @@
                                           </Change>
                                           
                                       </DirectEvents>
+                                      <Listeners>
+                                        <Change Handler="#{days}.setValue(0); #{amount}.setValue(0);  "></Change>
+                                    </Listeners>
                                 
                                     </ext:DateField>
                              <%--  <ext:TextField runat="server" ID="hireDate" Name="hireDate" FieldLabel="<%$ Resources: FieldHireDate %>" />--%>
@@ -438,7 +443,7 @@
                                       <Listeners>
                                          <Change Handler=" this.next().setValue((this.prev().value/30)*this.value);"></Change>
                                       </Listeners>
-                                      <Validator Handler ="if(this.value<=#{balanceLeaves}.value) return true; ">
+                                      <Validator Handler ="if(this.value<=#{balanceLeaves}.value && this.value>=0) return true; ">
                                           
                                       </Validator>
                                       </ext:NumberField>
@@ -472,35 +477,35 @@
                                                               
                                      <ext:Panel runat="server" MarginSpec="0 0 0 0" ID="rightPanel">
                                   <Items>
-                                        <ext:DateField ReadOnly="true" Disabled="true"  ID="hireDateDf" runat="server" FieldLabel="<%$ Resources:hireDate%>" Name="hireDate" AllowBlank="true">
+                                        <ext:DateField ReadOnly="true"  ID="hireDateDf" runat="server" FieldLabel="<%$ Resources:hireDate%>" Name="hireDate" AllowBlank="true">
                                     
                                 </ext:DateField>
                                         
-                                <ext:TextField  ReadOnly="true" Disabled="true" ID="serviceDuration" runat="server" FieldLabel="<%$ Resources:serviceDuration%>" Name="serviceDuration" AllowBlank="true">
+                                <ext:TextField  ReadOnly="true"  ID="serviceDuration" runat="server" FieldLabel="<%$ Resources:serviceDuration%>" Name="serviceDuration" AllowBlank="true">
                                     
                                 </ext:TextField>
                                         
-                                 <ext:TextField ReadOnly="true" Disabled="true" ID="departmentNameTx" runat="server" FieldLabel="<%$ Resources:departmentName%>" Name="departmentName" AllowBlank="true">
+                                 <ext:TextField ReadOnly="true"  ID="departmentNameTx" runat="server" FieldLabel="<%$ Resources:departmentName%>" Name="departmentName" AllowBlank="true">
                                     
                                 </ext:TextField>
-                                 <ext:TextField ReadOnly="true" Disabled="true" ID="positionNameTx" runat="server" FieldLabel="<%$ Resources:positionName%>" Name="positionName" AllowBlank="true">
+                                 <ext:TextField ReadOnly="true"  ID="positionNameTx" runat="server" FieldLabel="<%$ Resources:positionName%>" Name="positionName" AllowBlank="true">
                                     
                                 </ext:TextField>
-                                  <ext:TextField ReadOnly="true" Disabled="true" ID="branchNameTx" runat="server" FieldLabel="<%$ Resources:branchName%>" Name="branchName" AllowBlank="true">
+                                  <ext:TextField ReadOnly="true"  ID="branchNameTx" runat="server" FieldLabel="<%$ Resources:branchName%>" Name="branchName" AllowBlank="true">
                                     
                                 </ext:TextField>
                                
                                 
-                                   <ext:TextField  ReadOnly="true" Disabled="true" ID="nationalityTx" runat="server" FieldLabel="<%$ Resources:nationality%>" Name="nationality" AllowBlank="true">
+                                   <ext:TextField  ReadOnly="true"  ID="nationalityTx" runat="server" FieldLabel="<%$ Resources:nationality%>" Name="nationality" AllowBlank="true">
                                     
                                 </ext:TextField>
                                  
                                     
                               
-                                  <ext:DateField  ReadOnly="true" Disabled="true"  ID="lastLeaveStartDate" runat="server" FieldLabel="<%$ Resources:lastLeaveStartDateTitle%>" Name="lastLeaveStartDateTitle" AllowBlank="true">
+                                  <ext:DateField  ReadOnly="true"   ID="lastLeaveStartDate" runat="server" FieldLabel="<%$ Resources:lastLeaveStartDateTitle%>" Name="lastLeaveStartDateTitle" AllowBlank="true">
                                     
                                 </ext:DateField>
-                                <ext:DateField  ReadOnly="true" Disabled="true"  ID="lastLeaveEndDate" runat="server" FieldLabel="<%$ Resources:lastLeaveEndDateTitle%>" Name="lastLeaveEndDate" AllowBlank="true">
+                                <ext:DateField  ReadOnly="true"   ID="lastLeaveEndDate" runat="server" FieldLabel="<%$ Resources:lastLeaveEndDateTitle%>" Name="lastLeaveEndDate" AllowBlank="true">
                                     
                                 </ext:DateField>
                                  

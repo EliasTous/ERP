@@ -168,4 +168,7 @@
   <data name="type" xml:space="preserve">
     <value>Type</value>
   </data>
+  <data name="FieldWorkingCalendar" xml:space="preserve">
+    <value>Working Calendar</value>
+  </data>
 </root>

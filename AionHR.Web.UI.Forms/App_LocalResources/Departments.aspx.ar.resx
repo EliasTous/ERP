@@ -165,4 +165,7 @@
   <data name="type" xml:space="preserve">
     <value>النوع</value>
   </data>
+  <data name="FieldWorkingCalendar" xml:space="preserve">
+    <value>تقويم العمل</value>
+  </data>
 </root>

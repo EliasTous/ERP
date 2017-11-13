@@ -117,8 +117,14 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="apply" xml:space="preserve">
+    <value>Apply</value>
+  </data>
   <data name="BasicInfoTabEditWindowTitle" xml:space="preserve">
     <value>Termination Reasons Info</value>
+  </data>
+  <data name="default" xml:space="preserve">
+    <value>Default</value>
   </data>
   <data name="EditWindowsTitle" xml:space="preserve">
     <value>Edit Termination Reason</value>
@@ -128,6 +134,12 @@
   </data>
   <data name="FieldRecordId" xml:space="preserve">
     <value>Record ID</value>
+  </data>
+  <data name="penaltyStatus" xml:space="preserve">
+    <value>Penalty Status</value>
+  </data>
+  <data name="unapply" xml:space="preserve">
+    <value>Unapply</value>
   </data>
   <data name="WindowTitle" xml:space="preserve">
     <value>Termination Reason</value>

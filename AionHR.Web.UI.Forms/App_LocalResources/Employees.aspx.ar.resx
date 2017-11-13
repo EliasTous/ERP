@@ -369,4 +369,13 @@
   <data name="FieldRef" xml:space="preserve">
     <value>الرمز</value>
   </data>
+  <data name="earnedLeaves" xml:space="preserve">
+    <value>مستحقات إجازة</value>
+  </data>
+  <data name="paidLeaves" xml:space="preserve">
+    <value>بدل اجازات</value>
+  </data>
+  <data name="usedLeaves" xml:space="preserve">
+    <value>اجازات</value>
+  </data>
 </root>

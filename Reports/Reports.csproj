@@ -183,6 +183,9 @@
     <Compile Include="LoansReport.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="LoanStatement.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="LoanTypesReport.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -445,6 +448,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="LoansReport.resx">
       <DependentUpon>LoansReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LoanStatement.ar.resx">
+      <DependentUpon>LoanStatement.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LoanStatement.resx">
+      <DependentUpon>LoanStatement.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LoanTypesReport.ar.resx">
       <DependentUpon>LoanTypesReport.cs</DependentUpon>

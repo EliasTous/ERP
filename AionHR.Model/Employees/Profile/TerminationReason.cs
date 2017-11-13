@@ -13,5 +13,6 @@ namespace AionHR.Model.Employees.Profile
         [PropertyID("31130_01")]
         [ApplySecurity]
         public string name { get; set; }
+        public short penaltyStatus{ get; set; }
     }
 }

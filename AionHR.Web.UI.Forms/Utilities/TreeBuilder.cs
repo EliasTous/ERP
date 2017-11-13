@@ -311,6 +311,7 @@ namespace AionHR.Web.UI.Forms.Utilities
 
             Ext.Net.Node rt4 = BuildParentNode("report_rt4", Resources.Common.Loans, true, timeAt, "MoneyDelete");
             Ext.Net.Node rt401 = BuildLeafNode("report_rt401", Resources.Common.RT401, "", true, rt4);
+            Ext.Net.Node rt402 = BuildLeafNode("report_rt402", Resources.Common.RT402, "", true, rt4);
 
             Ext.Net.Node rt5 = BuildParentNode("report_rt5", Resources.Common.Payroll, true, timeAt, "MoneyDollar");
             Ext.Net.Node rt501 = BuildLeafNode("report_rt501", Resources.Common.RT501, "", true, rt5);
@@ -349,6 +350,9 @@ namespace AionHR.Web.UI.Forms.Utilities
             FillConfigItem(rt305, "rt305", "Reports/RT305.aspx", Resources.Common.RT305, "icon-Employees", "1");
 
             FillConfigItem(rt401, "rt401", "Reports/RT401.aspx", Resources.Common.RT401, "icon-Employees", "1");
+            FillConfigItem(rt402, "rt402", "Reports/RT402.aspx", Resources.Common.RT402, "icon-Employees", "1");
+
+
             FillConfigItem(rt200, "rt200", "Reports/RT200.aspx", Resources.Common.RT200, "icon-Employees", "1");
             FillConfigItem(rt501, "rt501", "Reports/RT501.aspx", Resources.Common.RT501, "icon-Employees", "1");
             FillConfigItem(rt502, "rt502", "Reports/RT502.aspx", Resources.Common.RT502, "icon-Employees", "1");

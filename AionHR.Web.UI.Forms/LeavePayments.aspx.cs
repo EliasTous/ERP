@@ -721,7 +721,7 @@ namespace AionHR.Web.UI.Forms
                         RowSelectionModel sm = this.GridPanel1.GetSelectionModel() as RowSelectionModel;
                         sm.DeselectAll();
                         sm.Select(b.recordId.ToString());
-                        this.setFillEmployeeInfoDisable(true);
+                        BasicInfoTab.Close(); 
 
 
 
@@ -860,7 +860,7 @@ namespace AionHR.Web.UI.Forms
             //    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", routers.ErrorCode) != null ? GetGlobalResourceObject("Errors", routers.ErrorCode).ToString() : routers.Summary).Show();
             //    return;
             //}
-            this.setFillEmployeeInfoDisable(false);
+            //this.setFillEmployeeInfoDisable(false);
             if (routers.result == null)
                 return;
 
@@ -876,8 +876,8 @@ namespace AionHR.Web.UI.Forms
 
             lastLeaveStartDate.Value = routers.result.lastLeaveStartDate;
             lastLeaveEndDate.Value = routers.result.lastLeaveEndDate;
-            salary.Text = routers.result.salary.ToString();
-            days.Text = "0";
+            //salary.Text = routers.result.salary.ToString();
+            //days.Text = "0";
 
 
             serviceDuration.Text = routers.result.serviceDuration;
@@ -885,42 +885,42 @@ namespace AionHR.Web.UI.Forms
            
 
         }
-        private void setFillEmployeeInfoDisable(bool YES)
-        {
-            if (!YES)
-            {
-                branchNameTx.Disabled = false;
-                departmentNameTx.Disabled = false;
-                positionNameTx.Disabled = false;
-                hireDateDf.Disabled = false;
-                nationalityTx.Disabled = false;
+        //private void setFillEmployeeInfoDisable(bool YES)
+        //{
+        //    if (!YES)
+        //    {
+        //        branchNameTx.Disabled = false;
+        //        departmentNameTx.Disabled = false;
+        //        positionNameTx.Disabled = false;
+        //        hireDateDf.Disabled = false;
+        //        nationalityTx.Disabled = false;
               
-                lastLeaveStartDate.Disabled = false;
-                lastLeaveEndDate.Disabled = false;
+        //        lastLeaveStartDate.Disabled = false;
+        //        lastLeaveEndDate.Disabled = false;
                
-                serviceDuration.Disabled = false;
+        //        serviceDuration.Disabled = false;
               
 
 
 
-            }
-            else
-            {
-                branchNameTx.Disabled = true;
-                departmentNameTx.Disabled = true;
-                positionNameTx.Disabled = true;
-                hireDateDf.Disabled = true;
-                nationalityTx.Disabled = true;
+        //    }
+        //    else
+        //    {
+        //        branchNameTx.Disabled = true;
+        //        departmentNameTx.Disabled = true;
+        //        positionNameTx.Disabled = true;
+        //        hireDateDf.Disabled = true;
+        //        nationalityTx.Disabled = true;
                
-                lastLeaveStartDate.Disabled = true;
-                lastLeaveEndDate.Disabled = true;
+        //        lastLeaveStartDate.Disabled = true;
+        //        lastLeaveEndDate.Disabled = true;
                
-                serviceDuration.Disabled = true;
+        //        serviceDuration.Disabled = true;
                
 
-            }
+        //    }
 
-        }
+        //}
 
 
     }

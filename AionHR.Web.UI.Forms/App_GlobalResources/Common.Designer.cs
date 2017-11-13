@@ -2329,6 +2329,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Loan Statement.
+        /// </summary>
+        internal static string RT402 {
+            get {
+                return ResourceManager.GetString("RT402", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Payroll Report.
         /// </summary>
         internal static string RT501 {

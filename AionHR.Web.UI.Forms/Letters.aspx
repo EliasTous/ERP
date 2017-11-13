@@ -335,6 +335,7 @@
                                             PageSize="50" IDMode="Explicit" Namespace="App">
                                             <Proxy>
                                                 <ext:PageProxy>
+                                                   
                                                     <Listeners>
                                                         <Exception Handler="Ext.MessageBox.alert('#{textLoadFailed}.value', response.statusText);" />
                                                     </Listeners>

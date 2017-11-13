@@ -1065,4 +1065,7 @@
   <data name="LeavePayment" xml:space="preserve">
     <value>تسديد اجازات</value>
   </data>
+  <data name="RT402" xml:space="preserve">
+    <value>كشف موظف</value>
+  </data>
 </root>

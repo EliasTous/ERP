@@ -376,6 +376,24 @@
                                         <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
                                     </Listeners>
                                 </ext:ComboBox>
+                               <ext:ComboBox   AnyMatch="true"  CaseSensitive="false"  runat="server" AllowBlank="true" ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" ID="caId" Name="caId" FieldLabel="<%$ Resources:FieldWorkingCalendar%>" >
+                                
+                                    <Store>
+                                        <ext:Store OnReadData="FillWorkingCalendarStore"  runat="server" ID="Store3" AutoLoad="false">
+                                            <Model>
+                                                <ext:Model runat="server">
+                                                    <Fields>
+                                                        <ext:ModelField Name="recordId" />
+                                                        <ext:ModelField Name="name" />
+                                                    </Fields>
+                                                </ext:Model>
+                                            </Model>
+                                           
+                                            
+                                        </ext:Store>
+
+                                    </Store>
+                                </ext:ComboBox>
                                 
                                 <ext:ComboBox   AnyMatch="true"  CaseSensitive="false"  runat="server" AllowBlank="true" ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" ID="scId" Name="scId" FieldLabel="<%$ Resources:FieldAttendanceSchedule%>" >
                                 
@@ -395,7 +413,7 @@
 
                                     </Store>
                                 </ext:ComboBox>
-                                 <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  ID="type"  Name="type" runat="server" EmptyText="<%$ Resources:type%>"  ForceSelection="true" >
+                                 <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  ID="type"  Name="type" runat="server" FieldLabel="<%$ Resources:type%>"  ForceSelection="true" >
                                     <Items>
 
                                         <ext:ListItem Text="<%$ Resources: administrationType%>" Value="1"></ext:ListItem>
