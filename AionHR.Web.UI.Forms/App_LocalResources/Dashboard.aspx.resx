@@ -498,4 +498,13 @@
   <data name="Vacation" xml:space="preserve">
     <value>Vacation</value>
   </data>
+  <data name="AttendancePeriod" xml:space="preserve">
+    <value>Attendance Period</value>
+  </data>
+  <data name="Group" xml:space="preserve">
+    <value>Group</value>
+  </data>
+  <data name="HeadCount" xml:space="preserve">
+    <value>Head Count</value>
+  </data>
 </root>

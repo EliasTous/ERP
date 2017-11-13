@@ -29,6 +29,9 @@ using AionHR.Model.LeaveManagement;
 using AionHR.Model.Employees.Profile;
 using AionHR.Services.Messaging.System;
 using AionHR.Model.Dashboard;
+using AionHR.Model.TimeAttendance;
+using AionHR.Services.Messaging.Reports;
+using AionHR.Model.Reports;
 
 namespace AionHR.Web.UI.Forms
 {
@@ -41,6 +44,7 @@ namespace AionHR.Web.UI.Forms
         ILoanTrackingService _loanService = ServiceLocator.Current.GetInstance<ILoanTrackingService>();
         ILeaveManagementService _leaveManagementService = ServiceLocator.Current.GetInstance<ILeaveManagementService>();
         IEmployeeService _employeeService = ServiceLocator.Current.GetInstance<IEmployeeService>();
+        IReportsService _reportsService = ServiceLocator.Current.GetInstance<IReportsService>();
         protected override void InitializeCulture()
         {
 
@@ -96,6 +100,9 @@ namespace AionHR.Web.UI.Forms
                     //checkMontierStore.Reload();
                     format.Text = _systemService.SessionHelper.GetDateformat().ToUpper();
                     DateColumn1.Format = DateColumn2.Format = DateColumn3.Format = DateColumn4.Format = _systemService.SessionHelper.GetDateformat();
+                    periodToDate.SelectedDate = DateTime.Now.AddDays(-DateTime.Now.Day);
+                    CountDateTo.SelectedDate = DateTime.Now.AddDays(-DateTime.Now.Day);
+                    dimension.Select(0);
                 }
                 catch { }
             }
@@ -163,7 +170,7 @@ namespace AionHR.Web.UI.Forms
         protected void activeStore_refresh(object sender, StoreReadDataEventArgs e)
         {
 
-         
+
 
 
 
@@ -211,7 +218,7 @@ namespace AionHR.Web.UI.Forms
             //List<ChartData> activeChartData = new List<ChartData>();
             //activeChartData.Add(new ChartData() { name = GetLocalResourceObject("Attendance").ToString(), y = 70, index = 0 });// ACs.Items.Count
             //activeChartData.Add(new ChartData() { name = GetLocalResourceObject("NAttendance").ToString(), y = 100 - 70, index = 1 });//count.result.count - ACs.Items.Count
-                                                                                                                                                                 
+
             //X.Call("drawActiveHightChartPie", JSON.JavaScriptSerialize(activeChartData), rtl ? true : false);
 
 
@@ -240,7 +247,7 @@ namespace AionHR.Web.UI.Forms
             //paidUnPaidChartData.Add(new ChartData() { name = GetLocalResourceObject("PaidLeaves").ToString(), y = 15, index = 0 });// count.result.count - ACs.Items.Count
             //paidUnPaidChartData.Add(new ChartData() { name = GetLocalResourceObject("NPaidLeaves").ToString(), y = 5, index = 1 });//
             //X.Call("drawPaidUnPaidHightChartPie", JSON.JavaScriptSerialize(paidUnPaidChartData), rtl ? true : false);
-         
+
             //int x = ALs.Items.Count;
             //X.Call("lateChart", x, count.result.count);
             ////int y = ABs.Items.Count;
@@ -251,7 +258,7 @@ namespace AionHR.Web.UI.Forms
             //BindDepartmentsCount();
         }
 
-        private void BindAlerts()
+        private void BindAlerts(bool normalSized=true)
         {
 
             bool rtl = _systemService.SessionHelper.CheckIfArabicSession();
@@ -299,17 +306,17 @@ namespace AionHR.Web.UI.Forms
             activeChartData.Add(new ChartData() { name = GetLocalResourceObject("Attendance").ToString(), y = dashoard.Items.Where(x => x.itemId == 10).ToList()[0].count, index = 0 });// 10 - Attended
             activeChartData.Add(new ChartData() { name = GetLocalResourceObject("Vacation").ToString(), y = dashoard.Items.Where(x => x.itemId == 110).ToList()[0].count, index = 1 });// 110 - Vacations
             activeChartData.Add(new ChartData() { name = GetLocalResourceObject("UnpaidLeaves").ToString(), y = dashoard.Items.Where(x => x.itemId == 111).ToList()[0].count, index = 2 });// 111 - Unpaid leave
-            activeChartData.Add(new ChartData() { name = GetLocalResourceObject("LeaveNoExcuse").ToString(), y = dashoard.Items.Where(x => x.itemId == 112).ToList()[0].count, index =3});// 112 - Leave without excuse
+            activeChartData.Add(new ChartData() { name = GetLocalResourceObject("LeaveNoExcuse").ToString(), y = dashoard.Items.Where(x => x.itemId == 112).ToList()[0].count, index = 3 });// 112 - Leave without excuse
             //activeChartData.Add(new ChartData() { name = GetLocalResourceObject("BusinessLeave").ToString(), y = dashoard.Items.Where(x => x.itemId == 113).ToList()[0].count, index =4 });// 113 - business leave
 
 
-            X.Call("drawActiveHightChartPie", JSON.JavaScriptSerialize(activeChartData), rtl ? true : false);
+            X.Call("drawActiveHightChartPie", JSON.JavaScriptSerialize(activeChartData), rtl ? true : false,normalSized);
 
 
             List<ChartData> lateChartData = new List<ChartData>();
             lateChartData.Add(new ChartData() { name = GetLocalResourceObject("Late").ToString(), y = dashoard.Items.Where(x => x.itemId == 12).ToList()[0].count, index = 0 });//  ALs.Items.Count
             lateChartData.Add(new ChartData() { name = GetLocalResourceObject("NLate").ToString(), y = dashoard.Items.Where(x => x.itemId == 10).ToList()[0].count - dashoard.Items.Where(x => x.itemId == 12).ToList()[0].count, index = 1 });//ACs.Items.Count - ALs.Items.Count                                                                                                                                                                 
-            X.Call("drawLateHightChartPie", JSON.JavaScriptSerialize(lateChartData), rtl ? true : false);
+            X.Call("drawLateHightChartPie", JSON.JavaScriptSerialize(lateChartData), rtl ? true : false,normalSized);
 
 
 
@@ -317,7 +324,7 @@ namespace AionHR.Web.UI.Forms
             breaksChartData.Add(new ChartData() { name = GetLocalResourceObject("Leaves").ToString(), y = dashoard.Items.Where(x => x.itemId == 13).ToList()[0].count, index = 0 });// count.result.count - ACs.Items.Count
             breaksChartData.Add(new ChartData() { name = GetLocalResourceObject("NLeaves").ToString(), y = dashoard.Items.Where(x => x.itemId == 10).ToList()[0].count - dashoard.Items.Where(x => x.itemId == 13).ToList()[0].count, index = 1 });//
 
-            X.Call("drawBreakHightChartPie", JSON.JavaScriptSerialize(breaksChartData), rtl ? true : false);
+            X.Call("drawBreakHightChartPie", JSON.JavaScriptSerialize(breaksChartData), rtl ? true : false,normalSized);
 
 
             //List<ChartData> leaveChartData = new List<ChartData>();
@@ -338,8 +345,8 @@ namespace AionHR.Web.UI.Forms
 
 
 
-          //  AbsentLeaveStore.DataSource = objs;
-          //  AbsentLeaveStore.DataBind();
+            //  AbsentLeaveStore.DataSource = objs;
+            //  AbsentLeaveStore.DataBind();
         }
 
         [DirectMethod]
@@ -837,7 +844,7 @@ namespace AionHR.Web.UI.Forms
             BindDepartmentsCount();
         }
 
-        private void BindDepartmentsCount()
+        private void BindDepartmentsCount(bool normalSized=true)
         {
             bool rtl = _systemService.SessionHelper.CheckIfArabicSession();
             ListRequest req = new ListRequest();
@@ -853,10 +860,69 @@ namespace AionHR.Web.UI.Forms
             List<int> listOut = resp.Items.Select(a => a.checkedOut).ToList();
 
 
-           // Store1.DataSource = resp.Items;
-           // Store1.DataBind();
-            X.Call("drawDepartmentsCountHightChartColumn", GetLocalResourceObject("In").ToString(), GetLocalResourceObject("Out").ToString(), JSON.JavaScriptSerialize(listIn), JSON.JavaScriptSerialize(listOut), JSON.JavaScriptSerialize(listCategories), rtl ? true : false);
-       
+            // Store1.DataSource = resp.Items;
+            // Store1.DataBind();
+            X.Call("drawDepartmentsCountHightChartColumn", GetLocalResourceObject("In").ToString(), GetLocalResourceObject("Out").ToString(), JSON.JavaScriptSerialize(listIn), JSON.JavaScriptSerialize(listOut), JSON.JavaScriptSerialize(listCategories), rtl ? true : false,normalSized);
+
+        }
+        private void BindAttendancePeriod(bool normalSized=true)
+        {
+            bool rtl = _systemService.SessionHelper.CheckIfArabicSession();
+            TimeBoundedActiveAttendanceRequest req = GetTimeBoundedActiveAttendanceRequest();
+
+            ListResponse<AttendancePeriod> resp = _systemService.ChildGetAll<AttendancePeriod>(req);
+            if (!resp.Success)
+            {
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() : resp.Summary).Show();
+                return;
+            }
+
+
+            List<int> listIn1 = resp.Items.Select(a => a.d_cnt).ToList();
+            List<int> listIn2 = resp.Items.Select(a => a.l_cnt).ToList();
+            List<int> listIn3 = resp.Items.Select(a => a.m_cnt).ToList();
+            List<int> listIn4 = resp.Items.Select(a => a.p_cnt).ToList();
+            List<string> cats = new List<string>();
+            foreach (string s in resp.Items.Select(a => a.dayId))
+            {
+                DateTime d = DateTime.ParseExact(s, "yyyyMMdd", new CultureInfo("en"));
+                cats.Add(GetGlobalResourceObject("Common", Enum.GetName(typeof(DayOfWeek), d.DayOfWeek) + "Text").ToString() + " - " + d.ToString("MM-dd")+"  ");
+
+            }
+
+
+            // Store1.DataSource = resp.Items;
+            // Store1.DataBind();
+            X.Call("drawAttendancePeriodChart", JSON.JavaScriptSerialize(cats), GetLocalResourceObject("Absent").ToString(), GetLocalResourceObject("Late").ToString(),
+
+
+                GetLocalResourceObject("MissingPunchesGridTitle").ToString(), GetLocalResourceObject("Attendance").ToString()
+                , JSON.JavaScriptSerialize(listIn1), JSON.JavaScriptSerialize(listIn2), JSON.JavaScriptSerialize(listIn3), JSON.JavaScriptSerialize(listIn4)
+                , rtl ? true : false, normalSized ? true:false);
+
+        }
+
+        private TimeBoundedActiveAttendanceRequest GetTimeBoundedActiveAttendanceRequest()
+        {
+            ActiveAttendanceRequest re = GetActiveAttendanceRequest();
+            TimeBoundedActiveAttendanceRequest b = new TimeBoundedActiveAttendanceRequest();
+            b.DepartmentId = re.DepartmentId;
+            b.BranchId = re.BranchId;
+            b.DayStatus = re.DayStatus;
+            b.DivisionId = re.DivisionId;
+            b.PositionId = re.PositionId;
+
+            try
+            {
+                b.startingDayId = periodToDate.SelectedDate.ToString("yyyyMMdd");
+            }
+            catch
+            {
+                b.startingDayId = DateTime.Now.ToString("yyyyMMdd");
+
+
+            }
+            return b;
         }
 
         protected void CompletedLoansStore_ReadData(object sender, StoreReadDataEventArgs e)
@@ -930,7 +996,7 @@ namespace AionHR.Web.UI.Forms
 
             List<string> listCategories = new List<string>() { GetLocalResourceObject("MinLocalRate").ToString(), GetLocalResourceObject("LocalsRate").ToString() };
             List<double> listValues = new List<double>() { resp.Items[0].minLocalsRate, resp.Items[0].localsrate };
-          
+
             X.Call("drawMinLocalRateCountHightChartColumn", JSON.JavaScriptSerialize(listValues), JSON.JavaScriptSerialize(listCategories), rtl ? true : false);
 
 
@@ -1047,6 +1113,131 @@ namespace AionHR.Web.UI.Forms
                 X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
                 X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorSavingRecord).Show();
             }
+
+        }
+
+
+
+        protected void AttendancePeriodStore_ReadData(object sender, StoreReadDataEventArgs e)
+        {
+            BindAttendancePeriod();
+        }
+
+        protected void CompanyHeadCountStore_ReadData(object sender, StoreReadDataEventArgs e)
+        {
+            BindCompanyHeadCount();
+        }
+
+        private void BindCompanyHeadCount(bool normalSized=true)
+        {
+            bool rtl = _systemService.SessionHelper.CheckIfArabicSession();
+            ReportCompositeRequest req = new ReportCompositeRequest();
+            DateRangeParameterSet range = new DateRangeParameterSet();
+            range.DateFrom = new DateTime(1991, 1, 1);
+            try
+            {
+                range.DateTo = CountDateTo.SelectedDate;
+            }
+            catch (Exception)
+            {
+
+                range.DateTo = DateTime.Now;
+            }
+            req.Add(range);
+            ListResponse<RT103> resp = _reportsService.ChildGetAll<RT103>(req);
+            if (!resp.Success)
+            {
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() : resp.Summary).Show();
+                return;
+            }
+            List<String> cats = new List<string>();
+            foreach (DateTime d in resp.Items.Select(a => a.date))
+            {
+                
+                cats.Add(GetGlobalResourceObject("Common", Enum.GetName(typeof(DayOfWeek), d.DayOfWeek) + "Text").ToString() + " - " + d.ToString("MM-dd") + "  ");
+
+            }
+            List<int> listIn = resp.Items.Select(a => a.headCount).ToList();
+           
+
+
+            // Store1.DataSource = resp.Items;
+            // Store1.DataBind();
+            X.Call("drawCompanyHeadCountChart",  JSON.JavaScriptSerialize(listIn), JSON.JavaScriptSerialize(cats), rtl ? true : false,normalSized);
+
+        }
+
+        protected void DimensionalHeadCountStore_ReadData(object sender, StoreReadDataEventArgs e)
+        {
+            BindDimensionalHeadCount(true);
+        }
+
+        protected void BindDimensionalHeadCount(bool normalSized=true)
+        {
+            bool rtl = _systemService.SessionHelper.CheckIfArabicSession();
+            ReportCompositeRequest req = new ReportCompositeRequest();
+            DayIdParameterSet s = new DayIdParameterSet();
+            try
+            {
+                s.Date = CountDateTo.SelectedDate;
+            }
+            catch (Exception)
+            {
+
+                s.Date = DateTime.Now;
+            }
+            req.Add(s);
+            ListResponse<RT110> resp = _reportsService.ChildGetAll<RT110>(req);
+            if(!resp.Success)
+            {
+                return;
+            }
+
+            int dim = 1;
+            try
+            {
+                 dim = Convert.ToInt32(dimension.SelectedItem.Value);
+            }
+            catch (Exception)
+            {
+
+                
+            }
+            List<string> listCategories = resp.Items.Where(a=>a.dimension ==dim).Select(a => a.name).ToList();
+            List<int> listIn = resp.Items.Where(a => a.dimension == dim).Select(a => a.headCount).ToList();
+
+
+
+            // Store1.DataSource = resp.Items;
+            // Store1.DataBind();
+            X.Call("drawDimensionalHeadCountChart", JSON.JavaScriptSerialize(listIn), JSON.JavaScriptSerialize(listCategories), rtl ? true : false,normalSized);
+
+        }
+
+        protected void zoomAttendancePeriod(object sender, DirectEventArgs e)
+        {
+            BindAttendancePeriod(false);
+           
+        }
+        protected void zoomAlert(object sender, DirectEventArgs e)
+        {
+            BindAlerts(false);
+
+        }
+
+        protected void zoomDepartmentCount(object sender, DirectEventArgs e)
+        {
+            BindDepartmentsCount(false);
+
+        }
+        protected void zoomDimensionalHeadCount(object sender, DirectEventArgs e)
+        {
+            BindDimensionalHeadCount(false);
+
+        }
+        protected void zoomCompanyHeadCount(object sender, DirectEventArgs e)
+        {
+            BindCompanyHeadCount(false);
 
         }
     }

@@ -196,10 +196,10 @@ var openModule = function (id) {
             }
 
             
-            App.tabPanel.items.each( function(item){
-            if (item.closable) {
-            App.tabPanel.remove(item);
-        }});
+        //    App.tabPanel.items.each( function(item){
+        //    if (item.closable) {
+        //    App.tabPanel.remove(item);
+        //}});
     var nodes = eval(result);
 
     if (nodes.length > 0) {
