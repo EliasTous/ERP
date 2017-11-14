@@ -172,9 +172,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     this.EditEHForm.SetValues(response.result);
                     FillEHStatus();
                     statusId.Select(response.result.statusId.ToString());
-                    RecordRequest request = new RecordRequest();
-                    r.RecordID = id.ToString();
-                    RecordResponse<EmploymentHistory> elias = _employeeService.ChildGetRecord<EmploymentHistory>(request);
+                  
 
                     this.EditEHwindow.Title = Resources.Common.EditWindowsTitle;
                     this.EditEHwindow.Show();

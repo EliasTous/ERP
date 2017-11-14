@@ -284,7 +284,7 @@ namespace AionHR.Web.UI.Forms
                     }
 
 
-
+                    employeeId.SuspendEvent("Change"); 
                     employeeId.GetStore().Add(new object[]
                        {
                                 new
@@ -294,9 +294,12 @@ namespace AionHR.Web.UI.Forms
                                 }
                        });
                     employeeId.SetValue(response.result.employeeId);
+                    employeeId.ResumeEvent("Change"); 
+                    effectiveDate.SuspendEvent("Change");
                     effectiveDate.SetValue(response.result.effectiveDate);
-                    balanceLeaves.Text = response.result.balanceLeaves.ToString();
-
+                    effectiveDate.ResumeEvent("Change");
+                    leaveBalance.Text = response.result.leaveBalance.ToString();
+           
                     this.BasicInfoTab.SetValues(response.result);
 
 
@@ -566,20 +569,11 @@ namespace AionHR.Web.UI.Forms
             }
         }
 
-        private void SetTabPanelEnable(bool isEnable)
-        {
-            foreach (var item in panelRecordDetails.Items)
-            {
-                if (item.ID == "BasicInfoTab")
-                    continue;
-                item.Disabled = !isEnable;
-            }
-
-        }
+       
 
         protected void ADDNewRecord(object sender, DirectEventArgs e)
         {
-            BasicInfoTab.Reset();
+            this.BasicInfoTab.Reset();
 
             //ListRequest req = new ListRequest();
             //ListResponse<KeyValuePair<string, string>> defaults = _systemService.ChildGetAll<KeyValuePair<string, string>>(req);
@@ -715,13 +709,13 @@ namespace AionHR.Web.UI.Forms
                             Html = Resources.Common.RecordSavingSucc
                         });
                         recordId.Text = b.recordId;
-                        SetTabPanelEnable(true);
+                      
                         currentCase.Text = b.recordId;
 
                         RowSelectionModel sm = this.GridPanel1.GetSelectionModel() as RowSelectionModel;
                         sm.DeselectAll();
                         sm.Select(b.recordId.ToString());
-                        BasicInfoTab.Close(); 
+                        this.EditRecordWindow.Close();
 
 
 
@@ -835,7 +829,7 @@ namespace AionHR.Web.UI.Forms
         //    return new { valid = true };
         protected void FillEmployeeInfo(object sender, DirectEventArgs e)
         {
-            string effectiveDate = e.ExtraParams["effectiveDate"];
+          string effectiveDate = e.ExtraParams["effectiveDate"];
             if (!string.IsNullOrEmpty(employeeId.Value.ToString()) || !string.IsNullOrEmpty(effectiveDate))
             { 
             EmployeeQuickViewRecordRequest req = new EmployeeQuickViewRecordRequest();
@@ -872,11 +866,11 @@ namespace AionHR.Web.UI.Forms
             earnedLeaves.Text = routers.result.earnedLeaves.ToString();
             usedLeaves.Text = routers.result.usedLeaves.ToString();
             paidLeaves.Text = routers.result.paidLeaves.ToString();
-            balanceLeaves.Text = routers.result.leaveBalance.ToString();
+            leaveBalance.Text = routers.result.leaveBalance.ToString();
 
             lastLeaveStartDate.Value = routers.result.lastLeaveStartDate;
             lastLeaveEndDate.Value = routers.result.lastLeaveEndDate;
-            //salary.Text = routers.result.salary.ToString();
+            salary.Text = routers.result.salary.ToString();
             //days.Text = "0";
 
 

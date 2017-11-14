@@ -855,8 +855,10 @@ namespace AionHR.Web.UI.Forms
         public void FillLeftPanel(bool shouldUpdateGrid = false)
         {
 
-            RecordRequest r = new RecordRequest();
+            EmployeeQuickViewRecordRequest r = new EmployeeQuickViewRecordRequest();
             r.RecordID = CurrentEmployee.Text.ToString();
+            r.asOfDate = DateTime.Now;
+            
             RecordResponse<EmployeeQuickView> qv = _employeeService.ChildGetRecord<EmployeeQuickView>(r);
             if (!qv.Success)
             {

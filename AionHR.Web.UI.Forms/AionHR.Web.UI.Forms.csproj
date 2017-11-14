@@ -2022,7 +2022,7 @@
     <Content Include="App_LocalResources\PayrollIndemnities.aspx.resx" />
     <Content Include="App_LocalResources\PayrollIndemnities.aspx.ar.resx" />
     <Content Include="App_LocalResources\TerminationReasons.aspx.resx" />
-    <Content Include="App_LocalResources\TerminationReason.aspx.ar.resx" />
+    <Content Include="App_LocalResources\TerminationReasons.aspx.ar.resx" />
     <Content Include="App_LocalResources\NoticePeriods.aspx.resx" />
     <Content Include="App_LocalResources\NoticePeriods.aspx.ar.resx" />
     <Content Include="App_LocalResources\Status.aspx.resx" />
@@ -2036,7 +2036,7 @@
     <Content Include="App_LocalResources\Letters.aspx.ar.resx" />
     <Content Include="App_LocalResources\Letters.aspx.resx" />
     <Content Include="EmployeePages\App_LocalResources\Contacts.aspx.ar.resx" />
-    <Content Include="App_LocalResources\leavePayments.aspx.ar.resx" />
+    <Content Include="App_LocalResources\LeavePayments.aspx.ar.resx" />
     <Content Include="App_LocalResources\LeavePayments.aspx.resx" />
     <Content Include="App_LocalResources\OrganizationChart.aspx.ar.resx" />
     <Content Include="Reports\App_LocalResources\RT402.aspx.resx" />

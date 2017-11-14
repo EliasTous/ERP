@@ -29,6 +29,9 @@
     <script src="Scripts/moment-timezone.js" type="text/javascript">  </script>
 
     <script type="text/javascript" src="Scripts/locales/ar.js?id=7"></script>
+    <script type="text/javascript">
+       
+    </script>
 
 
 </head>
@@ -51,6 +54,11 @@
         <ext:Hidden ID="PFromLoan" Text="<%$ Resources: PFromLoan %>" runat="server"  />
         <ext:Hidden ID="FixedAmount" Text="<%$ Resources: FixedAmount %>"  runat="server"  />
         <ext:Hidden ID="FixedPayment" Text="<%$ Resources: FixedPayment %>"  runat="server" />
+
+          <ext:Hidden ID="titleBalanceError" runat="server" Text="<%$ Resources: titleBalanceError %>" />
+        <ext:Hidden ID="titleBalanceErrorMessage" runat="server" Text="<%$ Resources: titleBalanceErrorMessage %>" />
+     
+        
 
         <ext:Store
             ID="Store1"
@@ -83,7 +91,7 @@
                           <ext:ModelField Name="earnedLeaves" />
                           <ext:ModelField Name="usedLeaves" />
                           <ext:ModelField Name="paidLeaves" />
-                          <ext:ModelField Name="balanceLeaves" />
+                          <ext:ModelField Name="leaveBalance" />
                          <ext:ModelField Name="postingStatus" />
                     </Fields>
                 </ext:Model>
@@ -199,11 +207,12 @@
                     <ColumnModel ID="ColumnModel1" runat="server" SortAscText="<%$ Resources:Common , SortAscText %>" SortDescText="<%$ Resources:Common ,SortDescText  %>" SortClearText="<%$ Resources:Common ,SortClearText  %>" ColumnsText="<%$ Resources:Common ,ColumnsText  %>" EnableColumnHide="false" Sortable="false">
                         <Columns>
                             <ext:Column ID="ColRecordId" Visible="false" DataIndex="recordId" runat="server" />
+                             <ext:Column ID="Column5" DataIndex="paymentRef" Text="<%$ Resources: FieldReference%>" runat="server" />
                             <ext:Column ID="ColName" DataIndex="employeeName" Text="<%$ Resources: FieldEmployeeName%>" runat="server" Flex="4">
                                 <Renderer Handler=" return record.data['employeeName'].fullName; ">
                                 </Renderer>
                             </ext:Column>
-                            <ext:Column ID="Column5" DataIndex="paymentRef" Text="<%$ Resources: FieldReference%>" runat="server" />
+                           
                           
                             <ext:DateColumn ID="Column6" DataIndex="date" Text="<%$ Resources: FieldDate%>" runat="server" Width="100" />
                               <ext:DateColumn ID="DateColumn1" DataIndex="effectiveDate" Text="<%$ Resources: FieldEffectiveDate%>" runat="server" Width="100" />
@@ -214,7 +223,7 @@
                             <ext:Column ID="Column20" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEarnedLeaves %>" DataIndex="earnedLeaves" Hideable="false" Width="140"/>
                             <ext:Column ID="Column8" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldUsedLeaves %>" DataIndex="usedLeaves" Hideable="false" Width="140"/>
                             <ext:Column ID="Column9" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldPaidLeaves %>" DataIndex="paidLeaves" Hideable="false" Width="140"/>
-                            <ext:Column ID="Column10" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldBalanceLeaves %>" DataIndex="balanceLeaves" Hideable="false" Width="140"/>
+                            <ext:Column ID="Column10" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldBalanceLeaves %>" DataIndex="leaveBalance" Hideable="false" Width="140"/>
                         <%--    <ext:Column ID="Column11" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldPostingStatus %>" DataIndex="postingStatus" Hideable="false" Width="140"/>--%>
                           
                                
@@ -365,7 +374,7 @@
                     <Items>
                        
                                   <ext:FormPanel
-                            ID="BasicInfoTab" DefaultButton="SaveButton"
+                               ID="BasicInfoTab" DefaultButton="SaveButton"
                             runat="server"
                             Title="<%$ Resources: BasicInfoTabEditWindowTitle %>"
                             Icon="ApplicationSideList"
@@ -405,12 +414,12 @@
 
                                     </Store>
                                     <DirectEvents>
-                                        <Select OnEvent="FillEmployeeInfo">
+                                        <Change OnEvent="FillEmployeeInfo">
                                               <ExtraParams>
                                                 <ext:Parameter Name="effectiveDate" Value="#{effectiveDate}.getValue()" Mode="Raw" />
                                                                                                  
                                             </ExtraParams>
-                                        </Select>
+                                        </Change>
                                     </DirectEvents>
                                     <Listeners>
                                         <Change Handler="#{days}.setValue(0); #{amount}.setValue(0);  "></Change>
@@ -419,7 +428,7 @@
                                 
                                   <ext:DateField AllowBlank="false"  runat="server" ID="effectiveDate" Name="effectiveDate" FieldLabel="<%$ Resources:FieldEffectiveDate%>"  SubmitValue="true"  >
                                       <DirectEvents>
-                                          <Change OnEvent="FillEmployeeInfo">
+                                          <Change OnEvent="FillEmployeeInfo" >
                                               <ExtraParams>
                                                 <ext:Parameter Name="effectiveDate" Value="#{effectiveDate}.getValue()" Mode="Raw" />
                                                    <ext:Parameter Name="employeeId" Value="#{employeeId}.getValue()" Mode="Raw" />
@@ -433,20 +442,22 @@
                                     </Listeners>
                                 
                                     </ext:DateField>
-                             <%--  <ext:TextField runat="server" ID="hireDate" Name="hireDate" FieldLabel="<%$ Resources: FieldHireDate %>" />--%>
+                          
                                    <ext:NumberField runat="server" ReadOnly="true" ID="earnedLeaves" Name="earnedLeaves" FieldLabel="<%$ Resources: FieldEarnedLeaves %>" />
                                    <ext:NumberField runat="server" ReadOnly="true" ID="usedLeaves" Name="usedLeaves" FieldLabel="<%$ Resources: FieldUsedLeaves %>" />
                                    <ext:NumberField runat="server" ReadOnly="true" ID="paidLeaves" Name="paidLeaves" FieldLabel="<%$ Resources: FieldPaidLeaves %>" />
-                                   <ext:NumberField runat="server" ReadOnly="true" ID="balanceLeaves" Name="leaveBalance" FieldLabel="<%$ Resources: FieldBalanceLeaves %>" />
-                                 <ext:NumberField runat="server" ReadOnly="true" ID="salary" Name="salary" FieldLabel="<%$ Resources: FieldSalary %>" />
-                                  <ext:NumberField runat="server" ID="days" Name="days" FieldLabel="<%$ Resources: FieldDays %>" >
-                                      <Listeners>
-                                         <Change Handler=" this.next().setValue((this.prev().value/30)*this.value);"></Change>
+                                   <ext:NumberField runat="server" ReadOnly="true" ID="leaveBalance" Name="leaveBalance" FieldLabel="<%$ Resources: FieldBalanceLeaves %>" />
+                                 <ext:NumberField runat="server" ReadOnly="true" ID="salary" Name="salary" FieldLabel="<%$ Resources: FieldSalary %>"  />
+                                  <ext:NumberField runat="server" ID="days" Name="days" FieldLabel="<%$ Resources: FieldDays %>"  MsgTarget="None">
+                                      <Listeners  >
+                                         <Change Handler=" this.next().setValue((this.prev().value/30)*this.value);"   ></Change>
                                       </Listeners>
-                                      <Validator Handler ="if(this.value<=#{balanceLeaves}.value && this.value>=0) return true; ">
-                                          
-                                      </Validator>
+                                       <Validator Handler=" if(this.value>0 && this.value<#{leaveBalance}.getValue()) return true;">
+                                           
+                                       </Validator>
+                              
                                       </ext:NumberField>
+                                
                                  <ext:NumberField runat="server" ReadOnly="true" ID="amount" Name="amount" FieldLabel="<%$ Resources: FieldAmount %>" AllowDecimals="false" >
                                    
                                      </ext:NumberField>

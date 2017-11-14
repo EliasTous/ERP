@@ -88,6 +88,7 @@ function getPaymentMethodString(index) {
 function TogglePaymentMethod(index) {
     App.accountNumber.setDisabled(index == 1);
     App.bankName.setDisabled(index == 1);
+    App.swiftCode.setDisabled(index == 1);
 
 }
 

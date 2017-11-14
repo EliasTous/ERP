@@ -21,7 +21,7 @@ namespace AionHR.Model.Payroll
         public int earnedLeaves { get; set; }
         public int usedLeaves { get; set; }
         public int paidLeaves { get; set; }
-        public int balanceLeaves { get; set; }
+        public int leaveBalance { get; set; }
         public int postingStatus { get; set; }
 
     }

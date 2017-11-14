@@ -156,6 +156,9 @@
   <data name="xrLabel20.Text" xml:space="preserve">
     <value>خاضع للضريبة</value>
   </data>
+  <data name="xrLabel20.Text1" xml:space="preserve">
+    <value>الراتب </value>
+  </data>
   <data name="xrLabel21.Text" xml:space="preserve">
     <value>غير خاضع للضريبة</value>
   </data>

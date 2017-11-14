@@ -586,7 +586,7 @@
                                 <ext:Panel runat="server" PaddingSpec="0 0 0 5" ID="secondPanel">
                                     <Items>
                                         
-
+                                         <ext:TextField LabelWidth="130" Width="350" Disabled="true"  ID="swiftCode" runat="server" FieldLabel="<%$ Resources:FieldswiftCode%>" Name="swiftCode" AllowBlank="false" />
                                         <ext:TextField LabelWidth="130" Width="350" Disabled="true"  ID="accountNumber" runat="server" FieldLabel="<%$ Resources:FieldAccountNumber%>" Name="accountNumber" AllowBlank="false" />
                                         <ext:TextField LabelWidth="130" Width="350" ID="comments" runat="server" FieldLabel="<%$ Resources:FieldComments%>" Name="comments" />
                                         <ext:TextField LabelWidth="130" Width="350" ID="basicAmount" AllowBlank="false" runat="server" FieldLabel="<%$ Resources:FieldBasicAmount%>" Name="basicAmount">

@@ -85,6 +85,8 @@ public class EmployeeDetails : DevExpress.XtraReports.UI.XtraReport
     private XRLabel xrLabel15;
     private XRTableCell xrTableCell16;
     private XRLabel xrLabel19;
+    private XRTableCell xrTableCell18;
+    private XRLabel xrLabel20;
 
     /// <summary>
     /// Required designer variable.
@@ -198,6 +200,8 @@ public class EmployeeDetails : DevExpress.XtraReports.UI.XtraReport
             this.xrLabel39 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrControlStyle1 = new DevExpress.XtraReports.UI.XRControlStyle();
             this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
+            this.xrTableCell18 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrLabel20 = new DevExpress.XtraReports.UI.XRLabel();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
@@ -246,6 +250,7 @@ public class EmployeeDetails : DevExpress.XtraReports.UI.XtraReport
             this.xrTableCell15,
             this.xrTableCell16,
             this.xrTableCell21,
+            this.xrTableCell18,
             this.xrTableCell22,
             this.xrTableCell23,
             this.xrTableCell1});
@@ -407,6 +412,7 @@ public class EmployeeDetails : DevExpress.XtraReports.UI.XtraReport
             // groupHeaderBand1
             // 
             this.groupHeaderBand1.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
+            this.xrLabel20,
             this.xrLabel19,
             this.xrLabel15,
             this.xrLabel1,
@@ -921,6 +927,24 @@ public class EmployeeDetails : DevExpress.XtraReports.UI.XtraReport
             // 
             this.objectDataSource1.DataSource = typeof(AionHR.Model.Reports.RT108);
             this.objectDataSource1.Name = "objectDataSource1";
+            // 
+            // xrTableCell18
+            // 
+            this.xrTableCell18.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "salary")});
+            resources.ApplyResources(this.xrTableCell18, "xrTableCell18");
+            this.xrTableCell18.Name = "xrTableCell18";
+            // 
+            // xrLabel20
+            // 
+            this.xrLabel20.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            | DevExpress.XtraPrinting.BorderSide.Right) 
+            | DevExpress.XtraPrinting.BorderSide.Bottom)));
+            resources.ApplyResources(this.xrLabel20, "xrLabel20");
+            this.xrLabel20.Name = "xrLabel20";
+            this.xrLabel20.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel20.StylePriority.UseBorders = false;
+            this.xrLabel20.StylePriority.UseTextAlignment = false;
             // 
             // EmployeeDetails
             // 

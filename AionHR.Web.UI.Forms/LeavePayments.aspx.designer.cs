@@ -148,6 +148,24 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Hidden FixedPayment;
         
         /// <summary>
+        /// titleBalanceError control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Hidden titleBalanceError;
+        
+        /// <summary>
+        /// titleBalanceErrorMessage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Hidden titleBalanceErrorMessage;
+        
+        /// <summary>
         /// Store1 control.
         /// </summary>
         /// <remarks>
@@ -238,15 +256,6 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Column ColRecordId;
         
         /// <summary>
-        /// ColName control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Column ColName;
-        
-        /// <summary>
         /// Column5 control.
         /// </summary>
         /// <remarks>
@@ -254,6 +263,15 @@ namespace AionHR.Web.UI.Forms {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.Column Column5;
+        
+        /// <summary>
+        /// ColName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Column ColName;
         
         /// <summary>
         /// Column6 control.
@@ -517,13 +535,13 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.NumberField paidLeaves;
         
         /// <summary>
-        /// balanceLeaves control.
+        /// leaveBalance control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.NumberField balanceLeaves;
+        protected global::Ext.Net.NumberField leaveBalance;
         
         /// <summary>
         /// salary control.

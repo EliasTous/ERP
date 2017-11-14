@@ -474,4 +474,10 @@
   <data name="WindowTitle1" xml:space="preserve">
     <value>إعدادات نهاية الخدمة</value>
   </data>
+  <data name="titleBalanceError" xml:space="preserve">
+    <value>Balance Error</value>
+  </data>
+  <data name="titleBalanceErrorMessage" xml:space="preserve">
+    <value>Please Enter Value Less or Equal Balance leave </value>
+  </data>
 </root>

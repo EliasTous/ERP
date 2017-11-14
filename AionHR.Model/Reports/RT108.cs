@@ -66,6 +66,7 @@ namespace AionHR.Model.Reports
         public DateTime? termEndDate { get; set; }
 
         public string termEndDateString { get; set; }
+        public double salary { get; set; }
 
 
     }

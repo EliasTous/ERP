@@ -273,4 +273,7 @@
   <data name="TotalEntitlements" xml:space="preserve">
     <value>إجمالي الاستحقاقات</value>
   </data>
+  <data name="FieldswiftCode" xml:space="preserve">
+    <value>رقم البنك</value>
+  </data>
 </root>

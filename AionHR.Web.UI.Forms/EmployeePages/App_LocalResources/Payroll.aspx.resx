@@ -291,4 +291,7 @@
   <data name="TotalEntitlements" xml:space="preserve">
     <value>Total Entitlements</value>
   </data>
+  <data name="FieldswiftCode" xml:space="preserve">
+    <value>Swift Code</value>
+  </data>
 </root>
