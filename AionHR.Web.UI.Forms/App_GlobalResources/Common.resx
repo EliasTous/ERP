@@ -1068,4 +1068,19 @@
   <data name="RT402" xml:space="preserve">
     <value>Loan Statement</value>
   </data>
+  <data name="SelfService" xml:space="preserve">
+    <value>Self Service</value>
+  </data>
+  <data name="Attendance" xml:space="preserve">
+    <value>Attendance</value>
+  </data>
+  <data name="Leave" xml:space="preserve">
+    <value>Leave</value>
+  </data>
+  <data name="Loan" xml:space="preserve">
+    <value>Loan</value>
+  </data>
+  <data name="PersonalInfo" xml:space="preserve">
+    <value>Personal Info</value>
+  </data>
 </root>

@@ -1068,4 +1068,7 @@
   <data name="RT402" xml:space="preserve">
     <value>كشف موظف</value>
   </data>
+  <data name="SelfService" xml:space="preserve">
+    <value>الخدمة الذاتية</value>
+  </data>
 </root>

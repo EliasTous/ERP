@@ -392,5 +392,29 @@ namespace AionHR.Web.UI.Forms.Utilities
             nodes.Add(rootParent);
             return nodes;
         }
+
+        internal NodeCollection BuildSelftService(NodeCollection nodes)
+        {
+            if (nodes == null)
+                nodes = new Ext.Net.NodeCollection();
+
+
+
+            Ext.Net.Node rootParent = BuildRootParentNode("rootParent", Resources.Common.SelfService, true);
+            Ext.Net.Node ss = BuildParentNode("standard", Resources.Common.SelfService, true, rootParent);
+
+            Ext.Net.Node pi = BuildLeafNode("pi", Resources.Common.PersonalInfo, "Group", true, ss);
+            Ext.Net.Node at = BuildLeafNode("at", Resources.Common.Attendance, "Group", true, ss);
+            Ext.Net.Node lv = BuildLeafNode("lv", Resources.Common.Leave, "Group", true, ss);
+            Ext.Net.Node ln = BuildLeafNode("ln", Resources.Common.Loan, "Group", true, ss);
+            Ext.Net.Node sl = BuildLeafNode("sl", Resources.Common.Salary, "Group", true, ss);
+            Ext.Net.Node lt = BuildLeafNode("lt", Resources.Common.Letters, "Group", true, ss);
+
+
+            FillConfigItem(lt, "Letters", "Letters.aspx", Resources.Common.Letters, "icon-Employees", "1");
+
+            nodes.Add(rootParent);
+            return nodes;
+        }
     }
 }

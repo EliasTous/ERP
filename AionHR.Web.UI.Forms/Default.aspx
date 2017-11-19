@@ -11,7 +11,7 @@
     <script type="text/javascript" src="Scripts/app.js?id=4"></script>
     <script type="text/javascript" src="Scripts/Common.js"></script>
     <script type="text/javascript" src="Scripts/default.js?id=13"></script>
-
+ 
     <title>
         <asp:Literal ID="Literal1" runat="server" Text="<%$Resources:Common , ApplicationTitle%>" />
     </title>
@@ -544,6 +544,14 @@
                     <ext:Toolbar ID="Toolbar1" runat="server" Border="true">
                         <Items>
                             <ext:Label runat="server" Text="<%$ Resources:Common , Modules %>" />
+                            <ext:Button ID="btnSelfService" runat="server"  IconUrl="Images/SelfServiceIcon.png" ToolTip="<%$ Resources:Common , EmployeeFiles %>">
+                                <Listeners>
+                                    <%--<Click Handler="#{commonTree}.setTitle(this.tooltip);openModule(7);" />--%>
+                                    <Click Handler="openModule(7);" />
+                                </Listeners>
+                                <Menu>
+                                </Menu>
+                            </ext:Button>
                             <ext:Button ID="btnEmployeeFiles" runat="server" Icon="Group" ToolTip="<%$ Resources:Common , EmployeeFiles %>">
                                 <Listeners>
                                     <%--<Click Handler="#{commonTree}.setTitle(this.tooltip);openModule(1);" />--%>
