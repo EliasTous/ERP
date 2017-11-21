@@ -25,6 +25,7 @@ using AionHR.Model.Attendance;
 using AionHR.Services.Messaging.Reports;
 using Reports;
 using System.Threading;
+using AionHR.Model.Employees.Profile;
 
 namespace AionHR.Web.UI.Forms.Reports
 {
@@ -34,6 +35,7 @@ namespace AionHR.Web.UI.Forms.Reports
         ITimeAttendanceService _timeAttendanceService = ServiceLocator.Current.GetInstance<ITimeAttendanceService>();
         ICompanyStructureService _companyStructureService = ServiceLocator.Current.GetInstance<ICompanyStructureService>();
         IReportsService _reportsService = ServiceLocator.Current.GetInstance<IReportsService>();
+        IEmployeeService _employeeService = ServiceLocator.Current.GetInstance<IEmployeeService>();
         protected override void InitializeCulture()
         {
 
@@ -185,8 +187,8 @@ namespace AionHR.Web.UI.Forms.Reports
             {
                 x.hireDateString = x.hireDate.HasValue? x.hireDate.Value.ToString(format, cul) :"";
                 
-                x.idExpiryString = x.resExpiryDate.HasValue? x.resExpiryDate.Value.ToString(format, cul) :"";
-                x.passportExpiryString = x.passportExpiryDate.HasValue? x.passportExpiryDate.Value.ToString(format, cul) :"";
+                //x.idExpiryString = x.resExpiryDate.HasValue? x.resExpiryDate.Value.ToString(format, cul) :"";
+                //x.passportExpiryString = x.passportExpiryDate.HasValue? x.passportExpiryDate.Value.ToString(format, cul) :"";
                 x.terminationDateString = x.terminationDate.HasValue? x.terminationDate.Value.ToString(format, cul) :"";
                 x.lastLeaveReturnString = x.lastLeaveReturnDate.HasValue? x.lastLeaveReturnDate.Value.ToString(format, cul) :"";
                 x.termEndDateString = x.termEndDate.HasValue ? x.termEndDate.Value.ToString(format, cul) : "";
@@ -229,8 +231,10 @@ namespace AionHR.Web.UI.Forms.Reports
             request.SortBy = "hireDate";
             request.Add(jobInfo1.GetJobInfo());
             request.Add(activeControl.GetActiveStatus());
-            request.Add(GetCountryInfo()); 
-            
+            request.Add(GetCountryInfo());
+            request.Add(employeeFilter.GetEmployee());
+
+
             return request;
 
         }
@@ -305,6 +309,36 @@ namespace AionHR.Web.UI.Forms.Reports
                 }
            
             return p;
+        }
+        [DirectMethod]
+        public object FillEmployee(string action, Dictionary<string, object> extraParams)
+        {
+            StoreRequestParameters prms = new StoreRequestParameters(extraParams);
+            List<Employee> data = GetEmployeesFiltered(prms.Query);
+            data.ForEach(s => { s.fullName = s.name.fullName; });
+            //  return new
+            // {
+            return data;
+        }
+        private List<Employee> GetEmployeesFiltered(string query)
+        {
+
+            EmployeeListRequest req = new EmployeeListRequest();
+            req.DepartmentId = "0";
+            req.BranchId = "0";
+            req.IncludeIsInactive = 2;
+            req.SortBy = GetNameFormat();
+
+            req.StartAt = "1";
+            req.Size = "20";
+            req.Filter = query;
+
+            ListResponse<Employee> response = _employeeService.GetAll<Employee>(req);
+            return response.Items;
+        }
+        private string GetNameFormat()
+        {
+            return _systemService.SessionHelper.Get("nameFormat").ToString();
         }
     }
 }

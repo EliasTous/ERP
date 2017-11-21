@@ -565,7 +565,7 @@
 
                             </ext:Button>
                             <ext:ToolbarSeparator runat="server"></ext:ToolbarSeparator>
-                            <ext:Button ID="btnScheduler" runat="server" Icon="CalendarSelectDay" ToolTip="<%$ Resources:Common , Scheduler %>">
+                            <ext:Button ID="btnScheduler" runat="server" Icon="DateNext" ToolTip="<%$ Resources:Common , Scheduler %>">
                                 <Listeners>
                                     <%--<Click Handler="#{commonTree}.setTitle(this.tooltip);openModule(4);" />--%>
                                     <Click Handler="openModule(4);  " />

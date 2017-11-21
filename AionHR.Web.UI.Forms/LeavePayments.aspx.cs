@@ -395,22 +395,20 @@ namespace AionHR.Web.UI.Forms
             try
             {
                 //Step 1 Code to delete the object from the database 
-                Loan s = new Loan();
+                LeavePayment s = new LeavePayment();
                 s.recordId = index;
-                s.employeeId = "0";
-                s.purpose = "";
+             
+           
                 s.date = DateTime.Now;
                 s.effectiveDate = DateTime.Now;
-                s.status = 0;
-                s.ltId = 0;
-                s.ltName = "";
+              
                 s.amount = 0;
 
-                s.currencyId = 0;
+                
 
-                PostRequest<Loan> req = new PostRequest<Loan>();
+                PostRequest<LeavePayment> req = new PostRequest<LeavePayment>();
                 req.entity = s;
-                PostResponse<Loan> r = _loanService.Delete<Loan>(req);
+                PostResponse<LeavePayment> r = _payrollService.ChildDelete<LeavePayment>(req);
                 if (!r.Success)
                 {
                     X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
@@ -443,55 +441,55 @@ namespace AionHR.Web.UI.Forms
         }
 
 
-        [DirectMethod]
-        public void DeleteCase(string index)
-        {
-            try
-            {
-                //Step 1 Code to delete the object from the database 
-                LoanComment s = new LoanComment();
-                s.loanId = Convert.ToInt32(currentCase.Text);
-                s.comment = "";
-                s.seqNo = Convert.ToInt16(index);
-                s.userId = 0;
-                s.userName = "";
-                s.date = DateTime.Now;
+        //[DirectMethod]
+        //public void DeleteCase(string index)
+        //{
+        //    try
+        //    {
+        //        //Step 1 Code to delete the object from the database 
+        //        LoanComment s = new LoanComment();
+        //        s.loanId = Convert.ToInt32(currentCase.Text);
+        //        s.comment = "";
+        //        s.seqNo = Convert.ToInt16(index);
+        //        s.userId = 0;
+        //        s.userName = "";
+        //        s.date = DateTime.Now;
 
 
 
-                PostRequest<LoanComment> req = new PostRequest<LoanComment>();
-                req.entity = s;
-                PostResponse<LoanComment> r = _loanService.ChildDelete<LoanComment>(req);
-                if (!r.Success)
-                {
-                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() : r.Summary).Show();
-                    return;
-                }
-                else
-                {
-                    //Step 2 :  remove the object from the store
+        //        PostRequest<LoanComment> req = new PostRequest<LoanComment>();
+        //        req.entity = s;
+        //        PostResponse<LoanComment> r = _loanService.ChildDelete<LoanComment>(req);
+        //        if (!r.Success)
+        //        {
+        //            X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+        //            X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() : r.Summary).Show();
+        //            return;
+        //        }
+        //        else
+        //        {
+        //            //Step 2 :  remove the object from the store
 
 
-                    //Step 3 : Showing a notification for the user 
-                    Notification.Show(new NotificationConfig
-                    {
-                        Title = Resources.Common.Notification,
-                        Icon = Icon.Information,
-                        Html = Resources.Common.RecordDeletedSucc
-                    });
-                }
+        //            //Step 3 : Showing a notification for the user 
+        //            Notification.Show(new NotificationConfig
+        //            {
+        //                Title = Resources.Common.Notification,
+        //                Icon = Icon.Information,
+        //                Html = Resources.Common.RecordDeletedSucc
+        //            });
+        //        }
 
-            }
-            catch (Exception ex)
-            {
-                //In case of error, showing a message box to the user
-                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorDeletingRecord).Show();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        //In case of error, showing a message box to the user
+        //        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+        //        X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorDeletingRecord).Show();
 
-            }
+        //    }
 
-        }
+        //}
 
 
 

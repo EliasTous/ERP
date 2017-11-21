@@ -129,6 +129,9 @@
   <data name="EditWindowsTitle" xml:space="preserve">
     <value>تعديل المستخدم</value>
   </data>
+  <data name="FieldAdministrator" xml:space="preserve">
+    <value>مشرف</value>
+  </data>
   <data name="FieldConfirmPassword" xml:space="preserve">
     <value>تأكيد كلمة السر</value>
   </data>
@@ -153,11 +156,23 @@
   <data name="FieldLanguageId" xml:space="preserve">
     <value>اللغة</value>
   </data>
+  <data name="FieldOperator" xml:space="preserve">
+    <value>مدخل بيانات</value>
+  </data>
   <data name="FieldPassword" xml:space="preserve">
     <value>كلمة السر</value>
   </data>
   <data name="FieldRecordId" xml:space="preserve">
     <value>الرقم</value>
+  </data>
+  <data name="FieldSelfService" xml:space="preserve">
+    <value>خدمات ذاتية</value>
+  </data>
+  <data name="FieldSuperUser" xml:space="preserve">
+    <value>صلاحيات مطلقة</value>
+  </data>
+  <data name="FieldUserType" xml:space="preserve">
+    <value>نوع مستخدم </value>
   </data>
   <data name="Groups" xml:space="preserve">
     <value>المجموعات الأمنية</value>

@@ -67,6 +67,24 @@ namespace AionHR.Web.UI.Forms.Reports {
         protected global::Ext.Net.Hidden titleSavingErrorMessage;
         
         /// <summary>
+        /// ErrorEmptyValue control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Hidden ErrorEmptyValue;
+        
+        /// <summary>
+        /// ErrorTitlEmptyValue control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Hidden ErrorTitlEmptyValue;
+        
+        /// <summary>
         /// dtIdValue control.
         /// </summary>
         /// <remarks>

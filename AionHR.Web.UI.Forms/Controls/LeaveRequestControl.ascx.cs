@@ -329,8 +329,9 @@ namespace AionHR.Web.UI.Forms.Controls
 
         private void LoadQuickViewInfo(string employeeId)
         {
-            RecordRequest r = new RecordRequest();
+            EmployeeQuickViewRecordRequest r = new EmployeeQuickViewRecordRequest();
             r.RecordID = employeeId;
+            r.asOfDate = DateTime.Now;
             RecordResponse<EmployeeQuickView> resp = _employeeService.ChildGetRecord<EmployeeQuickView>(r);
             if (!resp.Success)
             {

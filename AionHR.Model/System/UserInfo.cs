@@ -27,7 +27,14 @@ namespace AionHR.Model.System
 
         [PropertyID("20010_04")]
         [ApplySecurity]
-        public bool isAdmin { get; set; }
+        public bool isAdmin {
+            get { if (this.userType == 1)
+                    return true;
+                     else return false; 
+                    }
+            set { }
+
+        }
         [PropertyID("20010_01")]
         [ApplySecurity]
         public string employeeId { get; set; }
@@ -38,6 +45,7 @@ namespace AionHR.Model.System
         [PropertyID("20010_07")]
         [ApplySecurity]
         public string password { get; set; }
+        public int userType { get; set; }
 
         public string recordId { get; set; }
 

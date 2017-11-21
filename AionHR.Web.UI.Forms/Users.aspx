@@ -480,7 +480,23 @@
 
 
                                 <ext:Checkbox ID="isInactiveCheck" TabIndex="4" runat="server" FieldLabel="<%$ Resources: FieldIsInActive%>" DataIndex="isInactive" Name="isInactive" InputValue="true" />
-                                <ext:Checkbox ID="isAdminCheck" TabIndex="5" runat="server" FieldLabel="<%$ Resources: FieldIsAdmin%>" DataIndex="isAdmin" Name="isAdmin" InputValue="true" />
+                           <%--     <ext:Checkbox ID="isAdminCheck" TabIndex="5" runat="server" FieldLabel="<%$ Resources: FieldIsAdmin%>" DataIndex="isAdmin" Name="isAdmin" InputValue="true" />--%>
+                                   <ext:ComboBox AnyMatch="true" CaseSensitive="false" runat="server" ID="userType" AllowBlank="false"  Name="userType"
+                                    SubmitValue="true"
+                                    TypeAhead="false"
+                                    FieldLabel="<%$ Resources: FieldUserType%>">
+                                    <Items>
+                                      
+                                        <ext:ListItem Text="<%$Resources:FieldSuperUser %>" Value="1" />
+                                        <ext:ListItem Text="<%$Resources:FieldOperator %>" Value="3" />
+                                          <ext:ListItem Text="<%$Resources:FieldAdministrator %>" Value="2" />
+                                          <ext:ListItem Text="<%$Resources:FieldSelfService %>" Value="4" />
+
+                                    </Items>
+                                       <Listeners>
+                                           <Select Handler="if (this.value!=1) #{employeeId}.allowBlank = false; else #{employeeId}.allowBlank = true; "></Select>
+                                       </Listeners>
+                                </ext:ComboBox>
                                 <ext:ComboBox AnyMatch="true" CaseSensitive="false" runat="server" ID="employeeId" TabIndex="6" Name="employeeId"
                                     DisplayField="fullName"
                                     ValueField="recordId"

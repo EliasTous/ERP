@@ -132,7 +132,16 @@
     <value>xrTableCell11</value>
   </data>
   <data name="xrTableCell11.Weight" type="System.Double, mscorlib">
-    <value>0.6500413237238517</value>
+    <value>0.53545795807093322</value>
+  </data>
+  <data name="xrTableCell19.Dpi" type="System.Single, mscorlib">
+    <value>100</value>
+  </data>
+  <data name="xrTableCell19.Text" xml:space="preserve">
+    <value>xrTableCell19</value>
+  </data>
+  <data name="xrTableCell19.Weight" type="System.Double, mscorlib">
+    <value>0.53545795807093322</value>
   </data>
   <data name="xrTableCell2.Dpi" type="System.Single, mscorlib">
     <value>100</value>
@@ -144,7 +153,7 @@
     <value>MiddleLeft</value>
   </data>
   <data name="xrTableCell2.Weight" type="System.Double, mscorlib">
-    <value>1.8720162666901257</value>
+    <value>1.4511457989786414</value>
   </data>
   <data name="xrTableCell3.Dpi" type="System.Single, mscorlib">
     <value>100</value>
@@ -153,7 +162,7 @@
     <value>xrTableCell3</value>
   </data>
   <data name="xrTableCell3.Weight" type="System.Double, mscorlib">
-    <value>0.73136419363312877</value>
+    <value>0.73136022634769848</value>
   </data>
   <data name="xrTableCell4.Dpi" type="System.Single, mscorlib">
     <value>100</value>
@@ -180,7 +189,7 @@
     <value>xrTableCell6</value>
   </data>
   <data name="xrTableCell6.Weight" type="System.Double, mscorlib">
-    <value>0.66666538709072987</value>
+    <value>0.66666660779393916</value>
   </data>
   <data name="xrTableCell7.Dpi" type="System.Single, mscorlib">
     <value>100</value>
@@ -189,7 +198,7 @@
     <value>xrTableCell7</value>
   </data>
   <data name="xrTableCell7.Weight" type="System.Double, mscorlib">
-    <value>0.82291751968204307</value>
+    <value>0.82291629897883378</value>
   </data>
   <data name="xrTableCell8.Dpi" type="System.Single, mscorlib">
     <value>100</value>
@@ -198,7 +207,7 @@
     <value>xrTableCell8</value>
   </data>
   <data name="xrTableCell8.Weight" type="System.Double, mscorlib">
-    <value>0.66666813367295075</value>
+    <value>0.66666630261813664</value>
   </data>
   <data name="xrTableCell10.Dpi" type="System.Single, mscorlib">
     <value>100</value>
@@ -207,7 +216,7 @@
     <value>xrTableCell10</value>
   </data>
   <data name="xrTableCell10.Weight" type="System.Double, mscorlib">
-    <value>0.99999642578765868</value>
+    <value>0.99999825684247268</value>
   </data>
   <data name="xrTableCell9.Dpi" type="System.Single, mscorlib">
     <value>100</value>
@@ -216,7 +225,7 @@
     <value>xrTableCell9</value>
   </data>
   <data name="xrTableCell9.Weight" type="System.Double, mscorlib">
-    <value>1.0000000497497583</value>
+    <value>1.0000012704529675</value>
   </data>
   <data name="xrTableCell13.Dpi" type="System.Single, mscorlib">
     <value>100</value>
@@ -225,7 +234,7 @@
     <value>xrTableCell13</value>
   </data>
   <data name="xrTableCell13.Weight" type="System.Double, mscorlib">
-    <value>0.99999760834342721</value>
+    <value>0.99999638764021792</value>
   </data>
   <data name="xrTableCell12.Dpi" type="System.Single, mscorlib">
     <value>100</value>
@@ -234,7 +243,7 @@
     <value>xrTableCell12</value>
   </data>
   <data name="xrTableCell12.Weight" type="System.Double, mscorlib">
-    <value>1.3042133229227069</value>
+    <value>1.3042133229227066</value>
   </data>
   <data name="xrTableCell17.Dpi" type="System.Single, mscorlib">
     <value>100</value>
@@ -243,7 +252,7 @@
     <value>xrTableCell17</value>
   </data>
   <data name="xrTableCell17.Weight" type="System.Double, mscorlib">
-    <value>0.67478030161027613</value>
+    <value>0.67478152231348543</value>
   </data>
   <data name="xrTableCell14.Dpi" type="System.Single, mscorlib">
     <value>100</value>
@@ -252,7 +261,7 @@
     <value>xrTableCell14</value>
   </data>
   <data name="xrTableCell14.Weight" type="System.Double, mscorlib">
-    <value>0.67708301654344638</value>
+    <value>0.677082558779743</value>
   </data>
   <data name="xrTableCell15.Dpi" type="System.Single, mscorlib">
     <value>100</value>
@@ -261,7 +270,7 @@
     <value>xrTableCell15</value>
   </data>
   <data name="xrTableCell15.Weight" type="System.Double, mscorlib">
-    <value>1.0729107976472299</value>
+    <value>1.0729101872956255</value>
   </data>
   <data name="xrTableCell16.Dpi" type="System.Single, mscorlib">
     <value>100</value>
@@ -270,7 +279,7 @@
     <value>xrTableCell16</value>
   </data>
   <data name="xrTableCell16.Weight" type="System.Double, mscorlib">
-    <value>0.71526738420260072</value>
+    <value>0.7152673842026005</value>
   </data>
   <data name="xrTableCell21.Dpi" type="System.Single, mscorlib">
     <value>100</value>
@@ -279,7 +288,7 @@
     <value>xrTableCell21</value>
   </data>
   <data name="xrTableCell21.Weight" type="System.Double, mscorlib">
-    <value>0.70833611660125539</value>
+    <value>0.7083349721919967</value>
   </data>
   <data name="xrTableCell18.Dpi" type="System.Single, mscorlib">
     <value>100</value>
@@ -288,7 +297,7 @@
     <value>xrTableCell18</value>
   </data>
   <data name="xrTableCell18.Weight" type="System.Double, mscorlib">
-    <value>0.59539066857446532</value>
+    <value>0.59539310998088391</value>
   </data>
   <data name="xrTableCell22.Dpi" type="System.Single, mscorlib">
     <value>100</value>
@@ -297,7 +306,7 @@
     <value>xrTableCell22</value>
   </data>
   <data name="xrTableCell22.Weight" type="System.Double, mscorlib">
-    <value>0.49835698152470204</value>
+    <value>0.49835576082149269</value>
   </data>
   <data name="xrTableCell23.Dpi" type="System.Single, mscorlib">
     <value>100</value>
@@ -306,7 +315,7 @@
     <value>xrTableCell23</value>
   </data>
   <data name="xrTableCell23.Weight" type="System.Double, mscorlib">
-    <value>0.86293703465847882</value>
+    <value>0.86293833165563882</value>
   </data>
   <data name="xrTableCell1.Dpi" type="System.Single, mscorlib">
     <value>100</value>
@@ -315,7 +324,7 @@
     <value>xrTableCell1</value>
   </data>
   <data name="xrTableCell1.Weight" type="System.Double, mscorlib">
-    <value>0.67543743177559135</value>
+    <value>0.67543590589658</value>
   </data>
   <data name="xrTableRow1.Dpi" type="System.Single, mscorlib">
     <value>100</value>
@@ -354,6 +363,21 @@
   <data name="BottomMargin.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v16.2">
     <value>TopLeft</value>
   </data>
+  <data name="xrLabel21.Dpi" type="System.Single, mscorlib">
+    <value>100</value>
+  </data>
+  <data name="xrLabel21.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v16.2">
+    <value>63.5458069, 69.2751846</value>
+  </data>
+  <data name="xrLabel21.SizeF" type="System.Drawing.SizeF, System.Drawing">
+    <value>54.0792542, 45.9981155</value>
+  </data>
+  <data name="xrLabel21.Text" xml:space="preserve">
+    <value>Ref</value>
+  </data>
+  <data name="xrLabel21.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v16.2">
+    <value>MiddleCenter</value>
+  </data>
   <data name="xrLabel20.Dpi" type="System.Single, mscorlib">
     <value>100</value>
   </data>
@@ -391,7 +415,7 @@
     <value>10.0000067, 69.27401</value>
   </data>
   <data name="xrLabel15.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>65.00413, 45.99997</value>
+    <value>53.54579, 45.99997</value>
   </data>
   <data name="xrLabel15.Text" xml:space="preserve">
     <value>No</value>
@@ -796,10 +820,10 @@
     <value>100</value>
   </data>
   <data name="xrLabel2.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v16.2">
-    <value>75.0041351, 69.27433</value>
+    <value>117.625076, 69.2743</value>
   </data>
   <data name="xrLabel2.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>187.20163, 46.0000076</value>
+    <value>144.58107, 46.0000076</value>
   </data>
   <data name="xrLabel2.Text" xml:space="preserve">
     <value>Name</value>
@@ -828,6 +852,9 @@
   <data name="xrLabel38.Text" xml:space="preserve">
     <value>xrLabel38</value>
   </data>
+  <data name="xrLabel38.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v16.2">
+    <value>MiddleLeft</value>
+  </data>
   <data name="xrLabel37.Dpi" type="System.Single, mscorlib">
     <value>100</value>
   </data>
@@ -840,6 +867,9 @@
   <data name="xrLabel37.Text" xml:space="preserve">
     <value>By</value>
   </data>
+  <data name="xrLabel37.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v16.2">
+    <value>MiddleLeft</value>
+  </data>
   <data name="xrPageInfo1.Dpi" type="System.Single, mscorlib">
     <value>100</value>
   </data>
@@ -848,6 +878,9 @@
   </data>
   <data name="xrPageInfo1.SizeF" type="System.Drawing.SizeF, System.Drawing">
     <value>140.2059, 23</value>
+  </data>
+  <data name="xrPageInfo1.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v16.2">
+    <value>MiddleLeft</value>
   </data>
   <data name="xrPageInfo2.Dpi" type="System.Single, mscorlib">
     <value>100</value>
@@ -862,7 +895,7 @@
     <value>78.62451, 23</value>
   </data>
   <data name="xrPageInfo2.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v16.2">
-    <value>TopRight</value>
+    <value>MiddleLeft</value>
   </data>
   <data name="pageFooterBand1.Dpi" type="System.Single, mscorlib">
     <value>100</value>

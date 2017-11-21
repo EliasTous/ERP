@@ -665,7 +665,9 @@ namespace AionHR.Web.UI.Forms
             RecordRequest r = new RecordRequest();
             r.RecordID = _systemService.SessionHelper.GetCurrentUserId();
             RecordResponse<UserInfo> response = _systemService.ChildGetRecord<UserInfo>(r);
-
+            if (response.result == null)
+                return null;
+            
             req.raEmployeeId = response.result.employeeId;
             if (string.IsNullOrEmpty(response.result.employeeId))
                 return null;

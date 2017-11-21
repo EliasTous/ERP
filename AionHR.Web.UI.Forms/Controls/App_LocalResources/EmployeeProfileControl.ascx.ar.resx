@@ -283,7 +283,7 @@
     <value>تاريخ اخر اجازة: </value>
   </data>
   <data name="leavesBalanceTitle" xml:space="preserve">
-    <value>رصيد الاجازات: </value>
+    <value>رصيد الاجازات :</value>
   </data>
   <data name="LegalsTab" xml:space="preserve">
     <value>الوثائق القانونية</value>
@@ -353,5 +353,23 @@
   </data>
   <data name="EmployeeCalenderTab" xml:space="preserve">
     <value>تقاويم العمل </value>
+  </data>
+  <data name="earnedLeavesLeg" xml:space="preserve">
+    <value>مستحقات إجازة : </value>
+  </data>
+  <data name="indemnity" xml:space="preserve">
+    <value>مكافأة نهاية الخدمة :</value>
+  </data>
+  <data name="paidLeaves" xml:space="preserve">
+    <value>بدل اجازات :</value>
+  </data>
+  <data name="salary" xml:space="preserve">
+    <value>الراتب :</value>
+  </data>
+  <data name="usedLeaves" xml:space="preserve">
+    <value>اجازات :</value>
+  </data>
+  <data name="usedLeavesLeg" xml:space="preserve">
+    <value>اجازات الفترة الحالية المستعملة :</value>
   </data>
 </root>

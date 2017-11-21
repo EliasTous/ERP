@@ -141,6 +141,7 @@
     <Compile Include="Messaging\Reports\UserParameterSet.cs" />
     <Compile Include="Messaging\RequestBase.cs" />
     <Compile Include="Messaging\StatusResponse.cs" />
+    <Compile Include="Messaging\System\ApplyLetterRecordRequest.cs" />
     <Compile Include="Messaging\System\AuthenticateRequest.cs" />
     <Compile Include="Messaging\System\AuthenticateResponse.cs" />
     <Compile Include="Messaging\ListRequest.cs" />

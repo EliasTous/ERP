@@ -83,7 +83,7 @@
                             <ext:TextField runat="server"  LabelWidth="200" ID="pyReference" Name="pyReference" FieldLabel="<%$ Resources:pyReference %>" />
                              <ext:TextField runat="server"  LabelWidth="200" ID="taReference" Name="taReference" FieldLabel="<%$ Resources:taReference %>" />
                                  <ext:DateField  LabelWidth="200" runat="server" AllowBlank="false" ID="pyActiveDate" Name="pyActiveDate" FieldLabel="<%$ Resources:pyActiveDate %>"></ext:DateField>
-                                 <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  Enabled="false" runat="server" AllowBlank="true" ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" ID="regBranchId" Name="regBranchId" FieldLabel="<%$ Resources:FieldBranch%>" SimpleSubmit="true" LabelWidth="200">
+                                 <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  Enabled="false" runat="server" AllowBlank="false" ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" ID="regBranchId" Name="regBranchId" FieldLabel="<%$ Resources:FieldBranch%>" SimpleSubmit="true" LabelWidth="200">
                                     <Store>
                                         <ext:Store runat="server" ID="branchStore">
                                             <Model>

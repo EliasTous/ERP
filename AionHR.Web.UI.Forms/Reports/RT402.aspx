@@ -25,10 +25,19 @@
     <script type="text/javascript" src="../Scripts/RT101.js?id=18"></script>
     <script type="text/javascript">
         function alertNow(s, e) {
-
+           
             Ext.MessageBox.alert('Error', e.message);
             e.handled = true;
         }
+        function cheackEmployeeValue()
+        {
+           
+            if (App.employeeFilter.value === null) {
+                Ext.MessageBox.alert(App.ErrorTitlEmptyValue.getValue(), App.ErrorEmptyValue.getValue());
+                e.handled = false;
+            }
+        }
+
     </script>
 </head>
 <body style="background: url(Images/bg.png) repeat;">
@@ -39,6 +48,9 @@
         <ext:Hidden ID="textLoadFailed" runat="server" Text="<%$ Resources:Common , LoadFailed %>" />
         <ext:Hidden ID="titleSavingError" runat="server" Text="<%$ Resources:Common , TitleSavingError %>" />
         <ext:Hidden ID="titleSavingErrorMessage" runat="server" Text="<%$ Resources:Common , TitleSavingErrorMessage %>" />
+        <ext:Hidden ID="ErrorEmptyValue" runat="server" Text="<%$ Resources:Common , ErrorEmptyValue %>" />
+          <ext:Hidden ID="ErrorTitlEmptyValue" runat="server" Text="<%$ Resources:Common , Error %>" />
+
          <ext:Hidden ID="dtIdValue" runat="server" Text="" />
 
         
@@ -105,8 +117,10 @@
                                     <Content>
                                          <ext:Button runat="server" Text="<%$Resources:Common, Go %>" >
                                             <Listeners>
-                                                <Click Handler="callbackPanel.PerformCallback('1');" />
+                                                <Click Handler="cheackEmployeeValue();callbackPanel.PerformCallback('1');" />
+                                             
                                             </Listeners>
+                                             
                                         </ext:Button>
                                     </Content>
                                 </ext:Container>

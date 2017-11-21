@@ -32,7 +32,7 @@ namespace AionHR.Web.UI.Forms
         }
 
         protected void Application_BeginRequest(object sender, EventArgs e)
-            {
+           {
             
         }
 

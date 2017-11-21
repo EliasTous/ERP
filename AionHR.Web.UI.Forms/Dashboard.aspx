@@ -17,7 +17,7 @@
     <script type="text/javascript" src="Scripts/moment.js"></script>
     <script type="text/javascript" src="Scripts/CircileProgress.js?id=98"></script>
     <script type="text/javascript" src="Scripts/jquery-new.js?id=45"></script>
-    <script type="text/javascript" src="Scripts/plugins/highcharts.js"></script>
+    <script type="text/javascript" src="Scripts/plugins/highcharts.js?id=110"></script>
    
 
     <style type="text/css">
@@ -262,7 +262,7 @@
             })
         };
         var clickBreakHightChartPieSeries = function (val) {
-            alert(val);
+            //alert(val);
             App.lateWindow.show();
             if (val == 0) {
 

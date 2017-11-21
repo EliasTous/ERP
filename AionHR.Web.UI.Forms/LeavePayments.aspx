@@ -284,7 +284,7 @@
                                 Hideable="false"
                                 MenuDisabled="true"
                                 Resizable="false">
-                                <Renderer Handler="return editRender();" />
+                                <Renderer Handler="return editRender()+'&nbsp;&nbsp;' +deleteRender();" />
 
                             </ext:Column>
 
@@ -414,12 +414,12 @@
 
                                     </Store>
                                     <DirectEvents>
-                                        <Change OnEvent="FillEmployeeInfo">
+                                        <Select OnEvent="FillEmployeeInfo">
                                               <ExtraParams>
                                                 <ext:Parameter Name="effectiveDate" Value="#{effectiveDate}.getValue()" Mode="Raw" />
                                                                                                  
                                             </ExtraParams>
-                                        </Change>
+                                        </Select>
                                     </DirectEvents>
                                     <Listeners>
                                         <Change Handler="#{days}.setValue(0); #{amount}.setValue(0);  "></Change>

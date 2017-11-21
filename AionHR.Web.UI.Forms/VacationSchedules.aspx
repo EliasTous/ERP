@@ -372,7 +372,7 @@
                                             
                                             <ext:NumberColumn
                                                 runat="server"
-                                                Text="<%$ Resources:Common , Days %>" 
+                                                Text="<%$ Resources: Days %>" 
                                                 DataIndex="days"
                                                  Flex="1"
                                                 Align="Center">

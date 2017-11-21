@@ -826,6 +826,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Please Select an Employee.
+        /// </summary>
+        internal static string ErrorEmptyValue {
+            get {
+                return ResourceManager.GetString("ErrorEmptyValue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Error In Operation, Try again Later !.
         /// </summary>
         internal static string ErrorOperation {

@@ -319,22 +319,22 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Label eosBalanceLbl;
         
         /// <summary>
-        /// lastLeaveStartDateTitle control.
+        /// leavesBalanceTitle control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Label lastLeaveStartDateTitle;
+        protected global::Ext.Net.Label leavesBalanceTitle;
         
         /// <summary>
-        /// lastLeaveStartDateLbl control.
+        /// leavesBalance control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Label lastLeaveStartDateLbl;
+        protected global::Ext.Net.Label leavesBalance;
         
         /// <summary>
         /// paidLeavesYTDTitle control.
@@ -355,24 +355,6 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Label paidLeavesYTDLbl;
         
         /// <summary>
-        /// leavesBalanceTitle control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Label leavesBalanceTitle;
-        
-        /// <summary>
-        /// leavesBalance control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Label leavesBalance;
-        
-        /// <summary>
         /// allowedLeaveYtdTitle control.
         /// </summary>
         /// <remarks>
@@ -389,6 +371,60 @@ namespace AionHR.Web.UI.Forms {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.Label allowedLeaveYtd;
+        
+        /// <summary>
+        /// usedLeavesTitle control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Label usedLeavesTitle;
+        
+        /// <summary>
+        /// usedLeavesLbl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Label usedLeavesLbl;
+        
+        /// <summary>
+        /// paidLeavesTitle control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Label paidLeavesTitle;
+        
+        /// <summary>
+        /// paidLeavesLbl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Label paidLeavesLbl;
+        
+        /// <summary>
+        /// salaryTitle control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Label salaryTitle;
+        
+        /// <summary>
+        /// salaryLbl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Label salaryLbl;
         
         /// <summary>
         /// panelRecordDetails control.

@@ -883,6 +883,11 @@ namespace AionHR.Web.UI.Forms
                forSummary.leaveBalance + "<br />",
                forSummary.earnedLeavesLeg + "<br />",
                forSummary.esName,
+
+                forSummary.usedLeaves,
+                 forSummary.paidLeaves,
+                  forSummary.salary,
+
                forSummary.serviceDuractionFriendly(GetGlobalResourceObject("Common", "Day").ToString(), GetGlobalResourceObject("Common", "Month").ToString(), GetGlobalResourceObject("Common", "Year").ToString())
             );
             //            fullNameLbl.Html = forSummary.name.fullName + "<br />";
@@ -895,7 +900,7 @@ namespace AionHR.Web.UI.Forms
             serviceDuration.Html = forSummary.serviceDuration + "<br />";// Friendly(GetGlobalResourceObject("Common", "Day").ToString(), GetGlobalResourceObject("Common", "Month").ToString(), GetGlobalResourceObject("Common", "Year").ToString())+"<br />";
 
             paidLeavesYTDLbl.Html = forSummary.usedLeavesLeg + "<br/>";
-            lastLeaveStartDateLbl.Html = forSummary.LastLeave(_systemService.SessionHelper.GetDateformat()) + "<br />";
+            //lastLeaveStartDateLbl.Html = forSummary.LastLeave(_systemService.SessionHelper.GetDateformat()) + "<br />";
             leavesBalance.Html = forSummary.leaveBalance + "<br />";
             allowedLeaveYtd.Html = forSummary.earnedLeavesLeg + "<br />";
             if (forSummary.reportToName != null && !string.IsNullOrEmpty(forSummary.reportToName.fullName.Trim()))
@@ -906,6 +911,10 @@ namespace AionHR.Web.UI.Forms
             {
                 reportsToLbl.Html = "";
             }
+
+            usedLeavesLbl.Html = forSummary.usedLeaves + "<br />";
+            paidLeavesLbl.Html = forSummary.paidLeaves + "<br />";
+            salaryLbl.Html = forSummary.salary + "<br />";
             //employeeName.Text = resp.result.name.firstName + resp.result.name.lastName;
 
             imgControl.ImageUrl = forSummary.pictureUrl + "?x=" + DateTime.Now.Ticks;

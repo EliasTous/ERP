@@ -129,6 +129,9 @@
   <data name="BtnUpdate" xml:space="preserve">
     <value>Save</value>
   </data>
+  <data name="Days" xml:space="preserve">
+    <value>Earned(Days)</value>
+  </data>
   <data name="EditWindowsTitle" xml:space="preserve">
     <value>Edit Vacation Schedule</value>
   </data>

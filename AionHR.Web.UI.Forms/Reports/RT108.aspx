@@ -59,7 +59,12 @@
                         <ext:Toolbar runat="server" Height="60">
 
                             <Items>
-
+                                  <ext:Container runat="server"  Layout="FitLayout">
+                                    <Content>
+                                        <uc:employeeCombo runat="server" ID="employeeFilter" />
+                                    </Content>
+                                </ext:Container>
+                                
                                 <ext:Container runat="server"  Layout="FitLayout">
                                     <Content>
                                         <uc:jobInfo runat="server" ID="jobInfo1" />

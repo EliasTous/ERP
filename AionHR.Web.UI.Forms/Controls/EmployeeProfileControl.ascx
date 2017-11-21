@@ -220,19 +220,25 @@
         }
         return out;
     }
-    function FillLeftPanel(departmentName, branchName, positionName, reportToName, balance, lastLeave, paid, leaveBalance, allowedLeaves, esName, serviceDuration) {
+    function FillLeftPanel(departmentName, branchName, positionName, reportToName, balance, lastLeave, paid, leaveBalance, allowedLeaves, esName, usedLeaves, paidLeaves, salary, serviceDuration) {
 
 
 
 
         App.employeeControl1_reportsToLbl.setText(reportToName);
         App.employeeControl1_eosBalanceTitle.setText(balance);
-        App.employeeControl1_lastLeaveStartDateTitle.setText(lastLeave);
+        //App.employeeControl1_lastLeaveStartDateTitle.setText(lastLeave);
         App.employeeControl1_paidLeavesYTDTitle.setText(paid);
         App.employeeControl1_leavesBalanceTitle.setText(leaveBalance);
         App.employeeControl1_allowedLeaveYtdTitle.setText(allowedLeaves);
+
+        App.employeeControl1_usedLeavesTitle.setText(usedLeaves);
+        App.employeeControl1_paidLeavesTitle.setText(paidLeaves);
+        App.employeeControl1_salaryTitle.setText(salary);
+
         App.employeeControl1_esName = esName;
         App.employeeControl1_serviceDuration = serviceDuration;
+       
         FillLeftPanel(dep, branchName, positionName);
 
     }
@@ -440,8 +446,8 @@
         App.employeeControl1_serviceDuration.el.setStyle('float', alignment);
         App.employeeControl1_eosBalanceTitle.el.setStyle('float', alignment);
         App.employeeControl1_eosBalanceLbl.el.setStyle('float', alignment);
-        App.employeeControl1_lastLeaveStartDateTitle.el.setStyle('float', alignment);
-        App.employeeControl1_lastLeaveStartDateLbl.el.setStyle('float', alignment);
+        //App.employeeControl1_lastLeaveStartDateTitle.el.setStyle('float', alignment);
+        //App.employeeControl1_lastLeaveStartDateLbl.el.setStyle('float', alignment);
         App.employeeControl1_paidLeavesYTDTitle.el.setStyle('float', alignment);
         App.employeeControl1_paidLeavesYTDLbl.el.setStyle('float', alignment);
         App.employeeControl1_leavesBalanceTitle.el.setStyle('float', alignment);
@@ -449,6 +455,14 @@
         App.employeeControl1_allowedLeaveYtdTitle.el.setStyle('float', alignment);
         App.employeeControl1_paidLeavesYTDLbl.el.setStyle('float', alignment);
         App.employeeControl1_allowedLeaveYtd.el.setStyle('float', alignment);
+
+        App.employeeControl1_usedLeavesTitle.el.setStyle('float', alignment);
+        App.employeeControl1_usedLeavesLbl.el.setStyle('float', alignment);
+        App.employeeControl1_paidLeavesTitle.el.setStyle('float', alignment);
+        App.employeeControl1_paidLeavesLbl.el.setStyle('float', alignment);
+        App.employeeControl1_salaryTitle.el.setStyle('float', alignment);
+        App.employeeControl1_salaryLbl.el.setStyle('float', alignment);
+        
     }
 </script>
 <style type="text/css">
@@ -547,7 +561,7 @@
     <Items>
 
         <ext:Panel ID="leftPanel" runat="server" Region="West" PaddingSpec="00 0 0" Padding="0" TitleAlign="Center" DefaultAnchor="100%"
-            Header="false" Collapsible="false" BodyPadding="5" Width="150" StyleSpec="border-left:2px solid #2A92D4;border-right:2px solid #2A92D4;"
+            Header="false" Collapsible="false" BodyPadding="5" Width="170" StyleSpec="border-left:2px solid #2A92D4;border-right:2px solid #2A92D4;"
             Title="<%$ Resources:Common , NavigationPane %>" CollapseToolText="<%$ Resources:Common , CollapsePanel %>" ExpandToolText="<%$ Resources:Common , ExpandPanel %>" BodyBorder="0">
 
             <Items>
@@ -615,23 +629,17 @@
                                 </ext:Panel>
                                 <ext:Panel runat="server">
                                     <Items>
-                                        <ext:Label ID="eosBalanceTitle" Text="<%$ Resources:eosBalanceTitle %>" runat="server" />
+                                        <ext:Label ID="eosBalanceTitle" Text="<%$ Resources:indemnity %>" runat="server" />
                                         <ext:Label ID="eosBalanceLbl" runat="server" />
                                     </Items>
                                 </ext:Panel>
-                                <ext:Panel runat="server">
+                              <%--  <ext:Panel runat="server">
                                     <Items>
                                         <ext:Label ID="lastLeaveStartDateTitle" Text="<%$ Resources:lastLeaveStartDateTitle %>" runat="server" />
                                         <ext:Label ID="lastLeaveStartDateLbl" runat="server" />
                                     </Items>
-                                </ext:Panel>
-                                <ext:Panel runat="server">
-                                    <Items>
-                                        <ext:Label ID="paidLeavesYTDTitle" Text="<%$ Resources:paidLeavesYTDTitle %>" runat="server" />
-                                        <ext:Label ID="paidLeavesYTDLbl" runat="server" />
-                                    </Items>
-                                </ext:Panel>
-                                <ext:Panel runat="server">
+                                </ext:Panel>--%>
+                                 <ext:Panel runat="server">
                                     <Items>
                                         <ext:Label ID="leavesBalanceTitle" Text="<%$ Resources:leavesBalanceTitle %>" runat="server" />
                                         <ext:Label ID="leavesBalance" runat="server" />
@@ -639,8 +647,33 @@
                                 </ext:Panel>
                                 <ext:Panel runat="server">
                                     <Items>
-                                        <ext:Label ID="allowedLeaveYtdTitle" Text="<%$ Resources:allowedLeaveYtdTitle %>" runat="server" />
+                                        <ext:Label ID="paidLeavesYTDTitle" Text="<%$ Resources:usedLeavesLeg %>" runat="server" />
+                                        <ext:Label ID="paidLeavesYTDLbl" runat="server" />
+                                    </Items>
+                                </ext:Panel>
+                               
+                                <ext:Panel runat="server">
+                                    <Items>
+                                        <ext:Label ID="allowedLeaveYtdTitle" Text="<%$ Resources:earnedLeavesLeg %>" runat="server" />
                                         <ext:Label ID="allowedLeaveYtd" runat="server" />
+                                    </Items>
+                                </ext:Panel>
+                                <ext:Panel runat="server">
+                                    <Items>
+                                        <ext:Label ID="usedLeavesTitle" Text="<%$ Resources:usedLeaves %>" runat="server" />
+                                        <ext:Label ID="usedLeavesLbl" runat="server" />
+                                    </Items>
+                                </ext:Panel>
+                                <ext:Panel runat="server">
+                                    <Items>
+                                        <ext:Label ID="paidLeavesTitle" Text="<%$ Resources:paidLeaves %>" runat="server" />
+                                        <ext:Label ID="paidLeavesLbl" runat="server" />
+                                    </Items>
+                                </ext:Panel>
+                                <ext:Panel runat="server">
+                                    <Items>
+                                        <ext:Label ID="salaryTitle" Text="<%$ Resources:salary %>" runat="server" />
+                                        <ext:Label ID="salaryLbl" runat="server" />
                                     </Items>
                                 </ext:Panel>
                                 <ext:HyperlinkButton runat="server" Text="<%$ Resources:DisplayTeamLink %>">
