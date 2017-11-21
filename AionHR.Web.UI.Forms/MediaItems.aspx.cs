@@ -689,8 +689,8 @@ namespace AionHR.Web.UI.Forms
         public void FillDepartment()
         {
 
-            ListRequest req = new ListRequest();
-
+            DepartmentListRequest req = new DepartmentListRequest();
+            req.type = 0;
             ListResponse<Department> response = _branchService.ChildGetAll<Department>(req);
             if (!response.Success)
             {
