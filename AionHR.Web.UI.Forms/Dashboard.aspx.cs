@@ -32,6 +32,7 @@ using AionHR.Model.Dashboard;
 using AionHR.Model.TimeAttendance;
 using AionHR.Services.Messaging.Reports;
 using AionHR.Model.Reports;
+using AionHR.Model.Access_Control;
 
 namespace AionHR.Web.UI.Forms
 {
@@ -45,6 +46,7 @@ namespace AionHR.Web.UI.Forms
         ILeaveManagementService _leaveManagementService = ServiceLocator.Current.GetInstance<ILeaveManagementService>();
         IEmployeeService _employeeService = ServiceLocator.Current.GetInstance<IEmployeeService>();
         IReportsService _reportsService = ServiceLocator.Current.GetInstance<IReportsService>();
+         IAccessControlService _accessControlService = ServiceLocator.Current.GetInstance<IAccessControlService>();
         protected override void InitializeCulture()
         {
 
@@ -76,6 +78,13 @@ namespace AionHR.Web.UI.Forms
                 HideShowColumns();
                 try
                 {
+                    ClassPermissionRecordRequest classReq = new ClassPermissionRecordRequest();
+                    classReq.ClassId = "2001";
+                    classReq.UserId = _systemService.SessionHelper.GetCurrentUserId();
+                    RecordResponse<ModuleClass> modClass = _accessControlService.ChildGetRecord<ModuleClass>(classReq);
+                    if (modClass.result.accessLevel == 0)
+                        Viewport1.Hidden = true;
+                    else
                     AccessControlApplier.ApplyAccessControlOnPage(typeof(AionHR.Model.Dashboard.Dashboard), null, null, null, null);
                 }
                 catch (AccessDeniedException exp)
