@@ -205,6 +205,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Attendance.
+        /// </summary>
+        internal static string Attendance {
+            get {
+                return ResourceManager.GetString("Attendance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Attendance Day.
         /// </summary>
         internal static string AttendanceDay {
@@ -1330,6 +1339,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Leave.
+        /// </summary>
+        internal static string Leave {
+            get {
+                return ResourceManager.GetString("Leave", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Leave Calendar.
         /// </summary>
         internal static string LeaveCalendar {
@@ -1434,6 +1452,15 @@ namespace Resources {
         internal static string Loading {
             get {
                 return ResourceManager.GetString("Loading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Loan.
+        /// </summary>
+        internal static string Loan {
+            get {
+                return ResourceManager.GetString("Loan", resourceCulture);
             }
         }
         
@@ -1929,6 +1956,15 @@ namespace Resources {
         internal static string PayrollIndemnity {
             get {
                 return ResourceManager.GetString("PayrollIndemnity", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Personal Info.
+        /// </summary>
+        internal static string PersonalInfo {
+            get {
+                return ResourceManager.GetString("PersonalInfo", resourceCulture);
             }
         }
         
@@ -2469,6 +2505,15 @@ namespace Resources {
         internal static string SecurityGroups {
             get {
                 return ResourceManager.GetString("SecurityGroups", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Self Service.
+        /// </summary>
+        internal static string SelfService {
+            get {
+                return ResourceManager.GetString("SelfService", resourceCulture);
             }
         }
         

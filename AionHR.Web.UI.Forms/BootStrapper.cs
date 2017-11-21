@@ -24,6 +24,7 @@ using AionHR.Model.TaskManagement;
 using AionHR.Model.Payroll;
 using AionHR.Model.Access_Control;
 using AionHR.Web.UI.Forms.Utilities;
+using AionHR.Model.SelfService;
 
 namespace AionHR.Web.UI.Forms
 {
@@ -86,7 +87,9 @@ namespace AionHR.Web.UI.Forms
                 For<ITaskManagementService>().Use<TaskManagementService>();
                 For<IPayrollService>().Use<PayrollService>();
                 For<IAccessControlService>().Use<AccessControlService>();
-                
+                For<ISelfServiceService>().Use<SelfServiceService>();
+                For<ISelfServiceRepository>().Use<SelfServiceRepository>();
+
             }
         }
     }

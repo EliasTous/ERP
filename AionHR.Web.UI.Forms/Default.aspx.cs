@@ -82,10 +82,10 @@ namespace AionHR.Web.UI.Forms
                 username.Text = _systemService.SessionHelper.Get("CurrentUserName").ToString();
                 //Building the tree
                 _systemService.SessionHelper.Set("ActiveModule", "-1");
-                BuildTree(1);
+                BuildTree(7);
                 transactionDate.Format = _systemService.SessionHelper.GetDateformat() + ", hh:mm:ss";
                 if (string.IsNullOrEmpty(activeModule.Text))
-                    activeModule.Text = "1";
+                    activeModule.Text = "7";
                 //TryRegister();
             }
         }
@@ -229,6 +229,11 @@ namespace AionHR.Web.UI.Forms
                 case 6:
                     nodes = TreeBuilder.Instance.BuildPayrollTree(commonTree.Root);
                     tabHome.Loader.Url = "PayrollGeneration.aspx";
+                    tabHome.Loader.LoadContent();
+                    return nodes.ToJson();
+                case 7:
+                    nodes = TreeBuilder.Instance.BuildSelftService(commonTree.Root);
+                    tabHome.Loader.Url = "Dashboard.aspx";
                     tabHome.Loader.LoadContent();
                     return nodes.ToJson();
                 default:

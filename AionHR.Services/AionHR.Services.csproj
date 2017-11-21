@@ -81,6 +81,7 @@
     <Compile Include="Implementations\ReportsService.cs" />
     <Compile Include="Implementations\SalaryBatchRunner.cs" />
     <Compile Include="Implementations\SalaryImportingService.cs" />
+    <Compile Include="Implementations\SelfServiceService.cs" />
     <Compile Include="Implementations\TaskManagementService.cs" />
     <Compile Include="Implementations\TimeAttendanceService.cs" />
     <Compile Include="Interfaces\IAccessControlService.cs" />
@@ -97,6 +98,7 @@
     <Compile Include="Interfaces\ImportingServiceBase.cs" />
     <Compile Include="Interfaces\IPayrollService.cs" />
     <Compile Include="Interfaces\IReportsService.cs" />
+    <Compile Include="Interfaces\ISelfServiceService.cs" />
     <Compile Include="Interfaces\ISystemService.cs" />
     <Compile Include="Implementations\SystemService.cs" />
     <Compile Include="Interfaces\IMasterService.cs" />

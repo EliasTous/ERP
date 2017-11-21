@@ -1071,4 +1071,7 @@
   <data name="ErrorEmptyValue" xml:space="preserve">
     <value>الرجاء اختيار موظف</value>
   </data>
+  <data name="SelfService" xml:space="preserve">
+    <value>الخدمة الذاتية</value>
+  </data>
 </root>
