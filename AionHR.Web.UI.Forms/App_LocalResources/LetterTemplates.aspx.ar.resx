@@ -118,13 +118,13 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="BasicInfoTabEditWindowTitle" xml:space="preserve">
-    <value>معلومات قالب الرسالة </value>
+    <value>معلومات نموذج الخطاب</value>
   </data>
   <data name="companyUsage" xml:space="preserve">
     <value>شركة </value>
   </data>
   <data name="EditWindowsTitle" xml:space="preserve">
-    <value>تعديل قوالب الرسالة</value>
+    <value>تعديل نموذج الخطاب</value>
   </data>
   <data name="employeeUsage" xml:space="preserve">
     <value>موظف</value>
@@ -142,9 +142,9 @@
     <value>الاستخدام </value>
   </data>
   <data name="WindowTitle" xml:space="preserve">
-    <value>القوالب</value>
+    <value>النماذج</value>
   </data>
   <data name="bodyText" xml:space="preserve">
-    <value>Body Text</value>
+    <value>نص الخطاب</value>
   </data>
 </root>

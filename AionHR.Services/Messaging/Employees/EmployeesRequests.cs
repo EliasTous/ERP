@@ -5,6 +5,7 @@ using AionHR.Services.Messaging;
 using AionHR.Services.Messaging.System;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 
 public class EmployeeListRequest:ListRequest
 {
@@ -570,7 +571,8 @@ public class EmployeeQuickViewRecordRequest : RecordRequest
         get
         {
             parameters = base.Parameters;
-            parameters.Add("_asOfDate", asOfDate.ToString());
+            parameters.Add("_asOfDate", asOfDate.ToString("MM/dd/yyyy", new CultureInfo("en-US")));
+            
             return parameters;
         }
     }

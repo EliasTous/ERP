@@ -226,7 +226,7 @@
     <value>Reference, First Name, Middle Name, Last Name</value>
   </data>
   <data name="ReferenceLastNameFirstName" xml:space="preserve">
-    <value>Reference, , LastName, First Name</value>
+    <value>Reference, LastName, First Name</value>
   </data>
   <data name="WindowTitle" xml:space="preserve">
     <value>Routers</value>

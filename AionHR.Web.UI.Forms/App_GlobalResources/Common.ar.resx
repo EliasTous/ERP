@@ -160,7 +160,7 @@
     <value>شؤون الموظفين</value>
   </data>
   <data name="EmployeeLeaf" xml:space="preserve">
-    <value>ادارة الموظفين</value>
+    <value>لائحة الموظفين</value>
   </data>
   <data name="Error" xml:space="preserve">
     <value>خطأ</value>
@@ -1054,18 +1054,21 @@
     <value>هيئات حكومية</value>
   </data>
   <data name="LetterTemplates" xml:space="preserve">
-    <value>Letter Templates</value>
+    <value>نماذج الخطابات</value>
   </data>
   <data name="CompanyLetter" xml:space="preserve">
     <value>Letter</value>
   </data>
   <data name="Letters" xml:space="preserve">
-    <value>Letters</value>
+    <value>الخطابات </value>
   </data>
   <data name="LeavePayment" xml:space="preserve">
     <value>تسديد اجازات</value>
   </data>
   <data name="RT402" xml:space="preserve">
-    <value>كشف موظف</value>
+    <value>كشف سلف موظف</value>
+  </data>
+  <data name="ErrorEmptyValue" xml:space="preserve">
+    <value>الرجاء اختيار موظف</value>
   </data>
 </root>

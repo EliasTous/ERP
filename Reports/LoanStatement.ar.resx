@@ -121,7 +121,7 @@
     <value>Parameter1</value>
   </data>
   <data name="xrLabel1.Text" xml:space="preserve">
-    <value>كشف موظف</value>
+    <value>كشف سلف موظف</value>
   </data>
   <data name="xrLabel17.Text" xml:space="preserve">
     <value>لم يتم العثور على نتائج</value>
@@ -162,14 +162,20 @@
   <data name="xrTableCell13.Text" xml:space="preserve">
     <value>النوع</value>
   </data>
+  <data name="xrTableCell14.Text" xml:space="preserve">
+    <value>الوصف</value>
+  </data>
   <data name="xrTableCell15.Text" xml:space="preserve">
     <value>المجموع</value>
   </data>
   <data name="xrTableCell2.Text" xml:space="preserve">
     <value>xrTableCell2</value>
   </data>
+  <data name="xrTableCell20.Text" xml:space="preserve">
+    <value>المجموع</value>
+  </data>
   <data name="xrTableCell3.Text" xml:space="preserve">
-    <value>xrTableCell3</value>
+    <value>التاريخ</value>
   </data>
   <data name="xrTableCell4.Text" xml:space="preserve">
     <value>xrTableCell4</value>
@@ -181,12 +187,12 @@
     <value>xrTableCell6</value>
   </data>
   <data name="xrTableCell7.Text" xml:space="preserve">
-    <value>المبلغ</value>
+    <value>الرمز</value>
   </data>
   <data name="xrTableCell8.Text" xml:space="preserve">
-    <value>xrTableCell8</value>
+    <value>الوصف</value>
   </data>
   <data name="xrTableCell9.Text" xml:space="preserve">
-    <value>الرمز</value>
+    <value>المبلغ</value>
   </data>
 </root>

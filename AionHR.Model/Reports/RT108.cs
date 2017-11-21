@@ -25,13 +25,13 @@ namespace AionHR.Model.Reports
 
         public string resRef { get; set; }
 
-        public DateTime? resExpiryDate { get; set; }
+        public string resExpiryDate { get; set; }
 
         public string idExpiryString { get; set; }
 
         public string passportRef { get; set; }
 
-        public DateTime? passportExpiryDate { get; set; }
+        public string passportExpiryDate { get; set; }
 
         public string passportExpiryString { get; set; }
 

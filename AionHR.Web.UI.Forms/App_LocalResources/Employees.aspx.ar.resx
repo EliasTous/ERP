@@ -118,13 +118,13 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="ActiveOnly" xml:space="preserve">
-    <value>النشيطين فقط</value>
+    <value>النشطين فقط</value>
   </data>
   <data name="All" xml:space="preserve">
     <value>الكل</value>
   </data>
   <data name="allowedLeaveYtdTitle" xml:space="preserve">
-    <value>الاجازات المسموحة: </value>
+    <value> الاجازات المسموحة :</value>
   </data>
   <data name="BasicInfoTabEditWindowTitle" xml:space="preserve">
     <value>ملف الموظف</value>
@@ -256,7 +256,7 @@
     <value>اختيار صورة</value>
   </data>
   <data name="InactiveOnly" xml:space="preserve">
-    <value>غير النشيطين فقط</value>
+    <value>غير النشطين فقط</value>
   </data>
   <data name="JobInformationTab" xml:space="preserve">
     <value>معلومات العمل</value>
@@ -265,10 +265,10 @@
     <value>تاريخ العودة من اخر اجازة</value>
   </data>
   <data name="lastLeaveStartDateTitle" xml:space="preserve">
-    <value>تاريخ اخر اجازة: </value>
+    <value>تاريخ اخر اجازة :</value>
   </data>
   <data name="leavesBalanceTitle" xml:space="preserve">
-    <value>رصيد الاجازات: </value>
+    <value>رصيد الاجازات :</value>
   </data>
   <data name="LegalsTab" xml:space="preserve">
     <value>الوثائق القانونية</value>
@@ -337,7 +337,7 @@
     <value>جديد</value>
   </data>
   <data name="serviceDuration" xml:space="preserve">
-    <value>في الخدمة:</value>
+    <value>في الخدمة :</value>
   </data>
   <data name="FieldIdRef" xml:space="preserve">
     <value>رقم الهوية</value>
@@ -373,9 +373,21 @@
     <value>مستحقات إجازة</value>
   </data>
   <data name="paidLeaves" xml:space="preserve">
-    <value>بدل اجازات</value>
+    <value>بدل اجازات :</value>
   </data>
   <data name="usedLeaves" xml:space="preserve">
-    <value>اجازات</value>
+    <value>اجازات :</value>
+  </data>
+  <data name="earnedLeavesLeg" xml:space="preserve">
+    <value>اجازات الفترة الحالية المستحقة :</value>
+  </data>
+  <data name="indemnity" xml:space="preserve">
+    <value> مكافأة نهاية الخدمة :</value>
+  </data>
+  <data name="salary" xml:space="preserve">
+    <value>الراتب :</value>
+  </data>
+  <data name="usedLeavesLeg" xml:space="preserve">
+    <value>اجازات الفترة الحالية المستعملة :</value>
   </data>
 </root>

@@ -22,6 +22,7 @@ using AionHR.Services.Messaging;
 using AionHR.Model.Company.Structure;
 using AionHR.Model.System;
 using AionHR.Model.Employees.Profile;
+using AionHR.Services.Messaging.System;
 
 namespace AionHR.Web.UI.Forms
 {
@@ -306,6 +307,7 @@ namespace AionHR.Web.UI.Forms
 
             //Reset all values of the relative object
             BasicInfoTab.Reset();
+            dateTF.Value = DateTime.Now; 
             this.EditRecordWindow.Title = Resources.Common.AddNewRecord;
 
 
@@ -439,6 +441,8 @@ namespace AionHR.Web.UI.Forms
                             Title = Resources.Common.Notification,
                             Icon = Icon.Information,
                             Html = Resources.Common.RecordUpdatedSucc
+                          
+                            
                         });
                         this.EditRecordWindow.Close();
 
@@ -525,6 +529,20 @@ namespace AionHR.Web.UI.Forms
             Store2.DataBind();
 
         }
+        [DirectMethod]
+        protected void fillBodyText(object sender, DirectEventArgs e)
+        {
+            ApplyLetterRecordRequest req = new ApplyLetterRecordRequest();
+            req.ltId = Convert.ToInt32(ltId.SelectedItem.Value);
+            req.employeeId= Convert.ToInt32(employeeId.SelectedItem.Value);
+            RecordResponse<ApplyLetter> res = _systemService.ChildGetRecord<ApplyLetter>(req);
+            if (!res.Success)//it maybe another check
+            {
 
+                return;
+            }
+            else
+                bodyTextTF.Text = res.result.bodyText;
+        }
     }
 }

@@ -316,10 +316,10 @@
     <value>Last Leave To</value>
   </data>
   <data name="lastLeaveStartDateTitle" xml:space="preserve">
-    <value>Last Leave:</value>
+    <value>Last Leave :</value>
   </data>
   <data name="leavesBalanceTitle" xml:space="preserve">
-    <value>Leave Balance:</value>
+    <value>Leave Balance :</value>
   </data>
   <data name="paidLeavesYTDTitle" xml:space="preserve">
     <value>Paid Leaves:</value>
@@ -343,7 +343,7 @@
     <value>Hiring</value>
   </data>
   <data name="serviceDuration" xml:space="preserve">
-    <value>In Service:</value>
+    <value>In Service :</value>
   </data>
   <data name="FieldIdRef" xml:space="preserve">
     <value>ID Ref</value>
@@ -376,9 +376,21 @@
     <value>Earned Leaves</value>
   </data>
   <data name="paidLeaves" xml:space="preserve">
-    <value>Paid Leaves</value>
+    <value>Paid Leaves :</value>
   </data>
   <data name="usedLeaves" xml:space="preserve">
-    <value>Used Leaves</value>
+    <value>Used Leaves :</value>
+  </data>
+  <data name="earnedLeavesLeg" xml:space="preserve">
+    <value>Earned Leaves Leg :</value>
+  </data>
+  <data name="indemnity" xml:space="preserve">
+    <value>Indemnity :</value>
+  </data>
+  <data name="salary" xml:space="preserve">
+    <value>Salary :</value>
+  </data>
+  <data name="usedLeavesLeg" xml:space="preserve">
+    <value>Used Leaves Leg :</value>
   </data>
 </root>

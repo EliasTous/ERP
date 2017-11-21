@@ -20,6 +20,12 @@
                App.fullName.setValue(name);
 
        }
+       function cheackEmployeeValue() {
+
+           if (App.employeeId.value === null) {
+                 e.handled = false;
+           }
+       }
    </script>
  
 </head>
@@ -53,10 +59,11 @@
                         <ext:ModelField Name="recordId" />
                         <ext:ModelField Name="addressedTo" />
                             <ext:ModelField Name="date" />
-                            <ext:ModelField Name="reference" />
+                            <ext:ModelField Name="letterRef" />
                             <ext:ModelField Name="ltId" />
                             <ext:ModelField Name="employeeId" />
-                             <ext:ModelField Name="notes" />
+                             <ext:ModelField Name="ltName" />
+                        <ext:ModelField Name="bodyText" />
                       
                                </Fields>
                 </ext:Model>
@@ -134,11 +141,15 @@
                                        
                           
                               <ext:Column  Visible="false" ID="ColrecordId" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldrecordId %>" DataIndex="recordId" Hideable="false" width="75" Align="Center"/>
+                              <ext:Column   CellCls="cellLink" ID="letterRef" MenuDisabled="true" runat="server" Text="<%$ Resources: reference%>" DataIndex="letterRef" Flex="1" Hideable="false"/>
+                             <ext:Column   CellCls="cellLink" ID="ltName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldName%>" DataIndex="ltName" Flex="1" Hideable="false"/>
                             <ext:Column   CellCls="cellLink" ID="addressedTo" MenuDisabled="true" runat="server" Text="<%$ Resources: addressedTo%>" DataIndex="addressedTo" Flex="1" Hideable="false"/>
-                            <ext:Column   CellCls="cellLink" ID="reference" MenuDisabled="true" runat="server" Text="<%$ Resources: reference%>" DataIndex="reference" Flex="1" Hideable="false"/>
-                            <ext:Column   CellCls="cellLink" ID="notes" MenuDisabled="true" runat="server" Text="<%$ Resources: notes%>" DataIndex="notes" Flex="1" Hideable="false"/>
+                          
+                           <%-- <ext:Column   CellCls="cellLink" ID="notes" MenuDisabled="true" runat="server" Text="<%$ Resources: notes%>" DataIndex="notes" Flex="1" Hideable="false"/>--%>
                             <ext:DateColumn  ID="date" MenuDisabled="true" runat="server" Text="<%$ Resources: date%>" DataIndex="date" Flex="1" Hideable="false" />
-
+                         <%--    <ext:Column   CellCls="cellLink" ID="bodyText" MenuDisabled="true" runat="server" Text="<%$ Resources: bodyText%>" DataIndex="bodyText" Flex="1" Hideable="false"/>--%>
+                           
+                            
                        
                              
                            
@@ -256,15 +267,16 @@
             runat="server"
             Icon="PageEdit"
             Title="<%$ Resources:EditWindowsTitle %>"
-            Width="350"
-            Height="400"
+            Width="400"
+            Height="500"
             AutoShow="false"
             Draggable="false"
             Maximizable="false"
-            Resizable="false"
+            Resizable="true"
             Modal="true"
             Hidden="true"
-            Layout="Fit">
+            Layout="Fit" AutoScroll="true"
+            >
             
             <Items>
                 <ext:TabPanel ID="panelRecordDetails" runat="server" ActiveTabIndex="0" Border="false" DeferredRender="false">
@@ -281,10 +293,14 @@
                             BodyPadding="5">
                             <Items>
                                 <ext:TextField ID="recordId" Hidden="true" runat="server" FieldLabel="<%$ Resources:FieldrecordId%>" Disabled="true" Name="recordId" />
+                                <ext:TextField ID="letterRefTF" runat="server" FieldLabel="<%$ Resources:reference%>" Name="letterRef" AllowBlank="false"  />
+                                 <ext:TextField ID="ltNameTF" runat="server" FieldLabel="<%$ Resources:FieldName%>" Name="ltName" AllowBlank="false"  />
+
                                 <ext:TextField ID="addressedToTF" runat="server" FieldLabel="<%$ Resources:addressedTo%>" Name="addressedTo" AllowBlank="false"  />
-                                 <ext:TextField ID="referenceTF" runat="server" FieldLabel="<%$ Resources:reference%>" Name="reference" AllowBlank="false"  />
+                                 
                                  <ext:DateField ID="dateTF" runat="server" FieldLabel="<%$ Resources:date%>" Name="date" AllowBlank="false"></ext:DateField>
-                                <ext:TextArea ID="notesTF" runat="server" FieldLabel="<%$ Resources:notes%>" Name="notes" AllowBlank="false" />
+                               <%-- <ext:TextArea ID="notesTF" runat="server" FieldLabel="<%$ Resources:notes%>" Name="notes" AllowBlank="false" />--%>
+                                 
                                 <ext:ComboBox AnyMatch="true" CaseSensitive="false" runat="server" ID="employeeId" TabIndex="6" Name="employeeId"
                                     DisplayField="fullName"
                                     ValueField="recordId"
@@ -292,7 +308,7 @@
                                     FieldLabel="<%$ Resources: FieldEmployeeFullName%>"
                                     HideTrigger="true" SubmitValue="true"
                                     MinChars="3"
-                                    TriggerAction="Query" ForceSelection="false">
+                                    TriggerAction="Query" ForceSelection="true" AllowBlank="false">
                                     <Store>
                                         <ext:Store runat="server" ID="supervisorStore" AutoLoad="false">
                                             <Model>
@@ -316,12 +332,7 @@
                                         <FocusLeave Handler=" if(this.value==null|| isNaN(this.value) )SetNameEnabled(true,'');  if(isNaN(this.value)) this.setValue(null);" />
                                     </Listeners>
                                 </ext:ComboBox>
-                                 <ext:ComboBox
-                                      
-                                         SubmitValue="true"
-                                         AnyMatch="true"
-                                       
-                                        runat="server" ValueField="recordId"
+                                 <ext:ComboBox   SubmitValue="true" AnyMatch="true"    runat="server" ValueField="recordId"
                                        ForceSelection="true"
                                         TypeAhead="true" AllowBlank="false"
                                         DisplayField="name"  ID="ltId" 
@@ -353,7 +364,16 @@
                                                 
                                                  </ext:Store>
                                            </Store>
+                                     <Listeners>
+                                         <Select Handler=" this.next().setValue('');cheackEmployeeValue();"></Select>
+                                     </Listeners>
+                                     <DirectEvents>
+                                         <Select OnEvent="fillBodyText">
+
+                                         </Select>
+                                     </DirectEvents>
                                        </ext:ComboBox>
+                                <ext:TextArea ReadOnly="true" Anchor="100%" ID="bodyTextTF" runat="server" FieldLabel="<%$ Resources:bodyText%>" Name="bodyText" AllowBlank="false" MaxHeight="200" Height="200"/>
                                
 
                             </Items>

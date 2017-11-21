@@ -320,7 +320,7 @@ namespace AionHR.Web.UI.Forms
             EmployeeListRequest req = new EmployeeListRequest();
             req.DepartmentId = "0";
             req.BranchId = "0";
-            req.IncludeIsInactive = 2;
+            req.IncludeIsInactive = 1;
             req.SortBy = "firstName";
 
             req.StartAt = "1";
@@ -679,8 +679,9 @@ namespace AionHR.Web.UI.Forms
 
         protected void FillEmployeeInfo(object sender, DirectEventArgs e)
         {
-            RecordRequest req = new RecordRequest();
+            EmployeeQuickViewRecordRequest req = new EmployeeQuickViewRecordRequest();
             req.RecordID = employeeId.Value.ToString();
+            req.asOfDate = DateTime.Now;
             RecordResponse<EmployeeQuickView> routers = _employeeService.ChildGetRecord<EmployeeQuickView>(req);
             if (!routers.Success)
             {

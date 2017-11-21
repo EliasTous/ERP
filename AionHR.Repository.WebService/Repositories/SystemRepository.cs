@@ -56,6 +56,8 @@ namespace AionHR.Repository.WebService.Repositories
             ChildGetLookup.Add(typeof(GovernmentOrganisation), "getGO");
             ChildGetLookup.Add(typeof(LetterTemplate), "getLT");
             ChildGetLookup.Add(typeof(Letter), "getLE");
+            ChildGetLookup.Add(typeof(ApplyLetter), "applyLE");
+
 
 
 
@@ -77,7 +79,7 @@ namespace AionHR.Repository.WebService.Repositories
             ChildGetAllLookup.Add(typeof(Attachement), "qryAT");
             ChildGetAllLookup.Add(typeof(KeyValuePair<string,string>), "qryDE");
             ChildGetAllLookup.Add(typeof(TransactionLog), "qryTL");
-            ChildGetAllLookup.Add(typeof(SystemFolder), "qryFO");
+            ChildGetAllLookup.Add(typeof(SystemFolder), "qryFO"); 
             ChildGetAllLookup.Add(typeof(Nationality), "qryNA");
             ChildGetAllLookup.Add(typeof(Currency), "qryCU");
             ChildGetAllLookup.Add(typeof(UserInfo), "qryUS");

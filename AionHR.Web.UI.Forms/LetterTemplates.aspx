@@ -238,15 +238,16 @@
             runat="server"
             Icon="PageEdit"
             Title="<%$ Resources:EditWindowsTitle %>"
-            Width="300"
-            Height="300"
+            Width="400"
+            Height="400"
             AutoShow="false"
             Draggable="false"
             Maximizable="false"
-            Resizable="false"
+            Resizable="true"
             Modal="true"
             Hidden="true"
-            Layout="Fit">
+            Layout="Fit"
+            AutoScroll="true">
             
             <Items>
                 <ext:TabPanel ID="panelRecordDetails" runat="server" ActiveTabIndex="0" Border="false" DeferredRender="false">
@@ -281,7 +282,7 @@
 
                                     </Items>
                                 </ext:ComboBox>
-                                <ext:TextArea ID="bodyText" runat="server" FieldLabel="<%$ Resources:bodyText%>" Name="bodyText" AllowBlank="false" />
+                                <ext:TextArea ID="bodyText" runat="server" FieldLabel="<%$ Resources:bodyText%>" Name="bodyText" AllowBlank="false" MaxHeight="200"  Height="200"/>
                                
 
                             </Items>

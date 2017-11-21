@@ -121,16 +121,16 @@
     <value>مرسل الى </value>
   </data>
   <data name="BasicInfoTabEditWindowTitle" xml:space="preserve">
-    <value>معلومات المحافظة</value>
+    <value>معلومات الخطاب </value>
   </data>
   <data name="bodyText" xml:space="preserve">
-    <value>نص الرسالة</value>
+    <value>نص الخطاب</value>
   </data>
   <data name="companyUsage" xml:space="preserve">
     <value>شركة </value>
   </data>
   <data name="EditWindowsTitle" xml:space="preserve">
-    <value>تعديل المحافظة</value>
+    <value>تعديل الخطاب</value>
   </data>
   <data name="employeeUsage" xml:space="preserve">
     <value>موظف</value>
@@ -151,7 +151,7 @@
     <value>الاستخدام </value>
   </data>
   <data name="ltId" xml:space="preserve">
-    <value>قالب الرسالة </value>
+    <value>نموذج الخطاب </value>
   </data>
   <data name="notes" xml:space="preserve">
     <value>ملاحظات </value>
@@ -160,6 +160,9 @@
     <value>الرمز</value>
   </data>
   <data name="WindowTitle" xml:space="preserve">
-    <value>المحافظات</value>
+    <value>الخطابات</value>
+  </data>
+  <data name="date" xml:space="preserve">
+    <value>التاريخ</value>
   </data>
 </root>

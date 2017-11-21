@@ -166,6 +166,24 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Column ColrecordId;
         
         /// <summary>
+        /// letterRef control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Column letterRef;
+        
+        /// <summary>
+        /// ltName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Column ltName;
+        
+        /// <summary>
         /// addressedTo control.
         /// </summary>
         /// <remarks>
@@ -173,24 +191,6 @@ namespace AionHR.Web.UI.Forms {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.Column addressedTo;
-        
-        /// <summary>
-        /// reference control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Column reference;
-        
-        /// <summary>
-        /// notes control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Column notes;
         
         /// <summary>
         /// date control.
@@ -310,6 +310,24 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.TextField recordId;
         
         /// <summary>
+        /// letterRefTF control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.TextField letterRefTF;
+        
+        /// <summary>
+        /// ltNameTF control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.TextField ltNameTF;
+        
+        /// <summary>
         /// addressedToTF control.
         /// </summary>
         /// <remarks>
@@ -319,15 +337,6 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.TextField addressedToTF;
         
         /// <summary>
-        /// referenceTF control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.TextField referenceTF;
-        
-        /// <summary>
         /// dateTF control.
         /// </summary>
         /// <remarks>
@@ -335,15 +344,6 @@ namespace AionHR.Web.UI.Forms {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.DateField dateTF;
-        
-        /// <summary>
-        /// notesTF control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.TextArea notesTF;
         
         /// <summary>
         /// employeeId control.
@@ -389,6 +389,15 @@ namespace AionHR.Web.UI.Forms {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.Model Model3;
+        
+        /// <summary>
+        /// bodyTextTF control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.TextArea bodyTextTF;
         
         /// <summary>
         /// SaveButton control.

@@ -88,11 +88,13 @@ namespace AionHR.Web.UI.Forms.Reports
                     //dateRange1.DefaultStartDate = DateTime.Now.AddDays(-DateTime.Now.Day);
                     format.Text = _systemService.SessionHelper.GetDateformat().ToUpper();
                     ASPxWebDocumentViewer1.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.Utils.DefaultBoolean.True : DevExpress.Utils.DefaultBoolean.False;
-                   
-                   
+                   ErrorEmptyValue.Text= GetLocalResourceObject("ErrorEmptyValue").ToString();
+
                 }
                 catch { }
+              
             }
+         
 
 
         }
@@ -173,7 +175,7 @@ namespace AionHR.Web.UI.Forms.Reports
             req.Size = "1000";
             req.StartAt = "1";
 
-
+            req.SortBy = "date";
             // req.Add(dateRange1.GetRange());
             //  req.Add(employeeCombo1.GetEmployee());
 
@@ -260,8 +262,9 @@ namespace AionHR.Web.UI.Forms.Reports
            
             h.Parameters["User"].Value = user;
             h.Parameters["EmployeeName"].Value = employeeFilter.SelectedItem.Text;
-            h.Parameters["LoanPayment"].Value = GetLocalResourceObject("LoanPayment");
-            h.Parameters["Loan"].Value = GetLocalResourceObject("Loan");
+          
+            h.Parameters["descriptionTrxType1"].Value = GetLocalResourceObject("descriptionTrxType1");
+            h.Parameters["descriptionTrxType2"].Value = GetLocalResourceObject("descriptionTrxType2");
 
 
 
@@ -279,23 +282,18 @@ namespace AionHR.Web.UI.Forms.Reports
 
         protected void ASPxCallbackPanel1_Callback(object sender, DevExpress.Web.CallbackEventArgsBase e)
         {
-            string[] parameters = e.Parameter.Split('|');
-            int pageIndex = Convert.ToInt32(parameters[0]);
+           
+                string[] parameters = e.Parameter.Split('|');
+                int pageIndex = Convert.ToInt32(parameters[0]);
 
-            if (pageIndex == 1)
-            {
-                FillReport();
+                if (pageIndex == 1)
+                {
+                    FillReport();
 
-            }
-
+                }
+            
         }
-        protected void Unnamed_Click(object sender, EventArgs e)
-        {
-
-
-
-        }
-
+      
         protected void ASPxCallbackPanel1_Load(object sender, EventArgs e)
         {
             // ASPxWebDocumentViewer1.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.Utils.DefaultBoolean.True : DevExpress.Utils.DefaultBoolean.False;
