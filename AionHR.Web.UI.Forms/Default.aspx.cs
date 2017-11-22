@@ -87,6 +87,13 @@ namespace AionHR.Web.UI.Forms
                 if (string.IsNullOrEmpty(activeModule.Text))
                     activeModule.Text = "7";
                 //TryRegister();
+
+                if (_systemService.SessionHelper.GetUserType() == 4)
+                {
+                    b1.Hidden = true;
+                    btnCompany.Hidden = btnEmployeeFiles.Hidden = btnPayroll.Hidden = btnReport.Hidden = btnScheduler.Hidden = true;
+                    sep1.Hidden = sep2.Hidden = sep3.Hidden = sep4.Hidden = true;
+                }
             }
         }
 
@@ -233,7 +240,7 @@ namespace AionHR.Web.UI.Forms
                     return nodes.ToJson();
                 case 7:
                     nodes = TreeBuilder.Instance.BuildSelftService(commonTree.Root);
-                    tabHome.Loader.Url = "Dashboard.aspx";
+                    tabHome.Loader.Url = "Letters.aspx";
                     tabHome.Loader.LoadContent();
                     return nodes.ToJson();
                 default:
@@ -372,10 +379,10 @@ namespace AionHR.Web.UI.Forms
             }
             else
             {
-                X.Msg.Alert("", GetGlobalResourceObject("Common","LoanSyncSucc").ToString()).Show();
+                X.Msg.Alert("", GetGlobalResourceObject("Common", "LoanSyncSucc").ToString()).Show();
             }
         }
 
- 
+
     }
 }

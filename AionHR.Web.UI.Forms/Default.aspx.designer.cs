@@ -796,6 +796,15 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Button btnEmployeeFiles;
         
         /// <summary>
+        /// sep1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.ToolbarSeparator sep1;
+        
+        /// <summary>
         /// btnCompany control.
         /// </summary>
         /// <remarks>
@@ -803,6 +812,15 @@ namespace AionHR.Web.UI.Forms {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.Button btnCompany;
+        
+        /// <summary>
+        /// sep2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.ToolbarSeparator sep2;
         
         /// <summary>
         /// btnScheduler control.
@@ -814,6 +832,15 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Button btnScheduler;
         
         /// <summary>
+        /// sep3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.ToolbarSeparator sep3;
+        
+        /// <summary>
         /// btnReport control.
         /// </summary>
         /// <remarks>
@@ -821,6 +848,15 @@ namespace AionHR.Web.UI.Forms {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.Button btnReport;
+        
+        /// <summary>
+        /// sep4 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.ToolbarSeparator sep4;
         
         /// <summary>
         /// btnPayroll control.

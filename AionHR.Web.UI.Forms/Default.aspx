@@ -563,7 +563,7 @@
 
 
 
-                            <ext:ToolbarSeparator runat="server"></ext:ToolbarSeparator>
+                            <ext:ToolbarSeparator ID="sep1" runat="server"></ext:ToolbarSeparator>
                             <ext:Button ID="btnCompany" runat="server" Icon="Building" ToolTip="<%$ Resources:Common , Company %>">
                                 <Listeners>
                                     <%--<Click Handler="#{commonTree}.setTitle(this.tooltip);openModule(3);" />--%>
@@ -572,7 +572,7 @@
 
 
                             </ext:Button>
-                            <ext:ToolbarSeparator runat="server"></ext:ToolbarSeparator>
+                            <ext:ToolbarSeparator ID="sep2" runat="server"></ext:ToolbarSeparator>
                             <ext:Button ID="btnScheduler" runat="server" Icon="DateNext" ToolTip="<%$ Resources:Common , Scheduler %>">
                                 <Listeners>
                                     <%--<Click Handler="#{commonTree}.setTitle(this.tooltip);openModule(4);" />--%>
@@ -581,13 +581,13 @@
                                 <Menu>
                                 </Menu>
                             </ext:Button>
-                            <ext:ToolbarSeparator runat="server"></ext:ToolbarSeparator>
+                            <ext:ToolbarSeparator ID="sep3" runat="server"></ext:ToolbarSeparator>
                             <ext:Button ID="btnReport" runat="server" Icon="ChartBar" ToolTip="<%$ Resources:Common , Reports %>">
                                 <Listeners>
                                     <Click Handler="openModule(5);" />
                                 </Listeners>
                             </ext:Button>
-                            <ext:ToolbarSeparator runat="server"></ext:ToolbarSeparator>
+                            <ext:ToolbarSeparator ID="sep4" runat="server"></ext:ToolbarSeparator>
                             <ext:Button ID="btnPayroll" runat="server" Icon="MoneyDollar" ToolTip="<%$ Resources:Common , Payroll %>">
                                 <Listeners>
                                     <Click Handler="openModule(6);" />
