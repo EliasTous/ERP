@@ -82,7 +82,7 @@ namespace AionHR.Web.UI.Forms
                 username.Text = _systemService.SessionHelper.Get("CurrentUserName").ToString();
                 //Building the tree
                 _systemService.SessionHelper.Set("ActiveModule", "-1");
-                BuildTree(7);
+
                 transactionDate.Format = _systemService.SessionHelper.GetDateformat() + ", hh:mm:ss";
                 if (string.IsNullOrEmpty(activeModule.Text))
                     activeModule.Text = "7";
@@ -93,6 +93,11 @@ namespace AionHR.Web.UI.Forms
                     b1.Hidden = true;
                     btnCompany.Hidden = btnEmployeeFiles.Hidden = btnPayroll.Hidden = btnReport.Hidden = btnScheduler.Hidden = true;
                     sep1.Hidden = sep2.Hidden = sep3.Hidden = sep4.Hidden = true;
+                    BuildTree(7);
+                }
+                else
+                {
+                    BuildTree(1);
                 }
             }
         }
