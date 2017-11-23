@@ -272,6 +272,7 @@
     <Content Include="MainDashboard.aspx" />
     <Content Include="MediaCategories.aspx" />
     <Content Include="MediaItems.aspx" />
+    <Content Include="Myinfo.aspx" />
     <Content Include="Nationalities.aspx" />
     <Content Include="NoticePeriods.aspx" />
     <Content Include="OrganizationChart.aspx" />
@@ -640,6 +641,13 @@
     </Compile>
     <Compile Include="LetterTemplates.aspx.designer.cs">
       <DependentUpon>LetterTemplates.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Myinfo.aspx.cs">
+      <DependentUpon>Myinfo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Myinfo.aspx.designer.cs">
+      <DependentUpon>Myinfo.aspx</DependentUpon>
     </Compile>
     <Compile Include="NoticePeriods.aspx.cs">
       <DependentUpon>NoticePeriods.aspx</DependentUpon>
@@ -1654,6 +1662,7 @@
       <DependentUpon>Users.aspx</DependentUpon>
     </Compile>
     <Compile Include="Utilities\AccessDeniedException.cs" />
+    <Compile Include="Utilities\DashboardAccessDenied.cs" />
     <Compile Include="Utilities\LocalisationManager.cs" />
     <Compile Include="Utilities\ModulesFileWrapper.cs" />
     <Compile Include="Utilities\TreeBuilder.cs" />
@@ -2087,6 +2096,8 @@
     <Content Include="Reports\App_LocalResources\RT503.aspx.ar.resx" />
     <Content Include="Reports\App_LocalResources\RT108.aspx.resx" />
     <Content Include="Reports\App_LocalResources\RT108.aspx.ar.resx" />
+    <Content Include="App_LocalResources\MyInfo.aspx.resx" />
+    <Content Include="App_LocalResources\Myinfo.aspx.ar.resx" />
     <EmbeddedResource Include="Reports\RT201.aspx.resx">
       <DependentUpon>RT201.aspx.cs</DependentUpon>
       <Generator>ResXFileCodeGenerator</Generator>

@@ -1074,4 +1074,7 @@
   <data name="SelfService" xml:space="preserve">
     <value>الخدمة الذاتية</value>
   </data>
+  <data name="PersonalInfo" xml:space="preserve">
+    <value>معلوماتي الشخصية</value>
+  </data>
 </root>

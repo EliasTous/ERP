@@ -1,0 +1,202 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Globalization;
+using System.IO;
+using System.Linq;
+using System.Linq.Expressions;
+using System.Text;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.HtmlControls;
+using System.Web.UI.WebControls;
+using System.Xml;
+using System.Xml.Xsl;
+using Ext.Net;
+using Newtonsoft.Json;
+using AionHR.Services.Interfaces;
+using Microsoft.Practices.ServiceLocation;
+using AionHR.Web.UI.Forms.Utilities;
+using AionHR.Model.Company.News;
+using AionHR.Services.Messaging;
+using AionHR.Model.Company.Structure;
+using AionHR.Model.System;
+using AionHR.Model.Employees.Profile;
+
+namespace AionHR.Web.UI.Forms
+{
+    public partial class Myinfo : System.Web.UI.Page
+    {
+        ISystemService _systemService = ServiceLocator.Current.GetInstance<ISystemService>();
+        IEmployeeService _employeeService = ServiceLocator.Current.GetInstance<IEmployeeService>();
+        ICompanyStructureService _companyStructureService = ServiceLocator.Current.GetInstance<ICompanyStructureService>();
+        protected override void InitializeCulture()
+        {
+
+            bool rtl = true;
+            if (!_systemService.SessionHelper.CheckIfArabicSession())
+            {
+                rtl = false;
+                base.InitializeCulture();
+                LocalisationManager.Instance.SetEnglishLocalisation();
+            }
+
+            if (rtl)
+            {
+                base.InitializeCulture();
+                LocalisationManager.Instance.SetArabicLocalisation();
+            }
+
+        }
+
+        protected void Page_Load(object sender, EventArgs e)
+        {
+
+
+            if (!X.IsAjaxRequest && !IsPostBack)
+            {
+
+                SetExtLanguage();
+                HideShowButtons();
+
+                if (string.IsNullOrEmpty(_systemService.SessionHelper.GetCurrentUserId().ToString()))
+                    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorOperation).Show();
+              
+                RecordRequest r = new RecordRequest();
+                r.RecordID = _systemService.SessionHelper.GetCurrentUserId();
+                RecordResponse<UserInfo> response = _systemService.ChildGetRecord<UserInfo>(r);
+                CurrentEmployee.Text= response.result.employeeId;
+               // EditRecordWindow.Loader.Params("employeeId") = CurrentEmployee.Text; 
+
+                RecordRequest req = new RecordRequest();
+                req.RecordID = CurrentEmployee.Text;
+                RecordResponse<Employee> resp = _employeeService.Get<Employee>(req);
+                if (!resp.Success)
+                {
+                    //X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() : resp.Summary).Show();
+                    //return;
+                }
+                if (resp.result != null)
+                {
+                    MyinfoForm.Reset();
+                    MyinfoForm.SetValues(resp.result);
+                    middleName.Text = resp.result.name.middleName.ToString() ;
+                    familyName.Text = resp.result.name.familyName.ToString(); 
+                  
+
+
+                }
+                this.EditRecordWindow.Title = Resources.Common.EditWindowsTitle;
+                this.EditRecordWindow.Show();
+
+
+
+
+
+
+
+                //try
+                //{
+                //   // AccessControlApplier.ApplyAccessControlOnPage(typeof(HireInfo), actualPanel, null, null, saveButton);
+
+                //}
+                //catch (AccessDeniedException exp)
+                //{
+                //    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                //    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorAccessDenied).Show();
+                  
+                //    return;
+                //}
+                ////if (recruitmentInfo.InputType == InputType.Password)
+                ////{
+                ////    recruitmentInfo.Visible = false;
+                ////    infoField.Visible = true;
+                ////}
+            }
+
+        }
+
+      
+
+        /// <summary>
+        /// the detailed tabs for the edit form. I put two tabs by default so hide unecessary or add addional
+        /// </summary>
+        private void HideShowTabs()
+        {
+            //this.OtherInfoTab.Visible = false;
+        }
+
+
+
+        private void HideShowButtons()
+        {
+
+        }
+
+
+
+
+        /// <summary>
+        /// hiding uncessary column in the grid. 
+        /// </summary>
+
+
+        private void SetExtLanguage()
+        {
+            bool rtl = _systemService.SessionHelper.CheckIfArabicSession();
+            if (rtl)
+            {
+                this.ResourceManager1.RTL = true;
+             
+
+            }
+        }
+
+
+        protected void SaveMyInfo(object sender, DirectEventArgs e)
+        {
+            string info = e.ExtraParams["values"];
+            Employee h = JsonConvert.DeserializeObject<Employee>(info);
+            h.recordId = CurrentEmployee.Text; 
+            PostRequest<Employee> req = new PostRequest<Employee>();
+
+            req.entity = h;
+            
+
+            PostResponse<Employee> resp = _employeeService.AddOrUpdate<Employee>(req);
+            if (!resp.Success)
+            {
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() : resp.Summary).Show();
+                return;
+            }
+
+            Notification.Show(new NotificationConfig
+            {
+                Title = Resources.Common.Notification,
+                Icon = Icon.Information,
+                Html = Resources.Common.RecordUpdatedSucc
+            });
+
+
+        }
+
+        /// <summary>
+        /// This direct method will be called after confirming the delete
+        /// </summary>
+        /// <param name="index">the ID of the object to delete</param>
+
+
+        [DirectMethod]
+        public string CheckSession()
+        {
+            if (!_systemService.SessionHelper.CheckUserLoggedIn())
+            {
+                return "0";
+            }
+            else return "1";
+        }
+
+      
+
+    }
+}

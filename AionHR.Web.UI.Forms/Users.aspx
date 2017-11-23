@@ -488,8 +488,9 @@
                                     <Items>
                                       
                                         <ext:ListItem Text="<%$Resources:FieldSuperUser %>" Value="1" />
-                                        <ext:ListItem Text="<%$Resources:FieldOperator %>" Value="3" />
                                           <ext:ListItem Text="<%$Resources:FieldAdministrator %>" Value="2" />
+                                        <ext:ListItem Text="<%$Resources:FieldOperator %>" Value="3" />
+                                        
                                           <ext:ListItem Text="<%$Resources:FieldSelfService %>" Value="4" />
 
                                     </Items>

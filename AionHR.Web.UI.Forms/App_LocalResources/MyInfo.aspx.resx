@@ -1,0 +1,384 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ActiveOnly" xml:space="preserve">
+    <value>Active Only</value>
+  </data>
+  <data name="All" xml:space="preserve">
+    <value>All</value>
+  </data>
+  <data name="allowedLeaveYtdTitle" xml:space="preserve">
+    <value>Allowed Leave:</value>
+  </data>
+  <data name="EditWindowTitle" xml:space="preserve">
+    <value>Profile</value>
+  </data>
+  <data name="BrowsePicture" xml:space="preserve">
+    <value>Browse</value>
+  </data>
+  <data name="ButtonClear" xml:space="preserve">
+    <value>Clear</value>
+  </data>
+  <data name="Clear" xml:space="preserve">
+    <value>Clear</value>
+  </data>
+  <data name="Company" xml:space="preserve">
+    <value>Company</value>
+  </data>
+  <data name="confirmDelete" xml:space="preserve">
+    <value>Please Type "Delete" to Confirm the delete operation.</value>
+  </data>
+  <data name="ContactsTab" xml:space="preserve">
+    <value>Contacts</value>
+  </data>
+  <data name="ContractEndingDate" xml:space="preserve">
+    <value>Contract Ending Date</value>
+  </data>
+  <data name="deleteConfirmation" xml:space="preserve">
+    <value>Confirm Employee Delete</value>
+  </data>
+  <data name="Dependants" xml:space="preserve">
+    <value>Dependants</value>
+  </data>
+  <data name="DisplayTeamLink" xml:space="preserve">
+    <value>Team</value>
+  </data>
+  <data name="DocumentsTab" xml:space="preserve">
+    <value>Files</value>
+  </data>
+  <data name="earnedLeavesLeg" xml:space="preserve">
+    <value>Earned Leaves Leg :</value>
+  </data>
+  <data name="EditWindowsTitle" xml:space="preserve">
+    <value>Edit Branch</value>
+  </data>
+  <data name="Emplo" xml:space="preserve">
+    <value />
+  </data>
+  <data name="EmployeeCalenderTab" xml:space="preserve">
+    <value>Employee Calender </value>
+  </data>
+  <data name="eosBalanceTitle" xml:space="preserve">
+    <value>Balance:</value>
+  </data>
+  <data name="FieldBirthPlace" xml:space="preserve">
+    <value>Place of Birth</value>
+  </data>
+  <data name="FieldBranch" xml:space="preserve">
+    <value>Branch</value>
+  </data>
+  <data name="FieldDateOfBirth" xml:space="preserve">
+    <value>Birth Date</value>
+  </data>
+  <data name="FieldDepartment" xml:space="preserve">
+    <value>Department</value>
+  </data>
+  <data name="FieldDivision" xml:space="preserve">
+    <value>Division</value>
+  </data>
+  <data name="FieldFamilyName" xml:space="preserve">
+    <value>Family Name</value>
+  </data>
+  <data name="FieldFirstName" xml:space="preserve">
+    <value>First Name</value>
+  </data>
+  <data name="FieldFullName" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="FieldGender" xml:space="preserve">
+    <value>Gender</value>
+  </data>
+  <data name="FieldHireDate" xml:space="preserve">
+    <value>Hire Date</value>
+  </data>
+  <data name="FieldHomeEmail" xml:space="preserve">
+    <value>Home Email</value>
+  </data>
+  <data name="FieldIdRef" xml:space="preserve">
+    <value>ID Ref</value>
+  </data>
+  <data name="FieldIsInactive" xml:space="preserve">
+    <value>Is Inactive?</value>
+  </data>
+  <data name="FieldLastName" xml:space="preserve">
+    <value>Last Name</value>
+  </data>
+  <data name="FieldLastTACheck" xml:space="preserve">
+    <value>Last Check In</value>
+  </data>
+  <data name="FieldLastTACheckStatus" xml:space="preserve">
+    <value>Last Check In Status</value>
+  </data>
+  <data name="FieldMiddleName" xml:space="preserve">
+    <value>Middle Name</value>
+  </data>
+  <data name="FieldMobile" xml:space="preserve">
+    <value>Mobile</value>
+  </data>
+  <data name="FieldNationality" xml:space="preserve">
+    <value>Nationality</value>
+  </data>
+  <data name="FieldPicturePath" xml:space="preserve">
+    <value>PicturePath</value>
+  </data>
+  <data name="FieldPosition" xml:space="preserve">
+    <value>Position</value>
+  </data>
+  <data name="FieldRecordId" xml:space="preserve">
+    <value>Record ID</value>
+  </data>
+  <data name="FieldRef" xml:space="preserve">
+    <value>Ref</value>
+  </data>
+  <data name="FieldReference" xml:space="preserve">
+    <value>Reference</value>
+  </data>
+  <data name="FieldReligion" xml:space="preserve">
+    <value>Religion</value>
+  </data>
+  <data name="FieldReportsTo" xml:space="preserve">
+    <value>Manager</value>
+  </data>
+  <data name="FieldSchedule" xml:space="preserve">
+    <value>Attendance Schedule</value>
+  </data>
+  <data name="FieldSponsor" xml:space="preserve">
+    <value>Sponsor</value>
+  </data>
+  <data name="FieldTerminationDate" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="FieldTerminationReason" xml:space="preserve">
+    <value>Reason</value>
+  </data>
+  <data name="FieldTerminationType" xml:space="preserve">
+    <value>Type</value>
+  </data>
+  <data name="FieldVacationSchedule" xml:space="preserve">
+    <value>Vacation</value>
+  </data>
+  <data name="FieldWorkEmail" xml:space="preserve">
+    <value>Work Email</value>
+  </data>
+  <data name="FieldWorkingCalendar" xml:space="preserve">
+    <value>Calendar</value>
+  </data>
+  <data name="Filter" xml:space="preserve">
+    <value>Display:</value>
+  </data>
+  <data name="Hiring" xml:space="preserve">
+    <value>Hiring</value>
+  </data>
+  <data name="ImageSelectionWindowTitle" xml:space="preserve">
+    <value>Select Photo</value>
+  </data>
+  <data name="InactiveOnly" xml:space="preserve">
+    <value>Inactive Only</value>
+  </data>
+  <data name="indemnity" xml:space="preserve">
+    <value>Indemnity :</value>
+  </data>
+  <data name="JobInformationTab" xml:space="preserve">
+    <value>Job</value>
+  </data>
+  <data name="lastLeaveEndDateTitle" xml:space="preserve">
+    <value>Last Leave To</value>
+  </data>
+  <data name="lastLeaveStartDateTitle" xml:space="preserve">
+    <value>Last Leave :</value>
+  </data>
+  <data name="leavesBalanceTitle" xml:space="preserve">
+    <value>Leave Balance :</value>
+  </data>
+  <data name="LegalsTab" xml:space="preserve">
+    <value>Legals</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="NoTeamMembersFound" xml:space="preserve">
+    <value>&lt;div style='text-align:center;'&gt;No Team Members Found&lt;/div&gt;</value>
+  </data>
+  <data name="NotesTab" xml:space="preserve">
+    <value>Notes</value>
+  </data>
+  <data name="NotYetKnown" xml:space="preserve">
+    <value>Not determined yet</value>
+  </data>
+  <data name="Other" xml:space="preserve">
+    <value>Other</value>
+  </data>
+  <data name="paidLeaves" xml:space="preserve">
+    <value>Paid Leaves :</value>
+  </data>
+  <data name="paidLeavesYTDTitle" xml:space="preserve">
+    <value>Paid Leaves:</value>
+  </data>
+  <data name="PayrollTab" xml:space="preserve">
+    <value>Salary</value>
+  </data>
+  <data name="ReferenceAlreadyExist" xml:space="preserve">
+    <value>Reference Already Exist</value>
+  </data>
+  <data name="RehireEligibilty" xml:space="preserve">
+    <value>Rehire </value>
+  </data>
+  <data name="RemovePicture" xml:space="preserve">
+    <value>Remove</value>
+  </data>
+  <data name="ResetPassword" xml:space="preserve">
+    <value>Reset Password</value>
+  </data>
+  <data name="salary" xml:space="preserve">
+    <value>Salary :</value>
+  </data>
+  <data name="serviceDuration" xml:space="preserve">
+    <value>In Service:</value>
+  </data>
+  <data name="ShowTeam" xml:space="preserve">
+    <value>Show Team</value>
+  </data>
+  <data name="SkillsTab" xml:space="preserve">
+    <value>Skills</value>
+  </data>
+  <data name="TeamWindow" xml:space="preserve">
+    <value>Team</value>
+  </data>
+  <data name="terminationWindowTitle" xml:space="preserve">
+    <value>Termination</value>
+  </data>
+  <data name="UploadPicture" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="usedLeaves" xml:space="preserve">
+    <value>Used Leaves :</value>
+  </data>
+  <data name="usedLeavesLeg" xml:space="preserve">
+    <value>Used Leaves Leg :</value>
+  </data>
+  <data name="WindowTitle" xml:space="preserve">
+    <value>Employees</value>
+  </data>
+  <data name="Worker" xml:space="preserve">
+    <value>Worker</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>Yes</value>
+  </data>
+</root>

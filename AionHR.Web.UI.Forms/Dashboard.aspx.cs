@@ -72,48 +72,55 @@ namespace AionHR.Web.UI.Forms
 
             if (!X.IsAjaxRequest && !IsPostBack)
             {
-
-                SetExtLanguage();
-                HideShowButtons();
-                HideShowColumns();
                 try
                 {
-                    ClassPermissionRecordRequest classReq = new ClassPermissionRecordRequest();
-                    classReq.ClassId = "2001";
-                    classReq.UserId = _systemService.SessionHelper.GetCurrentUserId();
-                    RecordResponse<ModuleClass> modClass = _accessControlService.ChildGetRecord<ModuleClass>(classReq);
-                    if (modClass.result.accessLevel == 0)
+
+                    SetExtLanguage();
+                    HideShowButtons();
+                    HideShowColumns();
+                    try
+                    {
+                        ClassPermissionRecordRequest classReq = new ClassPermissionRecordRequest();
+                        classReq.ClassId = "2001";
+                        classReq.UserId = _systemService.SessionHelper.GetCurrentUserId();
+                        RecordResponse<ModuleClass> modClass = _accessControlService.ChildGetRecord<ModuleClass>(classReq);
+                        if (modClass.result.accessLevel == 0)
+                        {
+                            Viewport1.Hidden = true;
+                            throw new DashBoardAccessDenied();
+                        }
+                        else
+                            AccessControlApplier.ApplyAccessControlOnPage(typeof(AionHR.Model.Dashboard.Dashboard), null, null, null, null);
+                    }
+                    catch (AccessDeniedException exp)
+                    {
+                        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                        X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorAccessDenied).Show();
                         Viewport1.Hidden = true;
-                    else
-                    AccessControlApplier.ApplyAccessControlOnPage(typeof(AionHR.Model.Dashboard.Dashboard), null, null, null, null);
+                        return;
+                    }
+                    try
+                    {
+
+
+
+                        FillStatus();
+
+                        //outStore.Reload();
+                        //activeStore.Reload();
+                        //latenessStore.Reload();
+                        //leavesStore.Reload();
+                        //missingPunchesStore.Reload();
+                        //checkMontierStore.Reload();
+                        format.Text = _systemService.SessionHelper.GetDateformat().ToUpper();
+                        DateColumn1.Format = DateColumn2.Format = DateColumn3.Format = DateColumn4.Format = _systemService.SessionHelper.GetDateformat();
+                        periodToDate.SelectedDate = DateTime.Now.AddDays(-DateTime.Now.Day);
+                        CountDateTo.SelectedDate = DateTime.Now.AddDays(-DateTime.Now.Day);
+                        dimension.Select(0);
+                    }
+                    catch { }
                 }
-                catch (AccessDeniedException exp)
-                {
-                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorAccessDenied).Show();
-                    Viewport1.Hidden = true;
-                    return;
-                }
-                try
-                {
-
-
-
-                    FillStatus();
-
-                    //outStore.Reload();
-                    //activeStore.Reload();
-                    //latenessStore.Reload();
-                    //leavesStore.Reload();
-                    //missingPunchesStore.Reload();
-                    //checkMontierStore.Reload();
-                    format.Text = _systemService.SessionHelper.GetDateformat().ToUpper();
-                    DateColumn1.Format = DateColumn2.Format = DateColumn3.Format = DateColumn4.Format = _systemService.SessionHelper.GetDateformat();
-                    periodToDate.SelectedDate = DateTime.Now.AddDays(-DateTime.Now.Day);
-                    CountDateTo.SelectedDate = DateTime.Now.AddDays(-DateTime.Now.Day);
-                    dimension.Select(0);
-                }
-                catch { }
+                catch (DashBoardAccessDenied dx) { }
             }
 
         }
