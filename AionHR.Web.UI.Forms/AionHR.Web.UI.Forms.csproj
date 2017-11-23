@@ -262,6 +262,7 @@
     <Content Include="LeaveCalendar.aspx" />
     <Content Include="LeavePayments.aspx" />
     <Content Include="LeaveRequests.aspx" />
+    <Content Include="LeaveRequestsSelfService.aspx" />
     <Content Include="LeaveTypes.aspx" />
     <Content Include="Letters.aspx" />
     <Content Include="LetterTemplates.aspx" />
@@ -627,6 +628,13 @@
     </Compile>
     <Compile Include="LeavePayments.aspx.designer.cs">
       <DependentUpon>LeavePayments.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LeaveRequestsSelfService.aspx.cs">
+      <DependentUpon>LeaveRequestsSelfService.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LeaveRequestsSelfService.aspx.designer.cs">
+      <DependentUpon>LeaveRequestsSelfService.aspx</DependentUpon>
     </Compile>
     <Compile Include="Letters.aspx.cs">
       <DependentUpon>Letters.aspx</DependentUpon>

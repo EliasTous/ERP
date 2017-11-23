@@ -78,11 +78,11 @@ namespace AionHR.Web.UI.Forms
                 }
                 if (resp.result != null)
                 {
+                    resp.result.familyName= resp.result.name.familyName.ToString();
+                    resp.result.middleName= resp.result.name.middleName.ToString();
                     MyinfoForm.Reset();
                     MyinfoForm.SetValues(resp.result);
-                    middleName.Text = resp.result.name.middleName.ToString() ;
-                    familyName.Text = resp.result.name.familyName.ToString(); 
-                  
+                
 
 
                 }

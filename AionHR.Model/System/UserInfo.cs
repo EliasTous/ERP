@@ -68,7 +68,7 @@ namespace AionHR.Model.System
         public string companyName { get; set; }
 
 
-        public UserType userType { get; set; }
+        public int userType { get; set; }
         
        
     }

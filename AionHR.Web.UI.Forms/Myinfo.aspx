@@ -70,7 +70,7 @@
                        
                        
                                                      
-                                <ext:TextField ID="middleName" runat="server" FieldLabel="<%$ Resources:FieldMiddleName%>"  />
+                                <ext:TextField ID="middleName" runat="server" FieldLabel="<%$ Resources:FieldMiddleName%>" name="middleName" />
                            
                                 <ext:TextField ID="familyName" runat="server" FieldLabel="<%$ Resources:FieldFamilyName%>" Name="familyName" />
                               
