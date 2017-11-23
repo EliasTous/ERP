@@ -112,7 +112,15 @@ namespace AionHR.Web.UI.Forms
             if ((bool)_systemService.SessionHelper.Get("IsAdmin"))
                 return;
             ClassPermissionRecordRequest classReq = new ClassPermissionRecordRequest();
-            classReq.ClassId = type.GetCustomAttribute<ClassIdentifier>().ClassID;
+            try
+            {
+                classReq.ClassId = type.GetCustomAttribute<ClassIdentifier>().ClassID;
+            }
+            catch
+            {
+                return;
+            }
+            
             classReq.UserId = _systemService.SessionHelper.GetCurrentUserId();
             RecordResponse<ModuleClass> modClass = _accessControlService.ChildGetRecord<ModuleClass>(classReq);
             if (modClass == null || modClass.result == null)

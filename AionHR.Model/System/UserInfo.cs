@@ -7,6 +7,11 @@ using System.Web;
 
 namespace AionHR.Model.System
 {
+    public enum UserType
+    {
+        SUPER_USER=1, SUPERVISOR=2, OPERATOR=3, SELF_SERVICE=4
+    };
+
     /// <summary>
     /// User Entity
     /// </summary>
@@ -28,7 +33,7 @@ namespace AionHR.Model.System
         [PropertyID("20010_04")]
         [ApplySecurity]
         public bool isAdmin {
-            get { if (this.userType == 1)
+            get { if ((int)this.userType == 1)
                     return true;
                      else return false; 
                     }
@@ -45,7 +50,7 @@ namespace AionHR.Model.System
         [PropertyID("20010_07")]
         [ApplySecurity]
         public string password { get; set; }
-        public int userType { get; set; }
+       
 
         public string recordId { get; set; }
 
@@ -62,6 +67,8 @@ namespace AionHR.Model.System
         
         public string companyName { get; set; }
 
+
+        public UserType userType { get; set; }
         
        
     }
