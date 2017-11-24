@@ -169,6 +169,15 @@ namespace AionHR.Infrastructure.Session
             return nameFormat.ToString();
         }
 
+        public void SetUserType(int userType)
+        {
+            Set("UserType", userType);
+        }
+
+        public int GetUserType()
+        {
+            return (int)Get("UserType");
+        }
         public bool CheckIfIsAdmin()
         {
             return (bool)Get("IsAdmin");
