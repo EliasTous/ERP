@@ -273,7 +273,7 @@
     <Content Include="MainDashboard.aspx" />
     <Content Include="MediaCategories.aspx" />
     <Content Include="MediaItems.aspx" />
-    <Content Include="Myinfo.aspx" />
+    <Content Include="MyInfos.aspx" />
     <Content Include="Nationalities.aspx" />
     <Content Include="NoticePeriods.aspx" />
     <Content Include="OrganizationChart.aspx" />
@@ -650,12 +650,12 @@
     <Compile Include="LetterTemplates.aspx.designer.cs">
       <DependentUpon>LetterTemplates.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Myinfo.aspx.cs">
-      <DependentUpon>Myinfo.aspx</DependentUpon>
+    <Compile Include="MyInfos.aspx.cs">
+      <DependentUpon>MyInfos.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Myinfo.aspx.designer.cs">
-      <DependentUpon>Myinfo.aspx</DependentUpon>
+    <Compile Include="MyInfos.aspx.designer.cs">
+      <DependentUpon>MyInfos.aspx</DependentUpon>
     </Compile>
     <Compile Include="NoticePeriods.aspx.cs">
       <DependentUpon>NoticePeriods.aspx</DependentUpon>
@@ -2104,8 +2104,8 @@
     <Content Include="Reports\App_LocalResources\RT503.aspx.ar.resx" />
     <Content Include="Reports\App_LocalResources\RT108.aspx.resx" />
     <Content Include="Reports\App_LocalResources\RT108.aspx.ar.resx" />
-    <Content Include="App_LocalResources\MyInfo.aspx.resx" />
-    <Content Include="App_LocalResources\Myinfo.aspx.ar.resx" />
+    <Content Include="App_LocalResources\MyInfos.aspx.resx" />
+    <Content Include="App_LocalResources\Myinfos.aspx.ar.resx" />
     <EmbeddedResource Include="Reports\RT201.aspx.resx">
       <DependentUpon>RT201.aspx.cs</DependentUpon>
       <Generator>ResXFileCodeGenerator</Generator>

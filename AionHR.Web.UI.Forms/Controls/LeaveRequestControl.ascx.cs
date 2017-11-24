@@ -284,7 +284,7 @@ namespace AionHR.Web.UI.Forms.Controls
         {
             GridDisabled.Text = disabled.ToString();
             startDate.Disabled = disabled;
-            endDate.Disabled = employeeId.Disabled = justification.Disabled = destination.Disabled = isPaid.Disabled = ltId.Disabled =  TotalText.Disabled = disabled;
+            endDate.Disabled = employeeId.Disabled = justification.Disabled = destination.Disabled = /*isPaid.Disabled = */ltId.Disabled =  TotalText.Disabled = disabled;
             returnDate.Disabled = !disabled;
             approved.Text = disabled.ToString();
             leavePeriod.Disabled = disabled;
@@ -298,7 +298,7 @@ namespace AionHR.Web.UI.Forms.Controls
         {
             GridDisabled.Text = "False";
             startDate.Disabled = false;
-            endDate.Disabled = employeeId.Disabled = justification.Disabled = destination.Disabled = isPaid.Disabled = ltId.Disabled =TotalText.Disabled = false;
+            endDate.Disabled = employeeId.Disabled = justification.Disabled = destination.Disabled =/* isPaid.Disabled = */ltId.Disabled =TotalText.Disabled = false;
             returnDate.Disabled = true;
             leavePeriod.Disabled = false;
             approved.Text = "False";
@@ -311,7 +311,7 @@ namespace AionHR.Web.UI.Forms.Controls
         {
             GridDisabled.Text = disabled.ToString();
             startDate.Disabled = disabled;
-            endDate.Disabled = employeeId.Disabled = justification.Disabled = destination.Disabled = isPaid.Disabled = ltId.Disabled  = TotalText.Disabled = disabled;
+            endDate.Disabled = employeeId.Disabled = justification.Disabled = destination.Disabled = /*isPaid.Disabled*/ ltId.Disabled  = TotalText.Disabled = disabled;
             returnDate.Disabled = disabled;
             SaveButton.Disabled = disabled;
             leavePeriod.Disabled = disabled;
@@ -1034,7 +1034,7 @@ namespace AionHR.Web.UI.Forms.Controls
             y.Parameters["LeaveType"].Value = ltId.SelectedItem.Text;
             y.Parameters["LeaveBalance"].Value = leaveBalance.Text;
             y.Parameters["YearsInService"].Value = yearsInService.Text;
-            y.Parameters["IsPaid"].Value = isPaid.Checked ? "Yes" : "No";
+            //y.Parameters["IsPaid"].Value = isPaid.Checked ? "Yes" : "No";
             string format = "Pdf";
             string fileName = String.Format("Report.{0}", format);
             string user = _systemService.SessionHelper.GetCurrentUser();

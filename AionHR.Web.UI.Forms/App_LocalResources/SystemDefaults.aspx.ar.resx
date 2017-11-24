@@ -375,4 +375,7 @@
   <data name="ReferenceFirstNameMiddleNameFamilyName" xml:space="preserve">
     <value>الرمز، الاسم الأول، الاسم الأوسط ، اسم العائلة</value>
   </data>
+  <data name="FieldLanguageId" xml:space="preserve">
+    <value>اللغة</value>
+  </data>
 </root>

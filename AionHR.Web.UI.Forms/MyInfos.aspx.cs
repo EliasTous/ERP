@@ -22,14 +22,16 @@ using AionHR.Services.Messaging;
 using AionHR.Model.Company.Structure;
 using AionHR.Model.System;
 using AionHR.Model.Employees.Profile;
+using AionHR.Model.SelfService;
 
 namespace AionHR.Web.UI.Forms
 {
-    public partial class Myinfo : System.Web.UI.Page
+    public partial class MyInfos : System.Web.UI.Page
     {
         ISystemService _systemService = ServiceLocator.Current.GetInstance<ISystemService>();
         IEmployeeService _employeeService = ServiceLocator.Current.GetInstance<IEmployeeService>();
         ICompanyStructureService _companyStructureService = ServiceLocator.Current.GetInstance<ICompanyStructureService>();
+        ISelfServiceService _iselfServiceService = ServiceLocator.Current.GetInstance<ISelfServiceService>();
         protected override void InitializeCulture()
         {
 
@@ -61,12 +63,12 @@ namespace AionHR.Web.UI.Forms
 
                 if (string.IsNullOrEmpty(_systemService.SessionHelper.GetCurrentUserId().ToString()))
                     X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorOperation).Show();
-              
+
                 RecordRequest r = new RecordRequest();
                 r.RecordID = _systemService.SessionHelper.GetCurrentUserId();
                 RecordResponse<UserInfo> response = _systemService.ChildGetRecord<UserInfo>(r);
-                CurrentEmployee.Text= response.result.employeeId;
-               // EditRecordWindow.Loader.Params("employeeId") = CurrentEmployee.Text; 
+                CurrentEmployee.Text = response.result.employeeId;
+                // EditRecordWindow.Loader.Params("employeeId") = CurrentEmployee.Text; 
 
                 RecordRequest req = new RecordRequest();
                 req.RecordID = CurrentEmployee.Text;
@@ -78,11 +80,16 @@ namespace AionHR.Web.UI.Forms
                 }
                 if (resp.result != null)
                 {
-                    resp.result.familyName= resp.result.name.familyName.ToString();
-                    resp.result.middleName= resp.result.name.middleName.ToString();
-                    MyinfoForm.Reset();
-                    MyinfoForm.SetValues(resp.result);
-                
+                    resp.result.familyName = resp.result.name.familyName.ToString();
+                    resp.result.middleName = resp.result.name.middleName.ToString();
+                    resp.result.firstName = resp.result.name.firstName.ToString();
+                    resp.result.lastName = resp.result.name.lastName.ToString();
+                    resp.result.reference = resp.result.name.reference.ToString();
+                    resp.result.fullName = resp.result.name.fullName.ToString();
+
+                    BasicInfoTab.Reset();
+                    BasicInfoTab.SetValues(resp.result);
+
 
 
                 }
@@ -104,7 +111,7 @@ namespace AionHR.Web.UI.Forms
                 //{
                 //    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
                 //    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorAccessDenied).Show();
-                  
+
                 //    return;
                 //}
                 ////if (recruitmentInfo.InputType == InputType.Password)
@@ -116,7 +123,7 @@ namespace AionHR.Web.UI.Forms
 
         }
 
-      
+
 
         /// <summary>
         /// the detailed tabs for the edit form. I put two tabs by default so hide unecessary or add addional
@@ -147,23 +154,30 @@ namespace AionHR.Web.UI.Forms
             if (rtl)
             {
                 this.ResourceManager1.RTL = true;
-             
+                this.EditRecordWindow.RTL = true;
 
             }
         }
 
 
-        protected void SaveMyInfo(object sender, DirectEventArgs e)
+        protected void SaveNewRecord(object sender, DirectEventArgs e)
         {
-            string info = e.ExtraParams["values"];
-            Employee h = JsonConvert.DeserializeObject<Employee>(info);
-            h.recordId = CurrentEmployee.Text; 
-            PostRequest<Employee> req = new PostRequest<Employee>();
+            string obj = e.ExtraParams["values"];
+            JsonSerializerSettings settings = new JsonSerializerSettings();
+            settings.NullValueHandling = NullValueHandling.Ignore;
+            MyInfo h = JsonConvert.DeserializeObject<MyInfo>(obj, settings);
+            h.name = new EmployeeName { firstName = firstName.Text, lastName = lastName.Text, familyName = familyName.Text, middleName = middleName.Text, reference = reference.Text };
+
+            h.recordId = CurrentEmployee.Text;
+
+            h.familyName = null;
+            h.middleName = null;
+            PostRequest<MyInfo> req = new PostRequest<MyInfo>();
 
             req.entity = h;
-            
 
-            PostResponse<Employee> resp = _employeeService.AddOrUpdate<Employee>(req);
+
+            PostResponse<MyInfo> resp = _iselfServiceService.ChildAddOrUpdate<MyInfo>(req);
             if (!resp.Success)
             {
                 X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() : resp.Summary).Show();
@@ -196,7 +210,7 @@ namespace AionHR.Web.UI.Forms
             else return "1";
         }
 
-      
+
 
     }
 }

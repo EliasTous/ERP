@@ -80,16 +80,16 @@ namespace AionHR.Web.UI.Forms
                     HideShowColumns();
                     try
                     {
-                        ClassPermissionRecordRequest classReq = new ClassPermissionRecordRequest();
-                        classReq.ClassId = "2001";
-                        classReq.UserId = _systemService.SessionHelper.GetCurrentUserId();
-                        RecordResponse<ModuleClass> modClass = _accessControlService.ChildGetRecord<ModuleClass>(classReq);
-                        if (modClass.result.accessLevel == 0)
-                        {
-                            Viewport1.Hidden = true;
-                            throw new DashBoardAccessDenied();
-                        }
-                        else
+                        //ClassPermissionRecordRequest classReq = new ClassPermissionRecordRequest();
+                        //classReq.ClassId = "2001";
+                        //classReq.UserId = _systemService.SessionHelper.GetCurrentUserId();
+                        //RecordResponse<ModuleClass> modClass = _accessControlService.ChildGetRecord<ModuleClass>(classReq);
+                        //if (modClass.result.accessLevel == 0)
+                        //{
+                        //    Viewport1.Hidden = true;
+                        //    throw new DashBoardAccessDenied();
+                        //}
+                        //else
                             AccessControlApplier.ApplyAccessControlOnPage(typeof(AionHR.Model.Dashboard.Dashboard), null, null, null, null);
                     }
                     catch (AccessDeniedException exp)

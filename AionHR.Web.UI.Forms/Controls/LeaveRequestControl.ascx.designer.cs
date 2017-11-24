@@ -355,15 +355,6 @@ namespace AionHR.Web.UI.Forms.Controls {
         protected global::Ext.Net.TextField destination;
         
         /// <summary>
-        /// isPaid control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Checkbox isPaid;
-        
-        /// <summary>
         /// ltId control.
         /// </summary>
         /// <remarks>

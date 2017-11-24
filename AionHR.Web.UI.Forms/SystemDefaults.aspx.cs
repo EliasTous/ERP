@@ -399,7 +399,9 @@ namespace AionHR.Web.UI.Forms
             try { exemptDeliveryTRId.Select(items.Where(s => s.Key == "exemptDeliveryTRId").First().Value); }
 
             catch { }
+            try { languageId.Select(items.Where(s => s.Key == "languageId ").First().Value); }
 
+            catch { }
 
 
         }
@@ -504,6 +506,8 @@ namespace AionHR.Web.UI.Forms
                 submittedValues.Add(new KeyValuePair<string, string>("dateFormat", values.dateFormat.ToString()));
             if (!string.IsNullOrEmpty(values.timeZone.ToString()))
                 submittedValues.Add(new KeyValuePair<string, string>("timeZone", values.timeZone.ToString()));
+            if (!string.IsNullOrEmpty(values.languageId.ToString()))
+                submittedValues.Add(new KeyValuePair<string, string>("languageId", values.languageId.ToString()));
 
             submittedValues.Add(new KeyValuePair<string, string>("enableHijri", values.enableHijri == null ? "false" : "true"));
             return submittedValues;

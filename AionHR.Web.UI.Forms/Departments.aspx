@@ -293,7 +293,7 @@
             Icon="PageEdit"
             Title="<%$ Resources:EditWindowsTitle %>"
             Width="450"
-            Height="350"
+            Height="450"
             AutoShow="false"
             Modal="true"
             Hidden="true"
@@ -422,10 +422,10 @@
                                     </Items>
                                    
                                 </ext:ComboBox>
-                               
-                                   <ext:Checkbox ID="isLeaveAuth" runat="server" FieldLabel="<%$ Resources: isLeaveAuth%>" DataIndex="isLeaveAuth" Name="isLeaveAuth" InputValue="true" />
+                               <ext:Panel runat="server" Layout="HBoxLayout" ><Items>
+                                   <ext:Checkbox ID="isLeaveAuth" runat="server" FieldLabel="<%$ Resources: isLeaveAuth%>" DataIndex="isLeaveAuth" Name="isLeaveAuth" InputValue="true"  />
                                  <ext:Checkbox ID="isInactiveCheck" runat="server" FieldLabel="<%$ Resources: FieldIsInactive%>" DataIndex="isInactive" Name="isInactive" InputValue="true" />
-
+                                </Items></ext:Panel>
                             </Items>
 
                         </ext:FormPanel>

@@ -233,7 +233,7 @@
                         </ext:DateField>
                         <ext:Panel runat="server" Layout="HBoxLayout">
                             <Items>
-                                <ext:DateField ID="endDate"    runat="server" FieldLabel="<%$ Resources:FieldEndDate%>"  min Name="endDate" AllowBlank="false">
+                                <ext:DateField ID="endDate"    runat="server" FieldLabel="<%$ Resources:FieldEndDate%>"  Name="endDate" AllowBlank="false">
                                  
                                     <DirectEvents>
                                         <FocusLeave OnEvent="MarkLeaveChanged">
@@ -247,15 +247,15 @@
                                         <Change Handler="App.leaveRequest1_direct.MarkLeaveChanged(); CalcSum(); " />
                                     </Listeners>--%>
                                     <Listeners>
-                                        <Select Handler="calcDays();" />
+                                        <Select Handler="calcDays();calcEndDate();" />
 
                                     </Listeners>
                                 </ext:DateField>
                                 <ext:NumberField runat="server" ID="calDays" Width="150" Name="calDays" MinValue="1" FieldLabel="<%$Resources:CalDays %>" LabelWidth="40">
-                                    <Listeners>
+                                  <%--<Listeners>
                                         <FocusLeave Handler="calcEndDate();" />
 
-                                    </Listeners>
+                                    </Listeners>--%>
                                 </ext:NumberField>
                             </Items>
                         </ext:Panel>
@@ -265,7 +265,7 @@
                         <ext:TextField ID="destination" runat="server" FieldLabel="<%$ Resources:FieldDestination%>" Name="destination" AllowBlank="false" />
 
 
-                        <ext:Checkbox runat="server" Name="isPaid" InputValue="true" ID="isPaid" DataIndex="isPaid" FieldLabel="<%$ Resources:FieldIsPaid%>" />
+                     <%--   <ext:Checkbox runat="server" Name="isPaid" InputValue="true" ID="isPaid" DataIndex="isPaid" FieldLabel="<%$ Resources:FieldIsPaid%>" />--%>
 
 
 

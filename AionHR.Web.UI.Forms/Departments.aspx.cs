@@ -330,11 +330,11 @@ namespace AionHR.Web.UI.Forms
 
             EmployeeListRequest req = new EmployeeListRequest();
             if (string.IsNullOrEmpty(CurrentDepartment.Text))
-                req.DepartmentId = "0";
+              req.DepartmentId = "0";
             else
             req.DepartmentId = CurrentDepartment.Text;
             req.BranchId = "0";
-            req.IncludeIsInactive = 2;
+            req.IncludeIsInactive = 0;
             req.SortBy = GetNameFormat();
 
             req.StartAt = "1";
@@ -567,9 +567,9 @@ namespace AionHR.Web.UI.Forms
                         ModelProxy record = this.Store1.GetById(index);
                         BasicInfoTab.UpdateRecord(record);
 
-                        record.Set("svFullName", b.supervisorName.fullName);
+                        record.Set("supervisorName", b.supervisorName);
                         record.Set("parentName", b.parentName);
-                      
+                  
                         record.Commit();
                         Notification.Show(new NotificationConfig
                         {

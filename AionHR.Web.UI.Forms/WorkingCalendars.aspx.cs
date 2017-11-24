@@ -986,7 +986,8 @@ namespace AionHR.Web.UI.Forms
             patternScheduleStore.DataBind();
             dateTo.MinDate = dateFrom.MinDate = new DateTime(Convert.ToInt32(CurrentYear.Text), 1, 1);
             dateTo.MaxDate = dateFrom.MaxDate = new DateTime(Convert.ToInt32(CurrentYear.Text), 12, 31);
-
+            dateFrom.Value =new  DateTime(Convert.ToInt32(CurrentYear.Text), 1, 1);
+            dateTo.Value= new DateTime(Convert.ToInt32(CurrentYear.Text),12, 31);
             patternWindow.Show();
         }
 

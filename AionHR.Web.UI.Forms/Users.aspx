@@ -259,9 +259,10 @@
                         <ext:ModelField Name="languageId" />
                         <ext:ModelField Name="email" />
 
-
+                         <ext:ModelField Name="userTypeString" />
                         <ext:ModelField Name="isInactive" />
-                        <ext:ModelField Name="isAdmin" />
+                       <%-- <ext:ModelField Name="isAdmin" />--%>
+                        
 
 
 
@@ -363,8 +364,10 @@
                             </ext:Column>
 
                             <ext:CheckColumn ID="ColIsInactive" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldIsInactive %>" DataIndex="isInactive" Hideable="false" />
-                            <ext:CheckColumn ID="ColIsAdmin" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldIsAdmin %>" DataIndex="isAdmin" Hideable="false" />
-
+                           <%-- <ext:CheckColumn ID="ColIsAdmin" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldIsAdmin %>" DataIndex="isAdmin" Hideable="false" />--%>
+                             <ext:Column ID="ColUserType" MenuDisabled="true" Sortable="true" runat="server" Text="<%$ Resources: FieldUserType%>" DataIndex="userTypeString" Flex="1" Hideable="false">
+                                
+                            </ext:Column>
 
 
                             <ext:Column runat="server"
@@ -481,6 +484,7 @@
 
                                 <ext:Checkbox ID="isInactiveCheck" TabIndex="4" runat="server" FieldLabel="<%$ Resources: FieldIsInActive%>" DataIndex="isInactive" Name="isInactive" InputValue="true" />
                            <%--     <ext:Checkbox ID="isAdminCheck" TabIndex="5" runat="server" FieldLabel="<%$ Resources: FieldIsAdmin%>" DataIndex="isAdmin" Name="isAdmin" InputValue="true" />--%>
+
                                    <ext:ComboBox AnyMatch="true" CaseSensitive="false" runat="server" ID="userType" AllowBlank="false"  Name="userType"
                                     SubmitValue="true"
                                     TypeAhead="false"

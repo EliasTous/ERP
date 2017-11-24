@@ -161,6 +161,7 @@
     <Compile Include="Access Control\SecurityGroup.cs" />
     <Compile Include="Access Control\SecurityGroupUser.cs" />
     <Compile Include="SelfService\ISelfServiceRepository.cs" />
+    <Compile Include="SelfService\MyInfo.cs" />
     <Compile Include="System\ApplyLetter.cs" />
     <Compile Include="System\BatchOperationStatus.cs" />
     <Compile Include="System\CompanyDocumentType.cs" />

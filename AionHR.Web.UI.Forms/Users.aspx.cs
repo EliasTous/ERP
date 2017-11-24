@@ -561,6 +561,26 @@ namespace AionHR.Web.UI.Forms
                 X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", branches.ErrorCode) != null ? GetGlobalResourceObject("Errors", branches.ErrorCode).ToString() : branches.Summary).Show();
                 return;
             }
+            branches.Items.ForEach(x =>
+            {
+                switch (x.userType)
+                {
+                    case 1:x.userTypeString = GetLocalResourceObject("FieldSuperUser").ToString();
+                        break;
+                    case 2:x.userTypeString = GetLocalResourceObject("FieldAdministrator").ToString();
+                        break;
+                    case 3:x.userTypeString = GetLocalResourceObject("FieldOperator").ToString();
+                        break;
+                    case 4:x.userTypeString = GetLocalResourceObject("FieldSelfService").ToString();
+                        break;
+                    default:
+                        break;
+
+
+                }
+            }
+
+            );
             this.Store1.DataSource = branches.Items;
             e.Total = branches.count;
 

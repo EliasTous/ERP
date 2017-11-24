@@ -160,6 +160,16 @@
                                         <ext:ListItem Text="+12 UTC" Value="12" />
                                     </Items>
                                 </ext:ComboBox>
+                                  <ext:ComboBox AnyMatch="true" CaseSensitive="false" LabelWidth="150" runat="server" ID="languageId" AllowBlank="false" TabIndex="7" Name="languageId"
+                                    SubmitValue="true"
+                                    TypeAhead="false"
+                                    FieldLabel="<%$ Resources: FieldLanguageId%>">
+                                    <Items>
+                                        <ext:ListItem Text="<%$Resources:Common,EnglishLanguage %>" Value="1" />
+                                        <ext:ListItem Text="<%$Resources:Common,ArabicLanguage %>" Value="2" />
+
+                                    </Items>
+                                </ext:ComboBox>
                                 <ext:Checkbox FieldLabel="<%$ Resources: FieldEnableHijri %>" LabelWidth="150" runat="server" InputValue="True" Name="enableHijri" ID="enableHijri" />
                             </Items>
                             <Buttons>

@@ -9,17 +9,17 @@ namespace AionHR.Model.System
 {
     public enum UserType
     {
-        SUPER_USER=1, SUPERVISOR=2, OPERATOR=3, SELF_SERVICE=4
+        SUPER_USER = 1, SUPERVISOR = 2, OPERATOR = 3, SELF_SERVICE = 4
     };
 
     /// <summary>
     /// User Entity
     /// </summary>
     /// 
-    [ClassIdentifier("20010","20")]
+    [ClassIdentifier("20010", "20")]
     public class UserInfo : IEntity
     {
-        
+
         [PropertyID("20010_01")]
         [ApplySecurity(false)]
         public string fullName { get; set; }
@@ -32,11 +32,14 @@ namespace AionHR.Model.System
 
         [PropertyID("20010_04")]
         [ApplySecurity]
-        public bool isAdmin {
-            get { if ((int)this.userType == 1)
+        public bool isAdmin
+        {
+            get
+            {
+                if ((int)this.userType == 1)
                     return true;
-                     else return false; 
-                    }
+                else return false;
+            }
             set { }
 
         }
@@ -50,7 +53,7 @@ namespace AionHR.Model.System
         [PropertyID("20010_07")]
         [ApplySecurity]
         public string password { get; set; }
-       
+
 
         public string recordId { get; set; }
 
@@ -62,14 +65,14 @@ namespace AionHR.Model.System
 
         public string enableHijriCalendar { get; set; }
 
-        
 
-        
+
+
         public string companyName { get; set; }
 
 
         public int userType { get; set; }
-        
-       
+        public string userTypeString  { get; set; }
+
     }
 }
