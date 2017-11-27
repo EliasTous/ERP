@@ -238,6 +238,24 @@ namespace AionHR.Web.UI.Forms.Controls {
         protected global::Ext.Net.Hidden ViewOnly;
         
         /// <summary>
+        /// oldStart control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Hidden oldStart;
+        
+        /// <summary>
+        /// oldEnd control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Hidden oldEnd;
+        
+        /// <summary>
         /// EditRecordWindow control.
         /// </summary>
         /// <remarks>
