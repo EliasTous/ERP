@@ -210,4 +210,7 @@
   <data name="IsSuperUser" xml:space="preserve">
     <value>Is super user</value>
   </data>
+  <data name="FieldEmail" xml:space="preserve">
+    <value>Email</value>
+  </data>
 </root>

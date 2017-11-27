@@ -844,6 +844,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Approve Leave Request.
+        /// </summary>
+        internal static string Class42022 {
+            get {
+                return ResourceManager.GetString("Class42022", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Import Leaves.
         /// </summary>
         internal static string Class42099 {

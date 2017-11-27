@@ -1726,6 +1726,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Self Service.
+        /// </summary>
+        internal static string Mod60 {
+            get {
+                return ResourceManager.GetString("Mod60", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Reports.
         /// </summary>
         internal static string Mod80 {

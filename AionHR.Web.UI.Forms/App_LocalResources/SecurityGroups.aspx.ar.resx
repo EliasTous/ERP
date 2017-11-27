@@ -210,4 +210,7 @@
   <data name="EntryDayOverTime" xml:space="preserve">
     <value>ضمن اليوم</value>
   </data>
+  <data name="FieldEmail" xml:space="preserve">
+    <value>البريد الالكتروني</value>
+  </data>
 </root>

@@ -475,7 +475,7 @@
     <value>يوم - سنة - شهر</value>
   </data>
   <data name="Divisions" xml:space="preserve">
-    <value>الإدارات العليا</value>
+    <value>قطاعات</value>
   </data>
   <data name="DocumentTypes" xml:space="preserve">
     <value>أنواع الوثائق</value>
@@ -1076,5 +1076,8 @@
   </data>
   <data name="PersonalInfo" xml:space="preserve">
     <value>معلوماتي الشخصية</value>
+  </data>
+  <data name="Mod60" xml:space="preserve">
+    <value>Self Service</value>
   </data>
 </root>

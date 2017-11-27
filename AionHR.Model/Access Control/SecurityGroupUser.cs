@@ -25,5 +25,8 @@ namespace AionHR.Model.Access_Control
         [PropertyID("90102_02")]
         [ApplySecurity]
         public string fullName { get; set; }
+        [PropertyID("90102_04")]
+        [ApplySecurity]
+        public string email { get; set; }
     }
 }

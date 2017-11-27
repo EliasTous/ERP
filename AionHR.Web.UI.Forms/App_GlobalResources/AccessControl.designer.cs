@@ -2842,6 +2842,24 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Status.
+        /// </summary>
+        internal static string Property4202201 {
+            get {
+                return ResourceManager.GetString("Property4202201", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Notes.
+        /// </summary>
+        internal static string Property4202202 {
+            get {
+                return ResourceManager.GetString("Property4202202", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Employee Name .
         /// </summary>
         internal static string Property4300001 {

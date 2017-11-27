@@ -60,6 +60,18 @@ namespace AionHR.Web.UI.Forms
 
                 SetExtLanguage();
                 HideShowButtons();
+                try
+                {
+                     AccessControlApplier.ApplyAccessControlOnPage(typeof(MyInfo), BasicInfoTab, null,null,SaveButton);
+
+                }
+                catch (AccessDeniedException exp)
+                {
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorAccessDenied).Show();
+
+                    return;
+                }
 
                 if (string.IsNullOrEmpty(_systemService.SessionHelper.GetCurrentUserId().ToString()))
                     X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorOperation).Show();

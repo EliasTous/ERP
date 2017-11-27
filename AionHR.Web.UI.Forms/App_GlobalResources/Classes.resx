@@ -378,6 +378,9 @@
   <data name="Class42021" xml:space="preserve">
     <value>Leave Day</value>
   </data>
+  <data name="Class42022" xml:space="preserve">
+    <value>Approve Leave Request</value>
+  </data>
   <data name="Class42099" xml:space="preserve">
     <value>Import Leaves</value>
   </data>

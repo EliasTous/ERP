@@ -375,6 +375,9 @@
   <data name="Class42021" xml:space="preserve">
     <value>أيام الإجازة</value>
   </data>
+  <data name="Class42022" xml:space="preserve">
+    <value>الموافقه على طلب الإجازة</value>
+  </data>
   <data name="Class42099" xml:space="preserve">
     <value>استيراد الإجازات</value>
   </data>

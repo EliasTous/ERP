@@ -102,6 +102,19 @@ namespace AionHR.Web.UI.Forms
                     try
                     {
 
+                        AccessControlApplier.ApplyAccessControlOnPage(typeof(DashboardLeave), LeaveRecordForm, null, null, SaveButton);
+                    }
+                    catch (AccessDeniedException exp)
+                    {
+                        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                        X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorAccessDenied).Show();
+                        LeaveRecordWindow.Close();
+
+                        return;
+                    }
+                    try
+                    {
+
 
 
                         FillStatus();
@@ -1048,6 +1061,7 @@ namespace AionHR.Web.UI.Forms
 
                 case "imgAttach":
                     //Step 1 : get the object from the Web Service 
+                  
                     RecordRequest r = new RecordRequest();
                     r.RecordID = id;
 

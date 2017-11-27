@@ -1323,4 +1323,10 @@
   <data name="Property5103102" xml:space="preserve">
     <value>Name</value>
   </data>
+  <data name="Property4202201" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="Property4202202" xml:space="preserve">
+    <value>Notes</value>
+  </data>
 </root>
