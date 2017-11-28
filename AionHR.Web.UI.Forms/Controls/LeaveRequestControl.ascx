@@ -41,7 +41,7 @@
         setTimeout(function () { window.document.forms[0].target = ''; }, 0);
     }
     function CalcSum() {
-
+     
         var sum = 0;
         App.leaveRequest1_LeaveDaysGrid.getStore().each(function (record) {
 
@@ -99,6 +99,7 @@
         App.leaveRequest1_endDate.setValue(new Date(d.toDate()));
     }
     function calcDays() {
+        
         if (App.leaveRequest1_startDate.getValue() == '') {
             alert('specify start date')
             return;
@@ -136,6 +137,8 @@
 <ext:Hidden ID="SpecifyStartDateFirst" runat="server" Text="<%$ Resources: SpecifyStartDateFirst %>" />
 <ext:Hidden ID="StoredLeaveChanged" runat="server" Text="0" EnableViewState="true" />
 <ext:Hidden ID="ViewOnly" runat="server" />
+  <ext:Hidden ID="oldStart" runat="server"  />
+        <ext:Hidden ID="oldEnd" runat="server"  />
 <ext:Window
     ID="EditRecordWindow"
     runat="server"
@@ -215,16 +218,16 @@
                         </ext:ComboBox>
                         <ext:DateField ID="startDate"   runat="server" FieldLabel="<%$ Resources:FieldStartDate%>" Name="startDate" AllowBlank="false">
                             <DirectEvents>
-                                <FocusLeave OnEvent="MarkLeaveChanged">
+                                <Change OnEvent="MarkLeaveChanged">
                                     <ExtraParams>
                                         <ext:Parameter Name="startDate" Value="#{startDate}.getValue()" Mode="Raw" />
                                         <ext:Parameter Name="endDate" Value="#{endDate}.getValue()" Mode="Raw" />
                                     </ExtraParams>
-                                </FocusLeave>
+                                </Change>
                                 
                             </DirectEvents>
                          <Listeners>
-                                        <Select Handler="calcDays();" />
+                                        <Change Handler="if(moment(this.value).isSame(moment( #{oldStart}.value) )) {return false;} #{oldStart}.value = this.value; calcDays();" />
 
                                     </Listeners>
                             <%--          <Listeners>
@@ -236,26 +239,26 @@
                                 <ext:DateField ID="endDate"    runat="server" FieldLabel="<%$ Resources:FieldEndDate%>"  Name="endDate" AllowBlank="false">
                                  
                                     <DirectEvents>
-                                        <FocusLeave OnEvent="MarkLeaveChanged">
+                                        <Change OnEvent="MarkLeaveChanged">
                                             <ExtraParams>
                                                 <ext:Parameter Name="startDate" Value="#{startDate}.getValue()" Mode="Raw" />
                                                 <ext:Parameter Name="endDate" Value="#{endDate}.getValue()" Mode="Raw" />
                                             </ExtraParams>
-                                        </FocusLeave>
+                                        </Change>
                                     </DirectEvents>
-                                    <%--<Listeners>
+                                   <%-- <Listeners>
                                         <Change Handler="App.leaveRequest1_direct.MarkLeaveChanged(); CalcSum(); " />
                                     </Listeners>--%>
                                     <Listeners>
-                                        <Select Handler="calcDays();calcEndDate();" />
+                                        <Change Handler="if(moment(this.value).isSame(moment( #{oldEnd}.value) )) {return false;} #{oldEnd}.value = this.value; calcDays();calcEndDate();" />
 
                                     </Listeners>
                                 </ext:DateField>
                                 <ext:NumberField runat="server" ID="calDays" Width="150" Name="calDays" MinValue="1" FieldLabel="<%$Resources:CalDays %>" LabelWidth="40">
-                                  <%--<Listeners>
-                                        <FocusLeave Handler="calcEndDate();" />
+                                  <Listeners>
+                                        <Change Handler="calcEndDate();" />
 
-                                    </Listeners>--%>
+                                    </Listeners>
                                 </ext:NumberField>
                             </Items>
                         </ext:Panel>
