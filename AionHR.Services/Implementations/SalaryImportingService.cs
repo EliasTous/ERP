@@ -37,24 +37,35 @@ namespace AionHR.Services.Implementations
                 sT.Basic.paymentFrequency = Convert.ToInt16(row[5].ToString());
                 sT.Basic.paymentMethod = Convert.ToInt16(row[6].ToString());
                 
-                if (sT.Basic.paymentMethod == 1)
+                if (sT.Basic.paymentMethod == 2)
                 {
                     sT.Basic.bankName = row[7].ToString();
                     sT.Basic.accountNumber = row[8].ToString();
                 }
                 sT.Basic.basicAmount = Convert.ToDouble(row[9].ToString());
                 int i = 10;
-
+                double ens = 0, deds = 0;
                 while (i < row.Table.Columns.Count)
                 {
                     SalaryDetail det = new SalaryDetail();
                     det.edName = row[i].ToString();
                     det.fixedAmount = Convert.ToDouble(row[i + 1].ToString());
                     det.isTaxable = row[i + 2].ToString() == "1";
+
+                    det.type = (row[i + 3]).ToString() == "1" ? 1 : 2;
+
+                    if (det.type == 1)
+                        ens += det.fixedAmount;
+                    else
+                        deds += det.fixedAmount;
+
                     det.includeInTotal = true;
                     sT.Details.Add(det);
-                    i += 3;
+                    i += 4;
                 }
+                sT.Basic.eAmount = ens;
+                sT.Basic.dAmount = deds;
+                sT.Basic.finalAmount = sT.Basic.basicAmount + sT.Basic.eAmount - sT.Basic.dAmount;
                 result.Add(sT);
                 return result;
             }

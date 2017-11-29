@@ -83,7 +83,7 @@ namespace AionHR.Services.Implementations
                     x.edId = ents[x.edName];
                     x.type = 1;
                 }
-                else
+                else if(deds.ContainsKey(x.edName))
                 {
                     x.edId = deds[x.edName];
                     x.type = 2;
