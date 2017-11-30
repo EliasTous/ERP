@@ -414,8 +414,9 @@ namespace AionHR.Web.UI.Forms.Utilities
 
             FillConfigItem(lt, "Letters", "Letters.aspx", Resources.Common.Letters, "icon-Employees", "1");
             FillConfigItem(pi, "MyInfos","Myinfos.aspx", Resources.Common.PersonalInfo, "icon-Employees", "1");
-            FillConfigItem(lv, "LeaveRequestsSelfService", "LeaveRequestsSelfService.aspx", Resources.Common.LeaveRequests, "icon-Employees", "1");
-   
+            FillConfigItem(lv, "LeaveRequestsSelfService", "LeaveRequestsSelfServices.aspx", Resources.Common.LeaveRequests, "icon-Employees", "1");
+            FillConfigItem(ln, "LoanSelfService", "LoanSelfServices.aspx", Resources.Common.Loan, "icon-Employees", "1");
+
             nodes.Add(rootParent);
             return nodes;
         }

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace AionHR.Model.SelfService
 {
-    [ClassIdentifier("31000", "31")]
+    [ClassIdentifier("60101", "60")]
     public class MyInfo : ModelBase, IEntity
     {
 
@@ -17,7 +17,7 @@ namespace AionHR.Model.SelfService
         public string reference { get; set; }
 
 
-        [PropertyID("31000_24")]
+        [PropertyID("60101_01")]
         [ApplySecurity]
         public EmployeeName name { get; set; }
        
@@ -27,31 +27,31 @@ namespace AionHR.Model.SelfService
 
         
         public string firstName { get; set; }
-        [PropertyID("31000_03")]
+        [PropertyID("60101_01")]
         [ApplySecurity]
         public string middleName { get; set; }
        
         public string lastName { get; set; }
-        [PropertyID("31000_05")]
+        [PropertyID("60101_01")]
         [ApplySecurity]
         public string familyName { get; set; }
       
 
         public string idRef { get; set; }
-        [PropertyID("31000_07")]
+        [PropertyID("31000_08")]
         [ApplySecurity]
         public string homeMail { get; set; }
         
         public string workMail { get; set; }
       
         public short gender { get; set; }
-        [PropertyID("31000_10")]
+        [PropertyID("60101_04")]
         [ApplySecurity]
         public string mobile { get; set; }
-        [PropertyID("31000_11")]
+        [PropertyID("60101_05")]
         [ApplySecurity]
         public short? religion { get; set; }
-        [PropertyID("31000_12")]
+        [PropertyID("60101_06")]
         [ApplySecurity]
         public DateTime? birthDate { get; set; }
        
@@ -60,7 +60,7 @@ namespace AionHR.Model.SelfService
         public int? vsId { get; set; }
        
         public int? caId { get; set; }
-        [PropertyID("31000_16")]
+        [PropertyID("60101_07")]
         [ApplySecurity]
         public string placeOfBirth { get; set; }
         

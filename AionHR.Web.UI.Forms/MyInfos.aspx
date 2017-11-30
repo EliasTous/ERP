@@ -7,11 +7,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title></title>
-    <link rel="stylesheet" type="text/css" href="../CSS/Common.css?id=1" />
+    <link rel="stylesheet" type="text/css" href="../CSS/Common.css?id=2" />
     <link rel="stylesheet" href="../CSS/LiveSearch.css" />
-    <script type="text/javascript" src="../Scripts/Notes.js?id=18"></script>
-    <script type="text/javascript" src="../Scripts/common.js?id=0"></script>
-    <script type="text/javascript" src="../Scripts/moment.js?id=0"></script>
+    <script type="text/javascript" src="Scripts/Notes.js?id=30"></script>
+    <script type="text/javascript" src="Scripts/common.js?id=20"></script>
+    <script type="text/javascript" src="Scripts/moment.js?id=10"></script>
    
 
 

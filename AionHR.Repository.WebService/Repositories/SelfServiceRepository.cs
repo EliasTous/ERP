@@ -27,6 +27,8 @@ namespace AionHR.Repository.WebService.Repositories
 
 
             ChildAddOrUpdateLookup.Add(typeof(MyInfo), "setEM");
+            ChildAddOrUpdateLookup.Add(typeof(leaveRequetsSelfservice), "setLE");
+            ChildAddOrUpdateLookup.Add(typeof(loanSelfService), "setLO");
 
 
             ChildDeleteLookup.Add(typeof(MyInfo), "delEM");

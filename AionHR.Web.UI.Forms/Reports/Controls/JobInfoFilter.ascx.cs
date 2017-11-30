@@ -124,7 +124,7 @@ namespace AionHR.Web.UI.Forms.Reports
             departmentsRequest.type = 0;
             ListResponse<Department> resp = _companyStructureService.ChildGetAll<Department>(departmentsRequest);
             if (!resp.Success)
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() : resp.Summary).Show();
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>Technical Error: " + resp.ErrorCode + "<br> Summary: " + resp.Summary : resp.Summary).Show();
             departmentStore.DataSource = resp.Items;
             departmentStore.DataBind();
             if (_systemService.SessionHelper.CheckIfIsAdmin())
@@ -148,7 +148,7 @@ namespace AionHR.Web.UI.Forms.Reports
             ListRequest branchesRequest = new ListRequest();
             ListResponse<Branch> resp = _companyStructureService.ChildGetAll<Branch>(branchesRequest);
             if (!resp.Success)
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() : resp.Summary).Show();
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>Technical Error: " + resp.ErrorCode + "<br> Summary: " + resp.Summary : resp.Summary).Show();
             branchStore.DataSource = resp.Items;
             branchStore.DataBind();
             if (_systemService.SessionHelper.CheckIfIsAdmin())
@@ -172,7 +172,7 @@ namespace AionHR.Web.UI.Forms.Reports
             ListRequest branchesRequest = new ListRequest();
             ListResponse<Division> resp = _companyStructureService.ChildGetAll<Division>(branchesRequest);
             if (!resp.Success)
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() : resp.Summary).Show();
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>Technical Error: " + resp.ErrorCode + "<br> Summary: " + resp.Summary : resp.Summary).Show();
             divisionStore.DataSource = resp.Items;
             divisionStore.DataBind();
             if (_systemService.SessionHelper.CheckIfIsAdmin())
@@ -195,7 +195,7 @@ namespace AionHR.Web.UI.Forms.Reports
             ListRequest branchesRequest = new ListRequest();
             ListResponse<Model.Company.Structure.Position> resp = _companyStructureService.ChildGetAll<Model.Company.Structure.Position>(branchesRequest);
             if (!resp.Success)
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() : resp.Summary).Show();
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>Technical Error: " + resp.ErrorCode + "<br> Summary: " + resp.Summary : resp.Summary).Show();
             positionStore.DataSource = resp.Items;
             positionStore.DataBind();
         }

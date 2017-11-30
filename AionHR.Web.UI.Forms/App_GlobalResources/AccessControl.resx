@@ -1329,4 +1329,46 @@
   <data name="Property4202202" xml:space="preserve">
     <value>Notes</value>
   </data>
+  <data name="Property6010101" xml:space="preserve">
+    <value>Employee</value>
+  </data>
+  <data name="Property6010104" xml:space="preserve">
+    <value>Mobile</value>
+  </data>
+  <data name="Property6010105" xml:space="preserve">
+    <value>Religion</value>
+  </data>
+  <data name="Property6010106" xml:space="preserve">
+    <value>Birth Date</value>
+  </data>
+  <data name="Property6010107" xml:space="preserve">
+    <value>Place of Birth</value>
+  </data>
+  <data name="Property6010108" xml:space="preserve">
+    <value>Home Email</value>
+  </data>
+  <data name="Property6010401" xml:space="preserve">
+    <value>Start date </value>
+  </data>
+  <data name="Property6010402" xml:space="preserve">
+    <value>End day</value>
+  </data>
+  <data name="Property6010403" xml:space="preserve">
+    <value>Justification</value>
+  </data>
+  <data name="Property6010404" xml:space="preserve">
+    <value>Destination</value>
+  </data>
+  <data name="Property6010405" xml:space="preserve">
+    <value>Leave Type Name </value>
+  </data>
+  <data name="Property6010501" xml:space="preserve">
+    <value>Branch</value>
+  </data>
+  <data name="Property6010502" xml:space="preserve">
+    <value>Loan Coverage Method</value>
+  </data>
+  <data name="Property6010503" xml:space="preserve">
+    <value>Branch</value>
+  </data>
 </root>

@@ -51,7 +51,7 @@ public class LeaveRequestListRequest : ListRequest
     public int EmployeeId { get; set; }
 
     public string SortBy { get; set; }
-    public string raEmployeeId { get; set; }
+    public int raEmployeeId { get; set; }
     public override Dictionary<string, string> Parameters
     {
         get

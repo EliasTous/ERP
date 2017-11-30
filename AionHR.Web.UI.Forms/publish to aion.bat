@@ -1,3 +1,4 @@
+net use \\192.168.1.10
 xcopy *.aspx \\192.168.1.10\aionhr\ /Y
 xcopy Reports\*.aspx \\192.168.1.10\aionhr\Reports /Y
 xcopy EmployeePages\*.aspx \\192.168.1.10\aionhr\EmployeePages /Y
@@ -16,3 +17,5 @@ xcopy Scripts\*.* \\192.168.1.10\aionhr\Scripts\ /Y
 xcopy Controls\*.ascx \\192.168.1.10\aionhr\Controls\*.ascx /Y
 xcopy Controls\App_LocalResources\*.resx \\192.168.1.10\aionhr\Controls\App_LocalResources\*.resx /Y
 xcopy CSS\*.css \\192.168.1.10\aionhr\CSS\ /Y
+xcopy App_GlobalResources\*.resx \\192.168.1.10\aionhr\App_GlobalResources\*.resx  /Y
+xcopy App_LocalResources\*.resx \\192.168.1.10\aionhr\App_LocalResources\*.resx  /Y

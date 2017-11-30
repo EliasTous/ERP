@@ -79,6 +79,11 @@ namespace AionHR.Web.UI.Forms
                 RecordRequest r = new RecordRequest();
                 r.RecordID = _systemService.SessionHelper.GetCurrentUserId();
                 RecordResponse<UserInfo> response = _systemService.ChildGetRecord<UserInfo>(r);
+                if (!response.Success)
+                {
+                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).   ToString() + "<br>Technical Error: " + response.ErrorCode + "<br> Summary: " + response.Summary : response.Summary, "closeCurrentTab()").Show();
+                    return;
+                }
                 CurrentEmployee.Text = response.result.employeeId;
                 // EditRecordWindow.Loader.Params("employeeId") = CurrentEmployee.Text; 
 
@@ -87,7 +92,7 @@ namespace AionHR.Web.UI.Forms
                 RecordResponse<Employee> resp = _employeeService.Get<Employee>(req);
                 if (!resp.Success)
                 {
-                    //X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() : resp.Summary).Show();
+                    //X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>Technical Error: " + resp.ErrorCode + "<br> Summary: " + resp.Summary : resp.Summary).Show();
                     //return;
                 }
                 if (resp.result != null)
@@ -192,7 +197,7 @@ namespace AionHR.Web.UI.Forms
             PostResponse<MyInfo> resp = _iselfServiceService.ChildAddOrUpdate<MyInfo>(req);
             if (!resp.Success)
             {
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() : resp.Summary).Show();
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>Technical Error: " + resp.ErrorCode + "<br> Summary: " + resp.Summary : resp.Summary).Show();
                 return;
             }
 

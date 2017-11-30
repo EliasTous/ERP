@@ -447,6 +447,15 @@
   <data name="Class51031" xml:space="preserve">
     <value>Final settlement Entitlement / Deduction</value>
   </data>
+  <data name="Class60101" xml:space="preserve">
+    <value>My Info</value>
+  </data>
+  <data name="Class60104" xml:space="preserve">
+    <value>Leave Requests</value>
+  </data>
+  <data name="Class60105" xml:space="preserve">
+    <value>Loan Requests</value>
+  </data>
   <data name="Class80101" xml:space="preserve">
     <value>Age Breakdown</value>
   </data>
