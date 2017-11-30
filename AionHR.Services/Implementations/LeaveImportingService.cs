@@ -36,7 +36,7 @@ namespace AionHR.Services.Implementations
                 string justifcation = row[5].ToString();
                 string status = row[6].ToString();
 
-                leaves.Add(new LeaveRequest() { employeeRef = employeeRef, startDate = date, endDate = effectiveDate, ltId = 1, destination = string.IsNullOrEmpty(destination)?" ":destination, justification = justifcation, status = Convert.ToInt16(status) });
+                leaves.Add(new LeaveRequest() { employeeRef = employeeRef, startDate = date, endDate = effectiveDate, ltId=ltId, destination = string.IsNullOrEmpty(destination)?" ":destination, justification = justifcation, status = Convert.ToInt16(status) });
                 
             }
             catch { }

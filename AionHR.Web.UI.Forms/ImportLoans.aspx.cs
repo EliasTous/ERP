@@ -318,12 +318,17 @@ namespace AionHR.Web.UI.Forms
 
 
 
-            else
+            else if (resp.result.status == 3)
             {
-                this.ResourceManager1.AddScript("{0}.stopTask('longactionprogress');", this.TaskManager1.ClientID);
+                //this.ResourceManager1.AddScript("{0}.stopTask('longactionprogress');", this.TaskManager1.ClientID);
                 Viewport1.ActiveIndex = 2;
 
 
+            }
+            else if (resp.result.status == 0)
+            {
+                this.ResourceManager1.AddScript("{0}.stopTask('longactionprogress');", this.TaskManager1.ClientID);
+                Viewport1.ActiveIndex = 0;
             }
         }
 
