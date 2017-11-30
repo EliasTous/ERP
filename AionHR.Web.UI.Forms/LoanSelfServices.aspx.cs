@@ -144,7 +144,7 @@ namespace AionHR.Web.UI.Forms
                 catch (AccessDeniedException exp)
                 {
                     X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorAccessDenied).Show();
+                    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorAccessDenied, "closeCurrentTab()").Show();
                     Viewport1.Hidden = true;
                     return;
                 }

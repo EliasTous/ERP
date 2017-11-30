@@ -34,17 +34,19 @@
             runat="server"
             Icon="PageEdit"
             Title="elias"
-            Width="500"
-            Height="500"
+            Width="350"
+            Height="350"
             AutoShow="false"
-            Draggable="false"
-            Maximizable="false"
-            Resizable="true"
+            Draggable="true"
+            Maximizable="true"
+            Resizable="false"
             Modal="true"
             Hidden="true"
             Layout="Fit" AutoScroll="true"
             >
-            
+            <Listeners>
+                <Close Handler="closeCurrentTab();"></Close>
+            </Listeners>
             <Items>
                    <ext:TabPanel ID="panelRecordDetails" Layout="FitLayout" DefaultAnchor="100%" runat="server" ActiveTabIndex="0" Border="false" DeferredRender="false" Region="Center">
             <TopBar>
@@ -83,11 +85,11 @@
                                 <ext:TextField ID="firstName" Hidden="true" runat="server" FieldLabel="<%$ Resources:FieldFirstName%>" Name="firstName" AllowBlank="false" BlankText="<%$ Resources:Common, MandatoryField%>">
                                 
                                 </ext:TextField>
-                                <ext:TextField ID="middleName" runat="server" FieldLabel="<%$ Resources:FieldMiddleName%>" Name="middleName" BlankText="<%$ Resources:Common, MandatoryField%>" />
+                                <ext:TextField ID="middleName" LabelWidth="120" runat="server" FieldLabel="<%$ Resources:FieldMiddleName%>" Name="middleName" BlankText="<%$ Resources:Common, MandatoryField%>" />
                                 <ext:TextField ID="lastName" Hidden="true" AllowBlank="false" runat="server" FieldLabel="<%$ Resources:FieldLastName%>" Name="lastName" BlankText="<%$ Resources:Common, MandatoryField%>" />
-                                <ext:TextField ID="familyName" runat="server" FieldLabel="<%$ Resources:FieldFamilyName%>" Name="familyName" BlankText="<%$ Resources:Common, MandatoryField%>" />
+                                <ext:TextField ID="familyName" LabelWidth="120" runat="server" FieldLabel="<%$ Resources:FieldFamilyName%>" Name="familyName" BlankText="<%$ Resources:Common, MandatoryField%>" />
                                 <ext:TextField ID="idRef" Hidden="true" runat="server" AllowBlank="true" FieldLabel="<%$ Resources:FieldIdRef%>" Name="idRef" BlankText="<%$ Resources:Common, MandatoryField%>" />
-                                <ext:TextField ID="homeEmail" runat="server" FieldLabel="<%$ Resources:FieldHomeEmail%>" Name="homeMail" Vtype="email" BlankText="<%$ Resources:Common, MandatoryField%>" />
+                                <ext:TextField ID="homeEmail" LabelWidth="120" runat="server" FieldLabel="<%$ Resources:FieldHomeEmail%>" Name="homeMail" Vtype="email" BlankText="<%$ Resources:Common, MandatoryField%>" />
                                 <ext:TextField ID="workEmail" Hidden="true" runat="server" FieldLabel="<%$ Resources:FieldWorkEmail%>" Name="workMail" Vtype="email" BlankText="<%$ Resources:Common, MandatoryField%>" />
                                  <ext:RadioGroup Hidden="true" ID="gender" AllowBlank="true" runat="server" GroupName="gender" FieldLabel="<%$ Resources:FieldGender%>">
                                     <Items>
@@ -102,10 +104,10 @@
                         <ext:Panel runat="server" MarginSpec="0 0 0 0" ID="rightPanel">
                             <Items>--%>
                                
-                                <ext:TextField ID="mobile" AllowBlank="true" MinLength="6" MaxLength="18" runat="server" FieldLabel="<%$ Resources:FieldMobile%>" Name="mobile" BlankText="<%$ Resources:Common, MandatoryField%>">
+                                <ext:TextField LabelWidth="120" ID="mobile" AllowBlank="true" MinLength="6" MaxLength="18" runat="server" FieldLabel="<%$ Resources:FieldMobile%>" Name="mobile" BlankText="<%$ Resources:Common, MandatoryField%>">
                                     <Validator Handler="return !isNaN(this.value);" />
                                 </ext:TextField>
-                                <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  ID="religionCombo" runat="server" FieldLabel="<%$ Resources:FieldReligion%>" Name="religion" IDMode="Static" SubmitValue="true">
+                                <ext:ComboBox LabelWidth="120"   AnyMatch="true" CaseSensitive="false"  ID="religionCombo" runat="server" FieldLabel="<%$ Resources:FieldReligion%>" Name="religion" IDMode="Static" SubmitValue="true">
                                     <Items>
                                         <ext:ListItem Text="<%$ Resources:Common, Religion0%>" Value="0"></ext:ListItem>
                                         <ext:ListItem Text="<%$ Resources:Common, Religion1%>" Value="1"></ext:ListItem>
@@ -116,7 +118,7 @@
                                         <ext:ListItem Text="<%$ Resources:Common, Religion6%>" Value="6"></ext:ListItem>
                                     </Items>
                                 </ext:ComboBox>
-                                <ext:DateField
+                                <ext:DateField LabelWidth="120"
                                     runat="server" ID="birthDate"
                                     Name="birthDate"
                                     FieldLabel="<%$ Resources:FieldDateOfBirth%>"
@@ -326,7 +328,7 @@
                                     </Store>
 
                                 </ext:ComboBox>
-                                <ext:TextField ID="birthPlace" runat="server" FieldLabel="<%$ Resources:FieldBirthPlace%>" Name="placeOfBirth" AllowBlank="true" />
+                                <ext:TextField LabelWidth="120" ID="birthPlace" runat="server" FieldLabel="<%$ Resources:FieldBirthPlace%>" Name="placeOfBirth" AllowBlank="true" />
 
 
 
@@ -378,7 +380,7 @@
                                  <ext:Button ID="SaveButton" runat="server" Text="<%$ Resources:Common, Save %>" Icon="Disk">
 
                                     <Listeners>
-                                        <Click Handler="CheckSession(); if (!#{BasicInfoTab}.getForm().isValid()) {  return false;} " />
+                                        <Click Handler="CheckSession(); if (!#{BasicInfoTab}.getForm().isValid()) {  return false;}" />
                                     </Listeners>
                                     <DirectEvents>
                                         <Click OnEvent="SaveNewRecord" Failure="Ext.MessageBox.alert('#{titleSavingError}.value', '#{titleSavingErrorMessage}.value');">
@@ -392,7 +394,7 @@
                                 </ext:Button>
                                  <ext:Button ID="CancelButton" runat="server" Text="<%$ Resources:Common , Cancel %>" Icon="Cancel">
                                     <Listeners>
-                                        <Click Handler="this.up('window').hide();" />
+                                        <Click Handler="this.up('window').hide();closeCurrentTab();" />
                                     </Listeners>
                                 </ext:Button>
 

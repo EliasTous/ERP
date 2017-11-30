@@ -1078,6 +1078,12 @@
     <value>معلوماتي الشخصية</value>
   </data>
   <data name="Mod60" xml:space="preserve">
-    <value>Self Service</value>
+    <value>الخدمة الذاتية </value>
+  </data>
+  <data name="Leave" xml:space="preserve">
+    <value>طلبات الإجازات</value>
+  </data>
+  <data name="Loan" xml:space="preserve">
+    <value>السلف</value>
   </data>
 </root>

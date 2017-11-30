@@ -68,7 +68,7 @@ namespace AionHR.Web.UI.Forms
                 catch (AccessDeniedException exp)
                 {
                     X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorAccessDenied).Show();
+                    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorAccessDenied, "closeCurrentTab()").Show();
 
                     return;
                 }
@@ -76,15 +76,15 @@ namespace AionHR.Web.UI.Forms
                 if (string.IsNullOrEmpty(_systemService.SessionHelper.GetCurrentUserId().ToString()))
                     X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorOperation).Show();
 
-                RecordRequest r = new RecordRequest();
-                r.RecordID = _systemService.SessionHelper.GetCurrentUserId();
-                RecordResponse<UserInfo> response = _systemService.ChildGetRecord<UserInfo>(r);
-                if (!response.Success)
-                {
-                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).   ToString() + "<br>Technical Error: " + response.ErrorCode + "<br> Summary: " + response.Summary : response.Summary, "closeCurrentTab()").Show();
-                    return;
-                }
-                CurrentEmployee.Text = response.result.employeeId;
+                //RecordRequest r = new RecordRequest();
+                //r.RecordID = _systemService.SessionHelper.GetCurrentUserId();
+                //RecordResponse<UserInfo> response = _systemService.ChildGetRecord<UserInfo>(r);
+                //if (!response.Success)
+                //{
+                //    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).   ToString() + "<br>Technical Error: " + response.ErrorCode + "<br> Summary: " + response.Summary : response.Summary, "closeCurrentTab()").Show();
+                //    return;
+                //}
+                CurrentEmployee.Text = _systemService.SessionHelper.GetEmployeeId();
                 // EditRecordWindow.Loader.Params("employeeId") = CurrentEmployee.Text; 
 
                 RecordRequest req = new RecordRequest();
