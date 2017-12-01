@@ -87,7 +87,7 @@
     function calcEndDate() {
         
         if (App.leaveRequest1_startDate.getValue() == null) {
-            alert(App.leaveRequest1_SpecifyStartDateFirst.value)
+            alert(App.leaveRequest1_SpecifyStartDateFirst.value);
             App.leaveRequest1_calDays.setValue('');
             return;
         }
@@ -100,8 +100,11 @@
     }
     function calcDays() {
         
+        if (App.leaveRequest1_startDate.getValue() == '' && App.leaveRequest1_endDate.getValue() == '') {
+            return;
+        }
         if (App.leaveRequest1_startDate.getValue() == '') {
-            alert('specify start date')
+            alert('specify start date');
             return;
         }
         App.leaveRequest1_calDays.setValue(parseInt(moment(App.leaveRequest1_endDate.getValue()).diff(moment(App.leaveRequest1_startDate.getValue()), 'days')) + 1);
@@ -256,7 +259,7 @@
                                 </ext:DateField>
                                 <ext:NumberField runat="server" ID="calDays" Width="150" Name="calDays" MinValue="1" FieldLabel="<%$Resources:CalDays %>" LabelWidth="40">
                                   <Listeners>
-                                        <Change Handler="calcEndDate();" />
+                                        <Change Handler="if(this.value==null) { return false;}calcEndDate();" />
 
                                     </Listeners>
                                 </ext:NumberField>
