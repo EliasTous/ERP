@@ -532,6 +532,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     PostRequest<EmployeeContact> request = new PostRequest<EmployeeContact>();
                     request.entity = b;
 
+
                     PostResponse<EmployeeContact> r = _employeeService.ChildAddOrUpdate<EmployeeContact>(request);
                     b.recordId = r.recordId;
 

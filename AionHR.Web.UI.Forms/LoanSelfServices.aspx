@@ -150,37 +150,37 @@
                     <ColumnModel ID="ColumnModel1" runat="server" SortAscText="<%$ Resources:Common , SortAscText %>" SortDescText="<%$ Resources:Common ,SortDescText  %>" SortClearText="<%$ Resources:Common ,SortClearText  %>" ColumnsText="<%$ Resources:Common ,ColumnsText  %>" EnableColumnHide="false" Sortable="false">
                         <Columns>
                             <ext:Column ID="ColRecordId" Visible="false" DataIndex="recordId" runat="server" />
-                            <ext:Column ID="ColName" DataIndex="employeeName" Text="<%$ Resources: FieldEmployeeName%>" runat="server" Flex="4">
+                          <%--  <ext:Column ID="ColName" DataIndex="employeeName" Text="<%$ Resources: FieldEmployeeName%>" runat="server" Flex="4">
                                 <Renderer Handler=" return record.data['employeeName'].fullName; ">
                                 </Renderer>
-                            </ext:Column>
-                            <ext:Column ID="Column5" DataIndex="loanRef" Text="<%$ Resources: FieldReference%>" runat="server" />
-                           <%-- <ext:Column ID="Column7" DataIndex="ltName" Text="<%$ Resources: FieldLtName%>" runat="server" Flex="1" />--%>
-                            <ext:Column ID="Column6" DataIndex="branchName" Text="<%$ Resources: FieldBranch%>" runat="server" Flex="1" />
+                            </ext:Column>--%>
+                          <%--  <ext:Column ID="Column5" DataIndex="loanRef" Text="<%$ Resources: FieldReference%>" runat="server" />--%>
+                            <ext:Column ID="Column7" DataIndex="ltName" Text="<%$ Resources: FieldLtName%>" runat="server" Flex="1" />
+                           <%-- <ext:Column ID="Column6" DataIndex="branchName" Text="<%$ Resources: FieldBranch%>" runat="server" Flex="1" />--%>
 
-                            <ext:DateColumn ID="c" DataIndex="date" Text="<%$ Resources: FieldDate%>" runat="server" Width="100" />
+                          <%--  <ext:DateColumn ID="c" DataIndex="effectiveDate" Text="<%$ Resources: FieldDate%>" runat="server" Width="100" />--%>
 
                             <ext:Column ID="Column20" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldAmount %>" DataIndex="amount" Hideable="false" Width="140">
-                                <Renderer Handler="return record.data['currencyRef']+ '&nbsp;'+record.data['amount']; "></Renderer>
+                                <Renderer Handler="return record.data['amount']; "></Renderer>
                             </ext:Column>
-                            <ext:Column ID="Column4" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDeductedAmount %>" DataIndex="deductedAmount" Hideable="false" Width="140">
-                                <Renderer Handler="return  record.data['currencyRef']+ '&nbsp;'+record.data['deductedAmount'] ;"></Renderer>
-                            </ext:Column>
+                            <%--<ext:Column ID="Column4" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDeductedAmount %>" DataIndex="deductedAmount" Hideable="false" Width="140">
+                                <Renderer Handler="return record.data['deductedAmount'] ;"></Renderer>
+                            </ext:Column>--%>
 
-                           <%-- <ext:Column ID="Column12" DataIndex="purpose" Text="<%$ Resources: FieldPurpose%>" runat="server" Flex="2" />--%>
+                         <ext:Column ID="Column12" DataIndex="purpose" Text="<%$ Resources: FieldPurpose%>" runat="server" Flex="2" />
 
 
-                            <ext:Column ID="colStatus" DataIndex="status" Text="<%$ Resources: FieldStatus%>" runat="server" Width="100">
+                           <%-- <ext:Column ID="colStatus" DataIndex="status" Text="<%$ Resources: FieldStatus%>" runat="server" Width="100">
                                 <Renderer Handler="return GetStatusName(record.data['status']);" />
-                            </ext:Column>
+                            </ext:Column>--%>
 
-                           <%-- <ext:DateColumn ID="cc" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEffectiveDate %>" DataIndex="effectiveDate" Hideable="false" Width="120" Align="Center">
-                            </ext:DateColumn>--%>
+                            <ext:DateColumn ID="cc" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEffectiveDate %>" DataIndex="effectiveDate" Hideable="false" Width="120" Align="Center">
+                            </ext:DateColumn>
                             <%-- <ext:Column ID="ldMethodCo" DataIndex="ldMethod " Text="<%$ Resources: LoanCoverageType %>" runat="server" Flex="2"   >
                                  <Renderer Handler="return GetldMethodName(record.data['ldMethod']);" />
                                  </ext:Column>--%>
 
-                             <ext:Column ID="ldValueCo" DataIndex="ldValue" Text="<%$ Resources: PaymentValue %>" runat="server" Flex="2" />
+                            <%-- <ext:Column ID="ldValueCo" DataIndex="ldValue" Text="<%$ Resources: PaymentValue %>" runat="server" Flex="2" />--%>
                              
                            
 
@@ -299,7 +299,7 @@
             Icon="PageEdit"
             Title="<%$ Resources:EditWindowsTitle %>"
             Width="600"
-            Height="230"
+            Height="350"
             AutoShow="false"
             Modal="true"
             Hidden="true"
@@ -348,7 +348,7 @@
                                 </ext:ComboBox>
                                 <ext:TextField Hidden="true" runat="server" ID="loanRef" Name="loanRef" FieldLabel="<%$ Resources: FieldReference %>" />
 
-                                <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  Enabled="false" runat="server" AllowBlank="false" ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" ID="branchId" Name="branchId" FieldLabel="<%$ Resources:FieldBranch%>" SimpleSubmit="true">
+                                <ext:ComboBox Hidden="true"   AnyMatch="true" CaseSensitive="false"  Enabled="false" runat="server" AllowBlank="false" ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" ID="branchId" Name="branchId" FieldLabel="<%$ Resources:FieldBranch%>" SimpleSubmit="true">
                                     <Store>
                                         <ext:Store runat="server" ID="branchStore">
                                             <Model>
@@ -379,9 +379,9 @@
                                     </Listeners>
                                 </ext:ComboBox>
 
-                                <ext:ComboBox Hidden="true" AnyMatch="true" CaseSensitive="false"  runat="server" ID="ltId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1"
+                                <ext:ComboBox  AnyMatch="true"  CaseSensitive="false"  runat="server" ID="ltId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1"
                                     DisplayField="name"
-                                    ValueField="recordId" AllowBlank="true"
+                                    ValueField="recordId" AllowBlank="false"
                                     FieldLabel="<%$ Resources: FieldLtName %>">
                                     <Store>
                                         <ext:Store runat="server" ID="ltStore">
@@ -423,7 +423,7 @@
                     </CustomConfig>
                                     </ext:DateField>
 
-                                <ext:ComboBox  Hidden="true"   AnyMatch="true" CaseSensitive="false"  runat="server" AllowBlank="true" ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="reference" ID="currencyId" Name="currencyId" FieldLabel="<%$ Resources:FieldSACurrencyName%>" SimpleSubmit="true">
+                                <ext:ComboBox     AnyMatch="true" CaseSensitive="false"  runat="server" AllowBlank="false" ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="reference" ID="currencyId" Name="currencyId" FieldLabel="<%$ Resources:FieldSACurrencyName%>" SimpleSubmit="true">
 
                                     <Store>
                                         <ext:Store runat="server" ID="currencyStore">
@@ -456,7 +456,7 @@
                                     </Listeners>
                                 </ext:ComboBox>
 
-                                <ext:TextField Hidden="true"   ID="amount" AllowBlank="true" runat="server" FieldLabel="<%$ Resources:FieldAmount%>" Name="amount">
+                                <ext:TextField   ID="amount" AllowBlank="true" runat="server" FieldLabel="<%$ Resources:FieldAmount%>" Name="amount">
                                     <%-- <Listeners>
                                                 <Change Handler="document.getElementById('amount').value=this.getValue(); this.next().setValue(this.value);" />
                                             </Listeners>--%>
@@ -464,7 +464,7 @@
                                 </ext:TextField>
 
 
-                                <ext:TextArea Hidden="true"  ID="purpose" runat="server" FieldLabel="<%$ Resources:FieldPurpose%>" Name="purpose" AllowBlank="true" />
+                                <ext:TextArea   ID="purpose" runat="server" FieldLabel="<%$ Resources:FieldPurpose%>" Name="purpose" AllowBlank="false" />
                                  <ext:TextField Hidden="true"   ID="purposeField" InputType="Password" Visible="false" runat="server" FieldLabel="<%$ Resources:FieldPurpose%>" Name="purpose" AllowBlank="true" />
                                 <ext:ComboBox Hidden="true"   AnyMatch="true" CaseSensitive="false"  runat="server" ID="status" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1"
                                     FieldLabel="<%$ Resources: FieldStatus %>" AllowBlank="true" SubmitValue="true">
@@ -480,13 +480,13 @@
                                     </Listeners>
                                 </ext:ComboBox>
 
-                                <ext:DateField Hidden="true"  AllowBlank="true"  runat="server" ID="effectiveDate" Name="effectiveDate" FieldLabel="<%$ Resources:FieldEffectiveDate%>" Vtype="daterange" >
+                                <ext:DateField   AllowBlank="true"  runat="server" ID="effectiveDate" Name="effectiveDate" FieldLabel="<%$ Resources:FieldEffectiveDate%>" Vtype="daterange" >
                                     <CustomConfig>
-                        <ext:ConfigItem Name="startDateField" Value="date" Mode="Value" />
-                    </CustomConfig>
+                                  <ext:ConfigItem Name="startDateField" Value="date" Mode="Value" />
+                                        </CustomConfig>
                                     </ext:DateField>
                                 
-                                        <ext:ComboBox    AnyMatch="true" CaseSensitive="false"  runat="server" ID="ldMethod" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1"
+                                        <ext:ComboBox  Hidden="true"   AnyMatch="true" CaseSensitive="false"  runat="server" ID="ldMethod" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1"
                                     FieldLabel="<%$ Resources: LoanCoverageType %>" AllowBlank="false" SubmitValue="true">
                                     <Items>
                                        
@@ -503,7 +503,7 @@
 
                                            </Listeners>
                                         </ext:ComboBox>
-                                        <ext:NumberField Width="400"  runat="server"  ID="ldValue" Name="ldValue" FieldLabel="<%$ Resources: PaymentValue %>"  AllowBlank="false" >
+                                        <ext:NumberField Hidden="true" Width="400"  runat="server"  ID="ldValue" Name="ldValue" FieldLabel="<%$ Resources: PaymentValue %>"  AllowBlank="false" >
                                         
                                       <validator Handler="if(#{ldMethod}.getValue()!=5 && #{ldMethod}.getValue()!=4 ){  if (this.value>0&& this.value<100) return true ; else return false; } else return true; ">
                                              

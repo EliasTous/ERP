@@ -84,7 +84,7 @@ namespace AionHR.Web.UI.Forms
 
              
 
-                DateColumn3.Format = Column2.Format = Column1.Format = _systemService.SessionHelper.GetDateformat();
+              Column2.Format = Column1.Format = _systemService.SessionHelper.GetDateformat();
                 try
                 {
                     AccessControlApplier.ApplyAccessControlOnPage(typeof(leaveRequetsSelfservice), BasicInfoTab, GridPanel1, btnAdd, SaveButton);
@@ -272,6 +272,7 @@ namespace AionHR.Web.UI.Forms
        
         public void ADDNewRecord(object sender, DirectEventArgs e)
         {
+            startDate.SelectedDate=endDate.SelectedDate = DateTime.Now;
             BasicInfoTab.Reset();
             CurrentLeave.Text = "";
             FillLeaveType();

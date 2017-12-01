@@ -130,7 +130,7 @@ namespace AionHR.Web.UI.Forms
 
               
                 ldMethod.Select("0");
-                c.Format = /*cc.Format =*/ date.Format = effectiveDate.Format = _systemService.SessionHelper.GetDateformat();
+               cc.Format = date.Format = effectiveDate.Format = _systemService.SessionHelper.GetDateformat();
                 //if (string.IsNullOrEmpty(Request.QueryString["employeeId"]))
                 //    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorOperation).Show();
                 //CurrentEmployee.Text = Request.QueryString["employeeId"];
@@ -686,13 +686,13 @@ namespace AionHR.Web.UI.Forms
             //Reset all values of the relative object
 
             this.EditRecordWindow.Title = Resources.Common.AddNewRecord;
-            date.SelectedDate = DateTime.Now;
+            date.SelectedDate=effectiveDate.SelectedDate = DateTime.Now;
             panelRecordDetails.ActiveIndex = 0;
             SetTabPanelEnable(false);
             FillLoanType();
             FillBranchField();
             FillCurrency();
-            effectiveDate.Disabled = true;
+          
             RecordRequest req1 = new RecordRequest();
             req1.RecordID = _systemService.SessionHelper.GetEmployeeId(); 
             RecordResponse<Employee> r = _employeeService.Get<Employee>(req1);
@@ -794,12 +794,13 @@ namespace AionHR.Web.UI.Forms
                     request.entity = b;
                     request.entity.employeeId = _systemService.SessionHelper.GetEmployeeId();
                     request.entity.employeeName = new EmployeeName() { fullName="" };
-                    request.entity.ltName = "";
-                    request.entity.currencyRef = "";
-                    request.entity.ltId = 0;
-                    request.entity.currencyId = 0;
-                    request.entity.amount = 0;
-                    request.entity.status = 0; 
+                    request.entity.date = DateTime.Now;
+                    //request.entity.ltName = "";
+                    //request.entity.currencyRef = "";
+                  
+               
+                
+                    //request.entity.status = 0; 
                     PostResponse<loanSelfService> r = _selfServiceService.ChildAddOrUpdate<loanSelfService>(request);
                     //check if the insert failed
                     if (!r.Success)//it maybe be another condition
@@ -812,10 +813,11 @@ namespace AionHR.Web.UI.Forms
 
                     else
                     {
-                        b.recordId = r.recordId;
-
-                        //Add this record to the store 
-                        this.Store1.Insert(0, b);
+                        Store1.Reload();
+                        //b.recordId = r.recordId;
+                        
+                        ////Add this record to the store 
+                        //this.Store1.Insert(0, b);
 
                         //Display successful notification
                         Notification.Show(new NotificationConfig
@@ -832,7 +834,7 @@ namespace AionHR.Web.UI.Forms
                         sm.DeselectAll();
                         sm.Select(b.recordId.ToString());
 
-
+                        this.EditRecordWindow.Close();
 
                     }
                 }

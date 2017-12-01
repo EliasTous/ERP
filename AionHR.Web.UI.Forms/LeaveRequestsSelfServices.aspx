@@ -255,24 +255,26 @@
                     <ColumnModel ID="ColumnModel1" runat="server" SortAscText="<%$ Resources:Common , SortAscText %>" SortDescText="<%$ Resources:Common ,SortDescText  %>" SortClearText="<%$ Resources:Common ,SortClearText  %>" ColumnsText="<%$ Resources:Common ,ColumnsText  %>" EnableColumnHide="false" Sortable="false">
                         <Columns>
                             <ext:Column ID="ColRecordId" Visible="false" DataIndex="recordId" runat="server" />
-                            <ext:Column ID="Column4" DataIndex="leaveRef" Text="<%$ Resources: FieldLeaveRef%>" runat="server" Width="70" />
+                            <%--<ext:Column ID="Column4" DataIndex="leaveRef" Text="<%$ Resources: FieldLeaveRef%>" runat="server" Width="70" />
                             <ext:Column ID="ColName" DataIndex="employeeName" Text="<%$ Resources: FieldEmployeeName%>" runat="server" Flex="6">
                                 <Renderer Handler=" return  record.data['employeeName'].fullName" />
-                            </ext:Column>
+                            </ext:Column>--%>
                             <ext:DateColumn ID="Column1" DataIndex="startDate" Text="<%$ Resources: FieldStartDate%>" runat="server" Flex="2" />
                             <ext:DateColumn ID="Column2" DataIndex="endDate" Text="<%$ Resources: FieldEndDate%>" runat="server" Flex="2" />
-                            <ext:DateColumn ID="DateColumn3" DataIndex="returnDate" Text="<%$ Resources: FieldReturnDate%>" runat="server" Flex="2" >
+                              
+                            <ext:Column ID="Column3" DataIndex="destination" Text="<%$ Resources: FieldDestination%>" runat="server" Flex="2" />
+                          <%--  <ext:DateColumn ID="DateColumn3" DataIndex="returnDate" Text="<%$ Resources: FieldReturnDate%>" runat="server" Flex="2" >
                                 
-                                </ext:DateColumn>
-                            <ext:Column runat="server" Width="70" Text="<%$ Resources: CalDays%>">
+                                </ext:DateColumn>--%>
+                           <%-- <ext:Column runat="server" Width="70" Text="<%$ Resources: CalDays%>">
                                 <Renderer Handler="return moment(record.data['endDate']).diff(moment(record.data['startDate']), 'days')+1" />
                             </ext:Column>
                             <ext:Column runat="server" Width="70" Text="<%$ Resources: LateDays%>">
                                 <Renderer Handler="if(record.data['returnDate']!='') var d=moment(record.data['returnDate']).diff(moment(record.data['endDate']), 'days')+1; if(d>0) return d; else return '';" />
-                            </ext:Column>
-                            <ext:Column ID="Column3" DataIndex="status" Text="<%$ Resources: FieldStatus%>" runat="server" Flex="2">
+                            </ext:Column>--%>
+                          <%--  <ext:Column ID="Column3" DataIndex="status" Text="<%$ Resources: FieldStatus%>" runat="server" Flex="2">
                                 <Renderer Handler="return(GetStatusName(record.data['status']));" />
-                            </ext:Column>
+                            </ext:Column>--%>
 
                             <ext:Column ID="Column5" DataIndex="ltName" Text="<%$ Resources: FieldLtName%>" runat="server" Flex="2" />
 

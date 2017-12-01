@@ -1086,4 +1086,7 @@
   <data name="Loan" xml:space="preserve">
     <value>السلف</value>
   </data>
+  <data name="Attendance" xml:space="preserve">
+    <value>الدوام اليومي </value>
+  </data>
 </root>
