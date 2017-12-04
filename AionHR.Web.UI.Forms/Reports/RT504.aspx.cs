@@ -229,12 +229,15 @@ namespace AionHR.Web.UI.Forms.Reports
 
             h.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;
             h.RightToLeftLayout = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeftLayout.Yes : DevExpress.XtraReports.UI.RightToLeftLayout.No;
-         
+           
 
             string user = _systemService.SessionHelper.GetCurrentUser();
+           
           
             h.Parameters["User"].Value = user;
-         
+
+            //if (resp.Items.Count > 0)
+            //{
                 //if (req.Parameters["_departmentId"] != "0")
                 //    h.Parameters["Department"].Value = jobInfo1.GetDepartment();
                 //else
@@ -245,9 +248,9 @@ namespace AionHR.Web.UI.Forms.Reports
                 else
                     h.Parameters["Branch"].Value = GetGlobalResourceObject("Common", "All");
                 if (req.Parameters["_payRef"] != "0")
-                    h.Parameters["payRef"].Value = payRefFilter.GetPayRef();
+                    h.Parameters["PayRef"].Value = req.Parameters["_payRef"];
                 else
-                    h.Parameters["payRef"].Value = GetGlobalResourceObject("Common", "All");
+                    h.Parameters["PayRef"].Value = GetGlobalResourceObject("Common", "All");
 
                 //if (req.Parameters["_employeeId"] != "0")
                 //    h.Parameters["Employee"].Value = resp.Items[0].name.fullName;
@@ -260,8 +263,8 @@ namespace AionHR.Web.UI.Forms.Reports
                 //    h.Parameters["SalaryType"].Value = GetGlobalResourceObject("Common", "All");
 
 
+           
 
-        
 
 
             h.CreateDocument();

@@ -99,6 +99,9 @@
     <Compile Include="bankTransfer.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="bankTransfer.Designer.cs">
+      <DependentUpon>bankTransfer.cs</DependentUpon>
+    </Compile>
     <Compile Include="BiometricDevicesReport.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -298,6 +301,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AuditTrail.resx">
       <DependentUpon>AuditTrail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="bankTransfer.ar.resx">
+      <DependentUpon>bankTransfer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="bankTransfer.resx">
       <DependentUpon>bankTransfer.cs</DependentUpon>
