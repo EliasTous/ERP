@@ -2410,6 +2410,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Bank Transfers.
+        /// </summary>
+        internal static string RT504 {
+            get {
+                return ResourceManager.GetString("RT504", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Leave List.
         /// </summary>
         internal static string RT601 {

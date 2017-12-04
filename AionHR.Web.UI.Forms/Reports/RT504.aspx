@@ -73,7 +73,7 @@
                                             <Content>
                                                
                                                 <%--<uc:dateRange runat="server" ID="dateRange1" />--%>
-                                                <uc:jobInfo runat="server" ID="jobInfo1" EnablePosition="false" EnableDivision="false" EnableDepartment="false" />
+                                                <uc:jobInfo runat="server" ID="jobInfo1" EnablePosition="false" EnableDivision="false" EnableDepartment="false" EnableBranch="true" />
                                             </Content>
                                         </ext:Container>
                                   

@@ -224,34 +224,35 @@ namespace AionHR.Web.UI.Forms.Reports
 
 
 
-            PayrollPeriodTimeCodes h = new PayrollPeriodTimeCodes();
+            bankTransfer h = new bankTransfer();
             h.DataSource = resp.Items;
 
             h.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;
             h.RightToLeftLayout = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeftLayout.Yes : DevExpress.XtraReports.UI.RightToLeftLayout.No;
-            string from = DateTime.Parse(req.Parameters["_fromDate"]).ToString(_systemService.SessionHelper.GetDateformat(), new CultureInfo("en"));
-            string to = DateTime.Parse(req.Parameters["_toDate"]).ToString(_systemService.SessionHelper.GetDateformat(), new CultureInfo("en"));
+         
 
             string user = _systemService.SessionHelper.GetCurrentUser();
-            h.Parameters["From"].Value = from;
-            h.Parameters["To"].Value = to;
+          
             h.Parameters["User"].Value = user;
-            if (resp.Items.Count > 0)
-            {
-                if (req.Parameters["_departmentId"] != "0")
-                    h.Parameters["Department"].Value = jobInfo1.GetDepartment();
-                else
-                    h.Parameters["Department"].Value = GetGlobalResourceObject("Common", "All");
+         
+                //if (req.Parameters["_departmentId"] != "0")
+                //    h.Parameters["Department"].Value = jobInfo1.GetDepartment();
+                //else
+                //    h.Parameters["Department"].Value = GetGlobalResourceObject("Common", "All");
 
                 if (req.Parameters["_branchId"] != "0")
                     h.Parameters["Branch"].Value = jobInfo1.GetBranch();
                 else
                     h.Parameters["Branch"].Value = GetGlobalResourceObject("Common", "All");
-
-                if (req.Parameters["_employeeId"] != "0")
-                    h.Parameters["Employee"].Value = resp.Items[0].name.fullName;
+                if (req.Parameters["_payRef"] != "0")
+                    h.Parameters["payRef"].Value = payRefFilter.GetPayRef();
                 else
-                    h.Parameters["Employee"].Value = GetGlobalResourceObject("Common", "All");
+                    h.Parameters["payRef"].Value = GetGlobalResourceObject("Common", "All");
+
+                //if (req.Parameters["_employeeId"] != "0")
+                //    h.Parameters["Employee"].Value = resp.Items[0].name.fullName;
+                //else
+                //    h.Parameters["Employee"].Value = GetGlobalResourceObject("Common", "All");
 
                 //if (req.Parameters["_salaryType"] != "0")
                 //    h.Parameters["SalaryType"].Value = salaryType1.GetSalaryTypeString();
@@ -260,7 +261,7 @@ namespace AionHR.Web.UI.Forms.Reports
 
 
 
-            }
+        
 
 
             h.CreateDocument();
