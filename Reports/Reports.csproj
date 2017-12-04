@@ -96,6 +96,9 @@
     <Compile Include="AuditTrail.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="bankTransfer.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="BiometricDevicesReport.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -295,6 +298,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AuditTrail.resx">
       <DependentUpon>AuditTrail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="bankTransfer.resx">
+      <DependentUpon>bankTransfer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="BiometricDevicesReport.ar.resx">
       <DependentUpon>BiometricDevicesReport.cs</DependentUpon>
