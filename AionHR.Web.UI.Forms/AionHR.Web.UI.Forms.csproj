@@ -345,6 +345,7 @@
     <Content Include="Reports\RT501.aspx" />
     <Content Include="Reports\RT502.aspx" />
     <Content Include="Reports\RT503.aspx" />
+    <Content Include="Reports\RT504.aspx" />
     <Content Include="Reports\RT601.aspx" />
     <Content Include="Reports\RT602.aspx" />
     <Content Include="Reports\RT801.aspx" />
@@ -776,6 +777,13 @@
     </Compile>
     <Compile Include="Reports\RT503.aspx.designer.cs">
       <DependentUpon>RT503.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\RT504.aspx.cs">
+      <DependentUpon>RT504.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reports\RT504.aspx.designer.cs">
+      <DependentUpon>RT504.aspx</DependentUpon>
     </Compile>
     <Compile Include="SocialSecuritySchedules.aspx.cs">
       <DependentUpon>SocialSecuritySchedules.aspx</DependentUpon>
