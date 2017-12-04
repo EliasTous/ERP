@@ -1125,7 +1125,7 @@
                                     TypeAhead="false"
                                     HideTrigger="true" SubmitValue="true"
                                     MinChars="3" FieldLabel="<%$ Resources: FieldEmployee%>"
-                                    TriggerAction="Query" ForceSelection="false">
+                                    TriggerAction="Query" ForceSelection="true">
                                     <Store>
                                         <ext:Store runat="server" ID="Store2" AutoLoad="false">
                                             <Model>

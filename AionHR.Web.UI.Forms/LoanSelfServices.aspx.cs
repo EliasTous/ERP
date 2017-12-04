@@ -695,7 +695,7 @@ namespace AionHR.Web.UI.Forms
           
             RecordRequest req1 = new RecordRequest();
             req1.RecordID = _systemService.SessionHelper.GetEmployeeId(); 
-            RecordResponse<Employee> r = _employeeService.Get<Employee>(req1);
+            RecordResponse<MyInfo> r = _selfServiceService.ChildGetRecord<MyInfo>(req1);
             if (!r.Success)//it maybe be another condition
             {
                 //Show an error saving...

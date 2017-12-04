@@ -1086,4 +1086,7 @@
   <data name="Mod60" xml:space="preserve">
     <value>Self Service</value>
   </data>
+  <data name="RT504" xml:space="preserve">
+    <value>Bank Transfers</value>
+  </data>
 </root>

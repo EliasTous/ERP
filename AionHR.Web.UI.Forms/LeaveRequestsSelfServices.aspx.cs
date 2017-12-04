@@ -611,13 +611,13 @@ namespace AionHR.Web.UI.Forms
             leaveDaysStore.DataSource = leaveDays;
             leaveDaysStore.DataBind();
             X.Call("CalcSum");
-            LoadQuickViewInfo(employeeId.Value.ToString());
+            //LoadQuickViewInfo(employeeId.Value.ToString());
         }
         private int GetEmployeeCalendar(string empId)
         {
             RecordRequest req = new RecordRequest();
             req.RecordID = empId;
-            RecordResponse<Employee> resp = _employeeService.Get<Employee>(req);
+            RecordResponse<MyInfo> resp = _selfServiceService.ChildGetRecord<MyInfo>(req);
             if (!resp.Success)
             {
                 X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>Technical Error: " + resp.ErrorCode + "<br> Summary: " + resp.Summary : resp.Summary).Show();
