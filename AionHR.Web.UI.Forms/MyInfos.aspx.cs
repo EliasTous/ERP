@@ -89,7 +89,7 @@ namespace AionHR.Web.UI.Forms
 
                 RecordRequest req = new RecordRequest();
                 req.RecordID = CurrentEmployee.Text;
-                RecordResponse<Employee> resp = _employeeService.Get<Employee>(req);
+                RecordResponse<MyInfo> resp = _iselfServiceService.ChildGetRecord<MyInfo>(req);
                 if (!resp.Success)
                 {
                     X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>Technical Error: " + resp.ErrorCode + "<br> Summary: " + resp.Summary : resp.Summary).Show();

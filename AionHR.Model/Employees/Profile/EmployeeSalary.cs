@@ -65,5 +65,9 @@ namespace AionHR.Model.Employees.Profile
         public string currencyRef { get; set; }
         public short? isTaxable { get; set; }
         public string EmpRef { set; get; }
+        [PropertyID("31062_08")]
+        [ApplySecurity]
+        public string swiftCode { set; get; }
+
     }
 }

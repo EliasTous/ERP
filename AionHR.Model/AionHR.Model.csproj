@@ -154,6 +154,7 @@
     <Compile Include="Reports\RT501.cs" />
     <Compile Include="Reports\RT502.cs" />
     <Compile Include="Reports\RT503.cs" />
+    <Compile Include="Reports\RT504.cs" />
     <Compile Include="Reports\RT601.cs" />
     <Compile Include="Reports\RT602.cs" />
     <Compile Include="Reports\RT801.cs" />

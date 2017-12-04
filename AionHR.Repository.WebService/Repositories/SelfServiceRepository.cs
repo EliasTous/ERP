@@ -23,7 +23,7 @@ namespace AionHR.Repository.WebService.Repositories
 
 
 
-                ChildGetLookup.Add(typeof(MyInfo), "getEM");
+                ChildGetLookup.Add(typeof(MyInfo), "getEM1");
 
 
             ChildAddOrUpdateLookup.Add(typeof(MyInfo), "setEM");

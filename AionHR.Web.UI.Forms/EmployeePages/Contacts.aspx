@@ -123,9 +123,9 @@
                             </ext:Column>
 
 
-                            <ext:Column ID="Column13" DataIndex="phone" Text="<%$ Resources: FieldCCellPhone%>" runat="server" Flex="1">
+<%--                            <ext:Column ID="Column13" DataIndex="phone" Text="<%$ Resources: FieldCCellPhone%>" runat="server" Flex="1">
                                 <Renderer Handler=" return record.data['phone'];" />
-                            </ext:Column>
+                            </ext:Column>--%>
 
 
 
@@ -426,11 +426,11 @@
                                 <ext:Panel runat="server">
                                     <Items>
                                         <ext:TextField runat="server" Name="recordId" ID="coId" Hidden="true" Disabled="true" />
-                                        <ext:TextField runat="server" Name="phone" AllowBlank="false" ID="cocellPhone" FieldLabel="<%$ Resources:FieldCCellPhone%>" >
+                                      <%--  <ext:TextField runat="server" Name="phone" AllowBlank="false" ID="cocellPhone" FieldLabel="<%$ Resources:FieldCCellPhone%>" >
                                              <Plugins>
                                                 <ext:InputMask Mask="9999999?999" />
                                             </Plugins>
-                                            </ext:TextField>
+                                            </ext:TextField>--%>
                                          <ext:TextField runat="server" Name="coaddressId" ID="coaddressId" Hidden="true" Disabled="true" />
                                         <ext:TextField runat="server" Name="costreet1" AllowBlank="false" ID="costreet1" FieldLabel="<%$ Resources:FieldCStreet1%>" />
                                              
@@ -504,7 +504,7 @@
                                                 <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
                                             </Listeners>
                                         </ext:ComboBox>
-                                         <ext:TextField runat="server" Name="copostalCode" AllowBlank="true" MaxLength="6" ID="TextField6" FieldLabel="<%$ Resources:FieldCPostalCode%>" />
+                                        <%-- <ext:TextField runat="server" Name="copostalCode" AllowBlank="true" MaxLength="6" ID="TextField6" FieldLabel="<%$ Resources:FieldCPostalCode%>" />--%>
                                         <ext:TextField runat="server" Name="localphone" AllowBlank="false" ID="localphone" FieldLabel="<%$ Resources:phone%>" >
                                              <Plugins>
                                                 <ext:InputMask Mask="9999999?999" />
