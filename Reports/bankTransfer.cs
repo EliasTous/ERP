@@ -294,7 +294,7 @@ public class bankTransfer : DevExpress.XtraReports.UI.XtraReport
             this.xrTable1.Name = "xrTable1";
             this.xrTable1.Rows.AddRange(new DevExpress.XtraReports.UI.XRTableRow[] {
             this.xrTableRow3});
-            this.xrTable1.SizeF = new System.Drawing.SizeF(633.9999F, 36F);
+            this.xrTable1.SizeF = new System.Drawing.SizeF(638F, 36F);
             // 
             // xrTableRow3
             // 
@@ -389,7 +389,7 @@ public class bankTransfer : DevExpress.XtraReports.UI.XtraReport
             this.xrTableCell21.StyleName = "FieldCaption";
             this.xrTableCell21.Text = "swift Code";
             this.xrTableCell21.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
-            this.xrTableCell21.Weight = 27.004689326902636D;
+            this.xrTableCell21.Weight = 28.331763474620619D;
             // 
             // xrTableRow1
             // 
