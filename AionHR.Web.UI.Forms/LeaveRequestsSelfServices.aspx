@@ -111,6 +111,9 @@
     }
     function calcDays() {
         
+        if (App.leaveRequest1_startDate.getValue() == '' && App.leaveRequest1_endDate.getValue() == '') {
+            return;
+        }
         if (App.startDate.getValue() == '') {
             alert('specify start date')
             return;
@@ -502,7 +505,7 @@
                                 </ext:DateField>
                                 <ext:NumberField runat="server" ID="calDays" Hidden="true" Width="150" Name="calDays" MinValue="1" FieldLabel="<%$Resources:CalDays %>" LabelWidth="40">
                                   <Listeners>
-                                        <Change Handler="calcEndDate();" />
+                                        <Change Handler="if(this.value==null) { return false;}calcEndDate();" />
 
                                     </Listeners>
                                 </ext:NumberField>
