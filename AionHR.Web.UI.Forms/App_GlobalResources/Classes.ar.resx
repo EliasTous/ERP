@@ -375,6 +375,9 @@
   <data name="Class42021" xml:space="preserve">
     <value>أيام الإجازة</value>
   </data>
+  <data name="Class42022" xml:space="preserve">
+    <value>الموافقه على طلب الإجازة</value>
+  </data>
   <data name="Class42099" xml:space="preserve">
     <value>استيراد الإجازات</value>
   </data>
@@ -440,6 +443,15 @@
   </data>
   <data name="Class51031" xml:space="preserve">
     <value>نهاية الخدمة استحقاقات / مستحقات</value>
+  </data>
+  <data name="Class60101" xml:space="preserve">
+    <value>معلوماتي الشخصية</value>
+  </data>
+  <data name="Class60104" xml:space="preserve">
+    <value>طلبات الإجازات</value>
+  </data>
+  <data name="Class60105" xml:space="preserve">
+    <value>طلبات السلف</value>
   </data>
   <data name="Class80101" xml:space="preserve">
     <value>مخطط الأعمار</value>

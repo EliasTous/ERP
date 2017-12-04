@@ -11,7 +11,7 @@
     <link rel="stylesheet" type="text/css" href="CSS/Common.css" />
     <link rel="stylesheet" href="CSS/LiveSearch.css" />
     <script type="text/javascript" src="Scripts/LeaveRequests.js?id=9"></script>
-    <script type="text/javascript" src="Scripts/common.js"></script>
+    <script type="text/javascript" src="Scripts/common.js?id=2"></script>
     <script type="text/javascript" src="Scripts/moment.js"></script>
     <script type="text/javascript">
         //function CalcSum() {
@@ -41,6 +41,9 @@
         //    else
         //        App.returnDate.setDisabled(true);
         //}
+     
+        
+        
     </script>
 </head>
 <body style="background: url(Images/bg.png) repeat;">
@@ -55,6 +58,8 @@
         <ext:Hidden ID="StatusApproved" runat="server" Text="<%$ Resources: FieldApproved %>" />
         <ext:Hidden ID="StatusRefused" runat="server" Text="<%$ Resources: FieldRefused %>" />
         <ext:Hidden ID="StatusUsed" runat="server" Text="<%$ Resources: FieldUsed %>" />
+      
+        
         
 <%--        <ext:Hidden ID="SundayText" runat="server" Text="<%$ Resources:Common , SundayText %>" />
         <ext:Hidden ID="MondayText" runat="server" Text="<%$ Resources:Common , MondayText %>" />
@@ -252,7 +257,7 @@
 
                             <ext:Column ID="Column5" DataIndex="ltName" Text="<%$ Resources: FieldLtName%>" runat="server" Flex="2" />
 
-                            <ext:CheckColumn runat="server" Flex="1" Text="<%$ Resources: FieldIsPaid %>" DataIndex="isPaid"></ext:CheckColumn>
+                         <%--   <ext:CheckColumn runat="server" Flex="1" Text="<%$ Resources: FieldIsPaid %>" DataIndex="isPaid"></ext:CheckColumn>--%>
 
 
                             <ext:Column runat="server"

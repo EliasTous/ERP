@@ -1,6 +1,7 @@
 ﻿using AionHR.Infrastructure.Domain;
 using AionHR.Infrastructure.Session;
 using AionHR.Infrastructure.Tokens;
+using AionHR.Model.Employees.Leaves;
 using AionHR.Model.Employees.Profile;
 using AionHR.Model.LeaveManagement;
 using AionHR.Model.System;
@@ -18,8 +19,10 @@ namespace AionHR.Services.Implementations
    public class LeaveBatchRunner : ImportBatchRunner<LeaveRequest>
     {
         IEmployeeService _employeeService;
+        ILeaveManagementService _leaveManagementService;
 
         Dictionary<string, string> ids;
+        Dictionary<string, string> idL;
         public LeaveBatchRunner(ISessionStorage store, ISystemService system, ILeaveManagementService main, IEmployeeService employeeService) :base(system,main)
         {
             this.SessionStore = store;
@@ -27,8 +30,10 @@ namespace AionHR.Services.Implementations
 
 
             this._employeeService = employeeService;
+            this._leaveManagementService = main;
             BatchStatus = new BatchOperationStatus() { classId = ClassId.LMLR, processed = 0, tableSize = 0, status = 0 };
-           ids = new Dictionary<string, string>();
+            ids = new Dictionary<string, string>();
+            idL = new Dictionary<string, string>();
         }
         protected override void PostProcessElements()
         {
@@ -39,10 +44,12 @@ namespace AionHR.Services.Implementations
                 b.AppendLine(error.employeeRef + ","
                     + error.startDate + "," +
                     error.endDate + "," +
-                    error.ltId + "," +
+                   error.returnDate + "," +
+                   error.ltRef + "," +
                     error.destination + "," +
                     error.justification + "," +
                     error.status +","+
+                    
                     errorMessages[i++].Replace('\r', ' ').Replace(',', ';')
 
                     );
@@ -66,14 +73,35 @@ namespace AionHR.Services.Implementations
             else
                 return resp.result.recordId;
         }
+        private string GetltId(string ltRef)
+        {
+            ListRequest request = new ListRequest();
+
+            request.Filter = "";
+            ListResponse<LeaveType> response = _leaveManagementService.ChildGetAll<LeaveType>(request);
+            if (response == null || response.Items == null)
+                return ltRef;
+
+         if (response.Items.Where(x => x.reference == ltRef).ToArray()==null)
+                 return ltRef;
+         else  return response.Items.Where(x => x.reference == ltRef).ToArray()[0].recordId.ToString();
+
+
+
+        }
+
 
         protected override void PreProcessElement(LeaveRequest item)
         {
-            if (string.IsNullOrEmpty(item.employeeRef))
+            if (string.IsNullOrEmpty(item.employeeRef)&& string.IsNullOrEmpty(item.ltRef))
                 return;
             if (!ids.ContainsKey(item.employeeRef))
                 ids.Add(item.employeeRef, GetEmployeeId(item.employeeRef));
             item.employeeId = ids[item.employeeRef];
+          
+            if (!idL.ContainsKey(item.ltRef))
+                idL.Add(item.ltRef, GetltId(item.ltRef));
+            item.ltId = Convert.ToInt32(idL[item.ltRef]);
         }
     }
 }

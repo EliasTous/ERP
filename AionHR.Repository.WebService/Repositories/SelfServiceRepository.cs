@@ -1,5 +1,6 @@
 ﻿using AionHR.Infrastructure.Configuration;
 using AionHR.Infrastructure.Domain;
+using AionHR.Model.Employees.Profile;
 using AionHR.Model.SelfService;
 using System;
 using System.Collections.Generic;
@@ -17,9 +18,21 @@ namespace AionHR.Repository.WebService.Repositories
             public SelfServiceRepository()
             {
                 base.ServiceURL = ApplicationSettingsFactory.GetApplicationSettings().BaseURL + serviceName;
-               
 
-            }
+                ChildGetAllLookup.Add(typeof(MyInfo), "qryEM");
+
+
+
+                ChildGetLookup.Add(typeof(MyInfo), "getEM");
+
+
+            ChildAddOrUpdateLookup.Add(typeof(MyInfo), "setEM");
+            ChildAddOrUpdateLookup.Add(typeof(leaveRequetsSelfservice), "setLE");
+            ChildAddOrUpdateLookup.Add(typeof(loanSelfService), "setLO");
+
+
+            ChildDeleteLookup.Add(typeof(MyInfo), "delEM");
+        }
         }
     
 }

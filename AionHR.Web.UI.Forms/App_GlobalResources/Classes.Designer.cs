@@ -844,6 +844,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Approve Leave Request.
+        /// </summary>
+        internal static string Class42022 {
+            get {
+                return ResourceManager.GetString("Class42022", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Import Leaves.
         /// </summary>
         internal static string Class42099 {
@@ -1038,6 +1047,33 @@ namespace Resources {
         internal static string Class51031 {
             get {
                 return ResourceManager.GetString("Class51031", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to My Info.
+        /// </summary>
+        internal static string Class60101 {
+            get {
+                return ResourceManager.GetString("Class60101", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Leave Requests.
+        /// </summary>
+        internal static string Class60104 {
+            get {
+                return ResourceManager.GetString("Class60104", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Loan Requests.
+        /// </summary>
+        internal static string Class60105 {
+            get {
+                return ResourceManager.GetString("Class60105", resourceCulture);
             }
         }
         

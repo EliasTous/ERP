@@ -849,14 +849,8 @@
   <data name="Property4201203" xml:space="preserve">
     <value>الإجازة</value>
   </data>
-  <data name="Property4202001" xml:space="preserve">
-    <value>تاريخ البداية</value>
-  </data>
   <data name="Property42020010" xml:space="preserve">
     <value>تاريخ إنتهاء الإجازة</value>
-  </data>
-  <data name="Property4202002" xml:space="preserve">
-    <value>تاريخ النهاية</value>
   </data>
   <data name="Property4202003" xml:space="preserve">
     <value>اسم الموظف</value>
@@ -1313,5 +1307,59 @@
   </data>
   <data name="Property5103102" xml:space="preserve">
     <value>الاسم </value>
+  </data>
+  <data name="Property4202201" xml:space="preserve">
+    <value>الحالة</value>
+  </data>
+  <data name="Property4202202" xml:space="preserve">
+    <value>ملاحظات</value>
+  </data>
+  <data name="Property6010101" xml:space="preserve">
+    <value>الموظف</value>
+  </data>
+  <data name="Property6010104" xml:space="preserve">
+    <value>رقم الجوّال</value>
+  </data>
+  <data name="Property6010105" xml:space="preserve">
+    <value>الدين</value>
+  </data>
+  <data name="Property6010106" xml:space="preserve">
+    <value>تاريخ الميلاد</value>
+  </data>
+  <data name="Property6010107" xml:space="preserve">
+    <value>مكان الولادة</value>
+  </data>
+  <data name="Property6010108" xml:space="preserve">
+    <value>البريد الالكتروني الشخصي</value>
+  </data>
+  <data name="Property4202001" xml:space="preserve">
+    <value>تاريخ البداية</value>
+  </data>
+  <data name="Property4202002" xml:space="preserve">
+    <value>تاريخ النهاية</value>
+  </data>
+  <data name="Property6010401" xml:space="preserve">
+    <value>تاريخ البداية</value>
+  </data>
+  <data name="Property6010402" xml:space="preserve">
+    <value>تاريخ النهاية</value>
+  </data>
+  <data name="Property6010403" xml:space="preserve">
+    <value>السبب </value>
+  </data>
+  <data name="Property6010404" xml:space="preserve">
+    <value>الوجهة</value>
+  </data>
+  <data name="Property6010405" xml:space="preserve">
+    <value>نوع الإجازة</value>
+  </data>
+  <data name="Property6010501" xml:space="preserve">
+    <value>الفرع</value>
+  </data>
+  <data name="Property6010502" xml:space="preserve">
+    <value>طريقة تغطية السلفة</value>
+  </data>
+  <data name="Property6010503" xml:space="preserve">
+    <value>قيمة الدفعة</value>
   </data>
 </root>

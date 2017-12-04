@@ -127,7 +127,7 @@
     <value>الاجازات المسموحة: </value>
   </data>
   <data name="BasicInfoTabEditWindowTitle" xml:space="preserve">
-    <value>ملف الموظف</value>
+    <value>معلوماتي الشخصية </value>
   </data>
   <data name="BrowsePicture" xml:space="preserve">
     <value>اختيار الصورة</value>
@@ -371,5 +371,8 @@
   </data>
   <data name="Yes" xml:space="preserve">
     <value>نعم</value>
+  </data>
+  <data name="BasicInfoTabEditWindowTitle1" xml:space="preserve">
+    <value>معلوماتي الشخصية</value>
   </data>
 </root>

@@ -1447,7 +1447,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Loan.
+        ///   Looks up a localized string similar to Loans.
         /// </summary>
         internal static string Loan {
             get {
@@ -1722,6 +1722,15 @@ namespace Resources {
         internal static string Mod51 {
             get {
                 return ResourceManager.GetString("Mod51", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Self Service.
+        /// </summary>
+        internal static string Mod60 {
+            get {
+                return ResourceManager.GetString("Mod60", resourceCulture);
             }
         }
         

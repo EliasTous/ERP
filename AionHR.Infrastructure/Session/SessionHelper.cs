@@ -178,6 +178,15 @@ namespace AionHR.Infrastructure.Session
         {
             return (int)Get("UserType");
         }
+        public void SetEmployeeId(string EmployeeId)
+        {
+            Set("EmployeeId", EmployeeId);
+        }
+
+        public string GetEmployeeId()
+        {
+            return (string)Get("EmployeeId");
+        }
         public bool CheckIfIsAdmin()
         {
             return (bool)Get("IsAdmin");

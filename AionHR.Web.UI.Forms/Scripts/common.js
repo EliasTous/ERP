@@ -29,6 +29,10 @@ function isValidDate(d) {
         return false;
     }
 }
+function closeCurrentTab()
+{
+    parent.App.tabPanel.closeTab(parent.App.tabPanel.getActiveTab());
+}
 
 
 

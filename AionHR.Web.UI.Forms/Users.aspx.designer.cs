@@ -364,13 +364,13 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.CheckColumn ColIsInactive;
         
         /// <summary>
-        /// ColIsAdmin control.
+        /// ColUserType control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.CheckColumn ColIsAdmin;
+        protected global::Ext.Net.Column ColUserType;
         
         /// <summary>
         /// colAttach control.

@@ -83,7 +83,7 @@ namespace AionHR.Services.Implementations
                     x.edId = ents[x.edName];
                     x.type = 1;
                 }
-                else
+                else if(deds.ContainsKey(x.edName))
                 {
                     x.edId = deds[x.edName];
                     x.type = 2;
@@ -100,6 +100,7 @@ namespace AionHR.Services.Implementations
             item.Basic.eAmount = item.Details.Where(x => x.type == 1).Sum(x => x.fixedAmount);
             item.Basic.dAmount = item.Details.Where(x => x.type == 2).Sum(x => x.fixedAmount);
             saReq.entity = item.Basic;
+            saReq.entity.recordId = "";
             PostResponse<EmployeeSalary> saResp = service.ChildAddOrUpdate<EmployeeSalary>(saReq);
             if (!saResp.Success)
             {

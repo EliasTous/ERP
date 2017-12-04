@@ -1078,9 +1078,12 @@
     <value>Leave</value>
   </data>
   <data name="Loan" xml:space="preserve">
-    <value>Loan</value>
+    <value>Loans</value>
   </data>
   <data name="PersonalInfo" xml:space="preserve">
     <value>My Info </value>
+  </data>
+  <data name="Mod60" xml:space="preserve">
+    <value>Self Service</value>
   </data>
 </root>

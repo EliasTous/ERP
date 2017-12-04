@@ -168,7 +168,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             PostResponse<EmployeeNote> resp = _employeeService.ChildAddOrUpdate<EmployeeNote>(req);
             if (!resp.Success)
             {
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() : resp.Summary).Show();
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>Technical Error: " + resp.ErrorCode + "<br> Summary: " + resp.Summary : resp.Summary).Show();
                 
             }
             employeementHistoryStore.Reload();
@@ -354,7 +354,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             PostResponse<EmployeeNote> resp = _employeeService.ChildAddOrUpdate<EmployeeNote>(req);
             if(!resp.Success)
             {
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() : resp.Summary).Show();
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>Technical Error: " + resp.ErrorCode + "<br> Summary: " + resp.Summary : resp.Summary).Show();
                 return new { valid = false };
             }
             employeementHistoryStore.Reload();

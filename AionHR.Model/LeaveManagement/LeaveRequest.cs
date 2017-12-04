@@ -70,5 +70,8 @@ namespace AionHR.Model.LeaveManagement
         public string departmentName { get; set; }
 
         public string branchName { get; set; }
+        public string ltRef { get; set; }
+
+
     }   
 }

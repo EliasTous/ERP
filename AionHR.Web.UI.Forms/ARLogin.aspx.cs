@@ -134,7 +134,7 @@ namespace AionHR.Web.UI.Forms
 
                 _systemService.SessionHelper.Set("CompanyName", getACResponse.result.companyName);
                 _systemService.SessionHelper.Set("CurrentUserName", userName);
-
+                _systemService.SessionHelper.SetUserType(response.User.userType);
                 _systemService.SessionHelper.Set("IsAdmin", response.User.isAdmin);
                 StoreSystemDefaults();
                 return "1";//Succeded
@@ -142,7 +142,7 @@ namespace AionHR.Web.UI.Forms
             }
             else
             {
-                lblError.Text = GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).ToString() : response.Summary;
+                lblError.Text = GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).   ToString() + "<br>Technical Error: " + response.ErrorCode + "<br> Summary: " + response.Summary : response.Summary;
                 return "error";//Error in authentication
 
             }

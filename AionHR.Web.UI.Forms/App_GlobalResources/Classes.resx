@@ -378,6 +378,9 @@
   <data name="Class42021" xml:space="preserve">
     <value>Leave Day</value>
   </data>
+  <data name="Class42022" xml:space="preserve">
+    <value>Approve Leave Request</value>
+  </data>
   <data name="Class42099" xml:space="preserve">
     <value>Import Leaves</value>
   </data>
@@ -443,6 +446,15 @@
   </data>
   <data name="Class51031" xml:space="preserve">
     <value>Final settlement Entitlement / Deduction</value>
+  </data>
+  <data name="Class60101" xml:space="preserve">
+    <value>My Info</value>
+  </data>
+  <data name="Class60104" xml:space="preserve">
+    <value>Leave Requests</value>
+  </data>
+  <data name="Class60105" xml:space="preserve">
+    <value>Loan Requests</value>
   </data>
   <data name="Class80101" xml:space="preserve">
     <value>Age Breakdown</value>

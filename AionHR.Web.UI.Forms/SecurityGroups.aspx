@@ -386,6 +386,7 @@
                                                 <ext:ModelField Name="userId" />
                                                 <ext:ModelField Name="sgId" />
                                                 <ext:ModelField Name="fullName" />
+                                                 <ext:ModelField Name="email" />
                                             </Fields>
                                         </ext:Model>
                                     </Model>
@@ -418,8 +419,12 @@
 
 
                                     <ext:Column Visible="false" ID="Column1" MenuDisabled="true" runat="server" DataIndex="recordId" Hideable="false" Width="75" Align="Center" />
-                                    <ext:Column CellCls="cellLink" ID="Column2" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldName%>" DataIndex="fullName" Flex="2" Hideable="false">
+                                    <ext:Column CellCls="cellLink" ID="Column2" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldName%>" DataIndex="fullName" Flex="1" Hideable="false">
+
                                     </ext:Column>
+                                     <ext:Column Sortable="true" ID="ColEmail" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEmail%>" DataIndex="email" Flex="2" Hideable="false"  >
+                                         </ext:Column>
+                             
 
 
 
@@ -525,8 +530,10 @@
                                                 <ext:ListItem Text="<%$ Resources:  Common,Mod44 %>" Value="44" />
                                                 <ext:ListItem Text="<%$ Resources:  Common,Mod45  %>" Value="45" />
                                                 <ext:ListItem Text="<%$ Resources:  Common,Mod51  %>" Value="51" />
+                                                 <ext:ListItem Text="<%$ Resources: Common,Mod60  %>" Value="60" />
                                                 <ext:ListItem Text="<%$ Resources: Common,Mod80  %>" Value="80" />
                                                 <ext:ListItem Text="<%$ Resources: Common,Mod90  %>" Value="90" />
+
 
                                             </Items>
 
