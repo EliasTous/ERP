@@ -19,11 +19,14 @@ namespace AionHR.Model.Reports
         public string accountNumber { get; set; }
         public string swiftCode { get; set; }
        
-       
-           
-          
-          
-           
-            
+       public DateTime startDate { get; set;  }
+        public DateTime endDate { get; set; }
+        
+
+
+
+
+
+
     }
 }

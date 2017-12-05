@@ -118,13 +118,19 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="xrLabel1.Text" xml:space="preserve">
-    <value>Bank Transfers</value>
+    <value>الرواتب التي يتم رفعها على البنك </value>
+  </data>
+  <data name="xrLabel10.Text" xml:space="preserve">
+    <value>تاريخ النهاية : </value>
+  </data>
+  <data name="xrLabel11.Text" xml:space="preserve">
+    <value>xrLabel4</value>
   </data>
   <data name="xrLabel17.Text" xml:space="preserve">
     <value>لم يتم العثور على نتائج</value>
   </data>
   <data name="xrLabel2.Text" xml:space="preserve">
-    <value>رقم عملية الدفع :</value>
+    <value>رقم الدفعة : </value>
   </data>
   <data name="xrLabel3.Text" xml:space="preserve">
     <value>الفرع :</value>
@@ -141,6 +147,12 @@
   <data name="xrLabel7.Text" xml:space="preserve">
     <value>من قبل :</value>
   </data>
+  <data name="xrLabel8.Text" xml:space="preserve">
+    <value>تاريخ النهاية :</value>
+  </data>
+  <data name="xrLabel9.Text" xml:space="preserve">
+    <value>xrLabel5</value>
+  </data>
   <data name="xrPageInfo2.Format" xml:space="preserve">
     <value>صفحة {0} من {1}</value>
   </data>
@@ -151,47 +163,46 @@
     <value>xrTableCell10</value>
   </data>
   <data name="xrTableCell11.Text" xml:space="preserve">
-    <value>d amount 
-</value>
+    <value>xrTableCell11</value>
   </data>
   <data name="xrTableCell12.Text" xml:space="preserve">
     <value>xrTableCell12</value>
   </data>
   <data name="xrTableCell13.Text" xml:space="preserve">
-    <value>الرمز </value>
-  </data>
-  <data name="xrTableCell14.Text" xml:space="preserve">
-    <value>xrTableCell14</value>
-  </data>
-  <data name="xrTableCell15.Text" xml:space="preserve">
-    <value>net Salary</value>
-  </data>
-  <data name="xrTableCell16.Text" xml:space="preserve">
-    <value>xrTableCell16</value>
-  </data>
-  <data name="xrTableCell17.Text" xml:space="preserve">
-    <value>nss Amount</value>
-  </data>
-  <data name="xrTableCell18.Text" xml:space="preserve">
-    <value>xrTableCell18</value>
-  </data>
-  <data name="xrTableCell19.Text" xml:space="preserve">
-    <value>ss Amount</value>
+    <value>xrTableCell13</value>
   </data>
   <data name="xrTableCell2.Text" xml:space="preserve">
     <value>xrTableCell2</value>
   </data>
-  <data name="xrTableCell20.Text" xml:space="preserve">
-    <value>xrTableCell20</value>
-  </data>
-  <data name="xrTableCell21.Text" xml:space="preserve">
-    <value>رقم البنك</value>
-  </data>
   <data name="xrTableCell22.Text" xml:space="preserve">
     <value>xrTableCell22</value>
   </data>
+  <data name="xrTableCell23.Text" xml:space="preserve">
+    <value>رقم الإقامة </value>
+  </data>
+  <data name="xrTableCell24.Text" xml:space="preserve">
+    <value>اجمالي الخصومات </value>
+  </data>
+  <data name="xrTableCell25.Text" xml:space="preserve">
+    <value>اجمالي غير خاضع للتأمينات </value>
+  </data>
+  <data name="xrTableCell26.Text" xml:space="preserve">
+    <value>اجمالي الخاضع للتأمينات </value>
+  </data>
+  <data name="xrTableCell27.Text" xml:space="preserve">
+    <value>رمز البنك</value>
+  </data>
+  <data name="xrTableCell28.Text" xml:space="preserve">
+    <value>اسم الموظف</value>
+  </data>
+  <data name="xrTableCell29.Text" xml:space="preserve">
+    <value>ايبان الموظف</value>
+  </data>
   <data name="xrTableCell3.Text" xml:space="preserve">
     <value>xrTableCell3</value>
+  </data>
+  <data name="xrTableCell30.Text" xml:space="preserve">
+    <value>صافي الراتب </value>
   </data>
   <data name="xrTableCell4.Text" xml:space="preserve">
     <value>xrTableCell4</value>
@@ -203,12 +214,12 @@
     <value>xrTableCell6</value>
   </data>
   <data name="xrTableCell7.Text" xml:space="preserve">
-    <value>الاسم </value>
+    <value>xrTableCell7</value>
   </data>
   <data name="xrTableCell8.Text" xml:space="preserve">
     <value>xrTableCell8</value>
   </data>
   <data name="xrTableCell9.Text" xml:space="preserve">
-    <value>رقم الحساب</value>
+    <value>xrTableCell9</value>
   </data>
 </root>

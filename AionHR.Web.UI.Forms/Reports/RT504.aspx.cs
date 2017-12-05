@@ -232,8 +232,9 @@ namespace AionHR.Web.UI.Forms.Reports
            
 
             string user = _systemService.SessionHelper.GetCurrentUser();
-           
           
+            h.Parameters["startDate"].Value = resp.Items[0].startDate.ToString(_systemService.SessionHelper.GetDateformat());
+            h.Parameters["endDate"].Value = resp.Items[0].endDate.ToString(_systemService.SessionHelper.GetDateformat());
             h.Parameters["User"].Value = user;
 
             //if (resp.Items.Count > 0)

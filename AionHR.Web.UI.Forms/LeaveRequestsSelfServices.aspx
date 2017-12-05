@@ -111,7 +111,7 @@
     }
     function calcDays() {
         
-        if (App.leaveRequest1_startDate.getValue() == '' && App.leaveRequest1_endDate.getValue() == '') {
+        if (App.startDate.getValue() == '' && App.endDate.getValue() == '') {
             return;
         }
         if (App.startDate.getValue() == '') {

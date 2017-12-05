@@ -1089,4 +1089,7 @@
   <data name="Attendance" xml:space="preserve">
     <value>الدوام اليومي </value>
   </data>
+  <data name="RT504" xml:space="preserve">
+    <value>الرواتب التي يتم رفعها على البنك</value>
+  </data>
 </root>
