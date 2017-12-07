@@ -477,7 +477,7 @@
                                 
                             </DirectEvents>
                          <Listeners>
-                                        <Change Handler="if(moment(this.value).isSame(moment( #{oldStart}.value) )) {return false;} #{oldStart}.value = this.value; calcDays();" />
+                                        <%--<Change Handler="if(moment(this.value).isSame(moment( #{oldStart}.value) )) {return false;} #{oldStart}.value = this.value; calcDays();" />--%>
 
                                     </Listeners>
                             <%--          <Listeners>
@@ -499,7 +499,7 @@
                                         <Change Handler="App.leaveRequest1_direct.MarkLeaveChanged(); CalcSum(); " />
                                     </Listeners>--%>
                                     <Listeners>
-                                        <Change Handler="if(moment(this.value).isSame(moment( #{oldEnd}.value) )) {return false;} #{oldEnd}.value = this.value; calcDays();calcEndDate();" />
+                                        <%--<Change Handler="if(moment(this.value).isSame(moment( #{oldEnd}.value) )) {return false;} #{oldEnd}.value = this.value; calcDays();calcEndDate();" />--%>
 
                                     </Listeners>
                                 </ext:DateField>
