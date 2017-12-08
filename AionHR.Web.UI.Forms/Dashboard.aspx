@@ -9,15 +9,15 @@
     <title></title>
 
     <link rel="stylesheet" type="text/css" href="CSS/Common.css" />
-    <link rel="stylesheet" type="text/css" href="CSS/Dashboard.css?id=102" />
+    <link rel="stylesheet" type="text/css" href="CSS/Dashboard.css?id=31" />
     <link rel="stylesheet" href="CSS/LiveSearch.css" />
-    <script type="text/javascript" src="Scripts/Dashboard.js?id=101"></script>
+    <script type="text/javascript" src="Scripts/Dashboard.js?id=51"></script>
     <!--  <script type="text/javascript" src="Scripts/app.js"></script>-->
     <script type="text/javascript" src="Scripts/common.js"></script>
     <script type="text/javascript" src="Scripts/moment.js"></script>
-    <script type="text/javascript" src="Scripts/CircileProgress.js?id=78"></script>
-    <script type="text/javascript" src="Scripts/jquery-new.js?id=78"></script>
-    <script type="text/javascript" src="Scripts/plugins/highcharts.js?id=452"></script>
+   <script type="text/javascript" src="Scripts/CircileProgress.js?id=91"></script>
+    <script type="text/javascript" src="Scripts/jquery-new.js?id=71"></script>
+    <script type="text/javascript" src="Scripts/plugins/highcharts.js?id=122"></script>
    
 
     <style type="text/css">
@@ -331,7 +331,7 @@
         var drawDepartmentsCountHightChartColumn = function (IN, OUT, objectIn, objectOut, dataCategoriesObject, rtl, normal) {
             // Build the chart  deparmentsCountHighChart
             var divName = 'deparmentsCountHighChart';
-            if (!normal)
+           if (!normal)
                 divName = 'maximumChart';
             Highcharts.chart(divName, {
                 chart: {
@@ -536,9 +536,11 @@
 
         var drawMinLocalRateCountHightChartColumn = function (objectValues, dataCategoriesObject, rtl, normal) {
             // Build the chart  deparmentsCountHighChart
-            var divName = 'localRateCountHighChart';
-            if (!normal)
-                divName = 'maximumChart';
+           
+            var divName = 'localRateCountHighChart-body';
+           // if (!normal)
+              //  divName = 'maximumChart';
+        
             Highcharts.chart(divName, {
                 chart: {
                     type: 'column'
@@ -599,16 +601,18 @@
                     data: objectValues
                 }]
             });
-
+          
 
         };
 
 
         var drawLocalCountHightChartColumn = function (objectValues, dataCategoriesObject, rtl, normal) {
             // Build the chart  deparmentsCountHighChart
+            
             var divName = 'localCountHighChart';
-            if (!normal)
-                divName = 'maximumChart';
+           // if (!normal)
+            //    divName = 'maximumChart';
+            
             Highcharts.chart(divName, {
                 chart: {
                     type: 'column'
@@ -667,7 +671,7 @@
                 }]
             });
 
-
+            
         };
 
         var drawAttendancePeriodChart = function (dataCategoriesObject, IN1, IN2, IN3, IN4, objectIn1, objectIn2, objectIn3, objectIn4, rtl, normal) {
