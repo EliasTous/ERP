@@ -553,14 +553,26 @@ namespace AionHR.Web.UI.Forms
 
 
         }
-        protected void PayCode_ReadData(object sender, StoreReadDataEventArgs e)
+        [DirectMethod]
+        public object PayCodeReadData(string action, Dictionary<string, object> extraParams)
+       
         {
             ListRequest req = new ListRequest();
             ListResponse<PayCode> eds = _PayrollService.ChildGetAll<PayCode>(req);
 
-            Store2.DataSource = eds.Items;
-            Store2.DataBind();
+            //Store2.DataSource = eds.Items;
+            //Store2.DataBind();
+            if (eds.Items == null)
+                return new List<PayCode>();
+            else
+                return eds.Items;
+                
+
+          
+
+
 
         }
+       
     }
 }

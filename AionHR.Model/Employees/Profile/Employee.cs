@@ -2,6 +2,7 @@
 using AionHR.Model.Attributes;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -135,6 +136,19 @@ namespace AionHR.Model.Employees.Profile
         [PropertyID("31000_22")]
         [ApplySecurity]
         public EmployeeName reportToName { get; set; }
+
+        public bool bdHijriCal { get; set; }
+        public string hijCalBirthDate
+        {
+            get; set;
+        }
+        public DateTime? gregCalBirthDate
+        {
+            get; set;
+        }
+
+
+
     }
 
     public class EmployeeName : IComparable

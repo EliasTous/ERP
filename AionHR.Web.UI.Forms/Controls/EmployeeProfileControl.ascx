@@ -11,6 +11,74 @@
 <script type="text/javascript" src="../Scripts/common.js?id=1"></script>
 
 <script type="text/javascript" src="../Scripts/Employees2.js?id=16"></script>
+
+
+
+    <link rel="stylesheet" href="../Scripts/HijriCalender/redmond.calendars.picker.css" />
+
+    <script src="../Scripts/HijriCalender/jquery.plugin.js" type="text/javascript"></script>
+
+    <script type="text/javascript" src="../Scripts/HijriCalender/jquery.calendars.js"></script>
+    <script type="text/javascript" src="../Scripts/HijriCalender/jquery.calendars-ar.js"></script>
+    <script type="text/javascript" src="../Scripts/HijriCalender/jquery.calendars.picker.js"></script>
+    <script type="text/javascript" src="../Scripts/HijriCalender/jquery.calendars.plus.js"></script>
+    <script type="text/javascript" src="../Scripts/HijriCalender/jquery.calendars.islamic.js"></script>
+    <script type="text/javascript" src="../Scripts/HijriCalender/jquery.calendars.islamic-ar.js"></script>
+    <script type="text/javascript" src="../Scripts/HijriCalender/jquery.calendars.lang.js"></script>
+    <script type="text/javascript" src="../Scripts/HijriCalender/jquery.calendars.picker-ar.js"></script>
+    <script type="text/javascript">
+        var cropper = null;
+
+        var hijriSelected = false;
+        //var handleInputRender = function () {
+            
+        //    if (App.hijCal.value==true) {
+
+        //        jQuery(function () {
+
+        //            var calendar = jQuery.calendars.instance('Islamic', "ar");
+        //            jQuery('.showCal').calendarsPicker('destroy');
+                 
+
+                   
+        //                jQuery('.showCal').calendarsPicker({ calendar: calendar });
+                 
+        //        });
+        //    }
+        //    else {
+
+        //        jQuery(function () {
+
+        //            var calendar = jQuery.calendars.instance('Gregorian', document.getElementById("CurrentLang").value);
+        //            jQuery('.showCal').calendarsPicker('destroy');
+                   
+
+                   
+        //                jQuery('.showCal').calendarsPicker({ calendar: calendar });
+                 
+        //        });
+        //    }
+            
+        //}
+        function setInputState(hijri) {
+
+            
+            App.employeeControl1_hijCal.setValue(hijri); 
+                           App.employeeControl1_gregCalBirthDate.setHidden(hijri);
+                           App.employeeControl1_gregCalBirthDate.allowBlank = hijri;
+         
+
+
+                         
+                           App.employeeControl1_gregCal.setValue(!hijri);
+                           App.employeeControl1_hijCalBirthDate.setHidden(!hijri)
+                           App.employeeControl1_hijCalBirthDate.allowBlank = !hijri;
+            
+
+
+        }
+        </script>
+
 <script type="text/javascript">
 
     var editRender = function () {
@@ -745,10 +813,13 @@
                                 <ext:TextField ID="idRef" runat="server" AllowBlank="true" FieldLabel="<%$ Resources:FieldIdRef%>" Name="idRef" BlankText="<%$ Resources:Common, MandatoryField%>" />
                                 <ext:TextField ID="homeEmail" runat="server" FieldLabel="<%$ Resources:FieldHomeEmail%>" Name="homeMail" Vtype="email" BlankText="<%$ Resources:Common, MandatoryField%>" />
                                 <ext:TextField ID="workEmail" runat="server" FieldLabel="<%$ Resources:FieldWorkEmail%>" Name="workMail" Vtype="email" BlankText="<%$ Resources:Common, MandatoryField%>" />
+                                <ext:TextField ID="mobile" AllowBlank="true" MinLength="6" MaxLength="18" runat="server" FieldLabel="<%$ Resources:FieldMobile%>" Name="mobile" BlankText="<%$ Resources:Common, MandatoryField%>">
+                                    <Validator Handler="return !isNaN(this.value);" />
+                                </ext:TextField>
                                  <ext:RadioGroup ID="gender" AllowBlank="true" runat="server" GroupName="gender" FieldLabel="<%$ Resources:FieldGender%>">
                                     <Items>
-                                        <ext:Radio runat="server" ID="gender0" Name="gender" InputValue="0" BoxLabel="<%$ Resources:Common ,Male%>" />
-                                        <ext:Radio runat="server" ID="gender1" Name="gender" InputValue="1" BoxLabel="<%$ Resources:Common ,Female%>" />
+                                        <ext:Radio runat="server" ID="gender0" Name="gender" InputValue="1" BoxLabel="<%$ Resources:Common ,Male%>" />
+                                        <ext:Radio runat="server" ID="gender1" Name="gender" InputValue="2" BoxLabel="<%$ Resources:Common ,Female%>" />
                                     </Items>
                                 </ext:RadioGroup>
 
@@ -758,10 +829,41 @@
                         <ext:Panel runat="server" MarginSpec="0 0 0 0" ID="rightPanel">
                             <Items>
                                
-                                <ext:TextField ID="mobile" AllowBlank="true" MinLength="6" MaxLength="18" runat="server" FieldLabel="<%$ Resources:FieldMobile%>" Name="mobile" BlankText="<%$ Resources:Common, MandatoryField%>">
-                                    <Validator Handler="return !isNaN(this.value);" />
-                                </ext:TextField>
-                                <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  ID="religionCombo" runat="server" FieldLabel="<%$ Resources:FieldReligion%>" Name="religion" IDMode="Static" SubmitValue="true">
+                                
+                             
+                                    <ext:RadioGroup runat="server" ID="hijriCal" GroupName="bdHijriCal" FieldLabel="<%$ Resources:ChooseCalendarType %>"  >
+                                    <Items>
+                                        <ext:Radio ID="gregCal" Width="100" runat="server" Name="bdHijriCal" InputValue="false"  BoxLabel="<%$ Resources:Common, Gregorian %>" Checked="true" >
+                                       <%--     <Listeners>
+                                                <Change Handler="if(this.checked){InitGregorian();handleInputRender();}"  />
+                                            </Listeners>--%>
+                                        </ext:Radio>
+                                        <ext:Radio ID="hijCal" runat="server" Name="bdHijriCal" InputValue="true"  BoxLabel="<%$ Resources:Common, Hijri %>" >
+                                           <%--   <Listeners>
+                                                <Change Handler="if(this.checked){InitHijri();handleInputRender();}" />
+                                            </Listeners>--%>
+                                        </ext:Radio>
+                                    </Items>
+                                     <Listeners>
+                                         <Change Handler="setInputState(App.employeeControl1_hijCal.getValue());" />
+                                     </Listeners>
+                                </ext:RadioGroup>
+
+                               
+
+                                    <ext:DateField runat="server" ID="gregCalBirthDate"      Name="gregCalBirthDate"
+                                    FieldLabel="<%$ Resources:FieldDateOfBirth%>"
+                                    MsgTarget="Side"
+                                    AllowBlank="true" />
+                        
+                          
+                   
+                                          
+                           <ext:TextField ID="hijCalBirthDate"   Name="hijCalBirthDate"   FieldLabel="<%$ Resources:FieldDateOfBirth%>"  runat="server"   FieldCls="showCal">
+                                                                                <Listeners>
+                                                                              <Render Fn="handleInputRender" />
+                                                                                                                        </Listeners></ext:TextField>
+                                   <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  ID="religionCombo" runat="server" FieldLabel="<%$ Resources:FieldReligion%>" Name="religion" IDMode="Static" SubmitValue="true">
                                     <Items>
                                         <ext:ListItem Text="<%$ Resources:Common, Religion0%>" Value="0"></ext:ListItem>
                                         <ext:ListItem Text="<%$ Resources:Common, Religion1%>" Value="1"></ext:ListItem>
@@ -772,12 +874,7 @@
                                         <ext:ListItem Text="<%$ Resources:Common, Religion6%>" Value="6"></ext:ListItem>
                                     </Items>
                                 </ext:ComboBox>
-                                <ext:DateField
-                                    runat="server" ID="birthDate"
-                                    Name="birthDate"
-                                    FieldLabel="<%$ Resources:FieldDateOfBirth%>"
-                                    MsgTarget="Side"
-                                    AllowBlank="true" />
+                                                      
                                 <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" AllowBlank="true" DisplayField="name" ID="nationalityId" Name="nationalityId" FieldLabel="<%$ Resources:FieldNationality%>" SimpleSubmit="true">
                                     <Store>
                                         <ext:Store runat="server" ID="NationalityStore">
@@ -1042,6 +1139,8 @@
                                             <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="={#{EditRecordWindow}.body}" />
                                             <ExtraParams>
                                                 <ext:Parameter Name="id" Value="#{recordId}.getValue()" Mode="Raw" />
+                                                <ext:Parameter Name="hijCalBirthDate" Value="#{hijCalBirthDate}.getValue()" Mode="Raw" />
+                                                 <ext:Parameter Name="gregCalBirthDate" Value="#{gregCalBirthDate}.getValue()" Mode="Raw" />
                                                 <ext:Parameter Name="values" Value="#{BasicInfoTab}.getForm().getValues(false, false, false, true)" Mode="Raw" Encode="true" />
                                             </ExtraParams>
                                         </Click>

@@ -309,10 +309,10 @@
                                             runat="server"
                                             RemoteSort="False"
                                             RemoteFilter="true"
-                                            OnReadData="PayCode_ReadData"
+                                          
                                             PageSize="50" IDMode="Explicit" Namespace="App">
                                             <Proxy>
-                                                <ext:PageProxy>
+                                                <ext:PageProxy DirectFn="App.direct.PayCodeReadData">
                                                     <Listeners>
                                                         <Exception Handler="Ext.MessageBox.alert('#{textLoadFailed}.value', response.statusText);" />
                                                     </Listeners>
@@ -327,9 +327,10 @@
                                                         </Fields>
                                                     </ext:Model>
                                                 </Model>
-                                                
+                                             
                                                  </ext:Store>
                                            </Store>
+                                 
                                        </ext:ComboBox>
                                <%-- <ext:TextField ID="paycodeRef" runat="server" FieldLabel="<%$ Resources:paycodeRef%>" Name="paycodeRef"   AllowBlank="false"/>--%>
                                  <ext:Checkbox FieldLabel="<%$ Resources: isTaxable %>" runat="server" InputValue="True" Name="isTaxable" ID="isTaxable" />

@@ -17,8 +17,8 @@ namespace AionHR.Model.System
         public int alertId { get; set; }
 
 
-        [PropertyID("20090_03")]
-        public short sendTo { get; set; }
+        //[PropertyID("20090_03")]
+        //public short sendTo { get; set; }
         [PropertyID("20090_04")]
         public short days { get; set; }
         [PropertyID("20090_05")]

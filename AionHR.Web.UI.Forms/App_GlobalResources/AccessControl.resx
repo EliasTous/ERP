@@ -1371,4 +1371,16 @@
   <data name="Property6010503" xml:space="preserve">
     <value>Branch</value>
   </data>
+  <data name="Property6010601" xml:space="preserve">
+    <value>Addressed To</value>
+  </data>
+  <data name="Property6010603" xml:space="preserve">
+    <value>Reference</value>
+  </data>
+  <data name="Property6010604" xml:space="preserve">
+    <value>Notes</value>
+  </data>
+  <data name="Property6010605" xml:space="preserve">
+    <value>Body Text</value>
+  </data>
 </root>

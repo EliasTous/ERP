@@ -40,6 +40,10 @@ namespace AionHR.Model.Employees.Profile
         public DateTime pyActiveDate { set; get; }
 
         public int regBranchId { set; get; }
+        [PropertyID("31141_02")]
+        [ApplySecurity]
+        public short probationPeriod { set; get; }
+
 
 
 

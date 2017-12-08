@@ -1078,6 +1078,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Letter.
+        /// </summary>
+        internal static string Class60106 {
+            get {
+                return ResourceManager.GetString("Class60106", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Age Breakdown.
         /// </summary>
         internal static string Class80101 {

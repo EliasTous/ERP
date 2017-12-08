@@ -1362,4 +1362,19 @@
   <data name="Property6010503" xml:space="preserve">
     <value>قيمة الدفعة</value>
   </data>
+  <data name="Property6010601" xml:space="preserve">
+    <value>مرسل الى</value>
+  </data>
+  <data name="Property6010603" xml:space="preserve">
+    <value>الرمز</value>
+  </data>
+  <data name="Property6010604" xml:space="preserve">
+    <value>ملاحظات</value>
+  </data>
+  <data name="Property6010605" xml:space="preserve">
+    <value>نص الخطاب</value>
+  </data>
+  <data name="Property6010606" xml:space="preserve">
+    <value>الرمز</value>
+  </data>
 </root>

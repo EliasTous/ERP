@@ -260,8 +260,8 @@
                                         <ext:DateField runat="server" Name="birthDate" AllowBlank="true" ID="birthDate" FieldLabel="<%$ Resources:FieldBirthDate%>" />
                                         <ext:RadioGroup ID="gender" AllowBlank="true" runat="server" GroupName="gender"  FieldLabel="<%$ Resources:FieldGender%>">
                                             <Items>
-                                                <ext:Radio runat="server" ID="gender0" Name="gender" InputValue="0"  BoxLabel="<%$ Resources:Common ,Male%>" />
-                                                <ext:Radio runat="server" ID="gender1" Name="gender" InputValue="1" BoxLabel="<%$ Resources:Common ,Female%>" />
+                                                <ext:Radio runat="server" ID="gender0" Name="gender" InputValue="1"  BoxLabel="<%$ Resources:Common ,Male%>" />
+                                                <ext:Radio runat="server" ID="gender1" Name="gender" InputValue="2" BoxLabel="<%$ Resources:Common ,Female%>" />
                                             </Items>
                                         </ext:RadioGroup>
                                         <ext:TextField runat="server" Name="phoneNumber" AllowBlank="true" MaxLength="12" MinLength="6" ID="phoneNumber" FieldLabel="<%$ Resources:FieldPhoneNumber%>">

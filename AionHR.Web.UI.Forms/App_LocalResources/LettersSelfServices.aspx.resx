@@ -117,19 +117,52 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="All" xml:space="preserve">
-    <value>الكل</value>
+  <data name="addressedTo" xml:space="preserve">
+    <value>Addressed To</value>
   </data>
-  <data name="Female" xml:space="preserve">
-    <value>انثى</value>
+  <data name="BasicInfoTabEditWindowTitle" xml:space="preserve">
+    <value>Letter Info</value>
   </data>
-  <data name="FieldCountry" xml:space="preserve">
-    <value>المناطق</value>
+  <data name="bodyText" xml:space="preserve">
+    <value>Body Text</value>
   </data>
-  <data name="FieldSex" xml:space="preserve">
-    <value>الجنس</value>
+  <data name="companyUsage" xml:space="preserve">
+    <value>Company</value>
   </data>
-  <data name="Male" xml:space="preserve">
-    <value>ذكر </value>
+  <data name="date" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="EditWindowsTitle" xml:space="preserve">
+    <value>Edit Letter </value>
+  </data>
+  <data name="employeeUsage" xml:space="preserve">
+    <value>Employee</value>
+  </data>
+  <data name="FieldEmployeeFullName" xml:space="preserve">
+    <value>Employee</value>
+  </data>
+  <data name="FieldLanguageId" xml:space="preserve">
+    <value>Language</value>
+  </data>
+  <data name="FieldName" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="FieldRecordId" xml:space="preserve">
+    <value>Record ID</value>
+  </data>
+  <data name="Fieldusage" xml:space="preserve">
+    <value>Usage</value>
+  </data>
+  <data name="ltId" xml:space="preserve">
+    <value>Letter Template</value>
+  </data>
+  <data name="notes" xml:space="preserve">
+    <value>Notes</value>
+  </data>
+  <data name="reference" xml:space="preserve">
+    <value>Reference</value>
+  </data>
+  <data name="WindowTitle" xml:space="preserve">
+    <value>Letters</value>
   </data>
 </root>

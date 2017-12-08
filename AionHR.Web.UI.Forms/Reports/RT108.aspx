@@ -94,7 +94,16 @@
                                         <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
                                     </Listeners>
                                 </ext:ComboBox>
-                                <ext:Container runat="server" Layout="FitLayout">
+                                <ext:ComboBox  AnyMatch="true" CaseSensitive="false"  runat="server" ID="GenderCombo"  Editable="false" EmptyText="<%$ Resources: FieldGender %>" ForceSelection="true" Width="100">
+                                            <Items>
+                                                 <ext:ListItem Text="<%$ Resources: All %>" Value="0" />
+                                                <ext:ListItem Text="<%$ Resources: Male %>" Value="1" />
+                                                <ext:ListItem Text="<%$ Resources: Female %>" Value="2" />
+                                           
+                                            </Items>
+
+                                        </ext:ComboBox>
+                                             <ext:Container runat="server" Layout="FitLayout">
                                     <Content>
                                         
                                         <ext:Button runat="server" Text="<%$Resources:Common, Go %>"> 

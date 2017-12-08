@@ -3751,6 +3751,42 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Addressed To.
+        /// </summary>
+        internal static string Property6010601 {
+            get {
+                return ResourceManager.GetString("Property6010601", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reference.
+        /// </summary>
+        internal static string Property6010603 {
+            get {
+                return ResourceManager.GetString("Property6010603", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Notes.
+        /// </summary>
+        internal static string Property6010604 {
+            get {
+                return ResourceManager.GetString("Property6010604", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Body Text.
+        /// </summary>
+        internal static string Property6010605 {
+            get {
+                return ResourceManager.GetString("Property6010605", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Name.
         /// </summary>
         internal static string Property9010101 {

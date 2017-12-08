@@ -148,6 +148,15 @@ namespace AionHR.Web.UI.Forms.Reports {
         protected global::Ext.Net.Store NationalityStore;
         
         /// <summary>
+        /// GenderCombo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.ComboBox GenderCombo;
+        
+        /// <summary>
         /// ASPxCallbackPanel1 control.
         /// </summary>
         /// <remarks>

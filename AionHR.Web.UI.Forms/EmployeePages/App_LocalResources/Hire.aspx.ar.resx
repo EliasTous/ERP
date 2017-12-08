@@ -147,4 +147,7 @@
   <data name="FieldBranch" xml:space="preserve">
     <value>الفرع</value>
   </data>
+  <data name="FieldProbationPeriod" xml:space="preserve">
+    <value>فترة اختبار</value>
+  </data>
 </root>

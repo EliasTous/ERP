@@ -162,7 +162,9 @@
     <Compile Include="Access Control\SecurityGroup.cs" />
     <Compile Include="Access Control\SecurityGroupUser.cs" />
     <Compile Include="SelfService\ISelfServiceRepository.cs" />
+    <Compile Include="SelfService\LeaveDaySelfservice.cs" />
     <Compile Include="SelfService\leaveRequetsSelfservice.cs" />
+    <Compile Include="SelfService\LetterSelfservice.cs" />
     <Compile Include="SelfService\loanSelfService.cs" />
     <Compile Include="SelfService\MyInfo.cs" />
     <Compile Include="System\ApplyLetter.cs" />

@@ -372,4 +372,7 @@
   <data name="usedLeavesLeg" xml:space="preserve">
     <value>اجازات الفترة الحالية المستعملة :</value>
   </data>
+  <data name="ChooseCalendarType" xml:space="preserve">
+    <value>التقويم</value>
+  </data>
 </root>

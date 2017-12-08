@@ -80,7 +80,8 @@ namespace AionHR.Web.UI.Forms.Reports
                         return;
                     }
 
-                    FillCountry(); 
+                    FillCountry();
+                    GenderCombo.Select(0);
                     format.Text = _systemService.SessionHelper.GetDateformat().ToUpper();
                     ASPxWebDocumentViewer1.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.Utils.DefaultBoolean.True : DevExpress.Utils.DefaultBoolean.False;
                     FillReport(false);
@@ -193,6 +194,32 @@ namespace AionHR.Web.UI.Forms.Reports
                 x.lastLeaveReturnString = x.lastLeaveReturnDate.HasValue? x.lastLeaveReturnDate.Value.ToString(format, cul) :"";
                 x.termEndDateString = x.termEndDate.HasValue ? x.termEndDate.Value.ToString(format, cul) : "";
                 x.genderString = x.gender==0?GetGlobalResourceObject("Common","Male").ToString(): GetGlobalResourceObject("Common", "Female").ToString();
+              switch (x.religion)
+                {
+                   
+                    case 0 :x.religionString = GetGlobalResourceObject("Common", "Religion0").ToString();
+                        break;
+                    case 1:x.religionString = GetGlobalResourceObject("Common", "Religion1").ToString();
+                        break;
+                    case 2:
+                        x.religionString = GetGlobalResourceObject("Common", "Religion2").ToString();
+                        break;
+                    case 3:
+                        x.religionString = GetGlobalResourceObject("Common", "Religion3").ToString();
+                        break;
+                    case 4:
+                        x.religionString = GetGlobalResourceObject("Common", "Religion4").ToString();
+                        break;
+                    case 5:
+                        x.religionString = GetGlobalResourceObject("Common", "Religion5").ToString();
+                        break;
+                    case 6:
+                        x.religionString = GetGlobalResourceObject("Common", "Religion6").ToString();
+                        break;
+                    default: x.religionString = "";
+                        break; 
+
+                }
                 x.isInactiveString = x.isInactive?GetGlobalResourceObject("Common", "Inactive").ToString():GetGlobalResourceObject("Common", "Active").ToString();
             });
             y.DataSource = resp.Items;
@@ -223,8 +250,16 @@ namespace AionHR.Web.UI.Forms.Reports
             ASPxWebDocumentViewer1.DataBind();
             ASPxWebDocumentViewer1.OpenReport(y);
         }
+       private SexParameterSet GetSexFilter()
+        {
+            SexParameterSet s = new SexParameterSet();
+            s.gender = Convert.ToInt16(GenderCombo.SelectedItem.Value);
+            return s; 
+        }
         private ReportCompositeRequest GetRequest()
         {
+          
+
             ReportCompositeRequest request = new ReportCompositeRequest();
             request.Size = "1000";
             request.StartAt = "1";
@@ -233,7 +268,8 @@ namespace AionHR.Web.UI.Forms.Reports
             request.Add(activeControl.GetActiveStatus());
             request.Add(GetCountryInfo());
             request.Add(employeeFilter.GetEmployee());
-
+            request.Add(GetSexFilter()); 
+         
 
             return request;
 

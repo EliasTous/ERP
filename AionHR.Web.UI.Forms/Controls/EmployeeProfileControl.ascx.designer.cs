@@ -535,6 +535,15 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.TextField workEmail;
         
         /// <summary>
+        /// mobile control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.TextField mobile;
+        
+        /// <summary>
         /// gender control.
         /// </summary>
         /// <remarks>
@@ -571,13 +580,49 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Panel rightPanel;
         
         /// <summary>
-        /// mobile control.
+        /// hijriCal control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.TextField mobile;
+        protected global::Ext.Net.RadioGroup hijriCal;
+        
+        /// <summary>
+        /// gregCal control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Radio gregCal;
+        
+        /// <summary>
+        /// hijCal control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Radio hijCal;
+        
+        /// <summary>
+        /// gregCalBirthDate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.DateField gregCalBirthDate;
+        
+        /// <summary>
+        /// hijCalBirthDate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.TextField hijCalBirthDate;
         
         /// <summary>
         /// religionCombo control.
@@ -587,15 +632,6 @@ namespace AionHR.Web.UI.Forms {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.ComboBox religionCombo;
-        
-        /// <summary>
-        /// birthDate control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.DateField birthDate;
         
         /// <summary>
         /// nationalityId control.

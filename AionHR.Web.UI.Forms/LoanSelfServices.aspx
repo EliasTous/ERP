@@ -457,6 +457,7 @@
                                 </ext:ComboBox>
 
                                 <ext:TextField   ID="amount" AllowBlank="true" runat="server" FieldLabel="<%$ Resources:FieldAmount%>" Name="amount">
+                                   <Validator Handler="return !isNaN(this.value);" /> 
                                     <%-- <Listeners>
                                                 <Change Handler="document.getElementById('amount').value=this.getValue(); this.next().setValue(this.value);" />
                                             </Listeners>--%>

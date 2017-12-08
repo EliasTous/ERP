@@ -128,7 +128,7 @@
                                 <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldName %>" DataIndex="alertId" Hideable="false" Flex="1">
                                 <Renderer Handler=" return GetAlertName(record.data['alertId']); " />
                             </ext:Column>
-                            <ext:WidgetColumn ID="WidgetColumn1" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldSendTo %>" DataIndex="sendTo" Hideable="false" Width="150" Align="Center">
+                         <%--   <ext:WidgetColumn ID="WidgetColumn1" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldSendTo %>" DataIndex="sendTo" Hideable="false" Width="150" Align="Center">
                                 <Widget>
                                     <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" Editable="false" ID="to" >
                                         <Items>
@@ -143,7 +143,7 @@
 
                                 </Widget>
                                 
-                            </ext:WidgetColumn>
+                         </ext:WidgetColumn>--%>
                              <ext:WidgetColumn ID="WidgetColumn2" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDays %>" DataIndex="days" Hideable="false" Width="125" Align="Center">
                                 <Widget>
                                    

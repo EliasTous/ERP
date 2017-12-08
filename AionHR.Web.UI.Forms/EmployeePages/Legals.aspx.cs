@@ -158,8 +158,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             bool rtl = _systemService.SessionHelper.CheckIfArabicSession();
             if (rtl)
             {
-                this.ResourceManager1.RTL = true;
-                this.Viewport11.RTL = true;
+               
                 CurrentLang.Text = "ar";
             }
             else

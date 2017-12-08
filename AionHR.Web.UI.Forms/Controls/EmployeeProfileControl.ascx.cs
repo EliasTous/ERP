@@ -63,6 +63,19 @@ namespace AionHR.Web.UI.Forms
 
         public void Add()
         {
+            if (!_systemService.SessionHelper.GetHijriSupport())
+            {
+                hijriCal.Hidden = true;
+                SetHijriInputState(false);
+                //gregCal.Checked = true;
+            }
+            else
+            {
+                hijriCal.Hidden = false;
+                SetHijriInputState(true);
+                //hijCalBirthDate.Hidden = true;
+                //gregCal.Checked = true;
+            }
             SaveButton.Disabled = false;
             BasicInfoTab.Reset();
             panelRecordDetails.ActiveIndex = 0;
@@ -78,13 +91,21 @@ namespace AionHR.Web.UI.Forms
         }
         public void Update(string id)
         {
+            if (!_systemService.SessionHelper.GetHijriSupport())
+            {
+                hijriCal.Hidden = true;
+                SetHijriInputState(false);
+
+            }
+            else
+                hijriCal.Hidden = false;
             imgControl.Src = "Images\\empPhoto.jpg";
             //Step 1 : get the object from the Web Service 
             FillProfileInfo(id.ToString());
             CurrentEmployee.Text = id.ToString();
             FillLeftPanel();
            
-            hireDate.ReadOnly = true;
+            hireDate.ReadOnly = false;
 
             //employeePanel.Loader.Url = "EmployeePages/EmployeeProfile.aspx?employeeId="+CurrentEmployee.Text;
             //employeePanel.Loader.LoadContent();
@@ -103,14 +124,14 @@ namespace AionHR.Web.UI.Forms
 
             if (!X.IsAjaxRequest && !IsPostBack)
             {
-
                 //SetExtLanguage();
+             
                 HideShowButtons();
                 //HideShowColumns();
 
                 CurrentClassId.Text = ClassId.EPEM.ToString();
 
-                date.Format= birthDate.Format = hireDate.Format = _systemService.SessionHelper.GetDateformat();
+                date.Format= /*birthDate.Format =*/ hireDate.Format = _systemService.SessionHelper.GetDateformat();
 
 
                 pRTL.Text = _systemService.SessionHelper.CheckIfArabicSession().ToString();
@@ -184,7 +205,7 @@ namespace AionHR.Web.UI.Forms
         /// hiding uncessary column in the grid. 
         /// </summary>
 
-
+    
 
         //private void SetExtLanguage()
         //{
@@ -553,6 +574,8 @@ namespace AionHR.Web.UI.Forms
             //Getting the id to check if it is an Add or an edit as they are managed within the same form.
             //string id = e.ExtraParams["id"];
             string id = CurrentEmployee.Text;
+            //string hijCalBirthDate = e.ExtraParams["hijCalBirthDate"];
+            //string gregCalBirthDate = e.ExtraParams["gregCalBirthDate"];
             string obj = e.ExtraParams["values"];
             JsonSerializerSettings settings = new JsonSerializerSettings();
             settings.NullValueHandling = NullValueHandling.Ignore;
@@ -570,181 +593,235 @@ namespace AionHR.Web.UI.Forms
             if (divisionId.SelectedItem != null)
                 b.divisionName = divisionId.SelectedItem.Text;
             b.name.fullName = b.name.firstName + " " + b.name.middleName + " " + b.name.lastName + " ";
-            if (b.birthDate.HasValue)
-                b.birthDate = new DateTime(b.birthDate.Value.Year, b.birthDate.Value.Month, b.birthDate.Value.Day, 14, 0, 0);
-            b.hireDate = new DateTime(b.hireDate.Value.Year, b.hireDate.Value.Month, b.hireDate.Value.Day, 14, 0, 0);
+            //if (b.birthDate.HasValue)
+            //    b.birthDate = new DateTime(b.birthDate.Value.Year, b.birthDate.Value.Month, b.birthDate.Value.Day, 14, 0, 0);
+            bool hijriSupported = _systemService.SessionHelper.GetHijriSupport();
+            // Define the object to add or edit as null
 
-            if (string.IsNullOrEmpty(id))
+
+            try
             {
-
-                try
+                CultureInfo c = new CultureInfo("en");
+                string format = "";
+                if (hijriSupported)
                 {
-                    //New Mode
-                    //Step 1 : Fill The object and insert in the store 
-                    PostRequest<Employee> request = new PostRequest<Employee>();
-
-                    byte[] fileData = null;
-                    if (FileUploadField1.PostedFile != null && FileUploadField1.PostedFile.ContentLength > 0)
+                    if (b.bdHijriCal)
                     {
-                        //using (var binaryReader = new BinaryReader(picturePath.PostedFile.InputStream))
-                        //{
-                        //    fileData = binaryReader.ReadBytes(picturePath.PostedFile.ContentLength);
-                        //}
-                        fileData = new byte[FileUploadField1.PostedFile.ContentLength];
-                        fileData = FileUploadField1.FileBytes;
+                        c = new CultureInfo("ar");
+                        format = "yyyy/MM/dd";
 
-
+                        if (!string.IsNullOrEmpty(hijCalBirthDate.Text))
+                            b.birthDate = DateTime.ParseExact(b.hijCalBirthDate, format, c);
+                        else
+                            b.birthDate = null;
                     }
-
-                    request.entity = b;
-
-
-
-                    PostResponse<Employee> r = _employeeService.AddOrUpdate<Employee>(request);
-                    b.recordId = r.recordId;
-
-                    //check if the insert failed
-                    if (!r.Success)//it maybe be another condition
-                    {
-                        //Show an error saving...
-                        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                        X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() + "<br>Technical Error: "+r.ErrorCode + "<br> Summary: "+r.Summary : r.Summary).Show();
-                        return;
-                    }
-
                     else
                     {
-                        if (fileData != null)
+                        if (gregCalBirthDate.SelectedDate != null)
+                            b.birthDate = gregCalBirthDate.SelectedDate;
+                    }
+                }
+                else
+                {
+                    if (gregCalBirthDate.SelectedDate != null)
+                        b.birthDate = gregCalBirthDate.SelectedDate; 
+                }
+
+                }
+            catch (Exception exp)
+            {
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, GetLocalResourceObject("DateFormatError")).Show();
+
+                return;
+            }
+            //    if (b.bdHijriCal)
+            //{
+            //    b.birthDate = b.hijCalBirthDate;
+            //    b.hijCalBirthDate = null;
+            //    b.gregCalBirthDate = null;
+            //}
+
+            //else
+            //{
+            //    b.birthDate = b.gregCalBirthDate.ToString();
+            //    b.hijCalBirthDate = null;
+            //    b.gregCalBirthDate = null;
+            //}
+
+            //b.hireDate = new DateTime(b.hireDate.Value.Year, b.hireDate.Value.Month, b.hireDate.Value.Day, 14, 0, 0);
+
+                if (string.IsNullOrEmpty(id))
+                {
+
+                    try
+                    {
+                        //New Mode
+                        //Step 1 : Fill The object and insert in the store 
+                        PostRequest<Employee> request = new PostRequest<Employee>();
+
+                        byte[] fileData = null;
+                        if (FileUploadField1.PostedFile != null && FileUploadField1.PostedFile.ContentLength > 0)
                         {
-                            X.Call("GetCroppedImage");
-                            //SystemAttachmentsPostRequest reqAT = new SystemAttachmentsPostRequest();
-                            //reqAT.entity = new Model.System.Attachement() { date = DateTime.Now, classId = ClassId.EPEM, recordId = Convert.ToInt32(b.recordId), fileName = FileUploadField1.PostedFile.FileName, seqNo = null };
-                            //reqAT.FileNames.Add(FileUploadField1.PostedFile.FileName);
-                            //reqAT.FilesData.Add(fileData);
-                            //PostResponse<Attachement> resp = _systemService.UploadMultipleAttachments(reqAT);
-                            //if (!resp.Success)//it maybe be another condition
+                            //using (var binaryReader = new BinaryReader(picturePath.PostedFile.InputStream))
                             //{
-                            //    //Show an error saving...
-                            //    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                            //    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() + "<br>Technical Error: "+r.ErrorCode + "<br> Summary: "+r.Summary : r.Summary).Show();
-                            //    return;
+                            //    fileData = binaryReader.ReadBytes(picturePath.PostedFile.ContentLength);
                             //}
+                            fileData = new byte[FileUploadField1.PostedFile.ContentLength];
+                            fileData = FileUploadField1.FileBytes;
+
+
                         }
-                        RecordRequest req = new RecordRequest();
-                        req.RecordID = b.recordId.ToString();
-                        RecordResponse<Employee> response = _employeeService.Get<Employee>(req);
-                        if (response.Success)
+
+                        request.entity = b;
+
+
+
+                        PostResponse<Employee> r = _employeeService.AddOrUpdate<Employee>(request);
+                        b.recordId = r.recordId;
+
+                        //check if the insert failed
+                        if (!r.Success)//it maybe be another condition
                         {
-                            b.pictureUrl = response.result.pictureUrl + "?x=" + DateTime.Now;
-                            b.name = response.result.name;
+                            //Show an error saving...
+                            X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                            X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() + "<br>Technical Error: " + r.ErrorCode + "<br> Summary: " + r.Summary : r.Summary).Show();
+                            return;
                         }
-                        //Add this record to the store 
-                        this.Store1.Insert(0, b);
 
-
-                        CurrentEmployee.Text = req.RecordID.ToString();
-                        FillLeftPanel();
-
-                        FillLeftPanel();
-                        InitCombos(false);
-                        FillProfileInfo(b.recordId);
-                        recordId.Text = b.recordId;
-                        //RowSelectionModel sm = this.GridPanel1.GetSelectionModel() as RowSelectionModel;
-                        //sm.DeselectAll();
-                        //sm.Select(b.recordId.ToString());
-
-                        //Display successful notification
-                        Notification.Show(new NotificationConfig
+                        else
                         {
-                            Title = Resources.Common.Notification,
-                            Icon = Icon.Information,
-                            Html = Resources.Common.RecordSavingSucc
-                        });
+                            if (fileData != null)
+                            {
+                                X.Call("GetCroppedImage");
+                                //SystemAttachmentsPostRequest reqAT = new SystemAttachmentsPostRequest();
+                                //reqAT.entity = new Model.System.Attachement() { date = DateTime.Now, classId = ClassId.EPEM, recordId = Convert.ToInt32(b.recordId), fileName = FileUploadField1.PostedFile.FileName, seqNo = null };
+                                //reqAT.FileNames.Add(FileUploadField1.PostedFile.FileName);
+                                //reqAT.FilesData.Add(fileData);
+                                //PostResponse<Attachement> resp = _systemService.UploadMultipleAttachments(reqAT);
+                                //if (!resp.Success)//it maybe be another condition
+                                //{
+                                //    //Show an error saving...
+                                //    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                                //    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() + "<br>Technical Error: "+r.ErrorCode + "<br> Summary: "+r.Summary : r.Summary).Show();
+                                //    return;
+                                //}
+                            }
+                            RecordRequest req = new RecordRequest();
+                            req.RecordID = b.recordId.ToString();
+                            RecordResponse<Employee> response = _employeeService.Get<Employee>(req);
+                            if (response.Success)
+                            {
+                                b.pictureUrl = response.result.pictureUrl + "?x=" + DateTime.Now;
+                                b.name = response.result.name;
+                            }
+                            //Add this record to the store 
+                            this.Store1.Insert(0, b);
 
+
+                            CurrentEmployee.Text = req.RecordID.ToString();
+                            FillLeftPanel();
+
+                            FillLeftPanel();
+                            InitCombos(false);
+                            FillProfileInfo(b.recordId);
+                            recordId.Text = b.recordId;
+                            //RowSelectionModel sm = this.GridPanel1.GetSelectionModel() as RowSelectionModel;
+                            //sm.DeselectAll();
+                            //sm.Select(b.recordId.ToString());
+
+                            //Display successful notification
+                            Notification.Show(new NotificationConfig
+                            {
+                                Title = Resources.Common.Notification,
+                                Icon = Icon.Information,
+                                Html = Resources.Common.RecordSavingSucc
+                            });
+
+                        }
                     }
-                }
-                catch (Exception ex)
-                {
-                    //Error exception displaying a messsage box
-                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorSavingRecord).Show();
-                }
-
-
-            }
-            else
-            {
-                //Update Mode
-
-                try
-                {
-                    int index = Convert.ToInt32(id);//getting the id of the record
-                    PostRequest<Employee> request = new PostRequest<Employee>();
-
-
-
-                    request.entity = b;
-
-
-
-                    PostResponse<Employee> r = _employeeService.AddOrUpdate<Employee>(request);
-
-                    //Step 2 : saving to store
-
-                    //Step 3 :  Check if request fails
-                    if (!r.Success)//it maybe another check
+                    catch (Exception ex)
                     {
-                        string message = GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() + "<br>Technical Error: "+r.ErrorCode + "<br> Summary: "+r.Summary : r.Summary;
+                        //Error exception displaying a messsage box
                         X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                        X.Msg.Alert(Resources.Common.Error, message).Show();
-                        return;
+                        X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorSavingRecord).Show();
                     }
-                    else
-                    {
 
-                        RecordRequest req = new RecordRequest();
-                        req.RecordID = b.recordId.ToString();
-                        RecordResponse<Employee> response = _employeeService.Get<Employee>(req);
-
-                        if (response.Success)
-                        {
-                            b.pictureUrl = response.result.pictureUrl + "?x=" + DateTime.Now;
-                            b.name = response.result.name;
-                        }
-                        Employee n = response.result;
-                        ModelProxy record = this.Store1.GetById(index);
-                        BasicInfoTab.UpdateRecord(record);
-                        record.Set("branchName", n.branchName);
-                        record.Set("departmentName", n.departmentName);
-                        record.Set("positionName", n.positionName);
-                        record.Set("divisionName", n.divisionName);
-                        record.Set("name", n.name);
-                        record.Set("reference", n.reference);
-                        record.Set("pictureUrl", n.pictureUrl);
-
-                        //record.Commit();
-                        Notification.Show(new NotificationConfig
-                        {
-                            Title = Resources.Common.Notification,
-                            Icon = Icon.Information,
-                            Html = Resources.Common.RecordUpdatedSucc
-                            ,
-                            CloseVisible = true
-                        });
-
-                        this.EditRecordWindow.Close();
-
-                    }
 
                 }
-                catch (Exception ex)
+                else
                 {
-                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorUpdatingRecord).Show();
+                    //Update Mode
+
+                    try
+                    {
+                        int index = Convert.ToInt32(id);//getting the id of the record
+                        PostRequest<Employee> request = new PostRequest<Employee>();
+
+
+
+                        request.entity = b;
+
+
+
+                        PostResponse<Employee> r = _employeeService.AddOrUpdate<Employee>(request);
+
+                        //Step 2 : saving to store
+
+                        //Step 3 :  Check if request fails
+                        if (!r.Success)//it maybe another check
+                        {
+                            string message = GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() + "<br>Technical Error: " + r.ErrorCode + "<br> Summary: " + r.Summary : r.Summary;
+                            X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                            X.Msg.Alert(Resources.Common.Error, message).Show();
+                            return;
+                        }
+                        else
+                        {
+
+                            RecordRequest req = new RecordRequest();
+                            req.RecordID = b.recordId.ToString();
+                            RecordResponse<Employee> response = _employeeService.Get<Employee>(req);
+
+                            if (response.Success)
+                            {
+                                b.pictureUrl = response.result.pictureUrl + "?x=" + DateTime.Now;
+                                b.name = response.result.name;
+                            }
+                            Employee n = response.result;
+                            ModelProxy record = this.Store1.GetById(index);
+                            BasicInfoTab.UpdateRecord(record);
+                            record.Set("branchName", n.branchName);
+                            record.Set("departmentName", n.departmentName);
+                            record.Set("positionName", n.positionName);
+                            record.Set("divisionName", n.divisionName);
+                            record.Set("name", n.name);
+                            record.Set("reference", n.reference);
+                            record.Set("pictureUrl", n.pictureUrl);
+
+                            //record.Commit();
+                            Notification.Show(new NotificationConfig
+                            {
+                                Title = Resources.Common.Notification,
+                                Icon = Icon.Information,
+                                Html = Resources.Common.RecordUpdatedSucc
+                                ,
+                                CloseVisible = true
+                            });
+
+                            this.EditRecordWindow.Close();
+
+                        }
+
+                    }
+                    catch (Exception ex)
+                    {
+                        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                        X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorUpdatingRecord).Show();
+                    }
                 }
             }
-        }
-
+            
 
         protected void SaveTermination(object sender, DirectEventArgs e)
         {
@@ -817,6 +894,45 @@ namespace AionHR.Web.UI.Forms
             }
             //Step 2 : call setvalues with the retrieved object
             this.BasicInfoTab.SetValues(response.result);
+
+
+
+            if (_systemService.SessionHelper.GetHijriSupport())
+            {
+                
+                if (response.result.bdHijriCal)
+                {
+                    SetHijriInputState(true);
+                    hijCal.Checked = true;
+
+                    hijCalBirthDate.Text = response.result.birthDate.HasValue ? response.result.birthDate.Value.ToString("yyyy/MM/dd", new CultureInfo("ar")) : "";
+                    X.Call("handleInputRender");
+
+                }
+            
+               
+            }
+            if (!response.result.bdHijriCal)
+            {
+                SetHijriInputState(false);
+                gregCal.Checked = true;
+                gregCalBirthDate.Value = response.result.birthDate.HasValue ? response.result.birthDate : new DateTime();
+            }
+
+
+
+            //if (response.result.bdHijriCal)
+            // {
+            //     hijCal.Checked = true;
+            //     hijCalBirthDate.Text = response.result.birthDate;
+            // }
+            //else
+            // {
+            //     gregCal.Checked = true;
+            //     if (!string.IsNullOrEmpty(response.result.birthDate)) ;
+            //     //gregCalBirthDate.Value = DateTime.ParseExact(response.result.birthDate, "yyyyMMdd", new CultureInfo("en"));
+            // }
+
             FillNameFields(response.result.name);
 
             InitCombos(false);
@@ -1482,6 +1598,12 @@ namespace AionHR.Web.UI.Forms
                     e.Success = true;
                 }
             }
+        }
+        private void SetHijriInputState(bool hijriSupported)
+        {
+            X.Call("setInputState", hijriSupported);
+
+
         }
     }
 }

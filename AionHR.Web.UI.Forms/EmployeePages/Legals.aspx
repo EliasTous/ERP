@@ -37,7 +37,7 @@
         var cropper = null;
 
         var hijriSelected = false;
-        var handleInputRender = function () {
+         function handleInputRender() {
             
             if (App.hijCal.value==true) {
 
@@ -560,7 +560,7 @@
                                         </ext:Radio>
                                     </Items>
                                      <Listeners>
-                                         <Change Handler="handleInputRender()" />
+                                         <Change Handler="handleInputRender();" />
                                      </Listeners>
                                 </ext:RadioGroup>
                                 <ext:TextField ID="rwIssueDateMulti" Width="250" runat="server" Margin="5" FieldLabel="<%$ Resources:FieldRWIssueDate%>" FieldCls="showCal">

@@ -26,6 +26,7 @@
         <ext:Hidden ID="CurrentEmployee" runat="server" />
         <ext:Hidden ID="EmployeeTerminated" runat="server" />
         <ext:Hidden ID="CurrentEmployeeName" runat="server" />
+          
         <ext:Viewport ID="Viewport11" runat="server" Layout="VBoxLayout" Padding="10">
             <LayoutConfig>
                 <ext:VBoxLayoutConfig Align="Stretch" />
@@ -68,6 +69,16 @@
                                 <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
                             </Listeners>
                         </ext:ComboBox>
+                            <ext:NumberField runat="server" AllowBlank="true" ID="probationPeriod" Name="probationPeriod" LabelWidth="200" FieldLabel="<%$ Resources:FieldProbationPeriod  %>" MinValue="0">
+                                <Listeners>
+                                   <%-- <Change Handler= "App.probationEndDate.setValue(Ext.Date.add(App.probationEndDate.value, Ext.Date.Day, + App.probationPeriod.value));"></Change>--%>
+                                    <Change Handler =" App.probationEndDate.setValue(Ext.Date.add(App.probationEndDateHidden.value, Ext.Date.DAY,App.probationPeriod.value ));"></Change>
+                                </Listeners>
+                               <%-- <DirectEvents>
+                                    <Change OnEvent="Unnamed_Event"></Change>
+                                </DirectEvents>--%>
+                            </ext:NumberField>
+                                <ext:DateField runat="server"  ID="probationEndDateHidden" Hidden="true"></ext:DateField>
                         <ext:DateField runat="server" AllowBlank="false" ID="probationEndDate" Name="probationEndDate" LabelWidth="200" FieldLabel="<%$ Resources:FieldProbationEndDate %>"></ext:DateField>
                         <ext:DateField runat="server" AllowBlank="false" ID="nextReviewDate" Name="nextReviewDate"  LabelWidth="200" FieldLabel="<%$ Resources:FieldNextReviewDate %>"></ext:DateField>
                         

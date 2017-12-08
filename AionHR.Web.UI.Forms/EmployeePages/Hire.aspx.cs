@@ -87,6 +87,13 @@ namespace AionHR.Web.UI.Forms.EmployeePages
 
                 saveButton.Disabled = disabled;
 
+                RecordRequest r = new RecordRequest();
+                r.RecordID = Request.QueryString["employeeId"];
+                RecordResponse<Employee> response = _employeeService.Get<Employee>(r);
+
+                probationEndDateHidden.Value = response.result.hireDate;
+                probationEndDate.MinDate =Convert.ToDateTime( response.result.hireDate);
+
                 try
                 {
                     AccessControlApplier.ApplyAccessControlOnPage(typeof(HireInfo), actualPanel, null, null, saveButton);
@@ -253,6 +260,11 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             branchStore.DataSource = resp.Items;
             branchStore.DataBind();
         }
+        [DirectMethod]
+        protected void Unnamed_Event()
+        {
+           
 
+        }
     }
 }

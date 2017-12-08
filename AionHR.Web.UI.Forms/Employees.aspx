@@ -12,9 +12,10 @@
     <link rel="stylesheet" type="text/css" href="CSS/Common.css?id=11" />
 
     <link rel="stylesheet" type="text/css" href="CSS/Employees.css?id=16" />
-    <link rel="stylesheet" href="CSS/LiveSearch.css" />
-    <script src="Scripts/jquery-new.js"></script>
-    <link rel="stylesheet" type="text/css" href="CSS/cropper.css">
+    <link rel="stylesheet" type="text/css" href="CSS/LiveSearch.css" />
+    <link  rel="stylesheet" type="text/css" href="CSS/cropper.css" />
+    <script type="text/javascript"  src="Scripts/jquery-new.js"></script>
+   
 
     <script type="text/javascript" src="Scripts/cropper.js"></script>
 
@@ -40,7 +41,19 @@
         }
     </script>
 
+       <link rel="stylesheet" href="../Scripts/HijriCalender/redmond.calendars.picker.css" />
 
+    <script src="../Scripts/HijriCalender/jquery.plugin.js" type="text/javascript"></script>
+
+    <script type="text/javascript" src="../Scripts/HijriCalender/jquery.calendars.js"></script>
+    <script type="text/javascript" src="../Scripts/HijriCalender/jquery.calendars-ar.js"></script>
+    <script type="text/javascript" src="../Scripts/HijriCalender/jquery.calendars.picker.js"></script>
+    <script type="text/javascript" src="../Scripts/HijriCalender/jquery.calendars.plus.js"></script>
+    <script type="text/javascript" src="../Scripts/HijriCalender/jquery.calendars.islamic.js"></script>
+    <script type="text/javascript" src="../Scripts/HijriCalender/jquery.calendars.islamic-ar.js"></script>
+    <script type="text/javascript" src="../Scripts/HijriCalender/jquery.calendars.lang.js"></script>
+    <script type="text/javascript" src="../Scripts/HijriCalender/jquery.calendars.picker-ar.js"></script>
+    
 </head>
 <body style="background: url(Images/bg.png) repeat;">
     <form id="Form1" runat="server">

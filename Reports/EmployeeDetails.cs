@@ -387,6 +387,7 @@ public class EmployeeDetails : DevExpress.XtraReports.UI.XtraReport
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "religionString")});
             resources.ApplyResources(this.xrTableCell21, "xrTableCell21");
             this.xrTableCell21.Name = "xrTableCell21";
+            this.xrTableCell21.BeforePrint += new System.Drawing.Printing.PrintEventHandler(this.xrTableCell21_BeforePrint);
             // 
             // xrTableCell18
             // 
@@ -1022,5 +1023,10 @@ public class EmployeeDetails : DevExpress.XtraReports.UI.XtraReport
     private void xrTableCell11_BeforePrint(object sender, System.Drawing.Printing.PrintEventArgs e)
     {
         (sender as XRLabel).Text = (CurrentRowIndex+1).ToString();
+    }
+
+    private void xrTableCell21_BeforePrint(object sender, System.Drawing.Printing.PrintEventArgs e)
+    {
+
     }
 }

@@ -265,6 +265,7 @@
     <Content Include="LeaveRequestsSelfServices.aspx" />
     <Content Include="LeaveTypes.aspx" />
     <Content Include="Letters.aspx" />
+    <Content Include="LettersSelfServices.aspx" />
     <Content Include="LetterTemplates.aspx" />
     <Content Include="LoanOverrides.aspx" />
     <Content Include="LoanRequests.aspx" />
@@ -359,6 +360,7 @@
     <Content Include="Scripts\CompanyFiles.js" />
     <Content Include="Scripts\CompanyNews.js" />
     <Content Include="Scripts\Contacts.js" />
+    <Content Include="Scripts\cropper.js" />
     <Content Include="Scripts\FinalSettlements.js" />
     <Content Include="Scripts\HighCharts.js" />
     <Content Include="Scripts\jquery-ui-min.js" />
@@ -644,6 +646,13 @@
     </Compile>
     <Compile Include="Letters.aspx.designer.cs">
       <DependentUpon>Letters.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LettersSelfServices.aspx.cs">
+      <DependentUpon>LettersSelfServices.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LettersSelfServices.aspx.designer.cs">
+      <DependentUpon>LettersSelfServices.aspx</DependentUpon>
     </Compile>
     <Compile Include="LetterTemplates.aspx.cs">
       <DependentUpon>LetterTemplates.aspx</DependentUpon>
@@ -2126,6 +2135,8 @@
     <Content Include="App_LocalResources\leaveRequestsSelfServices.aspx.ar.resx" />
     <Content Include="App_LocalResources\LoanSelfServices.aspx.resx" />
     <Content Include="App_LocalResources\LoanSelfServices.aspx.ar.resx" />
+    <Content Include="App_LocalResources\LettersSelfServices.aspx.ar.resx" />
+    <Content Include="App_LocalResources\LettersSelfServices.aspx.resx" />
     <EmbeddedResource Include="Reports\RT201.aspx.resx">
       <DependentUpon>RT201.aspx.cs</DependentUpon>
       <Generator>ResXFileCodeGenerator</Generator>

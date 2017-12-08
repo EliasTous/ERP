@@ -23,13 +23,15 @@ using AionHR.Model.Company.Structure;
 using AionHR.Model.System;
 using AionHR.Model.Employees.Profile;
 using AionHR.Services.Messaging.System;
+using AionHR.Model.SelfService;
 
 namespace AionHR.Web.UI.Forms
 {
-    public partial class Letters : System.Web.UI.Page
+    public partial class LettersSelfServices : System.Web.UI.Page
     {
         ISystemService _systemService = ServiceLocator.Current.GetInstance<ISystemService>();
         IEmployeeService _employeeService = ServiceLocator.Current.GetInstance<IEmployeeService>();
+        ISelfServiceService _selfServiceService = ServiceLocator.Current.GetInstance<ISelfServiceService>();
         protected override void InitializeCulture()
         {
 
@@ -62,7 +64,7 @@ namespace AionHR.Web.UI.Forms
                 date.Format = _systemService.SessionHelper.GetDateformat();
                 try
                 {
-                    AccessControlApplier.ApplyAccessControlOnPage(typeof(LetterTemplate), BasicInfoTab, GridPanel1, btnAdd, SaveButton);
+                    AccessControlApplier.ApplyAccessControlOnPage(typeof(LetterSelfservice), BasicInfoTab, GridPanel1, btnAdd, SaveButton);
                 }
                 catch (AccessDeniedException exp)
                 {
@@ -133,12 +135,12 @@ namespace AionHR.Web.UI.Forms
                     if (!response.Success)
                     {
                         X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                        X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).   ToString() + "<br>Technical Error: " + response.ErrorCode + "<br> Summary: " + response.Summary : response.Summary).Show();
+                        X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).ToString() + "<br>Technical Error: " + response.ErrorCode + "<br> Summary: " + response.Summary : response.Summary).Show();
                         return;
                     }
                     //Step 2 : call setvalues with the retrieved object
-                   
-                   
+
+
                     this.BasicInfoTab.SetValues(response.result);
                     //ltId.Select(response.result.ltId);
 
@@ -188,7 +190,7 @@ namespace AionHR.Web.UI.Forms
                 //Step 1 Code to delete the object from the database 
                 Letter n = new Letter();
                 n.recordId = index;
-            
+
                 PostRequest<Letter> req = new PostRequest<Letter>();
                 req.entity = n;
                 PostResponse<Letter> res = _systemService.ChildDelete<Letter>(req);
@@ -307,7 +309,7 @@ namespace AionHR.Web.UI.Forms
 
             //Reset all values of the relative object
             BasicInfoTab.Reset();
-            dateTF.Value = DateTime.Now; 
+            dateTF.Value = DateTime.Now;
             this.EditRecordWindow.Title = Resources.Common.AddNewRecord;
 
 
@@ -329,7 +331,7 @@ namespace AionHR.Web.UI.Forms
             ListRequest request = new ListRequest();
 
             request.Filter = "";
-            ListResponse<Letter> nationalities = _systemService.ChildGetAll<Letter>(request);
+            ListResponse<Letter> nationalities = _selfServiceService.ChildGetAll<Letter>(request);
             if (!nationalities.Success)
             {
                 X.Msg.Alert(Resources.Common.Error, nationalities.Summary).Show(); ;
@@ -352,7 +354,7 @@ namespace AionHR.Web.UI.Forms
             string id = e.ExtraParams["id"];
 
             string obj = e.ExtraParams["values"];
-            Letter b = JsonConvert.DeserializeObject<Letter>(obj);
+            LetterSelfservice b = JsonConvert.DeserializeObject<LetterSelfservice>(obj);
 
             b.recordId = id;
             // Define the object to add or edit as null
@@ -364,9 +366,9 @@ namespace AionHR.Web.UI.Forms
                 {
                     //New Mode
                     //Step 1 : Fill The object and insert in the store 
-                    PostRequest<Letter> request = new PostRequest<Letter>();
+                    PostRequest<LetterSelfservice> request = new PostRequest<LetterSelfservice>();
                     request.entity = b;
-                    PostResponse<Letter> r = _systemService.ChildAddOrUpdate<Letter>(request);
+                    PostResponse<LetterSelfservice> r = _selfServiceService.ChildAddOrUpdate<LetterSelfservice>(request);
                     b.recordId = r.recordId;
 
                     //check if the insert failed
@@ -374,14 +376,14 @@ namespace AionHR.Web.UI.Forms
                     {
                         //Show an error saving...
                         X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                        X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() + "<br>Technical Error: "+r.ErrorCode + "<br> Summary: "+r.Summary : r.Summary).Show();
+                        X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() + "<br>Technical Error: " + r.ErrorCode + "<br> Summary: " + r.Summary : r.Summary).Show();
                         return;
                     }
                     else
                     {
 
                         //Add this record to the store 
-                        Store1.Reload();
+                        this.Store1.Insert(0, b);
 
                         //Display successful notification
                         Notification.Show(new NotificationConfig
@@ -416,9 +418,9 @@ namespace AionHR.Web.UI.Forms
                 try
                 {
                     int index = Convert.ToInt32(id);//getting the id of the record
-                    PostRequest<Letter> request = new PostRequest<Letter>();
+                    PostRequest<LetterSelfservice> request = new PostRequest<LetterSelfservice>();
                     request.entity = b;
-                    PostResponse<Letter> r = _systemService.ChildAddOrUpdate<Letter>(request);                      //Step 1 Selecting the object or building up the object for update purpose
+                    PostResponse<LetterSelfservice> r = _systemService.ChildAddOrUpdate<LetterSelfservice>(request);                      //Step 1 Selecting the object or building up the object for update purpose
 
                     //Step 2 : saving to store
 
@@ -441,8 +443,8 @@ namespace AionHR.Web.UI.Forms
                             Title = Resources.Common.Notification,
                             Icon = Icon.Information,
                             Html = Resources.Common.RecordUpdatedSucc
-                          
-                            
+
+
                         });
                         this.EditRecordWindow.Close();
 
@@ -512,7 +514,7 @@ namespace AionHR.Web.UI.Forms
 
             ListResponse<Employee> response = _employeeService.GetAll<Employee>(req);
             if (!response.Success)
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).   ToString() + "<br>Technical Error: " + response.ErrorCode + "<br> Summary: " + response.Summary : response.Summary).Show();
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).ToString() + "<br>Technical Error: " + response.ErrorCode + "<br> Summary: " + response.Summary : response.Summary).Show();
             return response.Items;
         }
         public void SetFullName()
@@ -534,7 +536,7 @@ namespace AionHR.Web.UI.Forms
         {
             ApplyLetterRecordRequest req = new ApplyLetterRecordRequest();
             req.ltId = Convert.ToInt32(ltId.SelectedItem.Value);
-            req.employeeId= Convert.ToInt32(employeeId.SelectedItem.Value);
+            req.employeeId = Convert.ToInt32(employeeId.SelectedItem.Value);
             RecordResponse<ApplyLetter> res = _systemService.ChildGetRecord<ApplyLetter>(req);
             if (!res.Success)//it maybe another check
             {

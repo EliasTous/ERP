@@ -117,19 +117,52 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="All" xml:space="preserve">
-    <value>الكل</value>
+  <data name="addressedTo" xml:space="preserve">
+    <value>مرسل الى </value>
   </data>
-  <data name="Female" xml:space="preserve">
-    <value>انثى</value>
+  <data name="BasicInfoTabEditWindowTitle" xml:space="preserve">
+    <value>معلومات الخطاب </value>
   </data>
-  <data name="FieldCountry" xml:space="preserve">
-    <value>المناطق</value>
+  <data name="bodyText" xml:space="preserve">
+    <value>نص الخطاب</value>
   </data>
-  <data name="FieldSex" xml:space="preserve">
-    <value>الجنس</value>
+  <data name="companyUsage" xml:space="preserve">
+    <value>شركة </value>
   </data>
-  <data name="Male" xml:space="preserve">
-    <value>ذكر </value>
+  <data name="date" xml:space="preserve">
+    <value>التاريخ</value>
+  </data>
+  <data name="EditWindowsTitle" xml:space="preserve">
+    <value>تعديل الخطاب</value>
+  </data>
+  <data name="employeeUsage" xml:space="preserve">
+    <value>موظف</value>
+  </data>
+  <data name="FieldEmployeeFullName" xml:space="preserve">
+    <value>الموظف</value>
+  </data>
+  <data name="FieldLanguageId" xml:space="preserve">
+    <value>اللغة</value>
+  </data>
+  <data name="FieldName" xml:space="preserve">
+    <value>الاسم</value>
+  </data>
+  <data name="FieldRecordId" xml:space="preserve">
+    <value>الرقم</value>
+  </data>
+  <data name="Fieldusage" xml:space="preserve">
+    <value>الاستخدام </value>
+  </data>
+  <data name="ltId" xml:space="preserve">
+    <value>نموذج الخطاب </value>
+  </data>
+  <data name="notes" xml:space="preserve">
+    <value>ملاحظات </value>
+  </data>
+  <data name="reference" xml:space="preserve">
+    <value>الرمز</value>
+  </data>
+  <data name="WindowTitle" xml:space="preserve">
+    <value>الخطابات</value>
   </data>
 </root>
