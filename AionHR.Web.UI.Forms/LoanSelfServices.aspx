@@ -346,7 +346,7 @@
 
                                     </Store>
                                 </ext:ComboBox>
-                                <ext:TextField Hidden="true" runat="server" ID="loanRef" Name="loanRef" FieldLabel="<%$ Resources: FieldReference %>" />
+                                <ext:TextField Hidden="true" AllowBlank="true" runat="server" ID="loanRef" Name="loanRef" FieldLabel="<%$ Resources: FieldReference %>" />
 
                                 <ext:ComboBox Hidden="true"   AnyMatch="true" CaseSensitive="false"  Enabled="false" runat="server" AllowBlank="true" ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" ID="branchId" Name="branchId" FieldLabel="<%$ Resources:FieldBranch%>" SimpleSubmit="true">
                                     <Store>
@@ -419,8 +419,8 @@
                                 <%--<ext:TextField ID="employeeName" runat="server" FieldLabel="<%$ Resources:FieldEmployeeName%>" Name="employeeName"   AllowBlank="false"/>--%>
                                 <ext:DateField Hidden="true"  ID="date" runat="server" FieldLabel="<%$ Resources:FieldDate%>" Name="date" AllowBlank="true" >
                                      <CustomConfig>
-                        <ext:ConfigItem Name="endDateField" Value="effectiveDate" Mode="Value" />
-                    </CustomConfig>
+                                         <ext:ConfigItem Name="endDateField" Value="effectiveDate" Mode="Value" />
+                                      </CustomConfig>
                                     </ext:DateField>
 
                                 <ext:ComboBox     AnyMatch="true" CaseSensitive="false"  runat="server" AllowBlank="false" ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="reference" ID="currencyId" Name="currencyId" FieldLabel="<%$ Resources:FieldSACurrencyName%>" SimpleSubmit="true">
@@ -481,7 +481,7 @@
                                     </Listeners>
                                 </ext:ComboBox>
 
-                                <ext:DateField   AllowBlank="true"  runat="server" ID="effectiveDate" Name="effectiveDate" FieldLabel="<%$ Resources:FieldEffectiveDate%>" Vtype="daterange" >
+                                <ext:DateField   AllowBlank="false"  runat="server" ID="effectiveDate" Name="effectiveDate" FieldLabel="<%$ Resources:FieldEffectiveDate%>" Vtype="daterange" >
                                     <CustomConfig>
                                   <ext:ConfigItem Name="startDateField" Value="date" Mode="Value" />
                                         </CustomConfig>
@@ -506,10 +506,10 @@
                                         </ext:ComboBox>
                                         <ext:NumberField Hidden="true" Width="400"  runat="server"  ID="ldValue" Name="ldValue" FieldLabel="<%$ Resources: PaymentValue %>"  AllowBlank="true" >
                                         
-                                      <validator Handler="if(#{ldMethod}.getValue()!=5 && #{ldMethod}.getValue()!=4 ){  if (this.value>0&& this.value<100) return true ; else return false; } else return true; ">
+                                  <%--    <validator Handler="if(#{ldMethod}.getValue()!=5 && #{ldMethod}.getValue()!=4 ){  if (this.value>0&& this.value<100) return true ; else return false; } else return true; ">
                                              
                                        </validator>
-                                           
+                                           --%>
                                             </ext:NumberField>
                                 
 

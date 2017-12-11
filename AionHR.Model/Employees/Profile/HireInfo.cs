@@ -22,13 +22,13 @@ namespace AionHR.Model.Employees.Profile
         public DateTime probationEndDate { get; set; }
         [PropertyID("31141_03")]
         [ApplySecurity]
-        public DateTime nextReviewDate { get; set; }
+        public DateTime? nextReviewDate { get; set; }
         [PropertyID("31141_01")]
         [ApplySecurity]
         public int npId { get; set; }
         [PropertyID("31141_04")]
         [ApplySecurity]
-        public DateTime termEndDate { get; set; }
+        public DateTime? termEndDate { get; set; }
         [PropertyID("31141_05")]
         [ApplySecurity]
         public string recruitmentInfo { get; set; }
@@ -39,12 +39,12 @@ namespace AionHR.Model.Employees.Profile
         public string taReference { set; get; }
         public DateTime pyActiveDate { set; get; }
 
-        public int regBranchId { set; get; }
+        public int recBranchId { set; get; }
         [PropertyID("31141_02")]
         [ApplySecurity]
-        public short probationPeriod { set; get; }
+        public short? probationPeriod { set; get; }
 
-
+        public DateTime? hireDate { get; set; }
 
 
 

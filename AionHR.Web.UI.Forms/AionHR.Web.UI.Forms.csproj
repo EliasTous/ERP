@@ -157,6 +157,7 @@
     <Content Include="ARresetPW.aspx" />
     <Content Include="AssetAllowances.aspx" />
     <Content Include="AssetCategories.aspx" />
+    <Content Include="Banks.aspx" />
     <Content Include="BiometricDevices.aspx" />
     <Content Include="BonusTypes.aspx" />
     <Content Include="Branches.aspx" />
@@ -556,6 +557,13 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reports.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Banks.aspx.cs">
+      <DependentUpon>Banks.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Banks.aspx.designer.cs">
+      <DependentUpon>Banks.aspx</DependentUpon>
     </Compile>
     <Compile Include="EmployeePages\EmployeeCalendars.aspx.cs">
       <DependentUpon>EmployeeCalendars.aspx</DependentUpon>
@@ -2145,6 +2153,9 @@
     <Content Include="App_LocalResources\LoanSelfServices.aspx.ar.resx" />
     <Content Include="App_LocalResources\LettersSelfServices.aspx.ar.resx" />
     <Content Include="App_LocalResources\LettersSelfServices.aspx.resx" />
+    <Content Include="App_LocalResources\Banks.aspx.resx" />
+    <Content Include="App_LocalResources\Banks.aspx.ar.resx" />
+    <Content Include="App_LocalResources\DocumentTypes.aspx.ar.resx" />
     <EmbeddedResource Include="Reports\RT201.aspx.resx">
       <DependentUpon>RT201.aspx.cs</DependentUpon>
       <Generator>ResXFileCodeGenerator</Generator>

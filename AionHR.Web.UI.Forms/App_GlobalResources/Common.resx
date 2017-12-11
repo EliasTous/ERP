@@ -1089,4 +1089,10 @@
   <data name="RT504" xml:space="preserve">
     <value>Bank Transfers</value>
   </data>
+  <data name="ErrorEmptyValue" xml:space="preserve">
+    <value>Please Select Employee</value>
+  </data>
+  <data name="bank" xml:space="preserve">
+    <value>Banks</value>
+  </data>
 </root>

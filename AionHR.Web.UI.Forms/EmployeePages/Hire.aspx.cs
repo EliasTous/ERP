@@ -55,7 +55,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
 
             if (!X.IsAjaxRequest && !IsPostBack)
             {
-
+              
                 SetExtLanguage();
                 HideShowButtons();
              
@@ -73,12 +73,32 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>Technical Error: " + resp.ErrorCode + "<br> Summary: " + resp.Summary : resp.Summary).Show();
                     return;
                 }
+              
+                //probationPeriod.SuspendEvent("Change");
                 if (resp.result != null)
                 {
                     hireInfoForm.SetValues(resp.result);
                     npId.Select(resp.result.npId.ToString());
-                    regBranchId.Select(resp.result.regBranchId);
+                    recBranchId.Select(resp.result.recBranchId.ToString());
+                    probationEndDateHidden.Value = resp.result.probationEndDate;
+                    probationEndDate.MinDate = Convert.ToDateTime(resp.result.hireDate);
+                    pyActiveDate.Value = resp.result.pyActiveDate;
+                    probationPeriod.Value = resp.result.probationPeriod;
+                    probationEndDate.Value = resp.result.probationEndDate;
+                    
                 }
+                else
+                {
+                    RecordRequest r = new RecordRequest();
+                    r.RecordID = Request.QueryString["employeeId"];
+                    RecordResponse<Employee> response = _employeeService.Get<Employee>(r);
+
+                    probationEndDateHidden.Value = response.result.hireDate;
+                    probationEndDate.Value= response.result.hireDate;
+                    probationEndDate.MinDate = Convert.ToDateTime(response.result.hireDate);
+                    pyActiveDate.Value = response.result.hireDate;
+                }
+              
                 probationEndDate.Format = nextReviewDate.Format = termEndDate.Format = pyActiveDate.Format= _systemService.SessionHelper.GetDateformat();
 
                 EmployeeTerminated.Text = Request.QueryString["terminated"];
@@ -86,13 +106,10 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                 bool disabled = EmployeeTerminated.Text == "1";
 
                 saveButton.Disabled = disabled;
+                probationPeriod.Value = 0;
 
-                RecordRequest r = new RecordRequest();
-                r.RecordID = Request.QueryString["employeeId"];
-                RecordResponse<Employee> response = _employeeService.Get<Employee>(r);
+                //probationPeriod.ResumeEvent("Change");
 
-                probationEndDateHidden.Value = response.result.hireDate;
-                probationEndDate.MinDate =Convert.ToDateTime( response.result.hireDate);
 
                 try
                 {
@@ -228,7 +245,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
         protected void addBranch(object sender, DirectEventArgs e)
         {
             Branch obj = new Branch();
-            obj.name = regBranchId.Text;
+            obj.name = recBranchId.Text;
 
             PostRequest<Branch> req = new PostRequest<Branch>();
             req.entity = obj;
@@ -237,7 +254,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             {
                 obj.recordId = response.recordId;
                 FillBranchField();
-                regBranchId.Select(obj.recordId);
+                recBranchId.Select(obj.recordId);
             }
             else
             {

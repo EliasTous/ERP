@@ -1092,4 +1092,10 @@
   <data name="RT504" xml:space="preserve">
     <value>الرواتب التي يتم رفعها على البنك</value>
   </data>
+  <data name="ErrorEmptyValue1" xml:space="preserve">
+    <value>الرجاء اختيار موظف</value>
+  </data>
+  <data name="bank" xml:space="preserve">
+    <value>البنوك</value>
+  </data>
 </root>

@@ -21,17 +21,19 @@ using AionHR.Model.Company.News;
 using AionHR.Services.Messaging;
 using AionHR.Model.Company.Structure;
 using AionHR.Model.System;
+using AionHR.Model.Attendance;
+using AionHR.Model.Employees.Leaves;
 using AionHR.Model.Employees.Profile;
-using AionHR.Services.Messaging.System;
-using AionHR.Model.SelfService;
+using AionHR.Model.Payroll;
 
 namespace AionHR.Web.UI.Forms
 {
-    public partial class LettersSelfServices : System.Web.UI.Page
+    public partial class Banks : System.Web.UI.Page
     {
         ISystemService _systemService = ServiceLocator.Current.GetInstance<ISystemService>();
+
         IEmployeeService _employeeService = ServiceLocator.Current.GetInstance<IEmployeeService>();
-        ISelfServiceService _selfServiceService = ServiceLocator.Current.GetInstance<ISelfServiceService>();
+        IPayrollService _payrollService = ServiceLocator.Current.GetInstance<IPayrollService>();
         protected override void InitializeCulture()
         {
 
@@ -61,16 +63,20 @@ namespace AionHR.Web.UI.Forms
                 SetExtLanguage();
                 HideShowButtons();
                 HideShowColumns();
-                date.Format = _systemService.SessionHelper.GetDateformat();
                 try
                 {
-                    AccessControlApplier.ApplyAccessControlOnPage(typeof(LetterSelfservice), BasicInfoTab, GridPanel1, btnAdd, SaveButton);
+                    AccessControlApplier.ApplyAccessControlOnPage(typeof(DocumentType), BasicInfoTab, GridPanel1, btnAdd, SaveButton);
                 }
                 catch (AccessDeniedException exp)
                 {
                     X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorAccessDenied).Show();
+                    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorAccessDenied, "closeCurrentTab()").Show();
                     Viewport1.Hidden = true;
+
+
+
+
+
                     return;
                 }
 
@@ -123,15 +129,17 @@ namespace AionHR.Web.UI.Forms
         {
 
 
-            int id = Convert.ToInt32(e.ExtraParams["id"]);
+            string id = e.ExtraParams["id"];
             string type = e.ExtraParams["type"];
+
             switch (type)
             {
                 case "imgEdit":
                     //Step 1 : get the object from the Web Service 
                     RecordRequest r = new RecordRequest();
-                    r.RecordID = id.ToString();
-                    RecordResponse<Letter> response = _systemService.ChildGetRecord<Letter>(r);
+                    r.RecordID = id;
+
+                    RecordResponse<Bank> response = _payrollService.ChildGetRecord<Bank>(r);
                     if (!response.Success)
                     {
                         X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
@@ -139,11 +147,7 @@ namespace AionHR.Web.UI.Forms
                         return;
                     }
                     //Step 2 : call setvalues with the retrieved object
-
-
                     this.BasicInfoTab.SetValues(response.result);
-                    //ltId.Select(response.result.ltId);
-
 
 
                     this.EditRecordWindow.Title = Resources.Common.EditWindowsTitle;
@@ -188,17 +192,18 @@ namespace AionHR.Web.UI.Forms
             try
             {
                 //Step 1 Code to delete the object from the database 
-                Letter n = new Letter();
-                n.recordId = index;
+                Bank s = new Bank();
+                s.recordId = index;
+                s.name = "";
+                //s.intName = "";
 
-                PostRequest<Letter> req = new PostRequest<Letter>();
-                req.entity = n;
-                PostResponse<Letter> res = _systemService.ChildDelete<Letter>(req);
-                if (!res.Success)
+                PostRequest<Bank> req = new PostRequest<Bank>();
+                req.entity = s;
+                PostResponse<Bank> r = _payrollService.ChildDelete<Bank>(req);
+                if (!r.Success)
                 {
-                    //Show an error saving...
                     X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.Error, res.Summary).Show();
+                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() + "<br>Technical Error: " + r.ErrorCode + "<br> Summary: " + r.Summary : r.Summary).Show();
                     return;
                 }
                 else
@@ -309,7 +314,8 @@ namespace AionHR.Web.UI.Forms
 
             //Reset all values of the relative object
             BasicInfoTab.Reset();
-            dateTF.Value = DateTime.Now;
+
+
             this.EditRecordWindow.Title = Resources.Common.AddNewRecord;
 
 
@@ -331,14 +337,14 @@ namespace AionHR.Web.UI.Forms
             ListRequest request = new ListRequest();
 
             request.Filter = "";
-            ListResponse<Letter> nationalities = _systemService.ChildGetAll<Letter>(request);
-            if (!nationalities.Success)
+            ListResponse<Bank> routers = _payrollService.ChildGetAll<Bank>(request);
+            if (!routers.Success)
             {
-                X.Msg.Alert(Resources.Common.Error, nationalities.Summary).Show(); ;
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", routers.ErrorCode) != null ? GetGlobalResourceObject("Errors", routers.ErrorCode).ToString() : routers.Summary).Show();
                 return;
             }
-            this.Store1.DataSource = nationalities.Items;
-            e.Total = nationalities.Items.Count;
+            this.Store1.DataSource = routers.Items;
+            e.Total = routers.Items.Count; ;
 
             this.Store1.DataBind();
         }
@@ -351,12 +357,12 @@ namespace AionHR.Web.UI.Forms
 
 
             //Getting the id to check if it is an Add or an edit as they are managed within the same form.
-            string id = e.ExtraParams["id"];
+
 
             string obj = e.ExtraParams["values"];
-            LetterSelfservice b = JsonConvert.DeserializeObject<LetterSelfservice>(obj);
+            Bank b = JsonConvert.DeserializeObject<Bank>(obj);
 
-            b.recordId = id;
+            string id = e.ExtraParams["id"];
             // Define the object to add or edit as null
 
             if (string.IsNullOrEmpty(id))
@@ -366,22 +372,23 @@ namespace AionHR.Web.UI.Forms
                 {
                     //New Mode
                     //Step 1 : Fill The object and insert in the store 
-                    PostRequest<LetterSelfservice> request = new PostRequest<LetterSelfservice>();
+                    PostRequest<Bank> request = new PostRequest<Bank>();
+
                     request.entity = b;
-                    PostResponse<LetterSelfservice> r = _selfServiceService.ChildAddOrUpdate<LetterSelfservice>(request);
-                    b.recordId = r.recordId;
+                    PostResponse<Bank> respons = _payrollService.ChildAddOrUpdate<Bank>(request);
+
 
                     //check if the insert failed
-                    if (!r.Success)//it maybe be another condition
+                    if (!respons.Success)//it maybe be another condition
                     {
                         //Show an error saving...
                         X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                        X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() + "<br>Technical Error: " + r.ErrorCode + "<br> Summary: " + r.Summary : r.Summary).Show();
+                        X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", respons.ErrorCode) != null ? GetGlobalResourceObject("Errors", respons.ErrorCode).ToString() + "<br>Technical Error: " + respons.ErrorCode + "<br> Summary: " + respons.Summary : respons.Summary).Show();
                         return;
                     }
                     else
                     {
-                       
+                        b.recordId = respons.recordId;
                         //Add this record to the store 
                         this.Store1.Insert(0, b);
 
@@ -417,10 +424,10 @@ namespace AionHR.Web.UI.Forms
 
                 try
                 {
-                    int index = Convert.ToInt32(id);//getting the id of the record
-                    PostRequest<LetterSelfservice> request = new PostRequest<LetterSelfservice>();
+                    //getting the id of the record
+                    PostRequest<Bank> request = new PostRequest<Bank>();
                     request.entity = b;
-                    PostResponse<LetterSelfservice> r = _systemService.ChildAddOrUpdate<LetterSelfservice>(request);                      //Step 1 Selecting the object or building up the object for update purpose
+                    PostResponse<Bank> r = _payrollService.ChildAddOrUpdate<Bank>(request);                      //Step 1 Selecting the object or building up the object for update purpose
 
                     //Step 2 : saving to store
 
@@ -428,14 +435,14 @@ namespace AionHR.Web.UI.Forms
                     if (!r.Success)//it maybe another check
                     {
                         X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                        X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorUpdatingRecord).Show();
+                        X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() + "<br>Technical Error: " + r.ErrorCode + "<br> Summary: " + r.Summary : r.Summary).Show();
                         return;
                     }
                     else
                     {
 
 
-                        ModelProxy record = this.Store1.GetById(index);
+                        ModelProxy record = this.Store1.GetById(id);
                         BasicInfoTab.UpdateRecord(record);
                         record.Commit();
                         Notification.Show(new NotificationConfig
@@ -443,8 +450,6 @@ namespace AionHR.Web.UI.Forms
                             Title = Resources.Common.Notification,
                             Icon = Icon.Information,
                             Html = Resources.Common.RecordUpdatedSucc
-
-
                         });
                         this.EditRecordWindow.Close();
 
@@ -474,77 +479,86 @@ namespace AionHR.Web.UI.Forms
         {
 
         }
-        [DirectMethod]
-        public object FillEmployee(string action, Dictionary<string, object> extraParams)
-        {
+        //protected void printBtn_Click(object sender, EventArgs e)
+        //{
+        //    DocumentTypesReport p = GetReport();
+        //    string format = "Pdf";
+        //    string fileName = String.Format("Report.{0}", format);
 
-            StoreRequestParameters prms = new StoreRequestParameters(extraParams);
+        //    MemoryStream ms = new MemoryStream();
+        //    p.ExportToPdf(ms, new DevExpress.XtraPrinting.PdfExportOptions() { ShowPrintDialogOnOpen = true });
+        //    Response.Clear();
+        //    Response.Write("<script>");
+        //    Response.Write("window.document.forms[0].target = '_blank';");
+        //    Response.Write("setTimeout(function () { window.document.forms[0].target = ''; }, 0);");
+        //    Response.Write("</script>");
+        //    Response.ContentType = "application/pdf";
+        //    Response.AddHeader("Content-Disposition", String.Format("{0}; filename={1}", "inline", fileName));
+        //    Response.BinaryWrite(ms.ToArray());
+        //    Response.Flush();
+        //    Response.Close();
+        //    //Response.Redirect("Reports/RT301.aspx");
+        //}
+        //protected void ExportPdfBtn_Click(object sender, EventArgs e)
+        //{
+        //    DocumentTypesReport p = GetReport();
+        //    string format = "Pdf";
+        //    string fileName = String.Format("Report.{0}", format);
+
+        //    MemoryStream ms = new MemoryStream();
+        //    p.ExportToPdf(ms);
+        //    Response.Clear();
+
+        //    Response.ContentType = "application/pdf";
+        //    Response.AddHeader("Content-Disposition", String.Format("{0}; filename={1}", "attachment", fileName));
+        //    Response.BinaryWrite(ms.ToArray());
+        //    Response.Flush();
+        //    Response.Close();
+        //    //Response.Redirect("Reports/RT301.aspx");
+        //}
+
+        //protected void ExportXLSBtn_Click(object sender, EventArgs e)
+        //{
+        //    DocumentTypesReport p = GetReport();
+        //    string format = "xls";
+        //    string fileName = String.Format("Report.{0}", format);
+
+        //    MemoryStream ms = new MemoryStream();
+        //    p.ExportToXls(ms);
+
+        //    Response.Clear();
+
+        //    Response.ContentType = "application/vnd.ms-excel";
+        //    Response.AddHeader("Content-Disposition", String.Format("{0}; filename={1}", "attachment", fileName));
+        //    Response.BinaryWrite(ms.ToArray());
+        //    Response.Flush();
+        //    Response.Close();
+        //    //Response.Redirect("Reports/RT301.aspx");
+        //}
+        //private DocumentTypesReport GetReport()
+        //{
+
+        //    ListRequest request = new ListRequest();
+
+        //    request.Filter = "";
+        //    ListResponse<DocumentType> resp = _employeeService.ChildGetAll<DocumentType>(request);
+        //    if (!resp.Success)
+        //    {
+        //        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+        //        X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>Technical Error: " + resp.ErrorCode + "<br> Summary: " + resp.Summary : resp.Summary).Show();
+        //        return null;
+        //    }
+        //    DocumentTypesReport p = new DocumentTypesReport();
+        //    p.DataSource = resp.Items;
+        //    p.Parameters["User"].Value = _systemService.SessionHelper.GetCurrentUser();
+        //    p.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;
+        //    p.RightToLeftLayout = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeftLayout.Yes : DevExpress.XtraReports.UI.RightToLeftLayout.No;
+
+        //    return p;
 
 
 
-            List<Employee> data = GetEmployeesFiltered(prms.Query);
+        //}
 
-            data.ForEach(s => s.fullName = s.name.fullName);
-            //  return new
-            // {
-
-            if (data.Count == 0)
-            {
-                X.Call("SetNameEnabled", true, " ");
-            }
-
-            return data;
-            //};
-
-        }
-        private List<Employee> GetEmployeesFiltered(string query)
-        {
-
-            EmployeeListRequest req = new EmployeeListRequest();
-            req.DepartmentId = "0";
-            req.BranchId = "0";
-            req.IncludeIsInactive = 2;
-            req.SortBy = "firstName";
-
-            req.StartAt = "1";
-            req.Size = "20";
-            req.Filter = query;
-
-
-
-            ListResponse<Employee> response = _employeeService.GetAll<Employee>(req);
-            if (!response.Success)
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).ToString() + "<br>Technical Error: " + response.ErrorCode + "<br> Summary: " + response.Summary : response.Summary).Show();
-            return response.Items;
-        }
-        public void SetFullName()
-        {
-            X.Call("SetNameEnabled", false, employeeId.SelectedItem.Text);
-        }
-        [DirectMethod]
-        protected void ltId_ReadData(object sender, StoreReadDataEventArgs e)
-        {
-            ListRequest req = new ListRequest();
-            ListResponse<LetterTemplate> eds = _systemService.ChildGetAll<LetterTemplate>(req);
-
-            Store2.DataSource = eds.Items;
-            Store2.DataBind();
-
-        }
-        [DirectMethod]
-        protected void fillBodyText(object sender, DirectEventArgs e)
-        {
-            ApplyLetterRecordRequest req = new ApplyLetterRecordRequest();
-            req.ltId = Convert.ToInt32(ltId.SelectedItem.Value);
-            req.employeeId = Convert.ToInt32(employeeId.SelectedItem.Value);
-            RecordResponse<ApplyLetter> res = _systemService.ChildGetRecord<ApplyLetter>(req);
-            if (!res.Success)//it maybe another check
-            {
-
-                return;
-            }
-            else
-                bodyTextTF.Text = res.result.bodyText;
-        }
     }
 }

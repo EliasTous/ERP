@@ -160,10 +160,10 @@
                                         <ext:ListItem Text="+12 UTC" Value="12" />
                                     </Items>
                                 </ext:ComboBox>
-                                  <ext:ComboBox AnyMatch="true" CaseSensitive="false" LabelWidth="150" runat="server" ID="languageId" AllowBlank="false" TabIndex="7" Name="languageId"
-                                    SubmitValue="true"
-                                    TypeAhead="false"
-                                    FieldLabel="<%$ Resources: FieldLanguageId%>">
+                                  <ext:ComboBox AnyMatch="true" CaseSensitive="false" QueryMode="Local" LabelWidth="150" ForceSelection="true" TypeAhead="true" MinChars="1"   FieldLabel="<%$ Resources: FieldLanguageId%>" Name="languageId" runat="server" ID="languageId">
+                                                                 
+                                  
+                                  
                                     <Items>
                                         <ext:ListItem Text="<%$Resources:Common,EnglishLanguage %>" Value="1" />
                                         <ext:ListItem Text="<%$Resources:Common,ArabicLanguage %>" Value="2" />
@@ -242,7 +242,7 @@
                                         <ext:ListItem Text="<%$ Resources:ReferenceFirstNameMiddleNameLastName %>" Value="{reference} {firstName} {middleName} {lastName}" />
                                         <ext:ListItem Text="<%$ Resources:ReferenceFirstNameMiddleNameFamilyNameLastName %>" Value="{reference} {firstName} {middleName} {familyName} {lastName}" />
                                         <ext:ListItem Text="<%$ Resources:ReferenceLastNameFirstName %>" Value="{reference} {lastName} {firstName}" />
-                                         <ext:ListItem Text="<%$ Resources:ReferenceFirstNameMiddleNameFamilyName %>" Value="{reference} {firstName} {middleName} {familyName} " />
+                                         <ext:ListItem Text="<%$ Resources:ReferenceFirstNameMiddleNameFamilyName %>" Value="{reference} {firstName} {middleName} {familyName}" />
 
 
                                     </Items>

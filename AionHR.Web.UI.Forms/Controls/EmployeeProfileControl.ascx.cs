@@ -65,13 +65,13 @@ namespace AionHR.Web.UI.Forms
         {
             if (!_systemService.SessionHelper.GetHijriSupport())
             {
-                hijriCal.Hidden = true;
+                hijriCal.Visible = true;
                 SetHijriInputState(false);
                 //gregCal.Checked = true;
             }
             else
             {
-                hijriCal.Hidden = false;
+                hijriCal.Visible = false;
                 SetHijriInputState(true);
                 //hijCalBirthDate.Hidden = true;
                 //gregCal.Checked = true;
@@ -273,7 +273,7 @@ namespace AionHR.Web.UI.Forms
             if (result.gender == 1)
                 gender1.Checked = true;
             else
-                gender0.Checked = true;
+                gender2.Checked = true;
             //if (!string.IsNullOrEmpty(result.pictureUrl))
             //    imgControl.ImageUrl = result.pictureUrl;
 

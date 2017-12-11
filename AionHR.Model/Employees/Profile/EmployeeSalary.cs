@@ -68,6 +68,9 @@ namespace AionHR.Model.Employees.Profile
         [PropertyID("31062_08")]
         [ApplySecurity]
         public string swiftCode { set; get; }
+        [PropertyID("31062_08")]
+        [ApplySecurity]
+        public int? bankId { get; set; }
 
     }
 }

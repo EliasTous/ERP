@@ -54,10 +54,10 @@ namespace AionHR.Model.SelfService
         public double deductedAmount { get; set; }
         [PropertyID("60105_02")]
         [ApplySecurity]
-        public short ldMethod { get; set; }
+        public short? ldMethod { get; set; }
         [PropertyID("60105_03")]
         [ApplySecurity]
-        public int ldValue { get; set; }
+        public int? ldValue { get; set; }
 
     }
 }

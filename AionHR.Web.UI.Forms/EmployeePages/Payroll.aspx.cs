@@ -25,6 +25,7 @@ using AionHR.Model.Employees.Profile;
 using AionHR.Infrastructure.JSON;
 using AionHR.Model.Attributes;
 using AionHR.Model.Access_Control;
+using AionHR.Model.Payroll;
 
 namespace AionHR.Web.UI.Forms.EmployeePages
 {
@@ -34,6 +35,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
         IEmployeeService _employeeService = ServiceLocator.Current.GetInstance<IEmployeeService>();
         ICompanyStructureService _companyStructureService = ServiceLocator.Current.GetInstance<ICompanyStructureService>();
         IAccessControlService _accessControlService = ServiceLocator.Current.GetInstance<IAccessControlService>();
+        IPayrollService _payrollService = ServiceLocator.Current.GetInstance<IPayrollService>();
         protected override void InitializeCulture()
         {
 
@@ -242,12 +244,14 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     this.EditSAForm.SetValues(response3.result);
                     FillCurrency();
                     FillScr();
+                    FillBank();
                     dedsStore.Reload();
                     entsStore.Reload();
 
                     CurrentSalary.Text = r3.RecordID;
                     CurrentSalaryCurrency.Text = response3.result.currencyRef;
                     currencyId.Select(response3.result.currencyId.ToString());
+                    bankId.Select(response3.result.bankId);
                     if (response3.result.scrId.HasValue)
 
                         scrId.Select(response3.result.scrId.Value.ToString());
@@ -708,10 +712,12 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             this.EditSAWindow.Title = Resources.Common.AddNewRecord;
             FillCurrency();
             FillScr();
+            FillBank();
             currencyId.Select(_systemService.SessionHelper.GetDefaultCurrency());
             dedsStore.Reload();
             entsStore.Reload();
             paymentMethod.Select("1");
+           
             effectiveDate.SelectedDate = DateTime.Today;
             ENSeq.Text = "0";
             DESeq.Text = "0";
@@ -822,6 +828,12 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             {
                 if (currencyId.SelectedItem != null)
                     b.currencyRef = currencyId.SelectedItem.Text;
+            }
+            catch { }
+            try
+            {
+                if (bankId.SelectedItem != null)
+                    b.bankName = bankId.SelectedItem.Text;
             }
             catch { }
             try
@@ -1411,6 +1423,15 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                 X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>Technical Error: " + resp.ErrorCode + "<br> Summary: " + resp.Summary : resp.Summary).Show();
             currencyStore.DataSource = resp.Items;
             currencyStore.DataBind();
+        }
+        private void FillBank()
+        {
+            ListRequest bank = new ListRequest();
+            ListResponse<Bank> resp = _payrollService.ChildGetAll<Bank>(bank);
+            if (!resp.Success)
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>Technical Error: " + resp.ErrorCode + "<br> Summary: " + resp.Summary : resp.Summary).Show();
+            bankStore.DataSource = resp.Items;
+            bankStore.DataBind();
         }
 
         private void FillCurrencyBO()
