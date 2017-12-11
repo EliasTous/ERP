@@ -479,7 +479,7 @@ namespace AionHR.Web.UI.Forms
 
         }
 
-        protected void outStore_ReadData(object sender, StoreReadDataEventArgs e)
+        protected void OutStore_ReadData(object sender, StoreReadDataEventArgs e)
         {
             ActiveAttendanceRequest r = GetActiveAttendanceRequest();
 
@@ -489,10 +489,10 @@ namespace AionHR.Web.UI.Forms
                 X.Msg.Alert(Resources.Common.Error, AOs.Summary).Show();
                 return;
             }
-            //outStore.DataSource = AOs.Items;
+            OutStore.DataSource = AOs.Items;
 
-            //outCount.Text = "17";
-            //outStore.DataBind();
+            
+            OutStore.DataBind();
 
         }
         [DirectMethod]
@@ -1275,18 +1275,62 @@ namespace AionHR.Web.UI.Forms
 
         protected void UnlateStore_ReadData(object sender, StoreReadDataEventArgs e)
         {
+            ActiveAttendanceRequest r = GetActiveAttendanceRequest();
 
+            ListResponse<ActiveCheck> ACs = _timeAttendanceService.ChildGetAll<ActiveCheck>(r);
+
+            if (!ACs.Success)
+            {
+                X.Msg.Alert(Resources.Common.Error, ACs.Summary).Show();
+                return;
+            }
+            ListResponse<ActiveLate> ALs = _timeAttendanceService.ChildGetAll<ActiveLate>(r);
+            if (!ALs.Success)
+            {
+                X.Msg.Alert(Resources.Common.Error, ALs.Summary).Show();
+                return;
+            }
+            List<ActiveCheck> nonLate = new List<ActiveCheck>();
+            foreach (var item in ACs.Items)
+            {
+                if (!ALs.Items.Exists(x => x.employeeId == item.employeeId))
+                    nonLate.Add(item);
+                    
+            }
+            UnlateStore.DataSource = nonLate;
+            UnlateStore.DataBind();
         }
 
         protected void InStore_ReadData(object sender, StoreReadDataEventArgs e)
         {
+            ActiveAttendanceRequest r = GetActiveAttendanceRequest();
 
+            ListResponse<ActiveCheck> ACs = _timeAttendanceService.ChildGetAll<ActiveCheck>(r);
+
+            if (!ACs.Success)
+            {
+                X.Msg.Alert(Resources.Common.Error, ACs.Summary).Show();
+                return;
+            }
+            ListResponse<ActiveOut> AOs = _timeAttendanceService.ChildGetAll<ActiveOut>(r);
+            if (!AOs.Success)
+            {
+                X.Msg.Alert(Resources.Common.Error, AOs.Summary).Show();
+                return;
+            }
+
+            List<ActiveCheck> activeIn = new List<ActiveCheck>();
+            foreach (var item in ACs.Items)
+            {
+                if (!AOs.Items.Exists(x => x.employeeId == item.employeeId))
+                    activeIn.Add(item);
+
+            }
+            InStore.DataSource = activeIn;
+            InStore.DataBind();
         }
 
-        protected void OutStore_ReadData1(object sender, StoreReadDataEventArgs e)
-        {
-
-        }
+     
     }
 
 

@@ -114,7 +114,7 @@
                 case 0: App.activeWindow.show(); App.activeStore.reload(); break;
                 case 1: App.lateWindow.show(); App.latenessStore.reload(); break;
                 case 2: App.onLeavewindow.show(); App.UnpaidLeavesStore.reload(); break;
-                case 3: App.absentWindow.show(); App.absentStore.reload();  break;
+                case 3: App.absentWindow.show(); App.absenseStore.reload(); break;
             }
 
         }
@@ -1202,7 +1202,7 @@
         </ext:Store>
         <ext:Store
             ID="OutStore"
-            runat="server" OnReadData="OutStore_ReadData1"
+            runat="server" OnReadData="OutStore_ReadData"
             RemoteSort="false" PageSize="200"
             RemoteFilter="false">
 
