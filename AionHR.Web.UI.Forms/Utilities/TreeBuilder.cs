@@ -1,6 +1,7 @@
 ﻿using Ext.Net;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 
@@ -419,6 +420,29 @@ namespace AionHR.Web.UI.Forms.Utilities
             FillConfigItem(lv, "LeaveRequestsSelfService", "LeaveRequestsSelfServices.aspx", Resources.Common.LeaveRequests, "icon-Employees", "1");
             FillConfigItem(ln, "LoanSelfService", "LoanSelfServices.aspx", Resources.Common.Loan, "icon-Employees", "1");
 
+            nodes.Add(rootParent);
+            return nodes;
+        }
+
+        internal NodeCollection BuildHelp(NodeCollection nodes)
+        {
+            if (nodes == null)
+                nodes = new Ext.Net.NodeCollection();
+
+
+
+            Ext.Net.Node rootParent = BuildRootParentNode("rootParent", Resources.Common.SelfService, true);
+            Ext.Net.Node ss = BuildParentNode("standard", Resources.Common.SelfService, true, rootParent);
+            DirectoryInfo info = new DirectoryInfo(HttpContext.Current.Server.MapPath("~/Help"));
+            var files = info.GetFiles("*.pdf");
+            int i = 0;
+            foreach (var item in files)
+            {
+                Ext.Net.Node temp = BuildLeafNode("help"+i.ToString(), item.Name, "Group", true, ss);
+                FillConfigItem(temp, "help"+i.ToString(), "HelpBrowser.aspx?file="+item.Name, Resources.Common.Letters, "icon-Employees", "1");
+            }
+
+         
             nodes.Add(rootParent);
             return nodes;
         }

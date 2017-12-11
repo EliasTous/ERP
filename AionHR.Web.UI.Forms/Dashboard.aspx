@@ -186,12 +186,12 @@
             })
         };
         var clickLateHightChartPieSeries = function (val) {
-            App.lateWindow.show();
+            
             if (val == 0) {
-
+                App.lateWindow.show();
             }
             else {
-                //  App.lateWindow.show();
+                  App.UnlateWindow.show();
 
             }
         }
@@ -263,12 +263,12 @@
         };
         var clickBreakHightChartPieSeries = function (val) {
             //alert(val);
-            App.lateWindow.show();
+            
             if (val == 0) {
-
+                App.OutWindow.show();
             }
             else {
-                //  App.lateWindow.show();
+                App.InWindow.show();
 
             }
         }
@@ -3008,6 +3008,79 @@
                 </ext:GridPanel>
             </Items>
         </ext:Window>
+        <ext:Window runat="server" Modal="true" Title="<%$ Resources: LatenessGridTitle %>" Layout="FitLayout"
+            Hidden="true" AutoShow="false" ID="UnLateWindow" Width="650" Height="300">
+            <Items>
+                <ext:GridPanel ExpandToolText="expand"
+                    ID="GridPanel14" MarginSpec="0 0 0 0"
+                    runat="server"
+                    PaddingSpec="0 0 0 0"
+                    Header="false" CollapseMode="Header" Collapsible="true" CollapseDirection="Right"
+                    Title="<%$ Resources: LatenessGridTitle %>"
+                    Layout="FitLayout"
+                    Scroll="Vertical"
+                    Border="false"
+                    ColumnLines="True" IDMode="Explicit" RenderXType="True">
+                    <Store>
+                        <ext:Store PageSize="30"
+                            ID="Store2"
+                            runat="server" OnReadData="latenessStore_ReadData"
+                            RemoteSort="false"
+                            RemoteFilter="false">
+                            <Proxy>
+                                <ext:PageProxy>
+                                    <Listeners>
+                                        <Exception Handler="Ext.MessageBox.alert('#{textLoadFailed}.value', response.statusText);" />
+                                    </Listeners>
+                                </ext:PageProxy>
+                            </Proxy>
+
+                            <Model>
+                                <ext:Model ID="Model19" runat="server" IDProperty="recordId">
+                                    <Fields>
+
+                                        <ext:ModelField Name="employeeId" />
+                                        <ext:ModelField Name="name" ServerMapping="employeeName.fullName" />
+                                        <ext:ModelField Name="time" />
+                                        <ext:ModelField Name="positionName" />
+                                        <ext:ModelField Name="departmentName" />
+                                        <ext:ModelField Name="branchName" />
+
+                                    </Fields>
+                                </ext:Model>
+                            </Model>
+
+                        </ext:Store>
+                    </Store>
+
+
+                    <ColumnModel ID="ColumnModel19" runat="server" SortAscText="<%$ Resources:Common , SortAscText %>" SortDescText="<%$ Resources:Common ,SortDescText  %>" SortClearText="<%$ Resources:Common ,SortClearText  %>" ColumnsText="<%$ Resources:Common ,ColumnsText  %>" EnableColumnHide="false" Sortable="false">
+                        <Columns>
+                            <ext:Column Visible="false" ID="Column13" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldrecordId %>" DataIndex="recordId" Hideable="false" Width="75" />
+                            <ext:Column Flex="2" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEmployee %>" DataIndex="name" Hideable="false" />
+                            <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldTime%>" DataIndex="time" Width="55" Hideable="false" />
+                            <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldPosition%>" DataIndex="positionName" Flex="3" Hideable="false" />
+                            <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDepartment%>" DataIndex="departmentName" Flex="3" Hideable="false" />
+                            <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldBranch%>" DataIndex="branchName" Flex="3" Hideable="false" />
+                            <%--  <ext:Column Flex="2" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEmployee %>" DataIndex="name" Hideable="false" Width="75">
+                                <Renderer Handler=" return displayLate(record.data);  ">
+                                </Renderer>
+                            </ext:Column>--%>
+                        </Columns>
+                    </ColumnModel>
+
+                    <View>
+                        <ext:GridView ID="GridView19" runat="server" />
+                    </View>
+
+
+                    <SelectionModel>
+                        <ext:RowSelectionModel ID="rowSelectionModel18" runat="server" Mode="Single" StopIDModeInheritance="true" />
+                        <%--<ext:CheckboxSelectionModel ID="CheckboxSelectionModel1" runat="server" Mode="Multi" StopIDModeInheritance="true" />--%>
+                    </SelectionModel>
+                </ext:GridPanel>
+            </Items>
+        </ext:Window>
         <ext:Window runat="server" Modal="true" Title="<%$ Resources: AbsenseGridTitle %>"
             Hidden="true" AutoShow="false" ID="absentWindow" Width="400" Height="300" Layout="FitLayout">
             <Items>
@@ -3416,8 +3489,98 @@
             </Items>
         </ext:Window>
 
+        <ext:Window runat="server" Modal="true" Title="<%$ Resources: ActiveGridTitle %>"
+            Hidden="true" Layout="FitLayout" AutoShow="false" ID="InWindow" Width="600" Height="300">
+            <Items>
+                <ext:GridPanel MarginSpec="0 0 0 0"
+                    ID="GridPanel15" Layout="FitLayout"
+                    runat="server"
+                    PaddingSpec="0 0 0 0"
+                    Header="false"
+                    Title="<%$ Resources: ActiveGridTitle %>"
+                    Scroll="Vertical"
+                    Border="false"
+                    StoreID="activeStore"
+                    ColumnLines="True">
 
 
+
+
+                    <ColumnModel ID="ColumnModel20" runat="server" SortAscText="<%$ Resources:Common , SortAscText %>" SortDescText="<%$ Resources:Common ,SortDescText  %>" SortClearText="<%$ Resources:Common ,SortClearText  %>" ColumnsText="<%$ Resources:Common ,ColumnsText  %>" EnableColumnHide="false" Sortable="false">
+                        <Columns>
+
+                            <ext:Column Visible="false" ID="Column22" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldrecordId %>" DataIndex="recordId" Hideable="false" Width="75" />
+                            <ext:Column Flex="2" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEmployee %>" DataIndex="name" Hideable="false" />
+                            <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldTime%>" DataIndex="time" Width="55" Hideable="false" />
+                            <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldPosition%>" DataIndex="positionName" Flex="3" Hideable="false" />
+                            <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDepartment%>" DataIndex="departmentName" Flex="3" Hideable="false" />
+                            <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldBranch%>" DataIndex="branchName" Flex="3" Hideable="false" />
+                            <%--  <ext:Column Flex="2" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEmployee %>" DataIndex="name" Hideable="false" Width="75">
+                                <Renderer Handler=" return displayActive(record.data);  ">
+                                </Renderer>
+                            </ext:Column>--%>
+                        </Columns>
+                    </ColumnModel>
+
+
+                    <View>
+                        <ext:GridView Border="false" ID="GridView20" runat="server" />
+                    </View>
+
+
+                    <SelectionModel>
+                        <ext:RowSelectionModel ID="rowSelectionModel19" runat="server" Mode="Single" StopIDModeInheritance="true" />
+                        <%--<ext:CheckboxSelectionModel ID="CheckboxSelectionModel1" runat="server" Mode="Multi" StopIDModeInheritance="true" />--%>
+                    </SelectionModel>
+                </ext:GridPanel>
+            </Items>
+        </ext:Window>
+        <ext:Window runat="server" Modal="true" Title="<%$ Resources: ActiveGridTitle %>"
+            Hidden="true" Layout="FitLayout" AutoShow="false" ID="OutWindow" Width="600" Height="300">
+            <Items>
+                <ext:GridPanel MarginSpec="0 0 0 0"
+                    ID="GridPanel16" Layout="FitLayout"
+                    runat="server"
+                    PaddingSpec="0 0 0 0"
+                    Header="false"
+                    Title="<%$ Resources: ActiveGridTitle %>"
+                    Scroll="Vertical"
+                    Border="false"
+                    StoreID="activeStore"
+                    ColumnLines="True">
+
+
+
+
+                    <ColumnModel ID="ColumnModel21" runat="server" SortAscText="<%$ Resources:Common , SortAscText %>" SortDescText="<%$ Resources:Common ,SortDescText  %>" SortClearText="<%$ Resources:Common ,SortClearText  %>" ColumnsText="<%$ Resources:Common ,ColumnsText  %>" EnableColumnHide="false" Sortable="false">
+                        <Columns>
+
+                            <ext:Column Visible="false" ID="Column23" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldrecordId %>" DataIndex="recordId" Hideable="false" Width="75" />
+                            <ext:Column Flex="2" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEmployee %>" DataIndex="name" Hideable="false" />
+                            <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldTime%>" DataIndex="time" Width="55" Hideable="false" />
+                            <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldPosition%>" DataIndex="positionName" Flex="3" Hideable="false" />
+                            <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDepartment%>" DataIndex="departmentName" Flex="3" Hideable="false" />
+                            <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldBranch%>" DataIndex="branchName" Flex="3" Hideable="false" />
+                            <%--  <ext:Column Flex="2" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEmployee %>" DataIndex="name" Hideable="false" Width="75">
+                                <Renderer Handler=" return displayActive(record.data);  ">
+                                </Renderer>
+                            </ext:Column>--%>
+                        </Columns>
+                    </ColumnModel>
+
+
+                    <View>
+                        <ext:GridView Border="false" ID="GridView21" runat="server" />
+                    </View>
+
+
+                    <SelectionModel>
+                        <ext:RowSelectionModel ID="rowSelectionModel20" runat="server" Mode="Single" StopIDModeInheritance="true" />
+                        <%--<ext:CheckboxSelectionModel ID="CheckboxSelectionModel1" runat="server" Mode="Multi" StopIDModeInheritance="true" />--%>
+                    </SelectionModel>
+                </ext:GridPanel>
+            </Items>
+        </ext:Window>
         <ext:Window
             ID="LeaveRecordWindow"
             runat="server"

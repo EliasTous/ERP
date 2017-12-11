@@ -510,4 +510,7 @@
   <data name="HeadCount" xml:space="preserve">
     <value>عدد الموظفين</value>
   </data>
+  <data name="Breaks" xml:space="preserve">
+    <value>في الخارج</value>
+  </data>
 </root>
