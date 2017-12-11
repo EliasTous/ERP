@@ -12,6 +12,7 @@
     <script type="text/javascript" src="../Scripts/Notes.js?id=18"></script>
     <script type="text/javascript" src="../Scripts/common.js?id=0"></script>
     <script type="text/javascript" src="../Scripts/moment.js?id=0"></script>
+   
 
 
 </head>
@@ -26,6 +27,7 @@
         <ext:Hidden ID="CurrentEmployee" runat="server" />
         <ext:Hidden ID="EmployeeTerminated" runat="server" />
         <ext:Hidden ID="CurrentEmployeeName" runat="server" />
+       
           
         <ext:Viewport ID="Viewport11" runat="server" Layout="VBoxLayout" Padding="10">
             <LayoutConfig>
@@ -74,15 +76,15 @@
                                    <%-- <Change Handler= "App.probationEndDate.setValue(Ext.Date.add(App.probationEndDate.value, Ext.Date.Day, + App.probationPeriod.value));"></Change>--%>
                                     <Change Handler =" App.probationEndDate.setValue(Ext.Date.add(App.probationEndDateHidden.value, Ext.Date.DAY,App.probationPeriod.value ));"></Change>
                                 </Listeners>
-                               <%-- <DirectEvents>
-                                    <Change OnEvent="Unnamed_Event"></Change>
-                                </DirectEvents>--%>
+                            
                             </ext:NumberField>
                                 <ext:DateField runat="server"  ID="probationEndDateHidden" Hidden="true"></ext:DateField>
                         <ext:DateField runat="server" AllowBlank="false" ID="probationEndDate" Name="probationEndDate" LabelWidth="200" FieldLabel="<%$ Resources:FieldProbationEndDate %>"></ext:DateField>
-                        <ext:DateField runat="server" AllowBlank="false" ID="nextReviewDate" Name="nextReviewDate"  LabelWidth="200" FieldLabel="<%$ Resources:FieldNextReviewDate %>"></ext:DateField>
+                        <ext:DateField runat="server" AllowBlank="true" ID="nextReviewDate" Name="nextReviewDate"  LabelWidth="200" FieldLabel="<%$ Resources:FieldNextReviewDate %>">
+                          
+                        </ext:DateField>
                         
-                        <ext:DateField  LabelWidth="200" runat="server" AllowBlank="false" ID="termEndDate" Name="termEndDate" FieldLabel="<%$ Resources:FieldTermEndDate %>"></ext:DateField>
+                        <ext:DateField  LabelWidth="200" runat="server" AllowBlank="true" ID="termEndDate" Name="termEndDate" FieldLabel="<%$ Resources:FieldTermEndDate %>"></ext:DateField>
                         <ext:TextArea  LabelWidth="200"  runat="server" ID="recruitmentInfo" Name="recruitmentInfo" FieldLabel="<%$ Resources:FieldRecruitmentInfo %>" />
                             <ext:TextField InputType="Password" Visible="false"  LabelWidth="200"  runat="server" ID="infoField" Name="recruitmentInfo" FieldLabel="<%$ Resources:FieldRecruitmentInfo %>" />
                         <ext:TextField runat="server"  LabelWidth="200" ID="recruitmentCost" Name="recruitmentCost" FieldLabel="<%$ Resources:FieldRecruitmentCost %>" >
@@ -94,7 +96,7 @@
                             <ext:TextField runat="server"  LabelWidth="200" ID="pyReference" Name="pyReference" FieldLabel="<%$ Resources:pyReference %>" />
                              <ext:TextField runat="server"  LabelWidth="200" ID="taReference" Name="taReference" FieldLabel="<%$ Resources:taReference %>" />
                                  <ext:DateField  LabelWidth="200" runat="server" AllowBlank="false" ID="pyActiveDate" Name="pyActiveDate" FieldLabel="<%$ Resources:pyActiveDate %>"></ext:DateField>
-                                 <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  Enabled="false" runat="server" AllowBlank="false" ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" ID="regBranchId" Name="regBranchId" FieldLabel="<%$ Resources:FieldBranch%>" SimpleSubmit="true" LabelWidth="200">
+                                 <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  Enabled="false" runat="server" AllowBlank="false" ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" ID="recBranchId" Name="recBranchId" FieldLabel="<%$ Resources:FieldBranch%>" SimpleSubmit="true" LabelWidth="200">
                                     <Store>
                                         <ext:Store runat="server" ID="branchStore">
                                             <Model>

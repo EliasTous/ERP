@@ -818,8 +818,8 @@
                                 </ext:TextField>
                                  <ext:RadioGroup ID="gender" AllowBlank="true" runat="server" GroupName="gender" FieldLabel="<%$ Resources:FieldGender%>">
                                     <Items>
-                                        <ext:Radio runat="server" ID="gender0" Name="gender" InputValue="1" BoxLabel="<%$ Resources:Common ,Male%>" />
-                                        <ext:Radio runat="server" ID="gender1" Name="gender" InputValue="2" BoxLabel="<%$ Resources:Common ,Female%>" />
+                                        <ext:Radio runat="server" ID="gender1" Name="gender" InputValue="1" BoxLabel="<%$ Resources:Common ,Male%>" />
+                                        <ext:Radio runat="server" ID="gender2" Name="gender" InputValue="2" BoxLabel="<%$ Resources:Common ,Female%>" />
                                     </Items>
                                 </ext:RadioGroup>
 

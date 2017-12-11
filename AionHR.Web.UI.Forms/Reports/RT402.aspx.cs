@@ -246,38 +246,39 @@ namespace AionHR.Web.UI.Forms.Reports
 
             }
 
-         
- 
-             LoanStatement h = new LoanStatement();
-            h.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;
-            h.RightToLeftLayout = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeftLayout.Yes : DevExpress.XtraReports.UI.RightToLeftLayout.No;
-            h.DataSource = resp.Items;
+            if (resp.Items.Count != 0)
+            {
+                LoanStatement h = new LoanStatement();
+                h.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;
+                h.RightToLeftLayout = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeftLayout.Yes : DevExpress.XtraReports.UI.RightToLeftLayout.No;
+                h.DataSource = resp.Items;
 
-            //  string from = DateTime.Parse(req.Parameters["_fromDate"]).ToString(_systemService.SessionHelper.GetDateformat(), new CultureInfo("en"));
-            //  string to = DateTime.Parse(req.Parameters["_toDate"]).ToString(_systemService.SessionHelper.GetDateformat(), new CultureInfo("en"));
-            string user = _systemService.SessionHelper.GetCurrentUser();
-
-
-           
-           
-            h.Parameters["User"].Value = user;
-            h.Parameters["EmployeeName"].Value = employeeFilter.SelectedItem.Text;
-          
-            h.Parameters["descriptionTrxType1"].Value = GetLocalResourceObject("descriptionTrxType1");
-            h.Parameters["descriptionTrxType2"].Value = GetLocalResourceObject("descriptionTrxType2");
+                //  string from = DateTime.Parse(req.Parameters["_fromDate"]).ToString(_systemService.SessionHelper.GetDateformat(), new CultureInfo("en"));
+                //  string to = DateTime.Parse(req.Parameters["_toDate"]).ToString(_systemService.SessionHelper.GetDateformat(), new CultureInfo("en"));
+                string user = _systemService.SessionHelper.GetCurrentUser();
 
 
+
+
+                h.Parameters["User"].Value = user;
+                h.Parameters["EmployeeName"].Value = employeeFilter.SelectedItem.Text;
+
+                h.Parameters["descriptionTrxType1"].Value = GetLocalResourceObject("descriptionTrxType1");
+                h.Parameters["descriptionTrxType2"].Value = GetLocalResourceObject("descriptionTrxType2");
 
 
 
 
 
 
-            h.CreateDocument();
 
 
-            ASPxWebDocumentViewer1.DataBind();
-            ASPxWebDocumentViewer1.OpenReport(h);
+                h.CreateDocument();
+
+
+                ASPxWebDocumentViewer1.DataBind();
+                ASPxWebDocumentViewer1.OpenReport(h);
+            }
         }
 
         protected void ASPxCallbackPanel1_Callback(object sender, DevExpress.Web.CallbackEventArgsBase e)

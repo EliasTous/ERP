@@ -307,7 +307,7 @@ namespace AionHR.Web.UI.Forms
                 dateFormatCombo.Select(items.Where(s => s.Key == "dateFormat").First().Value);
             }
             catch { }
-            try { nameFormatCombo.Select(items.Where(s => s.Key == "nameFormat").First().Value); }
+            try { nameFormatCombo.Select(items.Where(s => s.Key == "nameFormat").First().Value.ToString()); }
             catch { }
             try
             {
@@ -399,8 +399,8 @@ namespace AionHR.Web.UI.Forms
             try { exemptDeliveryTRId.Select(items.Where(s => s.Key == "exemptDeliveryTRId").First().Value); }
 
             catch { }
-            try { languageId.Select(items.Where(s => s.Key == "languageId ").First().Value); }
-
+            try { languageId.Select(items.Where(s => s.Key == "languageId").First().Value.ToString()); }
+        
             catch { }
 
 
@@ -533,6 +533,7 @@ namespace AionHR.Web.UI.Forms
 
                 if (!string.IsNullOrEmpty(values.countryId.ToString()))
                     _systemService.SessionHelper.SetDefaultCountry(values.countryId.ToString());
+                
                 if (!string.IsNullOrEmpty(values.timeZone.ToString()))
                     _systemService.SessionHelper.SetDefaultTimeZone(Convert.ToInt32(values.timeZone.ToString()));
                 _systemService.SessionHelper.SetHijriSupport(values.enableHijri == null ? false : true);

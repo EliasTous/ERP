@@ -250,6 +250,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Banks.
+        /// </summary>
+        internal static string bank {
+            get {
+                return ResourceManager.GetString("bank", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Page.
         /// </summary>
         internal static string BeforePageText {
@@ -831,6 +840,15 @@ namespace Resources {
         internal static string ErrorDeletingRecord {
             get {
                 return ResourceManager.GetString("ErrorDeletingRecord", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please Select Employee.
+        /// </summary>
+        internal static string ErrorEmptyValue {
+            get {
+                return ResourceManager.GetString("ErrorEmptyValue", resourceCulture);
             }
         }
         

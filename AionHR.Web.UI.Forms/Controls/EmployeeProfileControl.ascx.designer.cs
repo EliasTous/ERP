@@ -553,15 +553,6 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.RadioGroup gender;
         
         /// <summary>
-        /// gender0 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Radio gender0;
-        
-        /// <summary>
         /// gender1 control.
         /// </summary>
         /// <remarks>
@@ -569,6 +560,15 @@ namespace AionHR.Web.UI.Forms {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.Radio gender1;
+        
+        /// <summary>
+        /// gender2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Radio gender2;
         
         /// <summary>
         /// rightPanel control.

@@ -296,6 +296,7 @@ public class EmployeeDetails : DevExpress.XtraReports.UI.XtraReport
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "genderString")});
             resources.ApplyResources(this.xrTableCell4, "xrTableCell4");
             this.xrTableCell4.Name = "xrTableCell4";
+            this.xrTableCell4.BeforePrint += new System.Drawing.Printing.PrintEventHandler(this.xrTableCell4_BeforePrint);
             // 
             // xrTableCell5
             // 
@@ -1026,6 +1027,11 @@ public class EmployeeDetails : DevExpress.XtraReports.UI.XtraReport
     }
 
     private void xrTableCell21_BeforePrint(object sender, System.Drawing.Printing.PrintEventArgs e)
+    {
+
+    }
+
+    private void xrTableCell4_BeforePrint(object sender, System.Drawing.Printing.PrintEventArgs e)
     {
 
     }

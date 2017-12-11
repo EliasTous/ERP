@@ -133,6 +133,8 @@ namespace AionHR.Web.UI.Forms
                     _systemService.SessionHelper.SetLanguage("en");
 
                 _systemService.SessionHelper.Set("CompanyName", getACResponse.result.companyName);
+                _systemService.SessionHelper.SetUserType(response.User.userType);
+                _systemService.SessionHelper.SetEmployeeId(response.User.employeeId);
                 _systemService.SessionHelper.Set("CurrentUserName", userName);
                 _systemService.SessionHelper.SetUserType(response.User.userType);
                 _systemService.SessionHelper.Set("IsAdmin", response.User.isAdmin);

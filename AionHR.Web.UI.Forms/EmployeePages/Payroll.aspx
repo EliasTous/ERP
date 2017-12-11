@@ -579,14 +579,35 @@
                                                 <Select Handler="TogglePaymentMethod(this.value)" />
                                             </Listeners>
                                         </ext:ComboBox>
-                                        <ext:TextField LabelWidth="130" Disabled="true" Width="275" ID="bankName" runat="server" FieldLabel="<%$ Resources:FieldBankName%>" Name="bankName" AllowBlank="false" />
+
+
+                                      <%--  <ext:TextField LabelWidth="130" Disabled="true" Width="275" ID="bankName" runat="server" FieldLabel="<%$ Resources:FieldBankName%>" Name="bankName" AllowBlank="false" />--%>
+                                          <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" AllowBlank="true" LabelWidth="130" Width="275" ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" ID="bankId" Name="bankId" FieldLabel="<%$ Resources:FieldBankName%>" Disabled="true" >
+                                            <Store>
+                                                <ext:Store runat="server" ID="bankStore">
+                                                    <Model>
+                                                        <ext:Model runat="server">
+                                                            <Fields>
+                                                                <ext:ModelField Name="recordId" />
+                                                                <ext:ModelField Name="name" />
+                                                            </Fields>
+                                                        </ext:Model>
+                                                    </Model>
+                                                </ext:Store>
+                                            </Store>
+                                         
+                                            <Listeners>
+                                                <FocusEnter Handler="this.rightButtons[0].setHidden(false);" />
+                                                <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
+                                            </Listeners>
+                                        </ext:ComboBox>
                                     </Items>
                                 </ext:Panel>
                                 
                                 <ext:Panel runat="server" PaddingSpec="0 0 0 5" ID="secondPanel">
                                     <Items>
                                         
-                                         <ext:TextField LabelWidth="130" Width="350" Disabled="true"  ID="swiftCode" runat="server" FieldLabel="<%$ Resources:FieldswiftCode%>" Name="swiftCode" AllowBlank="false" />
+                                        <%-- <ext:TextField LabelWidth="130" Width="350" Disabled="true"  ID="swiftCode" runat="server" FieldLabel="<%$ Resources:FieldswiftCode%>" Name="swiftCode" AllowBlank="false" />--%>
                                         <ext:TextField LabelWidth="130" Width="350" Disabled="true"  ID="accountNumber" runat="server" FieldLabel="<%$ Resources:FieldAccountNumber%>" Name="accountNumber" AllowBlank="false" />
                                         <ext:TextField LabelWidth="130" Width="350" ID="comments" runat="server" FieldLabel="<%$ Resources:FieldComments%>" Name="comments" />
                                         <ext:TextField LabelWidth="130" Width="350" ID="basicAmount" AllowBlank="false" runat="server" FieldLabel="<%$ Resources:FieldBasicAmount%>" Name="basicAmount">
