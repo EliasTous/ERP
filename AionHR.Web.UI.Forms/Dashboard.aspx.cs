@@ -1272,6 +1272,21 @@ namespace AionHR.Web.UI.Forms
             BindCompanyHeadCount(false);
 
         }
+
+        protected void UnlateStore_ReadData(object sender, StoreReadDataEventArgs e)
+        {
+
+        }
+
+        protected void InStore_ReadData(object sender, StoreReadDataEventArgs e)
+        {
+
+        }
+
+        protected void OutStore_ReadData1(object sender, StoreReadDataEventArgs e)
+        {
+
+        }
     }
 
 

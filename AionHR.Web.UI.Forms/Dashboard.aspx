@@ -15,10 +15,10 @@
     <!--  <script type="text/javascript" src="Scripts/app.js"></script>-->
     <script type="text/javascript" src="Scripts/common.js"></script>
     <script type="text/javascript" src="Scripts/moment.js"></script>
-   <script type="text/javascript" src="Scripts/CircileProgress.js?id=91"></script>
+    <script type="text/javascript" src="Scripts/CircileProgress.js?id=91"></script>
     <script type="text/javascript" src="Scripts/jquery-new.js?id=71"></script>
     <script type="text/javascript" src="Scripts/plugins/highcharts.js?id=122"></script>
-   
+
 
     <style type="text/css">
         .styleContainer {
@@ -82,9 +82,9 @@
                         showInLegend: true,
                         point: {
                             events: {
-                                
+
                                 legendItemClick: function (e) {
-                                   
+
                                     if (e.target.options.y > 0)
                                         clickActiveHightChartPieSeries(e.target.options.index);
                                     return false;
@@ -109,12 +109,12 @@
 
         };
         var clickActiveHightChartPieSeries = function (val) {
-     
+
             switch (val) {
-                case 0: App.activeWindow.show(); break;
-                case 1: App.lateWindow.show(); break;
-                case 2: App.onLeavewindow.show(); break;
-                case 3: App.absentWindow.show(); break;
+                case 0: App.activeWindow.show(); App.activeStore.reload(); break;
+                case 1: App.lateWindow.show(); App.latenessStore.reload(); break;
+                case 2: App.onLeavewindow.show(); App.UnpaidLeavesStore.reload(); break;
+                case 3: App.absentWindow.show(); App.absentStore.reload();  break;
             }
 
         }
@@ -186,12 +186,14 @@
             })
         };
         var clickLateHightChartPieSeries = function (val) {
-            
+
             if (val == 0) {
+                App.latenessStore.reload();
                 App.lateWindow.show();
             }
             else {
-                  App.UnlateWindow.show();
+                App.UnlateStore.reload();
+                App.UnlateWindow.show();
 
             }
         }
@@ -263,11 +265,13 @@
         };
         var clickBreakHightChartPieSeries = function (val) {
             //alert(val);
-            
+
             if (val == 0) {
+                App.OutStore.reload();
                 App.OutWindow.show();
             }
             else {
+                App.InStore.reload();
                 App.InWindow.show();
 
             }
@@ -331,7 +335,7 @@
         var drawDepartmentsCountHightChartColumn = function (IN, OUT, objectIn, objectOut, dataCategoriesObject, rtl, normal) {
             // Build the chart  deparmentsCountHighChart
             var divName = 'deparmentsCountHighChart';
-           if (!normal)
+            if (!normal)
                 divName = 'maximumChart';
             Highcharts.chart(divName, {
                 chart: {
@@ -536,11 +540,11 @@
 
         var drawMinLocalRateCountHightChartColumn = function (objectValues, dataCategoriesObject, rtl, normal) {
             // Build the chart  deparmentsCountHighChart
-           
+
             var divName = 'localRateCountHighChart-body';
-           // if (!normal)
-              //  divName = 'maximumChart';
-        
+            // if (!normal)
+            //  divName = 'maximumChart';
+
             Highcharts.chart(divName, {
                 chart: {
                     type: 'column'
@@ -601,18 +605,18 @@
                     data: objectValues
                 }]
             });
-          
+
 
         };
 
 
         var drawLocalCountHightChartColumn = function (objectValues, dataCategoriesObject, rtl, normal) {
             // Build the chart  deparmentsCountHighChart
-            
+
             var divName = 'localCountHighChart';
-           // if (!normal)
+            // if (!normal)
             //    divName = 'maximumChart';
-            
+
             Highcharts.chart(divName, {
                 chart: {
                     type: 'column'
@@ -671,7 +675,7 @@
                 }]
             });
 
-            
+
         };
 
         var drawAttendancePeriodChart = function (dataCategoriesObject, IN1, IN2, IN3, IN4, objectIn1, objectIn2, objectIn3, objectIn4, rtl, normal) {
@@ -917,14 +921,14 @@
 
             if (window.
                 parent.App.tabPanel.getActiveTab().id == "dashboard" || (window.parent.App.tabPanel.getActiveTab().id == "tabHome" && (window.parent.App.activeModule.value == 4 || window.parent.App.activeModule.value == 5 || window.parent.App.activeModule.value == 1 || window.parent.App.activeModule.value == 7))) {
-                //Not Chained
+                ////Not Chained
 
                 App.activeStore.reload();
-                // App.Store1.reload();
+                //// App.Store1.reload();
 
-                App.LeaveRequestsStore.reload();
-                App.LoansStore.reload();
-                App.OverDueStore.reload();
+                //App.LeaveRequestsStore.reload();
+                //App.LoansStore.reload();
+                //App.OverDueStore.reload();
                 // App.LocalRateStore.reload();
                 /*Chained*/
 
@@ -1158,6 +1162,52 @@
 
             <Model>
                 <ext:Model ID="Model1" runat="server" IDProperty="recordId">
+                    <Fields>
+
+                        <ext:ModelField Name="employeeId" />
+                        <ext:ModelField Name="name" ServerMapping="employeeName.fullName" />
+                        <ext:ModelField Name="time" />
+                        <ext:ModelField Name="checkStatus" />
+                        <ext:ModelField Name="positionName" />
+                        <ext:ModelField Name="departmentName" />
+                        <ext:ModelField Name="branchName" />
+
+                    </Fields>
+                </ext:Model>
+            </Model>
+
+        </ext:Store>
+        <ext:Store
+            ID="InStore"
+            runat="server" OnReadData="InStore_ReadData"
+            RemoteSort="false" PageSize="200"
+            RemoteFilter="false">
+
+            <Model>
+                <ext:Model ID="Model20" runat="server" IDProperty="recordId">
+                    <Fields>
+
+                        <ext:ModelField Name="employeeId" />
+                        <ext:ModelField Name="name" ServerMapping="employeeName.fullName" />
+                        <ext:ModelField Name="time" />
+                        <ext:ModelField Name="checkStatus" />
+                        <ext:ModelField Name="positionName" />
+                        <ext:ModelField Name="departmentName" />
+                        <ext:ModelField Name="branchName" />
+
+                    </Fields>
+                </ext:Model>
+            </Model>
+
+        </ext:Store>
+        <ext:Store
+            ID="OutStore"
+            runat="server" OnReadData="OutStore_ReadData1"
+            RemoteSort="false" PageSize="200"
+            RemoteFilter="false">
+
+            <Model>
+                <ext:Model ID="Model21" runat="server" IDProperty="recordId">
                     <Fields>
 
                         <ext:ModelField Name="employeeId" />
@@ -3009,7 +3059,7 @@
             </Items>
         </ext:Window>
         <ext:Window runat="server" Modal="true" Title="<%$ Resources: LatenessGridTitle %>" Layout="FitLayout"
-            Hidden="true" AutoShow="false" ID="UnLateWindow" Width="650" Height="300">
+            Hidden="true" AutoShow="false" ID="UnlateWindow" Width="650" Height="300">
             <Items>
                 <ext:GridPanel ExpandToolText="expand"
                     ID="GridPanel14" MarginSpec="0 0 0 0"
@@ -3023,8 +3073,8 @@
                     ColumnLines="True" IDMode="Explicit" RenderXType="True">
                     <Store>
                         <ext:Store PageSize="30"
-                            ID="Store2"
-                            runat="server" OnReadData="latenessStore_ReadData"
+                            ID="UnlateStore"
+                            runat="server" OnReadData="UnlateStore_ReadData"
                             RemoteSort="false"
                             RemoteFilter="false">
                             <Proxy>
@@ -3500,7 +3550,7 @@
                     Title="<%$ Resources: ActiveGridTitle %>"
                     Scroll="Vertical"
                     Border="false"
-                    StoreID="activeStore"
+                    StoreID="InStore"
                     ColumnLines="True">
 
 
@@ -3535,7 +3585,7 @@
                 </ext:GridPanel>
             </Items>
         </ext:Window>
-        <ext:Window runat="server" Modal="true" Title="<%$ Resources: ActiveGridTitle %>"
+        <ext:Window runat="server" Modal="true" Title="<%$ Resources: Breaks %>"
             Hidden="true" Layout="FitLayout" AutoShow="false" ID="OutWindow" Width="600" Height="300">
             <Items>
                 <ext:GridPanel MarginSpec="0 0 0 0"
@@ -3543,10 +3593,10 @@
                     runat="server"
                     PaddingSpec="0 0 0 0"
                     Header="false"
-                    Title="<%$ Resources: ActiveGridTitle %>"
+                    Title="<%$ Resources: Breaks %>"
                     Scroll="Vertical"
                     Border="false"
-                    StoreID="activeStore"
+                    StoreID="OutStore"
                     ColumnLines="True">
 
 
