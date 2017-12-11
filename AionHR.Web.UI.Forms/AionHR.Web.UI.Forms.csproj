@@ -221,6 +221,7 @@
     <Content Include="Global.asax" />
     <Content Include="Controls\HijriGregDatePicker.ascx" />
     <Content Include="GovernmentOrganisations.aspx" />
+    <Content Include="HelpBrowser.aspx" />
     <Content Include="Home.aspx" />
     <Content Include="HtmlPage1.html" />
     <Content Include="Images\ajax-loader.gif" />
@@ -583,6 +584,13 @@
     </Compile>
     <Compile Include="GovernmentOrganisations.aspx.designer.cs">
       <DependentUpon>GovernmentOrganisations.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HelpBrowser.aspx.cs">
+      <DependentUpon>HelpBrowser.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HelpBrowser.aspx.designer.cs">
+      <DependentUpon>HelpBrowser.aspx</DependentUpon>
     </Compile>
     <Compile Include="ImportDepartments.aspx.cs">
       <DependentUpon>ImportDepartments.aspx</DependentUpon>

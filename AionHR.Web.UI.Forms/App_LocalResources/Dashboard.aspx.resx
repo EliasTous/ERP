@@ -507,4 +507,7 @@
   <data name="HeadCount" xml:space="preserve">
     <value>Head Count</value>
   </data>
+  <data name="Breaks" xml:space="preserve">
+    <value>Breaks</value>
+  </data>
 </root>
