@@ -303,7 +303,7 @@
                         <Render Handler="this.on('cellclick', cellClick);" />
                     </Listeners>
                     <DirectEvents>
-                        <CellClick OnEvent="PoPuP">
+                        <CellClick OnEvent="PoPuP" IsUpload="true">
                             <EventMask ShowMask="false" />
                             <ExtraParams>
                                 <ext:Parameter Name="id" Value="record.getId()" Mode="Raw" />
