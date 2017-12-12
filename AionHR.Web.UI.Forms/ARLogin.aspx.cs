@@ -127,7 +127,7 @@ namespace AionHR.Web.UI.Forms
                 }
                 //Redirecting..
 
-                if (response.User.languageId == 3)
+                if (response.User.languageId == 2)
                     _systemService.SessionHelper.SetLanguage("ar");
                 else
                     _systemService.SessionHelper.SetLanguage("en");

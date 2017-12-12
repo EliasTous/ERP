@@ -1141,6 +1141,13 @@ namespace AionHR.Web.UI.Forms
                 x.recordId = "0";
                 req.entity = x;
                 PostResponse<DataAccessItemView> resp = _accessControlService.ChildAddOrUpdate<DataAccessItemView>(req);
+                if (!resp.Success)
+                {
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>Technical Error: " + resp.ErrorCode + "<br> Summary: " + resp.Summary : resp.Summary).Show();
+                    return;
+                }
+
             }
             else
             {
@@ -1152,6 +1159,12 @@ namespace AionHR.Web.UI.Forms
                 x.recordId = "0";
                 req.entity = x;
                 PostResponse<DataAccessItemView> resp = _accessControlService.ChildDelete<DataAccessItemView>(req);
+                if (!resp.Success)
+                {
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>Technical Error: " + resp.ErrorCode + "<br> Summary: " + resp.Summary : resp.Summary).Show();
+                    return;
+                }
             }
             dataStore.Reload();
         }

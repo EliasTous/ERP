@@ -1042,7 +1042,7 @@
     <value>انشاء </value>
   </data>
   <data name="FieldEHStatus" xml:space="preserve">
-    <value>الحالة </value>
+    <value>الحالة الوظيفية</value>
   </data>
   <data name="GenerateAttendanceDaySucc" xml:space="preserve">
     <value>تم تحديث الحضور اليومي بنجاح </value>
@@ -1097,5 +1097,11 @@
   </data>
   <data name="bank" xml:space="preserve">
     <value>البنوك</value>
+  </data>
+  <data name="Hint" xml:space="preserve">
+    <value>تنبيه</value>
+  </data>
+  <data name="systemDefaultAlert" xml:space="preserve">
+    <value>يرجى تسجيل الخروج والدخول مرة ثانية لتحديث الاعدادات </value>
   </data>
 </root>

@@ -745,14 +745,18 @@ namespace AionHR.Web.UI.Forms
 
             string dateFormat = _systemService.SessionHelper.GetDateformat();
             LeaveRequestReport y = new LeaveRequestReport();
-            RecordRequest r = new RecordRequest();
-            r.RecordID = CurrentLeave.Text;
+            RecordRequest req = new RecordRequest();
+            req.RecordID = CurrentLeave.Text;
 
-            RecordResponse<LeaveRequest> response = _leaveManagementService.ChildGetRecord<LeaveRequest>(r);
+            RecordResponse<LeaveRequest> response = _leaveManagementService.ChildGetRecord<LeaveRequest>(req);
             if (response.result == null)
                 return;
-            RecordRequest qvr = new RecordRequest();
+
+
+
+            EmployeeQuickViewRecordRequest r = new EmployeeQuickViewRecordRequest();
             r.RecordID = response.result.employeeId;
+            r.asOfDate = DateTime.Now;
             RecordResponse<EmployeeQuickView> resp = _employeeService.ChildGetRecord<EmployeeQuickView>(r);
             if (!resp.Success)
             {

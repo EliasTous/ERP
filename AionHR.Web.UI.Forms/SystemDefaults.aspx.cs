@@ -791,6 +791,9 @@ namespace AionHR.Web.UI.Forms
                     Icon = Icon.Information,
                     Html = Resources.Common.RecordUpdatedSucc
                 });
+
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Hint, GetGlobalResourceObject("Common", "systemDefaultAlert")).Show();
             }
         }
 

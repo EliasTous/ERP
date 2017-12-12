@@ -61,6 +61,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to user did not assign to employee.
+        /// </summary>
+        internal static string AssignToEmployee {
+            get {
+                return ResourceManager.GetString("AssignToEmployee", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Sqrl Expression Invalid.
         /// </summary>
         internal static string Error_102 {

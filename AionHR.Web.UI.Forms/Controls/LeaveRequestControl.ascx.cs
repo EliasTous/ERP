@@ -441,7 +441,7 @@ namespace AionHR.Web.UI.Forms.Controls
                             Html = Resources.Common.RecordSavingSucc
                         });
 
-                        this.EditRecordWindow.Close();
+                        //this.EditRecordWindow.Close();
                         //SetTabPanelEnabled(true);
                         //////RowSelectionModel sm = this.GridPanel1.GetSelectionModel() as RowSelectionModel;
                         //////sm.DeselectAll();
@@ -968,9 +968,11 @@ namespace AionHR.Web.UI.Forms.Controls
             RecordResponse<LeaveRequest> response = _leaveManagementService.ChildGetRecord<LeaveRequest>(r);
             if (response.result == null)
                 return;
-            RecordRequest qvr = new RecordRequest();
-            r.RecordID = response.result.employeeId;
-            RecordResponse<EmployeeQuickView> resp = _employeeService.ChildGetRecord<EmployeeQuickView>(r);
+
+            EmployeeQuickViewRecordRequest req = new EmployeeQuickViewRecordRequest();
+            req.RecordID = response.result.employeeId;
+            req.asOfDate = DateTime.Now;
+            RecordResponse<EmployeeQuickView> resp = _employeeService.ChildGetRecord<EmployeeQuickView>(req);
             if (!resp.Success)
             {
                 X.MessageBox.ButtonText.Ok = Resources.Common.Ok;

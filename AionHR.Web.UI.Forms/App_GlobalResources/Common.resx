@@ -1095,4 +1095,10 @@
   <data name="bank" xml:space="preserve">
     <value>Banks</value>
   </data>
+  <data name="Hint" xml:space="preserve">
+    <value>Hint</value>
+  </data>
+  <data name="systemDefaultAlert" xml:space="preserve">
+    <value>Please Logout and Login Again For Apply Changes</value>
+  </data>
 </root>

@@ -1159,6 +1159,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Hint.
+        /// </summary>
+        internal static string Hint {
+            get {
+                return ResourceManager.GetString("Hint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to History.
         /// </summary>
         internal static string History {
@@ -2667,6 +2676,15 @@ namespace Resources {
         internal static string SystemAlerts {
             get {
                 return ResourceManager.GetString("SystemAlerts", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please Logout and Login Again For Apply Changes.
+        /// </summary>
+        internal static string systemDefaultAlert {
+            get {
+                return ResourceManager.GetString("systemDefaultAlert", resourceCulture);
             }
         }
         
