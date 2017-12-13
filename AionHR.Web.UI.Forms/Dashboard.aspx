@@ -541,7 +541,7 @@
         var drawMinLocalRateCountHightChartColumn = function (objectValues, dataCategoriesObject, rtl, normal) {
             // Build the chart  deparmentsCountHighChart
 
-            var divName = 'localRateCountHighChart-body';
+            var divName = 'localRateCountHighChart';
             // if (!normal)
             //  divName = 'maximumChart';
 
@@ -1380,20 +1380,20 @@
 
                                                                 <ext:Panel
                                                                     runat="server"
-                                                                    Header="false" ID="activeHighChart" ClientIDMode="Static" PaddingSpec="5 5 5 5"
-                                                                    Layout="FitLayout" Flex="1">
+                                                                    Header="false" ID="pnlActiveHighChart" ClientIDMode="Static" PaddingSpec="5 5 5 5"
+                                                                    Layout="FitLayout" Flex="1" Html="<div id='activeHighChart' style='width:100%;height:100%' />">
                                                                 </ext:Panel>
 
                                                                 <ext:Panel
                                                                     runat="server"
-                                                                    Header="false" ID="lateHighChart" ClientIDMode="Static" PaddingSpec="5 5 5 5"
-                                                                    Layout="FitLayout" Flex="1">
+                                                                    Header="false" ID="pnlLateHighChart" ClientIDMode="Static" PaddingSpec="5 5 5 5"
+                                                                    Layout="FitLayout" Flex="1" Html="<div id='lateHighChart' style='width:100%;height:100%' />" >
                                                                 </ext:Panel>
 
                                                                 <ext:Panel
                                                                     runat="server"
-                                                                    Header="false" ID="breakHighChart" ClientIDMode="Static" PaddingSpec="5 5 5 5"
-                                                                    Layout="FitLayout" Flex="1">
+                                                                    Header="false" ID="pnlBreakHighChart" ClientIDMode="Static" PaddingSpec="5 5 5 5"
+                                                                    Layout="FitLayout" Flex="1" Html="<div id='breakHighChart' style='width:100%;height:100%' />">
                                                                 </ext:Panel>
 
 
@@ -1652,8 +1652,8 @@
                                                             <Items>
                                                                 <ext:Panel AutoUpdateLayout="true"
                                                                     runat="server"
-                                                                    Header="false" ID="deparmentsCountHighChart" ClientIDMode="Static" PaddingSpec="5 5 5 5"
-                                                                    Layout="FitLayout" Flex="1">
+                                                                    Header="false" ID="pnlDeparmentsCountHighChart" ClientIDMode="Static" PaddingSpec="5 5 5 5"
+                                                                    Layout="FitLayout" Flex="1" Html="<div id='deparmentsCountHighChart' style='width:100%;height:100%' />">
                                                                 </ext:Panel>
                                                             </Items>
                                                         </ext:Panel>
@@ -1688,8 +1688,8 @@
                                                             <Items>
                                                                 <ext:Panel AutoUpdateLayout="true"
                                                                     runat="server"
-                                                                    Header="true" ID="AttendancePeriodChart" ClientIDMode="Static" PaddingSpec="5 5 5 5"
-                                                                    Layout="FitLayout" Flex="1">
+                                                                    Header="true" ID="pnlAttendancePeriodChart" ClientIDMode="Static" PaddingSpec="5 5 5 5"
+                                                                    Layout="FitLayout" Flex="1" Html="<div id='AttendancePeriodChart' style='width:100%;height:100%' />">
                                                                 </ext:Panel>
                                                             </Items>
                                                         </ext:Panel>
@@ -1750,13 +1750,13 @@
                                                             <Items>
                                                                 <ext:Panel AutoUpdateLayout="true"
                                                                     runat="server"
-                                                                    Header="false" ID="CompanyHeadCountChart" ClientIDMode="Static" PaddingSpec="5 5 5 5"
-                                                                    Layout="FitLayout" Flex="1">
+                                                                    Header="false" ID="pnlCompanyHeadCountChart" ClientIDMode="Static" PaddingSpec="5 5 5 5"
+                                                                    Layout="FitLayout" Flex="1" Html="<div id='CompanyHeadCountChart' style='width:100%;height:100%' />" >
                                                                 </ext:Panel>
                                                                 <ext:Panel AutoUpdateLayout="true"
                                                                     runat="server"
-                                                                    Header="false" ID="DimensionalHeadCountChart" ClientIDMode="Static" PaddingSpec="5 5 5 5"
-                                                                    Layout="FitLayout" Flex="1">
+                                                                    Header="false" ID="pnlDimensionalHeadCountChart" ClientIDMode="Static" PaddingSpec="5 5 5 5"
+                                                                    Layout="FitLayout" Flex="1" Html="<div id='DimensionalHeadCountChart' style='width:100%;height:100%' />">
                                                                 </ext:Panel>
                                                             </Items>
                                                         </ext:Panel>
@@ -2030,13 +2030,13 @@
 
                                                                 <ext:Panel AutoUpdateLayout="true"
                                                                     runat="server"
-                                                                    Header="false" ID="localRateCountHighChart" ClientIDMode="Static" PaddingSpec="5 5 5 5"
-                                                                    Layout="FitLayout" Flex="1">
+                                                                    Header="false" ID="pnllocalRateCountHighChart" ClientIDMode="Static" PaddingSpec="5 5 5 5"
+                                                                    Layout="FitLayout" Flex="1" Html="<div id='localRateCountHighChart' style='width:100%;height:100%' />">
                                                                 </ext:Panel>
                                                                 <ext:Panel AutoUpdateLayout="true"
                                                                     runat="server"
-                                                                    Header="false" ID="localCountHighChart" ClientIDMode="Static" PaddingSpec="5 5 5 5"
-                                                                    Layout="FitLayout" Flex="1">
+                                                                    Header="false" ID="pnllocalCountHighChart" ClientIDMode="Static" PaddingSpec="5 5 5 5"
+                                                                    Layout="FitLayout" Flex="1" Html="<div id='localCountHighChart' style='width:100%;height:100%' />">
                                                                 </ext:Panel>
 
 
@@ -2398,8 +2398,8 @@
             <Items>
                 <ext:Panel AutoUpdateLayout="true"
                     runat="server"
-                    ID="maximumChart" ClientIDMode="Static" PaddingSpec="5 5 5 5"
-                    Layout="FitLayout" Flex="1">
+                    ID="pnlMaximumChart" ClientIDMode="Static" PaddingSpec="5 5 5 5"
+                    Layout="FitLayout" Flex="1"  Html="<div id='maximumChart' style='width:100%;height:100%' />">
                 </ext:Panel>
             </Items>
 
