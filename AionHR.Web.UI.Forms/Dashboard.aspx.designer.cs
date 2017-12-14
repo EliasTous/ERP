@@ -400,31 +400,31 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.TabPanel att;
         
         /// <summary>
-        /// activeHighChart control.
+        /// pnlActiveHighChart control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Panel activeHighChart;
+        protected global::Ext.Net.Panel pnlActiveHighChart;
         
         /// <summary>
-        /// lateHighChart control.
+        /// pnlLateHighChart control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Panel lateHighChart;
+        protected global::Ext.Net.Panel pnlLateHighChart;
         
         /// <summary>
-        /// breakHighChart control.
+        /// pnlBreakHighChart control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Panel breakHighChart;
+        protected global::Ext.Net.Panel pnlBreakHighChart;
         
         /// <summary>
         /// pnlDepartmentCount control.
@@ -436,13 +436,13 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Panel pnlDepartmentCount;
         
         /// <summary>
-        /// deparmentsCountHighChart control.
+        /// pnlDeparmentsCountHighChart control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Panel deparmentsCountHighChart;
+        protected global::Ext.Net.Panel pnlDeparmentsCountHighChart;
         
         /// <summary>
         /// pnlAttendancePeriod control.
@@ -463,13 +463,13 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.DateField periodToDate;
         
         /// <summary>
-        /// AttendancePeriodChart control.
+        /// pnlAttendancePeriodChart control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Panel AttendancePeriodChart;
+        protected global::Ext.Net.Panel pnlAttendancePeriodChart;
         
         /// <summary>
         /// pnlHeadCount control.
@@ -499,22 +499,22 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.ComboBox dimension;
         
         /// <summary>
-        /// CompanyHeadCountChart control.
+        /// pnlCompanyHeadCountChart control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Panel CompanyHeadCountChart;
+        protected global::Ext.Net.Panel pnlCompanyHeadCountChart;
         
         /// <summary>
-        /// DimensionalHeadCountChart control.
+        /// pnlDimensionalHeadCountChart control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Panel DimensionalHeadCountChart;
+        protected global::Ext.Net.Panel pnlDimensionalHeadCountChart;
         
         /// <summary>
         /// missingPunchesGrid control.
@@ -787,22 +787,22 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Panel pnlRate;
         
         /// <summary>
-        /// localRateCountHighChart control.
+        /// pnllocalRateCountHighChart control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Panel localRateCountHighChart;
+        protected global::Ext.Net.Panel pnllocalRateCountHighChart;
         
         /// <summary>
-        /// localCountHighChart control.
+        /// pnllocalCountHighChart control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Panel localCountHighChart;
+        protected global::Ext.Net.Panel pnllocalCountHighChart;
         
         /// <summary>
         /// today control.
@@ -913,13 +913,13 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Window MaximumChartWindow;
         
         /// <summary>
-        /// maximumChart control.
+        /// pnlMaximumChart control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Panel maximumChart;
+        protected global::Ext.Net.Panel pnlMaximumChart;
         
         /// <summary>
         /// BirthdaysWindow control.
