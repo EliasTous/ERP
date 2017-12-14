@@ -79,7 +79,7 @@ namespace AionHR.Web.UI.Forms.Reports
                         Viewport1.Hidden = true;
                         return;
                     }
-
+                    FillSponseCombo();
                     FillCountry();
                     GenderCombo.Select(0);
                     format.Text = _systemService.SessionHelper.GetDateformat().ToUpper();
@@ -92,7 +92,18 @@ namespace AionHR.Web.UI.Forms.Reports
         }
 
 
-
+        private void FillSponseCombo()
+        {
+            ListRequest sponserRequest = new ListRequest();
+            ListResponse<Sponsor> resp = _employeeService.ChildGetAll<Sponsor>(sponserRequest);
+            if (!resp.Success)
+            {
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>Technical Error: " + resp.ErrorCode + "<br> Summary: " + resp.Summary : resp.Summary).Show();
+                return;
+            }
+            sponsorStore.DataSource = resp.Items;
+            sponsorStore.DataBind();
+        }
         private void ActivateFirstFilterSet()
         {
 
@@ -246,15 +257,25 @@ namespace AionHR.Web.UI.Forms.Reports
                     y.Parameters["Division"].Value = jobInfo1.GetDivision();
                 else
                     y.Parameters["Division"].Value = GetGlobalResourceObject("Common", "All");
+                if (req.Parameters["_sponsorId"] != "0")
+                    y.Parameters["Sponsor"].Value = sponsorId.SelectedItem.Text;
+                else
+                    y.Parameters["Sponsor"].Value = GetGlobalResourceObject("Common", "All");
             }
             ASPxWebDocumentViewer1.DataBind();
             ASPxWebDocumentViewer1.OpenReport(y);
         }
-       private SexParameterSet GetSexFilter()
+       private GenderParameterSet GetGenderFilter()
         {
-            SexParameterSet s = new SexParameterSet();
+            GenderParameterSet s = new GenderParameterSet();
             s.gender = Convert.ToInt16(GenderCombo.SelectedItem.Value);
             return s; 
+        }
+        private SponserParameterSet GetSponserFilter()
+        {
+            SponserParameterSet s = new SponserParameterSet();
+            s.sponsorId = Convert.ToInt16(sponsorId.SelectedItem.Value);
+            return s;
         }
         private ReportCompositeRequest GetRequest()
         {
@@ -268,8 +289,9 @@ namespace AionHR.Web.UI.Forms.Reports
             request.Add(activeControl.GetActiveStatus());
             request.Add(GetCountryInfo());
             request.Add(employeeFilter.GetEmployee());
-            request.Add(GetSexFilter()); 
-         
+            request.Add(GetGenderFilter());
+            request.Add(GetSponserFilter());
+
 
             return request;
 

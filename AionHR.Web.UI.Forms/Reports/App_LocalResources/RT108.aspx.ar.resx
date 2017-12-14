@@ -132,4 +132,7 @@
   <data name="Male" xml:space="preserve">
     <value>ذكر </value>
   </data>
+  <data name="sponsor" xml:space="preserve">
+    <value>الكفيل</value>
+  </data>
 </root>

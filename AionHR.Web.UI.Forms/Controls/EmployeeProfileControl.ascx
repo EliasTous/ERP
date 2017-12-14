@@ -562,8 +562,8 @@
     runat="server" 
     Icon="PageEdit"
     Title="<%$ Resources:EditWindowsTitle %>"
-    Width="820"
-    Height="500"
+    Width="850"
+    Height="550"
     MinWidth="820"
      
     MinHeight="500"
@@ -575,7 +575,8 @@
     Draggable="false"
     Resizable="true"
     Maximized="false"
-    Layout="BorderLayout">
+    Layout="BorderLayout"
+    Scrollable="Vertical">
     <Listeners>
         <BeforeClose Handler="#{imgControl}.src ='Images/empPhoto.png';" />
     </Listeners>

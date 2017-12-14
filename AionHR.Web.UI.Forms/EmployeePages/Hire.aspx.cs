@@ -64,6 +64,8 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                 CurrentEmployee.Text = Request.QueryString["employeeId"];
                 FillNoticePeriod();
                 FillBranchField();
+                FillSponseCombo(); 
+
 
                 HireInfoRecordRequest req = new HireInfoRecordRequest();
                 req.EmployeeId = Request.QueryString["employeeId"];
@@ -74,18 +76,25 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     return;
                 }
               
-                //probationPeriod.SuspendEvent("Change");
+                probationPeriod.SuspendEvent("Change");
                 if (resp.result != null)
                 {
                     hireInfoForm.SetValues(resp.result);
                     npId.Select(resp.result.npId.ToString());
                     recBranchId.Select(resp.result.recBranchId.ToString());
-                    probationEndDateHidden.Value = resp.result.probationEndDate;
-                    probationEndDate.MinDate = Convert.ToDateTime(resp.result.hireDate);
+                    sponsorId.Select(resp.result.sponsorId.ToString());
+                   
+                  
+
                     pyActiveDate.Value = resp.result.pyActiveDate;
                     probationPeriod.Value = resp.result.probationPeriod;
-                    probationEndDate.Value = resp.result.probationEndDate;
-                    
+                    if(resp.result.probationEndDate!=null)
+                        probationEndDateHidden.Value = resp.result.probationEndDate;
+                    else
+                        probationEndDateHidden.Value = resp.result.hireDate;
+                    probationEndDate.MinDate = Convert.ToDateTime(resp.result.hireDate);
+                    probationEndDate.MinDate = Convert.ToDateTime(resp.result.hireDate);
+
                 }
                 else
                 {
@@ -108,13 +117,25 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                 saveButton.Disabled = disabled;
                 probationPeriod.Value = 0;
 
-                //probationPeriod.ResumeEvent("Change");
+                probationPeriod.ResumeEvent("Change");
 
 
                 try
                 {
-                    AccessControlApplier.ApplyAccessControlOnPage(typeof(HireInfo), actualPanel, null, null, saveButton);
+                    AccessControlApplier.ApplyAccessControlOnPage(typeof(HireInfo), left, null, null, saveButton);
                     
+                }
+                catch (AccessDeniedException exp)
+                {
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorAccessDenied).Show();
+                    Viewport11.Hidden = true;
+                    return;
+                }
+                try
+                {
+                    AccessControlApplier.ApplyAccessControlOnPage(typeof(HireInfo), rightPanel, null, null, saveButton);
+
                 }
                 catch (AccessDeniedException exp)
                 {
@@ -264,6 +285,18 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             }
 
 
+        }
+        private void FillSponseCombo()
+        {
+            ListRequest sponserRequest = new ListRequest();
+            ListResponse<Sponsor> resp = _employeeService.ChildGetAll<Sponsor>(sponserRequest);
+            if (!resp.Success)
+            {
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>Technical Error: " + resp.ErrorCode + "<br> Summary: " + resp.Summary : resp.Summary).Show();
+                return;
+            }
+            sponsorStore.DataSource = resp.Items;
+            sponsorStore.DataBind();
         }
         private void FillBranchField()
         {

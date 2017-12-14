@@ -117,22 +117,58 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Paid" xml:space="preserve">
+    <value>Approved</value>
+  </data>
+  <data name="status0" xml:space="preserve">
+    <value>Non-working Day</value>
+  </data>
+  <data name="status1" xml:space="preserve">
+    <value>Working Day</value>
+  </data>
+  <data name="status2" xml:space="preserve">
+    <value>Paid Leave</value>
+  </data>
+  <data name="status3" xml:space="preserve">
+    <value>Incomplete</value>
+  </data>
+  <data name="status4" xml:space="preserve">
+    <value>Unpaid Leave</value>
+  </data>
+  <data name="status5" xml:space="preserve">
+    <value>Absense</value>
+  </data>
+  <data name="Unpaid" xml:space="preserve">
+    <value>Unapproved</value>
+  </data>
   <data name="All" xml:space="preserve">
-    <value>ALL</value>
+    <value>All</value>
   </data>
-  <data name="Female" xml:space="preserve">
-    <value>Female</value>
+  <data name="lateness" xml:space="preserve">
+    <value>Lateness</value>
   </data>
-  <data name="FieldCountry" xml:space="preserve">
-    <value>Country </value>
+  <data name="LeaveWithoutExcuse" xml:space="preserve">
+    <value>Leave Without Excuse</value>
   </data>
-  <data name="FieldGender" xml:space="preserve">
-    <value>Gender</value>
+  <data name="OpenDay" xml:space="preserve">
+    <value>Open Day</value>
   </data>
-  <data name="Male" xml:space="preserve">
-    <value>Male</value>
+  <data name="overtime" xml:space="preserve">
+    <value>Overtime</value>
   </data>
-  <data name="sponsor" xml:space="preserve">
-    <value>Sponsor</value>
+  <data name="Paidleave" xml:space="preserve">
+    <value>Paid Leave</value>
+  </data>
+  <data name="UnPaidleave" xml:space="preserve">
+    <value>UnPaid leave</value>
+  </data>
+  <data name="workingDay" xml:space="preserve">
+    <value>Working Day</value>
+  </data>
+  <data name="FieldDayStatus" xml:space="preserve">
+    <value>Day Status</value>
+  </data>
+  <data name="FieldPunchStatus" xml:space="preserve">
+    <value>Punch Status</value>
   </data>
 </root>

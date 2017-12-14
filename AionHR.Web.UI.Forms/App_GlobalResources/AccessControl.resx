@@ -1383,4 +1383,7 @@
   <data name="Property6010605" xml:space="preserve">
     <value>Body Text</value>
   </data>
+  <data name="Property3107002" xml:space="preserve">
+    <value>Exclude Social Security</value>
+  </data>
 </root>

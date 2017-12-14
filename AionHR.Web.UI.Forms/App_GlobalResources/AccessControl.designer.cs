@@ -1456,6 +1456,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Exclude Social Security.
+        /// </summary>
+        internal static string Property3107002 {
+            get {
+                return ResourceManager.GetString("Property3107002", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Status.
         /// </summary>
         internal static string Property3107101 {

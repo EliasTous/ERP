@@ -135,4 +135,7 @@
   <data name="WindowTitle" xml:space="preserve">
     <value>أنواع الحالة </value>
   </data>
+  <data name="excludeSocialSecurity" xml:space="preserve">
+    <value>غير خاضع للتأمينات الإجتماعية</value>
+  </data>
 </root>

@@ -150,4 +150,7 @@
   <data name="FieldProbationPeriod" xml:space="preserve">
     <value>Probation Period</value>
   </data>
+  <data name="sponsor" xml:space="preserve">
+    <value>Sponsor</value>
+  </data>
 </root>

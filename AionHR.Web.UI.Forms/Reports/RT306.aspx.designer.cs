@@ -10,7 +10,7 @@
 namespace AionHR.Web.UI.Forms.Reports {
     
     
-    public partial class RT108 {
+    public partial class RT306 {
         
         /// <summary>
         /// Form1 control.
@@ -103,13 +103,22 @@ namespace AionHR.Web.UI.Forms.Reports {
         protected global::Ext.Net.Panel Center;
         
         /// <summary>
-        /// employeeFilter control.
+        /// dateRange1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AionHR.Web.UI.Forms.Reports.Controls.EmployeeFilter employeeFilter;
+        protected global::AionHR.Web.UI.Forms.Reports.DateRangeFilter dateRange1;
+        
+        /// <summary>
+        /// employeeCombo1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AionHR.Web.UI.Forms.Reports.Controls.EmployeeFilter employeeCombo1;
         
         /// <summary>
         /// jobInfo1 control.
@@ -121,58 +130,22 @@ namespace AionHR.Web.UI.Forms.Reports {
         protected global::AionHR.Web.UI.Forms.Reports.JobInfoFilter jobInfo1;
         
         /// <summary>
-        /// activeControl control.
+        /// dayStatus control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AionHR.Web.UI.Forms.Reports.ActiveStatusFilter activeControl;
+        protected global::Ext.Net.ComboBox dayStatus;
         
         /// <summary>
-        /// countryIdCombo control.
+        /// punchStatus control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.ComboBox countryIdCombo;
-        
-        /// <summary>
-        /// NationalityStore control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Store NationalityStore;
-        
-        /// <summary>
-        /// GenderCombo control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.ComboBox GenderCombo;
-        
-        /// <summary>
-        /// sponsorId control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.ComboBox sponsorId;
-        
-        /// <summary>
-        /// sponsorStore control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Store sponsorStore;
+        protected global::Ext.Net.ComboBox punchStatus;
         
         /// <summary>
         /// ASPxCallbackPanel1 control.

@@ -445,6 +445,7 @@
                                 <ext:DateField ID="ehDate" runat="server" Name="date" FieldLabel="<%$ Resources:FieldEHDate%>" AllowBlank="false" />
                                 <ext:TextArea runat="server" Name="comment" ID="comment" FieldLabel="<%$ Resources:FieldEHComment%>" />
                                 <ext:TextField runat="server" Name="comment" ID="commentField" InputType="Password" Visible="false" FieldLabel="<%$ Resources:FieldEHComment%>" />
+                            
                             </Items>
 
                         </ext:FormPanel>

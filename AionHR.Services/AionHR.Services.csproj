@@ -123,6 +123,7 @@
     <Compile Include="Messaging\Reports\DateParameterSet.cs" />
     <Compile Include="Messaging\Reports\DateRangeParameterSet.cs" />
     <Compile Include="Messaging\Reports\DayIdParameterSet.cs" />
+    <Compile Include="Messaging\Reports\dayStatusParameterSet.cs" />
     <Compile Include="Messaging\Reports\EmployeeParameterSet.cs" />
     <Compile Include="Messaging\Reports\EmployeeStatusParameterSet.cs" />
     <Compile Include="Messaging\Reports\JobInfoParameterSet.cs" />
@@ -139,7 +140,8 @@
     <Compile Include="Messaging\Reports\RightToWorkParameterSet.cs" />
     <Compile Include="Messaging\Reports\SalaryChangeReasonParameterSet.cs" />
     <Compile Include="Messaging\Reports\SalaryTypeParameterSet.cs" />
-    <Compile Include="Messaging\Reports\SexParameterSet.cs" />
+    <Compile Include="Messaging\Reports\GenderParameterSet.cs" />
+    <Compile Include="Messaging\Reports\SponserParameterSet.cs" />
     <Compile Include="Messaging\Reports\TransactionTypeParameterSet.cs" />
     <Compile Include="Messaging\Reports\UserParameterSet.cs" />
     <Compile Include="Messaging\RequestBase.cs" />

@@ -1,0 +1,449 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="xrLabel1.Text" xml:space="preserve">
+    <value>اليوم</value>
+  </data>
+  <data name="xrLabel10.Text" xml:space="preserve">
+    <value>غير مدفوع</value>
+  </data>
+  <data name="xrLabel100.Text" xml:space="preserve">
+    <value>لم يتم العثور على نتائج مطابقة</value>
+  </data>
+  <data name="xrLabel101.Text" xml:space="preserve">
+    <value>خروج 1</value>
+  </data>
+  <data name="xrLabel106.Text" xml:space="preserve">
+    <value>دخول</value>
+  </data>
+  <data name="xrLabel108.Text" xml:space="preserve">
+    <value>خروج 2</value>
+  </data>
+  <data name="xrLabel109.Text" xml:space="preserve">
+    <value>xrLabel109</value>
+  </data>
+  <data name="xrLabel11.Text" xml:space="preserve">
+    <value>وقت العمل الفعلي</value>
+  </data>
+  <data name="xrLabel110.Text" xml:space="preserve">
+    <value>التأخير</value>
+  </data>
+  <data name="xrLabel111.Text" xml:space="preserve">
+    <value>من قبل :</value>
+  </data>
+  <data name="xrLabel112.Text" xml:space="preserve">
+    <value>مدفوع </value>
+  </data>
+  <data name="xrLabel114.Text" xml:space="preserve">
+    <value>Schedule
+</value>
+  </data>
+  <data name="xrLabel116.Text" xml:space="preserve">
+    <value>xrLabel116</value>
+  </data>
+  <data name="xrLabel117.Text" xml:space="preserve">
+    <value>Day Status</value>
+  </data>
+  <data name="xrLabel12.Text" xml:space="preserve">
+    <value>الخروج</value>
+  </data>
+  <data name="xrLabel120.Text" xml:space="preserve">
+    <value>دخول 3</value>
+  </data>
+  <data name="xrLabel121.Text" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="xrLabel122.Text" xml:space="preserve">
+    <value>Punch Status
+</value>
+  </data>
+  <data name="xrLabel123.Text" xml:space="preserve">
+    <value>الدوام </value>
+  </data>
+  <data name="xrLabel125.Text" xml:space="preserve">
+    <value>xrLabel125</value>
+  </data>
+  <data name="xrLabel128.Text" xml:space="preserve">
+    <value>التاريخ</value>
+  </data>
+  <data name="xrLabel129.Text" xml:space="preserve">
+    <value>الخروج</value>
+  </data>
+  <data name="xrLabel13.Text" xml:space="preserve">
+    <value>تباينات الحضور</value>
+  </data>
+  <data name="xrLabel130.Text" xml:space="preserve">
+    <value>المجموع :</value>
+  </data>
+  <data name="xrLabel133.Text" xml:space="preserve">
+    <value>خروج 3</value>
+  </data>
+  <data name="xrLabel137.Text" xml:space="preserve">
+    <value>من</value>
+  </data>
+  <data name="xrLabel14.Text" xml:space="preserve">
+    <value>التأخير</value>
+  </data>
+  <data name="xrLabel15.Text" xml:space="preserve">
+    <value>بدون اذن</value>
+  </data>
+  <data name="xrLabel16.Text" xml:space="preserve">
+    <value>دخول</value>
+  </data>
+  <data name="xrLabel17.Text" xml:space="preserve">
+    <value>الدوام</value>
+  </data>
+  <data name="xrLabel18.Text" xml:space="preserve">
+    <value>العمل الإضافي</value>
+  </data>
+  <data name="xrLabel19.Text" xml:space="preserve">
+    <value>مغادرة</value>
+  </data>
+  <data name="xrLabel2.Text" xml:space="preserve">
+    <value>التاريخ</value>
+  </data>
+  <data name="xrLabel20.Text" xml:space="preserve">
+    <value>لم يتم العثور على نتائج مطابقة</value>
+  </data>
+  <data name="xrLabel21.Text" xml:space="preserve">
+    <value>حالة اليوم</value>
+  </data>
+  <data name="xrLabel24.Text" xml:space="preserve">
+    <value>عدد أيام الغياب بإذن</value>
+  </data>
+  <data name="xrLabel25.Text" xml:space="preserve">
+    <value>إجمالي عدد الأيام</value>
+  </data>
+  <data name="xrLabel27.Text" xml:space="preserve">
+    <value>الحضور التفصيلي </value>
+  </data>
+  <data name="xrLabel28.Text" xml:space="preserve">
+    <value>الموظف</value>
+  </data>
+  <data name="xrLabel29.Text" xml:space="preserve">
+    <value>xrLabel28</value>
+  </data>
+  <data name="xrLabel3.Text" xml:space="preserve">
+    <value>دخول1</value>
+  </data>
+  <data name="xrLabel31.Text" xml:space="preserve">
+    <value>التأخير المسموح</value>
+  </data>
+  <data name="xrLabel32.Text" xml:space="preserve">
+    <value>من</value>
+  </data>
+  <data name="xrLabel33.Text" xml:space="preserve">
+    <value>xrLabel28</value>
+  </data>
+  <data name="xrLabel34.Text" xml:space="preserve">
+    <value>إلى</value>
+  </data>
+  <data name="xrLabel35.Text" xml:space="preserve">
+    <value>xrLabel28</value>
+  </data>
+  <data name="xrLabel36.Text" xml:space="preserve">
+    <value>الفرع</value>
+  </data>
+  <data name="xrLabel37.Text" xml:space="preserve">
+    <value>xrLabel28</value>
+  </data>
+  <data name="xrLabel38.Text" xml:space="preserve">
+    <value>الإدارة</value>
+  </data>
+  <data name="xrLabel39.Text" xml:space="preserve">
+    <value>xrLabel28</value>
+  </data>
+  <data name="xrLabel4.Text" xml:space="preserve">
+    <value>خروج 1</value>
+  </data>
+  <data name="xrLabel40.Text" xml:space="preserve">
+    <value>ساعات مهمة العمل</value>
+  </data>
+  <data name="xrLabel41.Text" xml:space="preserve">
+    <value>أيام العمل الفعلية</value>
+  </data>
+  <data name="xrLabel42.Text" xml:space="preserve">
+    <value>ساعات المهمة الخاصة</value>
+  </data>
+  <data name="xrLabel43.Text" xml:space="preserve">
+    <value>الإجازات الرسمية</value>
+  </data>
+  <data name="xrLabel44.Text" xml:space="preserve">
+    <value>مجموع أيام الغياب</value>
+  </data>
+  <data name="xrLabel45.Text" xml:space="preserve">
+    <value>إجمالي التأخير</value>
+  </data>
+  <data name="xrLabel46.Text" xml:space="preserve">
+    <value>التأخير عن الدوام</value>
+  </data>
+  <data name="xrLabel47.Text" xml:space="preserve">
+    <value>عدد أيام الغياب بدون اذن</value>
+  </data>
+  <data name="xrLabel48.Text" xml:space="preserve">
+    <value>ساعات العمل المفترضة</value>
+  </data>
+  <data name="xrLabel5.Text" xml:space="preserve">
+    <value>دخول 2</value>
+  </data>
+  <data name="xrLabel50.Text" xml:space="preserve">
+    <value>جدول الدوام</value>
+  </data>
+  <data name="xrLabel52.Text" xml:space="preserve">
+    <value>ساعات العمل الفعلية</value>
+  </data>
+  <data name="xrLabel53.Text" xml:space="preserve">
+    <value>ساعات الغياب</value>
+  </data>
+  <data name="xrLabel53.Text1" xml:space="preserve">
+    <value>العمل الاضافي </value>
+  </data>
+  <data name="xrLabel54.Text" xml:space="preserve">
+    <value>xrLabel54</value>
+  </data>
+  <data name="xrLabel57.Text" xml:space="preserve">
+    <value>صافي ساعات التأخير المخصومة</value>
+  </data>
+  <data name="xrLabel58.Text" xml:space="preserve">
+    <value>المجموع</value>
+  </data>
+  <data name="xrLabel6.Text" xml:space="preserve">
+    <value>خروج 2</value>
+  </data>
+  <data name="xrLabel62.Text" xml:space="preserve">
+    <value>العمل الإضافي</value>
+  </data>
+  <data name="xrLabel63.Text" xml:space="preserve">
+    <value>خلال الدوام</value>
+  </data>
+  <data name="xrLabel65.Text" xml:space="preserve">
+    <value>الأيام غير المغلقة</value>
+  </data>
+  <data name="xrLabel68.Text" xml:space="preserve">
+    <value>اليوم</value>
+  </data>
+  <data name="xrLabel69.Text" xml:space="preserve">
+    <value>xrLabel69</value>
+  </data>
+  <data name="xrLabel7.Text" xml:space="preserve">
+    <value>دخول 3</value>
+  </data>
+  <data name="xrLabel70.Text" xml:space="preserve">
+    <value>Work Time</value>
+  </data>
+  <data name="xrLabel72.Text" xml:space="preserve">
+    <value>دخول 1</value>
+  </data>
+  <data name="xrLabel75.Text" xml:space="preserve">
+    <value>من قبل</value>
+  </data>
+  <data name="xrLabel76.Text" xml:space="preserve">
+    <value>xrLabel76</value>
+  </data>
+  <data name="xrLabel79.Text" xml:space="preserve">
+    <value>غير مدفوع</value>
+  </data>
+  <data name="xrLabel8.Text" xml:space="preserve">
+    <value>خروج3</value>
+  </data>
+  <data name="xrLabel80.Text" xml:space="preserve">
+    <value>Detailed Attendance</value>
+  </data>
+  <data name="xrLabel81.Text" xml:space="preserve">
+    <value>مغادرة</value>
+  </data>
+  <data name="xrLabel82.Text" xml:space="preserve">
+    <value>تباينات الحضور</value>
+  </data>
+  <data name="xrLabel84.Text" xml:space="preserve">
+    <value>دخول 3</value>
+  </data>
+  <data name="xrLabel85.Text" xml:space="preserve">
+    <value>الى</value>
+  </data>
+  <data name="xrLabel87.Text" xml:space="preserve">
+    <value>xrLabel87</value>
+  </data>
+  <data name="xrLabel9.Text" xml:space="preserve">
+    <value>مدفوع</value>
+  </data>
+  <data name="xrLabel91.Text" xml:space="preserve">
+    <value>Department</value>
+  </data>
+  <data name="xrPageInfo2.Format" xml:space="preserve">
+    <value>صفحة {0} من {1}</value>
+  </data>
+  <data name="xrPageInfo3.Format" xml:space="preserve">
+    <value>Page {0} of {1}</value>
+  </data>
+  <data name="xrTableCell19.Text" xml:space="preserve">
+    <value>xrTableCell9</value>
+  </data>
+  <data name="xrTableCell20.Text" xml:space="preserve">
+    <value>xrTableCell2</value>
+  </data>
+  <data name="xrTableCell21.Text" xml:space="preserve">
+    <value>xrTableCell17</value>
+  </data>
+  <data name="xrTableCell22.Text" xml:space="preserve">
+    <value>xrTableCell15</value>
+  </data>
+  <data name="xrTableCell23.Text" xml:space="preserve">
+    <value>xrTableCell14</value>
+  </data>
+  <data name="xrTableCell24.Text" xml:space="preserve">
+    <value>xrTableCell10</value>
+  </data>
+  <data name="xrTableCell25.Text" xml:space="preserve">
+    <value>xrTableCell5</value>
+  </data>
+  <data name="xrTableCell26.Text" xml:space="preserve">
+    <value>xrTableCell12</value>
+  </data>
+  <data name="xrTableCell27.Text" xml:space="preserve">
+    <value>xrTableCell6</value>
+  </data>
+  <data name="xrTableCell28.Text" xml:space="preserve">
+    <value>xrTableCell16</value>
+  </data>
+  <data name="xrTableCell29.Text" xml:space="preserve">
+    <value>xrTableCell3</value>
+  </data>
+  <data name="xrTableCell30.Text" xml:space="preserve">
+    <value>xrTableCell8</value>
+  </data>
+  <data name="xrTableCell31.Text" xml:space="preserve">
+    <value>xrTableCell1</value>
+  </data>
+  <data name="xrTableCell32.Text" xml:space="preserve">
+    <value>xrTableCell7</value>
+  </data>
+  <data name="xrTableCell33.Text" xml:space="preserve">
+    <value>xrTableCell18</value>
+  </data>
+  <data name="xrTableCell34.Text" xml:space="preserve">
+    <value>xrTableCell4</value>
+  </data>
+  <data name="xrTableCell35.Text" xml:space="preserve">
+    <value>xrTableCell13</value>
+  </data>
+  <data name="xrTableCell36.Text" xml:space="preserve">
+    <value>xrTableCell11</value>
+  </data>
+</root>

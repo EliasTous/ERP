@@ -39,9 +39,11 @@
             <Items>
                 <ext:FormPanel runat="server" ID="hireInfoForm" Region="Center" Layout="HBoxLayout" >
                     <Items>
-                        <ext:Panel runat="server"  flex="2"><Items></Items></ext:Panel>
-                        <ext:Panel ID="actualPanel" runat="server" Flex="6"><Items>
-                            <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" AllowBlank="false" ValueField="recordId" QueryMode="Local"  LabelWidth="200" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" ID="npId" Name="npId" FieldLabel="<%$ Resources:FieldNP%>" SimpleSubmit="true">
+                      <%--  <ext:Panel runat="server"  flex="2"><Items></Items></ext:Panel>--%>
+                       <%-- <ext:Panel ID="actualPanel" runat="server" Flex="6"><Items>--%>
+                            <ext:Panel runat="server" MarginSpec="0 20 0 0" ID="left">
+                                       <Items>
+                            <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" AllowBlank="false" ValueField="recordId" QueryMode="Local"  LabelWidth="150" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" ID="npId" Name="npId" FieldLabel="<%$ Resources:FieldNP%>" SimpleSubmit="true">
                             <Store>
                                 <ext:Store runat="server" ID="npStore">
                                     <Model>
@@ -71,32 +73,37 @@
                                 <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
                             </Listeners>
                         </ext:ComboBox>
-                            <ext:NumberField runat="server" AllowBlank="true" ID="probationPeriod" Name="probationPeriod" LabelWidth="200" FieldLabel="<%$ Resources:FieldProbationPeriod  %>" MinValue="0">
+                            <ext:NumberField runat="server" AllowBlank="true" ID="probationPeriod" Name="probationPeriod" LabelWidth="150" FieldLabel="<%$ Resources:FieldProbationPeriod  %>" MinValue="0">
                                 <Listeners>
                                    <%-- <Change Handler= "App.probationEndDate.setValue(Ext.Date.add(App.probationEndDate.value, Ext.Date.Day, + App.probationPeriod.value));"></Change>--%>
-                                    <Change Handler =" App.probationEndDate.setValue(Ext.Date.add(App.probationEndDateHidden.value, Ext.Date.DAY,App.probationPeriod.value ));"></Change>
+                                    <Change Handler ="if(App.probationPeriod.value>0){  App.probationEndDate.setValue(Ext.Date.add(App.probationEndDateHidden.value, Ext.Date.DAY,App.probationPeriod.value ));}"></Change>
                                 </Listeners>
                             
                             </ext:NumberField>
                                 <ext:DateField runat="server"  ID="probationEndDateHidden" Hidden="true"></ext:DateField>
-                        <ext:DateField runat="server" AllowBlank="false" ID="probationEndDate" Name="probationEndDate" LabelWidth="200" FieldLabel="<%$ Resources:FieldProbationEndDate %>"></ext:DateField>
-                        <ext:DateField runat="server" AllowBlank="true" ID="nextReviewDate" Name="nextReviewDate"  LabelWidth="200" FieldLabel="<%$ Resources:FieldNextReviewDate %>">
+                        <ext:DateField runat="server" AllowBlank="false" ID="probationEndDate" Name="probationEndDate" LabelWidth="150" FieldLabel="<%$ Resources:FieldProbationEndDate %>"></ext:DateField>
+                        <ext:DateField runat="server" AllowBlank="true" ID="nextReviewDate" Name="nextReviewDate"  LabelWidth="150" FieldLabel="<%$ Resources:FieldNextReviewDate %>">
                           
                         </ext:DateField>
-                        
-                        <ext:DateField  LabelWidth="200" runat="server" AllowBlank="true" ID="termEndDate" Name="termEndDate" FieldLabel="<%$ Resources:FieldTermEndDate %>"></ext:DateField>
-                        <ext:TextArea  LabelWidth="200"  runat="server" ID="recruitmentInfo" Name="recruitmentInfo" FieldLabel="<%$ Resources:FieldRecruitmentInfo %>" />
-                            <ext:TextField InputType="Password" Visible="false"  LabelWidth="200"  runat="server" ID="infoField" Name="recruitmentInfo" FieldLabel="<%$ Resources:FieldRecruitmentInfo %>" />
-                        <ext:TextField runat="server"  LabelWidth="200" ID="recruitmentCost" Name="recruitmentCost" FieldLabel="<%$ Resources:FieldRecruitmentCost %>" >
+                                             <ext:DateField  LabelWidth="150" runat="server" AllowBlank="true" ID="termEndDate" Name="termEndDate" FieldLabel="<%$ Resources:FieldTermEndDate %>"></ext:DateField>
+                                               <ext:DateField  LabelWidth="150" runat="server" AllowBlank="false" ID="pyActiveDate" Name="pyActiveDate" FieldLabel="<%$ Resources:pyActiveDate %>"></ext:DateField>
+                                            <ext:TextArea  LabelWidth="150"  runat="server" ID="recruitmentInfo" Name="recruitmentInfo" FieldLabel="<%$ Resources:FieldRecruitmentInfo %>" />
+                         </Items></ext:Panel>
+                               <ext:Panel runat="server" MarginSpec="0 0 0 0" ID="rightPanel">
+                                  <Items>
+                      
+                       
+                            <ext:TextField InputType="Password" Visible="false"  LabelWidth="120"  runat="server" ID="infoField" Name="recruitmentInfo" FieldLabel="<%$ Resources:FieldRecruitmentInfo %>" />
+                        <ext:TextField runat="server"  LabelWidth="120" ID="recruitmentCost" Name="recruitmentCost" FieldLabel="<%$ Resources:FieldRecruitmentCost %>" >
                          
                             <Validator Handler="if(isNaN(this.value)||this.value<0) return false; return true;">
                                 
                             </Validator>
                             </ext:TextField>
-                            <ext:TextField runat="server"  LabelWidth="200" ID="pyReference" Name="pyReference" FieldLabel="<%$ Resources:pyReference %>" />
-                             <ext:TextField runat="server"  LabelWidth="200" ID="taReference" Name="taReference" FieldLabel="<%$ Resources:taReference %>" />
-                                 <ext:DateField  LabelWidth="200" runat="server" AllowBlank="false" ID="pyActiveDate" Name="pyActiveDate" FieldLabel="<%$ Resources:pyActiveDate %>"></ext:DateField>
-                                 <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  Enabled="false" runat="server" AllowBlank="false" ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" ID="recBranchId" Name="recBranchId" FieldLabel="<%$ Resources:FieldBranch%>" SimpleSubmit="true" LabelWidth="200">
+                            <ext:TextField runat="server"  LabelWidth="120" ID="pyReference" Name="pyReference" FieldLabel="<%$ Resources:pyReference %>" />
+                             <ext:TextField runat="server"  LabelWidth="120" ID="taReference" Name="taReference" FieldLabel="<%$ Resources:taReference %>" />
+                          
+                                 <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  Enabled="false" runat="server" AllowBlank="false" ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" ID="recBranchId" Name="recBranchId" FieldLabel="<%$ Resources:FieldBranch%>" SimpleSubmit="true" LabelWidth="120">
                                     <Store>
                                         <ext:Store runat="server" ID="branchStore">
                                             <Model>
@@ -126,13 +133,32 @@
                                         <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
                                     </Listeners>
                                 </ext:ComboBox>
+                              <ext:ComboBox   AnyMatch="true" CaseSensitive="false"   runat="server" AllowBlank="false" ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" ID="sponsorId" Name="sponsorId" FieldLabel="<%$ Resources:sponsor%>"  LabelWidth="120">
+                                    <Store>
+                                        <ext:Store runat="server" ID="sponsorStore">
+                                            <Model>
+                                                <ext:Model runat="server">
+                                                    <Fields>
+                                                        <ext:ModelField Name="recordId" />
+                                                        <ext:ModelField Name="name" />
+                                                    </Fields>
+                                                </ext:Model>
+                                            </Model>
+                                        </ext:Store>
+                                    </Store>
+                               
+                                    <Listeners>
+                                        <FocusEnter Handler="if(!this.readOnly) this.rightButtons[0].setHidden(false);" />
+                                        <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
+                                    </Listeners>
+                                </ext:ComboBox>
 
-                         
+                         </Items></ext:Panel>
                            
                            
-                            
-                            </Items></ext:Panel>
-                         <ext:Panel runat="server"  flex="2"><Items></Items></ext:Panel>
+                           
+                          <%--  </Items></ext:Panel>--%>
+                       <%--  <ext:Panel runat="server"  flex="2"><Items></Items></ext:Panel>--%>
                     </Items>
                     <BottomBar>
                         <ext:Toolbar runat="server"

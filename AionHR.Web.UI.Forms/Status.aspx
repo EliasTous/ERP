@@ -46,6 +46,8 @@
 
                         <ext:ModelField Name="recordId" />                       
                         <ext:ModelField Name="name" />
+                          <ext:ModelField Name="excludeSS" />
+                   
                         <%--<ext:ModelField Name="intName" />--%>
                     </Fields>
                 </ext:Model>
@@ -146,6 +148,7 @@
                             <ext:Column    CellCls="cellLink" ID="ColName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldName%>" DataIndex="name" Flex="2" Hideable="false">
                     
                                 </ext:Column>
+                             <ext:CheckColumn runat="server" Flex="1" Text="<%$ Resources: excludeSocialSecurity %>"  DataIndex="excludeSS" ></ext:CheckColumn>
                         
                            
 
@@ -281,7 +284,9 @@
                             BodyPadding="5">
                             <Items>
                                 <ext:TextField ID="recordId" runat="server"  Name="recordId"  Hidden="true"/>
-                                <ext:TextField ID="name" runat="server" FieldLabel="<%$ Resources:FieldName%>" Name="name"   AllowBlank="false"/>
+                                <ext:TextField ID="name" runat="server" FieldLabel="<%$ Resources:FieldName%>" Name="name"   AllowBlank="false" LabelWidth="150"/>
+                                 <ext:Checkbox ID="excludeSS" runat="server" FieldLabel="<%$ Resources:excludeSocialSecurity%>" Name="excludeSS" InputValue="true" DataIndex="excludeSS" LabelWidth="150" />
+                                 
                                 <%--<ext:TextField ID="intName" runat="server" FieldLabel="<%$ Resources:IntName%>" Name="intName"   AllowBlank="false"/>--%>
                             </Items>
 

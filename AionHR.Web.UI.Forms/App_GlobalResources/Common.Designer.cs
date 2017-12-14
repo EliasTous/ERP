@@ -745,6 +745,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Employee Calender .
+        /// </summary>
+        internal static string EmployeeCalender {
+            get {
+                return ResourceManager.GetString("EmployeeCalender", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Employee Complaints.
         /// </summary>
         internal static string EmployeeComplaints {
@@ -2388,6 +2397,15 @@ namespace Resources {
         internal static string RT305 {
             get {
                 return ResourceManager.GetString("RT305", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Day Status.
+        /// </summary>
+        internal static string RT306 {
+            get {
+                return ResourceManager.GetString("RT306", resourceCulture);
             }
         }
         

@@ -1101,4 +1101,10 @@
   <data name="systemDefaultAlert" xml:space="preserve">
     <value>Please Logout and Login Again For Apply Changes</value>
   </data>
+  <data name="EmployeeCalender" xml:space="preserve">
+    <value>Employee Calender </value>
+  </data>
+  <data name="RT306" xml:space="preserve">
+    <value>Day Status</value>
+  </data>
 </root>

@@ -117,22 +117,28 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="All" xml:space="preserve">
-    <value>ALL</value>
+  <data name="Paid" xml:space="preserve">
+    <value>غياب بإذن</value>
   </data>
-  <data name="Female" xml:space="preserve">
-    <value>Female</value>
+  <data name="status0" xml:space="preserve">
+    <value>يوم عطلة</value>
   </data>
-  <data name="FieldCountry" xml:space="preserve">
-    <value>Country </value>
+  <data name="status1" xml:space="preserve">
+    <value>يوم عمل</value>
   </data>
-  <data name="FieldGender" xml:space="preserve">
-    <value>Gender</value>
+  <data name="status2" xml:space="preserve">
+    <value>إجازة مدفوعة</value>
   </data>
-  <data name="Male" xml:space="preserve">
-    <value>Male</value>
+  <data name="status3" xml:space="preserve">
+    <value>غير مكتمل</value>
   </data>
-  <data name="sponsor" xml:space="preserve">
-    <value>Sponsor</value>
+  <data name="status4" xml:space="preserve">
+    <value>إجازة غير مدفوعة</value>
+  </data>
+  <data name="status5" xml:space="preserve">
+    <value>غياب</value>
+  </data>
+  <data name="Unpaid" xml:space="preserve">
+    <value>غياب دون إذن</value>
   </data>
 </root>

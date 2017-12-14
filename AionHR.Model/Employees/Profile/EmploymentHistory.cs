@@ -37,5 +37,8 @@ namespace AionHR.Model.Employees.Profile
         [PropertyID("31070_01")]
         [ApplySecurity]
         public string name { get; set; }
+        [PropertyID("31070_02")]
+        [ApplySecurity]
+        public bool excludeSS { get; set; }
     }
 }

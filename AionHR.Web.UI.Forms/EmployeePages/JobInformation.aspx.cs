@@ -1033,8 +1033,9 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             string paranthized = response.result.Value;
             paranthized = paranthized.Replace('{', ' ');
             paranthized = paranthized.Replace('}', ',');
-            paranthized = paranthized.Substring(0, paranthized.Length - 2);
             paranthized = paranthized.Replace(" ", string.Empty);
+            paranthized = paranthized.Substring(0, paranthized.Length - 1);
+          
             return paranthized;
 
         }

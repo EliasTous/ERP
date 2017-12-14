@@ -150,4 +150,7 @@
   <data name="FieldProbationPeriod" xml:space="preserve">
     <value>فترة اختبار</value>
   </data>
+  <data name="sponsor" xml:space="preserve">
+    <value>الكفيل</value>
+  </data>
 </root>

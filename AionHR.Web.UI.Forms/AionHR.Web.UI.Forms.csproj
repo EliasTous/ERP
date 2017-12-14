@@ -196,6 +196,7 @@
     <Content Include="Departments.aspx" />
     <Content Include="Divisions.aspx" />
     <Content Include="DocumentTypes.aspx" />
+    <Content Include="EmployeeCals.aspx" />
     <Content Include="EmployeeComplaints.aspx" />
     <Content Include="EmployeePages\Contacts.aspx" />
     <Content Include="EmployeePages\Dependants.aspx" />
@@ -343,6 +344,7 @@
     <Content Include="Reports\RT303.aspx" />
     <Content Include="Reports\RT304.aspx" />
     <Content Include="Reports\RT305.aspx" />
+    <Content Include="Reports\RT306.aspx" />
     <Content Include="Reports\RT401.aspx" />
     <Content Include="Reports\RT402.aspx" />
     <Content Include="Reports\RT501.aspx" />
@@ -565,6 +567,13 @@
     <Compile Include="Banks.aspx.designer.cs">
       <DependentUpon>Banks.aspx</DependentUpon>
     </Compile>
+    <Compile Include="EmployeeCals.aspx.cs">
+      <DependentUpon>EmployeeCals.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EmployeeCals.aspx.designer.cs">
+      <DependentUpon>EmployeeCals.aspx</DependentUpon>
+    </Compile>
     <Compile Include="EmployeePages\EmployeeCalendars.aspx.cs">
       <DependentUpon>EmployeeCalendars.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -781,6 +790,13 @@
     </Compile>
     <Compile Include="Reports\RT305.aspx.designer.cs">
       <DependentUpon>RT305.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\RT306.aspx.cs">
+      <DependentUpon>RT306.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reports\RT306.aspx.designer.cs">
+      <DependentUpon>RT306.aspx</DependentUpon>
     </Compile>
     <Compile Include="Reports\RT402.aspx.cs">
       <DependentUpon>RT402.aspx</DependentUpon>
@@ -2156,6 +2172,10 @@
     <Content Include="App_LocalResources\Banks.aspx.resx" />
     <Content Include="App_LocalResources\Banks.aspx.ar.resx" />
     <Content Include="App_LocalResources\DocumentTypes.aspx.ar.resx" />
+    <Content Include="App_LocalResources\EmployeeCals.aspx.resx" />
+    <Content Include="App_LocalResources\EmployeeCals.aspx.ar.resx" />
+    <Content Include="Reports\App_LocalResources\RT306.aspx.ar.resx" />
+    <Content Include="Reports\App_LocalResources\RT306.aspx.resx" />
     <EmbeddedResource Include="Reports\RT201.aspx.resx">
       <DependentUpon>RT201.aspx.cs</DependentUpon>
       <Generator>ResXFileCodeGenerator</Generator>

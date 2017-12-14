@@ -135,4 +135,7 @@
   <data name="WindowTitle" xml:space="preserve">
     <value>Status</value>
   </data>
+  <data name="excludeSocialSecurity" xml:space="preserve">
+    <value>Exclude Social Security</value>
+  </data>
 </root>

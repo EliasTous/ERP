@@ -103,6 +103,26 @@
                                             </Items>
 
                                         </ext:ComboBox>
+                                  <ext:ComboBox   AnyMatch="true" CaseSensitive="false"   runat="server"  ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" ID="sponsorId" Name="sponsorId" EmptyText="<%$ Resources:sponsor%>"  LabelWidth="200">
+                                    <Store>
+                                        <ext:Store runat="server" ID="sponsorStore">
+                                            <Model>
+                                                <ext:Model runat="server">
+                                                    <Fields>
+                                                        <ext:ModelField Name="recordId" />
+                                                        <ext:ModelField Name="name" />
+                                                    </Fields>
+                                                </ext:Model>
+                                            </Model>
+                                        </ext:Store>
+                                    </Store>
+                               
+                                    <Listeners>
+                                        <FocusEnter Handler="if(!this.readOnly) this.rightButtons[0].setHidden(false);" />
+                                        <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
+                                    </Listeners>
+                                </ext:ComboBox>
+
                                              <ext:Container runat="server" Layout="FitLayout">
                                     <Content>
                                         

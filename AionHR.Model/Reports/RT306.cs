@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AionHR.Model.Reports
 {
-    public class RT303
+    public class RT306
     {
         public string dayId { get; set; }
 
@@ -19,7 +19,7 @@ namespace AionHR.Model.Reports
 
         public bool isWorkingDay { get; set; }
 
-       
+
 
         public string workingHours
         {
@@ -43,7 +43,7 @@ namespace AionHR.Model.Reports
         public string checkIn2 { get; set; }
         public string checkIn3 { get; set; }
         public string checkIn4 { get; set; }
-       
+
 
         public string checkOut1 { get; set; }
 
@@ -68,7 +68,7 @@ namespace AionHR.Model.Reports
         }
 
         public string lateness { get; set; }
-        
+
         public string lateness_A { get; set; }
 
         public string lateness_B { get; set; }
@@ -76,8 +76,7 @@ namespace AionHR.Model.Reports
         public string lateness_D { get; set; }
         public string scName { get; set; }
 
-
-     
+        public EmployeeName employeeName { get; set; }
 
     }
 }

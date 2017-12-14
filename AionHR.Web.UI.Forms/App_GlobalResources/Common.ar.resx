@@ -1104,4 +1104,10 @@
   <data name="systemDefaultAlert" xml:space="preserve">
     <value>يرجى تسجيل الخروج والدخول مرة ثانية لتحديث الاعدادات </value>
   </data>
+  <data name="EmployeeCalender" xml:space="preserve">
+    <value>تقاويم العمل </value>
+  </data>
+  <data name="RT306" xml:space="preserve">
+    <value>Day Status</value>
+  </data>
 </root>

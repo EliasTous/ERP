@@ -68,6 +68,6 @@ namespace AionHR.Model.Reports
         public string termEndDateString { get; set; }
         public double salary { get; set; }
 
-
+        public string sponsorName { get; set; }
     }
 }

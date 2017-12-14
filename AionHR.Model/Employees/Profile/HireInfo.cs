@@ -46,7 +46,7 @@ namespace AionHR.Model.Employees.Profile
 
         public DateTime? hireDate { get; set; }
 
-
+        public int sponsorId { set; get; }
 
 
 

@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace AionHR.Services.Messaging.Reports
 {
- public  class SexParameterSet : ReportParameterSet
+  public  class SponserParameterSet: ReportParameterSet
     {
-        public short? gender { get; set; }
+        public int? sponsorId { get; set; }
 
 
         protected Dictionary<string, string> parameters;
@@ -18,10 +18,10 @@ namespace AionHR.Services.Messaging.Reports
             get
             {
                 parameters = new Dictionary<string, string>();
-                if (gender.HasValue)
-                    parameters.Add("_gender", gender.ToString());
-               
-                
+                if (sponsorId.HasValue)
+                    parameters.Add("_sponsorId", sponsorId.ToString());
+
+
 
                 return parameters;
             }

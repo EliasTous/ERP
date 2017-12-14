@@ -61,6 +61,7 @@ namespace AionHR.Repository.WebService.Repositories
             ChildGetAllLookup.Add(typeof(EmployeeContact), "qryCO");
             ChildGetAllLookup.Add(typeof(NoticePeriod), "qryNP");
             ChildGetAllLookup.Add(typeof(EmployeeCalendar), "qryCA");
+            ChildGetAllLookup.Add(typeof(EmployeeCal), "qryCA");
 
 
             ChildGetLookup.Add(typeof(Sponsor), "getSP");
@@ -94,6 +95,7 @@ namespace AionHR.Repository.WebService.Repositories
             ChildGetLookup.Add(typeof(Employee), "getEM2");
             ChildGetLookup.Add(typeof(EmployeeCount), "cntEM");
             ChildGetLookup.Add(typeof(EmployeeCalendar), "getCA");
+            ChildGetLookup.Add(typeof(EmployeeCal), "getCA");
 
             ChildGetLookup.Add(typeof(NoticePeriod), "getNP");
             ChildGetLookup.Add(typeof(EmployeeTermination), "getTE");
@@ -135,6 +137,7 @@ namespace AionHR.Repository.WebService.Repositories
             ChildAddOrUpdateLookup.Add(typeof(NoticePeriod), "setNP");
             ChildAddOrUpdateLookup.Add(typeof(BatchEM), "batEM");
             ChildAddOrUpdateLookup.Add(typeof(EmployeeCalendar), "setCA");
+            ChildAddOrUpdateLookup.Add(typeof(EmployeeCal), "setCA");
 
 
 
@@ -168,6 +171,7 @@ namespace AionHR.Repository.WebService.Repositories
             ChildDeleteLookup.Add(typeof(EmployeeCalendar), "delCA");
             ChildDeleteLookup.Add(typeof(NoticePeriod), "delNP");
             ChildDeleteLookup.Add(typeof(EmploymentStatus), "delST");
+            ChildDeleteLookup.Add(typeof(EmployeeCal), "delCA");
 
         }
 
