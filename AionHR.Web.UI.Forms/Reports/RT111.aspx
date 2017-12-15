@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="RT306.aspx.cs" Inherits="AionHR.Web.UI.Forms.Reports.RT306" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="RT111.aspx.cs" Inherits="AionHR.Web.UI.Forms.Reports.RT111" %>
 
 <%@ Register Assembly="DevExpress.Web.v16.2, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web" TagPrefix="dx" %>
 
@@ -39,6 +39,9 @@
         <ext:Hidden ID="textLoadFailed" runat="server" Text="<%$ Resources:Common , LoadFailed %>" />
         <ext:Hidden ID="titleSavingError" runat="server" Text="<%$ Resources:Common , TitleSavingError %>" />
         <ext:Hidden ID="titleSavingErrorMessage" runat="server" Text="<%$ Resources:Common , TitleSavingErrorMessage %>" />
+         <ext:Hidden ID="dtIdValue" runat="server" Text="" />
+
+        
 
         <ext:Hidden ID="rtl" runat="server" />
         <ext:Hidden ID="format" runat="server" />
@@ -59,54 +62,25 @@
                         <ext:Toolbar runat="server" Height="60">
 
                             <Items>
-                             
-                                       <ext:Container runat="server"  Layout="FitLayout">
+                                  
+                              
+                              
+                                                                     
+                                                                     
+                                      
+                               <%-- <ext:Container runat="server"  Layout="FitLayout">
                                             <Content>
-                                               
-                                                <uc:dateRange runat="server" ID="dateRange1" IsDayIdFormat="true"  />
-                                            </Content>
-                                        </ext:Container>
-                                <ext:Container runat="server"  Layout="FitLayout">
-                                            <Content>
-                                                <%--<uc:dateRange runat="server" ID="dateRange1" />--%>
+                                            
                                                 <uc:employeeCombo runat="server" ID="employeeCombo1" />
                                             </Content>
+                                        </ext:Container>--%>
+                                 <ext:Container runat="server"  Layout="FitLayout">
+                                            <Content>
+                                                <%--<uc:dateRange runat="server" ID="dateRange1" />--%>
+                                                <uc:jobInfo runat="server" ID="jobInfo1" EnableDivision="false" EnableBranch="true" EnableDepartment="true" EnablePosition="false"  />
+                                            </Content>
                                         </ext:Container>
-                                 <ext:Container runat="server" Layout="FitLayout">
-                                    <Content>
-                                        <uc:jobInfo runat="server" ID="jobInfo1" EnablePosition="false" EnableDivision="false" EnableBranch="false" />
-
-                                    </Content>
-
-                                </ext:Container>
-
-                                  <ext:ComboBox  AnyMatch="true" CaseSensitive="false"  runat="server" ID="dayStatus"  Editable="false" EmptyText="<%$ Resources: FieldDayStatus %>" ForceSelection="true" Width="150">
-                                            <Items>
-                                                 <ext:ListItem Text="<%$ Resources: All %>" Value="0" />
-                                                <ext:ListItem Text="<%$ Resources:  status1 %>" Value="1" />
-                                                <ext:ListItem Text="<%$ Resources:  status2 %>" Value="2" />
-                                                  <ext:ListItem Text="<%$ Resources:  status3 %>" Value="3" />
-                                                  <ext:ListItem Text="<%$ Resources:  status4 %>" Value="4" />
-                                                  <ext:ListItem Text="<%$ Resources:  status5 %>" Value="5" />
-                                                                                      
-                                      
-
-
-                                         
-                                           
-                                            </Items>
-
-                                        </ext:ComboBox>
-                                  <ext:ComboBox  AnyMatch="true" CaseSensitive="false"  runat="server" ID="punchStatus"  Editable="false" EmptyText="<%$ Resources: FieldPunchStatus %>" ForceSelection="true" Width="120">
-                                            <Items>
-                                                 <ext:ListItem Text="<%$ Resources: All %>" Value="0" />
-                                                <ext:ListItem Text="<%$ Resources: lateness %>" Value="1" />
-                                                <ext:ListItem Text="<%$ Resources: overtime %>" Value="2" />
-                                     
-                                            </Items>
-
-                                        </ext:ComboBox>
-                              
+                                
                                 
                                 <ext:Container runat="server" Layout="FitLayout">
                                     <Content>
@@ -130,7 +104,6 @@
                             Width="100%" OnCallback="ASPxCallbackPanel1_Callback" OnLoad="ASPxCallbackPanel1_Load" >
                             <PanelCollection>
                                 <dx:PanelContent runat="server">
-                                   
                                     <dx:ASPxWebDocumentViewer ID="ASPxWebDocumentViewer1" runat="server" ></dx:ASPxWebDocumentViewer>
                                 </dx:PanelContent>
                             </PanelCollection>

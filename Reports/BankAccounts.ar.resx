@@ -117,43 +117,91 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Paid" xml:space="preserve">
-    <value>غياب بإذن</value>
+  <data name="xrLabel1.Text" xml:space="preserve">
+    <value>حسابات مصرفية</value>
   </data>
-  <data name="status0" xml:space="preserve">
-    <value>يوم عطلة</value>
+  <data name="xrLabel2.Text" xml:space="preserve">
+    <value>xrLabel2</value>
   </data>
-  <data name="status1" xml:space="preserve">
-    <value>يوم عمل</value>
+  <data name="xrLabel3.Text" xml:space="preserve">
+    <value>لم يتم العثور على نتائج</value>
   </data>
-  <data name="status2" xml:space="preserve">
-    <value>إجازة مدفوعة</value>
+  <data name="xrLabel4.Text" xml:space="preserve">
+    <value>من قبل :</value>
   </data>
-  <data name="status3" xml:space="preserve">
-    <value>غير مكتمل</value>
+  <data name="xrPageInfo2.Format" xml:space="preserve">
+    <value>صفحة {0} من {1}</value>
   </data>
-  <data name="status4" xml:space="preserve">
-    <value>إجازة غير مدفوعة</value>
+  <data name="xrTableCell1.Text" xml:space="preserve">
+    <value>xrTableCell1</value>
   </data>
-  <data name="status5" xml:space="preserve">
-    <value>غياب بدون مبرر </value>
+  <data name="xrTableCell10.Text" xml:space="preserve">
+    <value>xrTableCell10</value>
   </data>
-  <data name="Unpaid" xml:space="preserve">
-    <value>غياب دون إذن</value>
+  <data name="xrTableCell11.Text" xml:space="preserve">
+    <value>القسم </value>
   </data>
-  <data name="lateness" xml:space="preserve">
-    <value>تاخير </value>
+  <data name="xrTableCell12.Text" xml:space="preserve">
+    <value>xrTableCell12</value>
   </data>
-  <data name="overtime" xml:space="preserve">
-    <value>عمل اضافي</value>
+  <data name="xrTableCell13.Text" xml:space="preserve">
+    <value>المنصب</value>
   </data>
-  <data name="All" xml:space="preserve">
-    <value>الكل</value>
+  <data name="xrTableCell14.Text" xml:space="preserve">
+    <value>xrTableCell14</value>
   </data>
-  <data name="FieldDayStatus" xml:space="preserve">
-    <value>نوع الدوام </value>
+  <data name="xrTableCell15.Text" xml:space="preserve">
+    <value>العملة</value>
   </data>
-  <data name="FieldPunchStatus" xml:space="preserve">
-    <value>الحالة</value>
+  <data name="xrTableCell16.Text" xml:space="preserve">
+    <value>xrTableCell16</value>
+  </data>
+  <data name="xrTableCell17.Text" xml:space="preserve">
+    <value>الراتب</value>
+  </data>
+  <data name="xrTableCell18.Text" xml:space="preserve">
+    <value>xrTableCell18</value>
+  </data>
+  <data name="xrTableCell19.Text" xml:space="preserve">
+    <value>اسم البنك</value>
+  </data>
+  <data name="xrTableCell2.Text" xml:space="preserve">
+    <value>xrTableCell2</value>
+  </data>
+  <data name="xrTableCell20.Text" xml:space="preserve">
+    <value>xrTableCell20</value>
+  </data>
+  <data name="xrTableCell21.Text" xml:space="preserve">
+    <value>رقم السحاب </value>
+  </data>
+  <data name="xrTableCell22.Text" xml:space="preserve">
+    <value>xrTableCell22</value>
+  </data>
+  <data name="xrTableCell23.Text" xml:space="preserve">
+    <value>رقم البنك </value>
+  </data>
+  <data name="xrTableCell24.Text" xml:space="preserve">
+    <value>xrTableCell24</value>
+  </data>
+  <data name="xrTableCell3.Text" xml:space="preserve">
+    <value>xrTableCell3</value>
+  </data>
+  <data name="xrTableCell4.Text" xml:space="preserve">
+    <value>xrTableCell4</value>
+  </data>
+  <data name="xrTableCell5.Text" xml:space="preserve">
+    <value>xrTableCell5</value>
+  </data>
+  <data name="xrTableCell6.Text" xml:space="preserve">
+    <value>xrTableCell6</value>
+  </data>
+  <data name="xrTableCell7.Text" xml:space="preserve">
+    <value>الموظف</value>
+  </data>
+  <data name="xrTableCell8.Text" xml:space="preserve">
+    <value>xrTableCell8</value>
+  </data>
+  <data name="xrTableCell9.Text" xml:space="preserve">
+    <value>الفرع</value>
   </data>
 </root>

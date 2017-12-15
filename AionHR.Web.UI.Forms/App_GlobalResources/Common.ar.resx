@@ -1108,6 +1108,9 @@
     <value>تقاويم العمل </value>
   </data>
   <data name="RT306" xml:space="preserve">
-    <value>Day Status</value>
+    <value>نوع الدوام </value>
+  </data>
+  <data name="RT111" xml:space="preserve">
+    <value>حسابات مصرفية </value>
   </data>
 </root>

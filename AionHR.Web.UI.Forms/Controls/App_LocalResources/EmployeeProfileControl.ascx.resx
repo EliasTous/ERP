@@ -384,4 +384,7 @@
   <data name="ChooseCalendarType" xml:space="preserve">
     <value>Choose Calendar</value>
   </data>
+  <data name="selfServiceWindowTitle" xml:space="preserve">
+    <value>Self Service</value>
+  </data>
 </root>

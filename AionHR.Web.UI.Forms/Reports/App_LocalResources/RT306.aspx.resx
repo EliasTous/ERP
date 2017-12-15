@@ -130,13 +130,13 @@
     <value>Paid Leave</value>
   </data>
   <data name="status3" xml:space="preserve">
-    <value>Incomplete</value>
+    <value>OpenDay</value>
   </data>
   <data name="status4" xml:space="preserve">
     <value>Unpaid Leave</value>
   </data>
   <data name="status5" xml:space="preserve">
-    <value>Absense</value>
+    <value>LeaveWithoutExcuse</value>
   </data>
   <data name="Unpaid" xml:space="preserve">
     <value>Unapproved</value>

@@ -308,7 +308,7 @@ namespace AionHR.Web.UI.Forms
             panelRecordDetails.Enabled = !isAdd;
 
             FillWorkingCalendar();
-
+            
             SetTabPanelActivated(!isAdd);
 
 
@@ -484,6 +484,12 @@ namespace AionHR.Web.UI.Forms
             departmentStore.DataSource = GetDepartments();
             departmentStore.DataBind();
         }
+        private void FillSecurityGroup()
+        {
+
+            securityGroupStore.DataSource = GetSecurityGrop();
+            securityGroupStore.DataBind();
+        }
         private List<Department> GetDepartments()
         {
             ListRequest departmentsRequest = new ListRequest();
@@ -492,6 +498,17 @@ namespace AionHR.Web.UI.Forms
             {
                 X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>Technical Error: " + resp.ErrorCode + "<br> Summary: " + resp.Summary : resp.Summary).Show();
                 return new List<Department>();
+            }
+            return resp.Items;
+        }
+        private List<SecurityGroup> GetSecurityGrop()
+        {
+            ListRequest Request = new ListRequest();
+            ListResponse<SecurityGroup> resp = _accessControlService.ChildGetAll<SecurityGroup>(Request);
+            if (!resp.Success)
+            {
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>Technical Error: " + resp.ErrorCode + "<br> Summary: " + resp.Summary : resp.Summary).Show();
+                return new List<SecurityGroup>();
             }
             return resp.Items;
         }
@@ -831,6 +848,42 @@ namespace AionHR.Web.UI.Forms
             setting.DateFormatString = "dd/MM/yyyy";
             EmployeeTermination t = JsonConvert.DeserializeObject<EmployeeTermination>(obj, setting);
             t.employeeId = Convert.ToInt32(CurrentEmployee.Text);
+            PostRequest<EmployeeTermination> request = new PostRequest<EmployeeTermination>();
+            request.entity = t;
+
+            PostResponse<EmployeeTermination> resp = _employeeService.ChildAddOrUpdate<EmployeeTermination>(request);
+            if (!resp.Success)
+            {
+                //Show an error saving...
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>Technical Error: " + resp.ErrorCode + "<br> Summary: " + resp.Summary : resp.Summary).Show();
+                return;
+            }
+
+            else
+            {
+                terminationWindow.Close();
+                Notification.Show(new NotificationConfig
+                {
+                    Title = Resources.Common.Notification,
+                    Icon = Icon.Information,
+                    Html = Resources.Common.RecordSavingSucc
+                });
+                EditRecordWindow.Close();
+                Store1.Reload();
+
+            }
+
+
+        }
+        protected void SaveSelfService(object sender, DirectEventArgs e)
+        {
+            //elias
+            string id = CurrentEmployee.Text;
+            string obj = e.ExtraParams["values"];
+        
+            // t = JsonConvert.DeserializeObject<EmployeeTermination>(obj);
+            //t.employeeId = Convert.ToInt32(CurrentEmployee.Text);
             PostRequest<EmployeeTermination> request = new PostRequest<EmployeeTermination>();
             request.entity = t;
 
@@ -1215,6 +1268,8 @@ namespace AionHR.Web.UI.Forms
 
         #endregion
 
+
+
         protected void ShowTermination(object sender, DirectEventArgs e)
         {
             
@@ -1235,7 +1290,29 @@ namespace AionHR.Web.UI.Forms
             //date.SelectedDate = DateTime.Today;
             terminationWindow.Show();
         }
-        
+        protected void ShowSelfService(object sender, DirectEventArgs e)
+        {
+
+
+            //try
+            //{
+            //    AccessControlApplier.ApplyAccessControlOnPage(typeof(EmployeeTermination), terminationForm, null, null, saveTerminationButton);
+
+            //}
+            //catch (AccessDeniedException exp)
+            //{
+            //    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+            //    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorAccessDenied).Show();
+
+            //    return;
+            //}
+            selfServiceForm.Reset();
+       
+            //date.SelectedDate = DateTime.Today;
+            FillSecurityGroup();
+            selfServiceWindow.Show();
+        }
+
 
         [DirectMethod]
         public object GetQuickView(Dictionary<string, string> parameters)

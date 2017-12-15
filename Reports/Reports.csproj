@@ -96,6 +96,12 @@
     <Compile Include="AuditTrail.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="BankAccounts.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="BankAccounts.Designer.cs">
+      <DependentUpon>BankAccounts.cs</DependentUpon>
+    </Compile>
     <Compile Include="bankTransfer.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -304,6 +310,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AuditTrail.resx">
       <DependentUpon>AuditTrail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BankAccounts.ar.resx">
+      <DependentUpon>BankAccounts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BankAccounts.resx">
+      <DependentUpon>BankAccounts.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="bankTransfer.ar.resx">
       <DependentUpon>bankTransfer.cs</DependentUpon>

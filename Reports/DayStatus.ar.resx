@@ -151,14 +151,13 @@
     <value>مدفوع </value>
   </data>
   <data name="xrLabel114.Text" xml:space="preserve">
-    <value>Schedule
-</value>
+    <value>جدول الدوام</value>
   </data>
   <data name="xrLabel116.Text" xml:space="preserve">
     <value>xrLabel116</value>
   </data>
   <data name="xrLabel117.Text" xml:space="preserve">
-    <value>Day Status</value>
+    <value>نوع الحضور</value>
   </data>
   <data name="xrLabel12.Text" xml:space="preserve">
     <value>الخروج</value>
@@ -170,8 +169,7 @@
     <value>Status</value>
   </data>
   <data name="xrLabel122.Text" xml:space="preserve">
-    <value>Punch Status
-</value>
+    <value>الحالة</value>
   </data>
   <data name="xrLabel123.Text" xml:space="preserve">
     <value>الدوام </value>
@@ -326,6 +324,9 @@
   <data name="xrLabel6.Text" xml:space="preserve">
     <value>خروج 2</value>
   </data>
+  <data name="xrLabel60.Text" xml:space="preserve">
+    <value>الموظف</value>
+  </data>
   <data name="xrLabel62.Text" xml:space="preserve">
     <value>العمل الإضافي</value>
   </data>
@@ -345,7 +346,7 @@
     <value>دخول 3</value>
   </data>
   <data name="xrLabel70.Text" xml:space="preserve">
-    <value>Work Time</value>
+    <value>وقت العمل الفعلي</value>
   </data>
   <data name="xrLabel72.Text" xml:space="preserve">
     <value>دخول 1</value>
@@ -363,7 +364,7 @@
     <value>خروج3</value>
   </data>
   <data name="xrLabel80.Text" xml:space="preserve">
-    <value>Detailed Attendance</value>
+    <value>نوع الدوام</value>
   </data>
   <data name="xrLabel81.Text" xml:space="preserve">
     <value>مغادرة</value>
@@ -384,7 +385,7 @@
     <value>مدفوع</value>
   </data>
   <data name="xrLabel91.Text" xml:space="preserve">
-    <value>Department</value>
+    <value>القسم</value>
   </data>
   <data name="xrPageInfo2.Format" xml:space="preserve">
     <value>صفحة {0} من {1}</value>

@@ -2293,6 +2293,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Bank Accounts.
+        /// </summary>
+        internal static string RT111 {
+            get {
+                return ResourceManager.GetString("RT111", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Current Payroll.
         /// </summary>
         internal static string RT200 {

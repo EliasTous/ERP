@@ -605,6 +605,16 @@
                                 </DirectEvents>
                                 
                             </ext:MenuItem>
+                             <ext:MenuItem runat="server" ID="selfServiceGear" Text="<%$ Resources:selfServiceWindowTitle %>" Icon="UserAlert">
+                                <Listeners>
+                                    <Click Handler="CheckSession();" />
+                                </Listeners>
+                                <DirectEvents>
+                                    <Click OnEvent="ShowSelfService" />
+                                    
+                                </DirectEvents>
+                                
+                            </ext:MenuItem>
                             <ext:MenuItem runat="server" ID="deleteGear" Text="<%$ Resources:Common,Delete %>" Icon="Cancel">
                                 <Listeners>
                                     <Click Handler="CheckSession();" />
@@ -1587,4 +1597,83 @@
             </ColumnModel>
         </ext:GridPanel>
     </Items>
+</ext:Window>
+<ext:Window
+    ID="selfServiceWindow"
+    runat="server"
+    Icon="PageEdit"
+    Title="<%$ Resources:selfServiceWindowTitle %>"
+    Width="450"
+    Height="200"
+    AutoShow="false"
+    Modal="true"
+    Hidden="true"
+    Layout="Fit">
+
+    <Items>
+        <ext:TabPanel ID="TabPanel3" runat="server" ActiveTabIndex="0" Border="false" DeferredRender="false">
+            <Items>
+                <ext:FormPanel
+                    ID="selfServiceForm"
+                    runat="server" DefaultButton="saveSelfServiceButton"
+                    Title="<%$ Resources: selfServiceWindowTitle %>"
+                    Icon="ApplicationSideList"
+                    DefaultAnchor="100%"
+                    BodyPadding="5">
+                    <Items>
+                        
+                       <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  Enabled="false" ValueField="recordId" AllowBlank="false" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" runat="server" ID="sgId" Name="sgId" FieldLabel="<%$ Resources:FieldSecurityGroup%>" SimpleSubmit="true">
+                            <Store>
+                                <ext:Store runat="server" ID="securityGroupStore">
+                                    <Model>
+                                        <ext:Model runat="server">
+                                            <Fields>
+                                                <ext:ModelField Name="recordId" />
+                                                <ext:ModelField Name="name" />
+                                            </Fields>
+                                        </ext:Model>
+                                    </Model>
+
+                                </ext:Store>
+                            </Store>
+
+                            <Listeners>
+                                <FocusEnter Handler=" if(!this.readOnly)this.rightButtons[0].setHidden(false);" />
+                                <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
+                            </Listeners>
+                        </ext:ComboBox>
+                      
+                              
+                      <ext:Checkbox runat="server" Name="enableSS" InputValue="true" ID="enableSS" DataIndex="enableSS" FieldLabel="<%$ Resources:FieldEnableSelfService%>" />
+                     
+                       
+                    </Items>
+
+                </ext:FormPanel>
+
+            </Items>
+        </ext:TabPanel>
+    </Items>
+    <Buttons>
+        <ext:Button ID="saveSelfServiceButton" runat="server" Text="<%$ Resources:Common, Save %>" Icon="Disk">
+
+            <Listeners>
+                <Click Handler="CheckSession(); if (!#{selfServiceForm}.getForm().isValid()) {return false;} " />
+            </Listeners>
+            <DirectEvents>
+                <Click OnEvent="SaveSelfService" Failure="Ext.MessageBox.alert('#{titleSavingError}.value', '#{titleSavingErrorMessage}.value');">
+                    <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="={#{selfServiceWindow}.body}" />
+                    <ExtraParams>
+                      
+                        <ext:Parameter Name="values" Value="#{selfServiceForm}.getForm().getValues()" Mode="Raw" Encode="true" />
+                    </ExtraParams>
+                </Click>
+            </DirectEvents>
+        </ext:Button>
+        <ext:Button ID="Button10" runat="server" Text="<%$ Resources:Common , Cancel %>" Icon="Cancel">
+            <Listeners>
+                <Click Handler="this.up('window').hide();" />
+            </Listeners>
+        </ext:Button>
+    </Buttons>
 </ext:Window>

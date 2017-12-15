@@ -375,4 +375,7 @@
   <data name="ChooseCalendarType" xml:space="preserve">
     <value>التقويم</value>
   </data>
+  <data name="selfServiceWindowTitle" xml:space="preserve">
+    <value>الخدمة الذاتية</value>
+  </data>
 </root>
