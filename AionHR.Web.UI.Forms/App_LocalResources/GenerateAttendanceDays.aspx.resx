@@ -118,7 +118,10 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Date" xml:space="preserve">
-    <value>Select Date</value>
+    <value>Start Date</value>
+  </data>
+  <data name="endDate" xml:space="preserve">
+    <value>End Date</value>
   </data>
   <data name="FilterEmployee" xml:space="preserve">
     <value>Employee</value>
@@ -127,6 +130,6 @@
     <value>Generate</value>
   </data>
   <data name="GenerateAttendanceDays" xml:space="preserve">
-    <value>Generate Attendance Days</value>
+    <value>Generate Attendance Schedule</value>
   </data>
 </root>

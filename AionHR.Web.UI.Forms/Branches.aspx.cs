@@ -26,6 +26,7 @@ using AionHR.Model.Employees.Profile;
 using AionHR.Infrastructure.JSON;
 using AionHR.Model.Attributes;
 using AionHR.Model.Access_Control;
+using AionHR.Model.Attendance;
 
 namespace AionHR.Web.UI.Forms
 {
@@ -34,6 +35,7 @@ namespace AionHR.Web.UI.Forms
         ICompanyStructureService _branchService = ServiceLocator.Current.GetInstance<ICompanyStructureService>();
         ISystemService _systemService = ServiceLocator.Current.GetInstance<ISystemService>();
         IAccessControlService _accessControlService = ServiceLocator.Current.GetInstance<IAccessControlService>();
+        ITimeAttendanceService _timeAttendanceService = ServiceLocator.Current.GetInstance<ITimeAttendanceService>();
         protected override void InitializeCulture()
         {
 
@@ -63,6 +65,7 @@ namespace AionHR.Web.UI.Forms
                 SetExtLanguage();
                 HideShowButtons();
                 HideShowColumns();
+                FillSchedules();
                 if (_systemService.SessionHelper.CheckIfIsAdmin())
                     return;
                 try
@@ -77,7 +80,7 @@ namespace AionHR.Web.UI.Forms
                     Viewport1.Hidden = true;
                     return;
                 }
-
+              
             }
 
 
@@ -922,11 +925,23 @@ namespace AionHR.Web.UI.Forms
 
 
         //    this.EditlegalReferenceWindow.Title = Resources.Common.AddNewRecord;
-           
 
-           
+
+
         //    this.EditlegalReferenceWindow.Show();
         //}
+        private void FillSchedules()
+        {
+            ListRequest vsRequest = new ListRequest();
+            ListResponse<AttendanceSchedule> resp = _timeAttendanceService.ChildGetAll<AttendanceSchedule>(vsRequest);
+            if (!resp.Success)
+            {
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>Technical Error: " + resp.ErrorCode + "<br> Summary: " + resp.Summary : resp.Summary).Show();
+                return;
+            }
+            scheduleStore.DataSource = resp.Items;
+            scheduleStore.DataBind();
+        }
 
     }
 }

@@ -177,6 +177,7 @@
     <Compile Include="System\CompanyOrgChart.cs" />
     <Compile Include="System\CompanyRightToWork.cs" />
     <Compile Include="System\Dashboard.cs" />
+    <Compile Include="System\EmployeeSelfService.cs" />
     <Compile Include="System\GovernmentOrganisation.cs" />
     <Compile Include="System\Letter.cs" />
     <Compile Include="System\LetterTemplate.cs" />

@@ -236,13 +236,18 @@
                                 <ext:ComboBox AnyMatch="true" CaseSensitive="false" QueryMode="Local" LabelWidth="150" ForceSelection="true" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: FieldNameFormat %>" Name="nameFormat" runat="server" ID="nameFormatCombo">
                                     <Items>
                                         <ext:ListItem Text="<%$ Resources:FirstNameLastName %>" Value="{firstName} {lastName}" />
+                                          <ext:ListItem Text="<%$ Resources:FirstNameMiddleNameFamilyNameLastName %>" Value="{firstName} {middleName} {familyName} {lastName}" />
+                                         <ext:ListItem Text="<%$ Resources:FirstNameMiddleNameLastName %>" Value="{firstName} {middleName} {lastName}" />
                                         <ext:ListItem Text="<%$ Resources:LastNameFirstName %>" Value="{lastName} {firstName}" />
-                                        <ext:ListItem Text="<%$ Resources:FirstNameMiddleNameLastName %>" Value="{firstName} {middleName} {lastName}" />
+                                       
+                                        
                                         <ext:ListItem Text="<%$ Resources:ReferenceFirstNameLastName %>" Value="{reference} {firstName} {lastName}" />
                                         <ext:ListItem Text="<%$ Resources:ReferenceFirstNameMiddleNameLastName %>" Value="{reference} {firstName} {middleName} {lastName}" />
                                         <ext:ListItem Text="<%$ Resources:ReferenceFirstNameMiddleNameFamilyNameLastName %>" Value="{reference} {firstName} {middleName} {familyName} {lastName}" />
+                                        <ext:ListItem Text="<%$ Resources:ReferenceFirstNameMiddleNameFamilyName %>" Value="{reference} {firstName} {middleName} {familyName}" />
                                         <ext:ListItem Text="<%$ Resources:ReferenceLastNameFirstName %>" Value="{reference} {lastName} {firstName}" />
-                                         <ext:ListItem Text="<%$ Resources:ReferenceFirstNameMiddleNameFamilyName %>" Value="{reference} {firstName} {middleName} {familyName}" />
+                                         
+                                         
 
 
                                     </Items>

@@ -355,10 +355,16 @@ namespace AionHR.Web.UI.Forms
 
             string obj = e.ExtraParams["values"];
             LetterSelfservice b = JsonConvert.DeserializeObject<LetterSelfservice>(obj);
+            b.employeeId =Convert.ToInt32( _systemService.SessionHelper.GetEmployeeId());
 
             b.recordId = id;
             // Define the object to add or edit as null
+            ApplyLetterRecordRequest req = new ApplyLetterRecordRequest();
+            req.ltId = Convert.ToInt32(ltId.SelectedItem.Value);
+            req.employeeId = b.employeeId;
+            RecordResponse<ApplyLetter> res = _systemService.ChildGetRecord<ApplyLetter>(req);
 
+            b.bodyText = res.result.bodyText;
             if (string.IsNullOrEmpty(id))
             {
 
@@ -420,7 +426,7 @@ namespace AionHR.Web.UI.Forms
                     int index = Convert.ToInt32(id);//getting the id of the record
                     PostRequest<LetterSelfservice> request = new PostRequest<LetterSelfservice>();
                     request.entity = b;
-                    PostResponse<LetterSelfservice> r = _systemService.ChildAddOrUpdate<LetterSelfservice>(request);                      //Step 1 Selecting the object or building up the object for update purpose
+                    PostResponse<LetterSelfservice> r = _selfServiceService.ChildAddOrUpdate<LetterSelfservice>(request);                      //Step 1 Selecting the object or building up the object for update purpose
 
                     //Step 2 : saving to store
 
@@ -435,9 +441,10 @@ namespace AionHR.Web.UI.Forms
                     {
 
 
-                        ModelProxy record = this.Store1.GetById(index);
-                        BasicInfoTab.UpdateRecord(record);
-                        record.Commit();
+                        //ModelProxy record = this.Store1.GetById(index);
+                        //BasicInfoTab.UpdateRecord(record);
+                        //record.Commit();
+                        Store1.Reload();
                         Notification.Show(new NotificationConfig
                         {
                             Title = Resources.Common.Notification,

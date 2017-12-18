@@ -141,7 +141,7 @@
                                        
                           
                               <ext:Column  Visible="false" ID="ColrecordId" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldrecordId %>" DataIndex="recordId" Hideable="false" width="75" Align="Center"/>
-                              <ext:Column   CellCls="cellLink" ID="letterRef" MenuDisabled="true" runat="server" Text="<%$ Resources: reference%>" DataIndex="letterRef" Flex="1" Hideable="false"/>
+                              <ext:Column  Visible="false"  CellCls="cellLink" ID="letterRef" MenuDisabled="true" runat="server" Text="<%$ Resources: reference%>" DataIndex="letterRef" Flex="1" Hideable="false"/>
                              <ext:Column   CellCls="cellLink" ID="ltName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldName%>" DataIndex="ltName" Flex="1" Hideable="false"/>
                             <ext:Column   CellCls="cellLink" ID="addressedTo" MenuDisabled="true" runat="server" Text="<%$ Resources: addressedTo%>" DataIndex="addressedTo" Flex="1" Hideable="false"/>
                           
@@ -268,7 +268,7 @@
             Icon="PageEdit"
             Title="<%$ Resources:EditWindowsTitle %>"
             Width="400"
-            Height="500"
+            Height="250"
             AutoShow="false"
             Draggable="false"
             Maximizable="false"
@@ -293,7 +293,7 @@
                             BodyPadding="5">
                             <Items>
                                 <ext:TextField ID="recordId" Hidden="true" runat="server" FieldLabel="<%$ Resources:FieldrecordId%>" Disabled="true" Name="recordId" />
-                                <ext:TextField ID="letterRefTF" runat="server" FieldLabel="<%$ Resources:reference%>" Name="letterRef" AllowBlank="false"  />
+                                <ext:TextField Hidden="true" ID="letterRefTF" runat="server" FieldLabel="<%$ Resources:reference%>" Name="letterRef" AllowBlank="true"  />
                             <%--     <ext:TextField ID="ltNameTF" runat="server" FieldLabel="<%$ Resources:FieldName%>" Name="ltName" AllowBlank="false"  />--%>
 
                                 <ext:TextField ID="addressedToTF" runat="server" FieldLabel="<%$ Resources:addressedTo%>" Name="addressedTo" AllowBlank="false"  />
@@ -301,14 +301,14 @@
                                  <ext:DateField ID="dateTF" runat="server" FieldLabel="<%$ Resources:date%>" Name="date" AllowBlank="false"></ext:DateField>
                                <%-- <ext:TextArea ID="notesTF" runat="server" FieldLabel="<%$ Resources:notes%>" Name="notes" AllowBlank="false" />--%>
                                  
-                                <ext:ComboBox AnyMatch="true" CaseSensitive="false" runat="server" ID="employeeId" TabIndex="6" Name="employeeId"
+                                <ext:ComboBox Hidden="true" AnyMatch="true" CaseSensitive="false" runat="server" ID="employeeId" TabIndex="6" Name="employeeId"
                                     DisplayField="fullName"
                                     ValueField="recordId"
                                     TypeAhead="false"
                                     FieldLabel="<%$ Resources: FieldEmployeeFullName%>"
                                     HideTrigger="true" SubmitValue="true"
                                     MinChars="3"
-                                    TriggerAction="Query" ForceSelection="true" AllowBlank="false">
+                                    TriggerAction="Query" ForceSelection="true" AllowBlank="true">
                                     <Store>
                                         <ext:Store runat="server" ID="supervisorStore" AutoLoad="false">
                                             <Model>
@@ -373,7 +373,7 @@
                                          </Select>
                                      </DirectEvents>
                                        </ext:ComboBox>
-                                <ext:TextArea ReadOnly="true" Anchor="100%" ID="bodyTextTF" runat="server" FieldLabel="<%$ Resources:bodyText%>" Name="bodyText" AllowBlank="false" MaxHeight="200" Height="200"/>
+                                <ext:TextArea Hidden="true" ReadOnly="true" Anchor="100%" ID="bodyTextTF" runat="server" FieldLabel="<%$ Resources:bodyText%>" Name="bodyText" AllowBlank="true" MaxHeight="200" Height="200"/>
                                
 
                             </Items>

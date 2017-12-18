@@ -60,7 +60,12 @@
 
         </ext:ComboBox>    
                                 <ext:DateField AllowBlank="false" runat="server" ID="startingDate" MaxWidth="300" FieldLabel="<%$ Resources: date %>" Format="dd/MM/yyyy" >
-                                   
+                                     <Listeners> 
+                                         <Change Handler="App.endingDate.setMinValue(this.value);"></Change>
+                                     </Listeners>
+                                    </ext:DateField>
+                                  <ext:DateField AllowBlank="false" runat="server" ID="endingDate" MaxWidth="300" FieldLabel="<%$ Resources: endDate %>" Format="dd/MM/yyyy"  >
+                                         
                                     </ext:DateField>
                                     
                                 <ext:Button Hidden="false" ID="GenerateAttendanceBtn" runat="server" Text="<%$ Resources: Generate %>" Icon="ApplicationGo" MaxWidth="300">

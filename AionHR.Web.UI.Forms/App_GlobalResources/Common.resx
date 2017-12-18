@@ -1042,13 +1042,13 @@
     <value>Generate</value>
   </data>
   <data name="FieldEHStatus" xml:space="preserve">
-    <value>Status</value>
+    <value>Employment Status</value>
   </data>
   <data name="GenerateAttendanceDaySucc" xml:space="preserve">
-    <value>Attendance Days Synced  Successfully</value>
+    <value>Attendance Schedule Generated Successfully</value>
   </data>
   <data name="GenerateAttendanceDays" xml:space="preserve">
-    <value>Generate Attendance Days</value>
+    <value>Generate Attendance Schedule</value>
   </data>
   <data name="GovernmentOrganisations" xml:space="preserve">
     <value>Government Organisations</value>

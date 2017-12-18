@@ -186,4 +186,7 @@
   <data name="releaseDate" xml:space="preserve">
     <value>Release Date</value>
   </data>
+  <data name="FieldSchedule" xml:space="preserve">
+    <value>Attendance Schedule</value>
+  </data>
 </root>

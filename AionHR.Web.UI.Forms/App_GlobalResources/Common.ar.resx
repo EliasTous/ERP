@@ -1045,10 +1045,10 @@
     <value>الحالة الوظيفية</value>
   </data>
   <data name="GenerateAttendanceDaySucc" xml:space="preserve">
-    <value>تم تحديث الحضور اليومي بنجاح </value>
+    <value>تم انشاء الحضور بنجاح </value>
   </data>
   <data name="GenerateAttendanceDays" xml:space="preserve">
-    <value>تزامن الحضور اليومي </value>
+    <value> انشاء الحضور </value>
   </data>
   <data name="GovernmentOrganisations" xml:space="preserve">
     <value>هيئات حكومية</value>

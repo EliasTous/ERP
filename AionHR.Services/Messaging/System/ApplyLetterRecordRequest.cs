@@ -8,7 +8,7 @@ namespace AionHR.Services.Messaging.System
 {
    public  class ApplyLetterRecordRequest :RecordRequest
     {
-        public int employeeId { get; set; }
+        public int? employeeId { get; set; }
         public int ltId { get; set; }
         
 

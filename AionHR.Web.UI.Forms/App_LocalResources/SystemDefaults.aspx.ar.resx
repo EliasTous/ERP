@@ -199,10 +199,10 @@
     <value>التقويم الافتراضي</value>
   </data>
   <data name="FirstNameLastName" xml:space="preserve">
-    <value>الاسم الأول , الاسم الأخير</value>
+    <value>الاسم الأول ,  العائلة</value>
   </data>
   <data name="FirstNameMiddleNameLastName" xml:space="preserve">
-    <value>الاسم الأول , الاسم الأوسط , الاسم الأخير</value>
+    <value>الاسم الأول , اسم الأب , العائلة</value>
   </data>
   <data name="IDRTW" xml:space="preserve">
     <value>نوع ملف الهوية أو الإقامة</value>
@@ -223,16 +223,16 @@
     <value>نوع ملف جواز السفر</value>
   </data>
   <data name="ReferenceFirstNameLastName" xml:space="preserve">
-    <value>الرمز، الاسم الأول، الاسم الأخير</value>
+    <value>الرمز , الاسم الأول , الاسم الأخير</value>
   </data>
   <data name="ReferenceFirstNameMiddleNameFamilyNameLastName" xml:space="preserve">
-    <value>الرمز،الاسم الأول،الاسم الأوسط،اسم العائلة ،الاسم الأخير</value>
+    <value>الرمز , الاسم الأول , اسم الأب , اسم الجد , اسم العائلة</value>
   </data>
   <data name="ReferenceFirstNameMiddleNameLastName" xml:space="preserve">
-    <value>الرمز،الاسم الأول،الاسم الأوسط ،الاسم الأخير</value>
+    <value>الرمز , الاسم الأول , اسم الأب , اسم العائلة</value>
   </data>
   <data name="ReferenceLastNameFirstName" xml:space="preserve">
-    <value>الرمز، الاسم الأخير، الاسم الأول</value>
+    <value>الرمز , اسم العائلة , الاسم الأول</value>
   </data>
   <data name="WindowTitle" xml:space="preserve">
     <value>الموجهات</value>
@@ -373,9 +373,12 @@
     <value>سبب انهاء الخدمة </value>
   </data>
   <data name="ReferenceFirstNameMiddleNameFamilyName" xml:space="preserve">
-    <value>الرمز، الاسم الأول، الاسم الأوسط ، اسم العائلة</value>
+    <value>الرمز , الاسم الأول ,  اسم الأب ,  اسم الجد</value>
   </data>
   <data name="FieldLanguageId" xml:space="preserve">
     <value>اللغة</value>
+  </data>
+  <data name="FirstNameMiddleNameFamilyNameLastName" xml:space="preserve">
+    <value>الاسم الأول , اسم الأب , اسم الجد , العائلة</value>
   </data>
 </root>

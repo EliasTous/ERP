@@ -387,4 +387,10 @@
   <data name="selfServiceWindowTitle" xml:space="preserve">
     <value>Self Service</value>
   </data>
+  <data name="FieldEnableSelfService" xml:space="preserve">
+    <value>Enable Self Service</value>
+  </data>
+  <data name="FieldSecurityGroup" xml:space="preserve">
+    <value>Security Group</value>
+  </data>
 </root>

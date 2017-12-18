@@ -88,12 +88,13 @@ namespace AionHR.Web.UI.Forms.EmployeePages
 
                     pyActiveDate.Value = resp.result.pyActiveDate;
                     probationPeriod.Value = resp.result.probationPeriod;
-                    if(resp.result.probationEndDate!=null)
-                        probationEndDateHidden.Value = resp.result.probationEndDate;
-                    else
-                        probationEndDateHidden.Value = resp.result.hireDate;
+                    //if(resp.result.probationEndDate!=null)
+                    //    probationEndDateHidden.Value = resp.result.probationEndDate;
+                    //else
+                    //    probationEndDateHidden.Value = resp.result.hireDate;
+                    probationEndDateHidden.Value = resp.result.hireDate;
                     probationEndDate.MinDate = Convert.ToDateTime(resp.result.hireDate);
-                    probationEndDate.MinDate = Convert.ToDateTime(resp.result.hireDate);
+               
 
                 }
                 else

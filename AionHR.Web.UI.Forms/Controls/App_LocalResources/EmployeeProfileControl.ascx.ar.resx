@@ -181,7 +181,7 @@
     <value>الإدارة العليا</value>
   </data>
   <data name="FieldFamilyName" xml:space="preserve">
-    <value>اسم العائلة</value>
+    <value>أسم الجد</value>
   </data>
   <data name="FieldFirstName" xml:space="preserve">
     <value>الاسم الأول</value>
@@ -205,7 +205,7 @@
     <value>غير نشط؟</value>
   </data>
   <data name="FieldLastName" xml:space="preserve">
-    <value>الاسم الأخير</value>
+    <value>أسم العائلة</value>
   </data>
   <data name="FieldLastTACheck" xml:space="preserve">
     <value>آخر دخول/خروج</value>
@@ -377,5 +377,11 @@
   </data>
   <data name="selfServiceWindowTitle" xml:space="preserve">
     <value>الخدمة الذاتية</value>
+  </data>
+  <data name="FieldEnableSelfService" xml:space="preserve">
+    <value>تفعيل الخدمة الذاتبة</value>
+  </data>
+  <data name="FieldSecurityGroup" xml:space="preserve">
+    <value>المجموعات الأمنية</value>
   </data>
 </root>

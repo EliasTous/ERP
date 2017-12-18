@@ -826,7 +826,7 @@ namespace AionHR.Web.UI.Forms
                                 CloseVisible = true
                             });
 
-                            this.EditRecordWindow.Close();
+                            //this.EditRecordWindow.Close();
 
                         }
 
@@ -878,16 +878,16 @@ namespace AionHR.Web.UI.Forms
         }
         protected void SaveSelfService(object sender, DirectEventArgs e)
         {
-            //elias
+         
             string id = CurrentEmployee.Text;
             string obj = e.ExtraParams["values"];
         
-            // t = JsonConvert.DeserializeObject<EmployeeTermination>(obj);
-            //t.employeeId = Convert.ToInt32(CurrentEmployee.Text);
-            PostRequest<EmployeeTermination> request = new PostRequest<EmployeeTermination>();
+           EmployeeSelfService t = JsonConvert.DeserializeObject<EmployeeSelfService>(obj);
+            t.employeeId = Convert.ToInt32(CurrentEmployee.Text);
+            PostRequest<EmployeeSelfService> request = new PostRequest<EmployeeSelfService>();
             request.entity = t;
 
-            PostResponse<EmployeeTermination> resp = _employeeService.ChildAddOrUpdate<EmployeeTermination>(request);
+            PostResponse<EmployeeSelfService> resp = _systemService.ChildAddOrUpdate<EmployeeSelfService>(request);
             if (!resp.Success)
             {
                 //Show an error saving...
@@ -898,7 +898,7 @@ namespace AionHR.Web.UI.Forms
 
             else
             {
-                terminationWindow.Close();
+                selfServiceWindow.Close();
                 Notification.Show(new NotificationConfig
                 {
                     Title = Resources.Common.Notification,

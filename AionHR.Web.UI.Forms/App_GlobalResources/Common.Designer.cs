@@ -970,7 +970,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Status.
+        ///   Looks up a localized string similar to Employment Status.
         /// </summary>
         internal static string FieldEHStatus {
             get {
@@ -1096,7 +1096,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Generate Attendance Days.
+        ///   Looks up a localized string similar to Generate Attendance Schedule.
         /// </summary>
         internal static string GenerateAttendanceDays {
             get {
@@ -1105,7 +1105,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Attendance Days Synced  Successfully.
+        ///   Looks up a localized string similar to Attendance Schedule Generated Successfully.
         /// </summary>
         internal static string GenerateAttendanceDaySucc {
             get {

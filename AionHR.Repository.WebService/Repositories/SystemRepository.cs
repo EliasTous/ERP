@@ -40,6 +40,7 @@ namespace AionHR.Repository.WebService.Repositories
             ChildAddOrUpdateLookup.Add(typeof(GovernmentOrganisation), "setGO");
             ChildAddOrUpdateLookup.Add(typeof(LetterTemplate), "setLT");
             ChildAddOrUpdateLookup.Add(typeof(Letter), "setLE");
+            ChildAddOrUpdateLookup.Add(typeof(EmployeeSelfService), "setSS");
 
 
 

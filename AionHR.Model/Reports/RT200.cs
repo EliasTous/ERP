@@ -66,6 +66,7 @@ namespace AionHR.Model.Reports
     public class CurrentPayrollLine
     {
         public string name { get; set; }
+        public string employeeRef { get; set; }
 
         public string branchName { get; set; }
         public string departmentName { get; set; }
@@ -161,6 +162,7 @@ namespace AionHR.Model.Reports
                 departmentName = details[0].departmentName;
                 countryName = details[0].countryName;
                 name = details[0].employeeName.fullName;
+                employeeRef = details[0].employeeName.reference;
                 currencyRef = details[0].currencyRef;
                 essAmount = details[0].essAmount;
                 cssAmount = details[0].cssAmount;

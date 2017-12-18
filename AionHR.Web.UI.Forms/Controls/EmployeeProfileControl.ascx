@@ -605,7 +605,7 @@
                                 </DirectEvents>
                                 
                             </ext:MenuItem>
-                             <ext:MenuItem runat="server" ID="selfServiceGear" Text="<%$ Resources:selfServiceWindowTitle %>" Icon="UserAlert">
+                             <%--<ext:MenuItem runat="server" ID="selfServiceGear" Text="<%$ Resources:selfServiceWindowTitle %>" Icon="UserAlert">
                                 <Listeners>
                                     <Click Handler="CheckSession();" />
                                 </Listeners>
@@ -614,7 +614,7 @@
                                     
                                 </DirectEvents>
                                 
-                            </ext:MenuItem>
+                            </ext:MenuItem>--%>
                             <ext:MenuItem runat="server" ID="deleteGear" Text="<%$ Resources:Common,Delete %>" Icon="Cancel">
                                 <Listeners>
                                     <Click Handler="CheckSession();" />

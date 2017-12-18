@@ -48,8 +48,12 @@ namespace AionHR.Web.UI.Forms
                 employeeFilter.AddItem("All", 0);
                 employeeFilter.Select(0);
                 startingDate.Value = DateTime.Now;
-                startingDate.MaxDate = DateTime.Now;
+              
                 startingDate.MinDate = DateTime.Now.AddDays(-60);
+               
+                endingDate.MinDate = startingDate.SelectedDate;
+                endingDate.Value = DateTime.Now;
+
 
             }
            
@@ -101,6 +105,7 @@ namespace AionHR.Web.UI.Forms
             PostRequest<GenerateAttendanceDay> request = new PostRequest<GenerateAttendanceDay>();
             GD.employeeId = Convert.ToInt32(employeeFilter.Value); 
             GD.startingDate = startingDate.SelectedDate.ToString("yyyyMMdd");
+            GD.endingDate = endingDate.SelectedDate.ToString("yyyyMMdd");
             request.entity = GD;
 
 

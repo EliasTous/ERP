@@ -73,15 +73,21 @@
                                 <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
                             </Listeners>
                         </ext:ComboBox>
-                            <ext:NumberField runat="server" AllowBlank="true" ID="probationPeriod" Name="probationPeriod" LabelWidth="150" FieldLabel="<%$ Resources:FieldProbationPeriod  %>" MinValue="0">
+                            <ext:NumberField runat="server" AllowBlank="true" ID="probationPeriod" Name="probationPeriod" LabelWidth="150" FieldLabel="<%$ Resources:FieldProbationPeriod  %>" MinValue="1">
                                 <Listeners>
                                    <%-- <Change Handler= "App.probationEndDate.setValue(Ext.Date.add(App.probationEndDate.value, Ext.Date.Day, + App.probationPeriod.value));"></Change>--%>
-                                    <Change Handler ="if(App.probationPeriod.value>0){  App.probationEndDate.setValue(Ext.Date.add(App.probationEndDateHidden.value, Ext.Date.DAY,App.probationPeriod.value ));}"></Change>
+                                    <FocusLeave Handler ="App.probationEndDate.setValue(Ext.Date.add(App.probationEndDateHidden.value, Ext.Date.DAY,App.probationPeriod.value));"></FocusLeave>
                                 </Listeners>
                             
                             </ext:NumberField>
-                                <ext:DateField runat="server"  ID="probationEndDateHidden" Hidden="true"></ext:DateField>
-                        <ext:DateField runat="server" AllowBlank="false" ID="probationEndDate" Name="probationEndDate" LabelWidth="150" FieldLabel="<%$ Resources:FieldProbationEndDate %>"></ext:DateField>
+                                <ext:DateField runat="server"  ID="probationEndDateHidden" Hidden="true">
+                                    
+                                </ext:DateField>
+                        <ext:DateField runat="server" AllowBlank="false" ID="probationEndDate" Name="probationEndDate" LabelWidth="150" FieldLabel="<%$ Resources:FieldProbationEndDate %>">
+                                <Listeners> 
+                                      <FocusLeave Handler="App.probationPeriod.setValue(Ext.Date.diff(App.probationEndDateHidden.value, App.probationEndDate.value,'d'));"></FocusLeave>
+                                    </Listeners>
+                        </ext:DateField>
                         <ext:DateField runat="server" AllowBlank="true" ID="nextReviewDate" Name="nextReviewDate"  LabelWidth="150" FieldLabel="<%$ Resources:FieldNextReviewDate %>">
                           
                         </ext:DateField>
@@ -133,7 +139,7 @@
                                         <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
                                     </Listeners>
                                 </ext:ComboBox>
-                              <ext:ComboBox   AnyMatch="true" CaseSensitive="false"   runat="server" AllowBlank="false" ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" ID="sponsorId" Name="sponsorId" FieldLabel="<%$ Resources:sponsor%>"  LabelWidth="120">
+                              <ext:ComboBox   AnyMatch="true" CaseSensitive="false"   runat="server" AllowBlank="true" ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" ID="sponsorId" Name="sponsorId" FieldLabel="<%$ Resources:sponsor%>"  LabelWidth="120">
                                     <Store>
                                         <ext:Store runat="server" ID="sponsorStore">
                                             <Model>

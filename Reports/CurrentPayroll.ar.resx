@@ -147,6 +147,9 @@
   <data name="xrLabel27.Text" xml:space="preserve">
     <value>الموظف</value>
   </data>
+  <data name="xrLabel29.Text" xml:space="preserve">
+    <value>الرمز</value>
+  </data>
   <data name="xrLabel3.Text" xml:space="preserve">
     <value>الجنسية</value>
   </data>

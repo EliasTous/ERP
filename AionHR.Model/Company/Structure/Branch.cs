@@ -31,5 +31,9 @@ namespace AionHR.Model.Company.Structure
         public string naId { get; set; }
         
         public string stId { get; set; }
+        public int scId { get; set; }
+        public string scName { get; set; }
+
+
     }
 }

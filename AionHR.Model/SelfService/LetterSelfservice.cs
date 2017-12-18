@@ -20,7 +20,7 @@ namespace AionHR.Model.SelfService
         [ApplySecurity]
         public string letterRef { get; set; }
         public int ltId { get; set; }
-        public int employeeId { get; set; }
+        public int? employeeId { get; set; }
         [PropertyID("60106_04")]
         [ApplySecurity]
         public string notes { get; set; }

@@ -76,6 +76,15 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.DateField startingDate;
         
         /// <summary>
+        /// endingDate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.DateField endingDate;
+        
+        /// <summary>
         /// GenerateAttendanceBtn control.
         /// </summary>
         /// <remarks>

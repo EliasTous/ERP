@@ -186,4 +186,7 @@
   <data name="releaseDate" xml:space="preserve">
     <value>تاريخ الاصدار </value>
   </data>
+  <data name="FieldSchedule" xml:space="preserve">
+    <value>جدول الدوام</value>
+  </data>
 </root>
