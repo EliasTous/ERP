@@ -13,7 +13,31 @@
     <script type="text/javascript" src="../Scripts/common.js?id=0"></script>
     <script type="text/javascript" src="../Scripts/moment.js?id=0"></script>
    
-
+    <script type="text/javascript">
+        function calcProb()
+        {
+            if (App.probationEndDate.getValue() == '') {
+                return;
+            }
+           
+            App.probationPeriod.setValue(parseInt(moment(App.probationEndDate.getValue()).diff(moment(App.hireDate.getValue()), 'days')) );
+        }
+        function calcProbEndDate()
+        {
+            if (App.hireDate.getValue() == null) {
+                alert("Error ! No Hire Date");
+                
+                return;
+            }
+            
+            var d;
+            if (App.probationPeriod.value == 1)
+                d = moment(App.hireDate.getValue());
+            else
+                d = moment(App.hireDate.getValue()).add(parseInt(App.probationPeriod.value), 'days');
+            App.probationEndDate.setValue(new Date(d.toDate()));
+        }
+    </script>
 
 </head>
 <body style="background: url(Images/bg.png) repeat;">
@@ -27,8 +51,9 @@
         <ext:Hidden ID="CurrentEmployee" runat="server" />
         <ext:Hidden ID="EmployeeTerminated" runat="server" />
         <ext:Hidden ID="CurrentEmployeeName" runat="server" />
-       
-          
+        <ext:Hidden ID="oldProb" runat="server" />
+        <ext:Hidden ID="oldProbEnd" runat="server" />
+          <ext:Hidden ID="hireDate" runat="server"  />
         <ext:Viewport ID="Viewport11" runat="server" Layout="VBoxLayout" Padding="10">
             <LayoutConfig>
                 <ext:VBoxLayoutConfig Align="Stretch" />
@@ -76,7 +101,7 @@
                             <ext:NumberField runat="server" AllowBlank="true" ID="probationPeriod" Name="probationPeriod" LabelWidth="150" FieldLabel="<%$ Resources:FieldProbationPeriod  %>" MinValue="1">
                                 <Listeners>
                                    <%-- <Change Handler= "App.probationEndDate.setValue(Ext.Date.add(App.probationEndDate.value, Ext.Date.Day, + App.probationPeriod.value));"></Change>--%>
-                                    <FocusLeave Handler ="App.probationEndDate.setValue(Ext.Date.add(App.probationEndDateHidden.value, Ext.Date.DAY,App.probationPeriod.value));"></FocusLeave>
+                                    <Change Handler ="if(this.value== #{oldProb}.value) {alert('same');return false;} #{oldProb}.value = this.value; calcProbEndDate();"></Change>
                                 </Listeners>
                             
                             </ext:NumberField>
@@ -85,7 +110,7 @@
                                 </ext:DateField>
                         <ext:DateField runat="server" AllowBlank="false" ID="probationEndDate" Name="probationEndDate" LabelWidth="150" FieldLabel="<%$ Resources:FieldProbationEndDate %>">
                                 <Listeners> 
-                                      <FocusLeave Handler="App.probationPeriod.setValue(Ext.Date.diff(App.probationEndDateHidden.value, App.probationEndDate.value,'d'));"></FocusLeave>
+                                      <Change Handler="if(moment(this.value).isSame(moment( #{oldProbEnd}.value) )) {alert('same');return false;} #{oldProbEnd}.value = this.value; calcProb();"></Change>
                                     </Listeners>
                         </ext:DateField>
                         <ext:DateField runat="server" AllowBlank="true" ID="nextReviewDate" Name="nextReviewDate"  LabelWidth="150" FieldLabel="<%$ Resources:FieldNextReviewDate %>">

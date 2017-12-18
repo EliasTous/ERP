@@ -92,7 +92,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     //    probationEndDateHidden.Value = resp.result.probationEndDate;
                     //else
                     //    probationEndDateHidden.Value = resp.result.hireDate;
-                    probationEndDateHidden.Value = resp.result.hireDate;
+                    hireDate.Text = resp.result.hireDate.Value.ToShortDateString();
                     probationEndDate.MinDate = Convert.ToDateTime(resp.result.hireDate);
                
 
@@ -104,6 +104,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     RecordResponse<Employee> response = _employeeService.Get<Employee>(r);
 
                     probationEndDateHidden.Value = response.result.hireDate;
+                    hireDate.Text = response.result.hireDate.Value.ToShortDateString();
                     probationEndDate.Value= response.result.hireDate;
                     probationEndDate.MinDate = Convert.ToDateTime(response.result.hireDate);
                     pyActiveDate.Value = response.result.hireDate;
