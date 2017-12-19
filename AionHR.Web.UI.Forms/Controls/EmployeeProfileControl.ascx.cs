@@ -89,7 +89,7 @@ namespace AionHR.Web.UI.Forms
             // timeZoneCombo.Select(_systemService.SessionHelper.GetTimeZone());
             this.EditRecordWindow.Show();
         }
-        public void Update(string id)
+        public void Update(string id ,string fullName)
         {
             if (!_systemService.SessionHelper.GetHijriSupport())
             {
@@ -103,6 +103,7 @@ namespace AionHR.Web.UI.Forms
             //Step 1 : get the object from the Web Service 
             FillProfileInfo(id.ToString());
             CurrentEmployee.Text = id.ToString();
+            CurrentEmployeeFullName.Text = fullName;
             FillLeftPanel();
            
             hireDate.ReadOnly = false;
@@ -878,40 +879,89 @@ namespace AionHR.Web.UI.Forms
         }
         protected void SaveSelfService(object sender, DirectEventArgs e)
         {
-         
-            string id = CurrentEmployee.Text;
-            string obj = e.ExtraParams["values"];
-        
-           EmployeeSelfService t = JsonConvert.DeserializeObject<EmployeeSelfService>(obj);
-            t.employeeId = Convert.ToInt32(CurrentEmployee.Text);
-            PostRequest<EmployeeSelfService> request = new PostRequest<EmployeeSelfService>();
-            request.entity = t;
 
-            PostResponse<EmployeeSelfService> resp = _systemService.ChildAddOrUpdate<EmployeeSelfService>(request);
-            if (!resp.Success)
+            string userId="";
+            int userType;
+            string obj = e.ExtraParams["values"];
+            UserByEmailRequest req = new UserByEmailRequest();
+            req.Email = workEmailHF.Text;
+            RecordResponse<UserInfo> response = _systemService.Get<UserInfo>(req);
+            if (!response.Success)
             {
                 //Show an error saving...
                 X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>Technical Error: " + resp.ErrorCode + "<br> Summary: " + resp.Summary : resp.Summary).Show();
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).ToString() + "<br>Technical Error: " + response.ErrorCode + "<br> Summary: " + response.Summary : response.Summary).Show();
                 return;
             }
 
+
+                if (enableSS.Checked)
+                userType = 4;
             else
+                userType = 3;
+            if (response.result == null)
             {
-                selfServiceWindow.Close();
+
+
+                response.result = new UserInfo { employeeId = CurrentEmployee.Text, email = workEmailHF.Text, isInactive = false, userType = userType, languageId = 1, password = "1", fullName = CurrentEmployeeFullName.Text };
+            }
+            PostRequest<UserInfo> request = new PostRequest<UserInfo>();
+
+            request.entity = response.result;
+            request.entity.userType = userType;
+            PostResponse<UserInfo> r = _systemService.ChildAddOrUpdate<UserInfo>(request);
+            if (!r.Success)
+            {
+                //Show an error saving...
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() + "<br>Technical Error: " + r.ErrorCode + "<br> Summary: " + r.Summary : r.Summary).Show();
+                return;
+            }
+            userId = r.recordId;
+
+            if (sgId.SelectedItem.Value != null)
+                {
+                    SecurityGroupUser s = new SecurityGroupUser();
+                    s.email = workEmailHF.Text;
+                    s.fullName = response.result.fullName;
+                    s.sgId = sgId.SelectedItem.Value.ToString();
+                    s.userId = userId;
+                    PostRequest<SecurityGroupUser> SecurityGroupUserReq = new PostRequest<SecurityGroupUser>();
+                    SecurityGroupUserReq.entity = s;
+                    PostResponse<SecurityGroupUser> resp = _accessControlService.ChildAddOrUpdate<SecurityGroupUser>(SecurityGroupUserReq);
+                if (!resp.Success)
+                {
+                    //Show an error saving...
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>Technical Error: " + resp.ErrorCode + "<br> Summary: " + resp.Summary : resp.Summary).Show();
+                    return;
+                }
+            }
+            AccountRecoveryRequest recoverRequest = new AccountRecoveryRequest();
+            recoverRequest.Email = workEmailHF.Text;
+            PasswordRecoveryResponse recoveryRsponse = _systemService.RequestPasswordRecovery(recoverRequest);
+            if (!recoveryRsponse.Success)
+            {
+                //Show an error saving...
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", recoveryRsponse.ErrorCode).ToString() + "<br>Technical Error: " + recoveryRsponse.ErrorCode + "<br> Summary: " + recoveryRsponse.Summary : recoveryRsponse.Summary).Show();
+                return;
+            }
+            selfServiceWindow.Close();
                 Notification.Show(new NotificationConfig
                 {
                     Title = Resources.Common.Notification,
                     Icon = Icon.Information,
                     Html = Resources.Common.RecordSavingSucc
                 });
-                EditRecordWindow.Close();
-                Store1.Reload();
+             
 
             }
 
+          
 
-        }
+
+      
         [DirectMethod]
         public string CheckSession()
         {
@@ -1269,7 +1319,7 @@ namespace AionHR.Web.UI.Forms
         #endregion
 
 
-
+        
         protected void ShowTermination(object sender, DirectEventArgs e)
         {
             
@@ -1292,7 +1342,30 @@ namespace AionHR.Web.UI.Forms
         }
         protected void ShowSelfService(object sender, DirectEventArgs e)
         {
-
+            RecordRequest empRecord = new RecordRequest();
+            empRecord.RecordID = CurrentEmployee.Text;
+            RecordResponse<Employee> empResponse = _employeeService.Get<Employee>(empRecord);
+       
+            if (!empResponse.Success)
+            {
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", empResponse.ErrorCode) != null ? GetGlobalResourceObject("Errors", empResponse.ErrorCode).ToString() + "<br>Technical Error: " + empResponse.ErrorCode + "<br> Summary: " + empResponse.Summary : empResponse.Summary).Show();
+                return;
+            }
+            if(string.IsNullOrEmpty(empResponse.result.workMail))
+            {
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors","EmptyWorkEmail")).Show();
+                return;
+            }
+            workEmailHF.Text = empResponse.result.workMail;
+            UserByEmailRequest req = new UserByEmailRequest();
+            req.Email = workEmailHF.Text;
+            RecordResponse<UserInfo> response = _systemService.Get<UserInfo>(req);
+            if (response.result.userType == 4)
+            {
+                enableSS.Checked = true;
+            }
+            else
+                enableSS.Checked = false;
 
             //try
             //{
@@ -1306,7 +1379,7 @@ namespace AionHR.Web.UI.Forms
 
             //    return;
             //}
-            selfServiceForm.Reset();
+            //selfServiceForm.Reset();
        
             //date.SelectedDate = DateTime.Today;
             FillSecurityGroup();

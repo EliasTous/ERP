@@ -62,7 +62,8 @@
             this.xrPageInfo1 = new DevExpress.XtraReports.UI.XRPageInfo();
             this.xrPageInfo2 = new DevExpress.XtraReports.UI.XRPageInfo();
             this.reportHeaderBand1 = new DevExpress.XtraReports.UI.ReportHeaderBand();
-            this.xrPageInfo3 = new DevExpress.XtraReports.UI.XRPageInfo();
+            this.xrLabel32 = new DevExpress.XtraReports.UI.XRLabel();
+            this.DateFormat = new DevExpress.XtraReports.Parameters.Parameter();
             this.xrLabel1 = new DevExpress.XtraReports.UI.XRLabel();
             this.Title = new DevExpress.XtraReports.UI.XRControlStyle();
             this.FieldCaption = new DevExpress.XtraReports.UI.XRControlStyle();
@@ -329,19 +330,25 @@
             // reportHeaderBand1
             // 
             this.reportHeaderBand1.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
-            this.xrPageInfo3,
+            this.xrLabel32,
             this.xrLabel1});
             resources.ApplyResources(this.reportHeaderBand1, "reportHeaderBand1");
             this.reportHeaderBand1.Name = "reportHeaderBand1";
             // 
-            // xrPageInfo3
+            // xrLabel32
             // 
-            resources.ApplyResources(this.xrPageInfo3, "xrPageInfo3");
-            this.xrPageInfo3.Name = "xrPageInfo3";
-            this.xrPageInfo3.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrPageInfo3.PageInfo = DevExpress.XtraPrinting.PageInfo.DateTime;
-            this.xrPageInfo3.StylePriority.UseFont = false;
-            this.xrPageInfo3.StylePriority.UseTextAlignment = false;
+            this.xrLabel32.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
+            new DevExpress.XtraReports.UI.XRBinding(this.DateFormat, "Text", "")});
+            resources.ApplyResources(this.xrLabel32, "xrLabel32");
+            this.xrLabel32.Name = "xrLabel32";
+            this.xrLabel32.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel32.StylePriority.UseFont = false;
+            this.xrLabel32.StylePriority.UseTextAlignment = false;
+            // 
+            // DateFormat
+            // 
+            this.DateFormat.Name = "DateFormat";
+            this.DateFormat.Visible = false;
             // 
             // xrLabel1
             // 
@@ -838,7 +845,8 @@
             this.Payment,
             this.User,
             this.columnCount,
-            this.EmployeeName});
+            this.EmployeeName,
+            this.DateFormat});
             this.StyleSheet.AddRange(new DevExpress.XtraReports.UI.XRControlStyle[] {
             this.Title,
             this.FieldCaption,
@@ -920,8 +928,9 @@
         private DevExpress.XtraReports.UI.XRLabel xrLabel28;
         private DevExpress.XtraReports.Parameters.Parameter EmployeeName;
         private DevExpress.XtraReports.UI.XRLabel xrLabel27;
-        private DevExpress.XtraReports.UI.XRPageInfo xrPageInfo3;
         private DevExpress.XtraReports.UI.XRLabel xrLabel29;
         private DevExpress.XtraReports.UI.XRLabel xrLabel30;
+        private DevExpress.XtraReports.Parameters.Parameter DateFormat;
+        private DevExpress.XtraReports.UI.XRLabel xrLabel32;
     }
 }

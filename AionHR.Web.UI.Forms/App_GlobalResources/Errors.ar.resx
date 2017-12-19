@@ -120,6 +120,9 @@
   <data name="AssignToEmployee" xml:space="preserve">
     <value>المستخدم غير مربوط مع موظف</value>
   </data>
+  <data name="EmptyWorkEmail" xml:space="preserve">
+    <value>الرجاء ادخال بريد الكتروني من اجل تفعيل الخدمة الذاتية</value>
+  </data>
   <data name="Error_102" xml:space="preserve">
     <value>SQL خطأ في تعبير</value>
   </data>

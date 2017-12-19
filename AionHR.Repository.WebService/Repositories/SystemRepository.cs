@@ -58,6 +58,10 @@ namespace AionHR.Repository.WebService.Repositories
             ChildGetLookup.Add(typeof(LetterTemplate), "getLT");
             ChildGetLookup.Add(typeof(Letter), "getLE");
             ChildGetLookup.Add(typeof(ApplyLetter), "applyLE");
+        
+            ChildGetLookup.Add(typeof(UserInfoByEmployeeId), "getUS3");
+
+
 
 
 

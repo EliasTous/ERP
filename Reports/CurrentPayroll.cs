@@ -67,6 +67,31 @@ namespace Reports
             //xrPageInfo1.Format
         }
 
+        private void xrPageInfo3_BeforePrint(object sender, System.Drawing.Printing.PrintEventArgs e)
+        {
+          
+        }
+
+        //private void xrPageInfo3_BeforePrint(object sender, DrawEventArgs e)
+        //{
+        //    xrPageInfo1.Format = Parameters["DateFormat"].Value.ToString();
+        //}
+
+        //private void xrLabel31_BeforePrint(object sender, System.Drawing.Printing.PrintEventArgs e)
+        //{
+        //    XRLabel label = sender as XRLabel;
+        //    CultureInfo culture = new CultureInfo("en-US");
+        //    label.Text = String.Format(culture,Parameters["DateFormat"].Value.ToString(), DateTime.Now);
+
+        //}
+
+        //private void xrPageInfo3_PrintOnPage(object sender, PrintOnPageEventArgs e)
+        //{
+        //    XRPageInfo label = sender as XRPageInfo;
+        //    label.Format = "  { 0:MM / dd / yy}";
+          
+        //}
+
         //private void xrLabel29_BeforePrint(object sender, System.Drawing.Printing.PrintEventArgs e)
         //{
         //    XRLabel label = sender as XRLabel;

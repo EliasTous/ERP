@@ -189,7 +189,7 @@ namespace AionHR.Web.UI.Forms.Reports
                     //panelRecordDetails.ActiveIndex = 0;
 
                     //FillDow("1");
-                    employeeControl1.Update(id.ToString());
+                    employeeControl1.Update(id.ToString(),"");
 
 
                     break;

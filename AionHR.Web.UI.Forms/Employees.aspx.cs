@@ -263,13 +263,14 @@ namespace AionHR.Web.UI.Forms
 
 
             int id = Convert.ToInt32(e.ExtraParams["id"]);
+            string fullName = e.ExtraParams["fullName"];
             string type = e.ExtraParams["type"];
 
             switch (type)
             {
                 case "imgEdit":
 
-                    employeeControl1.Update(id.ToString());
+                    employeeControl1.Update(id.ToString(), fullName);
 
 
                     break;

@@ -70,6 +70,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to please set valid work mail for this user for activate self service.
+        /// </summary>
+        internal static string EmptyWorkEmail {
+            get {
+                return ResourceManager.GetString("EmptyWorkEmail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Sqrl Expression Invalid.
         /// </summary>
         internal static string Error_102 {

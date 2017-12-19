@@ -556,6 +556,8 @@
 <ext:Hidden runat="server" ID="imageData" />
 <ext:Hidden runat="server" ID="terminated" />
 <ext:Hidden runat="server" ID="photoReadOnly" Text="False" />
+<ext:Hidden runat="server" ID="workEmailHF" />
+<ext:Hidden runat="server" ID="CurrentEmployeeFullName" />
 
 <ext:Window
     ID="EditRecordWindow"
@@ -605,7 +607,7 @@
                                 </DirectEvents>
                                 
                             </ext:MenuItem>
-                             <%--<ext:MenuItem runat="server" ID="selfServiceGear" Text="<%$ Resources:selfServiceWindowTitle %>" Icon="UserAlert">
+                             <ext:MenuItem runat="server" ID="selfServiceGear" Text="<%$ Resources:selfServiceWindowTitle %>" Icon="UserAlert">
                                 <Listeners>
                                     <Click Handler="CheckSession();" />
                                 </Listeners>
@@ -614,7 +616,7 @@
                                     
                                 </DirectEvents>
                                 
-                            </ext:MenuItem>--%>
+                            </ext:MenuItem>
                             <ext:MenuItem runat="server" ID="deleteGear" Text="<%$ Resources:Common,Delete %>" Icon="Cancel">
                                 <Listeners>
                                     <Click Handler="CheckSession();" />
@@ -1622,7 +1624,7 @@
                     BodyPadding="5">
                     <Items>
                         
-                       <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  Enabled="false" ValueField="recordId" AllowBlank="false" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" runat="server" ID="sgId" Name="sgId" FieldLabel="<%$ Resources:FieldSecurityGroup%>" SimpleSubmit="true">
+                       <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  Enabled="false" ValueField="recordId" AllowBlank="true" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" runat="server" ID="sgId" Name="sgId" FieldLabel="<%$ Resources:FieldSecurityGroup%>" >
                             <Store>
                                 <ext:Store runat="server" ID="securityGroupStore">
                                     <Model>
@@ -1664,7 +1666,8 @@
                 <Click OnEvent="SaveSelfService" Failure="Ext.MessageBox.alert('#{titleSavingError}.value', '#{titleSavingErrorMessage}.value');">
                     <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="={#{selfServiceWindow}.body}" />
                     <ExtraParams>
-                      
+                      <ext:Parameter Name="sgId" Value="#{sgId}.getValue()" Mode="Raw" Encode="true" />
+                        <ext:Parameter Name="enableSS" Value="#{enableSS}.getValue()" Mode="Raw" Encode="true" />
                         <ext:Parameter Name="values" Value="#{selfServiceForm}.getForm().getValues()" Mode="Raw" Encode="true" />
                     </ExtraParams>
                 </Click>

@@ -359,6 +359,9 @@
                             <EventMask ShowMask="true" />
                             <ExtraParams>
                                 <ext:Parameter Name="id" Value="record.getId()" Mode="Raw" />
+                                 <ext:Parameter Name="fullName" Value="record.data['name'].fullName" Mode="Raw" />
+
+                              
                                 <ext:Parameter Name="type" Value="getCellType( this, rowIndex, cellIndex)" Mode="Raw" />
                             </ExtraParams>
 

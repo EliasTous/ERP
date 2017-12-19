@@ -283,6 +283,11 @@ namespace AionHR.Web.UI.Forms.Reports
                     h.Parameters["EmployeeName"].Value = GetGlobalResourceObject("Common", "All");
 
             }
+            h.Parameters["DateFormat"].Value = DateTime.Now.ToString(_systemService.SessionHelper.GetDateformat(), new CultureInfo("en"));
+            //if  (!_systemService.SessionHelper.CheckIfArabicSession())
+            //  h.Parameters["DateFormat"].Value = DateTime.Now.ToString(_systemService.SessionHelper.GetDateformat(), new CultureInfo("en"));
+            //else
+            //      h.Parameters["DateFormat"].Value = DateTime.Now.ToString(_systemService.SessionHelper.GetDateformat(), new CultureInfo("ar"));
 
 
             h.CreateDocument();

@@ -187,6 +187,7 @@
     <Compile Include="System\SystemDefault.cs" />
     <Compile Include="System\SystemFolder.cs" />
     <Compile Include="System\TransactionLog.cs" />
+    <Compile Include="System\UserInfoByEmployeeId.cs" />
     <Compile Include="TaskManagement\ITaskManagementRepository.cs" />
     <Compile Include="TaskManagement\Task.cs" />
     <Compile Include="TaskManagement\TaskComment.cs" />

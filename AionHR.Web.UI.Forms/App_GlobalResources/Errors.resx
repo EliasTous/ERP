@@ -120,6 +120,9 @@
   <data name="AssignToEmployee" xml:space="preserve">
     <value>user did not assign to employee</value>
   </data>
+  <data name="EmptyWorkEmail" xml:space="preserve">
+    <value>please set valid work mail for this user for activate self service</value>
+  </data>
   <data name="Error_102" xml:space="preserve">
     <value>Sqrl Expression Invalid</value>
   </data>

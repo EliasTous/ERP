@@ -130,6 +130,24 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Hidden photoReadOnly;
         
         /// <summary>
+        /// workEmailHF control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Hidden workEmailHF;
+        
+        /// <summary>
+        /// CurrentEmployeeFullName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Hidden CurrentEmployeeFullName;
+        
+        /// <summary>
         /// EditRecordWindow control.
         /// </summary>
         /// <remarks>
@@ -164,6 +182,15 @@ namespace AionHR.Web.UI.Forms {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.MenuItem terminationGear;
+        
+        /// <summary>
+        /// selfServiceGear control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.MenuItem selfServiceGear;
         
         /// <summary>
         /// deleteGear control.
