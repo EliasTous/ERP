@@ -696,6 +696,7 @@ namespace AionHR.Web.UI.Forms
 
 
                         PostResponse<Employee> r = _employeeService.AddOrUpdate<Employee>(request);
+                        CurrentEmployeeFullName.Text = b.name.fullName;
                         b.recordId = r.recordId;
 
                         //check if the insert failed
@@ -898,7 +899,7 @@ namespace AionHR.Web.UI.Forms
                 if (enableSS.Checked)
                 userType = 4;
             else
-                userType = 3;
+                userType = response.result.userType;
             if (response.result == null)
             {
 
@@ -1343,8 +1344,9 @@ namespace AionHR.Web.UI.Forms
         protected void ShowSelfService(object sender, DirectEventArgs e)
         {
             RecordRequest empRecord = new RecordRequest();
-            empRecord.RecordID = CurrentEmployee.Text;
+            empRecord.RecordID = CurrentEmployee.Text.ToString();
             RecordResponse<Employee> empResponse = _employeeService.Get<Employee>(empRecord);
+            
        
             if (!empResponse.Success)
             {
@@ -1360,29 +1362,59 @@ namespace AionHR.Web.UI.Forms
             UserByEmailRequest req = new UserByEmailRequest();
             req.Email = workEmailHF.Text;
             RecordResponse<UserInfo> response = _systemService.Get<UserInfo>(req);
-            if (response.result.userType == 4)
-            {
-                enableSS.Checked = true;
-            }
-            else
-                enableSS.Checked = false;
-
-            //try
-            //{
-            //    AccessControlApplier.ApplyAccessControlOnPage(typeof(EmployeeTermination), terminationForm, null, null, saveTerminationButton);
-
-            //}
-            //catch (AccessDeniedException exp)
-            //{
-            //    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-            //    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorAccessDenied).Show();
-
-            //    return;
-            //}
-            //selfServiceForm.Reset();
-       
-            //date.SelectedDate = DateTime.Today;
             FillSecurityGroup();
+            if (response.result != null)
+            {
+                if (response.result.isInactive == true)
+                {
+                    enableSS.Checked = true;
+                }
+                else
+                    enableSS.Checked = false;
+
+              
+                GroupUsersListRequest GroupUserReq = new GroupUsersListRequest();
+                GroupUserReq.Size = "";
+                GroupUserReq.StartAt = "";
+                GroupUserReq.Filter = "";
+                GroupUserReq.GroupId = "0";
+                GroupUserReq.UserId = response.result.recordId;
+
+
+
+
+                //Fetching the corresponding list
+
+                //in this test will take a list of News
+
+
+                ListResponse<SecurityGroupUser> groups = _accessControlService.ChildGetAll<SecurityGroupUser>(GroupUserReq);
+                if (!groups.Success)
+                {
+                    X.Msg.Alert(Resources.Common.Error, groups.Summary).Show();
+
+                    return;
+                }
+                if (groups.Items != null)
+                    sgId.Select(groups.Items[0].sgId.ToString());
+             
+                //try
+                //{
+                //    AccessControlApplier.ApplyAccessControlOnPage(typeof(EmployeeTermination), terminationForm, null, null, saveTerminationButton);
+
+                //}
+                //catch (AccessDeniedException exp)
+                //{
+                //    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                //    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorAccessDenied).Show();
+
+                //    return;
+                //}
+                //selfServiceForm.Reset();
+
+                //date.SelectedDate = DateTime.Today;
+
+            }
             selfServiceWindow.Show();
         }
 

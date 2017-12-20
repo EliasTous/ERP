@@ -61,6 +61,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Access Control.
+        /// </summary>
+        internal static string AccessControl {
+            get {
+                return ResourceManager.GetString("AccessControl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Active.
         /// </summary>
         internal static string Active {
@@ -1843,6 +1852,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to National Quotas.
+        /// </summary>
+        internal static string NationalQuotas {
+            get {
+                return ResourceManager.GetString("NationalQuotas", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Navigation.
         /// </summary>
         internal static string NavigationPane {
@@ -3027,15 +3045,6 @@ namespace Resources {
         internal static string Yes {
             get {
                 return ResourceManager.GetString("Yes", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Access Control.
-        /// </summary>
-        internal static string رواتب {
-            get {
-                return ResourceManager.GetString("رواتب", resourceCulture);
             }
         }
     }

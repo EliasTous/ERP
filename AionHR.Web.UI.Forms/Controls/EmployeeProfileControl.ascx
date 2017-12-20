@@ -1624,7 +1624,7 @@
                     BodyPadding="5">
                     <Items>
                         
-                       <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  Enabled="false" ValueField="recordId" AllowBlank="true" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" runat="server" ID="sgId" Name="sgId" FieldLabel="<%$ Resources:FieldSecurityGroup%>" >
+                       <ext:ComboBox   AnyMatch="true" CaseSensitive="false"   ValueField="recordId" AllowBlank="true" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" runat="server" ID="sgId" Name="sgId" FieldLabel="<%$ Resources:FieldSecurityGroup%>" >
                             <Store>
                                 <ext:Store runat="server" ID="securityGroupStore">
                                     <Model>

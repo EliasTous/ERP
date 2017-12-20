@@ -280,6 +280,7 @@
     <Content Include="MediaItems.aspx" />
     <Content Include="MyInfos.aspx" />
     <Content Include="Nationalities.aspx" />
+    <Content Include="NationalQuotas.aspx" />
     <Content Include="NoticePeriods.aspx" />
     <Content Include="OrganizationChart.aspx" />
     <Content Include="OvertimeSettings.aspx" />
@@ -700,6 +701,13 @@
     </Compile>
     <Compile Include="MyInfos.aspx.designer.cs">
       <DependentUpon>MyInfos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="NationalQuotas.aspx.cs">
+      <DependentUpon>NationalQuotas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="NationalQuotas.aspx.designer.cs">
+      <DependentUpon>NationalQuotas.aspx</DependentUpon>
     </Compile>
     <Compile Include="NoticePeriods.aspx.cs">
       <DependentUpon>NoticePeriods.aspx</DependentUpon>
@@ -1783,6 +1791,7 @@
     <Content Include="App_GlobalResources\Common.resx">
       <Generator>GlobalResourceProxyGenerator</Generator>
       <LastGenOutput>Common.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </Content>
   </ItemGroup>
   <ItemGroup>
@@ -1822,7 +1831,9 @@
     <Content Include="App_LocalResources\Currencies.aspx.resx" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_LocalResources\Users.aspx.resx" />
+    <Content Include="App_LocalResources\Users.aspx.resx">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_LocalResources\VacationSchedules.aspx.resx">
@@ -2026,8 +2037,12 @@
     <Content Include="EmployeePages\App_LocalResources\Dependants.aspx.resx" />
     <Content Include="EmployeePages\App_LocalResources\Dependants.aspx.ar.resx" />
     <Content Include="App_LocalResources\Schedules.aspx.ar.resx" />
-    <Content Include="Controls\App_LocalResources\EmployeeProfileControl.ascx.resx" />
-    <Content Include="Controls\App_LocalResources\EmployeeProfileControl.ascx.ar.resx" />
+    <Content Include="Controls\App_LocalResources\EmployeeProfileControl.ascx.resx">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Controls\App_LocalResources\EmployeeProfileControl.ascx.ar.resx">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Controls\App_LocalResources\LeaveRequestControl.ascx.resx" />
     <Content Include="Controls\App_LocalResources\LeaveRequestControl.ascx.ar.resx" />
     <Content Include="App_LocalResources\ImportAttendance.aspx.resx" />
@@ -2073,7 +2088,9 @@
       <LastGenOutput>Reports.ar.designer.cs</LastGenOutput>
     </Content>
     <Content Include="EmployeePages\App_LocalResources\Legals.aspx.ar.resx" />
-    <Content Include="App_LocalResources\Users.aspx.ar.resx" />
+    <Content Include="App_LocalResources\Users.aspx.ar.resx">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="App_LocalResources\LeaveTypes.aspx.ar.resx" />
     <Content Include="App_LocalResources\LoanTypes.aspx.ar.resx" />
     <Content Include="App_LocalResources\OvertimeSettings.aspx.resx" />
@@ -2184,6 +2201,8 @@
     <Content Include="App_LocalResources\EmployeeCals.aspx.ar.resx" />
     <Content Include="Reports\App_LocalResources\RT306.aspx.ar.resx" />
     <Content Include="Reports\App_LocalResources\RT306.aspx.resx" />
+    <Content Include="App_LocalResources\NationalQuotas.aspx.resx" />
+    <Content Include="App_LocalResources\NationalQuotas.aspx.ar.resx" />
     <EmbeddedResource Include="Reports\RT201.aspx.resx">
       <DependentUpon>RT201.aspx.cs</DependentUpon>
       <Generator>ResXFileCodeGenerator</Generator>

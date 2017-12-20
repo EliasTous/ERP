@@ -41,6 +41,8 @@
     <ext:Hidden runat="server" ID="usTitle" Text="<%$Resources:Common , Users %>" />
        <ext:Hidden runat="server" ID="goTitle" Text="<%$Resources:Common , GovernmentOrganisations %>" />
       <ext:Hidden runat="server" ID="ltemplateTitle" Text="<%$Resources:Common , LetterTemplates %>" />
+     <ext:Hidden runat="server" ID="NQTitle" Text="<%$Resources:Common , NationalQuotas %>" />
+
     <ext:Hidden runat="server" ID="mcTitle" Text="<%$Resources:Common , MediaCategory %>" />
     <ext:Hidden runat="server" ID="caTitle" Text="<%$Resources:Common , WorkingCalendars %>" />
     <ext:Hidden runat="server" ID="roTitle" Text="<%$Resources:Common , Routers %>" />
@@ -347,6 +349,11 @@
                                                                          <ext:MenuItem runat="server" Text="<%$Resources: Common , LetterTemplates%>">
                                                                             <Listeners>
                                                                                 <Click Handler="openNewTab('LetterTemplates', 'LetterTemplates.aspx', #{ltemplateTitle}.value, 'icon-Employees')" />
+                                                                            </Listeners>
+                                                                        </ext:MenuItem>
+                                                                        <ext:MenuItem runat="server" Text="<%$Resources: Common , NationalQuotas%>">
+                                                                            <Listeners>
+                                                                                <Click Handler="openNewTab('NationalQuotas', 'NationalQuotas.aspx', #{NQTitle}.value, 'icon-Employees')" />
                                                                             </Listeners>
                                                                         </ext:MenuItem>
                                                                         <ext:MenuItem runat="server" Text="<%$Resources:Common,AccessControl %>">

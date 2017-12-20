@@ -75,6 +75,7 @@
     <Compile Include="Implementations\LoanTrackingServicecs.cs" />
     <Compile Include="Implementations\MasterService.cs" />
     <Compile Include="Implementations\MediaGalleryService.cs" />
+    <Compile Include="Implementations\NationalQuotaService.cs" />
     <Compile Include="Implementations\OvertimeBatchRunner.cs" />
     <Compile Include="Implementations\OvertimeImportingService.cs" />
     <Compile Include="Implementations\PayrollService.cs" />
@@ -96,6 +97,7 @@
     <Compile Include="Interfaces\ILoanTrackingService.cs" />
     <Compile Include="Interfaces\IMediaGalleryService.cs" />
     <Compile Include="Interfaces\ImportingServiceBase.cs" />
+    <Compile Include="Interfaces\INationalQuotaService.cs" />
     <Compile Include="Interfaces\IPayrollService.cs" />
     <Compile Include="Interfaces\IReportsService.cs" />
     <Compile Include="Interfaces\ISelfServiceService.cs" />

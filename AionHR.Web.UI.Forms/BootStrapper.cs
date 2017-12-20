@@ -25,6 +25,7 @@ using AionHR.Model.Payroll;
 using AionHR.Model.Access_Control;
 using AionHR.Web.UI.Forms.Utilities;
 using AionHR.Model.SelfService;
+using AionHR.Model.NationalQuota;
 
 namespace AionHR.Web.UI.Forms
 {
@@ -70,6 +71,7 @@ namespace AionHR.Web.UI.Forms
                 For<ITaskManagementRepository>().Use<TaskManagementRepository>();
                 For<IPayrollRepository>().Use<PayrollRepository>();
                 For<IAccessControlRepository>().Use<AccessControlRepository>();
+                For<INationalQuotaRepository>().Use<NationalQuotaRepository>();
 
                 //Services
                 For<ISystemService>().Use<SystemService>();
@@ -88,7 +90,7 @@ namespace AionHR.Web.UI.Forms
                 For<IPayrollService>().Use<PayrollService>();
                 For<IAccessControlService>().Use<AccessControlService>();
                 For<ISelfServiceService>().Use<SelfServiceService>();
-                For<ISelfServiceRepository>().Use<SelfServiceRepository>();
+                For<INationalQuotaService>().Use<NationalQuotaService>();
 
             }
         }

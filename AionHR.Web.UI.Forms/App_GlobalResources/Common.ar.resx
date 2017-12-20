@@ -1113,4 +1113,7 @@
   <data name="RT111" xml:space="preserve">
     <value>حسابات مصرفية </value>
   </data>
+  <data name="NationalQuotas" xml:space="preserve">
+    <value>National Quotas</value>
+  </data>
 </root>
