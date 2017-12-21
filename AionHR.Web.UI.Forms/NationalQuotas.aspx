@@ -10,9 +10,15 @@
     <title></title>
     <link rel="stylesheet" type="text/css" href="CSS/Common.css" />
     <link rel="stylesheet" href="CSS/LiveSearch.css" />
-    <script type="text/javascript" src="Scripts/DocumentTypes.js" ></script>
+    
     <script type="text/javascript" src="Scripts/common.js" ></script>
-   
+    <script type="text/javascript" src="Scripts/NationalQuotas.js?id=12"></script>
+   <script type="text/javascript">
+       function insertRecord(grid) {
+           var store = grid.store,
+               row = store.indexOf(store.insert(0, { days: 0, hiredPct: 0, terminatedPct : 0 })[0]);
+       }
+   </script>
  
 </head>
 <body style="background: url(Images/bg.png) repeat;" ">
@@ -48,8 +54,8 @@
                     </Fields>
                 </ext:Model>
             </Model>
-            <Sorters>
-                <ext:DataSorter Property="recordId" Direction="ASC" />
+          <Sorters>
+                <ext:DataSorter  Direction="ASC" />
             </Sorters>
         </ext:Store>
          <ext:Store
@@ -639,11 +645,11 @@
                     </SelectionModel>
                 </ext:GridPanel>
                  <ext:GridPanel
-                            ID="citizenshipGrid"
+                            ID="PointAcquisitionGrid"
                             runat="server"
-                            PaddingSpec="0 0 1 0"
+                            PaddingSpec="0 0 0 0"
                             Header="false"
-                            Title="<%$ Resources: citizenshipTitle %>"
+                            Title="<%$ Resources: PointAcquisitionTitle %>"
                             Layout="FitLayout"
                             Scroll="Vertical"
                             Border="false"
@@ -651,82 +657,118 @@
                             ColumnLines="True" IDMode="Explicit" RenderXType="True">
                             <Store>
                                 <ext:Store
-                                    ID="citizenshipStore"
+                                    ID="PointAcquisitionStore"
                                     runat="server"
                                     RemoteSort="False"
                                     RemoteFilter="false"
-                                    OnReadData="citizenshipStore_ReadData"
+                                    OnReadData="PointAcquisitionStore_ReadData"
                                     PageSize="50" IDMode="Explicit" Namespace="App">
 
                                     <Model>
-                                        <ext:Model ID="Model4" runat="server" IDProperty="recordId">
+                                        <ext:Model ID="Model4" runat="server"  >
                                             <Fields>
 
-                                                <ext:ModelField Name="recordId" />
-                                                <ext:ModelField Name="ceiling" />
-                                                <ext:ModelField Name="points" />
-                                                <ext:ModelField Name="name" />
+                                             
+                                                <ext:ModelField Name="days" />
+                                                <ext:ModelField Name="hiredPct" />
+                                                 <ext:ModelField Name="terminatedPct" />
+                                             
                                                 
 
                                             </Fields>
                                         </ext:Model>
                                     </Model>
-                                    <Sorters>
+                                 <%--  <Sorters>
                                         <ext:DataSorter Property="recordId" Direction="ASC" />
-                                    </Sorters>
+                                    </Sorters>--%>
                                 </ext:Store>
 
                             </Store>
+                         <TopBar>
+                        <ext:Toolbar ID="Toolbar7" runat="server" ClassicButtonStyle="false">
+                            <Items>
+                                <ext:Button ID="Button10" runat="server" Text="<%$ Resources:Common , Add %>" Icon="Add">       
+                                     <Listeners>
+                                     <%--   <Click Handler="var myRecordDef = Ext.data.Record.create(['name']); App.citizenshipStore.insert(0, new myRecordDef({'name':'test'}));  " />--%>
+                                        <Click Handler="App.PointAcquisitionGrid.getStore().add(new Ext.data.Record({ days: 0, hiredPct: 0.0, terminatedPct: 0.0}));" />
+                                         <Click Handler="insertRecord(#{PointAcquisitionGrid})" />
+                                         
+                                        
+                                    </Listeners>                           
+                                   <%-- <DirectEvents>
+                                        <Click OnEvent="ADDNewCitizenshipRecord">
+                                            <EventMask ShowMask="true" CustomTarget="={#{citizenshipGrid}.body}" />
+                                        </Click>
+                                    </DirectEvents>--%>
+                                </ext:Button>
+                              
+                         
+                              
+                                 
+                            
+                            </Items>
+                        </ext:Toolbar>
 
+                    </TopBar>
                      
 
                             <ColumnModel ID="ColumnModel4" runat="server" SortAscText="<%$ Resources:Common , SortAscText %>" SortDescText="<%$ Resources:Common ,SortDescText  %>" SortClearText="<%$ Resources:Common ,SortClearText  %>" ColumnsText="<%$ Resources:Common ,ColumnsText  %>" EnableColumnHide="false" Sortable="false">
                                 <Columns>
-                                    <ext:Column ID="Column13" Visible="false" DataIndex="recordId" runat="server" />
+                                  
                                    
                                   
-                                    <ext:WidgetColumn ID="WidgetColumn2" Visible="true" DataIndex="name" runat="server" Text="<%$ Resources:FieldName  %>">
+                                    <ext:WidgetColumn ID="WidgetColumn2" Visible="true" DataIndex="days" runat="server" Text="<%$ Resources:FieldDays %>" Flex="1">
                                         <Widget>
-                                            <ext:TextField runat="server" Name="name" >
+                                            <ext:NumberField AllowBlank="false" runat="server" Name="days" MinValue="0" >
                                                 <Listeners>
 
-                                                    <Change Handler="var rec = this.getWidgetRecord();rec.set('name',this.value); ">
+                                                    <Change Handler="this.getWidgetRecord().set('days',this.value); ">
                                                     </Change>
                                                 </Listeners>
-                                                <Validator Handler="return !isNaN(this.value)">
-
-                                                </Validator>
-                                                </ext:TextField>
+                                              
+                                                </ext:NumberField>
                                         </Widget>
                                     </ext:WidgetColumn>
-                                    <ext:WidgetColumn ID="WidgetColumn3" Visible="true" DataIndex="points" runat="server" Text="<%$ Resources: points %>">
+                                    <ext:WidgetColumn ID="WidgetColumn3" Visible="true" DataIndex="hiredPct" runat="server" Text="<%$ Resources: hiredPct %>" Flex="1">
                                         <Widget>
-                                            <ext:TextField runat="server" Name="points" >
+                                            <ext:NumberField  DecimalPrecision="2" runat="server" Name="hiredPct" MinValue="0" MaxValue="100" >
                                                  <Listeners>
 
-                                                    <Change Handler="var rec = this.getWidgetRecord(); rec.set('points',this.value); ">
+                                                    <Change Handler="this.getWidgetRecord().set('hiredPct',this.value); ">
                                                     </Change>
                                                 </Listeners>
-                                                <Validator Handler="return !isNaN(this.value)">
-
-                                                </Validator>
-                                                </ext:TextField>
+                                           
+                                                </ext:NumberField>
                                         </Widget>
                                     </ext:WidgetColumn>
-                                    <ext:WidgetColumn ID="WidgetColumn4" Visible="true" DataIndex="ceiling" runat="server" Text="<%$ Resources: ceiling  %>">
+                                    <ext:WidgetColumn ID="WidgetColumn4" Visible="true" DataIndex="terminatedPct" runat="server" Text="<%$ Resources: terminatedPct  %>" Flex="1">
                                         <Widget>
-                                            <ext:TextField runat="server" Name="ceiling" >
+                                            <ext:NumberField DecimalPrecision="2" runat="server" Name="terminatedPct"  MinValue="0" MaxValue="100">
                                                  <Listeners>
 
-                                                    <Change Handler="var rec = this.getWidgetRecord(); rec.set('ceiling',this.value); ">
+                                                    <Change Handler="this.getWidgetRecord().set('terminatedPct',this.value); ">
                                                     </Change>
                                                 </Listeners>
                                                 <Validator Handler="return !isNaN(this.value)">
 
                                                 </Validator>
-                                                </ext:TextField>
+                                                </ext:NumberField>
                                         </Widget>
                                     </ext:WidgetColumn>
+                                      <ext:Column runat="server"
+                                               ID="Column14"  Visible="true"
+                                                Text=""
+                                                Width="100"
+                                                Hideable="false"
+                                                Align="Center"
+                                                Fixed="true"
+                                                Filterable="false"
+                                                MenuDisabled="true"
+                                                Resizable="false">
+
+                                                <Renderer handler="return deleteRender();" />
+
+                            </ext:Column>
 
 
 
@@ -735,19 +777,34 @@
 
                                 </Columns>
                             </ColumnModel>
-                        <Buttons>
-                             <ext:Button ID="SaveCitizenshipButton" runat="server" Text="<%$ Resources:Common, Save %>" Icon="Disk">
+                        <Listeners>
+                           
+                      <Render Handler="this.on('cellclick', cellClickPointAcquisition);" />
+                        
+                           
+                    </Listeners>
+                  <%--  <DirectEvents>
+                        <CellClick OnEvent="CitizenShipPoPuP">
+                            <EventMask ShowMask="true" />
+                            <ExtraParams>
+                                <ext:Parameter Name="id" Value="record.getId()" Mode="Raw" />
+                                <ext:Parameter Name="type" Value="getCellType( this, rowIndex, cellIndex)" Mode="Raw" />
+                            </ExtraParams>
 
-                               <%-- <Listeners>
-                                    <Click Handler="CheckSession(); if (!#{BasicInfoTab}.getForm().isValid()) {return false;}  " />
-                                </Listeners>--%>
+                        </CellClick>
+                    </DirectEvents>--%>
+                        <Buttons>
+                             <ext:Button ID="SavePointAcquisitionButton" runat="server" Text="<%$ Resources:Common, Save %>" Icon="Disk">
+
+                            <Listeners>
+                                    <Click Handler="CheckSession();" />
+                                </Listeners>
                                 <DirectEvents>
-                                    <Click OnEvent="SaveNewCitizenship" Failure="Ext.MessageBox.alert('#{titleSavingError}.value', '#{titleSavingErrorMessage}.value');">
-                                        <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="={#{citizenshipGrid}.body}" />
+                                    <Click OnEvent="SaveNewPointAcquisition" Failure="Ext.MessageBox.alert('#{titleSavingError}.value', '#{titleSavingErrorMessage}.value');">
+                                        <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="={#{PointAcquisitionGrid}.body}" />
                                         <ExtraParams>
-                                            <ext:Parameter Name="id" Value="#{recordId}.getValue()" Mode="Raw" />
-                                           
-                                              <ext:Parameter Name="codes" Value="Ext.encode(#{citizenshipGrid}.getRowsValues({dirtyRowsOnly : true}))" Mode="Raw"  />
+                                                                                   
+                                              <ext:Parameter Name="codes" Value="Ext.encode(#{PointAcquisitionGrid}.getRowsValues({dirtyRowsOnly : false}))" Mode="Raw"  />
                                         </ExtraParams>
                                     </Click>
                                 </DirectEvents>
@@ -767,6 +824,194 @@
 
                             <SelectionModel>
                                 <ext:RowSelectionModel ID="rowSelectionModel3" runat="server" Mode="Single" StopIDModeInheritance="true" />
+                                <%--<ext:CheckboxSelectionModel ID="CheckboxSelectionModel1" runat="server" Mode="Multi" StopIDModeInheritance="true" />--%>
+                            </SelectionModel>
+
+                        </ext:GridPanel>
+                 <ext:GridPanel
+                            ID="LevelAcquisition"
+                            runat="server"
+                            PaddingSpec="0 0 1 0"
+                            Header="false"
+                            Title="<%$ Resources: LevelAcquisitionTitle %>"
+                            Layout="FitLayout"
+                            Scroll="Vertical"
+                            Border="false"
+                            Icon="User"
+                            ColumnLines="True" IDMode="Explicit" RenderXType="True">
+                            <Store>
+                                <ext:Store
+                                    ID="Store1"
+                                    runat="server"
+                                    RemoteSort="False"
+                                    RemoteFilter="false"
+                                    OnReadData="LevelAcquisition_ReadData"
+                                    PageSize="50" IDMode="Explicit" Namespace="App">
+
+                                    <Model>
+                                        <ext:Model ID="Model5" runat="server"  >
+                                            <Fields>
+
+                                           
+
+                                                <ext:ModelField Name="inName" />
+                                                <ext:ModelField Name="bsName" />
+                                                 <ext:ModelField Name="leName" />
+                                                 <ext:ModelField Name="inId" />
+                                                <ext:ModelField Name="bsId" />
+                                                 <ext:ModelField Name="pct" />
+                                                  <ext:ModelField Name="leId" />
+                                                
+
+                                            </Fields>
+                                        </ext:Model>
+                                    </Model>
+                                 <%--  <Sorters>
+                                        <ext:DataSorter Property="recordId" Direction="ASC" />
+                                    </Sorters>--%>
+                                </ext:Store>
+
+                            </Store>
+                         <TopBar>
+                        <ext:Toolbar ID="Toolbar8" runat="server" ClassicButtonStyle="false">
+                            <Items>
+                                <ext:Button ID="Button11" runat="server" Text="<%$ Resources:Common , Add %>" Icon="Add">       
+                                     <Listeners>
+                                     <%--   <Click Handler="var myRecordDef = Ext.data.Record.create(['name']); App.citizenshipStore.insert(0, new myRecordDef({'name':'test'}));  " />--%>
+                                        <Click Handler="App.PointAcquisitionGrid.getStore().add(new Ext.data.Record({ days: 0, hiredPct: 0.0, terminatedPct: 0.0}));" />
+                                         <Click Handler="insertRecord(#{PointAcquisitionGrid})" />
+                                         
+                                        
+                                    </Listeners>                           
+                                   <%-- <DirectEvents>
+                                        <Click OnEvent="ADDNewCitizenshipRecord">
+                                            <EventMask ShowMask="true" CustomTarget="={#{citizenshipGrid}.body}" />
+                                        </Click>
+                                    </DirectEvents>--%>
+                                </ext:Button>
+                              
+                         
+                              
+                                 
+                            
+                            </Items>
+                        </ext:Toolbar>
+
+                    </TopBar>
+                     
+
+                            <ColumnModel ID="ColumnModel5" runat="server" SortAscText="<%$ Resources:Common , SortAscText %>" SortDescText="<%$ Resources:Common ,SortDescText  %>" SortClearText="<%$ Resources:Common ,SortClearText  %>" ColumnsText="<%$ Resources:Common ,ColumnsText  %>" EnableColumnHide="false" Sortable="false">
+                                <Columns>
+                                  
+                                   
+                                  
+                                    <ext:WidgetColumn ID="WidgetColumn1" Visible="true" DataIndex="days" runat="server" Text="<%$ Resources:FieldDays %>" Flex="1">
+                                        <Widget>
+                                            <ext:NumberField AllowBlank="false" runat="server" Name="days" MinValue="0" >
+                                                <Listeners>
+
+                                                    <Change Handler="this.getWidgetRecord().set('days',this.value); ">
+                                                    </Change>
+                                                </Listeners>
+                                              
+                                                </ext:NumberField>
+                                        </Widget>
+                                    </ext:WidgetColumn>
+                                    <ext:WidgetColumn ID="WidgetColumn5" Visible="true" DataIndex="hiredPct" runat="server" Text="<%$ Resources: hiredPct %>" Flex="1">
+                                        <Widget>
+                                            <ext:NumberField  DecimalPrecision="2" runat="server" Name="hiredPct" MinValue="0" MaxValue="100" >
+                                                 <Listeners>
+
+                                                    <Change Handler="this.getWidgetRecord().set('hiredPct',this.value); ">
+                                                    </Change>
+                                                </Listeners>
+                                           
+                                                </ext:NumberField>
+                                        </Widget>
+                                    </ext:WidgetColumn>
+                                    <ext:WidgetColumn ID="WidgetColumn6" Visible="true" DataIndex="terminatedPct" runat="server" Text="<%$ Resources: terminatedPct  %>" Flex="1">
+                                        <Widget>
+                                            <ext:NumberField DecimalPrecision="2" runat="server" Name="terminatedPct"  MinValue="0" MaxValue="100">
+                                                 <Listeners>
+
+                                                    <Change Handler="this.getWidgetRecord().set('terminatedPct',this.value); ">
+                                                    </Change>
+                                                </Listeners>
+                                                <Validator Handler="return !isNaN(this.value)">
+
+                                                </Validator>
+                                                </ext:NumberField>
+                                        </Widget>
+                                    </ext:WidgetColumn>
+                                      <ext:Column runat="server"
+                                               ID="Column13"  Visible="true"
+                                                Text=""
+                                                Width="100"
+                                                Hideable="false"
+                                                Align="Center"
+                                                Fixed="true"
+                                                Filterable="false"
+                                                MenuDisabled="true"
+                                                Resizable="false">
+
+                                                <Renderer handler="return deleteRender();" />
+
+                            </ext:Column>
+
+
+
+
+
+
+                                </Columns>
+                            </ColumnModel>
+                        <Listeners>
+                           
+                      <Render Handler="this.on('cellclick', cellClickPointAcquisition);" />
+                        
+                           
+                    </Listeners>
+                  <%--  <DirectEvents>
+                        <CellClick OnEvent="CitizenShipPoPuP">
+                            <EventMask ShowMask="true" />
+                            <ExtraParams>
+                                <ext:Parameter Name="id" Value="record.getId()" Mode="Raw" />
+                                <ext:Parameter Name="type" Value="getCellType( this, rowIndex, cellIndex)" Mode="Raw" />
+                            </ExtraParams>
+
+                        </CellClick>
+                    </DirectEvents>--%>
+                        <Buttons>
+                             <ext:Button ID="Button12" runat="server" Text="<%$ Resources:Common, Save %>" Icon="Disk">
+
+                            <Listeners>
+                                    <Click Handler="CheckSession();" />
+                                </Listeners>
+                                <DirectEvents>
+                                    <Click OnEvent="SaveNewPointAcquisition" Failure="Ext.MessageBox.alert('#{titleSavingError}.value', '#{titleSavingErrorMessage}.value');">
+                                        <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="={#{PointAcquisitionGrid}.body}" />
+                                        <ExtraParams>
+                                                                                   
+                                              <ext:Parameter Name="codes" Value="Ext.encode(#{PointAcquisitionGrid}.getRowsValues({dirtyRowsOnly : false}))" Mode="Raw"  />
+                                        </ExtraParams>
+                                    </Click>
+                                </DirectEvents>
+                            </ext:Button>
+                            <ext:Button ID="Button13" runat="server" Text="<%$ Resources:Common , Cancel %>" Icon="Cancel">
+                                <Listeners>
+                                    <Click Handler="this.up('window').hide();" />
+                                </Listeners>
+                            </ext:Button>
+                        </Buttons>
+
+
+                            <View>
+                                <ext:GridView ID="GridView5" runat="server" />
+                            </View>
+
+
+                            <SelectionModel>
+                                <ext:RowSelectionModel ID="rowSelectionModel4" runat="server" Mode="Single" StopIDModeInheritance="true" />
                                 <%--<ext:CheckboxSelectionModel ID="CheckboxSelectionModel1" runat="server" Mode="Multi" StopIDModeInheritance="true" />--%>
                             </SelectionModel>
 
@@ -816,14 +1061,14 @@
                 <ext:Button ID="SaveIndustryButton" runat="server" Text="<%$ Resources:Common, Save %>" Icon="Disk">
 
                     <Listeners>
-                        <Click Handler="CheckSession(); if (!#{IndustryInfoTab}.getForm().isValid()) {return false;}  " />
+                        <Click Handler="CheckSession(); if (!#{IndustryFrom}.getForm().isValid()) {return false;}  " />
                     </Listeners>
                     <DirectEvents>
                         <Click OnEvent="SaveNewIndustry" Failure="Ext.MessageBox.alert('#{titleSavingError}.value', '#{titleSavingErrorMessage}.value');">
                             <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="={#{EditIndustryWindow}.body}" />
                             <ExtraParams>
                                 <ext:Parameter Name="id" Value="#{recordId}.getValue()" Mode="Raw" />
-                                <ext:Parameter Name="values" Value ="#{IndustryInfoTab}.getForm().getValues()" Mode="Raw" Encode="true" />
+                                <ext:Parameter Name="values" Value ="#{IndustryFrom}.getForm().getValues()" Mode="Raw" Encode="true" />
                             </ExtraParams>
                         </Click>
                     </DirectEvents>

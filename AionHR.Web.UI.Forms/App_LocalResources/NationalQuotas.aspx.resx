@@ -177,4 +177,19 @@
   <data name="points" xml:space="preserve">
     <value>Points</value>
   </data>
+  <data name="FieldDays" xml:space="preserve">
+    <value>Days</value>
+  </data>
+  <data name="hiredPct" xml:space="preserve">
+    <value>hired Percentage</value>
+  </data>
+  <data name="LevelAcquisitionTitle" xml:space="preserve">
+    <value>Level Acquisition </value>
+  </data>
+  <data name="PointAcquisitionTitle" xml:space="preserve">
+    <value>Point Acquisition</value>
+  </data>
+  <data name="terminatedPct" xml:space="preserve">
+    <value>terminated Percentage</value>
+  </data>
 </root>

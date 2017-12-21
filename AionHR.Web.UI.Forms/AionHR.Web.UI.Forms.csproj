@@ -370,6 +370,7 @@
     <Content Include="Scripts\FinalSettlements.js" />
     <Content Include="Scripts\HighCharts.js" />
     <Content Include="Scripts\jquery-ui-min.js" />
+    <Content Include="Scripts\NationalQuotas.js" />
     <Content Include="Scripts\OvertimeSettings.js" />
     <Content Include="Scripts\PayCodes.js" />
     <Content Include="Scripts\Payrollindemnities.js" />
