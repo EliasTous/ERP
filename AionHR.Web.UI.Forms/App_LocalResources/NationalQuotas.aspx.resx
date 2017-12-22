@@ -192,4 +192,28 @@
   <data name="terminatedPct" xml:space="preserve">
     <value>terminated Percentage</value>
   </data>
+  <data name="CitizenshipEditWindowTitle" xml:space="preserve">
+    <value />
+  </data>
+  <data name="CitizenshipWindowTitle" xml:space="preserve">
+    <value>CitizenShip</value>
+  </data>
+  <data name="EditCitizenshipWindowsTitle" xml:space="preserve">
+    <value>Edit Citizenship info</value>
+  </data>
+  <data name="FieldBusinessSize" xml:space="preserve">
+    <value>Business Size</value>
+  </data>
+  <data name="FieldIndustry" xml:space="preserve">
+    <value>Industry</value>
+  </data>
+  <data name="FieldlevelName" xml:space="preserve">
+    <value>Level</value>
+  </data>
+  <data name="pct" xml:space="preserve">
+    <value>Percentage</value>
+  </data>
+  <data name="EmployeeCount" xml:space="preserve">
+    <value>Employee Count</value>
+  </data>
 </root>

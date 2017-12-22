@@ -170,6 +170,20 @@
 
                                     </Items>
                                 </ext:ComboBox>
+                                 <ext:ComboBox AllowBlank="false"   AnyMatch="true" CaseSensitive="false"  runat="server" QueryMode="Local"  Width="120" ForceSelection="true" TypeAhead="true" MinChars="1" ValueField="recordId" LabelWidth="150" DisplayField="name" ID="NQINid" Name="NQINid"  FieldLabel="<%$ Resources:FieldIndustry%>">
+                                            <Store>
+                                                <ext:Store runat="server" ID="NQINidStore">
+                                                    <Model>
+                                                        <ext:Model runat="server">
+                                                            <Fields>
+                                                                <ext:ModelField Name="recordId" />
+                                                                <ext:ModelField Name="name" />
+                                                            </Fields>
+                                                        </ext:Model>
+                                                    </Model>
+                                                </ext:Store>
+                                            </Store>
+                                            </ext:ComboBox>
                                 <ext:Checkbox FieldLabel="<%$ Resources: FieldEnableHijri %>" LabelWidth="150" runat="server" InputValue="True" Name="enableHijri" ID="enableHijri" />
                             </Items>
                             <Buttons>
@@ -430,7 +444,14 @@
                                     </Store>
 
                                 </ext:ComboBox>
-
+                                <ext:ComboBox AnyMatch="true" CaseSensitive="false" QueryMode="Local" LabelWidth="150" ForceSelection="true" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: SourceAttendanceSchedule %>" Name="sourceTASC" runat="server" ID="sourceTASC">
+                                    <Items>
+                                        <ext:ListItem Text="<%$ Resources:  FieldBranch %>" Value="1" />
+                                        <ext:ListItem Text="<%$ Resources:  FieldDepartment %>" Value="2" />
+                                        <ext:ListItem Text="<%$ Resources:  FieldCalendar %>" Value="3" />
+                                       
+                                    </Items>
+                                </ext:ComboBox>
                                    <ext:Checkbox FieldLabel="<%$ Resources: FieldEnableCamera %>" LabelWidth="150" runat="server" InputValue="True" Name="enableCamera" ID="enableCameraCheck" />
 
                             </Items>

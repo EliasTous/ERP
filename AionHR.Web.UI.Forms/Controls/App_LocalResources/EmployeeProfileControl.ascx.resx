@@ -393,4 +393,7 @@
   <data name="FieldSecurityGroup" xml:space="preserve">
     <value>Security Group</value>
   </data>
+  <data name="FieldCitizenShip" xml:space="preserve">
+    <value>CitizenShip</value>
+  </data>
 </root>

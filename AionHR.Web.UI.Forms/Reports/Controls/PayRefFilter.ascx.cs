@@ -34,5 +34,13 @@ namespace AionHR.Web.UI.Forms.Reports.Controls
             }
             return p;
         }
+        public string GetStringPayRef()
+        {
+            return payRef.Text;
+        }
+        public void SetAllowBlank(bool value)
+        {
+            payRef.AllowBlank = value;
+        }
     }
 }

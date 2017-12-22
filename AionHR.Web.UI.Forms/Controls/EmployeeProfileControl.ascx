@@ -888,7 +888,7 @@
                                     </Items>
                                 </ext:ComboBox>
                                                       
-                                <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" AllowBlank="true" DisplayField="name" ID="nationalityId" Name="nationalityId" FieldLabel="<%$ Resources:FieldNationality%>" SimpleSubmit="true">
+                                <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" AllowBlank="true" DisplayField="name" ID="nationalityId" Name="nationalityId" FieldLabel="<%$ Resources:FieldNationality%>" >
                                     <Store>
                                         <ext:Store runat="server" ID="NationalityStore">
                                             <Model>
@@ -917,7 +917,27 @@
                                         <FocusEnter Handler="this.rightButtons[0].setHidden(false);" />
                                         <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
                                     </Listeners>
+                                    <DirectEvents>
+                                        <Select OnEvent="setCitizenship"></Select>
+                                    </DirectEvents>
                                 </ext:ComboBox>
+                                   <ext:ComboBox Disabled="true"  AnyMatch="true" CaseSensitive="false"  runat="server" ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" AllowBlank="true" DisplayField="name" ID="nqciId" Name="nqciId" FieldLabel="<%$ Resources:FieldCitizenShip%>" SimpleSubmit="true">
+                                    <Store>
+                                        <ext:Store runat="server" ID="nqciIdStore">
+                                            <Model>
+                                                <ext:Model runat="server">
+                                                    <Fields>
+                                                        <ext:ModelField Name="recordId" />
+                                                        <ext:ModelField Name="name" />
+                                                    </Fields>
+                                                </ext:Model>
+                                            </Model>
+                                        </ext:Store>
+                                    </Store>
+                                 
+                                 
+                                </ext:ComboBox>
+
                                 <ext:FieldContainer runat="server" Border="true" Visible="false">
                                     <Items>
                                         <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  Enabled="false" runat="server" AllowBlank="false" ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" ID="departmentId" Name="departmentId" FieldLabel="<%$ Resources:FieldDepartment%>" SimpleSubmit="true">

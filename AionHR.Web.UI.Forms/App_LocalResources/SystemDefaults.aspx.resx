@@ -384,4 +384,16 @@
   <data name="FirstNameMiddleNameFamilyNameLastName" xml:space="preserve">
     <value>FirstName, MiddleName, FamilyName, LastName</value>
   </data>
+  <data name="FieldCalendar" xml:space="preserve">
+    <value>Calendar</value>
+  </data>
+  <data name="FieldDepartment" xml:space="preserve">
+    <value>Department</value>
+  </data>
+  <data name="FieldIndustry" xml:space="preserve">
+    <value>Industry</value>
+  </data>
+  <data name="SourceAttendanceSchedule" xml:space="preserve">
+    <value>Source Attendance Schedule</value>
+  </data>
 </root>

@@ -311,6 +311,9 @@
                                 <FocusEnter Handler=" if(!this.readOnly)this.rightButtons[0].setHidden(false);" />
                                 <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
                             </Listeners>
+                            <DirectEvents>
+                                <Change OnEvent="EnableStatus"></Change>
+                            </DirectEvents>
                         </ext:ComboBox>
 
 

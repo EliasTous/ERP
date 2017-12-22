@@ -117,34 +117,82 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="BasicInfoTabEditWindowTitle" xml:space="preserve">
-    <value>معلومات نوع الوثيقة</value>
+  <data name="BusinessWindowTitle" xml:space="preserve">
+    <value>حجم منشأة</value>
   </data>
-  <data name="EditWindowsTitle" xml:space="preserve">
-    <value>تعديل نوع الوثيقة</value>
+  <data name="ceiling" xml:space="preserve">
+    <value>الحد الأقصى</value>
   </data>
-  <data name="FieldName" xml:space="preserve">
-    <value>الاسم</value>
+  <data name="CitizenshipWindowTitle" xml:space="preserve">
+    <value>نوع الهوية</value>
   </data>
-  <data name="FieldRecordId" xml:space="preserve">
-    <value>الرقم</value>
+  <data name="EditBusinessWindowsTitle" xml:space="preserve">
+    <value>معلومات حجم المنشأة</value>
   </data>
-  <data name="intName" xml:space="preserve">
-    <value>الاسم الدولي</value>
-  </data>
-  <data name="WindowTitle" xml:space="preserve">
-    <value>أنواع الوثائق</value>
+  <data name="EditCitizenshipWindowsTitle" xml:space="preserve">
+    <value>معلومات نوع الهوية</value>
   </data>
   <data name="EditIndustryWindowsTitle" xml:space="preserve">
-    <value>Edit Industry</value>
+    <value>معلومات النشاط </value>
+  </data>
+  <data name="EditLevelWindowsTitle" xml:space="preserve">
+    <value>معلومات النطاق</value>
+  </data>
+  <data name="EmployeeCount" xml:space="preserve">
+    <value>عدد الموظفين </value>
+  </data>
+  <data name="FieldBusinessSize" xml:space="preserve">
+    <value>حجم منشأة</value>
+  </data>
+  <data name="FieldDays" xml:space="preserve">
+    <value>عدد الأيام </value>
+  </data>
+  <data name="FieldIndustry" xml:space="preserve">
+    <value>النشاط </value>
+  </data>
+  <data name="FieldlevelName" xml:space="preserve">
+    <value>النطاق</value>
+  </data>
+  <data name="FieldmaxEmployees" xml:space="preserve">
+    <value>الى </value>
+  </data>
+  <data name="FieldminEmployees" xml:space="preserve">
+    <value>من</value>
+  </data>
+  <data name="FieldName" xml:space="preserve">
+    <value>الاسم </value>
+  </data>
+  <data name="FieldRecordId" xml:space="preserve">
+    <value>Record ID</value>
+  </data>
+  <data name="hiredPct" xml:space="preserve">
+    <value>توظيف</value>
   </data>
   <data name="IndustryInfoTabEditWindowTitle" xml:space="preserve">
-    <value>Industry Info</value>
-  </data>
-  <data name="IndustryName" xml:space="preserve">
-    <value>Industry</value>
+    <value>معلومات النشاط</value>
   </data>
   <data name="IndustryWindowTitle" xml:space="preserve">
-    <value>Industry</value>
+    <value>النشاط</value>
+  </data>
+  <data name="LevelAcquisitionTitle" xml:space="preserve">
+    <value>نسبة نطاق</value>
+  </data>
+  <data name="levelInfoTabEditWindowTitle" xml:space="preserve">
+    <value>معلومات نطاق</value>
+  </data>
+  <data name="levelWindowTitle" xml:space="preserve">
+    <value>نطاق</value>
+  </data>
+  <data name="pct" xml:space="preserve">
+    <value>النسبة المئوية</value>
+  </data>
+  <data name="PointAcquisitionTitle" xml:space="preserve">
+    <value>نقاط التوظيف</value>
+  </data>
+  <data name="points" xml:space="preserve">
+    <value>النقاط</value>
+  </data>
+  <data name="terminatedPct" xml:space="preserve">
+    <value>انهاء الخدمة</value>
   </data>
 </root>

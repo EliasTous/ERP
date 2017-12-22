@@ -1113,4 +1113,7 @@
   <data name="NationalQuotas" xml:space="preserve">
     <value>National Quotas</value>
   </data>
+  <data name="ErrorEmptyPayRef" xml:space="preserve">
+    <value>Please Enter Pay Ref</value>
+  </data>
 </root>

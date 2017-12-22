@@ -853,6 +853,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Please Enter Pay Ref.
+        /// </summary>
+        internal static string ErrorEmptyPayRef {
+            get {
+                return ResourceManager.GetString("ErrorEmptyPayRef", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Please Select Employee.
         /// </summary>
         internal static string ErrorEmptyValue {

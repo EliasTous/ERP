@@ -237,6 +237,7 @@ namespace AionHR.Web.UI.Forms.Controls
             panelRecordDetails.ActiveTabIndex = 0;
             leaveDaysStore.DataSource = new List<LeaveDay>();
             leaveDaysStore.DataBind();
+            status.Disabled = true;
             status.Select(0);
             shouldDisableLastDay.Text = "0";
             this.EditRecordWindow.Show();
@@ -1162,5 +1163,23 @@ namespace AionHR.Web.UI.Forms.Controls
 
         }
 
+        protected void EnableStatus(object sender, DirectEventArgs e)
+        {
+            RecordRequest r = new RecordRequest();
+            r.RecordID = ltId.SelectedItem.Value;
+
+            RecordResponse<LeaveType> response = _leaveManagementService.ChildGetRecord<LeaveType>(r);
+            if (!response.Success)
+            {
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).ToString() + "<br>Technical Error: " + response.ErrorCode + "<br> Summary: " + response.Summary : response.Summary).Show();
+                return;
+            }
+            if (!response.result.requireApproval)
+                status.Disabled = false;
+            else
+                status.Disabled = true;
+
+        }
     }
 }

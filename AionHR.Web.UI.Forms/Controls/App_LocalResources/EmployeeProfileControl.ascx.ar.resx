@@ -384,4 +384,7 @@
   <data name="FieldSecurityGroup" xml:space="preserve">
     <value>المجموعات الأمنية</value>
   </data>
+  <data name="FieldCitizenShip" xml:space="preserve">
+    <value>نوع الهوية</value>
+  </data>
 </root>

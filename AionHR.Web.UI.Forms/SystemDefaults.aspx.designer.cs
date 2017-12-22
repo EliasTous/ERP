@@ -184,6 +184,24 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.ComboBox languageId;
         
         /// <summary>
+        /// NQINid control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.ComboBox NQINid;
+        
+        /// <summary>
+        /// NQINidStore control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Store NQINidStore;
+        
+        /// <summary>
         /// enableHijri control.
         /// </summary>
         /// <remarks>
@@ -407,6 +425,15 @@ namespace AionHR.Web.UI.Forms {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.Store tsStore;
+        
+        /// <summary>
+        /// sourceTASC control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.ComboBox sourceTASC;
         
         /// <summary>
         /// enableCameraCheck control.

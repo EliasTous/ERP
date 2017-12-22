@@ -111,6 +111,7 @@
     <Compile Include="NationalQuota\INationalQuotaRepository.cs" />
     <Compile Include="NationalQuota\Industry.cs" />
     <Compile Include="NationalQuota\Level.cs" />
+    <Compile Include="NationalQuota\LevelAcquisition.cs" />
     <Compile Include="NationalQuota\PointAcquisition.cs" />
     <Compile Include="Payroll\Bank.cs" />
     <Compile Include="Payroll\EmployeePayroll.cs" />

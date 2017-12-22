@@ -25,6 +25,7 @@ using AionHR.Model.Attendance;
 using AionHR.Model.Employees.Leaves;
 using AionHR.Model.Employees.Profile;
 using AionHR.Model.NationalQuota;
+using AionHR.Services.Messaging.NationalQuotas;
 
 namespace AionHR.Web.UI.Forms
 {
@@ -64,6 +65,10 @@ namespace AionHR.Web.UI.Forms
                 HideShowButtons();
                 HideShowColumns();
                 PointAcquisitionStore.Reload();
+                FillBusinessSize();
+                FillIndustry();
+                bsId.Select(0);
+                inId.Select(0);
                 try
                 {
                     AccessControlApplier.ApplyAccessControlOnPage(typeof(Industry), IndustryFrom, IndustryGrid, btnIndustryAdd, SaveIndustryButton);
@@ -296,7 +301,7 @@ namespace AionHR.Web.UI.Forms
 
 
         }
-        protected void CitizenShipPoPuP(object sender, DirectEventArgs e)
+        protected void CitizenshipPoPuP(object sender, DirectEventArgs e)
         {
 
 
@@ -310,7 +315,7 @@ namespace AionHR.Web.UI.Forms
                     RecordRequest r = new RecordRequest();
                     r.RecordID = id;
 
-                    RecordResponse<Level> response = _nationalQuotaService.ChildGetRecord<Level>(r);
+                    RecordResponse<Citizenship> response = _nationalQuotaService.ChildGetRecord<Citizenship>(r);
                     if (!response.Success)
                     {
                         X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
@@ -318,11 +323,11 @@ namespace AionHR.Web.UI.Forms
                         return;
                     }
                     //Step 2 : call setvalues with the retrieved object
-                    this.levelForm.SetValues(response.result);
+                    this.CitizenshipForm.SetValues(response.result);
 
 
-                    this.EditLevelWindow.Title = Resources.Common.EditWindowsTitle;
-                    this.EditLevelWindow.Show();
+                    this.EditCitizenshipWindow.Title = Resources.Common.EditWindowsTitle;
+                    this.EditCitizenshipWindow.Show();
                     break;
 
                 case "imgDelete":
@@ -331,7 +336,7 @@ namespace AionHR.Web.UI.Forms
                         Yes = new MessageBoxButtonConfig
                         {
                             //We are call a direct request metho for deleting a record
-                            Handler = String.Format("App.direct.DeleteCitizenshipRecord({0},{1})", id, "false"),
+                            Handler = String.Format("App.direct.DeleteCitizenshipRecord({0})", id),
                             Text = Resources.Common.Yes
                         },
                         No = new MessageBoxButtonConfig
@@ -494,6 +499,50 @@ namespace AionHR.Web.UI.Forms
 
         }
         [DirectMethod]
+        public void DeleteCitizenshipRecord(string index)
+        {
+            try
+            {
+                //Step 1 Code to delete the object from the database 
+                Citizenship s = new Citizenship();
+                s.recordId = index;
+                s.name = "";
+                //s.intName = "";
+
+                PostRequest<Citizenship> req = new PostRequest<Citizenship>();
+                req.entity = s;
+                PostResponse<Citizenship> r = _nationalQuotaService.ChildDelete<Citizenship>(req);
+                if (!r.Success)
+                {
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() + "<br>Technical Error: " + r.ErrorCode + "<br> Summary: " + r.Summary : r.Summary).Show();
+                    return;
+                }
+                else
+                {
+                    //Step 2 :  remove the object from the store
+                    IndustryStore.Remove(index);
+
+                    //Step 3 : Showing a notification for the user 
+                    Notification.Show(new NotificationConfig
+                    {
+                        Title = Resources.Common.Notification,
+                        Icon = Icon.Information,
+                        Html = Resources.Common.RecordDeletedSucc
+                    });
+                }
+
+            }
+            catch (Exception ex)
+            {
+                //In case of error, showing a message box to the user
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorDeletingRecord).Show();
+
+            }
+
+        }
+        [DirectMethod]
         public void DeletePointAcquisitionRecord(PointAcquisition p)
         {
             try
@@ -536,6 +585,50 @@ namespace AionHR.Web.UI.Forms
             }
 
         }
+        public void DeleteLevelAcquisitionRecord(LevelAcquisition p)
+        {
+            try
+            {
+                //Step 1 Code to delete the object from the database 
+
+                PostRequest<LevelAcquisition> req = new PostRequest<LevelAcquisition>();
+                req.entity = p;
+                PostResponse<LevelAcquisition> r = _nationalQuotaService.ChildDelete<LevelAcquisition>(req);
+                if (!r.Success)
+                {
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() + "<br>Technical Error: " + r.ErrorCode + "<br> Summary: " + r.Summary : r.Summary).Show();
+                    return;
+                }
+                //else
+                //{
+                //    //Step 2 :  remove the object from the store
+                //    citizenshipStore.Remove(index);
+
+                //    //Step 3 : Showing a notification for the user 
+                //    if (serverSide)
+                //    {
+                //        Notification.Show(new NotificationConfig
+                //        {
+                //            Title = Resources.Common.Notification,
+                //            Icon = Icon.Information,
+                //            Html = Resources.Common.RecordDeletedSucc
+                //        });
+                //    }
+                //}
+
+            }
+            catch (Exception ex)
+            {
+                //In case of error, showing a message box to the user
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorDeletingRecord).Show();
+
+            }
+
+        }
+
+
 
 
 
@@ -640,6 +733,18 @@ namespace AionHR.Web.UI.Forms
 
             this.EditBusinessWindow.Show();
         }
+        protected void ADDNewCitizenshipRecord(object sender, DirectEventArgs e)
+        {
+
+            //Reset all values of the relative object
+            CitizenshipForm.Reset();
+
+
+            this.EditCitizenshipWindow.Title = Resources.Common.AddNewRecord;
+
+
+            this.EditCitizenshipWindow.Show();
+        }
         protected void ADDNewLevelRecord(object sender, DirectEventArgs e)
         {
 
@@ -734,6 +839,32 @@ namespace AionHR.Web.UI.Forms
 
             this.levelStore.DataBind();
         }
+        protected void CitizenshipStore_RefreshData(object sender, StoreReadDataEventArgs e)
+        {
+
+            //GEtting the filter from the page
+            string filter = string.Empty;
+            int totalCount = 1;
+
+
+
+            //Fetching the corresponding list
+
+            //in this test will take a list of News
+            ListRequest request = new ListRequest();
+
+            request.Filter = "";
+            ListResponse<Citizenship> routers = _nationalQuotaService.ChildGetAll<Citizenship>(request);
+            if (!routers.Success)
+            {
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", routers.ErrorCode) != null ? GetGlobalResourceObject("Errors", routers.ErrorCode).ToString() : routers.Summary).Show();
+                return;
+            }
+            this.CitizenshipStore.DataSource = routers.Items;
+            e.Total = routers.Items.Count; ;
+
+            this.CitizenshipStore.DataBind();
+        }
         protected void PointAcquisitionStore_ReadData(object sender, StoreReadDataEventArgs e)
         {
 
@@ -773,7 +904,46 @@ namespace AionHR.Web.UI.Forms
             //}
 
         }
-        
+        protected void LevelAcquisition_ReadData(object sender, StoreReadDataEventArgs e)
+        {
+
+            //GEtting the filter from the page
+            string filter = string.Empty;
+            int totalCount = 1;
+
+
+
+            //Fetching the corresponding list
+
+            //in this test will take a list of News
+            ListRequest request = new ListRequest();
+
+            request.Filter = "";
+            ListResponse<LevelAcquisition> routers = _nationalQuotaService.ChildGetAll<LevelAcquisition>(request);
+            if (!routers.Success)
+            {
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", routers.ErrorCode) != null ? GetGlobalResourceObject("Errors", routers.ErrorCode).ToString() : routers.Summary).Show();
+                return;
+            }
+            this.LevelAcquisitionStore.DataSource = routers.Items;
+            e.Total = routers.Items.Count; ;
+
+            this.LevelAcquisitionStore.DataBind();
+            //if(routers.Items.Count==0)
+            //{
+            //    List<Citizenship> L = new List<Citizenship>(); 
+            //    Citizenship c = new Citizenship();
+            //    c.ceiling = 0;
+            //    c.points = 0.0;
+            //    c.name = "";
+            //    c.recordId = "";
+            //    L.Add(c);
+            //    this.citizenshipStore.DataSource =L ;
+            //    this.citizenshipStore.DataBind();
+            //}
+
+        }
+
 
 
 
@@ -1114,6 +1284,118 @@ namespace AionHR.Web.UI.Forms
                 }
             }
         }
+        protected void SaveNewCitizenship(object sender, DirectEventArgs e)
+        {
+
+
+            //Getting the id to check if it is an Add or an edit as they are managed within the same form.
+
+
+            string obj = e.ExtraParams["values"];
+            Citizenship b = JsonConvert.DeserializeObject<Citizenship>(obj);
+
+            string id = e.ExtraParams["id"];
+            // Define the object to add or edit as null
+
+            if (string.IsNullOrEmpty(id))
+            {
+
+                try
+                {
+                    //New Mode
+                    //Step 1 : Fill The object and insert in the store 
+                    PostRequest<Citizenship> request = new PostRequest<Citizenship>();
+
+                    request.entity = b;
+                    PostResponse<Citizenship> r = _nationalQuotaService.ChildAddOrUpdate<Citizenship>(request);
+
+
+                    //check if the insert failed
+                    if (!r.Success)//it maybe be another condition
+                    {
+                        //Show an error saving...
+                        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                        X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() + "<br>Technical Error: " + r.ErrorCode + "<br> Summary: " + r.Summary : r.Summary).Show();
+                        return;
+                    }
+                    else
+                    {
+                        b.recordId = r.recordId;
+                        //Add this record to the store 
+                        this.CitizenshipStore.Insert(0, b);
+
+                        //Display successful notification
+                        Notification.Show(new NotificationConfig
+                        {
+                            Title = Resources.Common.Notification,
+                            Icon = Icon.Information,
+                            Html = Resources.Common.RecordSavingSucc
+                        });
+
+                        this.EditCitizenshipWindow.Close();
+                        RowSelectionModel sm = this.CitizenshipGrid.GetSelectionModel() as RowSelectionModel;
+                        sm.DeselectAll();
+                        sm.Select(b.recordId.ToString());
+
+
+
+                    }
+                }
+                catch (Exception ex)
+                {
+                    //Error exception displaying a messsage box
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorSavingRecord).Show();
+                }
+
+
+            }
+            else
+            {
+                //Update Mode
+
+                try
+                {
+                    //getting the id of the record
+                    PostRequest<Citizenship> request = new PostRequest<Citizenship>();
+                    request.entity = b;
+                    PostResponse<Citizenship> r = _nationalQuotaService.ChildAddOrUpdate<Citizenship>(request);                      //Step 1 Selecting the object or building up the object for update purpose
+
+                    //Step 2 : saving to store
+
+                    //Step 3 :  Check if request fails
+                    if (!r.Success)//it maybe another check
+                    {
+                        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                        X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() + "<br>Technical Error: " + r.ErrorCode + "<br> Summary: " + r.Summary : r.Summary).Show();
+                        return;
+                    }
+                    else
+                    {
+
+
+                        ModelProxy record = this.CitizenshipStore.GetById(id);
+                        CitizenshipForm.UpdateRecord(record);
+                        record.Commit();
+                        Notification.Show(new NotificationConfig
+                        {
+                            Title = Resources.Common.Notification,
+                            Icon = Icon.Information,
+                            Html = Resources.Common.RecordUpdatedSucc
+                        });
+                        this.EditCitizenshipWindow.Close();
+
+
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorUpdatingRecord).Show();
+                }
+            }
+        }
         protected void SaveNewPointAcquisition(object sender, DirectEventArgs e)
         {
 
@@ -1187,11 +1469,90 @@ namespace AionHR.Web.UI.Forms
                     X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
                     X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorSavingRecord).Show();
                 }
-
+            PointAcquisitionStore.Reload();
 
             
           
         }
+        protected void SaveNewLevelAcquisition(object sender, DirectEventArgs e)
+        {
+
+
+            //Getting the id to check if it is an Add or an edit as they are managed within the same form.
+
+
+            string obj = e.ExtraParams["values"];
+
+            List<LevelAcquisition> codes = JsonConvert.DeserializeObject<List<LevelAcquisition>>(e.ExtraParams["codes"]);
+
+            // Define the object to add or edit as null
+
+
+
+            try
+            {
+                //New Mode
+                //Step 1 : Fill The object and insert in the store 
+
+                LevelAcquisitionListRequest request = getLevelAcquisitionList(); 
+
+                request.Filter = "";
+                ListResponse<LevelAcquisition> routers = _nationalQuotaService.ChildGetAll<LevelAcquisition>(request);
+                if (!routers.Success)
+                {
+                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", routers.ErrorCode) != null ? GetGlobalResourceObject("Errors", routers.ErrorCode).ToString() : routers.Summary).Show();
+                    return;
+                }
+
+                routers.Items.ForEach(x => DeleteLevelAcquisitionRecord(x));
+
+                PostRequest<LevelAcquisition> codesReq = new PostRequest<LevelAcquisition>();
+                foreach (LevelAcquisition C in codes)
+                {
+                    codesReq.entity = C;
+
+                    if (C.leId==0)
+                    { continue; }
+                    PostResponse<LevelAcquisition> codesResp = _nationalQuotaService.ChildAddOrUpdate<LevelAcquisition>(codesReq);
+                    if (!codesResp.Success)//it maybe be another condition
+                    {
+                        //Show an error saving...
+                        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                        X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", codesResp.ErrorCode) != null ? GetGlobalResourceObject("Errors", codesResp.ErrorCode).ToString() : codesResp.Summary).Show();
+                        return;
+                    }
+                    else
+                    {
+
+                        //Add this record to the store 
+
+
+                        //Display successful notification
+                        Notification.Show(new NotificationConfig
+                        {
+                            Title = Resources.Common.Notification,
+                            Icon = Icon.Information,
+                            Html = Resources.Common.RecordSavingSucc
+                        });
+
+                    }
+
+
+
+                }
+            }
+            catch (Exception ex)
+            {
+                //Error exception displaying a messsage box
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorSavingRecord).Show();
+            }
+
+
+
+
+        }
+        
 
         [DirectMethod]
         public string CheckSession()
@@ -1208,6 +1569,97 @@ namespace AionHR.Web.UI.Forms
 
         }
       
-       
+       private void FillIndustry ()
+        {
+            string filter = string.Empty;
+            int totalCount = 1;
+
+
+
+            //Fetching the corresponding list
+
+            //in this test will take a list of News
+            ListRequest request = new ListRequest();
+
+            request.Filter = "";
+            ListResponse<Industry> routers = _nationalQuotaService.ChildGetAll<Industry>(request);
+            if (!routers.Success)
+            {
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", routers.ErrorCode) != null ? GetGlobalResourceObject("Errors", routers.ErrorCode).ToString() : routers.Summary).Show();
+                return;
+            }
+            this.inIdStore.DataSource = routers.Items;
+            
+            this.inIdStore.DataBind();
+        }
+        private void FillBusinessSize()
+        {
+            string filter = string.Empty;
+            int totalCount = 1;
+
+
+
+            //Fetching the corresponding list
+
+            //in this test will take a list of News
+            ListRequest request = new ListRequest();
+
+            request.Filter = "";
+            ListResponse<BusinessSize> routers = _nationalQuotaService.ChildGetAll<BusinessSize>(request);
+            if (!routers.Success)
+            {
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", routers.ErrorCode) != null ? GetGlobalResourceObject("Errors", routers.ErrorCode).ToString() : routers.Summary).Show();
+                return;
+            }
+            this.bsIdStore.DataSource = routers.Items;
+          
+
+            this.bsIdStore.DataBind();
+        }
+
+        protected void FillLevelAcquisition(object sender, DirectEventArgs e)
+        {
+
+            LevelAcquisitionListRequest request = getLevelAcquisitionList(); 
+            if (!string.IsNullOrEmpty(bsId.Text) && bsId.Value.ToString() != "0")      
+                request.BusinessSizeId = Convert.ToInt32(bsId.Value);      
+            else          
+                request.BusinessSizeId = 0;            
+            if (!string.IsNullOrEmpty(inId.Text) && inId.Value.ToString() != "0")           
+                request.industryId = Convert.ToInt32(inId.Value);           
+            else            
+                request.industryId = 0;
+
+            
+
+            request.Filter = "";
+            ListResponse<LevelAcquisition> routers = _nationalQuotaService.ChildGetAll<LevelAcquisition>(request);
+            if (!routers.Success)
+            {
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", routers.ErrorCode) != null ? GetGlobalResourceObject("Errors", routers.ErrorCode).ToString() : routers.Summary).Show();
+                return;
+            }
+            this.LevelAcquisitionStore.DataSource = routers.Items;
+          
+            this.LevelAcquisitionStore.DataBind();
+
+        }
+        private LevelAcquisitionListRequest getLevelAcquisitionList()
+        {
+            LevelAcquisitionListRequest request = new LevelAcquisitionListRequest();
+            if (!string.IsNullOrEmpty(bsId.Text) && bsId.Value.ToString() != "0")
+                request.BusinessSizeId = Convert.ToInt32(bsId.Value);
+            else
+                request.BusinessSizeId = 0;
+            if (!string.IsNullOrEmpty(inId.Text) && inId.Value.ToString() != "0")
+                request.industryId = Convert.ToInt32(inId.Value);
+            else
+                request.industryId = 0;
+
+
+
+            request.Filter = "";
+            return request;
+        }
     }
 }

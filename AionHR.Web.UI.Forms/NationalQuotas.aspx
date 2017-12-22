@@ -18,7 +18,40 @@
            var store = grid.store,
                row = store.indexOf(store.insert(0, { days: 0, hiredPct: 0, terminatedPct : 0 })[0]);
        }
-   </script>
+       function insertLevelAcquisitionRecord(grid) {
+           var store = grid.store,
+               row = store.indexOf(store.insert(0, { leName: '', pct: 0})[0]);
+       }
+        
+        Ext.apply(Ext.form.VTypes, {
+            numberrange : function(val, field) {
+                if (!val) {
+                    return;
+                }
+                
+                if (field.startNumberField && (!field.numberRangeMax || (val != field.numberRangeMax))) {
+                    var start = Ext.getCmp(field.startNumberField);
+                    
+                    if (start) {
+                        start.setMaxValue(val);
+                        field.numberRangeMax = val;
+                        start.validate();
+                    }
+                } else if (field.endNumberField && (!field.numberRangeMin || (val != field.numberRangeMin))) {
+                    var end = Ext.getCmp(field.endNumberField);
+                    
+                    if (end) {
+                        end.setMinValue(val);
+                        field.numberRangeMin = val;
+                        end.validate();
+                    }
+                }
+                
+                return true;
+            }
+        });
+    </script>
+   
  
 </head>
 <body style="background: url(Images/bg.png) repeat;" ">
@@ -117,14 +150,43 @@
             </Sorters>
         </ext:Store>
 
+          <ext:Store
+            ID="CitizenshipStore"
+            runat="server"
+            RemoteSort="False"
+            RemoteFilter="true"
+            OnReadData="CitizenshipStore_RefreshData"
+            PageSize="50" IDMode="Explicit" Namespace="App">
+            <Proxy>
+                <ext:PageProxy>
+                    <Listeners>
+                        <Exception Handler="Ext.MessageBox.alert('#{textLoadFailed}.value', response.statusText);" />
+                    </Listeners>
+                </ext:PageProxy>
+            </Proxy>
+            <Model>
+                <ext:Model ID="Model6" runat="server" IDProperty="recordId">
+                    <Fields>
 
+                        <ext:ModelField Name="recordId" />                       
+                        <ext:ModelField Name="name" />
+                        <ext:ModelField Name="ceiling" />
+                         <ext:ModelField Name="points" />
+                        <%--<ext:ModelField Name="intName" />--%>
+                    </Fields>
+                </ext:Model>
+            </Model>
+          <Sorters>
+                <ext:DataSorter  Direction="ASC" />
+            </Sorters>
+        </ext:Store>
     
         <ext:Viewport ID="Viewport1" runat="server" Layout="Fit">
 
             <Items>
                    <ext:TabPanel runat="server">
                     <Items>
-                <ext:GridPanel 
+                 <ext:GridPanel 
                     ID="IndustryGrid"
                     runat="server"
                     StoreID="IndustryStore" 
@@ -187,9 +249,9 @@
                     <ColumnModel ID="ColumnModel1" runat="server" SortAscText="<%$ Resources:Common , SortAscText %>" SortDescText="<%$ Resources:Common ,SortDescText  %>" SortClearText="<%$ Resources:Common ,SortClearText  %>" ColumnsText="<%$ Resources:Common ,ColumnsText  %>" EnableColumnHide="false" Sortable="false" >
                         <Columns>
                             <ext:Column ID="industryColRecordId" Visible="false" DataIndex="recordId" runat="server" />
-                            <ext:Column    CellCls="cellLink" ID="industryColName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldName%>" DataIndex="name" Flex="2" Hideable="false">
-                    
-                                </ext:Column>
+                            <ext:Column    CellCls="cellLink" ID="industryColName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldName%>" DataIndex="name" Flex="2" Hideable="false" />
+                           
+                            
                         
                            
 
@@ -296,7 +358,7 @@
                         <%--<ext:CheckboxSelectionModel ID="CheckboxSelectionModel1" runat="server" Mode="Multi" StopIDModeInheritance="true" />--%>
                     </SelectionModel>
                 </ext:GridPanel>
-                <ext:GridPanel 
+                 <ext:GridPanel 
                     ID="BusinessGrid"
                     runat="server"
                     StoreID="BusinessStore" 
@@ -644,6 +706,182 @@
                         <%--<ext:CheckboxSelectionModel ID="CheckboxSelectionModel1" runat="server" Mode="Multi" StopIDModeInheritance="true" />--%>
                     </SelectionModel>
                 </ext:GridPanel>
+                 <ext:GridPanel 
+                    ID="CitizenshipGrid"
+                    runat="server"
+                    StoreID="CitizenshipStore" 
+                    PaddingSpec="0 0 1 0"
+                    Header="false" 
+                    Title="<%$ Resources: CitizenshipWindowTitle %>"
+                    Layout="FitLayout"
+                    Scroll="Vertical"
+                    Border="false"  
+                    Icon="User"
+                    ColumnLines="True" IDMode="Explicit" RenderXType="True">
+
+                    <TopBar>
+                        <ext:Toolbar ID="Toolbar9" runat="server" ClassicButtonStyle="false">
+                            <Items>
+                                <ext:Button ID="Button14" runat="server" Text="<%$ Resources:Common , Add %>" Icon="Add">       
+                                     <Listeners>
+                                        <Click Handler="CheckSession();" />
+                                    </Listeners>                           
+                                    <DirectEvents>
+                                        <Click OnEvent="ADDNewCitizenshipRecord">
+                                            <EventMask ShowMask="true" CustomTarget="={#{CitizenshipGrid}.body}" />
+                                        </Click>
+                                    </DirectEvents>
+                                </ext:Button>
+                                <ext:ToolbarSeparator></ext:ToolbarSeparator>
+                                <ext:Button ID="Button15" runat="server"  Icon="Reload">       
+                                     <Listeners>
+                                        <Click Handler="CheckSession();#{CitizenshipStore}.reload();" />
+                                    </Listeners>                           
+                                   
+                                </ext:Button>
+                                <ext:Button Visible="false" ID="Button16" runat="server" Text="<%$ Resources:Common , DeleteAll %>" Icon="Delete">
+                                 <Listeners>
+                                        <Click Handler="CheckSession();"></Click>
+                                    </Listeners>
+                                    <DirectEvents>
+                                        <Click OnEvent="btnDeleteAll">
+                                            <EventMask ShowMask="true" />
+                                        </Click>
+                                    </DirectEvents>
+                                </ext:Button>
+                                <ext:ToolbarFill ID="ToolbarFill3" runat="server" />
+                                 <ext:TextField ID="TextField7" runat="server" EnableKeyEvents="true" Width="180" >
+                                        <Triggers>
+                                            <ext:FieldTrigger Icon="Search" />
+                                        </Triggers>
+                                        <Listeners>
+                                            <KeyPress Fn="enterKeyPressSearchHandler" Buffer="100" />
+                                            <TriggerClick Handler="#{CitizenshipStore}.reload();" />
+                                        </Listeners>
+                                    </ext:TextField>
+                                 
+                            
+                            </Items>
+                        </ext:Toolbar>
+
+                    </TopBar>
+
+                    <ColumnModel ID="ColumnModel6" runat="server" SortAscText="<%$ Resources:Common , SortAscText %>" SortDescText="<%$ Resources:Common ,SortDescText  %>" SortClearText="<%$ Resources:Common ,SortClearText  %>" ColumnsText="<%$ Resources:Common ,ColumnsText  %>" EnableColumnHide="false" Sortable="false" >
+                        <Columns>
+                            <ext:Column ID="Column15" Visible="false" DataIndex="recordId" runat="server" />
+                            <ext:Column    CellCls="cellLink" ID="Column16" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldName%>" DataIndex="name" Flex="2" Hideable="false">
+                    
+                                </ext:Column>
+                            <ext:Column    CellCls="cellLink" ID="Column23" MenuDisabled="true" runat="server" Text="<%$ Resources: ceiling%>" DataIndex="ceiling" Flex="2" Hideable="false" />
+                            <ext:Column    CellCls="cellLink" ID="Column24" MenuDisabled="true" runat="server" Text="<%$ Resources: points%>" DataIndex="points" Flex="2" Hideable="false" />
+                        
+                           
+
+                         
+                            <ext:Column runat="server"
+                                ID="Column17" Visible="false"
+                                Text="<%$ Resources: Common , Delete %>"
+                                Width="100"
+                                Align="Center"
+                                Fixed="true"
+                                Filterable="false"
+                                Hideable="false"
+                                MenuDisabled="true"
+                                Resizable="false">
+                                <Renderer Fn="deleteRender" />
+                              
+                            </ext:Column>
+                            <ext:Column runat="server"
+                                Visible="false"
+                                ID="Column18"
+                                Text="<%$ Resources:Common, Attach %>"
+                                Hideable="false"
+                                Width="60"
+                                Align="Center"
+                                Fixed="true"
+                                Filterable="false"
+                                MenuDisabled="true"
+                                Resizable="false">
+                                <Renderer Fn="attachRender" />
+                            </ext:Column>
+
+                              <ext:Column runat="server"
+                                ID="Column19"  Visible="true"
+                                Text=""
+                                Width="100"
+                                Hideable="false"
+                                Align="Center"
+                                Fixed="true"
+                                Filterable="false"
+                                MenuDisabled="true"
+                                Resizable="false">
+
+                                <Renderer handler="return editRender()+'&nbsp;&nbsp;' +deleteRender(); " />
+
+                            </ext:Column>
+
+
+                        </Columns>
+                    </ColumnModel>
+                    <DockedItems>
+
+                        <ext:Toolbar ID="Toolbar10" runat="server" Dock="Bottom">
+                            <Items>
+                                <ext:StatusBar ID="StatusBar4" runat="server" />
+                                <ext:ToolbarFill />
+                                
+                            </Items>
+                        </ext:Toolbar>
+
+                    </DockedItems>
+                    <BottomBar>
+
+                        <ext:PagingToolbar ID="PagingToolbar4"
+                            runat="server"
+                            FirstText="<%$ Resources:Common , FirstText %>"
+                            NextText="<%$ Resources:Common , NextText %>"
+                            PrevText="<%$ Resources:Common , PrevText %>"
+                            LastText="<%$ Resources:Common , LastText %>"
+                            RefreshText="<%$ Resources:Common ,RefreshText  %>"
+                            BeforePageText="<%$ Resources:Common ,BeforePageText  %>"
+                            AfterPageText="<%$ Resources:Common , AfterPageText %>"
+                            DisplayInfo="true"
+                            DisplayMsg="<%$ Resources:Common , DisplayMsg %>"
+                            Border="true"
+                            EmptyMsg="<%$ Resources:Common , EmptyMsg %>">
+                            <Items>
+                               
+                            </Items>
+                            <Listeners>
+                                <BeforeRender Handler="this.items.removeAt(this.items.length - 2);" />
+                            </Listeners>
+                        </ext:PagingToolbar>
+
+                    </BottomBar>
+                    <Listeners>
+                        <Render Handler="this.on('cellclick', cellClick);" />
+                    </Listeners>
+                    <DirectEvents>
+                        <CellClick OnEvent="CitizenshipPoPuP">
+                            <EventMask ShowMask="true" />
+                            <ExtraParams>
+                                <ext:Parameter Name="id" Value="record.getId()" Mode="Raw" />
+                                <ext:Parameter Name="type" Value="getCellType( this, rowIndex, cellIndex)" Mode="Raw" />
+                            </ExtraParams>
+
+                        </CellClick>
+                    </DirectEvents>
+                    <View>
+                        <ext:GridView ID="GridView6" runat="server" />
+                    </View>
+
+                  
+                    <SelectionModel>
+                        <ext:RowSelectionModel ID="rowSelectionModel5" runat="server" Mode="Single"  StopIDModeInheritance="true" />
+                        <%--<ext:CheckboxSelectionModel ID="CheckboxSelectionModel1" runat="server" Mode="Multi" StopIDModeInheritance="true" />--%>
+                    </SelectionModel>
+                </ext:GridPanel>
+
                  <ext:GridPanel
                             ID="PointAcquisitionGrid"
                             runat="server"
@@ -809,11 +1047,11 @@
                                     </Click>
                                 </DirectEvents>
                             </ext:Button>
-                            <ext:Button ID="Button8" runat="server" Text="<%$ Resources:Common , Cancel %>" Icon="Cancel">
+                         <%--   <ext:Button ID="Button8" runat="server" Text="<%$ Resources:Common , Cancel %>" Icon="Cancel">
                                 <Listeners>
                                     <Click Handler="this.up('window').hide();" />
                                 </Listeners>
-                            </ext:Button>
+                            </ext:Button>--%>
                         </Buttons>
 
 
@@ -829,7 +1067,7 @@
 
                         </ext:GridPanel>
                  <ext:GridPanel
-                            ID="LevelAcquisition"
+                            ID="LevelAcquisitionGrid"
                             runat="server"
                             PaddingSpec="0 0 1 0"
                             Header="false"
@@ -841,7 +1079,7 @@
                             ColumnLines="True" IDMode="Explicit" RenderXType="True">
                             <Store>
                                 <ext:Store
-                                    ID="Store1"
+                                    ID="LevelAcquisitionStore"
                                     runat="server"
                                     RemoteSort="False"
                                     RemoteFilter="false"
@@ -875,22 +1113,42 @@
                          <TopBar>
                         <ext:Toolbar ID="Toolbar8" runat="server" ClassicButtonStyle="false">
                             <Items>
-                                <ext:Button ID="Button11" runat="server" Text="<%$ Resources:Common , Add %>" Icon="Add">       
-                                     <Listeners>
-                                     <%--   <Click Handler="var myRecordDef = Ext.data.Record.create(['name']); App.citizenshipStore.insert(0, new myRecordDef({'name':'test'}));  " />--%>
-                                        <Click Handler="App.PointAcquisitionGrid.getStore().add(new Ext.data.Record({ days: 0, hiredPct: 0.0, terminatedPct: 0.0}));" />
-                                         <Click Handler="insertRecord(#{PointAcquisitionGrid})" />
-                                         
-                                        
-                                    </Listeners>                           
-                                   <%-- <DirectEvents>
-                                        <Click OnEvent="ADDNewCitizenshipRecord">
-                                            <EventMask ShowMask="true" CustomTarget="={#{citizenshipGrid}.body}" />
-                                        </Click>
-                                    </DirectEvents>--%>
-                                </ext:Button>
-                              
-                         
+                             
+                                    <ext:ComboBox AllowBlank="false"  AnyMatch="true" CaseSensitive="false"  runat="server" QueryMode="Local"  Width="120" ForceSelection="true" TypeAhead="true" MinChars="1" ValueField="recordId" DisplayField="name" ID="bsId" Name="bsId"  EmptyText="<%$ Resources:FieldBusinessSize%>">
+                                            <Store>
+                                                <ext:Store runat="server" ID="bsIdStore">
+                                                    <Model>
+                                                        <ext:Model runat="server">
+                                                            <Fields>
+                                                                <ext:ModelField Name="recordId" />
+                                                                <ext:ModelField Name="name" />
+                                                            </Fields>
+                                                        </ext:Model>
+                                                    </Model>
+                                                </ext:Store>
+                                            </Store>
+                                            </ext:ComboBox>
+                                      <ext:ComboBox AllowBlank="false"   AnyMatch="true" CaseSensitive="false"  runat="server" QueryMode="Local"  Width="120" ForceSelection="true" TypeAhead="true" MinChars="1" ValueField="recordId" DisplayField="name" ID="inId" Name="inId"  EmptyText="<%$ Resources:FieldIndustry%>">
+                                            <Store>
+                                                <ext:Store runat="server" ID="inIdStore">
+                                                    <Model>
+                                                        <ext:Model runat="server">
+                                                            <Fields>
+                                                                <ext:ModelField Name="recordId" />
+                                                                <ext:ModelField Name="name" />
+                                                            </Fields>
+                                                        </ext:Model>
+                                                    </Model>
+                                                </ext:Store>
+                                            </Store>
+                                            </ext:ComboBox>
+                                 <ext:Button runat="server" Text="<%$Resources:Common, Go %>">
+
+                                            <DirectEvents>
+                                                <Click OnEvent="FillLevelAcquisition"></Click>
+                                            </DirectEvents>
+                                        </ext:Button>
+               
                               
                                  
                             
@@ -905,36 +1163,14 @@
                                   
                                    
                                   
-                                    <ext:WidgetColumn ID="WidgetColumn1" Visible="true" DataIndex="days" runat="server" Text="<%$ Resources:FieldDays %>" Flex="1">
+                                        <ext:Column    CellCls="cellLink" ID="Column20" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldlevelName%>" DataIndex="leName" Flex="2" Hideable="false"/>
+                                  
+                                    <ext:WidgetColumn ID="WidgetColumn6" Visible="true" DataIndex="pct" runat="server" Text="<%$ Resources: pct  %>" Flex="1">
                                         <Widget>
-                                            <ext:NumberField AllowBlank="false" runat="server" Name="days" MinValue="0" >
-                                                <Listeners>
-
-                                                    <Change Handler="this.getWidgetRecord().set('days',this.value); ">
-                                                    </Change>
-                                                </Listeners>
-                                              
-                                                </ext:NumberField>
-                                        </Widget>
-                                    </ext:WidgetColumn>
-                                    <ext:WidgetColumn ID="WidgetColumn5" Visible="true" DataIndex="hiredPct" runat="server" Text="<%$ Resources: hiredPct %>" Flex="1">
-                                        <Widget>
-                                            <ext:NumberField  DecimalPrecision="2" runat="server" Name="hiredPct" MinValue="0" MaxValue="100" >
+                                            <ext:NumberField DecimalPrecision="2" runat="server" Name="pct"  MinValue="0" MaxValue="100">
                                                  <Listeners>
 
-                                                    <Change Handler="this.getWidgetRecord().set('hiredPct',this.value); ">
-                                                    </Change>
-                                                </Listeners>
-                                           
-                                                </ext:NumberField>
-                                        </Widget>
-                                    </ext:WidgetColumn>
-                                    <ext:WidgetColumn ID="WidgetColumn6" Visible="true" DataIndex="terminatedPct" runat="server" Text="<%$ Resources: terminatedPct  %>" Flex="1">
-                                        <Widget>
-                                            <ext:NumberField DecimalPrecision="2" runat="server" Name="terminatedPct"  MinValue="0" MaxValue="100">
-                                                 <Listeners>
-
-                                                    <Change Handler="this.getWidgetRecord().set('terminatedPct',this.value); ">
+                                                    <Change Handler="this.getWidgetRecord().set('pct',this.value); ">
                                                     </Change>
                                                 </Listeners>
                                                 <Validator Handler="return !isNaN(this.value)">
@@ -943,8 +1179,8 @@
                                                 </ext:NumberField>
                                         </Widget>
                                     </ext:WidgetColumn>
-                                      <ext:Column runat="server"
-                                               ID="Column13"  Visible="true"
+                                      <ext:Column runat="server" 
+                                               ID="Column13"  Visible="false"
                                                 Text=""
                                                 Width="100"
                                                 Hideable="false"
@@ -967,7 +1203,7 @@
                             </ColumnModel>
                         <Listeners>
                            
-                      <Render Handler="this.on('cellclick', cellClickPointAcquisition);" />
+                      <Render Handler="this.on('cellclick', cellClickLevelAcquisition);" />
                         
                            
                     </Listeners>
@@ -988,20 +1224,20 @@
                                     <Click Handler="CheckSession();" />
                                 </Listeners>
                                 <DirectEvents>
-                                    <Click OnEvent="SaveNewPointAcquisition" Failure="Ext.MessageBox.alert('#{titleSavingError}.value', '#{titleSavingErrorMessage}.value');">
-                                        <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="={#{PointAcquisitionGrid}.body}" />
+                                    <Click OnEvent="SaveNewLevelAcquisition" Failure="Ext.MessageBox.alert('#{titleSavingError}.value', '#{titleSavingErrorMessage}.value');">
+                                        <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="={#{LevelAcquisitionGrid}.body}" />
                                         <ExtraParams>
                                                                                    
-                                              <ext:Parameter Name="codes" Value="Ext.encode(#{PointAcquisitionGrid}.getRowsValues({dirtyRowsOnly : false}))" Mode="Raw"  />
+                                              <ext:Parameter Name="codes" Value="Ext.encode(#{LevelAcquisitionGrid}.getRowsValues({dirtyRowsOnly : false}))" Mode="Raw"  />
                                         </ExtraParams>
                                     </Click>
                                 </DirectEvents>
                             </ext:Button>
-                            <ext:Button ID="Button13" runat="server" Text="<%$ Resources:Common , Cancel %>" Icon="Cancel">
+                          <%--  <ext:Button ID="Button13" runat="server" Text="<%$ Resources:Common , Cancel %>" Icon="Cancel">
                                 <Listeners>
                                     <Click Handler="this.up('window').hide();" />
                                 </Listeners>
-                            </ext:Button>
+                            </ext:Button>--%>
                         </Buttons>
 
 
@@ -1098,16 +1334,23 @@
                         <ext:FormPanel
                             ID="businessForm" DefaultButton="SaveBusinessButton"
                             runat="server"
-                            Title="<%$ Resources: IndustryInfoTabEditWindowTitle %>"
+                            Title="<%$ Resources: EditBusinessWindowsTitle %>"
                             Icon="ApplicationSideList"
                             DefaultAnchor="100%" OnLoad="BasicInfoTab_Load"
                             BodyPadding="5">
                             <Items>
                                 <ext:TextField ID="TextField2" runat="server"  Name="recordId"  Hidden="true"/>
                                 <ext:TextField ID="TextField3" runat="server" FieldLabel="<%$ Resources:FieldName%>" Name="name"   AllowBlank="false"/>
-                                <ext:NumberField ID="minEmployees" runat="server" FieldLabel="<%$ Resources:FieldminEmployees%>" Name="minEmployees"  MinValue="0"  />
-                                 <ext:NumberField ID="maxEmployees" runat="server" FieldLabel="<%$ Resources:FieldmaxEmployees%>" Name="maxEmployees"  MinValue="0"  />
-                                <%--<ext:TextField ID="intName" runat="server" FieldLabel="<%$ Resources:IntName%>" Name="intName"   AllowBlank="false"/>--%>
+                               <ext:FieldSet Collapsible="true" runat="server" Title="<%$ Resources:EmployeeCount%>">
+                                     <Items>
+                                <ext:NumberField ID="minEmployees" runat="server" FieldLabel="<%$ Resources:FieldminEmployees%>" Name="minEmployees"  MinValue="0"   >
+                              </ext:NumberField>
+                                    
+                                 <ext:NumberField ID="maxEmployees" runat="server" FieldLabel="<%$ Resources:FieldmaxEmployees%>" Name="maxEmployees"  MinValue="0"   >
+                                     <Validator Handler=" return this.value>#{minEmployees}.value ; "> </Validator>
+                                     </ext:NumberField>
+                              </Items>
+                             </ext:FieldSet>
                             </Items>
 
                         </ext:FormPanel>
@@ -1194,6 +1437,66 @@
                 </ext:Button>
             </Buttons>
         </ext:Window>
+          <ext:Window 
+            ID="EditCitizenshipWindow"
+            runat="server"
+            Icon="PageEdit"
+            Title="<%$ Resources:EditCitizenshipWindowsTitle %>"
+            Width="450"
+            Height="330"
+            AutoShow="false"
+            Modal="true"
+            Hidden="true"
+            Layout="Fit">
+            
+            <Items>
+                <ext:TabPanel ID="TabPanel3" runat="server" ActiveTabIndex="0" Border="false" DeferredRender="false">
+                    <Items>
+                        <ext:FormPanel
+                            ID="CitizenshipForm" DefaultButton="SaveCitizenshipButton"
+                            runat="server"
+                            Title="<%$ Resources: EditCitizenshipWindowsTitle %>"
+                            Icon="ApplicationSideList"
+                            DefaultAnchor="100%" OnLoad="BasicInfoTab_Load"
+                            BodyPadding="5">
+                            <Items>
+                                <ext:TextField ID="TextField8" runat="server"  Name="recordId"  Hidden="true"/>
+                                <ext:TextField ID="TextField9" runat="server" FieldLabel="<%$ Resources:FieldName%>" Name="name"   AllowBlank="false"/>
+                                 <ext:NumberField ID="points" runat="server" FieldLabel="<%$ Resources:points%>" Name="points"   AllowBlank="false" MinValue="0" MaxValue="9"/>
+                                 <ext:NumberField ID="ceiling" runat="server" FieldLabel="<%$ Resources:ceiling%>" Name="ceiling"   MinValue="0" AllowBlank="false"/>
+                            
+                                <%--<ext:TextField ID="intName" runat="server" FieldLabel="<%$ Resources:IntName%>" Name="intName"   AllowBlank="false"/>--%>
+                            </Items>
+
+                        </ext:FormPanel>
+                        
+                    </Items>
+                </ext:TabPanel>
+            </Items>
+            <Buttons>
+                <ext:Button ID="Button17" runat="server" Text="<%$ Resources:Common, Save %>" Icon="Disk">
+
+                    <Listeners>
+                        <Click Handler="CheckSession(); if (!#{CitizenshipForm}.getForm().isValid()) {return false;}  " />
+                    </Listeners>
+                    <DirectEvents>
+                        <Click OnEvent="SaveNewCitizenship" Failure="Ext.MessageBox.alert('#{titleSavingError}.value', '#{titleSavingErrorMessage}.value');">
+                            <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="={#{EditCitizenshipWindow}.body}" />
+                            <ExtraParams>
+                                <ext:Parameter Name="id" Value="#{recordId}.getValue()" Mode="Raw" />
+                                <ext:Parameter Name="values" Value ="#{CitizenshipForm}.getForm().getValues()" Mode="Raw" Encode="true" />
+                            </ExtraParams>
+                        </Click>
+                    </DirectEvents>
+                </ext:Button>
+                <ext:Button ID="Button18" runat="server" Text="<%$ Resources:Common , Cancel %>" Icon="Cancel">
+                    <Listeners>
+                        <Click Handler="this.up('window').hide();" />
+                    </Listeners>
+                </ext:Button>
+            </Buttons>
+        </ext:Window>
+
 
 
 

@@ -28,6 +28,7 @@ using AionHR.Model.Attendance;
 using AionHR.Services.Messaging.System;
 using AionHR.Infrastructure.Domain;
 using AionHR.Model.Access_Control;
+using AionHR.Model.NationalQuota;
 
 namespace AionHR.Web.UI.Forms
 {
@@ -39,6 +40,8 @@ namespace AionHR.Web.UI.Forms
         ILeaveManagementService _leaveManagementService = ServiceLocator.Current.GetInstance<ILeaveManagementService>();
         ITimeAttendanceService _timeAttendanceService = ServiceLocator.Current.GetInstance<ITimeAttendanceService>();
         IAccessControlService _accessControlService = ServiceLocator.Current.GetInstance<IAccessControlService>();
+
+        INationalQuotaService _nationalQuotaService = ServiceLocator.Current.GetInstance<INationalQuotaService>();
 
         //protected override void InitializeCulture()
         //{
@@ -271,6 +274,7 @@ namespace AionHR.Web.UI.Forms
             caId.Select(result.caId);
             scId.Select(result.scId.ToString());
             divisionId.Select(result.divisionId);
+            nqciId.Select(result.nqciId.ToString());
             if (result.gender == 1)
                 gender1.Checked = true;
             else
@@ -297,6 +301,7 @@ namespace AionHR.Web.UI.Forms
             //  divisionId.Enabled = isAdd;
             //  divisionId.ReadOnly = !isAdd;
             FillNationality();
+           
 
 
             gearButton.Hidden = isAdd;
@@ -307,6 +312,7 @@ namespace AionHR.Web.UI.Forms
             FillVacationSchedule();
             FillSchedules();
             panelRecordDetails.Enabled = !isAdd;
+            FillCitizenShip();
 
             FillWorkingCalendar();
             
@@ -882,7 +888,7 @@ namespace AionHR.Web.UI.Forms
         {
 
             string userId="";
-            int userType;
+            bool isInactive; 
             string obj = e.ExtraParams["values"];
             UserByEmailRequest req = new UserByEmailRequest();
             req.Email = workEmailHF.Text;
@@ -897,19 +903,21 @@ namespace AionHR.Web.UI.Forms
 
 
                 if (enableSS.Checked)
-                userType = 4;
-            else
-                userType = response.result.userType;
+                   isInactive = true;
+                else
+                isInactive = false;
+
             if (response.result == null)
             {
 
 
-                response.result = new UserInfo { employeeId = CurrentEmployee.Text, email = workEmailHF.Text, isInactive = false, userType = userType, languageId = 1, password = "1", fullName = CurrentEmployeeFullName.Text };
+                response.result = new UserInfo { employeeId = CurrentEmployee.Text, email = workEmailHF.Text, isInactive = isInactive, userType = 4, languageId = 1, password = "1", fullName = CurrentEmployeeFullName.Text };
             }
             PostRequest<UserInfo> request = new PostRequest<UserInfo>();
 
             request.entity = response.result;
-            request.entity.userType = userType;
+            request.entity.userType = 4;
+            request.entity.isInactive = isInactive;
             PostResponse<UserInfo> r = _systemService.ChildAddOrUpdate<UserInfo>(request);
             if (!r.Success)
             {
@@ -1786,6 +1794,44 @@ namespace AionHR.Web.UI.Forms
             X.Call("setInputState", hijriSupported);
 
 
+        }
+        private void FillCitizenShip()
+        {
+            string filter = string.Empty;
+            int totalCount = 1;
+
+
+
+            //Fetching the corresponding list
+
+            //in this test will take a list of News
+            ListRequest request = new ListRequest();
+
+            request.Filter = "";
+            ListResponse<Citizenship> routers = _nationalQuotaService.ChildGetAll<Citizenship>(request);
+            if (!routers.Success)
+            {
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", routers.ErrorCode) != null ? GetGlobalResourceObject("Errors", routers.ErrorCode).ToString() : routers.Summary).Show();
+                return;
+            }
+            this.nqciIdStore.DataSource = routers.Items;
+          
+            this.nqciIdStore.DataBind();
+        }
+
+    
+        protected void setCitizenship(object sender, DirectEventArgs e)
+        {
+           
+            SystemDefaultRecordRequest req = new SystemDefaultRecordRequest();
+            req.Key = "countryId";
+            RecordResponse<KeyValuePair<string, string>> response = _systemService.ChildGetRecord<KeyValuePair<string, string>>(req);
+            if (nationalityId.SelectedItem.Value== response.result.Value)
+            {
+                nqciId.Disabled = false;
+            }
+            else
+                nqciId.Disabled = true;
         }
     }
 }

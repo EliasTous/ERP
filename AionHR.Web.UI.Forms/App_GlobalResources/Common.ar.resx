@@ -1114,6 +1114,9 @@
     <value>حسابات مصرفية </value>
   </data>
   <data name="NationalQuotas" xml:space="preserve">
-    <value>National Quotas</value>
+    <value>نسبة النطاق</value>
+  </data>
+  <data name="ErrorEmptyPayRef" xml:space="preserve">
+    <value>الرجاء ادخال رقم عملية دفع</value>
   </data>
 </root>

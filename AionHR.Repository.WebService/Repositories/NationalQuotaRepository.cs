@@ -22,6 +22,7 @@ namespace AionHR.Repository.WebService.Repositories
             ChildGetAllLookup.Add(typeof(Level), "qryLE");
             ChildGetAllLookup.Add(typeof(Citizenship), "qryCI");
             ChildGetAllLookup.Add(typeof(PointAcquisition), "qryPA");
+            ChildGetAllLookup.Add(typeof(LevelAcquisition), "qryLA");
 
 
 
@@ -31,6 +32,7 @@ namespace AionHR.Repository.WebService.Repositories
             ChildGetLookup.Add(typeof(Level), "getLE");
             ChildGetLookup.Add(typeof(Citizenship), "getCI");
             ChildGetLookup.Add(typeof(PointAcquisition), "getPA");
+            ChildGetLookup.Add(typeof(LevelAcquisition), "getLA");
 
 
 
@@ -40,6 +42,8 @@ namespace AionHR.Repository.WebService.Repositories
             ChildAddOrUpdateLookup.Add(typeof(Citizenship), "setCI");
             ChildAddOrUpdateLookup.Add(typeof(Citizenship[]), "arrCI");
             ChildAddOrUpdateLookup.Add(typeof(PointAcquisition), "setPA");
+            ChildAddOrUpdateLookup.Add(typeof(LevelAcquisition), "setLA");
+
 
 
 
@@ -48,6 +52,7 @@ namespace AionHR.Repository.WebService.Repositories
             ChildDeleteLookup.Add(typeof(Level), "delLE");
             ChildDeleteLookup.Add(typeof(Citizenship), "delCI");
             ChildDeleteLookup.Add(typeof(PointAcquisition), "delPA");
+            ChildDeleteLookup.Add(typeof(LevelAcquisition), "delLA");
         }
     }
 }

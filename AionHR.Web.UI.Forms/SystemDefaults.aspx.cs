@@ -25,6 +25,7 @@ using AionHR.Model.Attendance;
 using AionHR.Model.Employees.Leaves;
 using AionHR.Model.Employees.Profile;
 using AionHR.Model.Payroll;
+using AionHR.Model.NationalQuota;
 
 namespace AionHR.Web.UI.Forms
 {
@@ -36,6 +37,7 @@ namespace AionHR.Web.UI.Forms
         ITimeAttendanceService _timeAttendanceService = ServiceLocator.Current.GetInstance<ITimeAttendanceService>();
         IEmployeeService _employeeService = ServiceLocator.Current.GetInstance<IEmployeeService>();
         IPayrollService _payrollService = ServiceLocator.Current.GetInstance<IPayrollService>();
+        INationalQuotaService _nationalQuotaService = ServiceLocator.Current.GetInstance<INationalQuotaService>();
         protected override void InitializeCulture()
         {
 
@@ -144,7 +146,9 @@ namespace AionHR.Web.UI.Forms
             FillPassports();
             FillSchedules();
             FillTsId();
-            FillSsid(); 
+            FillSsid();
+            FillIndustry();
+
 
           absenceStore.DataSource= GetDeductions();
             absenceStore.DataBind();
@@ -402,6 +406,12 @@ namespace AionHR.Web.UI.Forms
             try { languageId.Select(items.Where(s => s.Key == "languageId").First().Value.ToString()); }
         
             catch { }
+            try { sourceTASC.Select(items.Where(s => s.Key == "sourceTASC").First().Value.ToString()); }
+
+            catch { }
+            try { NQINid.Select(items.Where(s => s.Key == "NQINid").First().Value.ToString()); }
+
+            catch { }
 
 
         }
@@ -508,6 +518,9 @@ namespace AionHR.Web.UI.Forms
                 submittedValues.Add(new KeyValuePair<string, string>("timeZone", values.timeZone.ToString()));
             if (!string.IsNullOrEmpty(values.languageId.ToString()))
                 submittedValues.Add(new KeyValuePair<string, string>("languageId", values.languageId.ToString()));
+            if (!string.IsNullOrEmpty(values.NQINid.ToString()))
+                submittedValues.Add(new KeyValuePair<string, string>("NQINid", values.NQINid.ToString()));
+
 
             submittedValues.Add(new KeyValuePair<string, string>("enableHijri", values.enableHijri == null ? "false" : "true"));
             return submittedValues;
@@ -562,6 +575,8 @@ namespace AionHR.Web.UI.Forms
 
             if (values.localServerIP != null && !string.IsNullOrEmpty(values.localServerIP.ToString()))
                 submittedValues.Add(new KeyValuePair<string, string>("localServerIP", values.localServerIP.ToString() + "/AionWSLocal"));
+            if (!string.IsNullOrEmpty(values.sourceTASC.ToString()))
+                submittedValues.Add(new KeyValuePair<string, string>("sourceTASC", values.sourceTASC.ToString()));
 
             submittedValues.Add(new KeyValuePair<string, string>("enableCamera", values.enableCamera == null ? "false" : "true"));
             return submittedValues;
@@ -1247,6 +1262,29 @@ namespace AionHR.Web.UI.Forms
             return resp.Items.ToList(); 
            
 
+        }
+        private void FillIndustry()
+        {
+            string filter = string.Empty;
+            int totalCount = 1;
+
+
+
+            //Fetching the corresponding list
+
+            //in this test will take a list of News
+            ListRequest request = new ListRequest();
+
+            request.Filter = "";
+            ListResponse<Industry> routers = _nationalQuotaService.ChildGetAll<Industry>(request);
+            if (!routers.Success)
+            {
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", routers.ErrorCode) != null ? GetGlobalResourceObject("Errors", routers.ErrorCode).ToString() : routers.Summary).Show();
+                return;
+            }
+            this.NQINidStore.DataSource = routers.Items;
+
+            this.NQINidStore.DataBind();
         }
 
 
