@@ -510,4 +510,10 @@
   <data name="Breaks" xml:space="preserve">
     <value>Breaks</value>
   </data>
+  <data name="netRate" xml:space="preserve">
+    <value>Net Rate</value>
+  </data>
+  <data name="rate" xml:space="preserve">
+    <value>Rate</value>
+  </data>
 </root>

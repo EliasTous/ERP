@@ -47,6 +47,7 @@ namespace AionHR.Web.UI.Forms
         IEmployeeService _employeeService = ServiceLocator.Current.GetInstance<IEmployeeService>();
         IReportsService _reportsService = ServiceLocator.Current.GetInstance<IReportsService>();
          IAccessControlService _accessControlService = ServiceLocator.Current.GetInstance<IAccessControlService>();
+        IHelpFunctionService _helpFunctionService = ServiceLocator.Current.GetInstance<IHelpFunctionService>();
         protected override void InitializeCulture()
         {
 
@@ -1013,7 +1014,7 @@ namespace AionHR.Web.UI.Forms
         {
             bool rtl = _systemService.SessionHelper.CheckIfArabicSession();
             ActiveAttendanceRequest req = new ActiveAttendanceRequest();
-            ListResponse<LocalsRate> resp = _systemService.ChildGetAll<LocalsRate>(req);
+            ListResponse<LocalsRate> resp = _helpFunctionService.ChildGetAll<LocalsRate>(req);
             if (!resp.Success)
             {
                 X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>Technical Error: " + resp.ErrorCode + "<br> Summary: " + resp.Summary : resp.Summary).Show();
@@ -1021,32 +1022,29 @@ namespace AionHR.Web.UI.Forms
             }
 
             List<object> RateObjs = new List<object>();
-            RateObjs.Add(new { category = GetLocalResourceObject("MinLocalRate").ToString(), number = resp.Items[0].minLocalsRate });//Should use GetLocalResource(MinLocalsRate) and translate in resources
-            RateObjs.Add(new { category = GetLocalResourceObject("LocalsRate").ToString(), number = resp.Items[0].localsrate });//Should use GetLocalResource(MinLocalsRate) and translate in resources
+            RateObjs.Add(new { category = GetLocalResourceObject("netRate").ToString(), number = resp.Items[0].netRate });//Should use GetLocalResource(MinLocalsRate) and translate in resources
+            RateObjs.Add(new { category = GetLocalResourceObject("rate").ToString(), number = resp.Items[0].rate });//Should use GetLocalResource(MinLocalsRate) and translate in resources
 
 
-            List<string> listCategories = new List<string>() { GetLocalResourceObject("MinLocalRate").ToString(), GetLocalResourceObject("LocalsRate").ToString() };
-            List<double> listValues = new List<double>() { resp.Items[0].minLocalsRate, resp.Items[0].localsrate };
+            List<string> listCategories = new List<string>() { GetLocalResourceObject("netRate").ToString(), GetLocalResourceObject("rate").ToString() };
+            List<double> listValues = new List<double>() { resp.Items[0].netRate, resp.Items[0].rate };
 
             X.Call("drawMinLocalRateCountHightChartColumn", JSON.JavaScriptSerialize(listValues), JSON.JavaScriptSerialize(listCategories), rtl ? true : false);
 
 
-            //  LocalRateStore.DataSource = RateObjs;
-            //  LocalRateStore.DataBind();
+           
 
-            List<object> CountObjs = new List<object>();
-            CountObjs.Add(new { category = GetLocalResourceObject("LocalsCount").ToString(), number = resp.Items[0].localsCount });//here 
-            CountObjs.Add(new { category = GetLocalResourceObject("empCount").ToString(), number = resp.Items[0].empCount });//here
+            //List<object> CountObjs = new List<object>();
+            //CountObjs.Add(new { category = GetLocalResourceObject("LocalsCount").ToString(), number = resp.Items[0].localsCount });//here 
+            //CountObjs.Add(new { category = GetLocalResourceObject("empCount").ToString(), number = resp.Items[0].empCount });//here
 
-            List<string> listCount = new List<string>() { GetLocalResourceObject("LocalsCount").ToString(), GetLocalResourceObject("empCount").ToString() };
-            List<double> listempValues = new List<double>() { resp.Items[0].localsCount, resp.Items[0].empCount };
+            //List<string> listCount = new List<string>() { GetLocalResourceObject("LocalsCount").ToString(), GetLocalResourceObject("empCount").ToString() };
+            //List<double> listempValues = new List<double>() { resp.Items[0].localsCount, resp.Items[0].empCount };
 
-            X.Call("drawLocalCountHightChartColumn", JSON.JavaScriptSerialize(listempValues), JSON.JavaScriptSerialize(listCount), rtl ? true : false);
-
+            //X.Call("drawLocalCountHightChartColumn", JSON.JavaScriptSerialize(listempValues), JSON.JavaScriptSerialize(listCount), rtl ? true : false);
 
 
-            //LocalCountStore.DataSource = CountObjs;
-            //LocalCountStore.DataBind();
+
         }
         [DirectMethod]
         protected void leavePoPUP(object sender, DirectEventArgs e)

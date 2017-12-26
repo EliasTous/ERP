@@ -172,7 +172,9 @@ namespace AionHR.Web.UI.Forms
         }
         private List<Department> GetDepartments()
         {
-            ListRequest departmentsRequest = new ListRequest();
+            DepartmentListRequest departmentsRequest = new DepartmentListRequest();
+            departmentsRequest.type = 0;
+
             ListResponse<Department> resp = _companyStructureService.ChildGetAll<Department>(departmentsRequest);
             if (!resp.Success)
             {

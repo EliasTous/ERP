@@ -127,7 +127,7 @@
     <value>Bonus</value>
   </data>
   <data name="EditSAWindowTitle" xml:space="preserve">
-    <value>Edit Salary</value>
+    <value>Basic Info</value>
   </data>
   <data name="FieldAccountNumber" xml:space="preserve">
     <value>Account Number</value>

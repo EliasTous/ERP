@@ -117,19 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="adminType" xml:space="preserve">
-    <value>Admin Only</value>
-  </data>
-  <data name="All" xml:space="preserve">
-    <value>All</value>
-  </data>
-  <data name="Print" xml:space="preserve">
-    <value>Print</value>
-  </data>
-  <data name="sectionType" xml:space="preserve">
-    <value>Section</value>
-  </data>
-  <data name="type" xml:space="preserve">
-    <value>Type</value>
-  </data>
+  <metadata name="objectDataSource1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
 </root>

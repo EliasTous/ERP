@@ -799,6 +799,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Please fill Pay Ref.
+        /// </summary>
+        internal static string EmptyPayRef {
+            get {
+                return ResourceManager.GetString("EmptyPayRef", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to English.
         /// </summary>
         internal static string EnglishLanguage {
@@ -1983,6 +1992,15 @@ namespace Resources {
         internal static string PayCodes {
             get {
                 return ResourceManager.GetString("PayCodes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pay Ref.
+        /// </summary>
+        internal static string PayRef {
+            get {
+                return ResourceManager.GetString("PayRef", resourceCulture);
             }
         }
         

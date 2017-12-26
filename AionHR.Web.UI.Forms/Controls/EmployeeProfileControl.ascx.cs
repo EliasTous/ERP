@@ -68,13 +68,13 @@ namespace AionHR.Web.UI.Forms
         {
             if (!_systemService.SessionHelper.GetHijriSupport())
             {
-                hijriCal.Visible = true;
+                hijriCalbutton.Visible = true;
                 SetHijriInputState(false);
                 //gregCal.Checked = true;
             }
             else
             {
-                hijriCal.Visible = false;
+                hijriCalbutton.Visible = false;
                 SetHijriInputState(true);
                 //hijCalBirthDate.Hidden = true;
                 //gregCal.Checked = true;
@@ -94,14 +94,15 @@ namespace AionHR.Web.UI.Forms
         }
         public void Update(string id ,string fullName)
         {
+          
             if (!_systemService.SessionHelper.GetHijriSupport())
             {
-                hijriCal.Hidden = true;
+                hijriCalbutton.Hidden = true;
                 SetHijriInputState(false);
 
             }
             else
-                hijriCal.Hidden = false;
+                hijriCalbutton.Hidden = false;
             imgControl.Src = "Images\\empPhoto.jpg";
             //Step 1 : get the object from the Web Service 
             FillProfileInfo(id.ToString());
@@ -621,7 +622,7 @@ namespace AionHR.Web.UI.Forms
             //    b.birthDate = new DateTime(b.birthDate.Value.Year, b.birthDate.Value.Month, b.birthDate.Value.Day, 14, 0, 0);
             bool hijriSupported = _systemService.SessionHelper.GetHijriSupport();
             // Define the object to add or edit as null
-
+            b.bdHijriCal =Convert.ToBoolean(bdHijriCal.Text);
 
             try
             {
@@ -1015,7 +1016,8 @@ namespace AionHR.Web.UI.Forms
                 if (response.result.bdHijriCal)
                 {
                     SetHijriInputState(true);
-                    hijCal.Checked = true;
+                    //hijCal.Checked = true;
+                    bdHijriCal.Text = "true";
 
                     hijCalBirthDate.Text = response.result.birthDate.HasValue ? response.result.birthDate.Value.ToString("yyyy/MM/dd", new CultureInfo("ar")) : "";
                     X.Call("handleInputRender");
@@ -1027,7 +1029,8 @@ namespace AionHR.Web.UI.Forms
             if (!response.result.bdHijriCal)
             {
                 SetHijriInputState(false);
-                gregCal.Checked = true;
+                //gregCal.Checked = true;
+                bdHijriCal.Text = "false";
                 gregCalBirthDate.Value = response.result.birthDate.HasValue ? response.result.birthDate : new DateTime();
             }
 
@@ -1124,7 +1127,7 @@ namespace AionHR.Web.UI.Forms
             branchLbl.Html = forSummary.branchName + "<br />";
             positionLbl.Html = forSummary.positionName + "<br />";
             esName.Html = forSummary.esName + "<br /><br />";
-            eosBalanceLbl.Html = forSummary.indemnity + "<br />";
+            eosBalanceLbl.Html = forSummary.indemnity.ToString("N2") + "<br />";
             serviceDuration.Html = forSummary.serviceDuration + "<br />";// Friendly(GetGlobalResourceObject("Common", "Day").ToString(), GetGlobalResourceObject("Common", "Month").ToString(), GetGlobalResourceObject("Common", "Year").ToString())+"<br />";
 
             paidLeavesYTDLbl.Html = forSummary.usedLeavesLeg + "<br/>";
@@ -1142,7 +1145,7 @@ namespace AionHR.Web.UI.Forms
 
             usedLeavesLbl.Html = forSummary.usedLeaves + "<br />";
             paidLeavesLbl.Html = forSummary.paidLeaves + "<br />";
-            salaryLbl.Html = forSummary.salary + "<br />";
+            salaryLbl.Html = forSummary.salary.ToString("N2") + "<br />";
             //employeeName.Text = resp.result.name.firstName + resp.result.name.lastName;
 
             imgControl.ImageUrl = forSummary.pictureUrl + "?x=" + DateTime.Now.Ticks;

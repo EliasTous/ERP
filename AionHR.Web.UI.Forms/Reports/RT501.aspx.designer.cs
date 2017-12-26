@@ -67,6 +67,24 @@ namespace AionHR.Web.UI.Forms.Reports {
         protected global::Ext.Net.Hidden titleSavingErrorMessage;
         
         /// <summary>
+        /// hint control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Hidden hint;
+        
+        /// <summary>
+        /// EmptyPayRef control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Hidden EmptyPayRef;
+        
+        /// <summary>
         /// rtl control.
         /// </summary>
         /// <remarks>
@@ -121,13 +139,13 @@ namespace AionHR.Web.UI.Forms.Reports {
         protected global::AionHR.Web.UI.Forms.Reports.Controls.PaymentMethodFilter paymentMethodCombo;
         
         /// <summary>
-        /// payRefFilter control.
+        /// payRef control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AionHR.Web.UI.Forms.Reports.Controls.PayRefFilter payRefFilter;
+        protected global::Ext.Net.TextField payRef;
         
         /// <summary>
         /// ASPxCallbackPanel1 control.

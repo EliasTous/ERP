@@ -57,6 +57,7 @@
 
           <ext:Hidden ID="titleBalanceError" runat="server" Text="<%$ Resources: titleBalanceError %>" />
         <ext:Hidden ID="titleBalanceErrorMessage" runat="server" Text="<%$ Resources: titleBalanceErrorMessage %>" />
+        <ext:Hidden ID="currentLeavePayment" runat="server" />
      
         
 
@@ -547,6 +548,28 @@
                                     <Listeners>
                                         <Click Handler="this.up('window').hide();" />
                                     </Listeners>
+                                </ext:Button>
+                                       <ext:Button runat="server" Icon="Printer" Text="<%$ Resources:Common , Print %>">
+                                    <Menu>
+                                        <ext:Menu runat="server">
+                                            <Items>
+                                                <ext:MenuItem runat="server"  Text="<%$ Resources:Common , Print %>" AutoPostBack="true" OnClick="printBtn_Click" OnClientClick="openInNewTab();"  >
+                                            
+                                                    <Listeners>
+                                                        <Click Handler="openInNewTab();" />
+                                                    </Listeners>
+                                                </ext:MenuItem>
+                                                <ext:MenuItem runat="server"  Text="Pdf" AutoPostBack="true" OnClick="ExportPdfBtn_Click"  >
+                                            
+                                                    
+                                                </ext:MenuItem>
+                                                <ext:MenuItem runat="server"  Text="Excel" AutoPostBack="true" OnClick="ExportXLSBtn_Click"  >
+                                            
+                                                    
+                                                </ext:MenuItem>
+                                            </Items>
+                                        </ext:Menu>
+                                    </Menu>
                                 </ext:Button>
                             </Buttons>
 

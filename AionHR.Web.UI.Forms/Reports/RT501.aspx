@@ -39,7 +39,8 @@
         <ext:Hidden ID="textLoadFailed" runat="server" Text="<%$ Resources:Common , LoadFailed %>" />
         <ext:Hidden ID="titleSavingError" runat="server" Text="<%$ Resources:Common , TitleSavingError %>" />
         <ext:Hidden ID="titleSavingErrorMessage" runat="server" Text="<%$ Resources:Common , TitleSavingErrorMessage %>" />
-
+           <ext:Hidden ID="hint" runat="server" Text="<%$ Resources:Common , hint %>" />
+          <ext:Hidden ID="EmptyPayRef" runat="server" Text="<%$ Resources:Common , EmptyPayRef %>" />
         <ext:Hidden ID="rtl" runat="server" />
         <ext:Hidden ID="format" runat="server" />
 
@@ -73,17 +74,18 @@
                                             </Content>
                                         </ext:Container>
 
-                                    <ext:Container runat="server"  Layout="FitLayout">
+                                  <%--  <ext:Container runat="server"  Layout="FitLayout">
                                             <Content>
-                                                <%--<uc:dateRange runat="server" ID="dateRange1" />--%>
+                                                <%--<uc:dateRange runat="server" ID="dateRange1" />
                                                 <uc:payRefCombo runat="server" ID="payRefFilter" />
                                             </Content>
-                                        </ext:Container>
+                                        </ext:Container>--%>
+                                 <ext:TextField Width="120" runat="server" ID="payRef" EmptyText="<%$Resources:Common , PayRef %>" />
                                 <ext:Container runat="server" Layout="FitLayout">
                                     <Content>
                                          <ext:Button runat="server" Text="<%$Resources:Common, Go %>" >
                                             <Listeners>
-                                                <Click Handler="callbackPanel.PerformCallback('1');" />
+                                                <Click Handler="if(App.payRef.getValue()=='')  {Ext.MessageBox.alert(#{hint}.value,#{EmptyPayRef}.value );return ;}  callbackPanel.PerformCallback('1');" />
                                             </Listeners>
                                         </ext:Button>
                                     </Content>

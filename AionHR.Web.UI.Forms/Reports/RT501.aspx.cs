@@ -64,7 +64,7 @@ namespace AionHR.Web.UI.Forms.Reports
                 SetExtLanguage();
                 HideShowButtons();
                 HideShowColumns();
-
+                
                 try
                 {
 
@@ -166,7 +166,7 @@ namespace AionHR.Web.UI.Forms.Reports
             req.StartAt = "1";
 
             req.Add(paymentMethodCombo.GetPaymentMethod());
-            req.Add(payRefFilter.GetPayRef());
+            req.Add(GetPayRef());
             req.Add(jobInfo1.GetJobInfo());
 
             return req;
@@ -317,6 +317,25 @@ namespace AionHR.Web.UI.Forms.Reports
         {
             //ASPxWebDocumentViewer1.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.Utils.DefaultBoolean.True : DevExpress.Utils.DefaultBoolean.False;
             //FillReport(true);
+        }
+        private PayRefParameterSet GetPayRef()
+        {
+            PayRefParameterSet p = new PayRefParameterSet();
+
+
+            if (!string.IsNullOrEmpty(payRef.Text) && payRef.Value.ToString() != "0")
+            {
+                p.payRef = payRef.Value.ToString(); ;
+
+
+
+            }
+            else
+            {
+                p.payRef = "0";
+
+            }
+            return p;
         }
     }
 }

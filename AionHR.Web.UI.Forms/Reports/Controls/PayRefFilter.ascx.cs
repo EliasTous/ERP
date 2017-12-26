@@ -37,6 +37,7 @@ namespace AionHR.Web.UI.Forms.Reports.Controls
         public string GetStringPayRef()
         {
             return payRef.Text;
+           
         }
         public void SetAllowBlank(bool value)
         {

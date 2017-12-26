@@ -1030,13 +1030,13 @@ namespace AionHR.Web.UI.Forms.EmployeePages {
         protected global::Ext.Net.TextField TextField7;
         
         /// <summary>
-        /// TextField9 control.
+        /// comment control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.TextField TextField9;
+        protected global::Ext.Net.TextArea comment;
         
         /// <summary>
         /// Button4 control.

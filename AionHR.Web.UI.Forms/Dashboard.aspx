@@ -11,13 +11,13 @@
     <link rel="stylesheet" type="text/css" href="CSS/Common.css" />
     <link rel="stylesheet" type="text/css" href="CSS/Dashboard.css?id=31" />
     <link rel="stylesheet" href="CSS/LiveSearch.css" />
-    <script type="text/javascript" src="Scripts/Dashboard.js?id=51"></script>
+    <script type="text/javascript" src="Scripts/Dashboard.js?id=87"></script>
     <!--  <script type="text/javascript" src="Scripts/app.js"></script>-->
     <script type="text/javascript" src="Scripts/common.js"></script>
-    <script type="text/javascript" src="Scripts/moment.js"></script>
+    <script type="text/javascript" src="Scripts/moment.js?id=10"></script>
     <script type="text/javascript" src="Scripts/CircileProgress.js?id=91"></script>
-    <script type="text/javascript" src="Scripts/jquery-new.js?id=71"></script>
-    <script type="text/javascript" src="Scripts/plugins/highcharts.js?id=122"></script>
+    <script type="text/javascript" src="Scripts/jquery-new.js?id=101"></script>
+    <script type="text/javascript" src="Scripts/plugins/highcharts.js?id=100"></script>
 
 
     <style type="text/css">

@@ -301,15 +301,6 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Column ColRecordId;
         
         /// <summary>
-        /// ColName control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Column ColName;
-        
-        /// <summary>
         /// Column5 control.
         /// </summary>
         /// <remarks>
@@ -317,6 +308,15 @@ namespace AionHR.Web.UI.Forms {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.Column Column5;
+        
+        /// <summary>
+        /// ColName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Column ColName;
         
         /// <summary>
         /// Column6 control.

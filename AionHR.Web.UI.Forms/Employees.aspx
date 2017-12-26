@@ -217,12 +217,13 @@
                                 <ext:TextField ID="searchTrigger" runat="server" EnableKeyEvents="true" Width="180">
                                     <Triggers>
                                         <ext:FieldTrigger Icon="Search" />
+                                        <ext:FieldTrigger Handler="this.setValue('');" Icon="Clear" />
                                     </Triggers>
                                     <Listeners>
                                         <KeyPress Fn="enterKeyPressSearchHandler" Buffer="100" />
 
                                         <TriggerClick Handler="#{Store1}.reload();" />
-                                        <SpecialKey Handler="if(e.keyCode==13) #{Store1}.reload();" />
+                                        <SpecialKey Handler="if(e.keyCode==13) #{Store1}.Reload();" />
                                     </Listeners>
                                 </ext:TextField>
 

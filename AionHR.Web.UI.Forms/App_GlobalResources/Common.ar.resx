@@ -1119,4 +1119,10 @@
   <data name="ErrorEmptyPayRef" xml:space="preserve">
     <value>الرجاء ادخال رقم عملية دفع</value>
   </data>
+  <data name="EmptyPayRef" xml:space="preserve">
+    <value>الرجاء ادخال رقم عملية الدفع</value>
+  </data>
+  <data name="PayRef" xml:space="preserve">
+    <value>رقم عملية الدفع</value>
+  </data>
 </root>

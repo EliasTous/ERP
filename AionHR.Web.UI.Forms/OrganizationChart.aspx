@@ -45,7 +45,7 @@
                                     <Items>
                                         <ext:ListItem Text="<%$ Resources: All %>" Value="0"   />
                                         <ext:ListItem Text="<%$ Resources: adminType %>" Value="1" />
-                                        <ext:ListItem Text="<%$ Resources: sectionType %>" Value="2" />
+                                       <%-- <ext:ListItem Text="<%$ Resources: sectionType %>" Value="2" />--%>
                                     </Items>
                                  
                                 </ext:ComboBox>

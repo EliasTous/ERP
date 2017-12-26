@@ -63,14 +63,14 @@
         function setInputState(hijri) {
 
             
-            App.employeeControl1_hijCal.setValue(hijri); 
+            //App.employeeControl1_hijCal.setValue(hijri); 
                            App.employeeControl1_gregCalBirthDate.setHidden(hijri);
                            App.employeeControl1_gregCalBirthDate.allowBlank = hijri;
          
 
 
                          
-                           App.employeeControl1_gregCal.setValue(!hijri);
+                           //App.employeeControl1_gregCal.setValue(!hijri);
                            App.employeeControl1_hijCalBirthDate.setHidden(!hijri)
                            App.employeeControl1_hijCalBirthDate.allowBlank = !hijri;
             
@@ -558,6 +558,7 @@
 <ext:Hidden runat="server" ID="photoReadOnly" Text="False" />
 <ext:Hidden runat="server" ID="workEmailHF" />
 <ext:Hidden runat="server" ID="CurrentEmployeeFullName" />
+<ext:Hidden runat="server" ID="bdHijriCal" />
 
 <ext:Window
     ID="EditRecordWindow"
@@ -844,30 +845,37 @@
                                
                                 
                              
-                                    <ext:RadioGroup runat="server" ID="hijriCal" GroupName="bdHijriCal" FieldLabel="<%$ Resources:ChooseCalendarType %>"  >
+                           <%--         <ext:RadioGroup runat="server" ID="hijriCal" GroupName="bdHijriCal" FieldLabel="<%$ Resources:ChooseCalendarType %>"  >
                                     <Items>
                                         <ext:Radio ID="gregCal" Width="100" runat="server" Name="bdHijriCal" InputValue="false"  BoxLabel="<%$ Resources:Common, Gregorian %>" Checked="true" >
-                                       <%--     <Listeners>
-                                                <Change Handler="if(this.checked){InitGregorian();handleInputRender();}"  />
-                                            </Listeners>--%>
+                                    
                                         </ext:Radio>
                                         <ext:Radio ID="hijCal" runat="server" Name="bdHijriCal" InputValue="true"  BoxLabel="<%$ Resources:Common, Hijri %>" >
-                                           <%--   <Listeners>
-                                                <Change Handler="if(this.checked){InitHijri();handleInputRender();}" />
-                                            </Listeners>--%>
+                                          
                                         </ext:Radio>
                                     </Items>
                                      <Listeners>
                                          <Change Handler="setInputState(App.employeeControl1_hijCal.getValue());" />
                                      </Listeners>
-                                </ext:RadioGroup>
+                                </ext:RadioGroup>--%>
 
                                
 
                                     <ext:DateField runat="server" ID="gregCalBirthDate"      Name="gregCalBirthDate"
                                     FieldLabel="<%$ Resources:FieldDateOfBirth%>"
                                     MsgTarget="Side"
-                                    AllowBlank="true" />
+                                    AllowBlank="true" >
+                                      
+                                               <LeftButtons>
+                                                <ext:Button ID="hijriCalbutton" runat="server" Icon="CalculatorEdit"  >
+                                                    <Listeners>
+                                                <Click Handler="setInputState(true);#{bdHijriCal}.setValue('true');" />
+
+                                            </Listeners>
+                                                    </ext:Button>
+                                            </LeftButtons>
+                                          
+                                        </ext:DateField>
                         
                           
                    
@@ -875,7 +883,16 @@
                            <ext:TextField ID="hijCalBirthDate"   Name="hijCalBirthDate"   FieldLabel="<%$ Resources:FieldDateOfBirth%>"  runat="server"   FieldCls="showCal">
                                                                                 <Listeners>
                                                                               <Render Fn="handleInputRender" />
-                                                                                                                        </Listeners></ext:TextField>
+                                                                                                                        </Listeners>
+                                 <LeftButtons>
+                                                <ext:Button ID="Button8" runat="server" Icon="CalculatorEdit"  >
+                                                    <Listeners>
+                                                <Click Handler="setInputState(false);#{bdHijriCal}.setValue('false');" />
+                                            </Listeners>
+                                                    </ext:Button>
+                                            </LeftButtons>
+                            
+                           </ext:TextField>
                                    <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  ID="religionCombo" runat="server" FieldLabel="<%$ Resources:FieldReligion%>" Name="religion" IDMode="Static" SubmitValue="true">
                                     <Items>
                                         <ext:ListItem Text="<%$ Resources:Common, Religion0%>" Value="0"></ext:ListItem>
@@ -918,7 +935,7 @@
                                         <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
                                     </Listeners>
                                     <DirectEvents>
-                                        <Select OnEvent="setCitizenship"></Select>
+                                        <Change OnEvent="setCitizenship"></Change>
                                     </DirectEvents>
                                 </ext:ComboBox>
                                    <ext:ComboBox Disabled="true"  AnyMatch="true" CaseSensitive="false"  runat="server" ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" AllowBlank="true" DisplayField="name" ID="nqciId" Name="nqciId" FieldLabel="<%$ Resources:FieldCitizenShip%>" SimpleSubmit="true">
@@ -1256,13 +1273,13 @@
                         <LoadMask ShowMask="true" />
                     </Loader>
                 </ext:Panel>
-                 <ext:Panel runat="server" Layout="FitLayout" Title="<%$ Resources: EmployeeCalenderTab %>" ID="Panel9" DefaultAnchor="100%">
+               <%--  <ext:Panel runat="server" Layout="FitLayout" Title="<%$ Resources: EmployeeCalenderTab %>" ID="Panel9" DefaultAnchor="100%">
                     <Loader runat="server" Url="EmployeePages/EmployeeCalendars.aspx" Mode="Frame" ID="Loader9" TriggerEvent="show"
                         ReloadOnEvent="true"
                         DisableCaching="true">
                         <LoadMask ShowMask="true" />
                     </Loader>
-                </ext:Panel>
+                </ext:Panel>--%>
 
             </Items>
 

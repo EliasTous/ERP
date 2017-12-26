@@ -1133,7 +1133,7 @@
                                 </ext:ComboBox>
                                 <ext:DateField runat="server" ID="date" Name="date" FieldLabel="<%$ Resources:FieldDate%>" AllowBlank="false" />
                                 <ext:TextField ID="TextField7" runat="server" FieldLabel="<%$ Resources:FieldAmount%>" Name="amount" AllowBlank="false" />
-                                <ext:TextField ID="TextField9" runat="server" FieldLabel="<%$ Resources:FieldComment%>" Name="comment" />
+                                <ext:TextArea ID="comment" runat="server" FieldLabel="<%$ Resources:FieldComment%>" Name="comment" />
 
 
                             </Items>

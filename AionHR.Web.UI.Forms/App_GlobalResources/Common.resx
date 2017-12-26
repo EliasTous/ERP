@@ -1116,4 +1116,10 @@
   <data name="ErrorEmptyPayRef" xml:space="preserve">
     <value>Please Enter Pay Ref</value>
   </data>
+  <data name="EmptyPayRef" xml:space="preserve">
+    <value>Please fill Pay Ref</value>
+  </data>
+  <data name="PayRef" xml:space="preserve">
+    <value>Pay Ref</value>
+  </data>
 </root>
