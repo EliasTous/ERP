@@ -32,6 +32,7 @@ using AionHR.Model.Access_Control;
 using AionHR.Model.Attributes;
 using Reports;
 using AionHR.Services.Messaging.Reports;
+using AionHR.Model.Dashboard;
 
 namespace AionHR.Web.UI.Forms.Controls
 {
@@ -240,6 +241,7 @@ namespace AionHR.Web.UI.Forms.Controls
             status.Disabled = true;
             status.Select(0);
             shouldDisableLastDay.Text = "0";
+            startDate.Value = DateTime.Now;
             this.EditRecordWindow.Show();
         }
 
@@ -367,11 +369,8 @@ namespace AionHR.Web.UI.Forms.Controls
 
         protected void SaveNewRecord(object sender, DirectEventArgs e)
         {
-
-
             //Getting the id to check if it is an Add or an edit as they are managed within the same form.
-
-
+            
             string obj = e.ExtraParams["values"];
             string status1 = e.ExtraParams["status"];
             JsonSerializerSettings settings = new JsonSerializerSettings();
@@ -379,7 +378,6 @@ namespace AionHR.Web.UI.Forms.Controls
             //  res.AddRule("leaveRequest1_employeeId", "employeeId");
             //res.AddRule("leaveRequest1_ltId", "ltId");
             // res.AddRule("leaveRequest1_status", "status");
-
             settings.ContractResolver = res;
             LeaveRequest b = JsonConvert.DeserializeObject<LeaveRequest>(obj, settings);
             b.status = Convert.ToInt16(status1); 
@@ -396,7 +394,7 @@ namespace AionHR.Web.UI.Forms.Controls
                 b.ltName = ltId.SelectedItem.Text;
          
             List<LeaveDay> days = GenerateLeaveDays(e.ExtraParams["days"]);
-
+          
             if (string.IsNullOrEmpty(id))
             {
                 if (days.Count == 0)
@@ -425,6 +423,8 @@ namespace AionHR.Web.UI.Forms.Controls
                     else
                     {
                         b.recordId = r.recordId;
+
+                        LeaveRequestNotification(b);
                         //Add this record to the store 
                         days.ForEach(d => d.leaveId = Convert.ToInt32(b.recordId));
                         AddDays(days);
@@ -533,6 +533,8 @@ namespace AionHR.Web.UI.Forms.Controls
 
                     else
                     {
+                        LeaveRequestNotification(b);
+
                         var deleteDesponse = _leaveManagementService.DeleteLeaveDays(Convert.ToInt32(b.recordId));
                         if (!deleteDesponse.Success)//it maybe another check
                         {
@@ -1165,20 +1167,43 @@ namespace AionHR.Web.UI.Forms.Controls
 
         protected void EnableStatus(object sender, DirectEventArgs e)
         {
-            RecordRequest r = new RecordRequest();
-            r.RecordID = ltId.SelectedItem.Value;
-
-            RecordResponse<LeaveType> response = _leaveManagementService.ChildGetRecord<LeaveType>(r);
-            if (!response.Success)
+            if (ltId.SelectedItem.Value != null)
             {
-                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).ToString() + "<br>Technical Error: " + response.ErrorCode + "<br> Summary: " + response.Summary : response.Summary).Show();
-                return;
+                RecordRequest r = new RecordRequest();
+                r.RecordID = ltId.SelectedItem.Value;
+
+                RecordResponse<LeaveType> response = _leaveManagementService.ChildGetRecord<LeaveType>(r);
+                if (!response.Success)
+                {
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).ToString() + "<br>Technical Error: " + response.ErrorCode + "<br> Summary: " + response.Summary : response.Summary).Show();
+                    return;
+                }
+                if (!response.result.requireApproval)
+                    status.Disabled = false;
+                else
+                    status.Disabled = true;
             }
-            if (!response.result.requireApproval)
-                status.Disabled = false;
-            else
-                status.Disabled = true;
+        }
+        private void LeaveRequestNotification(LeaveRequest b )
+        {
+            RecordRequest r = new RecordRequest();
+            r.RecordID = b.ltId.ToString();
+            RecordResponse<LeaveType> response = _leaveManagementService.ChildGetRecord<LeaveType>(r);
+
+
+            if (_systemService.SessionHelper.GetEmployeeId() != null&& response.result.requireApproval==false)
+            {
+                PostRequest<DashboardLeave> DBRequset = new PostRequest<DashboardLeave>();
+                DBRequset.entity = new DashboardLeave() { leaveId = Convert.ToInt32(b.recordId), employeeId = Convert.ToInt32(_systemService.SessionHelper.GetEmployeeId()), status = b.status ,notes=" "};
+                PostResponse<DashboardLeave> DBResponse = _leaveManagementService.ChildAddOrUpdate<DashboardLeave>(DBRequset);
+                if (!DBResponse.Success)
+                {
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", DBResponse.ErrorCode) != null ? GetGlobalResourceObject("Errors", DBResponse.ErrorCode).ToString() + "<br>Technical Error: " + DBResponse.ErrorCode + "<br> Summary: " + DBResponse.Summary : DBResponse.Summary).Show();
+                    return;
+                }
+            }
 
         }
     }

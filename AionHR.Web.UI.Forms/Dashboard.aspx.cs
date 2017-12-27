@@ -1020,28 +1020,34 @@ namespace AionHR.Web.UI.Forms
                 X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>Technical Error: " + resp.ErrorCode + "<br> Summary: " + resp.Summary : resp.Summary).Show();
                 return;
             }
-
+            inName.Text = resp.Items[0].inName;
+            bsName.Text = resp.Items[0].bsName;
+            leName.Text = resp.Items[0].leName;
             List<object> RateObjs = new List<object>();
-            RateObjs.Add(new { category = GetLocalResourceObject("netRate").ToString(), number = resp.Items[0].netRate });//Should use GetLocalResource(MinLocalsRate) and translate in resources
-            RateObjs.Add(new { category = GetLocalResourceObject("rate").ToString(), number = resp.Items[0].rate });//Should use GetLocalResource(MinLocalsRate) and translate in resources
+            RateObjs.Add(new { category = GetLocalResourceObject("netRate").ToString(), number = resp.Items[0].netRate });
+            RateObjs.Add(new { category = GetLocalResourceObject("rate").ToString(), number = resp.Items[0].rate });
+            RateObjs.Add(new { category = GetLocalResourceObject("minLERate").ToString(), number = resp.Items[0].minLERate });
+            RateObjs.Add(new { category = GetLocalResourceObject("minNextLERate").ToString(), number = resp.Items[0].minNextLERate });
 
 
-            List<string> listCategories = new List<string>() { GetLocalResourceObject("netRate").ToString(), GetLocalResourceObject("rate").ToString() };
-            List<double> listValues = new List<double>() { resp.Items[0].netRate, resp.Items[0].rate };
+            List<string> listCategories = new List<string>() { GetLocalResourceObject("netRate").ToString(), GetLocalResourceObject("rate").ToString(), GetLocalResourceObject("minLERate").ToString(), GetLocalResourceObject("minNextLERate").ToString() };
+            List<double> listValues = new List<double>() { resp.Items[0].netRate, resp.Items[0].rate, resp.Items[0].minLERate, resp.Items[0].minNextLERate };
 
             X.Call("drawMinLocalRateCountHightChartColumn", JSON.JavaScriptSerialize(listValues), JSON.JavaScriptSerialize(listCategories), rtl ? true : false);
 
 
            
 
-            //List<object> CountObjs = new List<object>();
-            //CountObjs.Add(new { category = GetLocalResourceObject("LocalsCount").ToString(), number = resp.Items[0].localsCount });//here 
-            //CountObjs.Add(new { category = GetLocalResourceObject("empCount").ToString(), number = resp.Items[0].empCount });//here
+            List<object> CountObjs = new List<object>();
+            CountObjs.Add(new { category = GetLocalResourceObject("employeeCount").ToString(), number = resp.Items[0].employeeCount});//here 
+            CountObjs.Add(new { category = GetLocalResourceObject("nationalCount").ToString(), number = resp.Items[0].nationalCount });//here
+            CountObjs.Add(new { category = GetLocalResourceObject("netNationalCount").ToString(), number = resp.Items[0].netNationalCount });
+           
 
-            //List<string> listCount = new List<string>() { GetLocalResourceObject("LocalsCount").ToString(), GetLocalResourceObject("empCount").ToString() };
-            //List<double> listempValues = new List<double>() { resp.Items[0].localsCount, resp.Items[0].empCount };
+            List<string> listCount = new List<string>() { GetLocalResourceObject("employeeCount").ToString(), GetLocalResourceObject("nationalCount").ToString(), GetLocalResourceObject("netNationalCount").ToString() };
+            List<double> listempValues = new List<double>() { resp.Items[0].employeeCount, resp.Items[0].nationalCount, resp.Items[0].netNationalCount };
 
-            //X.Call("drawLocalCountHightChartColumn", JSON.JavaScriptSerialize(listempValues), JSON.JavaScriptSerialize(listCount), rtl ? true : false);
+            X.Call("drawLocalCountHightChartColumn", JSON.JavaScriptSerialize(listempValues), JSON.JavaScriptSerialize(listCount), rtl ? true : false);
 
 
 

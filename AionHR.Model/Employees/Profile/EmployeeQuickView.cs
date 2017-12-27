@@ -56,6 +56,6 @@ namespace AionHR.Model.Employees.Profile
         public int usedLeaves { get; set;  }
         public int paidLeaves { get; set; }
         public int salary { get; set; }
-
+        public string currencyName { get; set; }
     }
 }

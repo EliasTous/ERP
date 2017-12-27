@@ -530,6 +530,7 @@
         App.employeeControl1_paidLeavesLbl.el.setStyle('float', alignment);
         App.employeeControl1_salaryTitle.el.setStyle('float', alignment);
         App.employeeControl1_salaryLbl.el.setStyle('float', alignment);
+      
         
     }
 </script>
@@ -713,6 +714,7 @@
                                     <Items>
                                         <ext:Label ID="eosBalanceTitle" Text="<%$ Resources:indemnity %>" runat="server" />
                                         <ext:Label ID="eosBalanceLbl" runat="server" />
+                                          
                                     </Items>
                                 </ext:Panel>
                               <%--  <ext:Panel runat="server">
@@ -755,6 +757,7 @@
                                 <ext:Panel runat="server">
                                     <Items>
                                         <ext:Label ID="salaryTitle" Text="<%$ Resources:salary %>" runat="server" />
+                                       
                                         <ext:Label ID="salaryLbl" runat="server" />
                                     </Items>
                                 </ext:Panel>

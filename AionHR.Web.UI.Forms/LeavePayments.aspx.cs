@@ -995,12 +995,14 @@ namespace AionHR.Web.UI.Forms
                 X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", routers.ErrorCode) != null ? GetGlobalResourceObject("Errors", routers.ErrorCode).ToString() + "<br>Technical Error: " + routers.ErrorCode + "<br> Summary: " + routers.Summary : routers.Summary).Show();
                 return null;
             }
+           response.result.dateString = response.result.date.ToString(_systemService.SessionHelper.GetDateformat());
+            response.result.effectiveDateString=response.result.effectiveDate.ToString(_systemService.SessionHelper.GetDateformat());
             List<LeavePayment> l = new List<LeavePayment>();
             l.Add(response.result);
             LeavePaymentsReport p = new LeavePaymentsReport();
             p.DataSource = l;
             p.Parameters["leaveBalance"].Value = routers.result.leaveBalance;
-            p.Parameters["hireDate"].Value = routers.result.hireDate;
+            p.Parameters["hireDate"].Value = routers.result.hireDate.Value.ToString(_systemService.SessionHelper.GetDateformat());
 
             p.Parameters["serviceDuration"].Value = routers.result.serviceDuration;
 
@@ -1011,8 +1013,9 @@ namespace AionHR.Web.UI.Forms
 
             p.Parameters["countryName"].Value = routers.result.countryName;
 
-            p.Parameters["lastLeaveStartDate"].Value = routers.result.lastLeaveStartDate;
-            p.Parameters["lastLeaveEndDate"].Value = routers.result.lastLeaveEndDate;
+            p.Parameters["lastLeaveStartDate"].Value = routers.result.lastLeaveStartDate.Value.ToString(_systemService.SessionHelper.GetDateformat()); ;
+            p.Parameters["lastLeaveEndDate"].Value = routers.result.lastLeaveEndDate.Value.ToString(_systemService.SessionHelper.GetDateformat()); ;
+        
 
 
 

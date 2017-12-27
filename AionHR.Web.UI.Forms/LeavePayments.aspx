@@ -30,7 +30,10 @@
 
     <script type="text/javascript" src="Scripts/locales/ar.js?id=7"></script>
     <script type="text/javascript">
-       
+        function openInNewTab() {
+            window.document.forms[0].target = '_blank';
+
+        }
     </script>
 
 

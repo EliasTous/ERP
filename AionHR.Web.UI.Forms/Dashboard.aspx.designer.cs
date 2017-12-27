@@ -787,6 +787,33 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Panel pnlRate;
         
         /// <summary>
+        /// inName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.TextField inName;
+        
+        /// <summary>
+        /// bsName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.TextField bsName;
+        
+        /// <summary>
+        /// leName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.TextField leName;
+        
+        /// <summary>
         /// pnllocalRateCountHighChart control.
         /// </summary>
         /// <remarks>

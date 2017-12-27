@@ -513,4 +513,34 @@
   <data name="Breaks" xml:space="preserve">
     <value>في الخارج</value>
   </data>
+  <data name="employeeCount" xml:space="preserve">
+    <value>عدد الموظفين</value>
+  </data>
+  <data name="FieldbusinessSizeName" xml:space="preserve">
+    <value>حجم منشأة</value>
+  </data>
+  <data name="FieldlevelName" xml:space="preserve">
+    <value>تصنيف المنشأة</value>
+  </data>
+  <data name="industryName" xml:space="preserve">
+    <value>نشاط المنشأة</value>
+  </data>
+  <data name="minLERate" xml:space="preserve">
+    <value>الحد الأدنى للنطاق الحالي</value>
+  </data>
+  <data name="minNextLERate" xml:space="preserve">
+    <value>الحد الأدنى للنطاق التالي</value>
+  </data>
+  <data name="nationalCount" xml:space="preserve">
+    <value>عدد المواطنين</value>
+  </data>
+  <data name="netNationalCount" xml:space="preserve">
+    <value>صافي احتساب المواطنين</value>
+  </data>
+  <data name="netRate" xml:space="preserve">
+    <value>صافي نسبة المواطنين</value>
+  </data>
+  <data name="rate" xml:space="preserve">
+    <value>نسبة المواطنين</value>
+  </data>
 </root>

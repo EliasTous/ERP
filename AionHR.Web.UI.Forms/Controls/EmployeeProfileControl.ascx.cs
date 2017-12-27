@@ -1118,6 +1118,7 @@ namespace AionHR.Web.UI.Forms
                 forSummary.usedLeaves,
                  forSummary.paidLeaves,
                   forSummary.salary,
+                 
 
                forSummary.serviceDuractionFriendly(GetGlobalResourceObject("Common", "Day").ToString(), GetGlobalResourceObject("Common", "Month").ToString(), GetGlobalResourceObject("Common", "Year").ToString())
             );
@@ -1127,7 +1128,7 @@ namespace AionHR.Web.UI.Forms
             branchLbl.Html = forSummary.branchName + "<br />";
             positionLbl.Html = forSummary.positionName + "<br />";
             esName.Html = forSummary.esName + "<br /><br />";
-            eosBalanceLbl.Html = forSummary.indemnity.ToString("N2") + "<br />";
+            eosBalanceLbl.Html = forSummary.indemnity.ToString("N2") +" "+forSummary.currencyName+ "<br />";
             serviceDuration.Html = forSummary.serviceDuration + "<br />";// Friendly(GetGlobalResourceObject("Common", "Day").ToString(), GetGlobalResourceObject("Common", "Month").ToString(), GetGlobalResourceObject("Common", "Year").ToString())+"<br />";
 
             paidLeavesYTDLbl.Html = forSummary.usedLeavesLeg + "<br/>";
@@ -1145,7 +1146,7 @@ namespace AionHR.Web.UI.Forms
 
             usedLeavesLbl.Html = forSummary.usedLeaves + "<br />";
             paidLeavesLbl.Html = forSummary.paidLeaves + "<br />";
-            salaryLbl.Html = forSummary.salary.ToString("N2") + "<br />";
+            salaryLbl.Html = forSummary.salary.ToString("N2") +" "+forSummary.currencyName+ "<br />";
             //employeeName.Text = resp.result.name.firstName + resp.result.name.lastName;
 
             imgControl.ImageUrl = forSummary.pictureUrl + "?x=" + DateTime.Now.Ticks;

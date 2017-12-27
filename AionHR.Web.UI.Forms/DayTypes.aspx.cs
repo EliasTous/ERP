@@ -338,6 +338,7 @@ namespace AionHR.Web.UI.Forms
                 X.Msg.Alert(Resources.Common.Error, dayTypes.Summary).Show();
                 return;
             }
+            dayTypes.Items.ForEach(x => x.color = x.color.Trim());
             this.Store1.DataSource = dayTypes.Items;
             e.Total = dayTypes.count;
 

@@ -1690,6 +1690,7 @@
                                                                     runat="server"
                                                                     Header="true" ID="pnlAttendancePeriodChart" ClientIDMode="Static" PaddingSpec="5 5 5 5"
                                                                     Layout="FitLayout" Flex="1" Html="<div id='AttendancePeriodChart' style='width:100%;height:100%' />">
+                                                                 
                                                                 </ext:Panel>
                                                             </Items>
                                                         </ext:Panel>
@@ -2025,20 +2026,33 @@
                                                             <LayoutConfig>
                                                                 <ext:HBoxLayoutConfig Align="Stretch" />
                                                             </LayoutConfig>
-
+                                                              <TopBar>
+                                                                        <ext:Toolbar runat="server">
+                                                                            <Items>
+                                                                             <ext:TextField ID="inName" runat="server" FieldLabel="<%$ Resources:industryName %>" ReadOnly="true"  LabelWidth="70" />
+                                                                                     <ext:ToolbarSeparator></ext:ToolbarSeparator>
+                                                                                <ext:TextField ID="bsName" runat="server" FieldLabel="<%$ Resources:FieldbusinessSizeName%>" ReadOnly="true"   />
+                                                                                <ext:ToolbarSeparator></ext:ToolbarSeparator>
+                                                                                  <ext:TextField ID="leName" runat="server" FieldLabel="<%$ Resources:FieldlevelName %>" ReadOnly="true"  LabelWidth="70"   />
+                                                                            </Items>
+                                                                        </ext:Toolbar>
+                                                                    </TopBar>
                                                             <Items>
 
                                                                 <ext:Panel AutoUpdateLayout="true"
                                                                     runat="server"
                                                                     Header="false" ID="pnllocalRateCountHighChart" ClientIDMode="Static" PaddingSpec="5 5 5 5"
-                                                                    Layout="FitLayout" Flex="1" Html="<div id='localRateCountHighChart' style='width:100%;height:100%' />">
+                                                                    Layout="FitLayout" Flex="1" Html="<div id='localRateCountHighChart' style='width:100%;height:90%' />">
+                                                                    <TopBar>
+                                                                        
+                                                                    </TopBar>
                                                                 </ext:Panel>
                                                                 <ext:Panel AutoUpdateLayout="true"
                                                                     runat="server"
                                                                     Header="false" ID="pnllocalCountHighChart" ClientIDMode="Static" PaddingSpec="5 5 5 5"
-                                                                    Layout="FitLayout" Flex="1" Html="<div id='localCountHighChart' style='width:100%;height:100%' />">
+                                                                    Layout="FitLayout" Flex="1" Html="<div id='localCountHighChart' style='width:100%;height:90%' />">
                                                                 </ext:Panel>
-
+                                                            
 
                                                             </Items>
                                                         </ext:Panel>

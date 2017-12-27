@@ -168,6 +168,12 @@
     <Compile Include="EntitlementDeductionsReport.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="FinalSettlementReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="FinalSettlementReport.Designer.cs">
+      <DependentUpon>FinalSettlementReport.cs</DependentUpon>
+    </Compile>
     <Compile Include="GoefencesReport.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -425,6 +431,12 @@
     <EmbeddedResource Include="EntitlementDeductionsReport.resx">
       <DependentUpon>EntitlementDeductionsReport.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FinalSettlementReport.ar.resx">
+      <DependentUpon>FinalSettlementReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FinalSettlementReport.resx">
+      <DependentUpon>FinalSettlementReport.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GoefencesReport.ar.resx">
       <DependentUpon>GoefencesReport.cs</DependentUpon>
     </EmbeddedResource>
@@ -466,6 +478,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="LeaveList.resx">
       <DependentUpon>LeaveList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LeavePaymentsReport.ar.resx">
+      <DependentUpon>LeavePaymentsReport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LeavePaymentsReport.resx">
       <DependentUpon>LeavePaymentsReport.cs</DependentUpon>

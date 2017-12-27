@@ -13,5 +13,9 @@ namespace Reports
             InitializeComponent();
         }
 
+        private void xrLabel16_BeforePrint(object sender, System.Drawing.Printing.PrintEventArgs e)
+        {
+          
+        }
     }
 }

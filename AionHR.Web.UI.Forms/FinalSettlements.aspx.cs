@@ -27,7 +27,7 @@ using AionHR.Model.Employees.Profile;
 using AionHR.Model.TimeAttendance;
 using Reports;
 using AionHR.Model.Payroll;
-
+using DevExpress.XtraReports.UI;
 
 namespace AionHR.Web.UI.Forms
 {
@@ -1404,6 +1404,162 @@ namespace AionHR.Web.UI.Forms
             html += GetLocalResourceObject("serviceDuration").ToString() + " {serviceDuration}</td><td>";
             html += GetLocalResourceObject("Status").ToString() + " {esName}</td></tr></table>";
             //RowExpander1.Template.Html = html;
+        }
+        protected void printBtn_Click(object sender, EventArgs e)
+        {
+            FinalSettlementReport p = GetReport();
+            string format = "Pdf";
+            string fileName = String.Format("Report.{0}", format);
+
+            MemoryStream ms = new MemoryStream();
+            p.CreateDocument(false);
+            p.ExportToPdf(ms, new DevExpress.XtraPrinting.PdfExportOptions() { ShowPrintDialogOnOpen = true });
+            Response.Clear();
+            Response.Write("<script>");
+            Response.Write("window.document.forms[0].target = '_blank';");
+            Response.Write("setTimeout(function () { window.document.forms[0].target = ''; }, 0);");
+            Response.Write("</script>");
+            Response.ContentType = "application/pdf";
+            Response.AddHeader("Content-Disposition", String.Format("{0}; filename={1}", "inline", fileName));
+            Response.BinaryWrite(ms.ToArray());
+            Response.Flush();
+            Response.Close();
+            //Response.Redirect("Reports/RT301.aspx");
+        }
+        protected void ExportPdfBtn_Click(object sender, EventArgs e)
+        {
+            FinalSettlementReport p = GetReport();
+            string format = "Pdf";
+            string fileName = String.Format("Report.{0}", format);
+
+            MemoryStream ms = new MemoryStream();
+            p.ExportToPdf(ms);
+            Response.Clear();
+
+            Response.ContentType = "application/pdf";
+            Response.AddHeader("Content-Disposition", String.Format("{0}; filename={1}", "attachment", fileName));
+            Response.BinaryWrite(ms.ToArray());
+            Response.Flush();
+            Response.Close();
+            //Response.Redirect("Reports/RT301.aspx");
+        }
+
+        protected void ExportXLSBtn_Click(object sender, EventArgs e)
+        {
+            FinalSettlementReport p = GetReport();
+            string format = "xls";
+            string fileName = String.Format("Report.{0}", format);
+
+            MemoryStream ms = new MemoryStream();
+            p.ExportToXls(ms);
+
+            Response.Clear();
+
+            Response.ContentType = "application/vnd.ms-excel";
+            Response.AddHeader("Content-Disposition", String.Format("{0}; filename={1}", "attachment", fileName));
+            Response.BinaryWrite(ms.ToArray());
+            Response.Flush();
+            Response.Close();
+            //Response.Redirect("Reports/RT301.aspx");
+        }
+        private FinalSettlementReport GetReport()
+        {
+
+            RecordRequest FinalSettlementReq = new RecordRequest();
+            FinalSettlementReq.RecordID = finalSetlemntRecordId.Text;
+            RecordResponse<FinalSettlement> FinalSettlementResponse = _payrollService.ChildGetRecord<FinalSettlement>(FinalSettlementReq);
+            if (!FinalSettlementResponse.Success)
+            {
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", FinalSettlementResponse.ErrorCode) != null ? GetGlobalResourceObject("Errors", FinalSettlementResponse.ErrorCode).ToString() + "<br>Technical Error: " + FinalSettlementResponse.ErrorCode + "<br> Summary: " + FinalSettlementResponse.Summary : FinalSettlementResponse.Summary).Show();
+                return null;
+            }
+            FinalSettlementResponse.result.dateStringFormat = FinalSettlementResponse.result.date.ToString(_systemService.SessionHelper.GetDateformat());
+            FinalEntitlementsDeductionsListRequest FinalSettlementEntitlement = new FinalEntitlementsDeductionsListRequest();
+            FinalSettlementEntitlement.type = 1;
+            FinalSettlementEntitlement.fsId = Convert.ToInt32(finalSetlemntRecordId.Text);
+            FinalSettlementEntitlement.sortBy = "seqNo";
+
+
+            ListResponse<FinalEntitlementsDeductions> FinalSettlementEntitlementResponse = _payrollService.ChildGetAll<FinalEntitlementsDeductions>(FinalSettlementEntitlement);
+            if (!FinalSettlementEntitlementResponse.Success)
+            {
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", FinalSettlementEntitlementResponse.ErrorCode) != null ? GetGlobalResourceObject("Errors", FinalSettlementEntitlementResponse.ErrorCode).ToString() : FinalSettlementEntitlementResponse.Summary).Show();
+                return null;
+            }
+            FinalEntitlementsDeductionsListRequest FinalSettlementDeduction = new FinalEntitlementsDeductionsListRequest();
+            FinalSettlementDeduction.type = 2;
+            FinalSettlementDeduction.fsId = Convert.ToInt32(finalSetlemntRecordId.Text);
+            FinalSettlementDeduction.sortBy = "seqNo";
+
+
+            ListResponse<FinalEntitlementsDeductions> FinalSettlementDeductionResponse = _payrollService.ChildGetAll<FinalEntitlementsDeductions>(FinalSettlementDeduction);
+            if (!FinalSettlementDeductionResponse.Success)
+            {
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", FinalSettlementDeductionResponse.ErrorCode) != null ? GetGlobalResourceObject("Errors", FinalSettlementDeductionResponse.ErrorCode).ToString() : FinalSettlementDeductionResponse.Summary).Show();
+                return null;
+            }
+
+           
+         List<FinalSettlement> l = new List<FinalSettlement>();
+            l.Add(FinalSettlementResponse.result);
+            FinalSettlementReport p = new FinalSettlementReport();
+
+            DetailReportBand FinalSettlementDetail = p.Bands["DetailReport"] as DetailReportBand;
+            FinalSettlementDetail.DataSource = l.ToList();
+            DetailReportBand FinalSettlementEntitlementDetail = p.Bands["DetailReport1"] as DetailReportBand;
+            FinalSettlementEntitlementDetail.DataSource = FinalSettlementEntitlementResponse.Items;
+            DetailReportBand FinalSettlementDeductionDetail = p.Bands["DetailReport2"] as DetailReportBand;
+            FinalSettlementDeductionDetail.DataSource = FinalSettlementDeductionResponse.Items;
+
+            EmployeeQuickViewRecordRequest req = new EmployeeQuickViewRecordRequest();
+            req.RecordID = FinalSettlementResponse.result.employeeId.ToString();
+            req.asOfDate = DateTime.Now;
+
+            RecordResponse<EmployeeQuickView> routers = _employeeService.ChildGetRecord<EmployeeQuickView>(req);
+            if (!routers.Success)
+            {
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", routers.ErrorCode) != null ? GetGlobalResourceObject("Errors", routers.ErrorCode).ToString() + "<br>Technical Error: " + routers.ErrorCode + "<br> Summary: " + routers.Summary : routers.Summary).Show();
+                return null;
+            }
+            p.Parameters["leaveBalance"].Value = routers.result.leaveBalance;
+            p.Parameters["hireDate"].Value = routers.result.hireDate.Value.ToString(_systemService.SessionHelper.GetDateformat());
+
+            p.Parameters["serviceDuration"].Value = routers.result.serviceDuration;
+
+            p.Parameters["departmentName"].Value = routers.result.departmentName;
+
+            p.Parameters["positionName"].Value = routers.result.positionName;
+            p.Parameters["branchName"].Value = routers.result.branchName;
+            p.Parameters["divisionName"].Value = routers.result.divisionName;
+            p.Parameters["reportToName"].Value = routers.result.reportToName.fullName;
+        
+
+
+            p.Parameters["countryName"].Value = routers.result.countryName;
+            p.Parameters["esName"].Value = routers.result.esName;
+            p.Parameters["paidLeaves"].Value = routers.result.paidLeaves;
+           
+
+
+            if (routers.result.lastLeaveStartDate!=null)
+            p.Parameters["lastLeaveStartDate"].Value = routers.result.lastLeaveStartDate.Value.ToString(_systemService.SessionHelper.GetDateformat());
+            if (routers.result.lastLeaveEndDate != null)
+                p.Parameters["lastLeaveEndDate"].Value = routers.result.lastLeaveEndDate.Value.ToString(_systemService.SessionHelper.GetDateformat()); 
+
+
+
+
+
+            p.Parameters["User"].Value = _systemService.SessionHelper.GetCurrentUser();
+            p.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;
+            p.RightToLeftLayout = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeftLayout.Yes : DevExpress.XtraReports.UI.RightToLeftLayout.No;
+
+            return p;
+
+
+
         }
 
     }

@@ -516,4 +516,28 @@
   <data name="rate" xml:space="preserve">
     <value>Rate</value>
   </data>
+  <data name="employeeCount" xml:space="preserve">
+    <value>Employee Count</value>
+  </data>
+  <data name="nationalCount" xml:space="preserve">
+    <value>National Count</value>
+  </data>
+  <data name="netNationalCount" xml:space="preserve">
+    <value>Net National Count</value>
+  </data>
+  <data name="minLERate" xml:space="preserve">
+    <value>Min Level Rate</value>
+  </data>
+  <data name="minNextLERate" xml:space="preserve">
+    <value>Min Next Level Rate</value>
+  </data>
+  <data name="FieldbusinessSizeName" xml:space="preserve">
+    <value>Business Size</value>
+  </data>
+  <data name="FieldlevelName" xml:space="preserve">
+    <value>Level</value>
+  </data>
+  <data name="industryName" xml:space="preserve">
+    <value>Industry</value>
+  </data>
 </root>
