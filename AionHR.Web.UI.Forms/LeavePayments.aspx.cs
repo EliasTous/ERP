@@ -830,7 +830,7 @@ namespace AionHR.Web.UI.Forms
         protected void FillEmployeeInfo(object sender, DirectEventArgs e)
         {
           string effectiveDate = e.ExtraParams["effectiveDate"];
-            if (!string.IsNullOrEmpty(employeeId.Value.ToString()) || !string.IsNullOrEmpty(effectiveDate))
+            if (!string.IsNullOrEmpty(employeeId.SelectedItem.Value.ToString()) || !string.IsNullOrEmpty(effectiveDate))
             { 
             EmployeeQuickViewRecordRequest req = new EmployeeQuickViewRecordRequest();
             if (!string.IsNullOrEmpty(employeeId.Value.ToString()))

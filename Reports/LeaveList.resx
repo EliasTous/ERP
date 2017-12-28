@@ -129,6 +129,9 @@
   <data name="xrLabel40.SizeF" type="System.Drawing.SizeF, System.Drawing">
     <value>83.3334045, 23</value>
   </data>
+  <data name="xrLabel40.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v16.2">
+    <value>MiddleCenter</value>
+  </data>
   <data name="xrLabel39.Dpi" type="System.Single, mscorlib">
     <value>100</value>
   </data>
@@ -137,6 +140,9 @@
   </data>
   <data name="xrLabel39.SizeF" type="System.Drawing.SizeF, System.Drawing">
     <value>100, 23</value>
+  </data>
+  <data name="xrLabel39.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v16.2">
+    <value>MiddleCenter</value>
   </data>
   <data name="xrLabel36.Dpi" type="System.Single, mscorlib">
     <value>100</value>
@@ -150,6 +156,9 @@
   <data name="xrLabel36.Text" xml:space="preserve">
     <value>xrLabel36</value>
   </data>
+  <data name="xrLabel36.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v16.2">
+    <value>MiddleCenter</value>
+  </data>
   <data name="xrLabel34.Dpi" type="System.Single, mscorlib">
     <value>100</value>
   </data>
@@ -161,6 +170,9 @@
   </data>
   <data name="xrLabel34.Text" xml:space="preserve">
     <value>xrLabel34</value>
+  </data>
+  <data name="xrLabel34.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v16.2">
+    <value>MiddleCenter</value>
   </data>
   <data name="xrLabel32.Dpi" type="System.Single, mscorlib">
     <value>100</value>
@@ -174,6 +186,9 @@
   <data name="xrLabel32.Text" xml:space="preserve">
     <value>xrLabel32</value>
   </data>
+  <data name="xrLabel32.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v16.2">
+    <value>MiddleCenter</value>
+  </data>
   <data name="xrLabel8.Dpi" type="System.Single, mscorlib">
     <value>100</value>
   </data>
@@ -185,6 +200,9 @@
   </data>
   <data name="xrLabel8.Text" xml:space="preserve">
     <value>xrLabel8</value>
+  </data>
+  <data name="xrLabel8.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v16.2">
+    <value>MiddleCenter</value>
   </data>
   <data name="xrLabel7.Dpi" type="System.Single, mscorlib">
     <value>100</value>
@@ -198,6 +216,9 @@
   <data name="xrLabel7.Text" xml:space="preserve">
     <value>xrLabel7</value>
   </data>
+  <data name="xrLabel7.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v16.2">
+    <value>MiddleCenter</value>
+  </data>
   <data name="xrLabel6.Dpi" type="System.Single, mscorlib">
     <value>100</value>
   </data>
@@ -209,6 +230,9 @@
   </data>
   <data name="xrLabel6.Text" xml:space="preserve">
     <value>xrLabel6</value>
+  </data>
+  <data name="xrLabel6.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v16.2">
+    <value>MiddleCenter</value>
   </data>
   <data name="xrLabel5.Dpi" type="System.Single, mscorlib">
     <value>100</value>
@@ -222,6 +246,9 @@
   <data name="xrLabel5.Text" xml:space="preserve">
     <value>xrLabel5</value>
   </data>
+  <data name="xrLabel5.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v16.2">
+    <value>MiddleCenter</value>
+  </data>
   <data name="xrLabel4.Dpi" type="System.Single, mscorlib">
     <value>100</value>
   </data>
@@ -233,6 +260,9 @@
   </data>
   <data name="xrLabel4.Text" xml:space="preserve">
     <value>xrLabel4</value>
+  </data>
+  <data name="xrLabel4.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v16.2">
+    <value>MiddleCenter</value>
   </data>
   <data name="xrLabel3.Dpi" type="System.Single, mscorlib">
     <value>100</value>
@@ -246,6 +276,9 @@
   <data name="xrLabel3.Text" xml:space="preserve">
     <value>xrLabel3</value>
   </data>
+  <data name="xrLabel3.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v16.2">
+    <value>MiddleCenter</value>
+  </data>
   <data name="xrLabel2.Dpi" type="System.Single, mscorlib">
     <value>100</value>
   </data>
@@ -258,6 +291,9 @@
   <data name="xrLabel2.Text" xml:space="preserve">
     <value>xrLabel2</value>
   </data>
+  <data name="xrLabel2.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v16.2">
+    <value>MiddleCenter</value>
+  </data>
   <data name="xrLabel1.Dpi" type="System.Single, mscorlib">
     <value>100</value>
   </data>
@@ -269,6 +305,9 @@
   </data>
   <data name="xrLabel1.Text" xml:space="preserve">
     <value>xrLabel1</value>
+  </data>
+  <data name="xrLabel1.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v16.2">
+    <value>MiddleCenter</value>
   </data>
   <data name="Detail.Dpi" type="System.Single, mscorlib">
     <value>100</value>
@@ -309,6 +348,9 @@
   <data name="xrLabel38.Text" xml:space="preserve">
     <value>Branch</value>
   </data>
+  <data name="xrLabel38.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v16.2">
+    <value>MiddleCenter</value>
+  </data>
   <data name="xrLabel37.Dpi" type="System.Single, mscorlib">
     <value>100</value>
   </data>
@@ -320,6 +362,9 @@
   </data>
   <data name="xrLabel37.Text" xml:space="preserve">
     <value>Department</value>
+  </data>
+  <data name="xrLabel37.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v16.2">
+    <value>MiddleCenter</value>
   </data>
   <data name="xrLabel35.Dpi" type="System.Single, mscorlib">
     <value>100</value>
@@ -333,6 +378,9 @@
   <data name="xrLabel35.Text" xml:space="preserve">
     <value>Type</value>
   </data>
+  <data name="xrLabel35.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v16.2">
+    <value>MiddleCenter</value>
+  </data>
   <data name="xrLabel33.Dpi" type="System.Single, mscorlib">
     <value>100</value>
   </data>
@@ -344,6 +392,9 @@
   </data>
   <data name="xrLabel33.Text" xml:space="preserve">
     <value>Duration</value>
+  </data>
+  <data name="xrLabel33.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v16.2">
+    <value>MiddleCenter</value>
   </data>
   <data name="xrLabel31.Dpi" type="System.Single, mscorlib">
     <value>100</value>
@@ -357,6 +408,9 @@
   <data name="xrLabel31.Text" xml:space="preserve">
     <value>Ref</value>
   </data>
+  <data name="xrLabel31.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v16.2">
+    <value>MiddleCenter</value>
+  </data>
   <data name="xrLabel16.Dpi" type="System.Single, mscorlib">
     <value>100</value>
   </data>
@@ -368,6 +422,9 @@
   </data>
   <data name="xrLabel16.Text" xml:space="preserve">
     <value>Justification</value>
+  </data>
+  <data name="xrLabel16.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v16.2">
+    <value>MiddleCenter</value>
   </data>
   <data name="xrLabel15.Dpi" type="System.Single, mscorlib">
     <value>100</value>
@@ -381,6 +438,9 @@
   <data name="xrLabel15.Text" xml:space="preserve">
     <value>Is Paid</value>
   </data>
+  <data name="xrLabel15.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v16.2">
+    <value>MiddleCenter</value>
+  </data>
   <data name="xrLabel14.Dpi" type="System.Single, mscorlib">
     <value>100</value>
   </data>
@@ -392,6 +452,9 @@
   </data>
   <data name="xrLabel14.Text" xml:space="preserve">
     <value>Type Name</value>
+  </data>
+  <data name="xrLabel14.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v16.2">
+    <value>MiddleCenter</value>
   </data>
   <data name="xrLabel13.Dpi" type="System.Single, mscorlib">
     <value>100</value>
@@ -405,6 +468,9 @@
   <data name="xrLabel13.Text" xml:space="preserve">
     <value>Status</value>
   </data>
+  <data name="xrLabel13.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v16.2">
+    <value>MiddleCenter</value>
+  </data>
   <data name="xrLabel12.Dpi" type="System.Single, mscorlib">
     <value>100</value>
   </data>
@@ -416,6 +482,9 @@
   </data>
   <data name="xrLabel12.Text" xml:space="preserve">
     <value>Returned</value>
+  </data>
+  <data name="xrLabel12.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v16.2">
+    <value>MiddleCenter</value>
   </data>
   <data name="xrLabel11.Dpi" type="System.Single, mscorlib">
     <value>100</value>
@@ -429,6 +498,9 @@
   <data name="xrLabel11.Text" xml:space="preserve">
     <value>End</value>
   </data>
+  <data name="xrLabel11.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v16.2">
+    <value>MiddleCenter</value>
+  </data>
   <data name="xrLabel10.Dpi" type="System.Single, mscorlib">
     <value>100</value>
   </data>
@@ -440,6 +512,9 @@
   </data>
   <data name="xrLabel10.Text" xml:space="preserve">
     <value>Start</value>
+  </data>
+  <data name="xrLabel10.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v16.2">
+    <value>MiddleCenter</value>
   </data>
   <data name="xrLabel9.Dpi" type="System.Single, mscorlib">
     <value>100</value>
@@ -453,6 +528,9 @@
   <data name="xrLabel9.Text" xml:space="preserve">
     <value>Employee</value>
   </data>
+  <data name="xrLabel9.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v16.2">
+    <value>MiddleCenter</value>
+  </data>
   <data name="groupHeaderBand1.Dpi" type="System.Single, mscorlib">
     <value>100</value>
   </data>
@@ -463,10 +541,10 @@
     <value>100</value>
   </data>
   <data name="xrLine2.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v16.2">
-    <value>10.0000067, 6.99996948</value>
+    <value>1.04165077, 6.99996948</value>
   </data>
   <data name="xrLine2.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>1059, 2.083333</value>
+    <value>1203.95825, 2.083333</value>
   </data>
   <data name="groupHeaderBand2.Dpi" type="System.Single, mscorlib">
     <value>100</value>
@@ -727,7 +805,7 @@
     <value>0, 114.499985</value>
   </data>
   <data name="xrLine1.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>969, 8.416679</value>
+    <value>1204.99988, 8.416679</value>
   </data>
   <data name="PageHeader.Dpi" type="System.Single, mscorlib">
     <value>100</value>

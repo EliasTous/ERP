@@ -37,7 +37,8 @@ namespace AionHR.Model.Reports
        
         public string isPaidString { get; set; }
         public string ltName { get; set; }
-
+        public string departmentName { get; set; }
+        public string branchName { set; get; }
 
     }
 }

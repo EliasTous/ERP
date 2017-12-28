@@ -163,7 +163,7 @@
     <value>الادارة العليا</value>
   </data>
   <data name="FieldEffectiveDate" xml:space="preserve">
-    <value>التاريخ</value>
+    <value>تاريخ الاستحقاق</value>
   </data>
   <data name="FieldEmployeeId" xml:space="preserve">
     <value>الموظف</value>
