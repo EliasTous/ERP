@@ -14,18 +14,18 @@
 
 
 
-    <link rel="stylesheet" href="../Scripts/HijriCalender/redmond.calendars.picker.css" />
+    <link rel="stylesheet" href="Scripts/HijriCalender/redmond.calendars.picker.css" />
 
-    <script src="../Scripts/HijriCalender/jquery.plugin.js" type="text/javascript"></script>
+    <script src="Scripts/HijriCalender/jquery.plugin.js?id=280" type="text/javascript"></script>
 
-    <script type="text/javascript" src="../Scripts/HijriCalender/jquery.calendars.js"></script>
-    <script type="text/javascript" src="../Scripts/HijriCalender/jquery.calendars-ar.js"></script>
-    <script type="text/javascript" src="../Scripts/HijriCalender/jquery.calendars.picker.js"></script>
-    <script type="text/javascript" src="../Scripts/HijriCalender/jquery.calendars.plus.js"></script>
-    <script type="text/javascript" src="../Scripts/HijriCalender/jquery.calendars.islamic.js"></script>
-    <script type="text/javascript" src="../Scripts/HijriCalender/jquery.calendars.islamic-ar.js"></script>
-    <script type="text/javascript" src="../Scripts/HijriCalender/jquery.calendars.lang.js"></script>
-    <script type="text/javascript" src="../Scripts/HijriCalender/jquery.calendars.picker-ar.js"></script>
+    <script type="text/javascript" src="Scripts/HijriCalender/jquery.calendars.js?id=101"></script>
+    <script type="text/javascript" src="Scripts/HijriCalender/jquery.calendars-ar.js?id=105"></script>
+    <script type="text/javascript" src="Scripts/HijriCalender/jquery.calendars.picker.js?id=205"></script>
+    <script type="text/javascript" src="Scripts/HijriCalender/jquery.calendars.plus.js?id=107"></script>
+    <script type="text/javascript" src="Scripts/HijriCalender/jquery.calendars.islamic.js?id=109"></script>
+    <script type="text/javascript" src="Scripts/HijriCalender/jquery.calendars.islamic-ar.js?id=111"></script>
+    <script type="text/javascript" src="Scripts/HijriCalender/jquery.calendars.lang.js?id=115"></script>
+    <script type="text/javascript" src="Scripts/HijriCalender/jquery.calendars.picker-ar.js?id=120"></script>
     <script type="text/javascript">
         var cropper = null;
 

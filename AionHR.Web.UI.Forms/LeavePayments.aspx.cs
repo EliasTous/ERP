@@ -127,6 +127,7 @@ namespace AionHR.Web.UI.Forms
                 HideShowButtons();
                 HideShowColumns();
                 Column6.Format = DateColumn1.Format = date.Format = effectiveDate.Format = _systemService.SessionHelper.GetDateformat();
+                effectiveDate.MaxDate = DateTime.Now;
 
                 //statusPref.Select("0");
 
@@ -284,6 +285,7 @@ namespace AionHR.Web.UI.Forms
                         X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).   ToString() + "<br>Technical Error: " + response.ErrorCode + "<br> Summary: " + response.Summary : response.Summary).Show();
                         return;
                     }
+                   
 
 
                     //employeeId.SuspendEvent("Change"); 
@@ -303,8 +305,8 @@ namespace AionHR.Web.UI.Forms
                     leaveBalance.Text = response.result.leaveBalance.ToString();
            
                     this.BasicInfoTab.SetValues(response.result);
-
-
+                    updateLeaveBalance.Text = "true";
+                      
 
 
 
@@ -317,6 +319,7 @@ namespace AionHR.Web.UI.Forms
                     //    effectiveDate.SelectedDate = DateTime.Now;
                     this.EditRecordWindow.Title = Resources.Common.EditWindowsTitle;
                     this.EditRecordWindow.Show();
+                    
                     break;
 
                 case "imgDelete":
@@ -595,6 +598,7 @@ namespace AionHR.Web.UI.Forms
             date.SelectedDate = DateTime.Now;
             effectiveDate.SelectedDate = DateTime.Now;
             this.EditRecordWindow.Show();
+            updateLeaveBalance.Text = "false";
         }
 
 
@@ -699,7 +703,7 @@ namespace AionHR.Web.UI.Forms
                         b.recordId = r.recordId;
 
                         //Add this record to the store 
-                        this.Store1.Insert(0, b);
+                        //this.Store1.Insert(0, b);
 
                         //Display successful notification
                         Notification.Show(new NotificationConfig
@@ -712,9 +716,10 @@ namespace AionHR.Web.UI.Forms
                       
                         currentCase.Text = b.recordId;
 
-                        RowSelectionModel sm = this.GridPanel1.GetSelectionModel() as RowSelectionModel;
-                        sm.DeselectAll();
-                        sm.Select(b.recordId.ToString());
+                        //RowSelectionModel sm = this.GridPanel1.GetSelectionModel() as RowSelectionModel;
+                        //sm.DeselectAll();
+                        //sm.Select(b.recordId.ToString());
+                        Store1.Reload();
                         this.EditRecordWindow.Close();
 
 
@@ -830,13 +835,15 @@ namespace AionHR.Web.UI.Forms
         protected void FillEmployeeInfo(object sender, DirectEventArgs e)
         {
           string effectiveDate = e.ExtraParams["effectiveDate"];
-            if (!string.IsNullOrEmpty(employeeId.SelectedItem.Value.ToString()) || !string.IsNullOrEmpty(effectiveDate))
+           string  employeeId= e.ExtraParams["employeeId"];
+            if (!string.IsNullOrEmpty(employeeId) || !string.IsNullOrEmpty(effectiveDate))
             { 
             EmployeeQuickViewRecordRequest req = new EmployeeQuickViewRecordRequest();
-            if (!string.IsNullOrEmpty(employeeId.Value.ToString()))
-                req.RecordID = employeeId.Value.ToString();
-            else
-                req.RecordID = "0";
+                if (!string.IsNullOrEmpty(employeeId))
+                    req.RecordID = employeeId;
+
+                else
+                    req.RecordID = "0";
             req.asOfDate = Convert.ToDateTime(effectiveDate);
 
             RecordResponse<EmployeeQuickView> routers = _employeeService.ChildGetRecord<EmployeeQuickView>(req);
@@ -863,10 +870,14 @@ namespace AionHR.Web.UI.Forms
             positionNameTx.Text = routers.result.positionName;
             hireDateDf.Value = routers.result.hireDate;
             nationalityTx.Text = routers.result.countryName;
-            earnedLeaves.Text = routers.result.earnedLeaves.ToString();
-            usedLeaves.Text = routers.result.usedLeaves.ToString();
+                if (updateLeaveBalance.Text == "false")
+                {
+                    earnedLeaves.Text = routers.result.earnedLeaves.ToString();
+                    leaveBalance.Text = routers.result.leaveBalance.ToString();
+                }
+                    usedLeaves.Text = routers.result.usedLeaves.ToString();
             paidLeaves.Text = routers.result.paidLeaves.ToString();
-            leaveBalance.Text = routers.result.leaveBalance.ToString();
+         
 
             lastLeaveStartDate.Value = routers.result.lastLeaveStartDate;
             lastLeaveEndDate.Value = routers.result.lastLeaveEndDate;
@@ -875,6 +886,7 @@ namespace AionHR.Web.UI.Forms
 
 
             serviceDuration.Text = routers.result.serviceDuration;
+                updateLeaveBalance.Text = "false";
         }
            
 
@@ -973,7 +985,8 @@ namespace AionHR.Web.UI.Forms
         }
         private LeavePaymentsReport GetReport()
         {
-
+            if (String.IsNullOrEmpty(currentLeavePayment.Text))
+                return new LeavePaymentsReport();
             RecordRequest r = new RecordRequest();
             r.RecordID = currentLeavePayment.Text;
 

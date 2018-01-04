@@ -175,6 +175,15 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Hidden currentLeavePayment;
         
         /// <summary>
+        /// updateLeaveBalance control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Hidden updateLeaveBalance;
+        
+        /// <summary>
         /// Store1 control.
         /// </summary>
         /// <remarks>
@@ -310,15 +319,6 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Column Column4;
         
         /// <summary>
-        /// Column7 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Column Column7;
-        
-        /// <summary>
         /// Column20 control.
         /// </summary>
         /// <remarks>
@@ -353,6 +353,15 @@ namespace AionHR.Web.UI.Forms {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.Column Column10;
+        
+        /// <summary>
+        /// Column7 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Column Column7;
         
         /// <summary>
         /// colEdit control.

@@ -1,4 +1,4 @@
-net use \\192.168.1.10
+net use \\192.168.1.10  /user:administrator p@ssw0rds
 xcopy *.aspx \\192.168.1.10\aionhr\ /Y
 xcopy Reports\*.aspx \\192.168.1.10\aionhr\Reports /Y
 xcopy EmployeePages\*.aspx \\192.168.1.10\aionhr\EmployeePages /Y
