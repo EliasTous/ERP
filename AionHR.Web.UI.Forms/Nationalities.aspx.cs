@@ -378,6 +378,7 @@ namespace AionHR.Web.UI.Forms
                     }
                     else
                     {
+                        b.ssName = ssIdCB.SelectedItem. Text;
 
                         //Add this record to the store 
                         this.Store1.Insert(0, b);
