@@ -118,6 +118,7 @@
                     <ColumnModel ID="ColumnModel2" runat="server" SortAscText="<%$ Resources:Common , SortAscText %>" SortDescText="<%$ Resources:Common ,SortDescText  %>" SortClearText="<%$ Resources:Common ,SortClearText  %>" ColumnsText="<%$ Resources:Common ,ColumnsText  %>" EnableColumnHide="false" Sortable="false">
                         <Columns>
                             <ext:Column runat="server" DataIndex="seqNo" Visible="false" />
+                            <ext:Column runat="server" Text="<%$ Resources: FieldDependency %>" DataIndex="dependencyType" Flex="1" />
                             <ext:Column runat="server" Text="<%$ Resources: FieldFullName %>" Flex="1">
                                 <Renderer Handler="return record.data['firstName'] +'&nbsp;'+ record.data['lastName']" />
                             </ext:Column>

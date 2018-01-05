@@ -106,8 +106,8 @@ namespace AionHR.Web.UI.Forms
         protected void Page_Init(object sender, EventArgs e)
         {
 
-            //leaveRequest1.Store1 = this.Store1;
-            //leaveRequest1.GrigPanel1 = this.GridPanel1;
+            leaveRequest1.Store1 = this.Store1;
+            leaveRequest1.GrigPanel1 = this.GridPanel1;
 
         }
 
@@ -160,7 +160,7 @@ namespace AionHR.Web.UI.Forms
             {
                 case "imgEdit":
                     //Step 1 : get the object from the Web Service 
-                 //   leaveRequest1.Update(id);
+                leaveRequest1.Update(id);
 
 
                     break;
@@ -421,7 +421,7 @@ namespace AionHR.Web.UI.Forms
 
         protected void ReturnLeave(object sender, DirectEventArgs e)
         {
-           // leaveRequest1.Return();
+           leaveRequest1.Return();
         }
 
         private List<LeaveDay> GenerateLeaveDays(string encoded)
@@ -923,9 +923,9 @@ namespace AionHR.Web.UI.Forms
             string status1 = e.ExtraParams["status"];
             JsonSerializerSettings settings = new JsonSerializerSettings();
             CustomResolver res = new CustomResolver();
-            //  res.AddRule("leaveRequest1_employeeId", "employeeId");
-            //res.AddRule("leaveRequest1_ltId", "ltId");
-            // res.AddRule("leaveRequest1_status", "status");
+           res.AddRule("leaveRequest1_employeeId", "employeeId");
+            res.AddRule("leaveRequest1_ltId", "ltId");
+             res.AddRule("leaveRequest1_status", "status");
 
             settings.ContractResolver = res;
             leaveRequetsSelfservice b = JsonConvert.DeserializeObject<leaveRequetsSelfservice>(obj, settings);
@@ -989,7 +989,7 @@ namespace AionHR.Web.UI.Forms
                             Html = Resources.Common.RecordSavingSucc
                         });
 
-                        this.EditRecordWindow.Close();
+                        //this.EditRecordWindow.Close();
                         //SetTabPanelEnabled(true);
                         //////RowSelectionModel sm = this.GridPanel1.GetSelectionModel() as RowSelectionModel;
                         //////sm.DeselectAll();
@@ -1110,7 +1110,7 @@ namespace AionHR.Web.UI.Forms
                             Icon = Icon.Information,
                             Html = Resources.Common.RecordUpdatedSucc
                         });
-                        this.EditRecordWindow.Close();
+                        //this.EditRecordWindow.Close();
 
 
                     }

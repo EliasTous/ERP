@@ -800,7 +800,7 @@ namespace AionHR.Web.UI.Forms
                   
                
                 
-                    //request.entity.status = 0; 
+                    request.entity.status = 1; 
                     PostResponse<loanSelfService> r = _selfServiceService.ChildAddOrUpdate<loanSelfService>(request);
                     //check if the insert failed
                     if (!r.Success)//it maybe be another condition
@@ -856,7 +856,11 @@ namespace AionHR.Web.UI.Forms
                     //getting the id of the record
                     PostRequest<loanSelfService> request = new PostRequest<loanSelfService>();
                     request.entity = b;
-                    PostResponse<loanSelfService> r = _loanService.AddOrUpdate<loanSelfService>(request);                      //Step 1 Selecting the object or building up the object for update purpose
+                    request.entity.employeeId = _systemService.SessionHelper.GetEmployeeId();
+                 
+                   
+                   
+                    PostResponse<loanSelfService> r = _selfServiceService.ChildAddOrUpdate<loanSelfService>(request);                    //Step 1 Selecting the object or building up the object for update purpose
 
                     //Step 2 : saving to store
 

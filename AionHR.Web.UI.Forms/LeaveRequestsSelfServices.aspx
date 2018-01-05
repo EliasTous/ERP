@@ -275,9 +275,9 @@
                             <ext:Column runat="server" Width="70" Text="<%$ Resources: LateDays%>">
                                 <Renderer Handler="if(record.data['returnDate']!='') var d=moment(record.data['returnDate']).diff(moment(record.data['endDate']), 'days')+1; if(d>0) return d; else return '';" />
                             </ext:Column>--%>
-                          <%--  <ext:Column ID="Column3" DataIndex="status" Text="<%$ Resources: FieldStatus%>" runat="server" Flex="2">
+                        <ext:Column ID="Column10" DataIndex="status" Text="<%$ Resources: FieldStatus%>" runat="server" Flex="2">
                                 <Renderer Handler="return(GetStatusName(record.data['status']));" />
-                            </ext:Column>--%>
+                            </ext:Column>
 
                             <ext:Column ID="Column5" DataIndex="ltName" Text="<%$ Resources: FieldLtName%>" runat="server" Flex="2" />
 
@@ -312,7 +312,7 @@
                                 <Renderer Fn="attachRender" />
                             </ext:Column>
                              <ext:Column runat="server"
-                                ID="colDelete" Visible="false"
+                                ID="colDelete" Visible="true"
                                 Text="<%$ Resources: Common , Delete %>"
                                 MinWidth="80"
                                 Align="Center"
@@ -321,7 +321,7 @@
                                 Hideable="false"
                                 MenuDisabled="true"
                                 Resizable="false">
-                                <Renderer Handler="return editRender()+'&nbsp;&nbsp;' +deleteRender(); " />
+                                <Renderer Handler="if(record.data['status']=='1') return editRender()+'&nbsp;&nbsp;' +deleteRender(); " />
 
                             </ext:Column>
 
@@ -778,7 +778,7 @@
     </DirectEvents>
 </ext:Window>
 
-
+          <uc:leaveControl runat="server" ID="leaveRequest1" />
     </form>
 </body>
 </html>
