@@ -158,6 +158,7 @@
     <Content Include="ARForgotPassword.aspx" />
     <Content Include="ARresetPW.aspx" />
     <Content Include="AssetAllowances.aspx" />
+    <Content Include="AssetAllowanceSelfServices.aspx" />
     <Content Include="AssetCategories.aspx" />
     <Content Include="Banks.aspx" />
     <Content Include="BiometricDevices.aspx" />
@@ -200,6 +201,7 @@
     <Content Include="DocumentTypes.aspx" />
     <Content Include="EmployeeCals.aspx" />
     <Content Include="EmployeeComplaints.aspx" />
+    <Content Include="EmployeeComplaintSelfServices.aspx" />
     <Content Include="EmployeePages\Contacts.aspx" />
     <Content Include="EmployeePages\Dependants.aspx" />
     <Content Include="EmployeePages\Documents.aspx" />
@@ -565,6 +567,13 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reports.resx</DependentUpon>
     </Compile>
+    <Compile Include="AssetAllowanceSelfServices.aspx.cs">
+      <DependentUpon>AssetAllowanceSelfServices.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AssetAllowanceSelfServices.aspx.designer.cs">
+      <DependentUpon>AssetAllowanceSelfServices.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Banks.aspx.cs">
       <DependentUpon>Banks.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -578,6 +587,13 @@
     </Compile>
     <Compile Include="EmployeeCals.aspx.designer.cs">
       <DependentUpon>EmployeeCals.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EmployeeComplaintSelfServices.aspx.cs">
+      <DependentUpon>EmployeeComplaintSelfServices.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EmployeeComplaintSelfServices.aspx.designer.cs">
+      <DependentUpon>EmployeeComplaintSelfServices.aspx</DependentUpon>
     </Compile>
     <Compile Include="EmployeePages\EmployeeCalendars.aspx.cs">
       <DependentUpon>EmployeeCalendars.aspx</DependentUpon>
@@ -2206,6 +2222,10 @@
     <Content Include="Reports\App_LocalResources\RT306.aspx.resx" />
     <Content Include="App_LocalResources\NationalQuotas.aspx.resx" />
     <Content Include="App_LocalResources\NationalQuotas.aspx.ar.resx" />
+    <Content Include="App_LocalResources\AssetAllowanceSelfServices.aspx.resx" />
+    <Content Include="App_LocalResources\AssetAllowanceSelfServices.aspx.ar.resx" />
+    <Content Include="App_LocalResources\EmployeeComplaintSelfServices.aspx.resx" />
+    <Content Include="App_LocalResources\EmployeeComplaintSelfServices.aspx.ar.resx" />
     <EmbeddedResource Include="Reports\RT201.aspx.resx">
       <DependentUpon>RT201.aspx.cs</DependentUpon>
       <Generator>ResXFileCodeGenerator</Generator>

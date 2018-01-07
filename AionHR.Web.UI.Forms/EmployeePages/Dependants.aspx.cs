@@ -374,7 +374,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     {
 
                         //Add this record to the store 
-                        this.dependandtsStore.Insert(0, b);
+                        //this.dependandtsStore.Insert(0, b);
 
                         //Display successful notification
                         Notification.Show(new NotificationConfig
@@ -386,9 +386,10 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                         });
 
                         this.EditContactWindow.Close();
-                        RowSelectionModel sm = this.dependandtsGrid.GetSelectionModel() as RowSelectionModel;
-                        sm.DeselectAll();
-                        sm.Select(b.seqNo.ToString());
+                        //RowSelectionModel sm = this.dependandtsGrid.GetSelectionModel() as RowSelectionModel;
+                        //sm.DeselectAll();
+                        //sm.Select(b.seqNo.ToString());
+                        dependandtsStore.Reload();
 
 
 

@@ -380,7 +380,7 @@ namespace AionHR.Web.UI.Forms.Controls
             // res.AddRule("leaveRequest1_status", "status");
             settings.ContractResolver = res;
             LeaveRequest b = JsonConvert.DeserializeObject<LeaveRequest>(obj, settings);
-            b.status = Convert.ToInt16(status1); 
+            //b.status = Convert.ToInt16(status1); 
             string id = e.ExtraParams["id"];
             // Define the object to add or edit as null
             if (!b.isPaid.HasValue)
