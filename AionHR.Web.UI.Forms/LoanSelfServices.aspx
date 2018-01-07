@@ -166,13 +166,13 @@
                             <%--<ext:Column ID="Column4" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDeductedAmount %>" DataIndex="deductedAmount" Hideable="false" Width="140">
                                 <Renderer Handler="return record.data['deductedAmount'] ;"></Renderer>
                             </ext:Column>--%>
-
+                             <ext:Column ID="Column1" DataIndex="currencyRef" Text="<%$ Resources: FieldSACurrencyName%>" runat="server" Flex="2" />
                          <ext:Column ID="Column12" DataIndex="purpose" Text="<%$ Resources: FieldPurpose%>" runat="server" Flex="2" />
 
 
-                           <%-- <ext:Column ID="colStatus" DataIndex="status" Text="<%$ Resources: FieldStatus%>" runat="server" Width="100">
+                            <ext:Column ID="colStatus" DataIndex="status" Text="<%$ Resources: FieldStatus%>" runat="server" Width="100">
                                 <Renderer Handler="return GetStatusName(record.data['status']);" />
-                            </ext:Column>--%>
+                            </ext:Column>
 
                             <ext:DateColumn ID="cc" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEffectiveDate %>" DataIndex="effectiveDate" Hideable="false" Width="120" Align="Center">
                             </ext:DateColumn>
@@ -214,7 +214,7 @@
                                 <Renderer Fn="attachRender" />
                             </ext:Column>
                              <ext:Column runat="server"
-                                ID="colDelete"  Visible="false"
+                                ID="colDelete"  Visible="true"
                                 Text="<%$ Resources: Common , Delete %>"
                                 MinWidth="60"
                                 Align="Center"
@@ -223,7 +223,7 @@
                                 Hideable="false"
                                 MenuDisabled="true"
                                 Resizable="false">
-                                <Renderer Handler="return editRender()+ '&nbsp&nbsp'+ deleteRender();" />
+                                <Renderer Handler="if (record.data['status']=='1') return editRender()+ '&nbsp&nbsp'+ deleteRender();" />
 
                             </ext:Column>
 

@@ -422,12 +422,16 @@ namespace AionHR.Web.UI.Forms.Utilities
             Ext.Net.Node ln = BuildLeafNode("ln", Resources.Common.Loan, "Group", true, ss);
             //Ext.Net.Node sl = BuildLeafNode("sl", Resources.Common.Salary, "Group", true, ss);
             Ext.Net.Node lt = BuildLeafNode("lt", Resources.Common.Letters, "Group", true, ss);
+            Ext.Net.Node AA = BuildLeafNode("AA", Resources.Common.AssetAllowancesSelfService, "Group", true, ss);
+            Ext.Net.Node CO = BuildLeafNode("CO", Resources.Common.EmployeeComplaintsSelfServices, "Group", true, ss);
 
 
             FillConfigItem(lt, "LettersSelfServices", "LettersSelfServices.aspx", Resources.Common.Letters, "icon-Employees", "1");
             FillConfigItem(pi, "MyInfos","Myinfos.aspx", Resources.Common.PersonalInfo, "icon-Employees", "1");
             FillConfigItem(lv, "LeaveRequestsSelfService", "LeaveRequestsSelfServices.aspx", Resources.Common.LeaveRequests, "icon-Employees", "1");
             FillConfigItem(ln, "LoanSelfService", "LoanSelfServices.aspx", Resources.Common.Loan, "icon-Employees", "1");
+            FillConfigItem(AA, "AssetAllowanceSelfService", "AssetAllowanceSelfServices.aspx", Resources.Common.AssetAllowancesSelfService, "icon-Employees", "1");
+            FillConfigItem(CO, "EmployeeComplaintsSelfService", "EmployeeComplaintSelfServices.aspx", Resources.Common.EmployeeComplaintsSelfServices, "icon-Employees", "1");
 
             nodes.Add(rootParent);
             return nodes;

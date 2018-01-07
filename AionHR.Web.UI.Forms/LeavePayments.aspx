@@ -61,6 +61,8 @@
           <ext:Hidden ID="titleBalanceError" runat="server" Text="<%$ Resources: titleBalanceError %>" />
         <ext:Hidden ID="titleBalanceErrorMessage" runat="server" Text="<%$ Resources: titleBalanceErrorMessage %>" />
         <ext:Hidden ID="currentLeavePayment" runat="server" />
+           <ext:Hidden ID="updateLeaveBalance" runat="server" />
+        
      
         
 
@@ -221,13 +223,14 @@
                             <ext:DateColumn ID="Column6" DataIndex="date" Text="<%$ Resources: FieldDate%>" runat="server" Width="100" />
                               <ext:DateColumn ID="DateColumn1" DataIndex="effectiveDate" Text="<%$ Resources: FieldEffectiveDate%>" runat="server" Width="100" />
                           <ext:Column ID="Column4" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldSalary %>" DataIndex="salary" Hideable="false" Width="140"/>
-                            <ext:Column ID="Column7" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDays %>" DataIndex="days" Hideable="false" Width="140"/>
+                          
 
 
                             <ext:Column ID="Column20" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEarnedLeaves %>" DataIndex="earnedLeaves" Hideable="false" Width="140"/>
                             <ext:Column ID="Column8" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldUsedLeaves %>" DataIndex="usedLeaves" Hideable="false" Width="140"/>
                             <ext:Column ID="Column9" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldPaidLeaves %>" DataIndex="paidLeaves" Hideable="false" Width="140"/>
                             <ext:Column ID="Column10" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldBalanceLeaves %>" DataIndex="leaveBalance" Hideable="false" Width="140"/>
+                              <ext:Column ID="Column7" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDays %>" DataIndex="days" Hideable="false" Width="140"/>
                         <%--    <ext:Column ID="Column11" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldPostingStatus %>" DataIndex="postingStatus" Hideable="false" Width="140"/>--%>
                           
                                
@@ -421,7 +424,7 @@
                                         <Select OnEvent="FillEmployeeInfo">
                                               <ExtraParams>
                                                 <ext:Parameter Name="effectiveDate" Value="#{effectiveDate}.getValue()" Mode="Raw" />
-                                                                                                 
+                                                 <ext:Parameter Name="employeeId" Value="#{employeeId}.getValue()" Mode="Raw" />                                            
                                             </ExtraParams>
                                         </Select>
                                     </DirectEvents>
@@ -435,7 +438,7 @@
                                           <Change OnEvent="FillEmployeeInfo" >
                                               <ExtraParams>
                                                 <ext:Parameter Name="effectiveDate" Value="#{effectiveDate}.getValue()" Mode="Raw" />
-                                                   <ext:Parameter Name="employeeId" Value="#{employeeId}.getValue()" Mode="Raw" />
+                                                <ext:Parameter Name="employeeId" Value="#{employeeId}.getValue()" Mode="Raw" />
                                                 
                                             </ExtraParams>
                                           </Change>

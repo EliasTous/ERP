@@ -283,10 +283,28 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                 X.Msg.Alert(Resources.Common.Error, documents.Summary).Show();
                 return;
             }
+           foreach (Dependant d in documents.Items)
+            {
+                switch (d.dependencyType)
+                {
+                    case "1": d.dependencyType = GetLocalResourceObject("Spouse").ToString(); 
+                        break;
+                    case "2":d.dependencyType = GetLocalResourceObject("Child").ToString();
+                        break;
+                    case "3":d.dependencyType = GetLocalResourceObject("DomesticPartner").ToString();
+                        break;
+                    case "4":d.dependencyType = GetLocalResourceObject("StepChild").ToString();
+                        break;
+                    case "5":d.dependencyType = GetLocalResourceObject("FosterChild").ToString();
+                        break;
+                        
+                }
+            }
             this.dependandtsStore.DataSource = documents.Items;
             e.Total = documents.count;
 
             this.dependandtsStore.DataBind();
+
         }
       
 
@@ -356,7 +374,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     {
 
                         //Add this record to the store 
-                        this.dependandtsStore.Insert(0, b);
+                        //this.dependandtsStore.Insert(0, b);
 
                         //Display successful notification
                         Notification.Show(new NotificationConfig
@@ -368,9 +386,10 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                         });
 
                         this.EditContactWindow.Close();
-                        RowSelectionModel sm = this.dependandtsGrid.GetSelectionModel() as RowSelectionModel;
-                        sm.DeselectAll();
-                        sm.Select(b.seqNo.ToString());
+                        //RowSelectionModel sm = this.dependandtsGrid.GetSelectionModel() as RowSelectionModel;
+                        //sm.DeselectAll();
+                        //sm.Select(b.seqNo.ToString());
+                        dependandtsStore.Reload();
 
 
 

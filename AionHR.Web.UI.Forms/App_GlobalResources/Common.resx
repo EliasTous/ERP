@@ -1122,7 +1122,10 @@
   <data name="PayRef" xml:space="preserve">
     <value>Pay Ref</value>
   </data>
-  <data name="DailySchedule" xml:space="preserve">
-    <value>Daily Schedule</value>
+  <data name="AssetAllowancesSelfService" xml:space="preserve">
+    <value>Asset Allowances</value>
+  </data>
+  <data name="EmployeeComplaintsSelfServices" xml:space="preserve">
+    <value>Employee Complaints</value>
   </data>
 </root>

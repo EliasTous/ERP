@@ -117,142 +117,55 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="xrLabel1.Text" xml:space="preserve">
-    <value>نهاية الخدمة</value>
+  <data name="BasicInfoTabEditWindowTitle" xml:space="preserve">
+    <value>معلومات العُهد</value>
   </data>
-  <data name="xrLabel10.Text" xml:space="preserve">
-    <value>xrLabel2</value>
+  <data name="ButtonClear" xml:space="preserve">
+    <value>مسح</value>
   </data>
-  <data name="xrLabel11.Text" xml:space="preserve">
-    <value>xrLabel2</value>
+  <data name="EditWindowsTitle" xml:space="preserve">
+    <value>طلب عُهدة</value>
   </data>
-  <data name="xrLabel12.Text" xml:space="preserve">
-    <value>xrLabel2</value>
+  <data name="FieldAcName" xml:space="preserve">
+    <value>اسم صنف العُهد</value>
   </data>
-  <data name="xrLabel13.Text" xml:space="preserve">
-    <value>xrLabel2</value>
+  <data name="FieldAll" xml:space="preserve">
+    <value>الكل</value>
   </data>
-  <data name="xrLabel14.Text" xml:space="preserve">
-    <value>الوظيفة : </value>
+  <data name="FieldComment" xml:space="preserve">
+    <value>تعليق</value>
   </data>
-  <data name="xrLabel15.Text" xml:space="preserve">
-    <value>تاريخ التوظيف :</value>
+  <data name="FieldDate" xml:space="preserve">
+    <value>التاريخ</value>
   </data>
-  <data name="xrLabel16.Text" xml:space="preserve">
-    <value>الادارة العليا :</value>
+  <data name="FieldDescription" xml:space="preserve">
+    <value>الوصف</value>
   </data>
-  <data name="xrLabel17.Text" xml:space="preserve">
-    <value>حالة الموظف :</value>
+  <data name="FieldEmployeeName" xml:space="preserve">
+    <value>اسم الموظف</value>
   </data>
-  <data name="xrLabel18.Text" xml:space="preserve">
-    <value>المدير :</value>
+  <data name="FieldRecordId" xml:space="preserve">
+    <value>الرقم</value>
   </data>
-  <data name="xrLabel19.Text" xml:space="preserve">
-    <value>xrLabel2</value>
+  <data name="FieldReturnedDate" xml:space="preserve">
+    <value>تاريخ الإعادة</value>
   </data>
-  <data name="xrLabel2.Text" xml:space="preserve">
-    <value>الرمز : </value>
+  <data name="FieldSerialNo" xml:space="preserve">
+    <value>الرقم التسلسلي</value>
   </data>
-  <data name="xrLabel20.Text" xml:space="preserve">
-    <value>xrLabel2</value>
+  <data name="FilterAssetCateg" xml:space="preserve">
+    <value>اختيار صنف عُهدة</value>
   </data>
-  <data name="xrLabel21.Text" xml:space="preserve">
-    <value>xrLabel2</value>
+  <data name="FilterBranch" xml:space="preserve">
+    <value>اختيار فرع</value>
   </data>
-  <data name="xrLabel22.Text" xml:space="preserve">
-    <value>xrLabel2</value>
+  <data name="FilterDepartment" xml:space="preserve">
+    <value>اختيار قسم</value>
   </data>
-  <data name="xrLabel23.Text" xml:space="preserve">
-    <value>xrLabel2</value>
+  <data name="FilterEmployee" xml:space="preserve">
+    <value>اختيار موظف</value>
   </data>
-  <data name="xrLabel24.Text" xml:space="preserve">
-    <value>تاريخ أخر اجازة :</value>
-  </data>
-  <data name="xrLabel25.Text" xml:space="preserve">
-    <value>تاريخ العودة من أخر اجازة :</value>
-  </data>
-  <data name="xrLabel26.Text" xml:space="preserve">
-    <value>رصيد الاجازات :</value>
-  </data>
-  <data name="xrLabel27.Text" xml:space="preserve">
-    <value>الاجازات المدفوعة :</value>
-  </data>
-  <data name="xrLabel28.Text" xml:space="preserve">
-    <value>مدة الخدمة :</value>
-  </data>
-  <data name="xrLabel29.Text" xml:space="preserve">
-    <value>xrLabel2</value>
-  </data>
-  <data name="xrLabel3.Text" xml:space="preserve">
-    <value>اليوم :</value>
-  </data>
-  <data name="xrLabel30.Text" xml:space="preserve">
-    <value>xrLabel2</value>
-  </data>
-  <data name="xrLabel31.Text" xml:space="preserve">
-    <value>xrLabel2</value>
-  </data>
-  <data name="xrLabel32.Text" xml:space="preserve">
-    <value>xrLabel2</value>
-  </data>
-  <data name="xrLabel33.Text" xml:space="preserve">
-    <value>xrLabel2</value>
-  </data>
-  <data name="xrLabel38.Text" xml:space="preserve">
-    <value>الاستحقاقات</value>
-  </data>
-  <data name="xrLabel39.Text" xml:space="preserve">
-    <value>الخصومات </value>
-  </data>
-  <data name="xrLabel4.Text" xml:space="preserve">
-    <value>الموظف :</value>
-  </data>
-  <data name="xrLabel40.Text" xml:space="preserve">
-    <value>من قبل : </value>
-  </data>
-  <data name="xrLabel41.Text" xml:space="preserve">
-    <value>xrLabel6</value>
-  </data>
-  <data name="xrLabel5.Text" xml:space="preserve">
-    <value>الجنسية :</value>
-  </data>
-  <data name="xrLabel6.Text" xml:space="preserve">
-    <value>الفرع :</value>
-  </data>
-  <data name="xrLabel7.Text" xml:space="preserve">
-    <value>القسم :</value>
-  </data>
-  <data name="xrLabel8.Text" xml:space="preserve">
-    <value>xrLabel2</value>
-  </data>
-  <data name="xrLabel9.Text" xml:space="preserve">
-    <value>xrLabel2</value>
-  </data>
-  <data name="xrPageInfo2.Format" xml:space="preserve">
-    <value>صفحة {0} من {1}</value>
-  </data>
-  <data name="xrTableCell1.Text" xml:space="preserve">
-    <value>الاسم </value>
-  </data>
-  <data name="xrTableCell14.Text" xml:space="preserve">
-    <value>xrTableCell14</value>
-  </data>
-  <data name="xrTableCell2.Text" xml:space="preserve">
-    <value>المبلغ</value>
-  </data>
-  <data name="xrTableCell23.Text" xml:space="preserve">
-    <value>xrTableCell23</value>
-  </data>
-  <data name="xrTableCell3.Text" xml:space="preserve">
-    <value>الاسم</value>
-  </data>
-  <data name="xrTableCell4.Text" xml:space="preserve">
-    <value>xrTableCell4</value>
-  </data>
-  <data name="xrTableCell5.Text" xml:space="preserve">
-    <value>المبلغ</value>
-  </data>
-  <data name="xrTableCell6.Text" xml:space="preserve">
-    <value>xrTableCell6</value>
+  <data name="WindowTitle" xml:space="preserve">
+    <value>طلبات الإجازة</value>
   </data>
 </root>

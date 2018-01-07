@@ -26,6 +26,7 @@ using AionHR.Services.Messaging.Reports;
 using DevExpress.XtraReports.Web;
 using DevExpress.XtraPrinting.Localization;
 using System.Threading;
+using AionHR.Services.Messaging.System;
 
 namespace AionHR.Web.UI.Forms.Reports
 {
@@ -191,8 +192,9 @@ namespace AionHR.Web.UI.Forms.Reports
 
         private List<UserInfo> GetUsersFiltered(string query)
         {
-            ListRequest req = new ListRequest();
-
+            UsersListRequest req = new UsersListRequest();
+            req.DepartmentId = "0";
+            req.PositionId = "0";
             req.Filter = query;
 
             ListResponse<UserInfo> users = _systemService.ChildGetAll<UserInfo>(req);

@@ -1031,8 +1031,8 @@ namespace AionHR.Web.UI.Forms
             RateObjs.Add(new { category = GetLocalResourceObject("minNextLERate").ToString(), number = resp.Items[0].minNextLERate });
 
 
-            List<string> listCategories = new List<string>() { GetLocalResourceObject("netRate").ToString(), GetLocalResourceObject("rate").ToString(), GetLocalResourceObject("minLERate").ToString(), GetLocalResourceObject("minNextLERate").ToString() };
-            List<double> listValues = new List<double>() { resp.Items[0].netRate, resp.Items[0].rate, resp.Items[0].minLERate, resp.Items[0].minNextLERate };
+            List<string> listCategories = new List<string>() {  GetLocalResourceObject("rate").ToString(), GetLocalResourceObject("minLERate").ToString(), GetLocalResourceObject("netRate").ToString(), GetLocalResourceObject("minNextLERate").ToString() };
+            List<double> listValues = new List<double>() {  resp.Items[0].rate, resp.Items[0].minLERate, resp.Items[0].netRate,resp.Items[0].minNextLERate };
 
             X.Call("drawMinLocalRateCountHightChartColumn", JSON.JavaScriptSerialize(listValues), JSON.JavaScriptSerialize(listCategories), rtl ? true : false);
 

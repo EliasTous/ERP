@@ -187,6 +187,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Asset Allowances.
+        /// </summary>
+        internal static string AssetAllowancesSelfService {
+            get {
+                return ResourceManager.GetString("AssetAllowancesSelfService", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Asset Categories.
         /// </summary>
         internal static string AssetCategories {
@@ -768,6 +777,15 @@ namespace Resources {
         internal static string EmployeeComplaints {
             get {
                 return ResourceManager.GetString("EmployeeComplaints", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Employee Complaints.
+        /// </summary>
+        internal static string EmployeeComplaintsSelfServices {
+            get {
+                return ResourceManager.GetString("EmployeeComplaintsSelfServices", resourceCulture);
             }
         }
         

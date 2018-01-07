@@ -21,17 +21,78 @@ using AionHR.Model.Company.News;
 using AionHR.Services.Messaging;
 using AionHR.Model.Company.Structure;
 using AionHR.Model.System;
+using AionHR.Model.Attendance;
+using AionHR.Model.Employees.Leaves;
 using AionHR.Model.Employees.Profile;
+using AionHR.Model.LeaveManagement;
 using AionHR.Services.Messaging.System;
+using AionHR.Infrastructure.JSON;
+using AionHR.Services.Messaging.Reports;
 using AionHR.Model.SelfService;
 
 namespace AionHR.Web.UI.Forms
 {
-    public partial class LettersSelfServices : System.Web.UI.Page
+    public partial class AssetAllowanceSelfServices : System.Web.UI.Page
     {
         ISystemService _systemService = ServiceLocator.Current.GetInstance<ISystemService>();
+        ILeaveManagementService _leaveManagementService = ServiceLocator.Current.GetInstance<ILeaveManagementService>();
         IEmployeeService _employeeService = ServiceLocator.Current.GetInstance<IEmployeeService>();
+        ICompanyStructureService _companyStructureService = ServiceLocator.Current.GetInstance<ICompanyStructureService>();
         ISelfServiceService _selfServiceService = ServiceLocator.Current.GetInstance<ISelfServiceService>();
+
+        [DirectMethod]
+        public object FillEmployee(string action, Dictionary<string, object> extraParams)
+        {
+            StoreRequestParameters prms = new StoreRequestParameters(extraParams);
+            List<Employee> data = GetEmployeesFiltered(prms.Query);
+            data.ForEach(s => { s.fullName = s.name.fullName; });
+            //  return new
+            // {
+            return data;
+        }
+
+        private List<Employee> GetEmployeesFiltered(string query)
+        {
+
+            EmployeeListRequest req = new EmployeeListRequest();
+            req.DepartmentId = "0";
+            req.BranchId = "0";
+            req.IncludeIsInactive = 2;
+            req.SortBy = GetNameFormat();
+
+            req.StartAt = "1";
+            req.Size = "20";
+            req.Filter = query;
+
+            ListResponse<Employee> response = _employeeService.GetAll<Employee>(req);
+            return response.Items;
+        }
+
+
+        private string GetNameFormat()
+        {
+            return _systemService.SessionHelper.Get("nameFormat").ToString();
+        }
+
+
+        public void FillAssetCategory()
+        {
+
+            ListRequest req = new ListRequest();
+
+            ListResponse<AssetCategory> response = _employeeService.ChildGetAll<AssetCategory>(req);
+            if (!response.Success)
+            {
+                string message = GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).ToString() + "<br>Technical Error: " + response.ErrorCode + "<br> Summary: " + response.Summary : response.Summary;
+                X.Msg.Alert(Resources.Common.Error, message).Show();
+                return;
+            }
+            acStore.DataSource = response.Items;
+            acStore.DataBind();
+
+        }
+
+
         protected override void InitializeCulture()
         {
 
@@ -61,10 +122,12 @@ namespace AionHR.Web.UI.Forms
                 SetExtLanguage();
                 HideShowButtons();
                 HideShowColumns();
-                date.Format = _systemService.SessionHelper.GetDateformat();
+                FillAssetCateg();
+
+                Column1.Format = Column2.Format = date.Format = returnedDate.Format = _systemService.SessionHelper.GetDateformat();
                 try
                 {
-                    AccessControlApplier.ApplyAccessControlOnPage(typeof(LetterSelfservice), BasicInfoTab, GridPanel1, btnAdd, SaveButton);
+                    AccessControlApplier.ApplyAccessControlOnPage(typeof(AssetAllowance), BasicInfoTab, GridPanel1, btnAdd, SaveButton);
                 }
                 catch (AccessDeniedException exp)
                 {
@@ -73,8 +136,6 @@ namespace AionHR.Web.UI.Forms
                     Viewport1.Hidden = true;
                     return;
                 }
-
-
             }
 
         }
@@ -119,33 +180,62 @@ namespace AionHR.Web.UI.Forms
 
 
 
+        private void FillAssetCateg()
+        {
+            ListRequest assetCategRequest = new ListRequest();
+            ListResponse<AssetCategory> resp = _employeeService.ChildGetAll<AssetCategory>(assetCategRequest);
+            if (!resp.Success)
+            {
+                string message = GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>Technical Error: " + resp.ErrorCode + "<br> Summary: " + resp.Summary : resp.Summary;
+                X.Msg.Alert(Resources.Common.Error, message).Show();
+                return;
+            }
+            assetCategoryStore.DataSource = resp.Items;
+            assetCategoryStore.DataBind();
+        }
+
         protected void PoPuP(object sender, DirectEventArgs e)
         {
 
-
-            int id = Convert.ToInt32(e.ExtraParams["id"]);
+            makeFeildsReadOnly(true);
+            string id = e.ExtraParams["id"];
             string type = e.ExtraParams["type"];
+
             switch (type)
             {
                 case "imgEdit":
                     //Step 1 : get the object from the Web Service 
                     RecordRequest r = new RecordRequest();
-                    r.RecordID = id.ToString();
-                    RecordResponse<Letter> response = _systemService.ChildGetRecord<Letter>(r);
+                    r.RecordID = id;
+
+
+                    RecordResponse<AssetAllowance> response = _employeeService.ChildGetRecord<AssetAllowance>(r);
                     if (!response.Success)
                     {
                         X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                        X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).ToString() + "<br>Technical Error: " + response.ErrorCode + "<br> Summary: " + response.Summary : response.Summary).Show();
+                        string message = GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).ToString() + "<br>Technical Error: " + response.ErrorCode + "<br> Summary: " + response.Summary : response.Summary;
+                        X.Msg.Alert(Resources.Common.Error, message).Show();
                         return;
                     }
                     //Step 2 : call setvalues with the retrieved object
-
-
                     this.BasicInfoTab.SetValues(response.result);
 
-                    //ltId.Select(response.result.ltId);
+                    FillAssetCategory();
+                    acId.Select(response.result.acId.ToString());
+                    if (response.result.employeeId != 0)
+                    {
 
+                        employeeId.GetStore().Add(new object[]
+                           {
+                                new
+                                {
+                                    recordId = response.result.employeeId,
+                                    fullName =response.result.employeeName.fullName
+                                }
+                           });
+                        employeeId.SetValue(response.result.employeeId);
 
+                    }
 
                     this.EditRecordWindow.Title = Resources.Common.EditWindowsTitle;
                     this.EditRecordWindow.Show();
@@ -168,7 +258,7 @@ namespace AionHR.Web.UI.Forms
                     }).Show();
                     break;
 
-                case "imgAttach":
+                case "colAttach":
 
                     //Here will show up a winow relatice to attachement depending on the case we are working on
                     break;
@@ -179,27 +269,31 @@ namespace AionHR.Web.UI.Forms
 
         }
 
-        /// <summary>
-        /// This direct method will be called after confirming the delete
-        /// </summary>
-        /// <param name="index">the ID of the object to delete</param>
+
         [DirectMethod]
         public void DeleteRecord(string index)
         {
             try
             {
                 //Step 1 Code to delete the object from the database 
-                Letter n = new Letter();
-                n.recordId = index;
+                AssetAllowance s = new AssetAllowance();
+                s.recordId = index;
+                s.comment = "";
+                s.employeeId = 0;
+                s.date = DateTime.Now;
+                s.returnedDate = DateTime.Now;
+                s.serialNo = "";
+                s.description = "";
+                s.acId = 0;
 
-                PostRequest<Letter> req = new PostRequest<Letter>();
-                req.entity = n;
-                PostResponse<Letter> res = _systemService.ChildDelete<Letter>(req);
-                if (!res.Success)
+                PostRequest<AssetAllowance> req = new PostRequest<AssetAllowance>();
+                req.entity = s;
+                PostResponse<AssetAllowance> r = _employeeService.ChildDelete<AssetAllowance>(req);
+                if (!r.Success)
                 {
-                    //Show an error saving...
                     X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.Error, res.Summary).Show();
+                    string message = GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() + "<br>Technical Error: " + r.ErrorCode + "<br> Summary: " + r.Summary : r.Summary;
+                    X.Msg.Alert(Resources.Common.Error, message).Show();
                     return;
                 }
                 else
@@ -228,14 +322,6 @@ namespace AionHR.Web.UI.Forms
         }
 
 
-
-
-
-        /// <summary>
-        /// Deleting all selected record
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         protected void btnDeleteAll(object sender, DirectEventArgs e)
         {
 
@@ -259,9 +345,7 @@ namespace AionHR.Web.UI.Forms
             }).Show();
         }
 
-        /// <summary>
-        /// Direct method for removing multiple records
-        /// </summary>
+
         [DirectMethod(ShowMask = true)]
         public void DoYes()
         {
@@ -300,22 +384,53 @@ namespace AionHR.Web.UI.Forms
             }
         }
 
-        /// <summary>
-        /// Adding new record
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+
+
         protected void ADDNewRecord(object sender, DirectEventArgs e)
         {
 
             //Reset all values of the relative object
             BasicInfoTab.Reset();
-            dateTF.Value = DateTime.Now;
+
+            FillAssetCategory();
+            makeFeildsReadOnly(false);
             this.EditRecordWindow.Title = Resources.Common.AddNewRecord;
 
 
             this.EditRecordWindow.Show();
         }
+
+
+
+
+        private AssetAllowanceListRequest GetFilteredRequest()
+        {
+            AssetAllowanceListRequest req = new AssetAllowanceListRequest();
+
+          
+            req.BranchId =  0;
+            req.DepartmentId =  0;
+            if (!string.IsNullOrEmpty(assetCatId.Text) && assetCatId.Value.ToString() != "0")
+            {
+                req.AcId = Convert.ToInt32(assetCatId.Value);
+
+
+            }
+            else
+            {
+                req.AcId = 0;
+            }
+
+
+            req.EmployeeId =Convert.ToInt32( _systemService.SessionHelper.GetEmployeeId());
+
+
+
+
+            return req;
+        }
+
+
 
         protected void Store1_RefreshData(object sender, StoreReadDataEventArgs e)
         {
@@ -329,21 +444,26 @@ namespace AionHR.Web.UI.Forms
             //Fetching the corresponding list
 
             //in this test will take a list of News
-            ListRequest request = new ListRequest();
+            AssetAllowanceListRequest request = GetFilteredRequest();
+
+            request.Size = "50";
+            request.StartAt = "1";
+            request.SortBy = "firstName";
 
             request.Filter = "";
-            ListResponse<Letter> nationalities = _systemService.ChildGetAll<Letter>(request);
-            if (!nationalities.Success)
+            ListResponse<AssetAllowance> routers = _employeeService.ChildGetAll<AssetAllowance>(request);
+            if (!routers.Success)
             {
-                X.Msg.Alert(Resources.Common.Error, nationalities.Summary).Show(); ;
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                string message = GetGlobalResourceObject("Errors", routers.ErrorCode) != null ? GetGlobalResourceObject("Errors", routers.ErrorCode).ToString() : routers.Summary;
+                X.Msg.Alert(Resources.Common.Error, message).Show();
                 return;
             }
-            this.Store1.DataSource = nationalities.Items;
-            e.Total = nationalities.Items.Count;
+            this.Store1.DataSource = routers.Items;
+            e.Total = routers.Items.Count; ;
 
             this.Store1.DataBind();
         }
-
 
 
 
@@ -352,20 +472,26 @@ namespace AionHR.Web.UI.Forms
 
 
             //Getting the id to check if it is an Add or an edit as they are managed within the same form.
-            string id = e.ExtraParams["id"];
+
 
             string obj = e.ExtraParams["values"];
-            LetterSelfservice b = JsonConvert.DeserializeObject<LetterSelfservice>(obj);
-            b.employeeId =Convert.ToInt32( _systemService.SessionHelper.GetEmployeeId());
+            JsonSerializerSettings settings = new JsonSerializerSettings();
+            CustomResolver res = new CustomResolver();
 
-            b.recordId = id;
+            settings.ContractResolver = res;
+            AssetAllowanceSelfService b = JsonConvert.DeserializeObject<AssetAllowanceSelfService>(obj, settings);
+
+            string id = e.ExtraParams["id"];
             // Define the object to add or edit as null
-            ApplyLetterRecordRequest req = new ApplyLetterRecordRequest();
-            req.ltId = Convert.ToInt32(ltId.SelectedItem.Value.ToString());
-            req.employeeId = b.employeeId;
-            RecordResponse<ApplyLetter> res = _systemService.ChildGetRecord<ApplyLetter>(req);
 
-            b.bodyText = res.result.bodyText;
+            b.employeeName = new EmployeeName();
+            if (employeeId.SelectedItem != null)
+                b.employeeName.fullName = employeeId.SelectedItem.Text;
+
+            if (acId.SelectedItem != null)
+                b.acName = acId.SelectedItem.Text;
+
+            b.employeeId =Convert.ToInt32( _systemService.SessionHelper.GetEmployeeId());
             if (string.IsNullOrEmpty(id))
             {
 
@@ -373,24 +499,26 @@ namespace AionHR.Web.UI.Forms
                 {
                     //New Mode
                     //Step 1 : Fill The object and insert in the store 
-                    PostRequest<LetterSelfservice> request = new PostRequest<LetterSelfservice>();
+                    PostRequest<AssetAllowanceSelfService> request = new PostRequest<AssetAllowanceSelfService>();
+
                     request.entity = b;
-                    PostResponse<LetterSelfservice> r = _selfServiceService.ChildAddOrUpdate<LetterSelfservice>(request);
-                    b.recordId = r.recordId;
+                    PostResponse<AssetAllowanceSelfService> r = _selfServiceService.ChildAddOrUpdate<AssetAllowanceSelfService>(request);
+
 
                     //check if the insert failed
                     if (!r.Success)//it maybe be another condition
                     {
                         //Show an error saving...
+                        string message = GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() + "<br>Technical Error: " + r.ErrorCode + "<br> Summary: " + r.Summary : r.Summary;
                         X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                        X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() + "<br>Technical Error: " + r.ErrorCode + "<br> Summary: " + r.Summary : r.Summary).Show();
+                        X.Msg.Alert(Resources.Common.Error, message).Show();
                         return;
                     }
                     else
                     {
-                       
+                        b.recordId = r.recordId;
                         //Add this record to the store 
-                        //this.Store1.Insert(0, b);
+                        this.Store1.Insert(0, b);
 
                         //Display successful notification
                         Notification.Show(new NotificationConfig
@@ -401,10 +529,10 @@ namespace AionHR.Web.UI.Forms
                         });
 
                         this.EditRecordWindow.Close();
-                        //RowSelectionModel sm = this.GridPanel1.GetSelectionModel() as RowSelectionModel;
-                        //sm.DeselectAll();
-                        //sm.Select(b.recordId.ToString());
-                        Store1.Reload();
+                        RowSelectionModel sm = this.GridPanel1.GetSelectionModel() as RowSelectionModel;
+                        sm.DeselectAll();
+                        sm.Select(b.recordId.ToString());
+
 
 
                     }
@@ -424,10 +552,10 @@ namespace AionHR.Web.UI.Forms
 
                 try
                 {
-                    int index = Convert.ToInt32(id);//getting the id of the record
-                    PostRequest<LetterSelfservice> request = new PostRequest<LetterSelfservice>();
+                    //getting the id of the record
+                    PostRequest<AssetAllowanceSelfService> request = new PostRequest<AssetAllowanceSelfService>();
                     request.entity = b;
-                    PostResponse<LetterSelfservice> r = _selfServiceService.ChildAddOrUpdate<LetterSelfservice>(request);                      //Step 1 Selecting the object or building up the object for update purpose
+                    PostResponse<AssetAllowanceSelfService> r = _selfServiceService.ChildAddOrUpdate<AssetAllowanceSelfService>(request);                      //Step 1 Selecting the object or building up the object for update purpose
 
                     //Step 2 : saving to store
 
@@ -435,24 +563,24 @@ namespace AionHR.Web.UI.Forms
                     if (!r.Success)//it maybe another check
                     {
                         X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                        X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorUpdatingRecord).Show();
+                        string message = GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() + "<br>Technical Error: " + r.ErrorCode + "<br> Summary: " + r.Summary : r.Summary;
+                        X.Msg.Alert(Resources.Common.Error, message).Show();
                         return;
                     }
                     else
                     {
 
 
-                        //ModelProxy record = this.Store1.GetById(index);
-                        //BasicInfoTab.UpdateRecord(record);
-                        //record.Commit();
-                        Store1.Reload();
+                        ModelProxy record = this.Store1.GetById(id);
+                        BasicInfoTab.UpdateRecord(record);
+                        record.Set("employeeName", b.employeeName);
+                        record.Set("acName", b.acName);
+                        record.Commit();
                         Notification.Show(new NotificationConfig
                         {
                             Title = Resources.Common.Notification,
                             Icon = Icon.Information,
                             Html = Resources.Common.RecordUpdatedSucc
-
-
                         });
                         this.EditRecordWindow.Close();
 
@@ -468,6 +596,7 @@ namespace AionHR.Web.UI.Forms
             }
         }
 
+
         [DirectMethod]
         public string CheckSession()
         {
@@ -478,81 +607,46 @@ namespace AionHR.Web.UI.Forms
             else return "1";
         }
 
+
         protected void BasicInfoTab_Load(object sender, EventArgs e)
         {
 
         }
-        [DirectMethod]
-        public object FillEmployee(string action, Dictionary<string, object> extraParams)
+
+        protected void addAssetCategory(object sender, DirectEventArgs e)
         {
-
-            StoreRequestParameters prms = new StoreRequestParameters(extraParams);
-
-
-
-            List<Employee> data = GetEmployeesFiltered(prms.Query);
-
-            data.ForEach(s => s.fullName = s.name.fullName);
-            //  return new
-            // {
-
-            if (data.Count == 0)
-            {
-                X.Call("SetNameEnabled", true, " ");
-            }
-
-            return data;
-            //};
-
-        }
-        private List<Employee> GetEmployeesFiltered(string query)
-        {
-
-            EmployeeListRequest req = new EmployeeListRequest();
-            req.DepartmentId = "0";
-            req.BranchId = "0";
-            req.IncludeIsInactive = 2;
-            req.SortBy = "firstName";
-
-            req.StartAt = "1";
-            req.Size = "20";
-            req.Filter = query;
-
-
-
-            ListResponse<Employee> response = _employeeService.GetAll<Employee>(req);
-            if (!response.Success)
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).ToString() + "<br>Technical Error: " + response.ErrorCode + "<br> Summary: " + response.Summary : response.Summary).Show();
-            return response.Items;
-        }
-        public void SetFullName()
-        {
-            X.Call("SetNameEnabled", false, employeeId.SelectedItem.Text);
-        }
-        [DirectMethod]
-        protected void ltId_ReadData(object sender, StoreReadDataEventArgs e)
-        {
-            ListRequest req = new ListRequest();
-            ListResponse<LetterTemplate> eds = _systemService.ChildGetAll<LetterTemplate>(req);
-
-            Store2.DataSource = eds.Items;
-            Store2.DataBind();
-
-        }
-        [DirectMethod]
-        protected void fillBodyText(object sender, DirectEventArgs e)
-        {
-            ApplyLetterRecordRequest req = new ApplyLetterRecordRequest();
-            req.ltId = Convert.ToInt32(ltId.SelectedItem.Value);
-            req.employeeId = Convert.ToInt32(employeeId.SelectedItem.Value);
-            RecordResponse<ApplyLetter> res = _systemService.ChildGetRecord<ApplyLetter>(req);
-            if (!res.Success)//it maybe another check
-            {
-
+            if (string.IsNullOrEmpty(acId.Text))
                 return;
+            AssetCategory dept = new AssetCategory();
+            dept.name = acId.Text;
+
+            PostRequest<AssetCategory> depReq = new PostRequest<AssetCategory>();
+            depReq.entity = dept;
+            PostResponse<AssetCategory> response = _employeeService.ChildAddOrUpdate<AssetCategory>(depReq);
+            if (response.Success)
+            {
+                dept.recordId = response.recordId;
+                FillAssetCategory();
+                acId.Select(dept.recordId);
             }
             else
-                bodyTextTF.Text = res.result.bodyText;
+            {
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                string message = GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).ToString() + "<br>Technical Error: " + response.ErrorCode + "<br> Summary: " + response.Summary : response.Summary;
+                X.Msg.Alert(Resources.Common.Error, message).Show();
+                return;
+            }
+
         }
+        private void makeFeildsReadOnly(bool ReadOnly)
+        {
+            acId.ReadOnly = ReadOnly;
+            description.ReadOnly = ReadOnly;
+            serialNo.ReadOnly = ReadOnly;
+            comment.ReadOnly = ReadOnly;
+            date.ReadOnly = ReadOnly;
+            returnedDate.ReadOnly = ReadOnly;
+        }
+
     }
 }

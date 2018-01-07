@@ -50,18 +50,7 @@
         window.document.forms[0].target = '_blank';
         setTimeout(function () { window.document.forms[0].target = ''; }, 0);
     }
-    function CalcSum() {
-     
-        var sum = 0;
-        App.LeaveDaysGrid.getStore().each(function (record) {
-
-            sum += record.data['leaveHours'];
-        });
-        App.leavePeriod.setValue(sum.toFixed(2));
-        App.sumHours2.setValue(sum.toFixed(2));
-
-
-    }
+   
     function getDay(dow) {
 
         switch (dow) {
@@ -120,10 +109,23 @@
         }
         App.calDays.setValue(parseInt(moment(App.endDate.getValue()).diff(moment(App.startDate.getValue()), 'days')) + 1);
     }
-    function onHourFocusLeave(context)
+    function OnHourFocusLeave(context)
 
     {
-        if (context == null || context.column == null) return false; var rec = context.column.record; if (parseInt(rec.data['workingHours']) < parseInt(context.value)) { context.setValue(rec.data['workingHours']); } if (1 > context.value) { context.setValue(1); } rec.set('leaveHours', context.value); rec.commit(); CalcSum();
+        if (context == null || context.column == null) return false; var rec = context.column.record; if (parseInt(rec.data['workingHours']) < parseInt(context.value)) { context.setValue(rec.data['workingHours']); } if (1 > context.value) { context.setValue(1); } rec.set('leaveHours', context.value); rec.commit(); calcSum();
+    }
+    function calcSum() {
+       
+        var sum = 0;
+        App.LeaveDaysGrid.getStore().each(function (record) {
+
+            sum += record.data['leaveHours'];
+        });
+      
+        App.leavePeriod.setValue(sum.toFixed(2));
+        App.sumHours2.setValue(sum.toFixed(2));
+
+
     }
 </script>
 </head>
@@ -275,9 +277,9 @@
                             <ext:Column runat="server" Width="70" Text="<%$ Resources: LateDays%>">
                                 <Renderer Handler="if(record.data['returnDate']!='') var d=moment(record.data['returnDate']).diff(moment(record.data['endDate']), 'days')+1; if(d>0) return d; else return '';" />
                             </ext:Column>--%>
-                          <%--  <ext:Column ID="Column3" DataIndex="status" Text="<%$ Resources: FieldStatus%>" runat="server" Flex="2">
+                        <ext:Column ID="Column10" DataIndex="status" Text="<%$ Resources: FieldStatus%>" runat="server" Flex="2">
                                 <Renderer Handler="return(GetStatusName(record.data['status']));" />
-                            </ext:Column>--%>
+                            </ext:Column>
 
                             <ext:Column ID="Column5" DataIndex="ltName" Text="<%$ Resources: FieldLtName%>" runat="server" Flex="2" />
 
@@ -312,7 +314,7 @@
                                 <Renderer Fn="attachRender" />
                             </ext:Column>
                              <ext:Column runat="server"
-                                ID="colDelete" Visible="false"
+                                ID="colDelete" Visible="true"
                                 Text="<%$ Resources: Common , Delete %>"
                                 MinWidth="80"
                                 Align="Center"
@@ -321,7 +323,7 @@
                                 Hideable="false"
                                 MenuDisabled="true"
                                 Resizable="false">
-                                <Renderer Handler="return editRender()+'&nbsp;&nbsp;' +deleteRender(); " />
+                                <Renderer Handler="if(record.data['status']=='1') return editRender()+'&nbsp;&nbsp;' +deleteRender(); " />
 
                             </ext:Column>
 
@@ -663,12 +665,12 @@
                                         <Component>
                                             <ext:NumberField ID="NumberField1" runat="server" MinValue="1" DataIndex="leaveHours">
                                                 <Listeners>
-                                                    <%--<Change Handler="var rec = this.column.record; rec.set('leaveHours',this.value); rec.commit(); CalcSum(); " />--%>
-                                                    <%--    <AfterRender Handler="  if(App.shouldDisableLastDay.value=='1') this.setDisabled(true);else this.setDisabled(false); this.maxValue=this.getWidgetRecord().data['workingHours'];" />
+                                           <%--   <Change Handler="var rec = this.column.record; rec.set('leaveHours',this.value); rec.commit(); calcSum(); " />--%>
+                                                    <%-- <AfterRender Handler="  if(App.shouldDisableLastDay.value=='1') this.setDisabled(true);else this.setDisabled(false); this.maxValue=this.getWidgetRecord().data['workingHours'];" />
                                                     <AfterLayoutAnimation Handler=" this.maxValue=this.getWidgetRecord().data['workingHours'];" />
-                                                    --%>
-                                                    <%--<DirtyChange Handler="var rec = this.column.record; rec.set('leaveHours',this.value); rec.commit(); CalcSum(); " />--%>
-                                                    <FocusLeave Handler="onHourFocusLeave(this);" />
+                                                    
+                                                    <DirtyChange Handler="var rec = this.column.record; rec.set('leaveHours',this.value); rec.commit(); CalcSum(); " />--%>
+                                                    <FocusLeave Handler="OnHourFocusLeave(this);" />
                                                 </Listeners>
                                             </ext:NumberField>
                                         </Component>
@@ -778,7 +780,7 @@
     </DirectEvents>
 </ext:Window>
 
-
+          <uc:leaveControl runat="server" ID="leaveRequest1" />
     </form>
 </body>
 </html>

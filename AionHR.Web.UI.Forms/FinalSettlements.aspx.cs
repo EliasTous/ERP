@@ -1464,7 +1464,10 @@ namespace AionHR.Web.UI.Forms
         }
         private FinalSettlementReport GetReport()
         {
-
+            if (string.IsNullOrEmpty(finalSetlemntRecordId.Text))
+            {
+                return new FinalSettlementReport();
+            }
             RecordRequest FinalSettlementReq = new RecordRequest();
             FinalSettlementReq.RecordID = finalSetlemntRecordId.Text;
             RecordResponse<FinalSettlement> FinalSettlementResponse = _payrollService.ChildGetRecord<FinalSettlement>(FinalSettlementReq);
