@@ -40,6 +40,34 @@ public class OvertimeSettingsListRequest : ListRequest
         }
     }
 }
+
+public class FlatScheduleListRequest : ListRequest
+{
+    public string FromDayId { get; set; }
+
+    public string ToDayId { get; set; }
+
+    public int EmployeeId { get; set; }
+    private Dictionary<string, string> parameters;
+
+    public override Dictionary<string, string> Parameters
+    {
+        get
+        {
+            parameters = new Dictionary<string, string>();
+            parameters.Add("_fromDayId", FromDayId);
+            parameters.Add("_toDayId", ToDayId);
+            parameters.Add("_employeeId", EmployeeId.ToString());
+
+            return parameters;
+        }
+    }
+}
+
+
+
+
+
 public class AttendanceScheduleRecordRequest : RecordRequest
 {
     public string ScheduleId { get; set; }

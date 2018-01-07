@@ -1125,4 +1125,7 @@
   <data name="PayRef" xml:space="preserve">
     <value>رقم عملية الدفع</value>
   </data>
+  <data name="DailySchedule" xml:space="preserve">
+    <value>الجدول اليومي</value>
+  </data>
 </root>

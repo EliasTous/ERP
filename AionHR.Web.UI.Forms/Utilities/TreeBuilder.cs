@@ -238,6 +238,7 @@ namespace AionHR.Web.UI.Forms.Utilities
             Ext.Net.Node ad = BuildLeafNode("rootParent_TA_AD", Resources.Common.AttendanceDay, "CalendarViewDay", true, timeAt);
             Ext.Net.Node ab = BuildLeafNode("rootParent_TA_AB", Resources.Common.RT305, "CalendarViewDay", true, timeAt);
             Ext.Net.Node GA = BuildLeafNode("rootParent_TA_GA", Resources.Common.GenerateAttendanceDays, "UserGo", true, timeAt);
+            Ext.Net.Node DS = BuildLeafNode("rootParent_TA_DS", Resources.Common.DailySchedule, "UserGo", true, timeAt);
             //Ext.Net.Node EC = BuildLeafNode("rootParent_TA_EC", Resources.Common.EmployeeCalender, "UserGo", true, timeAt);
 
 
@@ -246,6 +247,7 @@ namespace AionHR.Web.UI.Forms.Utilities
             FillConfigItem(ad, "ad", "TimeAttendanceView.aspx", Resources.Common.AttendanceDay, "icon-Employees", "1");
             FillConfigItem(ab, "ab", "Absent.aspx", Resources.Common.RT305, "icon-Employees", "1");
             FillConfigItem(GA, "GA", "GenerateAttendanceDays.aspx", Resources.Common.GenerateAttendanceDays, "icon-Employees", "1");
+            FillConfigItem(DS, "DS", "DailySchedule.aspx", Resources.Common.DailySchedule, "icon-Employees", "1");
             //FillConfigItem(EC, "EC", "EmployeeCals.aspx", Resources.Common.EmployeeCalender, "icon-Employees", "1");
             nodes.Add(rootParent);
             return nodes;

@@ -1122,4 +1122,7 @@
   <data name="PayRef" xml:space="preserve">
     <value>Pay Ref</value>
   </data>
+  <data name="DailySchedule" xml:space="preserve">
+    <value>Daily Schedule</value>
+  </data>
 </root>

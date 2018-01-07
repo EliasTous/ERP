@@ -27,6 +27,7 @@ namespace AionHR.Repository.WebService.Repositories
             ChildGetLookup.Add(typeof(BiometricDevice), "getBM");
             ChildGetLookup.Add(typeof(Router), "getRO");
             ChildGetLookup.Add(typeof(Geofence), "getGF");
+           
 
             ChildGetAllLookup.Add(typeof(DayType), "qryDT");
             ChildGetAllLookup.Add(typeof(AttendanceSchedule), "qrySC");
@@ -49,7 +50,8 @@ namespace AionHR.Repository.WebService.Repositories
             ChildGetAllLookup.Add(typeof(AttendanceShift), "qryAS");
             ChildGetAllLookup.Add(typeof(LeaveCalendarDay), "qryCD2");
             ChildGetAllLookup.Add(typeof(OvertimeSetting), "qryOT");
-            
+            ChildGetAllLookup.Add(typeof(FlatSchedule), "qryFS");
+
 
             ChildAddOrUpdateLookup.Add(typeof(DayType), "setDT");
             ChildAddOrUpdateLookup.Add(typeof(AttendanceSchedule), "setSC");
@@ -70,6 +72,7 @@ namespace AionHR.Repository.WebService.Repositories
             ChildAddOrUpdateLookup.Add(typeof(CalendarAlternation), "altCD");
             ChildAddOrUpdateLookup.Add(typeof(OvertimeSetting), "setOT");
             ChildAddOrUpdateLookup.Add(typeof(GenerateAttendanceDay), "genAD");
+            ChildAddOrUpdateLookup.Add(typeof(FlatSchedule), "setFS");
 
             ChildDeleteLookup.Add(typeof(AttendanceBreak), "delSB");
             ChildDeleteLookup.Add(typeof(AttendanceSchedule), "delSC");
@@ -80,7 +83,11 @@ namespace AionHR.Repository.WebService.Repositories
             ChildDeleteLookup.Add(typeof(Geofence), "delGF");
             ChildDeleteLookup.Add(typeof(AttendanceShift), "delAS");
             ChildDeleteLookup.Add(typeof(OvertimeSetting), "delOT");
+            ChildDeleteLookup.Add(typeof(FlatSchedule), "delFS");
+            ChildDeleteLookup.Add(typeof(FlatScheduleRange), "delRangeFS");
 
+
+            //Flat Schedule
 
 
 

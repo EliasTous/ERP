@@ -493,6 +493,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Daily Schedule.
+        /// </summary>
+        internal static string DailySchedule {
+            get {
+                return ResourceManager.GetString("DailySchedule", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Dashboard.
         /// </summary>
         internal static string Dashboard {

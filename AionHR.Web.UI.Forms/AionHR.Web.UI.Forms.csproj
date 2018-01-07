@@ -172,6 +172,7 @@
     <Content Include="CompanyRightToWorks.aspx" />
     <Content Include="Controls\LeaveRequestControl.ascx" />
     <Content Include="CSS\cal.css" />
+    <Content Include="CSS\DailySchedule.css" />
     <Content Include="CSS\jquery-ui.css" />
     <Content Include="CSS\MainDashboard.css" />
     <Content Include="CSS\Dashboard.css" />
@@ -364,6 +365,7 @@
     <Content Include="SalaryChangeReasons.aspx" />
     <Content Include="Scripts\AssetAllowances.js" />
     <Content Include="Scripts\cal.js" />
+    <Content Include="Scripts\DailySchedule.js" />
     <Content Include="Scripts\CircileProgress.js" />
     <Content Include="Scripts\CompanyFiles.js" />
     <Content Include="Scripts\CompanyNews.js" />
@@ -502,6 +504,7 @@
     <Content Include="TrainingTypes.aspx" />
     <Content Include="Utilities\alerts.txt" />
     <Content Include="Utilities\modules.txt" />
+    <Content Include="DailySchedule.aspx" />
     <Content Include="WorkingCalendars.aspx" />
     <Content Include="SystemAttachmentsUploader.ashx" />
     <Content Include="EmployeePhotoUploaderHandler.ashx" />
@@ -1749,6 +1752,7 @@
     <Compile Include="Utilities\DashboardAccessDenied.cs" />
     <Compile Include="Utilities\LocalisationManager.cs" />
     <Compile Include="Utilities\ModulesFileWrapper.cs" />
+    <Compile Include="Utilities\TimeSlot.cs" />
     <Compile Include="Utilities\TreeBuilder.cs" />
     <Compile Include="VacationSchedules.aspx.cs">
       <DependentUpon>VacationSchedules.aspx</DependentUpon>
@@ -1756,6 +1760,13 @@
     </Compile>
     <Compile Include="VacationSchedules.aspx.designer.cs">
       <DependentUpon>VacationSchedules.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DailySchedule.aspx.cs">
+      <DependentUpon>DailySchedule.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DailySchedule.aspx.designer.cs">
+      <DependentUpon>DailySchedule.aspx</DependentUpon>
     </Compile>
     <Compile Include="WorkingCalendars.aspx.cs">
       <DependentUpon>WorkingCalendars.aspx</DependentUpon>

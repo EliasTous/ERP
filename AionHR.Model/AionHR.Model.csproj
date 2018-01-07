@@ -215,6 +215,7 @@
     <Compile Include="TimeAttendance\CalendarYear.cs" />
     <Compile Include="TimeAttendance\Check.cs" />
     <Compile Include="TimeAttendance\DayType.cs" />
+    <Compile Include="TimeAttendance\FlatSchedule.cs" />
     <Compile Include="TimeAttendance\GenerateAttendanceDay.cs" />
     <Compile Include="TimeAttendance\Geofence.cs" />
     <Compile Include="TimeAttendance\ImportAttendance.cs" />
