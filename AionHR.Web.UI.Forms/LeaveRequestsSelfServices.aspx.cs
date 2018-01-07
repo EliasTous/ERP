@@ -160,7 +160,7 @@ namespace AionHR.Web.UI.Forms
             {
                 case "imgEdit":
                     //Step 1 : get the object from the Web Service 
-                leaveRequest1.Update(id);
+              Update(id);
 
 
                     break;
@@ -299,77 +299,100 @@ namespace AionHR.Web.UI.Forms
             employeeId.SetValue(_systemService.SessionHelper.GetEmployeeId());
         }
 
-        //public void Update(string id)
-        //{
-        //    RecordRequest r = new RecordRequest();
-        //    r.RecordID = id;
-        //    CurrentLeave.Text = r.RecordID;
-        //    shouldDisableLastDay.Text = "0";
+        public void Update(string id)
+        {
+            RecordRequest r = new RecordRequest();
+            r.RecordID = id;
+            CurrentLeave.Text = r.RecordID;
+            shouldDisableLastDay.Text = "0";
 
-        //    RecordResponse<LeaveRequest> response = _leaveManagementService.ChildGetRecord<LeaveRequest>(r);
-        //    if (!response.Success)
-        //    {
-        //        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-        //        X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).   ToString() + "<br>Technical Error: " + response.ErrorCode + "<br> Summary: " + response.Summary : response.Summary).Show();
-        //        return;
-        //    }
-        //    //Step 2 : call setvalues with the retrieved object
-        //    this.BasicInfoTab.SetValues(response.result);
+            RecordResponse<LeaveRequest> response = _leaveManagementService.ChildGetRecord<LeaveRequest>(r);
+            if (!response.Success)
+            {
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).ToString() + "<br>Technical Error: " + response.ErrorCode + "<br> Summary: " + response.Summary : response.Summary).Show();
+                return;
+            }
+            //Step 2 : call setvalues with the retrieved object
+            this.BasicInfoTab.SetValues(response.result);
 
 
-        //    FillLeaveType();
+            FillLeaveType();
 
-        //    ltId.Select(response.result.ltId.ToString());
-        //    //status.Select(response.result.status);
-        //    StoredLeaveChanged.Text = "0";
-        //    if (response.result.employeeId != "0")
-        //    {
+            ltId.Select(response.result.ltId);
+            //status.Select(response.result.status);
+            StoredLeaveChanged.Text = "0";
+            if (response.result.employeeId != "0")
+            {
 
-        //        employeeId.GetStore().Add(new object[]
-        //           {
-        //                        new
-        //                        {
-        //                            recordId = response.result.employeeId,
-        //                            fullName =response.result.employeeName.fullName
-        //                        }
-        //           });
-        //        employeeId.SetValue(response.result.employeeId);
+                employeeId.GetStore().Add(new object[]
+                   {
+                                new
+                                {
+                                    recordId = response.result.employeeId,
+                                    fullName =response.result.employeeName.fullName
+                                }
+                   });
+                employeeId.SetValue(response.result.employeeId);
 
-        //    }
-        //    LoadQuickViewInfo(response.result.employeeId);
-        //    LeaveDayListRequest req = new LeaveDayListRequest();
-        //    req.LeaveId = CurrentLeave.Text;
-        //    ListResponse<LeaveDay> resp = _leaveManagementService.ChildGetAll<LeaveDay>(req);
-        //    if (!resp.Success)
-        //    {
+            }
+            LoadQuickViewInfo(response.result.employeeId);
+            LeaveDayListRequest req = new LeaveDayListRequest();
+            req.LeaveId = CurrentLeave.Text;
+            ListResponse<LeaveDay> resp = _leaveManagementService.ChildGetAll<LeaveDay>(req);
+            if (!resp.Success)
+            {
 
-        //    }
+            }
 
-        //    leaveDaysStore.DataSource = resp.Items;
-        //    resp.Items.ForEach(x => x.dow = (short)DateTime.ParseExact(x.dayId, "yyyyMMdd", new CultureInfo("en")).DayOfWeek);
-        //    leaveDaysStore.DataBind();
-           
-        //    LeaveChanged.Text = "0";
-        //    X.Call("CalcSum");
-        //    panelRecordDetails.ActiveTabIndex = 0;
+            leaveDaysStore.DataSource = resp.Items;
+            resp.Items.ForEach(x => x.dow = (short)DateTime.ParseExact(x.dayId, "yyyyMMdd", new CultureInfo("en")).DayOfWeek);
+            leaveDaysStore.DataBind();
 
-        //    setNormal();
-        //    if (response.result.status == 2)
+            LeaveChanged.Text = "0";
+            X.Call("calcSum");
+            panelRecordDetails.ActiveTabIndex = 0;
 
-        //        setApproved(true);
+            setNormal();
+            if (response.result.status == 2)
 
-        //    else if (response.result.status == 3 || response.result.status == -1)
-        //        setUsed(true);
-        //    else
-        //    { setNormal(); }
-        //    if (ViewOnly.Text == "1")
-        //        SaveButton.Disabled = true;
-        //    RefreshSecurityForControls();
-        //    this.EditRecordWindow.Title = Resources.Common.EditWindowsTitle;
-        //    this.EditRecordWindow.Show();
-        //    X.Call("calcDays");
-        //}
+                setApproved(true);
 
+            else if (response.result.status == 3 || response.result.status == -1)
+                setUsed(true);
+            else
+            { setNormal(); }
+            if (ViewOnly.Text == "1")
+                SaveButton.Disabled = true;
+            RefreshSecurityForControls();
+            this.EditRecordWindow.Title = Resources.Common.EditWindowsTitle;
+            this.EditRecordWindow.Show();
+            X.Call("calcDays");
+        }
+        private void setUsed(bool disabled)
+        {
+            GridDisabled.Text = disabled.ToString();
+            startDate.Disabled = disabled;
+            endDate.Disabled = employeeId.Disabled = justification.Disabled = destination.Disabled = /*isPaid.Disabled*/ ltId.Disabled = TotalText.Disabled = disabled;
+            returnDate.Disabled = disabled;
+            SaveButton.Disabled = disabled;
+            leavePeriod.Disabled = disabled;
+            calDays.Disabled = disabled;
+            leaveRef.Disabled = disabled;
+
+        }
+        private void setApproved(bool disabled)
+        {
+            GridDisabled.Text = disabled.ToString();
+            startDate.Disabled = disabled;
+            endDate.Disabled = employeeId.Disabled = justification.Disabled = destination.Disabled = /*isPaid.Disabled = */ltId.Disabled = TotalText.Disabled = disabled;
+            returnDate.Disabled = !disabled;
+            approved.Text = disabled.ToString();
+            leavePeriod.Disabled = disabled;
+            calDays.Disabled = disabled;
+            leaveRef.Disabled = disabled;
+
+        }
         private void setNormal()
         {
             GridDisabled.Text = "False";
@@ -609,9 +632,23 @@ namespace AionHR.Web.UI.Forms
             }
             List<LeaveDay> leaveDays = new List<LeaveDay>();
             days.Items.ForEach(x => leaveDays.Add(new LeaveDay() { dow = (short)DateTime.ParseExact(x.dayId, "yyyyMMdd", new CultureInfo("en")).DayOfWeek, dayId = x.dayId, workingHours = x.workingHours, leaveHours = x.workingHours }));
+            if (!string.IsNullOrEmpty(CurrentLeave.Text))
+            {
+                LeaveDayListRequest req1 = new LeaveDayListRequest();
+                req1.LeaveId = CurrentLeave.Text;
+                ListResponse<LeaveDay> resp = _leaveManagementService.ChildGetAll<LeaveDay>(req1);
+                if (!resp.Success)
+                {
+
+                }
+                foreach (LeaveDay l in resp.Items)
+                {
+                    leaveDays.Where(x => x.dayId == l.dayId).First().leaveHours = l.leaveHours;
+                }
+            }
             leaveDaysStore.DataSource = leaveDays;
             leaveDaysStore.DataBind();
-            X.Call("CalcSum");
+            X.Call("calcSum");
             //LoadQuickViewInfo(employeeId.Value.ToString());
         }
         private int GetEmployeeCalendar(string empId)
@@ -731,7 +768,7 @@ namespace AionHR.Web.UI.Forms
             days.Items.ForEach(x => leaveDays.Add(new LeaveDay() { dow = (short)DateTime.ParseExact(x.dayId, "yyyyMMdd", new CultureInfo("en")).DayOfWeek, dayId = x.dayId, workingHours = x.workingHours, leaveHours = x.workingHours }));
             leaveDaysStore.DataSource = leaveDays;
             leaveDaysStore.DataBind();
-            X.Call("CalcSum");
+            X.Call("calcSum");
             if (returnDate > endDate)
             {
                 X.Call("EnableLast");
@@ -939,9 +976,12 @@ namespace AionHR.Web.UI.Forms
 
                 b.employeeName.fullName = employeeId.SelectedItem.Text;
             if (ltId.SelectedItem != null)
-
+            {
                 b.ltName = ltId.SelectedItem.Text;
-
+                b.ltId =Convert.ToInt32( ltId.SelectedItem.Value);
+            }
+            b.employeeId = _systemService.SessionHelper.GetEmployeeId();
+            b.status = 1;
             List<LeaveDay> days = GenerateLeaveDays(e.ExtraParams["days"]);
 
             if (string.IsNullOrEmpty(id))
@@ -1064,9 +1104,9 @@ namespace AionHR.Web.UI.Forms
                         //return;
                     }
                     //getting the id of the record
-                    PostRequest<LeaveRequest> request = new PostRequest<LeaveRequest>();
-                    //request.entity = b;
-                    PostResponse<LeaveRequest> r = _leaveManagementService.ChildAddOrUpdate<LeaveRequest>(request);                      //Step 1 Selecting the object or building up the object for update purpose
+                    PostRequest<leaveRequetsSelfservice> request = new PostRequest<leaveRequetsSelfservice>();
+                    request.entity = b;
+                    PostResponse<leaveRequetsSelfservice> r = _selfServiceService.ChildAddOrUpdate<leaveRequetsSelfservice>(request);                      //Step 1 Selecting the object or building up the object for update purpose
 
                     //Step 2 : saving to store
 

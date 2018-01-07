@@ -193,6 +193,7 @@ namespace AionHR.Web.UI.Forms.Controls
 
             }
             LoadQuickViewInfo(response.result.employeeId);
+           
             LeaveDayListRequest req = new LeaveDayListRequest();
             req.LeaveId = CurrentLeave.Text;
             ListResponse<LeaveDay> resp = _leaveManagementService.ChildGetAll<LeaveDay>(req);
@@ -736,6 +737,20 @@ namespace AionHR.Web.UI.Forms.Controls
             }
             List<LeaveDay> leaveDays = new List<LeaveDay>();
             days.Items.ForEach(x => leaveDays.Add(new LeaveDay() { dow = (short)DateTime.ParseExact(x.dayId, "yyyyMMdd", new CultureInfo("en")).DayOfWeek, dayId = x.dayId, workingHours = x.workingHours, leaveHours = x.workingHours }));
+            if (!string.IsNullOrEmpty(CurrentLeave.Text))
+            {
+                LeaveDayListRequest req1 = new LeaveDayListRequest();
+                req1.LeaveId = CurrentLeave.Text;
+                ListResponse<LeaveDay> resp = _leaveManagementService.ChildGetAll<LeaveDay>(req1);
+                if (!resp.Success)
+                {
+
+                }
+                foreach (LeaveDay l in resp.Items)
+                {
+                    leaveDays.Where(x => x.dayId == l.dayId).First().leaveHours = l.leaveHours;
+                }
+            }
             leaveDaysStore.DataSource = leaveDays;
             leaveDaysStore.DataBind();
             X.Call("CalcSum");
