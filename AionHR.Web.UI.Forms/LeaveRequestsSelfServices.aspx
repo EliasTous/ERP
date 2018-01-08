@@ -315,7 +315,7 @@
                             </ext:Column>
                              <ext:Column runat="server"
                                 ID="colDelete" Visible="true"
-                                Text="<%$ Resources: Common , Delete %>"
+                                Text=""
                                 MinWidth="80"
                                 Align="Center"
                                 Fixed="true"
@@ -468,7 +468,7 @@
                             </DirectEvents>
 
                         </ext:ComboBox>
-                        <ext:DateField ID="startDate"   runat="server" FieldLabel="<%$ Resources:FieldStartDate%>" Name="startDate" AllowBlank="false">
+                           <ext:DateField ID="startDate"   runat="server" FieldLabel="<%$ Resources:FieldStartDate%>" Name="startDate" AllowBlank="false">
                             <DirectEvents>
                                 <Change OnEvent="MarkLeaveChanged">
                                     <ExtraParams>

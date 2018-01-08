@@ -127,7 +127,7 @@ namespace AionHR.Web.UI.Forms
                 Column1.Format = Column2.Format = date.Format = returnedDate.Format = _systemService.SessionHelper.GetDateformat();
                 try
                 {
-                    AccessControlApplier.ApplyAccessControlOnPage(typeof(AssetAllowance), BasicInfoTab, GridPanel1, btnAdd, SaveButton);
+                    AccessControlApplier.ApplyAccessControlOnPage(typeof(AssetAllowanceSelfService), BasicInfoTab, GridPanel1, btnAdd, SaveButton);
                 }
                 catch (AccessDeniedException exp)
                 {

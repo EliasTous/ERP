@@ -215,7 +215,7 @@
                             </ext:Column>
                              <ext:Column runat="server"
                                 ID="colDelete"  Visible="true"
-                                Text="<%$ Resources: Common , Delete %>"
+                                Text=""
                                 MinWidth="60"
                                 Align="Center"
                                 Fixed="true"

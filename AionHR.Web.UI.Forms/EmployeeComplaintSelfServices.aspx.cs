@@ -88,9 +88,9 @@ namespace AionHR.Web.UI.Forms
         IEmployeeService _employeeService = ServiceLocator.Current.GetInstance<IEmployeeService>();
 
         IComplaintsService _complaintService = ServiceLocator.Current.GetInstance<IComplaintsService>();
-
-
+        
         ICompanyStructureService _companyStructureService = ServiceLocator.Current.GetInstance<ICompanyStructureService>();
+        ISelfServiceService _selfServiceService = ServiceLocator.Current.GetInstance<ISelfServiceService>();
         protected override void InitializeCulture()
         {
 
@@ -123,13 +123,13 @@ namespace AionHR.Web.UI.Forms
 
 
                 //FillDivision();
-                statusPref.Select("0");
+                //statusPref.Select("0");
                 dateReceived.Format = colDateReceived.Format = _systemService.SessionHelper.GetDateformat();
                 //dateCol.Format = _systemService.SessionHelper.GetDateformat() + ": hh:mm:ss";
 
                 try
                 {
-                    AccessControlApplier.ApplyAccessControlOnPage(typeof(Complaint), BasicInfoTab, GridPanel1, btnAdd, SaveButton);
+                    AccessControlApplier.ApplyAccessControlOnPage(typeof(EmployeeComplaintSelfService), BasicInfoTab, GridPanel1, btnAdd, SaveButton);
                 }
                 catch (AccessDeniedException exp)
                 {
@@ -200,7 +200,7 @@ namespace AionHR.Web.UI.Forms
                     RecordRequest r = new RecordRequest();
                     r.RecordID = id;
 
-                    RecordResponse<Complaint> response = _complaintService.Get<Complaint>(r);
+                    RecordResponse<EmployeeComplaintSelfService> response = _selfServiceService.ChildGetRecord<EmployeeComplaintSelfService>(r);
                     if (!response.Success)
                     {
                         X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
@@ -266,7 +266,7 @@ namespace AionHR.Web.UI.Forms
             try
             {
                 //Step 1 Code to delete the object from the database 
-                Complaint s = new Complaint();
+                EmployeeComplaintSelfService s = new EmployeeComplaintSelfService();
                 s.recordId = index;
                 s.employeeId = 0;
                 s.employeeName = new EmployeeName();
@@ -274,12 +274,12 @@ namespace AionHR.Web.UI.Forms
                 s.actionTaken = "";
                 s.complaintDetails = "";
                 s.dateReceived = DateTime.Now;
-                s.status = 0;
+                s.status = 1;
 
 
-                PostRequest<Complaint> req = new PostRequest<Complaint>();
+                PostRequest<EmployeeComplaintSelfService> req = new PostRequest<EmployeeComplaintSelfService>();
                 req.entity = s;
-                PostResponse<Complaint> r = _complaintService.Delete<Complaint>(req);
+                PostResponse<EmployeeComplaintSelfService> r = _selfServiceService.ChildDelete<EmployeeComplaintSelfService>(req);
                 if (!r.Success)
                 {
                     X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
@@ -410,14 +410,15 @@ namespace AionHR.Web.UI.Forms
           
             req.BranchId =  0;
             req.DepartmentId = 0;
-            if (!string.IsNullOrEmpty(statusPref.Text) && statusPref.Value.ToString() != "")
-            {
-                req.Status = Convert.ToInt32(statusPref.Value);
-            }
-            else
-            {
-                req.Status = 0;
-            }
+            //if (!string.IsNullOrEmpty(statusPref.Text) && statusPref.Value.ToString() != "")
+            //{
+            //    req.Status = Convert.ToInt32(statusPref.Value);
+            //}
+            //else
+            //{
+            //    req.Status = 0;
+            //}
+            req.Status = 0;
             req.Size = "30";
             req.StartAt = "1";
             req.Filter = "";
@@ -475,6 +476,7 @@ namespace AionHR.Web.UI.Forms
             if (dateReceived.ReadOnly)
                 b.dateReceived = null;
             b.employeeId = Convert.ToInt32(_systemService.SessionHelper.GetEmployeeId());
+            b.status = 1;
             if (string.IsNullOrEmpty(id))
             {
 
@@ -482,11 +484,12 @@ namespace AionHR.Web.UI.Forms
                 {
                     //New Mode
                     //Step 1 : Fill The object and insert in the store 
-                    PostRequest<EmployeeComplaintSelfService> request = new PostRequest<EmployeeComplaintSelfService>();
+                    PostRequest<EmployeeComplaintSelfService> req = new PostRequest<EmployeeComplaintSelfService>();
 
-                    request.entity = b;
+                    req.entity = b;
 
-                    PostResponse<EmployeeComplaintSelfService> r = _complaintService.AddOrUpdate<EmployeeComplaintSelfService>(request);
+
+                    PostResponse<EmployeeComplaintSelfService> r = _selfServiceService.ChildAddOrUpdate<EmployeeComplaintSelfService>(req);
 
 
                     //check if the insert failed
@@ -542,7 +545,7 @@ namespace AionHR.Web.UI.Forms
                     //getting the id of the record
                     PostRequest<EmployeeComplaintSelfService> request = new PostRequest<EmployeeComplaintSelfService>();
                     request.entity = b;
-                    PostResponse<EmployeeComplaintSelfService> r = _complaintService.AddOrUpdate<EmployeeComplaintSelfService>(request);                      //Step 1 Selecting the object or building up the object for update purpose
+                    PostResponse<EmployeeComplaintSelfService> r = _selfServiceService.ChildAddOrUpdate<EmployeeComplaintSelfService>(request);                      //Step 1 Selecting the object or building up the object for update purpose
 
                     //Step 2 : saving to store
 

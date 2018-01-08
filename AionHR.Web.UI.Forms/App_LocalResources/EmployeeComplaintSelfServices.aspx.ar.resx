@@ -142,7 +142,7 @@
     <value>مغلقة</value>
   </data>
   <data name="FieldComplaintDetails" xml:space="preserve">
-    <value>ثفلصيل الشكوى</value>
+    <value>تفاصيل الشكوى</value>
   </data>
   <data name="FieldDateReceived" xml:space="preserve">
     <value>تاريخ الشكوى</value>

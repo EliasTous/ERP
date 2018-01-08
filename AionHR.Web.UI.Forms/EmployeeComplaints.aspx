@@ -13,7 +13,7 @@
     <link rel="stylesheet" type="text/css" href="CSS/Common.css" />
    
     <link rel="stylesheet" href="CSS/LiveSearch.css" />
-    <script type="text/javascript" src="Scripts/EmployeeComplaints.js?id=13" ></script>
+    <script type="text/javascript" src="Scripts/EmployeeComplaints.js?id=16" ></script>
 
 
     <script type="text/javascript" src="Scripts/common.js" ></script>
@@ -130,8 +130,8 @@
                                     <Items>
                                         <ext:ListItem Text="<%$ Resources: All %>" Value="0"  />
                                         <ext:ListItem Text="<%$ Resources: FieldPending %>" Value="1" />
-                                        <ext:ListItem Text="<%$ Resources: FieldOpen %>" Value="2" />
-                                        <ext:ListItem Text="<%$ Resources: FieldClosed %>" Value="3" />
+                                       
+                                        <ext:ListItem Text="<%$ Resources: FieldClosed %>" Value="2" />
                                     </Items>
                           
                                 </ext:ComboBox>
@@ -330,16 +330,16 @@
                                 </ext:ComboBox>
                                 
                                 <ext:DateField ID="dateReceived" runat="server" FieldLabel="<%$ Resources:FieldDateReceived%>" Name="dateReceived" AllowBlank="false" />                                
-                                <ext:TextField ID="actionTaken" runat="server" FieldLabel="<%$ Resources:FieldActionTaken%>" Name="actionTaken" AllowBlank="false"/>
+                                <ext:TextField ID="actionTaken" runat="server" FieldLabel="<%$ Resources:FieldActionTaken%>" Name="actionTaken" AllowBlank="true"/>
                                 <ext:TextField ID="actionRequired" runat="server" FieldLabel="<%$ Resources:FieldActionRequired%>" Name="actionRequired" AllowBlank="false"/>
-                                <ext:TextField ID="complaintDetails" runat="server" FieldLabel="<%$ Resources:FieldComplaintDetails%>" Name="complaintDetails" AllowBlank="false"/>
+                                <ext:TextArea ID="complaintDetails" runat="server" FieldLabel="<%$ Resources:FieldComplaintDetails%>" Name="complaintDetails" AllowBlank="false" />
                                 <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" ID="status" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" Name="status"
                                     FieldLabel="<%$ Resources: FieldStatus %>" AllowBlank="false">
                                     <Items>
                                         
                                         <ext:ListItem Text="<%$ Resources: FieldPending %>" Value="1" />
-                                        <ext:ListItem Text="<%$ Resources: FieldOpen %>" Value="2" />
-                                        <ext:ListItem Text="<%$ Resources: FieldClosed %>" Value="3" />
+                          
+                                        <ext:ListItem Text="<%$ Resources: FieldClosed %>" Value="2" />
                                     </Items>
                                     
                                 </ext:ComboBox>

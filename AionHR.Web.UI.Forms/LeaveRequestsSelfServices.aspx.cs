@@ -580,7 +580,7 @@ namespace AionHR.Web.UI.Forms
                     panelRecordDetails.ActiveTabIndex = 0;
                     return;
                 }
-                MarkLeaveChanged(sender, e);
+                //MarkLeaveChanged(sender, e);
             }
         }
         [DirectMethod]
@@ -960,8 +960,8 @@ namespace AionHR.Web.UI.Forms
             string status1 = e.ExtraParams["status"];
             JsonSerializerSettings settings = new JsonSerializerSettings();
             CustomResolver res = new CustomResolver();
-           res.AddRule("leaveRequest1_employeeId", "employeeId");
-            res.AddRule("leaveRequest1_ltId", "ltId");
+             res.AddRule("leaveRequest1_employeeId", "employeeId");
+             res.AddRule("leaveRequest1_ltId", "ltId");
              res.AddRule("leaveRequest1_status", "status");
 
             settings.ContractResolver = res;
@@ -1060,7 +1060,7 @@ namespace AionHR.Web.UI.Forms
 
                         RecordRequest rec = new RecordRequest();
                         rec.RecordID = id;
-                        RecordResponse<LeaveRequest> recordResponse = _leaveManagementService.ChildGetRecord<LeaveRequest>(rec);
+                        RecordResponse<LeaveRequest> recordResponse = _selfServiceService.ChildGetRecord<LeaveRequest>(rec);
                         if (!recordResponse.Success)
                         {
                             X.Msg.Alert(Resources.Common.Error, recordResponse.Summary).Show();

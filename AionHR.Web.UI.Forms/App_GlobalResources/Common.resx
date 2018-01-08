@@ -1126,6 +1126,9 @@
     <value>Asset Allowances</value>
   </data>
   <data name="EmployeeComplaintsSelfServices" xml:space="preserve">
-    <value>Employee Complaints</value>
+    <value>Complaints</value>
+  </data>
+  <data name="DailySchedule" xml:space="preserve">
+    <value>Daily Schedule</value>
   </data>
 </root>

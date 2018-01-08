@@ -27,6 +27,7 @@ namespace AionHR.Repository.WebService.Repositories
             
 
             ChildGetLookup.Add(typeof(MyInfo), "getEM1");
+            ChildGetLookup.Add(typeof(EmployeeComplaintSelfService), "getCO");
 
 
             ChildAddOrUpdateLookup.Add(typeof(MyInfo), "setEM");
@@ -34,8 +35,10 @@ namespace AionHR.Repository.WebService.Repositories
             ChildAddOrUpdateLookup.Add(typeof(loanSelfService), "setLO");
             ChildAddOrUpdateLookup.Add(typeof(LetterSelfservice), "setLE");
             ChildAddOrUpdateLookup.Add(typeof(LeaveDay[]), "arrLD");
+            ChildAddOrUpdateLookup.Add(typeof(EmployeeComplaintSelfService), "setCO");
 
             ChildDeleteLookup.Add(typeof(MyInfo), "delEM");
+            ChildDeleteLookup.Add(typeof(EmployeeComplaintSelfService), "delCO");
         }
         }
     

@@ -1131,4 +1131,7 @@
   <data name="EmployeeComplaintsSelfServices" xml:space="preserve">
     <value>شكاوى الموظفين</value>
   </data>
+  <data name="DailySchedule" xml:space="preserve">
+    <value>Daily Schedule</value>
+  </data>
 </root>

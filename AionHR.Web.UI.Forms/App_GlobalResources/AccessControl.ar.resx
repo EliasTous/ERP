@@ -1380,4 +1380,10 @@
   <data name="Property3107002" xml:space="preserve">
     <value>غير خاضع للتأمينات الإجتماعية</value>
   </data>
+  <data name="Property6010702" xml:space="preserve">
+    <value>الطلب</value>
+  </data>
+  <data name="Property6010703" xml:space="preserve">
+    <value>تفاصيل الشكوى</value>
+  </data>
 </root>
