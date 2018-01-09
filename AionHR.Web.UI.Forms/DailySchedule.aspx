@@ -51,7 +51,7 @@
                     <TopBar>
                         <ext:Toolbar ID="Toolbar1" runat="server" ClassicButtonStyle="false">
                             <Items>
-                                <ext:ComboBox AnyMatch="true" CaseSensitive="false" runat="server" QueryMode="Local" Width="120" ForceSelection="true" TypeAhead="true" MinChars="1" ValueField="recordId" DisplayField="name" ID="branchId" EmptyText="Branch...">
+                                <ext:ComboBox AnyMatch="true" CaseSensitive="false" runat="server" QueryMode="Local" Width="120" ForceSelection="true" TypeAhead="true" MinChars="1" ValueField="recordId" DisplayField="name" ID="branchId" EmptyText="<%$ Resources: Branch %>">
                                     <Store>
                                         <ext:Store runat="server" ID="branchStore">
                                             <Model>
@@ -65,7 +65,7 @@
                                         </ext:Store>
                                     </Store>
                                 </ext:ComboBox>
-                                <ext:Button runat="server" Text="Branch Availability">
+                                <ext:Button runat="server" Text="<%$ Resources: BranchAvailability %>">
                                 </ext:Button>
                                 <ext:ToolbarSeparator />
                                 <ext:ComboBox AnyMatch="true" CaseSensitive="false" runat="server" ID="employeeId" Width="200" LabelAlign="Top"
@@ -73,7 +73,7 @@
                                     ValueField="recordId" AllowBlank="true"
                                     TypeAhead="false"
                                     HideTrigger="true" SubmitValue="true"
-                                    MinChars="3" EmptyText="Select Employe..."
+                                    MinChars="3" EmptyText="<%$ Resources: SelectEmp %>"
                                     TriggerAction="Query" ForceSelection="true">
                                     <Store>
                                         <ext:Store runat="server" ID="EmployeeStore" AutoLoad="false">
@@ -92,12 +92,12 @@
                                     </Store>
                                 </ext:ComboBox>
                                 <ext:ToolbarSeparator />
-                                <ext:DateField runat="server" ID="dateFrom" Width="150" LabelWidth="30" FieldLabel="From" Editable="false">
+                                <ext:DateField runat="server" ID="dateFrom" Width="150" LabelWidth="30" FieldLabel="<%$ Resources: From %>" Editable="false">
                                     <%--  <Listeners>
                                         <Change Handler="App.CompanyHeadCountStore.reload(); App.DimensionalHeadCountStore.reload();" />
                                     </Listeners>--%>
                                 </ext:DateField>
-                                <ext:DateField runat="server" ID="dateTo" Width="150" LabelWidth="30" FieldLabel="To" Editable="false">
+                                <ext:DateField runat="server" ID="dateTo" Width="150" LabelWidth="30" FieldLabel="<%$ Resources: To %>" Editable="false">
                                     <%--  <Listeners>
                                         <Change Handler="App.CompanyHeadCountStore.reload(); App.DimensionalHeadCountStore.reload();" />
                                     </Listeners>--%>
@@ -113,7 +113,7 @@
 
                         <ext:Toolbar ID="Toolbar2" runat="server" Dock="Bottom" ClassicButtonStyle="true">
                             <Items>
-                                <ext:Button runat="server" Text="Load">
+                                <ext:Button runat="server" Text="<%$ Resources: Load %>">
                                     <DirectEvents>
                                         <Click OnEvent="Load_Click">
                                             <EventMask ShowMask="true" />
@@ -122,14 +122,14 @@
                                 </ext:Button>
                                 <ext:Button runat="server" Text="Import" Visible="false">
                                 </ext:Button>
-                                <ext:Button runat="server" Text="Delete" ID="btnDelete">
+                                <ext:Button runat="server" Text="<%$ Resources: Delete %>" ID="btnDelete">
                                        <DirectEvents>
                                         <Click OnEvent="Delete_Click">
                                             <EventMask ShowMask="true" />
                                         </Click>
                                     </DirectEvents>
                                 </ext:Button>
-                                <ext:Button runat="server" Text="Clear">
+                                <ext:Button runat="server" Text="<%$ Resources: Clear %>">
                                        <DirectEvents>
                                         <Click OnEvent="Clear_Click">
                                             <EventMask ShowMask="true" />
@@ -159,30 +159,30 @@
                                 <ext:VBoxLayoutConfig Align="center" />
                             </LayoutConfig>
                             <Items>
-                                <ext:Label runat="server" Text="From" />
+                                <ext:Label runat="server" Text="<%$ Resources: From %>" />
                                 <ext:TimeField
                                     ID="timeFrom" Text="From"
                                     runat="server"
                                     Width="100"
                                     Increment="30"
                                     SelectedTime="08:00"
-                                    Format="HH:mm" />
-                                <ext:Label runat="server" Text="To" />
+                                    Format="hh:mm tt" />
+                                <ext:Label runat="server" Text="<%$ Resources: To %>" />
                                 <ext:TimeField
                                     ID="timeTo" Text="From"
                                     runat="server"
                                     Width="100"
                                     Increment="30"
                                     SelectedTime="13:00"
-                                    Format="HH:mm" />
-                                <ext:Button runat="server" Text="Save" Disabled="true" ID="btnSave" StyleSpec="margin:0 0 10px 0;">
+                                    Format="hh:mm tt" />
+                                <ext:Button runat="server" Text="<%$ Resources: Save %>" Disabled="true" ID="btnSave" StyleSpec="margin:0 0 10px 0;">
                                     <DirectEvents>
                                         <Click OnEvent="Save_Click">
                                             <EventMask ShowMask="true" />
                                         </Click>
                                     </DirectEvents>
                                 </ext:Button>
-                                 <ext:Button runat="server" Text="Delete Day" Disabled="true" ID="btnDeleteDay">
+                                 <ext:Button runat="server" Text="<%$ Resources: DeleteDay %>" Disabled="true" ID="btnDeleteDay">
                                     <DirectEvents>
                                         <Click OnEvent="DeleteDay_Click">
                                             <EventMask ShowMask="true" />

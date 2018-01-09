@@ -29,4 +29,6 @@ namespace AionHR.Model.TimeAttendance
     public class FlatScheduleRange : FlatSchedule
     {
     }
+
+
 }

@@ -89,6 +89,29 @@ public class DepartmentByReference:RecordRequest
         }
     }
 }
+
+public class BranchWorkRecordRequest : ListRequest
+{
+    public string FromDayId { get; set; }
+
+    public string ToDayId { get; set; }
+
+    public string BranchId { get; set; }
+    
+
+    public override Dictionary<string, string> Parameters
+    {
+        get
+        {
+            parameters = new Dictionary<string, string>();
+            parameters.Add("_fromDayId", FromDayId);
+            parameters.Add("_toDayId", ToDayId);
+            parameters.Add("_branchId", BranchId.ToString());
+
+            return parameters;
+        }
+    }
+}
 public class LegalReferenceListRequest : ListRequest
 {
     public string branchId  { get; set; }

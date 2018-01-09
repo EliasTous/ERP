@@ -41,7 +41,7 @@ public class OvertimeSettingsListRequest : ListRequest
     }
 }
 
-public class FlatScheduleListRequest : ListRequest
+public class BranchScheduleRecordRequest : ListRequest
 {
     public string FromDayId { get; set; }
 

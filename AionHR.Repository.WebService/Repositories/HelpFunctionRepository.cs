@@ -1,5 +1,6 @@
 ﻿using AionHR.Infrastructure.Configuration;
 using AionHR.Infrastructure.Domain;
+using AionHR.Model.Company.Structure;
 using AionHR.Model.Dashboard;
 using AionHR.Model.HelpFunction;
 using AionHR.Model.SelfService;
@@ -21,10 +22,11 @@ namespace AionHR.Repository.WebService.Repositories
 
             ChildGetAllLookup.Add(typeof(LocalsRate), "NQ01");
           
-
+ ChildGetAllLookup.Add(typeof(BranchSchedule), "CS01");
 
 
             ChildGetLookup.Add(typeof(MyInfo), "getEM1");
+            ChildGetLookup.Add(typeof(BranchSchedule), "CS01");
 
 
             ChildAddOrUpdateLookup.Add(typeof(MyInfo), "setEM");

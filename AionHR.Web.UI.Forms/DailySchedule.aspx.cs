@@ -33,6 +33,7 @@ namespace AionHR.Web.UI.Forms
         ISystemService _systemService = ServiceLocator.Current.GetInstance<ISystemService>();
         IEmployeeService _employeeService = ServiceLocator.Current.GetInstance<IEmployeeService>();
         ITimeAttendanceService _timeAttendanceService = ServiceLocator.Current.GetInstance<ITimeAttendanceService>();
+        IHelpFunctionService _helpFunctionService = ServiceLocator.Current.GetInstance<IHelpFunctionService>();
         protected override void InitializeCulture()
         {
 
@@ -111,20 +112,42 @@ namespace AionHR.Web.UI.Forms
 
         protected void Delete_Click(object sender, DirectEventArgs e)
         {
+
+            X.Msg.Confirm(Resources.Common.Confirmation, (string)GetLocalResourceObject("ConfirmDeleteAllDays"), new MessageBoxButtonsConfig
+            {
+                Yes = new MessageBoxButtonConfig
+                {
+                    //We are call a direct request metho for deleting a record
+                    Handler = String.Format("App.direct.DayRangeDelete()"),
+                    Text = Resources.Common.Yes
+                },
+                No = new MessageBoxButtonConfig
+                {
+                    Text = Resources.Common.No
+                }
+
+            }).Show();
+
+
+        }
+
+        [DirectMethod(ShowMask = true)]
+        public void DayRangeDelete()
+        {
             if (employeeId.Value == null || employeeId.Value.ToString() == string.Empty)
             {
-                X.Msg.Alert(Resources.Common.Error, "Please Select an Employee").Show();
+                X.Msg.Alert(Resources.Common.Error, (string)GetLocalResourceObject("SelectEmployee")).Show();
                 return;
             }
 
             if (dateFrom.SelectedDate == DateTime.MinValue || dateTo.SelectedDate == DateTime.MinValue)
             {
-                X.Msg.Alert(Resources.Common.Error, "Please Select a valid from and To date").Show();
+                X.Msg.Alert(Resources.Common.Error, (string)GetLocalResourceObject("ValidFromToDate")).Show();
                 return;
             }
             if (dateFrom.SelectedDate > dateTo.SelectedDate)
             {
-                X.Msg.Alert(Resources.Common.Error, "To date should be higher than from date.").Show();
+                X.Msg.Alert(Resources.Common.Error, (string)GetLocalResourceObject("ToDateHigherFromDate")).Show();
                 return;
             }
 
@@ -132,7 +155,7 @@ namespace AionHR.Web.UI.Forms
             fs.employeeId = Convert.ToInt32(employeeId.Value.ToString());
             fs.fromDayId = dateFrom.SelectedDate.ToString("yyyyMMdd");
             fs.toDayId = dateTo.SelectedDate.ToString("yyyyMMdd");
-            PostRequest <FlatScheduleRange> request = new PostRequest<FlatScheduleRange>();
+            PostRequest<FlatScheduleRange> request = new PostRequest<FlatScheduleRange>();
 
             request.entity = fs;
             PostResponse<FlatScheduleRange> r = _timeAttendanceService.ChildDelete<FlatScheduleRange>(request);
@@ -149,7 +172,7 @@ namespace AionHR.Web.UI.Forms
             else
             {
                 //Reload Again
-                FlatScheduleListRequest reqFS = new FlatScheduleListRequest();
+                BranchScheduleRecordRequest reqFS = new BranchScheduleRecordRequest();
                 reqFS.EmployeeId = Convert.ToInt32(employeeId.Value.ToString());
                 reqFS.FromDayId = dateFrom.SelectedDate.ToString("yyyyMMdd");
                 reqFS.ToDayId = dateTo.SelectedDate.ToString("yyyyMMdd");
@@ -161,24 +184,44 @@ namespace AionHR.Web.UI.Forms
             }
         }
 
+
         protected void DeleteDay_Click(object sender, DirectEventArgs e)
+        {
+            X.Msg.Confirm(Resources.Common.Confirmation, (string)GetLocalResourceObject("ConfirmDeleteDay"), new MessageBoxButtonsConfig
+            {
+                Yes = new MessageBoxButtonConfig
+                {
+                    //We are call a direct request metho for deleting a record
+                    Handler = String.Format("App.direct.DayDelete()"),
+                    Text = Resources.Common.Yes
+                },
+                No = new MessageBoxButtonConfig
+                {
+                    Text = Resources.Common.No
+                }
+
+            }).Show();
+        }
+
+        [DirectMethod(ShowMask = true)]
+        public void DayDelete()
         {
             if (employeeId.Value == null || employeeId.Value.ToString() == string.Empty)
             {
-                X.Msg.Alert(Resources.Common.Error, "Please Select an Employee").Show();
+                X.Msg.Alert(Resources.Common.Error, (string)GetLocalResourceObject("SelectEmployee")).Show();
                 return;
             }
 
             if (dayId.Value == null || dayId.Value.ToString() == string.Empty)
             {
-                X.Msg.Alert(Resources.Common.Error, "Please Select a day.").Show();
+                X.Msg.Alert(Resources.Common.Error, (string)GetLocalResourceObject("SelectDay")).Show();
                 return;
             }
 
 
 
 
-           
+
             FlatSchedule fs = new FlatSchedule();
             fs.employeeId = Convert.ToInt32(employeeId.Value.ToString());
             fs.dayId = dayId.Value.ToString();
@@ -197,7 +240,7 @@ namespace AionHR.Web.UI.Forms
                 X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() + "<br>Technical Error: " + r.ErrorCode + "<br> Summary: " + r.Summary : r.Summary).Show();
                 return;
             }
-            
+
             else
             {
                 //List<string> listIds = new List<string>();
@@ -214,15 +257,16 @@ namespace AionHR.Web.UI.Forms
                 X.Call("DeleteDaySchedule", dayId.Value.ToString());
             }
         }
-
-
         protected void Clear_Click(object sender, DirectEventArgs e)
         {
-            
+
             this.branchId.Value = string.Empty;
             this.EmployeeStore = null;
             this.employeeId.Value = string.Empty;
-            this.btnSave.Disabled = true;
+            this.btnSave.Disabled = true;this.btnDeleteDay.Disabled = true;
+            this.timeFrom.MinTime = TimeSpan.FromMinutes(0);
+            this.timeTo.MinTime = TimeSpan.FromMinutes(0);
+            this.timeTo.MaxTime = new TimeSpan(23, 30, 0);
             this.pnlSchedule.Html = string.Empty;
             this.dayId.Value = string.Empty;
         }
@@ -230,60 +274,85 @@ namespace AionHR.Web.UI.Forms
         {
             if (employeeId.Value == null || employeeId.Value.ToString() == string.Empty)
             {
-                X.Msg.Alert(Resources.Common.Error, "Please Select an Employee").Show();
+                X.Msg.Alert(Resources.Common.Error, (string)GetLocalResourceObject("SelectEmployee")).Show();
                 return;
             }
 
             if (dateFrom.SelectedDate == DateTime.MinValue || dateTo.SelectedDate == DateTime.MinValue)
             {
-                X.Msg.Alert(Resources.Common.Error, "Please Select a valid from and To date").Show();
+                X.Msg.Alert(Resources.Common.Error, (string)GetLocalResourceObject("ValidFromToDate")).Show();
                 return;
             }
             if (dateFrom.SelectedDate > dateTo.SelectedDate)
             {
-                X.Msg.Alert(Resources.Common.Error, "To date should be higher than from date.").Show();
+                X.Msg.Alert(Resources.Common.Error, (string)GetLocalResourceObject("ToDateHigherFromDate")).Show();
                 return;
             }
 
             //Proceed to load
 
-            FlatScheduleListRequest reqFS = new FlatScheduleListRequest();
+            BranchScheduleRecordRequest reqFS = new BranchScheduleRecordRequest();
             reqFS.EmployeeId = Convert.ToInt32(employeeId.Value.ToString());
             reqFS.FromDayId = dateFrom.SelectedDate.ToString("yyyyMMdd");
             reqFS.ToDayId = dateTo.SelectedDate.ToString("yyyyMMdd");
             ListResponse<FlatSchedule> response = _timeAttendanceService.ChildGetAll<FlatSchedule>(reqFS);
             if (!response.Success)
-                X.Msg.Alert(Resources.Common.Error, "Error Getting Schedule").Show();
+            {
+                X.Msg.Alert(Resources.Common.Error, (string)GetLocalResourceObject("ErrorGettingSchedule")).Show();
+                return;
+            }
             BuildSchedule(response.Items);
         }
         protected void Save_Click(object sender, DirectEventArgs e)
         {
             if (employeeId.Value == null || employeeId.Value.ToString() == string.Empty)
             {
-                X.Msg.Alert(Resources.Common.Error, "Please Select an Employee").Show();
+                X.Msg.Alert(Resources.Common.Error, (string)GetLocalResourceObject("SelectEmployee")).Show();
                 return;
             }
 
             if (dayId.Value == null || dayId.Value.ToString() == string.Empty)
             {
-                X.Msg.Alert(Resources.Common.Error, "Please Select a day.").Show();
-                return;
-            }
-
-            if (TimeSpan.Compare(timeFrom.SelectedTime, timeTo.SelectedTime)>=0  && timeTo.SelectedTime.ToString()!="00:00:00")
-            {
-                X.Msg.Alert(Resources.Common.Error, "Please Select a valid from and To times").Show();
+                X.Msg.Alert(Resources.Common.Error, (string)GetLocalResourceObject("SelectDay")).Show();
                 return;
             }
 
 
-            //Proceed to Save
-            FlatSchedule fs = new FlatSchedule();
             DateTime activeTime = DateTime.ParseExact(dayId.Value.ToString(), "yyyyMMdd", new CultureInfo("en"));
             DateTime fsfromTime = new DateTime(activeTime.Year, activeTime.Month, activeTime.Day, timeFrom.SelectedTime.Hours, timeFrom.SelectedTime.Minutes, 0);
             DateTime fsToTime = new DateTime(activeTime.Year, activeTime.Month, activeTime.Day, timeTo.SelectedTime.Hours, timeTo.SelectedTime.Minutes, 0);
             if (timeTo.SelectedTime.ToString() == "00:00:00")
+            {
                 fsToTime = fsToTime.AddDays(1);
+            }
+
+            if ((fsfromTime.ToString("tt") == "AM" && "AM" == fsToTime.ToString("tt")) || ((fsfromTime.ToString("tt") == "PM" && "PM" == fsToTime.ToString("tt"))))
+            {
+                if (fsfromTime >= fsToTime)
+                {
+                    X.Msg.Alert(Resources.Common.Error, (string)GetLocalResourceObject("ValideFromToTime")).Show();
+                    return;
+                }
+            }
+
+            if ((fsfromTime > fsToTime)  && (fsfromTime.ToString("tt") == "PM" && "AM" == fsToTime.ToString("tt")))
+            {
+                fsToTime = fsToTime.AddDays(1);
+            }
+
+
+            //if (TimeSpan.Compare(timeFrom.SelectedTime, timeTo.SelectedTime) >= 0 && timeTo.SelectedTime.ToString() != "00:00:00")
+            //{
+            //    X.Msg.Alert(Resources.Common.Error, "Please Select a valid from and To times").Show();
+            //    return;
+            //}
+
+
+            //Proceed to Save
+            FlatSchedule fs = new FlatSchedule();
+
+            //if (timeTo.SelectedTime.ToString() == "00:00:00")
+            //    fsToTime = fsToTime.AddDays(1);
             fs.from = fsfromTime.ToString("HH:mm");
             fs.to = fsToTime.ToString("HH:mm");
             fs.employeeId = Convert.ToInt32(employeeId.Value.ToString());
@@ -305,19 +374,19 @@ namespace AionHR.Web.UI.Forms
             else
             {
                 List<string> listIds = new List<string>();
-                DateTime activeDate = DateTime.ParseExact(dayId.Value.ToString(), "yyyyMMdd", new CultureInfo("en"));
-                DateTime fsfromDate = new DateTime(activeDate.Year, activeDate.Month, activeDate.Day, timeFrom.SelectedTime.Hours, timeFrom.SelectedTime.Minutes, 0);
-                DateTime fsToDate = new DateTime(activeDate.Year, activeDate.Month, activeDate.Day, timeTo.SelectedTime.Hours, timeTo.SelectedTime.Minutes, 0);
-                if (timeTo.SelectedTime.ToString() == "00:00:00")
-                    fsToDate = fsToDate.AddHours(23.999);
+                //DateTime activeDate = DateTime.ParseExact(dayId.Value.ToString(), "yyyyMMdd", new CultureInfo("en"));
+                //DateTime fsfromDate = new DateTime(activeDate.Year, activeDate.Month, activeDate.Day, timeFrom.SelectedTime.Hours, timeFrom.SelectedTime.Minutes, 0);
+                //DateTime fsToDate = new DateTime(activeDate.Year, activeDate.Month, activeDate.Day, timeTo.SelectedTime.Hours, timeTo.SelectedTime.Minutes, 0);
+                //if (timeTo.SelectedTime.ToString() == "00:00:00")
+                //    fsToDate = fsToDate.AddHours(23.999);
 
-                DateTime effectiveDate = fsfromDate;
+                DateTime effectiveDate = fsfromTime;
                 do
                 {
-                   
-                    listIds.Add(effectiveDate.ToString("yyyyMMdd") + "_" + fsfromDate.ToString("HH:mm"));
-                    fsfromDate = fsfromDate.AddMinutes(30);
-                } while (fsToDate >= fsfromDate.AddMinutes(-1));
+
+                    listIds.Add(effectiveDate.ToString("yyyyMMdd") + "_" + fsfromTime.ToString("HH:mm"));
+                    fsfromTime = fsfromTime.AddMinutes(30);
+                } while (fsToTime >= fsfromTime);
 
                 X.Call("ColorifySchedule", JSON.JavaScriptSerialize(listIds));
             }
@@ -328,17 +397,38 @@ namespace AionHR.Web.UI.Forms
             string html = @"<div style = 'margin: 5px auto; width: 99%; height: 98%; overflow:auto;' > 
                              <table id = 'tbCalendar' cellpadding = '5' cellspacing = '0' >";
 
+            //CAlling the branch cvailability before proceeding
+
+            string startAt, closeAt = string.Empty;
+            GetBranchSchedule(out startAt, out closeAt);
+            if (string.IsNullOrEmpty(startAt) || string.IsNullOrEmpty(closeAt))
+            {
+                html += @"</table></div>";
+                this.pnlSchedule.Html = html;             
+                X.Call("DisableTools");
+                return;
+            }
+
+            TimeSpan tsStart = TimeSpan.Parse(startAt);
+            timeFrom.MinTime = tsStart;
+            timeTo.MinTime = tsStart.Add(TimeSpan.FromMinutes(30));
+            TimeSpan tsClose = TimeSpan.Parse(closeAt);
+            timeTo.MaxTime = tsClose;
+
+
+
             //Filling The Times Slot
             List<TimeSlot> timesList = new List<TimeSlot>();
-            DateTime dt = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 6, 0, 0);
-            for (int index = 0; index < 37; index++)
+            DateTime dtStart = new DateTime(DateTime.Now.Year, DateTime.Now.Month,DateTime.Now.Day, tsStart.Hours, tsStart.Minutes, 0);
+            DateTime dtEnd = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, tsClose.Hours, tsClose.Minutes, 0);
+            do
             {
                 TimeSlot ts = new TimeSlot();
-                ts.ID = dt.ToString("HH:mm");
-                ts.Time = dt.ToString("HH:mm");
+                ts.ID = dtStart.ToString("HH:mm");
+                ts.Time = dtStart.ToString("HH:mm");
                 timesList.Add(ts);
-                dt = dt.AddMinutes(30);
-            }
+                dtStart = dtStart.AddMinutes(30);
+            } while (dtStart <= dtEnd);
 
             //filling the Day slots
             int totalDays = Convert.ToInt32(Math.Ceiling((dateTo.SelectedDate - dateFrom.SelectedDate).TotalDays));
@@ -349,27 +439,47 @@ namespace AionHR.Web.UI.Forms
 
             //Preparing the ids to get colorified
             List<string> listIds = new List<string>();
-            foreach ( FlatSchedule fs in items)
+            foreach (FlatSchedule fs in items)
             {
-               DateTime activeDate =  DateTime.ParseExact(fs.dayId, "yyyyMMdd", new CultureInfo("en"));
+                DateTime activeDate = DateTime.ParseExact(fs.dayId, "yyyyMMdd", new CultureInfo("en"));
                 DateTime fsfromDate = new DateTime(activeDate.Year, activeDate.Month, activeDate.Day, Convert.ToInt32(fs.from.Split(':')[0]), Convert.ToInt32(fs.from.Split(':')[1]), 0);
-               DateTime fsToDate = new DateTime(activeDate.Year, activeDate.Month, activeDate.Day, Convert.ToInt32(fs.to.Split(':')[0]), Convert.ToInt32(fs.to.Split(':')[1]), 0);
+                DateTime fsToDate = new DateTime(activeDate.Year, activeDate.Month, activeDate.Day, Convert.ToInt32(fs.to.Split(':')[0]), Convert.ToInt32(fs.to.Split(':')[1]), 0);
 
                 do
                 {
                     listIds.Add(fsfromDate.ToString("yyyyMMdd") + "_" + fsfromDate.ToString("HH:mm"));
                     fsfromDate = fsfromDate.AddMinutes(30);
                 } while (fsToDate >= fsfromDate);
-                
+
             }
 
-          
+
 
             html += @"</table></div>";
             this.pnlSchedule.Html = html;
             X.Call("ColorifySchedule", JSON.JavaScriptSerialize(listIds));
             X.Call("Init");
             X.Call("DisableTools");
+        }
+
+        private void GetBranchSchedule(out string startAt, out string closeAt)
+        {
+            BranchWorkRecordRequest reqBS = new BranchWorkRecordRequest();
+            reqBS.BranchId = branchId.Value.ToString();
+            reqBS.FromDayId = dateFrom.SelectedDate.ToString("yyyyMMdd");
+            reqBS.ToDayId = dateTo.SelectedDate.ToString("yyyyMMdd");
+            
+            ListResponse<BranchSchedule> response = _helpFunctionService.ChildGetAll<BranchSchedule>(reqBS);
+            if (response.Success)
+            {
+                startAt = response.Items[0].openAt;
+                closeAt = response.Items[0].closeAt;
+            }
+            else
+            {
+                startAt = string.Empty;
+                closeAt = string.Empty;
+            }
         }
 
         private string FillOtherRow(string html, List<TimeSlot> timesList, int totalDays)
@@ -379,7 +489,7 @@ namespace AionHR.Web.UI.Forms
             for (int count = 0; count <= totalDays; count++)
             {
                 html += "<tr>";
-                html += "<td id=" + firstDate.ToString("yyyyMMdd") + " class='day'>" + firstDate.ToString("MMM d, yyyy") + "</td>";
+                html += "<td id=" + firstDate.ToString("yyyyMMdd") + " class='day'>" + firstDate.ToString("ddd, MMM d") + "</td>";
 
                 for (int index = 0; index < timesList.Count; index++)
                 {

@@ -2237,6 +2237,8 @@
     <Content Include="App_LocalResources\AssetAllowanceSelfServices.aspx.ar.resx" />
     <Content Include="App_LocalResources\EmployeeComplaintSelfServices.aspx.resx" />
     <Content Include="App_LocalResources\EmployeeComplaintSelfServices.aspx.ar.resx" />
+    <Content Include="App_LocalResources\DailySchedule.aspx.ar.resx" />
+    <Content Include="App_LocalResources\DailySchedule.aspx.resx" />
     <EmbeddedResource Include="Reports\RT201.aspx.resx">
       <DependentUpon>RT201.aspx.cs</DependentUpon>
       <Generator>ResXFileCodeGenerator</Generator>

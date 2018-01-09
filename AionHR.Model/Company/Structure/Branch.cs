@@ -36,4 +36,17 @@ namespace AionHR.Model.Company.Structure
 
 
     }
+
+    public class BranchSchedule
+    {
+     
+        public string openAt { get; set; }
+        public string closeAt { get; set; }
+
+    }
+
+    public class OpenClose {
+        public string openAt { get; set; }
+        public string closeAt { get; set; }
+    }
 }
