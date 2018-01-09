@@ -459,6 +459,12 @@
   <data name="Class60106" xml:space="preserve">
     <value>Letter</value>
   </data>
+  <data name="Class60107" xml:space="preserve">
+    <value>Employee Complaints</value>
+  </data>
+  <data name="Class60108" xml:space="preserve">
+    <value>Asset Allowance</value>
+  </data>
   <data name="Class80101" xml:space="preserve">
     <value>Age Breakdown</value>
   </data>

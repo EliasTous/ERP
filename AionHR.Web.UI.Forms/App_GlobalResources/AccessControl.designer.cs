@@ -3796,6 +3796,24 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Action Required.
+        /// </summary>
+        internal static string Property6010702 {
+            get {
+                return ResourceManager.GetString("Property6010702", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Complaint Details.
+        /// </summary>
+        internal static string Property6010703 {
+            get {
+                return ResourceManager.GetString("Property6010703", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Name.
         /// </summary>
         internal static string Property9010101 {

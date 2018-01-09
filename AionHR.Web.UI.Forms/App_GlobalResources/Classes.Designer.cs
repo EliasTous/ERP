@@ -1087,6 +1087,24 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Employee Complaints.
+        /// </summary>
+        internal static string Class60107 {
+            get {
+                return ResourceManager.GetString("Class60107", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Asset Allowance.
+        /// </summary>
+        internal static string Class60108 {
+            get {
+                return ResourceManager.GetString("Class60108", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Age Breakdown.
         /// </summary>
         internal static string Class80101 {

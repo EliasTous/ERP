@@ -399,7 +399,7 @@
                                 
                                 <ext:TextField ID="comment" runat="server" FieldLabel="<%$ Resources:FieldComment%>" Name="comment" />
 
-                                <ext:DateField Vtype="daterange" ID="date" runat="server" FieldLabel="<%$ Resources:FieldDate%>" Name="date" AllowBlank="true">
+                                <ext:DateField Vtype="daterange" ID="date" runat="server" FieldLabel="<%$ Resources:FieldDate%>" Name="date" AllowBlank="false">
                                     <CustomConfig>
                                         <ext:ConfigItem Name="endDateField" Value="returnedDate" Mode="Value" />
                                     </CustomConfig>

@@ -82,7 +82,7 @@
                     <TopBar>
                         <ext:Toolbar ID="Toolbar1" runat="server" ClassicButtonStyle="false">
                             <Items>
-                                <ext:Button ID="btnAdd" runat="server" Text="<%$ Resources:Common , Add %>" Icon="Add">
+                                <ext:Button ID="btnAdd" runat="server" Text="<%$ Resources:Common , Add %>" Icon="Add" Visible="false">
                                     <Listeners>
                                         <Click Handler="CheckSession();" />
                                     </Listeners>
@@ -190,7 +190,7 @@
 
                             <ext:Column runat="server"
                                 ID="colDelete" Visible="true"
-                                Text="<%$ Resources: Common , Delete %>"
+                                Text=""
                                 Width="80"
                                 Align="Center"
                                 Fixed="true"
@@ -388,7 +388,7 @@
                 </ext:TabPanel>
             </Items>
             <Buttons>
-                <ext:Button ID="SaveButton" runat="server" Text="<%$ Resources:Common, Save %>" Icon="Disk">
+                <ext:Button ID="SaveButton" runat="server" Text="<%$ Resources:Common, Save %>" Icon="Disk" Visible="false">
 
                     <Listeners>
                         <Click Handler="CheckSession(); if (!#{BasicInfoTab}.getForm().isValid()) {return false;}  " />

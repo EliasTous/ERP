@@ -12,7 +12,7 @@
     <link rel="stylesheet" type="text/css" href="CSS/Common.css" />
    
     <link rel="stylesheet" href="CSS/LiveSearch.css" />
-    <script type="text/javascript" src="Scripts/EmployeeComplaints.js?id=13" ></script>
+    <script type="text/javascript" src="Scripts/EmployeeComplaints.js?id=15" ></script>
 
 
     <script type="text/javascript" src="Scripts/common.js" ></script>
@@ -118,7 +118,7 @@
 
 
                               
-                                <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" ID="statusPref" Editable="false" EmptyText="<%$ Resources: FilterStatus %>"  >
+                              <%--  <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" ID="statusPref" Editable="false" EmptyText="<%$ Resources: FilterStatus %>"  >
                                     <Items>
                                         <ext:ListItem Text="<%$ Resources: All %>" Value="0"  />
                                         <ext:ListItem Text="<%$ Resources: FieldPending %>" Value="1" />
@@ -133,7 +133,7 @@
 
                                         </Click>
                                     </Listeners>
-                                </ext:Button>
+                                </ext:Button>--%>
 
                             
                             </Items>
@@ -149,9 +149,12 @@
                                 </Renderer>
                             </ext:Column>
                             <ext:DateColumn  Visible="false" ID="colDateReceived" DataIndex="dateReceived" Text="<%$ Resources: FieldDateReceived%>" runat="server" Flex="1" />
-                            <ext:Column  Visible="false"   CellCls="cellLink" ID="colActionTaken" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldActionTaken%>" DataIndex="actionTaken" Flex="2" Hideable="false"></ext:Column>
-                            <ext:Column    CellCls="cellLink" ID="colActionRequired" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldActionRequired%>" DataIndex="actionRequired" Flex="2" Hideable="false"></ext:Column>
-                            <ext:Column    CellCls="cellLink" ID="colComplaintDetails" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldComplaintDetails%>" DataIndex="complaintDetails" Flex="2" Hideable="false"></ext:Column>
+                             <ext:Column    CellCls="cellLink" ID="colComplaintDetails" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldComplaintDetails%>" DataIndex="complaintDetails" Flex="2" Hideable="false"></ext:Column>
+                              <ext:Column    CellCls="cellLink" ID="colActionRequired" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldActionRequired%>" DataIndex="actionRequired" Flex="2" Hideable="false"></ext:Column>
+                            <ext:Column   CellCls="cellLink" ID="colActionTaken" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldActionTaken%>" DataIndex="actionTaken" Flex="2" Hideable="false"></ext:Column>
+
+                          
+                           
                             <ext:Column ID="colStatus" DataIndex="status" Text="<%$ Resources: FieldStatus%>" runat="server" Flex="1">
                             <Renderer Handler="return GetStatusName(record.data['status']);" />
                             </ext:Column>
@@ -188,7 +191,7 @@
                             </ext:Column>
                               <ext:Column runat="server"
                                 ID="colDelete" Flex="1" Visible="true"
-                                Text="<%$ Resources: Common , Delete %>"
+                                Text=""
                                 Width="60"
                                 Align="Center"
                                 Fixed="true"
@@ -196,7 +199,7 @@
                                 Hideable="false"
                                 MenuDisabled="true"
                                 Resizable="false">
-                                <Renderer handler="return editRender()+ '&nbsp&nbsp'+ deleteRender();" />
+                                <Renderer handler="if (record.data['status']=='1') return editRender()+ '&nbsp&nbsp'+ deleteRender();" />
                               
                             </ext:Column>
 
@@ -294,7 +297,7 @@
                             BodyPadding="5">
                             <Items>
                                 <ext:TextField ID="recordId" runat="server"  Name="recordId"  Hidden="true"/>
-                                <ext:ComboBox Visible="false"  AnyMatch="true" CaseSensitive="false"  runat="server" ID="employeeId"
+                                <ext:ComboBox Hidden="true"  AnyMatch="true" CaseSensitive="false"  runat="server" ID="employeeId"
                                     DisplayField="fullName" Name="employeeId"
                                     ValueField="recordId"
                                     TypeAhead="false" AllowBlank="true"
@@ -321,17 +324,19 @@
                                     </Store>
                                 </ext:ComboBox>
                                 
-                                <ext:DateField Hidden="true" ID="dateReceived" runat="server" FieldLabel="<%$ Resources:FieldDateReceived%>" Name="dateReceived" AllowBlank="true" />                                
-                                <ext:TextField ID="actionTaken" runat="server" FieldLabel="<%$ Resources:FieldActionTaken%>" Name="actionTaken" AllowBlank="false"/>
-                                <ext:TextField ID="actionRequired" runat="server" FieldLabel="<%$ Resources:FieldActionRequired%>" Name="actionRequired" AllowBlank="false"/>
-                                <ext:TextField Hidden="true" ID="complaintDetails" runat="server" FieldLabel="<%$ Resources:FieldComplaintDetails%>" Name="complaintDetails" AllowBlank="true"/>
+                                <ext:DateField Hidden="true" ID="dateReceived" runat="server" FieldLabel="<%$ Resources:FieldDateReceived%>" Name="dateReceived" AllowBlank="true" />    
+                                <ext:TextArea  ID="complaintDetails" runat="server" FieldLabel="<%$ Resources:FieldComplaintDetails%>" Name="complaintDetails" AllowBlank="false" LabelWidth="150" /> 
+                                <ext:TextField ID="actionRequired" runat="server" FieldLabel="<%$ Resources:FieldActionRequired%>" Name="actionRequired" AllowBlank="false"  LabelWidth="150"/>                           
+                                <ext:TextField Hidden="true" ID="actionTaken" runat="server" FieldLabel="<%$ Resources:FieldActionTaken%>" Name="actionTaken" AllowBlank="true"  LabelWidth="150"/>
+                               
+                           
                                 <ext:ComboBox Hidden="true"  AnyMatch="true" CaseSensitive="false"  runat="server" ID="status" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" Name="status"
                                     FieldLabel="<%$ Resources: FieldStatus %>" AllowBlank="true">
                                     <Items>
                                         
                                         <ext:ListItem Text="<%$ Resources: FieldPending %>" Value="1" />
-                                        <ext:ListItem Text="<%$ Resources: FieldOpen %>" Value="2" />
-                                        <ext:ListItem Text="<%$ Resources: FieldClosed %>" Value="3" />
+                                      
+                                        <ext:ListItem Text="<%$ Resources: FieldClosed %>" Value="2" />
                                     </Items>
                                     
                                 </ext:ComboBox>

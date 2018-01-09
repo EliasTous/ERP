@@ -28,7 +28,7 @@ namespace AionHR.Model.Employees.Profile
         public string comment { get; set; }
         [PropertyID("31011_06")]
         [ApplySecurity]
-        public DateTime date { get; set; }
+        public DateTime? date { get; set; }
         [PropertyID("31011_07")]
         [ApplySecurity]
         public DateTime returnedDate { get; set; }

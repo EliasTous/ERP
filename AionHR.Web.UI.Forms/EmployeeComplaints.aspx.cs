@@ -122,7 +122,7 @@ namespace AionHR.Web.UI.Forms
 
               
                 //FillDivision();
-                statusPref.Select("0");
+                statusPref.Select("1");
                 dateReceived.Format = colDateReceived.Format = _systemService.SessionHelper.GetDateformat();
                 //dateCol.Format = _systemService.SessionHelper.GetDateformat() + ": hh:mm:ss";
 
@@ -273,7 +273,7 @@ namespace AionHR.Web.UI.Forms
                 s.actionTaken = "";
                 s.complaintDetails = "";
                 s.dateReceived = DateTime.Now;
-                s.status = 0;
+                s.status = 1;
 
 
                 PostRequest<Complaint> req = new PostRequest<Complaint>();

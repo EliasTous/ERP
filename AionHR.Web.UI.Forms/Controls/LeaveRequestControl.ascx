@@ -147,7 +147,7 @@
     runat="server"
     Icon="PageEdit"
     Title="<%$ Resources:EditWindowsTitle %>"
-    Width="600"
+    Width="700"
     Height="500"
     AutoShow="false"
     Modal="true"
@@ -219,7 +219,9 @@
                             </DirectEvents>
 
                         </ext:ComboBox>
-                        <ext:DateField ID="startDate"   runat="server" FieldLabel="<%$ Resources:FieldStartDate%>" Name="startDate" AllowBlank="false">
+                         <ext:Panel runat="server" Layout="HBoxLayout">
+                            <Items>
+                           <ext:DateField ID="startDate"   runat="server" FieldLabel="<%$ Resources:FieldStartDate%>" Name="startDate" AllowBlank="false">
                             <DirectEvents>
                                 <Change OnEvent="MarkLeaveChanged">
                                     <ExtraParams>
@@ -237,9 +239,8 @@
                                         <Change Handler="alert(this.value);App.leaveRequest1_direct.MarkLeaveChanged(); CalcSum();" />
                                     </Listeners>--%>
                         </ext:DateField>
-                        <ext:Panel runat="server" Layout="HBoxLayout">
-                            <Items>
-                                <ext:DateField ID="endDate"    runat="server" FieldLabel="<%$ Resources:FieldEndDate%>"  Name="endDate" AllowBlank="false">
+                          
+                                <ext:DateField ID="endDate" LabelWidth="65"    runat="server" FieldLabel="<%$ Resources:FieldEndDate%>"  Name="endDate" AllowBlank="false">
                                  
                                     <DirectEvents>
                                         <Change OnEvent="MarkLeaveChanged">
@@ -257,7 +258,7 @@
 
                                     </Listeners>
                                 </ext:DateField>
-                                <ext:NumberField runat="server" ID="calDays" Width="150" Name="calDays" MinValue="1" FieldLabel="<%$Resources:CalDays %>" LabelWidth="40">
+                                <ext:NumberField runat="server" ID="calDays" Width="150" Name="calDays" MinValue="1" FieldLabel="<%$Resources:CalDays %>" LabelWidth="30">
                                   <Listeners>
                                         <Change Handler="if(this.value==null) { return false;}calcEndDate();" />
 

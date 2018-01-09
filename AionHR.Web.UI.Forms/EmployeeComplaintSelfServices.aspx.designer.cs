@@ -175,15 +175,6 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Button btnDeleteSelected;
         
         /// <summary>
-        /// statusPref control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.ComboBox statusPref;
-        
-        /// <summary>
         /// ColRecordId control.
         /// </summary>
         /// <remarks>
@@ -211,13 +202,13 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.DateColumn colDateReceived;
         
         /// <summary>
-        /// colActionTaken control.
+        /// colComplaintDetails control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Column colActionTaken;
+        protected global::Ext.Net.Column colComplaintDetails;
         
         /// <summary>
         /// colActionRequired control.
@@ -229,13 +220,13 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Column colActionRequired;
         
         /// <summary>
-        /// colComplaintDetails control.
+        /// colActionTaken control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Column colComplaintDetails;
+        protected global::Ext.Net.Column colActionTaken;
         
         /// <summary>
         /// colStatus control.
@@ -382,13 +373,13 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.DateField dateReceived;
         
         /// <summary>
-        /// actionTaken control.
+        /// complaintDetails control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.TextField actionTaken;
+        protected global::Ext.Net.TextArea complaintDetails;
         
         /// <summary>
         /// actionRequired control.
@@ -400,13 +391,13 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.TextField actionRequired;
         
         /// <summary>
-        /// complaintDetails control.
+        /// actionTaken control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.TextField complaintDetails;
+        protected global::Ext.Net.TextField actionTaken;
         
         /// <summary>
         /// status control.
