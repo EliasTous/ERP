@@ -34,7 +34,7 @@
             runat="server"
             Icon="PageEdit"
             Title="elias"
-            Width="550"
+            Width="650"
             Height="550"
             AutoShow="false"
             Draggable="true"
@@ -404,7 +404,7 @@
 
                 </ext:FormPanel>
                 <ext:Panel runat="server" Layout="FitLayout" Title="<%$ Resources: ContactsTab %>" ID="Panel6" DefaultAnchor="100%">
-                    <Loader runat="server" Url="EmployeePages/Contacts.aspx?" Mode="Frame" ID="Loader6" TriggerEvent="show"
+                    <Loader runat="server" Url="EmployeePages/Contacts.aspx?terminated=0" Mode="Frame" ID="Loader6" TriggerEvent="show"
                         ReloadOnEvent="true"
                         DisableCaching="true">
                       <Params>
@@ -415,7 +415,7 @@
 
                 </ext:Panel>
                 <ext:Panel runat="server" Layout="FitLayout" Title="<%$ Resources: Dependants %>" ID="Panel8" DefaultAnchor="100%">
-                    <Loader runat="server" Url="EmployeePages/Dependants.aspx" Mode="Frame" ID="Loader8" TriggerEvent="show"
+                    <Loader runat="server" Url="EmployeePages/Dependants.aspx?terminated=0" Mode="Frame" ID="Loader8" TriggerEvent="show"
                         ReloadOnEvent="true"
                         DisableCaching="true">
                         <Params>

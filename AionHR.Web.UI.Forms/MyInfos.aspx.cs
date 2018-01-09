@@ -227,7 +227,14 @@ namespace AionHR.Web.UI.Forms
             else return "1";
         }
 
-
+        private void FixLoaderUrls(string employeeId, string hireDate, bool terminated)
+        {
+            foreach (var item in panelRecordDetails.Items)
+            {
+                if (item.Loader != null)
+                    item.Loader.Url = item.Loader.Url + "?employeeId=" + employeeId + "&hireDate=" + hireDate + "&terminated=" + (terminated ? "1" : "0");
+            }
+        }
 
     }
 }

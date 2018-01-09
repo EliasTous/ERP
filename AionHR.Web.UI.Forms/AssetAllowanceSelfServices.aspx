@@ -148,9 +148,9 @@
                     <ColumnModel ID="ColumnModel1" runat="server" SortAscText="<%$ Resources:Common , SortAscText %>" SortDescText="<%$ Resources:Common ,SortDescText  %>" SortClearText="<%$ Resources:Common ,SortClearText  %>" ColumnsText="<%$ Resources:Common ,ColumnsText  %>" EnableColumnHide="false" Sortable="false">
                         <Columns>
                             <ext:Column ID="ColRecordId" Visible="false" DataIndex="recordId" runat="server" />
-                            <ext:Column ID="ColName" DataIndex="employeeName" Text="<%$ Resources: FieldEmployeeName%>" runat="server" Flex="6">
+                           <%-- <ext:Column ID="ColName" DataIndex="employeeName" Text="<%$ Resources: FieldEmployeeName%>" runat="server" Flex="6">
                                 <Renderer Handler=" return  record.data['employeeName'].fullName" />
-                            </ext:Column>
+                            </ext:Column>--%>
 
                             <ext:Column ID="Column5" DataIndex="acName" Text="<%$ Resources: FieldacName%>" runat="server" Flex="2" />
                             <ext:Column ID="Column3" DataIndex="description" Text="<%$ Resources: FieldDescription%>" runat="server" Flex="2" />

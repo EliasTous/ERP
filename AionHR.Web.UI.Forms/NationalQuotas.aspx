@@ -196,7 +196,7 @@
                     Layout="FitLayout"
                     Scroll="Vertical"
                     Border="false"  
-                    Icon="User"
+                    Icon="BuildingGo"
                     ColumnLines="True" IDMode="Explicit" RenderXType="True">
 
                     <TopBar>
@@ -368,7 +368,7 @@
                     Layout="FitLayout"
                     Scroll="Vertical"
                     Border="false"  
-                    Icon="User"
+                    Icon="BrickAdd"
                     ColumnLines="True" IDMode="Explicit" RenderXType="True">
 
                     <TopBar>
@@ -543,7 +543,7 @@
                     Layout="FitLayout"
                     Scroll="Vertical"
                     Border="false"  
-                    Icon="User"
+                    Icon="ChartBar"
                     ColumnLines="True" IDMode="Explicit" RenderXType="True">
 
                     <TopBar>
@@ -891,7 +891,7 @@
                             Layout="FitLayout"
                             Scroll="Vertical"
                             Border="false"
-                            Icon="User"
+                            Icon="ImageStar"
                             ColumnLines="True" IDMode="Explicit" RenderXType="True">
                             <Store>
                                 <ext:Store
@@ -1075,7 +1075,7 @@
                             Layout="FitLayout"
                             Scroll="Vertical"
                             Border="false"
-                            Icon="User"
+                            Icon="World"
                             ColumnLines="True" IDMode="Explicit" RenderXType="True">
                             <Store>
                                 <ext:Store

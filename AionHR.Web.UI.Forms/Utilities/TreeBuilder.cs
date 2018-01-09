@@ -416,14 +416,14 @@ namespace AionHR.Web.UI.Forms.Utilities
             Ext.Net.Node rootParent = BuildRootParentNode("rootParent", Resources.Common.SelfService, true);
             Ext.Net.Node ss = BuildParentNode("standard", Resources.Common.SelfService, true, rootParent);
 
-            Ext.Net.Node pi = BuildLeafNode("pi", Resources.Common.PersonalInfo, "Group", true, ss);
+            Ext.Net.Node pi = BuildLeafNode("pi", Resources.Common.PersonalInfo, "PagePortraitShot", true, ss);
             //Ext.Net.Node at = BuildLeafNode("at", Resources.Common.Attendance, "Group", true, ss);
-            Ext.Net.Node lv = BuildLeafNode("lv", Resources.Common.Leave, "Group", true, ss);
-            Ext.Net.Node ln = BuildLeafNode("ln", Resources.Common.Loan, "Group", true, ss);
+            Ext.Net.Node lv = BuildLeafNode("lv", Resources.Common.Leave, "UserGo", true, ss);
+            Ext.Net.Node ln = BuildLeafNode("ln", Resources.Common.Loan, "MoneyDelete", true, ss);
             //Ext.Net.Node sl = BuildLeafNode("sl", Resources.Common.Salary, "Group", true, ss);
-            Ext.Net.Node lt = BuildLeafNode("lt", Resources.Common.Letters, "Group", true, ss);
-            Ext.Net.Node AA = BuildLeafNode("AA", Resources.Common.AssetAllowancesSelfService, "Group", true, ss);
-            Ext.Net.Node CO = BuildLeafNode("CO", Resources.Common.EmployeeComplaintsSelfServices, "Group", true, ss);
+            Ext.Net.Node lt = BuildLeafNode("lt", Resources.Common.Letters, "EmailLink", true, ss);
+            Ext.Net.Node AA = BuildLeafNode("AA", Resources.Common.AssetAllowancesSelfService, "UserStar", true, ss);
+            Ext.Net.Node CO = BuildLeafNode("CO", Resources.Common.EmployeeComplaintsSelfServices, "UserComment", true, ss);
 
 
             FillConfigItem(lt, "LettersSelfServices", "LettersSelfServices.aspx", Resources.Common.Letters, "icon-Employees", "1");
