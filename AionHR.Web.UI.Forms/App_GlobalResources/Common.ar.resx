@@ -1125,10 +1125,4 @@
   <data name="PayRef" xml:space="preserve">
     <value>رقم عملية الدفع</value>
   </data>
-  <data name="AssetAllowancesSelfService" xml:space="preserve">
-    <value>العُهد</value>
-  </data>
-  <data name="EmployeeComplaintsSelfServices" xml:space="preserve">
-    <value>شكاوى الموظفين</value>
-  </data>
 </root>
