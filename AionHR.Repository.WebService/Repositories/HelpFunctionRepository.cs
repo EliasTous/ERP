@@ -4,6 +4,7 @@ using AionHR.Model.Company.Structure;
 using AionHR.Model.Dashboard;
 using AionHR.Model.HelpFunction;
 using AionHR.Model.SelfService;
+using AionHR.Model.TimeAttendance;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,14 +22,15 @@ namespace AionHR.Repository.WebService.Repositories
             base.ServiceURL = ApplicationSettingsFactory.GetApplicationSettings().BaseURL + serviceName;
 
             ChildGetAllLookup.Add(typeof(LocalsRate), "NQ01");
-          
- ChildGetAllLookup.Add(typeof(BranchSchedule), "CS01");
+            ChildGetAllLookup.Add(typeof(LeaveCalendarDay), "TA02");
+
+            ChildGetAllLookup.Add(typeof(BranchSchedule), "CS01");
 
 
             ChildGetLookup.Add(typeof(MyInfo), "getEM1");
             ChildGetLookup.Add(typeof(BranchSchedule), "CS01");
 
-
+            
             ChildAddOrUpdateLookup.Add(typeof(MyInfo), "setEM");
           
 

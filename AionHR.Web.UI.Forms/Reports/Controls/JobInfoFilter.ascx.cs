@@ -94,7 +94,7 @@ namespace AionHR.Web.UI.Forms.Reports
 
                 }
             }
-            if (!EnablePosition)
+            if (!EnableDivision)
             {
                 p.DivisionId = null;
             }

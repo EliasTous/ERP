@@ -176,7 +176,7 @@ namespace AionHR.Web.UI.Forms.Reports
             // req.Add(dateRange1.GetRange());
             //  req.Add(employeeCombo1.GetEmployee());
             req.Add(jobInfo1.GetJobInfo());
-         
+
 
 
 
@@ -192,6 +192,9 @@ namespace AionHR.Web.UI.Forms.Reports
             ReportCompositeRequest req = GetRequest();
 
             ListResponse<AionHR.Model.Reports.RT111> resp = _reportsService.ChildGetAll<AionHR.Model.Reports.RT111>(req);
+           
+
+         
             if (!resp.Success)
             {
                 if (throwException)

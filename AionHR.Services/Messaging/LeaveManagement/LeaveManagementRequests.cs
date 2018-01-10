@@ -73,7 +73,7 @@ public class LeaveRequestListRequest : ListRequest
 
 public class LeaveCalendarDayListRequest : ListRequest
 {
-    public string CaId { get; set; }
+    public string employeeId { get; set; }
 
     public string StartDayId { get; set; }
 
@@ -86,9 +86,9 @@ public class LeaveCalendarDayListRequest : ListRequest
         get
         {
             parameters = base.Parameters;
-            parameters.Add("_caId", CaId.ToString());
-            parameters.Add("_startDayId", StartDayId.ToString());
-            parameters.Add("_endDayId", EndDayId.ToString());
+            parameters.Add("_employeeId", employeeId);
+            parameters.Add("_fromDayId", StartDayId.ToString());
+            parameters.Add("_toDayId", EndDayId.ToString());
             parameters.Add("_isWorkingDay", IsWorkingDay ? "1" : "0");
 
 

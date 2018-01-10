@@ -112,7 +112,17 @@
     function onHourFocusLeave(context)
 
     {
-        if (context == null || context.column == null) return false; var rec = context.column.record; if (parseInt(rec.data['workingHours']) < parseInt(context.value)) { context.setValue(rec.data['workingHours']); } if (1 > context.value) { context.setValue(1); } rec.set('leaveHours', context.value); rec.commit(); CalcSum();
+        if (context == null || context.column == null) return false; var rec = context.column.record;
+        if (parseInt(rec.data['workingHours']) < parseInt(context.value))
+        {
+            alert(rec.data['workingHours']);
+            context.setValue(rec.data['workingHours']);
+        }
+        if (1 > context.value) {
+            alert(rec.data['workingHours']);
+            context.setValue(1);
+        }
+        rec.set('leaveHours', context.value); rec.commit(); CalcSum();
     }
 </script>
 <ext:Hidden ID="textMatch" runat="server" Text="<%$ Resources:Common , MatchFound %>" />

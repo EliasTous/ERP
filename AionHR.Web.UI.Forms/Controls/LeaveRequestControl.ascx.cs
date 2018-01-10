@@ -63,6 +63,7 @@ namespace AionHR.Web.UI.Forms.Controls
         ITimeAttendanceService _timeAttendanceService = ServiceLocator.Current.GetInstance<ITimeAttendanceService>();
         IAccessControlService _accessControlService = ServiceLocator.Current.GetInstance<IAccessControlService>();
         IReportsService _reportsService = ServiceLocator.Current.GetInstance<IReportsService>();
+        IHelpFunctionService _helpFunctionService = ServiceLocator.Current.GetInstance<IHelpFunctionService>();
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -605,16 +606,22 @@ namespace AionHR.Web.UI.Forms.Controls
             req.IsWorkingDay = true;
             int bulk;
 
-            req.CaId = GetEmployeeCalendar(employeeId.Value.ToString()).ToString();
-            if (req.CaId == "0")
+            req.employeeId = employeeId.Value.ToString();
+            //if (req.CaId == "0")
+            //{
+
+            //    X.Msg.Alert(Resources.Common.Error, GetLocalResourceObject("ErrorNoCalendar").ToString()).Show();
+            //    return new List<LeaveDay>();
+
+            //}
+
+            ListResponse<LeaveCalendarDay> days = _helpFunctionService.ChildGetAll<LeaveCalendarDay>(req);
+            if (!days.Success)//it maybe another check
             {
-
-                X.Msg.Alert(Resources.Common.Error, GetLocalResourceObject("ErrorNoCalendar").ToString()).Show();
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", days.ErrorCode) != null ? GetGlobalResourceObject("Errors", days.ErrorCode).ToString() + "<br>Technical Error: " + days.ErrorCode + "<br> Summary: " + days.Summary : days.Summary).Show();
                 return new List<LeaveDay>();
-
             }
-            ListResponse<LeaveCalendarDay> days = _timeAttendanceService.ChildGetAll<LeaveCalendarDay>(req);
-
             List<LeaveDay> leaveDays = new List<LeaveDay>();
             days.Items.ForEach(x => leaveDays.Add(new LeaveDay() { dow = (short)DateTime.ParseExact(x.dayId, "yyyyMMdd", new CultureInfo("en")).DayOfWeek, dayId = x.dayId, workingHours = x.workingHours, leaveHours = x.workingHours }));
             return leaveDays;
@@ -722,18 +729,20 @@ namespace AionHR.Web.UI.Forms.Controls
 
                 return;
             }
-            req.CaId = GetEmployeeCalendar(employeeId.Value.ToString()).ToString();
-            if (req.CaId == "0")
-            {
+            req.employeeId = employeeId.Value.ToString();
+            //if (req.CaId == "0")
+            //{
 
-                X.Msg.Alert(Resources.Common.Error, GetLocalResourceObject("ErrorNoCalendar").ToString()).Show();
-                return;
+            //    X.Msg.Alert(Resources.Common.Error, GetLocalResourceObject("ErrorNoCalendar").ToString()).Show();
+            //    return;
 
-            }
-            ListResponse<LeaveCalendarDay> days = _timeAttendanceService.ChildGetAll<LeaveCalendarDay>(req);
+            //}
+            ListResponse<LeaveCalendarDay> days = _helpFunctionService.ChildGetAll<LeaveCalendarDay>(req);
             if (!days.Success)
             {
-
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", days.ErrorCode) != null ? GetGlobalResourceObject("Errors", days.ErrorCode).ToString() + "<br>Technical Error: " + days.ErrorCode + "<br> Summary: " + days.Summary : days.Summary).Show();
+                return;
             }
             List<LeaveDay> leaveDays = new List<LeaveDay>();
             days.Items.ForEach(x => leaveDays.Add(new LeaveDay() { dow = (short)DateTime.ParseExact(x.dayId, "yyyyMMdd", new CultureInfo("en")).DayOfWeek, dayId = x.dayId, workingHours = x.workingHours, leaveHours = x.workingHours }));
@@ -749,7 +758,8 @@ namespace AionHR.Web.UI.Forms.Controls
                 }
                 foreach (LeaveDay l in resp.Items)
                 {
-                    leaveDays.Where(x => x.dayId == l.dayId).First().leaveHours = l.leaveHours;
+                    if (leaveDays.Where(x => x.dayId == l.dayId).Count() > 0)
+                        leaveDays.Where(x => x.dayId == l.dayId).First().leaveHours = l.leaveHours;
                 }
             }
             leaveDaysStore.DataSource = leaveDays;
@@ -829,16 +839,16 @@ namespace AionHR.Web.UI.Forms.Controls
 
                 return;
             }
-            req.CaId = GetEmployeeCalendar(employeeId.Value.ToString()).ToString();
-            if (req.CaId == "0")
-            {
+            req.employeeId = employeeId.Value.ToString();
+            //if (req.CaId == "0")
+            //{
 
-                X.Msg.Alert(Resources.Common.Error, GetLocalResourceObject("ErrorNoCalendar").ToString()).Show();
-                return;
+            //    X.Msg.Alert(Resources.Common.Error, GetLocalResourceObject("ErrorNoCalendar").ToString()).Show();
+            //    return;
 
-            }
+            //}
 
-            ListResponse<LeaveCalendarDay> days = _timeAttendanceService.ChildGetAll<LeaveCalendarDay>(req);
+            ListResponse<LeaveCalendarDay> days = _helpFunctionService.ChildGetAll<LeaveCalendarDay>(req);
             if (!days.Success)
             {
                 X.Msg.Alert(Resources.Common.Error, days.Summary).Show();
