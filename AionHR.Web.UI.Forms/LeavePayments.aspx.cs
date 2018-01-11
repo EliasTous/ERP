@@ -1025,9 +1025,10 @@ namespace AionHR.Web.UI.Forms
             p.Parameters["branchName"].Value = routers.result.branchName;
 
             p.Parameters["countryName"].Value = routers.result.countryName;
-
+            if (routers.result.lastLeaveStartDate!=null)
             p.Parameters["lastLeaveStartDate"].Value = routers.result.lastLeaveStartDate.Value.ToString(_systemService.SessionHelper.GetDateformat()); ;
-            p.Parameters["lastLeaveEndDate"].Value = routers.result.lastLeaveEndDate.Value.ToString(_systemService.SessionHelper.GetDateformat()); ;
+            if (routers.result.lastLeaveEndDate != null)
+                p.Parameters["lastLeaveEndDate"].Value = routers.result.lastLeaveEndDate.Value.ToString(_systemService.SessionHelper.GetDateformat()); ;
         
 
 
