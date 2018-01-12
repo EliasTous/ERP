@@ -352,7 +352,7 @@ namespace AionHR.Web.UI.Forms
 
             //Reset all values of the relative object
             BasicInfoTab.Reset();
-         
+            branchId.Text = "";
             addressForm.Reset();
             this.EditRecordWindow.Title = Resources.Common.AddNewRecord;
             FillNationality();
@@ -430,7 +430,7 @@ namespace AionHR.Web.UI.Forms
                 b.addressId.recordId = addressId.Text;
             }
 
-            if (string.IsNullOrEmpty(id))
+            if (string.IsNullOrEmpty(branchId.Text))
             {
 
                 try
@@ -454,13 +454,13 @@ namespace AionHR.Web.UI.Forms
                     {
                         if(!string.IsNullOrEmpty(branchId.Text))
                         {
-                            this.Store1.Insert(0, b);
+                            //this.Store1.Insert(0, b);
                           
 
                             this.EditRecordWindow.Close();
-                            RowSelectionModel sm = this.GridPanel1.GetSelectionModel() as RowSelectionModel;
-                            sm.DeselectAll();
-                            sm.Select(b.recordId.ToString());
+                            //RowSelectionModel sm = this.GridPanel1.GetSelectionModel() as RowSelectionModel;
+                            //sm.DeselectAll();
+                            //sm.Select(b.recordId.ToString());
                         }
 
                         Notification.Show(new NotificationConfig
@@ -474,7 +474,7 @@ namespace AionHR.Web.UI.Forms
 
                         //Display successful notification
                         branchId.Text = b.recordId;
-
+                        Store1.Reload();
 
 
                     }
@@ -494,8 +494,9 @@ namespace AionHR.Web.UI.Forms
 
                 try
                 {
-                    int index = Convert.ToInt32(id);//getting the id of the record
+                    int index = Convert.ToInt32(branchId.Text);//getting the id of the record
                     PostRequest<Branch> request = new PostRequest<Branch>();
+                  b.recordId = branchId.Text;
                     request.entity = b;
                     PostResponse<Branch> r = _branchService.ChildAddOrUpdate<Branch>(request);                      //Step 1 Selecting the object or building up the object for update purpose
 

@@ -582,7 +582,7 @@
 
 
                                       <%--  <ext:TextField LabelWidth="130" Disabled="true" Width="275" ID="bankName" runat="server" FieldLabel="<%$ Resources:FieldBankName%>" Name="bankName" AllowBlank="false" />--%>
-                                          <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" AllowBlank="true" LabelWidth="130" Width="275" ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" ID="bankId" Name="bankId" FieldLabel="<%$ Resources:FieldBankName%>" Disabled="true" >
+                                          <ext:ComboBox  AnyMatch="true" CaseSensitive="false"  runat="server" AllowBlank="false" LabelWidth="130" Width="275" ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" ID="bankId" Name="bankId" FieldLabel="<%$ Resources:FieldBankName%>" Disabled="true" >
                                             <Store>
                                                 <ext:Store runat="server" ID="bankStore">
                                                     <Model>
