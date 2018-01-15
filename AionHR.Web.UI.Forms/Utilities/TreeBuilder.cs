@@ -418,7 +418,7 @@ namespace AionHR.Web.UI.Forms.Utilities
 
             Ext.Net.Node pi = BuildLeafNode("pi", Resources.Common.PersonalInfo, "PagePortraitShot", true, ss);
             //Ext.Net.Node at = BuildLeafNode("at", Resources.Common.Attendance, "Group", true, ss);
-            Ext.Net.Node lv = BuildLeafNode("lv", Resources.Common.Leave, "UserGo", true, ss);
+            Ext.Net.Node lv = BuildLeafNode("lv", Resources.Common.Leaves, "UserGo", true, ss);
             Ext.Net.Node ln = BuildLeafNode("ln", Resources.Common.Loan, "MoneyDelete", true, ss);
             //Ext.Net.Node sl = BuildLeafNode("sl", Resources.Common.Salary, "Group", true, ss);
             Ext.Net.Node lt = BuildLeafNode("lt", Resources.Common.Letters, "EmailLink", true, ss);

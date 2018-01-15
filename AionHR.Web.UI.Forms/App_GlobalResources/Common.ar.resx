@@ -1134,4 +1134,7 @@
   <data name="DailySchedule" xml:space="preserve">
     <value>جدول الدوام اليومي </value>
   </data>
+  <data name="Leaves" xml:space="preserve">
+    <value>طلبات الإجازات</value>
+  </data>
 </root>

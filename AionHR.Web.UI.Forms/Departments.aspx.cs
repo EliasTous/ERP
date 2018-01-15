@@ -474,7 +474,7 @@ namespace AionHR.Web.UI.Forms
             string obj = e.ExtraParams["values"];
 
             Department b = JsonConvert.DeserializeObject<Department>(obj);
-
+            b.scName = scId.SelectedItem.Text;
             b.recordId = id;
             b.supervisorName = new EmployeeName();
             // Define the object to add or edit as null

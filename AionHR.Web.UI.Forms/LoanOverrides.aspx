@@ -299,7 +299,7 @@
                                     FieldLabel="<%$ Resources: FieldName%>"
                                     HideTrigger="true" SubmitValue="true"
                                     MinChars="3"
-                                    TriggerAction="Query" ForceSelection="false">
+                                    TriggerAction="Query" ForceSelection="true">
                                     <Store>
                                         <ext:Store runat="server" ID="employeeStore" AutoLoad="false">
                                             <Model>

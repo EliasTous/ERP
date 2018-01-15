@@ -136,7 +136,7 @@ namespace AionHR.Web.UI.Forms
 
                 CurrentClassId.Text = ClassId.EPEM.ToString();
 
-                date.Format= /*birthDate.Format =*/ hireDate.Format = _systemService.SessionHelper.GetDateformat();
+                date.Format= gregCalBirthDate.Format = hireDate.Format = _systemService.SessionHelper.GetDateformat();
 
 
                 pRTL.Text = _systemService.SessionHelper.CheckIfArabicSession().ToString();

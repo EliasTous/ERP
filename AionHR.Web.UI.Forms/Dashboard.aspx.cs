@@ -1132,7 +1132,7 @@ namespace AionHR.Web.UI.Forms
                 else
                 {
 
-                    leavesStore.Reload();
+                    LeaveRequestsStore.Reload();
                     Notification.Show(new NotificationConfig
                     {
                         Title = Resources.Common.Notification,

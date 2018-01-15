@@ -444,7 +444,7 @@
                                     </Store>
 
                                 </ext:ComboBox>
-                                <ext:ComboBox AnyMatch="true" CaseSensitive="false" QueryMode="Local" LabelWidth="150" ForceSelection="true" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: SourceAttendanceSchedule %>" Name="sourceTASC" runat="server" ID="sourceTASC">
+                                <ext:ComboBox AllowBlank="true" AnyMatch="true" CaseSensitive="false" QueryMode="Local" LabelWidth="150" ForceSelection="true" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: SourceAttendanceSchedule %>" Name="sourceTASC" runat="server" ID="sourceTASC">
                                     <Items>
                                         <ext:ListItem Text="<%$ Resources:  FieldBranch %>" Value="1" />
                                         <ext:ListItem Text="<%$ Resources:  FieldDepartment %>" Value="2" />

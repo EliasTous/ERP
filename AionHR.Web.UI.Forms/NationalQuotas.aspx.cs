@@ -521,7 +521,7 @@ namespace AionHR.Web.UI.Forms
                 else
                 {
                     //Step 2 :  remove the object from the store
-                    IndustryStore.Remove(index);
+                    CitizenshipStore.Remove(index);
 
                     //Step 3 : Showing a notification for the user 
                     Notification.Show(new NotificationConfig
