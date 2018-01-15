@@ -90,7 +90,7 @@ namespace AionHR.Web.UI.Forms
             string branchID = string.Empty;
             if (branchId.Value == null || branchId.Value.ToString() == string.Empty)
             {
-                X.Msg.Alert(Resources.Common.Error, "Please Select a Branch").Show();
+                X.Msg.Alert(Resources.Common.Error, (string)GetLocalResourceObject("SelectBranch")).Show();
                 return null;
             }
             else
@@ -104,11 +104,118 @@ namespace AionHR.Web.UI.Forms
             data.ForEach(s => s.fullName = s.name.fullName);
             //  return new
             // {
+
+            this.cmbEmployeeImport.Value = string.Empty;
             return data;
             //};
 
         }
 
+        public void Import_Click(object sender, DirectEventArgs e)
+        {
+            string branchID = string.Empty;
+            if (employeeId.Value == null || employeeId.Value.ToString() == string.Empty)
+            {
+                X.Msg.Alert(Resources.Common.Error, (string)GetLocalResourceObject("SelectEmployee")).Show();
+                return ;
+            }
+            if (cmbEmployeeImport.Value == null || cmbEmployeeImport.Value.ToString() == string.Empty)
+            {
+                X.Msg.Alert(Resources.Common.Error, (string)GetLocalResourceObject("SelectImport")).Show();
+                return ;
+            }
+            else
+                branchID = branchId.Value.ToString();
+
+            if (dateFrom.SelectedDate == DateTime.MinValue || dateTo.SelectedDate == DateTime.MinValue)
+            {
+                X.Msg.Alert(Resources.Common.Error, (string)GetLocalResourceObject("ValidFromToDate")).Show();
+                return;
+            }
+            if (dateFrom.SelectedDate > dateTo.SelectedDate)
+            {
+                X.Msg.Alert(Resources.Common.Error, (string)GetLocalResourceObject("ToDateHigherFromDate")).Show();
+                return;
+            }
+
+
+            FlatScheduleImportEmployeeRequest fs = new FlatScheduleImportEmployeeRequest();
+            fs._toEmployeeId = Convert.ToInt32(employeeId.Value.ToString());
+            fs._fromEmployeeId = Convert.ToInt32(cmbEmployeeImport.Value.ToString());
+            fs._fromDayId = dateFrom.SelectedDate.ToString("yyyyMMdd");
+            fs._toDayId = dateTo.SelectedDate.ToString("yyyyMMdd");
+          
+            ListResponse<FlatScheduleImport> r = _helpFunctionService.ChildGetAll<FlatScheduleImport>(fs);
+
+
+            //check if the insert failed
+            if (!r.Success)//it maybe be another condition
+            {
+                //Show an error saving...
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() + "<br>Technical Error: " + r.ErrorCode + "<br> Summary: " + r.Summary : r.Summary).Show();
+                return;
+            }
+            else
+            {
+
+                Notification.Show(new NotificationConfig
+                {
+                    Title = Resources.Common.Notification,
+                    Icon = Icon.Information,
+                    Html = (string)GetLocalResourceObject("ImportSuccess")
+                });
+
+
+                //Reload Again
+                BranchScheduleRecordRequest reqFS = new BranchScheduleRecordRequest();
+                reqFS.EmployeeId = Convert.ToInt32(employeeId.Value.ToString());
+                reqFS.FromDayId = dateFrom.SelectedDate.ToString("yyyyMMdd");
+                reqFS.ToDayId = dateTo.SelectedDate.ToString("yyyyMMdd");
+                ListResponse<FlatSchedule> response = _timeAttendanceService.ChildGetAll<FlatSchedule>(reqFS);
+                if (!response.Success)
+                {
+                    X.Msg.Alert(Resources.Common.Error, (string)GetLocalResourceObject("ErrorGettingSchedule")).Show();
+                    return;
+                }
+                
+                BuildSchedule(response.Items);
+                this.cmbEmployeeImport.Value = string.Empty;
+            }
+
+
+        }
+
+        [DirectMethod]
+        public object FillImportEmployee(string action, Dictionary<string, object> extraParams)
+        {
+            string branchID = string.Empty;
+            if (employeeId.Value == null || employeeId.Value.ToString() == string.Empty)
+            {
+                X.Msg.Alert(Resources.Common.Error, (string)GetLocalResourceObject("SelectEmployee")).Show();
+                return null;
+            }
+            if (branchId.Value == null || branchId.Value.ToString() == string.Empty)
+            {
+                X.Msg.Alert(Resources.Common.Error, (string)GetLocalResourceObject("SelectBranch")).Show();
+                return null;
+            }
+            else
+                branchID = branchId.Value.ToString();
+
+
+
+            StoreRequestParameters prms = new StoreRequestParameters(extraParams);
+            List<Employee> data = GetEmployeesFiltered(prms.Query);
+            string recordId = employeeId.Value.ToString();
+            data = data.Where(a => a.recordId != recordId).ToList();
+            data.ForEach(s => s.fullName = s.name.fullName);
+            //  return new
+            // {
+            return data;
+            //};
+
+        }
 
         protected void Delete_Click(object sender, DirectEventArgs e)
         {
@@ -178,7 +285,10 @@ namespace AionHR.Web.UI.Forms
                 reqFS.ToDayId = dateTo.SelectedDate.ToString("yyyyMMdd");
                 ListResponse<FlatSchedule> response = _timeAttendanceService.ChildGetAll<FlatSchedule>(reqFS);
                 if (!response.Success)
-                    X.Msg.Alert(Resources.Common.Error, "Error Getting Schedule").Show();
+                {
+                    X.Msg.Alert(Resources.Common.Error, (string)GetLocalResourceObject("ErrorGettingSchedule")).Show();
+                    return;
+                }
                 BuildSchedule(response.Items);
 
             }
@@ -263,12 +373,46 @@ namespace AionHR.Web.UI.Forms
             this.branchId.Value = string.Empty;
             this.EmployeeStore = null;
             this.employeeId.Value = string.Empty;
-            this.btnSave.Disabled = true;this.btnDeleteDay.Disabled = true;
+            this.cmbEmployeeImport.Value = string.Empty;
+            this.btnSave.Disabled = true; this.btnDeleteDay.Disabled = true;
             this.timeFrom.MinTime = TimeSpan.FromMinutes(0);
             this.timeTo.MinTime = TimeSpan.FromMinutes(0);
             this.timeTo.MaxTime = new TimeSpan(23, 30, 0);
             this.pnlSchedule.Html = string.Empty;
             this.dayId.Value = string.Empty;
+        }
+        protected void BranchAvailability_Click(object sender, DirectEventArgs e)
+        {
+            if (branchId.Value == null || branchId.Value.ToString() == string.Empty)
+            {
+                X.Msg.Alert(Resources.Common.Error, (string)GetLocalResourceObject("SelectBranch")).Show();
+                return;
+            }
+
+            if (dateFrom.SelectedDate == DateTime.MinValue || dateTo.SelectedDate == DateTime.MinValue)
+            {
+                X.Msg.Alert(Resources.Common.Error, (string)GetLocalResourceObject("ValidFromToDate")).Show();
+                return;
+            }
+            if (dateFrom.SelectedDate > dateTo.SelectedDate)
+            {
+                X.Msg.Alert(Resources.Common.Error, (string)GetLocalResourceObject("ToDateHigherFromDate")).Show();
+                return;
+            }
+
+            //Proceed to load
+
+            BranchAvailabilityScheduleRecordRequest reqFS = new BranchAvailabilityScheduleRecordRequest();
+            reqFS.BranchId = Convert.ToInt32(branchId.Value.ToString());
+            reqFS.FromDayId = dateFrom.SelectedDate.ToString("yyyyMMdd");
+            reqFS.ToDayId = dateTo.SelectedDate.ToString("yyyyMMdd");
+            ListResponse<FlatScheduleBranchAvailability> response = _helpFunctionService.ChildGetAll<FlatScheduleBranchAvailability>(reqFS);
+            if (!response.Success)
+            {
+                X.Msg.Alert(Resources.Common.Error, (string)GetLocalResourceObject("ErrorGettingSchedule")).Show();
+                return;
+            }
+            BuildAvailability(response.Items);
         }
         protected void Load_Click(object sender, DirectEventArgs e)
         {
@@ -335,7 +479,7 @@ namespace AionHR.Web.UI.Forms
                 }
             }
 
-            if ((fsfromTime > fsToTime)  && (fsfromTime.ToString("tt") == "PM" && "AM" == fsToTime.ToString("tt")))
+            if ((fsfromTime > fsToTime) && (fsfromTime.ToString("tt") == "PM" && "AM" == fsToTime.ToString("tt")))
             {
                 fsToTime = fsToTime.AddDays(1);
             }
@@ -349,6 +493,8 @@ namespace AionHR.Web.UI.Forms
 
 
             //Proceed to Save
+
+
             FlatSchedule fs = new FlatSchedule();
 
             //if (timeTo.SelectedTime.ToString() == "00:00:00")
@@ -404,8 +550,9 @@ namespace AionHR.Web.UI.Forms
             if (string.IsNullOrEmpty(startAt) || string.IsNullOrEmpty(closeAt))
             {
                 html += @"</table></div>";
-                this.pnlSchedule.Html = html;             
+                this.pnlSchedule.Html = html;
                 X.Call("DisableTools");
+                X.Msg.Alert(Resources.Common.Error, (string)GetLocalResourceObject("ErrorBranchWorkingHours")).Show();
                 return;
             }
 
@@ -419,7 +566,7 @@ namespace AionHR.Web.UI.Forms
 
             //Filling The Times Slot
             List<TimeSlot> timesList = new List<TimeSlot>();
-            DateTime dtStart = new DateTime(DateTime.Now.Year, DateTime.Now.Month,DateTime.Now.Day, tsStart.Hours, tsStart.Minutes, 0);
+            DateTime dtStart = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, tsStart.Hours, tsStart.Minutes, 0);
             DateTime dtEnd = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, tsClose.Hours, tsClose.Minutes, 0);
             do
             {
@@ -462,13 +609,93 @@ namespace AionHR.Web.UI.Forms
             X.Call("DisableTools");
         }
 
+
+        private void BuildAvailability(List<FlatScheduleBranchAvailability> items)
+        {
+            string html = @"<div style = 'margin: 5px auto; width: 99%; height: 98%; overflow:auto;' > 
+                             <table id = 'tbCalendar' cellpadding = '5' cellspacing = '0' >";
+
+            //CAlling the branch cvailability before proceeding
+
+            string startAt, closeAt = string.Empty;
+            GetBranchSchedule(out startAt, out closeAt);
+            if (string.IsNullOrEmpty(startAt) || string.IsNullOrEmpty(closeAt))
+            {
+
+
+
+
+                html += @"</table></div>";
+                this.pnlSchedule.Html = html;
+
+                X.Call("DisableTools");
+                X.Msg.Alert(Resources.Common.Error, (string)GetLocalResourceObject("ErrorBranchWorkingHours")).Show();
+
+                return;
+            }
+
+            TimeSpan tsStart = TimeSpan.Parse(startAt);
+            timeFrom.MinTime = tsStart;
+            timeTo.MinTime = tsStart.Add(TimeSpan.FromMinutes(30));
+            TimeSpan tsClose = TimeSpan.Parse(closeAt);
+            timeTo.MaxTime = tsClose;
+
+
+
+            //Filling The Times Slot
+            List<TimeSlot> timesList = new List<TimeSlot>();
+            DateTime dtStart = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, tsStart.Hours, tsStart.Minutes, 0);
+            DateTime dtEnd = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, tsClose.Hours, tsClose.Minutes, 0);
+            do
+            {
+                TimeSlot ts = new TimeSlot();
+                ts.ID = dtStart.ToString("HH:mm");
+                ts.Time = dtStart.ToString("HH:mm");
+                timesList.Add(ts);
+                dtStart = dtStart.AddMinutes(30);
+            } while (dtStart <= dtEnd);
+
+            //filling the Day slots
+            int totalDays = Convert.ToInt32(Math.Ceiling((dateTo.SelectedDate - dateFrom.SelectedDate).TotalDays));
+
+            html = FillFirstRow(html, timesList);
+
+            html = FillOtherRow(html, timesList, totalDays);
+
+            //Preparing the ids to get colorified
+            List<Availability> listIds = new List<Availability>();
+            foreach (FlatScheduleBranchAvailability fs in items)
+            {
+                Availability avb = new Availability();
+                DateTime activeDate = DateTime.ParseExact(fs.dayId, "yyyyMMdd", new CultureInfo("en"));
+                DateTime fsfromDate = new DateTime(activeDate.Year, activeDate.Month, activeDate.Day, Convert.ToInt32(fs.time.Split(':')[0]), Convert.ToInt32(fs.time.Split(':')[1]), 0);
+
+                avb.Id = fsfromDate.ToString("yyyyMMdd") + "_" + fsfromDate.ToString("HH:mm");
+                avb.Count = fs.cnt.ToString();
+
+                listIds.Add(avb);
+                
+
+
+            }
+
+
+
+            html += @"</table></div>";
+            X.Call("BranchAvailability");
+            this.pnlSchedule.Html = html;
+            X.Call("ColorifyAndCountSchedule", JSON.JavaScriptSerialize(listIds));
+            
+           
+        }
+
         private void GetBranchSchedule(out string startAt, out string closeAt)
         {
             BranchWorkRecordRequest reqBS = new BranchWorkRecordRequest();
             reqBS.BranchId = branchId.Value.ToString();
             reqBS.FromDayId = dateFrom.SelectedDate.ToString("yyyyMMdd");
             reqBS.ToDayId = dateTo.SelectedDate.ToString("yyyyMMdd");
-            
+
             ListResponse<BranchSchedule> response = _helpFunctionService.ChildGetAll<BranchSchedule>(reqBS);
             if (response.Success)
             {
@@ -570,5 +797,11 @@ namespace AionHR.Web.UI.Forms
 
 
 
+    }
+
+    internal class Availability
+    {
+        public string Count { get; set; }
+        public string Id { get; set; }
     }
 }

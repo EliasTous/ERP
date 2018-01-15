@@ -9,16 +9,16 @@ namespace AionHR.Model.TimeAttendance
     public class FlatSchedule
     {
 
-     
+
         public string dayId { get; set; }
 
-        public int  shiftId { get; set; }
+        public int shiftId { get; set; }
 
         public string from { get; set; }
-        
+
         public string to { get; set; }
 
-   
+
         public int employeeId { get; set; }
 
         public string fromDayId { get; set; }
@@ -29,6 +29,21 @@ namespace AionHR.Model.TimeAttendance
     public class FlatScheduleRange : FlatSchedule
     {
     }
+    public class FlatScheduleBranchAvailability
+    {
+        public int cnt { get; set; }
+        public string dayId { get; set; }
+        public string time { get; set; }
+
+    }
+
+    public class FlatScheduleImport
+    {
+     
+
+    }
+
+
 
 
 }

@@ -4,6 +4,13 @@
             border-bottom: solid 1px #e0e0e2 !important;
            
         }
+  #tbCalendar td:not(:first-child)
+  {
+      text-align:center;
+  }
+
+
+
         #tbCalendar th
         {
             background: #eaeaec !important;

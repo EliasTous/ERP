@@ -167,9 +167,26 @@
   </data>
   <data name="ValideFromToTime" xml:space="preserve">
     <value>اختر اوقات صحيحة</value>
-    <comment> </comment>
   </data>
   <data name="ValidFromToDate" xml:space="preserve">
     <value>اختر تواريخ صحيحة</value>
+  </data>
+  <data name="ErrorBranchWorkingHours" xml:space="preserve">
+    <value>خطأ في استرجاع دوام الفرع</value>
+  </data>
+  <data name="Import" xml:space="preserve">
+    <value>استيراد</value>
+  </data>
+  <data name="ImportFrom" xml:space="preserve">
+    <value>استيراد من</value>
+  </data>
+  <data name="SelectBranch" xml:space="preserve">
+    <value>اختر الفرع</value>
+  </data>
+  <data name="SelectImport" xml:space="preserve">
+    <value>حدد الموظف لاستيراده</value>
+  </data>
+  <data name="ImportSuccess" xml:space="preserve">
+    <value>تم استيراد الدوام بنجاح</value>
   </data>
 </root>

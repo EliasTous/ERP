@@ -16,8 +16,8 @@
     <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
     <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
-    <link rel="stylesheet" href="CSS/DailySchedule.css" />
-    <script type="text/javascript" src="Scripts/DailySchedule.js?id=6"></script>
+    <link rel="stylesheet" href="CSS/DailySchedule.css?id=1" />
+    <script type="text/javascript" src="Scripts/DailySchedule.js?id=8"></script>
 
     <script type="text/javascript">
 
@@ -65,10 +65,9 @@
                                         </ext:Store>
                                     </Store>
                                 </ext:ComboBox>
-                                <ext:Button runat="server" Text="<%$ Resources: BranchAvailability %>">
-                                </ext:Button>
+                              
                                 <ext:ToolbarSeparator />
-                                <ext:ComboBox AnyMatch="true" CaseSensitive="false" runat="server" ID="employeeId" Width="200" LabelAlign="Top"
+                                <ext:ComboBox AnyMatch="true" CaseSensitive="false" runat="server" ID="employeeId" Width="160" LabelAlign="Top"
                                     DisplayField="fullName"
                                     ValueField="recordId" AllowBlank="true"
                                     TypeAhead="false"
@@ -102,6 +101,37 @@
                                         <Change Handler="App.CompanyHeadCountStore.reload(); App.DimensionalHeadCountStore.reload();" />
                                     </Listeners>--%>
                                 </ext:DateField>
+                                <ext:ToolbarSeparator />
+                                  <ext:ComboBox AnyMatch="true" CaseSensitive="false" runat="server" ID="cmbEmployeeImport" Width="260" LabelAlign="Left" FieldLabel="<%$ Resources: ImportFrom %>"
+                                    DisplayField="fullName"
+                                    ValueField="recordId" AllowBlank="true"
+                                    TypeAhead="false"
+                                    HideTrigger="true" SubmitValue="true"
+                                    MinChars="3" EmptyText="<%$ Resources: SelectEmp %>"
+                                    TriggerAction="Query" ForceSelection="true">
+                                    <Store>
+                                        <ext:Store runat="server" ID="Store1" AutoLoad="false">
+                                            <Model>
+                                                <ext:Model runat="server">
+                                                    <Fields>
+                                                        <ext:ModelField Name="recordId" />
+                                                        <ext:ModelField Name="fullName" />
+                                                    </Fields>
+                                                </ext:Model>
+                                            </Model>
+                                            <Proxy>
+                                                <ext:PageProxy DirectFn="App.direct.FillImportEmployee"></ext:PageProxy>
+                                            </Proxy>
+                                        </ext:Store>
+                                    </Store>
+                                </ext:ComboBox>
+                                 <ext:Button runat="server" Text="<%$ Resources: Import %>">
+                                      <DirectEvents>
+                                        <Click OnEvent="Import_Click">
+                                            <EventMask ShowMask="true" />
+                                        </Click>
+                                    </DirectEvents>
+                                </ext:Button>
                                
 
                             </Items>
@@ -113,6 +143,13 @@
 
                         <ext:Toolbar ID="Toolbar2" runat="server" Dock="Bottom" ClassicButtonStyle="true">
                             <Items>
+                                  <ext:Button runat="server" Text="<%$ Resources: BranchAvailability %>">
+                                      <DirectEvents>
+                                        <Click OnEvent="BranchAvailability_Click">
+                                            <EventMask ShowMask="true" />
+                                        </Click>
+                                    </DirectEvents>
+                                </ext:Button>
                                 <ext:Button runat="server" Text="<%$ Resources: Load %>">
                                     <DirectEvents>
                                         <Click OnEvent="Load_Click">
@@ -129,7 +166,7 @@
                                         </Click>
                                     </DirectEvents>
                                 </ext:Button>
-                                <ext:Button runat="server" Text="<%$ Resources: Clear %>">
+                                <ext:Button ID="btnClear" runat="server" Text="<%$ Resources: Clear %>">
                                        <DirectEvents>
                                         <Click OnEvent="Clear_Click">
                                             <EventMask ShowMask="true" />

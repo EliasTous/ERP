@@ -7,6 +7,31 @@ var DeleteDaySchedule = function (id) {
     })
 };
 
+
+
+var ColorifyAndCountSchedule = function (listIds) {
+
+    for (var i in listIds) {
+        try {
+
+       
+            //$("[id='" + listIds[i].id + "']").css("background-color", "green");
+            $("[id='" + listIds[i].id + "']").html(listIds[i].count);
+            
+        }
+        catch (e) { }
+    }
+};
+
+var BranchAvailability =  function()
+{
+    //App.pnlTools.hide();
+    App.btnSave.setDisabled(true);
+    App.btnDeleteDay.setDisabled(true);
+    App.btnDelete.setDisabled(true);
+   // App.btnClear.setDisabled(true);
+}
+
 var ColorifySchedule = function (listIds) {
        
         for(var i in listIds)
@@ -18,7 +43,9 @@ var ColorifySchedule = function (listIds) {
         }
 };
 
- var Init = function () {
+var Init = function () {
+   // App.pnlTools.show();
+    App.btnClear.setDisabled(false);
       $('.day').each(function() { 
            $(this).click(function() {
   clearDayClick();
