@@ -186,7 +186,31 @@
   <data name="SelectImport" xml:space="preserve">
     <value>حدد الموظف لاستيراده</value>
   </data>
+  <data name="Fri" xml:space="preserve">
+    <value>الجمعة    </value>
+  </data>
   <data name="ImportSuccess" xml:space="preserve">
     <value>تم استيراد الدوام بنجاح</value>
+  </data>
+  <data name="Mon" xml:space="preserve">
+    <value>الاثنين     </value>
+  </data>
+  <data name="Sat" xml:space="preserve">
+    <value>السبت    </value>
+  </data>
+  <data name="SelectdayOrFromToDate" xml:space="preserve">
+    <value>اختر اليوم او فترة </value>
+  </data>
+  <data name="Sun" xml:space="preserve">
+    <value>الاحد      </value>
+  </data>
+  <data name="Thu" xml:space="preserve">
+    <value>الخميس   </value>
+  </data>
+  <data name="Tue" xml:space="preserve">
+    <value>الثلاثاء     </value>
+  </data>
+  <data name="Wed" xml:space="preserve">
+    <value>الاربعاء    </value>
   </data>
 </root>

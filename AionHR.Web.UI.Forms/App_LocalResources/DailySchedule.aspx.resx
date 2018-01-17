@@ -189,4 +189,7 @@
   <data name="ImportSuccess" xml:space="preserve">
     <value>Schedule Imported Successfully</value>
   </data>
+  <data name="SelectdayOrFromToDate" xml:space="preserve">
+    <value>Select a Day or a From - To Date range</value>
+  </data>
 </root>

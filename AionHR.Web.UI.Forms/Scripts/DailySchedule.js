@@ -46,6 +46,7 @@ var ColorifySchedule = function (listIds) {
 var Init = function () {
    // App.pnlTools.show();
     App.btnClear.setDisabled(false);
+    App.btnSave.setDisabled(false);
       $('.day').each(function() { 
            $(this).click(function() {
   clearDayClick();
@@ -59,7 +60,7 @@ var Init = function () {
       }
 
  var DisableTools = function () {
-     App.btnSave.setDisabled(true);
+     //App.btnSave.setDisabled(true);
      App.btnDeleteDay.setDisabled(true);
  }
  var EnableTools = function () {

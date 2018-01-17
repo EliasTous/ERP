@@ -25,16 +25,20 @@ namespace AionHR.Repository.WebService.Repositories
             ChildGetAllLookup.Add(typeof(LeaveCalendarDay), "TA02");
             ChildGetAllLookup.Add(typeof(BranchSchedule), "CS01");
             ChildGetAllLookup.Add(typeof(FlatScheduleBranchAvailability), "TA01");
-            ChildGetAllLookup.Add(typeof(FlatScheduleImport), "TA03");
+           
 
 
             ChildGetLookup.Add(typeof(MyInfo), "getEM1");
             ChildGetLookup.Add(typeof(BranchSchedule), "CS01");
+           
 
             
             ChildAddOrUpdateLookup.Add(typeof(MyInfo), "setEM");
+            ChildAddOrUpdateLookup.Add(typeof(FlatScheduleImport), "TA03");
+            ChildAddOrUpdateLookup.Add(typeof(FlatBulkSchedule), "TA04");
             
-            
+
+
 
 
 
