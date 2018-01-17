@@ -1,8 +1,8 @@
 ﻿
 var DeleteDaySchedule = function (id) {
-       
-    $('[id^="'+id+'_"]').each(function () {
-        
+
+    $('[id^="' + id + '_"]').each(function () {
+
         $(this).css("background-color", "white");
     })
 };
@@ -14,74 +14,83 @@ var ColorifyAndCountSchedule = function (listIds) {
     for (var i in listIds) {
         try {
 
-       
+
             //$("[id='" + listIds[i].id + "']").css("background-color", "green");
             $("[id='" + listIds[i].id + "']").html(listIds[i].count);
-            
+
         }
         catch (e) { }
     }
 };
 
-var BranchAvailability =  function()
-{
+var BranchAvailability = function () {
     //App.pnlTools.hide();
     App.btnSave.setDisabled(true);
     App.btnDeleteDay.setDisabled(true);
     App.btnDelete.setDisabled(true);
-   // App.btnClear.setDisabled(true);
+    // App.btnClear.setDisabled(true);
 }
 
 var ColorifySchedule = function (listIds) {
-       
-        for(var i in listIds)
-        {
-            try {
-                document.getElementById(listIds[i]).style.background = "green";
-            }
-            catch (e) { }
+
+    for (var i in listIds) {
+        try {
+            document.getElementById(listIds[i]).style.background = "green";
         }
+        catch (e) { }
+    }
 };
 
 var Init = function () {
-   // App.pnlTools.show();
+    // App.pnlTools.show();
     App.btnClear.setDisabled(false);
     App.btnSave.setDisabled(false);
-      $('.day').each(function() { 
-           $(this).click(function() {
-  clearDayClick();
-  $(this).css("background-color", "orange");
- 
-  App.dayId.setValue($(this)["0"].id);  
-  App.btnSave.setDisabled(false);
-  App.btnDeleteDay.setDisabled(false);
-  });
-      });
-      }
+    $('.day').each(function () {
+        $(this).click(function () {
+            if( $(this).data("isselected") == true)
+            {
+                $(this).css("background-color", "#fff");
+                $(this).removeData("isselected");
+                App.dayId.setValue("");
+                App.btnSave.setDisabled(false);
+                App.btnDeleteDay.setDisabled(true);
+            }
+            else
+            {
+            clearDayClick();
+        $(this).css("background-color", "orange");
+        $(this).data("isselected",true);
+            App.dayId.setValue($(this)["0"].id);
+            App.btnSave.setDisabled(false);
+            App.btnDeleteDay.setDisabled(false);
+            }
+        });
+    });
+}
 
- var DisableTools = function () {
-     //App.btnSave.setDisabled(true);
-     App.btnDeleteDay.setDisabled(true);
- }
- var EnableTools = function () {
-     App.btnSave.setDisabled(false);
-     App.btnDeleteDay.setDisabled(false);
- }
+var DisableTools = function () {
+    //App.btnSave.setDisabled(true);
+    App.btnDeleteDay.setDisabled(true);
+}
+var EnableTools = function () {
+    App.btnSave.setDisabled(false);
+    App.btnDeleteDay.setDisabled(false);
+}
 
-var clearDayClick =function() {
-        $('.day').each(function() {
-           $(this).css("background-color","#fff");
-  });
+var clearDayClick = function () {
+    $('.day').each(function () {
+        $(this).css("background-color", "#fff");
+    });
 }
 
 
 
 
 
-    //Issa
-var colorify = function (tdID, color,date,dow) {
+//Issa
+var colorify = function (tdID, color, date, dow) {
     $("#" + tdID).attr("style", "background:" + color);
-    $("#" + tdID).attr("title", dow+" -"+ date);
+    $("#" + tdID).attr("title", dow + " -" + date);
 };
 
 
@@ -91,13 +100,13 @@ var init = function () {
     });
 };
 var setLeapDay = function () {
-    
-    
-   
+
+
+
     $("#td0229").addClass("notexist");
-        $("#td0229").html("X");
-        
-    
+    $("#td0229").html("X");
+
+
 
 }
 function getDay(dow) {

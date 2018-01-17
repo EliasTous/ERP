@@ -766,14 +766,17 @@ namespace AionHR.Web.UI.Forms
                 html += "<tr>";
                 if (!_systemService.SessionHelper.CheckIfArabicSession())
                 {
-                    html += "<td id=" + firstDate.ToString("yyyyMMdd") + " class='day'>" + firstDate.ToString("ddd, MMM d") + "</td>";
+                    string day = firstDate.ToString("ddd");
+                    string dayNumber = firstDate.ToString("MMM d");
+                    html += "<td id=" + firstDate.ToString("yyyyMMdd") + " class='day'>" + string.Format("<div style='width:30px;display:inline-block'>{0},</div> {1}", day, dayNumber) + "</td>";
+                    // html += "<td id=" + firstDate.ToString("yyyyMMdd") + " class='day'>" + firstDate.ToString("ddd, MMM d") + "</td>";
                 }
                 else
                 {
                     string day = firstDate.ToString("ddd");
                     string dayNumber = firstDate.ToString("dd");
                     string month = firstDate.ToString("MM");
-                    html += "<td id=" + firstDate.ToString("yyyyMMdd") + " class='day'>" + string.Format("{0} {1} - {2}", (string)GetLocalResourceObject(day), dayNumber, month) + "</td>";
+                    html += "<td id=" + firstDate.ToString("yyyyMMdd") + " class='day'>" + string.Format("<div style='width:43px;display:inline-block'>{0}</div> {1} - {2}", (string)GetLocalResourceObject(day), dayNumber, month) + "</td>";
                 }
 
                 for (int index = 0; index < timesList.Count; index++)
