@@ -122,7 +122,7 @@
                                         <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
                                     </Listeners>
                                 </ext:ComboBox>
-                                <ext:ComboBox AllowBlank="false" AnyMatch="true" CaseSensitive="false" QueryMode="Local" LabelWidth="150" ForceSelection="true" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: FieldDateFormat %>" Name="dateFormat" runat="server" ID="dateFormatCombo">
+                                <ext:ComboBox AllowBlank="true" AnyMatch="true" CaseSensitive="false" QueryMode="Local" LabelWidth="150" ForceSelection="true" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: FieldDateFormat %>" Name="dateFormat" runat="server" ID="dateFormatCombo">
                                     <Items>
                                         <ext:ListItem Text="Jan 31,2016" Value="MMM dd,yyyy" />
                                         <ext:ListItem Text="Jan 31,16" Value="MMM dd,yy" />
