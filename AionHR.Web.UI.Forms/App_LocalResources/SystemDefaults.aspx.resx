@@ -396,4 +396,7 @@
   <data name="SourceAttendanceSchedule" xml:space="preserve">
     <value>Source Attendance Schedule</value>
   </data>
+  <data name="yearDays" xml:space="preserve">
+    <value>Year Days</value>
+  </data>
 </root>

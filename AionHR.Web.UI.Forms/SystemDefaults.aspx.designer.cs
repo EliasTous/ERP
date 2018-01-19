@@ -769,6 +769,15 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Store exemptDeliveryTR_Store;
         
         /// <summary>
+        /// yearDays control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.NumberField yearDays;
+        
+        /// <summary>
         /// SavePayrollSettingsBtn control.
         /// </summary>
         /// <remarks>

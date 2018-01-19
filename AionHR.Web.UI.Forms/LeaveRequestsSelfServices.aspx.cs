@@ -539,7 +539,9 @@ namespace AionHR.Web.UI.Forms
                 X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).   ToString() + "<br>Technical Error: " + response.ErrorCode + "<br> Summary: " + response.Summary : response.Summary).Show();
                 return;
             }
-            response.Items.RemoveAll(x => x.requireApproval == false);
+
+            
+             //response.Items.RemoveAll(x => x.requireApproval == false);
             ltStore.DataSource = response.Items;
             ltStore.DataBind();
 

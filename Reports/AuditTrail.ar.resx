@@ -147,6 +147,9 @@
   <data name="xrLabel19.Text" xml:space="preserve">
     <value>سجل المراقبة</value>
   </data>
+  <data name="xrLabel22.Text" xml:space="preserve">
+    <value>تفاصيل </value>
+  </data>
   <data name="xrLabel3.Text" xml:space="preserve">
     <value>النوع</value>
   </data>

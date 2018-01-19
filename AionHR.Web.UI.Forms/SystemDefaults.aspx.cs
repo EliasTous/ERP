@@ -406,12 +406,28 @@ namespace AionHR.Web.UI.Forms
             try { languageId.Select(items.Where(s => s.Key == "languageId").First().Value.ToString()); }
         
             catch { }
-            try { sourceTASC.Select(items.Where(s => s.Key == "sourceTASC").First().Value.ToString()); }
+            try { sourceTASC.Select(items.Where(s => s.Key == "sourceTASC").First().Value.ToString());
+                if (string.IsNullOrEmpty(items.Where(s => s.Key == "sourceTASC").First().Value.ToString()))
+                    {
+                    sourceTASC.Select(2);
+                }
+                 }
 
             catch { }
             try { NQINid.Select(items.Where(s => s.Key == "NQINid").First().Value.ToString()); }
 
             catch { }
+            try
+            {
+                yearDays.Text = (items.Where(s => s.Key == "yearDays").First().Value);
+                if (string.IsNullOrEmpty(items.Where(s => s.Key == "yearDays").First().Value.ToString()))
+                {
+                    yearDays.Text = "365";
+                }
+            }
+
+            catch { }
+
 
 
         }
@@ -458,20 +474,26 @@ namespace AionHR.Web.UI.Forms
             List<KeyValuePair<string, string>> submittedValues = new List<KeyValuePair<string, string>>();
             if (!string.IsNullOrEmpty(values.nameFormat.ToString()))
                 submittedValues.Add(new KeyValuePair<string, string>("nameFormat", values.nameFormat.ToString()));
-
+            else
+                submittedValues.Add(new KeyValuePair<string, string>("nameFormat", ""));
 
             if (!string.IsNullOrEmpty(values.vsId.ToString()))
                 submittedValues.Add(new KeyValuePair<string, string>("vsId", values.vsId.ToString()));
-
+            else
+                submittedValues.Add(new KeyValuePair<string, string>("vsId", ""));
             if (!string.IsNullOrEmpty(values.passportCombo.ToString()))
                 submittedValues.Add(new KeyValuePair<string, string>("passportDocTypeId", values.passportCombo.ToString()));
+            else
+                submittedValues.Add(new KeyValuePair<string, string>("passportDocTypeId",""));
             if (!string.IsNullOrEmpty(values.idCombo.ToString()))
                 submittedValues.Add(new KeyValuePair<string, string>("resDocTypeId", values.idCombo.ToString()));
+            else
+                submittedValues.Add(new KeyValuePair<string, string>("resDocTypeId", ""));
 
 
-         
 
-          
+
+
 
             return submittedValues;
         }
@@ -509,17 +531,28 @@ namespace AionHR.Web.UI.Forms
             List<KeyValuePair<string, string>> submittedValues = new List<KeyValuePair<string, string>>();
             if (!string.IsNullOrEmpty(values.countryId.ToString()))
                 submittedValues.Add(new KeyValuePair<string, string>("countryId", values.countryId.ToString()));
+            else
+                submittedValues.Add(new KeyValuePair<string, string>("countryId", ""));
             if (!string.IsNullOrEmpty(values.currencyId.ToString()))
                 submittedValues.Add(new KeyValuePair<string, string>("currencyId", values.currencyId.ToString()));
-
+            else
+                submittedValues.Add(new KeyValuePair<string, string>("currencyId", ""));
             if (!string.IsNullOrEmpty(values.dateFormat.ToString()))
                 submittedValues.Add(new KeyValuePair<string, string>("dateFormat", values.dateFormat.ToString()));
+            else
+                submittedValues.Add(new KeyValuePair<string, string>("dateFormat", ""));
             if (!string.IsNullOrEmpty(values.timeZone.ToString()))
                 submittedValues.Add(new KeyValuePair<string, string>("timeZone", values.timeZone.ToString()));
+            else
+                submittedValues.Add(new KeyValuePair<string, string>("timeZone", ""));
             if (!string.IsNullOrEmpty(values.languageId.ToString()))
                 submittedValues.Add(new KeyValuePair<string, string>("languageId", values.languageId.ToString()));
+            else
+                submittedValues.Add(new KeyValuePair<string, string>("languageId", ""));
             if (!string.IsNullOrEmpty(values.NQINid.ToString()))
                 submittedValues.Add(new KeyValuePair<string, string>("NQINid", values.NQINid.ToString()));
+            else
+                submittedValues.Add(new KeyValuePair<string, string>("NQINid",""));
 
 
             submittedValues.Add(new KeyValuePair<string, string>("enableHijri", values.enableHijri == null ? "false" : "true"));
@@ -564,20 +597,29 @@ namespace AionHR.Web.UI.Forms
             List<KeyValuePair<string, string>> submittedValues = new List<KeyValuePair<string, string>>();
             if (!string.IsNullOrEmpty(values.fdow.ToString()))
                 submittedValues.Add(new KeyValuePair<string, string>("fdow", values.fdow.ToString()));
+            else
+                submittedValues.Add(new KeyValuePair<string, string>("fdow",""));
             if (!string.IsNullOrEmpty(values.caId.ToString()))
                 submittedValues.Add(new KeyValuePair<string, string>("caId", values.caId.ToString()));
-
+            else
+                submittedValues.Add(new KeyValuePair<string, string>("caId",""));
             if (!string.IsNullOrEmpty(values.tsId.ToString()))
                 submittedValues.Add(new KeyValuePair<string, string>("tsId", values.tsId.ToString()));
+            else
+                submittedValues.Add(new KeyValuePair<string, string>("tsId", ""));
 
             if (!string.IsNullOrEmpty(values.scId.ToString()))
                 submittedValues.Add(new KeyValuePair<string, string>("scId", values.scId.ToString()));
-
+            else
+                submittedValues.Add(new KeyValuePair<string, string>("scId", " "));
             if (values.localServerIP != null && !string.IsNullOrEmpty(values.localServerIP.ToString()))
                 submittedValues.Add(new KeyValuePair<string, string>("localServerIP", values.localServerIP.ToString() + "/AionWSLocal"));
+            else
+                submittedValues.Add(new KeyValuePair<string, string>("localServerIP", ""));
             if (!string.IsNullOrEmpty(values.sourceTASC.ToString()))
                 submittedValues.Add(new KeyValuePair<string, string>("sourceTASC", values.sourceTASC.ToString()));
-           
+           else
+                submittedValues.Add(new KeyValuePair<string, string>("sourceTASC", ""));
 
             submittedValues.Add(new KeyValuePair<string, string>("enableCamera", values.enableCamera == null ? "false" : "true"));
             return submittedValues;
@@ -615,48 +657,84 @@ namespace AionHR.Web.UI.Forms
             List<KeyValuePair<string, string>> submittedValues = new List<KeyValuePair<string, string>>();
             if (values.ulDeductionId != null && !string.IsNullOrEmpty(values.ulDeductionId.ToString()))
                 submittedValues.Add(new KeyValuePair<string, string>("ulDeductionId", values.ulDeductionId.ToString()));
+            else
+                submittedValues.Add(new KeyValuePair<string, string>("ulDeductionId",""));
             if (values.ssDeductionId != null && !string.IsNullOrEmpty(values.ssDeductionId.ToString()))
                 submittedValues.Add(new KeyValuePair<string, string>("ssDeductionId", values.ssDeductionId.ToString()));
+            else
+                submittedValues.Add(new KeyValuePair<string, string>("ssDeductionId",""));
             if (values.loanDeductionId != null && !string.IsNullOrEmpty(values.loanDeductionId.ToString()))
                 submittedValues.Add(new KeyValuePair<string, string>("loanDeductionId", values.loanDeductionId.ToString()));
+            else
+                submittedValues.Add(new KeyValuePair<string, string>("loanDeductionId", ""));
             if (values.peDeductionId != null && !string.IsNullOrEmpty(values.peDeductionId.ToString()))
                 submittedValues.Add(new KeyValuePair<string, string>("penaltyDeductionId", values.peDeductionId.ToString()));
+            else
+                submittedValues.Add(new KeyValuePair<string, string>("penaltyDeductionId",""));
             if (values.ssId != null && !string.IsNullOrEmpty(values.ssId.ToString()))
                 submittedValues.Add(new KeyValuePair<string, string>("ssId", values.ssId.ToString()));
-
+            else
+                submittedValues.Add(new KeyValuePair<string, string>("ssId", ""));
             if (values.ldMethod != null && !string.IsNullOrEmpty(values.ldMethod.ToString()))
                 submittedValues.Add(new KeyValuePair<string, string>("ldMethod", values.ldMethod.ToString()));
-
+            else
+                submittedValues.Add(new KeyValuePair<string, string>("ldMethod", ""));
             if (values.ldValue != null && !string.IsNullOrEmpty(values.ldValue.ToString()))
                 submittedValues.Add(new KeyValuePair<string, string>("ldValue", values.ldValue.ToString()));
-
+            else
+                submittedValues.Add(new KeyValuePair<string, string>("ldValue", ""));
             if (values.py_aEDId != null && !string.IsNullOrEmpty(values.py_aEDId.ToString()))
                 submittedValues.Add(new KeyValuePair<string, string>("py_aEDId", values.py_aEDId.ToString()));
-
+            else
+                submittedValues.Add(new KeyValuePair<string, string>("py_aEDId", ""));
             if (values.py_dEDId != null && !string.IsNullOrEmpty(values.py_dEDId.ToString()))
                 submittedValues.Add(new KeyValuePair<string, string>("py_dEDId", values.py_dEDId.ToString()));
-
+            else
+                submittedValues.Add(new KeyValuePair<string, string>("py_dEDId", ""));
             if (values.py_lEDId != null && !string.IsNullOrEmpty(values.py_lEDId.ToString()))
                 submittedValues.Add(new KeyValuePair<string, string>("py_lEDId", values.py_lEDId.ToString()));
-
+            else
+                submittedValues.Add(new KeyValuePair<string, string>("py_lEDId", ""));
             if (values.py_oEDId != null && !string.IsNullOrEmpty(values.py_oEDId.ToString()))
                 submittedValues.Add(new KeyValuePair<string, string>("py_oEDId", values.py_oEDId.ToString()));
+            else
+                submittedValues.Add(new KeyValuePair<string, string>("py_oEDId", ""));
             if (values.py_mEDId != null && !string.IsNullOrEmpty(values.py_mEDId.ToString()))
                 submittedValues.Add(new KeyValuePair<string, string>("py_mEDId", values.py_mEDId.ToString()));
+            else
+                submittedValues.Add(new KeyValuePair<string, string>("py_mEDId", ""));
             if (values.PYFSLeaveBalEDId != null && !string.IsNullOrEmpty(values.PYFSLeaveBalEDId.ToString()))
                 submittedValues.Add(new KeyValuePair<string, string>("PYFSLeaveBalEDId", values.PYFSLeaveBalEDId.ToString()));
+            else
+                submittedValues.Add(new KeyValuePair<string, string>("PYFSLeaveBalEDId", ""));
             if (values.PYINEDId != null && !string.IsNullOrEmpty(values.PYINEDId.ToString()))
                 submittedValues.Add(new KeyValuePair<string, string>("PYINEDId", values.PYINEDId.ToString()));
+            else
+                submittedValues.Add(new KeyValuePair<string, string>("PYINEDId", ""));
+
 
 
             if (values.PYISmale != null && !string.IsNullOrEmpty(values.PYISmale.ToString()))
                 submittedValues.Add(new KeyValuePair<string, string>("PYISmale", values.PYISmale.ToString()));
+            else
+                submittedValues.Add(new KeyValuePair<string, string>("PYISmale", ""));
             if (values.PYISfemale != null && !string.IsNullOrEmpty(values.PYISfemale.ToString()))
                 submittedValues.Add(new KeyValuePair<string, string>("PYISfemale", values.PYISfemale.ToString()));
+            else
+                submittedValues.Add(new KeyValuePair<string, string>("PYISfemale", ""));
             if (!string.IsNullOrEmpty(values.exemptMarriageTRId.ToString()))
                 submittedValues.Add(new KeyValuePair<string, string>("exemptMarriageTRId", values.exemptMarriageTRId.ToString()));
+            else
+                submittedValues.Add(new KeyValuePair<string, string>("exemptMarriageTRId", ""));
             if (!string.IsNullOrEmpty(values.exemptDeliveryTRId.ToString()))
                 submittedValues.Add(new KeyValuePair<string, string>("exemptDeliveryTRId", values.exemptDeliveryTRId.ToString()));
+            else
+                submittedValues.Add(new KeyValuePair<string, string>("exemptDeliveryTRId",""));
+            if (!string.IsNullOrEmpty(values.yearDays.ToString()))
+                submittedValues.Add(new KeyValuePair<string, string>("yearDays", values.yearDays.ToString()));
+            else
+                submittedValues.Add(new KeyValuePair<string, string>("yearDays", "365"));
+
 
             return submittedValues;
         }

@@ -49,10 +49,10 @@ public class AuditTrail : DevExpress.XtraReports.UI.XtraReport
     private XRLabel xrLabel13;
     private XRLabel xrLabel11;
     private XRLabel xrLabel9;
-    private XRLine xrLine1;
-    private XRLine xrLine2;
     private XRLabel xrLabel20;
     private XRLabel xrLabel18;
+    private XRLabel xrLabel21;
+    private XRLabel xrLabel22;
 
     /// <summary>
     /// Required designer variable.
@@ -116,10 +116,8 @@ public class AuditTrail : DevExpress.XtraReports.UI.XtraReport
             this.xrLabel3 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel1 = new DevExpress.XtraReports.UI.XRLabel();
             this.groupHeaderBand1 = new DevExpress.XtraReports.UI.GroupHeaderBand();
-            this.xrLine2 = new DevExpress.XtraReports.UI.XRLine();
             this.GroupHeader1 = new DevExpress.XtraReports.UI.GroupHeaderBand();
             this.xrLabel4 = new DevExpress.XtraReports.UI.XRLabel();
-            this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
             this.From = new DevExpress.XtraReports.Parameters.Parameter();
             this.To = new DevExpress.XtraReports.Parameters.Parameter();
             this.User = new DevExpress.XtraReports.Parameters.Parameter();
@@ -132,15 +130,18 @@ public class AuditTrail : DevExpress.XtraReports.UI.XtraReport
             this.xrLabel13 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel11 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel9 = new DevExpress.XtraReports.UI.XRLabel();
-            this.xrLine1 = new DevExpress.XtraReports.UI.XRLine();
             this.xrRichText1 = new DevExpress.XtraReports.UI.XRRichText();
-            ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).BeginInit();
+            this.xrLabel21 = new DevExpress.XtraReports.UI.XRLabel();
+            this.xrLabel22 = new DevExpress.XtraReports.UI.XRLabel();
+            this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.xrRichText1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             // 
             // Detail
             // 
             this.Detail.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
+            this.xrLabel21,
             this.xrLabel17,
             this.xrLabel15,
             this.xrLabel14,
@@ -154,48 +155,68 @@ public class AuditTrail : DevExpress.XtraReports.UI.XtraReport
             // 
             // xrLabel17
             // 
+            this.xrLabel17.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            | DevExpress.XtraPrinting.BorderSide.Right) 
+            | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.xrLabel17.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "ClassIdString")});
             resources.ApplyResources(this.xrLabel17, "xrLabel17");
             this.xrLabel17.Name = "xrLabel17";
             this.xrLabel17.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel17.StyleName = "DataField";
+            this.xrLabel17.StylePriority.UseBorders = false;
             // 
             // xrLabel15
             // 
+            this.xrLabel15.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            | DevExpress.XtraPrinting.BorderSide.Right) 
+            | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.xrLabel15.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "DateString", "{0:MMMM d, yyyy}")});
             resources.ApplyResources(this.xrLabel15, "xrLabel15");
             this.xrLabel15.Name = "xrLabel15";
             this.xrLabel15.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel15.StyleName = "DataField";
+            this.xrLabel15.StylePriority.UseBorders = false;
             // 
             // xrLabel14
             // 
+            this.xrLabel14.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            | DevExpress.XtraPrinting.BorderSide.Right) 
+            | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.xrLabel14.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "pk")});
             resources.ApplyResources(this.xrLabel14, "xrLabel14");
             this.xrLabel14.Name = "xrLabel14";
             this.xrLabel14.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel14.StyleName = "DataField";
+            this.xrLabel14.StylePriority.UseBorders = false;
             // 
             // xrLabel12
             // 
+            this.xrLabel12.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            | DevExpress.XtraPrinting.BorderSide.Right) 
+            | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.xrLabel12.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "TypeString")});
             resources.ApplyResources(this.xrLabel12, "xrLabel12");
             this.xrLabel12.Name = "xrLabel12";
             this.xrLabel12.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel12.StyleName = "DataField";
+            this.xrLabel12.StylePriority.UseBorders = false;
             // 
             // xrLabel10
             // 
+            this.xrLabel10.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            | DevExpress.XtraPrinting.BorderSide.Right) 
+            | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.xrLabel10.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "userName")});
             resources.ApplyResources(this.xrLabel10, "xrLabel10");
             this.xrLabel10.Name = "xrLabel10";
             this.xrLabel10.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel10.StyleName = "DataField";
+            this.xrLabel10.StylePriority.UseBorders = false;
             // 
             // TopMargin
             // 
@@ -314,43 +335,63 @@ public class AuditTrail : DevExpress.XtraReports.UI.XtraReport
             // 
             // xrLabel8
             // 
+            this.xrLabel8.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            | DevExpress.XtraPrinting.BorderSide.Right) 
+            | DevExpress.XtraPrinting.BorderSide.Bottom)));
             resources.ApplyResources(this.xrLabel8, "xrLabel8");
             this.xrLabel8.Name = "xrLabel8";
             this.xrLabel8.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel8.StyleName = "FieldCaption";
+            this.xrLabel8.StylePriority.UseBorders = false;
             // 
             // xrLabel6
             // 
+            this.xrLabel6.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            | DevExpress.XtraPrinting.BorderSide.Right) 
+            | DevExpress.XtraPrinting.BorderSide.Bottom)));
             resources.ApplyResources(this.xrLabel6, "xrLabel6");
             this.xrLabel6.Name = "xrLabel6";
             this.xrLabel6.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel6.StyleName = "FieldCaption";
+            this.xrLabel6.StylePriority.UseBorders = false;
             // 
             // xrLabel5
             // 
+            this.xrLabel5.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            | DevExpress.XtraPrinting.BorderSide.Right) 
+            | DevExpress.XtraPrinting.BorderSide.Bottom)));
             resources.ApplyResources(this.xrLabel5, "xrLabel5");
             this.xrLabel5.Name = "xrLabel5";
             this.xrLabel5.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel5.StyleName = "FieldCaption";
+            this.xrLabel5.StylePriority.UseBorders = false;
             // 
             // xrLabel3
             // 
+            this.xrLabel3.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            | DevExpress.XtraPrinting.BorderSide.Right) 
+            | DevExpress.XtraPrinting.BorderSide.Bottom)));
             resources.ApplyResources(this.xrLabel3, "xrLabel3");
             this.xrLabel3.Name = "xrLabel3";
             this.xrLabel3.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel3.StyleName = "FieldCaption";
+            this.xrLabel3.StylePriority.UseBorders = false;
             // 
             // xrLabel1
             // 
+            this.xrLabel1.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            | DevExpress.XtraPrinting.BorderSide.Right) 
+            | DevExpress.XtraPrinting.BorderSide.Bottom)));
             resources.ApplyResources(this.xrLabel1, "xrLabel1");
             this.xrLabel1.Name = "xrLabel1";
             this.xrLabel1.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel1.StyleName = "FieldCaption";
+            this.xrLabel1.StylePriority.UseBorders = false;
             // 
             // groupHeaderBand1
             // 
             this.groupHeaderBand1.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
-            this.xrLine2,
+            this.xrLabel22,
             this.xrLabel1,
             this.xrLabel3,
             this.xrLabel5,
@@ -360,11 +401,6 @@ public class AuditTrail : DevExpress.XtraReports.UI.XtraReport
             this.groupHeaderBand1.Name = "groupHeaderBand1";
             this.groupHeaderBand1.RepeatEveryPage = true;
             this.groupHeaderBand1.BeforePrint += new System.Drawing.Printing.PrintEventHandler(this.groupHeaderBand1_BeforePrint);
-            // 
-            // xrLine2
-            // 
-            resources.ApplyResources(this.xrLine2, "xrLine2");
-            this.xrLine2.Name = "xrLine2";
             // 
             // GroupHeader1
             // 
@@ -380,11 +416,6 @@ public class AuditTrail : DevExpress.XtraReports.UI.XtraReport
             resources.ApplyResources(this.xrLabel4, "xrLabel4");
             this.xrLabel4.Name = "xrLabel4";
             this.xrLabel4.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            // 
-            // objectDataSource1
-            // 
-            this.objectDataSource1.DataSource = typeof(AionHR.Model.Reports.RT802);
-            this.objectDataSource1.Name = "objectDataSource1";
             // 
             // From
             // 
@@ -430,7 +461,6 @@ public class AuditTrail : DevExpress.XtraReports.UI.XtraReport
             this.xrLabel13,
             this.xrLabel11,
             this.xrLabel9,
-            this.xrLine1,
             this.xrRichText1});
             resources.ApplyResources(this.PageHeader, "PageHeader");
             this.PageHeader.Name = "PageHeader";
@@ -478,16 +508,39 @@ public class AuditTrail : DevExpress.XtraReports.UI.XtraReport
             this.xrLabel9.Name = "xrLabel9";
             this.xrLabel9.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             // 
-            // xrLine1
-            // 
-            resources.ApplyResources(this.xrLine1, "xrLine1");
-            this.xrLine1.Name = "xrLine1";
-            // 
             // xrRichText1
             // 
             resources.ApplyResources(this.xrRichText1, "xrRichText1");
             this.xrRichText1.Name = "xrRichText1";
             this.xrRichText1.SerializableRtfString = resources.GetString("xrRichText1.SerializableRtfString");
+            // 
+            // xrLabel21
+            // 
+            this.xrLabel21.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            | DevExpress.XtraPrinting.BorderSide.Right) 
+            | DevExpress.XtraPrinting.BorderSide.Bottom)));
+            this.xrLabel21.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "data")});
+            resources.ApplyResources(this.xrLabel21, "xrLabel21");
+            this.xrLabel21.Multiline = true;
+            this.xrLabel21.Name = "xrLabel21";
+            this.xrLabel21.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel21.StylePriority.UseBorders = false;
+            // 
+            // xrLabel22
+            // 
+            this.xrLabel22.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            | DevExpress.XtraPrinting.BorderSide.Right) 
+            | DevExpress.XtraPrinting.BorderSide.Bottom)));
+            resources.ApplyResources(this.xrLabel22, "xrLabel22");
+            this.xrLabel22.Name = "xrLabel22";
+            this.xrLabel22.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel22.StylePriority.UseBorders = false;
+            // 
+            // objectDataSource1
+            // 
+            this.objectDataSource1.DataSource = typeof(AionHR.Model.Reports.RT802);
+            this.objectDataSource1.Name = "objectDataSource1";
             // 
             // AuditTrail
             // 
@@ -503,6 +556,7 @@ public class AuditTrail : DevExpress.XtraReports.UI.XtraReport
             this.ComponentStorage.AddRange(new System.ComponentModel.IComponent[] {
             this.objectDataSource1});
             this.DataSource = this.objectDataSource1;
+            resources.ApplyResources(this, "$this");
             this.Parameters.AddRange(new DevExpress.XtraReports.Parameters.Parameter[] {
             this.username,
             this.From,
@@ -517,8 +571,8 @@ public class AuditTrail : DevExpress.XtraReports.UI.XtraReport
             this.PageInfo,
             this.DataField});
             this.Version = "16.2";
-            ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrRichText1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
 
     }

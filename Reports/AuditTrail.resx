@@ -118,16 +118,28 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="xrLabel17.Dpi" type="System.Single, mscorlib">
+  <data name="xrLabel21.Dpi" type="System.Single, mscorlib">
     <value>100</value>
   </data>
   <assembly alias="DevExpress.Data.v16.2" name="DevExpress.Data.v16.2, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-  <data name="xrLabel17.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v16.2">
-    <value>422.145966, 0</value>
+  <data name="xrLabel21.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v16.2">
+    <value>470.228821, 0</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="xrLabel21.SizeF" type="System.Drawing.SizeF, System.Drawing">
+    <value>364.771179, 35.9999962</value>
+  </data>
+  <data name="xrLabel21.Text" xml:space="preserve">
+    <value>xrLabel21</value>
+  </data>
+  <data name="xrLabel17.Dpi" type="System.Single, mscorlib">
+    <value>100</value>
+  </data>
+  <data name="xrLabel17.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v16.2">
+    <value>299.937439, 0</value>
+  </data>
   <data name="xrLabel17.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>118.1458, 36</value>
+    <value>76.20804, 36</value>
   </data>
   <data name="xrLabel17.Text" xml:space="preserve">
     <value>xrLabel17</value>
@@ -136,10 +148,10 @@
     <value>100</value>
   </data>
   <data name="xrLabel15.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v16.2">
-    <value>540.2919, 0</value>
+    <value>376.145569, 0</value>
   </data>
   <data name="xrLabel15.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>109.708252, 36</value>
+    <value>94.08328, 36</value>
   </data>
   <data name="xrLabel15.Text" xml:space="preserve">
     <value>xrLabel15</value>
@@ -148,10 +160,10 @@
     <value>100</value>
   </data>
   <data name="xrLabel14.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v16.2">
-    <value>355.604126, 0</value>
+    <value>260.8125, 0</value>
   </data>
   <data name="xrLabel14.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>66.54166, 36</value>
+    <value>39.12494, 36</value>
   </data>
   <data name="xrLabel14.Text" xml:space="preserve">
     <value>xrLabel14</value>
@@ -160,10 +172,10 @@
     <value>100</value>
   </data>
   <data name="xrLabel12.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v16.2">
-    <value>263.729156, 0</value>
+    <value>203.312424, 0</value>
   </data>
   <data name="xrLabel12.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>91.87503, 36</value>
+    <value>57.50003, 36</value>
   </data>
   <data name="xrLabel12.Text" xml:space="preserve">
     <value>xrLabel12</value>
@@ -175,7 +187,7 @@
     <value>0, 0</value>
   </data>
   <data name="xrLabel10.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>263.729156, 36</value>
+    <value>203.312424, 36</value>
   </data>
   <data name="xrLabel10.Text" xml:space="preserve">
     <value>xrLabel10</value>
@@ -253,7 +265,7 @@
     <value>Page {0} of {1}</value>
   </data>
   <data name="xrPageInfo2.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v16.2">
-    <value>517.625, 116.7763</value>
+    <value>702.625, 116.776276</value>
   </data>
   <data name="xrPageInfo2.SizeF" type="System.Drawing.SizeF, System.Drawing">
     <value>122.375, 23</value>
@@ -289,10 +301,10 @@
     <value>100</value>
   </data>
   <data name="xrLabel8.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v16.2">
-    <value>422.145844, 0</value>
+    <value>299.937439, 0</value>
   </data>
   <data name="xrLabel8.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>118.1459, 36</value>
+    <value>76.20813, 36</value>
   </data>
   <data name="xrLabel8.Text" xml:space="preserve">
     <value>Class Id</value>
@@ -301,10 +313,10 @@
     <value>100</value>
   </data>
   <data name="xrLabel6.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v16.2">
-    <value>540.2918, 0</value>
+    <value>376.145569, 0</value>
   </data>
   <data name="xrLabel6.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>109.708252, 36</value>
+    <value>94.08328, 36</value>
   </data>
   <data name="xrLabel6.Text" xml:space="preserve">
     <value>Date</value>
@@ -313,10 +325,10 @@
     <value>100</value>
   </data>
   <data name="xrLabel5.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v16.2">
-    <value>355.6042, 0</value>
+    <value>260.812439, 0</value>
   </data>
   <data name="xrLabel5.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>66.54166, 36</value>
+    <value>39.125, 36</value>
   </data>
   <data name="xrLabel5.Text" xml:space="preserve">
     <value>pk</value>
@@ -325,10 +337,10 @@
     <value>100</value>
   </data>
   <data name="xrLabel3.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v16.2">
-    <value>263.729156, 0</value>
+    <value>203.312424, 0</value>
   </data>
   <data name="xrLabel3.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>91.875, 36</value>
+    <value>57.50003, 36</value>
   </data>
   <data name="xrLabel3.Text" xml:space="preserve">
     <value>Type</value>
@@ -337,28 +349,31 @@
     <value>100</value>
   </data>
   <data name="xrLabel1.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v16.2">
-    <value>4.124991, 0</value>
+    <value>0, 0</value>
   </data>
   <data name="xrLabel1.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>259.604156, 36</value>
+    <value>203.312424, 36</value>
   </data>
   <data name="xrLabel1.Text" xml:space="preserve">
     <value>user Name</value>
   </data>
-  <data name="xrLine2.Dpi" type="System.Single, mscorlib">
+  <data name="xrLabel22.Dpi" type="System.Single, mscorlib">
     <value>100</value>
   </data>
-  <data name="xrLine2.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v16.2">
-    <value>0, 35.9999733</value>
+  <data name="xrLabel22.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v16.2">
+    <value>470.228821, 0</value>
   </data>
-  <data name="xrLine2.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>650, 4.583359</value>
+  <data name="xrLabel22.SizeF" type="System.Drawing.SizeF, System.Drawing">
+    <value>364.771179, 35.9999657</value>
+  </data>
+  <data name="xrLabel22.Text" xml:space="preserve">
+    <value>Details</value>
   </data>
   <data name="groupHeaderBand1.Dpi" type="System.Single, mscorlib">
     <value>100</value>
   </data>
   <data name="groupHeaderBand1.HeightF" type="System.Single, mscorlib">
-    <value>40.5833321</value>
+    <value>36</value>
   </data>
   <data name="xrLabel4.Dpi" type="System.Single, mscorlib">
     <value>100</value>
@@ -378,9 +393,6 @@
   <data name="GroupHeader1.HeightF" type="System.Single, mscorlib">
     <value>28.1250229</value>
   </data>
-  <metadata name="objectDataSource1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
   <data name="From.Description" xml:space="preserve">
     <value>Parameter1</value>
   </data>
@@ -468,15 +480,6 @@
   <data name="xrLabel9.Text" xml:space="preserve">
     <value>Class Id</value>
   </data>
-  <data name="xrLine1.Dpi" type="System.Single, mscorlib">
-    <value>100</value>
-  </data>
-  <data name="xrLine1.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v16.2">
-    <value>0, 46.33333</value>
-  </data>
-  <data name="xrLine1.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>648.125061, 5.065769</value>
-  </data>
   <data name="xrRichText1.Dpi" type="System.Single, mscorlib">
     <value>100</value>
   </data>
@@ -487,7 +490,7 @@
     <value>0, 0.333340973</value>
   </data>
   <data name="xrRichText1.SerializableRtfString" xml:space="preserve">
-    <value>ewBcAHIAdABmADEAXABkAGUAZgBmADAAewBcAGYAbwBuAHQAdABiAGwAewBcAGYAMAAgAEMAYQBsAGkAYgByAGkAOwB9AHsAXABmADEAIABUAGkAbQBlAHMAIABOAGUAdwAgAFIAbwBtAGEAbgA7AH0AfQB7AFwAYwBvAGwAbwByAHQAYgBsACAAOwBcAHIAZQBkADAAXABnAHIAZQBlAG4AMABcAGIAbAB1AGUAMAAgADsAXAByAGUAZAAwAFwAZwByAGUAZQBuADAAXABiAGwAdQBlADIANQA1ACAAOwB9AHsAXAAqAFwAZABlAGYAYwBoAHAAIABcAGYAMQBcAGYAcwAyADQAfQB7AFwAcwB0AHkAbABlAHMAaABlAGUAdAAgAHsAXABxAGwAXABmADEAXABmAHMAMgA0ACAATgBvAHIAbQBhAGwAOwB9AHsAXAAqAFwAYwBzADEAXABmADEAXABmAHMAMgA0AFwAYwBmADEAIABEAGUAZgBhAHUAbAB0ACAAUABhAHIAYQBnAHIAYQBwAGgAIABGAG8AbgB0ADsAfQB7AFwAKgBcAGMAcwAyAFwAcwBiAGEAcwBlAGQAbwBuADEAXABmADEAXABmAHMAMgA0AFwAYwBmADEAIABMAGkAbgBlACAATgB1AG0AYgBlAHIAOwB9AHsAXAAqAFwAYwBzADMAXAB1AGwAXABmADEAXABmAHMAMgA0AFwAYwBmADIAIABIAHkAcABlAHIAbABpAG4AawA7AH0AewBcACoAXAB0AHMANABcAHQAcwByAG8AdwBkAFwAZgAxAFwAZgBzADIANABcAHEAbABcAHQAcwBjAGUAbABsAHAAYQBkAGQAZgBsADMAXAB0AHMAYwBlAGwAbABwAGEAZABkAGwAMQAwADgAXAB0AHMAYwBlAGwAbABwAGEAZABkAGYAYgAzAFwAdABzAGMAZQBsAGwAcABhAGQAZABmAHIAMwBcAHQAcwBjAGUAbABsAHAAYQBkAGQAcgAxADAAOABcAHQAcwBjAGUAbABsAHAAYQBkAGQAZgB0ADMAXAB0AHMAdgBlAHIAdABhAGwAdABcAGMAbAB0AHgAbAByAHQAYgAgAE4AbwByAG0AYQBsACAAVABhAGIAbABlADsAfQB7AFwAKgBcAHQAcwA1AFwAdABzAHIAbwB3AGQAXABzAGIAYQBzAGUAZABvAG4ANABcAGYAMQBcAGYAcwAyADQAXABxAGwAXAB0AHIAYgByAGQAcgB0AFwAYgByAGQAcgBzAFwAYgByAGQAcgB3ADEAMABcAHQAcgBiAHIAZAByAGwAXABiAHIAZAByAHMAXABiAHIAZAByAHcAMQAwAFwAdAByAGIAcgBkAHIAYgBcAGIAcgBkAHIAcwBcAGIAcgBkAHIAdwAxADAAXAB0AHIAYgByAGQAcgByAFwAYgByAGQAcgBzAFwAYgByAGQAcgB3ADEAMABcAHQAcgBiAHIAZAByAGgAXABiAHIAZAByAHMAXABiAHIAZAByAHcAMQAwAFwAdAByAGIAcgBkAHIAdgBcAGIAcgBkAHIAcwBcAGIAcgBkAHIAdwAxADAAXAB0AHMAYwBlAGwAbABwAGEAZABkAGYAbAAzAFwAdABzAGMAZQBsAGwAcABhAGQAZABsADEAMAA4AFwAdABzAGMAZQBsAGwAcABhAGQAZABmAHIAMwBcAHQAcwBjAGUAbABsAHAAYQBkAGQAcgAxADAAOABcAHQAcwB2AGUAcgB0AGEAbAB0AFwAYwBsAHQAeABsAHIAdABiACAAVABhAGIAbABlACAAUwBpAG0AcABsAGUAIAAxADsAfQB9AHsAXAAqAFwAbABpAHMAdABvAHYAZQByAHIAaQBkAGUAdABhAGIAbABlAH0AXABuAG8AdQBpAGMAbwBtAHAAYQB0AFwAcwBwAGwAeQB0AHcAbgBpAG4AZQBcAGgAdABtAGEAdQB0AHMAcABcAHAAYQByAGQAXABwAGwAYQBpAG4AXABxAGwAewBcAGwAYQBuAGcAMQAwADMAMwBcAGwAYQBuAGcAZgBlADEAMAAzADMAXABmADEAXABmAHMAMgAwAFwAYwBmADEAIABbAFAAYQByAGEAbQBlAHQAZQByAHMALgBGAHIAbwBtAF0ALQAgAH0AewBcAGwAYQBuAGcAMQAwADMAMwBcAGwAYQBuAGcAZgBlADEAMAAzADMAXABmADEAXABmAHMAMgAwAFwAYwBmADEAIABbAFAAYQByAGEAbQBlAHQAZQByAHMALgBUAG8AXQB9AFwAZgAxAFwAZgBzADIANABcAGMAZgAxAFwAcABhAHIAfQA=</value>
+    <value>ewBcAHIAdABmADEAXABkAGUAZgBmADAAewBcAGYAbwBuAHQAdABiAGwAewBcAGYAMAAgAEMAYQBsAGkAYgByAGkAOwB9AHsAXABmADEAIABUAGkAbQBlAHMAIABOAGUAdwAgAFIAbwBtAGEAbgA7AH0AfQB7AFwAYwBvAGwAbwByAHQAYgBsACAAOwBcAHIAZQBkADAAXABnAHIAZQBlAG4AMABcAGIAbAB1AGUAMAAgADsAXAByAGUAZAAwAFwAZwByAGUAZQBuADAAXABiAGwAdQBlADIANQA1ACAAOwB9AHsAXAAqAFwAZABlAGYAYwBoAHAAIABcAGYAMQBcAGYAcwAyADQAfQB7AFwAcwB0AHkAbABlAHMAaABlAGUAdAAgAHsAXABxAGwAXABmADEAXABmAHMAMgA0ACAATgBvAHIAbQBhAGwAOwB9AHsAXAAqAFwAYwBzADEAXABmADEAXABmAHMAMgA0AFwAYwBmADEAIABEAGUAZgBhAHUAbAB0ACAAUABhAHIAYQBnAHIAYQBwAGgAIABGAG8AbgB0ADsAfQB7AFwAKgBcAGMAcwAyAFwAcwBiAGEAcwBlAGQAbwBuADEAXABmADEAXABmAHMAMgA0AFwAYwBmADEAIABMAGkAbgBlACAATgB1AG0AYgBlAHIAOwB9AHsAXAAqAFwAYwBzADMAXAB1AGwAXABmADEAXABmAHMAMgA0AFwAYwBmADIAIABIAHkAcABlAHIAbABpAG4AawA7AH0AewBcACoAXAB0AHMANABcAHQAcwByAG8AdwBkAFwAZgAxAFwAZgBzADIANABcAHEAbABcAHQAcwBjAGUAbABsAHAAYQBkAGQAZgBsADMAXAB0AHMAYwBlAGwAbABwAGEAZABkAGwAMQAwADgAXAB0AHMAYwBlAGwAbABwAGEAZABkAGYAYgAzAFwAdABzAGMAZQBsAGwAcABhAGQAZABmAHIAMwBcAHQAcwBjAGUAbABsAHAAYQBkAGQAcgAxADAAOABcAHQAcwBjAGUAbABsAHAAYQBkAGQAZgB0ADMAXAB0AHMAdgBlAHIAdABhAGwAdABcAGMAbAB0AHgAbAByAHQAYgAgAE4AbwByAG0AYQBsACAAVABhAGIAbABlADsAfQB7AFwAKgBcAHQAcwA1AFwAdABzAHIAbwB3AGQAXABzAGIAYQBzAGUAZABvAG4ANABcAGYAMQBcAGYAcwAyADQAXABxAGwAXAB0AHIAYgByAGQAcgB0AFwAYgByAGQAcgBzAFwAYgByAGQAcgB3ADEAMABcAHQAcgBiAHIAZAByAGwAXABiAHIAZAByAHMAXABiAHIAZAByAHcAMQAwAFwAdAByAGIAcgBkAHIAYgBcAGIAcgBkAHIAcwBcAGIAcgBkAHIAdwAxADAAXAB0AHIAYgByAGQAcgByAFwAYgByAGQAcgBzAFwAYgByAGQAcgB3ADEAMABcAHQAcgBiAHIAZAByAGgAXABiAHIAZAByAHMAXABiAHIAZAByAHcAMQAwAFwAdAByAGIAcgBkAHIAdgBcAGIAcgBkAHIAcwBcAGIAcgBkAHIAdwAxADAAXAB0AHMAYwBlAGwAbABwAGEAZABkAGYAbAAzAFwAdABzAGMAZQBsAGwAcABhAGQAZABsADEAMAA4AFwAdABzAGMAZQBsAGwAcABhAGQAZABmAHIAMwBcAHQAcwBjAGUAbABsAHAAYQBkAGQAcgAxADAAOABcAHQAcwB2AGUAcgB0AGEAbAB0AFwAYwBsAHQAeABsAHIAdABiACAAVABhAGIAbABlACAAUwBpAG0AcABsAGUAIAAxADsAfQB9AHsAXAAqAFwAbABpAHMAdABvAHYAZQByAHIAaQBkAGUAdABhAGIAbABlAH0AXABuAG8AdQBpAGMAbwBtAHAAYQB0AFwAcwBwAGwAeQB0AHcAbgBpAG4AZQBcAGgAdABtAGEAdQB0AHMAcABcAHAAYQByAGQAXABwAGwAYQBpAG4AXABxAGwAewBcAGwAYQBuAGcAMQAwADMAMwBcAGwAYQBuAGcAZgBlADEAMAAzADMAXABmADEAXABmAHMAMgAwAFwAYwBmADEAIABbAFAAYQByAGEAbQBlAHQAZQByAHMALgBGAHIAbwBtAF0AfQB7AFwAbABhAG4AZwAxADIAMgA4ADkAXABsAGEAbgBnAGYAZQAxADIAMgA4ADkAXABmADEAXABmAHMAMgAwAFwAYwBmADEAIAAgAH0AewBcAGwAYQBuAGcAMQAwADMAMwBcAGwAYQBuAGcAZgBlADEAMAAzADMAXABmADEAXABmAHMAMgAwAFwAYwBmADEAIAAtACAAWwBQAGEAcgBhAG0AZQB0AGUAcgBzAC4AVABvAF0AfQBcAGYAMQBcAGYAcwAyADQAXABjAGYAMQBcAHAAYQByAH0A</value>
   </data>
   <data name="xrRichText1.SizeF" type="System.Drawing.SizeF, System.Drawing">
     <value>243.75, 23</value>
@@ -498,7 +501,13 @@
   <data name="PageHeader.HeightF" type="System.Single, mscorlib">
     <value>51.3990974</value>
   </data>
+  <metadata name="objectDataSource1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
+  <data name="$this.Margins" type="System.Drawing.Printing.Margins, System.Drawing">
+    <value>0, 15, 100, 100</value>
+  </data>
 </root>

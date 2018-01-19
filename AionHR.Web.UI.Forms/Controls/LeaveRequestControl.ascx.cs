@@ -288,13 +288,13 @@ namespace AionHR.Web.UI.Forms.Controls
         private void setApproved(bool disabled)
         {
             GridDisabled.Text = disabled.ToString();
-            startDate.Disabled = disabled;
-            endDate.Disabled = employeeId.Disabled = justification.Disabled = destination.Disabled = /*isPaid.Disabled = */ltId.Disabled =  TotalText.Disabled = disabled;
-            returnDate.Disabled = !disabled;
+            startDate.ReadOnly = disabled;
+           /* endDate.Disabled =*/ employeeId.ReadOnly = justification.ReadOnly = destination.ReadOnly = /*isPaid.Disabled = */ltId.ReadOnly =  TotalText.ReadOnly = disabled;
+            returnDate.ReadOnly = !disabled;
             approved.Text = disabled.ToString();
-            leavePeriod.Disabled = disabled;
-            calDays.Disabled = disabled;
-            leaveRef.Disabled = disabled;
+            leavePeriod.ReadOnly = disabled;
+            calDays.ReadOnly = disabled;
+            leaveRef.ReadOnly = disabled;
 
         }
 
@@ -302,26 +302,26 @@ namespace AionHR.Web.UI.Forms.Controls
         private void setNormal()
         {
             GridDisabled.Text = "False";
-            startDate.Disabled = false;
-            endDate.Disabled = employeeId.Disabled = justification.Disabled = destination.Disabled =/* isPaid.Disabled = */ltId.Disabled =TotalText.Disabled = false;
-            returnDate.Disabled = true;
-            leavePeriod.Disabled = false;
+            startDate.ReadOnly = false;
+           /* endDate.Disabled =*/  employeeId.ReadOnly = justification.ReadOnly = destination.ReadOnly =/* isPaid.Disabled = */ltId.ReadOnly = TotalText.ReadOnly = false;
+            returnDate.ReadOnly = true;
+            leavePeriod.ReadOnly = false;
             approved.Text = "False";
             SaveButton.Disabled = false;
-            calDays.Disabled = false;
-            leaveRef.Disabled = false;
+            calDays.ReadOnly = false;
+            leaveRef.ReadOnly = false;
         }
 
         private void setUsed(bool disabled)
         {
             GridDisabled.Text = disabled.ToString();
-            startDate.Disabled = disabled;
-            endDate.Disabled = employeeId.Disabled = justification.Disabled = destination.Disabled = /*isPaid.Disabled*/ ltId.Disabled  = TotalText.Disabled = disabled;
-            returnDate.Disabled = disabled;
-            SaveButton.Disabled = disabled;
-            leavePeriod.Disabled = disabled;
-            calDays.Disabled = disabled;
-            leaveRef.Disabled = disabled;
+            startDate.ReadOnly = disabled;
+           /* endDate.Disabled =*/ employeeId.ReadOnly = justification.ReadOnly = destination.ReadOnly = /*isPaid.Disabled*/ ltId.ReadOnly = TotalText.ReadOnly = disabled;
+            returnDate.ReadOnly = disabled;
+            SaveButton.Disabled = false;
+            leavePeriod.ReadOnly = disabled;
+            calDays.ReadOnly = disabled;
+            leaveRef.ReadOnly = disabled;
 
         }
 
@@ -469,7 +469,7 @@ namespace AionHR.Web.UI.Forms.Controls
 
                 try
                 {
-                    if (approved.Text == "True")
+                    if (false)
                     {
 
 
@@ -486,7 +486,7 @@ namespace AionHR.Web.UI.Forms.Controls
                         recordResponse.result.returnNotes = b.returnNotes;
                         recordResponse.result.leavePeriod = leavePeriod.Text;
                         b = recordResponse.result;
-                        b.status = 3;
+                        
 
                         //postReq.entity = recordResponse.result;
                         //postReq.entity.returnDate = b.returnDate;

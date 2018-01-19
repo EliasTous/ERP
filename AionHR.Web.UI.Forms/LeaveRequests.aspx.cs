@@ -358,6 +358,7 @@ namespace AionHR.Web.UI.Forms
 
             request.Filter = "";
             ListResponse<LeaveRequest> routers = _leaveManagementService.ChildGetAll<LeaveRequest>(request);
+
            if (!routers.Success)
             {
                 X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", routers.ErrorCode) != null ? GetGlobalResourceObject("Errors", routers.ErrorCode).ToString() : routers.Summary).Show();
