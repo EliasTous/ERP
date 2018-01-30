@@ -865,7 +865,7 @@
     <value>الرواتب</value>
   </data>
   <data name="GeneratePayroll" xml:space="preserve">
-    <value>تسديد الرواتب</value>
+    <value>اصدار الرواتب</value>
   </data>
   <data name="LeaveReports" xml:space="preserve">
     <value>تقارير الإجازات</value>

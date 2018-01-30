@@ -71,7 +71,11 @@ namespace AionHR.Model.LeaveManagement
 
         public string branchName { get; set; }
         public string ltRef { get; set; }
+        public double leaveDays { get; set; }
+        public int workingHours { get; set; }
+        public int leaveHours { get; set; }
 
+      
 
     }   
 }

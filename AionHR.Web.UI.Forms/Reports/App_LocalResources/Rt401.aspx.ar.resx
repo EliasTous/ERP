@@ -117,19 +117,19 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Status0" xml:space="preserve">
-    <value>جديد</value>
-  </data>
-  <data name="Status1" xml:space="preserve">
-    <value>قيد المعالجة</value>
-  </data>
-  <data name="Status2" xml:space="preserve">
-    <value>موافق عليه</value>
-  </data>
-  <data name="Status3" xml:space="preserve">
+  <data name="Status-1" xml:space="preserve">
     <value>مرفوض</value>
   </data>
-  <data name="Status4" xml:space="preserve">
+  <data name="Status0" xml:space="preserve">
     <value>الكل</value>
+  </data>
+  <data name="Status1" xml:space="preserve">
+    <value>جديد</value>
+  </data>
+  <data name="Status2" xml:space="preserve">
+    <value>قيد المعالجة</value>
+  </data>
+  <data name="Status3" xml:space="preserve">
+    <value>موافق عليه</value>
   </data>
 </root>

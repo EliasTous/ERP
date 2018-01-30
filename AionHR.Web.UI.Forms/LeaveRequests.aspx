@@ -218,7 +218,7 @@
                                     </DirectEvents>
                                 </ext:Button>
                                 <ext:ToolbarFill ID="ToolbarFillExport" runat="server" />
-                                <ext:TextField ID="searchTrigger" runat="server" EnableKeyEvents="true" Width="180">
+                                <ext:TextField Visible="false" ID="searchTrigger" runat="server" EnableKeyEvents="true" Width="180">
                                     <Triggers>
                                         <ext:FieldTrigger Icon="Search" />
                                     </Triggers>

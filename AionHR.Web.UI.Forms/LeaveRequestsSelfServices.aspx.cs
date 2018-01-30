@@ -273,6 +273,11 @@ namespace AionHR.Web.UI.Forms
        
         public void ADDNewRecord(object sender, DirectEventArgs e)
         {
+            panelRecordDetails.SuspendEvents();
+            employeeId.SuspendEvents();
+            startDate.SuspendEvents();
+            endDate.SuspendEvents();  
+
             startDate.SelectedDate=endDate.SelectedDate = DateTime.Now;
             BasicInfoTab.Reset();
             CurrentLeave.Text = "";
@@ -298,6 +303,10 @@ namespace AionHR.Web.UI.Forms
                  });
 
             employeeId.SetValue(_systemService.SessionHelper.GetEmployeeId());
+            panelRecordDetails.ResumeEvents();
+            employeeId.ResumeEvents();
+            endDate.ResumeEvents();
+            startDate.ResumeEvents(); 
         }
 
         public void Update(string id)

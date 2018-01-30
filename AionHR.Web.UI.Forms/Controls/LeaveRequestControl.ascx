@@ -16,24 +16,16 @@
     white-space: normal;
     border-bottom: none
 }
-
-
-
 </style>
 <script type="text/javascript">
-
     function dump(obj) {
         var out = '';
         for (var i in obj) {
             out += i + ": " + obj[i] + "\n";
-
-
         }
         return out;
     }
     function EnableLast() {
-
-
     }
     function openInNewTab() {
         
@@ -43,17 +35,26 @@
     function CalcSum() {
      
         var sum = 0;
+        var sumTotalWorkingHours = 0; 
         App.leaveRequest1_LeaveDaysGrid.getStore().each(function (record) {
-
+            sumTotalWorkingHours += record.data['workingHours'];
             sum += record.data['leaveHours'];
         });
-        App.leaveRequest1_leavePeriod.setValue(sum.toFixed(2));
-        App.leaveRequest1_sumHours2.setValue(sum.toFixed(2));
+        //App.leaveRequest1_leavePeriod.setValue(sum.toFixed(2));
+        App.leaveRequest1_leaveHours.setValue(sum);
+        App.leaveRequest1_workingHours.setValue(sumTotalWorkingHours);
+        if (sum == 0 || sumTotalWorkingHours == 0)
+            App.leaveRequest1_leaveDaysField.setValue(0);
+        else
+        App.leaveRequest1_leaveDaysField.setValue(App.leaveRequest1_LeaveDaysGrid.getStore().getCount() * (sum / sumTotalWorkingHours));
+        
+        
 
-
+        
+        App.leaveRequest1_sumWorkingHours.setValue(sumTotalWorkingHours);
+        App.leaveRequest1_sumHours2.setValue(sum);
     }
     function getDay(dow) {
-
         switch (dow) {
             case 1: return document.getElementById('leaveRequest1_MondayText').value;
             case 2: return document.getElementById('leaveRequest1_TuesdayText').value;
@@ -65,7 +66,6 @@
         }
     }
     function FillReturnInfo(id, d1, d2) {
-
         App.leaveRequest1_leaveId.setValue(id);
         App.leaveRequest1_DateField1.setValue(new Date(d1));
         App.leaveRequest1_DateField2.setValue(new Date(d2));
@@ -78,7 +78,6 @@
             App.leaveRequest1_returnNotes.setDisabled(false);
         }
         else {
-
             App.leaveRequest1_returnDate.setDisabled(true);
             App.leaveRequest1_returnNotes.setDisabled(true);
         }
@@ -87,7 +86,7 @@
     function calcEndDate() {
         
         if (App.leaveRequest1_startDate.getValue() == null) {
-            alert(App.leaveRequest1_SpecifyStartDateFirst.value);
+            //alert(App.leaveRequest1_SpecifyStartDateFirst.value);
             App.leaveRequest1_calDays.setValue('');
             return;
         }
@@ -104,24 +103,25 @@
             return;
         }
         if (App.leaveRequest1_startDate.getValue() == '') {
-            alert('specify start date');
+            //alert('specify start date');
             return;
         }
         App.leaveRequest1_calDays.setValue(parseInt(moment(App.leaveRequest1_endDate.getValue()).diff(moment(App.leaveRequest1_startDate.getValue()), 'days')) + 1);
     }
     function onHourFocusLeave(context)
-
     {
         if (context == null || context.column == null) return false; var rec = context.column.record;
         if (parseInt(rec.data['workingHours']) < parseInt(context.value))
         {
-          
-            context.setValue(rec.data['workingHours']);
-        }
-        if (1 > context.value) {
+            
+
             
             context.setValue(rec.data['workingHours']);
         }
+        //if (1 > context.value) {
+        //    alert(rec.data['workingHours']);
+        //    context.setValue(1);
+        //}
         rec.set('leaveHours', context.value); rec.commit(); CalcSum();
     }
 </script>
@@ -180,7 +180,6 @@
 
             <%--<Listeners>
                         <TabChange Handler="CheckSession(); App.leaveRequest1_direct.Unnamed_Event();" />
-
                     </Listeners>--%>
             <Items>
                 <ext:FormPanel
@@ -194,14 +193,14 @@
                     <Items>
                         <ext:TextField ID="recordId" runat="server" Name="recordId" Hidden="true" />
                         <ext:TextField ID="leaveRef" runat="server" Name="leaveRef"  FieldLabel="<%$ Resources:FieldLeaveRef%>" />
-                           <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" ID="employeeId" AllowBlank="false"
+                           <ext:ComboBox    AnyMatch="true" CaseSensitive="false"  runat="server" ID="employeeId" AllowBlank="false"
                             DisplayField="fullName" Name="employeeId"
                             ValueField="recordId"
                             TypeAhead="false"
                             FieldLabel="<%$ Resources: FieldEmployeeName%>"
                             HideTrigger="true" SubmitValue="true"
                             MinChars="3"
-                            TriggerAction="Query" ForceSelection="false">
+                            TriggerAction="Query" ForceSelection="true">
                             <Store>
                                 <ext:Store runat="server" ID="employeeStore" AutoLoad="false">
                                     <Model>
@@ -231,14 +230,14 @@
                         </ext:ComboBox>
                          <ext:Panel runat="server" Layout="HBoxLayout">
                             <Items>
-                           <ext:DateField ID="startDate"   runat="server" FieldLabel="<%$ Resources:FieldStartDate%>" Name="startDate" AllowBlank="false">
+                           <ext:DateField ID="startDate"    runat="server" FieldLabel="<%$ Resources:FieldStartDate%>" Name="startDate" AllowBlank="false">
                             <DirectEvents>
-                                <Change OnEvent="MarkLeaveChanged">
+                                <change OnEvent="MarkLeaveChanged">
                                     <ExtraParams>
                                         <ext:Parameter Name="startDate" Value="#{startDate}.getValue()" Mode="Raw" />
                                         <ext:Parameter Name="endDate" Value="#{endDate}.getValue()" Mode="Raw" />
                                     </ExtraParams>
-                                </Change>
+                                </change>
                                 
                             </DirectEvents>
                          <Listeners>
@@ -253,12 +252,12 @@
                                 <ext:DateField ID="endDate" LabelWidth="65"    runat="server" FieldLabel="<%$ Resources:FieldEndDate%>"  Name="endDate" AllowBlank="false">
                                  
                                     <DirectEvents>
-                                        <Change OnEvent="MarkLeaveChanged">
+                                        <change OnEvent="MarkLeaveChanged">
                                             <ExtraParams>
                                                 <ext:Parameter Name="startDate" Value="#{startDate}.getValue()" Mode="Raw" />
                                                 <ext:Parameter Name="endDate" Value="#{endDate}.getValue()" Mode="Raw" />
                                             </ExtraParams>
-                                        </Change>
+                                        </change>
                                     </DirectEvents>
                                    <%-- <Listeners>
                                         <Change Handler="App.leaveRequest1_direct.MarkLeaveChanged(); CalcSum(); " />
@@ -276,8 +275,18 @@
                                 </ext:NumberField>
                             </Items>
                         </ext:Panel>
+                           <ext:Panel runat="server" Layout="HBoxLayout">
+                            <Items>
+                                   <ext:NumberField ReadOnly="true"  runat="server" Width="200" ID="leaveDaysField"  Name="leaveDaysField" MinValue="1" FieldLabel="<%$Resources:leaveDays %>" >
+                                       </ext:NumberField>
+                                   <ext:NumberField ReadOnly="true" runat="server" Width="200" ID="leaveHours" Name="leaveHours" MinValue="1" FieldLabel="<%$Resources:leaveHours %>">
+                                       </ext:NumberField>
+                                   <ext:NumberField ReadOnly="true"   runat="server" Width="200" ID="workingHours"  Name="workingHours" MinValue="1" FieldLabel="<%$Resources:workingHours %>" >
+                                       </ext:NumberField>
+                            </Items>
+                        </ext:Panel>
                      
-                        <ext:TextField runat="server" ID="leavePeriod" Name="leavePeriod" ReadOnly="true" FieldLabel="<%$ Resources:TotalText%>" />
+                     <%--   <ext:TextField runat="server" ID="leavePeriod" Name="leavePeriod" ReadOnly="true" FieldLabel="<%$ Resources:TotalText%>" />--%>
                         <ext:TextArea ID="justification" runat="server" FieldLabel="<%$ Resources:FieldJustification%>" Name="justification" />
                         <ext:TextField ID="destination" runat="server" FieldLabel="<%$ Resources:FieldDestination%>" Name="destination" AllowBlank="false" />
 
@@ -423,7 +432,6 @@
                                     <%--          <ext:WidgetColumn  ID="WidgetColumn2" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldLeaveHours %>" DataIndex="leaveHours" Hideable="false" Width="125" Align="Center">
                                         
                                         <Widget>
-
                                             <ext:NumberField ID="leaveHours" runat="server" MinValue="1" DataIndex="leaveHours">
                                                 <Listeners>
                                                     <Change Handler="var rec = this.getWidgetRecord();  if(rec.data['workingHours']<this.value){this.setValue(rec.data['workingHours']); }if(1>this.value){this.setValue(1);}  rec.set('leaveHours',this.value); rec.commit(); CalcSum(); " />
@@ -432,7 +440,6 @@
                                                     
                                                 </Listeners>
                                             </ext:NumberField>
-
                                         </Widget>
                                         <Listeners>
                                              
@@ -441,7 +448,7 @@
                                     </ext:WidgetColumn>--%>
                                     <ext:ComponentColumn Text="<%$ Resources: FieldLeaveHours %>" runat="server" DataIndex="leaveHours" ItemID="comp">
                                         <Component>
-                                            <ext:NumberField ID="NumberField1" runat="server" MinValue="1" DataIndex="leaveHours">
+                                            <ext:NumberField ID="NumberField1" runat="server" MinValue="0" DataIndex="leaveHours">
                                                 <Listeners>
                                                     <%--<Change Handler="var rec = this.column.record; rec.set('leaveHours',this.value); rec.commit(); CalcSum(); " />--%>
                                                     <%--    <AfterRender Handler="  if(App.leaveRequest1_shouldDisableLastDay.value=='1') this.setDisabled(true);else this.setDisabled(false); this.maxValue=this.getWidgetRecord().data['workingHours'];" />
@@ -494,10 +501,12 @@
                                 <%--<ext:CheckboxSelectionModel ID="CheckboxSelectionModel1" runat="server" Mode="Multi" StopIDModeInheritance="true" />--%>
                             </SelectionModel>
                             <BottomBar>
-                                <ext:Toolbar runat="server">
+                                <ext:Toolbar runat="server" >
                                     <Items>
                                         <ext:ToolbarFill runat="server" />
-                                        <ext:TextField runat="server" Width="400" LabelWidth="290" PaddingSpec="0 20 0 0" ID="sumHours2" ReadOnly="true" FieldLabel="<%$ Resources:TotalText%>" />
+                                              <ext:TextField runat="server" Width="200"  LabelWidth="150"  ID="sumWorkingHours" ReadOnly="true" FieldLabel="<%$ Resources:TotalWorkingHoursText%>" />
+                                        <ext:TextField runat="server"  Width="200"   LabelWidth="100"  ID="sumHours2" ReadOnly="true" FieldLabel="<%$ Resources:TotalText%>" />
+                                    
                                     </Items>
                                 </ext:Toolbar>
                             </BottomBar>
@@ -766,4 +775,4 @@
                      <div id="playcontainer" style="margin:50px;border-bottom: none"></div>
                   </div>
             </Content>
-                </ext:Container>
+</ext:Container>

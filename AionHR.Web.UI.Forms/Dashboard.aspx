@@ -11,7 +11,7 @@
     <link rel="stylesheet" type="text/css" href="CSS/Common.css" />
     <link rel="stylesheet" type="text/css" href="CSS/Dashboard.css?id=31" />
     <link rel="stylesheet" href="CSS/LiveSearch.css" />
-    <script type="text/javascript" src="Scripts/Dashboard.js?id=87"></script>
+    <script type="text/javascript" src="Scripts/Dashboard.js?id=741"></script>
     <!--  <script type="text/javascript" src="Scripts/app.js"></script>-->
     <script type="text/javascript" src="Scripts/common.js"></script>
     <script type="text/javascript" src="Scripts/moment.js?id=10"></script>
@@ -1907,7 +1907,7 @@
                                                                         MenuDisabled="true"
                                                                         Resizable="false">
 
-                                                                        <Renderer Handler="return editRender()+'&nbsp;&nbsp;' +attachRender(); " />
+                                                                        <Renderer Handler="return editRender()+'&nbsp;&nbsp;' + attachRender(); " />
                                                                     </ext:Column>
 
 

@@ -261,4 +261,16 @@
   <data name="Department" xml:space="preserve">
     <value>Department</value>
   </data>
+  <data name="TotalWorkingHoursText" xml:space="preserve">
+    <value>Total Working Hours</value>
+  </data>
+  <data name="leaveDays" xml:space="preserve">
+    <value>Leave Days</value>
+  </data>
+  <data name="leaveHours" xml:space="preserve">
+    <value>Leave Hours</value>
+  </data>
+  <data name="workingHours" xml:space="preserve">
+    <value>Working Hours</value>
+  </data>
 </root>

@@ -355,7 +355,7 @@
     <value>تقاويم العمل </value>
   </data>
   <data name="earnedLeavesLeg" xml:space="preserve">
-    <value>مستحقات إجازة : </value>
+    <value>اجازات الحالية المستحقة :</value>
   </data>
   <data name="indemnity" xml:space="preserve">
     <value>مكافأة نهاية الخدمة :</value>
@@ -367,10 +367,10 @@
     <value>الراتب :</value>
   </data>
   <data name="usedLeaves" xml:space="preserve">
-    <value>اجازات :</value>
+    <value>مجموع الاجازات :</value>
   </data>
   <data name="usedLeavesLeg" xml:space="preserve">
-    <value>اجازات الفترة الحالية المستعملة :</value>
+    <value>اجازات الحالية المستخدمة : </value>
   </data>
   <data name="ChooseCalendarType" xml:space="preserve">
     <value>التقويم</value>

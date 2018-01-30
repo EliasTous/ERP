@@ -376,7 +376,7 @@
     <value>بدل اجازات :</value>
   </data>
   <data name="usedLeaves" xml:space="preserve">
-    <value>اجازات :</value>
+    <value>مجموع الاجازات : </value>
   </data>
   <data name="earnedLeavesLeg" xml:space="preserve">
     <value>اجازات الفترة الحالية المستحقة :</value>

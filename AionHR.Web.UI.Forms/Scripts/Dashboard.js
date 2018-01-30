@@ -1,5 +1,6 @@
 ﻿
 var editRender = function () {
+    alert('editRender');
     return '<img class="imgEdit" style="cursor:pointer;" src="Images/Tools/edit.png" />';
 };
 
@@ -7,7 +8,8 @@ var deleteRender = function () {
     return '<img class="imgDelete"  style="cursor:pointer;" src="Images/Tools/delete.png" />';
 };
 var attachRender = function () {
-    return '<img class="imgAttach"  style="cursor:pointer;" src="Images/Tools/expand-all.gif" />';
+    alert('attachRender');
+    return '<img class="imgAttach"  style="cursor:pointer;" src="Images/Tools/collapse.png" />';
 };
 
 

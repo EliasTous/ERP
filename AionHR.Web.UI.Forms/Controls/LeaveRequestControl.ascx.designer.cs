@@ -346,13 +346,31 @@ namespace AionHR.Web.UI.Forms.Controls {
         protected global::Ext.Net.NumberField calDays;
         
         /// <summary>
-        /// leavePeriod control.
+        /// leaveDaysField control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.TextField leavePeriod;
+        protected global::Ext.Net.NumberField leaveDaysField;
+        
+        /// <summary>
+        /// leaveHours control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.NumberField leaveHours;
+        
+        /// <summary>
+        /// workingHours control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.NumberField workingHours;
         
         /// <summary>
         /// justification control.
@@ -587,6 +605,15 @@ namespace AionHR.Web.UI.Forms.Controls {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.RowSelectionModel rowSelectionModel1;
+        
+        /// <summary>
+        /// sumWorkingHours control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.TextField sumWorkingHours;
         
         /// <summary>
         /// sumHours2 control.
