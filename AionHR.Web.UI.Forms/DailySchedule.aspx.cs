@@ -531,14 +531,41 @@ namespace AionHR.Web.UI.Forms
                 }
                 else
                 {
-                    List<string> listIds = new List<string>();
-                    DateTime effectiveDate = fsfromTime;
-                    do
+                    //reloading the day only
+                    BranchScheduleRecordRequest reqFS = new BranchScheduleRecordRequest();
+                    reqFS.EmployeeId = Convert.ToInt32(employeeId.Value.ToString());
+                    reqFS.FromDayId = dayId.Value.ToString();
+                    reqFS.ToDayId = dayId.Value.ToString();
+                    ListResponse<FlatSchedule> response = _timeAttendanceService.ChildGetAll<FlatSchedule>(reqFS);
+                    if (!response.Success)
                     {
-                        listIds.Add(effectiveDate.ToString("yyyyMMdd") + "_" + fsfromTime.ToString("HH:mm"));
-                        fsfromTime = fsfromTime.AddMinutes(30);
-                    } while (fsToTime >= fsfromTime);
+                        X.Msg.Alert(Resources.Common.Error, (string)GetLocalResourceObject("ErrorGettingSchedule")).Show();
+                        return;
+                    }
 
+                    //Filling the ids list to reload
+                    List<string> listIds = new List<string>();
+                    foreach (FlatSchedule fss in response.Items)
+                    {
+                        DateTime activeDate = DateTime.ParseExact(fss.dayId, "yyyyMMdd", new CultureInfo("en"));
+                        DateTime fsfromDate = new DateTime(activeDate.Year, activeDate.Month, activeDate.Day, Convert.ToInt32(fss.from.Split(':')[0]), Convert.ToInt32(fss.from.Split(':')[1]), 0);
+                        DateTime fsToDate = new DateTime(activeDate.Year, activeDate.Month, activeDate.Day, Convert.ToInt32(fss.to.Split(':')[0]), Convert.ToInt32(fss.to.Split(':')[1]), 0);
+
+                        do
+                        {
+                            listIds.Add(fsfromDate.ToString("yyyyMMdd") + "_" + fsfromDate.ToString("HH:mm"));
+                            fsfromDate = fsfromDate.AddMinutes(30);
+                        } while (fsToDate >= fsfromDate);
+
+                    }
+                    //List<string> listIds = new List<string>();
+                    //DateTime effectiveDate = fsfromTime;
+                    //do
+                    //{
+                    //    listIds.Add(effectiveDate.ToString("yyyyMMdd") + "_" + fsfromTime.ToString("HH:mm"));
+                    //    fsfromTime = fsfromTime.AddMinutes(30);
+                    //} while (fsToTime >= fsfromTime);
+                    X.Call("DeleteDaySchedule", dayId.Value.ToString());
                     X.Call("ColorifySchedule", JSON.JavaScriptSerialize(listIds));
                 }
             }

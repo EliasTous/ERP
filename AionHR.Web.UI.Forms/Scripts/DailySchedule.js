@@ -31,6 +31,7 @@ var BranchAvailability = function () {
     // App.btnClear.setDisabled(true);
 }
 
+
 var ColorifySchedule = function (listIds) {
 
     for (var i in listIds) {
