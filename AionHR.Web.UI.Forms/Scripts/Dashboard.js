@@ -1,6 +1,6 @@
 ﻿
 var editRender = function () {
-    alert('editRender');
+    
     return '<img class="imgEdit" style="cursor:pointer;" src="Images/Tools/edit.png" />';
 };
 
@@ -8,9 +8,14 @@ var deleteRender = function () {
     return '<img class="imgDelete"  style="cursor:pointer;" src="Images/Tools/delete.png" />';
 };
 var attachRender = function () {
-    alert('attachRender');
-    return '<img class="imgAttach"  style="cursor:pointer;" src="Images/Tools/collapse.png" />';
+   
+    return '<img class="imgAttach"  style="cursor:pointer;" src="Images/Tools/attach.png" />';
 };
+var appendRender = function () {
+   
+    return '<img class="imgAppend"  style="cursor:pointer;" src="Images/Tools/collapse.png" />';
+};
+
 
 
 
@@ -40,7 +45,11 @@ var cellClick = function (view, cell, columnIndex, record, row, rowIndex, e) {
         commandName = t.className;
         return true;
     }
-
+    if (t.className == "imgAppend") {
+        //the ajax call is allowed
+        commandName = t.className;
+        return true;
+    }
 
     //forbidden
     return false;

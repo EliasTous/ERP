@@ -1064,7 +1064,7 @@ namespace AionHR.Web.UI.Forms
 
 
 
-                case "imgAttach":
+                case "imgAppend":
                     //Step 1 : get the object from the Web Service 
                   
                     RecordRequest r = new RecordRequest();
