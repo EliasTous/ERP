@@ -66,6 +66,9 @@ namespace AionHR.Web.UI.Forms
                 HideShowButtons();
                 HideShowColumns();
                 FillSchedules();
+                FillWorkingCalendar(); 
+             
+
                 if (_systemService.SessionHelper.CheckIfIsAdmin())
                     return;
                 try
@@ -943,6 +946,21 @@ namespace AionHR.Web.UI.Forms
             scheduleStore.DataSource = resp.Items;
             scheduleStore.DataBind();
         }
+      
+        public void FillWorkingCalendar()
+        {
+            ListRequest req = new ListRequest();
+
+            ListResponse<WorkingCalendar> response = _timeAttendanceService.ChildGetAll<WorkingCalendar>(req);
+            if (!response.Success)
+            {
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).ToString() + "<br>Technical Error: " + response.ErrorCode + "<br> Summary: " + response.Summary : response.Summary).Show();
+                Store3.DataSource = new List<Department>();
+            }
+            Store3.DataSource = response.Items;
+            Store3.DataBind();
+        }
+
 
     }
 }

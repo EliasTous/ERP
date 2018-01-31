@@ -178,8 +178,8 @@
                                 <Renderer Handler="return record.data['supervisorName'].fullName;" />
                                 </ext:Column>
                              <ext:Column ID="scName" MenuDisabled="true" Sortable="true" runat="server" Text="<%$ Resources: FieldAttendanceSchedule%>" DataIndex="scName" width="150" Hideable="false" />
-
-
+                             <ext:Column ID="caName" MenuDisabled="true" Sortable="true" runat="server" Text="<%$ Resources: FieldWorkingCalendar%>" DataIndex="caName" width="150" Hideable="false" />
+                      
                       
 
                             <ext:Column runat="server"
@@ -379,7 +379,7 @@
                                <ext:ComboBox   AnyMatch="true"  CaseSensitive="false"  runat="server" AllowBlank="true" ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" ID="caId" Name="caId" FieldLabel="<%$ Resources:FieldWorkingCalendar%>" >
                                 
                                     <Store>
-                                        <ext:Store OnReadData="FillWorkingCalendarStore"  runat="server" ID="Store3" AutoLoad="false">
+                                        <ext:Store ID="Store4" OnReadData="FillWorkingCalendarStore"  runat="server" AutoLoad="true">
                                             <Model>
                                                 <ext:Model runat="server">
                                                     <Fields>

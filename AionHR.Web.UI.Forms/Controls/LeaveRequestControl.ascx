@@ -277,11 +277,11 @@
                         </ext:Panel>
                            <ext:Panel runat="server" Layout="HBoxLayout">
                             <Items>
-                                   <ext:NumberField ReadOnly="true"  runat="server" Width="200" ID="leaveDaysField"  Name="leaveDaysField" MinValue="1" FieldLabel="<%$Resources:leaveDays %>" >
+                                   <ext:NumberField ReadOnly="true"  runat="server" Width="200" ID="leaveDaysField"  Name="leaveDaysField"  FieldLabel="<%$Resources:leaveDays %>" >
                                        </ext:NumberField>
-                                   <ext:NumberField ReadOnly="true" runat="server" Width="200" ID="leaveHours" Name="leaveHours" MinValue="1" FieldLabel="<%$Resources:leaveHours %>">
+                                   <ext:NumberField ReadOnly="true" runat="server" Width="200" ID="leaveHours" Name="leaveHours"  FieldLabel="<%$Resources:leaveHours %>">
                                        </ext:NumberField>
-                                   <ext:NumberField ReadOnly="true"   runat="server" Width="200" ID="workingHours"  Name="workingHours" MinValue="1" FieldLabel="<%$Resources:workingHours %>" >
+                                   <ext:NumberField ReadOnly="true"   runat="server" Width="200" ID="workingHours"  Name="workingHours"  FieldLabel="<%$Resources:workingHours %>" >
                                        </ext:NumberField>
                             </Items>
                         </ext:Panel>

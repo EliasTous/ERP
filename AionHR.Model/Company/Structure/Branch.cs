@@ -33,7 +33,8 @@ namespace AionHR.Model.Company.Structure
         public string stId { get; set; }
         public int scId { get; set; }
         public string scName { get; set; }
-
+        public int? caId { get; set; }
+        public string caName { get; set; }
 
     }
 
