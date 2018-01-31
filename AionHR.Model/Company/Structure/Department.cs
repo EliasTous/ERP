@@ -53,7 +53,12 @@ namespace AionHR.Model.Company.Structure
         public bool? isLeaveAuth { get; set; }
 
         public short? type { get; set; }
-
-
+        [PropertyID("21040_08")]
+        [ApplySecurity]
+        public int?  caId { get; set; }
+        [PropertyID("21040_08")]
+        [ApplySecurity]
+        public string caName { set; get; }
+       
     }
 }

@@ -189,4 +189,7 @@
   <data name="FieldSchedule" xml:space="preserve">
     <value>جدول الدوام</value>
   </data>
+  <data name="FieldWorkingCalendar" xml:space="preserve">
+    <value>تقويم العمل</value>
+  </data>
 </root>

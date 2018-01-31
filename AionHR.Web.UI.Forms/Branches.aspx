@@ -196,7 +196,7 @@
                       
                             <ext:Column   CellCls="cellLink" ID="scName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldSchedule%>" DataIndex="scName" Flex="2" />
                             <ext:CheckColumn ID="ColInactive" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldIsInactive %>" DataIndex="isInactive" Width="100" Hideable="false" />
-
+                               <ext:Column   CellCls="cellLink" ID="Column2" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldWorkingCalendar%>" DataIndex="caName" Flex="2" />
                         
                                
 
@@ -380,6 +380,24 @@
                                         </ext:Store>
                                     </Store>
 
+                                </ext:ComboBox>
+                                 <ext:ComboBox   AnyMatch="true"  CaseSensitive="false"  runat="server" AllowBlank="true" ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" ID="caId" Name="caId" FieldLabel="<%$ Resources:FieldWorkingCalendar%>" >
+                                
+                                    <Store>
+                                        <ext:Store  runat="server" ID="Store3" >
+                                            <Model>
+                                                <ext:Model runat="server">
+                                                    <Fields>
+                                                        <ext:ModelField Name="recordId" />
+                                                        <ext:ModelField Name="name" />
+                                                    </Fields>
+                                                </ext:Model>
+                                            </Model>
+                                           
+                                            
+                                        </ext:Store>
+
+                                    </Store>
                                 </ext:ComboBox>
                                 
                                 <ext:Checkbox ID="isInactive" runat="server" FieldLabel="<%$ Resources: FieldIsInactive%>" Name="isInactive" InputValue="true" />

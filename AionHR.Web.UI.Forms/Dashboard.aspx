@@ -1907,7 +1907,7 @@
                                                                         MenuDisabled="true"
                                                                         Resizable="false">
 
-                                                                        <Renderer Handler="return editRender()+'&nbsp;&nbsp;' + attachRender(); " />
+                                                                        <Renderer Handler="return editRender()+'&nbsp;&nbsp;' + appendRender(); " />
                                                                     </ext:Column>
 
 

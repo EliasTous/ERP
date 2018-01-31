@@ -144,7 +144,7 @@ namespace AionHR.Web.UI.Forms
                     }
                     //FillParent();
                     Store2.Reload();
-                    Store3.Reload();
+                    Store4.Reload();
                     //Step 2 : call setvalues with the retrieved object
 
 
@@ -477,6 +477,7 @@ namespace AionHR.Web.UI.Forms
             b.scName = scId.SelectedItem.Text;
             b.recordId = id;
             b.supervisorName = new EmployeeName();
+            b.caName=caId.SelectedItem.Text;
             // Define the object to add or edit as null
             if (supervisorId.SelectedItem.Text != null)
 
@@ -758,8 +759,8 @@ namespace AionHR.Web.UI.Forms
                 X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).   ToString() + "<br>Technical Error: " + response.ErrorCode + "<br> Summary: " + response.Summary : response.Summary).Show();
                 departmentStore.DataSource = new List<Department>();
             }
-            Store3.DataSource = response.Items;
-            Store3.DataBind();
+            Store4.DataSource = response.Items;
+            Store4.DataBind();
         }
 
     }

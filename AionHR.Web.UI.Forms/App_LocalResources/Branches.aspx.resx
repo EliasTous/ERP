@@ -189,4 +189,7 @@
   <data name="FieldSchedule" xml:space="preserve">
     <value>Attendance Schedule</value>
   </data>
+  <data name="FieldWorkingCalendar" xml:space="preserve">
+    <value>Working Calendar</value>
+  </data>
 </root>
