@@ -213,4 +213,7 @@
   <data name="Wed" xml:space="preserve">
     <value>الاربعاء    </value>
   </data>
+  <data name="FieldDepartment" xml:space="preserve">
+    <value>القسم </value>
+  </data>
 </root>

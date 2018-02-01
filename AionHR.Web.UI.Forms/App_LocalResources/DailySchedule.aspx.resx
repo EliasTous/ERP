@@ -192,4 +192,7 @@
   <data name="SelectdayOrFromToDate" xml:space="preserve">
     <value>Select a Day or a From - To Date range</value>
   </data>
+  <data name="FieldDepartment" xml:space="preserve">
+    <value>Department</value>
+  </data>
 </root>

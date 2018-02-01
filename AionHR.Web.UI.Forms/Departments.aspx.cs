@@ -65,6 +65,9 @@ namespace AionHR.Web.UI.Forms
                 SetExtLanguage();
                 HideShowButtons();
                 HideShowColumns();
+                FillAttendanceScheduleStore();
+                FillWorkingCalendarStore();
+
                 try
                 {
                     AccessControlApplier.ApplyAccessControlOnPage(typeof(Department), BasicInfoTab, GridPanel1, btnAdd, SaveButton);
@@ -143,8 +146,7 @@ namespace AionHR.Web.UI.Forms
                         return;
                     }
                     //FillParent();
-                    Store2.Reload();
-                    Store4.Reload();
+                   
                     //Step 2 : call setvalues with the retrieved object
 
 
@@ -163,11 +165,14 @@ namespace AionHR.Web.UI.Forms
                        
 
                     }
-                    if (!string.IsNullOrEmpty(response.result.scId))
-                     scId.SetValue(response.result.scId);
-                    if (response.result.type != null)
-                        type.Select(response.result.type); 
                     this.BasicInfoTab.SetValues(response.result);
+                    //if (!string.IsNullOrEmpty(response.result.scId))
+                    //    scId.Select(response.result.scName);
+                    //if (!string.IsNullOrEmpty(response.result.caId.ToString()))
+                    //    caId.Select(response.result.caName);
+                    //if (response.result.type != null)
+                    //    type.Select(response.result.type); 
+                 
                     // InitCombos(response.result);
                     this.EditRecordWindow.Title = Resources.Common.EditWindowsTitle;
                     this.EditRecordWindow.Show();
@@ -430,7 +435,7 @@ namespace AionHR.Web.UI.Forms
             BasicInfoTab.Reset();
            // FillParent();
             this.EditRecordWindow.Title = Resources.Common.AddNewRecord;
-            Store2.Reload();
+           
             this.EditRecordWindow.Show();
         }
 
@@ -570,7 +575,10 @@ namespace AionHR.Web.UI.Forms
 
                         record.Set("supervisorName", b.supervisorName);
                         record.Set("parentName", b.parentName);
-                  
+                        record.Set("caName", b.caName);
+                        record.Set("scName", b.scName);
+
+
                         record.Commit();
                         Notification.Show(new NotificationConfig
                         {
@@ -734,8 +742,8 @@ namespace AionHR.Web.UI.Forms
 
 
         }
-        [DirectMethod]
-        public void FillAttendanceScheduleStore(object sender, StoreReadDataEventArgs e)
+      
+        public void FillAttendanceScheduleStore()
         {
             ListRequest req = new ListRequest();
 
@@ -748,8 +756,8 @@ namespace AionHR.Web.UI.Forms
             Store2.DataSource = response.Items;
             Store2.DataBind();
         }
-        [DirectMethod]
-        public void FillWorkingCalendarStore(object sender, StoreReadDataEventArgs e)
+      
+        public void FillWorkingCalendarStore()
         {
             ListRequest req = new ListRequest();
 

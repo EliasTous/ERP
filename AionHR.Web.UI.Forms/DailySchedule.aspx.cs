@@ -64,6 +64,7 @@ namespace AionHR.Web.UI.Forms
 
                 SetExtLanguage();
                 FillBranches();
+                FillDepartment();
 
             }
 
@@ -409,6 +410,11 @@ namespace AionHR.Web.UI.Forms
             reqFS.BranchId = Convert.ToInt32(branchId.Value.ToString());
             reqFS.FromDayId = dateFrom.SelectedDate.ToString("yyyyMMdd");
             reqFS.ToDayId = dateTo.SelectedDate.ToString("yyyyMMdd");
+            if (!string.IsNullOrEmpty(departmentId.SelectedItem.Text))
+                reqFS.departmentId = Convert.ToInt32(departmentId.Value.ToString());
+            else
+                reqFS.departmentId = 0; 
+
             ListResponse<FlatScheduleBranchAvailability> response = _helpFunctionService.ChildGetAll<FlatScheduleBranchAvailability>(reqFS);
             if (!response.Success)
             {
@@ -869,6 +875,16 @@ namespace AionHR.Web.UI.Forms
 
 
         }
+        private void FillDepartment()
+        {
+            DepartmentListRequest departmentsRequest = new DepartmentListRequest();
+            departmentsRequest.type = 0;
+            ListResponse<Department> resp = _branchService.ChildGetAll<Department>(departmentsRequest);
+            if (!resp.Success)
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>Technical Error: " + resp.ErrorCode + "<br> Summary: " + resp.Summary : resp.Summary).Show();
+            departmentStore.DataSource = resp.Items;
+            departmentStore.DataBind();
+        }
 
         [DirectMethod]
         public string CheckSession()
@@ -892,4 +908,6 @@ namespace AionHR.Web.UI.Forms
         public string Count { get; set; }
         public string Id { get; set; }
     }
+
+   
 }

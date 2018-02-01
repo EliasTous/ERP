@@ -415,7 +415,7 @@ namespace AionHR.Web.UI.Forms
             res.AddRule("stId", "stateId");
             JsonSerializerSettings settings = new JsonSerializerSettings();
             settings.ContractResolver = res;
-
+            b.caName = caId.SelectedItem.Text;
             AddressBook add = JsonConvert.DeserializeObject<AddressBook>(addr, settings);
             if (string.IsNullOrEmpty(add.city) && string.IsNullOrEmpty(add.countryId) && string.IsNullOrEmpty(add.street1) && string.IsNullOrEmpty(add.stateId) && string.IsNullOrEmpty(add.phone))
             {
@@ -499,7 +499,7 @@ namespace AionHR.Web.UI.Forms
                 {
                     int index = Convert.ToInt32(branchId.Text);//getting the id of the record
                     PostRequest<Branch> request = new PostRequest<Branch>();
-                  b.recordId = branchId.Text;
+                    b.recordId = branchId.Text;
                     request.entity = b;
                     PostResponse<Branch> r = _branchService.ChildAddOrUpdate<Branch>(request);                      //Step 1 Selecting the object or building up the object for update purpose
 
@@ -517,7 +517,9 @@ namespace AionHR.Web.UI.Forms
 
 
                         ModelProxy record = this.Store1.GetById(index);
+                        record.Set("caName", b.caName);
                         BasicInfoTab.UpdateRecord(record);
+                        
                         record.Commit();
                         Notification.Show(new NotificationConfig
                         {

@@ -150,7 +150,24 @@
                                         </Click>
                                     </DirectEvents>
                                 </ext:Button>
-                                <ext:Button runat="server" Text="<%$ Resources: Load %>">
+                                <ext:ComboBox AutoScroll="true"  AnyMatch="true" CaseSensitive="false" EnableRegEx="true"     runat="server"  ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" ID="departmentId" Name="departmentId" EmptyText="<%$ Resources:FieldDepartment%>" >
+                            
+                                                <Store>
+                                                    <ext:Store runat="server" ID="departmentStore">
+                                                        <Model>
+                                                            <ext:Model runat="server">
+                                                                <Fields>
+                                                                    <ext:ModelField Name="recordId" />
+                                                                    <ext:ModelField Name="name" />
+                                                                </Fields>
+                                                            </ext:Model>
+                                                        </Model>
+                                                    </ext:Store>
+                                                </Store>
+                                              
+                                              
+                                            </ext:ComboBox>
+                                <ext:Button MarginSpec="0 0 0 450" runat="server" Text="<%$ Resources: Load %>">
                                     <DirectEvents>
                                         <Click OnEvent="Load_Click">
                                             <EventMask ShowMask="true" />
@@ -159,14 +176,14 @@
                                 </ext:Button>
                                 <ext:Button runat="server" Text="Import" Visible="false">
                                 </ext:Button>
-                                <ext:Button runat="server" Text="<%$ Resources: Delete %>" ID="btnDelete">
+                                <ext:Button MarginSpec="0 0 0 10"  runat="server" Text="<%$ Resources: Delete %>" ID="btnDelete">
                                        <DirectEvents>
                                         <Click OnEvent="Delete_Click">
                                             <EventMask ShowMask="true" />
                                         </Click>
                                     </DirectEvents>
                                 </ext:Button>
-                                <ext:Button ID="btnClear" runat="server" Text="<%$ Resources: Clear %>">
+                                <ext:Button MarginSpec="0 0 0 10" ID="btnClear" runat="server" Text="<%$ Resources: Clear %>">
                                        <DirectEvents>
                                         <Click OnEvent="Clear_Click">
                                             <EventMask ShowMask="true" />

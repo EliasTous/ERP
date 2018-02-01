@@ -83,6 +83,8 @@ public class BranchAvailabilityScheduleRecordRequest : ListRequest
     public string ToDayId { get; set; }
 
     public int BranchId { get; set; }
+
+    public int departmentId { get; set;}
     private Dictionary<string, string> parameters;
 
     public override Dictionary<string, string> Parameters
@@ -93,6 +95,7 @@ public class BranchAvailabilityScheduleRecordRequest : ListRequest
             parameters.Add("_fromDayId", FromDayId);
             parameters.Add("_toDayId", ToDayId);
             parameters.Add("_branchId", BranchId.ToString());
+            parameters.Add("_departmentId", departmentId.ToString());
 
             return parameters;
         }

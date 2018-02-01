@@ -82,9 +82,9 @@
                         <ext:ModelField Name="reference" />
                         <ext:ModelField Name="timeZone" />
                         <ext:ModelField Name="segmentCode" />
-                          <ext:ModelField Name="scName" />
+                         <ext:ModelField Name="scName" />
                         <ext:ModelField Name="isInactive" Type="Boolean" DefaultValue="false"/>
-                         
+                          <ext:ModelField Name="caName" />
                        
 
 

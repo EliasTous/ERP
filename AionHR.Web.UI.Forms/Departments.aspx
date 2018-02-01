@@ -59,6 +59,8 @@
                         <ext:ModelField Name="parentName" />
                         <ext:ModelField Name="parentId" />
                          <ext:ModelField Name="scName" />
+                         <ext:ModelField Name="caName" />
+                     
 
                         
 
@@ -178,7 +180,7 @@
                                 <Renderer Handler="return record.data['supervisorName'].fullName;" />
                                 </ext:Column>
                              <ext:Column ID="scName" MenuDisabled="true" Sortable="true" runat="server" Text="<%$ Resources: FieldAttendanceSchedule%>" DataIndex="scName" width="150" Hideable="false" />
-                             <ext:Column ID="caName" MenuDisabled="true" Sortable="true" runat="server" Text="<%$ Resources: FieldWorkingCalendar%>" DataIndex="caName" width="150" Hideable="false" />
+                             <ext:Column ID="colCaName" MenuDisabled="true" Sortable="true" runat="server" Text="<%$ Resources: FieldWorkingCalendar%>" DataIndex="caName" width="150" Hideable="false" />
                       
                       
 
@@ -379,7 +381,7 @@
                                <ext:ComboBox   AnyMatch="true"  CaseSensitive="false"  runat="server" AllowBlank="true" ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" ID="caId" Name="caId" FieldLabel="<%$ Resources:FieldWorkingCalendar%>" >
                                 
                                     <Store>
-                                        <ext:Store ID="Store4" OnReadData="FillWorkingCalendarStore"  runat="server" AutoLoad="true">
+                                        <ext:Store ID="Store4"  runat="server" >
                                             <Model>
                                                 <ext:Model runat="server">
                                                     <Fields>
@@ -398,7 +400,7 @@
                                 <ext:ComboBox   AnyMatch="true"  CaseSensitive="false"  runat="server" AllowBlank="true" ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" ID="scId" Name="scId" FieldLabel="<%$ Resources:FieldAttendanceSchedule%>" >
                                 
                                     <Store>
-                                        <ext:Store OnReadData="FillAttendanceScheduleStore"  runat="server" ID="Store2" AutoLoad="false">
+                                        <ext:Store  runat="server" ID="Store2" >
                                             <Model>
                                                 <ext:Model runat="server">
                                                     <Fields>
