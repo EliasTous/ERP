@@ -130,7 +130,8 @@ namespace AionHR.Web.UI.Forms
                         format.Text = _systemService.SessionHelper.GetDateformat().ToUpper();
                         DateColumn1.Format = DateColumn2.Format = DateColumn3.Format = DateColumn4.Format = _systemService.SessionHelper.GetDateformat();
                         periodToDate.SelectedDate = DateTime.Now.AddDays(-DateTime.Now.Day);
-                        CountDateTo.SelectedDate = DateTime.Now.AddDays(-DateTime.Now.Day);
+                        //CountDateTo.SelectedDate = DateTime.Now.AddDays(-DateTime.Now.Day);
+                        CountDateTo.SelectedDate = DateTime.Now;
                         dimension.Select(0);
                     }
                     catch { }

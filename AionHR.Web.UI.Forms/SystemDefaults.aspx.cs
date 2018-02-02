@@ -407,11 +407,21 @@ namespace AionHR.Web.UI.Forms
         
             catch { }
             try { sourceTASC.Select(items.Where(s => s.Key == "sourceTASC").First().Value.ToString());
-                if (string.IsNullOrEmpty(items.Where(s => s.Key == "sourceTASC").First().Value.ToString()))
+                   if (string.IsNullOrEmpty(items.Where(s => s.Key == "sourceTASC").First().Value.ToString()))
                     {
                     sourceTASC.Select(2);
                 }
                  }
+
+            catch { }
+            try
+            {
+                sourceTACA.Select(items.Where(s => s.Key == "sourceTACA").First().Value.ToString());
+                if (string.IsNullOrEmpty(items.Where(s => s.Key == "sourceTACA").First().Value.ToString()))
+                {
+                    sourceTACA.Select(1);
+                }
+            }
 
             catch { }
             try { NQINid.Select(items.Where(s => s.Key == "NQINid").First().Value.ToString()); }
@@ -620,6 +630,10 @@ namespace AionHR.Web.UI.Forms
                 submittedValues.Add(new KeyValuePair<string, string>("sourceTASC", values.sourceTASC.ToString()));
            else
                 submittedValues.Add(new KeyValuePair<string, string>("sourceTASC", ""));
+            if (!string.IsNullOrEmpty(values.sourceTACA.ToString()))
+                submittedValues.Add(new KeyValuePair<string, string>("sourceTACA", values.sourceTACA.ToString()));
+            else
+                submittedValues.Add(new KeyValuePair<string, string>("sourceTACA", ""));
 
             submittedValues.Add(new KeyValuePair<string, string>("enableCamera", values.enableCamera == null ? "false" : "true"));
             return submittedValues;

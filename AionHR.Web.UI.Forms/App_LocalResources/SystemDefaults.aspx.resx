@@ -399,4 +399,7 @@
   <data name="yearDays" xml:space="preserve">
     <value>Year Days</value>
   </data>
+  <data name="SourceWorkingCalender" xml:space="preserve">
+    <value>Source Calendar</value>
+  </data>
 </root>

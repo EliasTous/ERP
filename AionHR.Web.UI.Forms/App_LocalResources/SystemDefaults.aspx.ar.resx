@@ -396,4 +396,7 @@
   <data name="yearDays" xml:space="preserve">
     <value>عدد ايام السنة</value>
   </data>
+  <data name="SourceWorkingCalender" xml:space="preserve">
+    <value>مصدر تقويم العمل </value>
+  </data>
 </root>

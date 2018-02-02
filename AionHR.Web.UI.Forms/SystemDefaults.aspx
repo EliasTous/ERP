@@ -452,6 +452,14 @@
                                        
                                     </Items>
                                 </ext:ComboBox>
+                                  <ext:ComboBox AllowBlank="true" AnyMatch="true" CaseSensitive="false" QueryMode="Local" LabelWidth="150" ForceSelection="true" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: SourceWorkingCalender %>" Name="sourceTACA" runat="server" ID="sourceTACA">
+                                    <Items>
+                                        <ext:ListItem Text="<%$ Resources:  FieldBranch %>" Value="1" />
+                                        <ext:ListItem Text="<%$ Resources:  FieldDepartment %>" Value="2" />
+                                       
+                                       
+                                    </Items>
+                                </ext:ComboBox>
                                    <ext:Checkbox FieldLabel="<%$ Resources: FieldEnableCamera %>" LabelWidth="150" runat="server" InputValue="True" Name="enableCamera" ID="enableCameraCheck" />
 
                             </Items>
