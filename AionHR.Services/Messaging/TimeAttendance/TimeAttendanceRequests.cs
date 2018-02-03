@@ -103,6 +103,33 @@ public class BranchAvailabilityScheduleRecordRequest : ListRequest
 }
 
 
+public class EmployeeCellScheduleRequest : ListRequest
+{
+    public string Time { get; set; }
+
+    public string DayId { get; set; }
+
+    public int BranchId { get; set; }
+
+    public int departmentId { get; set; }
+    private Dictionary<string, string> parameters;
+
+    public override Dictionary<string, string> Parameters
+    {
+        get
+        {
+            parameters = new Dictionary<string, string>();
+            parameters.Add("_time", Time);
+            parameters.Add("_DayId", DayId);
+            parameters.Add("_branchId", BranchId.ToString());
+            parameters.Add("_departmentId", departmentId.ToString());
+
+            return parameters;
+        }
+    }
+}
+
+
 
 
 

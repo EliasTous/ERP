@@ -216,4 +216,13 @@
   <data name="FieldDepartment" xml:space="preserve">
     <value>القسم </value>
   </data>
+  <data name="Employees" xml:space="preserve">
+    <value>الموظفين</value>
+  </data>
+  <data name="ErrorGettingEmployees" xml:space="preserve">
+    <value>خطأ في استرجاع الموظفين</value>
+  </data>
+  <data name="FullName" xml:space="preserve">
+    <value>الاسم الكامل</value>
+  </data>
 </root>

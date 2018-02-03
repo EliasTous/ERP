@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AionHR.Model.Employees.Profile;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -55,6 +56,17 @@ namespace AionHR.Model.TimeAttendance
         public int toEmployeeId { get; set; }
         public string fromDayId { get; set; }
         public string toDayId { get; set; }
+
+    }
+
+    public class FlatScheduleEmployeeCell
+    {
+        public int employeeId { get; set; }
+
+        public EmployeeName employeeName { get; set; }
+
+
+
 
     }
 
