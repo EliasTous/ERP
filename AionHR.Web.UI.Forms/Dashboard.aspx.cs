@@ -1069,7 +1069,7 @@ namespace AionHR.Web.UI.Forms
                     //Step 1 : get the object from the Web Service 
                   
                     RecordRequest r = new RecordRequest();
-                    r.RecordID = id;
+                   r.RecordID = id;
 
 
                     RecordResponse<LeaveRequest> response = _leaveManagementService.ChildGetRecord<LeaveRequest>(r);
