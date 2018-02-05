@@ -195,4 +195,13 @@
   <data name="FieldDepartment" xml:space="preserve">
     <value>Department</value>
   </data>
+  <data name="Employees" xml:space="preserve">
+    <value>Employees</value>
+  </data>
+  <data name="ErrorGettingEmployees" xml:space="preserve">
+    <value>Error Getting Employees</value>
+  </data>
+  <data name="FullName" xml:space="preserve">
+    <value>Full Name</value>
+  </data>
 </root>

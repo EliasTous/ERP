@@ -17,7 +17,7 @@
     <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
     <link rel="stylesheet" href="CSS/DailySchedule.css?id=2" />
-    <script type="text/javascript" src="Scripts/DailySchedule.js?id=9"></script>
+    <script type="text/javascript" src="Scripts/DailySchedule.js?id=14"></script>
 
     <script type="text/javascript">
 
@@ -65,7 +65,7 @@
                                         </ext:Store>
                                     </Store>
                                 </ext:ComboBox>
-                              
+
                                 <ext:ToolbarSeparator />
                                 <ext:ComboBox AnyMatch="true" CaseSensitive="false" runat="server" ID="employeeId" Width="160" LabelAlign="Top"
                                     DisplayField="fullName"
@@ -102,7 +102,7 @@
                                     </Listeners>--%>
                                 </ext:DateField>
                                 <ext:ToolbarSeparator />
-                                  <ext:ComboBox AnyMatch="true" CaseSensitive="false" runat="server" ID="cmbEmployeeImport" Width="260" LabelAlign="Left" FieldLabel="<%$ Resources: ImportFrom %>"
+                                <ext:ComboBox AnyMatch="true" CaseSensitive="false" runat="server" ID="cmbEmployeeImport" Width="260" LabelAlign="Left" FieldLabel="<%$ Resources: ImportFrom %>"
                                     DisplayField="fullName"
                                     ValueField="recordId" AllowBlank="true"
                                     TypeAhead="false"
@@ -125,14 +125,14 @@
                                         </ext:Store>
                                     </Store>
                                 </ext:ComboBox>
-                                 <ext:Button runat="server" Text="<%$ Resources: Import %>">
-                                      <DirectEvents>
+                                <ext:Button runat="server" Text="<%$ Resources: Import %>">
+                                    <DirectEvents>
                                         <Click OnEvent="Import_Click">
                                             <EventMask ShowMask="true" />
                                         </Click>
                                     </DirectEvents>
                                 </ext:Button>
-                               
+
 
                             </Items>
                         </ext:Toolbar>
@@ -143,30 +143,30 @@
 
                         <ext:Toolbar ID="Toolbar2" runat="server" Dock="Bottom" ClassicButtonStyle="true">
                             <Items>
-                                  <ext:Button runat="server" Text="<%$ Resources: BranchAvailability %>">
-                                      <DirectEvents>
+                                <ext:Button runat="server" Text="<%$ Resources: BranchAvailability %>">
+                                    <DirectEvents>
                                         <Click OnEvent="BranchAvailability_Click">
                                             <EventMask ShowMask="true" />
                                         </Click>
                                     </DirectEvents>
                                 </ext:Button>
-                                <ext:ComboBox AutoScroll="true"  AnyMatch="true" CaseSensitive="false" EnableRegEx="true"     runat="server"  ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" ID="departmentId" Name="departmentId" EmptyText="<%$ Resources:FieldDepartment%>" >
-                            
-                                                <Store>
-                                                    <ext:Store runat="server" ID="departmentStore">
-                                                        <Model>
-                                                            <ext:Model runat="server">
-                                                                <Fields>
-                                                                    <ext:ModelField Name="recordId" />
-                                                                    <ext:ModelField Name="name" />
-                                                                </Fields>
-                                                            </ext:Model>
-                                                        </Model>
-                                                    </ext:Store>
-                                                </Store>
-                                              
-                                              
-                                            </ext:ComboBox>
+                                <ext:ComboBox AutoScroll="true" AnyMatch="true" CaseSensitive="false" EnableRegEx="true" runat="server" ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" ID="departmentId" Name="departmentId" EmptyText="<%$ Resources:FieldDepartment%>">
+
+                                    <Store>
+                                        <ext:Store runat="server" ID="departmentStore">
+                                            <Model>
+                                                <ext:Model runat="server">
+                                                    <Fields>
+                                                        <ext:ModelField Name="recordId" />
+                                                        <ext:ModelField Name="name" />
+                                                    </Fields>
+                                                </ext:Model>
+                                            </Model>
+                                        </ext:Store>
+                                    </Store>
+
+
+                                </ext:ComboBox>
                                 <ext:Button MarginSpec="0 0 0 450" runat="server" Text="<%$ Resources: Load %>">
                                     <DirectEvents>
                                         <Click OnEvent="Load_Click">
@@ -176,15 +176,15 @@
                                 </ext:Button>
                                 <ext:Button runat="server" Text="Import" Visible="false">
                                 </ext:Button>
-                                <ext:Button MarginSpec="0 0 0 10"  runat="server" Text="<%$ Resources: Delete %>" ID="btnDelete">
-                                       <DirectEvents>
+                                <ext:Button MarginSpec="0 0 0 10" runat="server" Text="<%$ Resources: Delete %>" ID="btnDelete">
+                                    <DirectEvents>
                                         <Click OnEvent="Delete_Click">
                                             <EventMask ShowMask="true" />
                                         </Click>
                                     </DirectEvents>
                                 </ext:Button>
                                 <ext:Button MarginSpec="0 0 0 10" ID="btnClear" runat="server" Text="<%$ Resources: Clear %>">
-                                       <DirectEvents>
+                                    <DirectEvents>
                                         <Click OnEvent="Clear_Click">
                                             <EventMask ShowMask="true" />
                                         </Click>
@@ -236,7 +236,7 @@
                                         </Click>
                                     </DirectEvents>
                                 </ext:Button>
-                                 <ext:Button runat="server" Text="<%$ Resources: DeleteDay %>" Disabled="true" ID="btnDeleteDay">
+                                <ext:Button runat="server" Text="<%$ Resources: DeleteDay %>" Disabled="true" ID="btnDeleteDay">
                                     <DirectEvents>
                                         <Click OnEvent="DeleteDay_Click">
                                             <EventMask ShowMask="true" />
@@ -277,6 +277,95 @@
         </ext:Viewport>
 
 
+
+        <ext:Window
+            ID="employeeScheduleWindow"
+            runat="server"
+            Icon="Group"
+            Title="<%$ Resources: Employees %>"
+            Width="450"
+            Height="330"
+            AutoShow="false"
+            Modal="true"
+            Hidden="true"
+            Layout="Fit">
+
+            <Items>
+
+                <ext:GridPanel MarginSpec="0 0 0 0"
+                    ID="GridPanel5"
+                    runat="server"
+                    PaddingSpec="0 0 0 0"
+                    Header="false"
+                    Title=""
+                    Layout="FitLayout"
+                    Scroll="Vertical"
+                    Border="false"
+                    ColumnLines="True" IDMode="Explicit" RenderXType="True" StyleSpec=" border: 1px solid #add2ed !important;">
+
+                    <Store>
+                        <ext:Store
+                            ID="storeEmployee"
+                            runat="server"                           
+                           AutoLoad="false">
+                            <Model>
+                                <ext:Model ID="Model1" runat="server" IDProperty="recordId">
+                                    <Fields>
+                                        <ext:ModelField Name="employeeId" />
+                                        <ext:ModelField Name="employeeName" IsComplex="true" />
+                                    </Fields>
+                                </ext:Model>
+                            </Model>
+                            <Sorters>
+                                <ext:DataSorter Property="recordId" Direction="ASC" />
+                            </Sorters>
+                        </ext:Store>
+                    </Store>
+                    <ColumnModel ID="ColumnModel1" runat="server" SortAscText="<%$ Resources:Common , SortAscText %>" SortDescText="<%$ Resources:Common ,SortDescText  %>" SortClearText="<%$ Resources:Common ,SortClearText  %>" ColumnsText="<%$ Resources:Common ,ColumnsText  %>" EnableColumnHide="false">
+                        <Columns>
+
+                            <ext:Column Visible="false" ID="ColrecordId" MenuDisabled="true" runat="server" Text="" DataIndex="recordId" Hideable="false" Width="75" Align="Center" />
+
+
+                            <ext:Column ID="ColName" MenuDisabled="true" runat="server" Text="<%$ Resources: FullName %>" DataIndex="employeeName" Flex="3" Hideable="false">
+                                <Renderer Handler=" return  record.data['employeeName'].fullName ">
+                                </Renderer>
+                            </ext:Column>
+
+
+
+
+                        </Columns>
+                    </ColumnModel>
+
+                       <DirectEvents>
+                        <CellDblClick OnEvent="LoadEmployeeSchedule">
+                            <EventMask ShowMask="true" />
+                            <ExtraParams>
+                              
+                                <ext:Parameter Name="employeeID" Value ="record.data['employeeId']" Mode="Raw"/>
+                                 <ext:Parameter Name="employeeName" Value =" record.data['employeeName'].fullName" Mode="Raw"/>
+                              
+                            </ExtraParams>
+
+                        </CellDblClick>
+                    </DirectEvents>
+                    <View>
+                        <ext:GridView ID="GridView12" runat="server" />
+                    </View>
+
+
+                    <SelectionModel>
+                        <ext:RowSelectionModel ID="rowSelectionModel11" runat="server" Mode="Single" StopIDModeInheritance="true" />
+                        <%--<ext:CheckboxSelectionModel ID="CheckboxSelectionModel1" runat="server" Mode="Multi" StopIDModeInheritance="true" />--%>
+                    </SelectionModel>
+                </ext:GridPanel>
+
+
+            </Items>
+
+        
+        </ext:Window>
 
     </form>
 </body>

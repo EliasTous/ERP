@@ -12,11 +12,26 @@ var DeleteDaySchedule = function (id) {
 var ColorifyAndCountSchedule = function (listIds) {
 
     for (var i in listIds) {
+  
         try {
 
 
             //$("[id='" + listIds[i].id + "']").css("background-color", "green");
             $("[id='" + listIds[i].id + "']").html(listIds[i].count);
+
+            if (listIds[i].count > 0)
+            {
+
+           
+                $("[id='" + listIds[i].id + "']").css("cursor", "pointer");
+                $("[id='" + listIds[i].id + "']").css("color", "blue");
+                var id = listIds[i].id;
+                $("[id='" + listIds[i].id + "']").click(function () {
+                   
+                    App.direct.OpenCell(this.id);
+                });
+            }
+
 
         }
         catch (e) { }

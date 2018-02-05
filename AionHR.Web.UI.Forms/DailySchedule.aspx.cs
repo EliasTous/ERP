@@ -413,7 +413,7 @@ namespace AionHR.Web.UI.Forms
             if (!string.IsNullOrEmpty(departmentId.SelectedItem.Text))
                 reqFS.departmentId = Convert.ToInt32(departmentId.Value.ToString());
             else
-                reqFS.departmentId = 0; 
+                reqFS.departmentId = 0;
 
             ListResponse<FlatScheduleBranchAvailability> response = _helpFunctionService.ChildGetAll<FlatScheduleBranchAvailability>(reqFS);
             if (!response.Success)
@@ -482,7 +482,7 @@ namespace AionHR.Web.UI.Forms
             }
 
 
-            DateTime activeTime = DateTime.ParseExact(dayId.Value.ToString()==string.Empty? dateFrom.SelectedDate.ToString("yyyyMMdd") : dayId.Value.ToString(), "yyyyMMdd", new CultureInfo("en"));
+            DateTime activeTime = DateTime.ParseExact(dayId.Value.ToString() == string.Empty ? dateFrom.SelectedDate.ToString("yyyyMMdd") : dayId.Value.ToString(), "yyyyMMdd", new CultureInfo("en"));
             DateTime fsfromTime = new DateTime(activeTime.Year, activeTime.Month, activeTime.Day, timeFrom.SelectedTime.Hours, timeFrom.SelectedTime.Minutes, 0);
             DateTime fsToTime = new DateTime(activeTime.Year, activeTime.Month, activeTime.Day, timeTo.SelectedTime.Hours, timeTo.SelectedTime.Minutes, 0);
             if (timeTo.SelectedTime.ToString() == "00:00:00")
@@ -897,7 +897,82 @@ namespace AionHR.Web.UI.Forms
         }
 
 
+        [DirectMethod(ShowMask = true, CustomTarget = "employeeScheduleWindow")]
+        public void OpenCell(string day)
+        {
+          //  this.storeEmployee = null;
+            this.employeeScheduleWindow.Show();
+            EmployeeCellScheduleRequest reqFS = new EmployeeCellScheduleRequest();
+            reqFS.BranchId = Convert.ToInt32(branchId.Value.ToString());
+            if (!string.IsNullOrEmpty(departmentId.SelectedItem.Text))
+                reqFS.departmentId = Convert.ToInt32(departmentId.Value.ToString());
+            else
+                reqFS.departmentId = 0;
 
+            reqFS.DayId = day.Split('_')[0];
+            reqFS.Time = day.Split('_')[1];
+
+
+            ListResponse<FlatScheduleEmployeeCell> response = _helpFunctionService.ChildGetAll<FlatScheduleEmployeeCell>(reqFS);
+            if (!response.Success)
+            {
+                X.Msg.Alert(Resources.Common.Error, (string)GetLocalResourceObject("ErrorGettingEmployees")).Show();
+                return;
+            }
+
+            ////Just For Testing 
+
+            //List<Employee> data = GetEmployeesFiltered("");
+            //data.ForEach(s => s.fullName = s.name.fullName);
+
+            ////Just for testing 
+
+
+            this.storeEmployee.DataSource = response.Items;
+            this.storeEmployee.DataBind();
+
+
+
+
+        }
+
+        protected void LoadEmployeeSchedule(object sender, DirectEventArgs e)
+        {
+           string employeeID = e.ExtraParams["employeeID"];
+            string Name = e.ExtraParams["employeeName"];
+            //getting the employee to push it to the Combo
+
+            Employee emp = new Employee();
+            emp.recordId = employeeID;
+            emp.fullName = Name;
+
+          
+
+            BranchScheduleRecordRequest reqFS = new BranchScheduleRecordRequest();
+            reqFS.EmployeeId = Convert.ToInt32(employeeID);
+            reqFS.FromDayId = dateFrom.SelectedDate.ToString("yyyyMMdd");
+            reqFS.ToDayId = dateTo.SelectedDate.ToString("yyyyMMdd");
+            ListResponse<FlatSchedule> response = _timeAttendanceService.ChildGetAll<FlatSchedule>(reqFS);
+            if (!response.Success)
+            {
+                X.Msg.Alert(Resources.Common.Error, (string)GetLocalResourceObject("ErrorGettingSchedule")).Show();
+                
+                return;
+            }
+            this.dayId.Value = string.Empty;
+            BuildSchedule(response.Items);
+
+
+
+
+          
+            this.EmployeeStore.Add(new { recordId = emp.recordId, fullName = emp.fullName });
+
+            this.employeeId.SetValue(emp.recordId);//.SetValueAndFireSelect(emp.recordId);
+           // this.employeeId.SelectedItem.Value = emp.recordId;
+         //   this.employeeId.Update();
+            this.employeeScheduleWindow.Hide();
+        }
 
 
 
@@ -909,5 +984,5 @@ namespace AionHR.Web.UI.Forms
         public string Id { get; set; }
     }
 
-   
+
 }
