@@ -174,4 +174,7 @@
   <data name="IndemnityRecognitiontabs" xml:space="preserve">
     <value>Indemnity Resignation</value>
   </data>
+  <data name="IndemnityPercentage" xml:space="preserve">
+    <value>Percentage</value>
+  </data>
 </root>

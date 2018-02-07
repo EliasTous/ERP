@@ -92,6 +92,7 @@
     <Compile Include="Employees\Profile\TeamMember.cs" />
     <Compile Include="Employees\Profile\TerminationReason.cs" />
     <Compile Include="HelpFunction\IHelpFunctionRepository.cs" />
+    <Compile Include="HelpFunction\SynchronizeAttendanceDay.cs" />
     <Compile Include="LeaveManagement\Approvals.cs" />
     <Compile Include="LeaveManagement\ILeaveManagementRepository.cs" />
     <Compile Include="LeaveManagement\ImportLeaves.cs" />

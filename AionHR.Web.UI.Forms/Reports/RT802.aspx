@@ -90,6 +90,29 @@
                                         <uc:transactionCombo runat="server" ID="transactionCombo1" EnableViewState="true" />
                                     </Content>
                                 </ext:Container>
+                                 <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" ID="masterId" Width="120" LabelAlign="Top"        DisplayField="fullName"
+                                            ValueField="recordId" AllowBlank="true"
+                                            TypeAhead="false"
+                                            HideTrigger="true" SubmitValue="true"
+                                            MinChars="3" EmptyText="<%$ Resources:Common, FilterEmployee%>"
+                                            TriggerAction="Query" ForceSelection="true">
+                                            <Store>
+                                                <ext:Store runat="server" ID="Store2" AutoLoad="false">
+                                                    <Model>
+                                                        <ext:Model runat="server">
+                                                            <Fields>
+                                                                <ext:ModelField Name="recordId" />
+                                                                <ext:ModelField Name="fullName" />
+                                                            </Fields>
+                                                        </ext:Model>
+                                                    </Model>
+                                                    <Proxy>
+                                                        <ext:PageProxy DirectFn="App.direct.FillEmployee"></ext:PageProxy>
+                                                    </Proxy>
+                                                </ext:Store>
+                                            </Store>
+         
+                                  </ext:ComboBox>
                                 <ext:Container runat="server" Layout="FitLayout">
                                     <Content>
                                           <ext:Button runat="server" Text="<%$Resources:Common, Go %>" >

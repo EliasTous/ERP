@@ -81,6 +81,8 @@ public class LeaveCalendarDayListRequest : ListRequest
 
     public bool IsWorkingDay { get; set; }
 
+    public int caId { get; set; }
+
     public override Dictionary<string, string> Parameters
     {
         get
@@ -90,7 +92,7 @@ public class LeaveCalendarDayListRequest : ListRequest
             parameters.Add("_fromDayId", StartDayId.ToString());
             parameters.Add("_toDayId", EndDayId.ToString());
             parameters.Add("_isWorkingDay", IsWorkingDay ? "1" : "0");
-
+            parameters.Add("_caId", caId.ToString());
 
 
             return parameters;

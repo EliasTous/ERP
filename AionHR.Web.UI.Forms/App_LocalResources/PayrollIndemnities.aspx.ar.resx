@@ -172,6 +172,9 @@
     <value>مدة الزواج المسموح بها </value>
   </data>
   <data name="IndemnityRecognitiontabs" xml:space="preserve">
-    <value>جدول الاستقالة </value>
+    <value>جزاء الاستقالة</value>
+  </data>
+  <data name="IndemnityPercentage" xml:space="preserve">
+    <value>نسبة الجزاء </value>
   </data>
 </root>

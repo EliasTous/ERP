@@ -1051,6 +1051,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Employee.
+        /// </summary>
+        internal static string FilterEmployee {
+            get {
+                return ResourceManager.GetString("FilterEmployee", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Final Settlements.
         /// </summary>
         internal static string FinalSettlements {
@@ -2766,6 +2775,24 @@ namespace Resources {
         internal static string SundayText {
             get {
                 return ResourceManager.GetString("SundayText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Synchronize Attendance Days.
+        /// </summary>
+        internal static string SynchronizeAttendanceDays {
+            get {
+                return ResourceManager.GetString("SynchronizeAttendanceDays", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Attendance Schedule Synchronized Successfully.
+        /// </summary>
+        internal static string SynchronizeDaySucc {
+            get {
+                return ResourceManager.GetString("SynchronizeDaySucc", resourceCulture);
             }
         }
         

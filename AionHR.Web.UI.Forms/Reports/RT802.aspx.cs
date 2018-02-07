@@ -27,6 +27,7 @@ using DevExpress.XtraReports.Web;
 using DevExpress.XtraPrinting.Localization;
 using System.Threading;
 using AionHR.Services.Messaging.System;
+using AionHR.Model.Employees.Profile;
 
 namespace AionHR.Web.UI.Forms.Reports
 {
@@ -36,6 +37,7 @@ namespace AionHR.Web.UI.Forms.Reports
         ITimeAttendanceService _timeAttendanceService = ServiceLocator.Current.GetInstance<ITimeAttendanceService>();
         ICompanyStructureService _companyStructureService = ServiceLocator.Current.GetInstance<ICompanyStructureService>();
         IReportsService _reportsService = ServiceLocator.Current.GetInstance<IReportsService>();
+        IEmployeeService _employeeService = ServiceLocator.Current.GetInstance<IEmployeeService>();
         protected override void InitializeCulture()
         {
 
@@ -175,6 +177,7 @@ namespace AionHR.Web.UI.Forms.Reports
             req.Add(userCombo1.GetUser());
             req.Add(transactionCombo1.GetTransactionType());
             req.Add(moduleCombo1.GetModule());
+            req.Add(getMasterId());
 
             //req.Add();
             return req;
@@ -183,7 +186,7 @@ namespace AionHR.Web.UI.Forms.Reports
         public object FillUsers(string action, Dictionary<string, object> extraParams)
         {
             StoreRequestParameters prms = new StoreRequestParameters(extraParams);
-            List<UserInfo> data = GetUsersFiltered(prms.Query);
+          List<UserInfo> data = GetUsersFiltered(prms.Query);
 
             //  return new
             // {
@@ -267,5 +270,52 @@ namespace AionHR.Web.UI.Forms.Reports
             //ASPxWebDocumentViewer1.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.Utils.DefaultBoolean.True : DevExpress.Utils.DefaultBoolean.False;
             //FillReport();
         }
+        [DirectMethod]
+        public object FillEmployee(string action, Dictionary<string, object> extraParams)
+        {
+            StoreRequestParameters prms = new StoreRequestParameters(extraParams);
+            List<Employee> data = GetEmployeesFiltered(prms.Query);
+            data.ForEach(s => { s.fullName = s.name.fullName; });
+            //  return new
+            // {
+            return data;
+        }
+
+        private List<Employee> GetEmployeesFiltered(string query)
+        {
+
+            EmployeeListRequest req = new EmployeeListRequest();
+            req.DepartmentId = "0";
+            req.BranchId = "0";
+            req.IncludeIsInactive = 0;
+            req.SortBy = GetNameFormat();
+
+            req.StartAt = "1";
+            req.Size = "20";
+            req.Filter = query;
+
+            ListResponse<Employee> response = _employeeService.GetAll<Employee>(req);
+            return response.Items;
+        }
+
+
+        private string GetNameFormat()
+        {
+            return _systemService.SessionHelper.Get("nameFormat").ToString();
+        }
+        private MasterIdParameterSet getMasterId()
+        {
+            MasterIdParameterSet s = new MasterIdParameterSet();
+            int bulk;
+            if (masterId.Value == null || !int.TryParse(masterId.Value.ToString(), out bulk))
+
+                s.masterId = 0;
+            else
+                s.masterId = bulk;
+
+            return s;
+
+        }
+
     }
 }

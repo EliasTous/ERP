@@ -13,7 +13,7 @@ var attachRender = function () {
 };
 var appendRender = function () {
    
-    return '<img class="imgAppend"  style="cursor:pointer;" src="Images/Tools/collapse.png" />';
+    return '<img class="imgAttach"  style="cursor:pointer;" src="Images/Tools/collapse.png" />';
 };
 
 

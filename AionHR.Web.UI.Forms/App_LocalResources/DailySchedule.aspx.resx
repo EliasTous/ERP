@@ -204,4 +204,7 @@
   <data name="FullName" xml:space="preserve">
     <value>Full Name</value>
   </data>
+  <data name="workingHours" xml:space="preserve">
+    <value>Working Hours</value>
+  </data>
 </root>

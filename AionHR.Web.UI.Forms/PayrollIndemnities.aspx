@@ -517,7 +517,7 @@
                                             
                                             <ext:NumberColumn
                                                 runat="server"
-                                                Text="<%$Resources:percentage %>" 
+                                                Text="<%$Resources:IndemnityPercentage %>" 
                                                 DataIndex="pct"
                                                  Flex="1"
                                                 Align="Center" >

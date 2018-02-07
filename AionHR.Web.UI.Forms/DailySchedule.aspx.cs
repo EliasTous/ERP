@@ -65,7 +65,7 @@ namespace AionHR.Web.UI.Forms
                 SetExtLanguage();
                 FillBranches();
                 FillDepartment();
-
+                this.workingHours.Value = string.Empty;
             }
 
 
@@ -294,7 +294,16 @@ namespace AionHR.Web.UI.Forms
                     return;
                 }
                 BuildSchedule(response.Items);
-
+            
+             
+                ListResponse<FlatScheduleWorkingHours> workingHoursResponse = _helpFunctionService.ChildGetAll<FlatScheduleWorkingHours>(reqFS);
+                if (!workingHoursResponse.Success)
+                {
+                    X.Msg.Alert(Resources.Common.Error, (string)GetLocalResourceObject("ErrorGettingSchedule")).Show();
+                    return;
+                }
+                else
+                    workingHours.Text = workingHoursResponse.Items[0].workingHours.ToString();
             }
         }
 
@@ -369,6 +378,18 @@ namespace AionHR.Web.UI.Forms
                 //} while (fsToDate >= fsfromDate);
 
                 X.Call("DeleteDaySchedule", dayId.Value.ToString());
+                BranchScheduleRecordRequest reqFS = new BranchScheduleRecordRequest();
+                reqFS.EmployeeId = Convert.ToInt32(employeeId.Value.ToString());
+                reqFS.FromDayId = dateFrom.SelectedDate.ToString("yyyyMMdd");
+                reqFS.ToDayId = dateTo.SelectedDate.ToString("yyyyMMdd");
+                ListResponse<FlatScheduleWorkingHours> workingHoursResponse = _helpFunctionService.ChildGetAll<FlatScheduleWorkingHours>(reqFS);
+                if (!workingHoursResponse.Success)
+                {
+                    X.Msg.Alert(Resources.Common.Error, (string)GetLocalResourceObject("ErrorGettingSchedule")).Show();
+                    return;
+                }
+                else
+                    workingHours.Text = workingHoursResponse.Items[0].workingHours.ToString();
             }
         }
         protected void Clear_Click(object sender, DirectEventArgs e)
@@ -384,6 +405,7 @@ namespace AionHR.Web.UI.Forms
             this.timeTo.MaxTime = new TimeSpan(23, 30, 0);
             this.pnlSchedule.Html = string.Empty;
             this.dayId.Value = string.Empty;
+            this.workingHours.Value = string.Empty;
         }
         protected void BranchAvailability_Click(object sender, DirectEventArgs e)
         {
@@ -422,6 +444,9 @@ namespace AionHR.Web.UI.Forms
                 return;
             }
             BuildAvailability(response.Items);
+         
+
+            
         }
         protected void Load_Click(object sender, DirectEventArgs e)
         {
@@ -456,6 +481,16 @@ namespace AionHR.Web.UI.Forms
             }
             this.dayId.Value = string.Empty;
             BuildSchedule(response.Items);
+
+            ListResponse<FlatScheduleWorkingHours> workingHoursResponse = _helpFunctionService.ChildGetAll<FlatScheduleWorkingHours>(reqFS);
+            if (!workingHoursResponse.Success)
+            {
+                X.Msg.Alert(Resources.Common.Error, (string)GetLocalResourceObject("ErrorGettingSchedule")).Show();
+                return;
+            }
+            else
+                workingHours.Text = workingHoursResponse.Items[0].workingHours.ToString(); 
+
         }
         protected void Save_Click(object sender, DirectEventArgs e)
         {
@@ -614,9 +649,23 @@ namespace AionHR.Web.UI.Forms
                     }
 
                     BuildSchedule(response.Items);
+                 
+                   
                 }
 
             }
+            BranchScheduleRecordRequest reqFS1 = new BranchScheduleRecordRequest();
+            reqFS1.EmployeeId = Convert.ToInt32(employeeId.Value.ToString());
+            reqFS1.FromDayId = dateFrom.SelectedDate.ToString("yyyyMMdd");
+            reqFS1.ToDayId = dateTo.SelectedDate.ToString("yyyyMMdd");
+            ListResponse<FlatScheduleWorkingHours> workingHoursResponse = _helpFunctionService.ChildGetAll<FlatScheduleWorkingHours>(reqFS1);
+            if (!workingHoursResponse.Success)
+            {
+                X.Msg.Alert(Resources.Common.Error, (string)GetLocalResourceObject("ErrorGettingSchedule")).Show();
+                return;
+            }
+            else
+                workingHours.Text = workingHoursResponse.Items[0].workingHours.ToString();
         }
 
         private void BuildSchedule(List<FlatSchedule> items)

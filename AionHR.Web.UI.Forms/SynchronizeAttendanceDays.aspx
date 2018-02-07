@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="s.aspx.cs" Inherits="AionHR.Web.UI.Forms.GenerateAttendanceDays" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="SynchronizeAttendanceDays.aspx.cs" Inherits="AionHR.Web.UI.Forms.SynchronizeAttendanceDays" %>
 
 <%@ Register Assembly="Ext.Net" Namespace="Ext.Net" TagPrefix="ext" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -26,10 +26,10 @@
                 <ext:TabPanel runat="server">
                     <Items>
                        
-                        <ext:FormPanel DefaultButton="GenerateAttendancebtn"
-                            ID="GenerateAttendanceForm"
+                        <ext:FormPanel DefaultButton="SynchronizeAttendancebtn"
+                            ID="SynchronizeAttendanceForm"
                             runat="server"
-                            Title="<%$ Resources: GenerateAttendanceDays%>"
+                            Title="<%$ Resources: SynchronizeAttendanceDays%>"
                             Icon="ApplicationSideList" AutoScroll="true"
                             DefaultAnchor="100%"
                             BodyPadding="5">
@@ -41,21 +41,21 @@
                                         HideTrigger="true" SubmitValue="true"
                                       MinChars="3" 
                                   TriggerAction="Query" ForceSelection="true" >
-            <Store>
-                <ext:Store runat="server" ID="Store2" AutoLoad="false">
-                    <Model>
-                        <ext:Model runat="server">
-                            <Fields>
-                                <ext:ModelField Name="recordId" />
-                                <ext:ModelField Name="fullName" />
-                            </Fields>
-                        </ext:Model>
-                    </Model>
-                    <Proxy>
-                        <ext:PageProxy DirectFn="App.direct.FillEmployee"></ext:PageProxy>
-                    </Proxy>
-                </ext:Store>
-            </Store>
+                                        <Store>
+                                            <ext:Store runat="server" ID="Store2" AutoLoad="false">
+                                                <Model>
+                                                    <ext:Model runat="server">
+                                                        <Fields>
+                                                            <ext:ModelField Name="recordId" />
+                                                            <ext:ModelField Name="fullName" />
+                                                        </Fields>
+                                                    </ext:Model>
+                                                </Model>
+                                                <Proxy>
+                                                    <ext:PageProxy DirectFn="App.direct.FillEmployee"></ext:PageProxy>
+                                                </Proxy>
+                                            </ext:Store>
+                                        </Store>
          
 
         </ext:ComboBox>    
@@ -68,13 +68,13 @@
                                          
                                     </ext:DateField>
                                     
-                                <ext:Button Hidden="false" ID="GenerateAttendanceBtn" runat="server" Text="<%$ Resources: Generate %>" Icon="ApplicationGo" MaxWidth="300">
+                                <ext:Button Hidden="false" ID="SynchronizeAttendanceBtn" runat="server" Text="<%$ Resources: Synchronize %>" Icon="ApplicationGo" MaxWidth="300">
 
                                     <Listeners>
-                                        <Click Handler="CheckSession(); if(!#{GenerateAttendanceForm}.getForm().isValid()){return false;} " />
+                                        <Click Handler="CheckSession(); if(!#{SynchronizeAttendanceForm}.getForm().isValid()){return false;} " />
                                     </Listeners>
                                     <DirectEvents>
-                                        <Click OnEvent="GenerateAttendance" Failure="Ext.MessageBox.alert('#{titleSavingError}.value', '#{titleSavingErrorMessage}.value');">
+                                        <Click OnEvent="SynchronizeAttendance" Failure="Ext.MessageBox.alert('#{titleSavingError}.value', '#{titleSavingErrorMessage}.value');">
                                             <EventMask ShowMask="true"  />
                                          </Click>
                                     </DirectEvents>

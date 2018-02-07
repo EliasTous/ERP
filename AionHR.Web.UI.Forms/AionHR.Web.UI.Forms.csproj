@@ -496,6 +496,7 @@
     <Content Include="Sponsors.aspx" />
     <Content Include="States.aspx" />
     <Content Include="Status.aspx" />
+    <Content Include="SynchronizeAttendanceDays.aspx" />
     <Content Include="SystemAlerts.aspx" />
     <Content Include="SystemDefaults.aspx" />
     <Content Include="Tasks.aspx" />
@@ -877,6 +878,13 @@
     </Compile>
     <Compile Include="Status.aspx.designer.cs">
       <DependentUpon>Status.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SynchronizeAttendanceDays.aspx.cs">
+      <DependentUpon>SynchronizeAttendanceDays.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SynchronizeAttendanceDays.aspx.designer.cs">
+      <DependentUpon>SynchronizeAttendanceDays.aspx</DependentUpon>
     </Compile>
     <Compile Include="TerminationReasons.aspx.cs">
       <DependentUpon>TerminationReasons.aspx</DependentUpon>
@@ -2239,6 +2247,8 @@
     <Content Include="App_LocalResources\EmployeeComplaintSelfServices.aspx.ar.resx" />
     <Content Include="App_LocalResources\DailySchedule.aspx.ar.resx" />
     <Content Include="App_LocalResources\DailySchedule.aspx.resx" />
+    <Content Include="App_LocalResources\SynchronizeAttendanceDays.aspx.resx" />
+    <Content Include="App_LocalResources\SynchronizeAttendanceDays.aspx.ar.resx" />
     <EmbeddedResource Include="Reports\RT201.aspx.resx">
       <DependentUpon>RT201.aspx.cs</DependentUpon>
       <Generator>ResXFileCodeGenerator</Generator>

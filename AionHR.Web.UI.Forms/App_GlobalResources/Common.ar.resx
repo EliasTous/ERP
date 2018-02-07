@@ -1137,4 +1137,13 @@
   <data name="Leaves" xml:space="preserve">
     <value>طلبات الإجازات</value>
   </data>
+  <data name="FilterEmployee" xml:space="preserve">
+    <value>الموظف</value>
+  </data>
+  <data name="SynchronizeAttendanceDays" xml:space="preserve">
+    <value>مزامنة الحضور </value>
+  </data>
+  <data name="SynchronizeDaySucc" xml:space="preserve">
+    <value>تمت المزامنة بنجاح </value>
+  </data>
 </root>

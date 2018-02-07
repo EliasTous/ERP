@@ -78,6 +78,7 @@ namespace AionHR.Web.UI.Forms
 
             if (!X.IsAjaxRequest && !IsPostBack)
             {
+                employeeIdHF.Text = _systemService.SessionHelper.GetEmployeeId();
 
                 SetExtLanguage();
                 HideShowButtons();
@@ -274,7 +275,7 @@ namespace AionHR.Web.UI.Forms
         public void ADDNewRecord(object sender, DirectEventArgs e)
         {
             panelRecordDetails.SuspendEvents();
-            employeeId.SuspendEvents();
+            //employeeId.SuspendEvents();
             startDate.SuspendEvents();
             endDate.SuspendEvents();  
 
@@ -292,19 +293,19 @@ namespace AionHR.Web.UI.Forms
             status.Select(0);
             shouldDisableLastDay.Text = "0";
             this.EditRecordWindow.Show();
-            employeeId.GetStore().Add(new object[]
-                 {
-                                new
-                                {
-                                    recordId = _systemService.SessionHelper.GetEmployeeId(),
-                                    fullName =" "
+            //employeeId.GetStore().Add(new object[]
+            //     {
+            //                    new
+            //                    {
+            //                        recordId = _systemService.SessionHelper.GetEmployeeId(),
+            //                        fullName =" "
 
-                                }
-                 });
+            //                    }
+            //     });
 
-            employeeId.SetValue(_systemService.SessionHelper.GetEmployeeId());
+            //employeeId.SetValue(_systemService.SessionHelper.GetEmployeeId());
             panelRecordDetails.ResumeEvents();
-            employeeId.ResumeEvents();
+            //employeeId.ResumeEvents();
             endDate.ResumeEvents();
             startDate.ResumeEvents(); 
         }
@@ -332,21 +333,8 @@ namespace AionHR.Web.UI.Forms
             ltId.Select(response.result.ltId);
             //status.Select(response.result.status);
             StoredLeaveChanged.Text = "0";
-            if (response.result.employeeId != "0")
-            {
-
-                employeeId.GetStore().Add(new object[]
-                   {
-                                new
-                                {
-                                    recordId = response.result.employeeId,
-                                    fullName =response.result.employeeName.fullName
-                                }
-                   });
-                employeeId.SetValue(response.result.employeeId);
-
-            }
-            LoadQuickViewInfo(response.result.employeeId);
+       
+            //LoadQuickViewInfo(response.result.employeeId);
             LeaveDayListRequest req = new LeaveDayListRequest();
             req.LeaveId = CurrentLeave.Text;
             ListResponse<LeaveDay> resp = _leaveManagementService.ChildGetAll<LeaveDay>(req);
@@ -383,7 +371,7 @@ namespace AionHR.Web.UI.Forms
         {
             GridDisabled.Text = disabled.ToString();
             startDate.Disabled = disabled;
-            endDate.Disabled = employeeId.Disabled = justification.Disabled = destination.Disabled = /*isPaid.Disabled*/ ltId.Disabled = TotalText.Disabled = disabled;
+            endDate.Disabled = /*employeeId.Disabled = */  justification.Disabled = destination.Disabled = /*isPaid.Disabled*/ ltId.Disabled = TotalText.Disabled = disabled;
             returnDate.Disabled = disabled;
             SaveButton.Disabled = disabled;
             leavePeriod.Disabled = disabled;
@@ -395,7 +383,7 @@ namespace AionHR.Web.UI.Forms
         {
             GridDisabled.Text = disabled.ToString();
             startDate.Disabled = disabled;
-            endDate.Disabled = employeeId.Disabled = justification.Disabled = destination.Disabled = /*isPaid.Disabled = */ltId.Disabled = TotalText.Disabled = disabled;
+            endDate.Disabled = /*employeeId.Disabled = */ justification.Disabled = destination.Disabled = /*isPaid.Disabled = */ltId.Disabled = TotalText.Disabled = disabled;
             returnDate.Disabled = !disabled;
             approved.Text = disabled.ToString();
             leavePeriod.Disabled = disabled;
@@ -407,7 +395,7 @@ namespace AionHR.Web.UI.Forms
         {
             GridDisabled.Text = "False";
             startDate.Disabled = false;
-            endDate.Disabled = employeeId.Disabled = justification.Disabled = destination.Disabled =/* isPaid.Disabled = */ltId.Disabled = TotalText.Disabled = false;
+            endDate.Disabled = /*employeeId.Disabled =*/ justification.Disabled = destination.Disabled =/* isPaid.Disabled = */ltId.Disabled = TotalText.Disabled = false;
             returnDate.Disabled = true;
             leavePeriod.Disabled = false;
             approved.Text = "False";
@@ -586,12 +574,12 @@ namespace AionHR.Web.UI.Forms
                     return;
                 }
                 int bulk;
-                if (string.IsNullOrEmpty(employeeId.Value.ToString()) || !int.TryParse(employeeId.Value.ToString(), out bulk))
-                {
-                    X.Msg.Alert(Resources.Common.Error, GetLocalResourceObject("ErrorSelectEmployee")).Show();
-                    panelRecordDetails.ActiveTabIndex = 0;
-                    return;
-                }
+                //if (string.IsNullOrEmpty(employeeId.Value.ToString()) || !int.TryParse(employeeId.Value.ToString(), out bulk))
+                //{
+                //    X.Msg.Alert(Resources.Common.Error, GetLocalResourceObject("ErrorSelectEmployee")).Show();
+                //    panelRecordDetails.ActiveTabIndex = 0;
+                //    return;
+                //}
                 //MarkLeaveChanged(sender, e);
             }
         }
@@ -624,12 +612,12 @@ namespace AionHR.Web.UI.Forms
             req.EndDayId = endDay;
             req.IsWorkingDay = true;
             int bulk;
-            if (string.IsNullOrEmpty(employeeId.Value.ToString()) || !int.TryParse(employeeId.Value.ToString(), out bulk))
-            {
+            //if (string.IsNullOrEmpty(employeeId.Value.ToString()) || !int.TryParse(employeeId.Value.ToString(), out bulk))
+            //{
 
-                return;
-            }
-            req.employeeId = employeeId.Value.ToString();
+            //    return;
+            //}
+            req.employeeId = employeeIdHF.Text;
             //if (req.CaId == "0")
             //{
 
@@ -758,12 +746,8 @@ namespace AionHR.Web.UI.Forms
             req.EndDayId = returnDay;
             req.IsWorkingDay = true;
             int bulk;
-            if (string.IsNullOrEmpty(employeeId.Value.ToString()) || !int.TryParse(employeeId.Value.ToString(), out bulk))
-            {
 
-                return;
-            }
-            req.employeeId = employeeId.Value.ToString();
+            req.employeeId = employeeIdHF.Text;
             //if (req.CaId == "0")
             //{
 
@@ -862,7 +846,7 @@ namespace AionHR.Web.UI.Forms
 
             y.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;
             y.RightToLeftLayout = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeftLayout.Yes : DevExpress.XtraReports.UI.RightToLeftLayout.No;
-            y.Parameters["Employee"].Value = employeeId.SelectedItem.Text.ToString();
+            y.Parameters["Employee"].Value = employeeIdHF.Text;
             y.Parameters["Ref"].Value = leaveRef.Text;
             y.Parameters["From"].Value = startDate.SelectedDate.ToString(dateFormat);
             y.Parameters["To"].Value = endDate.SelectedDate.ToString(dateFormat);
@@ -986,15 +970,15 @@ namespace AionHR.Web.UI.Forms
             if (!b.isPaid.HasValue)
                 b.isPaid = false;
             b.employeeName = new EmployeeName();
-            if (employeeId.SelectedItem != null)
+            //if (employeeId.SelectedItem != null)
 
-                b.employeeName.fullName = employeeId.SelectedItem.Text;
+            //    b.employeeName.fullName = employeeId.SelectedItem.Text;
             if (ltId.SelectedItem != null)
             {
                 b.ltName = ltId.SelectedItem.Text;
                 b.ltId =Convert.ToInt32( ltId.SelectedItem.Value);
             }
-            b.employeeId = _systemService.SessionHelper.GetEmployeeId();
+            b.employeeId = employeeIdHF.Text;
             b.status = 1;
             List<LeaveDay> days = GenerateLeaveDays(e.ExtraParams["days"]);
 
@@ -1002,7 +986,7 @@ namespace AionHR.Web.UI.Forms
             {
                 if (days.Count == 0)
                 {
-                    days = GenerateDefaultLeaveDays();
+                    days = GenerateDefaultLeaveDays(b.startDate,b.endDate);
                 }
 
                 try
@@ -1203,18 +1187,19 @@ namespace AionHR.Web.UI.Forms
             resp.Items.ForEach(x => x.dow = (short)DateTime.ParseExact(x.dayId, "yyyyMMdd", new CultureInfo("en")).DayOfWeek);
             return resp.Items;
         }
-        private List<LeaveDay> GenerateDefaultLeaveDays()
+        private List<LeaveDay> GenerateDefaultLeaveDays(DateTime StartDate, DateTime EndDay)
         {
-            string startDay = startDate.SelectedDate.ToString("yyyyMMdd");
-            string endDay = endDate.SelectedDate.ToString("yyyyMMdd");
+            string startDay = StartDate.ToString("yyyyMMdd");
+            string endDay = EndDay.ToString("yyyyMMdd");
 
             LeaveCalendarDayListRequest req = new LeaveCalendarDayListRequest();
             req.StartDayId = startDay;
             req.EndDayId = endDay;
             req.IsWorkingDay = true;
+            req.caId = 0;
             int bulk;
 
-            req.employeeId = employeeId.Value.ToString();
+            req.employeeId = employeeIdHF.Text;
             //if (req.CaId == "0")
             //{
 
@@ -1225,6 +1210,7 @@ namespace AionHR.Web.UI.Forms
             ListResponse<LeaveCalendarDay> days = _timeAttendanceService.ChildGetAll<LeaveCalendarDay>(req);
 
             List<LeaveDay> leaveDays = new List<LeaveDay>();
+            if(days !=null)
             days.Items.ForEach(x => leaveDays.Add(new LeaveDay() { dow = (short)DateTime.ParseExact(x.dayId, "yyyyMMdd", new CultureInfo("en")).DayOfWeek, dayId = x.dayId, workingHours = x.workingHours, leaveHours = x.workingHours }));
             return leaveDays;
         }

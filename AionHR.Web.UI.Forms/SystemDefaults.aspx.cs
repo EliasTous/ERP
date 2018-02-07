@@ -696,7 +696,7 @@ namespace AionHR.Web.UI.Forms
             if (values.ldValue != null && !string.IsNullOrEmpty(values.ldValue.ToString()))
                 submittedValues.Add(new KeyValuePair<string, string>("ldValue", values.ldValue.ToString()));
             else
-                submittedValues.Add(new KeyValuePair<string, string>("ldValue", ""));
+                submittedValues.Add(new KeyValuePair<string, string>("ldValue", "0"));
             if (values.py_aEDId != null && !string.IsNullOrEmpty(values.py_aEDId.ToString()))
                 submittedValues.Add(new KeyValuePair<string, string>("py_aEDId", values.py_aEDId.ToString()));
             else

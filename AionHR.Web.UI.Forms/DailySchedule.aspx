@@ -167,6 +167,8 @@
 
 
                                 </ext:ComboBox>
+                                <ext:TextField ID="workingHours" Width="150" runat="server" FieldLabel="<%$ Resources:workingHours%>" DataIndex="workingHours" AllowBlank="true" ReadOnly="true" ></ext:TextField>
+                                
                                 <ext:Button MarginSpec="0 0 0 450" runat="server" Text="<%$ Resources: Load %>">
                                     <DirectEvents>
                                         <Click OnEvent="Load_Click">

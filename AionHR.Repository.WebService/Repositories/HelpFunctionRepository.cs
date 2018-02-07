@@ -26,6 +26,7 @@ namespace AionHR.Repository.WebService.Repositories
             ChildGetAllLookup.Add(typeof(BranchSchedule), "CS01");
             ChildGetAllLookup.Add(typeof(FlatScheduleBranchAvailability), "TA01");
             ChildGetAllLookup.Add(typeof(FlatScheduleEmployeeCell), "TA05");
+            ChildGetAllLookup.Add(typeof(FlatScheduleWorkingHours), "TA06");
 
 
 
@@ -37,7 +38,10 @@ namespace AionHR.Repository.WebService.Repositories
             ChildAddOrUpdateLookup.Add(typeof(MyInfo), "setEM");
             ChildAddOrUpdateLookup.Add(typeof(FlatScheduleImport), "TA03");
             ChildAddOrUpdateLookup.Add(typeof(FlatBulkSchedule), "TA04");
-            
+            ChildAddOrUpdateLookup.Add(typeof(SynchronizeAttendanceDay), "TA07");
+
+
+
 
 
 

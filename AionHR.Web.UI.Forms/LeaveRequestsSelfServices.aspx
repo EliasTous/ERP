@@ -112,7 +112,7 @@
     function OnHourFocusLeave(context)
 
     {
-        if (context == null || context.column == null) return false; var rec = context.column.record; if (parseInt(rec.data['workingHours']) < parseInt(context.value)) { context.setValue(rec.data['workingHours']); } if (1 > context.value) { context.setValue(1); } rec.set('leaveHours', context.value); rec.commit(); calcSum();
+        if (context == null || context.column == null) return false; var rec = context.column.record; if (parseInt(rec.data['workingHours']) < parseInt(context.value)) { context.setValue(rec.data['workingHours']);   } rec.set('leaveHours', context.value); rec.commit(); calcSum();
     }
     function calcSum() {
        
@@ -162,6 +162,7 @@
 <ext:Hidden ID="ViewOnly" runat="server" />
   <ext:Hidden ID="oldStart" runat="server"  />
         <ext:Hidden ID="oldEnd" runat="server"  />
+          <ext:Hidden ID="employeeIdHF" runat="server"  />
       
         
         
@@ -397,13 +398,13 @@
                 Icon="PageEdit"
                 Title="<%$ Resources:EditWindowsTitle %>"
                 Width="600"
-                Height="350"
+                Height="450"
                 AutoShow="false"
                 Modal="true"
                 Hidden="true"
                 Resizable="false"
                 Maximizable="false"
-                Draggable="false"
+                Draggable="true"
                 Layout="Fit">
 
     <Items>
@@ -433,42 +434,8 @@
                     <Items>
                         <ext:TextField ID="recordId" runat="server" Name="recordId" Hidden="true" />
                         <ext:TextField ID="leaveRef" runat="server" Name="leaveRef"  FieldLabel="<%$ Resources:FieldLeaveRef%>" Hidden="true" />
-                           <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" ID="employeeId" AllowBlank="false" Hidden="true"
-                            DisplayField="fullName" Name="employeeId"
-                            ValueField="recordId"
-                            TypeAhead="false"
-                            FieldLabel="<%$ Resources: FieldEmployeeName%>"
-                            HideTrigger="true" SubmitValue="true"
-                            MinChars="3"
-                            TriggerAction="Query" ForceSelection="false">
-                            <Store>
-                                <ext:Store runat="server" ID="employeeStore" AutoLoad="false">
-                                    <Model>
-                                        <ext:Model runat="server">
-                                            <Fields>
-                                                <ext:ModelField Name="recordId" />
-                                                <ext:ModelField Name="fullName" />
-                                            </Fields>
-                                        </ext:Model>
-                                    </Model>
-                                    <Proxy>
-                                        <ext:PageProxy DirectFn="App.direct.FillEmployee"></ext:PageProxy>
-                                    </Proxy>
-
-                                </ext:Store>
-
-                            </Store>
-                            <DirectEvents>
-                                <Select OnEvent="MarkLeaveChanged">
-                                    <ExtraParams>
-                                        <ext:Parameter Name="startDate" Value="#{startDate}.getValue()" Mode="Raw" />
-                                        <ext:Parameter Name="endDate" Value="#{endDate}.getValue()" Mode="Raw" />
-                                    </ExtraParams>
-                                </Select>
-                            </DirectEvents>
-
-                        </ext:ComboBox>
-                           <ext:DateField ID="startDate"   runat="server" FieldLabel="<%$ Resources:FieldStartDate%>" Name="startDate" AllowBlank="false">
+                           
+                           <ext:DateField ID="startDate"   runat="server" FieldLabel="<%$ Resources:FieldStartDate%>" Name="startDate" AllowBlank="false" ViewStateMode="Enabled">
                             <DirectEvents>
                                 <Change OnEvent="MarkLeaveChanged">
                                     <ExtraParams>
@@ -663,7 +630,7 @@
                                     </ext:WidgetColumn>--%>
                                     <ext:ComponentColumn Text="<%$ Resources: FieldLeaveHours %>" runat="server" DataIndex="leaveHours" ItemID="comp">
                                         <Component>
-                                            <ext:NumberField ID="NumberField1" runat="server" MinValue="1" DataIndex="leaveHours">
+                                            <ext:NumberField ID="NumberField1" runat="server" MinValue="0" DataIndex="leaveHours">
                                                 <Listeners>
                                            <%--   <Change Handler="var rec = this.column.record; rec.set('leaveHours',this.value); rec.commit(); calcSum(); " />--%>
                                                     <%-- <AfterRender Handler="  if(App.shouldDisableLastDay.value=='1') this.setDisabled(true);else this.setDisabled(false); this.maxValue=this.getWidgetRecord().data['workingHours'];" />

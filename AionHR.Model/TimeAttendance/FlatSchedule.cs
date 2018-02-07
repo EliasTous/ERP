@@ -70,7 +70,11 @@ namespace AionHR.Model.TimeAttendance
 
     }
 
-
+    public class FlatScheduleWorkingHours
+    {
+      
+        public double workingHours { get; set; }
+    }
 
 
 }

@@ -600,7 +600,7 @@ namespace AionHR.Web.UI.Forms
             //string id = e.ExtraParams["id"];
             string id = CurrentEmployee.Text;
             //string hijCalBirthDate = e.ExtraParams["hijCalBirthDate"];
-            //string gregCalBirthDate = e.ExtraParams["gregCalBirthDate"];
+            string gregCalBirthDate = e.ExtraParams["gregCalBirthDate"];
             string obj = e.ExtraParams["values"];
             JsonSerializerSettings settings = new JsonSerializerSettings();
             settings.NullValueHandling = NullValueHandling.Ignore;
@@ -642,14 +642,18 @@ namespace AionHR.Web.UI.Forms
                     }
                     else
                     {
-                        if (gregCalBirthDate.SelectedDate != null)
-                            b.birthDate = gregCalBirthDate.SelectedDate;
+                        if (!string.IsNullOrEmpty(gregCalBirthDate))
+                            b.birthDate = DateTime.Parse(gregCalBirthDate);
+                        //if (gregCalBirthDate.SelectedDate != null)
+                        //    b.birthDate = gregCalBirthDate.SelectedDate;
                     }
                 }
                 else
                 {
-                    if (gregCalBirthDate.SelectedDate != null)
-                        b.birthDate = gregCalBirthDate.SelectedDate; 
+                    if (!string.IsNullOrEmpty(gregCalBirthDate))
+                        b.birthDate = DateTime.Parse(gregCalBirthDate);
+                    //if (gregCalBirthDate.SelectedDate != null)
+                    //    b.birthDate = gregCalBirthDate.SelectedDate; 
                 }
 
                 }

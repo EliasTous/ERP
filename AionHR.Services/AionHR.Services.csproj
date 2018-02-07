@@ -136,6 +136,7 @@
     <Compile Include="Messaging\Reports\LeaveTypeParameterSet.cs" />
     <Compile Include="Messaging\Reports\LoanRequestStatusParameterSet.cs" />
     <Compile Include="Messaging\Reports\loanStatementParameterSet.cs" />
+    <Compile Include="Messaging\Reports\MasterIdParameterSet.cs" />
     <Compile Include="Messaging\Reports\MissingFieldParameterSet.cs" />
     <Compile Include="Messaging\Reports\MonthParameterSet.cs" />
     <Compile Include="Messaging\Reports\PaymentMethodParameterSet.cs" />

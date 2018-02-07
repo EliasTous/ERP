@@ -38,7 +38,7 @@ namespace AionHR.Model.Employees.Profile
 
             if (!lastLeaveEndDate.HasValue || !lastLeaveStartDate.HasValue)
                 return "/";
-            return lastLeaveStartDate.Value.ToString(format) + "-" + lastLeaveStartDate.Value.ToString(format);
+            return lastLeaveStartDate.Value.ToString(format) + "-" + lastLeaveEndDate.Value.ToString(format);
         }
         public string serviceDuractionFriendly(string day, string month, string year)
         {

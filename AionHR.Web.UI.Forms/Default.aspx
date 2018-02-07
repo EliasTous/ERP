@@ -77,6 +77,7 @@
     <ext:Hidden runat="server" ID="importEmployeesTitle" Text="<%$Resources:Common , ImportEmployees %>" />
     <ext:Hidden runat="server" ID="importJobInfoTitle" Text="<%$Resources:Common , ImportJobInfo %>" />
     <ext:Hidden runat="server" ID="importOTTitle" Text="<%$Resources:Common , ImportOvertimeSettings %>" />
+     <ext:Hidden runat="server" ID="GADTitle" Text="<%$Resources:Common ,GenerateAttendanceDays  %>" />
     <ext:Hidden runat="server" ID="importEPRtW" Text="<%$Resources:Common , ImportRTW %>" />
      <ext:Hidden runat="server" ID="ImportSa" Text="<%$Resources:Common , importSa %>" />
     
@@ -455,6 +456,11 @@
                                                                         <ext:MenuItem runat="server" Text="<%$Resources: Common , ImportOvertimeSettings%>">
                                                                             <Listeners>
                                                                                 <Click Handler="openNewTab('otSettings', 'ImportOvertimeSettings.aspx',#{importOTTitle}.value , 'icon-Employees')" />
+                                                                            </Listeners>
+                                                                        </ext:MenuItem>
+                                                                          <ext:MenuItem runat="server" Text="<%$Resources: Common , GenerateAttendanceDays%>">
+                                                                            <Listeners>
+                                                                                <Click Handler="openNewTab('otSettings', 'GenerateAttendanceDays.aspx',#{GADTitle}.value , 'icon-Employees')" />
                                                                             </Listeners>
                                                                         </ext:MenuItem>
                                                                     </Items>
