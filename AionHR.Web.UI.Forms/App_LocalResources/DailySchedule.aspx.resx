@@ -207,4 +207,13 @@
   <data name="workingHours" xml:space="preserve">
     <value>Working Hours</value>
   </data>
+  <data name="All" xml:space="preserve">
+    <value>All</value>
+  </data>
+  <data name="multiImport" xml:space="preserve">
+    <value>multiImport</value>
+  </data>
+  <data name="Selected" xml:space="preserve">
+    <value>Selected</value>
+  </data>
 </root>

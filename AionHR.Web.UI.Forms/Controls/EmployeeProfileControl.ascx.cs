@@ -1411,7 +1411,7 @@ namespace AionHR.Web.UI.Forms
 
                     return;
                 }
-                if (groups.Items != null)
+                if (groups.Items != null && groups.Items.Count!=0)
                     sgId.Select(groups.Items[0].sgId.ToString());
              
                 //try

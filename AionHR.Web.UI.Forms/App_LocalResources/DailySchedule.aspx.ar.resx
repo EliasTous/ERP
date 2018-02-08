@@ -228,4 +228,7 @@
   <data name="workingHours" xml:space="preserve">
     <value>ساعات العمل</value>
   </data>
+  <data name="multiImport" xml:space="preserve">
+    <value>multiImport</value>
+  </data>
 </root>

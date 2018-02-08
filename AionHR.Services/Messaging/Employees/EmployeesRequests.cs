@@ -15,9 +15,10 @@ public class EmployeeListRequest:ListRequest
     public int IncludeIsInactive { get; set; }
 
     public string SortBy { get; set; }
-    
+    public string PositionId { get; set; }
 
-    
+
+
     /// <summary>
     /// /// parameter list shipped with the web request
     /// </summary>
@@ -38,7 +39,7 @@ public class EmployeeListRequest:ListRequest
         }
     }
 
-    public string PositionId { get; set; }
+   
 }
 
 public class EmployeeAddOrUpdateRequest
