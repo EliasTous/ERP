@@ -231,4 +231,22 @@
   <data name="multiImport" xml:space="preserve">
     <value>multiImport</value>
   </data>
+  <data name="All" xml:space="preserve">
+    <value>الكل </value>
+  </data>
+  <data name="Export" xml:space="preserve">
+    <value>تصدير</value>
+  </data>
+  <data name="ExportSchedule" xml:space="preserve">
+    <value>تصدير الى </value>
+  </data>
+  <data name="ExportSuccess" xml:space="preserve">
+    <value>تم تصدير الدوام بنجاح</value>
+  </data>
+  <data name="Selected" xml:space="preserve">
+    <value>سيتم التصدير الى </value>
+  </data>
+  <data name="SelectExport" xml:space="preserve">
+    <value>الرجاء اختيار الموظفين من اجل عملية التصدير</value>
+  </data>
 </root>

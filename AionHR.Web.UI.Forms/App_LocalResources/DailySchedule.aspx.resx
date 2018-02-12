@@ -216,4 +216,16 @@
   <data name="Selected" xml:space="preserve">
     <value>Selected</value>
   </data>
+  <data name="Export" xml:space="preserve">
+    <value>Export</value>
+  </data>
+  <data name="ExportSuccess" xml:space="preserve">
+    <value>Schedule Exported Successfully</value>
+  </data>
+  <data name="ExportSchedule" xml:space="preserve">
+    <value>Export Schedule</value>
+  </data>
+  <data name="SelectExport" xml:space="preserve">
+    <value>Select Employees to Export To</value>
+  </data>
 </root>

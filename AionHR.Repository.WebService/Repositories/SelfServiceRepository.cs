@@ -24,7 +24,9 @@ namespace AionHR.Repository.WebService.Repositories
             ChildGetAllLookup.Add(typeof(LetterSelfservice), "qryLE");
             ChildGetAllLookup.Add(typeof(AssetAllowanceSelfService), "qryAA");
             ChildGetAllLookup.Add(typeof(EmployeeComplaintSelfService), "qryCO");
-            
+            ChildGetAllLookup.Add(typeof(LeaveDaySelfservice), "qryLD");
+            ChildGetAllLookup.Add(typeof(leaveRequetsSelfservice), "qryLR");
+
 
             ChildGetLookup.Add(typeof(MyInfo), "getEM1");
             ChildGetLookup.Add(typeof(EmployeeComplaintSelfService), "getCO");

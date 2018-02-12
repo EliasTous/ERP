@@ -543,4 +543,7 @@
   <data name="rate" xml:space="preserve">
     <value>نسبة المواطنين</value>
   </data>
+  <data name="HeadCountMaximumWindow" xml:space="preserve">
+    <value>عدد موظفين</value>
+  </data>
 </root>

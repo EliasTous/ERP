@@ -2398,7 +2398,7 @@
             ID="MaximumChartWindow"
             runat="server"
             Icon="PageEdit"
-            Title="<%$ Resources:LeaveRecordForm%>"
+            Title="<%$ Resources:HeadCountMaximumWindow%>"
             Width="450"
             Height="500"
             IDMode="Static"

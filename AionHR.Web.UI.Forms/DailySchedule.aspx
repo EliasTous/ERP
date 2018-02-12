@@ -24,6 +24,60 @@
         function SetVisible() {
             App.setDefaultBtn.setHidden(false);
         }
+        function SwapRTL() {
+            if (document.getElementById("isRTL").value == '1') {
+
+                $(".x-form-itemselector-add").css('background-image', 'url(/ux/resources/images/itemselector/left-gif/ext.axd)');
+                $(".x-form-itemselector-remove").css('background-image', 'url(/ux/resources/images/itemselector/right-gif/ext.axd)');
+
+            }
+            else {
+
+                $(".x-form-itemselector-add").css('background-image', 'url(/ux/resources/images/itemselector/right-gif/ext.axd)');
+                $(".x-form-itemselector-remove").css('background-image', 'url(/ux/resources/images/itemselector/left-gif/ext.axd)');
+
+            }
+        }
+        function AddSource(items) {
+          
+            var fromStore = App.userSelector.fromField.getStore();
+            var toStore = App.userSelector.toField.getStore();
+
+            while (fromStore.getCount() > 0)
+                fromStore.removeAt(0);
+
+
+
+            for (i = 0; i < items.length ; i++) {
+                if (fromStore.getById(items[i].userId) == null && toStore.getById(items[i].userId) == null) {
+
+                    fromStore.add(items[i]);
+                }
+
+            }
+        }
+        function show() {
+          
+            var fromStore = App.usersStore;
+            var toStore = App.userSelector.toField.getStore();
+
+
+            for (var i = 0; i < fromStore.getCount() ; i++) {
+                var s = fromStore.getAt(i);
+                toStore.add(s);
+
+                var d = App.userSelector.fromField.getStore().getById(s.getId());
+
+                if (d != null) {
+                    App.userSelector.fromField.getStore().remove(d);
+
+                }
+            }
+
+
+
+        }
+    
     </script>
 
 
@@ -40,6 +94,7 @@
         <ext:Hidden ID="dayId" runat="server" />
         <ext:Hidden ID="CurrentYear" runat="server" />
         <ext:Hidden ID="CurrentCalenderLabel" runat="server" />
+         <ext:Hidden ID="isRTL" runat="server" />
 
 
 
@@ -131,6 +186,17 @@
                                             <EventMask ShowMask="true" />
                                         </Click>
                                     </DirectEvents>
+                                </ext:Button>
+                                   <ext:Button runat="server" Text="<%$ Resources: Export %>">
+                                    <DirectEvents>
+                                        <Click OnEvent="Export_Click">
+                                            <EventMask ShowMask="true" />
+                                        </Click>
+                                        
+                                    </DirectEvents>
+                                       <Listeners>
+                                           <Click Handler="App.userSelector.toField.getStore().removeAll();"></Click>
+                                       </Listeners>
                                 </ext:Button>
 
 
@@ -367,6 +433,97 @@
             </Items>
 
         
+        </ext:Window>
+           <ext:Window
+            ID="groupUsersWindow"
+            runat="server"
+            Icon="PageEdit"
+            Title="<%$ Resources: ExportSchedule %>"
+            Width="550"
+            Height="450"
+            AutoShow="false"
+            Modal="true"
+            Hidden="true"
+            Layout="Fit">
+
+            <Items>
+
+                <ext:FormPanel
+                    ID="groupUsersForm" DefaultButton="SaveButton"
+                    runat="server" Header="false"
+                    Icon="ApplicationSideList"
+                    DefaultAnchor="100%"
+                    BodyPadding="5">
+                   <%-- <TopBar>
+                        <ext:Toolbar runat="server">
+                            <Items>
+                                <ext:Container runat="server" Layout="FitLayout">
+                                    <Content>
+                                        <uc:jobInfo runat="server" FieldWidth="160" ID="jobInfo1" EnableBranch="false" EnableDivision="false" />
+
+                                    </Content>
+
+                                </ext:Container>
+                                <ext:Button runat="server" Text="<%$Resources:Filter %>">
+                                    <Listeners>
+                                        <Click Handler="App.direct.GetFilteredUsers();" />
+                                    </Listeners>
+                                </ext:Button>
+                            </Items>
+                        </ext:Toolbar>
+                    </TopBar>--%>
+                    <Items>
+                        <ext:ItemSelector runat="server"  MaxHeight="300" MinHeight="300" AutoScroll="true" ID="userSelector" FromTitle="<%$Resources:All %>" DisplayField="fullName" ValueField="recordId"
+                            ToTitle="<%$Resources:Selected %>" SubmitValue="true" SimpleSubmit="true" >
+                            <Listeners>
+                                <AfterRender Handler="SwapRTL(); " />
+                            </Listeners>
+                            <Store>
+                                <ext:Store runat="server" ID="userSelectorStore" OnReadData="userSelectorStore_ReadData">
+                                    <Model>
+                                        <ext:Model runat="server" IDProperty="recordId">
+                                            <Fields>
+                                                <ext:ModelField Name="fullName" />
+                                                <ext:ModelField Name="recordId" />
+                                            </Fields>
+                                        </ext:Model>
+                                    </Model>
+                                </ext:Store>
+                            </Store>
+                         <%--   <Listeners>
+
+                                <Change Handler="App.direct.GetFilteredUsers();" />
+                            </Listeners>--%>
+                        </ext:ItemSelector>
+
+                    </Items>
+
+                </ext:FormPanel>
+
+
+            </Items>
+            <Buttons>
+             <ext:Button ID="Button3" runat="server" Text="<%$ Resources:Common, Save %>" Icon="Disk">
+
+                    <Listeners>
+                        <Click Handler="CheckSession(); if (!#{GroupUsersForm}.getForm().isValid()) {return false;} " />
+                    </Listeners>
+                    <DirectEvents>
+                        <Click OnEvent="ExportEmployees" Failure="Ext.MessageBox.alert('#{titleSavingError}.value', '#{titleSavingErrorMessage}.value');">
+                            <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="={#{GroupUsersWindow}.body}" />
+                            <ExtraParams>
+                              <%--  <ext:Parameter Name="id" Value="#{recordId}.getValue()" Mode="Raw" />--%>
+                                <ext:Parameter Name="values" Value="#{GroupUsersForm}.getForm().getValues(false, false, false, true)" Mode="Raw" Encode="true" />
+                            </ExtraParams>
+                        </Click>
+                    </DirectEvents>
+                </ext:Button>
+                <ext:Button ID="Button4" runat="server" Text="<%$ Resources:Common , Cancel %>" Icon="Cancel">
+                    <Listeners>
+                        <Click Handler="this.up('window').hide();" />
+                    </Listeners>
+                </ext:Button>
+            </Buttons>
         </ext:Window>
 
     </form>

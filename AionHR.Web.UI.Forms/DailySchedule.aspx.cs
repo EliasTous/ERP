@@ -908,6 +908,7 @@ namespace AionHR.Web.UI.Forms
             {
                 this.ResourceManager1.RTL = true;
                 this.Viewport1.RTL = true;
+                isRTL.Text = "1";
 
             }
         }
@@ -1022,8 +1023,193 @@ namespace AionHR.Web.UI.Forms
          //   this.employeeId.Update();
             this.employeeScheduleWindow.Hide();
         }
+        protected void userSelectorStore_ReadData(object sender, StoreReadDataEventArgs e)
+        {
+            EmployeeListRequest req = new EmployeeListRequest();
+            if (branchId.Value == null || branchId.Value.ToString() == string.Empty)
+            {
+                req.BranchId = "0";
+            }
+            else
+                req.BranchId = branchId.Value.ToString();
+            if (departmentId.Value == null || departmentId.Value.ToString() == string.Empty)
+            {
+                req.DepartmentId = "0";
+            }
+            else
+                req.DepartmentId = departmentId.Value.ToString();
+           
+          
+            req.IncludeIsInactive = 2;
+            req.SortBy = "firstName";
+
+            req.StartAt = "1";
+            req.Size = "20";
+            req.Filter = "";
+            ListResponse<Employee> response = _employeeService.GetAll<Employee>(req);
+            if (!response.Success)
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).ToString() + "<br>Technical Error: " + response.ErrorCode + "<br> Summary: " + response.Summary : response.Summary).Show();
+
+            else
+                //UsersListRequest req = new UsersListRequest();
+                //req.Size = "100";
+                //req.StartAt = "1";
+                //req.Filter = "";
+
+                //var s = jobInfo1.GetJobInfo();
+                //req.DepartmentId = s.DepartmentId.HasValue ? s.DepartmentId.ToString() : "0";
+                //req.PositionId = s.PositionId.HasValue ? s.PositionId.ToString() : "0";
+                //ListResponse<UserInfo> groups = _systemService.ChildGetAll<UserInfo>(req);
+                //if (!groups.Success)
+                //{
+                //    X.Msg.Alert(Resources.Common.Error, groups.Summary).Show();
+                //    return;
+                //}
+                //List<SecurityGroupUser> all = new List<SecurityGroupUser>();
+                //groups.Items.ForEach(x => all.Add(new SecurityGroupUser() { fullName = x.fullName, userId = x.recordId }));
+                response.Items.ForEach(x => x.fullName = x.name.fullName);
+            if(response.Items.Where(x => x.recordId == employeeId.SelectedItem.Value.ToString()).Count()!=0)
+            response.Items.Remove(response.Items.Where(x => x.recordId == employeeId.SelectedItem.Value.ToString()).ToArray()[0]);
+            X.Call("AddSource", response.Items);
+
+        }
+
+        //[DirectMethod]
+        //public void GetFilteredUsers()
+        //{
+        //    EmployeeListRequest req = new EmployeeListRequest();
+        //    if (branchId.Value == null || branchId.Value.ToString() == string.Empty)
+        //    {
+        //        req.BranchId = "0";
+        //    }
+        //    else
+        //        req.BranchId = branchId.Value.ToString();
+        //    if (departmentId.Value == null || departmentId.Value.ToString() == string.Empty)
+        //    {
+        //        req.DepartmentId = "0";
+        //    }
+        //    else
+        //        req.DepartmentId = departmentId.Value.ToString();
 
 
+        //    req.IncludeIsInactive = 2;
+        //    req.SortBy = "firstName";
+
+        //    req.StartAt = "1";
+        //    req.Size = "20";
+        //    req.Filter = "";
+        //    ListResponse<Employee> response = _employeeService.GetAll<Employee>(req);
+        //    if (!response.Success)
+        //        X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).ToString() + "<br>Technical Error: " + response.ErrorCode + "<br> Summary: " + response.Summary : response.Summary).Show();
+            
+        //    else
+        //        response.Items.ForEach(x => x.fullName = x.name.fullName);
+        //    X.Call("AddSource", response.Items);
+
+        //}
+        public void Export_Click(object sender, DirectEventArgs e)
+        {
+            if (employeeId.Value == null || employeeId.Value.ToString() == string.Empty)
+            {
+                X.Msg.Alert(Resources.Common.Error, (string)GetLocalResourceObject("SelectEmployee")).Show();
+                return;
+            }
+            if (dateFrom.SelectedDate == DateTime.MinValue || dateTo.SelectedDate == DateTime.MinValue)
+            {
+                X.Msg.Alert(Resources.Common.Error, (string)GetLocalResourceObject("ValidFromToDate")).Show();
+                return;
+            }
+            if (dateFrom.SelectedDate > dateTo.SelectedDate)
+            {
+                X.Msg.Alert(Resources.Common.Error, (string)GetLocalResourceObject("ToDateHigherFromDate")).Show();
+                return;
+            }
+            userSelectorStore.Reload();
+            this.groupUsersWindow.Show();
+           
+        
+
+        }
+        protected void ExportEmployees(object sender, DirectEventArgs e)
+        {
+
+
+            //Getting the id to check if it is an Add or an edit as they are managed within the same form.
+            string id = e.ExtraParams["id"];
+            var select = e.ExtraParams["userSelector"];
+
+            List<Employee> selectedUsers = new List<Employee>();
+            foreach (var item in userSelector.SelectedItems)
+            {
+                
+                selectedUsers.Add(new Employee() { recordId = item.Value, fullName = item.Text,  });
+            }
+            string branchID = string.Empty;
+          
+            if (selectedUsers.Count==0)
+            {
+                X.Msg.Alert(Resources.Common.Error, (string)GetLocalResourceObject("SelectExport")).Show();
+                return;
+            }
+            else
+                branchID = branchId.Value.ToString();
+
+          
+
+
+            FlatScheduleImport fs = new FlatScheduleImport();
+
+            fs.fromEmployeeId = Convert.ToInt32(employeeId.Value.ToString());
+           
+            fs.fromDayId = dateFrom.SelectedDate.ToString("yyyyMMdd");
+            fs.toDayId = dateTo.SelectedDate.ToString("yyyyMMdd");
+            foreach (Employee E in selectedUsers)
+            {
+                fs.toEmployeeId = Convert.ToInt32(E.recordId);
+                PostRequest<FlatScheduleImport> request = new PostRequest<FlatScheduleImport>();
+
+                request.entity = fs;
+
+                PostResponse<FlatScheduleImport> r = _helpFunctionService.ChildAddOrUpdate<FlatScheduleImport>(request);
+            }
+
+            //check if the insert failed
+            //if (!r.Success)//it maybe be another condition
+            //{
+            //    //Show an error saving...
+            //    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+            //    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() + "<br>Technical Error: " + r.ErrorCode + "<br> Summary: " + r.Summary : r.Summary).Show();
+            //    return;
+            //}
+            //else
+            //{
+
+                Notification.Show(new NotificationConfig
+                {
+                    Title = Resources.Common.Notification,
+                    Icon = Icon.Information,
+                    Html = (string)GetLocalResourceObject("ExportSuccess")
+                });
+
+
+                //Reload Again
+                BranchScheduleRecordRequest reqFS = new BranchScheduleRecordRequest();
+                reqFS.EmployeeId = Convert.ToInt32(employeeId.Value.ToString());
+                reqFS.FromDayId = dateFrom.SelectedDate.ToString("yyyyMMdd");
+                reqFS.ToDayId = dateTo.SelectedDate.ToString("yyyyMMdd");
+                ListResponse<FlatSchedule> response = _timeAttendanceService.ChildGetAll<FlatSchedule>(reqFS);
+                if (!response.Success)
+                {
+                    X.Msg.Alert(Resources.Common.Error, (string)GetLocalResourceObject("ErrorGettingSchedule")).Show();
+                    return;
+                }
+                this.dayId.Value = string.Empty;
+                BuildSchedule(response.Items);
+                this.cmbEmployeeImport.Value = string.Empty;
+            }
+
+
+        
 
     }
 

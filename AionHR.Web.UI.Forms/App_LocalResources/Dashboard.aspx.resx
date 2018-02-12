@@ -540,4 +540,7 @@
   <data name="industryName" xml:space="preserve">
     <value>Industry</value>
   </data>
+  <data name="HeadCountMaximumWindow" xml:space="preserve">
+    <value>Head Count</value>
+  </data>
 </root>

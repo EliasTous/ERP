@@ -337,7 +337,7 @@ namespace AionHR.Web.UI.Forms
             //LoadQuickViewInfo(response.result.employeeId);
             LeaveDayListRequest req = new LeaveDayListRequest();
             req.LeaveId = CurrentLeave.Text;
-            ListResponse<LeaveDay> resp = _leaveManagementService.ChildGetAll<LeaveDay>(req);
+            ListResponse<LeaveDaySelfservice> resp = _selfServiceService.ChildGetAll<LeaveDaySelfservice>(req);
             if (!resp.Success)
             {
 
@@ -426,7 +426,7 @@ namespace AionHR.Web.UI.Forms
             request.SortBy = "firstName";
 
             request.Filter = "";
-            ListResponse<LeaveRequest> routers = _leaveManagementService.ChildGetAll<LeaveRequest>(request);
+            ListResponse<leaveRequetsSelfservice> routers = _selfServiceService.ChildGetAll<leaveRequetsSelfservice>(request);
             if (!routers.Success)
             {
                 X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", routers.ErrorCode) != null ? GetGlobalResourceObject("Errors", routers.ErrorCode).ToString() : routers.Summary).Show();
