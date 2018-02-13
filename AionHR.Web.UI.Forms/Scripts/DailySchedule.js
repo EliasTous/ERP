@@ -54,8 +54,20 @@ var ColorifySchedule = function (listIds) {
             document.getElementById(listIds[i]).style.background = "green";
         }
         catch (e) { }
+      
     }
 };
+var filldaytotal = function (listIds,list2) {
+
+    for (var i in listIds) {
+        try {
+            document.getElementById(listIds[i]).innerHTML =list2[i] ;
+        }
+        catch (e) { }
+
+    }
+};
+
 
 var Init = function () {
     // App.pnlTools.show();

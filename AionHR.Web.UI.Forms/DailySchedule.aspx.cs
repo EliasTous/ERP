@@ -721,21 +721,32 @@ namespace AionHR.Web.UI.Forms
                 DateTime activeDate = DateTime.ParseExact(fs.dayId, "yyyyMMdd", new CultureInfo("en"));
                 DateTime fsfromDate = new DateTime(activeDate.Year, activeDate.Month, activeDate.Day, Convert.ToInt32(fs.from.Split(':')[0]), Convert.ToInt32(fs.from.Split(':')[1]), 0);
                 DateTime fsToDate = new DateTime(activeDate.Year, activeDate.Month, activeDate.Day, Convert.ToInt32(fs.to.Split(':')[0]), Convert.ToInt32(fs.to.Split(':')[1]), 0);
-
+              
                 do
                 {
                     listIds.Add(fsfromDate.ToString("yyyyMMdd") + "_" + fsfromDate.ToString("HH:mm"));
                     fsfromDate = fsfromDate.AddMinutes(30);
-                } while (fsToDate >= fsfromDate);
+                                  } while (fsToDate >= fsfromDate);
+                
+                          }
 
-            }
+            var d = items.GroupBy(x => x.dayId);
+            List<string> totaldayId = new List<string>();
+            List<string> totaldaySum= new List<string>();
+            d.ToList().ForEach(x =>
+            {
+                totaldayId.Add(x.ToList()[0].dayId + "_Total");
+                totaldaySum.Add(x.ToList().Sum(y => Convert.ToDouble(y.duration)).ToString());
+                });
+           
 
 
 
             html += @"</table></div>";
             this.pnlSchedule.Html = html;
             X.Call("ColorifySchedule", JSON.JavaScriptSerialize(listIds));
-            X.Call("Init");
+            X.Call("filldaytotal", totaldayId, totaldaySum);
+           X.Call("Init");
             X.Call("DisableTools");
         }
 
@@ -850,7 +861,7 @@ namespace AionHR.Web.UI.Forms
                 {
                     string day = firstDate.ToString("ddd");
                     string dayNumber = firstDate.ToString("MMM d");
-                    html += "<td id=" + firstDate.ToString("yyyyMMdd") + " class='day'>" + string.Format("<div style='width:30px;display:inline-block'>{0},</div> {1}", day, dayNumber) + "</td>";
+                    html += "<td id=" + firstDate.ToString("yyyyMMdd") + " class='day'>" + string.Format("<div style='width:30px;display:inline-block'>{0},</div> {1}", day, dayNumber) + "</td><td id=" + firstDate.ToString("yyyyMMdd") +"_Total></td>";
                     // html += "<td id=" + firstDate.ToString("yyyyMMdd") + " class='day'>" + firstDate.ToString("ddd, MMM d") + "</td>";
                 }
                 else
@@ -858,13 +869,13 @@ namespace AionHR.Web.UI.Forms
                     string day = firstDate.ToString("ddd");
                     string dayNumber = firstDate.ToString("dd");
                     string month = firstDate.ToString("MM");
-                    html += "<td id=" + firstDate.ToString("yyyyMMdd") + " class='day'>" + string.Format("<div style='width:43px;display:inline-block'>{0}</div> {1} - {2}", (string)GetLocalResourceObject(day), dayNumber, month) + "</td>";
+                    html += "<td id=" + firstDate.ToString("yyyyMMdd") + " class='day'>" + string.Format("<div style='width:43px;display:inline-block'>{0}</div> {1} - {2}", (string)GetLocalResourceObject(day), dayNumber, month) + "</td><td id=" + firstDate.ToString("yyyyMMdd") + "_Total></td>";
                 }
 
                 for (int index = 0; index < timesList.Count; index++)
                 {
                     html += "<td id=" + firstDate.ToString("yyyyMMdd") + "_" + timesList[index].ID + "></td>";
-                }
+                                    }
                 html += "</tr>";
                 firstDate = firstDate.AddDays(1);
             }
@@ -874,7 +885,7 @@ namespace AionHR.Web.UI.Forms
         private string FillFirstRow(string html, List<TimeSlot> timesList)
         {
 
-            html += "<tr><th style='width:95px;'></th>";
+            html += "<tr><th style='width:95px;'></th><th>elias</th>";
             for (int index = 0; index < timesList.Count; index++)
             {
                 html += "<th>" + timesList[index].Time + "</th>";
