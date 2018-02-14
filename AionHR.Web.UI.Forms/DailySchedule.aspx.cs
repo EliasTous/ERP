@@ -599,14 +599,25 @@ namespace AionHR.Web.UI.Forms
                         } while (fsToDate >= fsfromDate);
 
                     }
-                    //List<string> listIds = new List<string>();
+                    var d = response.Items.GroupBy(x => x.dayId);
+                    List<string> totaldayId = new List<string>();
+                    List<string> totaldaySum = new List<string>();
+                    d.ToList().ForEach(x =>
+                    {
+                        totaldayId.Add(x.ToList()[0].dayId + "_Total");
+                        totaldaySum.Add(x.ToList().Sum(y => Convert.ToDouble(y.duration) / 60).ToString());
+                    });
+
+                    //eliasList<string> listIds = new List<string>();
                     //DateTime effectiveDate = fsfromTime;
                     //do
                     //{
                     //    listIds.Add(effectiveDate.ToString("yyyyMMdd") + "_" + fsfromTime.ToString("HH:mm"));
                     //    fsfromTime = fsfromTime.AddMinutes(30);
                     //} while (fsToTime >= fsfromTime);
+                 
                     X.Call("DeleteDaySchedule", dayId.Value.ToString());
+                    X.Call("filldaytotal", totaldayId, totaldaySum);
                     X.Call("ColorifySchedule", JSON.JavaScriptSerialize(listIds));
                 }
             }
@@ -736,8 +747,8 @@ namespace AionHR.Web.UI.Forms
             d.ToList().ForEach(x =>
             {
                 totaldayId.Add(x.ToList()[0].dayId + "_Total");
-                totaldaySum.Add(x.ToList().Sum(y => Convert.ToDouble(y.duration)).ToString());
-                });
+                totaldaySum.Add(x.ToList().Sum(y => Convert.ToDouble(y.duration)/60).ToString());
+            });
            
 
 

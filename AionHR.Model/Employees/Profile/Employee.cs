@@ -147,6 +147,7 @@ namespace AionHR.Model.Employees.Profile
             get; set;
         }
         public int? nqciId { get; set; }
+        public string nationalityName { get; set; }
 
 
     }

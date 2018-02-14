@@ -27,11 +27,12 @@ namespace AionHR.Services.Implementations
                 sT.Basic = new EmployeeSalary();
                 sT.Details = new List<SalaryDetail>();
                 sT.Basic.EmpRef = row[0].ToString();
-                sT.Basic.currencyId = Convert.ToInt32(row[1].ToString());
-                int bulk;
+                sT.Basic.currencyRef = row[1].ToString();
+                //int bulk;
 
-                if (int.TryParse(row[2].ToString(), out bulk))
-                    sT.Basic.scrId = bulk;
+                //if (int.TryParse(row[2].ToString(), out bulk))
+                //    sT.Basic.scrId = bulk;
+                sT.Basic.scrName= row[2].ToString();
                 sT.Basic.effectiveDate = DateTime.Parse(row[3].ToString());
                 sT.Basic.salaryType = Convert.ToInt16(row[4].ToString());
                 sT.Basic.paymentFrequency = Convert.ToInt16(row[5].ToString());

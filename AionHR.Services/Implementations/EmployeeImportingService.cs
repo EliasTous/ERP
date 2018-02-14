@@ -37,13 +37,21 @@ namespace AionHR.Services.Implementations
                     em.name.lastName = row[1].ToString().Split(nameDelimiter)[1];
                 }
                 em.name.reference = row[0].ToString();
-                int ca;
-                if (int.TryParse(row[2].ToString(), out ca))
-                    em.caId = ca;
-                else
-                    em.caId = null;
+                //int ca;
+                //if (int.TryParse(row[2].ToString(), out ca))
+                //    em.caId = ca;
+                //else
+                //    em.caId = null;
+                em.caName= row[2].ToString();
 
                 em.hireDate = DateTime.Parse(row[3].ToString());
+                em.idRef= row[4].ToString();
+                em.nationalityName = row[5].ToString();
+                em.gender = Convert.ToInt16(row[6]);
+                em.religion = Convert.ToInt16(row[7]);
+                em.birthDate = DateTime.Parse(row[8].ToString());
+                em.mobile = row[9].ToString();
+
 
                 result.Add(em);
             }

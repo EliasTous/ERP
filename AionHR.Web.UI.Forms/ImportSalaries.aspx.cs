@@ -275,7 +275,8 @@ namespace AionHR.Web.UI.Forms
                 EmployeeService emp = new EmployeeService(new EmployeeRepository(), h);
                
                 SystemService _system = new SystemService(new SystemRepository(), h);
-                SalaryBatchRunner runner = new SalaryBatchRunner(storage,emp,_system) { Items = shifts, OutputPath = MapPath("~/Imports/" + _systemService.SessionHelper.Get("AccountId") + "/") };
+                EmployeeService _employee = new EmployeeService(new EmployeeRepository(), h);
+                SalaryBatchRunner runner = new SalaryBatchRunner(storage,emp,_system, _employee) { Items = shifts, OutputPath = MapPath("~/Imports/" + _systemService.SessionHelper.Get("AccountId") + "/") };
                 runner.Process();
                 this.ResourceManager1.AddScript("{0}.startTask('longactionprogress');", this.TaskManager1.ClientID);
 

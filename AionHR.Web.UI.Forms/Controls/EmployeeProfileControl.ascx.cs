@@ -71,6 +71,7 @@ namespace AionHR.Web.UI.Forms
                 hijriCalbutton.Visible = true;
                 SetHijriInputState(false);
                 //gregCal.Checked = true;
+                bdHijriCal.Text = "false";
             }
             else
             {
@@ -78,6 +79,7 @@ namespace AionHR.Web.UI.Forms
                 SetHijriInputState(true);
                 //hijCalBirthDate.Hidden = true;
                 //gregCal.Checked = true;
+                bdHijriCal.Text = "true";
             }
             SaveButton.Disabled = false;
             BasicInfoTab.Reset();
@@ -94,15 +96,19 @@ namespace AionHR.Web.UI.Forms
         }
         public void Update(string id ,string fullName)
         {
-          
+
             if (!_systemService.SessionHelper.GetHijriSupport())
             {
                 hijriCalbutton.Hidden = true;
                 SetHijriInputState(false);
-
+                bdHijriCal.Text = "false";
             }
             else
+            {
                 hijriCalbutton.Hidden = false;
+                bdHijriCal.Text = "true";
+            }
+        
             imgControl.Src = "Images\\empPhoto.jpg";
             //Step 1 : get the object from the Web Service 
             FillProfileInfo(id.ToString());
@@ -447,6 +453,8 @@ namespace AionHR.Web.UI.Forms
             this.EditRecordWindow.Title = Resources.Common.AddNewRecord;
             reference.IsRemoteValidation = true;
             // timeZoneCombo.Select(_systemService.SessionHelper.GetTimeZone());
+        
+
             this.EditRecordWindow.Show();
         }
 
@@ -1799,6 +1807,7 @@ namespace AionHR.Web.UI.Forms
         }
         private void SetHijriInputState(bool hijriSupported)
         {
+          
             X.Call("setInputState", hijriSupported);
 
 

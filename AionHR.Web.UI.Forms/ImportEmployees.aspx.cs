@@ -213,8 +213,10 @@ namespace AionHR.Web.UI.Forms
                 storage.Save("key", _systemService.SessionHelper.Get("Key"));
                 SessionHelper h = new SessionHelper(storage, new APIKeyBasedTokenGenerator());
                 IEmployeeService emp = new EmployeeService(new EmployeeRepository(), h);
+                ITimeAttendanceService timeAtt = new TimeAttendanceService(h, new TimeAttendanceRepository());
+
                 SystemService _system = new SystemService(new SystemRepository(), h);
-                EmployeeBatchRunner runner = new EmployeeBatchRunner(storage, emp, _system) { Items = shifts, OutputPath = MapPath("~/Imports/" + _systemService.SessionHelper.Get("AccountId") + "/") };
+                EmployeeBatchRunner runner = new EmployeeBatchRunner(storage, emp, _system, timeAtt) { Items = shifts, OutputPath = MapPath("~/Imports/" + _systemService.SessionHelper.Get("AccountId") + "/") };
                 runner.Process();
                 this.ResourceManager1.AddScript("{0}.startTask('longactionprogress');", this.TaskManager1.ClientID);
 

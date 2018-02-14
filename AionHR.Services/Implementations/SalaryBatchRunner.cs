@@ -17,16 +17,25 @@ namespace AionHR.Services.Implementations
 {
     public class SalaryBatchRunner : ImportBatchRunner<SalaryTree>
     {
+        IEmployeeService _employeeService;
         private Dictionary<string, int> empRef;
         private Dictionary<string, int> ents;
         private Dictionary<string, int> deds;
+        private Dictionary<string, int> currencyId;
+        private Dictionary<string, string> scrId;
 
-        public SalaryBatchRunner(ISessionStorage store, IEmployeeService employee, ISystemService system) : base(system, employee)
+
+        public SalaryBatchRunner(ISessionStorage store, IEmployeeService employee, ISystemService system,IEmployeeService _employeeService) : base(system, employee)
         {
+            this._employeeService = _employeeService;
             empRef = new Dictionary<string, int>();
             ents = new Dictionary<string, int>();
             deds = new Dictionary<string, int>();
+            currencyId = new Dictionary<string, int>();
+            scrId = new Dictionary<string, string>();
             FillEDS();
+            fillcurrency();
+            fillscrId();
             //   this.SessionStore = store;
             //   SessionHelper h = new SessionHelper(store, new APIKeyBasedTokenGenerator());
 
@@ -50,6 +59,29 @@ namespace AionHR.Services.Implementations
                 }
             }
         }
+        private void fillcurrency()
+        {
+
+            ListRequest branchesRequest = new ListRequest();
+            ListResponse<Currency> resp = _systemService.ChildGetAll<Currency>(branchesRequest);
+            if (resp.Success && resp.Items != null)
+            {
+                resp.Items.ForEach(x => this.currencyId.Add(x.reference, Convert.ToInt32(x.recordId)));
+            }
+
+        }
+        private void fillscrId()
+        {
+            ListRequest branchesRequest = new ListRequest();
+            ListResponse<SalaryChangeReason> resp = _employeeService.ChildGetAll<SalaryChangeReason>(branchesRequest);
+           
+            if (resp.Success && resp.Items != null)
+            {
+                resp.Items.ForEach(x => this.scrId.Add(x.name, x.recordId));
+            }
+
+        }
+
 
         protected override void PostProcessElements()
         {
@@ -90,6 +122,10 @@ namespace AionHR.Services.Implementations
 
                 }
             });
+            if (currencyId.ContainsKey(item.Basic.currencyRef))
+                item.Basic.currencyId = currencyId[item.Basic.currencyRef];
+            if (scrId.ContainsKey(item.Basic.scrName))
+                item.Basic.scrId =Convert.ToInt32( scrId[item.Basic.scrName]);
 
 
         }

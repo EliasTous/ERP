@@ -1,6 +1,7 @@
 ﻿using AionHR.Infrastructure.Domain;
 using AionHR.Infrastructure.Session;
 using AionHR.Infrastructure.Tokens;
+using AionHR.Model.Attendance;
 using AionHR.Model.Employees.Profile;
 using AionHR.Model.System;
 using AionHR.Services.Interfaces;
@@ -16,14 +17,22 @@ namespace AionHR.Services.Implementations
 {
    public class EmployeeBatchRunner:ImportBatchRunner<Employee>
     {
-        public EmployeeBatchRunner(ISessionStorage store, IEmployeeService employee, ISystemService system):base(system, employee)
+        ITimeAttendanceService timeAttendance;
+        Dictionary<string, int> caId;
+        Dictionary<string, int> nationalityId;
+        public EmployeeBatchRunner(ISessionStorage store, IEmployeeService employee, ISystemService system,ITimeAttendanceService timeAttendance) :base(system, employee)
         {
+            this.timeAttendance = timeAttendance;
             this.SessionStore = store;
             SessionHelper h = new SessionHelper(store, new APIKeyBasedTokenGenerator());
 
             
             BatchStatus = new BatchOperationStatus() { classId = ClassId.EPEM, processed = 0, tableSize = 0, status = 0 };
             errors = new List<Employee>();
+            caId = new Dictionary<string, int>();
+            nationalityId = new Dictionary<string, int>();
+            FillCaId();
+            FillNationalityId();
         }
 
         protected override void PostProcessElements()
@@ -32,7 +41,7 @@ namespace AionHR.Services.Implementations
             int i = 0;
             foreach (var error in errors)
             {
-                b.AppendLine(error.reference + "," + error.firstName + "," + error.lastName+ "," + error.hireDate + "," + error.caId + "," + errorMessages[i++].Replace('\r', ' ').Replace(',', ';'));
+              b.AppendLine(error.reference + "," + error.firstName + "," + error.lastName+ "," + error.caId + "," + error.hireDate + "," + error.idRef + "," +error.nationalityName + "," +error.gender + "," +error.religion + "," +error.birthDate + "," +error.mobile + "," + errorMessages[i++].Replace('\r', ' ').Replace(',', ';'));
 
             }
             string csv = b.ToString();
@@ -44,7 +53,12 @@ namespace AionHR.Services.Implementations
 
         protected override void PreProcessElement(Employee item)
         {
-            
+
+            if (caId.ContainsKey(item.caName))
+                item.caId = caId[item.caName];
+            if (nationalityId.ContainsKey(item.nationalityName))
+                item.nationalityId = nationalityId[item.nationalityName];
+            item.bdHijriCal = false;
         }
 
         protected override void ProcessElement(Employee item)
@@ -59,5 +73,25 @@ namespace AionHR.Services.Implementations
                 errorMessages.Add(resp.Summary);
             }
         }
+        private void FillCaId()
+        {
+            ListRequest caRequest = new ListRequest();
+            ListResponse<WorkingCalendar> resp = timeAttendance.ChildGetAll<WorkingCalendar>(caRequest);
+            if (resp.Success && resp.Items != null)
+            {
+                resp.Items.ForEach(x => this.caId.Add(x.name,Convert.ToInt32( x.recordId )));
+            }
+        }
+        private void FillNationalityId()
+        {
+            ListRequest nationalityRequest = new ListRequest();
+            ListResponse<Nationality> resp = _systemService.ChildGetAll<Nationality>(nationalityRequest);
+            if (resp.Success && resp.Items != null)
+            {
+                resp.Items.ForEach(x => this.nationalityId.Add(x.name, Convert.ToInt32(x.recordId)));
+            }
+
+        }
+
     }
 }

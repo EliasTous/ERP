@@ -1,10 +1,16 @@
 ﻿
 var DeleteDaySchedule = function (id) {
-
+  
     $('[id^="' + id + '_"]').each(function () {
 
         $(this).css("background-color", "white");
     })
+   
+    $('[id^="' + id + '_Total"]').each(function () {
+       
+        $(this).html(' ');
+    })
+
 };
 
 
@@ -61,6 +67,7 @@ var filldaytotal = function (listIds,list2) {
 
     for (var i in listIds) {
         try {
+           
             document.getElementById(listIds[i]).innerHTML =list2[i] ;
         }
         catch (e) { }

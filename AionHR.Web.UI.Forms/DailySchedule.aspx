@@ -17,7 +17,7 @@
     <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
     <link rel="stylesheet" href="CSS/DailySchedule.css?id=3" />
-    <script type="text/javascript" src="Scripts/DailySchedule.js?id=21"></script>
+    <script type="text/javascript" src="Scripts/DailySchedule.js?id=50"></script>
 
     <script type="text/javascript">
 
