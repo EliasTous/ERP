@@ -13,11 +13,14 @@
     <link rel="stylesheet" href="CSS/LiveSearch.css" />
 
     <script type="text/javascript" src="Scripts/common.js"></script>
-    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
-    <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
-    <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
-    <link rel="stylesheet" href="CSS/DailySchedule.css?id=3" />
-    <script type="text/javascript" src="Scripts/DailySchedule.js?id=50"></script>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.js?id=1"></script>
+    <script type="text/javascript" src="http://code.jquery.com/ui/1.10.3/jquery-ui.js?id=2"></script>
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css?id=3" />
+    <link rel="stylesheet" href="CSS/DailySchedule.css?id=7" />
+    <script type="text/javascript" src="Scripts/DailySchedule.js?id=80"></script>
+    <script type="text/javascript" src="Scripts/Users.js?id=2"></script>
+ 
+    <script type="text/javascript" src="Scripts/jquery-new.js?id=10"></script>
 
     <script type="text/javascript">
 

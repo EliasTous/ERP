@@ -896,7 +896,7 @@ namespace AionHR.Web.UI.Forms
         private string FillFirstRow(string html, List<TimeSlot> timesList)
         {
 
-            html += "<tr><th style='width:95px;'></th><th>elias</th>";
+            html += "<tr><th style='width:95px;'></th><th>"+GetLocalResourceObject("total")+"</th>";
             for (int index = 0; index < timesList.Count; index++)
             {
                 html += "<th>" + timesList[index].Time + "</th>";

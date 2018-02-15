@@ -228,4 +228,7 @@
   <data name="SelectExport" xml:space="preserve">
     <value>Select Employees to Export To</value>
   </data>
+  <data name="total" xml:space="preserve">
+    <value>Total</value>
+  </data>
 </root>

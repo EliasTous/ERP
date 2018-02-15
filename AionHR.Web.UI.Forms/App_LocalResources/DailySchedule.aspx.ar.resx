@@ -249,4 +249,7 @@
   <data name="SelectExport" xml:space="preserve">
     <value>الرجاء اختيار الموظفين من اجل عملية التصدير</value>
   </data>
+  <data name="total" xml:space="preserve">
+    <value>المجموع</value>
+  </data>
 </root>
