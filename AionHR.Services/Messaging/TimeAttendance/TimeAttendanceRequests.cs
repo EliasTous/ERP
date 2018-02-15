@@ -48,6 +48,7 @@ public class BranchScheduleRecordRequest : ListRequest
     public string ToDayId { get; set; }
 
     public int EmployeeId { get; set; }
+    public int BranchId { get; set; }
     private Dictionary<string, string> parameters;
 
     public override Dictionary<string, string> Parameters
@@ -58,13 +59,37 @@ public class BranchScheduleRecordRequest : ListRequest
             parameters.Add("_fromDayId", FromDayId);
             parameters.Add("_toDayId", ToDayId);
             parameters.Add("_employeeId", EmployeeId.ToString());
+            parameters.Add("_branchId", BranchId.ToString());
 
             return parameters;
         }
     }
 }
 
+public class FlatScheduleWorkingHoursRequest : ListRequest
+{
+    public string FromDayId { get; set; }
 
+    public string ToDayId { get; set; }
+
+    public int EmployeeId { get; set; }
+   
+    private Dictionary<string, string> parameters;
+
+    public override Dictionary<string, string> Parameters
+    {
+        get
+        {
+            parameters = new Dictionary<string, string>();
+            parameters.Add("_fromDayId", FromDayId);
+            parameters.Add("_toDayId", ToDayId);
+            parameters.Add("_employeeId", EmployeeId.ToString());
+     
+
+            return parameters;
+        }
+    }
+}
 public class FlatScheduleImportEmployeeRequest 
 {
     public int _fromEmployeeId { get; set; }

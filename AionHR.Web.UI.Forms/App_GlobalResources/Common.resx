@@ -1143,4 +1143,7 @@
   <data name="SynchronizeDaySucc" xml:space="preserve">
     <value>Attendance Schedule Synchronized Successfully</value>
   </data>
+  <data name="DayAvailability" xml:space="preserve">
+    <value>Day Availability</value>
+  </data>
 </root>

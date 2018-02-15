@@ -529,6 +529,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Day Availability.
+        /// </summary>
+        internal static string DayAvailability {
+            get {
+                return ResourceManager.GetString("DayAvailability", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to DayFriday.
         /// </summary>
         internal static string DayFriday {

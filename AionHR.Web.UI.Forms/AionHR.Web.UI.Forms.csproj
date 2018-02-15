@@ -195,6 +195,7 @@
     <Content Include="Currencies.aspx" />
     <Content Include="Dashboard.aspx" />
     <Content Include="DayPilotTest.aspx" />
+    <Content Include="DaysAvailability.aspx" />
     <Content Include="DayTypes.aspx" />
     <Content Include="Default.aspx" />
     <Content Include="Departments.aspx" />
@@ -373,6 +374,7 @@
     <Content Include="Scripts\CompanyNews.js" />
     <Content Include="Scripts\Contacts.js" />
     <Content Include="Scripts\cropper.js" />
+    <Content Include="Scripts\DaysAvailability.js" />
     <Content Include="Scripts\FinalSettlements.js" />
     <Content Include="Scripts\HighCharts.js" />
     <Content Include="Scripts\jquery-ui-min.js" />
@@ -584,6 +586,13 @@
     </Compile>
     <Compile Include="Banks.aspx.designer.cs">
       <DependentUpon>Banks.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DaysAvailability.aspx.cs">
+      <DependentUpon>DaysAvailability.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DaysAvailability.aspx.designer.cs">
+      <DependentUpon>DaysAvailability.aspx</DependentUpon>
     </Compile>
     <Compile Include="EmployeeCals.aspx.cs">
       <DependentUpon>EmployeeCals.aspx</DependentUpon>
@@ -2249,6 +2258,8 @@
     <Content Include="App_LocalResources\DailySchedule.aspx.resx" />
     <Content Include="App_LocalResources\SynchronizeAttendanceDays.aspx.resx" />
     <Content Include="App_LocalResources\SynchronizeAttendanceDays.aspx.ar.resx" />
+    <Content Include="App_LocalResources\DaysAvailability.aspx.resx" />
+    <Content Include="App_LocalResources\DaysAvailability.aspx.ar.resx" />
     <EmbeddedResource Include="Reports\RT201.aspx.resx">
       <DependentUpon>RT201.aspx.cs</DependentUpon>
       <Generator>ResXFileCodeGenerator</Generator>

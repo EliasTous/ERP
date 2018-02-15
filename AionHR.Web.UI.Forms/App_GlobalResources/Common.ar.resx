@@ -1146,4 +1146,7 @@
   <data name="SynchronizeDaySucc" xml:space="preserve">
     <value>تمت المزامنة بنجاح </value>
   </data>
+  <data name="DayAvailability" xml:space="preserve">
+    <value>دوام فرع</value>
+  </data>
 </root>
