@@ -68,14 +68,14 @@ namespace AionHR.Web.UI.Forms
         {
             if (!_systemService.SessionHelper.GetHijriSupport())
             {
-                hijriCalbutton.Visible = true;
+                hijriCalbutton.Hidden = true;
                 SetHijriInputState(false);
                 //gregCal.Checked = true;
                 bdHijriCal.Text = "false";
             }
             else
             {
-                hijriCalbutton.Visible = false;
+                hijriCalbutton.Hidden = false;
                 SetHijriInputState(true);
                 //hijCalBirthDate.Hidden = true;
                 //gregCal.Checked = true;
