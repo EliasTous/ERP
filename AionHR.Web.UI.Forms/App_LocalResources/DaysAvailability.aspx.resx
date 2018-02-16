@@ -231,4 +231,7 @@
   <data name="workingHours" xml:space="preserve">
     <value>Working Hours</value>
   </data>
+  <data name="branchClosed" xml:space="preserve">
+    <value>Branch is closed in this day </value>
+  </data>
 </root>

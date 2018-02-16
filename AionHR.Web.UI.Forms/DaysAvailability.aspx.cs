@@ -88,15 +88,20 @@ namespace AionHR.Web.UI.Forms
               
         protected void Load_Click(object sender, DirectEventArgs e)
         {
-         
-         
+            if (branchId.Value == null || branchId.Value.ToString() == string.Empty)
+            {
+                X.Msg.Alert(Resources.Common.Error, (string)GetLocalResourceObject("SelectBranch")).Show();
+                return;
+            }
+
             //Proceed to load
 
             BranchScheduleRecordRequest reqFS = new BranchScheduleRecordRequest();
             reqFS.EmployeeId = 0;
             reqFS.FromDayId = dateFrom.SelectedDate.ToString("yyyyMMdd");
             reqFS.ToDayId = dateFrom.SelectedDate.ToString("yyyyMMdd");
-            reqFS.BranchId = 0;
+            reqFS.BranchId = Convert.ToInt32(branchId.SelectedItem.Value);
+         
             ListResponse<FlatSchedule> response = _timeAttendanceService.ChildGetAll<FlatSchedule>(reqFS);
             if (!response.Success)
             {
@@ -121,6 +126,13 @@ namespace AionHR.Web.UI.Forms
 
             string startAt, closeAt = string.Empty;
             GetBranchSchedule(out startAt, out closeAt);
+            if(startAt=="00:00"&& closeAt=="00:00")
+              
+                {
+                    X.Msg.Alert(Resources.Common.Error, (string)GetLocalResourceObject("branchClosed")).Show();
+                    return;
+                }
+
             if (string.IsNullOrEmpty(startAt) || string.IsNullOrEmpty(closeAt))
             {
                 html += @"</table></div>";
@@ -128,6 +140,7 @@ namespace AionHR.Web.UI.Forms
                 X.Msg.Alert(Resources.Common.Error, (string)GetLocalResourceObject("ErrorBranchWorkingHours")).Show();
                 return;
             }
+
 
             TimeSpan tsStart = TimeSpan.Parse(startAt);
             //timeFrom.MinTime = tsStart;
@@ -139,8 +152,13 @@ namespace AionHR.Web.UI.Forms
 
             //Filling The Times Slot
             List<TimeSlot> timesList = new List<TimeSlot>();
-            DateTime dtStart = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, tsStart.Hours, tsStart.Minutes, 0);
-            DateTime dtEnd = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, tsClose.Hours, tsClose.Minutes, 0);
+            DateTime dtStart, dtEnd;
+            dtStart = new DateTime(dateFrom.SelectedDate.Year, dateFrom.SelectedDate.Month,1, tsStart.Hours, tsStart.Minutes, 0);
+            dtEnd = new DateTime(dateFrom.SelectedDate.Year, dateFrom.SelectedDate.Month,1, tsClose.Hours, tsClose.Minutes, 0);
+        
+           
+
+
             do
             {
                 TimeSlot ts = new TimeSlot();
@@ -160,6 +178,9 @@ namespace AionHR.Web.UI.Forms
 
             //Preparing the ids to get colorified
             List<string> listIds = new List<string>();
+            List<string> listDn = new List<string>();
+            List<int> listDS = new List<int>();
+
             foreach (FlatSchedule fs in items)
             {
                 DateTime activeDate = DateTime.ParseExact(fs.dayId, "yyyyMMdd", new CultureInfo("en"));
@@ -168,21 +189,60 @@ namespace AionHR.Web.UI.Forms
 
                 do
                 {
-                    listIds.Add(fsfromDate.ToString("yyyyMMdd") + "_" + fsfromDate.ToString("HH:mm"));
+                    listIds.Add(fs.employeeId + "_" + fsfromDate.ToString("HH:mm"));
                     fsfromDate = fsfromDate.AddMinutes(30);
                 } while (fsToDate >= fsfromDate);
+              
+                var department= items.GroupBy(x => x.departmentId);
+                foreach (var de in department)
+                {
+                    fsfromDate = new DateTime(activeDate.Year, activeDate.Month, activeDate.Day, Convert.ToInt32(startAt.Split(':')[0]), Convert.ToInt32(startAt.Split(':')[1]), 0);
+                    fsToDate = new DateTime(activeDate.Year, activeDate.Month, activeDate.Day, Convert.ToInt32(closeAt.Split(':')[0]), Convert.ToInt32(closeAt.Split(':')[1]), 0);
+                    List<FlatSchedule> employee = de.ToList();
+                   
+
+                    do
+                    {
+                        listDn.Add(employee[0].departmentId + "_" + fsfromDate.ToString("HH:mm"));
+                        int sum = 0;
+                        employee.ForEach(x =>
+                        {
+                          int minhours=  Convert.ToInt32(x.from.Split(':')[0]);
+                          int maxHour = Convert.ToInt32(x.to.Split(':')[0]);
+
+                            int minMinutes= Convert.ToInt32(x.from.Split(':')[1]);
+                            int maxMinutes = Convert.ToInt32(x.to.Split(':')[1]);
+
+
+                            if (fsfromDate.Hour >= minhours && fsfromDate.Hour <= maxHour && fsfromDate.Minute>= minMinutes  )
+                            {
+                                if (fsfromDate.Hour == maxHour && fsfromDate.Minute > maxMinutes)
+                                    return;
+                             
+                                   sum++;
+                            } 
+                            
+                        }
+                        );
+                        listDS.Add(sum);
+                        fsfromDate = fsfromDate.AddMinutes(30);
+                    } while (fsToDate >= fsfromDate);
+
+
+                }
 
             }
 
-            var d = items.GroupBy(x => x.dayId);
+            var d = items.GroupBy(x => x.employeeId);
             List<string> totaldayId = new List<string>();
             List<string> totaldaySum = new List<string>();
             d.ToList().ForEach(x =>
             {
-                totaldayId.Add(x.ToList()[0].dayId + "_Total");
+                totaldayId.Add(x.ToList()[0].employeeId + "_Total");
                 totaldaySum.Add(x.ToList().Sum(y => Convert.ToDouble(y.duration) / 60).ToString());
             });
 
+            
 
 
 
@@ -190,8 +250,9 @@ namespace AionHR.Web.UI.Forms
             this.pnlSchedule.Html = html;
             X.Call("ColorifySchedule", JSON.JavaScriptSerialize(listIds));
             X.Call("filldaytotal", totaldayId, totaldaySum);
-            X.Call("Init");
-            X.Call("DisableTools");
+            X.Call("filldepartmentTotal", listDn, listDS);
+            //X.Call("Init");
+            //X.Call("DisableTools");
         }
 
 
@@ -199,18 +260,19 @@ namespace AionHR.Web.UI.Forms
 
         private void GetBranchSchedule(out string startAt, out string closeAt)
         {
-            DateTime DF, DT;
-            DF = new DateTime(dateFrom.SelectedDate.Year, dateFrom.SelectedDate.Month, 1);
-            DT= DF.AddMonths(1).AddDays(-1);
+            //DateTime DF, DT;
+            //DF = new DateTime(dateFrom.SelectedDate.Year, dateFrom.SelectedDate.Month, 1);
+            //DT= DF.AddMonths(1).AddDays(-1);
 
             BranchWorkRecordRequest reqBS = new BranchWorkRecordRequest();
             reqBS.BranchId = branchId.Value.ToString();
-            //reqBS.FromDayId =dateFrom.SelectedDate.ToString("yyyyMMdd");
-            //reqBS.ToDayId = dateFrom.SelectedDate.ToString("yyyyMMdd");
-            reqBS.FromDayId = DF.ToString("yyyyMMdd");
-            reqBS.ToDayId = DT.ToString("yyyyMMdd");
+            reqBS.FromDayId = dateFrom.SelectedDate.ToString("yyyyMMdd");
+            reqBS.ToDayId = dateFrom.SelectedDate.ToString("yyyyMMdd");
+            //reqBS.FromDayId = DF.ToString("yyyyMMdd");
+            //reqBS.ToDayId = DT.ToString("yyyyMMdd");
 
             ListResponse<BranchSchedule> response = _helpFunctionService.ChildGetAll<BranchSchedule>(reqBS);
+
             if (response.Success)
             {
                 startAt = response.Items[0].openAt;
@@ -222,22 +284,24 @@ namespace AionHR.Web.UI.Forms
                 closeAt = string.Empty;
             }
         }
+     
 
         private string FillOtherRow(string html, List<TimeSlot> timesList,  List<FlatSchedule> items)
         {
 
-          var d=  items.GroupBy(x => x.departmentId);
-            foreach (var c in d)
+          var department=  items.GroupBy(x => x.departmentId);
+            foreach (var d in department)
             {
-                for (int count = 0; count < c.ToList().GroupBy(x => x.employeeId).Count(); count++)
+                var employee = d.ToList().GroupBy(x => x.employeeId);
+                int count = 0;
+                foreach (var e in employee)
+               
                 {
-                    if (count != 0 && items[count].employeeId == items[count - 1].employeeId)
-                    {
-                        continue;
-
-                    }
+                    if (count > 1)
+                        break;
+                    
                     html += "<tr>";
-                    html += "<td id=" + items[count] + " class='Employee'>" + items[count].employeeName.firstName + "</td><td id=" + items[count].employeeName.firstName + "_Total></td>";
+                    html += "<td id=" +e.ToList()[0].employeeId + " class='Employee'>" + e.ToList()[0].employeeName.firstName + "</td><td id=" + e.ToList()[0].employeeId + "_Total></td>";
                     //if (!_systemService.SessionHelper.CheckIfArabicSession())
                     //{
 
@@ -251,14 +315,20 @@ namespace AionHR.Web.UI.Forms
                     //    string month = firstDate.ToString("MM");
                     //    html += "<td id=" + firstDate.ToString("yyyyMMdd") + " class='day'>" + string.Format("<div style='width:43px;display:inline-block'>{0}</div> {1} - {2}", (string)GetLocalResourceObject(day), dayNumber, month) + "</td><td id=" + firstDate.ToString("yyyyMMdd") + "_Total></td>";
                     //}
-
+                    count++;
                     for (int index = 0; index < timesList.Count; index++)
-                    {
-                        html += "<td id=" + items[count].employeeName.firstName + "_" + timesList[index].ID + "></td>";
+                     {
+                        html += "<td id=" + e.ToList()[0].employeeId + "_" + timesList[index].ID + "></td>";
                     }
                     html += "</tr>";
 
                 }
+                html += "<td id=" + d.ToList()[0].departmentId + " class='department'><font color='red'>" + d.ToList()[0].departmentName + "</font></td><td id=" + d.ToList()[0].departmentId + "_Total></td>";
+                for (int index = 0; index < timesList.Count; index++)
+                {
+                    html += "<td id=" + d.ToList()[0].departmentId + "_" + timesList[index].ID + " ></td>";
+                }
+                html += "</tr>";
             }
             return html;
         }

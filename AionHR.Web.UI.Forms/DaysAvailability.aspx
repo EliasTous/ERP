@@ -16,7 +16,7 @@
     <script type="text/javascript" src="http://code.jquery.com/ui/1.10.3/jquery-ui.js?id=2"></script>
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css?id=3" />
     <link rel="stylesheet" href="CSS/DailySchedule.css?id=7" />
-    <script type="text/javascript" src="Scripts/DaysAvailability.js?id=80"></script>
+    <script type="text/javascript" src="Scripts/DaysAvailability.js?id=90"></script>
     <script type="text/javascript" src="Scripts/Users.js?id=2"></script>
  
     <script type="text/javascript" src="Scripts/jquery-new.js?id=10"></script>
@@ -124,12 +124,12 @@
                                 </ext:ComboBox>
 
                                
-                                <ext:DateField runat="server" ID="dateFrom" Width="150" LabelWidth="30" FieldLabel="<%$ Resources: From %>" Editable="false">
+                                <ext:DateField runat="server" ID="dateFrom" Width="150" LabelWidth="30" FieldLabel="<%$ Resources: From %>" Editable="false" >
                                     <%--  <Listeners>
                                         <Change Handler="App.CompanyHeadCountStore.reload(); App.DimensionalHeadCountStore.reload();" />
                                     </Listeners>--%>
                                 </ext:DateField>
-                                <ext:Button MarginSpec="0 0 0 450" runat="server" Text="<%$ Resources: Load %>">
+                                <ext:Button MarginSpec="0 0 0 0" runat="server" Text="<%$ Resources: Load %>">
                                     <DirectEvents>
                                         <Click OnEvent="Load_Click">
                                             <EventMask ShowMask="true" />

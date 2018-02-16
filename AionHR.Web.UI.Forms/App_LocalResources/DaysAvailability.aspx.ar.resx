@@ -252,4 +252,7 @@
   <data name="workingHours" xml:space="preserve">
     <value>ساعات العمل</value>
   </data>
+  <data name="branchClosed" xml:space="preserve">
+    <value>فرع مغلق في هذا اليوم </value>
+  </data>
 </root>
