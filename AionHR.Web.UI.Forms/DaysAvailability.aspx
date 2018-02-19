@@ -16,7 +16,7 @@
     <script type="text/javascript" src="http://code.jquery.com/ui/1.10.3/jquery-ui.js?id=2"></script>
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css?id=3" />
     <link rel="stylesheet" href="CSS/DailySchedule.css?id=7" />
-    <script type="text/javascript" src="Scripts/DaysAvailability.js?id=90"></script>
+    <script type="text/javascript" src="Scripts/DaysAvailability.js?id=310"></script>
     <script type="text/javascript" src="Scripts/Users.js?id=2"></script>
  
     <script type="text/javascript" src="Scripts/jquery-new.js?id=10"></script>
@@ -97,6 +97,8 @@
         <ext:Hidden ID="CurrentYear" runat="server" />
         <ext:Hidden ID="CurrentCalenderLabel" runat="server" />
          <ext:Hidden ID="isRTL" runat="server" />
+         <ext:Hidden ID="currentEmployee" runat="server" />
+
 
 
 
@@ -157,6 +159,47 @@
                     <Items>
                         <ext:Panel runat="server" ID="pnlSchedule" Layout="FitLayout" Flex="6" MarginSpec="0 5 5 5" StyleSpec=" border: 1px solid #add2ed !important;" Html="">
                         </ext:Panel>
+                           <ext:FormPanel Hidden="true" runat="server" ID="pnlTools" Layout="VBoxLayout" Flex="1" MarginSpec="0 5 5 5" StyleSpec=" border: 1px solid #add2ed !important;">
+                            <Defaults>
+                                <ext:Parameter Name="padding" Value="5 5 5 5" Mode="Value" />
+                            </Defaults>
+                            <LayoutConfig>
+                                <ext:VBoxLayoutConfig Align="center" />
+                            </LayoutConfig>
+                            <Items>
+                                <ext:Label runat="server" Text="<%$ Resources: From %>" />
+                                <ext:TimeField
+                                    ID="timeFrom" Text="From"
+                                    runat="server"
+                                    Width="100"
+                                    Increment="30"
+                                    SelectedTime="08:00"
+                                    Format="HH:mm tt" />
+                                <ext:Label runat="server" Text="<%$ Resources: To %>" />
+                                <ext:TimeField
+                                    ID="timeTo" Text="From"
+                                    runat="server"
+                                    Width="100"
+                                    Increment="30"
+                                    SelectedTime="13:00"
+                                    Format="HH:mm tt" />
+                                <ext:Button runat="server" Text="<%$ Resources: Save %>"  ID="btnSave" StyleSpec="margin:0 0 10px 0;">
+                                    <DirectEvents>
+                                        <Click OnEvent="Save_Click">
+                                            <EventMask ShowMask="true" />
+                                        </Click>
+                                    </DirectEvents>
+                                </ext:Button>
+                                <ext:Button runat="server" Text="<%$ Resources: DeleteDay %>"  ID="btnDeleteDay">
+                                    <DirectEvents>
+                                        <Click OnEvent="DeleteDay_Click">
+                                            <EventMask ShowMask="true" />
+                                        </Click>
+                                    </DirectEvents>
+                                </ext:Button>
+
+                            </Items>
+                        </ext:FormPanel>
                         
                         <ext:Panel runat="server" ID="pnlLegend" Hidden="true" Flex="1" MarginSpec="0 5 5 5" StyleSpec=" border: 1px solid #add2ed !important;" Layout="VBoxLayout"
                             BodyPadding="5">

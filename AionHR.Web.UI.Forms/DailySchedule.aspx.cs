@@ -1227,7 +1227,7 @@ namespace AionHR.Web.UI.Forms
                 reqFS.EmployeeId = Convert.ToInt32(employeeId.Value.ToString());
                 reqFS.FromDayId = dateFrom.SelectedDate.ToString("yyyyMMdd");
                 reqFS.ToDayId = dateTo.SelectedDate.ToString("yyyyMMdd");
-            reqFS.BranchId = 0;
+                reqFS.BranchId = 0;
                 ListResponse<FlatSchedule> response = _timeAttendanceService.ChildGetAll<FlatSchedule>(reqFS);
                 if (!response.Success)
                 {
@@ -1237,9 +1237,10 @@ namespace AionHR.Web.UI.Forms
                 this.dayId.Value = string.Empty;
                 BuildSchedule(response.Items);
                 this.cmbEmployeeImport.Value = string.Empty;
-            }
+                groupUsersWindow.Close();
+        }
 
-
+     
         
 
     }

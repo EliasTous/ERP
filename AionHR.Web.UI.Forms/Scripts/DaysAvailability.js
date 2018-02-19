@@ -42,6 +42,34 @@ var ColorifyAndCountSchedule = function (listIds) {
         catch (e) { }
     }
 };
+var employeeClick = function (listIds) {
+
+    for (var i in listIds) {
+       
+        try {
+
+
+         
+
+           
+               
+
+                $("[id='" + listIds[i].employeeId + "']").css("cursor", "pointer");
+             
+                var id = listIds[i].employeeId;
+              
+                $("[id='" + listIds[i].employeeId + "']").click(function () {
+
+                    App.direct.OpenCell(this.id);
+                });
+            }
+
+
+        
+        catch (e) { }
+    }
+};
+
 
 var BranchAvailability = function () {
     //App.pnlTools.hide();

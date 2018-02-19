@@ -88,6 +88,7 @@ namespace AionHR.Web.UI.Forms
               
         protected void Load_Click(object sender, DirectEventArgs e)
         {
+            pnlTools.Hidden = true;
             if (branchId.Value == null || branchId.Value.ToString() == string.Empty)
             {
                 X.Msg.Alert(Resources.Common.Error, (string)GetLocalResourceObject("SelectBranch")).Show();
@@ -141,7 +142,7 @@ namespace AionHR.Web.UI.Forms
                 return;
             }
 
-
+          
             TimeSpan tsStart = TimeSpan.Parse(startAt);
             //timeFrom.MinTime = tsStart;
             //timeTo.MinTime = tsStart.Add(TimeSpan.FromMinutes(30));
@@ -241,16 +242,17 @@ namespace AionHR.Web.UI.Forms
                 totaldayId.Add(x.ToList()[0].employeeId + "_Total");
                 totaldaySum.Add(x.ToList().Sum(y => Convert.ToDouble(y.duration) / 60).ToString());
             });
-
-            
-
+            //List<string> employeeList = new List<string>();
+            //items.ForEach(x => employeeList.Add(x.employeeId.ToString()));
 
 
             html += @"</table></div>";
             this.pnlSchedule.Html = html;
             X.Call("ColorifySchedule", JSON.JavaScriptSerialize(listIds));
+           
             X.Call("filldaytotal", totaldayId, totaldaySum);
             X.Call("filldepartmentTotal", listDn, listDS);
+            X.Call("employeeClick", items);
             //X.Call("Init");
             //X.Call("DisableTools");
         }
@@ -423,42 +425,162 @@ namespace AionHR.Web.UI.Forms
                                                    //   this.employeeId.Update();
             this.employeeScheduleWindow.Hide();
         }
-     
 
-        //[DirectMethod]
-        //public void GetFilteredUsers()
-        //{
-        //    EmployeeListRequest req = new EmployeeListRequest();
-        //    if (branchId.Value == null || branchId.Value.ToString() == string.Empty)
-        //    {
-        //        req.BranchId = "0";
-        //    }
-        //    else
-        //        req.BranchId = branchId.Value.ToString();
-        //    if (departmentId.Value == null || departmentId.Value.ToString() == string.Empty)
-        //    {
-        //        req.DepartmentId = "0";
-        //    }
-        //    else
-        //        req.DepartmentId = departmentId.Value.ToString();
+        [DirectMethod]
+        public void OpenCell(string EmployeeId)
+        {
+            pnlTools.Hidden = false;
+            currentEmployee.Text = EmployeeId;
+            string startAt=string.Empty, closeAt=string.Empty;
+            BranchScheduleRecordRequest reqFS = new BranchScheduleRecordRequest();
+            reqFS.EmployeeId = Convert.ToInt32(EmployeeId);
+            reqFS.FromDayId = dateFrom.SelectedDate.ToString("yyyyMMdd");
+            reqFS.ToDayId = dateFrom.SelectedDate.ToString("yyyyMMdd");
+            reqFS.BranchId = 0;
+
+            ListResponse<FlatSchedule> response = _timeAttendanceService.ChildGetAll<FlatSchedule>(reqFS);
+            if (!response.Success)
+            {
+                X.Msg.Alert(Resources.Common.Error, (string)GetLocalResourceObject("ErrorGettingSchedule")).Show();
+                return;
+            }
+         
+            this.pnlSchedule.Html = string.Empty;
+            string html = @"<div style = 'margin: 5px auto; width: 99%; height: 98%; overflow:auto;' > 
+                             <table id = 'tbCalendar' cellpadding = '5' cellspacing = '0' >";
+            if (response.Items.Count == 0)
+                Load_Click(new object(), new DirectEventArgs(null));
+            else                
+            GetBranchSchedule(out startAt, out closeAt);
+           
+
+            TimeSpan tsStart = TimeSpan.Parse(startAt);
+            timeFrom.MinTime = tsStart;
+            timeTo.MinTime = tsStart.Add(TimeSpan.FromMinutes(30));
+            TimeSpan tsClose = TimeSpan.Parse(closeAt);
+            timeTo.MaxTime = tsClose;
 
 
-        //    req.IncludeIsInactive = 2;
-        //    req.SortBy = "firstName";
 
-        //    req.StartAt = "1";
-        //    req.Size = "20";
-        //    req.Filter = "";
-        //    ListResponse<Employee> response = _employeeService.GetAll<Employee>(req);
-        //    if (!response.Success)
-        //        X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).ToString() + "<br>Technical Error: " + response.ErrorCode + "<br> Summary: " + response.Summary : response.Summary).Show();
+            //Filling The Times Slot
+            List<TimeSlot> timesList = new List<TimeSlot>();
+            DateTime dtStart, dtEnd;
+            dtStart = new DateTime(dateFrom.SelectedDate.Year, dateFrom.SelectedDate.Month, 1, tsStart.Hours, tsStart.Minutes, 0);
+            dtEnd = new DateTime(dateFrom.SelectedDate.Year, dateFrom.SelectedDate.Month, 1, tsClose.Hours, tsClose.Minutes, 0);
 
-        //    else
-        //        response.Items.ForEach(x => x.fullName = x.name.fullName);
-        //    X.Call("AddSource", response.Items);
 
-        //}
-      
+           
+
+            do
+            {
+                TimeSlot ts = new TimeSlot();
+                ts.ID = dtStart.ToString("HH:mm");
+                ts.Time = dtStart.ToString("HH:mm");
+                timesList.Add(ts);
+               
+                dtStart = dtStart.AddMinutes(30);
+            } while (dtStart <= dtEnd);
+
+            html = FillFirstRow(html, timesList);
+
+            html = FillOtherRow(html, timesList, response.Items);
+
+            html += @"</table></div>";
+            this.pnlSchedule.Html = html;
+            List<string> listIds = new List<string>();
+            foreach (FlatSchedule fs in response.Items)
+            {
+                DateTime activeDate = DateTime.ParseExact(fs.dayId, "yyyyMMdd", new CultureInfo("en"));
+                DateTime fsfromDate = new DateTime(activeDate.Year, activeDate.Month, activeDate.Day, Convert.ToInt32(fs.from.Split(':')[0]), Convert.ToInt32(fs.from.Split(':')[1]), 0);
+                DateTime fsToDate = new DateTime(activeDate.Year, activeDate.Month, activeDate.Day, Convert.ToInt32(fs.to.Split(':')[0]), Convert.ToInt32(fs.to.Split(':')[1]), 0);
+
+                
+                do
+                {
+                    listIds.Add(EmployeeId + "_" + fsfromDate.ToString("HH:mm"));
+                    fsfromDate = fsfromDate.AddMinutes(30);
+                } while (fsToDate >= fsfromDate);
+            }
+
+
+
+            X.Call("ColorifySchedule", JSON.JavaScriptSerialize(listIds));
+
+
+        }
+
+        protected void Save_Click(object sender, DirectEventArgs e)
+        {
+            FlatSchedule fs = new FlatSchedule();
+            fs.from = timeFrom.SelectedTime.ToString().Substring(0,5);
+            fs.to = timeTo.SelectedTime.ToString().Substring(0, 5);
+            fs.employeeId = Convert.ToInt32(currentEmployee.Text);
+            fs.dayId = dateFrom.SelectedDate.ToString("yyyyMMdd");
+            PostRequest<FlatSchedule> request = new PostRequest<FlatSchedule>();
+
+            request.entity = fs;
+            PostResponse<FlatSchedule> r = _timeAttendanceService.ChildAddOrUpdate<FlatSchedule>(request);
+
+
+            //check if the insert failed
+            if (!r.Success)//it maybe be another condition
+            {
+                //Show an error saving...
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() + "<br>Technical Error: " + r.ErrorCode + "<br> Summary: " + r.Summary : r.Summary).Show();
+                return;
+            }
+            OpenCell(currentEmployee.Text);
+        }
+        protected void DeleteDay_Click(object sender, DirectEventArgs e)
+        {
+            X.Msg.Confirm(Resources.Common.Confirmation, (string)GetLocalResourceObject("ConfirmDeleteDay"), new MessageBoxButtonsConfig
+            {
+                Yes = new MessageBoxButtonConfig
+                {
+                    //We are call a direct request metho for deleting a record
+                    Handler = String.Format("App.direct.DayDelete()"),
+                    Text = Resources.Common.Yes
+                },
+                No = new MessageBoxButtonConfig
+                {
+                    Text = Resources.Common.No
+                }
+
+            }).Show();
+        }
+        [DirectMethod(ShowMask = true)]
+        public void DayDelete()
+        {
+         
+
+
+            FlatSchedule fs = new FlatSchedule();
+            fs.employeeId = Convert.ToInt32(currentEmployee.Text);
+            fs.dayId = dateFrom.SelectedDate.ToString("yyyyMMdd"); 
+            fs.shiftId = 0;
+            PostRequest<FlatSchedule> request = new PostRequest<FlatSchedule>();
+
+            request.entity = fs;
+            PostResponse<FlatSchedule> r = _timeAttendanceService.ChildDelete<FlatSchedule>(request);
+
+
+            //check if the insert failed
+            if (!r.Success)//it maybe be another condition
+            {
+                //Show an error saving...
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() + "<br>Technical Error: " + r.ErrorCode + "<br> Summary: " + r.Summary : r.Summary).Show();
+                return;
+            }
+
+            else
+            {
+                Load_Click(new object(), new DirectEventArgs(null));
+            }
+        }
+    
+
 
     }
 }

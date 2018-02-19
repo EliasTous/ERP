@@ -112,6 +112,15 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Hidden isRTL;
         
         /// <summary>
+        /// currentEmployee control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Hidden currentEmployee;
+        
+        /// <summary>
         /// Viewport1 control.
         /// </summary>
         /// <remarks>
@@ -182,6 +191,51 @@ namespace AionHR.Web.UI.Forms {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.Panel pnlSchedule;
+        
+        /// <summary>
+        /// pnlTools control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.FormPanel pnlTools;
+        
+        /// <summary>
+        /// timeFrom control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.TimeField timeFrom;
+        
+        /// <summary>
+        /// timeTo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.TimeField timeTo;
+        
+        /// <summary>
+        /// btnSave control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Button btnSave;
+        
+        /// <summary>
+        /// btnDeleteDay control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Button btnDeleteDay;
         
         /// <summary>
         /// pnlLegend control.
