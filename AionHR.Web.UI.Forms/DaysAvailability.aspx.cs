@@ -204,24 +204,20 @@ namespace AionHR.Web.UI.Forms
 
                     do
                     {
-                        listDn.Add(employee[0].departmentId + "_" + fsfromDate.ToString("HH:mm"));
+                        listDn.Add(employee[0].departmentId + "-" + fsfromDate.ToString("HH:mm"));
                         int sum = 0;
                         employee.ForEach(x =>
                         {
-                          int minhours=  Convert.ToInt32(x.from.Split(':')[0]);
-                          int maxHour = Convert.ToInt32(x.to.Split(':')[0]);
-
-                            int minMinutes= Convert.ToInt32(x.from.Split(':')[1]);
-                            int maxMinutes = Convert.ToInt32(x.to.Split(':')[1]);
-
-
-                            if (fsfromDate.Hour >= minhours && fsfromDate.Hour <= maxHour && fsfromDate.Minute>= minMinutes  )
-                            {
-                                if (fsfromDate.Hour == maxHour && fsfromDate.Minute > maxMinutes)
-                                    return;
-                             
-                                   sum++;
-                            } 
+                          int employeeFromHour=  Convert.ToInt32(x.from.Split(':')[0]);
+                          int employeeToHour = Convert.ToInt32(x.to.Split(':')[0]);
+                           
+                            int employeeFromMintues= Convert.ToInt32(x.from.Split(':')[1]);
+                            int employeeTMintues = Convert.ToInt32(x.to.Split(':')[1]);
+                            double employeeFromTotal = employeeFromHour * 100 + employeeFromMintues;
+                            double employeeToTotal = employeeToHour * 100 + employeeTMintues;
+                            double FsTotal = fsfromDate.Hour * 100 + fsfromDate.Minute;
+                            if (FsTotal >= employeeFromTotal && FsTotal <= employeeToTotal)
+                                sum++;
                             
                         }
                         );
@@ -295,15 +291,15 @@ namespace AionHR.Web.UI.Forms
             foreach (var d in department)
             {
                 var employee = d.ToList().GroupBy(x => x.employeeId);
-                int count = 0;
+                //int count = 0;
                 foreach (var e in employee)
                
                 {
-                    if (count > 1)
-                        break;
+                    //if (count > 1)
+                    //    break;
                     
                     html += "<tr>";
-                    html += "<td id=" +e.ToList()[0].employeeId + " class='Employee'>" + e.ToList()[0].employeeName.firstName + "</td><td id=" + e.ToList()[0].employeeId + "_Total></td>";
+                    html += "<td id=" +e.ToList()[0].employeeId + " class='Employee'>" + e.ToList()[0].employeeName.fullName + "</td><td id=" + e.ToList()[0].employeeId + "_Total></td>";
                     //if (!_systemService.SessionHelper.CheckIfArabicSession())
                     //{
 
@@ -317,7 +313,7 @@ namespace AionHR.Web.UI.Forms
                     //    string month = firstDate.ToString("MM");
                     //    html += "<td id=" + firstDate.ToString("yyyyMMdd") + " class='day'>" + string.Format("<div style='width:43px;display:inline-block'>{0}</div> {1} - {2}", (string)GetLocalResourceObject(day), dayNumber, month) + "</td><td id=" + firstDate.ToString("yyyyMMdd") + "_Total></td>";
                     //}
-                    count++;
+                    //count++;
                     for (int index = 0; index < timesList.Count; index++)
                      {
                         html += "<td id=" + e.ToList()[0].employeeId + "_" + timesList[index].ID + "></td>";
@@ -325,10 +321,10 @@ namespace AionHR.Web.UI.Forms
                     html += "</tr>";
 
                 }
-                html += "<td id=" + d.ToList()[0].departmentId + " class='department'><font color='red'>" + d.ToList()[0].departmentName + "</font></td><td id=" + d.ToList()[0].departmentId + "_Total></td>";
+                html += "<td id=" + d.ToList()[0].departmentId +"_"+ d.ToList()[0].departmentName + " class='department'><font color='red'>" + d.ToList()[0].departmentName + "</font></td><td id=" + d.ToList()[0].departmentId + "_Total></td>";
                 for (int index = 0; index < timesList.Count; index++)
                 {
-                    html += "<td id=" + d.ToList()[0].departmentId + "_" + timesList[index].ID + " ></td>";
+                    html += "<td id=" + d.ToList()[0].departmentId + "-" + timesList[index].ID + " ></td>";
                 }
                 html += "</tr>";
             }
@@ -457,9 +453,10 @@ namespace AionHR.Web.UI.Forms
             TimeSpan tsStart = TimeSpan.Parse(startAt);
             timeFrom.MinTime = tsStart;
             timeTo.MinTime = tsStart.Add(TimeSpan.FromMinutes(30));
+            timeFrom.SelectedTime = tsStart;
             TimeSpan tsClose = TimeSpan.Parse(closeAt);
             timeTo.MaxTime = tsClose;
-
+         
 
 
             //Filling The Times Slot
@@ -467,7 +464,7 @@ namespace AionHR.Web.UI.Forms
             DateTime dtStart, dtEnd;
             dtStart = new DateTime(dateFrom.SelectedDate.Year, dateFrom.SelectedDate.Month, 1, tsStart.Hours, tsStart.Minutes, 0);
             dtEnd = new DateTime(dateFrom.SelectedDate.Year, dateFrom.SelectedDate.Month, 1, tsClose.Hours, tsClose.Minutes, 0);
-
+            
 
            
 
@@ -480,7 +477,7 @@ namespace AionHR.Web.UI.Forms
                
                 dtStart = dtStart.AddMinutes(30);
             } while (dtStart <= dtEnd);
-
+            
             html = FillFirstRow(html, timesList);
 
             html = FillOtherRow(html, timesList, response.Items);
@@ -501,12 +498,20 @@ namespace AionHR.Web.UI.Forms
                     fsfromDate = fsfromDate.AddMinutes(30);
                 } while (fsToDate >= fsfromDate);
             }
+            var d = response.Items.GroupBy(x => x.employeeId);
+            List<string> totaldayId = new List<string>();
+            List<string> totaldaySum = new List<string>();
+            d.ToList().ForEach(x =>
+            {
+                totaldayId.Add(x.ToList()[0].employeeId + "_Total");
+                totaldaySum.Add(x.ToList().Sum(y => Convert.ToDouble(y.duration) / 60).ToString());
+            });
 
 
 
             X.Call("ColorifySchedule", JSON.JavaScriptSerialize(listIds));
 
-
+            X.Call("filldaytotal", totaldayId, totaldaySum);
         }
 
         protected void Save_Click(object sender, DirectEventArgs e)

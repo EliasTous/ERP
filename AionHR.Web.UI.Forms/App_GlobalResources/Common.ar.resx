@@ -1147,6 +1147,6 @@
     <value>تمت المزامنة بنجاح </value>
   </data>
   <data name="DayAvailability" xml:space="preserve">
-    <value>دوام فرع</value>
+    <value>الجدول اليومي للفرع</value>
   </data>
 </root>

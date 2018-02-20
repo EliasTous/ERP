@@ -102,8 +102,10 @@ var filldaytotal = function (listIds, list2) {
     }
 };
 var filldepartmentTotal = function (listIds, list2) {
-
+    
     for (var i in listIds) {
+        
+     
         try {
 
             document.getElementById(listIds[i]).innerHTML = list2[i];
