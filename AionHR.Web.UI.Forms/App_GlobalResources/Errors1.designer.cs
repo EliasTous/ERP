@@ -817,6 +817,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to employee hire date is greater than the selected date.
+        /// </summary>
+        internal static string Error_50058 {
+            get {
+                return ResourceManager.GetString("Error_50058", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cannot Insert Null Value to this field.
         /// </summary>
         internal static string Error_515 {

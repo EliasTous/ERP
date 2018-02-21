@@ -1070,7 +1070,7 @@ namespace AionHR.Web.UI.Forms
                 req.DepartmentId = departmentId.Value.ToString();
            
           
-            req.IncludeIsInactive = 2;
+            req.IncludeIsInactive = 0;
             req.SortBy = "firstName";
 
             req.StartAt = "1";
