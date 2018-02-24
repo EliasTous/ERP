@@ -688,6 +688,7 @@ namespace AionHR.Web.UI.Forms
 
         private void BuildSchedule(List<FlatSchedule> items)
         {
+        
             string html = @"<div style = 'margin: 5px auto; width: 99%; height: 98%; overflow:auto;' > 
                              <table id = 'tbCalendar' cellpadding = '5' cellspacing = '0' >";
 
@@ -756,16 +757,17 @@ namespace AionHR.Web.UI.Forms
                 totaldayId.Add(x.ToList()[0].dayId + "_Total");
                 totaldaySum.Add(x.ToList().Sum(y => Convert.ToDouble(y.duration)/60).ToString());
             });
-           
 
 
+   
 
             html += @"</table></div>";
-            this.pnlSchedule.Html = html;
+            this.pnlSchedule.Html =  html;
             X.Call("ColorifySchedule", JSON.JavaScriptSerialize(listIds));
             X.Call("filldaytotal", totaldayId, totaldaySum);
            X.Call("Init");
             X.Call("DisableTools");
+            X.Call("FixHeader");
         }
 
 
@@ -844,6 +846,7 @@ namespace AionHR.Web.UI.Forms
             X.Call("BranchAvailability");
             this.pnlSchedule.Html = html;
             X.Call("ColorifyAndCountSchedule", JSON.JavaScriptSerialize(listIds));
+            X.Call("FixHeader");
 
 
         }
@@ -903,12 +906,12 @@ namespace AionHR.Web.UI.Forms
         private string FillFirstRow(string html, List<TimeSlot> timesList)
         {
 
-            html += "<tr><th style='width:95px;'></th><th>"+GetLocalResourceObject("total")+"</th>";
+            html += "<thead><tr ><th style='width:120px;'></th><th>"+GetLocalResourceObject("total")+"</th>";
             for (int index = 0; index < timesList.Count; index++)
             {
                 html += "<th>" + timesList[index].Time + "</th>";
             }
-            html += "</tr>";
+            html += "</tr></thead>";
             return html;
         }
 

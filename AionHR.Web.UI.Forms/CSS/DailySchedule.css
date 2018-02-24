@@ -1,38 +1,63 @@
-﻿  #tbCalendar td, #tbCalendar th
+﻿#tbCalendar td:first-child, #tbCalendar th:first-child {
+    width:120px; 
+    max-width:120px;
+    min-width:120px;
+}
+
+.fht-table td:first-child, .fht-table th:first-child {
+    width:120px; 
+    max-width:120px;
+    min-width:120px;
+}
+
+#tbCalendar td, #tbCalendar th
         {
+      min-width:47px;
+      max-width:47px;
             border-left: solid 1px #e0e0e2 !important;
             border-bottom: solid 1px #e0e0e2 !important;
            
         }
+.fht-table td, .fht-table th {
+        min-width:47px;
+      max-width:47px;
+       border-left: solid 1px #e0e0e2 !important;
+            border-bottom: solid 1px #e0e0e2 !important;
+}
   #tbCalendar td:not(:first-child)
+  {
+      text-align:center;
+  }
+    .fht-table td:not(:first-child)
   {
       text-align:center;
   }
 
 
 
-        #tbCalendar th
+        #tbCalendar th, .fht-table th
         {
+          
             background: #eaeaec !important;
             text-align: center !important;
             color: #444444;
             padding: 3px 2px;
         }
-        .content-table, #tbCalendar
+        .content-table, #tbCalendar,.fht-table
         {
             width: 80% !important;
         }
         .hidden{
             display:none;
         }
-        #tbCalendar
+        #tbCalendar, .fht-table
         {
             border-top: solid 1px #e0e0e2 !important;
             border-right: solid 1px #e0e0e2 !important;
             font-family: Arial !important;
             font-size: 14px !important;
         }
-        #tbCalendar td.day:hover
+        #tbCalendar td.day:hover,.fht-table td.day:hover
         {
             background: #eaeaec !important;
             cursor:pointer;

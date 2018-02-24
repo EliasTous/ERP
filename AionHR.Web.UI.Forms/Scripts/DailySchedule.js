@@ -1,4 +1,9 @@
 ﻿
+var FixHeader = function () {
+    $('#tbCalendar').fixedHeaderTable();
+}
+
+
 var DeleteDaySchedule = function (id) {
   
     $('[id^="' + id + '_"]').each(function () {
@@ -101,6 +106,8 @@ var Init = function () {
             }
         });
     });
+
+   // $('#tbCalendar').fixedHeaderTable();
 }
 
 var DisableTools = function () {
@@ -133,6 +140,9 @@ var init = function () {
     $('#tbCalendar td').each(function () {
         $(this).css('backgroundColor', '#ffffff');
     });
+
+   
+
 };
 var setLeapDay = function () {
 
