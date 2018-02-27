@@ -269,9 +269,10 @@ namespace AionHR.Web.UI.Forms.EmployeePages
         {
             Branch obj = new Branch();
             obj.name = recBranchId.Text;
-
+            obj.isInactive = false;
             PostRequest<Branch> req = new PostRequest<Branch>();
             req.entity = obj;
+
             PostResponse<Branch> response = _companyStructureService.ChildAddOrUpdate<Branch>(req);
             if (response.Success)
             {

@@ -15,8 +15,8 @@
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.js?id=1"></script>
     <script type="text/javascript" src="http://code.jquery.com/ui/1.10.3/jquery-ui.js?id=2"></script>
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css?id=3" />
-    <link rel="stylesheet" href="CSS/DailySchedule.css?id=7" />
-    <script type="text/javascript" src="Scripts/DaysAvailability.js?id=950"></script>
+    <link rel="stylesheet" href="CSS/DailySchedule.css?id=20" />
+    <script type="text/javascript" src="Scripts/DaysAvailability.js?id=10"></script>
     <script type="text/javascript" src="Scripts/Users.js?id=2"></script>
  
     <script type="text/javascript" src="Scripts/jquery-new.js?id=10"></script>

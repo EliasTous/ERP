@@ -379,7 +379,7 @@ namespace AionHR.Web.UI.Forms
         private string FillSummaryRow(string html, List<TimeSlot> timesList,Dictionary<string,int> dic )
         {
 
-            html += "<tfoot><tr><td style='width:95px;'></td><td>" + GetLocalResourceObject("total") + "</td>";
+            html += "<tfoot><tr class='department'><td style='width:95px;'></td><td>" + GetLocalResourceObject("total") + "</td>";
             for (int index = 0; index < timesList.Count; index++)
             {
               
