@@ -180,55 +180,87 @@ namespace AionHR.Web.UI.Forms
             //Preparing the ids to get colorified
             List<string> listIds = new List<string>();
             List<string> listDn = new List<string>();
-            List<int> listDS = new List<int>();
+            List<string> listDS = new List<string>();
+          
+            Dictionary<string, int> dic = new Dictionary<string, int>(); 
+            
+            DateTime activeDate = DateTime.ParseExact(items[0].dayId, "yyyyMMdd", new CultureInfo("en"));
+            DateTime fsfromDate, fsToDate;
+           
 
             foreach (FlatSchedule fs in items)
             {
-                DateTime activeDate = DateTime.ParseExact(fs.dayId, "yyyyMMdd", new CultureInfo("en"));
-                DateTime fsfromDate = new DateTime(activeDate.Year, activeDate.Month, activeDate.Day, Convert.ToInt32(fs.from.Split(':')[0]), Convert.ToInt32(fs.from.Split(':')[1]), 0);
-                DateTime fsToDate = new DateTime(activeDate.Year, activeDate.Month, activeDate.Day, Convert.ToInt32(fs.to.Split(':')[0]), Convert.ToInt32(fs.to.Split(':')[1]), 0);
+            
+               fsfromDate = new DateTime(activeDate.Year, activeDate.Month, activeDate.Day, Convert.ToInt32(fs.from.Split(':')[0]), Convert.ToInt32(fs.from.Split(':')[1]), 0);
+               fsToDate = new DateTime(activeDate.Year, activeDate.Month, activeDate.Day, Convert.ToInt32(fs.to.Split(':')[0]), Convert.ToInt32(fs.to.Split(':')[1]), 0);
 
                 do
                 {
                     listIds.Add(fs.employeeId + "_" + fsfromDate.ToString("HH:mm"));
-                    fsfromDate = fsfromDate.AddMinutes(30);
-                } while (fsToDate >= fsfromDate);
-              
-                var department= items.GroupBy(x => x.departmentId);
-                foreach (var de in department)
-                {
-                    fsfromDate = new DateTime(activeDate.Year, activeDate.Month, activeDate.Day, Convert.ToInt32(startAt.Split(':')[0]), Convert.ToInt32(startAt.Split(':')[1]), 0);
-                    fsToDate = new DateTime(activeDate.Year, activeDate.Month, activeDate.Day, Convert.ToInt32(closeAt.Split(':')[0]), Convert.ToInt32(closeAt.Split(':')[1]), 0);
-                    List<FlatSchedule> employee = de.ToList();
-                   
+                    listDn.Add(fs.employeeId+"_"+  fs.departmentId + "_" + fsfromDate.ToString("HH:mm"));
+                    listDS.Add(fs.departmentId.ToString());
 
-                    do
-                    {
-                        listDn.Add(employee[0].departmentId + "-" + fsfromDate.ToString("HH:mm"));
-                        int sum = 0;
-                        employee.ForEach(x =>
-                        {
-                          int employeeFromHour=  Convert.ToInt32(x.from.Split(':')[0]);
-                          int employeeToHour = Convert.ToInt32(x.to.Split(':')[0]);
-                           
-                            int employeeFromMintues= Convert.ToInt32(x.from.Split(':')[1]);
-                            int employeeTMintues = Convert.ToInt32(x.to.Split(':')[1]);
-                            double employeeFromTotal = employeeFromHour * 100 + employeeFromMintues;
-                            double employeeToTotal = employeeToHour * 100 + employeeTMintues;
-                            double FsTotal = fsfromDate.Hour * 100 + fsfromDate.Minute;
-                            if (FsTotal >= employeeFromTotal && FsTotal <= employeeToTotal)
-                                sum++;
-                            
-                        }
-                        );
-                        listDS.Add(sum);
+                        //if (!dic.ContainsKey(fs.departmentId + "-" + fsfromDate.ToString("HH:mm")))
+                        //    dic.Add(fs.departmentId + "-" + fsfromDate.ToString("HH:mm"), 1);
+                        //else
+                        //    dic[fs.departmentId + "-" + fsfromDate.ToString("HH:mm")]++;
                         fsfromDate = fsfromDate.AddMinutes(30);
-                    } while (fsToDate >= fsfromDate);
-
-
-                }
-
+                } while (fsToDate >= fsfromDate);
             }
+            listDn= listDn.Distinct().ToList();
+            listDS= listDS.Distinct().ToList();
+            //listDS.ForEach(departmentID => dic.Add(departmentID+, listDn.Where(stringToCheck => stringToCheck.Contains(departmentID)).Count()));
+
+
+            fsfromDate = new DateTime(activeDate.Year, activeDate.Month, activeDate.Day, Convert.ToInt32(startAt.Split(':')[0]), Convert.ToInt32(startAt.Split(':')[1]), 0);
+            fsToDate = new DateTime(activeDate.Year, activeDate.Month, activeDate.Day, Convert.ToInt32(closeAt.Split(':')[0]), Convert.ToInt32(closeAt.Split(':')[1]), 0);
+
+            do
+            {
+                listDS.ForEach(departmentID => dic.Add(departmentID+"-"+ fsfromDate.ToString("HH:mm"), listDn.Where(stringToCheck => stringToCheck.Contains(departmentID+"_"+ fsfromDate.ToString("HH:mm"))).Count()));
+                fsfromDate = fsfromDate.AddMinutes(30);
+            } while (fsToDate >= fsfromDate);
+
+
+
+
+
+            //var department= items.GroupBy(x => x.departmentId);
+            //foreach (var de in department)
+            //{
+
+            //    fsfromDate = new DateTime(activeDate.Year, activeDate.Month, activeDate.Day, Convert.ToInt32(startAt.Split(':')[0]), Convert.ToInt32(startAt.Split(':')[1]), 0);
+            //    fsToDate = new DateTime(activeDate.Year, activeDate.Month, activeDate.Day, Convert.ToInt32(closeAt.Split(':')[0]), Convert.ToInt32(closeAt.Split(':')[1]), 0);
+            //    List<FlatSchedule> employee = de.ToList();
+
+
+            //    do
+            //    {
+            //        listDn.Add(employee[0].departmentId + "-" + fsfromDate.ToString("HH:mm"));
+            //        int sum = 0;
+            //        employee.ForEach(x =>
+            //        {
+            //          int employeeFromHour=  Convert.ToInt32(x.from.Split(':')[0]);
+            //          int employeeToHour = Convert.ToInt32(x.to.Split(':')[0]);
+
+            //            int employeeFromMintues= Convert.ToInt32(x.from.Split(':')[1]);
+            //            int employeeTMintues = Convert.ToInt32(x.to.Split(':')[1]);
+            //            double employeeFromTotal = employeeFromHour * 100 + employeeFromMintues;
+            //            double employeeToTotal = employeeToHour * 100 + employeeTMintues;
+            //            double FsTotal = fsfromDate.Hour * 100 + fsfromDate.Minute;
+            //            if (FsTotal >= employeeFromTotal && FsTotal <= employeeToTotal)
+            //                sum++;
+
+            //        }
+            //        );
+            //        listDS.Add(sum);
+            //        fsfromDate = fsfromDate.AddMinutes(30);
+            //    } while (fsToDate >= fsfromDate);
+
+
+            //}
+
+
 
             var d = items.GroupBy(x => x.employeeId);
             List<string> totaldayId = new List<string>();
@@ -240,14 +272,16 @@ namespace AionHR.Web.UI.Forms
             });
             //List<string> employeeList = new List<string>();
             //items.ForEach(x => employeeList.Add(x.employeeId.ToString()));
-
+           
+            html = FillSummaryRow(html, timesList, dic);
 
             html += @"</table></div>";
             this.pnlSchedule.Html = html;
             X.Call("ColorifySchedule", JSON.JavaScriptSerialize(listIds));
            
             X.Call("filldaytotal", totaldayId, totaldaySum);
-            X.Call("filldepartmentTotal", listDn, listDS);
+            //X.Call("filldepartmentTotal", listDn, listDS);
+            X.Call("filldepartmentTotal", dic);
             X.Call("employeeClick", items);
             //X.Call("Init");
             //X.Call("DisableTools");
@@ -321,10 +355,10 @@ namespace AionHR.Web.UI.Forms
                     html += "</tr>";
 
                 }
-                html += "<td id=" + d.ToList()[0].departmentId +"_"+ d.ToList()[0].departmentName + " class='department'><font color='red'>" + d.ToList()[0].departmentName + "</font></td><td id=" + d.ToList()[0].departmentId + "_Total></td>";
+                html += "<td  id=" + d.ToList()[0].departmentId +"_"+ d.ToList()[0].departmentName + " class='department'>" + d.ToList()[0].departmentName + "</td><td  class='department' id=" + d.ToList()[0].departmentId + "-Total>"+ employee.ToList().Count()+"</td>";
                 for (int index = 0; index < timesList.Count; index++)
                 {
-                    html += "<td id=" + d.ToList()[0].departmentId + "-" + timesList[index].ID + " ></td>";
+                    html += "<td class='department' id=" + d.ToList()[0].departmentId + "-" + timesList[index].ID + " ></td>";
                 }
                 html += "</tr>";
             }
@@ -342,8 +376,20 @@ namespace AionHR.Web.UI.Forms
             html += "</tr>";
             return html;
         }
+        private string FillSummaryRow(string html, List<TimeSlot> timesList,Dictionary<string,int> dic )
+        {
 
-     
+            html += "<tfoot><tr><td style='width:95px;'></td><td>" + GetLocalResourceObject("total") + "</td>";
+            for (int index = 0; index < timesList.Count; index++)
+            {
+              
+                html += "<td>" + dic.Where(kvp => kvp.Key.Contains(timesList[index].Time)).Sum(kvp => kvp.Value) + "</td>";
+            }
+            html += "</tr></tfoot>";
+            return html;
+        }
+
+
 
         private void SetExtLanguage()
         {

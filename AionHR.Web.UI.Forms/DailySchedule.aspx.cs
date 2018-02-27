@@ -1077,7 +1077,7 @@ namespace AionHR.Web.UI.Forms
             req.SortBy = "firstName";
 
             req.StartAt = "1";
-            req.Size = "20";
+            req.Size = "1000";
             req.Filter = "";
             ListResponse<Employee> response = _employeeService.GetAll<Employee>(req);
             if (!response.Success)

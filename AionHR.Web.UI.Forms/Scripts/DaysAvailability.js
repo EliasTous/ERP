@@ -81,9 +81,10 @@ var BranchAvailability = function () {
 
 
 var ColorifySchedule = function (listIds) {
-
+   
     for (var i in listIds) {
         try {
+            
             document.getElementById(listIds[i]).style.background = "green";
         }
         catch (e) { }
@@ -101,14 +102,14 @@ var filldaytotal = function (listIds, list2) {
 
     }
 };
-var filldepartmentTotal = function (listIds, list2) {
+var filldepartmentTotal = function (dic) {
     
-    for (var i in listIds) {
+    for (var i in dic) {
         
      
         try {
 
-            document.getElementById(listIds[i]).innerHTML = list2[i];
+            document.getElementById(i).innerHTML = dic[i];
         }
         catch (e) { }
 
