@@ -12,14 +12,16 @@
     <link rel="stylesheet" href="CSS/LiveSearch.css" />
 
     <script type="text/javascript" src="Scripts/common.js"></script>
-    <script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.js?id=1"></script>
-    <script type="text/javascript" src="http://code.jquery.com/ui/1.10.3/jquery-ui.js?id=2"></script>
-    <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css?id=3" />
-    <link rel="stylesheet" href="CSS/DailySchedule.css?id=20" />
-    <script type="text/javascript" src="Scripts/DaysAvailability.js?id=10"></script>
-    <script type="text/javascript" src="Scripts/Users.js?id=2"></script>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.js?id=2"></script>
+    <script type="text/javascript" src="http://code.jquery.com/ui/1.10.3/jquery-ui.js?id=3"></script>
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css?id=5" />
+    <link rel="stylesheet" href="CSS/DailySchedule.css?id=56" />
+      <link rel="stylesheet" href="CSS/defaultTheme.css?id=60" />
+    <script type="text/javascript" src="Scripts/DaysAvailability.js?id=150"></script>
+    <script type="text/javascript" src="Scripts/Users.js?id=150"></script>
  
-    <script type="text/javascript" src="Scripts/jquery-new.js?id=10"></script>
+    <script type="text/javascript" src="Scripts/jquery-new.js?id=112"></script>
+      <script type="text/javascript" src="Scripts/plugins/jquery.fixedheadertable.min.js?id=100"></script>
 
     <script type="text/javascript">
 

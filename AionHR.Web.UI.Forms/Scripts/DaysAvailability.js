@@ -1,4 +1,8 @@
 ﻿
+var FixHeader = function () {
+    $('#tbCalendar').fixedHeaderTable();
+}
+
 var DeleteDaySchedule = function (id) {
 
     $('[id^="' + id + '_"]').each(function () {

@@ -285,6 +285,7 @@ namespace AionHR.Web.UI.Forms
             X.Call("employeeClick", items);
             //X.Call("Init");
             //X.Call("DisableTools");
+            X.Call("FixHeader");
         }
 
 
@@ -367,13 +368,14 @@ namespace AionHR.Web.UI.Forms
 
         private string FillFirstRow(string html, List<TimeSlot> timesList)
         {
+          
 
-            html += "<tr><th style='width:95px;'></th><th>" + GetLocalResourceObject("total") + "</th>";
+            html += "<thead><tr><th style='width:120px;'></th><th>" + GetLocalResourceObject("total") + "</th>";
             for (int index = 0; index < timesList.Count; index++)
             {
                 html += "<th>" + timesList[index].Time + "</th>";
             }
-            html += "</tr>";
+            html += "</tr></thead>";
             return html;
         }
         private string FillSummaryRow(string html, List<TimeSlot> timesList,Dictionary<string,int> dic )

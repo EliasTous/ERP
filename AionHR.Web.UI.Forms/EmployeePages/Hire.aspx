@@ -31,9 +31,9 @@
             }
             
             var d;
-            if (App.probationPeriod.value == 1)
-                d = moment(App.hireDate.getValue());
-            else
+            //if (App.probationPeriod.value == 1)
+            //    d = moment(App.hireDate.getValue());
+            //else
                 d = moment(App.hireDate.getValue()).add(parseInt(App.probationPeriod.value), 'days');
             App.probationEndDate.setValue(new Date(d.toDate()));
         }
@@ -98,7 +98,7 @@
                                 <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
                             </Listeners>
                         </ext:ComboBox>
-                            <ext:NumberField runat="server" AllowBlank="true" ID="probationPeriod" Name="probationPeriod" LabelWidth="150" FieldLabel="<%$ Resources:FieldProbationPeriod  %>" MinValue="1">
+                            <ext:NumberField runat="server" AllowBlank="true" ID="probationPeriod" Name="probationPeriod" LabelWidth="150" FieldLabel="<%$ Resources:FieldProbationPeriod  %>" MinValue="0">
                                 <Listeners>
                                    <%-- <Change Handler= "App.probationEndDate.setValue(Ext.Date.add(App.probationEndDate.value, Ext.Date.Day, + App.probationPeriod.value));"></Change>--%>
                                     <Change Handler ="if(this.value== #{oldProb}.value) {alert('same');return false;} #{oldProb}.value = this.value; calcProbEndDate();"></Change>
