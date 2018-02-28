@@ -689,8 +689,8 @@ namespace AionHR.Web.UI.Forms
         private void BuildSchedule(List<FlatSchedule> items)
         {
         
-            string html = @"<div style = 'margin: 5px auto; width: 99%; height: 98%; overflow:auto;' > 
-                             <table id = 'tbCalendar' cellpadding = '5' cellspacing = '0' >";
+            string html = @"<div style = 'margin: 5px auto; max-width: 99%;width:auto; height: 98%; overflow:auto;' > 
+                             <table id = 'tbCalendar' cellpadding = '5' cellspacing = '5' style='width:auto;' >";
 
             //CAlling the branch cvailability before proceeding
 
@@ -709,7 +709,7 @@ namespace AionHR.Web.UI.Forms
             timeFrom.MinTime = tsStart;
             timeTo.MinTime = tsStart.Add(TimeSpan.FromMinutes(30));
             TimeSpan tsClose = TimeSpan.Parse(closeAt);
-            timeTo.MaxTime = tsClose;
+          //  timeTo.MaxTime = tsClose;
 
 
 
@@ -717,6 +717,10 @@ namespace AionHR.Web.UI.Forms
             List<TimeSlot> timesList = new List<TimeSlot>();
             DateTime dtStart = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, tsStart.Hours, tsStart.Minutes, 0);
             DateTime dtEnd = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, tsClose.Hours, tsClose.Minutes, 0);
+            if (dtStart >= dtEnd)
+            {
+                dtEnd = dtEnd.AddDays(1);
+            }
             do
             {
                 TimeSlot ts = new TimeSlot();

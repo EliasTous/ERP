@@ -14,6 +14,7 @@
         {
       min-width:47px;
       max-width:47px;
+      width:auto;
             border-left: solid 1px #e0e0e2 !important;
             border-bottom: solid 1px #e0e0e2 !important;
            
@@ -21,6 +22,7 @@
 .fht-table td, .fht-table th {
         min-width:47px;
       max-width:47px;
+      width:auto;
        border-left: solid 1px #e0e0e2 !important;
             border-bottom: solid 1px #e0e0e2 !important;
 }
@@ -41,7 +43,7 @@
             background: #eaeaec !important;
             text-align: center !important;
             color: #444444;
-            padding: 3px 2px;
+            padding: 3px 2px !important;
         }
         .content-table, #tbCalendar,.fht-table
         {

@@ -41,6 +41,8 @@
             border-bottom: solid 1px #e0e0e2 !important;
      padding: 3px 2px;*/
       min-width:47px;
+      max-width:47px;
+      width:auto;
 	}
 
 
@@ -65,8 +67,8 @@
 	/* appearance */
 	overflow: hidden;
 	
-	/* position */
-	position: relative;
+	/* position 
+	position: relative;*/
 	}
 
 	.fht-table-wrapper .fht-fixed-body .fht-tbody,
