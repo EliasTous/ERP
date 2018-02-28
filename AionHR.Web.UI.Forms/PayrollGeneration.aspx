@@ -421,7 +421,7 @@
                         </ext:Toolbar>
                     </TopBar>
                     <Items>
-                        <ext:GridPanel runat="server" ID="employeePayrolls" SortableColumns="false"  EnableColumnResize="false" EnableColumnHide="false">
+                        <ext:GridPanel runat="server" ID="employeePayrolls" SortableColumns="false"  EnableColumnResize="true" EnableColumnHide="false">
                             <Store>
                                 <ext:Store ID="Store1" runat="server" OnReadData="Store1_ReadData">
                                     <Model>

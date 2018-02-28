@@ -195,9 +195,10 @@ function validateTo(curr,prev)
     var prevHours = prev.split(':')[0];
     var prevMins = prev.split(':')[1];
 
-    if (currHours < prevHours)
-        return false;
-    if (currHours == prevHours && currMins <= prevMins)
+    //if (currHours < prevHours)
+    //    return false;
+    //if (currHours == prevHours && currMins <= prevMins)
+    if (currHours == prevHours)
         return false;
     return true;
 }

@@ -710,13 +710,15 @@ namespace AionHR.Web.UI.Forms
             timeTo.MinTime = tsStart.Add(TimeSpan.FromMinutes(30));
             TimeSpan tsClose = TimeSpan.Parse(closeAt);
             timeTo.MaxTime = tsClose;
-
+          
 
 
             //Filling The Times Slot
             List<TimeSlot> timesList = new List<TimeSlot>();
             DateTime dtStart = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, tsStart.Hours, tsStart.Minutes, 0);
             DateTime dtEnd = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, tsClose.Hours, tsClose.Minutes, 0);
+            if (dtEnd.Hour == 0)
+               dtEnd= dtEnd.AddHours(24);
             do
             {
                 TimeSlot ts = new TimeSlot();
@@ -798,6 +800,8 @@ namespace AionHR.Web.UI.Forms
             TimeSpan tsStart = TimeSpan.Parse(startAt);
             timeFrom.MinTime = tsStart;
             timeTo.MinTime = tsStart.Add(TimeSpan.FromMinutes(30));
+           
+
             TimeSpan tsClose = TimeSpan.Parse(closeAt);
             timeTo.MaxTime = tsClose;
 

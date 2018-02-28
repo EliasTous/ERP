@@ -302,6 +302,8 @@
                                     Increment="30"
                                     SelectedTime="13:00"
                                     Format="hh:mm tt" />
+                                   
+                                   
                                 <ext:Button runat="server" Text="<%$ Resources: Save %>" Disabled="true" ID="btnSave" StyleSpec="margin:0 0 10px 0;">
                                     <DirectEvents>
                                         <Click OnEvent="Save_Click">
