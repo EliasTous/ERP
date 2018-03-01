@@ -689,8 +689,8 @@ namespace AionHR.Web.UI.Forms
         private void BuildSchedule(List<FlatSchedule> items)
         {
         
-            string html = @"<div style = 'margin: 5px auto; max-width: 99%;width:auto; height: 98%; overflow:auto;' > 
-                             <table id = 'tbCalendar' cellpadding = '5' cellspacing = '5' style='width:auto;' >";
+            string html = @"<div style = 'margin: 0px auto; max-width: 99%;width:auto; height: 98%; overflow:auto;' > 
+                             <table id = 'tbCalendar' cellpadding = '5' cellspacing = '0' style='width:auto;' >";
 
             //CAlling the branch cvailability before proceeding
 
@@ -1081,7 +1081,7 @@ namespace AionHR.Web.UI.Forms
             req.SortBy = "firstName";
 
             req.StartAt = "1";
-            req.Size = "20";
+            req.Size = "1000";
             req.Filter = "";
             ListResponse<Employee> response = _employeeService.GetAll<Employee>(req);
             if (!response.Success)

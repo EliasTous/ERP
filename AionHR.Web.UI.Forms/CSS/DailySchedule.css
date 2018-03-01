@@ -45,10 +45,7 @@
             color: #444444;
             padding: 3px 2px !important;
         }
-        .content-table, #tbCalendar,.fht-table
-        {
-            width: 80% !important;
-        }
+  
         .hidden{
             display:none;
         }
