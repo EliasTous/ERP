@@ -292,7 +292,7 @@
                                     runat="server"
                                     Width="100"
                                     Increment="30"
-                                    SelectedTime="08:00"
+                                    SelectedTime="00:00"
                                     Format="hh:mm tt" />
                                 <ext:Label runat="server" Text="<%$ Resources: To %>" />
                                 <ext:TimeField
@@ -300,7 +300,7 @@
                                     runat="server"
                                     Width="100"
                                     Increment="30"
-                                    SelectedTime="13:00"
+                                   SelectedTime="13:00"
                                     Format="hh:mm tt" />
                                    
                                    

@@ -706,10 +706,10 @@ namespace AionHR.Web.UI.Forms
             }
 
             TimeSpan tsStart = TimeSpan.Parse(startAt);
-            timeFrom.MinTime = tsStart;
-            timeTo.MinTime = tsStart.Add(TimeSpan.FromMinutes(30));
+            timeFrom.Value = tsStart;
+           // timeTo.MinTime = tsStart.Add(TimeSpan.FromMinutes(30));
             TimeSpan tsClose = TimeSpan.Parse(closeAt);
-          //  timeTo.MaxTime = tsClose;
+            timeTo.Value = tsClose;
 
 
 
@@ -800,10 +800,10 @@ namespace AionHR.Web.UI.Forms
             }
 
             TimeSpan tsStart = TimeSpan.Parse(startAt);
-            timeFrom.MinTime = tsStart;
-            timeTo.MinTime = tsStart.Add(TimeSpan.FromMinutes(30));
+            timeFrom.Value = tsStart;
+            // timeTo.MinTime = tsStart.Add(TimeSpan.FromMinutes(30));
             TimeSpan tsClose = TimeSpan.Parse(closeAt);
-            timeTo.MaxTime = tsClose;
+            timeTo.Value = tsClose;
 
 
 
@@ -811,6 +811,10 @@ namespace AionHR.Web.UI.Forms
             List<TimeSlot> timesList = new List<TimeSlot>();
             DateTime dtStart = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, tsStart.Hours, tsStart.Minutes, 0);
             DateTime dtEnd = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, tsClose.Hours, tsClose.Minutes, 0);
+            if (dtStart >= dtEnd)
+            {
+                dtEnd = dtEnd.AddDays(1);
+            }
             do
             {
                 TimeSlot ts = new TimeSlot();
