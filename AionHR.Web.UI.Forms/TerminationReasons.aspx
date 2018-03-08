@@ -285,6 +285,8 @@
                                         <ext:ListItem Text="<%$ Resources: default  %>" Value="1"   />
                                         <ext:ListItem Text="<%$ Resources: apply %>" Value="2" />
                                         <ext:ListItem Text="<%$ Resources: unapply  %>" Value="3" />
+                                         
+                                          <ext:ListItem Text="<%$ Resources: fullIndemnityPenalty %>" Value="4" />
                                     </Items>
                                  
                                 </ext:ComboBox>

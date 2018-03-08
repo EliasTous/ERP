@@ -120,8 +120,10 @@ namespace AionHR.Web.UI.Forms
         private void BuildSchedule(List<FlatSchedule> items)
         {
           
-               string html = @"<div style = 'margin: 5px auto; width: 99%; height: 98%; overflow:auto;' > 
-                             <table id = 'tbCalendar' cellpadding = '5' cellspacing = '0' >";
+
+            string html = @"<div style = 'margin: 5px auto; width: 99%; height: 98%; overflow:auto;' > 
+                             <table id = 'tbCalendar' cellpadding = '5' cellspacing = '0'  style='width:auto;'>";
+
 
             //CAlling the branch cvailability before proceeding
 
@@ -156,8 +158,11 @@ namespace AionHR.Web.UI.Forms
             DateTime dtStart, dtEnd;
             dtStart = new DateTime(dateFrom.SelectedDate.Year, dateFrom.SelectedDate.Month,1, tsStart.Hours, tsStart.Minutes, 0);
             dtEnd = new DateTime(dateFrom.SelectedDate.Year, dateFrom.SelectedDate.Month,1, tsClose.Hours, tsClose.Minutes, 0);
-        
-           
+            if (dtStart >= dtEnd)
+            {
+                dtEnd = dtEnd.AddDays(1);
+            }
+
 
 
             do
@@ -193,9 +198,22 @@ namespace AionHR.Web.UI.Forms
             
                fsfromDate = new DateTime(activeDate.Year, activeDate.Month, activeDate.Day, Convert.ToInt32(fs.from.Split(':')[0]), Convert.ToInt32(fs.from.Split(':')[1]), 0);
                fsToDate = new DateTime(activeDate.Year, activeDate.Month, activeDate.Day, Convert.ToInt32(fs.to.Split(':')[0]), Convert.ToInt32(fs.to.Split(':')[1]), 0);
+                if (fsfromDate >= fsToDate)
+                {
+                    fsToDate = fsToDate.AddDays(1);
+                }
 
                 do
                 {
+                    if (fsfromDate.ToString("HH:mm") == "00:00")
+                    {
+                        listIds.Add(fs.employeeId + "_" + fsfromDate.AddDays(-1).ToString("HH:mm"));
+                        listDn.Add(fs.employeeId + "_" + fs.departmentId + "_" + fsfromDate.AddDays(-1).ToString("HH:mm"));
+                        listDS.Add(fs.departmentId.ToString());
+                        fsfromDate = fsfromDate.AddMinutes(30);
+                        continue;
+
+                    }
                     listIds.Add(fs.employeeId + "_" + fsfromDate.ToString("HH:mm"));
                     listDn.Add(fs.employeeId+"_"+  fs.departmentId + "_" + fsfromDate.ToString("HH:mm"));
                     listDS.Add(fs.departmentId.ToString());
@@ -214,7 +232,10 @@ namespace AionHR.Web.UI.Forms
 
             fsfromDate = new DateTime(activeDate.Year, activeDate.Month, activeDate.Day, Convert.ToInt32(startAt.Split(':')[0]), Convert.ToInt32(startAt.Split(':')[1]), 0);
             fsToDate = new DateTime(activeDate.Year, activeDate.Month, activeDate.Day, Convert.ToInt32(closeAt.Split(':')[0]), Convert.ToInt32(closeAt.Split(':')[1]), 0);
-
+            if (fsfromDate >= fsToDate)
+            {
+                fsToDate = fsToDate.AddDays(1);
+            }
             do
             {
                 listDS.ForEach(departmentID => dic.Add(departmentID+"-"+ fsfromDate.ToString("HH:mm"), listDn.Where(stringToCheck => stringToCheck.Contains(departmentID+"_"+ fsfromDate.ToString("HH:mm"))).Count()));
@@ -512,9 +533,12 @@ namespace AionHR.Web.UI.Forms
             DateTime dtStart, dtEnd;
             dtStart = new DateTime(dateFrom.SelectedDate.Year, dateFrom.SelectedDate.Month, 1, tsStart.Hours, tsStart.Minutes, 0);
             dtEnd = new DateTime(dateFrom.SelectedDate.Year, dateFrom.SelectedDate.Month, 1, tsClose.Hours, tsClose.Minutes, 0);
-            
 
-           
+            if (dtStart >= dtEnd)
+            {
+                dtEnd = dtEnd.AddDays(1);
+            }
+
 
             do
             {

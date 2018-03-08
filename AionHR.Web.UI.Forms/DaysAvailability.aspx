@@ -17,11 +17,11 @@
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css?id=5" />
     <link rel="stylesheet" href="CSS/DailySchedule.css?id=56" />
       <link rel="stylesheet" href="CSS/defaultTheme.css?id=60" />
-    <script type="text/javascript" src="Scripts/DaysAvailability.js?id=150"></script>
+    <script type="text/javascript" src="Scripts/DaysAvailability.js?id=120"></script>
     <script type="text/javascript" src="Scripts/Users.js?id=150"></script>
  
     <script type="text/javascript" src="Scripts/jquery-new.js?id=112"></script>
-      <script type="text/javascript" src="Scripts/plugins/jquery.fixedheadertable.min.js?id=100"></script>
+     <script type="text/javascript" src="Scripts/tableHeadFixer.js?id=10"></script>
 
     <script type="text/javascript">
 
@@ -153,12 +153,15 @@
                     </TopBar>
                     
                 </ext:Panel>
-
+               
+                     
                 <ext:Panel ID="bodyPanel" Region="Center" runat="server">
                     <LayoutConfig>
                         <ext:HBoxLayoutConfig Pack="End" Align="Stretch"></ext:HBoxLayoutConfig>
                     </LayoutConfig>
                     <Items>
+                      
+                       
                         <ext:Panel runat="server" ID="pnlSchedule" Layout="FitLayout" Flex="6" MarginSpec="0 5 5 5" StyleSpec=" border: 1px solid #add2ed !important;" Html="">
                         </ext:Panel>
                            <ext:FormPanel Hidden="true" runat="server" ID="pnlTools" Layout="VBoxLayout" Flex="1" MarginSpec="0 5 5 5" StyleSpec=" border: 1px solid #add2ed !important;">

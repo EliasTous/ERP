@@ -144,4 +144,7 @@
   <data name="WindowTitle" xml:space="preserve">
     <value>اسباب انهاء الخدمة </value>
   </data>
+  <data name="fullIndemnityPenalty" xml:space="preserve">
+    <value>عدم إستفادة من التعويض</value>
+  </data>
 </root>

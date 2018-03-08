@@ -16,13 +16,13 @@
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.js?id=1"></script>
     <script type="text/javascript" src="http://code.jquery.com/ui/1.10.3/jquery-ui.js?id=2"></script>
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css?id=3" />
-    <link rel="stylesheet" href="CSS/DailySchedule.css?id=12" />
+    <link rel="stylesheet" href="CSS/DailySchedule.css?id=100" />
   <%--  <link rel="stylesheet" href="CSS/defaultTheme.css?id=11" />--%>
-    <script type="text/javascript" src="Scripts/DailySchedule.js?id=88"></script>
+    <script type="text/javascript" src="Scripts/DailySchedule.js?id=100"></script>
     <script type="text/javascript" src="Scripts/Users.js?id=2"></script>
  
-    <script type="text/javascript" src="Scripts/jquery-new.js?id=10"></script>
-    <script type="text/javascript" src="Scripts/tableHeadFixer.js?id=1"></script>
+    <script type="text/javascript" src="Scripts/jquery-new.js?id=30"></script>
+    <script type="text/javascript" src="Scripts/tableHeadFixer.js?id=2"></script>
 
     <script type="text/javascript">
 

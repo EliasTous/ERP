@@ -1,6 +1,6 @@
 ﻿
 var FixHeader = function () {
-    $('#tbCalendar').fixedHeaderTable();
+    $('#tbCalendar').tableHeadFixer();
 }
 
 var DeleteDaySchedule = function (id) {

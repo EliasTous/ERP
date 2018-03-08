@@ -744,9 +744,18 @@ namespace AionHR.Web.UI.Forms
                 DateTime activeDate = DateTime.ParseExact(fs.dayId, "yyyyMMdd", new CultureInfo("en"));
                 DateTime fsfromDate = new DateTime(activeDate.Year, activeDate.Month, activeDate.Day, Convert.ToInt32(fs.from.Split(':')[0]), Convert.ToInt32(fs.from.Split(':')[1]), 0);
                 DateTime fsToDate = new DateTime(activeDate.Year, activeDate.Month, activeDate.Day, Convert.ToInt32(fs.to.Split(':')[0]), Convert.ToInt32(fs.to.Split(':')[1]), 0);
-              
+                if (fsfromDate >= fsToDate)
+                {
+                    fsToDate = fsToDate.AddDays(1);
+                }
                 do
                 {
+                    if (fsfromDate.ToString("HH:mm")=="00:00")
+                        {
+                        listIds.Add(fsfromDate.AddDays(-1).ToString("yyyyMMdd") + "_00:00" );
+                        fsfromDate = fsfromDate.AddMinutes(30);
+                        continue;
+                        }
                     listIds.Add(fsfromDate.ToString("yyyyMMdd") + "_" + fsfromDate.ToString("HH:mm"));
                     fsfromDate = fsfromDate.AddMinutes(30);
                                   } while (fsToDate >= fsfromDate);
