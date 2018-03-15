@@ -1,4 +1,5 @@
 ﻿using AionHR.Model.Attributes;
+using AionHR.Model.Employees.Profile;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,6 +19,7 @@ namespace AionHR.Model.System
         public string notes { get; set; }
         public string bodyText { get; set; }
         public string ltName { get; set; }
+        public EmployeeName employeeName { get; set; } 
 
 
 

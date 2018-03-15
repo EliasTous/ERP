@@ -10,8 +10,9 @@ namespace AionHR.Model.Payroll
    public class PayrollIndemnity:ModelBase,IEntity
     {
         public string name { get; set; }
-        public string exemptMarriagePrd { get; set; }
-        public string exemptDeliveryPrd { get; set; }
+        public int minResignationDays { get; set; }
+        //public string exemptMarriagePrd { get; set; }
+        //public string exemptDeliveryPrd { get; set; }
     }
     public class PayrollIndemnityDetails
     {

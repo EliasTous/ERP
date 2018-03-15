@@ -878,5 +878,14 @@ namespace Resources {
                 return ResourceManager.GetString("Error_8146", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to you must enter at lest  one Indemnity Details role  and one Indemnity Resignation rule .
+        /// </summary>
+        internal static string Error_Empty_IndemnityDetails_IndemnityResignation {
+            get {
+                return ResourceManager.GetString("Error_Empty_IndemnityDetails_IndemnityResignation", resourceCulture);
+            }
+        }
     }
 }

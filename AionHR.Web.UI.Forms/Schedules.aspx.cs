@@ -200,6 +200,7 @@ namespace AionHR.Web.UI.Forms
                     RecordRequest r = new RecordRequest();
                     r.RecordID = id.ToString();
                     RecordResponse<AttendanceSchedule> response = _branchService.ChildGetRecord<AttendanceSchedule>(r);
+                    
                     if (!response.Success)
                     {
                         X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
@@ -736,6 +737,7 @@ namespace AionHR.Web.UI.Forms
 
         private void FillDow(string dow)
         {
+
             AttendanceScheduleDayRecordRequest dayRequest = new AttendanceScheduleDayRecordRequest();
 
             dayRequest.ScheduleId = CurrentSchedule.Text;// _systemService.SessionHelper.Get("currentSchedule").ToString();
@@ -775,6 +777,35 @@ namespace AionHR.Web.UI.Forms
 
                 SetDayFormEnabled(false);
             }
+
+            switch (dow)
+            {
+                case "1":
+                    dayBreaksForm.Title = GetLocalResourceObject("DayBreaksForm").ToString() +" - "+ GetGlobalResourceObject("Common", "MondayText");
+                    break;
+                   
+                case "2":
+                    dayBreaksForm.Title = GetLocalResourceObject("DayBreaksForm").ToString() + " - " + GetGlobalResourceObject("Common", "TuesdayText");
+                    break;
+                case "3":
+                    dayBreaksForm.Title = GetLocalResourceObject("DayBreaksForm").ToString() + " - " + GetGlobalResourceObject("Common", "WednesdayText");
+                    break;
+                   
+                case "4":
+                    dayBreaksForm.Title = GetLocalResourceObject("DayBreaksForm").ToString() + " - " + GetGlobalResourceObject("Common", "ThursdayText");
+                    break;
+                   
+                case "5":
+                    dayBreaksForm.Title = GetLocalResourceObject("DayBreaksForm").ToString() + " - " + GetGlobalResourceObject("Common", "FridayText");
+                    break; 
+                case "6":
+                    dayBreaksForm.Title = GetLocalResourceObject("DayBreaksForm").ToString() + " - " + GetGlobalResourceObject("Common", "SaturdayText");
+                    break; 
+                case "7":
+                    dayBreaksForm.Title = GetLocalResourceObject("DayBreaksForm").ToString() + " - " + GetGlobalResourceObject("Common", "SundayText");
+                    break;
+            }
+           
         }
 
         private void ReloadDays()

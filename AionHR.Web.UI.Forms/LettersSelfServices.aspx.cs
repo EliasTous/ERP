@@ -24,6 +24,7 @@ using AionHR.Model.System;
 using AionHR.Model.Employees.Profile;
 using AionHR.Services.Messaging.System;
 using AionHR.Model.SelfService;
+using AionHR.Services.Messaging.SelfService;
 
 namespace AionHR.Web.UI.Forms
 {
@@ -329,10 +330,10 @@ namespace AionHR.Web.UI.Forms
             //Fetching the corresponding list
 
             //in this test will take a list of News
-            ListRequest request = new ListRequest();
+            LetterSelfServiceListRequest request = new LetterSelfServiceListRequest();
 
-            request.Filter = "";
-            ListResponse<Letter> nationalities = _systemService.ChildGetAll<Letter>(request);
+           request.employeeId = _systemService.SessionHelper.GetEmployeeId();
+            ListResponse<LetterSelfservice> nationalities = _selfServiceService.ChildGetAll<LetterSelfservice>(request);
             if (!nationalities.Success)
             {
                 X.Msg.Alert(Resources.Common.Error, nationalities.Summary).Show(); ;

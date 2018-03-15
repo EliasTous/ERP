@@ -413,11 +413,11 @@
                                                             <Menu>
                                                                 <ext:Menu runat="server">
                                                                     <Items>
-                                                                        <ext:MenuItem runat="server" Text="<%$Resources: Common , Routers%>">
+                                                                        <%--<ext:MenuItem runat="server" Text="<%$Resources: Common , Routers%>">
                                                                             <Listeners>
                                                                                 <Click Handler="openNewTab('ro', 'Routers.aspx', #{roTitle}.value, 'icon-Employees')" />
                                                                             </Listeners>
-                                                                        </ext:MenuItem>
+                                                                        </ext:MenuItem>--%>
                                                                         <ext:MenuItem runat="server" Text="<%$Resources: Common , WorkingCalendars%>">
                                                                             <Listeners>
                                                                                 <Click Handler="openNewTab('calendars', 'WorkingCalendars.aspx', #{caTitle}.value, 'icon-Employees')" />
@@ -438,11 +438,11 @@
                                                                                 <Click Handler="openNewTab('dayTypes', 'DayTypes.aspx', #{tadtTitle}.value, 'icon-Employees')" />
                                                                             </Listeners>
                                                                         </ext:MenuItem>
-                                                                        <ext:MenuItem runat="server" Text="<%$Resources: Common , Geofences%>">
+                                                                     <%--   <ext:MenuItem runat="server" Text="<%$Resources: Common , Geofences%>">
                                                                             <Listeners>
                                                                                 <Click Handler="openNewTab('Geofences', 'Geofences.aspx', #{gfTitle}.value, 'icon-Employees')" />
                                                                             </Listeners>
-                                                                        </ext:MenuItem>
+                                                                        </ext:MenuItem>--%>
                                                                         <ext:MenuItem runat="server" Text="<%$Resources: Common , ImportAttendance%>">
                                                                             <Listeners>
                                                                                 <Click Handler="openNewTab('Import', 'ImportAttendance.aspx',#{importAt}.value , 'icon-Employees')" />

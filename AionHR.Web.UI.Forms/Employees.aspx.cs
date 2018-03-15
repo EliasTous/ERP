@@ -414,6 +414,8 @@ namespace AionHR.Web.UI.Forms
             empRequest.BranchId = d.BranchId.HasValue ? d.BranchId.Value.ToString() : "0";
             empRequest.DepartmentId = d.DepartmentId.HasValue ? d.DepartmentId.Value.ToString() : "0";
             empRequest.PositionId = d.PositionId.HasValue ? d.PositionId.Value.ToString() : "0";
+            empRequest.DivisionId = d.DivisionId.HasValue ? d.DivisionId.Value.ToString() : "0";
+
 
             if (e.Sort[0].Property == "name")
                 empRequest.SortBy = GetNameFormat();

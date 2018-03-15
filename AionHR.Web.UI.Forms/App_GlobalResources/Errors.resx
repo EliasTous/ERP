@@ -390,4 +390,7 @@
   <data name="Error_8146" xml:space="preserve">
     <value>ارسال معامل غير معروف لعملية مخزنة</value>
   </data>
+  <data name="Error_Empty_IndemnityDetails_IndemnityResignation" xml:space="preserve">
+    <value>you must enter at lest  one Indemnity Details role  and one Indemnity Resignation rule </value>
+  </data>
 </root>

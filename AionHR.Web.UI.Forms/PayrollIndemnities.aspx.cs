@@ -482,7 +482,15 @@ namespace AionHR.Web.UI.Forms
             string indemnities = e.ExtraParams["indemnities"];
             b.recordId = id;
             // Define the object to add or edit as null
+            List<PayrollIndemnityDetails> periods = JsonConvert.DeserializeObject<List<PayrollIndemnityDetails>>(pers);
+            List<PayrollIndemnityRecognition> indemnitiesList = JsonConvert.DeserializeObject<List<PayrollIndemnityRecognition>>(indemnities);
+            if (periods == null || periods.Count == 0 || indemnitiesList == null || indemnitiesList.Count == 0)
+            {
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", "Error_Empty_IndemnityDetails_IndemnityResignation")).Show();
+                return;
 
+            }
             if (string.IsNullOrEmpty(id))
             {
 
@@ -494,6 +502,8 @@ namespace AionHR.Web.UI.Forms
                     request.entity = b;
                     PostResponse<PayrollIndemnity> r = _payrollService.ChildAddOrUpdate<PayrollIndemnity>(request);
                     b.recordId = r.recordId;
+                  
+                
 
                     //check if the insert failed
                     if (!r.Success)//it maybe be another condition
@@ -503,7 +513,7 @@ namespace AionHR.Web.UI.Forms
                         X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() + "<br>Technical Error: "+r.ErrorCode + "<br> Summary: "+r.Summary : r.Summary).Show();
                         return;
                     }
-                    List<PayrollIndemnityDetails> periods = JsonConvert.DeserializeObject<List<PayrollIndemnityDetails>>(pers);
+                  
                     PostResponse<PayrollIndemnityDetails[]> result = AddPeriodsList(b.recordId, periods);
                     //  AddPeriodsList1(b.recordId, periods);
 
@@ -514,7 +524,8 @@ namespace AionHR.Web.UI.Forms
                         X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", result.ErrorCode) != null ? GetGlobalResourceObject("Errors", result.ErrorCode).ToString() : GetGlobalResourceObject("Errors", result.ErrorCode) != null ? GetGlobalResourceObject("Errors", result.ErrorCode).ToString() : result.Summary).Show();
                         return;
                     }
-                    List<PayrollIndemnityRecognition> indemnitiesList = JsonConvert.DeserializeObject<List<PayrollIndemnityRecognition>>(indemnities);
+               
+                   
                     PostResponse<PayrollIndemnityRecognition[]> result1 = AddindemnitiesList(b.recordId, indemnitiesList);
                     //  AddPeriodsList1(b.recordId, periods);
                     
@@ -567,13 +578,24 @@ namespace AionHR.Web.UI.Forms
                     PostRequest<PayrollIndemnity> modifyHeaderRequest = new PostRequest<PayrollIndemnity>();
                     modifyHeaderRequest.entity = b;
                 
-                    PostResponse<PayrollIndemnity> r = _payrollService.ChildAddOrUpdate<PayrollIndemnity>(modifyHeaderRequest);               //Step 1 Selecting the object or building up the object for update purpose
+                    PostResponse<PayrollIndemnity> r = _payrollService.ChildAddOrUpdate<PayrollIndemnity>(modifyHeaderRequest);
+                
+                    //Step 1 Selecting the object or building up the object for update purpose
                     if (!r.Success)//it maybe another check
                     {
                         X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
                         X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorUpdatingRecord).Show();
                         return;
                     }
+                    //List<PayrollIndemnityDetails> periods = JsonConvert.DeserializeObject<List<PayrollIndemnityDetails>>(pers);
+                    //List<PayrollIndemnityRecognition> indemnitiesList = JsonConvert.DeserializeObject<List<PayrollIndemnityRecognition>>(indemnities);
+                    //if (periods == null || periods.Count == 0 || indemnitiesList == null || indemnitiesList.Count == 0)
+                    //{
+                    //    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    //    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", "Error_Empty_IndemnityDetails_IndemnityResignation")).Show();
+                    //    return;
+
+                    //}
 
                     //_payrollService.DeleteVacationSchedulePeriods(Convert.ToInt32(b.recordId));
                     DeleteVacationSchedulePeriods(Convert.ToInt32(b.recordId)); 
@@ -583,7 +605,7 @@ namespace AionHR.Web.UI.Forms
                     //      X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", deleteDesponse.ErrorCode) != null ? GetGlobalResourceObject("Errors", deleteDesponse.ErrorCode).ToString() : deleteDesponse.Summary).Show();
                     //     return;
                     // }
-                    List<PayrollIndemnityDetails> periods = JsonConvert.DeserializeObject<List<PayrollIndemnityDetails>>(pers);
+                  
                     PostResponse<PayrollIndemnityDetails[]> result = AddPeriodsList(b.recordId, periods);
 
                     //Step 2 : saving to store
@@ -596,7 +618,7 @@ namespace AionHR.Web.UI.Forms
                         return;
                     }
 
-                    List<PayrollIndemnityRecognition> indemnitiesList = JsonConvert.DeserializeObject<List<PayrollIndemnityRecognition>>(indemnities);
+                    
                     PostResponse<PayrollIndemnityRecognition[]> result1 = AddindemnitiesList(b.recordId, indemnitiesList);
                     //  AddPeriodsList1(b.recordId, periods);
 
@@ -632,6 +654,7 @@ namespace AionHR.Web.UI.Forms
                     X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorUpdatingRecord).Show();
                 }
             }
+            Store1.Reload();
         }
         private PostResponse<PayrollIndemnityDetails[]> AddPeriodsList(string scheduleIdString, List<PayrollIndemnityDetails> periods)
         {

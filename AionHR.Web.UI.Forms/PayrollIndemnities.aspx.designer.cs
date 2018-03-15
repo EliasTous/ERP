@@ -184,22 +184,13 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Column ColName;
         
         /// <summary>
-        /// exemptMarriagePrdCol control.
+        /// minResignationDaysCol control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Column exemptMarriagePrdCol;
-        
-        /// <summary>
-        /// exemptDeliveryPrdCol control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Column exemptDeliveryPrdCol;
+        protected global::Ext.Net.Column minResignationDaysCol;
         
         /// <summary>
         /// colDelete control.
@@ -319,22 +310,13 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.TextField name;
         
         /// <summary>
-        /// exemptMarriagePrd control.
+        /// minResignationDays control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.TextField exemptMarriagePrd;
-        
-        /// <summary>
-        /// exemptDeliveryPrd control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.TextField exemptDeliveryPrd;
+        protected global::Ext.Net.NumberField minResignationDays;
         
         /// <summary>
         /// periodsTab control.

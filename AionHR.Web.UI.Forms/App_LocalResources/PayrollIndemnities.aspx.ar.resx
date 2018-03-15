@@ -177,4 +177,7 @@
   <data name="IndemnityPercentage" xml:space="preserve">
     <value>نسبة الجزاء </value>
   </data>
+  <data name="minResignationDays" xml:space="preserve">
+    <value>الحد الأدنى أيام الاستقالة</value>
+  </data>
 </root>

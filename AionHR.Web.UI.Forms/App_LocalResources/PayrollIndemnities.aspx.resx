@@ -177,4 +177,7 @@
   <data name="IndemnityPercentage" xml:space="preserve">
     <value>Percentage</value>
   </data>
+  <data name="minResignationDays" xml:space="preserve">
+    <value>Minimum Resignation Days</value>
+  </data>
 </root>

@@ -137,8 +137,16 @@ namespace AionHR.Web.UI.Forms
                         return;
                     }
                     //Step 2 : call setvalues with the retrieved object
-                   
-                   
+
+                    employeeId.GetStore().Add(new object[]
+                     {
+                                new
+                                {
+                                    recordId = response.result.employeeId,
+                                    fullName =response.result.employeeName.fullName
+                                }
+                     });
+                    employeeId.SetValue(response.result.employeeId);
                     this.BasicInfoTab.SetValues(response.result);
                     //ltId.Select(response.result.ltId);
 

@@ -46,8 +46,11 @@
 
                         <ext:ModelField Name="recordId" />
                         <ext:ModelField Name="name" />
-                        <ext:ModelField Name="exemptMarriagePrd" />
-                        <ext:ModelField Name="exemptDeliveryPrd" />
+                        <ext:ModelField Name="minResignationDays" />
+
+                        
+                      <%--  <ext:ModelField Name="exemptMarriagePrd" />
+                        <ext:ModelField Name="exemptDeliveryPrd" />--%>
 
 
 
@@ -58,7 +61,7 @@
             <Sorters>
                 <ext:DataSorter Property="recordId" Direction="ASC" />
                 <ext:DataSorter Property="name" Direction="ASC" />
-                <ext:DataSorter Property="reference" Direction="ASC" />
+              <%--  <ext:DataSorter Property="reference" Direction="ASC" />--%>
             </Sorters>
         </ext:Store>
 
@@ -125,17 +128,19 @@
                             <ext:Column Visible="false" ID="ColrecordId" MenuDisabled="true" runat="server"  DataIndex="recordId" Hideable="false" Width="75" Align="Center" />
 
                             <ext:Column CellCls="cellLink" Sortable="true" ID="ColName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldName%>" DataIndex="name" Flex="1" Hideable="false">
+
                                <%-- <Renderer Handler="return record.data['name']">
                                 </Renderer>--%>
                             </ext:Column>
-                              <ext:Column CellCls="cellLink" Sortable="true" ID="exemptMarriagePrdCol" MenuDisabled="true" runat="server" Text="<%$ Resources: exemptMarriagePeriod%>" DataIndex="exemptMarriagePrd" Flex="1" Hideable="false">
-                               <%-- <Renderer Handler="return record.data['name']">
-                                </Renderer>--%>
-                            </ext:Column>
-                              <ext:Column CellCls="cellLink" Sortable="true" ID="exemptDeliveryPrdCol" MenuDisabled="true" runat="server" Text="<%$ Resources: exemptDeliveryPeriod%>" DataIndex="exemptDeliveryPrd" Flex="1" Hideable="false">
-                               <%-- <Renderer Handler="return record.data['name']">
-                                </Renderer>--%>
-                            </ext:Column>
+                             <ext:Column CellCls="cellLink" Sortable="true" ID="minResignationDaysCol" MenuDisabled="true" runat="server" Text="<%$ Resources: minResignationDays%>" DataIndex="minResignationDays"  Flex="2" />
+                             <%-- <ext:Column CellCls="cellLink" Sortable="true" ID="exemptMarriagePrdCol" MenuDisabled="true" runat="server" Text="<%$ Resources: exemptMarriagePeriod%>" DataIndex="exemptMarriagePrd" Flex="1" Hideable="false">
+                                <Renderer Handler="return record.data['name']">
+                                </Renderer>
+                            </ext:Column>--%>
+                            <%--  <ext:Column CellCls="cellLink" Sortable="true" ID="exemptDeliveryPrdCol" MenuDisabled="true" runat="server" Text="<%$ Resources: exemptDeliveryPeriod%>" DataIndex="exemptDeliveryPrd" Flex="1" Hideable="false">
+                                <Renderer Handler="return record.data['name']">
+                                </Renderer>
+                            </ext:Column>--%>
 
 
 
@@ -270,9 +275,10 @@
                             BodyPadding="5">
                             <Items>
                                 <ext:TextField ID="recordId" Hidden="true" runat="server"  Disabled="true" DataIndex="recordId" />
-                                <ext:TextField LabelWidth="150" ID="name" runat="server" FieldLabel="<%$ Resources:FieldName%>" DataIndex="name" AllowBlank="false" BlankText="<%$ Resources:Common, MandatoryField%>" />
-                                 <ext:TextField LabelWidth="150" ID="exemptMarriagePrd" runat="server" FieldLabel="<%$ Resources: exemptMarriagePeriod%>" Name="exemptMarriagePrd" AllowBlank="false" BlankText="0"  />
-                                 <ext:TextField LabelWidth="150" ID="exemptDeliveryPrd" runat="server" FieldLabel="<%$ Resources: exemptDeliveryPeriod%> " Name="exemptDeliveryPrd" AllowBlank="false" BlankText="0 " />
+                                <ext:TextField LabelWidth="170" ID="name" runat="server" FieldLabel="<%$ Resources:FieldName%>" DataIndex="name" AllowBlank="false" BlankText="<%$ Resources:Common, MandatoryField%>" />
+                                    <ext:NumberField LabelWidth="170" ID="minResignationDays" runat="server" FieldLabel="<%$ Resources:minResignationDays%>" DataIndex="minResignationDays" AllowBlank="false" MinValue="0" />
+                              <%--   <ext:TextField LabelWidth="150" ID="exemptMarriagePrd" runat="server" FieldLabel="<%$ Resources: exemptMarriagePeriod%>" Name="exemptMarriagePrd" AllowBlank="false" BlankText="0"  />
+                                 <ext:TextField LabelWidth="150" ID="exemptDeliveryPrd" runat="server" FieldLabel="<%$ Resources: exemptDeliveryPeriod%> " Name="exemptDeliveryPrd" AllowBlank="false" BlankText="0 " />--%>
 
                             </Items>
 
