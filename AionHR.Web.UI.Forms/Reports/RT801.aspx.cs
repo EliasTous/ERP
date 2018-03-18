@@ -161,7 +161,7 @@ namespace AionHR.Web.UI.Forms.Reports
         }
 
 
-        private ReportCompositeRequest GetRequest()
+        private ReportCompositeRequest GetRequest() 
         {
             ReportCompositeRequest req = new ReportCompositeRequest();
 
