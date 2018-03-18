@@ -28,13 +28,20 @@
         <ext:Hidden ID="titleSavingError" runat="server" Text="<%$ Resources:Common , TitleSavingError %>" />
         <ext:Hidden ID="titleSavingErrorMessage" runat="server" Text="<%$ Resources:Common , TitleSavingErrorMessage %>" />
 
+
+     
+                           
+                             
+     
+                        
         <ext:Store
             ID="Store1"
             runat="server"
-            RemoteSort="False"
+            RemoteSort="true"
             RemoteFilter="true"
             OnReadData="Store1_RefreshData"
-            PageSize="30" IDMode="Explicit" Namespace="App">
+            PageSize="40"  Namespace="App" IDMode="Explicit" IsPagingStore="true">
+
             <Proxy>
                 <ext:PageProxy>
                     <Listeners>
@@ -43,6 +50,7 @@
                 </ext:PageProxy>
             </Proxy>
             <Model>
+
                 <ext:Model ID="Model1" runat="server" IDProperty="recordId">
                     <Fields>
 
@@ -69,6 +77,10 @@
 
         <ext:Viewport ID="Viewport1" runat="server" Layout="Fit">
             <Items>
+               
+                                  
+                   
+
                 <ext:GridPanel
                     ID="GridPanel1"
                     runat="server"
@@ -222,7 +234,7 @@
                         </ext:Toolbar>
 
                     </DockedItems>
-                    <BottomBar>
+                     <BottomBar>
 
                         <ext:PagingToolbar ID="PagingToolbar1"
                             runat="server"
@@ -241,6 +253,7 @@
                             </Items>
                             <Listeners>
                                 <BeforeRender Handler="this.items.removeAt(this.items.length - 2);" />
+
                             </Listeners>
                         </ext:PagingToolbar>
 

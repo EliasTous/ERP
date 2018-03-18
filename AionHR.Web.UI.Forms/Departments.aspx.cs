@@ -720,9 +720,10 @@ namespace AionHR.Web.UI.Forms
         private DepartmentsReport GetReport()
         {
 
-            ListRequest request = new ListRequest();
+            DepartmentListRequest request = new DepartmentListRequest();
 
             request.Filter = "";
+            request.type = 0;
             ListResponse<Department> resp = _branchService.ChildGetAll<Department>(request);
             if (!resp.Success)
             {

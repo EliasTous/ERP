@@ -140,7 +140,7 @@ namespace AionHR.Web.UI.Forms
                     }
                     //Step 2 : call setvalues with the retrieved object
                     this.BasicInfoTab.SetValues(response.result);
-                    timeZoneCombo.Select(response.result.timeZone.ToString());
+                  //  timeZoneCombo.Select(response.result.timeZone.ToString());
                     this.EditRecordWindow.Title = Resources.Common.EditWindowsTitle;
                     this.EditRecordWindow.Show();
                     break;
@@ -309,7 +309,7 @@ namespace AionHR.Web.UI.Forms
             BasicInfoTab.Reset();
             this.EditRecordWindow.Title = Resources.Common.AddNewRecord;
 
-            timeZoneCombo.Select(timeZoneOffset.Text);
+            //timeZoneCombo.Select(timeZoneOffset.Text);
             this.EditRecordWindow.Show();
         }
 

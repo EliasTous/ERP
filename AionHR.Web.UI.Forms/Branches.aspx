@@ -190,9 +190,9 @@
                             <ext:Column   CellCls="cellLink" ID="ColName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldName%>" DataIndex="name" Flex="2" Hideable="false">
                         
                                 </ext:Column>
-                            <ext:Column ID="ColTimeZone" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldTimeZone%>" DataIndex="timeZone" width="100" Hideable="false">
+                            <%--<ext:Column ID="ColTimeZone" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldTimeZone%>" DataIndex="timeZone" width="100" Hideable="false">
                                 <Renderer Handler="var sign = ''; if(record.data['timeZone']>=0) sign = '+'; return 'UTC '+sign + record.data['timeZone'] + ':00 ' " />     
-                                </ext:Column>
+                                </ext:Column>--%>
                       
                             <ext:Column   CellCls="cellLink" ID="scName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldSchedule%>" DataIndex="scName" Flex="2" />
                             <ext:CheckColumn ID="ColInactive" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldIsInactive %>" DataIndex="isInactive" Width="100" Hideable="false" />
@@ -337,7 +337,7 @@
                                 <ext:TextField ID="recordId" Hidden="true" runat="server" FieldLabel="<%$ Resources:FieldrecordId%>" Disabled="true" Name="recordId" />
                                 <ext:TextField ID="name" runat="server" FieldLabel="<%$ Resources:FieldName%>" Name="name" AllowBlank="false" BlankText="<%$ Resources:Common, MandatoryField%>" />
                                 <ext:TextField ID="reference" runat="server" FieldLabel="<%$ Resources: FieldReference %>" DataIndex="reference"  />
-                                <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" ID="timeZoneCombo"  AllowBlank="false" SimpleSubmit="true" IDMode="Static" Name="timeZone" FieldLabel="<%$ Resources:FieldTimeZone%>" QueryMode="Local"  ForceSelection="true" TypeAhead="true" MinChars="1" >
+                              <%--  <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" ID="timeZoneCombo"  AllowBlank="false" SimpleSubmit="true" IDMode="Static" Name="timeZone" FieldLabel="<%$ Resources:FieldTimeZone%>" QueryMode="Local"  ForceSelection="true" TypeAhead="true" MinChars="1" >
                                     <Items>
                                         <ext:ListItem Text="-12 UTC" Value="-12" />
                                         <ext:ListItem Text="-11 UTC" Value="-11" />
@@ -365,7 +365,7 @@
                                         <ext:ListItem Text="+11 UTC" Value="11" />
                                         <ext:ListItem Text="+12 UTC" Value="12" />
                                     </Items>
-                                </ext:ComboBox>
+                                </ext:ComboBox>--%>
                                   <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" ID="scId" AllowBlank="true" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" ValueField="recordId" DisplayField="name" Name="scId" FieldLabel="<%$ Resources:FieldSchedule%>" SimpleSubmit="true">
                                     <Store>
                                         <ext:Store runat="server" ID="scheduleStore">

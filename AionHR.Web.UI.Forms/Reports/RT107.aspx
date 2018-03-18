@@ -352,7 +352,8 @@
                             <ext:Column ID="ColBranchName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldBranch%>" DataIndex="branchName" Flex="3" Hideable="false" />
                             <ext:Column ID="Column2" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDivision%>" DataIndex="divisionName" Flex="3" Hideable="false" />
                             <ext:DateColumn ID="ColHireDate" Format="dd-MMM-yyyy" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldHireDate%>" DataIndex="hireDate" Width="120" Hideable="false">
-                            </ext:DateColumn>  <ext:Column runat="server"
+                            </ext:DateColumn> 
+                             <ext:Column runat="server"
                                 ID="Column1" Visible="true"
                                 Text="<%$ Resources:Common, Edit %>"
                                 Width="60"

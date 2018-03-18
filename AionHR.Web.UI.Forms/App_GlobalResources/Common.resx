@@ -958,7 +958,7 @@
     <value>Employee Details</value>
   </data>
   <data name="OvertimeSettings" xml:space="preserve">
-    <value>Overtime Settings</value>
+    <value>Overtime Exceptions</value>
   </data>
   <data name="RT305" xml:space="preserve">
     <value>Absent</value>

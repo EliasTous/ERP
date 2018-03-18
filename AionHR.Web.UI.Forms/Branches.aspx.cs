@@ -182,7 +182,7 @@ namespace AionHR.Web.UI.Forms
                   
                     legalReferenceStore.Reload();
                     this.BasicInfoTab.SetValues(response.result);
-                    timeZoneCombo.Select(response.result.timeZone.ToString());
+                  //  timeZoneCombo.Select(response.result.timeZone.ToString());
                     FillNationality();
                     FillState();
                     naId.Select(response.result.addressId.countryId);
@@ -361,7 +361,7 @@ namespace AionHR.Web.UI.Forms
             FillNationality();
             FillState();
 
-            timeZoneCombo.Select(timeZoneOffset.Text);
+            //timeZoneCombo.Select(timeZoneOffset.Text);
             this.EditRecordWindow.Show();
         }
 

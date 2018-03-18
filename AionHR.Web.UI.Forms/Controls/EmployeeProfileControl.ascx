@@ -833,12 +833,7 @@
                                 <ext:TextField ID="mobile" AllowBlank="true" MinLength="6" MaxLength="18" runat="server" FieldLabel="<%$ Resources:FieldMobile%>" Name="mobile" BlankText="<%$ Resources:Common, MandatoryField%>">
                                     <Validator Handler="return !isNaN(this.value);" />
                                 </ext:TextField>
-                                 <ext:RadioGroup ID="gender" AllowBlank="true" runat="server" GroupName="gender" FieldLabel="<%$ Resources:FieldGender%>">
-                                    <Items>
-                                        <ext:Radio runat="server" ID="gender1" Name="gender" InputValue="1" BoxLabel="<%$ Resources:Common ,Male%>" />
-                                        <ext:Radio runat="server" ID="gender2" Name="gender" InputValue="2" BoxLabel="<%$ Resources:Common ,Female%>" />
-                                    </Items>
-                                </ext:RadioGroup>
+                                
 
 
                             </Items>
@@ -1102,7 +1097,7 @@
                                     </Store>
 
                                 </ext:ComboBox>
-                                <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" ID="caId" AllowBlank="true" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" ValueField="recordId" DisplayField="name" Name="caId" FieldLabel="<%$ Resources:FieldWorkingCalendar%>" SimpleSubmit="true">
+                               <%-- <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" ID="caId" AllowBlank="true" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" ValueField="recordId" DisplayField="name" Name="caId" FieldLabel="<%$ Resources:FieldWorkingCalendar%>" SimpleSubmit="true">
                                     <Store>
                                         <ext:Store runat="server" ID="CalendarStore">
                                             <Model>
@@ -1116,8 +1111,8 @@
                                         </ext:Store>
                                     </Store>
 
-                                </ext:ComboBox>
-                                <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" ID="scId" AllowBlank="true" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" ValueField="recordId" DisplayField="name" Name="scId" FieldLabel="<%$ Resources:FieldSchedule%>" SimpleSubmit="true">
+                                </ext:ComboBox>--%>
+                                <%--<ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" ID="scId" AllowBlank="true" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" ValueField="recordId" DisplayField="name" Name="scId" FieldLabel="<%$ Resources:FieldSchedule%>" SimpleSubmit="true">
                                     <Store>
                                         <ext:Store runat="server" ID="scheduleStore">
                                             <Model>
@@ -1131,7 +1126,7 @@
                                         </ext:Store>
                                     </Store>
 
-                                </ext:ComboBox>
+                                </ext:ComboBox>--%>
                                 <ext:TextField ID="birthPlace" runat="server" FieldLabel="<%$ Resources:FieldBirthPlace%>" Name="placeOfBirth" AllowBlank="true" />
 
 
@@ -1143,7 +1138,12 @@
                                     MsgTarget="Side"
                                     AllowBlank="false" />
 
-
+                                 <ext:RadioGroup ID="gender" AllowBlank="true" runat="server" GroupName="gender" FieldLabel="<%$ Resources:FieldGender%>">
+                                    <Items>
+                                        <ext:Radio runat="server" ID="gender1" Name="gender" InputValue="1" BoxLabel="<%$ Resources:Common ,Male%>" />
+                                        <ext:Radio runat="server" ID="gender2" Name="gender" InputValue="2" BoxLabel="<%$ Resources:Common ,Female%>" />
+                                    </Items>
+                                </ext:RadioGroup>
                             </Items>
                         </ext:Panel>
                         <%-- <ext:Panel runat="server" Margin="20" Visible="false">

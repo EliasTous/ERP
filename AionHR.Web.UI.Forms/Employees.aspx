@@ -202,7 +202,7 @@
                                 </ext:ComboBox>
                                 <ext:Container runat="server" Layout="FitLayout">
                                     <Content>
-                                        <uc:jobInfo runat="server" ID="jobInfo1" EnablePosition="false" />
+                                        <uc:jobInfo runat="server" ID="jobInfo1" EnablePosition="false"  EnableDivision="false"/>
 
                                     </Content>
 

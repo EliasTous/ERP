@@ -21,16 +21,16 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" type="text/javascript"></script>
      <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/>
  
-     <link href="CSS/fileinput.min.css" rel="stylesheet" />
+     <link href="CSS/fileinput.min.css?id=1" rel="stylesheet" />
 <link href="CSS/theme.css" rel="stylesheet" />
  
 <!-- load the JS files in the right order -->
-<script src="Scripts/fileinput.js" type="text/javascript"></script>
+<script src="Scripts/fileinput.js?id=1" type="text/javascript"></script>
 <script src="Scripts/theme.js" type="text/javascript">  </script>
     <script src="Scripts/moment.js" type="text/javascript">  </script>
     <script src="Scripts/moment-timezone.js" type="text/javascript">  </script>
 
-     <script type="text/javascript" src="Scripts/locales/ar.js?id=7" ></script>
+     <script type="text/javascript" src="Scripts/locales/ar.js?id=10" ></script>
  <script type="text/javascript">
      var types = [];
      var curIndex = 0;

@@ -2014,7 +2014,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Overtime Settings.
+        ///   Looks up a localized string similar to Overtime Exceptions.
         /// </summary>
         internal static string OvertimeSettings {
             get {

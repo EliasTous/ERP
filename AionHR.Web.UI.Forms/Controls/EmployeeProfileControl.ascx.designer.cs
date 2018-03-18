@@ -580,33 +580,6 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.TextField mobile;
         
         /// <summary>
-        /// gender control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.RadioGroup gender;
-        
-        /// <summary>
-        /// gender1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Radio gender1;
-        
-        /// <summary>
-        /// gender2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Radio gender2;
-        
-        /// <summary>
         /// rightPanel control.
         /// </summary>
         /// <remarks>
@@ -832,42 +805,6 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Store VacationScheduleStore;
         
         /// <summary>
-        /// caId control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.ComboBox caId;
-        
-        /// <summary>
-        /// CalendarStore control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Store CalendarStore;
-        
-        /// <summary>
-        /// scId control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.ComboBox scId;
-        
-        /// <summary>
-        /// scheduleStore control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Store scheduleStore;
-        
-        /// <summary>
         /// birthPlace control.
         /// </summary>
         /// <remarks>
@@ -884,6 +821,33 @@ namespace AionHR.Web.UI.Forms {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.DateField hireDate;
+        
+        /// <summary>
+        /// gender control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.RadioGroup gender;
+        
+        /// <summary>
+        /// gender1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Radio gender1;
+        
+        /// <summary>
+        /// gender2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Radio gender2;
         
         /// <summary>
         /// DeleteButton control.

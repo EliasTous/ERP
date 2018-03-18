@@ -412,7 +412,11 @@ namespace AionHR.Web.UI.Forms
 
             //in this test will take a list of News
             ListRequest request = new ListRequest();
-            request.Filter = "";
+           // request.Filter = "";
+       
+            request.Size = e.Limit.ToString();
+            request.StartAt = e.Start.ToString();
+            request.Filter = searchTrigger.Text;
             ListResponse<Model.Company.Structure.Position> branches = _branchService.ChildGetAll<Model.Company.Structure.Position>(request);
             if (!branches.Success)
                 return;
