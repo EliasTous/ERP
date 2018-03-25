@@ -107,14 +107,8 @@ namespace AionHR.Web.UI.Forms
 
         }
 
-        private void BuildQuickViewTemplate()
-
-
-            
-               
-               
-              
-              
+        private void BuildQuickViewTemplate()                         
+             
                
               
              
@@ -130,22 +124,22 @@ namespace AionHR.Web.UI.Forms
             html += GetLocalResourceObject("earnedLeavesLeg").ToString() + " {earnedLeavesLeg}   </td></tr><tr><td>";
 
             html += GetLocalResourceObject("paidLeaves").ToString() + " {paidLeaves}  </td><td>";
-            html += GetLocalResourceObject("indemnity").ToString() + " {indemnity}    </td><td>";
-            html += GetLocalResourceObject("usedLeavesLeg").ToString() + " {usedLeavesLeg}</td></tr><tr><td>";
+            html += GetLocalResourceObject("EmployeeStatus").ToString() + " {status}  </td><td>";
+            html += GetLocalResourceObject("lastLeaveStartDateTitle").ToString() + " {lastLeave}  </td> </tr><tr><td>";
 
 
 
             html += GetLocalResourceObject("leavesBalanceTitle").ToString() + " {leavesBalance} </td><td>";
-            html += GetLocalResourceObject("salary").ToString() + " {salary}  </td><td>";
+            //     html += GetLocalResourceObject("salary").ToString() + " {salary}  </td><td>";
 
 
-            html += GetLocalResourceObject("lastLeaveStartDateTitle").ToString() + " {lastLeave}  </td> </tr></table>";
+            html += GetLocalResourceObject("usedLeavesLeg").ToString() + " {usedLeavesLeg}</td> </tr></table>";
+           
 
 
 
 
 
-       
 
 
 
@@ -490,26 +484,33 @@ namespace AionHR.Web.UI.Forms
                 X.Msg.Alert(Resources.Common.Error, qv.Summary).Show();
                 return null;
             }
+            qv.result.statusString = GetLocalResourceObject("EmployeeStatus" + qv.result.status).ToString();
 
-           return new  
+
+
+
+            return new
             {
+
+
+
                 reportsTo = qv.result.reportToName.fullName,
                 indemnity = qv.result.indemnity,
                 salary = qv.result.salary,
                 leavesBalance = qv.result.leaveBalance,
-                serviceDuration= qv.result.serviceDuration,
+                serviceDuration = qv.result.serviceDuration,
                 earnedLeaves = qv.result.earnedLeaves,
                 usedLeaves = qv.result.usedLeaves,
                 paidLeaves = qv.result.paidLeaves,
                 earnedLeavesLeg = qv.result.earnedLeavesLeg,
                 usedLeavesLeg = qv.result.usedLeavesLeg,
 
-                lastLeave =  qv.result.LastLeave(_systemService.SessionHelper.GetDateformat())
-              
-               
+                lastLeave = qv.result.LastLeave(_systemService.SessionHelper.GetDateformat()),
+                 status = qv.result.statusString
 
 
-            };
+
+           };
          
 
 

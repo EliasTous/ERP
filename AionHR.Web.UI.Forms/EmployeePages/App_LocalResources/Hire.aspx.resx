@@ -153,4 +153,10 @@
   <data name="sponsor" xml:space="preserve">
     <value>Sponsor</value>
   </data>
+  <data name="otherRef" xml:space="preserve">
+    <value>Other Ref</value>
+  </data>
+  <data name="prevRecord" xml:space="preserve">
+    <value>Previous Ref</value>
+  </data>
 </root>

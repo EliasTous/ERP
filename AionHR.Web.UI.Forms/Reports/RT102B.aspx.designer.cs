@@ -10,7 +10,7 @@
 namespace AionHR.Web.UI.Forms.Reports {
     
     
-    public partial class RT102 {
+    public partial class RT102B {
         
         /// <summary>
         /// Form1 control.

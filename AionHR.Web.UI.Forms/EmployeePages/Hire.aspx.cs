@@ -64,7 +64,8 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                 CurrentEmployee.Text = Request.QueryString["employeeId"];
                 FillNoticePeriod();
                 FillBranchField();
-                FillSponseCombo(); 
+                FillSponseCombo();
+                FillPrevRecordIdField();
 
 
                 HireInfoRecordRequest req = new HireInfoRecordRequest();
@@ -83,7 +84,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     npId.Select(resp.result.npId.ToString());
                     recBranchId.Select(resp.result.recBranchId.ToString());
                     sponsorId.Select(resp.result.sponsorId.ToString());
-                   
+                    prevRecordId.Select(resp.result.prevRecordId.ToString());
                   
 
                     pyActiveDate.Value = resp.result.pyActiveDate;
@@ -318,6 +319,30 @@ namespace AionHR.Web.UI.Forms.EmployeePages
         {
            
 
+        }
+        private void FillPrevRecordIdField()
+        {
+
+            EmployeeListRequest req = new EmployeeListRequest();
+            req.DepartmentId = "0";
+            req.BranchId = "0";
+            req.IncludeIsInactive = 1;
+            req.SortBy = GetNameFormat();
+
+            req.StartAt = "1";
+            req.Size = "20";
+            req.Filter = "";
+
+            ListResponse<Employee> response = _employeeService.GetAll<Employee>(req);
+            response.Items.ForEach(x => x.fullName = x.name.fullName);
+            prevRecordStore.DataSource = response.Items;
+            prevRecordStore.DataBind();
+        }
+
+
+        private string GetNameFormat()
+        {
+            return _systemService.SessionHelper.Get("nameFormat").ToString();
         }
     }
 }

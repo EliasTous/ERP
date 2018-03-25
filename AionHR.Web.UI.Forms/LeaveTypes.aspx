@@ -264,7 +264,9 @@
                                         <ext:ListItem Text="<%$ Resources: Personal %>" Value="1" />
                                         <ext:ListItem Text="<%$ Resources: Business %>" Value="2" />
                                     </Items>
-
+                                    <Listeners>
+                                        <Change Handler="if (#{leaveType}.getValue()==2) {#{isPaid}.setDisabled(true);} else{ #{isPaid}.setDisabled(false);}"></Change>
+                                    </Listeners>
 
                                 </ext:ComboBox>
                                 <ext:Checkbox runat="server" Name="requireApproval" InputValue="true" ID="requiresApprovalCheck" DataIndex="requireApproval" FieldLabel="<%$ Resources:FieldRequiresApproval%>" >
@@ -273,7 +275,7 @@
                                          </Change>
                                      </Listeners>
                                      </ext:Checkbox>
-                                 <ext:Checkbox runat="server" Name="isPaid" InputValue="true" ID="isPaid" DataIndex="isPaid" FieldLabel="<%$ Resources:isPaid%>" />
+                                 <ext:Checkbox runat="server" Name="isPaid" InputValue="true" ID="isPaid" DataIndex="isPaid" FieldLabel="<%$ Resources:isPaid%>" Checked="true" />
                                     
                                 <ext:FieldSet ID="ApprovalLevelFS" runat="server" Disabled="true" Title="<%$ Resources:Approvallevel %>" >
                                     <Items>

@@ -296,6 +296,7 @@ namespace AionHR.Web.UI.Forms.Utilities
             Ext.Net.Node rt1 = BuildParentNode("report_rt1", Resources.Common.EmployeeFiles, true, timeAt, "Group");
             Ext.Net.Node rt101 = BuildLeafNode("report_rt101", Resources.Common.RT01, "", true, rt1);
             Ext.Net.Node rt102 = BuildLeafNode("report_rt102", Resources.Common.RT102, "", true, rt1);
+            Ext.Net.Node rt102B = BuildLeafNode("report_rt102B", Resources.Common.RT102B, "", true, rt1);
             Ext.Net.Node rt103 = BuildLeafNode("report_rt103", Resources.Common.RT103, "", true, rt1);
             Ext.Net.Node rt104 = BuildLeafNode("report_rt104", Resources.Common.RT104, "", true, rt1);
             Ext.Net.Node rt105 = BuildLeafNode("report_rt105", Resources.Common.RT105, "", true, rt1);
@@ -303,6 +304,7 @@ namespace AionHR.Web.UI.Forms.Utilities
             Ext.Net.Node rt107 = BuildLeafNode("report_rt107", Resources.Common.RT107, "", true, rt1);
             Ext.Net.Node rt108 = BuildLeafNode("report_rt108", Resources.Common.RT108, "", true, rt1);
             Ext.Net.Node rt111 = BuildLeafNode("report_rt111", Resources.Common.RT111, "", true, rt1);
+            Ext.Net.Node rt112 = BuildLeafNode("report_rt112", Resources.Common.RT112, "", true, rt1);
 
             //Ext.Net.Node rt2 = BuildParentNode("report_rt2", Resources.Common.Salary,  true, timeAt);
 
@@ -343,6 +345,7 @@ namespace AionHR.Web.UI.Forms.Utilities
 
             FillConfigItem(rt101, "rt101", "Reports/RT01.aspx", Resources.Common.RT01, "icon-Employees", "1");
             FillConfigItem(rt102, "rt102", "Reports/RT102.aspx", Resources.Common.RT102, "icon-Employees", "1");
+            FillConfigItem(rt102B, "rt102B", "Reports/RT102B.aspx", Resources.Common.RT102B, "icon-Employees", "1");
             FillConfigItem(rt103, "rt103", "Reports/RT103.aspx", Resources.Common.RT103, "icon-Employees", "1");
             FillConfigItem(rt104, "rt104", "Reports/RT104.aspx", Resources.Common.RT104, "icon-Employees", "1");
             FillConfigItem(rt105, "rt105", "Reports/RT105.aspx", Resources.Common.RT105, "icon-Employees", "1");
@@ -350,6 +353,7 @@ namespace AionHR.Web.UI.Forms.Utilities
             FillConfigItem(rt107, "rt107", "Reports/RT107.aspx", Resources.Common.RT107, "icon-Employees", "1");
             FillConfigItem(rt108, "rt108", "Reports/RT108.aspx", Resources.Common.RT108, "icon-Employees", "1");
             FillConfigItem(rt111, "rt111", "Reports/RT111.aspx", Resources.Common.RT111, "icon-Employees", "1");
+            FillConfigItem(rt112, "rt112", "Reports/RT112.aspx", Resources.Common.RT112, "icon-Employees", "1");
 
 
             FillConfigItem(rt201, "rt201", "Reports/RT201.aspx", Resources.Common.RT201, "icon-Employees", "1");

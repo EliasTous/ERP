@@ -183,7 +183,23 @@
                                         <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
                                     </Listeners>
                                 </ext:ComboBox>
-
+                               <ext:ComboBox   AnyMatch="true" CaseSensitive="false"   runat="server" AllowBlank="true" ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="fullName" ID="prevRecordId" Name="prevRecordId" FieldLabel="<%$ Resources:prevRecord%>"  LabelWidth="120">
+                                    <Store>
+                                        <ext:Store runat="server" ID="prevRecordStore">
+                                            <Model>
+                                                <ext:Model runat="server">
+                                                    <Fields>
+                                                        <ext:ModelField Name="recordId" />
+                                                        <ext:ModelField Name="fullName" />
+                                                    </Fields>
+                                                </ext:Model>
+                                            </Model>
+                                        </ext:Store>
+                                    </Store>
+                               
+                                   
+                                </ext:ComboBox>
+      <ext:TextField runat="server"  LabelWidth="120" ID="otherRef" Name="otherRef" FieldLabel="<%$ Resources:otherRef %>" AllowBlank="true" />
                          </Items></ext:Panel>
                            
                            

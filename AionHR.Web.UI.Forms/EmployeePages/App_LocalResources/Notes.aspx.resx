@@ -243,4 +243,7 @@
   <data name="WindowTitle" xml:space="preserve">
     <value>Currencies</value>
   </data>
+  <data name="FillNote" xml:space="preserve">
+    <value>Please fill the below field then  click on add button</value>
+  </data>
 </root>

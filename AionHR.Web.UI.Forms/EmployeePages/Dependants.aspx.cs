@@ -559,6 +559,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                 //Step 1 Code to delete the object from the database 
                 Dependant n = new Dependant();
                 n.seqNo = index;
+                n.employeeId= Request.QueryString["employeeId"];
 
                 PostRequest<Dependant> req = new PostRequest<Dependant>();
                 req.entity = n;

@@ -715,7 +715,7 @@
     <value>أعمار الموظفين</value>
   </data>
   <data name="RT102" xml:space="preserve">
-    <value>توظيف و انهاء الخدمة</value>
+    <value>توظيف  </value>
   </data>
   <data name="RT103" xml:space="preserve">
     <value>عدد الموظفين</value>
@@ -1148,5 +1148,11 @@
   </data>
   <data name="DayAvailability" xml:space="preserve">
     <value>الجدول اليومي للفرع</value>
+  </data>
+  <data name="RT112" xml:space="preserve">
+    <value>ملاحظات الموظفين </value>
+  </data>
+  <data name="RT102B" xml:space="preserve">
+    <value>انهاء الخدمة</value>
   </data>
 </root>

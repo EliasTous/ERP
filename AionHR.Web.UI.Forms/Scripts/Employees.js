@@ -309,10 +309,10 @@ function dump(obj) {
 //    App.direct.FillLeftPanel(true);
 //}
 var enterKeyPressSearchHandler = function (el, event) {
-
+   
     var enter = false;
     
-    alert(event.getKey());
+  
     if (event.getKey() == 13) {
         
         if (el.getValue().length > 0)

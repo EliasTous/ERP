@@ -124,7 +124,7 @@
     <value>معلومات نوع الإجازة</value>
   </data>
   <data name="Business" xml:space="preserve">
-    <value>عمل</value>
+    <value>عمل / مرضية</value>
   </data>
   <data name="EditWindowsTitle" xml:space="preserve">
     <value>تعديل نوع الإجازة</value>

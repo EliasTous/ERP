@@ -243,4 +243,7 @@
   <data name="WindowTitle" xml:space="preserve">
     <value>العملات</value>
   </data>
+  <data name="FillNote" xml:space="preserve">
+    <value>يرجى تعبئة حقل الملاحظة ثم النقر على زر الإضافة</value>
+  </data>
 </root>

@@ -154,7 +154,7 @@
     <value>Day</value>
   </data>
   <data name="FieldEmployeeName" xml:space="preserve">
-    <value>Employee Name</value>
+    <value>Employee </value>
   </data>
   <data name="FieldEndDate" xml:space="preserve">
     <value>End Date</value>
@@ -169,7 +169,7 @@
     <value>Leave Hours</value>
   </data>
   <data name="FieldLtName" xml:space="preserve">
-    <value>Leave Type Name</value>
+    <value>Leave Type </value>
   </data>
   <data name="FieldPending" xml:space="preserve">
     <value>Pending</value>

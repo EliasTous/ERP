@@ -393,4 +393,19 @@
   <data name="usedLeavesLeg" xml:space="preserve">
     <value>Used Leaves Leg :</value>
   </data>
+  <data name="EmployeeStatus" xml:space="preserve">
+    <value>Employee Status :</value>
+  </data>
+  <data name="EmployeeStatus0" xml:space="preserve">
+    <value>Not Hired Yet</value>
+  </data>
+  <data name="EmployeeStatus1" xml:space="preserve">
+    <value>Active</value>
+  </data>
+  <data name="EmployeeStatus2" xml:space="preserve">
+    <value>On leave</value>
+  </data>
+  <data name="EmployeeStatus3" xml:space="preserve">
+    <value>Terminated</value>
+  </data>
 </root>

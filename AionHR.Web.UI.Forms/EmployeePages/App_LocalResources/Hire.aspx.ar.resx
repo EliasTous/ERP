@@ -153,4 +153,10 @@
   <data name="sponsor" xml:space="preserve">
     <value>الكفيل</value>
   </data>
+  <data name="otherRef" xml:space="preserve">
+    <value>رمز أخر </value>
+  </data>
+  <data name="prevRecord" xml:space="preserve">
+    <value>رمز الموظف القديم </value>
+  </data>
 </root>

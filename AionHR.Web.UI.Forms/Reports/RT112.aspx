@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="RT102.aspx.cs" Inherits="AionHR.Web.UI.Forms.Reports.RT102" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="RT112.aspx.cs" Inherits="AionHR.Web.UI.Forms.Reports.RT112" %>
 
 <%@ Register Assembly="DevExpress.Web.v16.2, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web" TagPrefix="dx" %>
 
@@ -29,36 +29,27 @@
             Ext.MessageBox.alert('Error', e.message);
             e.handled = true;
         }
-        function dump(obj) {
-            var out = '';
-            for (var i in obj) {
-                out += i + ": " + obj[i] + "\n";
-
-
-            }
-            return out;
-        }
     </script>
 </head>
 <body style="background: url(Images/bg.png) repeat;">
     <form id="Form1" runat="server">
         <ext:ResourceManager ID="ResourceManager1" runat="server" Theme="Neptune" AjaxTimeout="1200000" />
 
-
-        <ext:Viewport ID="Viewport1" runat="server" Layout="FitLayout">
-
-            <Items>
-                
         <ext:Hidden ID="textMatch" runat="server" Text="<%$ Resources:Common , MatchFound %>" />
         <ext:Hidden ID="textLoadFailed" runat="server" Text="<%$ Resources:Common , LoadFailed %>" />
         <ext:Hidden ID="titleSavingError" runat="server" Text="<%$ Resources:Common , TitleSavingError %>" />
         <ext:Hidden ID="titleSavingErrorMessage" runat="server" Text="<%$ Resources:Common , TitleSavingErrorMessage %>" />
+         <ext:Hidden ID="dtIdValue" runat="server" Text="" />
+
+        
 
         <ext:Hidden ID="rtl" runat="server" />
         <ext:Hidden ID="format" runat="server" />
 
-        
-      
+
+        <ext:Viewport ID="Viewport1" runat="server" Layout="FitLayout">
+
+            <Items>
 
                 <ext:Panel
                     ID="Center"
@@ -71,45 +62,55 @@
                         <ext:Toolbar runat="server" Height="60">
 
                             <Items>
-                           
+                                  
+                              
+                              
+                                                                     
+                                                                     
+                                      
+                               <%-- <ext:Container runat="server"  Layout="FitLayout">
+                                            <Content>
+                                            
+                                                <uc:employeeCombo runat="server" ID="employeeCombo1" />
+                                            </Content>
+                                        </ext:Container>--%>
+                                 <ext:Container runat="server"  Layout="FitLayout">
+                                            <Content>
+                                                <%--<uc:dateRange runat="server" ID="dateRange1" />--%>
+                                                <uc:jobInfo runat="server" ID="jobInfo1" EnableDivision="false"  EnablePosition="false"  />
+                                            </Content>
+                                        </ext:Container>
+                                  <ext:Container runat="server"  Layout="FitLayout">
+                                            <Content>
+                                                <%--<uc:dateRange runat="server" ID="dateRange1" />--%>
+                                                <uc:employeeCombo runat="server" ID="employeeFilter"   />
+                                            </Content>
+                                        </ext:Container>
+                                
+                                
                                 <ext:Container runat="server" Layout="FitLayout">
                                     <Content>
-                                        <uc:dateRange runat="server" ID="dateRange1" />
-                                    </Content>
-                                </ext:Container>
-                                   <ext:Container runat="server" Layout="FitLayout">
-                                    <Content>
-                                        <uc:jobInfo runat="server" ID="jobInfo1" EnableDivision="false" EnablePosition="false" />
-                                    </Content>
-                                </ext:Container>
-
-
-
-                                <ext:Container runat="server" Layout="FitLayout">
-                                    <Content>
-                                        <ext:Button runat="server" Text="<%$Resources:Common, Go %>">
+                                         <ext:Button runat="server" Text="<%$Resources:Common, Go %>" >
                                             <Listeners>
                                                 <Click Handler="callbackPanel.PerformCallback('1');" />
                                             </Listeners>
                                         </ext:Button>
                                     </Content>
                                 </ext:Container>
-
-
+                                       
+                        
 
                             </Items>
                         </ext:Toolbar>
 
                     </TopBar>
                     <Content>
-                        
-                        <dx:ASPxCallbackPanel ID="ASPxCallbackPanel1" runat="server" ClientInstanceName="callbackPanel"
-                            Width="100%" OnCallback="ASPxCallbackPanel1_Callback" OnLoad="ASPxCallbackPanel1_Load" ClientSideEvents-CallbackError="alertNow">
+
+                        <dx:ASPxCallbackPanel ID="ASPxCallbackPanel1" runat="server"  ClientSideEvents-CallbackError="alertNow" ClientInstanceName="callbackPanel"
+                            Width="100%" OnCallback="ASPxCallbackPanel1_Callback" OnLoad="ASPxCallbackPanel1_Load" >
                             <PanelCollection>
                                 <dx:PanelContent runat="server">
-                                    <dx:ASPxWebDocumentViewer ID="ASPxWebDocumentViewer1" runat="server">
-                                   
-                                    </dx:ASPxWebDocumentViewer>
+                                    <dx:ASPxWebDocumentViewer ID="ASPxWebDocumentViewer1" runat="server" ></dx:ASPxWebDocumentViewer>
                                 </dx:PanelContent>
                             </PanelCollection>
                         </dx:ASPxCallbackPanel>

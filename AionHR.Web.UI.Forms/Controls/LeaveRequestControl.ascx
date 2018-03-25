@@ -152,6 +152,8 @@
 <ext:Hidden ID="ViewOnly" runat="server" />
   <ext:Hidden ID="oldStart" runat="server"  />
         <ext:Hidden ID="oldEnd" runat="server"  />
+ <ext:Hidden ID="endDateHidden" runat="server"  />
+<ext:Hidden ID="startDateHidden" runat="server"  />
 <ext:Window
     ID="EditRecordWindow"
     runat="server"

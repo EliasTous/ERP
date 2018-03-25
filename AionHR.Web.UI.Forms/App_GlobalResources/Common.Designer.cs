@@ -2311,11 +2311,20 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Hirings and Terminations.
+        ///   Looks up a localized string similar to Hirings .
         /// </summary>
         internal static string RT102 {
             get {
                 return ResourceManager.GetString("RT102", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Terminations.
+        /// </summary>
+        internal static string RT102B {
+            get {
+                return ResourceManager.GetString("RT102B", resourceCulture);
             }
         }
         
@@ -2388,6 +2397,15 @@ namespace Resources {
         internal static string RT111 {
             get {
                 return ResourceManager.GetString("RT111", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Employee Notes.
+        /// </summary>
+        internal static string RT112 {
+            get {
+                return ResourceManager.GetString("RT112", resourceCulture);
             }
         }
         

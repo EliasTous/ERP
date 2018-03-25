@@ -25,10 +25,9 @@ using AionHR.Model.Attendance;
 using AionHR.Services.Messaging.Reports;
 using System.Threading;
 using Reports;
-
 namespace AionHR.Web.UI.Forms.Reports
 {
-    public partial class RT102 : System.Web.UI.Page
+    public partial class RT102B : System.Web.UI.Page
     {
         ISystemService _systemService = ServiceLocator.Current.GetInstance<ISystemService>();
         ITimeAttendanceService _timeAttendanceService = ServiceLocator.Current.GetInstance<ITimeAttendanceService>();
@@ -92,7 +91,7 @@ namespace AionHR.Web.UI.Forms.Reports
 
         private void ActivateFirstFilterSet()
         {
-            
+
 
 
         }
@@ -157,97 +156,96 @@ namespace AionHR.Web.UI.Forms.Reports
             else return "1";
         }
 
-       
+
         private ReportCompositeRequest GetRequest()
         {
             ReportCompositeRequest req = new ReportCompositeRequest();
-          
+
             req.Size = "1000";
             req.StartAt = "1";
             req.SortBy = "departmentName";
-            
+
             req.Add(dateRange1.GetRange());
             req.Add(jobInfo1.GetJobInfo());
             return req;
         }
-        
-        private void FillReport(bool isInitial=false,bool throwException=true)
+
+        private void FillReport(bool isInitial = false, bool throwException = true)
         {
-            
+
+            //ReportCompositeRequest req = GetRequest();
+
+            //ListResponse<AionHR.Model.Reports.RT102A> resp = _reportsService.ChildGetAll<AionHR.Model.Reports.RT102A>(req);
+            //if (!resp.Success)
+            //{
+            //    if (throwException)
+            //        throw new Exception(resp.Summary);
+            //    else
+            //    {
+            //        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+            //        X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>Technical Error: " + resp.ErrorCode + "<br> Summary: " + resp.Summary : resp.Summary).Show();
+            //        return;
+            //    }
+            //}
+            //resp.Items.ForEach(x => x.DateString = x.date.ToString(_systemService.SessionHelper.GetDateformat(), new CultureInfo("en")));
+            //Hirings h = new Hirings();
+
+
+            //h.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;
+            //h.RightToLeftLayout = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeftLayout.Yes : DevExpress.XtraReports.UI.RightToLeftLayout.No;
+            //h.DataSource = resp.Items;
+
+
+
             ReportCompositeRequest req = GetRequest();
-            
-            ListResponse<AionHR.Model.Reports.RT102A> resp = _reportsService.ChildGetAll<AionHR.Model.Reports.RT102A>(req);
+            ListResponse<AionHR.Model.Reports.RT102B> resp = _reportsService.ChildGetAll<AionHR.Model.Reports.RT102B>(req);
+
             if (!resp.Success)
             {
-                if (throwException)
-                    throw new Exception(resp.Summary);
-                else
-                {
-                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>Technical Error: " + resp.ErrorCode + "<br> Summary: " + resp.Summary : resp.Summary).Show();
-                    return;
-                }
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, resp.Summary).Show();
+                return;
             }
-            resp.Items.ForEach(x => x.DateString = x.date.ToString(_systemService.SessionHelper.GetDateformat(), new CultureInfo("en")));
-            Hirings h = new Hirings();
+            resp.Items.ForEach(x => x.DateString = x.date.ToString(_systemService.SessionHelper.GetDateformat()));
 
-
-            h.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;
-            h.RightToLeftLayout = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeftLayout.Yes : DevExpress.XtraReports.UI.RightToLeftLayout.No;
-            h.DataSource = resp.Items;
-
-
-
-            //ReportCompositeRequest req2 = GetRequest();
-            //ListResponse<AionHR.Model.Reports.RT102B> resp2 = _reportsService.ChildGetAll<AionHR.Model.Reports.RT102B>(req2);
-
-            //if (!resp2.Success)
-            //{
-            //    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-            //    X.Msg.Alert(Resources.Common.Error, resp2.Summary).Show();
-            //    return;
-            //}
-            //resp2.Items.ForEach(x => x.DateString = x.date.ToString(_systemService.SessionHelper.GetDateformat()));
-       
             string from = DateTime.Parse(req.Parameters["_fromDate"]).ToString(_systemService.SessionHelper.GetDateformat());
             string to = DateTime.Parse(req.Parameters["_toDate"]).ToString(_systemService.SessionHelper.GetDateformat());
             string user = _systemService.SessionHelper.GetCurrentUser();
-            h.Parameters["From"].Value = from;
-            h.Parameters["To"].Value = to;
-            h.Parameters["User"].Value = user;
-            //h.Parameters["BranchName"].Value = jobInfo1.GetBranch();
-               
-            //h.Parameters["DepartmentName"].Value = jobInfo1.GetDepartment();
+          
 
 
+           
+            Terminations t = new Terminations();
+            t.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;
+            t.RightToLeftLayout = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeftLayout.Yes : DevExpress.XtraReports.UI.RightToLeftLayout.No;
+            t.Parameters["From"].Value = from;
+            t.Parameters["To"].Value = to;
+            t.Parameters["User"].Value = user;
+            //t.Parameters["BranchName"].Value = jobInfo1.GetBranch();
+
+         //   t.Parameters["DepartmentName"].Value = jobInfo1.GetDepartment();
+            t.DataSource = resp.Items;
             //if (resp.Items.Count > 0)
             //{
             //    if (req.Parameters["_departmentId"] != "0")
-            //        h.Parameters["DepartmentName"].Value = resp.Items[0].departmentName;
+            //        t.Parameters["DepartmentName"].Value = resp.Items[0].departmentName;
             //    else
-            //        h.Parameters["DepartmentName"].Value = GetGlobalResourceObject("Common", "All");
+            //        t.Parameters["DepartmentName"].Value = GetGlobalResourceObject("Common", "All");
 
             //    if (req.Parameters["_branchId"] != "0")
-            //        h.Parameters["BranchName"].Value = resp.Items[0].branchName;
+            //        t.Parameters["BranchName"].Value = resp.Items[0].branchName;
             //    else
-            //        h.Parameters["BranchName"].Value = GetGlobalResourceObject("Common", "All");
+            //        t.Parameters["BranchName"].Value = GetGlobalResourceObject("Common", "All");
             //}
 
-            //Terminations t = new Terminations();
-            //t.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;
-            //t.RightToLeftLayout = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeftLayout.Yes : DevExpress.XtraReports.UI.RightToLeftLayout.No;
-            //t.Parameters["From"].Value = from;
-            //t.Parameters["To"].Value = to;
-            //t.Parameters["User"].Value = user;
-            //t.DataSource = resp2.Items;
-            //t.CreateDocument();
+            t.CreateDocument();
 
             //h.Pages.AddRange(t.Pages);
-            h.CreateDocument();
+            t.CreateDocument();
             ASPxWebDocumentViewer1.DataBind();
-            ASPxWebDocumentViewer1.OpenReport(h);
+            ASPxWebDocumentViewer1.OpenReport(t);
         }
-       
+
         protected void ASPxCallbackPanel1_Callback(object sender, DevExpress.Web.CallbackEventArgsBase e)
         {
             string[] parameters = e.Parameter.Split('|');
@@ -255,15 +253,15 @@ namespace AionHR.Web.UI.Forms.Reports
 
             if (pageIndex == 1)
             {
-               FillReport();
-             
+                FillReport();
+
             }
 
         }
         protected void Unnamed_Click(object sender, EventArgs e)
         {
-          
-            
+
+
 
         }
 
@@ -273,6 +271,6 @@ namespace AionHR.Web.UI.Forms.Reports
             //FillReport(true);
         }
 
-     
+
     }
 }

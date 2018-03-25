@@ -390,4 +390,19 @@
   <data name="usedLeavesLeg" xml:space="preserve">
     <value>اجازات الفترة الحالية المستعملة :</value>
   </data>
+  <data name="EmployeeStatus" xml:space="preserve">
+    <value>حالة الموظف :</value>
+  </data>
+  <data name="EmployeeStatus0" xml:space="preserve">
+    <value>غير موظف بعد</value>
+  </data>
+  <data name="EmployeeStatus1" xml:space="preserve">
+    <value>نشط</value>
+  </data>
+  <data name="EmployeeStatus2" xml:space="preserve">
+    <value>في اجازة</value>
+  </data>
+  <data name="EmployeeStatus3" xml:space="preserve">
+    <value>تم انهاء الخدمة</value>
+  </data>
 </root>

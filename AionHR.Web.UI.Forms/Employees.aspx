@@ -220,10 +220,10 @@
                                         <ext:FieldTrigger Handler="this.setValue('');" Icon="Clear" />
                                     </Triggers>
                                     <Listeners>
-                                        <KeyPress Fn="enterKeyPressSearchHandler" Buffer="100" />
+                                        <KeyPress Fn="enterKeyPressSearchHandler" />
 
                                         <TriggerClick Handler="#{Store1}.reload();" />
-                                        <SpecialKey Handler="if(e.keyCode==13) #{Store1}.Reload();" />
+                                        <SpecialKey Handler="if(e.keyCode==13)  #{Store1}.reload();" />
                                     </Listeners>
                                 </ext:TextField>
 

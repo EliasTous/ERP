@@ -172,7 +172,8 @@ namespace AionHR.Web.UI.Forms.Controls
             }
             //Step 2 : call setvalues with the retrieved object
             this.BasicInfoTab.SetValues(response.result);
-
+         
+         
 
             FillLeaveType();
 
@@ -213,8 +214,11 @@ namespace AionHR.Web.UI.Forms.Controls
 
             setNormal();
             if (response.result.status == 2)
-
+            {
+                endDateHidden.Text = response.result.endDate.ToString();
+                startDateHidden.Text = response.result.startDate.ToString();
                 setApproved(true);
+            }
 
             else if (response.result.status == 3 || response.result.status == -1)
                 setUsed(true);
@@ -230,7 +234,7 @@ namespace AionHR.Web.UI.Forms.Controls
 
         public void Add()
         {
-            //elias//
+           
             //employeeId.SuspendEvents();
             //startDate.SuspendEvents();
             //endDate.SuspendEvents();
@@ -300,7 +304,7 @@ namespace AionHR.Web.UI.Forms.Controls
         {
             GridDisabled.Text = disabled.ToString();
             startDate.Disabled = disabled;
-            endDate.Disabled = employeeId.Disabled = justification.Disabled = destination.Disabled = /*isPaid.Disabled = */ltId.Disabled = TotalText.Disabled = disabled;
+          /*  endDate.Disabled =*/ employeeId.Disabled = justification.Disabled = destination.Disabled = /*isPaid.Disabled = */ltId.Disabled = TotalText.Disabled = disabled;
             returnDate.Disabled = !disabled;
             approved.Text = disabled.ToString();
             //leavePeriod.Disabled = disabled;
@@ -309,7 +313,10 @@ namespace AionHR.Web.UI.Forms.Controls
             leaveDaysField.Disabled = disabled;
             leaveHours.Disabled = disabled;
             workingHours.Disabled = disabled;
-
+            endDate.MaxDate = DateTime.Parse(endDateHidden.Text);
+            endDate.MinDate = DateTime.Parse(startDateHidden.Text);
+            endDateHidden.Text = "";
+            startDateHidden.Text = "";
         }
 
 
@@ -326,7 +333,9 @@ namespace AionHR.Web.UI.Forms.Controls
             leaveRef.Disabled = false;
             leaveDaysField.Disabled = false;
             workingHours.Disabled = false;
-            leaveHours.Disabled = false; 
+            leaveHours.Disabled = false;
+            endDate.MaxDate = new DateTime();
+            endDate.MinDate= new DateTime();
         }
 
         private void setUsed(bool disabled)

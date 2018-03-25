@@ -712,7 +712,7 @@
     <value>Print</value>
   </data>
   <data name="RT102" xml:space="preserve">
-    <value>Hirings and Terminations</value>
+    <value>Hirings </value>
   </data>
   <data name="RT103" xml:space="preserve">
     <value>Employees Head Count</value>
@@ -1145,5 +1145,11 @@
   </data>
   <data name="DayAvailability" xml:space="preserve">
     <value>Day Availability</value>
+  </data>
+  <data name="RT112" xml:space="preserve">
+    <value>Employee Notes</value>
+  </data>
+  <data name="RT102B" xml:space="preserve">
+    <value>Terminations</value>
   </data>
 </root>

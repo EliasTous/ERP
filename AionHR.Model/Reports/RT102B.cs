@@ -24,5 +24,7 @@ namespace AionHR.Model.Reports
 
         public string esName { get; set; }
         public String DateString { get; set; }
+        public string trName { get; set; }
+      
     }
 }

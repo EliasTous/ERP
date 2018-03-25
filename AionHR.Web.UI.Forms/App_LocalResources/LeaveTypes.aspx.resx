@@ -121,7 +121,7 @@
     <value>Leave Type Info</value>
   </data>
   <data name="Business" xml:space="preserve">
-    <value>Business</value>
+    <value>Business / Sick</value>
   </data>
   <data name="EditWindowsTitle" xml:space="preserve">
     <value>Edit Leave Type</value>

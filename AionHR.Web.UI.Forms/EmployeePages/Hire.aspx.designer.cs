@@ -328,6 +328,33 @@ namespace AionHR.Web.UI.Forms.EmployeePages {
         protected global::Ext.Net.Store sponsorStore;
         
         /// <summary>
+        /// prevRecordId control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.ComboBox prevRecordId;
+        
+        /// <summary>
+        /// prevRecordStore control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Store prevRecordStore;
+        
+        /// <summary>
+        /// otherRef control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.TextField otherRef;
+        
+        /// <summary>
         /// saveButton control.
         /// </summary>
         /// <remarks>

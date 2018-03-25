@@ -47,6 +47,9 @@ namespace AionHR.Model.Employees.Profile
         public DateTime? hireDate { get; set; }
 
         public int? sponsorId { set; get; }
+        public int? prevRecordId { set; get; }
+        public string otherRef { set; get; }
+        
 
 
 
