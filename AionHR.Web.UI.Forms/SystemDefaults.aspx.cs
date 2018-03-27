@@ -177,10 +177,10 @@ namespace AionHR.Web.UI.Forms
             PYISmale_store.DataBind();
             PYISfemale_store.DataSource = GetIndemnitySchedules();
             PYISfemale_store.DataBind();
-            exemptMarriageTR_Store.DataSource = GetTerminationReasons();
-            exemptMarriageTR_Store.DataBind();
-            exemptDeliveryTR_Store.DataSource = GetTerminationReasons();
-            exemptDeliveryTR_Store.DataBind();
+         //   exemptMarriageTR_Store.DataSource = GetTerminationReasons();
+          //  exemptMarriageTR_Store.DataBind();
+            //exemptDeliveryTR_Store.DataSource = GetTerminationReasons();
+            //exemptDeliveryTR_Store.DataBind();
 
         }
 
@@ -397,12 +397,12 @@ namespace AionHR.Web.UI.Forms
             catch { }
 
 
-            try { exemptMarriageTRId.Select(items.Where(s => s.Key == "exemptMarriageTRId").First().Value); }
+            //try { exemptMarriageTRId.Select(items.Where(s => s.Key == "exemptMarriageTRId").First().Value); }
 
-            catch { }
-            try { exemptDeliveryTRId.Select(items.Where(s => s.Key == "exemptDeliveryTRId").First().Value); }
+            //catch { }
+            //try { exemptDeliveryTRId.Select(items.Where(s => s.Key == "exemptDeliveryTRId").First().Value); }
 
-            catch { }
+            //catch { }
             try { languageId.Select(items.Where(s => s.Key == "languageId").First().Value.ToString()); }
         
             catch { }
@@ -736,14 +736,14 @@ namespace AionHR.Web.UI.Forms
                 submittedValues.Add(new KeyValuePair<string, string>("PYISfemale", values.PYISfemale.ToString()));
             else
                 submittedValues.Add(new KeyValuePair<string, string>("PYISfemale", ""));
-            if (!string.IsNullOrEmpty(values.exemptMarriageTRId.ToString()))
-                submittedValues.Add(new KeyValuePair<string, string>("exemptMarriageTRId", values.exemptMarriageTRId.ToString()));
-            else
-                submittedValues.Add(new KeyValuePair<string, string>("exemptMarriageTRId", ""));
-            if (!string.IsNullOrEmpty(values.exemptDeliveryTRId.ToString()))
-                submittedValues.Add(new KeyValuePair<string, string>("exemptDeliveryTRId", values.exemptDeliveryTRId.ToString()));
-            else
-                submittedValues.Add(new KeyValuePair<string, string>("exemptDeliveryTRId",""));
+            //if (!string.IsNullOrEmpty(values.exemptMarriageTRId.ToString()))
+            //    submittedValues.Add(new KeyValuePair<string, string>("exemptMarriageTRId", values.exemptMarriageTRId.ToString()));
+            //else
+            //    submittedValues.Add(new KeyValuePair<string, string>("exemptMarriageTRId", ""));
+            //if (!string.IsNullOrEmpty(values.exemptDeliveryTRId.ToString()))
+            //    submittedValues.Add(new KeyValuePair<string, string>("exemptDeliveryTRId", values.exemptDeliveryTRId.ToString()));
+            //else
+            //    submittedValues.Add(new KeyValuePair<string, string>("exemptDeliveryTRId",""));
             if (!string.IsNullOrEmpty(values.yearDays.ToString()))
                 submittedValues.Add(new KeyValuePair<string, string>("yearDays", values.yearDays.ToString()));
             else

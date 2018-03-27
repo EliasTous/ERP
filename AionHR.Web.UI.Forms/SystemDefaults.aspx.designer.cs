@@ -742,42 +742,6 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Store PYISfemale_store;
         
         /// <summary>
-        /// exemptMarriageTRId control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.ComboBox exemptMarriageTRId;
-        
-        /// <summary>
-        /// exemptMarriageTR_Store control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Store exemptMarriageTR_Store;
-        
-        /// <summary>
-        /// exemptDeliveryTRId control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.ComboBox exemptDeliveryTRId;
-        
-        /// <summary>
-        /// exemptDeliveryTR_Store control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Store exemptDeliveryTR_Store;
-        
-        /// <summary>
         /// yearDays control.
         /// </summary>
         /// <remarks>

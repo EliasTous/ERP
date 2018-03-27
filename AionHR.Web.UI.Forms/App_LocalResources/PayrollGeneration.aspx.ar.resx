@@ -261,4 +261,46 @@
   <data name="FieldRef" xml:space="preserve">
     <value>الرمز</value>
   </data>
+  <data name="Absence" xml:space="preserve">
+    <value>غياب بإذن</value>
+  </data>
+  <data name="cssString" xml:space="preserve">
+    <value>تأمينات الشركة </value>
+  </data>
+  <data name="dAmount" xml:space="preserve">
+    <value>إجمالي الحسومات</value>
+  </data>
+  <data name="Disappear" xml:space="preserve">
+    <value>غياب بدون إذن</value>
+  </data>
+  <data name="Disappearance" xml:space="preserve">
+    <value>غياب بدون إذن</value>
+  </data>
+  <data name="eAmount" xml:space="preserve">
+    <value>إجمالي الاستحقاقات</value>
+  </data>
+  <data name="essString" xml:space="preserve">
+    <value>تأمينات الموظف</value>
+  </data>
+  <data name="Lateness" xml:space="preserve">
+    <value>التأخير</value>
+  </data>
+  <data name="Missed Punch" xml:space="preserve">
+    <value>يوم غير مغلق</value>
+  </data>
+  <data name="netSalary" xml:space="preserve">
+    <value>صافي الراتب</value>
+  </data>
+  <data name="Overtime" xml:space="preserve">
+    <value>عمل إضافي</value>
+  </data>
+  <data name="PaidAt" xml:space="preserve">
+    <value>دفع في</value>
+  </data>
+  <data name="Taxable" xml:space="preserve">
+    <value>إستحقاقات الخاضعة</value>
+  </data>
+  <data name="taxableeAmount" xml:space="preserve">
+    <value>إجمالي الخاضع</value>
+  </data>
 </root>

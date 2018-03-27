@@ -267,4 +267,46 @@
   <data name="FieldEmployeeSocialSecurity" xml:space="preserve">
     <value>Employee Social Security</value>
   </data>
+  <data name="Absence" xml:space="preserve">
+    <value>Absence</value>
+  </data>
+  <data name="cssString" xml:space="preserve">
+    <value>Company Social Security</value>
+  </data>
+  <data name="dAmount" xml:space="preserve">
+    <value>Deductions</value>
+  </data>
+  <data name="Disappear" xml:space="preserve">
+    <value>Disappear</value>
+  </data>
+  <data name="eAmount" xml:space="preserve">
+    <value>Entitlements</value>
+  </data>
+  <data name="essString" xml:space="preserve">
+    <value>Employee Social Security</value>
+  </data>
+  <data name="Lateness" xml:space="preserve">
+    <value>Lateness</value>
+  </data>
+  <data name="Missed Punch" xml:space="preserve">
+    <value>Missed Punch </value>
+  </data>
+  <data name="netSalary" xml:space="preserve">
+    <value>Net </value>
+  </data>
+  <data name="Overtime" xml:space="preserve">
+    <value>Overtime</value>
+  </data>
+  <data name="PaidAt" xml:space="preserve">
+    <value>Paid at</value>
+  </data>
+  <data name="PayRef" xml:space="preserve">
+    <value>PayRef</value>
+  </data>
+  <data name="Taxable" xml:space="preserve">
+    <value>Taxable Entitlements</value>
+  </data>
+  <data name="taxableeAmount" xml:space="preserve">
+    <value>Total Taxables</value>
+  </data>
 </root>

@@ -911,9 +911,10 @@
                                                 <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
                                             </Listeners>
                                         </ext:ComboBox>
+                                         <ext:NumberField Width="400" runat="server" LabelWidth="160" ID="yearDays" Name="yearDays" FieldLabel="<%$ Resources: yearDays %>" MinValue="0" MaxValue="365" />
                                         </Items>
                                         </ext:FieldSet>
-                                <ext:FieldSet Collapsible="true" runat="server" Title="<%$ Resources: TerminationReason %>">
+                                <%--<ext:FieldSet Collapsible="true" runat="server" Title="<%$ Resources: TerminationReason %>">
                                  <Items>
 
                                    <ext:ComboBox AnyMatch="true" CaseSensitive="false" QueryMode="Local" LabelWidth="150" ForceSelection="true" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: exemptMarriageTRId %>" Name="exemptMarriageTRId" DisplayField="name" ValueField="recordId" runat="server" ID="exemptMarriageTRId">
@@ -940,7 +941,7 @@
                                                 </Click>
                                             </DirectEvents>
                                         </ext:Button>
-                                    </RightButtons>--%>
+                                    </RightButtons>
                                     <Listeners>
                                         <FocusEnter Handler=" if(!this.readOnly)this.rightButtons[0].setHidden(false);" />
                                         <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
@@ -970,15 +971,15 @@
                                                 </Click>
                                             </DirectEvents>
                                         </ext:Button>
-                                    </RightButtons>--%>
+                                    </RightButtons>
                                     <Listeners>
                                         <FocusEnter Handler=" if(!this.readOnly)this.rightButtons[0].setHidden(false);" />
                                         <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
                                     </Listeners>
                                 </ext:ComboBox>
-                                      <ext:NumberField Width="400" runat="server" LabelWidth="160" ID="yearDays" Name="yearDays" FieldLabel="<%$ Resources: yearDays %>" MinValue="0" MaxValue="365" />
+                                     
                                      </Items>
-                                  </ext:FieldSet>
+                                  </ext:FieldSet>--%>
 
                                     
                                                                   

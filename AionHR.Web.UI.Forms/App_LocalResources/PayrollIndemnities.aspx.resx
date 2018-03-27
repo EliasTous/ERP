@@ -154,7 +154,7 @@
     <value>Payroll indemnities</value>
   </data>
   <data name="PeriodsTab" xml:space="preserve">
-    <value>Payroll Indemnity Details</value>
+    <value>Company</value>
   </data>
   <data name="WindowTitle" xml:space="preserve">
     <value>Vacation Schedules</value>
@@ -172,7 +172,7 @@
     <value>Exempt Marriage Period</value>
   </data>
   <data name="IndemnityRecognitiontabs" xml:space="preserve">
-    <value>Indemnity Resignation</value>
+    <value>Resignation</value>
   </data>
   <data name="IndemnityPercentage" xml:space="preserve">
     <value>Percentage</value>

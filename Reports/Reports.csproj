@@ -165,6 +165,12 @@
     <Compile Include="EmployeeDetails.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="EmployeesNotes.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="EmployeesNotes.Designer.cs">
+      <DependentUpon>EmployeesNotes.cs</DependentUpon>
+    </Compile>
     <Compile Include="EntitlementDeductionsReport.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -424,6 +430,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="EmployeeDetails.resx">
       <DependentUpon>EmployeeDetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EmployeesNotes.ar.resx">
+      <DependentUpon>EmployeesNotes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EmployeesNotes.resx">
+      <DependentUpon>EmployeesNotes.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="EntitlementDeductionsReport.ar.resx">
       <DependentUpon>EntitlementDeductionsReport.cs</DependentUpon>

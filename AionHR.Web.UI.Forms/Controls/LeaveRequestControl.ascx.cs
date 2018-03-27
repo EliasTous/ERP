@@ -335,7 +335,7 @@ namespace AionHR.Web.UI.Forms.Controls
             workingHours.Disabled = false;
             leaveHours.Disabled = false;
             endDate.MaxDate = new DateTime();
-            endDate.MinDate= new DateTime();
+            endDate.MinDate = new DateTime();
         }
 
         private void setUsed(bool disabled)

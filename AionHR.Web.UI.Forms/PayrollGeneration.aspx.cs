@@ -1122,17 +1122,14 @@ namespace AionHR.Web.UI.Forms
             ReportCompositeRequest req = GetRequest(payRef);
 
             ListResponse<AionHR.Model.Reports.RT501> resp = _reportsService.ChildGetAll<AionHR.Model.Reports.RT501>(req);
-            //if (!resp.Success)
-            //{
-            //    if (throwException)
-            //        throw new Exception(resp.Summary);
-            //    else
-            //    {
-            //        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-            //        X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>Technical Error: " + resp.ErrorCode + "<br> Summary: " + resp.Summary : resp.Summary).Show();
-            //        return;
-            //    }
-            //}
+            if (!resp.Success)
+            {
+                               
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>Technical Error: " + resp.ErrorCode + "<br> Summary: " + resp.Summary : resp.Summary).Show();
+                    return null;
+                
+            }
 
             var d = resp.Items.GroupBy(x => x.employeeName.fullName);
             PayrollLineCollection lines = new PayrollLineCollection();

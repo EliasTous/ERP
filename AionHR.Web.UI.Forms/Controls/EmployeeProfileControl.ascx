@@ -566,7 +566,7 @@
     runat="server" 
     Icon="PageEdit"
     Title="<%$ Resources:EditWindowsTitle %>"
-    Width="850"
+    Width="880"
     Height="550"
     MinWidth="820"
      
