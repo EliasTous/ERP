@@ -36,7 +36,7 @@ namespace AionHR.Services.Implementations
                 DateTime effectiveDate = DateTime.Parse(row[8].ToString());
                 string reason = row[5].ToString();
                 
-                string loanRef = row[10].ToString();
+                string loanRef = row[9].ToString();
                 string status = row[6].ToString();
 
                 loans.Add(new Loan() { employeeRef = employeeRef, amount = Convert.ToDouble(amount), ltId =ltId, branchId = branch.ToLower()=="null"?null:branch, currencyId=1, currencyRef = currRef, date = date, effectiveDate = effectiveDate, loanRef = loanRef, status= Convert.ToInt16(status), purpose=reason });

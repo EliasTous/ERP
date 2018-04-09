@@ -543,4 +543,10 @@
   <data name="HeadCountMaximumWindow" xml:space="preserve">
     <value>Head Count</value>
   </data>
+  <data name="retirementAge" xml:space="preserve">
+    <value>Retirement Age</value>
+  </data>
+  <data name="TermEndDate" xml:space="preserve">
+    <value>Term End Date</value>
+  </data>
 </root>

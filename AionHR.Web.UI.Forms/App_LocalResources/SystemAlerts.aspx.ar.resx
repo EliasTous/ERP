@@ -171,6 +171,12 @@
   <data name="Alert309Title" xml:space="preserve">
     <value>ذكرى بداية العمل</value>
   </data>
+  <data name="Alert310Title" xml:space="preserve">
+    <value>سن التقاعد</value>
+  </data>
+  <data name="Alert311Title" xml:space="preserve">
+    <value>تاريخ انتهاء المدة</value>
+  </data>
   <data name="All" xml:space="preserve">
     <value>الكل</value>
   </data>

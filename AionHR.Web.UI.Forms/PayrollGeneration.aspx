@@ -9,7 +9,7 @@
     <title></title>
     <link rel="stylesheet" type="text/css" href="CSS/Common.css" />
     <link rel="stylesheet" href="CSS/LiveSearch.css" />
-    <script type="text/javascript" src="Scripts/PayrollGeneration.js?id=879"></script>
+    <script type="text/javascript" src="Scripts/PayrollGeneration.js?id=10"></script>
     <script type="text/javascript" src="Scripts/common.js"></script>
     <script type="text/javascript" src="Scripts/moment.js"></script>
     <script type="text/javascript">
@@ -173,6 +173,7 @@
                                         <Renderer Handler="return getStatusText(record.data['status']);" />
                                     </ext:Column>
                                        <ext:Column runat="server" ID="Column2" Text="<%$ Resources: FieldNotes%>" DataIndex="notes"  Flex="2" />
+                                     
                                     <ext:Column runat="server"
                                         ID="colEdit" Visible="true"
                                         Text=""
@@ -184,8 +185,8 @@
                                         MenuDisabled="true"
                                         Resizable="false">
 
-                                        <Renderer Handler="var d= (record.data['status']==2)?'&nbsp;&nbsp;&nbsp;&nbsp;':editRender()+ '&nbsp;&nbsp;'+ deleteRender(); return d+ '&nbsp;&nbsp;'+ attachRender(record.data['status']);" />
-
+                                        <Renderer Handler="var d =attachRender(record.data['status']);if (record.data['status']!=2){ d+='&nbsp;&nbsp;'+editRender()+ '&nbsp;&nbsp;'+ deleteRender();} return d ;" />
+                                   
                                       
 
                                     </ext:Column>
@@ -491,8 +492,23 @@
                                         MenuDisabled="true"
                                         Resizable="false">
 
-                                        <Renderer Handler="var d = (#{IsPayrollPosted}.value=='2')?'&nbsp;&nbsp;&nbsp;&nbsp;':editRender();return d+'&nbsp;&nbsp;' +attachRender1(); " />
-
+                                      <%--  <Renderer Handler="  var d = (#{IsPayrollPosted}.value=='2')?'&nbsp;&nbsp;&nbsp;&nbsp;':editRender();return d+'&nbsp;&nbsp;' +attachRender1();" />--%>
+                                      <Renderer Handler="
+                                          var d;
+                                        if (#{IsPayrollPosted}.value=='2') 
+                                        d='&nbsp;&nbsp;' +attachRender1();
+                                        else
+                                        {
+                                         
+                                          d=editRender();
+                                          d+='&nbsp;&nbsp;';
+                                          d+=attachRender1();
+                                           d+='&nbsp;&nbsp;';
+                                          d+=deleteRender();
+                                          d+='&nbsp;&nbsp;';
+                                      
+                                        }
+                                        return d; "></Renderer>
                                     </ext:Column>
                                 </Columns>
                             </ColumnModel>

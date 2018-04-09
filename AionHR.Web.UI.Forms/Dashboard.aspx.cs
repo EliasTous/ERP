@@ -308,6 +308,9 @@ namespace AionHR.Web.UI.Forms
             int empRW = dashoard.Items.Where(x => x.itemId == 62).ToList()[0].count;
             int scr = dashoard.Items.Where(x => x.itemId == 31).ToList()[0].count;
             int prob = dashoard.Items.Where(x => x.itemId == 32).ToList()[0].count;
+            int retirementAge = dashoard.Items.Where(x => x.itemId == 44).ToList()[0].count;
+            int TermEndDate = dashoard.Items.Where(x => x.itemId == 35).ToList()[0].count;
+
             var l1 = dashoard.Items.Where(x => x.itemId == 71).ToList();
             int total = 0, paid = 0;
             if (l1.Count > 0)
@@ -323,6 +326,8 @@ namespace AionHR.Web.UI.Forms
             employeeRW.Text = empRW.ToString();
             totalLoansLbl.Text = total.ToString("N0");
             deductedLoansLbl.Text = paid.ToString("N0");
+            termEndDateLBL.Text = TermEndDate.ToString();
+            retirementAgeLBL.Text = retirementAge.ToString();
             //X.Call("alerts", annev, annevTotal, birthdays, birthdaysTotal, empRW, empRWTotal, compRW, compRWTotal, scr, scrTotal, prob, probTotal);
             List<object> objs = new List<object>();
             objs.Add(new { Count = dashoard.Items.Where(x => x.itemId == 110).ToList()[0].count, emps = GetLocalResourceObject("Paid").ToString() });
@@ -1335,10 +1340,35 @@ namespace AionHR.Web.UI.Forms
             InStore.DataSource = activeIn;
             InStore.DataBind();
         }
+        protected void retirementAge_ReadData(object sender, StoreReadDataEventArgs e)
+        {
 
-     
+            DashboardRequest req = GetDashboardRequest();
+            ListResponse<RetirementAge> resp = _systemService.ChildGetAll<RetirementAge>(req);
+            if (!resp.Success)
+            {
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>Technical Error: " + resp.ErrorCode + "<br> Summary: " + resp.Summary : resp.Summary).Show();
+                return;
+            }
+            retirementAgeStore.DataSource = resp.Items;
+            retirementAgeStore.DataBind();
+        }
+        protected void TermEndDate_ReadData(object sender, StoreReadDataEventArgs e)
+        {
+
+            DashboardRequest req = GetDashboardRequest();
+            ListResponse<TermEndDate> resp = _systemService.ChildGetAll<TermEndDate>(req);
+            if (!resp.Success)
+            {
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>Technical Error: " + resp.ErrorCode + "<br> Summary: " + resp.Summary : resp.Summary).Show();
+                return;
+            }
+            retirementAgeStore.DataSource = resp.Items;
+            retirementAgeStore.DataBind();
+        }
+
     }
-
+   
 
     #region Classes to be moved to a client folder model 
     public class ChartData

@@ -31,7 +31,7 @@ namespace AionHR.Services.Implementations
             errors = new List<Employee>();
             caId = new Dictionary<string, int>();
             nationalityId = new Dictionary<string, int>();
-            FillCaId();
+            //FillCaId();
             FillNationalityId();
         }
 
@@ -41,7 +41,7 @@ namespace AionHR.Services.Implementations
             int i = 0;
             foreach (var error in errors)
             {
-              b.AppendLine(error.reference + "," + error.firstName + "," + error.lastName+ "," + error.caId + "," + error.hireDate + "," + error.idRef + "," +error.nationalityName + "," +error.gender + "," +error.religion + "," +error.birthDate + "," +error.mobile + "," + errorMessages[i++].Replace('\r', ' ').Replace(',', ';'));
+              b.AppendLine(error.reference + "," + error.firstName + "," + error.middleName+ "," + error.lastName + ","+ error.familyName + "," + error.hireDate + "," + error.idRef + "," +error.nationalityName + "," +error.gender + "," +error.religion + "," +error.birthDate + "," +error.mobile + "," + errorMessages[i++].Replace('\r', ' ').Replace(',', ';'));
 
             }
             string csv = b.ToString();
@@ -54,8 +54,8 @@ namespace AionHR.Services.Implementations
         protected override void PreProcessElement(Employee item)
         {
 
-            if (caId.ContainsKey(item.caName))
-                item.caId = caId[item.caName];
+            //if (caId.ContainsKey(item.caName))
+            //    item.caId = caId[item.caName];
             if (nationalityId.ContainsKey(item.nationalityName))
                 item.nationalityId = nationalityId[item.nationalityName];
             item.bdHijriCal = false;
@@ -73,15 +73,15 @@ namespace AionHR.Services.Implementations
                 errorMessages.Add(resp.Summary);
             }
         }
-        private void FillCaId()
-        {
-            ListRequest caRequest = new ListRequest();
-            ListResponse<WorkingCalendar> resp = timeAttendance.ChildGetAll<WorkingCalendar>(caRequest);
-            if (resp.Success && resp.Items != null)
-            {
-                resp.Items.ForEach(x => this.caId.Add(x.name,Convert.ToInt32( x.recordId )));
-            }
-        }
+        //private void FillCaId()
+        //{
+        //    ListRequest caRequest = new ListRequest();
+        //    ListResponse<WorkingCalendar> resp = timeAttendance.ChildGetAll<WorkingCalendar>(caRequest);
+        //    if (resp.Success && resp.Items != null)
+        //    {
+        //        resp.Items.ForEach(x => this.caId.Add(x.name,Convert.ToInt32( x.recordId )));
+        //    }
+        //}
         private void FillNationalityId()
         {
             ListRequest nationalityRequest = new ListRequest();

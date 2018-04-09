@@ -891,7 +891,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
 
                     PostResponse<SalaryDetail[]> result = AddSalaryEntitlementsDeductions(b.recordId, entitlements, deductions);
 
-
+                  
                     if (!result.Success)
                     {
                         X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
@@ -1624,10 +1624,19 @@ namespace AionHR.Web.UI.Forms.EmployeePages
 
 
             }
-            PostRequest<SalaryDetail[]> periodRequest = new PostRequest<SalaryDetail[]>();
             entitlements.AddRange(deductions);
-            periodRequest.entity = entitlements.ToArray();
-            PostResponse<SalaryDetail[]> response = _employeeService.ChildAddOrUpdate<SalaryDetail[]>(periodRequest);
+            PostResponse<SalaryDetail[]> response = new PostResponse<SalaryDetail[]>();
+            if (entitlements.ToArray().Length != 0)
+
+            {
+
+                PostRequest<SalaryDetail[]> periodRequest = new PostRequest<SalaryDetail[]>();
+
+                periodRequest.entity = entitlements.ToArray();
+                response = _employeeService.ChildAddOrUpdate<SalaryDetail[]>(periodRequest);
+            }
+            else
+                response.Success = true;
             return response;
         }
         //private PostResponse<SalaryDetail[]> AddSalaryEntitlements(string salaryIdString, List<SalaryDetail> details)

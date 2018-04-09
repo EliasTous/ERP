@@ -148,6 +148,24 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Hidden alert309Title;
         
         /// <summary>
+        /// alert310Title control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Hidden alert310Title;
+        
+        /// <summary>
+        /// alert311Title control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Hidden alert311Title;
+        
+        /// <summary>
         /// alert101Description control.
         /// </summary>
         /// <remarks>
@@ -227,6 +245,24 @@ namespace AionHR.Web.UI.Forms {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.Hidden alert309Description;
+        
+        /// <summary>
+        /// alert310Description control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Hidden alert310Description;
+        
+        /// <summary>
+        /// alert311Description control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Hidden alert311Description;
         
         /// <summary>
         /// Store1 control.

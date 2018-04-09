@@ -58,7 +58,9 @@
     <Compile Include="Dashboard\EmpRTW.cs" />
     <Compile Include="Dashboard\LocalsRate.cs" />
     <Compile Include="Dashboard\ProbationEnd.cs" />
+    <Compile Include="Dashboard\RetirementAge.cs" />
     <Compile Include="Dashboard\SalaryChange.cs" />
+    <Compile Include="Dashboard\TermEndDate.cs" />
     <Compile Include="Dashboard\WorkAnniversary.cs" />
     <Compile Include="EmployeeComplaints\IComplaintsRepository.cs" />
     <Compile Include="Employees\EmployeeCal.cs" />

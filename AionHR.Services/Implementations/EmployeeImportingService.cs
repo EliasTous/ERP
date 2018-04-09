@@ -26,31 +26,37 @@ namespace AionHR.Services.Implementations
                 Employee em = new Employee();
                 em.reference = row[0].ToString();
                 em.name = new EmployeeName();
-                var parts = row[1].ToString().Split(nameDelimiter);
-                em.name.firstName = row[1].ToString().Split(nameDelimiter)[0];
-                if (parts.Count() < 2)
-                {
-                    em.name.lastName = em.name.firstName;
-                }
-                else
-                {
-                    em.name.lastName = row[1].ToString().Split(nameDelimiter)[1];
-                }
+                em.name.firstName = row[1].ToString();
+                em.name.middleName= row[2].ToString();
+                em.name.lastName = row[3].ToString();
+                em.name.familyName = row[4].ToString();
+                //var parts = row[1].ToString().Split(nameDelimiter);
+                //em.name.firstName = row[1].ToString().Split(nameDelimiter)[0];
+                //if (parts.Count() < 4)
+                //{
+                //    em.name.lastName = em.name.firstName;
+                //}
+                //else
+                //{
+                //    em.name.lastName = row[1].ToString().Split(nameDelimiter)[3];
+                //    em.name.middleName = row[1].ToString().Split(nameDelimiter)[1];
+                //    em.name.familyName = row[1].ToString().Split(nameDelimiter)[2];
+                //}
                 em.name.reference = row[0].ToString();
                 //int ca;
                 //if (int.TryParse(row[2].ToString(), out ca))
                 //    em.caId = ca;
                 //else
                 //    em.caId = null;
-                em.caName= row[2].ToString();
+            
 
-                em.hireDate = DateTime.Parse(row[3].ToString());
-                em.idRef= row[4].ToString();
-                em.nationalityName = row[5].ToString();
-                em.gender = Convert.ToInt16(row[6]);
-                em.religion = Convert.ToInt16(row[7]);
-                em.birthDate = DateTime.Parse(row[8].ToString());
-                em.mobile = row[9].ToString();
+                em.hireDate = DateTime.Parse(row[5].ToString());
+                em.idRef= row[6].ToString();
+                em.nationalityName = row[7].ToString();
+                em.gender = Convert.ToInt16(row[8]);
+                em.religion = Convert.ToInt16(row[9]);
+                em.birthDate = DateTime.Parse(row[10].ToString());
+                em.mobile = row[11].ToString();
 
 
                 result.Add(em);

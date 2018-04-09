@@ -437,6 +437,16 @@ namespace AionHR.Web.UI.Forms
             }
 
             catch { }
+            try
+            {
+                retirementAge.Text = (items.Where(s => s.Key == "retirementAge").First().Value);
+                if (string.IsNullOrEmpty(items.Where(s => s.Key == "retirementAge").First().Value.ToString()))
+                {
+                    yearDays.Text = "60";
+                }
+            }
+
+            catch { }
 
 
 
@@ -499,6 +509,10 @@ namespace AionHR.Web.UI.Forms
                 submittedValues.Add(new KeyValuePair<string, string>("resDocTypeId", values.idCombo.ToString()));
             else
                 submittedValues.Add(new KeyValuePair<string, string>("resDocTypeId", ""));
+            if (values.retirementAge != null && !string.IsNullOrEmpty(values.retirementAge.ToString()))
+                submittedValues.Add(new KeyValuePair<string, string>("retirementAge", values.retirementAge.ToString()));
+            else
+                submittedValues.Add(new KeyValuePair<string, string>("retirementAge", ""));
 
 
 
@@ -613,10 +627,7 @@ namespace AionHR.Web.UI.Forms
                 submittedValues.Add(new KeyValuePair<string, string>("caId", values.caId.ToString()));
             else
                 submittedValues.Add(new KeyValuePair<string, string>("caId",""));
-            if (!string.IsNullOrEmpty(values.tsId.ToString()))
-                submittedValues.Add(new KeyValuePair<string, string>("tsId", values.tsId.ToString()));
-            else
-                submittedValues.Add(new KeyValuePair<string, string>("tsId", ""));
+           
 
             if (!string.IsNullOrEmpty(values.scId.ToString()))
                 submittedValues.Add(new KeyValuePair<string, string>("scId", values.scId.ToString()));
@@ -748,7 +759,10 @@ namespace AionHR.Web.UI.Forms
                 submittedValues.Add(new KeyValuePair<string, string>("yearDays", values.yearDays.ToString()));
             else
                 submittedValues.Add(new KeyValuePair<string, string>("yearDays", "365"));
-
+            if (!string.IsNullOrEmpty(values.tsId.ToString()))
+                submittedValues.Add(new KeyValuePair<string, string>("tsId", values.tsId.ToString()));
+            else
+                submittedValues.Add(new KeyValuePair<string, string>("tsId", ""));
 
             return submittedValues;
         }

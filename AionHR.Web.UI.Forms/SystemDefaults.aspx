@@ -330,7 +330,7 @@
                                         <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
                                     </Listeners>
                                 </ext:ComboBox>
-                                  
+                                <ext:NumberField  runat="server" LabelWidth="150" ID="retirementAge" Name="retirementAge" FieldLabel="<%$ Resources: retirementAge %>" MinValue="0"  MaxValue="100"/>
                          
 
                             </Items>
@@ -429,21 +429,7 @@
                                 </ext:Panel>
                                 <ext:TextField runat="server" Name="lastGeneratedTADayId" ReadOnly="true" ID="lastGeneratedTADayId" LabelWidth="150" FieldLabel="<%$Resources:lastGeneratedTADayId %>">
                                 </ext:TextField>
-                                 <ext:ComboBox AnyMatch="true" CaseSensitive="false" QueryMode="Local" LabelWidth="150" ForceSelection="true" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: FieldTSId %>" Name="tsId" DisplayField="name" ValueField="recordId" runat="server" ID="tsId">
-                                    <Store>
-                                        <ext:Store runat="server" ID="tsStore">
-                                            <Model>
-                                                <ext:Model runat="server">
-                                                    <Fields>
-                                                        <ext:ModelField Name="recordId" />
-                                                        <ext:ModelField Name="name" />
-                                                    </Fields>
-                                                </ext:Model>
-                                            </Model>
-                                        </ext:Store>
-                                    </Store>
-
-                                </ext:ComboBox>
+                                 
                                 <ext:ComboBox AllowBlank="true" AnyMatch="true" CaseSensitive="false" QueryMode="Local" LabelWidth="150" ForceSelection="true" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: SourceAttendanceSchedule %>" Name="sourceTASC" runat="server" ID="sourceTASC">
                                     <Items>
                                         <ext:ListItem Text="<%$ Resources:  FieldBranch %>" Value="1" />
@@ -981,7 +967,21 @@
                                      </Items>
                                   </ext:FieldSet>--%>
 
-                                    
+                                  <ext:ComboBox AnyMatch="true" CaseSensitive="false" QueryMode="Local" LabelWidth="150" ForceSelection="true" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: FieldTSId %>" Name="tsId" DisplayField="name" ValueField="recordId" runat="server" ID="tsId">
+                                    <Store>
+                                        <ext:Store runat="server" ID="tsStore">
+                                            <Model>
+                                                <ext:Model runat="server">
+                                                    <Fields>
+                                                        <ext:ModelField Name="recordId" />
+                                                        <ext:ModelField Name="name" />
+                                                    </Fields>
+                                                </ext:Model>
+                                            </Model>
+                                        </ext:Store>
+                                    </Store>
+
+                                </ext:ComboBox>  
                                                                   
                             </Items>
                             <Buttons>

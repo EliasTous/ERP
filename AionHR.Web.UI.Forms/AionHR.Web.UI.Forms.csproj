@@ -2003,6 +2003,7 @@
     <Content Include="App_GlobalResources\Errors.resx">
       <Generator>GlobalResourceProxyGenerator</Generator>
       <LastGenOutput>Errors1.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </Content>
   </ItemGroup>
   <ItemGroup>
@@ -2279,6 +2280,7 @@
     <Content Include="App_LocalResources\SynchronizeAttendanceDays.aspx.ar.resx" />
     <Content Include="App_LocalResources\DaysAvailability.aspx.resx" />
     <Content Include="App_LocalResources\DaysAvailability.aspx.ar.resx" />
+    <Content Include="App_LocalResources\SystemAlerts.aspx.ar.resx" />
     <EmbeddedResource Include="Reports\RT201.aspx.resx">
       <DependentUpon>RT201.aspx.cs</DependentUpon>
       <Generator>ResXFileCodeGenerator</Generator>

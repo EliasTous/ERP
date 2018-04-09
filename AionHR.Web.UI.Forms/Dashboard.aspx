@@ -2377,6 +2377,60 @@
                                                             </Items>
                                                         </ext:Panel>
 
+                                                         <ext:Panel runat="server" Layout="HBoxLayout" Flex="1">
+                                                            <LayoutConfig>
+                                                                <ext:HBoxLayoutConfig Align="Stretch"></ext:HBoxLayoutConfig>
+                                                            </LayoutConfig>
+                                                            <Items>
+
+                                                                <ext:Panel runat="server" Layout="VBoxLayout" Flex="1" PaddingSpec="2 2 2 2">
+                                                                    <LayoutConfig>
+                                                                        <ext:VBoxLayoutConfig Align="Center" Pack="Center" />
+                                                                    </LayoutConfig>
+                                                                    <Items>
+                                                                        <ext:Container runat="server" Cls="styleContainer">
+                                                                            <LayoutConfig>
+                                                                                <ext:VBoxLayoutConfig Align="Center" Pack="Center" />
+                                                                            </LayoutConfig>
+                                                                            <Items>
+
+                                                                                <ext:Label runat="server" ID="retirementAgeLBL" Cls="number flashing" StyleHtmlCls="number" PaddingSpec="0 0 0 0" MarginSpec="10 0 20 0" />
+
+                                                                                <ext:HyperlinkButton runat="server" Text="<%$Resources:retirementAge %>" PaddingSpec="0 0 0 0" StyleSpec="font-size:12pt;" Cls="lblStyle">
+                                                                                    <Listeners>
+                                                                                        <Click Handler="App.retirementAgeWindow.show();" />
+                                                                                    </Listeners>
+                                                                                </ext:HyperlinkButton>
+                                                                            </Items>
+                                                                        </ext:Container>
+                                                                    </Items>
+                                                                </ext:Panel>
+
+                                                                <ext:Panel runat="server" Layout="VBoxLayout" Flex="1" PaddingSpec="2 2 2 2">
+                                                                    <LayoutConfig>
+                                                                        <ext:VBoxLayoutConfig Align="Center" Pack="Center" />
+                                                                    </LayoutConfig>
+                                                                    <Items>
+                                                                        <ext:Container runat="server" Cls="styleContainer">
+                                                                            <LayoutConfig>
+                                                                                <ext:VBoxLayoutConfig Align="Center" Pack="Center" />
+                                                                            </LayoutConfig>
+                                                                            <Items>
+
+                                                                                <ext:Label runat="server" ID="termEndDateLBL" Cls="number flashing" StyleHtmlCls="number" PaddingSpec="0 0 0 0" MarginSpec="10 0 20 0" />
+                                                                                <ext:HyperlinkButton runat="server" PaddingSpec="0 0 0 0" Text="<%$Resources:TermEndDate %>" StyleSpec="font-size:12pt;" Cls="lblStyle">
+                                                                                   <Listeners>
+                                                                                        <Click Handler="App.TermEndDateWindow.show();" />
+                                                                                    </Listeners>
+                                                                                </ext:HyperlinkButton>
+                                                                            </Items>
+                                                                        </ext:Container>
+                                                                    </Items>
+                                                                </ext:Panel>
+
+                                                            </Items>
+                                                        </ext:Panel>
+
 
                                                     </Items>
                                                 </ext:Panel>
@@ -3777,6 +3831,159 @@
                 </ext:Button>
             </Buttons>
 
+        </ext:Window>
+
+         <ext:Window runat="server" Modal="true" Layout="FitLayout"
+            Hidden="true" AutoShow="false" ID="retirementAgeWindow" Width="400" Height="250" Title="<%$ Resources: retirementAge %>">
+            <Listeners>
+                <AfterLayout Handler="App.retirementAgeStore.reload()" />
+            </Listeners>
+            <Items>
+                <ext:GridPanel MarginSpec="0 0 0 0"
+                    ID="GridPanel17"
+                    runat="server" HideHeaders="true"
+                    PaddingSpec="0 0 0 0"
+                    Header="false"
+                    Layout="FitLayout"
+                    Scroll="Vertical"
+                    Border="false"
+                    ColumnLines="True" IDMode="Explicit" RenderXType="True">
+
+                    <Store>
+                        <ext:Store
+                            ID="retirementAgeStore"
+                            runat="server" OnReadData="retirementAge_ReadData"
+                            PageSize="30">
+
+                            <Model>
+                                <ext:Model ID="Model22" runat="server">
+                                    <Fields>
+
+
+                                        <ext:ModelField Name="name" ServerMapping="employeeName.fullName" />
+                                        <ext:ModelField Name="hireDate" />
+                                        <ext:ModelField Name="days" />
+
+                                    </Fields>
+                                </ext:Model>
+                            </Model>
+
+                        </ext:Store>
+                    </Store>
+
+                    <ColumnModel ID="ColumnModel22" runat="server" SortAscText="<%$ Resources:Common , SortAscText %>" SortDescText="<%$ Resources:Common ,SortDescText  %>" SortClearText="<%$ Resources:Common ,SortClearText  %>" ColumnsText="<%$ Resources:Common ,ColumnsText  %>" EnableColumnHide="false" Sortable="false">
+                        <Columns>
+
+                            <ext:Column Visible="false" ID="Column24" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldrecordId %>" DataIndex="recordId" Hideable="false" Width="75" />
+                            <ext:Column Flex="2" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEmployee %>" DataIndex="name" Hideable="false" Width="75">
+                                <Renderer Handler=" return displayAnniversary(record.data);  ">
+                                </Renderer>
+                            </ext:Column>
+                            <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDaysLeft %>" DataIndex="days" Hideable="false" Width="120">
+                                <Renderer Handler="return record.data['days'] + ' ' + document.getElementById('daysLeft').value;" />
+
+
+                            </ext:Column>
+
+
+
+
+
+
+
+
+
+                        </Columns>
+                    </ColumnModel>
+
+
+                    <View>
+                        <ext:GridView ID="GridView22" runat="server" />
+                    </View>
+
+
+                    <SelectionModel>
+                        <ext:RowSelectionModel ID="rowSelectionModel21" runat="server" Mode="Single" StopIDModeInheritance="true" />
+                        <%--<ext:CheckboxSelectionModel ID="CheckboxSelectionModel1" runat="server" Mode="Multi" StopIDModeInheritance="true" />--%>
+                    </SelectionModel>
+                </ext:GridPanel>
+            </Items>
+        </ext:Window>
+         <ext:Window runat="server" Modal="true" Layout="FitLayout"
+            Hidden="true" AutoShow="false" ID="TermEndDateWindow" Width="400" Height="250" Title="<%$ Resources: TermEndDate %>">
+            <Listeners>
+                <AfterLayout Handler="App.TermEndDateStore.reload()" />
+            </Listeners>
+            <Items>
+                <ext:GridPanel MarginSpec="0 0 0 0"
+                    ID="GridPanel18"
+                    runat="server" HideHeaders="true"
+                    PaddingSpec="0 0 0 0"
+                    Header="false"
+                    Layout="FitLayout"
+                    Scroll="Vertical"
+                    Border="false"
+                    ColumnLines="True" IDMode="Explicit" RenderXType="True">
+
+                    <Store>
+                        <ext:Store
+                            ID="TermEndDateStore"
+                            runat="server" OnReadData="TermEndDate_ReadData"
+                            PageSize="30">
+
+                            <Model>
+                                <ext:Model ID="Model23" runat="server">
+                                    <Fields>
+
+
+                                        <ext:ModelField Name="name" ServerMapping="employeeName.fullName" />
+                                        <ext:ModelField Name="hireDate" />
+                                        <ext:ModelField Name="days" />
+
+                                    </Fields>
+                                </ext:Model>
+                            </Model>
+
+                        </ext:Store>
+                    </Store>
+
+                    <ColumnModel ID="ColumnModel23" runat="server" SortAscText="<%$ Resources:Common , SortAscText %>" SortDescText="<%$ Resources:Common ,SortDescText  %>" SortClearText="<%$ Resources:Common ,SortClearText  %>" ColumnsText="<%$ Resources:Common ,ColumnsText  %>" EnableColumnHide="false" Sortable="false">
+                        <Columns>
+
+                            <ext:Column Visible="false" ID="Column25" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldrecordId %>" DataIndex="recordId" Hideable="false" Width="75" />
+                            <ext:Column Flex="2" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEmployee %>" DataIndex="name" Hideable="false" Width="75">
+                                <Renderer Handler=" return displayAnniversary(record.data);  ">
+                                </Renderer>
+                            </ext:Column>
+                            <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDaysLeft %>" DataIndex="days" Hideable="false" Width="120">
+                                <Renderer Handler="return record.data['days'] + ' ' + document.getElementById('daysLeft').value;" />
+
+
+                            </ext:Column>
+
+
+
+
+
+
+
+
+
+                        </Columns>
+                    </ColumnModel>
+
+
+                    <View>
+                        <ext:GridView ID="GridView23" runat="server" />
+                    </View>
+
+
+                    <SelectionModel>
+                        <ext:RowSelectionModel ID="rowSelectionModel22" runat="server" Mode="Single" StopIDModeInheritance="true" />
+                        <%--<ext:CheckboxSelectionModel ID="CheckboxSelectionModel1" runat="server" Mode="Multi" StopIDModeInheritance="true" />--%>
+                    </SelectionModel>
+                </ext:GridPanel>
+            </Items>
         </ext:Window>
         <uc:leaveControl runat="server" ID="leaveRequest1" />
 

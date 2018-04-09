@@ -399,4 +399,7 @@
   <data name="SourceWorkingCalender" xml:space="preserve">
     <value>مصدر تقويم العمل </value>
   </data>
+  <data name="retirementAge" xml:space="preserve">
+    <value>سن التقاعد</value>
+  </data>
 </root>

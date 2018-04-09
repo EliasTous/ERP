@@ -303,14 +303,17 @@
                                 <ext:TextField ID="address" runat="server" FieldLabel="<%$ Resources:FieldAddress%>" Name="address" AllowBlank="false" />
                                 <ext:TextField ID="city" runat="server" FieldLabel="<%$ Resources:FieldCity%>" Name="city" />
                                 <ext:TextField ID="mobile" runat="server" FieldLabel="<%$ Resources:FieldMobile%>" Name="mobile" >
-                                    <Plugins>
-                                        <ext:InputMask Mask="?99999999" />
-                                    </Plugins>
+                                  
+                                   <Validator Handler="  if ((Ext.getCmp('mobile').getValue().length==8 || Ext.isEmpty(this.value)) && !isNaN(this.value)) 
+                                       return true; else { return false;} " />
+                                    
                                     </ext:TextField>
                                 <ext:TextField ID="phone" runat="server" FieldLabel="<%$ Resources:FieldPhone%>" Name="phone" >
-                                     <Plugins>
+                                        <Validator Handler="  if ((Ext.getCmp('phone').getValue().length==8 || Ext.isEmpty(this.value)) && !isNaN(this.value)) 
+                                       return true; else { return false;} " />
+                                  <%--   <Plugins>
                                         <ext:InputMask Mask="?99999999" />
-                                    </Plugins>
+                                    </Plugins>--%>
                                     </ext:TextField>
                                 <ext:TextField Vtype="email" ID="email" runat="server" FieldLabel="<%$ Resources:FieldEmail%>" Name="email" />
                                 <ext:TextField ID="fax" runat="server" FieldLabel="<%$ Resources:FieldFax%>" Name="fax" />

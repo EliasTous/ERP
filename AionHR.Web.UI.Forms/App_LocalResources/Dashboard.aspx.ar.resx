@@ -546,4 +546,10 @@
   <data name="HeadCountMaximumWindow" xml:space="preserve">
     <value>عدد موظفين</value>
   </data>
+  <data name="retirementAge" xml:space="preserve">
+    <value>سن التقاعد</value>
+  </data>
+  <data name="TermEndDate" xml:space="preserve">
+    <value>تاريخ انتهاء المدة</value>
+  </data>
 </root>
