@@ -4,24 +4,26 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AionHR.Services.Messaging.SelfService
+namespace AionHR.Services.Messaging.CompanyStructure
 {
-    public class LetterSelfServiceListRequest:ListRequest
+  public  class PositionListRequest :ListRequest
     {
-        public string employeeId { get; set; }
-        public string sortBy { get; set; }
+        public string SortBy { get; set; }
+      
 
 
-
-     
+        /// <summary>
+        /// /// parameter list shipped with the web request
+        /// </summary>
         public override Dictionary<string, string> Parameters
         {
+
             get
             {
                 parameters = base.Parameters;
 
-                parameters.Add("_employeeId", employeeId);
-                parameters.Add("_sortBy", sortBy);
+                parameters.Add("_sortBy", SortBy);
+              
 
                 return parameters;
             }

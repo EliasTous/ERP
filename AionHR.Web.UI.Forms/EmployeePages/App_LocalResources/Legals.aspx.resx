@@ -189,4 +189,10 @@
   <data name="DateRangeError" xml:space="preserve">
     <value>Expiry date must be greater than Issue Date</value>
   </data>
+  <data name="FieldExpiryDate" xml:space="preserve">
+    <value>Expiry Date</value>
+  </data>
+  <data name="FieldIssueDate" xml:space="preserve">
+    <value>Issue Date</value>
+  </data>
 </root>

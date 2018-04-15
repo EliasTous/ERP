@@ -187,63 +187,64 @@ namespace AionHR.Web.UI.Forms
             List<string> listDn = new List<string>();
             List<string> listDS = new List<string>();
           
-            Dictionary<string, int> dic = new Dictionary<string, int>(); 
-            
-            DateTime activeDate = DateTime.ParseExact(items[0].dayId, "yyyyMMdd", new CultureInfo("en"));
-            DateTime fsfromDate, fsToDate;
-           
-
-            foreach (FlatSchedule fs in items)
+            Dictionary<string, int> dic = new Dictionary<string, int>();
+            if (items.Count != 0 && items != null)
             {
-            
-               fsfromDate = new DateTime(activeDate.Year, activeDate.Month, activeDate.Day, Convert.ToInt32(fs.from.Split(':')[0]), Convert.ToInt32(fs.from.Split(':')[1]), 0);
-               fsToDate = new DateTime(activeDate.Year, activeDate.Month, activeDate.Day, Convert.ToInt32(fs.to.Split(':')[0]), Convert.ToInt32(fs.to.Split(':')[1]), 0);
-                if (fsfromDate >= fsToDate)
-                {
-                    fsToDate = fsToDate.AddDays(1);
-                }
+                DateTime activeDate = DateTime.ParseExact(items[0].dayId, "yyyyMMdd", new CultureInfo("en"));
+                DateTime fsfromDate, fsToDate;
 
-                do
+
+                foreach (FlatSchedule fs in items)
                 {
-                    if (fsfromDate.ToString("HH:mm") == "00:00")
+
+                    fsfromDate = new DateTime(activeDate.Year, activeDate.Month, activeDate.Day, Convert.ToInt32(fs.from.Split(':')[0]), Convert.ToInt32(fs.from.Split(':')[1]), 0);
+                    fsToDate = new DateTime(activeDate.Year, activeDate.Month, activeDate.Day, Convert.ToInt32(fs.to.Split(':')[0]), Convert.ToInt32(fs.to.Split(':')[1]), 0);
+                    if (fsfromDate >= fsToDate)
                     {
-                        listIds.Add(fs.employeeId + "_" + fsfromDate.AddDays(-1).ToString("HH:mm"));
-                        listDn.Add(fs.employeeId + "_" + fs.departmentId + "_" + fsfromDate.AddDays(-1).ToString("HH:mm"));
-                        listDS.Add(fs.departmentId.ToString());
-                        fsfromDate = fsfromDate.AddMinutes(30);
-                        continue;
-
+                        fsToDate = fsToDate.AddDays(1);
                     }
-                    listIds.Add(fs.employeeId + "_" + fsfromDate.ToString("HH:mm"));
-                    listDn.Add(fs.employeeId+"_"+  fs.departmentId + "_" + fsfromDate.ToString("HH:mm"));
-                    listDS.Add(fs.departmentId.ToString());
+
+                    do
+                    {
+                        if (fsfromDate.ToString("HH:mm") == "00:00")
+                        {
+                            listIds.Add(fs.employeeId + "_" + fsfromDate.AddDays(-1).ToString("HH:mm"));
+                            listDn.Add(fs.employeeId + "_" + fs.departmentId + "_" + fsfromDate.AddDays(-1).ToString("HH:mm"));
+                            listDS.Add(fs.departmentId.ToString());
+                            fsfromDate = fsfromDate.AddMinutes(30);
+                            continue;
+
+                        }
+                        listIds.Add(fs.employeeId + "_" + fsfromDate.ToString("HH:mm"));
+                        listDn.Add(fs.employeeId + "_" + fs.departmentId + "_" + fsfromDate.ToString("HH:mm"));
+                        listDS.Add(fs.departmentId.ToString());
 
                         //if (!dic.ContainsKey(fs.departmentId + "-" + fsfromDate.ToString("HH:mm")))
                         //    dic.Add(fs.departmentId + "-" + fsfromDate.ToString("HH:mm"), 1);
                         //else
                         //    dic[fs.departmentId + "-" + fsfromDate.ToString("HH:mm")]++;
                         fsfromDate = fsfromDate.AddMinutes(30);
+                    } while (fsToDate >= fsfromDate);
+                }
+                listDn = listDn.Distinct().ToList();
+                listDS = listDS.Distinct().ToList();
+                //listDS.ForEach(departmentID => dic.Add(departmentID+, listDn.Where(stringToCheck => stringToCheck.Contains(departmentID)).Count()));
+
+
+                fsfromDate = new DateTime(activeDate.Year, activeDate.Month, activeDate.Day, Convert.ToInt32(startAt.Split(':')[0]), Convert.ToInt32(startAt.Split(':')[1]), 0);
+                fsToDate = new DateTime(activeDate.Year, activeDate.Month, activeDate.Day, Convert.ToInt32(closeAt.Split(':')[0]), Convert.ToInt32(closeAt.Split(':')[1]), 0);
+                if (fsfromDate >= fsToDate)
+                {
+                    fsToDate = fsToDate.AddDays(1);
+                }
+                do
+                {
+                    listDS.ForEach(departmentID => dic.Add(departmentID + "-" + fsfromDate.ToString("HH:mm"), listDn.Where(stringToCheck => stringToCheck.Contains(departmentID + "_" + fsfromDate.ToString("HH:mm"))).Count()));
+                    fsfromDate = fsfromDate.AddMinutes(30);
                 } while (fsToDate >= fsfromDate);
+
+
             }
-            listDn= listDn.Distinct().ToList();
-            listDS= listDS.Distinct().ToList();
-            //listDS.ForEach(departmentID => dic.Add(departmentID+, listDn.Where(stringToCheck => stringToCheck.Contains(departmentID)).Count()));
-
-
-            fsfromDate = new DateTime(activeDate.Year, activeDate.Month, activeDate.Day, Convert.ToInt32(startAt.Split(':')[0]), Convert.ToInt32(startAt.Split(':')[1]), 0);
-            fsToDate = new DateTime(activeDate.Year, activeDate.Month, activeDate.Day, Convert.ToInt32(closeAt.Split(':')[0]), Convert.ToInt32(closeAt.Split(':')[1]), 0);
-            if (fsfromDate >= fsToDate)
-            {
-                fsToDate = fsToDate.AddDays(1);
-            }
-            do
-            {
-                listDS.ForEach(departmentID => dic.Add(departmentID+"-"+ fsfromDate.ToString("HH:mm"), listDn.Where(stringToCheck => stringToCheck.Contains(departmentID+"_"+ fsfromDate.ToString("HH:mm"))).Count()));
-                fsfromDate = fsfromDate.AddMinutes(30);
-            } while (fsToDate >= fsfromDate);
-
-
-
 
 
             //var department= items.GroupBy(x => x.departmentId);

@@ -22,6 +22,7 @@ using AionHR.Services.Messaging;
 using AionHR.Model.Company.Structure;
 using AionHR.Model.Employees.Profile;
 using AionHR.Model.Payroll;
+using AionHR.Services.Messaging.CompanyStructure;
 
 namespace AionHR.Web.UI.Forms
 {
@@ -243,9 +244,12 @@ namespace AionHR.Web.UI.Forms
             StoreRequestParameters prms = new StoreRequestParameters(extraParams);
 
 
-
+            
             List<Model.Company.Structure.Position> data;
-            ListRequest req = new ListRequest();
+            PositionListRequest req = new PositionListRequest();
+            req.StartAt = "0";
+            req.Size = "1000";
+            req.SortBy = "positionRef";
 
             ListResponse<Model.Company.Structure.Position> response = _branchService.ChildGetAll<Model.Company.Structure.Position>(req);
             if (!response.Success)
@@ -411,15 +415,16 @@ namespace AionHR.Web.UI.Forms
             //Fetching the corresponding list
 
             //in this test will take a list of News
-            ListRequest request = new ListRequest();
-           // request.Filter = "";
-       
+            PositionListRequest request = new PositionListRequest();
+            // request.Filter = "";
+            request.SortBy = "positionRef";
             request.Size = e.Limit.ToString();
             request.StartAt = e.Start.ToString();
             request.Filter = searchTrigger.Text;
             ListResponse<Model.Company.Structure.Position> branches = _branchService.ChildGetAll<Model.Company.Structure.Position>(request);
             if (!branches.Success)
                 return;
+            e.Total = branches.count;
             this.Store1.DataSource = branches.Items;
 
 
@@ -649,7 +654,11 @@ namespace AionHR.Web.UI.Forms
         private JobPositions GetReport()
         {
 
-            ListRequest req = new ListRequest();
+            PositionListRequest req = new PositionListRequest();
+            req.StartAt = "0";
+            req.Size = "1000";
+            req.SortBy = "positionRef";
+
             ListResponse<Model.Company.Structure.Position> resp = _branchService.ChildGetAll<Model.Company.Structure.Position>(req);
             if (!resp.Success)
             {
@@ -742,7 +751,11 @@ namespace AionHR.Web.UI.Forms
 
         protected void Unnamed_Event(object sender, DirectEventArgs e)
         {
-            ListRequest req = new ListRequest();
+            PositionListRequest req = new PositionListRequest();
+            req.StartAt = "0";
+            req.Size = "1000";
+            req.SortBy = "positionRef";
+
             ListResponse<Model.Company.Structure.Position> resp = _branchService.ChildGetAll<Model.Company.Structure.Position>(req);
             if (!resp.Success)
             {

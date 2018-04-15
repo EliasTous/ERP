@@ -3,6 +3,7 @@ using AionHR.Model.Attributes;
 using AionHR.Model.Company.Structure;
 using AionHR.Services.Interfaces;
 using AionHR.Services.Messaging;
+using AionHR.Services.Messaging.CompanyStructure;
 using AionHR.Services.Messaging.Reports;
 using Ext.Net;
 using Microsoft.Practices.ServiceLocation;
@@ -192,7 +193,11 @@ namespace AionHR.Web.UI.Forms.Reports
         {
             if (!EnablePosition)
                 return;
-            ListRequest branchesRequest = new ListRequest();
+            PositionListRequest branchesRequest = new PositionListRequest();
+            branchesRequest.StartAt = "0";
+            branchesRequest.Size = "1000";
+            branchesRequest.SortBy = "recordId";
+
             ListResponse<Model.Company.Structure.Position> resp = _companyStructureService.ChildGetAll<Model.Company.Structure.Position>(branchesRequest);
             if (!resp.Success)
                 X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>Technical Error: " + resp.ErrorCode + "<br> Summary: " + resp.Summary : resp.Summary).Show();

@@ -111,6 +111,7 @@
     <Compile Include="Messaging\AccessControl\AccessControlRequests.cs" />
     <Compile Include="Messaging\CaseManagement\CaseManagementRequest.cs" />
     <Compile Include="Messaging\CompanyStructure\CompanyStructureRequests.cs" />
+    <Compile Include="Messaging\CompanyStructure\PositionListRequest.cs" />
     <Compile Include="Messaging\Employees\EmployeesRequests.cs" />
     <Compile Include="Messaging\LeaveManagement\LeaveManagementRequests.cs" />
     <Compile Include="Messaging\ListReponse.cs" />
@@ -161,6 +162,7 @@
     <Compile Include="Messaging\Response.cs" />
     <Compile Include="Messaging\ResponseBase.cs" />
     <Compile Include="Messaging\System\BatchStatusRequest.cs" />
+    <Compile Include="Messaging\System\CurrencyByReferanceRecordRequest.cs" />
     <Compile Include="Messaging\System\DashboardRequest.cs" />
     <Compile Include="Messaging\System\PasswordRecoveryRequest.cs" />
     <Compile Include="Messaging\System\PasswordRecoveryResponse.cs" />

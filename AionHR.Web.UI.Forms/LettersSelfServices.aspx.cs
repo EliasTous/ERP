@@ -332,7 +332,10 @@ namespace AionHR.Web.UI.Forms
             //in this test will take a list of News
             LetterSelfServiceListRequest request = new LetterSelfServiceListRequest();
 
-           request.employeeId = _systemService.SessionHelper.GetEmployeeId();
+            request.employeeId = _systemService.SessionHelper.GetEmployeeId();
+            request.sortBy = "addressedTo";
+            request.Size = "50";
+            request.StartAt = "0";
             ListResponse<LetterSelfservice> nationalities = _selfServiceService.ChildGetAll<LetterSelfservice>(request);
             if (!nationalities.Success)
             {

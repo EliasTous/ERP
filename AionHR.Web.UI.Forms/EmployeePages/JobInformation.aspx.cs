@@ -23,6 +23,7 @@ using AionHR.Model.Company.Structure;
 using AionHR.Model.System;
 using AionHR.Model.Employees.Profile;
 using AionHR.Services.Messaging.System;
+using AionHR.Services.Messaging.CompanyStructure;
 
 namespace AionHR.Web.UI.Forms.EmployeePages
 {
@@ -826,7 +827,10 @@ namespace AionHR.Web.UI.Forms.EmployeePages
 
         private void FillPosition()
         {
-            ListRequest positionsRequest = new ListRequest();
+            PositionListRequest positionsRequest = new PositionListRequest();
+            positionsRequest.StartAt = "0";
+            positionsRequest.Size = "1000";
+            positionsRequest.SortBy = "positionRef";
             ListResponse<Model.Company.Structure.Position> resp = _companyStructureService.ChildGetAll<Model.Company.Structure.Position>(positionsRequest);
             if (!resp.Success)
                 X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>Technical Error: " + resp.ErrorCode + "<br> Summary: " + resp.Summary : resp.Summary).Show();

@@ -32,12 +32,12 @@
      
                            
                              
-     
+    
                         
         <ext:Store
             ID="Store1"
             runat="server"
-            RemoteSort="true"
+            RemoteSort="True"
             RemoteFilter="true"
             OnReadData="Store1_RefreshData"
             PageSize="40"  Namespace="App" IDMode="Explicit" IsPagingStore="true">
@@ -223,7 +223,7 @@
 
                         </Columns>
                     </ColumnModel>
-                    <DockedItems>
+                 <DockedItems>
 
                         <ext:Toolbar ID="Toolbar2" runat="server" Dock="Bottom">
                             <Items>
@@ -234,7 +234,7 @@
                         </ext:Toolbar>
 
                     </DockedItems>
-                     <BottomBar>
+                    <BottomBar>
 
                         <ext:PagingToolbar ID="PagingToolbar1"
                             runat="server"
@@ -259,7 +259,11 @@
 
                     </BottomBar>
                     <Listeners>
-                        <Render Handler="this.on('cellclick', cellClick);" />
+                        <Render Handler="CheckSession(); this.on('cellclick', cellClick);" />
+
+
+                        <AfterLayout Handler="item.getView().setScrollX(30);" />
+
                     </Listeners>
                     <DirectEvents>
                         <CellClick OnEvent="PoPuP">
