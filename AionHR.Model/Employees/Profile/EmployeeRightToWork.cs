@@ -48,9 +48,9 @@ namespace AionHR.Model.Employees.Profile
                 if (!issueDate.HasValue)
                     return "";
                 if (hijriCal)
-                    return issueDate.Value.ToString("dd/MMMM/yyyy", new CultureInfo("ar"));
+                    return issueDate.Value.ToString("yyyy/MM/dd", new CultureInfo("ar"));
                 else
-                    return issueDate.Value.ToString("dd/MM/yyyy", new CultureInfo("en"));
+                    return issueDate.Value.ToString("yyyy/MM/dd", new CultureInfo("en"));
             }
         }
 
@@ -59,9 +59,9 @@ namespace AionHR.Model.Employees.Profile
             get
             {
                 if (hijriCal)
-                    return expiryDate.ToString("dd/MMMM/yyyy", new CultureInfo("ar"));
+                    return expiryDate.ToString("yyyy/MM/dd", new CultureInfo("ar"));
                 else
-                    return expiryDate.ToString("dd/MM/yyyy", new CultureInfo("en"));
+                    return expiryDate.ToString("yyyy/MM/dd", new CultureInfo("en"));
             }
         }
 

@@ -21,59 +21,66 @@
     <link rel="stylesheet" type="text/css" href="CSS/Employees.css?id=15" />
     <link rel="stylesheet" href="CSS/LiveSearch.css" />
 
-    <link rel="stylesheet" href="../Scripts/HijriCalender/redmond.calendars.picker.css" />
+   <link rel="stylesheet" href="../Scripts/HijriCalender/redmond.calendars.picker.css" />
 
-    <script src="../Scripts/HijriCalender/jquery.plugin.js" type="text/javascript"></script>
+    <script src="../Scripts/HijriCalender/jquery.plugin.js?id=280" type="text/javascript"></script>
 
-    <script type="text/javascript" src="../Scripts/HijriCalender/jquery.calendars.js"></script>
-    <script type="text/javascript" src="../Scripts/HijriCalender/jquery.calendars-ar.js"></script>
-    <script type="text/javascript" src="../Scripts/HijriCalender/jquery.calendars.picker.js"></script>
-    <script type="text/javascript" src="../Scripts/HijriCalender/jquery.calendars.plus.js"></script>
-    <script type="text/javascript" src="../Scripts/HijriCalender/jquery.calendars.islamic.js"></script>
-    <script type="text/javascript" src="../Scripts/HijriCalender/jquery.calendars.islamic-ar.js"></script>
-    <script type="text/javascript" src="../Scripts/HijriCalender/jquery.calendars.lang.js"></script>
-    <script type="text/javascript" src="../Scripts/HijriCalender/jquery.calendars.picker-ar.js"></script>
+    <script type="text/javascript" src="../Scripts/HijriCalender/jquery.calendars.js?id=101"></script>
+    <script type="text/javascript" src="../Scripts/HijriCalender/jquery.calendars-ar.js?id=105"></script>
+    <script type="text/javascript" src="../Scripts/HijriCalender/jquery.calendars.picker.js?id=205"></script>
+    <script type="text/javascript" src="../Scripts/HijriCalender/jquery.calendars.plus.js?id=107"></script>
+    <script type="text/javascript" src="../Scripts/HijriCalender/jquery.calendars.islamic.js?id=109"></script>
+    <script type="text/javascript" src="../Scripts/HijriCalender/jquery.calendars.islamic-ar.js?id=111"></script>
+    <script type="text/javascript" src="../Scripts/HijriCalender/jquery.calendars.lang.js?id=115"></script>
+    <script type="text/javascript" src="../Scripts/HijriCalender/jquery.calendars.picker-ar.js?id=120"></script>
     <script type="text/javascript">
         var cropper = null;
 
         var hijriSelected = false;
-         function handleInputRender() {
-            
-            if (App.hijCal.value==true) {
-
-                jQuery(function () {
-
-                    var calendar = jQuery.calendars.instance('Islamic', "ar");
-                    jQuery('.showCal').calendarsPicker('destroy');
-                    jQuery('.showCal2').calendarsPicker('destroy');
-
-                    if (App.issueDateDisabled.value != "True")
-                        jQuery('.showCal').calendarsPicker({ calendar: calendar });
-                    if (App.expiryDateDisabled.value != "True")
-                        jQuery('.showCal2').calendarsPicker({ calendar: calendar });
-                });
-            }
-            else {
-
-                jQuery(function () {
-
-                    var calendar = jQuery.calendars.instance('Gregorian', document.getElementById("CurrentLang").value);
-                    jQuery('.showCal').calendarsPicker('destroy');
-                    jQuery('.showCal2').calendarsPicker('destroy');
-
-                    if (App.issueDateDisabled.value != "True")
-                        jQuery('.showCal').calendarsPicker({ calendar: calendar });
-                    if (App.expiryDateDisabled.value != "True")
-                        jQuery('.showCal2').calendarsPicker({ calendar: calendar });
-                });
-            }
-            
+        var handleInputRender = function () {
+            jQuery(function () {
+                var calendar = jQuery.calendars.instance('Islamic', 'ar');
+                jQuery('.showCal').calendarsPicker({ calendar: calendar });
+            });
         }
+        // function handleInputRender() {
+             
+        //    if (App.hijCal.value==true) {
+                
+        //        App.gregCal.Checked = false;
+        //        jQuery(function () {
+
+        //            var calendar = jQuery.calendars.instance('Islamic', "ar");
+        //            jQuery('.showCal').calendarsPicker('destroy');
+        //            jQuery('.showCal2').calendarsPicker('destroy');
+
+        //            if (App.issueDateDisabled.value != "True")
+        //                jQuery('.showCal').calendarsPicker({ calendar: calendar });
+        //            if (App.expiryDateDisabled.value != "True")
+        //                jQuery('.showCal2').calendarsPicker({ calendar: calendar });
+        //        });
+        //    }
+        //    else {
+        //        alert("gerg");
+        //        App.hijCal.Checked = false;
+        //        jQuery(function () {
+
+        //            var calendar = jQuery.calendars.instance('Gregorian', document.getElementById("CurrentLang").value);
+        //            jQuery('.showCal').calendarsPicker('destroy');
+        //            jQuery('.showCal2').calendarsPicker('destroy');
+
+        //            if (App.issueDateDisabled.value != "True")
+        //                jQuery('.showCal').calendarsPicker({ calendar: calendar });
+        //            if (App.expiryDateDisabled.value != "True")
+        //                jQuery('.showCal2').calendarsPicker({ calendar: calendar });
+        //        });
+        //    }
+            
+        //}
        
         function setInputState(hijri) {
-
-            App.hijriCal.setHidden(!hijri);
-
+            
+         
             App.rwIssueDateMulti.setHidden(!hijri);
            // App.rwIssueDateMulti.allowBlank = !hijri;
             App.rwExpiryDateMulti.setHidden(!hijri);
@@ -84,9 +91,9 @@
             App.rwExpiryDate.allowBlank = hijri;
 
             App.rwIssueDate.setHidden(hijri);
+            
           //  App.rwIssueDate.allowBlank = hijri;
-           
-
+            App.hijriSelected.Text = hijri;
         }
     </script>
     <style type="text/css">
@@ -546,29 +553,38 @@
                                     </Listeners>
                                 </ext:ComboBox>
                                 <ext:TextField ID="documentRef" runat="server" FieldLabel="<%$ Resources:FieldRWDocumentRef%>" Name="documentRef" AllowBlank="false" />
-                                 <ext:RadioGroup runat="server" ID="hijriCal" GroupName="hijriCal" FieldLabel="<%$ Resources:ChooseCalendarType %>"    >
+                                 <ext:RadioGroup runat="server" ID="hijriCal"   FieldLabel="<%$ Resources:ChooseCalendarType %>"    >
                                     <Items>
-                                        <ext:Radio ID="gregCal" runat="server" Name="hijriCal" InputValue="false" InputType="Checkbox" BoxLabel="<%$ Resources:Common, Gregorian %>" Checked="true" >
-                                       <%--     <Listeners>
-                                                <Change Handler="if(this.checked){InitGregorian();handleInputRender();}"  />
-                                            </Listeners>--%>
+                                        <ext:Radio ID="gregCal" runat="server" Name="hijriCal" InputValue="false"  InputType="Radio" BoxLabel="<%$ Resources:Common, Gregorian %>" Checked="true" >
+                                    <Listeners>
+                                        <Change Handler="#{hijriSelected}.setValue('true');">
+
+                                        </Change>
+                                    </Listeners>
                                         </ext:Radio>
-                                        <ext:Radio ID="hijCal" runat="server" Name="hijriCal" InputValue="true" InputType="Checkbox" BoxLabel="<%$ Resources:Common, Hijri %>" >
-                                           <%--   <Listeners>
-                                                <Change Handler="if(this.checked){InitHijri();handleInputRender();}" />
-                                            </Listeners>--%>
+                                        <ext:Radio ID="hijCal" runat="server" Name="hijriCal" InputValue="true"   InputType="Radio" BoxLabel="<%$ Resources:Common, Hijri %>" >
+                                         <Listeners>
+                                        <Change Handler="#{hijriSelected}.setValue('false');">
+
+                                        </Change>
+                                    </Listeners>
                                         </ext:Radio>
                                     </Items>
                                      <Listeners>
-                                         <Change Handler="handleInputRender();" />
+                                         <Change Handler="setInputState(!App.hijriCal.getChecked()[0].getValue());" />
                                      </Listeners>
                                 </ext:RadioGroup>
                                 <ext:TextField ID="rwIssueDateMulti" Width="250" runat="server" Margin="5" FieldLabel="<%$ Resources:FieldRWIssueDate%>" FieldCls="showCal">
-                               
+                                 <Listeners>
+                                                                              <Render Fn="handleInputRender" />
+                                                                                                                        </Listeners>
                                    
                                 </ext:TextField>
-                                <ext:TextField ID="rwExpiryDateMulti" Width="250" runat="server" Margin="5" FieldLabel="<%$ Resources:FieldRWExpiryDate%>" FieldCls="showCal2">
+                                <ext:TextField ID="rwExpiryDateMulti" Width="250" runat="server" Margin="5" FieldLabel="<%$ Resources:FieldRWExpiryDate%>" FieldCls="showCal">
                                
+                                    <Listeners>
+                                                                              <Render Fn="handleInputRender" />
+                                                                                                                        </Listeners>
                                    
                                 </ext:TextField>
                                 <ext:DateField ID="rwIssueDate" Vtype="daterange" runat="server" Name="issueDate" FieldLabel="<%$ Resources:FieldRWIssueDate%>" AllowBlank="true" >
@@ -605,6 +621,8 @@
                             <ExtraParams>
                                 <ext:Parameter Name="id" Value="#{RWID}.getValue()" Mode="Raw" />
                                 <ext:Parameter Name="values" Value="#{EditRWForm}.getForm().getValues(false, false, false, true)" Mode="Raw" Encode="true" />
+                                <ext:Parameter Name="rwIssueDate" Value="#{rwIssueDate}.getValue()" Mode="Raw" />
+                                <ext:Parameter Name="rwExpiryDate" Value="#{rwExpiryDate}.getValue()" Mode="Raw" />
                             </ExtraParams>
                         </Click>
                     </DirectEvents>

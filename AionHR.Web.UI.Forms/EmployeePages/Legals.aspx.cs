@@ -65,7 +65,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorOperation).Show();
                 CurrentEmployee.Text = Request.QueryString["employeeId"];
 
-                DateColumn1.Format = DateColumn2.Format = _systemService.SessionHelper.GetDateformat();
+                rwIssueDate.Format= rwExpiryDate.Format= DateColumn1.Format = DateColumn2.Format = _systemService.SessionHelper.GetDateformat();
                 EmployeeTerminated.Text = Request.QueryString["terminated"];
 
                 bool disabled = EmployeeTerminated.Text == "1";
@@ -126,6 +126,16 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     bcRemarks.Visible = false;
                     bcRemarksField.Visible = true;
                 }
+                if (_systemService.SessionHelper.GetHijriSupport())
+                {
+                    hijriCal.Hidden = false;
+
+                }
+                else
+                {
+                    hijriCal.Hidden = true;
+                }
+                SetHijriInputState(false);
             }
         }
 
@@ -190,9 +200,10 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     this.EditRWForm.SetValues(response.result);
                     FillRWDocumentType();
                     dtId.Select(response.result.dtId.ToString());
+                    SetHijriInputState(response.result.hijriCal);
                     if (_systemService.SessionHelper.GetHijriSupport())
                     {
-                        SetHijriInputState(true);
+                        SetHijriInputState(response.result.hijriCal);
                         if (response.result.hijriCal)
                         {
                             hijCal.Checked = true;
@@ -204,16 +215,19 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                         else
                         {
                             gregCal.Checked = true;
-                            if (_systemService.SessionHelper.CheckIfArabicSession())
-                            {
-                                rwIssueDateMulti.Text = response.result.issueDate.HasValue?response.result.issueDate.Value.ToString("dd/MM/yyyy", new CultureInfo("en")):"";
-                                rwExpiryDateMulti.Text = response.result.expiryDate.ToString("dd/MM/yyyy", new CultureInfo("en"));
-                            }
-                            else
-                            {
-                                rwIssueDateMulti.Text = response.result.issueDate.HasValue?response.result.issueDate.Value.ToString("MM/dd/yyyy", new CultureInfo("en")):"";
-                                rwExpiryDateMulti.Text = response.result.expiryDate.ToString("MM/dd/yyyy", new CultureInfo("en"));
-                            }
+                            //if (_systemService.SessionHelper.CheckIfArabicSession())
+                            //{
+                            //    rwIssueDateMulti.Text = response.result.issueDate.HasValue ? response.result.issueDate.Value.ToString("dd/MM/yyyy", new CultureInfo("en")) : "";
+                            //    rwExpiryDateMulti.Text = response.result.expiryDate.ToString("dd/MM/yyyy", new CultureInfo("en"));
+
+                            //}
+                            //else
+                            //{
+                            //    rwIssueDateMulti.Text = response.result.issueDate.HasValue ? response.result.issueDate.Value.ToString("MM/dd/yyyy", new CultureInfo("en")) : "";
+                            //    rwExpiryDateMulti.Text = response.result.expiryDate.ToString("MM/dd/yyyy", new CultureInfo("en"));
+                            //}
+                            rwIssueDateMulti.Text = "";
+                            rwExpiryDateMulti.Text = "";
                             hijriSelected.Text = "false";
                         }
                         X.Call("handleInputRender");
@@ -445,13 +459,10 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                 rwIssueDate.Text = DateTime.Today.ToShortDateString(); ;
                 rwExpiryDate.Text = DateTime.Today.ToShortDateString();
                 hijriSelected.Text = "false";
-                SetHijriInputState(true);
+              
                 X.Call("handleInputRender");
             }
-            else
-            {
-                SetHijriInputState(false);
-            }
+           
 
 
 
@@ -548,7 +559,20 @@ namespace AionHR.Web.UI.Forms.EmployeePages
 
             //Getting the id to check if it is an Add or an edit as they are managed within the same form.
             string id = e.ExtraParams["id"];
+            string ExpiryDateString = e.ExtraParams["rwExpiryDate"];
+            string IssueDateDateString = e.ExtraParams["rwIssueDate"];
+            DateTime ExpiryDate = new DateTime();
+            DateTime IssueDate = new DateTime();
 
+            if (!string.IsNullOrEmpty(ExpiryDateString))
+            {
+                 ExpiryDate = DateTime.Parse(e.ExtraParams["rwExpiryDate"]);
+            }
+            if (!string.IsNullOrEmpty(IssueDateDateString))
+            {
+                 IssueDate = DateTime.Parse(e.ExtraParams["rwIssueDate"]);
+            }
+            
             string obj = e.ExtraParams["values"];
             JsonSerializerSettings settings = new JsonSerializerSettings();
             settings.NullValueHandling = NullValueHandling.Ignore;
@@ -566,29 +590,36 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                 string format = "";
                 if (hijriSupported)
                 {
-                    if (b.hijriCal)
+                    if (hijriSelected.Text=="true")
                     {
+                        b.hijriCal = true;
                         c = new CultureInfo("ar");
                         format = "yyyy/MM/dd";
+                        b.issueDate = DateTime.ParseExact(rwIssueDateMulti.Text, format, c);
+                        b.expiryDate = DateTime.ParseExact(rwExpiryDateMulti.Text, format, c);
                     }
+                    //else
+                    //{
+                    //    c = new CultureInfo("en");
+                    //    if (_systemService.SessionHelper.CheckIfArabicSession())
+                    //    {
+
+                    //        format = "dd/MM/yyyy";
+                    //    }
+                    //    else
+                    //    {
+                    //        format = "MM/dd/yyyy";
+                    //    }
+                    //}
                     else
                     {
-                        c = new CultureInfo("en");
-                        if (_systemService.SessionHelper.CheckIfArabicSession())
-                        {
 
-                            format = "dd/MM/yyyy";
-                        }
-                        else
-                        {
-                            format = "MM/dd/yyyy";
-                        }
+                        b.issueDate = IssueDate;
+
+
+                        b.expiryDate = ExpiryDate;
                     }
-                    if (!string.IsNullOrEmpty(rwIssueDateMulti.Text))
-                        b.issueDate = DateTime.ParseExact(rwIssueDateMulti.Text, format, c);
-                    else
-                        b.issueDate = null;
-                    b.expiryDate = DateTime.ParseExact(rwExpiryDateMulti.Text, format, c);
+                  
                 }
 
             }
