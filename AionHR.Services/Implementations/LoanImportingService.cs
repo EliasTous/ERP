@@ -46,7 +46,7 @@ namespace AionHR.Services.Implementations
                 string ldMe= row[10].ToString(); ;
                 string ldVal= row[11].ToString(); ;
 
-                loans.Add(new Loan() { employeeRef = employeeRef, amount = Convert.ToDouble(amount), ltId =1, branchId = branch.ToLower()=="null"?null:branch, currencyRef = currRef, date = date, effectiveDate = effectiveDate, loanRef = loanRef, status= Convert.ToInt16(status), purpose=reason ,ldMethod=Convert.ToInt16(ldMe),ldValue = Convert.ToInt32(ldVal)});
+                loans.Add(new Loan() { employeeRef = employeeRef, amount = Convert.ToDouble(amount), ltId =ltId, branchId = branch.ToLower()=="null"?null:branch, currencyRef = currRef, date = date, effectiveDate = effectiveDate, loanRef = loanRef, status= Convert.ToInt16(status), purpose=reason ,ldMethod=Convert.ToInt16(ldMe),ldValue = Convert.ToInt32(ldVal)});
                 
           
 

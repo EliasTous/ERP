@@ -687,6 +687,7 @@ namespace AionHR.Web.UI.Forms
             req.StartAt = "1";
             req.Filter = "";
             req.SortBy = "recordId";
+            req.Status = 2;
 
 
             return req;
@@ -968,7 +969,7 @@ namespace AionHR.Web.UI.Forms
         {
             LoanManagementListRequest req = new LoanManagementListRequest();
             req = GetLoanManagementRequest();
-            req.Status = 2;
+         
             ListResponse<Loan> resp = _loanService.GetAll<Loan>(req);
             if (!resp.Success)
             {
@@ -983,7 +984,7 @@ namespace AionHR.Web.UI.Forms
         {
             LoanManagementListRequest req = new LoanManagementListRequest();
             req = GetLoanManagementRequest();
-            req.Status = 1;
+            req.Status = 2;
             ListResponse<Loan> resp = _loanService.GetAll<Loan>(req);
             if (!resp.Success)
             {

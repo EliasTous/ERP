@@ -28,6 +28,8 @@ using AionHR.Model.TimeAttendance;
 using Reports;
 using AionHR.Model.Payroll;
 using DevExpress.XtraReports.UI;
+using AionHR.Services.Messaging.LoanManagment;
+using AionHR.Model.LoadTracking;
 
 namespace AionHR.Web.UI.Forms
 {
@@ -38,6 +40,7 @@ namespace AionHR.Web.UI.Forms
 
         IEmployeeService _employeeService = ServiceLocator.Current.GetInstance<IEmployeeService>();
         ITimeAttendanceService _timeAttendanceService = ServiceLocator.Current.GetInstance<ITimeAttendanceService>();
+        ILoanTrackingService _loanService = ServiceLocator.Current.GetInstance<ILoanTrackingService>();
         protected override void InitializeCulture()
         {
 
@@ -366,11 +369,43 @@ namespace AionHR.Web.UI.Forms
         }
 
 
+        private LoanManagementListRequest GetLoanManagementRequest( string employeeId)
+        {
+            LoanManagementListRequest req = new LoanManagementListRequest();
 
+            req.BranchId = 0;
+            req.DepartmentId = 0;
+            req.DivisionId = 0;
+            req.EmployeeId = Convert.ToInt32(employeeId);
+            req.Status = 2;
+            
+
+          
+
+            req.Size = "2000";
+            req.StartAt = "1";
+            req.Filter = "";
+            req.SortBy = "employeeId";
+
+            return req;
+        }
 
         protected void SaveNewRecord(object sender, DirectEventArgs e)
         {
-
+            string employeeId = e.ExtraParams["employeeId"];
+            LoanManagementListRequest request1 = GetLoanManagementRequest(employeeId);
+            
+            ListResponse<Loan> routers = _loanService.GetAll<Loan>(request1);
+            if (!routers.Success)
+            {
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", routers.ErrorCode) != null ? GetGlobalResourceObject("Errors", routers.ErrorCode).ToString() : routers.Summary).Show();
+                return;
+            }
+            if (routers.count!=0)
+            {
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", "FinalSettlementForEmployeeHaveLoans") ).Show();
+                return;
+            }
 
             //Getting the id to check if it is an Add or an edit as they are managed within the same form.
 

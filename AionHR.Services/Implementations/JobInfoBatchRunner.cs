@@ -5,6 +5,7 @@ using AionHR.Model.Employees.Profile;
 using AionHR.Model.System;
 using AionHR.Services.Interfaces;
 using AionHR.Services.Messaging;
+using AionHR.Services.Messaging.CompanyStructure;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -107,8 +108,10 @@ namespace AionHR.Services.Implementations
         }
         private void FillDepartments()
         {
-            ListRequest req = new ListRequest();
-            ListResponse<Department> branches = companyStructure.ChildGetAll<Department>(req);
+            DepartmentListRequest request = new DepartmentListRequest();
+            request.Filter = "";
+            request.type = 0;
+            ListResponse<Department> branches = companyStructure.ChildGetAll<Department>(request);
             if (branches.Success && branches.Items != null)
             {
                 foreach (var item in branches.Items)
@@ -128,8 +131,13 @@ namespace AionHR.Services.Implementations
         }
         private void FillPosition()
         {
-            ListRequest req = new ListRequest();
-            ListResponse<Position> branches = companyStructure.ChildGetAll<Position>(req);
+            PositionListRequest request = new PositionListRequest();
+            // request.Filter = "";
+            request.SortBy = "positionRef";
+            request.Size = "2000";
+            request.StartAt = "0";
+            request.Filter = "";
+            ListResponse<Position> branches = companyStructure.ChildGetAll<Position>(request);
             if (branches.Success && branches.Items != null)
             {
                 branches.Items.ForEach(x => this.positions.Add(x.name.Trim('\r', '\n'), Convert.ToInt32(x.recordId)));

@@ -142,7 +142,7 @@
     <value>موافق عليه</value>
   </data>
   <data name="FieldBranch" xml:space="preserve">
-    <value>الفرع</value>
+    <value>الفرع المسحوب منه السلفة</value>
   </data>
   <data name="FieldCurrencyId" xml:space="preserve">
     <value>العملة</value>

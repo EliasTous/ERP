@@ -30,10 +30,11 @@ namespace AionHR.Services.Implementations
                 CultureInfo cu = rw.hijriCal? new CultureInfo("ar") : new CultureInfo("en");
                 rw.documentRef = row[2].ToString();
                 if (!string.IsNullOrEmpty(row[3].ToString()))
-                    rw.issueDate = DateTime.ParseExact(row[3].ToString(),"dd/MM/yyyy", cu);
+                    rw.issueDate = DateTime.ParseExact(row[3].ToString(),"yyyy/MM/dd", cu);
 
-                rw.expiryDate = DateTime.ParseExact(row[4].ToString(), "dd/MM/yyyy", cu);
+                rw.expiryDate = DateTime.ParseExact(row[4].ToString(), "yyyy/MM/dd", cu);
                 rw.dtId = Convert.ToInt32(row[5].ToString());
+                rw.remarks= row[6].ToString();
                 depts.Add(rw);
 
 

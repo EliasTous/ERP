@@ -393,4 +393,7 @@
   <data name="Error_Empty_IndemnityDetails_IndemnityResignation" xml:space="preserve">
     <value>you must enter at lest  one Indemnity Details role  and one Indemnity Resignation rule </value>
   </data>
+  <data name="FinalSettlementForEmployeeHaveLoans" xml:space="preserve">
+    <value>Employee has loans </value>
+  </data>
 </root>

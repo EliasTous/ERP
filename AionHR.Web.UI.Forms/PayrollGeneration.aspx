@@ -456,6 +456,7 @@
                                     <ext:Column runat="server" DataIndex="name" Text="<%$ Resources: FieldEmployee%>" Flex="2">
                                         <Renderer Handler="return record.data['name'].fullName;" />
                                     </ext:Column>
+                                      <ext:Column runat="server" ID="seqNoEM" DataIndex="seqNo" Hidden="true" />
                                     <ext:Column runat="server" DataIndex="branchName" Text="<%$ Resources: FieldBranch%>" Flex="1" />
                                     <ext:Column runat="server" DataIndex="departmentName" Text="<%$ Resources: FieldDepartment%>" Flex="1" />
                                     <ext:Column runat="server" DataIndex="calendarDays" Text="<%$ Resources: FieldCalDays%>" Width="100" />
@@ -528,6 +529,7 @@
                                         <ext:Parameter Name="taxAmount" Value="record.data['taxAmount']" Mode="Raw" />
                                         <ext:Parameter Name="netSalary" Value="record.data['netSalary']" Mode="Raw" />
                                         <ext:Parameter Name="currency" Value="record.data['currencyRef']" Mode="Raw" />
+                                         <ext:Parameter Name="seqNo" Value="record.data['seqNo']" Mode="Raw" />
                                         <ext:Parameter Name="type" Value="getCellType( this, rowIndex, cellIndex)" Mode="Raw" />
                                     </ExtraParams>
 

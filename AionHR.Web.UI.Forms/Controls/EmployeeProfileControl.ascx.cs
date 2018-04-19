@@ -1575,7 +1575,7 @@ namespace AionHR.Web.UI.Forms
         {
             string id = CurrentEmployee.Text;
             string obj = e.ExtraParams["delText"];
-            if (obj.ToLower() != "delete")
+            if (obj.ToLower() != "delete" && obj.ToLower() != "حذف")
             {
                 return;
             }

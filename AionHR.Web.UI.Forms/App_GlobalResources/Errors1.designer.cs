@@ -887,5 +887,14 @@ namespace Resources {
                 return ResourceManager.GetString("Error_Empty_IndemnityDetails_IndemnityResignation", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Employee has loans .
+        /// </summary>
+        internal static string FinalSettlementForEmployeeHaveLoans {
+            get {
+                return ResourceManager.GetString("FinalSettlementForEmployeeHaveLoans", resourceCulture);
+            }
+        }
     }
 }

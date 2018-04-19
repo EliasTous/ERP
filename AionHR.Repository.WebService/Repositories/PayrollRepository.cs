@@ -74,6 +74,7 @@ namespace AionHR.Repository.WebService.Repositories
             ChildDeleteLookup.Add(typeof(PayrollIndemnityRecognition), "delIR");
             ChildDeleteLookup.Add(typeof(LeavePayment), "delLP");
             ChildDeleteLookup.Add(typeof(Bank), "delBA");
+            ChildDeleteLookup.Add(typeof(EmployeePayroll), "delEM");
 
 
             ChildGetLookup.Add(typeof(GenerationHeader), "getHE");

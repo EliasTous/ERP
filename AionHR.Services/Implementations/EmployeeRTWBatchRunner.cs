@@ -31,7 +31,7 @@ namespace AionHR.Services.Implementations
                     + error.documentRef + "," +
                     (error.issueDate.HasValue?error.issueDate.Value.ToShortDateString():" ") + "," +
                     error.expiryDate.ToShortDateString() + "," +
-                     error.dtId+ "," +
+                     error.dtId+ "," +error.remarks + "," +
                    errorMessages[i++].Replace('\r', ' ').Replace(',', ';')
                     );
 

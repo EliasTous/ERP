@@ -395,4 +395,7 @@
   <data name="Error_Empty_IndemnityDetails_IndemnityResignation" xml:space="preserve">
     <value>يجب ادخال قاعده في الجدول وقاعدة في جزاء الاستقالة </value>
   </data>
+  <data name="FinalSettlementForEmployeeHaveLoans" xml:space="preserve">
+    <value>يوجد على الموظف سلف </value>
+  </data>
 </root>

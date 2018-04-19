@@ -497,7 +497,7 @@ namespace AionHR.Web.UI.Forms
             string basic = e.ExtraParams["basicAmount"];
             string tax = e.ExtraParams["taxAmount"];
             string net = e.ExtraParams["netSalary"];
-
+            string EMseqNo= e.ExtraParams["seqNo"];
             string currencyRef = e.ExtraParams["currency"];
             CurrentCurrencyRef.Text = currencyRef;
             CurrentSeqNo.Text = id;
@@ -534,7 +534,7 @@ namespace AionHR.Web.UI.Forms
                         Yes = new MessageBoxButtonConfig
                         {
                             //We are call a direct request metho for deleting a record
-                            Handler = String.Format("App.direct.DeleteEN({0})", id),
+                            Handler = String.Format("App.direct.DeleteEM({0})",EMseqNo),
                             Text = Resources.Common.Yes
                         },
                         No = new MessageBoxButtonConfig
@@ -682,6 +682,46 @@ namespace AionHR.Web.UI.Forms
 
                 //Step 2 :  remove the object from the store
                 entitlementsStore.Remove(index);
+
+                //Step 3 : Showing a notification for the user 
+
+
+            }
+            catch (Exception ex)
+            {
+                //In case of error, showing a message box to the user
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorDeletingRecord).Show();
+
+            }
+        }
+
+        [DirectMethod]
+        public void DeleteEM(string seqNo)
+        {
+            try
+            {
+                EmployeePayroll EP = new EmployeePayroll();
+                EP.payId = CurrentPayId.Text;
+                EP.seqNo = seqNo;
+                PostRequest<EmployeePayroll> delReq = new PostRequest<EmployeePayroll>();
+                delReq.entity = EP;
+                PostResponse<EmployeePayroll> res = _payrollService.ChildDelete<EmployeePayroll>(delReq);
+                if (!res.Success)
+                {
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorDeletingRecord).Show();
+                    return;
+                }
+                Notification.Show(new NotificationConfig
+                {
+                    Title = Resources.Common.Notification,
+                    Icon = Icon.Information,
+                    Html = Resources.Common.RecordUpdatedSucc
+                });
+
+                //Step 2 :  remove the object from the store
+                Store1.Remove(seqNo);
 
                 //Step 3 : Showing a notification for the user 
 

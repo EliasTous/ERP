@@ -139,7 +139,7 @@
     <value>شركة</value>
   </data>
   <data name="confirmDelete" xml:space="preserve">
-    <value>تأكيد الحذف</value>
+    <value>لتأكيد عملية الحذف يرجى كتابة كلمة حذف  </value>
   </data>
   <data name="ContactsTab" xml:space="preserve">
     <value>معلومات الاتصال</value>
