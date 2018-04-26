@@ -72,8 +72,25 @@ var enterKeyPressSearchHandler = function (el, event) {
     }
 };
 function validateFrom(s) {
+   
+   
+        
+    d = s.split(':');
+    if (s.split(':').length != 2) return false;
+    
+    if (d[0] == '')
+        return false;
+    if (d[1] == '')
+        return false;
 
-    d = s.split(':'); if (d[0] > 23) return false; if (d[1] > 59) return false; return true;
+    if (isNaN(d[0]))
+        return false;
+    if (isNaN(d[1]))
+        return false;
+
+    if (d[0] > 23) return false;
+    if (d[1] > 59) return false; return true;
+    
 }
 
 function validateTo(curr, prev) {
