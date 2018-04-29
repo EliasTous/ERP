@@ -394,6 +394,33 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Close All Tabs.
+        /// </summary>
+        internal static string CloseAllTabsText {
+            get {
+                return ResourceManager.GetString("CloseAllTabsText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Close Others Tabs.
+        /// </summary>
+        internal static string CloseOthersTabsText {
+            get {
+                return ResourceManager.GetString("CloseOthersTabsText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Close Tab .
+        /// </summary>
+        internal static string CloseTabText {
+            get {
+                return ResourceManager.GetString("CloseTabText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Collapse All.
         /// </summary>
         internal static string CollapseAll {

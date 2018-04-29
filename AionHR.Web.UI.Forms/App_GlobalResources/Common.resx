@@ -1152,4 +1152,13 @@
   <data name="RT102B" xml:space="preserve">
     <value>Terminations</value>
   </data>
+  <data name="CloseAllTabsText" xml:space="preserve">
+    <value>Close All Tabs</value>
+  </data>
+  <data name="CloseOthersTabsText" xml:space="preserve">
+    <value>Close Others Tabs</value>
+  </data>
+  <data name="CloseTabText" xml:space="preserve">
+    <value>Close Tab </value>
+  </data>
 </root>

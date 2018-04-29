@@ -1155,4 +1155,13 @@
   <data name="RT102B" xml:space="preserve">
     <value>انهاء الخدمة</value>
   </data>
+  <data name="CloseAllTabsText" xml:space="preserve">
+    <value>اغلاق جميع النوافذ</value>
+  </data>
+  <data name="CloseOthersTabsText" xml:space="preserve">
+    <value>اغلاق النوافذ الأخرى </value>
+  </data>
+  <data name="CloseTabText" xml:space="preserve">
+    <value>اغلاق النافذة الحالية</value>
+  </data>
 </root>

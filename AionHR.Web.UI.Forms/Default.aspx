@@ -11,6 +11,33 @@
     <script type="text/javascript" src="Scripts/app.js?id=5"></script>
     <script type="text/javascript" src="Scripts/Common.js?id=6"></script>
     <script type="text/javascript" src="Scripts/default.js?id=14"></script>
+    <script type="text/javascript">
+        //var beforeMenu = function (pnl, tab, menu) {
+        //    menu.items.get(0).setText(tab.title);
+
+        //    var item = menu.getComponent(5),
+        //        lastTab = pnl.items.get(pnl.items.getCount() - 1);
+        //    alert('test');
+        //    item.show();
+        //    //if (tab.id == "tabPanel") {
+        //    //    item.show();
+
+        //    //    if (lastTab.isTabMenuVisible()) {
+        //    //        item.setText("Hide Menu for last Tab");
+        //    //        item.handler = function () {
+        //    //            lastTab.hideTabMenu();
+        //    //        };
+        //    //    } else {
+        //    //        item.setText("Show Menu for last Tab");
+        //    //        item.handler = function () {
+        //    //            lastTab.showTabMenu();
+        //    //        };
+        //    //    }
+        //    //} else {
+        //    //    item.hide();
+        //    //}
+        //};
+    </script>
  
     <title>
         <asp:Literal ID="Literal1" runat="server" Text="<%$Resources:Common , ApplicationTitle%>" />
@@ -723,12 +750,17 @@
                             Mode="Frame"
                             ShowMask="true">
                             <LoadMask ShowMask="true" />
+                            
                         </Loader>
+                       
                     </ext:Panel>
 
 
 
                 </Items>
+                  <Plugins>
+                     <ext:TabCloseMenu runat="server" ID="DefaultTabCloseMenu"/>
+                </Plugins>
             </ext:TabPanel>
         </Items>
     </ext:Viewport>
