@@ -125,7 +125,7 @@ namespace AionHR.Web.UI.Forms
                 HideShowButtons();
                 HideShowColumns();
 
-
+                SetBasicInfoFormEnable(true);
                 statusPref.Select("0");
                 ldMethod.Select("0");
                 c.Format = /*cc.Format =*/ date.Format = effectiveDate.Format = _systemService.SessionHelper.GetDateformat();
@@ -331,7 +331,8 @@ namespace AionHR.Web.UI.Forms
         {
 
             panelRecordDetails.ActiveIndex = 0;
-            SetTabPanelEnable(true);
+            //SetTabPanelEnable(true);
+            SetBasicInfoFormEnable(true);
             string id = e.ExtraParams["id"];
             string type = e.ExtraParams["type"];
 
@@ -349,6 +350,7 @@ namespace AionHR.Web.UI.Forms
                         X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", response.ErrorCode) != null ? GetGlobalResourceObject("Errors", response.ErrorCode).   ToString() + "<br>Technical Error: " + response.ErrorCode + "<br> Summary: " + response.Summary : response.Summary).Show();
                         return;
                     }
+                   
 
                     currentCase.Text = id;
 
@@ -361,7 +363,7 @@ namespace AionHR.Web.UI.Forms
                                 }
                        });
                     employeeId.SetValue(response.result.employeeId);
-                    effectiveDate.Disabled = response.result.status != 3;
+                //    effectiveDate.Disabled = response.result.status != 3;
                     //FillFilesStore(Convert.ToInt32(id));
 
                     //Step 2 : call setvalues with the retrieved object
@@ -379,6 +381,13 @@ namespace AionHR.Web.UI.Forms
                     loanComments_RefreshData(Convert.ToInt32(id));
                     //if (!response.result.effectiveDate.HasValue)
                     //    effectiveDate.SelectedDate = DateTime.Now;
+                    if (response.result.status == 3)
+                    {
+
+
+                        SetBasicInfoFormEnable(false);
+
+                    }
                     this.EditRecordWindow.Title = Resources.Common.EditWindowsTitle;
                     this.EditRecordWindow.Show();
                     break;
@@ -654,20 +663,33 @@ namespace AionHR.Web.UI.Forms
             }
         }
 
-        private void SetTabPanelEnable(bool isEnable)
+        //private void SetTabPanelEnable(bool isEnable)
+        //{
+        //    foreach (var item in panelRecordDetails.Items)
+        //    {
+        //        if (item.ID == "BasicInfoTab")
+        //            continue;
+        //        item.Disabled = !isEnable;
+        //    }
+
+        //}
+        private void SetBasicInfoFormEnable(bool isEnable)
         {
-            foreach (var item in panelRecordDetails.Items)
+            foreach (var item in BasicInfoTab.Items)
             {
-                if (item.ID == "BasicInfoTab")
-                    continue;
+               
                 item.Disabled = !isEnable;
+              
             }
+        
+            SaveButton.Disabled = !isEnable;
 
         }
 
         protected void ADDNewRecord(object sender, DirectEventArgs e)
         {
             BasicInfoTab.Reset();
+            SetBasicInfoFormEnable(true);
             ListRequest req = new ListRequest();
             ListResponse<KeyValuePair<string, string>> defaults = _systemService.ChildGetAll<KeyValuePair<string, string>>(req);
             if (!defaults.Success)
@@ -687,11 +709,11 @@ namespace AionHR.Web.UI.Forms
             this.EditRecordWindow.Title = Resources.Common.AddNewRecord;
             date.SelectedDate = DateTime.Now;
             panelRecordDetails.ActiveIndex = 0;
-            SetTabPanelEnable(false);
+            //SetTabPanelEnable(false);
             FillLoanType();
             FillBranchField();
             FillCurrency();
-            effectiveDate.Disabled = true;
+          //  effectiveDate.Disabled = true;
             this.EditRecordWindow.Show();
         }
 
@@ -881,7 +903,7 @@ namespace AionHR.Web.UI.Forms
                             Html = Resources.Common.RecordSavingSucc
                         });
                         recordId.Text = b.recordId;
-                        SetTabPanelEnable(true);
+                        //SetTabPanelEnable(true);
                         currentCase.Text = b.recordId;
 
                         RowSelectionModel sm = this.GridPanel1.GetSelectionModel() as RowSelectionModel;

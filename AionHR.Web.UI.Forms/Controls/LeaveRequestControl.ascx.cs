@@ -403,7 +403,7 @@ namespace AionHR.Web.UI.Forms.Controls
             //Getting the id to check if it is an Add or an edit as they are managed within the same form.
 
             string obj = e.ExtraParams["values"];
-            string status1 = e.ExtraParams["status"];
+            string status = e.ExtraParams["status"];
             JsonSerializerSettings settings = new JsonSerializerSettings();
             CustomResolver res = new CustomResolver();
             //  res.AddRule("leaveRequest1_employeeId", "employeeId");
@@ -411,6 +411,7 @@ namespace AionHR.Web.UI.Forms.Controls
             // res.AddRule("leaveRequest1_status", "status");
             settings.ContractResolver = res;
             LeaveRequest b = JsonConvert.DeserializeObject<LeaveRequest>(obj, settings);
+            b.status =Convert.ToInt16(status);
             b.leaveDays = Convert.ToDouble(leaveDaysField.Text);
             //b.status = Convert.ToInt16(status1); 
             string id = e.ExtraParams["id"];

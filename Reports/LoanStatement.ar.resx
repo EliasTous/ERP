@@ -168,6 +168,15 @@
   <data name="xrTableCell15.Text" xml:space="preserve">
     <value>المجموع</value>
   </data>
+  <data name="xrTableCell17.Text" xml:space="preserve">
+    <value>الرمز</value>
+  </data>
+  <data name="xrTableCell18.Text" xml:space="preserve">
+    <value>الوصف </value>
+  </data>
+  <data name="xrTableCell19.Text" xml:space="preserve">
+    <value>المبلغ</value>
+  </data>
   <data name="xrTableCell2.Text" xml:space="preserve">
     <value>xrTableCell2</value>
   </data>

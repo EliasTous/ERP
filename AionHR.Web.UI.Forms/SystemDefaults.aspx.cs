@@ -442,7 +442,7 @@ namespace AionHR.Web.UI.Forms
                 retirementAge.Text = (items.Where(s => s.Key == "retirementAge").First().Value);
                 if (string.IsNullOrEmpty(items.Where(s => s.Key == "retirementAge").First().Value.ToString()))
                 {
-                    yearDays.Text = "60";
+                   retirementAge.Text = "60";
                 }
             }
 

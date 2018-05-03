@@ -142,25 +142,28 @@
     <value>لم يتم العثور على نتائج</value>
   </data>
   <data name="xrLabel18.Text" xml:space="preserve">
-    <value>القسم</value>
+    <value>الفرع :</value>
   </data>
   <data name="xrLabel19.Text" xml:space="preserve">
-    <value>الفرع المسحوب منه السلفة</value>
+    <value>الفرع :</value>
   </data>
   <data name="xrLabel21.Text" xml:space="preserve">
-    <value>الحالة</value>
+    <value>الحالة :</value>
   </data>
   <data name="xrLabel27.Text" xml:space="preserve">
     <value>السلف</value>
   </data>
   <data name="xrLabel28.Text" xml:space="preserve">
-    <value>الموظف</value>
+    <value>الموظف :</value>
   </data>
   <data name="xrLabel7.Text" xml:space="preserve">
     <value>التاريخ</value>
   </data>
   <data name="xrLabel9.Text" xml:space="preserve">
     <value>القسم</value>
+  </data>
+  <data name="xrLabel9.Text1" xml:space="preserve">
+    <value>الفرع</value>
   </data>
   <data name="xrPageInfo2.Format" xml:space="preserve">
     <value>صفحة {0} من {1}</value>

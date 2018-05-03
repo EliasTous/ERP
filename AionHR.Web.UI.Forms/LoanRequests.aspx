@@ -377,7 +377,7 @@
                             DefaultAnchor="100%" OnLoad="BasicInfoTab_Load"
                             BodyPadding="5"  AutoScroll="true">
                             <Items>
-                                <ext:TextField ID="recordId" runat="server" Name="recordId" Hidden="true" />
+                                <ext:TextField  ID="recordId" runat="server" Name="recordId" Hidden="true" />
                                 <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" ID="employeeId"
                                     DisplayField="fullName"
                                     ValueField="recordId" Name="employeeId"
@@ -572,7 +572,7 @@
 
                             </Items>
                             <Buttons>
-                                <ext:Button ID="SaveButton" runat="server" Text="<%$ Resources:Common, Save %>" Icon="Disk">
+                                <ext:Button ID="SaveButton"  runat="server" Text="<%$ Resources:Common, Save %>" Icon="Disk">
 
                                     <Listeners>
                                         <Click Handler="CheckSession(); if (!#{BasicInfoTab}.getForm().isValid()) {return false;}  " />

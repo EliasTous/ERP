@@ -26,7 +26,20 @@ namespace AionHR.Model.Reports
 
         public string StatusString { get; set; }
         public string purpose { get; set; }
+        public string deductedAmountString
+        {
+            get { return deductedAmount.ToString() + " " + currencyRef; }
+        }
+        public string amountString
+        {
+            get { return amount.ToString() + " " + currencyRef; }
+        }
+        public string NetString
+        {
+            get { return (amount- deductedAmount).ToString() + " " + currencyRef; }
+        }
 
+        
 
     }
 }

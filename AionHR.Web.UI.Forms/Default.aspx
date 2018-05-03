@@ -759,7 +759,7 @@
 
                 </Items>
                   <Plugins>
-                     <ext:TabCloseMenu runat="server" ID="DefaultTabCloseMenu"/>
+                     <ext:TabCloseMenu  runat="server" ID="DefaultTabCloseMenu"  CloseAllTabsIconCls="#EmailGo" />
                 </Plugins>
             </ext:TabPanel>
         </Items>
