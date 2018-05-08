@@ -57,6 +57,8 @@
     <Compile Include="Implementations\EmployeeNotesImportingService.cs" />
     <Compile Include="Implementations\EmployeeRTWBatchRunner.cs" />
     <Compile Include="Implementations\EmployeeRTWImportingService.cs" />
+    <Compile Include="Implementations\EmploymentHistoryBatchRunner.cs" />
+    <Compile Include="Implementations\EmploymentHistoryImportingService.cs" />
     <Compile Include="Implementations\HelpFunctionService.cs" />
     <Compile Include="Implementations\ImportBatchRunner.cs" />
     <Compile Include="Implementations\CaseService.cs" />
@@ -137,6 +139,7 @@
     <Compile Include="Messaging\Reports\LeaveTypeParameterSet.cs" />
     <Compile Include="Messaging\Reports\LoanRequestStatusParameterSet.cs" />
     <Compile Include="Messaging\Reports\loanStatementParameterSet.cs" />
+    <Compile Include="Messaging\Reports\LocalsParameterSet.cs" />
     <Compile Include="Messaging\Reports\MasterIdParameterSet.cs" />
     <Compile Include="Messaging\Reports\MissingFieldParameterSet.cs" />
     <Compile Include="Messaging\Reports\MonthParameterSet.cs" />

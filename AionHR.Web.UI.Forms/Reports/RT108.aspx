@@ -75,7 +75,7 @@
                                         <uc:activeStatus runat="server" ID="activeControl" />
                                     </Content>
                                 </ext:Container>
-                                 <ext:ComboBox AnyMatch="true" CaseSensitive="false"  QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" EmptyText="<%$ Resources: FieldCountry %>" Name="countryId" runat="server" DisplayField="name" ValueField="recordId" ID="countryIdCombo">
+                                 <ext:ComboBox Width="85" AnyMatch="true" CaseSensitive="false"  QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" EmptyText="<%$ Resources: FieldCountry %>" Name="countryId" runat="server" DisplayField="name" ValueField="recordId" ID="countryIdCombo">
                                     <Store>
                                         <ext:Store runat="server" ID="NationalityStore">
                                             <Model>
@@ -94,7 +94,7 @@
                                         <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
                                     </Listeners>
                                 </ext:ComboBox>
-                                <ext:ComboBox  AnyMatch="true" CaseSensitive="false"  runat="server" ID="GenderCombo"  Editable="false" EmptyText="<%$ Resources: FieldGender %>" ForceSelection="true" Width="100">
+                                <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" ID="GenderCombo"  Editable="false" EmptyText="<%$ Resources: FieldGender %>" ForceSelection="true" Width="75">
                                             <Items>
                                                  <ext:ListItem Text="<%$ Resources: All %>" Value="0" />
                                                 <ext:ListItem Text="<%$ Resources: Male %>" Value="1" />
@@ -103,7 +103,7 @@
                                             </Items>
 
                                         </ext:ComboBox>
-                                  <ext:ComboBox   AnyMatch="true" CaseSensitive="false"   runat="server"  ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" ID="sponsorId" Name="sponsorId" EmptyText="<%$ Resources:sponsor%>"  LabelWidth="200">
+                                  <ext:ComboBox Width="100"   AnyMatch="true" CaseSensitive="false"   runat="server"  ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" ID="sponsorId" Name="sponsorId" EmptyText="<%$ Resources:sponsor%>"  >
                                     <Store>
                                         <ext:Store runat="server" ID="sponsorStore">
                                             <Model>
@@ -122,7 +122,15 @@
                                         <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
                                     </Listeners>
                                 </ext:ComboBox>
+                                   <ext:ComboBox  AnyMatch="true" CaseSensitive="false"  runat="server" ID="locals"  Editable="false" EmptyText="<%$ Resources: locals %>" ForceSelection="true" Width="100">
+                                            <Items>
+                                                 <ext:ListItem Text="<%$ Resources: All %>" Value="0" />
+                                                <ext:ListItem Text="<%$ Resources: local %>" Value="1" />
+                                                <ext:ListItem Text="<%$ Resources: foreign %>" Value="2" />
+                                           
+                                            </Items>
 
+                                        </ext:ComboBox>
                                              <ext:Container runat="server" Layout="FitLayout">
                                     <Content>
                                         

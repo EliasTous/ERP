@@ -263,6 +263,7 @@
     <Content Include="ImportDepartments.aspx" />
     <Content Include="ImportEmployeeNotes.aspx" />
     <Content Include="ImportEmployees.aspx" />
+    <Content Include="ImportEmploymentStatus.aspx" />
     <Content Include="ImportJobInfo.aspx" />
     <Content Include="ImportLeaves.aspx" />
     <Content Include="ImportLoans.aspx" />
@@ -661,6 +662,13 @@
     </Compile>
     <Compile Include="ImportEmployees.aspx.designer.cs">
       <DependentUpon>ImportEmployees.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ImportEmploymentStatus.aspx.cs">
+      <DependentUpon>ImportEmploymentStatus.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ImportEmploymentStatus.aspx.designer.cs">
+      <DependentUpon>ImportEmploymentStatus.aspx</DependentUpon>
     </Compile>
     <Compile Include="ImportJobInfo.aspx.cs">
       <DependentUpon>ImportJobInfo.aspx</DependentUpon>
@@ -2281,6 +2289,8 @@
     <Content Include="App_LocalResources\DaysAvailability.aspx.resx" />
     <Content Include="App_LocalResources\DaysAvailability.aspx.ar.resx" />
     <Content Include="App_LocalResources\SystemAlerts.aspx.ar.resx" />
+    <Content Include="App_LocalResources\ImportEmploymentStatus.aspx.ar.resx" />
+    <Content Include="App_LocalResources\ImportEmploymentStatus.aspx.resx" />
     <EmbeddedResource Include="Reports\RT201.aspx.resx">
       <DependentUpon>RT201.aspx.cs</DependentUpon>
       <Generator>ResXFileCodeGenerator</Generator>

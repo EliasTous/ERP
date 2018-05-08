@@ -138,4 +138,7 @@
   <data name="excludeSocialSecurity" xml:space="preserve">
     <value>Exclude Social Security</value>
   </data>
+  <data name="FieldRef" xml:space="preserve">
+    <value>Ref</value>
+  </data>
 </root>

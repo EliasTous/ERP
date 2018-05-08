@@ -1164,4 +1164,7 @@
   <data name="CloseTabText" xml:space="preserve">
     <value>اغلاق النافذة الحالية</value>
   </data>
+  <data name="ImportEmploymentStatus" xml:space="preserve">
+    <value>استيراد الحالة الوظيفية</value>
+  </data>
 </root>

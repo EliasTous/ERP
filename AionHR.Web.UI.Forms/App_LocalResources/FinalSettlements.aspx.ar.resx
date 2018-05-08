@@ -357,4 +357,7 @@
   <data name="esName" xml:space="preserve">
     <value>حالة الموظف </value>
   </data>
+  <data name="loanBalance" xml:space="preserve">
+    <value>رصيد السلف</value>
+  </data>
 </root>

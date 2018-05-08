@@ -64,6 +64,7 @@
     <Compile Include="Dashboard\WorkAnniversary.cs" />
     <Compile Include="EmployeeComplaints\IComplaintsRepository.cs" />
     <Compile Include="Employees\EmployeeCal.cs" />
+    <Compile Include="Employees\EmploymentStatusByReferance.cs" />
     <Compile Include="Employees\Profile\AssetAllowance.cs" />
     <Compile Include="Employees\Profile\AssetCategory.cs" />
     <Compile Include="Employees\Profile\BatchEM.cs" />

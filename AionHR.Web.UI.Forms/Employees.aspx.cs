@@ -125,18 +125,18 @@ namespace AionHR.Web.UI.Forms
 
             html += GetLocalResourceObject("paidLeaves").ToString() + " {paidLeaves}  </td><td>";
             html += GetLocalResourceObject("EmployeeStatus").ToString() + " {status}  </td><td>";
-            html += GetLocalResourceObject("lastLeaveStartDateTitle").ToString() + " {lastLeave}  </td> </tr><tr><td>";
+            html += GetLocalResourceObject("usedLeavesLeg").ToString() + " {usedLeavesLeg}</td> </tr> <tr><td>";
 
 
-
+            html += GetLocalResourceObject("earnedLeaves").ToString() + " {earnedLeaves}</td><td>";
             html += GetLocalResourceObject("leavesBalanceTitle").ToString() + " {leavesBalance} </td><td>";
             //     html += GetLocalResourceObject("salary").ToString() + " {salary}  </td><td>";
 
 
-            html += GetLocalResourceObject("usedLeavesLeg").ToString() + " {usedLeavesLeg}</td> </tr></table>";
-           
+            html += GetLocalResourceObject("lastLeaveStartDateTitle").ToString() + " {lastLeave}  </td> </tr></table>";
 
 
+          
 
 
 
@@ -394,6 +394,7 @@ namespace AionHR.Web.UI.Forms
 
         private EmployeeListRequest GetListRequest(StoreReadDataEventArgs e)
         {
+            previousStartAt.Text= e.Start.ToString();
             EmployeeListRequest empRequest = new EmployeeListRequest();
             if (!string.IsNullOrEmpty(inactivePref.Text) && inactivePref.Value.ToString() != "")
             {
@@ -417,8 +418,19 @@ namespace AionHR.Web.UI.Forms
                 empRequest.SortBy = "reference";
             else
                 empRequest.SortBy = e.Sort[0].Property;
-            empRequest.Size = e.Limit.ToString();
-            empRequest.StartAt = e.Start.ToString();
+            if (storeSize.Text == "unlimited")
+            {
+                empRequest.Size = "100000";
+                empRequest.StartAt = "0";
+                storeSize.Text = "limited";
+            }
+            else
+            {
+                empRequest.Size = e.Limit.ToString();
+                empRequest.StartAt = e.Start.ToString();
+            }
+            if (string.IsNullOrEmpty(searchTrigger.Text))
+                empRequest.StartAt = previousStartAt.Text;
             empRequest.Filter = searchTrigger.Text;
 
             return empRequest;

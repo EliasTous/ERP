@@ -402,4 +402,7 @@
   <data name="lastLeaveStartDateTitle1" xml:space="preserve">
     <value>Last Leave:</value>
   </data>
+  <data name="loanBalance" xml:space="preserve">
+    <value>Loan Balance</value>
+  </data>
 </root>

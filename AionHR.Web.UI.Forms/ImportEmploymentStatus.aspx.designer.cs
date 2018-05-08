@@ -7,10 +7,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace AionHR.Web.UI.Forms.Reports {
+namespace AionHR.Web.UI.Forms {
     
     
-    public partial class RT108 {
+    public partial class ImportEmploymentStatus {
         
         /// <summary>
         /// Form1 control.
@@ -67,22 +67,13 @@ namespace AionHR.Web.UI.Forms.Reports {
         protected global::Ext.Net.Hidden titleSavingErrorMessage;
         
         /// <summary>
-        /// rtl control.
+        /// CurrentPath control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Hidden rtl;
-        
-        /// <summary>
-        /// format control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Hidden format;
+        protected global::Ext.Net.Hidden CurrentPath;
         
         /// <summary>
         /// Viewport1 control.
@@ -94,111 +85,57 @@ namespace AionHR.Web.UI.Forms.Reports {
         protected global::Ext.Net.Viewport Viewport1;
         
         /// <summary>
-        /// Center control.
+        /// uploadFileForm control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Panel Center;
+        protected global::Ext.Net.FormPanel uploadFileForm;
         
         /// <summary>
-        /// employeeFilter control.
+        /// fileUpload control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AionHR.Web.UI.Forms.Reports.Controls.EmployeeFilter employeeFilter;
+        protected global::Ext.Net.FileUploadField fileUpload;
         
         /// <summary>
-        /// jobInfo1 control.
+        /// SubmitFileButton control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AionHR.Web.UI.Forms.Reports.JobInfoFilter jobInfo1;
+        protected global::Ext.Net.Button SubmitFileButton;
         
         /// <summary>
-        /// activeControl control.
+        /// Progress1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AionHR.Web.UI.Forms.Reports.ActiveStatusFilter activeControl;
+        protected global::Ext.Net.ProgressBar Progress1;
         
         /// <summary>
-        /// countryIdCombo control.
+        /// beginOperation control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.ComboBox countryIdCombo;
+        protected global::Ext.Net.Button beginOperation;
         
         /// <summary>
-        /// NationalityStore control.
+        /// TaskManager1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Store NationalityStore;
-        
-        /// <summary>
-        /// GenderCombo control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.ComboBox GenderCombo;
-        
-        /// <summary>
-        /// sponsorId control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.ComboBox sponsorId;
-        
-        /// <summary>
-        /// sponsorStore control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Store sponsorStore;
-        
-        /// <summary>
-        /// locals control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.ComboBox locals;
-        
-        /// <summary>
-        /// ASPxCallbackPanel1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::DevExpress.Web.ASPxCallbackPanel ASPxCallbackPanel1;
-        
-        /// <summary>
-        /// ASPxWebDocumentViewer1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::DevExpress.XtraReports.Web.ASPxWebDocumentViewer ASPxWebDocumentViewer1;
+        protected global::Ext.Net.TaskManager TaskManager1;
     }
 }

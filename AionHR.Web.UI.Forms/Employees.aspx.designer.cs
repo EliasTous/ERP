@@ -148,6 +148,24 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Hidden imageData;
         
         /// <summary>
+        /// storeSize control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Hidden storeSize;
+        
+        /// <summary>
+        /// previousStartAt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Hidden previousStartAt;
+        
+        /// <summary>
         /// imageVisible control.
         /// </summary>
         /// <remarks>

@@ -52,12 +52,14 @@ namespace AionHR.Model.Employees.Profile
         }
         public string countryName { get; set; }
         public DateTime? hireDate { get; set; }
-        public int earnedLeaves { get;  set; }
+        public double earnedLeaves { get;  set; }
         public double usedLeaves { get; set;  }
         public int paidLeaves { get; set; }
         public int salary { get; set; }
         public string currencyName { get; set; }
         public short status { get; set; }
         public string statusString { get ; set; }
+        public int loanBalance { get; set; }
+
     }
 }

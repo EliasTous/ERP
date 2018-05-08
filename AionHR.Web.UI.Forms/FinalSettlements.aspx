@@ -318,7 +318,7 @@
             Icon="PageEdit"
             Title="<%$ Resources:EditWindowsTitle %>"
             Width="600"
-            Height="400"
+            Height="430"
             AutoShow="false"
             Modal="true"
             Hidden="true"
@@ -395,6 +395,9 @@
                                 </ext:DateField>
                                         
                                  <ext:TextField ReadOnly="true" Disabled="true" ID="esName" runat="server" FieldLabel="<%$ Resources:esName%>" Name="esName" AllowBlank="true">
+                                    
+                                </ext:TextField>
+                                <ext:TextField ReadOnly="true" Disabled="true" ID="loanBalance" runat="server" FieldLabel="<%$ Resources:loanBalance%>" Name="loanBalance" AllowBlank="true">
                                     
                                 </ext:TextField>
                                               </Items>

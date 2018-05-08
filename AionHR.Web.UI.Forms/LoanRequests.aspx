@@ -519,6 +519,9 @@
                                                 <Change Handler="document.getElementById('amount').value=this.getValue(); this.next().setValue(this.value);" />
                                             </Listeners>--%>
                                     <Validator Handler="  return !isNaN(this.value)&& this.value>0;" />
+                                    <Listeners> 
+                                        <Change Handler="if (#{ldMethod}.getValue()==4) #{ldValue}.setValue('0');"></Change>
+                                    </Listeners>
                                 </ext:TextField>
 
 
@@ -563,7 +566,7 @@
                                         </ext:ComboBox>
                                         <ext:NumberField Width="400"  runat="server"  ID="ldValue" Name="ldValue" FieldLabel="<%$ Resources: PaymentValue %>"  AllowBlank="false" >
                                         
-                                         <validator Handler="if(#{ldMethod}.getValue()!=5 && #{ldMethod}.getValue()!=4 ){  if (this.value>0&& this.value<100) return true ; else return false; } else return true; ">
+                                         <validator Handler="if(#{ldMethod}.getValue()!=4 ){  if (this.value>0&& this.value<100) return true ; else return false; } else {if (this.value<=0  ) return false;    if (#{amount}.getValue()<this.value) return false; else return true;} ">
                                              
                                          </validator>
                                            

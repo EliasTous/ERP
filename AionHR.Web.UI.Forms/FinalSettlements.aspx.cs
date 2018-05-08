@@ -393,19 +393,19 @@ namespace AionHR.Web.UI.Forms
         protected void SaveNewRecord(object sender, DirectEventArgs e)
         {
             string employeeId = e.ExtraParams["employeeId"];
-            LoanManagementListRequest request1 = GetLoanManagementRequest(employeeId);
+            //LoanManagementListRequest request1 = GetLoanManagementRequest(employeeId);
             
-            ListResponse<Loan> routers = _loanService.GetAll<Loan>(request1);
-            if (!routers.Success)
-            {
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", routers.ErrorCode) != null ? GetGlobalResourceObject("Errors", routers.ErrorCode).ToString() : routers.Summary).Show();
-                return;
-            }
-            if (routers.count!=0)
-            {
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", "FinalSettlementForEmployeeHaveLoans") ).Show();
-                return;
-            }
+            //ListResponse<Loan> routers = _loanService.GetAll<Loan>(request1);
+            //if (!routers.Success)
+            //{
+            //    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", routers.ErrorCode) != null ? GetGlobalResourceObject("Errors", routers.ErrorCode).ToString() : routers.Summary).Show();
+            //    return;
+            //}
+            //if (routers.count!=0)
+            //{
+            //    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", "FinalSettlementForEmployeeHaveLoans") ).Show();
+            //    return;
+            //}
 
             //Getting the id to check if it is an Add or an edit as they are managed within the same form.
 
@@ -750,7 +750,8 @@ namespace AionHR.Web.UI.Forms
             allowedLeaveYtd.Text = routers.result.earnedLeavesLeg.ToString();
             serviceDuration.Text = routers.result.serviceDuration;
             esName.Text = routers.result.esName;
-            paidLeavesYTD.Text = routers.result.usedLeavesLeg.ToString(); 
+            paidLeavesYTD.Text = routers.result.usedLeavesLeg.ToString();
+            loanBalance.Text = routers.result.loanBalance.ToString();
 
         }
         private void setFillEmployeeInfoDisable(bool YES)
@@ -771,7 +772,8 @@ namespace AionHR.Web.UI.Forms
                 allowedLeaveYtd.Disabled = false;
                 serviceDuration.Disabled = false;
                 esName.Disabled = false;
-                paidLeavesYTD.Disabled = false; 
+                paidLeavesYTD.Disabled = false;
+                loanBalance.Disabled = false;
 
 
 
@@ -793,6 +795,7 @@ namespace AionHR.Web.UI.Forms
                 serviceDuration.Disabled = true;
                 esName.Disabled = true;
                 paidLeavesYTD.Disabled = true;
+                loanBalance.Disabled = true;
 
             }
 
@@ -1383,63 +1386,64 @@ namespace AionHR.Web.UI.Forms
 
         }
         [DirectMethod]
-        public object GetQuickView(Dictionary<string, string> parameters)
-        {
-            RecordRequest req = new RecordRequest();
-            req.RecordID = parameters["id"];
-            RecordResponse<EmployeeQuickView> qv = _employeeService.ChildGetRecord<EmployeeQuickView>(req);
-            if (!qv.Success)
-            {
-                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, qv.Summary).Show();
-                return null;
-            }
-            if (qv.result != null)
-            {
-                return new
-                {
-                    reportsTo = qv.result.reportToName.fullName,
-                    eosBalance = qv.result.indemnity,
-                    paidLeavesYTD = qv.result.usedLeavesLeg,
-                    leavesBalance = qv.result.leaveBalance,
-                    allowedLeaveYtd = qv.result.earnedLeavesLeg,
-                    lastleave = qv.result.LastLeave(_systemService.SessionHelper.GetDateformat()),
-                    departmentName = qv.result.departmentName,
-                    branchName = qv.result.branchName,
-                    divisionName = qv.result.divisionName,
-                    positionName = qv.result.positionName,
-                    serviceDuration = qv.result.serviceDuration,
-                    esName = qv.result.esName
+        //public object GetQuickView(Dictionary<string, string> parameters)
+        //{
+        //    RecordRequest req = new RecordRequest();
+        //    req.RecordID = parameters["id"];
+        //    RecordResponse<EmployeeQuickView> qv = _employeeService.ChildGetRecord<EmployeeQuickView>(req);
+        //    if (!qv.Success)
+        //    {
+        //        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+        //        X.Msg.Alert(Resources.Common.Error, qv.Summary).Show();
+        //        return null;
+        //    }
+        //    if (qv.result != null)
+        //    {
+        //        return new
+        //        {
+        //            reportsTo = qv.result.reportToName.fullName,
+        //            eosBalance = qv.result.indemnity,
+        //            paidLeavesYTD = qv.result.usedLeavesLeg,
+        //            leavesBalance = qv.result.leaveBalance,
+        //            allowedLeaveYtd = qv.result.earnedLeavesLeg,
+        //            lastleave = qv.result.LastLeave(_systemService.SessionHelper.GetDateformat()),
+        //            departmentName = qv.result.departmentName,
+        //            branchName = qv.result.branchName,
+        //            divisionName = qv.result.divisionName,
+        //            positionName = qv.result.positionName,
+        //            serviceDuration = qv.result.serviceDuration,
+        //            esName = qv.result.esName
+                    
 
-                };
-            }
-            else
-                return new { };
+        //        };
+        //    }
+        //    else
+        //        return new { };
 
-        }
+        //}
 
-        private void BuildQuickViewTemplate()
-        {
-            string html = "<table width='80%' style='font-weight:bold;'><tr><td> ";
-            html += GetLocalResourceObject("FieldReportsTo").ToString() + " {reportsTo}</td><td>";
-            html += GetLocalResourceObject("eosBalanceTitle").ToString() + " {eosBalance}</td><td>";
+        //private void BuildQuickViewTemplate()
+        //{
+        //    string html = "<table width='80%' style='font-weight:bold;'><tr><td> ";
+        //    html += GetLocalResourceObject("FieldReportsTo").ToString() + " {reportsTo}</td><td>";
+        //    html += GetLocalResourceObject("eosBalanceTitle").ToString() + " {eosBalance}</td><td>";
 
-            html += GetLocalResourceObject("lastLeaveStartDateTitle").ToString() + " {lastLeave}</td><td>";
-            html += GetLocalResourceObject("paidLeavesYTDTitle").ToString() + " {paidLeavesYTD}</td></tr><tr><td>";
+        //    html += GetLocalResourceObject("lastLeaveStartDateTitle").ToString() + " {lastLeave}</td><td>";
+        //    html += GetLocalResourceObject("paidLeavesYTDTitle").ToString() + " {paidLeavesYTD}</td></tr><tr><td>";
             
-            html += GetLocalResourceObject("leavesBalanceTitle").ToString() + " {leavesBalance}</td><td>";
-            html += GetLocalResourceObject("allowedLeaveYtdTitle").ToString() + " {allowedLeaveYtd}</td><td>";
+        //    html += GetLocalResourceObject("leavesBalanceTitle").ToString() + " {leavesBalance}</td><td>";
+        //    html += GetLocalResourceObject("allowedLeaveYtdTitle").ToString() + " {allowedLeaveYtd}</td><td>";
 
 
-            html += GetLocalResourceObject("FieldDepartment").ToString() + "{departmentName}</td><td>";
-            html += GetLocalResourceObject("FieldBranch").ToString() + " {branchName}</td><td></tr><tr><td>";
-            html += GetLocalResourceObject("FieldDivision").ToString() + " {divisionName}</td><td>";
+        //    html += GetLocalResourceObject("FieldDepartment").ToString() + "{departmentName}</td><td>";
+        //    html += GetLocalResourceObject("FieldBranch").ToString() + " {branchName}</td><td></tr><tr><td>";
+        //    html += GetLocalResourceObject("FieldDivision").ToString() + " {divisionName}</td><td>";
 
-            html += GetLocalResourceObject("FieldPosition").ToString() + " {positionName}</td><td>";
-            html += GetLocalResourceObject("serviceDuration").ToString() + " {serviceDuration}</td><td>";
-            html += GetLocalResourceObject("Status").ToString() + " {esName}</td></tr></table>";
-            //RowExpander1.Template.Html = html;
-        }
+        //    html += GetLocalResourceObject("FieldPosition").ToString() + " {positionName}</td><td>";
+        //    html += GetLocalResourceObject("serviceDuration").ToString() + " {serviceDuration}</td><td>";
+        //    html += GetLocalResourceObject("Status").ToString() + " {esName}</td></tr></table>";
+        //    //RowExpander1.Template.Html = html;
+        //}
         protected void printBtn_Click(object sender, EventArgs e)
         {
             FinalSettlementReport p = GetReport();

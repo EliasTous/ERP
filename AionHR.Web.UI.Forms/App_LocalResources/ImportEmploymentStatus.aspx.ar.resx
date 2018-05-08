@@ -117,46 +117,22 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="ActiveOnly" xml:space="preserve">
-    <value>النشطين فقط</value>
+  <data name="Download" xml:space="preserve">
+    <value>تنزيل</value>
   </data>
-  <data name="All" xml:space="preserve">
-    <value>الكل</value>
+  <data name="Import" xml:space="preserve">
+    <value>استيراد</value>
   </data>
-  <data name="DateFrom" xml:space="preserve">
-    <value>من </value>
+  <data name="Pick" xml:space="preserve">
+    <value>اختر ملف</value>
   </data>
-  <data name="DateTo" xml:space="preserve">
-    <value>الى </value>
+  <data name="preprocessing" xml:space="preserve">
+    <value>جاري التهيئة</value>
   </data>
-  <data name="EmployeeCount" xml:space="preserve">
-    <value># of Employees</value>
+  <data name="ResultReady" xml:space="preserve">
+    <value>تم الانتهاء من عملية الاستيراد ،انقر لتحميل الأخطاء</value>
   </data>
-  <data name="FieldBranch" xml:space="preserve">
-    <value>الفرع </value>
-  </data>
-  <data name="FieldDate" xml:space="preserve">
-    <value>التاريخ</value>
-  </data>
-  <data name="FieldDepartment" xml:space="preserve">
-    <value>القسم</value>
-  </data>
-  <data name="FieldDivision" xml:space="preserve">
-    <value>القطاع</value>
-  </data>
-  <data name="FieldEmployee" xml:space="preserve">
-    <value>الموظف</value>
-  </data>
-  <data name="FieldFullName" xml:space="preserve">
-    <value>الاسم</value>
-  </data>
-  <data name="FieldMonth" xml:space="preserve">
-    <value>الشهر</value>
-  </data>
-  <data name="FieldPosition" xml:space="preserve">
-    <value>الوظيفة </value>
-  </data>
-  <data name="InactiveOnly" xml:space="preserve">
-    <value>غير النشطين فقط</value>
+  <data name="working" xml:space="preserve">
+    <value>جاري الحفظ</value>
   </data>
 </root>

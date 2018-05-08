@@ -138,4 +138,7 @@
   <data name="excludeSocialSecurity" xml:space="preserve">
     <value>غير خاضع للتأمينات الإجتماعية</value>
   </data>
+  <data name="FieldRef" xml:space="preserve">
+    <value>الرمز</value>
+  </data>
 </root>

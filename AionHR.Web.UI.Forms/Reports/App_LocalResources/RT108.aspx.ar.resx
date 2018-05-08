@@ -129,6 +129,15 @@
   <data name="FieldSex" xml:space="preserve">
     <value>الجنس</value>
   </data>
+  <data name="foreign" xml:space="preserve">
+    <value>أجنبي</value>
+  </data>
+  <data name="local" xml:space="preserve">
+    <value>محلي </value>
+  </data>
+  <data name="locals" xml:space="preserve">
+    <value>جنسيات</value>
+  </data>
   <data name="Male" xml:space="preserve">
     <value>ذكر </value>
   </data>

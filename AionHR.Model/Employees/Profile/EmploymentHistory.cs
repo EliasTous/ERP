@@ -28,6 +28,10 @@ namespace AionHR.Model.Employees.Profile
         [PropertyID("31071_01")]
         [ApplySecurity]
         public string statusName { get; set; }
+
+        public string employeeRef { get; set; }
+        public string statusRef { get; set; }
+
     }
 
     [ClassIdentifier("31070", "31")]
@@ -37,8 +41,13 @@ namespace AionHR.Model.Employees.Profile
         [PropertyID("31070_01")]
         [ApplySecurity]
         public string name { get; set; }
+        [PropertyID("31070_01")]
+        [ApplySecurity]
+        public string esRef { get; set; }
         [PropertyID("31070_02")]
         [ApplySecurity]
         public bool excludeSS { get; set; }
+
+     
     }
 }

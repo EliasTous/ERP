@@ -75,6 +75,10 @@
         <ext:Hidden runat="server" ID="lblLoading" Text="<%$Resources:Common , Loading %>" />
         <ext:Hidden runat="server" ID="pRTL" />
         <ext:Hidden runat="server" ID="imageData" />
+         <ext:Hidden runat="server" ID="storeSize" />
+          <ext:Hidden runat="server" ID="previousStartAt" />
+
+     
 
         <ext:Hidden runat="server" ID="imageVisible" />
         <ext:Viewport runat="server" Layout="FitLayout" ID="Viewport1">
@@ -222,8 +226,8 @@
                                     <Listeners>
                                         <KeyPress Fn="enterKeyPressSearchHandler" />
 
-                                        <TriggerClick Handler="#{Store1}.reload();" />
-                                        <SpecialKey Handler="if(e.keyCode==13)  #{Store1}.reload();" />
+                                        <TriggerClick Handler="#{Store1}.reload(); #{storeSize}.setValue('unlimited');" />
+                                        <SpecialKey Handler="if(e.keyCode==13)  {#{Store1}.reload(); #{storeSize}.setValue('unlimited');}" />
                                     </Listeners>
                                 </ext:TextField>
 

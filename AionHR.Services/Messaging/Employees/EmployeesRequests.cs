@@ -472,6 +472,22 @@ public class EmployeeByReference:RecordRequest
         }
     }
 }
+public class StatusByReference : RecordRequest
+{
+    public string Reference { get; set; }
+    private Dictionary<string, string> parameters;
+
+    public override Dictionary<string, string> Parameters
+    {
+        get
+        {
+            parameters = new Dictionary<string, string>();
+            parameters.Add("_esRef", Reference);
+
+            return parameters;
+        }
+    }
+}
 
 public class EmployeeCountRequest:RecordRequest
 {

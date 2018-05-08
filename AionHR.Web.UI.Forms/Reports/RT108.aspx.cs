@@ -176,7 +176,7 @@ namespace AionHR.Web.UI.Forms.Reports
 
         private void FillReport(bool throwException = true)
         {
-            ReportCompositeRequest req = GetRequest();
+           ReportCompositeRequest req = GetRequest();
             ListResponse<AionHR.Model.Reports.RT108> resp = _reportsService.ChildGetAll<AionHR.Model.Reports.RT108>(req);
             if (!resp.Success)
             {
@@ -277,6 +277,12 @@ namespace AionHR.Web.UI.Forms.Reports
             s.sponsorId = Convert.ToInt16(sponsorId.SelectedItem.Value);
             return s;
         }
+        private LocalsParameterSet GetLocalsFilter()
+        {
+            LocalsParameterSet s = new LocalsParameterSet();
+            s.locals = Convert.ToInt16(locals.SelectedItem.Value);
+            return s;
+        }
         private ReportCompositeRequest GetRequest()
         {
           
@@ -291,6 +297,8 @@ namespace AionHR.Web.UI.Forms.Reports
             request.Add(employeeFilter.GetEmployee());
             request.Add(GetGenderFilter());
             request.Add(GetSponserFilter());
+            request.Add(GetLocalsFilter());
+
 
 
             return request;

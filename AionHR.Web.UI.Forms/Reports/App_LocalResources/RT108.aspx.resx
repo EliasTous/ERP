@@ -129,6 +129,15 @@
   <data name="FieldGender" xml:space="preserve">
     <value>Gender</value>
   </data>
+  <data name="foreign" xml:space="preserve">
+    <value>Foreign</value>
+  </data>
+  <data name="local" xml:space="preserve">
+    <value>Local</value>
+  </data>
+  <data name="locals" xml:space="preserve">
+    <value>Locals</value>
+  </data>
   <data name="Male" xml:space="preserve">
     <value>Male</value>
   </data>

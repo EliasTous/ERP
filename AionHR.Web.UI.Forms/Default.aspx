@@ -97,6 +97,7 @@
     <ext:Hidden runat="server" ID="otTitle" Text="<%$Resources:Common , OvertimeSettings %>" />
     <ext:Hidden runat="server" ID="importAt" Text="<%$Resources:Common , ImportAttendance %>" />
     <ext:Hidden runat="server" ID="importDE" Text="<%$Resources:Common , ImportDepartments %>" />
+     <ext:Hidden runat="server" ID="importEH" Text="<%$Resources:Common , ImportEmploymentStatus %>" />
     <ext:Hidden runat="server" ID="importLoansTitle" Text="<%$Resources:Common , ImportLoans %>" />
     <ext:Hidden runat="server" ID="importLeavesTitle" Text="<%$Resources:Common , ImportLeaves %>" />
     <ext:Hidden runat="server" ID="importNotesTitle" Text="<%$Resources:Common , ImportNotes %>" />
@@ -286,6 +287,11 @@
                                                                 <Click Handler="openNewTab('importSa', 'ImportSalaries.aspx', #{importSa}.value, 'icon-Employees')" />
                                                             </Listeners>
                                                         </ext:MenuItem>
+                                                                           <ext:MenuItem runat="server" Text="<%$Resources: Common , ImportEmploymentStatus%>">
+                                                                            <Listeners>
+                                                                                <Click Handler="openNewTab('import-EmploymentHistory', 'ImportEmploymentStatus.aspx', #{importEH}.value, 'icon-Employees')" />
+                                                                            </Listeners>
+                                                                        </ext:MenuItem>
                                                                               </Items>
                                                                          </ext:Menu>
                                                                   </Menu>
@@ -331,6 +337,7 @@
                                                                                 <Click Handler="openNewTab('import-departments', 'ImportDepartments.aspx', #{importDE}.value, 'icon-Employees')" />
                                                                             </Listeners>
                                                                         </ext:MenuItem>
+                                                                         
                                                                     </Items>
                                                                 </ext:Menu>
                                                             </Menu>

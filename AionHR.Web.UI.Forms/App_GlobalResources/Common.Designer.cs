@@ -1330,6 +1330,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Import Employment Status.
+        /// </summary>
+        internal static string ImportEmploymentStatus {
+            get {
+                return ResourceManager.GetString("ImportEmploymentStatus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Import Job Info.
         /// </summary>
         internal static string ImportJobInfo {

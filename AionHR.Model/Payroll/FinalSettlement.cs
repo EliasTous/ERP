@@ -21,7 +21,7 @@ namespace AionHR.Model.Payroll
         [ApplySecurity]
         public DateTime date { get; set; }
         public string dateStringFormat { get; set; }
-        public int employeeId { get; set; }
+        public string employeeId { get; set; }
 
     }
 }
