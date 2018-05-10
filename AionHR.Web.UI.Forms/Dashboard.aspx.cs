@@ -776,11 +776,12 @@ namespace AionHR.Web.UI.Forms
         protected void LoansStore_ReadData(object sender, StoreReadDataEventArgs e)
         {
             LoanManagementListRequest req = GetLoanManagementRequest();
+            req.Status = 1;
             ListResponse<Loan> loans = _loanService.GetAll<Loan>(req);
-            List<Loan> OpenLoans = loans.Items.Where(t => t.status == 2).ToList();
-            LoansStore.DataSource = OpenLoans;
+            //List<Loan> OpenLoans = loans.Items.Where(t => t.status == 1).ToList();
+            LoansStore.DataSource = loans.Items;
             LoansStore.DataBind();
-            int x = OpenLoans.Count;
+            int x = loans.count;
             X.Call("loansChart", x, x + (10 - (x % 10)));
         }
 

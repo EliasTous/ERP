@@ -166,7 +166,7 @@
     <value>توقيع المدير المباشر</value>
   </data>
   <data name="xrLabel14.Text" xml:space="preserve">
-    <value>سنين الخدمة</value>
+    <value>شؤون الموظفين</value>
   </data>
   <data name="xrLabel15.Text" xml:space="preserve">
     <value>xrLabel15</value>
@@ -193,7 +193,7 @@
     <value>xrLabel21</value>
   </data>
   <data name="xrLabel22.Text" xml:space="preserve">
-    <value>xrLabel22</value>
+    <value>الموافقة</value>
   </data>
   <data name="xrLabel23.Text" xml:space="preserve">
     <value>xrLabel23</value>
@@ -227,5 +227,8 @@
   </data>
   <data name="YearsInService.Description" xml:space="preserve">
     <value>Parameter1</value>
+  </data>
+  <data name="xrLabel14.Text1" xml:space="preserve">
+    <value />
   </data>
 </root>

@@ -198,6 +198,15 @@
   <data name="xrLabel33.Text" xml:space="preserve">
     <value>xrLabel2</value>
   </data>
+  <data name="xrLabel34.Text" xml:space="preserve">
+    <value>توقيع الموظف</value>
+  </data>
+  <data name="xrLabel35.Text" xml:space="preserve">
+    <value>قسم المحاسبة</value>
+  </data>
+  <data name="xrLabel36.Text" xml:space="preserve">
+    <value>المدير</value>
+  </data>
   <data name="xrLabel38.Text" xml:space="preserve">
     <value>الاستحقاقات</value>
   </data>

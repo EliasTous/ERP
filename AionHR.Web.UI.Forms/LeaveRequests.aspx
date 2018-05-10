@@ -262,7 +262,7 @@
 
                             <ext:Column runat="server"
                                 ID="colEdit" Visible="false"
-                                Text="<%$ Resources:Common, Edit %>"
+                                Text=" "
                                 Width="60"
                                 Hideable="false"
                                 Align="Center"

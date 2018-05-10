@@ -168,6 +168,12 @@
   <data name="Alert307Title" xml:space="preserve">
     <value>المهام المستحقة</value>
   </data>
+  <data name="Alert308Description" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Alert308Title" xml:space="preserve">
+    <value>التقييم التالي</value>
+  </data>
   <data name="Alert309Title" xml:space="preserve">
     <value>ذكرى بداية العمل</value>
   </data>

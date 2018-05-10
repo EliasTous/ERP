@@ -1949,13 +1949,23 @@
                                                             Scroll="Vertical"
                                                             Border="false"
                                                             ColumnLines="True" IDMode="Explicit" RenderXType="True" StyleSpec=" border: 1px solid #add2ed !important;">
-
+                                                             
                                                             <Store>
+                                                                    
+                   
+          
                                                                 <ext:Store
-                                                                    ID="LoansStore"
-                                                                    runat="server" OnReadData="LoansStore_ReadData"
-                                                                    PageSize="30">
 
+                                                                    ID="LoansStore"
+                                                                    runat="server" OnReadData="LoansStore_ReadData" RemoteFilter="false" RemoteSort="false"
+                                                                    PageSize="30"  >
+                                                                     <Proxy>
+                                                                        <ext:PageProxy>
+                                                                            <Listeners>
+                                                                                <Exception Handler="Ext.MessageBox.alert('#{textLoadFailed}.value', response.statusText);" />
+                                                                            </Listeners>
+                                                                        </ext:PageProxy>
+                                                                    </Proxy>
                                                                     <Model>
                                                                         <ext:Model ID="Model11" runat="server" IDProperty="recordId">
                                                                             <Fields>

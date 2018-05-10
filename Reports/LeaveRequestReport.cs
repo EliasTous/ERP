@@ -48,6 +48,8 @@ public class LeaveRequestReport : DevExpress.XtraReports.UI.XtraReport
     private XRLabel xrLabel1;
     private DevExpress.XtraReports.Parameters.Parameter Ref;
     private XRLabel xrLabel13;
+    private XRLabel xrLabel22;
+    private XRLabel xrLabel14;
 
     /// <summary>
     /// Required designer variable.
@@ -86,9 +88,8 @@ public class LeaveRequestReport : DevExpress.XtraReports.UI.XtraReport
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LeaveRequestReport));
             this.Detail = new DevExpress.XtraReports.UI.DetailBand();
             this.xrPanel1 = new DevExpress.XtraReports.UI.XRPanel();
+            this.xrLabel13 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel24 = new DevExpress.XtraReports.UI.XRLabel();
-            this.YearsInService = new DevExpress.XtraReports.Parameters.Parameter();
-            this.LeaveBalance = new DevExpress.XtraReports.Parameters.Parameter();
             this.xrLabel21 = new DevExpress.XtraReports.UI.XRLabel();
             this.IsPaid = new DevExpress.XtraReports.Parameters.Parameter();
             this.xrLabel20 = new DevExpress.XtraReports.UI.XRLabel();
@@ -120,9 +121,12 @@ public class LeaveRequestReport : DevExpress.XtraReports.UI.XtraReport
             this.xrLabel2 = new DevExpress.XtraReports.UI.XRLabel();
             this.From = new DevExpress.XtraReports.Parameters.Parameter();
             this.xrLabel1 = new DevExpress.XtraReports.UI.XRLabel();
+            this.YearsInService = new DevExpress.XtraReports.Parameters.Parameter();
+            this.LeaveBalance = new DevExpress.XtraReports.Parameters.Parameter();
             this.TopMargin = new DevExpress.XtraReports.UI.TopMarginBand();
             this.BottomMargin = new DevExpress.XtraReports.UI.BottomMarginBand();
-            this.xrLabel13 = new DevExpress.XtraReports.UI.XRLabel();
+            this.xrLabel14 = new DevExpress.XtraReports.UI.XRLabel();
+            this.xrLabel22 = new DevExpress.XtraReports.UI.XRLabel();
             ((System.ComponentModel.ISupportInitialize)(this.xrRichText1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             // 
@@ -143,6 +147,8 @@ public class LeaveRequestReport : DevExpress.XtraReports.UI.XtraReport
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.xrPanel1.CanGrow = false;
             this.xrPanel1.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
+            this.xrLabel22,
+            this.xrLabel14,
             this.xrLabel13,
             this.xrLabel24,
             this.xrLabel21,
@@ -169,6 +175,15 @@ public class LeaveRequestReport : DevExpress.XtraReports.UI.XtraReport
             resources.ApplyResources(this.xrPanel1, "xrPanel1");
             this.xrPanel1.Name = "xrPanel1";
             // 
+            // xrLabel13
+            // 
+            this.xrLabel13.Borders = DevExpress.XtraPrinting.BorderSide.None;
+            resources.ApplyResources(this.xrLabel13, "xrLabel13");
+            this.xrLabel13.Name = "xrLabel13";
+            this.xrLabel13.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel13.StylePriority.UseBorders = false;
+            this.xrLabel13.StylePriority.UseTextAlignment = false;
+            // 
             // xrLabel24
             // 
             this.xrLabel24.Borders = DevExpress.XtraPrinting.BorderSide.None;
@@ -177,18 +192,6 @@ public class LeaveRequestReport : DevExpress.XtraReports.UI.XtraReport
             this.xrLabel24.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel24.StylePriority.UseBorders = false;
             this.xrLabel24.StylePriority.UseFont = false;
-            // 
-            // YearsInService
-            // 
-            resources.ApplyResources(this.YearsInService, "YearsInService");
-            this.YearsInService.Name = "YearsInService";
-            this.YearsInService.Visible = false;
-            // 
-            // LeaveBalance
-            // 
-            resources.ApplyResources(this.LeaveBalance, "LeaveBalance");
-            this.LeaveBalance.Name = "LeaveBalance";
-            this.LeaveBalance.Visible = false;
             // 
             // xrLabel21
             // 
@@ -439,6 +442,18 @@ public class LeaveRequestReport : DevExpress.XtraReports.UI.XtraReport
             this.xrLabel1.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel1.StylePriority.UseBorders = false;
             // 
+            // YearsInService
+            // 
+            resources.ApplyResources(this.YearsInService, "YearsInService");
+            this.YearsInService.Name = "YearsInService";
+            this.YearsInService.Visible = false;
+            // 
+            // LeaveBalance
+            // 
+            resources.ApplyResources(this.LeaveBalance, "LeaveBalance");
+            this.LeaveBalance.Name = "LeaveBalance";
+            this.LeaveBalance.Visible = false;
+            // 
             // TopMargin
             // 
             resources.ApplyResources(this.TopMargin, "TopMargin");
@@ -451,13 +466,23 @@ public class LeaveRequestReport : DevExpress.XtraReports.UI.XtraReport
             this.BottomMargin.Name = "BottomMargin";
             this.BottomMargin.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
             // 
-            // xrLabel13
+            // xrLabel14
             // 
-            this.xrLabel13.Borders = DevExpress.XtraPrinting.BorderSide.None;
-            resources.ApplyResources(this.xrLabel13, "xrLabel13");
-            this.xrLabel13.Name = "xrLabel13";
-            this.xrLabel13.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96F);
-            this.xrLabel13.StylePriority.UseBorders = false;
+            this.xrLabel14.Borders = DevExpress.XtraPrinting.BorderSide.None;
+            resources.ApplyResources(this.xrLabel14, "xrLabel14");
+            this.xrLabel14.Name = "xrLabel14";
+            this.xrLabel14.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96F);
+            this.xrLabel14.StylePriority.UseBorders = false;
+            this.xrLabel14.StylePriority.UseTextAlignment = false;
+            // 
+            // xrLabel22
+            // 
+            this.xrLabel22.Borders = DevExpress.XtraPrinting.BorderSide.None;
+            resources.ApplyResources(this.xrLabel22, "xrLabel22");
+            this.xrLabel22.Name = "xrLabel22";
+            this.xrLabel22.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96F);
+            this.xrLabel22.StylePriority.UseBorders = false;
+            this.xrLabel22.StylePriority.UseTextAlignment = false;
             // 
             // LeaveRequestReport
             // 

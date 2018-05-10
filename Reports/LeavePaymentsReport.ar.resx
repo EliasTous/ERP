@@ -123,6 +123,9 @@
   <data name="xrLabel10.Text" xml:space="preserve">
     <value>الرمز : </value>
   </data>
+  <data name="xrLabel11.Text" xml:space="preserve">
+    <value>توقيع الموظف</value>
+  </data>
   <data name="xrLabel12.Text" xml:space="preserve">
     <value>xrLabel3</value>
   </data>
@@ -150,6 +153,9 @@
   <data name="xrLabel2.Text" xml:space="preserve">
     <value>التاريخ :</value>
   </data>
+  <data name="xrLabel20.Text" xml:space="preserve">
+    <value>شؤون الموظفين</value>
+  </data>
   <data name="xrLabel21.Text" xml:space="preserve">
     <value>xrLabel21</value>
   </data>
@@ -161,6 +167,9 @@
   </data>
   <data name="xrLabel24.Text" xml:space="preserve">
     <value>xrLabel24</value>
+  </data>
+  <data name="xrLabel25.Text" xml:space="preserve">
+    <value>الموافقة</value>
   </data>
   <data name="xrLabel26.Text" xml:space="preserve">
     <value>xrLabel24</value>
