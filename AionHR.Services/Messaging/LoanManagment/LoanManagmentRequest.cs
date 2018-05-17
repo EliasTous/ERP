@@ -54,6 +54,28 @@ namespace AionHR.Services.Messaging.LoanManagment
         public string SortBy { get; set; }
     }
 
+    public class LoanDeductionListRequest : ListRequest
+    {
+
+    
+      
+      
+        public string LoanId { get; set; }
+
+
+        public override Dictionary<string, string> Parameters
+        {
+            get
+            {
+                parameters = base.Parameters;
+                parameters.Add("_loanId", LoanId);
+               
+                return parameters;
+            }
+        }
+
+      
+    }
 
 }
 

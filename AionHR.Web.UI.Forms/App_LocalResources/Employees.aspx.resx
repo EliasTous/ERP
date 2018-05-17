@@ -373,7 +373,7 @@
     <value>Choose Conditions (Empty means all)</value>
   </data>
   <data name="earnedLeaves" xml:space="preserve">
-    <value>Earned Leaves</value>
+    <value>Earned Leaves :</value>
   </data>
   <data name="paidLeaves" xml:space="preserve">
     <value>Paid Leaves :</value>

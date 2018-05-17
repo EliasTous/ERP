@@ -370,7 +370,7 @@
     <value>الرمز</value>
   </data>
   <data name="earnedLeaves" xml:space="preserve">
-    <value>مستحقات إجازة</value>
+    <value>مستحقات إجازة :</value>
   </data>
   <data name="paidLeaves" xml:space="preserve">
     <value>بدل اجازات :</value>

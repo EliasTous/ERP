@@ -387,4 +387,7 @@
   <data name="FieldCitizenShip" xml:space="preserve">
     <value>نوع الهوية</value>
   </data>
+  <data name="undoTermination" xml:space="preserve">
+    <value>اعاده توظيف</value>
+  </data>
 </root>

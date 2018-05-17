@@ -173,6 +173,7 @@ namespace AionHR.Repository.WebService.Repositories
             ChildDeleteLookup.Add(typeof(NoticePeriod), "delNP");
             ChildDeleteLookup.Add(typeof(EmploymentStatus), "delST");
             ChildDeleteLookup.Add(typeof(EmployeeCal), "delCA");
+            ChildDeleteLookup.Add(typeof(EmployeeTermination), "delTE");
 
         }
 

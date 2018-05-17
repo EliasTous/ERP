@@ -268,7 +268,7 @@
                                 MenuDisabled="true"
                                 Resizable="false">
 
-                                <Renderer Handler="var d =(App.EmployeeTerminated.value=='0')?deleteRender():' '; var att ='&nbsp;'; if(record.data['fileUrl']!='') att = attachRender(); return att+'&nbsp;&nbsp;' +editRender()+'&nbsp;&nbsp;' +d;" />
+                                <Renderer Handler="var d =(App.EmployeeTerminated.value=='0')?deleteRender():' '; var att ='&nbsp;'; if(record.data['fileUrl']!='') att = attachRender()+'&nbsp;&nbsp;'+deleteAttachRender(); return att+'&nbsp;&nbsp;' +editRender()+'&nbsp;&nbsp;' +d;" />
 
                             </ext:Column>
 

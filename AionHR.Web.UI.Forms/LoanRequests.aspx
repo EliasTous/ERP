@@ -57,6 +57,11 @@
         <ext:Hidden ID="PFromLoan" Text="<%$ Resources: PFromLoan %>" runat="server"  />
         <ext:Hidden ID="FixedAmount" Text="<%$ Resources: FixedAmount %>"  runat="server"  />
         <ext:Hidden ID="FixedPayment" Text="<%$ Resources: FixedPayment %>"  runat="server" />
+          <ext:Hidden ID="paymentType" Text="<%$ Resources: paymentType %>"  runat="server" />
+          <ext:Hidden ID="discountType" Text="<%$ Resources: discountType %>"  runat="server" />
+           <ext:Hidden ID="currentLoanId" Text="<%$ Resources: discountType %>"  runat="server" />
+           <ext:Hidden ID="LoanAmount"   runat="server" />
+
 
         <ext:Store
             ID="Store1"
@@ -102,6 +107,7 @@
                 <ext:DataSorter Property="employeeId" Direction="ASC" />
             </Sorters>
         </ext:Store>
+
 
 
 
@@ -541,7 +547,7 @@
                                     </Listeners>
                                 </ext:ComboBox>
 
-                                <ext:DateField AllowBlank="false"  runat="server" ID="effectiveDate" Name="effectiveDate" FieldLabel="<%$ Resources:FieldEffectiveDate%>" Vtype="daterange" >
+                                <ext:DateField AllowBlank="false"  runat="server" ID="effectiveDate" Name="effectiveDate" FieldLabel="<%$ Resources:FieldEffectiveDate%>" Vtype="daterange"  >
                                     <CustomConfig>
                         <ext:ConfigItem Name="startDateField" Value="date" Mode="Value" />
                     </CustomConfig>
@@ -776,7 +782,200 @@
                             </Items>
                         </ext:Panel>
 
+                        <ext:GridPanel
+                    ID="DeductionGridPanel"
+                    runat="server"
+                   
+                    PaddingSpec="0 0 1 0"
+                    Header="false"
+                    Title="<%$ Resources: deductionTab %>"
+                    Layout="FitLayout"
+                    Scroll="Vertical"
+                    Border="false"
+                  
+                    ColumnLines="True" IDMode="Explicit" RenderXType="True" ForceFit="true">
+                             <Store>
+                                 <ext:Store
+                                        ID="Store3"
+                                        runat="server"
+                                        RemoteSort="True"
+                                        RemoteFilter="true"
+                                        OnReadData="Store3_RefreshData"
+                                        PageSize="40" IDMode="Explicit" Namespace="App">
+          
+                                            <Model>
+                                                <ext:Model ID="Model3" runat="server" IDProperty="recordId">
+                                                    <Fields>
+                                                        <ext:ModelField Name="recordId" />
+                                                        <ext:ModelField Name="payrollDeduction" />
+                                                        <ext:ModelField Name="loanId" />
+                                                        <ext:ModelField Name="date" />
+                                                          <ext:ModelField Name="type" />
+                                                          <ext:ModelField Name="amount" />
+                                                          <ext:ModelField Name="notes" />
+                       
+                       
+                                                    </Fields>
+                                                </ext:Model>
+                                            </Model>
+                                            <Sorters>
+                                                <ext:DataSorter Property="recordId" Direction="ASC" />
+              
+                                            </Sorters>
+                                        </ext:Store>
+                             </Store>
 
+                    <TopBar>
+                        <ext:Toolbar ID="Toolbar5" runat="server" ClassicButtonStyle="false">
+                            <Items>
+                                <ext:Button ID="addDeduction" runat="server" Text="<%$ Resources:Common , Add %>" Icon="Add">
+                                    <Listeners>
+                                        <Click Handler="CheckSession();" />
+                                    </Listeners>
+                                    <DirectEvents>
+                                        <Click OnEvent="ADDNewDeductionRecord">
+                                            <EventMask ShowMask="true" CustomTarget="={#{DeductionGridPanel}.body}" />
+                                        </Click>
+                                    </DirectEvents>
+                                </ext:Button>
+                                <ext:ToolbarSeparator></ext:ToolbarSeparator>
+                                
+
+
+
+                                  
+                              
+                                
+                        
+
+
+                            </Items>
+                        </ext:Toolbar>
+
+                    </TopBar>
+
+                    <ColumnModel ID="ColumnModel3" runat="server" SortAscText="<%$ Resources:Common , SortAscText %>" SortDescText="<%$ Resources:Common ,SortDescText  %>" SortClearText="<%$ Resources:Common ,SortClearText  %>" ColumnsText="<%$ Resources:Common ,ColumnsText  %>" EnableColumnHide="false" Sortable="false">
+                        <Columns>
+                             <ext:Column ID="loanIdCol" Visible="false" DataIndex="loanId" runat="server" />
+                            <ext:Column ID="Column7" Visible="false" DataIndex="recordId" runat="server" />
+                                 <ext:CheckColumn ID="payrollDeductionCol" DataIndex="payrollDeduction" Text="<%$ Resources: payrollDeduction%>" runat="server" />
+                               <ext:NumberColumn ID="amountCol" DataIndex="amount" Text="<%$ Resources: FieldAmount%>" runat="server" />
+                             <ext:DateColumn ID="dateCol" DataIndex="date" Text="<%$ Resources: FieldDate%>" runat="server" Width="100" />
+                              <ext:Column ID="typeCol" DataIndex="type" Text="<%$ Resources: FieldType%>" runat="server" >
+                               <Renderer Handler=" if (record.data['type']==1) return #{paymentType}.getValue(); else return #{discountType}.getValue();  "></Renderer>
+                                </ext:Column>
+                            <ext:Column ID="notesCol" DataIndex="notes" Text="<%$ Resources: FieldNotes%>" runat="server" />
+                                                   
+
+                       
+                           
+                           
+
+
+
+                            <ext:Column runat="server"
+                                ID="Column15" Visible="false"
+                                Text="<%$ Resources:Common, Edit %>"
+                                Width="60"
+                                Hideable="false"
+                                Align="Center"
+                                Fixed="true"
+                                Filterable="false"
+                                MenuDisabled="true"
+                                Resizable="false">
+
+                                <Renderer Fn="editRender" />
+
+                            </ext:Column>
+                           
+                            <ext:Column runat="server"
+                                ID="Column16"
+                                Visible="false"
+                                Text="<%$ Resources:Common, Attach %>"
+                                Hideable="false"
+                                Width="60"
+                                Align="Center"
+                                Fixed="true"
+                                Filterable="false"
+                                MenuDisabled="true"
+                                Resizable="false">
+                                <Renderer Fn="attachRender" />
+                            </ext:Column>
+                             <ext:Column runat="server"
+                                ID="Column17"  Visible="true"
+                                Text=""
+                                MinWidth="60"
+                                Align="Center"
+                                Fixed="true"
+                                Filterable="false"
+                                Hideable="false"
+                                MenuDisabled="true"
+                                Resizable="false">
+                                <Renderer Handler="if (!record.data['payrollDeduction']) {return  editRender()+ '&nbsp&nbsp'+ deleteRender();}" />
+
+                            </ext:Column>
+
+
+
+                        </Columns>
+                    </ColumnModel>
+                    <DockedItems>
+
+                        <ext:Toolbar ID="Toolbar6" runat="server" Dock="Bottom">
+                            <Items>
+                                <ext:StatusBar ID="StatusBar3" runat="server" />
+                                <ext:ToolbarFill />
+
+                            </Items>
+                        </ext:Toolbar>
+
+                    </DockedItems>
+                    <BottomBar>
+
+                        <ext:PagingToolbar ID="PagingToolbar2"
+                            runat="server"
+                            FirstText="<%$ Resources:Common , FirstText %>"
+                            NextText="<%$ Resources:Common , NextText %>"
+                            PrevText="<%$ Resources:Common , PrevText %>"
+                            LastText="<%$ Resources:Common , LastText %>"
+                            RefreshText="<%$ Resources:Common ,RefreshText  %>"
+                            BeforePageText="<%$ Resources:Common ,BeforePageText  %>"
+                            AfterPageText="<%$ Resources:Common , AfterPageText %>"
+                            DisplayInfo="true"
+                            DisplayMsg="<%$ Resources:Common , DisplayMsg %>"
+                            Border="true"
+                            EmptyMsg="<%$ Resources:Common , EmptyMsg %>">
+                            <Items>
+                            </Items>
+                            <Listeners>
+                                <BeforeRender Handler="this.items.removeAt(this.items.length - 2);" />
+                            </Listeners>
+                        </ext:PagingToolbar>
+
+                    </BottomBar>
+                    <Listeners>
+                        <Render Handler="this.on('cellclick', cellClick);" />
+                    </Listeners>
+                    <DirectEvents>
+                        <CellClick OnEvent="PoPuPDed">
+                            <EventMask ShowMask="true" />
+                            <ExtraParams>
+                                <ext:Parameter Name="id" Value="record.getId()" Mode="Raw" />
+                                <ext:Parameter Name="type" Value="getCellType( this, rowIndex, cellIndex)" Mode="Raw" />
+                            </ExtraParams>
+
+                        </CellClick>
+                    </DirectEvents>
+                    <View>
+                        <ext:GridView ID="GridView3" runat="server" />
+                    </View>
+
+
+                    <SelectionModel>
+                        <ext:RowSelectionModel ID="rowSelectionModel2" runat="server" Mode="Single" StopIDModeInheritance="true" />
+                        <%--<ext:CheckboxSelectionModel ID="CheckboxSelectionModel1" runat="server" Mode="Multi" StopIDModeInheritance="true" />--%>
+                    </SelectionModel>
+                </ext:GridPanel>
 
 
 
@@ -784,6 +983,87 @@
                 </ext:TabPanel>
             </Items>
 
+        </ext:Window>
+          <ext:Window
+            ID="EditDeductionWindow"
+            runat="server"
+            Icon="PageEdit"
+            Title="<%$ Resources:EditDeductionWindowsTitle %>"
+            Width="450"
+            Height="450"
+            AutoShow="false"
+            Modal="true"
+            Hidden="true"
+            Layout="Fit">
+
+            <Items>
+                <ext:TabPanel ID="TabPanel1" runat="server" ActiveTabIndex="0" Border="false" DeferredRender="false">
+                    <Items>
+                        <ext:FormPanel DefaultButton="deductionSaveButton"
+                            ID="deductionInfoTab"
+                            runat="server"
+                            Title="<%$ Resources: DeductionInfoTabEditWindowTitle %>"
+                            Icon="ApplicationSideList"
+                            DefaultAnchor="100%" OnLoad="DeductionInfoTab_Load"
+                            BodyPadding="5">
+                            <Items>
+                                <ext:TextField ID="DeductionRecordId" Hidden="true" runat="server" FieldLabel="<%$ Resources:FieldrecordId%>" Disabled="true" DataIndex="recordId" />
+                                <ext:Checkbox ReadOnly="true" ID="payrollDeduction" runat="server" LabelWidth="130" FieldLabel="<%$ Resources: payrollDeduction%>" DataIndex="payrollDeduction" Name="payrollDeduction" InputValue="true"  />
+                         <ext:NumberField ID="deductionAmount" runat="server" FieldLabel="<%$ Resources:FieldAmount%>" DataIndex="amount" AllowBlank="false" Name="amount" MinValue="1" >
+                             <Validator Handler=" if (this.value <= #{LoanAmount}.getValue()) return true; else return false;"></Validator>
+                            
+                             </ext:NumberField>
+                                
+                                <ext:DateField ID="deductionDate" runat="server" FieldLabel="<%$ Resources:FieldDate%>" Name="date" AllowBlank="false" />
+                                <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  ID="type"  Name="type" runat="server" FieldLabel="<%$ Resources:FieldType%>"  ForceSelection="true" AllowBlank="false" >
+                                    <Items>
+                                          <ext:ListItem Text="<%$ Resources: paymentType%>" Value="1"></ext:ListItem>
+                                     
+                                        <ext:ListItem Text="<%$ Resources: discountType%>" Value="2"></ext:ListItem>
+                                      
+                                    </Items>
+                                   
+                                </ext:ComboBox>
+                               
+                                  <ext:TextArea ID="notes" runat="server" FieldLabel="<%$ Resources:FieldNotes%>" Name="notes" AllowBlank="true"   MaxHeight="200"  Height="200"/>
+                             
+                                 
+
+                                
+                              
+                                
+                                
+                               
+                              
+                            </Items>
+
+                        </ext:FormPanel>
+
+                    </Items>
+                </ext:TabPanel>
+            </Items>
+            <Buttons>
+                <ext:Button ID="deductionSaveButton" runat="server" Text="<%$ Resources:Common, Save %>" Icon="Disk">
+
+                    <Listeners>
+                        <Click Handler="CheckSession(); if (!#{deductionInfoTab}.getForm().isValid()) {return false;} " />
+                    </Listeners>
+                    <DirectEvents>
+                        <Click OnEvent="SaveNewDeductionRecord" Failure="Ext.MessageBox.alert('#{titleSavingError}.value', '#{titleSavingErrorMessage}.value');">
+                            <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="={#{EditDeductionWindow}.body}" />
+                            <ExtraParams>
+                                <ext:Parameter Name="id" Value="#{DeductionRecordId}.getValue()" Mode="Raw" />
+                                <ext:Parameter Name="values" Value="#{deductionInfoTab}.getForm().getValues()" Mode="Raw" Encode="true" />
+                            </ExtraParams>
+                        </Click>
+                    </DirectEvents>
+                </ext:Button>
+                <ext:Button ID="Button5" runat="server" Text="<%$ Resources:Common , Cancel %>" Icon="Cancel">
+                    <Listeners>
+                        <Click Handler="this.up('window').hide();" />
+                    </Listeners>
+                </ext:Button>
+            </Buttons>
         </ext:Window>
 
     

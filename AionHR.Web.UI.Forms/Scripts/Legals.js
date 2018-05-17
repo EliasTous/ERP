@@ -9,6 +9,11 @@ var deleteRender = function () {
 var attachRender = function () {
     return '<img class="imgAttach"  style="cursor:pointer;" src="../Images/Tools/attach.png" />';
 };
+var deleteAttachRender = function () {
+    return '<img class="imgDeleteAttach"  style="cursor:pointer;" src="../Images/Tools/delete-new.png" />';
+};
+
+
 
 
 var commandName;
@@ -34,6 +39,11 @@ var cellClick = function (view, cell, columnIndex, record, row, rowIndex, e) {
         return true;
     }
     if (t.className == "imgAttach") {
+        //the ajax call is allowed
+        commandName = t.className;
+        return true;
+    }
+    if (t.className == "imgDeleteAttach") {
         //the ajax call is allowed
         commandName = t.className;
         return true;

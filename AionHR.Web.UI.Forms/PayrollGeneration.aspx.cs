@@ -1296,12 +1296,12 @@ namespace AionHR.Web.UI.Forms
             p.payRef = payRef;
             PaymentMethodParameterSet Pm = new PaymentMethodParameterSet();
             Pm.paymentMethod = 0;
-            JobInfoParameterSet jp = new JobInfoParameterSet();
-            jp.BranchId = 0;
-            jp.DepartmentId = 0;
+            //JobInfoParameterSet jp = new JobInfoParameterSet();
+            //jp.BranchId = 0;
+            //jp.DepartmentId = 0;
             req.Add(p);
             req.Add(Pm);
-            req.Add(jp);
+          req.Add(jobInfo1.GetJobInfo());
 
             return req;
         }

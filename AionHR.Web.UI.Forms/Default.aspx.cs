@@ -247,7 +247,7 @@ namespace AionHR.Web.UI.Forms
                     return nodes.ToJson();
                 case 6:
                     nodes = TreeBuilder.Instance.BuildPayrollTree(commonTree.Root);
-                    tabHome.Loader.Url = "PayrollGeneration.aspx";
+                    tabHome.Loader.Url = "Dashboard.aspx";
                     tabHome.Loader.LoadContent();
                     return nodes.ToJson();
                 case 7:

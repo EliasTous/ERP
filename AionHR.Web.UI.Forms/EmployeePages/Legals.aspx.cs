@@ -262,6 +262,16 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     DownloadFile(path);
                     //Here will show up a winow relatice to attachement depending on the case we are working on
                     break;
+                //case "imgDeleteAttach":
+                // string[] line=   path.Split('/');
+                  
+
+
+                //    File.Delete(MapPath("~/Imports/" + _systemService.SessionHelper.Get("AccountId") + "/" + line[line.Length - 1]));
+                //    rightToWorkStore.Reload();
+
+                //    //Here will show up a winow relatice to attachement depending on the case we are working on
+                //    break;
                 default:
                     break;
             }

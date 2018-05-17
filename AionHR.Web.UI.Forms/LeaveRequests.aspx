@@ -11,7 +11,7 @@
     <link rel="stylesheet" type="text/css" href="CSS/Common.css" />
     <link rel="stylesheet" href="CSS/LiveSearch.css" />
     <script type="text/javascript" src="Scripts/LeaveRequests.js?id=9"></script>
-    <script type="text/javascript" src="Scripts/common.js?id=2"></script>
+    <script type="text/javascript" src="Secripts/common.js?id=2"></script>
     <script type="text/javascript" src="Scripts/moment.js"></script>
     <script type="text/javascript">
         //function CalcSum() {
@@ -289,7 +289,7 @@
                             </ext:Column>
                              <ext:Column runat="server"
                                 ID="colDelete" Visible="true"
-                                Text="<%$ Resources: Common , Delete %>"
+                                Text=" "
                                 MinWidth="80"
                                 Align="Center"
                                 Fixed="true"

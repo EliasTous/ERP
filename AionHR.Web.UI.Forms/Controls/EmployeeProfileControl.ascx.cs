@@ -863,16 +863,34 @@ namespace AionHR.Web.UI.Forms
 
         protected void SaveTermination(object sender, DirectEventArgs e)
         {
+
+         
+
+
             string id = CurrentEmployee.Text;
             string obj = e.ExtraParams["values"];
+            string terminationRecordId= e.ExtraParams["terminationRecordId"];
             JsonSerializerSettings setting = new JsonSerializerSettings();
             setting.DateFormatString = "dd/MM/yyyy";
             EmployeeTermination t = JsonConvert.DeserializeObject<EmployeeTermination>(obj, setting);
             t.employeeId = Convert.ToInt32(CurrentEmployee.Text);
-            PostRequest<EmployeeTermination> request = new PostRequest<EmployeeTermination>();
-            request.entity = t;
+            PostResponse<EmployeeTermination> resp;
+            if (terminated.Text=="0")
+            {
+                PostRequest<EmployeeTermination> request = new PostRequest<EmployeeTermination>();
+                request.entity = t;
 
-            PostResponse<EmployeeTermination> resp = _employeeService.ChildAddOrUpdate<EmployeeTermination>(request);
+               resp = _employeeService.ChildAddOrUpdate<EmployeeTermination>(request);
+            }
+            else
+            {
+                PostRequest<EmployeeTermination> request = new PostRequest<EmployeeTermination>();
+                t.recordId = terminationRecordId;
+                request.entity = t;
+
+
+                resp = _employeeService.ChildDelete<EmployeeTermination>(request);
+            }
             if (!resp.Success)
             {
                 //Show an error saving...
@@ -1074,25 +1092,16 @@ namespace AionHR.Web.UI.Forms
         private void setTerminationWindow (bool isInactive)
         {
             if (isInactive)
-            {
+                saveTerminationButton.Text = GetLocalResourceObject("undoTermination").ToString();
+            else
                 saveTerminationButton.Hidden = isInactive;
-                TextField1.ReadOnly = isInactive;
+            //    TextField1.ReadOnly = isInactive;
                 date.ReadOnly = isInactive;
                 ttId.ReadOnly = isInactive;
                 trId.ReadOnly = isInactive;
                 rehire.ReadOnly = isInactive;
 
-            }
-           if (!isInactive)
-            {
-                saveTerminationButton.Hidden = isInactive;
-                TextField1.ReadOnly = isInactive;
-                date.ReadOnly = isInactive;
-                ttId.ReadOnly = isInactive;
-                trId.ReadOnly = isInactive;
-                rehire.ReadOnly = isInactive;
-                
-            }
+           
         }
         [DirectMethod]
         public void FillLeftPanel(bool shouldUpdateGrid = false)
@@ -1496,7 +1505,7 @@ namespace AionHR.Web.UI.Forms
             ListResponse<TerminationReason> resp1 = _employeeService.ChildGetAll<TerminationReason>(caRequest1);
             if (!resp1.Success)
             {
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>Technical Error: " + resp.ErrorCode + "<br> Summary: " + resp.Summary : resp.Summary).Show();
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp1.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp1.ErrorCode).ToString() + "<br>Technical Error: " + resp1.ErrorCode + "<br> Summary: " + resp1.Summary : resp1.Summary).Show();
                 return;
             }
             trStore.DataSource = resp1.Items;
@@ -1506,8 +1515,10 @@ namespace AionHR.Web.UI.Forms
             {
                 if (resp.result.date != null)
                     date.Value = resp.result.date;
+                terminationRecordId.Text = resp.result.recordId;
                 ttId.Select(resp.result.ttId);
                 rehire.Select(resp.result.rehire);
+
                 //switch (resp.result.ttId)
                 //{
                 //    case 0:
@@ -1556,6 +1567,7 @@ namespace AionHR.Web.UI.Forms
             else
             {
                 date.Value = DateTime.Now;
+
             }
 
         }

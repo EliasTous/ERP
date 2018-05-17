@@ -360,7 +360,8 @@
 
                     </Buttons>
                 </ext:Panel>
-                <ext:Panel ID="detailsPanel" runat="server">
+                <ext:Panel ID="detailsPanel" runat="server"  Layout="fit">
+                    
                     <TopBar>
                         <ext:Toolbar ID="Toolbar1" runat="server" ClassicButtonStyle="false" Dock="Top">
 
@@ -422,7 +423,20 @@
                         </ext:Toolbar>
                     </TopBar>
                     <Items>
-                        <ext:GridPanel runat="server" ID="employeePayrolls" SortableColumns="false"  EnableColumnResize="true" EnableColumnHide="false">
+                         
+                
+                  
+                        <ext:GridPanel runat="server" ID="employeePayrolls" SortableColumns="false"
+                                      EnableColumnResize="true" 
+                                    EnableColumnHide="false"
+                                    PaddingSpec="0 0 1 0"
+                                    Header="false"
+                   
+                                    Layout="FitLayout"
+                                    Scroll="Vertical"
+                                    Border="false"
+                   
+                                    ColumnLines="True" IDMode="Explicit" RenderXType="True">
                             <Store>
                                 <ext:Store ID="Store1" runat="server" OnReadData="Store1_ReadData">
                                     <Model>
@@ -514,7 +528,11 @@
                                 </Columns>
                             </ColumnModel>
                             <Listeners>
+                                 
+                                       <BeforeRender  Handler="this.setHeight(App.detailsPanel.getHeight());" />
                                 <Render Handler="this.on('cellclick', cellClick);" />
+                                
+                         
                             </Listeners>
                             <DirectEvents>
                                 <CellClick OnEvent="PoPuPEM">
@@ -554,7 +572,7 @@
             Draggable="false"
             Maximizable="false" Resizable="false"
             Width="300"
-            Height="260"
+            Height="300"
             AutoShow="false"
             Modal="true"
             Hidden="true"

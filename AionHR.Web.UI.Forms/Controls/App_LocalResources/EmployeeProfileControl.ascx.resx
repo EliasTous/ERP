@@ -396,4 +396,7 @@
   <data name="FieldCitizenShip" xml:space="preserve">
     <value>CitizenShip</value>
   </data>
+  <data name="undoTermination" xml:space="preserve">
+    <value>Undo Termination</value>
+  </data>
 </root>

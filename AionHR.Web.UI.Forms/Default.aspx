@@ -750,16 +750,16 @@
             </ext:Panel>
             <ext:TabPanel ID="tabPanel" runat="server" Region="Center" EnableTabScroll="true" MinTabWidth="100" BodyBorder="0" StyleSpec="border-bottom:2px solid #2A92D4;">
                 <Items>
-                    <ext:Panel ID="tabHome" Closable="false" runat="server" Title="<%$ Resources:Common , Home %>" Icon="House">
+                    <ext:Panel ID="tabHome" Closable="false" runat="server" Title="<%$ Resources:Common , Home %>" Icon="House" >
                         <Loader ID="Loader1"
                             runat="server"
                             Url="MainDashboard.aspx"
                             Mode="Frame"
                             ShowMask="true">
                             <LoadMask ShowMask="true" />
-                            
+                          
                         </Loader>
-                       
+                     
                     </ext:Panel>
 
 

@@ -237,4 +237,28 @@
   <data name="WindowTitle" xml:space="preserve">
     <value>السلف</value>
   </data>
+  <data name="DeductionInfoTabEditWindowTitle" xml:space="preserve">
+    <value>معلومات الخصم</value>
+  </data>
+  <data name="deductionTab" xml:space="preserve">
+    <value>خصومات </value>
+  </data>
+  <data name="discountType" xml:space="preserve">
+    <value>خصم</value>
+  </data>
+  <data name="EditDeductionWindowsTitle" xml:space="preserve">
+    <value>تعديل الخصم</value>
+  </data>
+  <data name="paymentType" xml:space="preserve">
+    <value>دفع </value>
+  </data>
+  <data name="payrollDeduction" xml:space="preserve">
+    <value>خصم من الراتب </value>
+  </data>
+  <data name="FieldNotes" xml:space="preserve">
+    <value>ملاحظات </value>
+  </data>
+  <data name="FieldType" xml:space="preserve">
+    <value>النوع</value>
+  </data>
 </root>

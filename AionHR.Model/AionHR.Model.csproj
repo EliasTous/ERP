@@ -105,6 +105,7 @@
     <Compile Include="LoadTracking\ImportLoans.cs" />
     <Compile Include="LoadTracking\Loan.cs" />
     <Compile Include="LoadTracking\LoanComment.cs" />
+    <Compile Include="LoadTracking\LoanDeduction.cs" />
     <Compile Include="LoadTracking\LoanOverride.cs" />
     <Compile Include="LoadTracking\LoanType.cs" />
     <Compile Include="MasterModule\IAccountRepository.cs" />

@@ -561,6 +561,8 @@
 <ext:Hidden runat="server" ID="CurrentEmployeeFullName" />
 <ext:Hidden runat="server" ID="bdHijriCal" />
 
+
+
 <ext:Window
     ID="EditRecordWindow"
     runat="server" 
@@ -1314,7 +1316,7 @@
                     DefaultAnchor="100%"
                     BodyPadding="5">
                     <Items>
-                        <ext:TextField ID="TextField1" Hidden="true" runat="server" Disabled="true" DataIndex="recordId" />
+                        <ext:TextField ID="terminationRecordId" Hidden="true" runat="server" Disabled="true" DataIndex="recordId" Name="recordId" />
                         <ext:DateField runat="server" ID="date" Name="date" AllowBlank="false" FieldLabel="<%$ Resources: FieldTerminationDate %>" Format="MM/dd/yyyy" />
                         <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  ID="ttId" runat="server" FieldLabel="<%$ Resources:FieldTerminationType%>" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" Name="ttId" AllowBlank="false">
                             <Items>
@@ -1389,6 +1391,8 @@
                     <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="={#{terminationWindow}.body}" />
                     <ExtraParams>
                         <ext:Parameter Name="employeeId" Value="#{recordId}.getValue()" Mode="Raw" />
+                          <ext:Parameter Name="terminationRecordId" Value="#{terminationRecordId}.getValue()" Mode="Raw" />
+                     
                         <ext:Parameter Name="values" Value="#{terminationForm}.getForm().getValues()" Mode="Raw" Encode="true" />
                     </ExtraParams>
                 </Click>

@@ -237,4 +237,31 @@
   <data name="WindowTitle" xml:space="preserve">
     <value>Loans</value>
   </data>
+  <data name="DeductionTabEditWindowTitle" xml:space="preserve">
+    <value>Deduction Info</value>
+  </data>
+  <data name="deductionTab" xml:space="preserve">
+    <value>Deduction</value>
+  </data>
+  <data name="discountType" xml:space="preserve">
+    <value>Discount</value>
+  </data>
+  <data name="FieldNotes" xml:space="preserve">
+    <value>Notes</value>
+  </data>
+  <data name="paymentType" xml:space="preserve">
+    <value>Payment</value>
+  </data>
+  <data name="payrollDeduction" xml:space="preserve">
+    <value>Payroll Deduction</value>
+  </data>
+  <data name="DeductionInfoTabEditWindowTitle" xml:space="preserve">
+    <value>Deduction Info</value>
+  </data>
+  <data name="EditDeductionWindowsTitle" xml:space="preserve">
+    <value>Edit Deduction</value>
+  </data>
+  <data name="FieldType" xml:space="preserve">
+    <value>Type</value>
+  </data>
 </root>
