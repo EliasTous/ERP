@@ -262,16 +262,11 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     DownloadFile(path);
                     //Here will show up a winow relatice to attachement depending on the case we are working on
                     break;
-                //case "imgDeleteAttach":
-                // string[] line=   path.Split('/');
-                  
-
-
-                //    File.Delete(MapPath("~/Imports/" + _systemService.SessionHelper.Get("AccountId") + "/" + line[line.Length - 1]));
-                //    rightToWorkStore.Reload();
-
-                //    //Here will show up a winow relatice to attachement depending on the case we are working on
-                //    break;
+                case "imgDeleteAttach":
+                    DeleteFile(path,id);
+                    rightToWorkStore.Reload();
+                    //Here will show up a winow relatice to attachement depending on the case we are working on
+                    break;
                 default:
                     break;
             }
@@ -326,6 +321,11 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     break;
                 case "imgAttach":
                     DownloadFile(path);
+                    break;
+                case "imgDeleteAttach":
+                    DeleteFile(path, id);
+                    BCStore.Reload();
+                    //Here will show up a winow relatice to attachement depending on the case we are working on
                     break;
                 default:
                     break;
@@ -924,6 +924,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     PostRequest<EmployeeBackgroundCheck> request = new PostRequest<EmployeeBackgroundCheck>();
                     request.entity = b;
                     byte[] fileData = null;
+                   
                     if (bcFile.PostedFile != null && bcFile.PostedFile.ContentLength > 0)
                     {
                         //using (var binaryReader = new BinaryReader(picturePath.PostedFile.InputStream))
@@ -1158,6 +1159,36 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     stream.Close();
                 }
             }
+        }
+        public void DeleteFile(string url,int id)
+        {
+            Attachement a = new Attachement();
+            a.recordId = id;
+
+            string[] line = url.Split('/');
+            a.classId = Convert.ToInt32(line[4]);
+            a.fileName = line[6];
+            string[] seq = line[6].Split('.');
+            string[] seq1=seq[0].Split('-');
+            a.seqNo = Convert.ToInt16(seq1[1]);
+
+
+            PostRequest<Attachement> request = new PostRequest<Attachement>();
+
+            request.entity = a;
+            PostResponse<Attachement> r = _systemService.ChildDelete<Attachement>(request);
+
+            if (!r.Success)//it maybe be another condition
+            {
+                //Show an error saving...
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", r.ErrorCode) != null ? GetGlobalResourceObject("Errors", r.ErrorCode).ToString() + "<br>Technical Error: " + r.ErrorCode + "<br> Summary: " + r.Summary : r.Summary).Show();
+                return;
+            }
+
+           
+
+
         }
 
 

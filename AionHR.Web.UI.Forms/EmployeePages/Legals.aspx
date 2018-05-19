@@ -12,7 +12,7 @@
     <link rel="stylesheet" type="text/css" href="../CSS/Common.css?id=1" />
     <link rel="stylesheet" href="../CSS/LiveSearch.css" />
 
-    <script type="text/javascript" src="../Scripts/Legals.js?id=1"></script>
+    <script type="text/javascript" src="../Scripts/Legals.js?id=10"></script>
     <script type="text/javascript" src="../Scripts/common.js?id=0"></script>
 
 
@@ -440,7 +440,7 @@
                              <ext:Column runat="server"
                                 ID="ColBCName" Visible="true"
                                 Text=""
-                                Width="100"
+                                Width="110"
                                 Hideable="false"
                                 Align="Center"
                                 Fixed="true"
@@ -448,8 +448,8 @@
                                 MenuDisabled="true"
                                 Resizable="false">
 
-                                <Renderer Handler="var d =(App.EmployeeTerminated.value=='0')?deleteRender():' '; var att ='&nbsp;'; if(record.data['fileUrl']!='') att = attachRender(); return att+'&nbsp;&nbsp;'+editRender()+'&nbsp;&nbsp;'+d; " />
-
+                                <%--<Renderer Handler="var d =(App.EmployeeTerminated.value=='0')?deleteRender():' '; var att ='&nbsp;'; if(record.data['fileUrl']!='') att = attachRender()+'&nbsp;&nbsp;'+ deleteAttachRender(); return att+'&nbsp;&nbsp;'+editRender()+'&nbsp;&nbsp;'+d; " />--%>
+                                   <Renderer Handler="var d =(App.EmployeeTerminated.value=='0')?deleteRender():' '; var att ='&nbsp;'; if(record.data['fileUrl']!='') att = attachRender()+'&nbsp;&nbsp;'+deleteAttachRender(); return att+'&nbsp;&nbsp;' +editRender()+'&nbsp;&nbsp;' +d;" />
                             </ext:Column>
 
 
@@ -634,7 +634,8 @@
                 </ext:Button>
             </Buttons>
         </ext:Window>
-
+        
+           
         <ext:Window
             ID="EditBCWindow"
             runat="server"
@@ -645,18 +646,21 @@
             AutoShow="false"
             Modal="true"
             Hidden="true"
-            Layout="Fit">
+            Layout="Fit" 
+            >
 
             <Items>
-                <ext:TabPanel ID="panelRecordDetails" runat="server" ActiveTabIndex="0" Border="false" DeferredRender="false">
+                <ext:TabPanel ID="panelRecordDetails" runat="server" ActiveTabIndex="0" Border="false" DeferredRender="false" >
                     <Items>
+                         
+                            
                         <ext:FormPanel
                             ID="EditBCTab" DefaultButton="SaveBCButton"
                             runat="server"
                             Title="<%$ Resources: EditBCWindow %>"
                             Icon="ApplicationSideList"
                             DefaultAnchor="100%"
-                            BodyPadding="5">
+                            BodyPadding="5"   >
                             <Items>
                                 <ext:TextField ID="BCID" Hidden="true" runat="server" FieldLabel="<%$ Resources:FieldrecordId%>" Disabled="true" Name="recordId" />
 
@@ -703,7 +707,9 @@
                                     </ext:DateField>
                                 <ext:TextArea runat="server" Name="remarks" ID="bcRemarks" FieldLabel="<%$ Resources:FieldBCRemarks%>" />
                                 <ext:TextField Visible="false" InputType="Password" runat="server" Name="remarks" ID="bcRemarksField" FieldLabel="<%$ Resources:FieldBCRemarks%>" />
-                                <ext:FileUploadField runat="server" ID="bcFile" Name="fileUrl" FieldLabel="<%$ Resources:FieldFile%>" AllowBlank="true" />
+                                <ext:FileUploadField   ID="bcFile"  runat="server" Name="fileUrl1" FieldLabel="<%$ Resources:FieldFile%>" AllowBlank="true"/>
+                              
+                            
 
                             </Items>
 

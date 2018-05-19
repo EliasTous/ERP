@@ -1098,7 +1098,8 @@ namespace AionHR.Web.UI.Forms
         }
         private List<PayrollEntitlementDeduction> GetPayrollDeductions()
         {
-            return GetPayrollEntitlementsDeductions().Where(x => x.type == 2).ToList();
+           return GetPayrollEntitlementsDeductions().Where(x => x.type == 2).ToList();
+        
         }
         private List<PayrollSocialSecurity> GetPayrollSocialSecurity()
         {

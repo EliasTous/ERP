@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data;
+using System.Globalization;
 
 namespace AionHR.Services.Implementations
 {
@@ -23,6 +24,7 @@ namespace AionHR.Services.Implementations
             List<Employee> result = new List<Employee>();
             try
             {
+               
                 Employee em = new Employee();
                 em.reference = row[0].ToString();
                 em.name = new EmployeeName();
@@ -53,8 +55,11 @@ namespace AionHR.Services.Implementations
                 em.hireDate = DateTime.Parse(row[5].ToString());
                 em.idRef= row[6].ToString();
                 em.nationalityName = row[7].ToString();
+                if (!string.IsNullOrEmpty(row[8].ToString()))
                 em.gender = Convert.ToInt16(row[8]);
-                em.religion = Convert.ToInt16(row[9]);
+                if (!string.IsNullOrEmpty(row[9].ToString()))
+                    em.religion = Convert.ToInt16(row[9]);
+              
                 em.birthDate = DateTime.Parse(row[10].ToString());
                 em.mobile = row[11].ToString();
 

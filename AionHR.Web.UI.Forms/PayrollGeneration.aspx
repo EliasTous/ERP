@@ -675,7 +675,7 @@
                                     <Store>
                                         <ext:Store ID="entitlementsStore" runat="server">
                                             <Model>
-                                                <ext:Model runat="server" IDProperty="edId">
+                                                <ext:Model runat="server">
                                                     <Fields>
                                                         <ext:ModelField Name="seqNo" />
                                                         <ext:ModelField Name="edId" />
@@ -736,7 +736,7 @@
                                             <EventMask ShowMask="true" />
                                             <ExtraParams>
 
-                                                <ext:Parameter Name="id" Value="record.getId()" Mode="Raw" />
+                                                <ext:Parameter Name="id" Value="record.data['edId']" Mode="Raw" />
                                                 <ext:Parameter Name="type" Value="getCellType( this, rowIndex, cellIndex)" Mode="Raw" />
                                                 <ext:Parameter Name="values" Value="Ext.encode(#{entitlementsGrid}.getRowsValues({selectedOnly : true}))" Mode="Raw" />
                                             </ExtraParams>
@@ -766,7 +766,7 @@
                                     <Store>
                                         <ext:Store ID="deductionStore" runat="server">
                                             <Model>
-                                                <ext:Model runat="server" IDProperty="edId">
+                                                <ext:Model runat="server" >
                                                     <Fields>
                                                         <ext:ModelField Name="seqNo" />
                                                         <ext:ModelField Name="edId" />
@@ -820,7 +820,7 @@
                                                 </Editor>
                                                 <Renderer Handler="return #{CurrentCurrencyRef}.value+ '&nbsp;'+ record.data['amount'] ;">
                                                     
-                                                </Renderer>
+                                              </Renderer>
                                                 <SummaryRenderer Handler="if(App.deductionGrid.getStore().getCount()>0) return #{CurrentCurrencyRef}.value+ '&nbsp;'+CalcDESum() ;" />
                                             </ext:NumberColumn>
 
@@ -853,7 +853,7 @@
                                             <EventMask ShowMask="true" />
                                             <ExtraParams>
 
-                                                <ext:Parameter Name="id" Value="record.getId()" Mode="Raw" />
+                                                <ext:Parameter Name="id" Value="record.data['edId']" Mode="Raw" />
                                                 <ext:Parameter Name="type" Value="getCellType( this, rowIndex, cellIndex)" Mode="Raw" />
                                                 <ext:Parameter Name="values" Value="Ext.encode(#{deductionGrid}.getRowsValues({selectedOnly : true}))" Mode="Raw" />
                                             </ExtraParams>
