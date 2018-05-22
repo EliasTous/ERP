@@ -675,7 +675,7 @@
                                     <Store>
                                         <ext:Store ID="entitlementsStore" runat="server">
                                             <Model>
-                                                <ext:Model runat="server" IDProperty="recordId"   >
+                                                <ext:Model runat="server" IDProperty="EDrecordId"   >
                                                     <Fields>
                                                         <ext:ModelField Name="seqNo" />
                                                         <ext:ModelField Name="edId" />
@@ -683,7 +683,7 @@
                                                         <ext:ModelField Name="payId" />
                                                         <ext:ModelField Name="amount" />
                                                         <ext:ModelField Name="edSeqNo" />
-                                                        <ext:ModelField Name="recordId" />
+                                                        <ext:ModelField Name="EDrecordId" />
                                                     </Fields>
                                                 </ext:Model>
                                             </Model>
@@ -768,7 +768,7 @@
                                     <Store>
                                         <ext:Store ID="deductionStore" runat="server">
                                             <Model>
-                                                <ext:Model runat="server" IDProperty="recordId" >
+                                                <ext:Model runat="server" IDProperty="EDrecordId" >
                                                     <Fields>
                                                         <ext:ModelField Name="seqNo" />
                                                         <ext:ModelField Name="edId" />
@@ -776,7 +776,7 @@
                                                         <ext:ModelField Name="amount" />
                                                          <ext:ModelField Name="payId" />
                                                          <ext:ModelField Name="edSeqNo" />
-                                                        <ext:ModelField Name="recordId" />
+                                                        <ext:ModelField Name="EDrecordId" />
 
                                                     </Fields>
                                                 </ext:Model>

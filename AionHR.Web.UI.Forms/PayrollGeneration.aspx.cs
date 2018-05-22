@@ -326,6 +326,7 @@ namespace AionHR.Web.UI.Forms
             CustomResolver res = new CustomResolver();
             settings.ContractResolver = res;
             res.AddRule("statusCombo", "status");
+           
             GenerationHeader h = JsonConvert.DeserializeObject<GenerationHeader>(s, settings);
             h.recordId = CurrentPayId.Text;
             PostRequest<GenerationHeader> req = new PostRequest<GenerationHeader>();
@@ -526,7 +527,7 @@ namespace AionHR.Web.UI.Forms
                         Yes = new MessageBoxButtonConfig
                         {
                             //We are call a direct request metho for deleting a record
-                            Handler = String.Format("App.direct.DeleteDE({0})", detail.recordId),
+                            Handler = String.Format("App.direct.DeleteDE({0})", detail.EDrecordId),
                             Text = Resources.Common.Yes
                         },
                         No = new MessageBoxButtonConfig
@@ -584,7 +585,7 @@ namespace AionHR.Web.UI.Forms
                         Yes = new MessageBoxButtonConfig
                         {
                             //We are call a direct request metho for deleting a record
-                            Handler = String.Format("App.direct.DeleteEN({0})",detail.recordId),
+                            Handler = String.Format("App.direct.DeleteEN({0})",detail.EDrecordId),
                             Text = Resources.Common.Yes
                         },
                         No = new MessageBoxButtonConfig
@@ -962,7 +963,7 @@ namespace AionHR.Web.UI.Forms
            
             b.seqNo = seqNo;
             b.edSeqNo = edSeqNo;
-            recordID = b.recordId;
+            recordID = b.EDrecordId;
 
             if (edId.SelectedItem != null)
                 b.edName = edId.SelectedItem.Text;
@@ -1009,9 +1010,9 @@ namespace AionHR.Web.UI.Forms
                 {
                     ModelProxy record = null;
                     if (type == "1")
-                        record = this.entitlementsStore.GetById(b.recordId);
+                        record = this.entitlementsStore.GetById(b.EDrecordId);
                     else
-                        record = this.deductionStore.GetById(b.recordId);
+                        record = this.deductionStore.GetById(b.EDrecordId);
 
                     record.Set("edName", b.edName);
 
@@ -1049,8 +1050,12 @@ namespace AionHR.Web.UI.Forms
 
             try
             {
-                List<PayrollEntitlementDeduction> entitlments = JsonConvert.DeserializeObject<List<PayrollEntitlementDeduction>>(ents);
-                List<PayrollEntitlementDeduction> deductions = JsonConvert.DeserializeObject<List<PayrollEntitlementDeduction>>(deds);
+                JsonSerializerSettings s = new JsonSerializerSettings();
+               
+                s.NullValueHandling = NullValueHandling.Ignore;
+             
+                List <PayrollEntitlementDeduction> entitlments = JsonConvert.DeserializeObject<List<PayrollEntitlementDeduction>>(ents,s);
+                List<PayrollEntitlementDeduction> deductions = JsonConvert.DeserializeObject<List<PayrollEntitlementDeduction>>(deds,s);
                 PostRequest<PayrollEntitlementDeduction> delReq = new PostRequest<PayrollEntitlementDeduction>();
                 delReq.entity = new PayrollEntitlementDeduction();
                 delReq.entity.edId = "0";
@@ -1067,6 +1072,15 @@ namespace AionHR.Web.UI.Forms
 
                 }
                 entitlments.AddRange(deductions);
+                entitlments.ForEach(x =>
+                {
+                //    x.EDrecordId.Equals(null);
+                    if (string.IsNullOrEmpty(x.edSeqNo))
+                        x.edSeqNo = null;
+                    
+                  
+
+                });
                 PostRequest<PayrollEntitlementDeduction[]> req = new PostRequest<PayrollEntitlementDeduction[]>();
                 req.entity = entitlments.ToArray();
                 PostResponse<PayrollEntitlementDeduction[]> resp = _payrollService.ChildAddOrUpdate<PayrollEntitlementDeduction[]>(req);
@@ -1084,6 +1098,7 @@ namespace AionHR.Web.UI.Forms
                     Html = Resources.Common.RecordUpdatedSucc
                 });
                 Store1.Reload();
+                
                 EDWindow.Close();
             }
             catch (Exception ex)
