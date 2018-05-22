@@ -484,6 +484,125 @@ namespace AionHR.Web.UI.Forms
             payrollsStore.Remove(id);
 
         }
+
+        protected void PoPuPDE(object sender, DirectEventArgs e)
+        {
+
+
+            int id = Convert.ToInt32(e.ExtraParams["id"]);
+            string type = e.ExtraParams["type"];
+            string deduction = "";
+            string record = e.ExtraParams["values"];
+            PayrollEntitlementDeduction detail = JsonConvert.DeserializeObject<List<PayrollEntitlementDeduction>>(record)[0];
+
+            switch (type)
+            {
+
+
+                case "imgEdit":
+
+
+
+                    edStore.DataSource = GetAllDeductions();
+                    edStore.DataBind();
+                    isInsert.Text = "0";
+                    this.type.Text = "2";
+                    edId.RightButtons[0].Enabled = false;
+                    edId.FieldLabel = GetLocalResourceObject("FieldDeduction").ToString();
+                    edId.Select(detail.edId.ToString());
+                    amount.Text = Math.Abs(detail.amount).ToString();
+                    //   EdRecordId.Text = detail.recordId;
+                    edSeqNo.Text = detail.edSeqNo;
+                    EDseqNoTF.Text = detail.seqNo;
+
+                    EditEDWindow.Show();
+
+                    break;
+                case "imgDelete":
+                    deduction = e.ExtraParams["values"];
+
+                    X.Msg.Confirm(Resources.Common.Confirmation, Resources.Common.DeleteOneRecord, new MessageBoxButtonsConfig
+                    {
+                        Yes = new MessageBoxButtonConfig
+                        {
+                            //We are call a direct request metho for deleting a record
+                            Handler = String.Format("App.direct.DeleteDE({0})", detail.recordId),
+                            Text = Resources.Common.Yes
+                        },
+                        No = new MessageBoxButtonConfig
+                        {
+                            Text = Resources.Common.No
+                        }
+
+                    }).Show();
+                    break;
+
+                default:
+                    break;
+            }
+
+
+        }
+        protected void PoPuPEN(object sender, DirectEventArgs e)
+        {
+
+
+            int id = Convert.ToInt32(e.ExtraParams["id"]);
+            string type = e.ExtraParams["type"];
+            string record = e.ExtraParams["values"];
+            //string entitlement = "";
+
+            PayrollEntitlementDeduction detail = JsonConvert.DeserializeObject<List<PayrollEntitlementDeduction>>(record)[0];
+            switch (type)
+            {
+
+
+                case "imgEdit":
+
+
+
+
+                    edStore.DataSource = GetAllEntitlements();
+                    edStore.DataBind();
+                    edId.Select(detail.edId.ToString());
+                    isInsert.Text = "0";
+                    this.type.Text = "1";
+                    edId.RightButtons[0].Enabled = false;
+                    edId.ReadOnly = true;
+                    edId.FieldLabel = GetLocalResourceObject("FieldEntitlement").ToString();
+                    amount.Text = detail.amount.ToString();
+                    edSeqNo.Text = detail.edSeqNo;
+                    EDseqNoTF.Text = detail.seqNo;
+
+                    EditEDWindow.Show();
+                    break;
+                case "imgDelete":
+
+
+                    X.Msg.Confirm(Resources.Common.Confirmation, Resources.Common.DeleteOneRecord, new MessageBoxButtonsConfig
+                    {
+                        Yes = new MessageBoxButtonConfig
+                        {
+                            //We are call a direct request metho for deleting a record
+                            Handler = String.Format("App.direct.DeleteEN({0})",detail.recordId),
+                            Text = Resources.Common.Yes
+                        },
+                        No = new MessageBoxButtonConfig
+                        {
+                            Text = Resources.Common.No
+                        }
+
+                    }).Show();
+                    break;
+
+                default:
+                    break;
+            }
+
+
+        }
+
+       
         protected void PoPuPEM(object sender, DirectEventArgs e)
         {
 
@@ -497,7 +616,7 @@ namespace AionHR.Web.UI.Forms
             string basic = e.ExtraParams["basicAmount"];
             string tax = e.ExtraParams["taxAmount"];
             string net = e.ExtraParams["netSalary"];
-            string EMseqNo= e.ExtraParams["seqNo"];
+            string EMseqNo = e.ExtraParams["seqNo"];
             string currencyRef = e.ExtraParams["currency"];
             CurrentCurrencyRef.Text = currencyRef;
             CurrentSeqNo.Text = id;
@@ -534,7 +653,7 @@ namespace AionHR.Web.UI.Forms
                         Yes = new MessageBoxButtonConfig
                         {
                             //We are call a direct request metho for deleting a record
-                            Handler = String.Format("App.direct.DeleteEM({0})",EMseqNo),
+                            Handler = String.Format("App.direct.DeleteEM({0})", EMseqNo),
                             Text = Resources.Common.Yes
                         },
                         No = new MessageBoxButtonConfig
@@ -545,118 +664,6 @@ namespace AionHR.Web.UI.Forms
                     }).Show();
 
                     break;
-                default:
-                    break;
-            }
-
-
-        }
-
-        protected void PoPuPEN(object sender, DirectEventArgs e)
-        {
-
-
-            int id = Convert.ToInt32(e.ExtraParams["id"]);
-            string type = e.ExtraParams["type"];
-            string record = e.ExtraParams["values"];
-            string entitlement = "";
-
-            PayrollEntitlementDeduction detail = JsonConvert.DeserializeObject<List<PayrollEntitlementDeduction>>(record)[0];
-            switch (type)
-            {
-
-
-                case "imgEdit":
-
-
-
-
-                    edStore.DataSource = GetAllEntitlements();
-                    edStore.DataBind();
-                    edId.Select(detail.edId.ToString());
-                    isInsert.Text = "0";
-                    this.type.Text = "1";
-                    edId.RightButtons[0].Enabled = false;
-                    edId.ReadOnly = true;
-                    edId.FieldLabel = GetLocalResourceObject("FieldEntitlement").ToString();
-                    amount.Text = detail.amount.ToString();
-
-                    EditEDWindow.Show();
-                    break;
-                case "imgDelete":
-
-
-                    X.Msg.Confirm(Resources.Common.Confirmation, Resources.Common.DeleteOneRecord, new MessageBoxButtonsConfig
-                    {
-                        Yes = new MessageBoxButtonConfig
-                        {
-                            //We are call a direct request metho for deleting a record
-                            Handler = String.Format("App.direct.DeleteEN({0})", id),
-                            Text = Resources.Common.Yes
-                        },
-                        No = new MessageBoxButtonConfig
-                        {
-                            Text = Resources.Common.No
-                        }
-
-                    }).Show();
-                    break;
-
-                default:
-                    break;
-            }
-
-
-        }
-
-        protected void PoPuPDE(object sender, DirectEventArgs e)
-        {
-
-
-            int id = Convert.ToInt32(e.ExtraParams["id"]);
-            string type = e.ExtraParams["type"];
-            string deduction = "";
-            string record = e.ExtraParams["values"];
-            PayrollEntitlementDeduction detail = JsonConvert.DeserializeObject<List<PayrollEntitlementDeduction>>(record)[0];
-            switch (type)
-            {
-
-
-                case "imgEdit":
-
-
-
-                    edStore.DataSource = GetAllDeductions();
-                    edStore.DataBind();
-                    isInsert.Text = "0";
-                    this.type.Text = "2";
-                    edId.RightButtons[0].Enabled = false;
-                    edId.FieldLabel = GetLocalResourceObject("FieldDeduction").ToString();
-                    edId.Select(detail.edId.ToString());
-                    amount.Text = Math.Abs(detail.amount).ToString();
-
-                    EditEDWindow.Show();
-
-                    break;
-                case "imgDelete":
-                    deduction = e.ExtraParams["values"];
-
-                    X.Msg.Confirm(Resources.Common.Confirmation, Resources.Common.DeleteOneRecord, new MessageBoxButtonsConfig
-                    {
-                        Yes = new MessageBoxButtonConfig
-                        {
-                            //We are call a direct request metho for deleting a record
-                            Handler = String.Format("App.direct.DeleteDE({0})", id),
-                            Text = Resources.Common.Yes
-                        },
-                        No = new MessageBoxButtonConfig
-                        {
-                            Text = Resources.Common.No
-                        }
-
-                    }).Show();
-                    break;
-
                 default:
                     break;
             }
@@ -675,13 +682,15 @@ namespace AionHR.Web.UI.Forms
         }
 
         [DirectMethod]
-        public void DeleteEN(string index)
+        public void DeleteEN(string  record)
         {
             try
             {
 
                 //Step 2 :  remove the object from the store
-                entitlementsStore.Remove(index);
+              
+
+                entitlementsStore.Remove(record);
 
                 //Step 3 : Showing a notification for the user 
 
@@ -736,12 +745,14 @@ namespace AionHR.Web.UI.Forms
             }
         }
         [DirectMethod]
-        public void DeleteDE(string index)
+        public void DeleteDE(string recordId)
         {
             try
             {
+               
 
-                deductionStore.Remove(index);
+       
+                deductionStore.Remove(recordId);
 
                 //Step 3 : Showing a notification for the user 
 
@@ -938,12 +949,20 @@ namespace AionHR.Web.UI.Forms
 
         protected void SaveED(object sender, DirectEventArgs e)
         {
+            string recordID;
             string type = e.ExtraParams["type"];
+            string seqNo = e.ExtraParams["seqNo"];
+            string edSeqNo = e.ExtraParams["edSeqNo"];
 
             string obj = e.ExtraParams["values"];
 
             string insert = e.ExtraParams["isInsert"];
+            
             PayrollEntitlementDeduction b = JsonConvert.DeserializeObject<PayrollEntitlementDeduction>(obj);
+           
+            b.seqNo = seqNo;
+            b.edSeqNo = edSeqNo;
+            recordID = b.recordId;
 
             if (edId.SelectedItem != null)
                 b.edName = edId.SelectedItem.Text;
@@ -990,9 +1009,9 @@ namespace AionHR.Web.UI.Forms
                 {
                     ModelProxy record = null;
                     if (type == "1")
-                        record = this.entitlementsStore.GetById(b.edId);
+                        record = this.entitlementsStore.GetById(b.recordId);
                     else
-                        record = this.deductionStore.GetById(b.edId);
+                        record = this.deductionStore.GetById(b.recordId);
 
                     record.Set("edName", b.edName);
 
@@ -1035,6 +1054,7 @@ namespace AionHR.Web.UI.Forms
                 PostRequest<PayrollEntitlementDeduction> delReq = new PostRequest<PayrollEntitlementDeduction>();
                 delReq.entity = new PayrollEntitlementDeduction();
                 delReq.entity.edId = "0";
+                delReq.entity.edSeqNo = "0";
                 delReq.entity.payId = CurrentPayId.Text;
                 delReq.entity.seqNo = CurrentSeqNo.Text;
                 PostResponse<PayrollEntitlementDeduction> delResp = _payrollService.ChildDelete<PayrollEntitlementDeduction>(delReq);
@@ -1086,6 +1106,7 @@ namespace AionHR.Web.UI.Forms
             PayrollEntitlementsDeductionListRequest req = new PayrollEntitlementsDeductionListRequest();
             req.PayId = CurrentPayId.Text;
             req.SeqNo = CurrentSeqNo.Text;
+           
 
             ListResponse<PayrollEntitlementDeduction> resp = _payrollService.ChildGetAll<PayrollEntitlementDeduction>(req);
             if (!resp.Success)

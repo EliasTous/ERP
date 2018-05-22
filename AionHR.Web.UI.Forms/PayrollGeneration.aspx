@@ -675,13 +675,15 @@
                                     <Store>
                                         <ext:Store ID="entitlementsStore" runat="server">
                                             <Model>
-                                                <ext:Model runat="server">
+                                                <ext:Model runat="server" IDProperty="recordId"   >
                                                     <Fields>
                                                         <ext:ModelField Name="seqNo" />
                                                         <ext:ModelField Name="edId" />
                                                         <ext:ModelField Name="edName" />
                                                         <ext:ModelField Name="payId" />
                                                         <ext:ModelField Name="amount" />
+                                                        <ext:ModelField Name="edSeqNo" />
+                                                        <ext:ModelField Name="recordId" />
                                                     </Fields>
                                                 </ext:Model>
                                             </Model>
@@ -766,13 +768,15 @@
                                     <Store>
                                         <ext:Store ID="deductionStore" runat="server">
                                             <Model>
-                                                <ext:Model runat="server" >
+                                                <ext:Model runat="server" IDProperty="recordId" >
                                                     <Fields>
                                                         <ext:ModelField Name="seqNo" />
                                                         <ext:ModelField Name="edId" />
                                                         <ext:ModelField Name="edName" />
                                                         <ext:ModelField Name="amount" />
                                                          <ext:ModelField Name="payId" />
+                                                         <ext:ModelField Name="edSeqNo" />
+                                                        <ext:ModelField Name="recordId" />
 
                                                     </Fields>
                                                 </ext:Model>
@@ -1008,6 +1012,9 @@
                     <Items>
                         <ext:TextField runat="server" Name="type" ID="type" Hidden="true" Disabled="true" />
                         <ext:TextField runat="server" Name="isInsert" ID="isInsert" Hidden="true" Disabled="true" />
+                     
+                           <ext:TextField runat="server" Name="seqNo" ID="EDseqNoTF" Hidden="true" Disabled="true"  />
+                           <ext:TextField runat="server" Name="edSeqNo" ID="edSeqNo" Hidden="true" Disabled="true" />
                         <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" AllowBlank="false" DisplayField="name" ID="edId" Name="edId" FieldLabel="<%$ Resources:FieldDeduction%>" SimpleSubmit="true">
                             <Store>
                                 <ext:Store runat="server" ID="edStore">
@@ -1053,6 +1060,9 @@
                             <ExtraParams>
                                 <ext:Parameter Name="type" Value="#{type}.getValue()" Mode="Raw" />
                                 <ext:Parameter Name="isInsert" Value="#{isInsert}.getValue()" Mode="Raw" />
+                               
+                                 <ext:Parameter Name="seqNo" Value="#{EDseqNoTF}.getValue()" Mode="Raw" />
+                                 <ext:Parameter Name="edSeqNo" Value="#{edSeqNo}.getValue()" Mode="Raw" />
 
                                 <ext:Parameter Name="values" Value="#{EditEDForm}.getForm().getValues(false, false, false, true)" Mode="Raw" Encode="true" />
                             </ExtraParams>

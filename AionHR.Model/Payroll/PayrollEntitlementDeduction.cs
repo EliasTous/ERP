@@ -26,6 +26,9 @@ namespace AionHR.Model.Payroll
         public string edName { get; set; }
 
         public string seqNo { get; set; }
+        public string edSeqNo { get; set; }
+        public string recordId { get { return edId + seqNo + edSeqNo; } }
+
 
     }
 }
