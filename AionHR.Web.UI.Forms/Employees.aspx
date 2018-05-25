@@ -218,6 +218,15 @@
                                     </Listeners>
                                 </ext:Button>
                                 <ext:ToolbarFill ID="ToolbarFillExport" runat="server" />
+                                    <ext:ComboBox AnyMatch="true" CaseSensitive="false" runat="server" ID="filterField" Editable="false" FieldLabel="<%$ Resources: filterField %>">
+                                    <Items>
+                                        <ext:ListItem Text="<%$ Resources: FieldRef %>" Value="1" />
+                                        <ext:ListItem Text="<%$ Resources: FieldName %>" Value="2" />
+                                        <ext:ListItem Text="<%$ Resources: FieldIdRef %>" Value="3" />
+                                         <ext:ListItem Text="<%$ Resources: FieldMobile %>" Value="4" />
+                                    </Items>
+                                 
+                                </ext:ComboBox>
                                 <ext:TextField ID="searchTrigger" runat="server" EnableKeyEvents="true" Width="180">
                                     <Triggers>
                                         <ext:FieldTrigger Icon="Search" />

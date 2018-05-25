@@ -408,4 +408,10 @@
   <data name="EmployeeStatus3" xml:space="preserve">
     <value>Terminated</value>
   </data>
+  <data name="FieldName" xml:space="preserve">
+    <value>Employee Name</value>
+  </data>
+  <data name="filterField" xml:space="preserve">
+    <value>Filter Field</value>
+  </data>
 </root>

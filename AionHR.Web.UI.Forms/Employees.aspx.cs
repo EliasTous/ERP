@@ -408,6 +408,7 @@ namespace AionHR.Web.UI.Forms
             var d = jobInfo1.GetJobInfo();
             empRequest.BranchId = d.BranchId.HasValue ? d.BranchId.Value.ToString() : "0";
             empRequest.DepartmentId = d.DepartmentId.HasValue ? d.DepartmentId.Value.ToString() : "0";
+            empRequest.filterField =  !string.IsNullOrEmpty(filterField.Text) ? filterField.Value.ToString() : "0";
             //empRequest.PositionId = d.PositionId.HasValue ? d.PositionId.Value.ToString() : "0";
             //empRequest.DivisionId = d.DivisionId.HasValue ? d.DivisionId.Value.ToString() : "0";
 

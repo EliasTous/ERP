@@ -405,4 +405,7 @@
   <data name="EmployeeStatus3" xml:space="preserve">
     <value>تم انهاء الخدمة</value>
   </data>
+  <data name="filterField" xml:space="preserve">
+    <value>البحث بواسطة : </value>
+  </data>
 </root>

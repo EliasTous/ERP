@@ -17,6 +17,12 @@ public class EmployeeListRequest:ListRequest
     public string SortBy { get; set; }
     public string PositionId { get; set; }
     public string DivisionId { get; set; }
+   
+    public string filterField
+    {
+        get; set;
+
+    }
 
 
 
@@ -36,6 +42,10 @@ public class EmployeeListRequest:ListRequest
             parameters.Add("_includeInactive", IncludeIsInactive.ToString());
             parameters.Add("_sortBy", SortBy);
             parameters.Add("_divisionId", DivisionId);
+            parameters.Add("_filterField", (string.IsNullOrEmpty(filterField)?"0":filterField));
+
+
+          
 
             return parameters;
         }
