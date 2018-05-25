@@ -1,6 +1,8 @@
-﻿using System;
+﻿using log4net.Repository.Hierarchy;
+using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -21,38 +23,50 @@ namespace AionHR.Infrastructure.Importers
         }
         public DataTable GetRows()
         {
-            DataTable tb = null;
-            
-            using (var fs = File.OpenRead(FileName))
-            using (var reader = new StreamReader(fs))
+            string referance = "";
+            try
             {
-               
-                while (!reader.EndOfStream)
+                DataTable tb = null;
+              
+                using (var fs = File.OpenRead(FileName))
+                using (var reader = new StreamReader(fs))
                 {
-                   
-                    var line = reader.ReadLine();
-                    
-                    var values = line.Split(',');
-                    if (string.IsNullOrWhiteSpace(line))
-                        continue;
-                    if (tb == null)
+
+                    while (!reader.EndOfStream)
                     {
-                        tb = new DataTable();
+
+                        var line = reader.ReadLine();
+
+                        var values = line.Split(',');
+                      
+                        if (string.IsNullOrWhiteSpace(line))
+                            continue;
+                        referance = values[0];
+                        if (tb == null)
+                        {
+                            tb = new DataTable();
+                            for (int i = 0; i < values.Length; i++)
+                            {
+                                tb.Columns.Add();
+                            }
+                        }
+                        DataRow r = tb.NewRow();
                         for (int i = 0; i < values.Length; i++)
                         {
-                            tb.Columns.Add();
+                            r[i] = values[i];
                         }
+                        tb.Rows.Add(r);
                     }
-                    DataRow r = tb.NewRow();
-                    for (int i = 0; i < values.Length; i++)
-                    {
-                        r[i] = values[i];
-                    }
-                    tb.Rows.Add(r);
                 }
-            }
 
-            return tb;
+
+                return tb;
+            }
+            catch(Exception e)
+            {
+                e.Source = referance;
+                throw;
+            }
         }
     }
 }

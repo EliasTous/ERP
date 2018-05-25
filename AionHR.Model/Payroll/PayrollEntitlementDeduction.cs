@@ -1,4 +1,5 @@
 ﻿using AionHR.Model.Attributes;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,6 +9,7 @@ using System.Threading.Tasks;
 namespace AionHR.Model.Payroll
 {
     [ClassIdentifier("51022", "51")]
+  
     public class PayrollEntitlementDeduction
     {
         [PropertyID("51022_01")]
@@ -27,8 +29,10 @@ namespace AionHR.Model.Payroll
 
         public string seqNo { get; set; }
         public string edSeqNo { get; set; }
-       
-        public string EDrecordId { get { return edId + seqNo + edSeqNo; } }
+
+        [JsonProperty(PropertyName = "EDrecordId", Required = Required.Default)]
+        [JsonIgnore]
+        public string EDrecordId { get { return edId + seqNo + edSeqNo; }  }
 
 
     }

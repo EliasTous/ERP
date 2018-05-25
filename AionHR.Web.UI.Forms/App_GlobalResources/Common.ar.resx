@@ -1167,4 +1167,7 @@
   <data name="ImportEmploymentStatus" xml:space="preserve">
     <value>استيراد الحالة الوظيفية</value>
   </data>
+  <data name="LineNO" xml:space="preserve">
+    <value>رقم السطر :</value>
+  </data>
 </root>

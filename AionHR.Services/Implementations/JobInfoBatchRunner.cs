@@ -82,7 +82,14 @@ namespace AionHR.Services.Implementations
             {
                 if (!emps.ContainsKey(item.reportToRef))
                 {
-                    emps.Add(item.reportToRef, Convert.ToInt32(GetEmployeeId(item.reportToRef)));
+                    int result;
+                    if (int.TryParse(GetEmployeeId(item.reportToRef),out  result)){
+                        emps.Add(item.reportToRef, result);
+                    }
+                   else {
+                        return;                       
+                      }
+                   
 
                 }
 
@@ -90,7 +97,16 @@ namespace AionHR.Services.Implementations
             }
             if (!emps.ContainsKey(item.employeeRef))
             {
-                emps.Add(item.employeeRef, Convert.ToInt32(GetEmployeeId(item.employeeRef)));
+                int result;
+                if (int.TryParse(GetEmployeeId(item.employeeRef), out result))
+                {
+                    emps.Add(item.employeeRef, result);
+                }
+                else
+                {
+                    return;
+                }
+
 
             }
 
@@ -103,7 +119,7 @@ namespace AionHR.Services.Implementations
             ListResponse<Branch> branches = companyStructure.ChildGetAll<Branch>(req);
             if (branches.Success && branches.Items != null)
             {
-                branches.Items.ForEach(x => this.branches.Add(x.name.Trim('\r', '\n'), Convert.ToInt32(x.recordId)));
+                branches.Items.ForEach(x => this.branches.Add(x.name.Trim('\r', '\n').ToLower(), Convert.ToInt32(x.recordId)));
             }
         }
         private void FillDepartments()
@@ -116,7 +132,7 @@ namespace AionHR.Services.Implementations
             {
                 foreach (var item in branches.Items)
                 {
-                    this.departments.Add(item.name.Trim('\r','\n'), Convert.ToInt32(item.recordId));
+                    this.departments.Add(item.name.Trim('\r','\n').ToLower(), Convert.ToInt32(item.recordId));
                 }
             }
         }
@@ -126,7 +142,7 @@ namespace AionHR.Services.Implementations
             ListResponse<Division> branches = companyStructure.ChildGetAll<Division>(req);
             if (branches.Success && branches.Items != null)
             {
-                branches.Items.ForEach(x => this.divisions.Add(x.name.Trim('\r', '\n'), Convert.ToInt32(x.recordId)));
+                branches.Items.ForEach(x => this.divisions.Add(x.name.Trim('\r', '\n').ToLower(), Convert.ToInt32(x.recordId)));
             }
         }
         private void FillPosition()
@@ -140,7 +156,7 @@ namespace AionHR.Services.Implementations
             ListResponse<Position> branches = companyStructure.ChildGetAll<Position>(request);
             if (branches.Success && branches.Items != null)
             {
-                branches.Items.ForEach(x => this.positions.Add(x.name.Trim('\r', '\n'), Convert.ToInt32(x.recordId)));
+                branches.Items.ForEach(x => this.positions.Add(x.name.Trim('\r', '\n').ToLower(), Convert.ToInt32(x.recordId)));
             }
         }
 
@@ -158,24 +174,25 @@ namespace AionHR.Services.Implementations
         protected override void ProcessElement(JobInfo item)
         {
             bool okToGo = true;
-            if (item.branchId == 0)
+            if (item.employeeId == 0)
             {
-                errorMessages.Add("Branch Not Found");
+                errorMessages.Add("Employee Not Found");
                 okToGo = false;
             }
+         
             else if (item.departmentId == 0)
             {
                 errorMessages.Add("Department Not Found");
                 okToGo = false;
             }
-            else if (item.divisionId == 0)
+            else if (item.divisionId == 0 )
             {
                 errorMessages.Add("Division Not Found");
                 okToGo = false;
             }
-            else if (item.employeeId == 0)
+            else  if (item.branchId == 0)
             {
-                errorMessages.Add("Employee Not Found");
+                errorMessages.Add("Branch Not Found");
                 okToGo = false;
             }
             else if (item.positionId == 0)

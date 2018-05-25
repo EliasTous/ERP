@@ -1094,7 +1094,10 @@ namespace AionHR.Web.UI.Forms
             if (isInactive)
                 saveTerminationButton.Text = GetLocalResourceObject("undoTermination").ToString();
             else
+            {
+                saveTerminationButton.Text= GetGlobalResourceObject("Common", "Save").ToString();
                 saveTerminationButton.Hidden = isInactive;
+            }
             //    TextField1.ReadOnly = isInactive;
                 date.ReadOnly = isInactive;
                 ttId.ReadOnly = isInactive;
@@ -1567,7 +1570,7 @@ namespace AionHR.Web.UI.Forms
             else
             {
                 date.Value = DateTime.Now;
-
+                setTerminationWindow(false);
             }
 
         }

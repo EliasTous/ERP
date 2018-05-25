@@ -25,10 +25,10 @@ namespace AionHR.Services.Implementations
             {
                 JobInfo j = new JobInfo();
                 j.employeeRef = row[0].ToString();
-                j.departmentName = row[1].ToString().Trim('\r', '\n').Trim();
-                j.branchName = row[2].ToString().Trim('\r', '\n').Trim(); ;
-                j.positionName = row[3].ToString().Trim('\r', '\n').Trim(); ;
-                j.divisionName = row[4].ToString().Trim('\r', '\n').Trim(); ;
+                j.departmentName = row[1].ToString().Trim('\r', '\n').Trim().ToLower();
+                j.branchName = row[2].ToString().Trim('\r', '\n').Trim().ToLower(); 
+                j.positionName = row[3].ToString().Trim('\r', '\n').Trim().ToLower(); 
+                j.divisionName = row[4].ToString().Trim('\r', '\n').Trim().ToLower(); 
 
                 if (!string.IsNullOrEmpty(row[5].ToString()))
                     j.reportToRef = row[5].ToString();

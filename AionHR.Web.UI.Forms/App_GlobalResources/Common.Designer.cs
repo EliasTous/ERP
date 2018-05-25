@@ -1564,6 +1564,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Line Number : .
+        /// </summary>
+        internal static string LineNO {
+            get {
+                return ResourceManager.GetString("LineNO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Live Search.
         /// </summary>
         internal static string LiveSearch {

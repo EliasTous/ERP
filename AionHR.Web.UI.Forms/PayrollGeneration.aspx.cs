@@ -1050,12 +1050,16 @@ namespace AionHR.Web.UI.Forms
 
             try
             {
+              
+                
+
                 JsonSerializerSettings s = new JsonSerializerSettings();
                
                 s.NullValueHandling = NullValueHandling.Ignore;
              
                 List <PayrollEntitlementDeduction> entitlments = JsonConvert.DeserializeObject<List<PayrollEntitlementDeduction>>(ents,s);
                 List<PayrollEntitlementDeduction> deductions = JsonConvert.DeserializeObject<List<PayrollEntitlementDeduction>>(deds,s);
+              
                 PostRequest<PayrollEntitlementDeduction> delReq = new PostRequest<PayrollEntitlementDeduction>();
                 delReq.entity = new PayrollEntitlementDeduction();
                 delReq.entity.edId = "0";
@@ -1072,15 +1076,7 @@ namespace AionHR.Web.UI.Forms
 
                 }
                 entitlments.AddRange(deductions);
-                entitlments.ForEach(x =>
-                {
-                //    x.EDrecordId.Equals(null);
-                    if (string.IsNullOrEmpty(x.edSeqNo))
-                        x.edSeqNo = null;
-                    
-                  
-
-                });
+                entitlments.ForEach(x => x.edSeqNo = null);
                 PostRequest<PayrollEntitlementDeduction[]> req = new PostRequest<PayrollEntitlementDeduction[]>();
                 req.entity = entitlments.ToArray();
                 PostResponse<PayrollEntitlementDeduction[]> resp = _payrollService.ChildAddOrUpdate<PayrollEntitlementDeduction[]>(req);
@@ -1339,6 +1335,7 @@ namespace AionHR.Web.UI.Forms
             req.Add(p);
             req.Add(Pm);
           req.Add(jobInfo1.GetJobInfo());
+            req.Add(employeeCombo1.GetEmployee());
 
             return req;
         }

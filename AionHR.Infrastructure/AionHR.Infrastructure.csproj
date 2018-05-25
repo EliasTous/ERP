@@ -35,6 +35,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\Desktop\AionHR.Infrastructure.dll</HintPath>
     </Reference>
+    <Reference Include="Ext.Net">
+      <HintPath>..\AionHR.Web.UI.Forms\bin\Ext.Net.dll</HintPath>
+    </Reference>
     <Reference Include="log4net, Version=2.0.7.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\Desktop\log4net.dll</HintPath>
