@@ -4,6 +4,7 @@ using AionHR.Infrastructure.Tokens;
 using AionHR.Model.Attendance;
 using AionHR.Model.Employees.Profile;
 using AionHR.Model.System;
+using AionHR.Model.TimeAttendance;
 using AionHR.Services.Interfaces;
 using AionHR.Services.Messaging;
 using System;
@@ -18,7 +19,7 @@ namespace AionHR.Services.Implementations
    public class PunchesBatchRunner: ImportBatchRunner<Check>
     {
         ITimeAttendanceService timeAttendance;
-     
+        Dictionary<string, int> udId;
         public PunchesBatchRunner(ISessionStorage store, IEmployeeService employee, ISystemService system, ITimeAttendanceService timeAttendance) :base(system, employee)
         {
             this.timeAttendance = timeAttendance;
@@ -28,9 +29,11 @@ namespace AionHR.Services.Implementations
 
             BatchStatus = new BatchOperationStatus() { classId = ClassId.TACH, processed = 0, tableSize = 0, status = 0 };
             errors = new List<Check>();
-          
+            udId = new Dictionary<string, int>();
+            FillUdId();
+
             //FillCaId();
-           
+
         }
 
         protected override void PostProcessElements()
@@ -51,11 +54,14 @@ namespace AionHR.Services.Implementations
 
         protected override void PreProcessElement(Check item)
         {
-
-            item.authMode = 1;
+            if (udId.ContainsKey(item.udIdRef))
+                item.udId = udId[item.udIdRef].ToString();
+            item.udIdRef = null;
+            item.authMode = 3;
             item.lon = 0;
             item.lat = 0;
             item.hasImage = 0;
+         
           
         }
 
@@ -71,16 +77,15 @@ namespace AionHR.Services.Implementations
                 errorMessages.Add(resp.Summary);
             }
         }
-        //private void FillCaId()
-        //{
-        //    ListRequest caRequest = new ListRequest();
-        //    ListResponse<WorkingCalendar> resp = timeAttendance.ChildGetAll<WorkingCalendar>(caRequest);
-        //    if (resp.Success && resp.Items != null)
-        //    {
-        //        resp.Items.ForEach(x => this.caId.Add(x.name,Convert.ToInt32( x.recordId )));
-        //    }
-        //}
-        
+        private void FillUdId()
+        {
+            ListRequest request = new ListRequest();
+
+            request.Filter = "";
+            ListResponse<BiometricDevice> BdResponse = timeAttendance.ChildGetAll<BiometricDevice>(request);
+            BdResponse.Items.ForEach(x => this.udId.Add(x.reference, Convert.ToInt32(x.recordId)));
+        }
+
 
     }
 }

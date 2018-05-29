@@ -27,6 +27,7 @@ namespace AionHR.Services.Implementations
                 Check em = new Check();
                 em.employeeRef = row[0].ToString();
                 em.clockStamp = DateTime.ParseExact(row[1].ToString(), "yyyy-MM-dd HH:mm:ss", new CultureInfo("en"));
+                em.udIdRef = row[2].ToString();
 
 
 

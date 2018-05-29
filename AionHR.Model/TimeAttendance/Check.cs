@@ -26,6 +26,7 @@ namespace AionHR.Model.Attendance
 
         public string routerRef { get; set; }
         public short hasImage; 
+        public string udIdRef { get; set; }
 
     }
 }
