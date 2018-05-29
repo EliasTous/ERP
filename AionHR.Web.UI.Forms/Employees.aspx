@@ -218,12 +218,12 @@
                                     </Listeners>
                                 </ext:Button>
                                 <ext:ToolbarFill ID="ToolbarFillExport" runat="server" />
-                                    <ext:ComboBox AnyMatch="true" CaseSensitive="false" runat="server" ID="filterField" Editable="false" FieldLabel="<%$ Resources: filterField %>">
+                                    <ext:ComboBox AnyMatch="true" CaseSensitive="false" runat="server" ID="filterField" Editable="false" EmptyText="<%$ Resources: filterField %>">
                                     <Items>
                                         <ext:ListItem Text="<%$ Resources: FieldRef %>" Value="1" />
-                                        <ext:ListItem Text="<%$ Resources: FieldName %>" Value="2" />
-                                        <ext:ListItem Text="<%$ Resources: FieldIdRef %>" Value="3" />
-                                         <ext:ListItem Text="<%$ Resources: FieldMobile %>" Value="4" />
+                                        <ext:ListItem Text="<%$ Resources: FieldIdRef %>" Value="2" />
+                                         <ext:ListItem Text="<%$ Resources: FieldMobile %>" Value="3" />
+                                         <ext:ListItem Text="<%$ Resources: FieldName %>" Value="4" />
                                     </Items>
                                  
                                 </ext:ComboBox>

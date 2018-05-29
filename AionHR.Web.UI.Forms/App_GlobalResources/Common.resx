@@ -1167,4 +1167,7 @@
   <data name="LineNO" xml:space="preserve">
     <value>Line Number : </value>
   </data>
+  <data name="ImportPunches" xml:space="preserve">
+    <value>Import Punches</value>
+  </data>
 </root>

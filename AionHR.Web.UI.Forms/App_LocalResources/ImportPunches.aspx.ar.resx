@@ -117,55 +117,31 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="xrLabel1.Text" xml:space="preserve">
-    <value>الاسم</value>
+  <data name="BasicInfoTabEditWindowTitle" xml:space="preserve">
+    <value>تفاصيل </value>
   </data>
-  <data name="xrLabel10.Text" xml:space="preserve">
-    <value>المبلغ</value>
+  <data name="Download" xml:space="preserve">
+    <value>تنزيل</value>
   </data>
-  <data name="xrLabel11.Text" xml:space="preserve">
-    <value>المدفوع</value>
+  <data name="EditWindowsTitle" xml:space="preserve">
+    <value>Edit Branch</value>
   </data>
-  <data name="xrLabel12.Text" xml:space="preserve">
-    <value>الباقي</value>
+  <data name="ErrorImporting" xml:space="preserve">
+    <value>Couldn't load file, please check the file format</value>
   </data>
-  <data name="xrLabel13.Text" xml:space="preserve">
-    <value>النوع</value>
+  <data name="Import" xml:space="preserve">
+    <value>استيراد</value>
   </data>
-  <data name="xrLabel14.Text" xml:space="preserve">
-    <value>الحالة</value>
+  <data name="Pick" xml:space="preserve">
+    <value>اختر ملف</value>
   </data>
-  <data name="xrLabel15.Text" xml:space="preserve">
-    <value>السبب</value>
+  <data name="preprocessing" xml:space="preserve">
+    <value>جاري التهيئة</value>
   </data>
-  <data name="xrLabel16.Text" xml:space="preserve">
-    <value>لم يتم العثور على نتائج</value>
+  <data name="ResultReady" xml:space="preserve">
+    <value>تم الانتهاء من عملية الاستيراد ،انقر لتحميل الأخطاء</value>
   </data>
-  <data name="xrLabel18.Text" xml:space="preserve">
-    <value>الفرع :</value>
-  </data>
-  <data name="xrLabel19.Text" xml:space="preserve">
-    <value>الفرع :</value>
-  </data>
-  <data name="xrLabel21.Text" xml:space="preserve">
-    <value>الحالة :</value>
-  </data>
-  <data name="xrLabel27.Text" xml:space="preserve">
-    <value>السلف</value>
-  </data>
-  <data name="xrLabel28.Text" xml:space="preserve">
-    <value>الموظف :</value>
-  </data>
-  <data name="xrLabel7.Text" xml:space="preserve">
-    <value>التاريخ</value>
-  </data>
-  <data name="xrLabel9.Text" xml:space="preserve">
-    <value>الجهة المانحة للسلفة</value>
-  </data>
-  <data name="xrLabel9.Text1" xml:space="preserve">
-    <value>الفرع</value>
-  </data>
-  <data name="xrPageInfo2.Format" xml:space="preserve">
-    <value>صفحة {0} من {1}</value>
+  <data name="working" xml:space="preserve">
+    <value>جاري الحفظ</value>
   </data>
 </root>

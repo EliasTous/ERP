@@ -850,7 +850,7 @@
                             DefaultAnchor="100%" Layout="AutoLayout"
                             BodyPadding="5">
                             <Items>
-                                    <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" AllowBlank="false" DisplayField="name" ID="dedEdId" Name="edId" FieldLabel="<%$ Resources:FieldDeduction%>" SimpleSubmit="true" StoreID="dedsStore">
+                                    <ext:ComboBox    AnyMatch="true" CaseSensitive="false"  runat="server" ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" AllowBlank="false" DisplayField="name" ID="dedEdId" Name="edId" FieldLabel="<%$ Resources:FieldDeduction%>" SimpleSubmit="true" StoreID="dedsStore">
                       
                                    
                                     <Listeners>
@@ -860,7 +860,7 @@
                                 </ext:ComboBox>
                                  <ext:TextField ID="DeSeqNo" Hidden="true" runat="server" FieldLabel="seqNo" Disabled="false" Name="seqNo" />
                                 
-                                <ext:TextField ID="DeAmount" Hidden="false" runat="server" FieldLabel="<%$ Resources:amount %>" Disabled="false" Name="amount" />
+                                <ext:TextField ID="DeAmount" Hidden="false" runat="server" FieldLabel="<%$ Resources:amount %>" Disabled="false" Name="amount" AllowBlank="false"/>
                                 
 
                                                         

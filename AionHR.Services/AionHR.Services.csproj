@@ -82,6 +82,8 @@
     <Compile Include="Implementations\OvertimeBatchRunner.cs" />
     <Compile Include="Implementations\OvertimeImportingService.cs" />
     <Compile Include="Implementations\PayrollService.cs" />
+    <Compile Include="Implementations\PunchesBatchRunner.cs" />
+    <Compile Include="Implementations\PunchesImportingService.cs" />
     <Compile Include="Implementations\ReportsService.cs" />
     <Compile Include="Implementations\SalaryBatchRunner.cs" />
     <Compile Include="Implementations\SalaryImportingService.cs" />

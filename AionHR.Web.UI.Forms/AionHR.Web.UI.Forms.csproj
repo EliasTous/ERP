@@ -268,6 +268,7 @@
     <Content Include="ImportLeaves.aspx" />
     <Content Include="ImportLoans.aspx" />
     <Content Include="ImportOvertimeSettings.aspx" />
+    <Content Include="ImportPunches.aspx" />
     <Content Include="ImportRTW.aspx" />
     <Content Include="ImportSalaries.aspx" />
     <Content Include="LeaveCalendar.aspx" />
@@ -683,6 +684,13 @@
     </Compile>
     <Compile Include="ImportOvertimeSettings.aspx.designer.cs">
       <DependentUpon>ImportOvertimeSettings.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ImportPunches.aspx.cs">
+      <DependentUpon>ImportPunches.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ImportPunches.aspx.designer.cs">
+      <DependentUpon>ImportPunches.aspx</DependentUpon>
     </Compile>
     <Compile Include="ImportRTW.aspx.cs">
       <DependentUpon>ImportRTW.aspx</DependentUpon>
@@ -2291,6 +2299,8 @@
     <Content Include="App_LocalResources\SystemAlerts.aspx.ar.resx" />
     <Content Include="App_LocalResources\ImportEmploymentStatus.aspx.ar.resx" />
     <Content Include="App_LocalResources\ImportEmploymentStatus.aspx.resx" />
+    <Content Include="App_LocalResources\ImportPunches.aspx.ar.resx" />
+    <Content Include="App_LocalResources\ImportPunches.aspx.resx" />
     <EmbeddedResource Include="Reports\RT201.aspx.resx">
       <DependentUpon>RT201.aspx.cs</DependentUpon>
       <Generator>ResXFileCodeGenerator</Generator>

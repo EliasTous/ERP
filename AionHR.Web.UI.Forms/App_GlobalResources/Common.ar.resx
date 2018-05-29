@@ -1170,4 +1170,7 @@
   <data name="LineNO" xml:space="preserve">
     <value>رقم السطر :</value>
   </data>
+  <data name="ImportPunches" xml:space="preserve">
+    <value>استيراد البصمات</value>
+  </data>
 </root>

@@ -864,6 +864,7 @@ namespace AionHR.Web.UI.Forms
                         }
 
                     }).Show();
+                  
                     break;
 
                 default:
@@ -936,6 +937,7 @@ namespace AionHR.Web.UI.Forms
                         }
 
                     }).Show();
+                 
                     break;
 
                 default:
@@ -968,7 +970,7 @@ namespace AionHR.Web.UI.Forms
                     //Step 2 :  remove the object from the store
                    // ENSeq.Text = (Convert.ToInt32(ENSeq.Text) - 1).ToString(); 
                     entitlementsStore.Reload();
-         
+                  
                     //Step 3 : Showing a notification for the user 
                     Notification.Show(new NotificationConfig
                     {
@@ -976,9 +978,11 @@ namespace AionHR.Web.UI.Forms
                         Icon = Icon.Information,
                         Html = Resources.Common.RecordDeletedSucc
                     });
+                    FillEmployeeInfo(new object(), new DirectEventArgs(new Ext.Net.ParameterCollection()));
                 }
 
             }
+            
             catch (Exception ex)
             {
                 //In case of error, showing a message box to the user
@@ -1021,7 +1025,7 @@ namespace AionHR.Web.UI.Forms
                         Html = Resources.Common.RecordDeletedSucc
                     });
                 }
-
+                FillEmployeeInfo(new object(), new DirectEventArgs(new Ext.Net.ParameterCollection()));
             }
             catch (Exception ex)
             {
@@ -1148,8 +1152,11 @@ namespace AionHR.Web.UI.Forms
                     X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
                     X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorUpdatingRecord).Show();
                 }
+
+              
             }
-            
+            FillEmployeeInfo(sender, e);
+
         }
         protected void SaveDE(object sender, DirectEventArgs e)
         {
@@ -1243,7 +1250,7 @@ namespace AionHR.Web.UI.Forms
                     X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorUpdatingRecord).Show();
                 }
             }
-
+            FillEmployeeInfo(sender, e);
         }
        
         protected void ensStore_ReadData(object sender, StoreReadDataEventArgs e)

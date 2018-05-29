@@ -406,6 +406,9 @@
     <value>تم انهاء الخدمة</value>
   </data>
   <data name="filterField" xml:space="preserve">
-    <value>البحث بواسطة : </value>
+    <value>البحث بواسطة </value>
+  </data>
+  <data name="FieldName" xml:space="preserve">
+    <value>أسم الموظف</value>
   </data>
 </root>

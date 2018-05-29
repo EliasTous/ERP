@@ -1384,6 +1384,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Import Punches.
+        /// </summary>
+        internal static string ImportPunches {
+            get {
+                return ResourceManager.GetString("ImportPunches", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Import Right To Work.
         /// </summary>
         internal static string ImportRTW {

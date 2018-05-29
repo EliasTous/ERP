@@ -1210,6 +1210,7 @@ namespace AionHR.Web.UI.Forms
         private MonthlyPayroll GetReport(string payRef)
         {
 
+
             ReportCompositeRequest req = GetRequest(payRef);
 
             ListResponse<AionHR.Model.Reports.RT501> resp = _reportsService.ChildGetAll<AionHR.Model.Reports.RT501>(req);
@@ -1218,7 +1219,7 @@ namespace AionHR.Web.UI.Forms
                                
                     X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
                     X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>Technical Error: " + resp.ErrorCode + "<br> Summary: " + resp.Summary : resp.Summary).Show();
-                    return null;
+                    return new MonthlyPayroll();
                 
             }
 
