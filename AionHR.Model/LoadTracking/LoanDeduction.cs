@@ -14,6 +14,7 @@ namespace AionHR.Model.LoadTracking
         public short type { get; set; }
         public double? amount { get; set; }
         public string notes { get; set; }
+        public int employeeId { get; set; }
 
 
     }

@@ -1224,7 +1224,7 @@ namespace AionHR.Web.UI.Forms
 
             LoanDeduction b = JsonConvert.DeserializeObject<LoanDeduction>(obj);
             b.loanId =Convert.ToInt32( currentLoanId.Text);
-        
+            b.employeeId =Convert.ToInt32( CurrentEmployee.Text);
             b.recordId = id;
         
             // Define the object to add or edit as null
@@ -1369,6 +1369,7 @@ namespace AionHR.Web.UI.Forms
             //note.recordId = id;
             note.loanId = Convert.ToInt32(currentCase.Text);
             note.comment = values["comment"].ToString();
+            note.employeeId = Convert.ToInt32(CurrentEmployee.Text);
             int bulk;
 
             req.entity = note;

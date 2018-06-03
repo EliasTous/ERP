@@ -1006,7 +1006,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             string oldAmount = e.ExtraParams["oldAmount"];
             double amount = 0;
             SalaryDetail b = JsonConvert.DeserializeObject<SalaryDetail>(obj);
-
+            b.employeeId = Convert.ToInt32(CurrentEmployee.Text);
             b.seqNo = Convert.ToInt16(ENSeq.Text);
             if (!b.includeInTotal.HasValue)
                 b.includeInTotal = false;
@@ -1177,6 +1177,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             res.AddRule("DEedId", "edId");
             settings.ContractResolver = res;
             SalaryDetail b = JsonConvert.DeserializeObject<SalaryDetail>(obj, settings);
+            b.employeeId = Convert.ToInt32(CurrentEmployee.Text);
             double amount = 0;
             b.seqNo = Convert.ToInt16(DESeq.Text);
             if (!b.includeInTotal.HasValue)

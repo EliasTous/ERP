@@ -195,6 +195,15 @@
   <data name="Error_19006" xml:space="preserve">
     <value>لايمكن للمستخدم تسجيل الدخول دون أن يكون مديراً أو ان يكون موظفاً</value>
   </data>
+  <data name="Error_19111" xml:space="preserve">
+    <value>المستخدم لايملك صلاحية الوصول الى الموظفين في هذا الفرع </value>
+  </data>
+  <data name="Error_19112" xml:space="preserve">
+    <value>المستخدم لايملك صلاحية الوصول الى الموظفين في هذا القسم</value>
+  </data>
+  <data name="Error_19113" xml:space="preserve">
+    <value>المستخدم لايملك صلاحية الوصول الى الموظفين في هذا القطاع</value>
+  </data>
   <data name="Error_201" xml:space="preserve">
     <value>عملية أو وظيفة تتوقع معامل غيرمزود</value>
   </data>

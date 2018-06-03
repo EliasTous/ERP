@@ -66,5 +66,6 @@ namespace AionHR.Model.Employees.Profile
         [ApplySecurity]
         public string edName { get; set; }
         public bool? isTaxable { get; set; }
+        public int employeeId { get; set; }
     }
 }

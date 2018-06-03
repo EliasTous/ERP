@@ -459,7 +459,11 @@ namespace AionHR.Web.UI.Forms.Controls
 
                         LeaveRequestNotification(b);
                         //Add this record to the store 
-                        days.ForEach(d => d.leaveId = Convert.ToInt32(b.recordId));
+                        days.ForEach(d =>
+                        {
+                            d.leaveId = Convert.ToInt32(b.recordId);
+                            d.employeeId = Convert.ToInt32(b.employeeId);
+                            });
                         AddDays(days);
                         if (Store1 != null)
                             this.Store1.Reload();
@@ -575,7 +579,12 @@ namespace AionHR.Web.UI.Forms.Controls
                             X.Msg.Alert(Resources.Common.Error, deleteDesponse.Summary).Show();
                             return;
                         }
-                        days.ForEach(x => x.leaveId = Convert.ToInt32(b.recordId));
+                        days.ForEach(d =>
+                        {
+                            d.leaveId = Convert.ToInt32(b.recordId);
+                            d.employeeId = Convert.ToInt32(b.employeeId);
+                        });
+                      
                         AddDays(days);
                         if (Store1 != null)
                         {

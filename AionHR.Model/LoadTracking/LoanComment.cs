@@ -25,5 +25,6 @@ namespace AionHR.Model.LoadTracking
         [PropertyID("45011_01")]
         [ApplySecurity]
         public string userName { get; set; }
+        public int employeeId { set; get; }
     }
 }

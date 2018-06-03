@@ -23,6 +23,7 @@ namespace AionHR.Model.LeaveManagement
         public double leaveHours { get; set; }
 
         public short dow { get; set; }
+        public int employeeId { set; get; }
     }
 
 }

@@ -295,6 +295,33 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to User does not have access to employees in this branch.
+        /// </summary>
+        internal static string Error_19111 {
+            get {
+                return ResourceManager.GetString("Error_19111", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User does not have access to employees in this department.
+        /// </summary>
+        internal static string Error_19112 {
+            get {
+                return ResourceManager.GetString("Error_19112", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User does not have access to employees in this division.
+        /// </summary>
+        internal static string Error_19113 {
+            get {
+                return ResourceManager.GetString("Error_19113", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to عملية أو وظيفة تتوقع معامل غيرمزود.
         /// </summary>
         internal static string Error_201 {
