@@ -23,7 +23,8 @@
         <ext:Hidden ID="titleSavingError" runat="server" Text="<%$ Resources:Common , TitleSavingError %>" />
         <ext:Hidden ID="titleSavingErrorMessage" runat="server" Text="<%$ Resources:Common , TitleSavingErrorMessage %>" />
         <ext:Hidden ID="leaveType1" runat="server" Text="<%$ Resources: Personal %>" />
-         <ext:Hidden ID="leaveType2" runat="server" Text="<%$ Resources: Business %>" />
+        <ext:Hidden ID="leaveType2" runat="server" Text="<%$ Resources: Business %>" />
+        <ext:Hidden ID="leaveType0" runat="server" Text="<%$ Resources: Other %>" />
         <ext:Store
             ID="Store1"
             runat="server"
@@ -258,10 +259,10 @@
                                 <ext:TextField ID="name" runat="server" FieldLabel="<%$ Resources:FieldName%>" Name="name" AllowBlank="false" />
                                 <ext:TextField ID="reference" runat="server" FieldLabel="<%$ Resources:FieldReference%>" Name="reference" />
 
-                                <ext:ComboBox AnyMatch="true" CaseSensitive="false" runat="server" FieldLabel="<%$ Resources:LeaveType%>" Editable="false" ID="leaveType" DataIndex="leaveType" Name="leaveType" AllowBlank="false">
+                                <ext:ComboBox AnyMatch="true" CaseSensitive="false" runat="server" FieldLabel="<%$ Resources:LeaveType%>" Editable="false" ID="leaveType" DataIndex="leaveType" Name="leaveType" AllowBlank="false" ForceSelection="true">
                                     <Items>
 
-                                        <ext:ListItem Text="<%$ Resources: Personal %>" Value="1" />
+                                        <ext:ListItem Text="<%$ Resources: Personal %>" Value="1"  />
                                         <ext:ListItem Text="<%$ Resources: Business %>" Value="2" />
                                     </Items>
                                     <Listeners>

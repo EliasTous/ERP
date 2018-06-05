@@ -165,4 +165,7 @@
   <data name="WindowTitle" xml:space="preserve">
     <value>أنواع الإجازات</value>
   </data>
+  <data name="Other" xml:space="preserve">
+    <value>نوع أخر</value>
+  </data>
 </root>

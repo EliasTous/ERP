@@ -331,6 +331,11 @@ namespace AionHR.Web.UI.Forms
 
             request.Filter = "";
             ListResponse<LeaveType> routers = _leaveManagementService.ChildGetAll<LeaveType>(request);
+            routers.Items.ForEach(x =>
+            {if (x.leaveType != 1 && x.leaveType != 2)
+                    x.leaveType = 1;
+            }
+            );
             if (!routers.Success)
                 X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", routers.ErrorCode) != null ? GetGlobalResourceObject("Errors", routers.ErrorCode).ToString() : routers.Summary).Show();
             this.Store1.DataSource = routers.Items;
