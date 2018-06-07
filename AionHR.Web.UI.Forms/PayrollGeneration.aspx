@@ -449,7 +449,7 @@
 
                                                 <ext:ModelField Name="netSalary" />
                                                 <ext:ModelField Name="name" IsComplex="true" />
-                                                <ext:ModelField Name="branchName" />
+                                               <%-- <ext:ModelField Name="branchName" />--%>
                                                 <ext:ModelField Name="departmentName" />
                                                 <ext:ModelField Name="currencyName" />
                                                 <ext:ModelField Name="currencyRef" />
@@ -471,7 +471,7 @@
                                         <Renderer Handler="return record.data['name'].fullName;" />
                                     </ext:Column>
                                       <ext:Column runat="server" ID="seqNoEM" DataIndex="seqNo" Hidden="true" />
-                                    <ext:Column runat="server" DataIndex="branchName" Text="<%$ Resources: FieldBranch%>" Flex="1" />
+                         <%--           <ext:Column runat="server" DataIndex="branchName" Text="<%$ Resources: FieldBranch%>" Flex="1" />--%>
                                     <ext:Column runat="server" DataIndex="departmentName" Text="<%$ Resources: FieldDepartment%>" Flex="1" />
                                     <ext:Column runat="server" DataIndex="calendarDays" Text="<%$ Resources: FieldCalDays%>" Width="100" />
                                     

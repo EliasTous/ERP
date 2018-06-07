@@ -227,6 +227,7 @@
     <Content Include="ForgotAccount.aspx" />
     <Content Include="ForgotPassword.aspx" />
     <Content Include="GenerateAttendanceDays.aspx" />
+    <Content Include="GenerateAttendanceShifts.aspx" />
     <Content Include="Geofences.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Controls\HijriGregDatePicker.ascx" />
@@ -636,6 +637,13 @@
     </Compile>
     <Compile Include="GenerateAttendanceDays.aspx.designer.cs">
       <DependentUpon>GenerateAttendanceDays.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GenerateAttendanceShifts.aspx.cs">
+      <DependentUpon>GenerateAttendanceShifts.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GenerateAttendanceShifts.aspx.designer.cs">
+      <DependentUpon>GenerateAttendanceShifts.aspx</DependentUpon>
     </Compile>
     <Compile Include="GovernmentOrganisations.aspx.cs">
       <DependentUpon>GovernmentOrganisations.aspx</DependentUpon>
@@ -2302,6 +2310,8 @@
     <Content Include="App_LocalResources\ImportEmploymentStatus.aspx.resx" />
     <Content Include="App_LocalResources\ImportPunches.aspx.ar.resx" />
     <Content Include="App_LocalResources\ImportPunches.aspx.resx" />
+    <Content Include="App_LocalResources\GenerateAttendanceShifts.aspx.ar.resx" />
+    <Content Include="App_LocalResources\GenerateAttendanceShifts.aspx.resx" />
     <EmbeddedResource Include="Reports\RT201.aspx.resx">
       <DependentUpon>RT201.aspx.cs</DependentUpon>
       <Generator>ResXFileCodeGenerator</Generator>
