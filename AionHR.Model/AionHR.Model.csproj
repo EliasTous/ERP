@@ -230,6 +230,7 @@
     <Compile Include="TimeAttendance\DayType.cs" />
     <Compile Include="TimeAttendance\FlatSchedule.cs" />
     <Compile Include="TimeAttendance\GenerateAttendanceDay.cs" />
+    <Compile Include="TimeAttendance\GenerateAttendanceShift.cs" />
     <Compile Include="TimeAttendance\Geofence.cs" />
     <Compile Include="TimeAttendance\ImportAttendance.cs" />
     <Compile Include="TimeAttendance\ImportOvertimeSetting.cs" />
