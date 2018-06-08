@@ -1,9 +1,10 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="LeaveRequestControl.ascx.cs" Inherits="AionHR.Web.UI.Forms.Controls.LeaveRequestControl" %>
 <link rel="stylesheet" type="text/css" href="CSS/Common.css" />
 <link rel="stylesheet" href="CSS/LiveSearch.css" />
-<script type="text/javascript" src="../Scripts/LeaveRequests2.js?id=10"></script>
-<script type="text/javascript" src="../Scripts/common.js"></script>
-<script type="text/javascript" src="../Scripts/moment.js"></script>
+
+<script type="text/javascript" src="Scripts/common.js?id=110"></script>
+<script type="text/javascript" src="Scripts/moment.js?id=2"></script>
+<script type="text/javascript" src="Scripts/LeaveRequests2.js?id=1"></script>
 <style type="text/css">
     .print-button{
         padding:3px;
