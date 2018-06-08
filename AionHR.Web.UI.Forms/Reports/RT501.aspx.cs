@@ -26,6 +26,7 @@ using AionHR.Services.Messaging.Reports;
 using System.Threading;
 using Reports;
 using AionHR.Model.Reports;
+using AionHR.Model.Employees.Profile;
 
 namespace AionHR.Web.UI.Forms.Reports
 {
@@ -35,6 +36,7 @@ namespace AionHR.Web.UI.Forms.Reports
         ITimeAttendanceService _timeAttendanceService = ServiceLocator.Current.GetInstance<ITimeAttendanceService>();
         ICompanyStructureService _companyStructureService = ServiceLocator.Current.GetInstance<ICompanyStructureService>();
         IReportsService _reportsService = ServiceLocator.Current.GetInstance<IReportsService>();
+        IEmployeeService _employeeService = ServiceLocator.Current.GetInstance<IEmployeeService>();
         protected override void InitializeCulture()
         {
 
@@ -168,6 +170,7 @@ namespace AionHR.Web.UI.Forms.Reports
             req.Add(paymentMethodCombo.GetPaymentMethod());
             req.Add(GetPayRef());
             req.Add(jobInfo1.GetJobInfo());
+            req.Add(employeeFilter.GetEmployee());
 
             return req;
         }
@@ -192,11 +195,11 @@ namespace AionHR.Web.UI.Forms.Reports
 
             var d = resp.Items.GroupBy(x => x.employeeName.fullName);
             PayrollLineCollection lines = new PayrollLineCollection();
-            HashSet<EntitlementDeduction> ens = new HashSet<EntitlementDeduction>(new EntitlementDeductionComparer());
-            HashSet<EntitlementDeduction> des = new HashSet<EntitlementDeduction>(new EntitlementDeductionComparer());
+            HashSet<Model.Reports.EntitlementDeduction> ens = new HashSet<Model.Reports.EntitlementDeduction>(new EntitlementDeductionComparer());
+            HashSet<Model.Reports.EntitlementDeduction> des = new HashSet<Model.Reports.EntitlementDeduction>(new EntitlementDeductionComparer());
             resp.Items.ForEach(x =>
             {
-                EntitlementDeduction DE = new EntitlementDeduction();
+                Model.Reports.EntitlementDeduction DE = new Model.Reports.EntitlementDeduction();
 
                 if (x.edType == 1)
                 {
@@ -336,6 +339,39 @@ namespace AionHR.Web.UI.Forms.Reports
 
             }
             return p;
+        }
+        [DirectMethod]
+        public object FillEmployee(string action, Dictionary<string, object> extraParams)
+        {
+            StoreRequestParameters prms = new StoreRequestParameters(extraParams);
+            List<Employee> data = GetEmployeesFiltered(prms.Query);
+            data.ForEach(s => { s.fullName = s.name.fullName; });
+            //  return new
+            // {
+            return data;
+        }
+
+        private List<Employee> GetEmployeesFiltered(string query)
+        {
+
+            EmployeeListRequest req = new EmployeeListRequest();
+            req.DepartmentId = "0";
+            req.BranchId = "0";
+            req.IncludeIsInactive = 2;
+            req.SortBy = GetNameFormat();
+
+            req.StartAt = "1";
+            req.Size = "20";
+            req.Filter = query;
+
+            ListResponse<Employee> response = _employeeService.GetAll<Employee>(req);
+            return response.Items;
+        }
+
+
+        private string GetNameFormat()
+        {
+            return _systemService.SessionHelper.Get("nameFormat").ToString();
         }
     }
 }

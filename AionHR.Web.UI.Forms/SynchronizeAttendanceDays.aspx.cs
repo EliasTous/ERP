@@ -50,7 +50,7 @@ namespace AionHR.Web.UI.Forms
                 employeeFilter.Select(0);
                 startingDate.Value = DateTime.Now;
 
-                startingDate.MinDate = DateTime.Now.AddDays(-60);
+                startingDate.MinDate = DateTime.Now.AddDays(-180);
 
                 endingDate.MinDate = startingDate.SelectedDate;
                 endingDate.Value = DateTime.Now;
