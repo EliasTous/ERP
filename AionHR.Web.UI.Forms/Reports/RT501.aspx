@@ -80,7 +80,14 @@
                                                 <uc:payRefCombo runat="server" ID="payRefFilter" />
                                             </Content>
                                         </ext:Container>--%>
+                                   <ext:Container runat="server" Layout="FitLayout">
+                                    <Content>
+                                        <%--<uc:dateRange runat="server" ID="dateRange1" />--%>
+                                 <uc:employeeCombo runat="server" ID="employeeFilter" />
+                                    </Content>
+                                </ext:Container>
                                  <ext:TextField Width="120" runat="server" ID="payRef" EmptyText="<%$Resources:Common , PayRef %>" />
+
                                 <ext:Container runat="server" Layout="FitLayout">
                                     <Content>
                                          <ext:Button runat="server" Text="<%$Resources:Common, Go %>" >
