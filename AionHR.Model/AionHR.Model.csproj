@@ -31,9 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\AionHR.Infrastructure\bin\Debug\Newtonsoft.Json.dll</HintPath>
+      <HintPath>E:\bin\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -230,6 +230,7 @@
     <Compile Include="TimeAttendance\DayType.cs" />
     <Compile Include="TimeAttendance\FlatSchedule.cs" />
     <Compile Include="TimeAttendance\GenerateAttendanceDay.cs" />
+    <Compile Include="TimeAttendance\GenerateAttendanceShift.cs" />
     <Compile Include="TimeAttendance\Geofence.cs" />
     <Compile Include="TimeAttendance\ImportAttendance.cs" />
     <Compile Include="TimeAttendance\ImportOvertimeSetting.cs" />

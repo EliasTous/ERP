@@ -14,9 +14,9 @@ namespace AionHR.Model.Payroll
         [PropertyID("51021_01")]
         [ApplySecurity]
         public EmployeeName name { get; set; }
-        [PropertyID("51021_02")]
-        [ApplySecurity]
-        public string branchName { get; set; }
+        //[PropertyID("51021_02")]
+        //[ApplySecurity]
+        //public string branchName { get; set; }
         [PropertyID("51021_03")]
         [ApplySecurity]
 

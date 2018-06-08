@@ -39,6 +39,7 @@ namespace AionHR.Repository.WebService.Repositories
             ChildAddOrUpdateLookup.Add(typeof(FlatScheduleImport), "TA03");
             ChildAddOrUpdateLookup.Add(typeof(FlatBulkSchedule), "TA04");
             ChildAddOrUpdateLookup.Add(typeof(SynchronizeAttendanceDay), "TA07");
+            ChildAddOrUpdateLookup.Add(typeof(GenerateAttendanceShift), "TA08");
 
 
 

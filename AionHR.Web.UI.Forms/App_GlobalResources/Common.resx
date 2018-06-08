@@ -1170,4 +1170,10 @@
   <data name="ImportPunches" xml:space="preserve">
     <value>Import Punches</value>
   </data>
+  <data name="GenerateAttendanceShift" xml:space="preserve">
+    <value>Generate Attendance Shifts</value>
+  </data>
+  <data name="GenerateAttendanceShiftSucc" xml:space="preserve">
+    <value>Attendance Shifts Generated Successfully</value>
+  </data>
 </root>

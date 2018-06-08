@@ -25,6 +25,7 @@
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
     <TargetFrameworkProfile />
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -124,9 +125,9 @@
       <HintPath>..\packages\CommonServiceLocator.1.3\lib\portable-net4+sl5+netcore45+wpa81+wp8\Microsoft.Practices.ServiceLocation.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\Desktop\Newtonsoft.Json.dll</HintPath>
+      <HintPath>E:\bin\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="StructureMap, Version=4.4.2.472, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\StructureMap.4.4.2\lib\net45\StructureMap.dll</HintPath>
@@ -226,6 +227,7 @@
     <Content Include="ForgotAccount.aspx" />
     <Content Include="ForgotPassword.aspx" />
     <Content Include="GenerateAttendanceDays.aspx" />
+    <Content Include="GenerateAttendanceShifts.aspx" />
     <Content Include="Geofences.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Controls\HijriGregDatePicker.ascx" />
@@ -635,6 +637,13 @@
     </Compile>
     <Compile Include="GenerateAttendanceDays.aspx.designer.cs">
       <DependentUpon>GenerateAttendanceDays.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GenerateAttendanceShifts.aspx.cs">
+      <DependentUpon>GenerateAttendanceShifts.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GenerateAttendanceShifts.aspx.designer.cs">
+      <DependentUpon>GenerateAttendanceShifts.aspx</DependentUpon>
     </Compile>
     <Compile Include="GovernmentOrganisations.aspx.cs">
       <DependentUpon>GovernmentOrganisations.aspx</DependentUpon>
@@ -2301,6 +2310,8 @@
     <Content Include="App_LocalResources\ImportEmploymentStatus.aspx.resx" />
     <Content Include="App_LocalResources\ImportPunches.aspx.ar.resx" />
     <Content Include="App_LocalResources\ImportPunches.aspx.resx" />
+    <Content Include="App_LocalResources\GenerateAttendanceShifts.aspx.ar.resx" />
+    <Content Include="App_LocalResources\GenerateAttendanceShifts.aspx.resx" />
     <EmbeddedResource Include="Reports\RT201.aspx.resx">
       <DependentUpon>RT201.aspx.cs</DependentUpon>
       <Generator>ResXFileCodeGenerator</Generator>
