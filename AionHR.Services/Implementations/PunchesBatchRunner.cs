@@ -61,6 +61,8 @@ namespace AionHR.Services.Implementations
             item.lon = 0;
             item.lat = 0;
             item.hasImage = 0;
+            item.ip = "0.0.0.0";
+
          
           
         }
