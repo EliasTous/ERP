@@ -26,6 +26,7 @@ using AionHR.Model.System;
 using AionHR.Model.Employees.Leaves;
 using AionHR.Model.Attendance;
 using AionHR.Model.TimeAttendance;
+using AionHR.Model.HelpFunction;
 
 namespace AionHR.Web.UI.Forms
 {
@@ -37,6 +38,7 @@ namespace AionHR.Web.UI.Forms
         ICompanyStructureService _companyStructureService = ServiceLocator.Current.GetInstance<ICompanyStructureService>();
         ILeaveManagementService _leaveManagementService = ServiceLocator.Current.GetInstance<ILeaveManagementService>();
         ITimeAttendanceService _timeAttendanceService = ServiceLocator.Current.GetInstance<ITimeAttendanceService>();
+        IHelpFunctionService _helpFunctionService = ServiceLocator.Current.GetInstance<IHelpFunctionService>();
         protected override void InitializeCulture()
         {
 
@@ -243,10 +245,24 @@ namespace AionHR.Web.UI.Forms
                     X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>Technical Error: " + resp.ErrorCode + "<br> Summary: " + resp.Summary : resp.Summary).Show();
                     return;
                 }
-                
-                //Step 2 :  remove the object from the store
-                attendanceShiftStore.Remove(index);
+                SynchronizeAttendanceDay GD = new SynchronizeAttendanceDay();
+                PostRequest<SynchronizeAttendanceDay> request = new PostRequest<SynchronizeAttendanceDay>();
+                GD.employeeId =Convert.ToInt32( CurrentEmployee.Text);
+                GD.fromDayId = CurrentDay.Text;
+                GD.toDayId = CurrentDay.Text;
+                request.entity = GD;
 
+
+                PostResponse<SynchronizeAttendanceDay> resp1 = _helpFunctionService.ChildAddOrUpdate<SynchronizeAttendanceDay>(request);
+                //Step 2 :  remove the object from the store
+             
+                if (!resp1.Success)
+                {
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp1.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp1.ErrorCode).ToString() + "<br>Technical Error: " + resp1.ErrorCode + "<br> Summary: " + resp1.Summary : resp1.Summary).Show();
+                    return;
+                }
+                attendanceShiftStore.Remove(index);
                 //Step 3 : Showing a notification for the user 
                 Notification.Show(new NotificationConfig
                 {
