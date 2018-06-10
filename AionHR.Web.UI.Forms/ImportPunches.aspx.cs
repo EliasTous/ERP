@@ -224,7 +224,7 @@ namespace AionHR.Web.UI.Forms
             catch (Exception exp)
             {
                 X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorOperation + " " + Resources.Common.LineNO + " " + exp.Source).Show();
+                X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorOperation + " " + Resources.Common.LineNO + " " + exp.Source+ " "+exp.Message).Show();
                 this.ResourceManager1.AddScript("{0}.stopTask('longactionprogress');", this.TaskManager1.ClientID);
                 Viewport1.ActiveIndex = 0;
 

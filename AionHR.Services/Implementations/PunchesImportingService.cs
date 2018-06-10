@@ -36,7 +36,8 @@ namespace AionHR.Services.Implementations
             }
             catch (Exception exp)
             {
-
+                exp.Source = row[0].ToString() + " " + row[1].ToString();
+                throw exp;
             }
             return result;
         }
