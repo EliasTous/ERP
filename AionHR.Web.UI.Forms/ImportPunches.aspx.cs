@@ -217,6 +217,7 @@ namespace AionHR.Web.UI.Forms
                 SystemService _system = new SystemService(new SystemRepository(), h);
                 PunchesBatchRunner runner = new PunchesBatchRunner(storage, emp, _system, _timeAtt) { Items = shifts, OutputPath = MapPath("~/Imports/" + _systemService.SessionHelper.Get("AccountId") + "/") };
                 runner.Process();
+                
                 this.ResourceManager1.AddScript("{0}.startTask('longactionprogress');", this.TaskManager1.ClientID);
 
 
@@ -224,7 +225,10 @@ namespace AionHR.Web.UI.Forms
             catch (Exception exp)
             {
                 X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorOperation + " " + Resources.Common.LineNO + " " + exp.Source+ " "+exp.Message).Show();
+
+                string[] errorDetails = exp.Source.Split(';');
+                X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorOperation + "<br />" + Resources.Common.LineNO +errorDetails[2]+ "<br />" + GetGlobalResourceObject("Common", "FieldDetails")+":"+errorDetails[0]+" "+ errorDetails[1] + "<br />" + GetGlobalResourceObject("Common", "ExceptionMessage") + exp.Message).Show();
+                //X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorOperation + "<br /> " + Resources.Common.LineNO + exp.HelpLink + "<br />" + GetGlobalResourceObject("Common", "FieldDetails") + ":" + exp.Source + " " + exp.Message).Show();
                 this.ResourceManager1.AddScript("{0}.stopTask('longactionprogress');", this.TaskManager1.ClientID);
                 Viewport1.ActiveIndex = 0;
 

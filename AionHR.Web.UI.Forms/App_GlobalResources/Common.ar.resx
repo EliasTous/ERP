@@ -1168,7 +1168,7 @@
     <value>استيراد الحالة الوظيفية</value>
   </data>
   <data name="LineNO" xml:space="preserve">
-    <value>رقم السطر :</value>
+    <value>خطأ في الملف المستورد - رقم السطر :</value>
   </data>
   <data name="ImportPunches" xml:space="preserve">
     <value>استيراد البصمات</value>
@@ -1178,5 +1178,8 @@
   </data>
   <data name="GenerateAttendanceShiftSucc" xml:space="preserve">
     <value>تم انشاء الدوام بنجاح </value>
+  </data>
+  <data name="ExceptionMessage" xml:space="preserve">
+    <value>رسالة الخطأ :</value>
   </data>
 </root>

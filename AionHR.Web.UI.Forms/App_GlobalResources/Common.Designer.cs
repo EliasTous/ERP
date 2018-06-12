@@ -970,6 +970,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Exception Message :.
+        /// </summary>
+        internal static string ExceptionMessage {
+            get {
+                return ResourceManager.GetString("ExceptionMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Exit.
         /// </summary>
         internal static string Exit {
@@ -1591,7 +1600,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Line Number : .
+        ///   Looks up a localized string similar to Error In imported File - Line number :.
         /// </summary>
         internal static string LineNO {
             get {
