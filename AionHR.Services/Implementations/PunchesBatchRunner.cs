@@ -20,7 +20,9 @@ namespace AionHR.Services.Implementations
     {
         ITimeAttendanceService timeAttendance;
         Dictionary<string, int> udId;
-        public PunchesBatchRunner(ISessionStorage store, IEmployeeService employee, ISystemService system, ITimeAttendanceService timeAttendance) :base(system, employee)
+        Dictionary<string, string> arabicErrors;
+
+        public PunchesBatchRunner(ISessionStorage store, IEmployeeService employee, ISystemService system, ITimeAttendanceService timeAttendance,Dictionary<string,string> arabicErrors) :base(system, employee)
         {
             this.timeAttendance = timeAttendance;
             this.SessionStore = store;
@@ -30,6 +32,7 @@ namespace AionHR.Services.Implementations
             BatchStatus = new BatchOperationStatus() { classId = ClassId.TACH, processed = 0, tableSize = 0, status = 0 };
             errors = new List<Check>();
             udId = new Dictionary<string, int>();
+            this.arabicErrors = arabicErrors;
             FillUdId();
 
             //FillCaId();
@@ -45,11 +48,13 @@ namespace AionHR.Services.Implementations
                 b.AppendLine(error.employeeRef + "," + error.clockStamp + "," + errorMessages[i++].Replace('\r', ' ').Replace(',', ';'));
 
             }
+
+
             string csv = b.ToString();
-            string path = OutputPath + BatchStatus.classId.ToString() + ".csv";
+            string path = OutputPath + BatchStatus.classId.ToString() + ".txt";
 
 
-            File.WriteAllText(path, csv.ToString());
+            File.WriteAllText(path, csv.ToString(),Encoding.UTF8);
         }
 
         protected override void PreProcessElement(Check item)
@@ -75,8 +80,15 @@ namespace AionHR.Services.Implementations
             PostResponse<Check> resp =timeAttendance.ChildAddOrUpdate<Check>(req);
             if (!resp.Success)
             {
+                if (arabicErrors.ContainsKey(resp.ErrorCode))
+                {
+                    errorMessages.Add(arabicErrors[resp.ErrorCode]);
+                }
+                else
+                    errorMessages.Add(resp.Summary);
+
                 errors.Add(item);
-                errorMessages.Add(resp.Summary);
+              
             }
         }
         private void FillUdId()

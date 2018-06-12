@@ -380,8 +380,26 @@
   <data name="Error_50052" xml:space="preserve">
     <value>وقت تسجيل الخروج يجب أن يكون بعد وقت تسجيل الدخول</value>
   </data>
+  <data name="Error_50056" xml:space="preserve">
+    <value>يوجد سجل معلومات عمل للموظف بنفس التاريخ</value>
+  </data>
+  <data name="Error_50057" xml:space="preserve">
+    <value>تم تعيين هذا الموظف لمستخدم أخر </value>
+  </data>
   <data name="Error_50058" xml:space="preserve">
     <value>تاريخ توظيف الخاص بالموظف اكبر من اليوم محدد </value>
+  </data>
+  <data name="Error_50059" xml:space="preserve">
+    <value>Invalid employee Id</value>
+  </data>
+  <data name="Error_50060" xml:space="preserve">
+    <value>لا تستطيع عمل اي نشاط لان راتب هذا الشهر مثبت </value>
+  </data>
+  <data name="Error_50061" xml:space="preserve">
+    <value>خطأ في السلف : ان الرصيد المقتطع اكبر من رصيد السلفة </value>
+  </data>
+  <data name="Error_50062" xml:space="preserve">
+    <value>رمز موظف غير معرف</value>
   </data>
   <data name="Error_515" xml:space="preserve">
     <value>SQLفي جدول عمود null لا يمكن ادخال القيمة</value>

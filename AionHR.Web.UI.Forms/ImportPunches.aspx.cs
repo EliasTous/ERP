@@ -37,6 +37,10 @@ using AionHR.Infrastructure.Domain;
 using AionHR.Model.System;
 using AionHR.Model.LoadTracking;
 using AionHR.Model.LeaveManagement;
+using System.Resources;
+using System.Collections;
+
+
 
 namespace AionHR.Web.UI.Forms
 {
@@ -199,7 +203,10 @@ namespace AionHR.Web.UI.Forms
                 PunchesImportingService service = null;
                 service = new PunchesImportingService(new CSVImporter(CurrentPath.Text));
                 List<Check> shifts = service.ImportUnvalidated(CurrentPath.Text);
-
+              
+               //shifts = shifts.Distinct()
+                   shifts = shifts.OrderBy(x => x.employeeRef).ThenBy(c => c.clockStamp).ToList();
+               
                 File.Delete(CurrentPath.Text);
 
 
@@ -215,7 +222,23 @@ namespace AionHR.Web.UI.Forms
 
                 ITimeAttendanceService _timeAtt = new TimeAttendanceService(h, new TimeAttendanceRepository());
                 SystemService _system = new SystemService(new SystemRepository(), h);
-                PunchesBatchRunner runner = new PunchesBatchRunner(storage, emp, _system, _timeAtt) { Items = shifts, OutputPath = MapPath("~/Imports/" + _systemService.SessionHelper.Get("AccountId") + "/") };
+
+
+                Dictionary<string, string> arabicErrors = new Dictionary<string, string>();
+                if (_systemService.SessionHelper.CheckIfArabicSession())
+                {
+                    System.Resources.ResourceManager MyResourceClass = new System.Resources.ResourceManager(typeof(Resources.Errors /* Reference to your resources class -- may be named differently in your case */));
+
+                    ResourceSet resourceSet = Resources.Errors.ResourceManager.GetResourceSet(CultureInfo.CurrentUICulture, true, true);
+                    foreach (DictionaryEntry entry in resourceSet)
+                    {
+                        arabicErrors[entry.Key.ToString()] = entry.Value.ToString();
+                      
+                    }
+                }
+            
+
+                PunchesBatchRunner runner = new PunchesBatchRunner(storage, emp, _system, _timeAtt, arabicErrors) { Items = shifts, OutputPath = MapPath("~/Imports/" + _systemService.SessionHelper.Get("AccountId") + "/") };
                 runner.Process();
                 
                 this.ResourceManager1.AddScript("{0}.startTask('longactionprogress');", this.TaskManager1.ClientID);
@@ -280,7 +303,7 @@ namespace AionHR.Web.UI.Forms
 
         protected void DownloadResult(object sender, DirectEventArgs e)
         {
-            string attachment = "attachment; filename=MyCsvLol.csv";
+            string attachment = "attachment; filename=MyCsvLol.txt";
             //HttpContext.Current.Response.Clear();
             //HttpContext.Current.Response.ClearHeaders();
             //HttpContext.Current.Response.ClearContent();
@@ -290,7 +313,7 @@ namespace AionHR.Web.UI.Forms
             string content;
             try
             {
-                content = File.ReadAllText(MapPath("~/Imports/" + _systemService.SessionHelper.Get("AccountId") + "/" + ClassId.TACH.ToString() + ".csv"));
+                content = File.ReadAllText(MapPath("~/Imports/" + _systemService.SessionHelper.Get("AccountId") + "/" + ClassId.TACH.ToString() + ".txt"));
             }
 
             catch (Exception exp)

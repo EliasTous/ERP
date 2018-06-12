@@ -19,7 +19,7 @@ namespace Resources {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option or rebuild the Visual Studio project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Web.Application.StronglyTypedResourceProxyBuilder", "14.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Web.Application.StronglyTypedResourceProxyBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Errors {
@@ -844,11 +844,65 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to An employee job info record exist for the same date.
+        /// </summary>
+        internal static string Error_50056 {
+            get {
+                return ResourceManager.GetString("Error_50056", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Employee is already assigned to user.
+        /// </summary>
+        internal static string Error_50057 {
+            get {
+                return ResourceManager.GetString("Error_50057", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to employee hire date is greater than the selected date.
         /// </summary>
         internal static string Error_50058 {
             get {
                 return ResourceManager.GetString("Error_50058", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid employee Id.
+        /// </summary>
+        internal static string Error_50059 {
+            get {
+                return ResourceManager.GetString("Error_50059", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cannot enter an activity for a closed payroll period.
+        /// </summary>
+        internal static string Error_50060 {
+            get {
+                return ResourceManager.GetString("Error_50060", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error in loan : Amount to deduct is bigger than the loan balance.
+        /// </summary>
+        internal static string Error_50061 {
+            get {
+                return ResourceManager.GetString("Error_50061", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unknown Employee Reference.
+        /// </summary>
+        internal static string Error_50062 {
+            get {
+                return ResourceManager.GetString("Error_50062", resourceCulture);
             }
         }
         
