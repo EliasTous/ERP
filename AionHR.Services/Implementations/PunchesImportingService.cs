@@ -32,7 +32,7 @@ namespace AionHR.Services.Implementations
                 //else
                   em.clockStamp = DateTime.Parse(row[1].ToString());
                  //em.clockStamp = DateTime.ParseExact(row[1].ToString(), "yyyy-MM-dd HH:mm:ss", new CultureInfo("en"));
-                 em.udIdRef = row[2].ToString();
+                 em.udId = row[2].ToString();
 
 
 

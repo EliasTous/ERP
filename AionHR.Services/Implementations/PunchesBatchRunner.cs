@@ -59,8 +59,8 @@ namespace AionHR.Services.Implementations
 
         protected override void PreProcessElement(Check item)
         {
-            if (udId.ContainsKey(item.udIdRef))
-                item.udId = udId[item.udIdRef].ToString();
+            //if (udId.ContainsKey(item.udIdRef))
+            //    item.udId = udId[item.udIdRef].ToString();
             item.udIdRef = null;
             item.authMode = 3;
             item.lon = 0;
