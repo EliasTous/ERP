@@ -66,7 +66,7 @@ namespace AionHR.Infrastructure.Importers
             }
             catch(Exception e)
             {
-                e.Source = referance;
+                e.Source = referance+";"+lineNumber;
                 throw;
             }
         }
