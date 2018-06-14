@@ -105,7 +105,8 @@
                                         </ext:Store>
                                     </Store>
                                     <Listeners>
-                                        <Select Handler="App.salaryTypeFilter.setValue(5); App.payrollsStore.reload();">
+                                      <%--  <Select Handler="App.salaryTypeFilter.setValue(5); App.payrollsStore.reload();">--%>
+                                               <Select Handler="App.salaryTypeFilter.setValue(5); App.payrollsStore.reload();">
                                         </Select>
                                         
                                     </Listeners>
@@ -196,8 +197,8 @@
                             </ColumnModel>
                             <Listeners>
                                 <Render Handler="this.on('cellclick', cellClick);" />
-                                <AfterRender Handler="App.year.setValue(new Date().getFullYear()); App.salaryTypeFilter.setValue(5); App.status.setValue(2); App.payrollsStore.reload();" />
-                                <%--<AfterLayout Handler="App.year.setValue(new Date().getFullYear()); App.salaryTypeFilter.setValue(5); App.status.setValue(2); App.payrollsStore.reload()" />--%>
+                        <%--        <AfterRender Handler="App.year.setValue(new Date().getFullYear()); App.salaryTypeFilter.setValue(5); App.status.setValue(2); App.payrollsStore.reload();" />--%>
+                               <AfterRender Handler="App.year.setValue(new Date().getFullYear()); App.payrollsStore.reload();" />
                                 <AfterLayout Handler="App.payrollsStore.reload();" />
                                 
                             </Listeners>

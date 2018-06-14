@@ -250,7 +250,10 @@ namespace AionHR.Web.UI.Forms
                 X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
 
                 string[] errorDetails = exp.Source.Split(';');
+                if (errorDetails.Length!=1)
                 X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorOperation + "<br />" + Resources.Common.LineNO +errorDetails[2]+ "<br />" + GetGlobalResourceObject("Common", "FieldDetails")+":"+errorDetails[0]+" "+ errorDetails[1] + "<br />" + GetGlobalResourceObject("Common", "ExceptionMessage") + exp.Message).Show();
+                else
+                    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorOperation + "<br />" + GetGlobalResourceObject("Common", "FieldDetails") + ":" + errorDetails[0] +  "<br />" + GetGlobalResourceObject("Common", "ExceptionMessage") + exp.Message).Show();
                 //X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorOperation + "<br /> " + Resources.Common.LineNO + exp.HelpLink + "<br />" + GetGlobalResourceObject("Common", "FieldDetails") + ":" + exp.Source + " " + exp.Message).Show();
                 this.ResourceManager1.AddScript("{0}.stopTask('longactionprogress');", this.TaskManager1.ClientID);
                 Viewport1.ActiveIndex = 0;

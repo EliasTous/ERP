@@ -82,6 +82,9 @@ namespace AionHR.Web.UI.Forms
                 Viewport1.ActiveIndex = 0;
                 yearStore.DataSource = GetYears();
                 yearStore.DataBind();
+                salaryTypeFilter.Select("5");
+                status.Select("0");
+
                 if (_systemService.SessionHelper.CheckIfIsAdmin())
                     return;
                 try
@@ -896,6 +899,8 @@ namespace AionHR.Web.UI.Forms
 
             yearStore.DataSource = GetYears();
             yearStore.DataBind();
+            salaryTypeFilter.Select("5");
+            status.Select("0");
             Viewport1.ActiveIndex = 0;
         }
 
