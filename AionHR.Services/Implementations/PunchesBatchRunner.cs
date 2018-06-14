@@ -45,7 +45,7 @@ namespace AionHR.Services.Implementations
             int i = 0;
             foreach (var error in errors)
             {
-                b.AppendLine(error.employeeRef + "," + error.clockStamp + "," + errorMessages[i++].Replace('\r', ' ').Replace(',', ';'));
+                b.AppendLine(error.employeeRef + "," + error.clockStamp + "," + error.udId + "," + errorMessages[i++].Replace('\r', ' ').Replace(',', ';'));
 
             }
 
