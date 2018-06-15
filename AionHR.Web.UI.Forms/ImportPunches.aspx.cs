@@ -203,9 +203,17 @@ namespace AionHR.Web.UI.Forms
                 PunchesImportingService service = null;
                 service = new PunchesImportingService(new CSVImporter(CurrentPath.Text));
                 List<Check> shifts = service.ImportUnvalidated(CurrentPath.Text);
-              
-               //shifts = shifts.Distinct()
-                   shifts = shifts.OrderBy(x => x.employeeRef).ThenBy(c => c.clockStamp).ToList();
+
+                //shifts = shifts.Distinct()
+                shifts.ForEach(x =>
+                {
+                    TimeSpan ts = new TimeSpan(x.clockStamp.Hour, x.clockStamp.Minute, 0);
+                    x.clockStamp = x.clockStamp.Date + ts;
+                });
+               
+                IEnumerable<Check> noduplicates = shifts.Distinct(new CheckComparer());
+                shifts = noduplicates.ToList();
+                shifts = shifts.OrderBy(x => x.employeeRef).ThenBy(c => c.clockStamp).ToList();
                
                 File.Delete(CurrentPath.Text);
 

@@ -408,7 +408,7 @@
   <data name="employeeRefSize" xml:space="preserve">
     <value>Employee Ref Size</value>
   </data>
-  <data name="maxPunchInterval" xml:space="preserve">
-    <value>Max Punch Interval</value>
+  <data name="minPunchInterval" xml:space="preserve">
+    <value>Min Punch Interval</value>
   </data>
 </root>

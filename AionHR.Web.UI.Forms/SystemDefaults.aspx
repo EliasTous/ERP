@@ -449,7 +449,7 @@
                                        
                                     </Items>
                                 </ext:ComboBox>
-                                 <ext:NumberField  runat="server" LabelWidth="150" ID="maxPunchInterval" Name="maxPunchInterval" FieldLabel="<%$ Resources: maxPunchInterval %>" MinValue="0"  MaxValue="60"/>
+                                 <ext:NumberField  runat="server" LabelWidth="150" ID="minPunchInterval" Name="minPunchInterval" FieldLabel="<%$ Resources: minPunchInterval %>" MinValue="0"  MaxValue="60"/>
                                      
                                    <ext:Checkbox FieldLabel="<%$ Resources: FieldEnableCamera %>" LabelWidth="150" runat="server" InputValue="True" Name="enableCamera" ID="enableCameraCheck" />
 

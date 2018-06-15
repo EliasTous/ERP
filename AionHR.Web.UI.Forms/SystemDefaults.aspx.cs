@@ -449,7 +449,7 @@ namespace AionHR.Web.UI.Forms
             catch { }
             try
             {
-                maxPunchInterval.Text = (items.Where(s => s.Key == "maxPunchInterval").First().Value);
+                minPunchInterval.Text = (items.Where(s => s.Key == "minPunchInterval").First().Value);
               
             }
 
@@ -665,10 +665,10 @@ namespace AionHR.Web.UI.Forms
             else
                 submittedValues.Add(new KeyValuePair<string, string>("sourceTACA", ""));
 
-            if (!string.IsNullOrEmpty(values.maxPunchInterval.ToString()))
-                submittedValues.Add(new KeyValuePair<string, string>("maxPunchInterval", values.maxPunchInterval.ToString()));
+            if (!string.IsNullOrEmpty(values.minPunchInterval.ToString()))
+                submittedValues.Add(new KeyValuePair<string, string>("minPunchInterval", values.minPunchInterval.ToString()));
             else
-                submittedValues.Add(new KeyValuePair<string, string>("maxPunchInterval", ""));
+                submittedValues.Add(new KeyValuePair<string, string>("minPunchInterval", ""));
             submittedValues.Add(new KeyValuePair<string, string>("enableCamera", values.enableCamera == null ? "false" : "true"));
 
             return submittedValues;
