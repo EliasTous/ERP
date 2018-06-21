@@ -631,7 +631,7 @@
             Draggable="false"
             Maximizable="false" Resizable="false"
             Width="700"
-            Height="400"
+            Height="460"
             AutoShow="false"
             Modal="true"
             Hidden="true"
