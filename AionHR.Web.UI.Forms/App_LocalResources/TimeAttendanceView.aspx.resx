@@ -135,6 +135,9 @@
   <data name="DayShifts" xml:space="preserve">
     <value>Shifts</value>
   </data>
+  <data name="DeleteBranchAttendances" xml:space="preserve">
+    <value>Are you sure do you want to delete the selected branch attendances on the selected Date Range  ?</value>
+  </data>
   <data name="EditWindowsTitle" xml:space="preserve">
     <value>Edit Branch</value>
   </data>

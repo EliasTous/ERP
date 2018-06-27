@@ -135,6 +135,9 @@
   <data name="DayShifts" xml:space="preserve">
     <value>تفاصيل الدوام</value>
   </data>
+  <data name="DeleteBranchAttendances" xml:space="preserve">
+    <value>هل أنت متأكد أنك تريد حذف دوام الفرع المحدد ضمن التاريخ المحدد؟</value>
+  </data>
   <data name="EditWindowsTitle" xml:space="preserve">
     <value>تعديل الفرع</value>
   </data>

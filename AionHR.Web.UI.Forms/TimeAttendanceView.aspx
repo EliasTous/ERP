@@ -210,10 +210,10 @@
 
 
 
-                                <ext:Button Visible="false" ID="btnDeleteSelected" runat="server" Text="<%$ Resources:Common , DeleteAll %>" Icon="Delete">
-                                    <Listeners>
+                                <ext:Button  ID="btnDeleteSelected" runat="server" Text="<%$ Resources:Common , DeleteAll %>" Icon="Delete">
+                                   <%-- <Listeners>
                                         <Click Handler="CheckSession();"></Click>
-                                    </Listeners>
+                                    </Listeners>--%>
                                     <DirectEvents>
                                         <Click OnEvent="btnDeleteAll">
                                             <EventMask ShowMask="true" />
