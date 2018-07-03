@@ -210,7 +210,7 @@
 
 
 
-                                <ext:Button  ID="btnDeleteSelected" runat="server" Text="<%$ Resources:Common , DeleteAll %>" Icon="Delete">
+                                <ext:Button  ID="btnDeleteSelected" runat="server" Text="<%$ Resources: DeleteAll %>" Icon="Delete">
                                    <%-- <Listeners>
                                         <Click Handler="CheckSession();"></Click>
                                     </Listeners>--%>
