@@ -685,6 +685,7 @@
                                                         <ext:ModelField Name="amount" />
                                                         <ext:ModelField Name="edSeqNo" />
                                                         <ext:ModelField Name="EDrecordId" />
+                                                        <ext:ModelField Name="masterId" />
                                                     </Fields>
                                                 </ext:Model>
                                             </Model>
@@ -778,6 +779,7 @@
                                                          <ext:ModelField Name="payId" />
                                                          <ext:ModelField Name="edSeqNo" />
                                                         <ext:ModelField Name="EDrecordId" />
+                                                        <ext:ModelField Name="masterId" />
 
                                                     </Fields>
                                                 </ext:Model>
@@ -1016,6 +1018,7 @@
                      
                            <ext:TextField runat="server" Name="seqNo" ID="EDseqNoTF" Hidden="true" Disabled="true"  />
                            <ext:TextField runat="server" Name="edSeqNo" ID="edSeqNo" Hidden="true" Disabled="true" />
+                        <ext:TextField runat="server" Name="masterId" ID="masterId" Hidden="true" Disabled="true" />
                         <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" AllowBlank="false" DisplayField="name" ID="edId" Name="edId" FieldLabel="<%$ Resources:FieldDeduction%>" SimpleSubmit="true">
                             <Store>
                                 <ext:Store runat="server" ID="edStore">
@@ -1064,6 +1067,7 @@
                                
                                  <ext:Parameter Name="seqNo" Value="#{EDseqNoTF}.getValue()" Mode="Raw" />
                                  <ext:Parameter Name="edSeqNo" Value="#{edSeqNo}.getValue()" Mode="Raw" />
+                                 <ext:Parameter Name="masterId" Value="#{masterId}.getValue()" Mode="Raw" />
 
                                 <ext:Parameter Name="values" Value="#{EditEDForm}.getForm().getValues(false, false, false, true)" Mode="Raw" Encode="true" />
                             </ExtraParams>

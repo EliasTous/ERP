@@ -959,6 +959,7 @@ namespace AionHR.Web.UI.Forms
             string type = e.ExtraParams["type"];
             string seqNo = e.ExtraParams["seqNo"];
             string edSeqNo = e.ExtraParams["edSeqNo"];
+            string masterId = e.ExtraParams["masterId"];
 
             string obj = e.ExtraParams["values"];
 
@@ -968,6 +969,7 @@ namespace AionHR.Web.UI.Forms
            
             b.seqNo = seqNo;
             b.edSeqNo = edSeqNo;
+            b.masterId = masterId;
             recordID = b.EDrecordId;
 
             if (edId.SelectedItem != null)
