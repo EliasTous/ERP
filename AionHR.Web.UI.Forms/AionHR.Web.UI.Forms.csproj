@@ -2312,6 +2312,7 @@
     <Content Include="App_LocalResources\ImportPunches.aspx.resx" />
     <Content Include="App_LocalResources\GenerateAttendanceShifts.aspx.ar.resx" />
     <Content Include="App_LocalResources\GenerateAttendanceShifts.aspx.resx" />
+    <Content Include="App_LocalResources\Folders.aspx.ar.resx" />
     <EmbeddedResource Include="Reports\RT201.aspx.resx">
       <DependentUpon>RT201.aspx.cs</DependentUpon>
       <Generator>ResXFileCodeGenerator</Generator>

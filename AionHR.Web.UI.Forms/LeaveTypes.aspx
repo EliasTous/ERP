@@ -284,6 +284,7 @@
                                        <ext:Checkbox runat="server" Name="raDepHead" InputValue="true" ID="raDepHead" DataIndex="raDepHead" FieldLabel="<%$ Resources:raDepHead %>" />
                                        <ext:Checkbox runat="server" Name="raDepHierarchy" InputValue="true" ID="raDepHierarchy" DataIndex="raDepHierarchy" FieldLabel="<%$ Resources:raDepHierarchy %>" />
                                        <ext:Checkbox runat="server" Name="raDepLA" InputValue="true" ID="raDepLA" DataIndex="raDepLA" FieldLabel="<%$ Resources:raDepLA%>" />
+                                        <ext:Checkbox runat="server" Name="raBrHead" InputValue="true" ID="raBrHead" DataIndex="raBrHead" FieldLabel="<%$ Resources:raBrHead%>" />
                                         </Items>
                                 </ext:FieldSet>
 

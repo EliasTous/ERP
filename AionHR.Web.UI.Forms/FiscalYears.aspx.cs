@@ -456,8 +456,14 @@ namespace AionHR.Web.UI.Forms
                 //Step 1 : Fill The object and insert in the store 
                 PostRequest<FiscalYear> request = new PostRequest<FiscalYear>();
                 request.entity = b;
+                if (b.startDate > b.endDate || b.startDate.Year != b.endDate.Year)
+                {
+                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                    X.Msg.Alert(Resources.Common.Error, GetLocalResourceObject("ErrorStartEnd").ToString()).Show();
+                    return;
+                }
                 PostResponse<FiscalYear> r = _payrollService.ChildAddOrUpdate<FiscalYear>(request);
-
+              
 
                 //check if the insert failed
                 if (!r.Success)//it maybe be another condition

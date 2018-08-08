@@ -924,6 +924,7 @@
                 ////Not Chained
 
                 App.activeStore.reload();
+                App.LocalRateStore.reload();
                 //// App.Store1.reload();
 
                 //App.LeaveRequestsStore.reload();

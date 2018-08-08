@@ -295,7 +295,8 @@ namespace AionHR.Web.UI.Forms
 
             bool rtl = _systemService.SessionHelper.CheckIfArabicSession();
             ListRequest req = new ListRequest();
-            ListResponse<DashboardItem> dashoard = _systemService.ChildGetAll<DashboardItem>(req);
+            DashboardRequest req2 = GetDashboardRequest();
+            ListResponse<DashboardItem> dashoard = _systemService.ChildGetAll<DashboardItem>(req2);
             if (!dashoard.Success)
             {
                 X.Msg.Alert(Resources.Common.Error, dashoard.Summary).Show();
@@ -733,12 +734,10 @@ namespace AionHR.Web.UI.Forms
             req.DepartmentId = d.DepartmentId.HasValue ? d.DepartmentId.Value : 0;
             req.PositionId = d.PositionId.HasValue ? d.PositionId.Value : 0;
             req.DivisionId = d.DivisionId.HasValue ? d.DivisionId.Value : 0;
-
-
-
-            if (!string.IsNullOrEmpty(esId.Text) && esId.Value.ToString() != "0" && int.TryParse(esId.Value.ToString(), out intResult))
+            if (!string.IsNullOrEmpty(esId.Text) && esId.Value.ToString() != "0")
             {
-                req.EsId = intResult;
+                req.EsId = Convert.ToInt32(esId.Value);
+
 
 
             }
@@ -749,6 +748,7 @@ namespace AionHR.Web.UI.Forms
             }
 
 
+           
 
 
             return req;
@@ -1022,7 +1022,7 @@ namespace AionHR.Web.UI.Forms
         protected void LocalRateStore_ReadData(object sender, StoreReadDataEventArgs e)
         {
             bool rtl = _systemService.SessionHelper.CheckIfArabicSession();
-            ActiveAttendanceRequest req = new ActiveAttendanceRequest();
+            ActiveAttendanceRequest req = GetActiveAttendanceRequest();
             ListResponse<LocalsRate> resp = _helpFunctionService.ChildGetAll<LocalsRate>(req);
             if (!resp.Success)
             {
