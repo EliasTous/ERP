@@ -36,6 +36,7 @@ namespace AionHR.Web.UI.Forms
         ISystemService _systemService = ServiceLocator.Current.GetInstance<ISystemService>();
         IAccessControlService _accessControlService = ServiceLocator.Current.GetInstance<IAccessControlService>();
         ITimeAttendanceService _timeAttendanceService = ServiceLocator.Current.GetInstance<ITimeAttendanceService>();
+        IEmployeeService _employeeService = ServiceLocator.Current.GetInstance<IEmployeeService>();
         protected override void InitializeCulture()
         {
 
@@ -178,12 +179,29 @@ namespace AionHR.Web.UI.Forms
                     }
                     //Step 2 : call setvalues with the retrieved object
                     branchId.Text = response.result.recordId;
-                   
-                  
+                    managerId.Disabled = false;
+
+                    if (response.result.managerId != "0")
+                    {
+
+                        managerId.GetStore().Add(new object[]
+                           {
+                                new
+                                {
+                                    recordId = response.result.managerId,
+                                    fullName =response.result.managerName.fullName
+                                }
+                           });
+                        managerId.SetValue(response.result.managerId);
+
+                    }
+
                     legalReferenceStore.Reload();
                     this.BasicInfoTab.SetValues(response.result);
-                  //  timeZoneCombo.Select(response.result.timeZone.ToString());
-                    FillNationality();
+                    if (response.result.managerId == "0")
+                        managerId.Text = "";
+                        //  timeZoneCombo.Select(response.result.timeZone.ToString());
+                        FillNationality();
                     FillState();
                     naId.Select(response.result.addressId.countryId);
                     stId.Select(response.result.addressId.stateId);
@@ -234,7 +252,7 @@ namespace AionHR.Web.UI.Forms
                 Branch n = new Branch();
                 n.recordId = index;
                 n.name = "";
-                n.reference = "";
+                n.branchRef = "";
                 n.timeZone = 0;
 
                 PostRequest<Branch> req = new PostRequest<Branch>();
@@ -355,6 +373,7 @@ namespace AionHR.Web.UI.Forms
 
             //Reset all values of the relative object
             BasicInfoTab.Reset();
+            managerId.Disabled = true;
             branchId.Text = "";
             addressForm.Reset();
             this.EditRecordWindow.Title = Resources.Common.AddNewRecord;
@@ -407,6 +426,9 @@ namespace AionHR.Web.UI.Forms
             string obj = e.ExtraParams["values"];
             string addr = e.ExtraParams["address"];
             Branch b = JsonConvert.DeserializeObject<Branch>(obj);
+
+            b.managerId = managerId.Value.ToString(); 
+
             b.isInactive = isInactive.Checked;
             b.recordId = id;
             // Define the object to add or edit as null
@@ -473,7 +495,7 @@ namespace AionHR.Web.UI.Forms
                             Html = Resources.Common.RecordSavingSucc
                         });
                         //Add this record to the store 
-
+                        managerId.Disabled = false;
 
                         //Display successful notification
                         branchId.Text = b.recordId;
@@ -528,7 +550,7 @@ namespace AionHR.Web.UI.Forms
                             Html = Resources.Common.RecordUpdatedSucc
                         });
 
-                        this.EditRecordWindow.Close();
+                    //    this.EditRecordWindow.Close();
 
                     }
 
@@ -962,6 +984,40 @@ namespace AionHR.Web.UI.Forms
             Store3.DataSource = response.Items;
             Store3.DataBind();
         }
+        [DirectMethod]
+        public object FillEmployee(string action, Dictionary<string, object> extraParams)
+        {
+            StoreRequestParameters prms = new StoreRequestParameters(extraParams);
+            List<Employee> data = GetEmployeesFiltered(prms.Query);
+            data.ForEach(s => { s.fullName = s.name.fullName; });
+            //  return new
+            // {
+            return data;
+        }
+
+        private List<Employee> GetEmployeesFiltered(string query)
+        {
+
+            EmployeeListRequest req = new EmployeeListRequest();
+            req.DepartmentId = "0";
+            req.BranchId = "0";
+            req.IncludeIsInactive = 0;
+            req.SortBy = GetNameFormat();
+
+            req.StartAt = "1";
+            req.Size = "20";
+            req.Filter = query;
+
+            ListResponse<Employee> response = _employeeService.GetAll<Employee>(req);
+            return response.Items;
+        }
+
+
+        private string GetNameFormat()
+        {
+            return _systemService.SessionHelper.Get("nameFormat").ToString();
+        }
+
 
 
     }

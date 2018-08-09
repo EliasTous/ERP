@@ -79,7 +79,7 @@
 
                         <ext:ModelField Name="recordId" />
                         <ext:ModelField Name="name" />
-                        <ext:ModelField Name="reference" />
+                        <ext:ModelField Name="branchRef" />
                         <ext:ModelField Name="timeZone" />
                         <ext:ModelField Name="segmentCode" />
                          <ext:ModelField Name="scName" />
@@ -186,7 +186,7 @@
                         <Columns>
 
                               <ext:Column  Visible="false" ID="ColrecordId" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldrecordId %>" DataIndex="recordId" Hideable="false" width="75" Align="Center"/>
-                            <ext:Column ID="ColReference" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldReference%>" DataIndex="reference" width="150" Hideable="false"/>
+                            <ext:Column ID="ColReference" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldReference%>" DataIndex="branchRef" width="150" Hideable="false"/>
                             <ext:Column   CellCls="cellLink" ID="ColName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldName%>" DataIndex="name" Flex="2" Hideable="false">
                         
                                 </ext:Column>
@@ -335,8 +335,9 @@
                             BodyPadding="5">
                             <Items>
                                 <ext:TextField ID="recordId" Hidden="true" runat="server" FieldLabel="<%$ Resources:FieldrecordId%>" Disabled="true" Name="recordId" />
+                                     <ext:TextField ID="branchRef" runat="server" FieldLabel="<%$ Resources: FieldReference %>" DataIndex="branchRef"  />
                                 <ext:TextField ID="name" runat="server" FieldLabel="<%$ Resources:FieldName%>" Name="name" AllowBlank="false" BlankText="<%$ Resources:Common, MandatoryField%>" />
-                                <ext:TextField ID="reference" runat="server" FieldLabel="<%$ Resources: FieldReference %>" DataIndex="reference"  />
+                           
                               <%--  <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" ID="timeZoneCombo"  AllowBlank="false" SimpleSubmit="true" IDMode="Static" Name="timeZone" FieldLabel="<%$ Resources:FieldTimeZone%>" QueryMode="Local"  ForceSelection="true" TypeAhead="true" MinChars="1" >
                                     <Items>
                                         <ext:ListItem Text="-12 UTC" Value="-12" />
@@ -401,7 +402,31 @@
                                 </ext:ComboBox>
                                 
                                 <ext:Checkbox ID="isInactive" runat="server" FieldLabel="<%$ Resources: FieldIsInactive%>" Name="isInactive" InputValue="true" />
-                               
+                                <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" ID="managerId" 
+                                    DisplayField="fullName"
+                                    ValueField="recordId" AllowBlank="true"
+                                    TypeAhead="false"
+                                    HideTrigger="true" SubmitValue="true"
+                                    MinChars="3" FieldLabel="<%$ Resources: manager%>"
+                                    TriggerAction="Query" ForceSelection="false">
+                                    <Store>
+                                        <ext:Store runat="server" ID="Store2" AutoLoad="false">
+                                            <Model>
+                                                <ext:Model runat="server">
+                                                    <Fields>
+                                                        <ext:ModelField Name="recordId" />
+                                                        <ext:ModelField Name="fullName" />
+                                                    </Fields>
+                                                </ext:Model>
+                                            </Model>
+                                            <Proxy>
+                                                <ext:PageProxy DirectFn="App.direct.FillEmployee"></ext:PageProxy>
+                                            </Proxy>
+                                        </ext:Store>
+                                    </Store>
+                                 
+                                   
+                                </ext:ComboBox>
 
                             </Items>
 
