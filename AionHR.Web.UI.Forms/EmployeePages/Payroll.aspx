@@ -91,7 +91,7 @@
                             RemoteSort="False"
                             RemoteFilter="true"
                             OnReadData="SAStore_Refresh"
-                            PageSize="50" IDMode="Explicit" Namespace="App">
+                            PageSize="50" IDMode="Explicit" Namespace="App" >
                             <Proxy>
                                 <ext:PageProxy>
                                     <Listeners>
@@ -99,6 +99,7 @@
                                     </Listeners>
                                 </ext:PageProxy>
                             </Proxy>
+                           
                             <Model>
                                 <ext:Model ID="Model3" runat="server" IDProperty="recordId">
                                     <Fields>
@@ -127,7 +128,7 @@
                                 </ext:Model>
                             </Model>
                             <Sorters>
-                                <ext:DataSorter Property="recordId" Direction="ASC" />
+                                <ext:DataSorter Property="effectiveDate" Direction="ASC" />
                             </Sorters>
                         </ext:Store>
                     </Store>

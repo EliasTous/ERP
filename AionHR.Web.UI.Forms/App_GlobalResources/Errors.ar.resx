@@ -129,6 +129,12 @@
   <data name="Error_1033" xml:space="preserve">
     <value>invalid ORDER BY clause in SQL statement</value>
   </data>
+  <data name="Error_11103" xml:space="preserve">
+    <value>خطأ في صيغة وقت الدخول </value>
+  </data>
+  <data name="Error_11104" xml:space="preserve">
+    <value>خطأ في صيغة وقت الخروج </value>
+  </data>
   <data name="Error_12100" xml:space="preserve">
     <value>عدم تطابق نوع البيانات</value>
   </data>

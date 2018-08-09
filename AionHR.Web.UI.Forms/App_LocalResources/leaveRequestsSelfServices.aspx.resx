@@ -264,4 +264,16 @@
   <data name="YearsInService" xml:space="preserve">
     <value>Years In Service</value>
   </data>
+  <data name="earnedLeaves" xml:space="preserve">
+    <value>Earned Leaves :</value>
+  </data>
+  <data name="leavesBalance" xml:space="preserve">
+    <value>Leave Balance :</value>
+  </data>
+  <data name="paidLeaves" xml:space="preserve">
+    <value>Paid Leaves :</value>
+  </data>
+  <data name="usedLeaves" xml:space="preserve">
+    <value>Used Leaves :</value>
+  </data>
 </root>

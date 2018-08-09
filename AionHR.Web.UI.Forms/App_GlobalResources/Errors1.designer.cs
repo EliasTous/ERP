@@ -124,6 +124,24 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Error converting check in time  to time.
+        /// </summary>
+        internal static string Error_11103 {
+            get {
+                return ResourceManager.GetString("Error_11103", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error converting check out time  to time.
+        /// </summary>
+        internal static string Error_11104 {
+            get {
+                return ResourceManager.GetString("Error_11104", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ERROR_CASTING_IDNAME_OBJECT.
         /// </summary>
         internal static string Error_11201 {

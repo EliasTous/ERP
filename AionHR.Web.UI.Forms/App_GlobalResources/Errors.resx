@@ -138,6 +138,12 @@
   <data name="Error_11102" xml:space="preserve">
     <value>Error converting day Id  to date</value>
   </data>
+  <data name="Error_11103" xml:space="preserve">
+    <value>Error converting check in time  to time</value>
+  </data>
+  <data name="Error_11104" xml:space="preserve">
+    <value>Error converting check out time  to time</value>
+  </data>
   <data name="Error_11201" xml:space="preserve">
     <value>ERROR_CASTING_IDNAME_OBJECT</value>
   </data>

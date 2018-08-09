@@ -239,7 +239,7 @@ namespace AionHR.Web.UI.Forms.Reports
                     catch { y.edName = y.edName; }
 
                 });
-                PayrollLine line = new PayrollLine(ens, des, list, GetLocalResourceObject("taxableeAmount").ToString(), GetLocalResourceObject("eAmount").ToString(), GetLocalResourceObject("dAmount").ToString(), GetLocalResourceObject("netSalary").ToString(), GetLocalResourceObject("essString").ToString(), GetLocalResourceObject("cssString").ToString(), _systemService.SessionHelper.GetDateformat());
+                PayrollLine line = new PayrollLine(ens, des, list, GetLocalResourceObject("taxableeAmount").ToString(), GetLocalResourceObject("eAmount").ToString(), GetLocalResourceObject("dAmount").ToString(), GetLocalResourceObject("net").ToString(), GetLocalResourceObject("essString").ToString(), GetLocalResourceObject("cssString").ToString(), _systemService.SessionHelper.GetDateformat(),GetLocalResourceObject("netSalaryString").ToString());
                 lines.Add(line);
             }
 

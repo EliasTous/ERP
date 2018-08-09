@@ -770,6 +770,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
 
             request.Size = "50";
             request.StartAt = "1";
+            
             ListResponse<EmployeeSalary> currencies = _employeeService.ChildGetAll<EmployeeSalary>(request);
             if (!currencies.Success)
                 X.Msg.Alert(Resources.Common.Error, currencies.Summary).Show();

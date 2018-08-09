@@ -499,6 +499,69 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.FormPanel BasicInfoTab;
         
         /// <summary>
+        /// Panel1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Panel Panel1;
+        
+        /// <summary>
+        /// left control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Panel left;
+        
+        /// <summary>
+        /// earnedLeaves control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.TextField earnedLeaves;
+        
+        /// <summary>
+        /// usedLeaves control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.TextField usedLeaves;
+        
+        /// <summary>
+        /// rightPanel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Panel rightPanel;
+        
+        /// <summary>
+        /// paidLeaves control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.TextField paidLeaves;
+        
+        /// <summary>
+        /// leavesBalance control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.TextField leavesBalance;
+        
+        /// <summary>
         /// recordId control.
         /// </summary>
         /// <remarks>

@@ -1220,11 +1220,25 @@ namespace AionHR.Web.UI.Forms
             leaveDaysStore.DataSource = new List<LeaveDay>();
             leaveDaysStore.DataBind();
         }
+        [DirectMethod]
+        protected void FillEmployeeLeaves(object sender, DirectEventArgs e)
+        {
+            EmployeeQuickViewRecordRequest req = new EmployeeQuickViewRecordRequest();
+            req.RecordID = _systemService.SessionHelper.GetEmployeeId();
+            req.asOfDate = DateTime.Now;
+            RecordResponse<EmployeeQuickView> qv = _employeeService.ChildGetRecord<EmployeeQuickView>(req);
+            if (!qv.Success)
+            {
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                X.Msg.Alert(Resources.Common.Error, qv.Summary).Show();
+                return ;
+            }
+            earnedLeaves.Text = qv.result.earnedLeaves.ToString();
+            usedLeaves.Text = qv.result.usedLeaves.ToString();
+            paidLeaves.Text = qv.result.paidLeaves.ToString();
+            leavesBalance.Text = qv.result.leaveBalance.ToString(); 
 
 
-
-
-
-
+        }
     }
 }

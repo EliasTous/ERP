@@ -135,7 +135,7 @@
   <data name="essString" xml:space="preserve">
     <value>التأمين</value>
   </data>
-  <data name="netSalary" xml:space="preserve">
+  <data name="net" xml:space="preserve">
     <value>صافي الراتب</value>
   </data>
   <data name="PaidAt" xml:space="preserve">
@@ -164,5 +164,8 @@
   </data>
   <data name="Disappearance" xml:space="preserve">
     <value>غياب بدون إذن</value>
+  </data>
+  <data name="netSalaryString" xml:space="preserve">
+    <value>الصافي</value>
   </data>
 </root>

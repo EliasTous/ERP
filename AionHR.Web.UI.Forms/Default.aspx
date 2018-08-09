@@ -107,6 +107,7 @@
     <ext:Hidden runat="server" ID="importOTTitle" Text="<%$Resources:Common , ImportOvertimeSettings %>" />
        <ext:Hidden runat="server" ID="importPUTitle" Text="<%$Resources:Common , ImportPunches %>" />
      <ext:Hidden runat="server" ID="GADTitle" Text="<%$Resources:Common ,GenerateAttendanceDays  %>" />
+      <ext:Hidden runat="server" ID="GASTitle" Text="<%$Resources:Common ,GenerateAttendanceShift  %>" />
     <ext:Hidden runat="server" ID="importEPRtW" Text="<%$Resources:Common , ImportRTW %>" />
      <ext:Hidden runat="server" ID="ImportSa" Text="<%$Resources:Common , importSa %>" />
     
@@ -501,6 +502,11 @@
                                                                           <ext:MenuItem runat="server" Text="<%$Resources: Common , GenerateAttendanceDays%>">
                                                                             <Listeners>
                                                                                 <Click Handler="openNewTab('otSettings', 'GenerateAttendanceDays.aspx',#{GADTitle}.value , 'icon-Employees')" />
+                                                                            </Listeners>
+                                                                        </ext:MenuItem>
+                                                                         <ext:MenuItem runat="server" Text="<%$Resources: Common , GenerateAttendanceShift%>">
+                                                                            <Listeners>
+                                                                                <Click Handler="openNewTab('otSettings', 'GenerateAttendanceShifts.aspx',#{GASTitle}.value , 'icon-Employees')" />
                                                                             </Listeners>
                                                                         </ext:MenuItem>
                                                                     </Items>
