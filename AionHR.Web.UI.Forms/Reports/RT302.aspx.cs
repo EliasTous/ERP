@@ -84,7 +84,7 @@ namespace AionHR.Web.UI.Forms.Reports
                     dateRange1.DefaultStartDate = DateTime.Now.AddDays(-DateTime.Now.Day);
                     format.Text = _systemService.SessionHelper.GetDateformat().ToUpper();
                     ASPxWebDocumentViewer1.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.Utils.DefaultBoolean.True : DevExpress.Utils.DefaultBoolean.False;
-                    FillReport(false, false);
+                    //FillReport(false, false);
                 }
                 catch { }
             }
