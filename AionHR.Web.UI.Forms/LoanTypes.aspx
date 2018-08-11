@@ -49,7 +49,11 @@
                     <Fields>
 
                         <ext:ModelField Name="recordId" />
+                        <ext:ModelField Name="ldMethod" />
                         <ext:ModelField Name="name" />
+                        <ext:ModelField Name="ldValue" />
+                        <ext:ModelField Name="disableEditing" />
+
                       
                     </Fields>
                 </ext:Model>
