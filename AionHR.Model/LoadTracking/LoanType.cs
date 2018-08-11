@@ -13,5 +13,15 @@ namespace AionHR.Model.LoadTracking
         [PropertyID("45000_01")]
         [ApplySecurity]
         public string name { get; set; }
+        [PropertyID("45000_02")]
+        [ApplySecurity]
+        public int ldMethod { get; set; }
+        [PropertyID("45000_03")]
+        [ApplySecurity]
+        public double ldValue { get; set; }
+        [PropertyID("45000_04")]
+        [ApplySecurity]
+        public bool disableEditing { get; set; }
+        
     }
 }

@@ -120,6 +120,9 @@
   <data name="BasicInfoTabEditWindowTitle" xml:space="preserve">
     <value>Loan Type Info</value>
   </data>
+  <data name="disableEditing" xml:space="preserve">
+    <value>Disable Editing</value>
+  </data>
   <data name="EditWindowsTitle" xml:space="preserve">
     <value>Edit Loan Type</value>
   </data>
@@ -129,7 +132,28 @@
   <data name="FieldRecordId" xml:space="preserve">
     <value>Record ID</value>
   </data>
+  <data name="FixedAmount" xml:space="preserve">
+    <value>Fixed Amount</value>
+  </data>
+  <data name="PaymentValue" xml:space="preserve">
+    <value>Payment Value</value>
+  </data>
+  <data name="PFormFullSalaryDeduction" xml:space="preserve">
+    <value>Full Salary Deduction</value>
+  </data>
+  <data name="PFromBasicSalary" xml:space="preserve">
+    <value>Percentage of Basic Salary</value>
+  </data>
+  <data name="PFromLoan" xml:space="preserve">
+    <value>Percentage of Loan</value>
+  </data>
+  <data name="PFromNetSalary" xml:space="preserve">
+    <value>Percentage of Net Salary</value>
+  </data>
   <data name="WindowTitle" xml:space="preserve">
     <value>Loan Types</value>
+  </data>
+  <data name="LoanCoverageType" xml:space="preserve">
+    <value>Loan Coverage Type</value>
   </data>
 </root>

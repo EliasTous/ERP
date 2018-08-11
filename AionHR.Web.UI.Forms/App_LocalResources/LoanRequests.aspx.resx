@@ -264,4 +264,7 @@
   <data name="FieldType" xml:space="preserve">
     <value>Type</value>
   </data>
+  <data name="PFormFullSalaryDeduction" xml:space="preserve">
+    <value>Full Salary Deduction</value>
+  </data>
 </root>

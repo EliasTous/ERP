@@ -120,6 +120,9 @@
   <data name="BasicInfoTabEditWindowTitle" xml:space="preserve">
     <value>أنواع السلف</value>
   </data>
+  <data name="disableEditing" xml:space="preserve">
+    <value>منع التعديل</value>
+  </data>
   <data name="EditWindowsTitle" xml:space="preserve">
     <value>تعديل نوع السلفة</value>
   </data>
@@ -129,7 +132,28 @@
   <data name="FieldRecordId" xml:space="preserve">
     <value>Record ID</value>
   </data>
+  <data name="FixedAmount" xml:space="preserve">
+    <value>قيمة ثابتة</value>
+  </data>
+  <data name="PaymentValue" xml:space="preserve">
+    <value>قيمة الدفعة</value>
+  </data>
+  <data name="PFormFullSalaryDeduction" xml:space="preserve">
+    <value>خصم كامل الراتب</value>
+  </data>
+  <data name="PFromBasicSalary" xml:space="preserve">
+    <value>نسبة مئوية من الراتب الأساسي</value>
+  </data>
+  <data name="PFromLoan" xml:space="preserve">
+    <value>نسبة مئوية من السلفة</value>
+  </data>
+  <data name="PFromNetSalary" xml:space="preserve">
+    <value>نسبة مئوية من الراتب النهائي</value>
+  </data>
   <data name="WindowTitle" xml:space="preserve">
     <value>أنواع السلفة</value>
+  </data>
+  <data name="LoanCoverageType" xml:space="preserve">
+    <value>تغطية السلفة </value>
   </data>
 </root>

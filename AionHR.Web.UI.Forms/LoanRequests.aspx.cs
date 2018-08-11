@@ -1384,6 +1384,14 @@ namespace AionHR.Web.UI.Forms
             return new { valid = true };
         }
 
+        protected void LoanTypeChanged(object sender, DirectEventArgs e)
+        {
+            RecordResponse<LoanType> resp = _loanService.ChildGetRecord<LoanType>(new RecordRequest() { RecordID = e.ExtraParams["id"] });
+            if(resp.Success)
+            {
+                
+            }
 
+        }
     }
 }
