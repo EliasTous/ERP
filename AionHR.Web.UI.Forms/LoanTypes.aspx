@@ -29,7 +29,11 @@
         <ext:Hidden ID="textLoadFailed" runat="server" Text="<%$ Resources:Common , LoadFailed %>" />
         <ext:Hidden ID="titleSavingError" runat="server" Text="<%$ Resources:Common , TitleSavingError %>" />
         <ext:Hidden ID="titleSavingErrorMessage" runat="server" Text="<%$ Resources:Common , TitleSavingErrorMessage %>" />
-        
+        <ext:Hidden ID="ldMethod1" runat="server" Text="<%$ Resources:PFromNetSalary  %>" />
+        <ext:Hidden ID="ldMethod2" runat="server" Text="<%$ Resources:PFromBasicSalary   %>" />
+        <ext:Hidden ID="ldMethod3" runat="server" Text="<%$ Resources:PFromLoan    %>" />
+        <ext:Hidden ID="ldMethod4" runat="server" Text="<%$ Resources:FixedAmount   %>" />
+        <ext:Hidden ID="ldMethod5" runat="server" Text="<%$ Resources:PFormFullSalaryDeduction   %>" />
         <ext:Store
             ID="Store1"
             runat="server"
@@ -158,7 +162,9 @@
                         </ext:Column>
                                  <ext:Column ID="ldValueCo" DataIndex="ldValue" Text="<%$ Resources: PaymentValue %>" runat="server" Flex="2" />                  
                            
-                             <ext:Column ID="Column1" DataIndex="ldMethod" Text="<%$ Resources: LoanCoverageType %>" runat="server" Flex="2" />                  
+                             <ext:Column ID="Column1" DataIndex="ldMethod" Text="<%$ Resources: LoanCoverageType %>" runat="server" Flex="2" >                 
+                                 <Renderer Handler="return document.getElementById('ldMethod'+record.data['ldMethod']).value;" />
+                                 </ext:Column>
                              <ext:CheckColumn ID="Column2" DataIndex="disableEditing" Text="<%$ Resources: disableEditing %>" runat="server" width="100" />                  
     
 
